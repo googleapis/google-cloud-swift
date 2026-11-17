@@ -81,7 +81,7 @@ struct ExternalAccountTokenProvider: TokenProvider, Sendable {
     self.subjectTokenType = subjectTokenType
     self.audience = audience
     self.scopes = scopes
-    self.workforcePoolUserProject = workforcePoolUserProject
+    self.workforcePoolUserProject = nonEmpty(workforcePoolUserProject)
     self.clientAuthentication = clientAuthentication
     self.retryConfiguration = retryConfiguration
     self.stsHandler = STSHandler(httpClient: httpClient)
@@ -228,7 +228,8 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     }
 
     // Billing constraints validation: workforce pool user project should only be set for global workforce pools.
-    if let workforcePoolUserProject = workforcePoolUserProject, !workforcePoolUserProject.isEmpty {
+    let effectiveWorkforcePoolUserProject = nonEmpty(workforcePoolUserProject)
+    if effectiveWorkforcePoolUserProject != nil {
       guard isValidWorkforcePoolAudience(audience) else {
         throw CredentialsError.parseError(
           "workforcePoolUserProject should not be set for non-workforce pool credentials")
@@ -243,7 +244,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     self.subjectTokenType = subjectTokenType
     self.tokenURL = tokenURL
     self.clientAuthentication = clientAuthentication
-    self.workforcePoolUserProject = workforcePoolUserProject
+    self.workforcePoolUserProject = effectiveWorkforcePoolUserProject
     self.scopes = effectiveScopes
     self.universeDomain = effectiveUniverse
 
@@ -253,7 +254,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
       subjectTokenType: subjectTokenType,
       audience: audience,
       scopes: effectiveScopes,
-      workforcePoolUserProject: workforcePoolUserProject,
+      workforcePoolUserProject: effectiveWorkforcePoolUserProject,
       clientAuthentication: clientAuthentication,
       retryConfiguration: retryConfiguration,
       httpClient: httpClient

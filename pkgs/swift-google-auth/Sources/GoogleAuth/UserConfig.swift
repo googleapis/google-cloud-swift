@@ -43,7 +43,7 @@ public struct UserConfig: Sendable {
 
   /// Optional Google Cloud project ID used for billing and quota attribution (`x-goog-user-project`).
   ///
-  /// When `nil`, falls back to the `"quota_project_id"` field in `keyJSON` if present.
+  /// When `nil` or empty, falls back to the `"quota_project_id"` field in `keyJSON` if non-empty.
   public var quotaProjectID: String? = nil
 
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (must be `googleapis.com` or `nil`).

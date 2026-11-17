@@ -343,6 +343,44 @@ import Testing
     }
   }
 
+  @Test func resolveProviderForUserCredentialsQuotaProjectNormalization() throws {
+    let jsonWithQuota = Data(
+      """
+      {
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "quota_project_id": "json-quota-project",
+        "type": "authorized_user"
+      }
+      """.utf8)
+
+    let emptyOverrideConfig = UserConfig(keyJSON: jsonWithQuota).with {
+      $0.quotaProjectID = ""
+    }
+    let fallbackCreds = try Credentials(configuration: .user(emptyOverrideConfig))
+    let fallbackProvider = try #require(fallbackCreds.credentialsProvider as? UserCredentials)
+    #expect(fallbackProvider.quotaProjectID == "json-quota-project")
+
+    let jsonWithEmptyQuota = Data(
+      """
+      {
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "quota_project_id": "",
+        "type": "authorized_user"
+      }
+      """.utf8)
+
+    let allEmptyConfig = UserConfig(keyJSON: jsonWithEmptyQuota).with {
+      $0.quotaProjectID = ""
+    }
+    let emptyCreds = try Credentials(configuration: .user(allEmptyConfig))
+    let emptyProvider = try #require(emptyCreds.credentialsProvider as? UserCredentials)
+    #expect(emptyProvider.quotaProjectID == nil)
+  }
+
   @Test func resolveProviderForExternalAccount() async throws {
     struct MockSubjectTokenProvider: SubjectTokenProvider {
       func subjectToken() async throws -> String { "token" }

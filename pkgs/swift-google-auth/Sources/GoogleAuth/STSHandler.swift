@@ -150,7 +150,7 @@ struct STSHandler: Sendable {
     // escaped JSON string even when the outer request body is encoded as JSON.
     // E.g., for userProject "my-project", the serialized value is "{\"userProject\":\"my-project\"}".
     if request.clientAuthentication == nil,
-      let project = request.workforcePoolUserProject
+      let project = nonEmpty(request.workforcePoolUserProject)
     {
       let optionsDict = ["userProject": project]
       if let optionsData = try? JSONEncoder().encode(optionsDict),

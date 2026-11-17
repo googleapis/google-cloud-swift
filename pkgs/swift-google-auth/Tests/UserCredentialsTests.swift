@@ -690,6 +690,85 @@ import Testing
     #expect(headers.values(for: "x-goog-user-project") == ["override-quota-proj"])
   }
 
+  @Test func headersNormalizesEmptyQuotaProjectStrings() async throws {
+    let responsePayload = Oauth2RefreshResponse(
+      accessToken: "mock-token",
+      expiresIn: 3600,
+      tokenType: "Bearer"
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedData = try encoder.encode(responsePayload)
+
+    let makeMockClient = {
+      AuthHTTPClient(
+        mock: MockHTTPClient([
+          { _ in
+            HTTPClientResponse(
+              version: .http2,
+              status: .ok,
+              headers: .init([("Content-Type", "application/json")]),
+              body: .bytes(.init(data: encodedData))
+            )
+          }
+        ])
+      )
+    }
+
+    let emptyJSONData = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token",
+      quotaProjectId: ""
+    )
+
+    let credsFromEmptyJSON = try UserCredentials(user: emptyJSONData, httpClient: makeMockClient())
+    #expect(credsFromEmptyJSON.quotaProjectID == nil)
+    let headersFromEmptyJSON = try await credsFromEmptyJSON.headers()
+    #expect(headersFromEmptyJSON["x-goog-user-project"] == nil)
+
+    let credsWithBothEmpty = try UserCredentials(
+      user: emptyJSONData, quotaProjectID: "", httpClient: makeMockClient())
+    #expect(credsWithBothEmpty.quotaProjectID == nil)
+    let headersWithBothEmpty = try await credsWithBothEmpty.headers()
+    #expect(headersWithBothEmpty["x-goog-user-project"] == nil)
+
+    let credsOverrideOverEmptyJSON = try UserCredentials(
+      user: emptyJSONData, quotaProjectID: "override-proj", httpClient: makeMockClient())
+    let headersOverrideOverEmptyJSON = try await credsOverrideOverEmptyJSON.headers()
+    #expect(headersOverrideOverEmptyJSON.values(for: "x-goog-user-project") == ["override-proj"])
+
+    let nonEmptyJSONData = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id",
+      clientSecret: "test-client-secret",
+      refreshToken: "test-refresh-token",
+      quotaProjectId: "user-json-quota-proj"
+    )
+    let credsEmptyParamFallsBackToJSON = try UserCredentials(
+      user: nonEmptyJSONData, quotaProjectID: "", httpClient: makeMockClient())
+    let headersEmptyParamFallsBackToJSON = try await credsEmptyParamFallsBackToJSON.headers()
+    #expect(
+      headersEmptyParamFallsBackToJSON.values(for: "x-goog-user-project") == [
+        "user-json-quota-proj"
+      ]
+    )
+
+    let rawEmptyJSONKey = Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "quota_project_id": ""
+      }
+      """.utf8)
+    let parsedFromRawEmptyJSON = try UserCredentials(keyJSON: rawEmptyJSONKey, quotaProjectID: "")
+    #expect(parsedFromRawEmptyJSON.quotaProjectID == nil)
+  }
+
   @Test func tokenProviderSurfacesOAuthErrorBodyInCredentialsError() async throws {
     let oauthErrorJSON =
       #"{"error":"invalid_grant","error_description":"Token has been expired or revoked."}"#
