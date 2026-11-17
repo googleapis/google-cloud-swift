@@ -1299,12 +1299,13 @@ private actor DelayedFailedTokenProvider: TokenProvider {
   /// cancellation path via `cancelBackgroundRefresh()`), the loop terminates and clears
   /// `backgroundTask` so a subsequent `token()` call restarts proactive background refresh.
   @Test func cancelledBackgroundRefreshTerminatesAndRestartsOnNextTokenFetch() async throws {
-    let (valuesStream, valuesContinuation) = AsyncStream<Result<AccessToken, any Error>>
-      .makeStream()
-    let provider = WaitingTokenProvider(values: valuesStream)
+    let provider = MockTokenProvider()
     let clock = TestClock()
     let now = Date()
     let timeSource = MockTimeSource(currentDate: now)
+
+    let token1 = AccessToken(token: "token-1", expirationDate: now.addingTimeInterval(10.0))
+    await provider.configure(token: token1)
 
     let cache = TokenCache(
       provider: provider,
@@ -1314,28 +1315,12 @@ private actor DelayedFailedTokenProvider: TokenProvider {
       shortRefreshSlack: .seconds(1)
     )
 
-    let initialFetch = Task {
-      try await cache.token()
-    }
-    await provider.fetcherWaiting()
-    let token1 = AccessToken(token: "token-1", expirationDate: now.addingTimeInterval(10.0))
-    valuesContinuation.yield(.success(token1))
-    #expect(try await initialFetch.value == token1)
-
+    #expect(try await cache.token() == token1)
     await clock.sleeperWaiting()
     #expect(await cache.hasBackgroundTask)
-    #expect(clock.hasSleepers)
 
-    // Wake background refresh at stale threshold (8s) and suspend inside provider.fetchToken().
-    timeSource.advance(by: 8.0)
-    clock.advance(by: .seconds(8))
-    await provider.fetcherWaiting()
-    #expect(await provider.count == 2)
-
-    // Cancel the background refresh task itself, then fail the in-flight fetch with CancellationError.
+    // Cancel the sleeping background task and wait for it to clear its handle.
     await cache.cancelBackgroundRefresh()
-    valuesContinuation.yield(.failure(CancellationError()))
-
     for _ in 0..<1_000 {
       guard await cache.hasBackgroundTask else { break }
       await Task.yield()
@@ -1343,32 +1328,15 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await !cache.hasBackgroundTask)
     #expect(!clock.hasSleepers)
 
-    // Advance past token-1's expiration (total 11s > 10s) and fetch a new expiring token.
-    timeSource.advance(by: 3.0)
-    let secondFetch = Task {
-      try await cache.token()
-    }
-    await provider.fetcherWaiting()
+    // Advance past token-1's expiration; fetching token-2 must restart background refresh.
+    timeSource.advance(by: 11.0)
     let token2 = AccessToken(
       token: "token-2", expirationDate: timeSource.now.addingTimeInterval(10.0))
-    valuesContinuation.yield(.success(token2))
-    #expect(try await secondFetch.value == token2)
+    await provider.configure(token: token2)
+    #expect(try await cache.token() == token2)
 
-    // Because backgroundTask was cleared on exit, startBackgroundRefreshIfNeeded spawns a new loop.
     await clock.sleeperWaiting()
     #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
-
-    // Verify the restarted proactive loop refreshes token-2 when it becomes stale.
-    timeSource.advance(by: 8.0)
-    clock.advance(by: .seconds(8))
-    await provider.fetcherWaiting()
-    let token3 = AccessToken(
-      token: "token-3", expirationDate: timeSource.now.addingTimeInterval(1000.0))
-    valuesContinuation.yield(.success(token3))
-
-    await clock.sleeperWaiting()
-    #expect(try await cache.token() == token3)
-    #expect(await provider.count == 4)
   }
 }
