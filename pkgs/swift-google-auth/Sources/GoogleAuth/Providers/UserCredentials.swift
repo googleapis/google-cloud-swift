@@ -59,6 +59,17 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
   let provider: UserAccountTokenProvider
   let quotaProjectID: String?
 
+  /// Initializes `UserCredentials` from parsed user account credential data.
+  ///
+  /// - Parameters:
+  ///   - user: The parsed user account credential data.
+  ///   - quotaProjectID: An optional project ID used for quota and billing purposes.
+  ///   - universeDomain: An optional universe domain to constrain the credentials to (defaults to `googleapis.com`).
+  ///   - scopes: Scopes requested for the access token.
+  ///   - httpClient: The HTTP client used for token refresh requests.
+  ///   - retryConfiguration: The retry configuration for token refresh requests.
+  /// - Throws: `CredentialsError.notSupported` if a non-default universe domain is configured, or
+  ///   `CredentialsError.parseError` if the token URI is invalid.
   init(
     user: UserAccountData,
     quotaProjectID: String? = nil,

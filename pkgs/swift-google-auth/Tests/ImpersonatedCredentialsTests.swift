@@ -633,7 +633,7 @@ private struct FailingSourceCredentials: CredentialsProvider {
       }
       """.utf8
     )
-    let userCreds = try GoogleAuth.UserCredentials(keyJSON: userJSON)
+    let userCreds = try UserCredentials(keyJSON: userJSON)
     let error = #expect(throws: CredentialsError.self) {
       _ = try ImpersonatedCredentials(
         sourceCredentials: userCreds,
