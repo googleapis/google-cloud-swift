@@ -746,6 +746,51 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
   }
 
+  @Test(
+    "ClientAuthentication descriptions redact clientSecret",
+    arguments: ["super-secret-client-secret", "", nil] as [String?]
+  )
+  func clientAuthenticationDescriptionsRedactSecret(clientSecret: String?) {
+    let auth = ClientAuthentication(clientID: "my-client-id", clientSecret: clientSecret)
+    let expected = "ClientAuthentication(clientID: \"my-client-id\", clientSecret: \"[redacted]\")"
+    #expect(String(describing: auth) == expected)
+    #expect(String(reflecting: auth) == expected)
+  }
+
+  @Test("ExternalAccount configurations and credentials redact clientSecret in descriptions")
+  func externalAccountContainersRedactClientSecret() throws {
+    let clientAuth = ClientAuthentication(
+      clientID: "my-client-id",
+      clientSecret: "super-secret-client-secret"
+    )
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(
+        subjectTokenProvider: MockSubjectTokenProvider(token: "subj-token")
+      ),
+      audience: "//iam.googleapis.com/locations/global/workforcePools/pool/providers/prov",
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+    ).with {
+      $0.clientAuthentication = clientAuth
+    }
+    let configuration = CredentialsConfiguration.externalAccount(config)
+    let credentials = try Credentials(configuration: configuration)
+
+    let formattedOutputs = [
+      String(describing: config),
+      String(reflecting: config),
+      String(describing: configuration),
+      String(reflecting: configuration),
+      String(describing: credentials),
+      String(reflecting: credentials),
+    ]
+    for output in formattedOutputs {
+      #expect(!output.contains("super-secret-client-secret"))
+      #expect(output.contains("my-client-id"))
+      #expect(output.contains("[redacted]"))
+    }
+  }
+
   @Test("ExternalAccountConfig configures client authentication")
   func configWithClientAuthentication() throws {
     let provider = MockSubjectTokenProvider(token: "mock-token")

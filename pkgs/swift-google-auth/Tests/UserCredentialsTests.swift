@@ -773,4 +773,89 @@ import Testing
       return message.contains("custom.com")
     }
   }
+
+  @Test(
+    arguments: [
+      (
+        UserAccountData(
+          type: "authorized_user",
+          clientId: "test-client-id.apps.googleusercontent.com",
+          clientSecret: "super-secret-oauth-client-secret",
+          refreshToken: "1//super-secret-oauth-refresh-token",
+          tokenUri: "https://oauth2.googleapis.com/token",
+          quotaProjectId: "my-quota-project",
+          universeDomain: "googleapis.com"
+        ),
+        "UserAccountData(type: \"authorized_user\", clientId: \"test-client-id.apps.googleusercontent.com\", clientSecret: \"[redacted]\", refreshToken: \"[redacted]\", tokenUri: \"https://oauth2.googleapis.com/token\", quotaProjectId: \"my-quota-project\", universeDomain: \"googleapis.com\")"
+      ),
+      (
+        UserAccountData(
+          type: "authorized_user",
+          clientId: "minimal-client-id",
+          clientSecret: "minimal-client-secret",
+          refreshToken: "minimal-refresh-token"
+        ),
+        "UserAccountData(type: \"authorized_user\", clientId: \"minimal-client-id\", clientSecret: \"[redacted]\", refreshToken: \"[redacted]\", tokenUri: nil, quotaProjectId: nil, universeDomain: nil)"
+      ),
+    ]
+  )
+  func userAccountDataDescriptionsRedactSecrets(
+    data: UserAccountData,
+    expected: String
+  ) {
+    #expect(String(describing: data) == expected)
+    #expect(String(reflecting: data) == expected)
+  }
+
+  @Test func userCredentialsDescriptionsRedactSecrets() throws {
+    let data = UserAccountData(
+      type: "authorized_user",
+      clientId: "test-client-id.apps.googleusercontent.com",
+      clientSecret: "super-secret-oauth-client-secret",
+      refreshToken: "1//super-secret-oauth-refresh-token",
+      tokenUri: "https://oauth2.googleapis.com/token",
+      quotaProjectId: "my-quota-project",
+      universeDomain: "googleapis.com"
+    )
+    let userCreds = try UserCredentials(
+      user: data,
+      scopes: ["scope-a"],
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+
+    for output in [String(describing: userCreds), String(reflecting: userCreds)] {
+      #expect(!output.contains("super-secret-oauth-client-secret"))
+      #expect(!output.contains("1//super-secret-oauth-refresh-token"))
+      #expect(output.contains("[redacted]"))
+      #expect(output.contains("test-client-id.apps.googleusercontent.com"))
+      #expect(output.contains("my-quota-project"))
+      #expect(output.contains("googleapis.com"))
+      #expect(output.contains("scope-a"))
+    }
+  }
+
+  @Test func publicUserCredentialsDescriptionsRedactSecrets() throws {
+    let keyJSON = Data(
+      """
+      {
+        "type": "authorized_user",
+        "client_id": "public-creds-client-id",
+        "client_secret": "public-creds-client-secret",
+        "refresh_token": "public-creds-refresh-token",
+        "quota_project_id": "public-creds-quota-proj",
+        "universe_domain": "googleapis.com"
+      }
+      """.utf8
+    )
+    let credentials = try Credentials(configuration: .user(UserConfig(keyJSON: keyJSON)))
+
+    for output in [String(describing: credentials), String(reflecting: credentials)] {
+      #expect(!output.contains("public-creds-client-secret"))
+      #expect(!output.contains("public-creds-refresh-token"))
+      #expect(output.contains("[redacted]"))
+      #expect(output.contains("public-creds-client-id"))
+      #expect(output.contains("public-creds-quota-proj"))
+      #expect(output.contains("googleapis.com"))
+    }
+  }
 }
