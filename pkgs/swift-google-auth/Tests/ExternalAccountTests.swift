@@ -185,6 +185,10 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       "///locations/global/workforcePools/pool/providers/provider",
       "//iam.apis-tpclp.goog",
       "//iam.apis-tpclp.goog/projects/123/locations/global/workloadIdentityPools/pool/providers/provider",
+      "/locations/global/workforcePools/pool/providers/provider",
+      "locations/global/workforcePools/pool/providers/prov?foo=bar",
+      "locations/global/workforcePools/pool/providers/prov#frag",
+      "locations/global/workforcePools/pool/providers/prov%2Fextra",
     ]
   )
   func rejectsInvalidWorkforcePoolAudiences(audience: String) {

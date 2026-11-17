@@ -301,45 +301,51 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
 /// - Parameter audience: The audience string to validate.
 /// - Returns: `true` if the audience represents a valid workforce pool format, `false` otherwise.
 private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
+  guard
+    let url = URLComponents(string: audience),
+    url.scheme == nil,
+    url.user == nil,
+    url.password == nil,
+    url.port == nil,
+    url.query == nil,
+    url.fragment == nil,
+    !url.percentEncodedPath.contains("%")
+  else {
+    return false
+  }
+
   let path: Substring
-  if audience.hasPrefix("//") {
-    let withoutLeadingSlashes = audience.dropFirst(2)
-    guard let slashIndex = withoutLeadingSlashes.firstIndex(of: "/") else {
-      return false
-    }
-    let authority = withoutLeadingSlashes[..<slashIndex]
-    guard authority.lowercased().hasPrefix("iam."), !authority.contains("%") else {
-      return false
-    }
-    let universe = authority.dropFirst("iam.".count)
+  if let host = url.percentEncodedHost {
     guard
-      !universe.isEmpty,
-      !universe.hasPrefix("."),
-      !universe.hasSuffix("."),
-      !universe.contains(".."),
-      let urlComponents = URLComponents(string: "https://\(authority)"),
-      urlComponents.host?.lowercased() == authority.lowercased(),
-      urlComponents.port == nil,
-      urlComponents.user == nil,
-      urlComponents.password == nil,
-      urlComponents.path.isEmpty,
-      urlComponents.query == nil,
-      urlComponents.fragment == nil
+      isValidServiceHost(host, service: "iam"),
+      url.percentEncodedPath.hasPrefix("/")
     else {
       return false
     }
-    path = withoutLeadingSlashes[withoutLeadingSlashes.index(after: slashIndex)...]
+    path = url.percentEncodedPath.dropFirst()
   } else {
-    path = Substring(audience)
+    path = Substring(url.percentEncodedPath)
   }
 
-  let components = path.split(separator: "/", omittingEmptySubsequences: false)
-  guard components.count == 6 else { return false }
+  let segments = path.split(separator: "/", omittingEmptySubsequences: false)
+  guard segments.count == 6 else { return false }
 
-  return components[0] == "locations"
-    && !components[1].isEmpty
-    && components[2] == "workforcePools"
-    && !components[3].isEmpty
-    && components[4] == "providers"
-    && !components[5].isEmpty
+  return segments[0] == "locations"
+    && !segments[1].isEmpty
+    && segments[2] == "workforcePools"
+    && !segments[3].isEmpty
+    && segments[4] == "providers"
+    && !segments[5].isEmpty
+}
+
+private func isValidServiceHost(_ host: String, service: String) -> Bool {
+  let prefix = "\(service)."
+  guard host.lowercased().hasPrefix(prefix), !host.contains("%") else {
+    return false
+  }
+  let universe = host.dropFirst(prefix.count)
+  return !universe.isEmpty
+    && !universe.hasPrefix(".")
+    && !universe.hasSuffix(".")
+    && !universe.contains("..")
 }
