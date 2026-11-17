@@ -44,9 +44,7 @@ public struct ClientAuthentication: Sendable, Equatable, Hashable, CustomStringC
 
   /// A debug textual representation of the client authentication credentials with the client secret redacted.
   public var debugDescription: String {
-    let secretDescription = clientSecret != nil ? "\"[redacted]\"" : "nil"
-    return
-      "ClientAuthentication(clientID: \(String(reflecting: clientID)), clientSecret: \(secretDescription))"
+    "ClientAuthentication(clientID: \(String(reflecting: clientID)), clientSecret: \"[redacted]\")"
   }
 }
 

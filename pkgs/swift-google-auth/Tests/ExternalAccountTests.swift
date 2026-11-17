@@ -768,7 +768,9 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
 
     let authNoSecret = ClientAuthentication(clientID: "my-client-id")
     for output in [String(describing: authNoSecret), String(reflecting: authNoSecret)] {
-      #expect(output == "ClientAuthentication(clientID: \"my-client-id\", clientSecret: nil)")
+      #expect(
+        output == "ClientAuthentication(clientID: \"my-client-id\", clientSecret: \"[redacted]\")"
+      )
     }
 
     let config = ExternalAccountConfig(
