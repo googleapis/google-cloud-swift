@@ -746,33 +746,23 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     )
   }
 
-  @Test("ClientAuthentication descriptions redact clientSecret")
-  func clientAuthenticationDescriptionsRedactSecret() throws {
-    let authWithSecret = ClientAuthentication(
+  @Test(
+    "ClientAuthentication descriptions redact clientSecret",
+    arguments: ["super-secret-client-secret", "", nil] as [String?]
+  )
+  func clientAuthenticationDescriptionsRedactSecret(clientSecret: String?) {
+    let auth = ClientAuthentication(clientID: "my-client-id", clientSecret: clientSecret)
+    let expected = "ClientAuthentication(clientID: \"my-client-id\", clientSecret: \"[redacted]\")"
+    #expect(String(describing: auth) == expected)
+    #expect(String(reflecting: auth) == expected)
+  }
+
+  @Test("ExternalAccount configurations and credentials redact clientSecret in descriptions")
+  func externalAccountContainersRedactClientSecret() throws {
+    let clientAuth = ClientAuthentication(
       clientID: "my-client-id",
       clientSecret: "super-secret-client-secret"
     )
-    for output in [String(describing: authWithSecret), String(reflecting: authWithSecret)] {
-      #expect(!output.contains("super-secret-client-secret"))
-      #expect(
-        output == "ClientAuthentication(clientID: \"my-client-id\", clientSecret: \"[redacted]\")"
-      )
-    }
-
-    let authEmptySecret = ClientAuthentication(clientID: "my-client-id", clientSecret: "")
-    for output in [String(describing: authEmptySecret), String(reflecting: authEmptySecret)] {
-      #expect(
-        output == "ClientAuthentication(clientID: \"my-client-id\", clientSecret: \"[redacted]\")"
-      )
-    }
-
-    let authNoSecret = ClientAuthentication(clientID: "my-client-id")
-    for output in [String(describing: authNoSecret), String(reflecting: authNoSecret)] {
-      #expect(
-        output == "ClientAuthentication(clientID: \"my-client-id\", clientSecret: \"[redacted]\")"
-      )
-    }
-
     let config = ExternalAccountConfig(
       credentialSource: .programmatic(
         subjectTokenProvider: MockSubjectTokenProvider(token: "subj-token")
@@ -781,7 +771,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       subjectTokenType: .idToken,
       tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
     ).with {
-      $0.clientAuthentication = authWithSecret
+      $0.clientAuthentication = clientAuth
     }
     let configuration = CredentialsConfiguration.externalAccount(config)
     let credentials = try Credentials(configuration: configuration)
