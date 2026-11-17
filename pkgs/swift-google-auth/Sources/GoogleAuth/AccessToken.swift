@@ -58,7 +58,7 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
   public var debugDescription: String {
     let expiryDescription = expirationDate.map(String.init(describing:)) ?? "nil"
     return
-      "AccessToken(token: \(String(reflecting: redactedSecret)), tokenType: \(String(reflecting: tokenType)), expirationDate: \(expiryDescription))"
+      "AccessToken(token: \"[redacted]\", tokenType: \(String(reflecting: tokenType)), expirationDate: \(expiryDescription))"
   }
 }
 

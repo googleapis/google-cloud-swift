@@ -49,6 +49,6 @@ struct APIKeyCredentials: CredentialsProvider, Sendable, CustomStringConvertible
   }
 
   var debugDescription: String {
-    return "APIKeyCredentials(apiKey: \(String(reflecting: redactedSecret)))"
+    return "APIKeyCredentials(apiKey: \"[redacted]\")"
   }
 }

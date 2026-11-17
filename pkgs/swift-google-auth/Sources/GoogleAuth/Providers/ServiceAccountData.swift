@@ -49,6 +49,6 @@ extension ServiceAccountData: CustomStringConvertible, CustomDebugStringConverti
     let quotaDescription = quotaProjectID.map(String.init(reflecting:)) ?? "nil"
     let universeDescription = universeDomain.map(String.init(reflecting:)) ?? "nil"
     return
-      "ServiceAccountData(clientEmail: \(String(reflecting: clientEmail)), privateKeyID: \(String(reflecting: privateKeyID)), privateKey: \(String(reflecting: redactedSecret)), projectID: \(String(reflecting: projectID)), quotaProjectID: \(quotaDescription), universeDomain: \(universeDescription))"
+      "ServiceAccountData(clientEmail: \(String(reflecting: clientEmail)), privateKeyID: \(String(reflecting: privateKeyID)), privateKey: \"[redacted]\", projectID: \(String(reflecting: projectID)), quotaProjectID: \(quotaDescription), universeDomain: \(universeDescription))"
   }
 }
