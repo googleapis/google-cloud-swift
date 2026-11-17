@@ -91,7 +91,7 @@ import Testing
         "NO_GCE_CHECK": "true",
       ]
     )
-    #expect(provider is GoogleAuth.UserCredentials)
+    #expect(provider is UserCredentials)
   }
 
   @Test func noGCECheckDoesNotAffectWellKnownCredentialsFile() throws {
@@ -123,7 +123,7 @@ import Testing
         "NO_GCE_CHECK": "true",
       ]
     )
-    #expect(provider is GoogleAuth.UserCredentials)
+    #expect(provider is UserCredentials)
   }
 
   @Test func propagatesEnvironmentToMDS() async throws {
@@ -189,7 +189,7 @@ import Testing
     let provider = try ADC.resolve(
       environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
     )
-    #expect(provider is GoogleAuth.UserCredentials)
+    #expect(provider is UserCredentials)
   }
 
   @Test func throwsParseErrorOnMissingType() throws {
@@ -279,7 +279,7 @@ import Testing
     #expect(
       impersonated.provider.scopes == ["https://www.googleapis.com/auth/devstorage.read_write"]
     )
-    #expect(impersonated.provider.sourceCredentials is GoogleAuth.UserCredentials)
+    #expect(impersonated.provider.sourceCredentials is UserCredentials)
   }
 
   @Test func resolvesImpersonatedServiceAccountWithServiceAccountSourceFromFile() async throws {
@@ -386,7 +386,7 @@ import Testing
       )
       return
     }
-    #expect(inner.provider.sourceCredentials is GoogleAuth.UserCredentials)
+    #expect(inner.provider.sourceCredentials is UserCredentials)
   }
 
   @Test func rejectsUnsupportedSourceCredentialsTypeInImpersonatedADC() throws {
