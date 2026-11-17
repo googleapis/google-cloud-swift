@@ -861,4 +861,101 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(try await publicCreds.universeDomain() == "googleapis.com")
     try await publicCreds.validateUniverseDomain("googleapis.com")
   }
+
+  @Test("Normalizes empty workforcePoolUserProject to nil and omits STS options and header")
+  func emptyWorkforcePoolUserProjectNormalizesToNil() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+
+    let expectedResponse = TokenResponse(
+      accessToken: "ya29.sts-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        let buffer = try #require(try await request.body?.collect(upTo: 1024 * 1024))
+        let bodyString = try #require(
+          try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))
+        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+
+        #expect(params["options"] == nil)
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      },
+      { (request: HTTPClientRequest) async throws in
+        let buffer = try #require(try await request.body?.collect(upTo: 1024 * 1024))
+        let bodyString = try #require(
+          try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))
+        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+
+        #expect(params["options"] == nil)
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      },
+    ])
+
+    let httpClient = AuthHTTPClient(mock: mock)
+    let workloadAudience =
+      "//iam.googleapis.com/projects/123/locations/global/workloadIdentityPools/wpool/providers/wprov"
+
+    let workloadCreds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: workloadAudience,
+      subjectTokenType: .idToken,
+      tokenURL: targetURL,
+      workforcePoolUserProject: "",
+      httpClient: httpClient
+    )
+    #expect(workloadCreds.workforcePoolUserProject == nil)
+
+    let headers = try await workloadCreds.headers()
+    #expect(headers.count == 1)
+    #expect(headers["Authorization"] == "Bearer ya29.sts-token")
+    #expect(headers["x-goog-user-project"] == nil)
+
+    let tokenProvider = ExternalAccountTokenProvider(
+      subjectTokenProvider: provider,
+      tokenURL: targetURL,
+      subjectTokenType: .idToken,
+      audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
+      scopes: [ExternalAccountConfig.defaultScope],
+      workforcePoolUserProject: "",
+      httpClient: httpClient
+    )
+    let token = try await tokenProvider.fetchToken()
+    #expect(token.token == "ya29.sts-token")
+
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "//iam.googleapis.com/locations/global/workforcePools/wpool/providers/wprov",
+      subjectTokenType: .idToken,
+      tokenURL: targetURL
+    ).with {
+      $0.workforcePoolUserProject = ""
+    }
+    let publicCreds = try Credentials(configuration: .externalAccount(config))
+    let resolvedProvider = try #require(
+      publicCreds.credentialsProvider as? ExternalAccountCredentials)
+    #expect(resolvedProvider.workforcePoolUserProject == nil)
+  }
 }

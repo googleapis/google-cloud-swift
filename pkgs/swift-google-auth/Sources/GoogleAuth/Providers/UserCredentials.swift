@@ -90,7 +90,7 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
           "User accounts are only supported in the default (googleapis.com) universe: \(userUD)")
       }
     }
-    self.quotaProjectID = quotaProjectID ?? user.quotaProjectId
+    self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(user.quotaProjectId)
 
     // Resolve Token URL
     guard

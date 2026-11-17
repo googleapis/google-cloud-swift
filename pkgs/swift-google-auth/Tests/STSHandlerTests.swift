@@ -198,4 +198,62 @@ import Testing
       request: request, url: targetURL, encoding: .json)
     #expect(response.accessToken == expectedResponse.accessToken)
   }
+
+  @Test("Omits options parameter when workforcePoolUserProject is empty")
+  func exchangeTokenOmitsEmptyWorkforcePoolUserProject() async throws {
+    let targetURL = try #require(URL(string: "https://sts.googleapis.com/v1/token"))
+
+    let expectedResponse = TokenResponse(
+      accessToken: "ya29.fake-sts-access-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let encodedResponse = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { (request: HTTPClientRequest) async throws in
+        let buffer = try #require(try await request.body?.collect(upTo: 1024 * 1024))
+        let bodyString = try #require(
+          try buffer.getUTF8ValidatedString(at: 0, length: buffer.readableBytes))
+        let queryItems = URLComponents(string: "?" + bodyString)?.queryItems ?? []
+        let params = Dictionary(uniqueKeysWithValues: queryItems.map { ($0.name, $0.value) })
+
+        #expect(params["options"] == nil)
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedResponse))
+        )
+      },
+      { (request: HTTPClientRequest) async throws in
+        let bodyData = try #require(try await request.body?.collect(upTo: 1024 * 1024))
+        let jsonDict = try JSONDecoder().decode([String: String].self, from: bodyData)
+        #expect(jsonDict["options"] == nil)
+
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: encodedResponse))
+        )
+      },
+    ])
+
+    let handler = STSHandler(httpClient: AuthHTTPClient(mock: mock))
+    let request = ExchangeTokenRequest(
+      subjectToken: "fake-subject-token",
+      subjectTokenType: .idToken,
+      workforcePoolUserProject: ""
+    )
+
+    _ = try await handler.exchangeToken(request: request, url: targetURL, encoding: .urlEncoded)
+    _ = try await handler.exchangeToken(request: request, url: targetURL, encoding: .json)
+  }
 }
