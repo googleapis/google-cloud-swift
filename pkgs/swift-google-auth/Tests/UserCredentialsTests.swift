@@ -43,6 +43,8 @@ import Testing
     )
 
     await Task.yield()
+    // `MockHTTPClient.execute` records the per-request `timeout` argument on every call,
+    // so an empty `recordedTimeouts` array verifies zero HTTP requests were issued.
     #expect(mock.recordedTimeouts.isEmpty)
     _ = provider
   }
@@ -470,6 +472,9 @@ import Testing
     #expect(finalCount == 1)
   }
 
+  /// Verifies that a non-retryable 401 `invalid_grant` response neither retries inside
+  /// `RetryEngine` nor triggers a new HTTP fetch on subsequent `headers()` calls (proving
+  /// `UserCredentials` wires `isRetryable: AuthHTTPError.isRetryable` into `TokenCache`).
   @Test func testReproNonRetryableRetry() async throws {
     let attempts = CallCounter()
 
@@ -516,6 +521,9 @@ import Testing
     #expect(attempts.getCount() == 1)
     #expect(mock.recordedTimeouts.count == 1)
 
+    // Calling `headers()` a second time verifies `TokenCache` recorded the 401 as a permanent
+    // error via `AuthHTTPError.isRetryable` rather than defaulting to `{ _ in true }` and
+    // issuing another request to `MockHTTPClient`.
     let error2 = await #expect(throws: CredentialsError.self) {
       _ = try await source.headers()
     }
