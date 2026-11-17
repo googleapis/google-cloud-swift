@@ -87,8 +87,9 @@ public struct ExternalAccountConfig: Sendable {
 
   /// Optional user project ID used to assert billing and quota constraints (`x-goog-user-project`).
   ///
-  /// This parameter is only allowed when exchanging tokens for a global workforce pool. Setting this
-  /// for a non-workforce pool will result in a validation error.
+  /// This parameter is only allowed when exchanging tokens for a global workforce pool. Setting a
+  /// non-empty value for a non-workforce pool will result in a validation error. When `nil` or empty,
+  /// no user project is sent.
   public var workforcePoolUserProject: String? = nil
 
   /// The default scope requested for Google Cloud STS token exchange.

@@ -33,8 +33,8 @@ public struct ADCConfig: Sendable {
   ///
   /// Requires `serviceusage.services.use` permission on the project.
   ///
-  /// **Important Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set,
-  /// its value takes precedence over this property.
+  /// **Important Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set to a
+  /// non-empty value, its value takes precedence over this property.
   public var quotaProjectID: String? = nil
 
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override (defaults to `googleapis.com`).
