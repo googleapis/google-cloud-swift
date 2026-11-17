@@ -312,6 +312,13 @@ import Testing
       wantURL: "https://storage.googleapis.com/upload?upload_id=1",
       wantHost: "storage.googleapis.com"
     ),
+    (
+      endpoint: nil,
+      universeDomain: "googleapis.com",
+      uri: "HTTPS://STORAGE.US-CENTRAL1.REP.GOOGLEAPIS.COM:443/upload?upload_id=1",
+      wantURL: "https://storage.us-central1.rep.googleapis.com/upload?upload_id=1",
+      wantHost: "storage.us-central1.rep.googleapis.com"
+    ),
     // Custom HTTPS proxy, HTTP localhost emulator, & IPv6 loopback emulator
     (
       endpoint: "https://my-proxy.example.com:8443",
@@ -498,6 +505,11 @@ import Testing
       universeDomain: "0.0.1",
       uri: "http://storage.0.0.1/upload?upload_id=1"
     ),
+    (
+      endpoint: "https://private.googleapis.com",
+      universeDomain: "GOOGLEAPIS.COM",
+      uri: "https://storage.us-central1.rep.googleapis.com/upload?upload_id=1"
+    ),
   ])
   func resolveRequestURIFailure(
     endpoint: String?,
@@ -530,5 +542,21 @@ import Testing
       return
     }
     #expect(bad == uri)
+  }
+
+  @Test func resolveRequestURIClearsBaseURLQueryWhenSessionHasNoQuery() throws {
+    let baseURL = try #require(URLComponents(string: "https://storage.googleapis.com?leaked=1"))
+    let result = try _Host.resolveRequestURI(
+      "https://storage.googleapis.com/upload/storage/v1/b/bkt/o",
+      baseURL: baseURL,
+      defaultEndpoint: "https://storage.googleapis.com",
+      universeDomain: "googleapis.com",
+      defaultHostHeader: "storage.googleapis.com"
+    )
+    #expect(result.components.percentEncodedQuery == nil)
+    #expect(
+      result.components.url?.absoluteString
+        == "https://storage.googleapis.com/upload/storage/v1/b/bkt/o"
+    )
   }
 }
