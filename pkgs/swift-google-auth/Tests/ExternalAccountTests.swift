@@ -208,7 +208,7 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
 
-    #expect(throws: CredentialsError.self) {
+    #expect {
       _ = try ExternalAccountCredentials(
         credentialSource: .programmatic(subjectTokenProvider: provider),
         audience: audience,
@@ -216,6 +216,11 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
         tokenURL: targetURL,
         workforcePoolUserProject: "billing-project"
       )
+    } throws: { error in
+      guard case let CredentialsError.parseError(message) = error else {
+        return false
+      }
+      return message.contains("workforcePoolUserProject")
     }
   }
 
