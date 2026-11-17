@@ -55,14 +55,15 @@ struct ImpersonatedServiceAccountParser: CredentialSourceParser {
       )
     }
 
+    let normalizedUniverse = nonEmpty(universeDomain)
     let payloadUniverse = nonEmpty(payload.universeDomain)
-    if let universeDomain, let payloadUniverse, universeDomain != payloadUniverse {
+    if let normalizedUniverse, let payloadUniverse, normalizedUniverse != payloadUniverse {
       throw CredentialsError.parseError(
-        "The configured universe_domain (\(universeDomain)) does not match the impersonated_service_account universe_domain (\(payloadUniverse))."
+        "The configured universe_domain (\(normalizedUniverse)) does not match the impersonated_service_account universe_domain (\(payloadUniverse))."
       )
     }
     let effectiveUniverseDomain =
-      universeDomain ?? payloadUniverse ?? defaultUniverseDomain
+      normalizedUniverse ?? payloadUniverse ?? defaultUniverseDomain
     if case let .string(sourceUniverse)? = payload.sourceCredentials["universe_domain"],
       let nonEmptySourceUniverse = nonEmpty(sourceUniverse)
     {
@@ -132,7 +133,8 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
+    let normalizedUniverse = nonEmpty(universeDomain)
+    let effectiveUniverse = normalizedUniverse ?? defaultUniverseDomain
     let resourceName = try Self.normalizeServiceAccountResourceName(targetPrincipal)
     let urlString =
       "https://iamcredentials.\(effectiveUniverse)/v1/\(resourceName):generateAccessToken"
@@ -145,7 +147,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
       scopes: scopes,
       lifetime: lifetime,
       quotaProjectID: quotaProjectID,
-      universeDomain: universeDomain,
+      universeDomain: normalizedUniverse,
       httpClient: httpClient,
       retryConfiguration: retryConfiguration
     )
@@ -190,7 +192,8 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     }
     let lifetimeDuration = try WKTDuration(seconds: lifetime.components.seconds)
 
-    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
+    let normalizedUniverse = nonEmpty(universeDomain)
+    let effectiveUniverse = normalizedUniverse ?? defaultUniverseDomain
     if effectiveUniverse != defaultUniverseDomain && sourceCredentials is UserCredentials {
       throw CredentialsError.notSupported(
         "User accounts are only supported in the default (googleapis.com) universe: \(effectiveUniverse)"
@@ -209,7 +212,7 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
     let effectiveScopes =
       scopes.isEmpty ? [ImpersonatedServiceAccountConfig.defaultScope] : scopes
     let normalizedDelegates = try delegates.map(Self.normalizeServiceAccountResourceName)
-    let resolvedOverride = targetResourceName == nil ? effectiveUniverse : universeDomain
+    let resolvedOverride = targetResourceName == nil ? effectiveUniverse : normalizedUniverse
 
     self.quotaProjectID = (quotaProjectID?.isEmpty == false) ? quotaProjectID : nil
     self.universeDomainOverride = resolvedOverride

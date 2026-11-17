@@ -449,6 +449,65 @@ import Testing
     #expect(mds.quotaProjectID == nil)
   }
 
+  @Test func resolveProviderNormalizesEmptyUniverseDomainAcrossConfigs() async throws {
+    let saJSONWithUniverse = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com",
+        "universe_domain": "json.universe.com"
+      }
+      """.utf8)
+    let saConfigWithJSONUniverse = ServiceAccountConfig(keyJSON: saJSONWithUniverse).with {
+      $0.universeDomain = ""
+    }
+    let saCredsFromJSON = try Credentials(configuration: .serviceAccount(saConfigWithJSONUniverse))
+    #expect(try await saCredsFromJSON.universeDomain() == "json.universe.com")
+
+    let saJSONWithoutUniverse = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com"
+      }
+      """.utf8)
+    let saConfigDefaultUniverse = ServiceAccountConfig(keyJSON: saJSONWithoutUniverse).with {
+      $0.universeDomain = ""
+    }
+    let saCredsDefault = try Credentials(configuration: .serviceAccount(saConfigDefaultUniverse))
+    #expect(try await saCredsDefault.universeDomain() == "googleapis.com")
+
+    let userJSON = Data(
+      """
+      {
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "type": "authorized_user"
+      }
+      """.utf8)
+    let userConfig = UserConfig(keyJSON: userJSON).with {
+      $0.universeDomain = ""
+    }
+    let userCreds = try Credentials(configuration: .user(userConfig))
+    #expect(try await userCreds.universeDomain() == "googleapis.com")
+
+    let impConfig = ImpersonatedServiceAccountConfig(
+      sourceCredentials: saCredsFromJSON,
+      targetPrincipal: "target@project.iam.gserviceaccount.com"
+    ).with {
+      $0.universeDomain = ""
+    }
+    let impCreds = try Credentials(configuration: .impersonatedServiceAccount(impConfig))
+    #expect(try await impCreds.universeDomain() == "json.universe.com")
+  }
+
   @Test func defaultUniverseDomainAndValidation() async throws {
     #expect(Credentials.defaultUniverseDomain == "googleapis.com")
 

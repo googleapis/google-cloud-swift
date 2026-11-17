@@ -756,6 +756,20 @@ import Testing
     )
     #expect(try await creds.universeDomain() == "googleapis.com")
 
+    let emptyUniverseData = UserAccountData(
+      type: "authorized_user",
+      clientId: "mock-id",
+      clientSecret: "mock-secret",
+      refreshToken: "mock-token",
+      universeDomain: ""
+    )
+    let credsWithEmptyUniverse = try UserCredentials(
+      user: emptyUniverseData,
+      universeDomain: "",
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    #expect(try await credsWithEmptyUniverse.universeDomain() == "googleapis.com")
+
     let customUniverseData = UserAccountData(
       type: "authorized_user",
       clientId: "mock-id",
