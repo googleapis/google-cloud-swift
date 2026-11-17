@@ -138,6 +138,6 @@ struct StaticAccessTokenProvider: AccessTokenProvider, CustomStringConvertible,
   var debugDescription: String {
     let expiryDescription = token.expirationDate.map(String.init(describing:)) ?? "nil"
     return
-      "StaticAccessTokenProvider(token: \"[redacted]\", tokenType: \(String(reflecting: token.tokenType)), expirationDate: \(expiryDescription))"
+      "StaticAccessTokenProvider(token: \(String(reflecting: redactedSecret)), tokenType: \(String(reflecting: token.tokenType)), expirationDate: \(expiryDescription))"
   }
 }

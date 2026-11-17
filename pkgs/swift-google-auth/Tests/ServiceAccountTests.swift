@@ -35,7 +35,7 @@ struct ServiceAccountTests {
     return Data(json.utf8)
   }
 
-  @Test("Service Account Key debug representation censors the private key")
+  @Test("Service Account Key debug representation redacts the private key")
   func dataDebugRepresentation() throws {
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
     let key = try JSONDecoder().decode(ServiceAccountData.self, from: mockKeyJSON)
@@ -44,7 +44,7 @@ struct ServiceAccountTests {
     let debugDescription = String(reflecting: key)
     #expect(description == debugDescription)
     #expect(!debugDescription.contains("MIIEvQIBADANBgkq"))
-    #expect(debugDescription.contains("[censored]"))
+    #expect(debugDescription.contains("privateKey: \"[redacted]\""))
     #expect(debugDescription.contains("quotaProjectID: nil"))
     #expect(debugDescription.contains("universeDomain: \"test-universe-domain\""))
 
@@ -65,7 +65,7 @@ struct ServiceAccountTests {
     let quotaDebugDescription = String(reflecting: keyWithQuota)
     #expect(quotaDescription == quotaDebugDescription)
     #expect(!quotaDebugDescription.contains("MIIEvQIBADANBgkq"))
-    #expect(quotaDebugDescription.contains("[censored]"))
+    #expect(quotaDebugDescription.contains("privateKey: \"[redacted]\""))
     #expect(quotaDebugDescription.contains("quotaProjectID: \"json-quota-proj\""))
     #expect(quotaDebugDescription.contains("universeDomain: nil"))
   }

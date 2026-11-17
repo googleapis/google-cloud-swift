@@ -23,6 +23,9 @@ import Foundation
 /// See [Google Cloud Universes](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones).
 let defaultUniverseDomain = "googleapis.com"
 
+/// Canonical placeholder used to redact sensitive credential secrets in `description` and `debugDescription`.
+let redactedSecret = "[redacted]"
+
 func nonEmpty(_ value: String?) -> String? {
   guard let value = value, !value.isEmpty else {
     return nil
