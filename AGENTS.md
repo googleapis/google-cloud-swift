@@ -111,6 +111,7 @@ Running `./ci/test.sh` automatically resolves dependencies using local working d
 
 - **Swift Testing Framework**: Always use `import Testing` for tests. Never use `import XCTest`.
 - **Test Organization**: Group all the unit tests for a class or struct under a `@Suite struct` structure, named for the struct or class under test.
+- **Parameterized & Focused Tests**: Prefer parameterized `@Test(arguments: ...)` over asserting multiple input variations sequentially inside a single test function. When scenarios exercise distinct types or behaviors that do not share the same parameter shape, split them into separate single-purpose `@Test` functions rather than combining them into one test.
 - **Targeted Testing**: Prefer testing packages individually instead of the entire monorepo tree to save build time. Use CI compiler flags to catch warnings early:
   ```bash
   env GOOGLE_CLOUD_SWIFT_LOCAL_DEPS=true swift test -Xswiftc -warnings-as-errors --package-path pkgs/${package_name}
