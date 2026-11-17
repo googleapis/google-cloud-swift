@@ -27,7 +27,7 @@
 ///
 /// - SeeAlso: [Google Cloud Authentication: User Accounts](https://cloud.google.com/docs/authentication#user-accounts)
 /// - SeeAlso: [RFC 6749: OAuth 2.0 Authorization Framework](https://datatracker.ietf.org/doc/html/rfc6749)
-struct UserAccountData: Sendable, Codable {
+struct UserAccountData: Sendable, Codable, CustomStringConvertible, CustomDebugStringConvertible {
   /// The credential type identifier string, expected to be `"authorized_user"`.
   let type: String
 
@@ -80,5 +80,17 @@ struct UserAccountData: Sendable, Codable {
     self.tokenUri = tokenUri
     self.quotaProjectId = quotaProjectId
     self.universeDomain = universeDomain
+  }
+
+  var description: String {
+    debugDescription
+  }
+
+  var debugDescription: String {
+    let tokenUriDescription = tokenUri.map(String.init(reflecting:)) ?? "nil"
+    let quotaDescription = quotaProjectId.map(String.init(reflecting:)) ?? "nil"
+    let universeDescription = universeDomain.map(String.init(reflecting:)) ?? "nil"
+    return
+      "UserAccountData(type: \(String(reflecting: type)), clientId: \(String(reflecting: clientId)), clientSecret: \"[redacted]\", refreshToken: \"[redacted]\", tokenUri: \(tokenUriDescription), quotaProjectId: \(quotaDescription), universeDomain: \(universeDescription))"
   }
 }

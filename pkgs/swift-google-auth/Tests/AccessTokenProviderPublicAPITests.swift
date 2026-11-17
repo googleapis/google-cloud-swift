@@ -106,4 +106,19 @@ import Testing
     #expect(
       try await credentials.headers() == [("Authorization", "CustomScheme mock-token.main-actor")])
   }
+
+  @Test func clientAuthenticationPublicStringConformancesRedactSecret() {
+    let clientAuth = ClientAuthentication(
+      clientID: "public-client-id",
+      clientSecret: "public-client-secret"
+    )
+    let description: String = clientAuth.description
+    let debugDescription: String = clientAuth.debugDescription
+
+    #expect(!description.contains("public-client-secret"))
+    #expect(!debugDescription.contains("public-client-secret"))
+    #expect(description.contains("public-client-id"))
+    #expect(description.contains("[redacted]"))
+    #expect(debugDescription == description)
+  }
 }

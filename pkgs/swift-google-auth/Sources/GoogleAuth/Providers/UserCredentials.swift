@@ -162,3 +162,15 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     return headers
   }
 }
+
+extension UserCredentials: CustomStringConvertible, CustomDebugStringConvertible {
+  var description: String {
+    debugDescription
+  }
+
+  var debugDescription: String {
+    let quotaDescription = quotaProjectID.map(String.init(reflecting:)) ?? "nil"
+    return
+      "UserCredentials(user: \(String(reflecting: provider.user)), scopes: \(String(reflecting: provider.scopes)), tokenURL: \(String(reflecting: provider.tokenURL.absoluteString)), quotaProjectID: \(quotaDescription))"
+  }
+}

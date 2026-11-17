@@ -15,7 +15,9 @@
 public import Foundation
 
 /// Represents OAuth 2.0 client credentials used for client authentication via HTTP Basic Auth.
-public struct ClientAuthentication: Sendable, Equatable, Hashable {
+public struct ClientAuthentication: Sendable, Equatable, Hashable, CustomStringConvertible,
+  CustomDebugStringConvertible
+{
   /// The OAuth client ID.
   public let clientID: String
 
@@ -30,6 +32,21 @@ public struct ClientAuthentication: Sendable, Equatable, Hashable {
   public init(clientID: String, clientSecret: String? = nil) {
     self.clientID = clientID
     self.clientSecret = clientSecret
+  }
+
+  /// A textual representation of the client authentication credentials with the client secret redacted.
+  ///
+  /// Both `description` and `debugDescription` are explicitly implemented to prevent
+  /// Swift's default struct mirror reflection from leaking the raw client secret in logs.
+  public var description: String {
+    debugDescription
+  }
+
+  /// A debug textual representation of the client authentication credentials with the client secret redacted.
+  public var debugDescription: String {
+    let secretDescription = clientSecret != nil ? "\"[redacted]\"" : "nil"
+    return
+      "ClientAuthentication(clientID: \(String(reflecting: clientID)), clientSecret: \(secretDescription))"
   }
 }
 
