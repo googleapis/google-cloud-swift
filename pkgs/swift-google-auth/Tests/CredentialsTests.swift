@@ -195,6 +195,33 @@ import Testing
     #expect(try await credentials.universeDomain() == "googleapis.com")
   }
 
+  @Test func resolveProviderForServiceAccountQuotaProjectFromJSONAndOverride() async throws {
+    let mockJSON = """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test@gserviceaccount.com",
+        "quota_project_id": "json-sa-quota-project"
+      }
+      """
+    let keyData = Data(mockJSON.utf8)
+
+    let defaultCredentials = try Credentials(
+      configuration: .serviceAccount(ServiceAccountConfig(keyJSON: keyData))
+    )
+    let defaultHeaders = try await defaultCredentials.headers()
+    #expect(defaultHeaders.values(for: "x-goog-user-project") == ["json-sa-quota-project"])
+
+    let overrideConfig = ServiceAccountConfig(keyJSON: keyData).with {
+      $0.quotaProjectID = "config-sa-quota-project"
+    }
+    let overrideCredentials = try Credentials(configuration: .serviceAccount(overrideConfig))
+    let overrideHeaders = try await overrideCredentials.headers()
+    #expect(overrideHeaders.values(for: "x-goog-user-project") == ["config-sa-quota-project"])
+  }
+
   @Test func resolveProviderForServiceAccountCustomOptions() async throws {
     let mockJSON = """
       {

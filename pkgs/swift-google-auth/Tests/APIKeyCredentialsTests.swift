@@ -18,10 +18,12 @@ import Testing
 @Suite struct APIKeyCredentialsTests {
   @Test func debugDescriptionRedactsAPIKey() {
     let credentials = APIKeyCredentials(apiKey: "super-secret-api-key")
-    let description = String(reflecting: credentials)
+    let description = String(describing: credentials)
+    let debugDescription = String(reflecting: credentials)
 
     #expect(!description.contains("super-secret-api-key"))
     #expect(description == "APIKeyCredentials(apiKey: \"[redacted]\")")
+    #expect(debugDescription == "APIKeyCredentials(apiKey: \"[redacted]\")")
   }
 
   @Test func headersProducesExpectedAPIKeyHeader() async throws {

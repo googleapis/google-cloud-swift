@@ -78,7 +78,7 @@ struct ServiceAccountCredentials: CredentialsProvider, AccessTokenProvider, Send
       provider: provider,
       isRetryable: { _ in false }
     )
-    self.quotaProjectID = quotaProjectID
+    self.quotaProjectID = nonEmpty(quotaProjectID) ?? nonEmpty(key.quotaProjectID)
     self.universeDomain = effectiveUniverse
   }
 

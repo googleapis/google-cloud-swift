@@ -39,8 +39,8 @@ enum ADC: Sendable {
   ///    found in Google Cloud runtime environments (GCE, GKE, Cloud Run), unless `NO_GCE_CHECK` is set to `"true"` or `"1"`
   ///    (case-insensitive).
   ///
-  /// **Quota Project Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set in `environment`,
-  /// its value takes precedence over any passed `quotaProjectID`.
+  /// **Quota Project Precedence**: If the `GOOGLE_CLOUD_QUOTA_PROJECT` environment variable is set to a non-empty
+  /// value in `environment`, its value takes precedence over any passed `quotaProjectID`.
   ///
   /// - Parameters:
   ///   - quotaProjectID: An optional project ID used for billing and quota attribution (`x-goog-user-project`).
@@ -57,7 +57,8 @@ enum ADC: Sendable {
     environment: [String: String] = ProcessInfo.processInfo.environment
   ) throws -> any CredentialsProvider {
     _ = isInitialized
-    let quotaProject = environment["GOOGLE_CLOUD_QUOTA_PROJECT"] ?? quotaProjectID
+    let quotaProject =
+      nonEmpty(environment["GOOGLE_CLOUD_QUOTA_PROJECT"]) ?? nonEmpty(quotaProjectID)
     let resolvedUniverseDomain = nonEmpty(universeDomain)
 
     let contents = try loadADC(environment: environment)
