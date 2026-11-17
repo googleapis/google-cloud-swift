@@ -1128,7 +1128,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     clock.advance(by: .seconds(1.1))
     for _ in 0..<1_000 {
-      guard cache.hasBackgroundTask else { break }
+      guard await cache.hasBackgroundTask else { break }
       await Task.yield()
     }
 
@@ -1136,7 +1136,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(cached == recoveredToken)
     #expect(await provider.count == 2)
     #expect(!clock.hasSleepers)
-    #expect(!cache.hasBackgroundTask)
+    #expect(await !cache.hasBackgroundTask)
   }
 
   /// Verifies that when an upstream `TokenProvider` throws `CancellationError` while the
@@ -1165,7 +1165,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let token1 = try await cache.token()
     #expect(token1 == initialToken)
     await clock.sleeperWaiting()
-    #expect(cache.hasBackgroundTask)
+    #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
 
     // Simulate an upstream timeout sub-task throwing CancellationError during background refresh.
@@ -1178,7 +1178,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     // Background task must NOT terminate; it sleeps for shortRefreshSlack (1s) and does not poison permanentError.
     await clock.sleeperWaiting()
     #expect(await provider.count == 2)
-    #expect(cache.hasBackgroundTask)
+    #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
 
     let stillValid = try await cache.token()
@@ -1195,7 +1195,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     await clock.sleeperWaiting()
     #expect(await provider.count == 3)
-    #expect(cache.hasBackgroundTask)
+    #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
 
     let token2 = try await cache.token()
@@ -1271,7 +1271,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let token1 = try await cache.token()
     #expect(token1 == initialExpiringToken)
     await clock.sleeperWaiting()
-    #expect(cache.hasBackgroundTask)
+    #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
 
     let nonExpiringToken = AccessToken(token: "non-expiring", expirationDate: nil)
@@ -1282,10 +1282,10 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     clock.advance(by: .seconds(8))
 
     for _ in 0..<1_000 {
-      guard cache.hasBackgroundTask else { break }
+      guard await cache.hasBackgroundTask else { break }
       await Task.yield()
     }
-    #expect(!cache.hasBackgroundTask)
+    #expect(await !cache.hasBackgroundTask)
     #expect(!clock.hasSleepers)
     #expect(await provider.count == 2)
 
@@ -1323,7 +1323,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(try await initialFetch.value == token1)
 
     await clock.sleeperWaiting()
-    #expect(cache.hasBackgroundTask)
+    #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
 
     // Wake background refresh at stale threshold (8s) and suspend inside provider.fetchToken().
@@ -1333,14 +1333,14 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
 
     // Cancel the background refresh task itself, then fail the in-flight fetch with CancellationError.
-    cache.cancelBackgroundRefresh()
+    await cache.cancelBackgroundRefresh()
     valuesContinuation.yield(.failure(CancellationError()))
 
     for _ in 0..<1_000 {
-      guard cache.hasBackgroundTask else { break }
+      guard await cache.hasBackgroundTask else { break }
       await Task.yield()
     }
-    #expect(!cache.hasBackgroundTask)
+    #expect(await !cache.hasBackgroundTask)
     #expect(!clock.hasSleepers)
 
     // Advance past token-1's expiration (total 11s > 10s) and fetch a new expiring token.
@@ -1356,7 +1356,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     // Because backgroundTask was cleared on exit, startBackgroundRefreshIfNeeded spawns a new loop.
     await clock.sleeperWaiting()
-    #expect(cache.hasBackgroundTask)
+    #expect(await cache.hasBackgroundTask)
     #expect(clock.hasSleepers)
 
     // Verify the restarted proactive loop refreshes token-2 when it becomes stale.
