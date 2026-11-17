@@ -40,8 +40,15 @@ struct ServiceAccountData: Decodable, Sendable {
   }
 }
 
-extension ServiceAccountData: CustomDebugStringConvertible {
+extension ServiceAccountData: CustomStringConvertible, CustomDebugStringConvertible {
+  var description: String {
+    debugDescription
+  }
+
   var debugDescription: String {
-    "ServiceAccountData(clientEmail: \"\(clientEmail)\", privateKeyID: \"\(privateKeyID)\", privateKey: \"[censored]\", projectID: \"\(projectID)\", quotaProjectID: \(quotaProjectID.map(String.init(reflecting:)) ?? "nil"), universeDomain: \(universeDomain ?? "nil"))"
+    let quotaDescription = quotaProjectID.map(String.init(reflecting:)) ?? "nil"
+    let universeDescription = universeDomain.map(String.init(reflecting:)) ?? "nil"
+    return
+      "ServiceAccountData(clientEmail: \(String(reflecting: clientEmail)), privateKeyID: \(String(reflecting: privateKeyID)), privateKey: \"[censored]\", projectID: \(String(reflecting: projectID)), quotaProjectID: \(quotaDescription), universeDomain: \(universeDescription))"
   }
 }

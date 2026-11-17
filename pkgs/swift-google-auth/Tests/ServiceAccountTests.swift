@@ -40,10 +40,13 @@ struct ServiceAccountTests {
     let mockKeyJSON = try ServiceAccountTests.generateMockKeyJSON()
     let key = try JSONDecoder().decode(ServiceAccountData.self, from: mockKeyJSON)
     #expect(key.quotaProjectID == nil)
+    let description = String(describing: key)
     let debugDescription = String(reflecting: key)
+    #expect(description == debugDescription)
     #expect(!debugDescription.contains("MIIEvQIBADANBgkq"))
     #expect(debugDescription.contains("[censored]"))
     #expect(debugDescription.contains("quotaProjectID: nil"))
+    #expect(debugDescription.contains("universeDomain: \"test-universe-domain\""))
 
     let keyWithQuotaJSON = Data(
       """
@@ -58,10 +61,13 @@ struct ServiceAccountTests {
       """.utf8)
     let keyWithQuota = try JSONDecoder().decode(ServiceAccountData.self, from: keyWithQuotaJSON)
     #expect(keyWithQuota.quotaProjectID == "json-quota-proj")
+    let quotaDescription = String(describing: keyWithQuota)
     let quotaDebugDescription = String(reflecting: keyWithQuota)
+    #expect(quotaDescription == quotaDebugDescription)
     #expect(!quotaDebugDescription.contains("MIIEvQIBADANBgkq"))
     #expect(quotaDebugDescription.contains("[censored]"))
     #expect(quotaDebugDescription.contains("quotaProjectID: \"json-quota-proj\""))
+    #expect(quotaDebugDescription.contains("universeDomain: nil"))
   }
 
   @Test("Service Account Credentials returns standard headers successfully")
@@ -134,7 +140,7 @@ struct ServiceAccountTests {
     #expect(headers.values(for: "x-goog-user-project") == ["override-quota-proj"])
   }
 
-  @Test("Service Account Credentials normalizes empty quota_project_id strings")
+  @Test("Service Account Credentials normalizes empty and null quota_project_id values")
   func headersNormalizesEmptyQuotaProjectStrings() async throws {
     let emptyJSONQuotaKey = Data(
       """
@@ -156,6 +162,44 @@ struct ServiceAccountTests {
       keyJSON: emptyJSONQuotaKey, quotaProjectID: "")
     let headersWithBothEmpty = try await credsWithBothEmpty.headers()
     #expect(headersWithBothEmpty["x-goog-user-project"] == nil)
+
+    let credsOverrideOverEmptyJSON = try ServiceAccountCredentials(
+      keyJSON: emptyJSONQuotaKey, quotaProjectID: "override-proj")
+    let headersOverrideOverEmptyJSON = try await credsOverrideOverEmptyJSON.headers()
+    #expect(headersOverrideOverEmptyJSON.values(for: "x-goog-user-project") == ["override-proj"])
+
+    let nonEmptyJSONQuotaKey = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test-client-email@gserviceaccount.com",
+        "quota_project_id": "sa-json-quota-proj"
+      }
+      """.utf8)
+    let credsEmptyParamFallsBackToJSON = try ServiceAccountCredentials(
+      keyJSON: nonEmptyJSONQuotaKey, quotaProjectID: "")
+    let headersEmptyParamFallsBackToJSON = try await credsEmptyParamFallsBackToJSON.headers()
+    #expect(
+      headersEmptyParamFallsBackToJSON.values(for: "x-goog-user-project") == ["sa-json-quota-proj"]
+    )
+
+    let nullJSONQuotaKey = Data(
+      """
+      {
+        "type": "service_account",
+        "project_id": "test-project-id",
+        "private_key_id": "test-private-key-id",
+        "private_key": "\(TestKeys.escapedPKCS8PEM)",
+        "client_email": "test-client-email@gserviceaccount.com",
+        "quota_project_id": null
+      }
+      """.utf8)
+    let credsFromNullJSON = try ServiceAccountCredentials(keyJSON: nullJSONQuotaKey)
+    let headersFromNullJSON = try await credsFromNullJSON.headers()
+    #expect(headersFromNullJSON["x-goog-user-project"] == nil)
   }
 
   @Test(

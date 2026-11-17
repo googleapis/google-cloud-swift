@@ -210,6 +210,32 @@ import Testing
     )
     let fromEnvHeaders = try await fromEnv.headers()
     #expect(fromEnvHeaders.values(for: "x-goog-user-project") == ["env-quota-project"])
+
+    let fromEmptyEnvWithParameter = try ADC.resolve(
+      quotaProjectID: "config-quota-project",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_QUOTA_PROJECT": "",
+      ]
+    )
+    let fromEmptyEnvWithParameterHeaders = try await fromEmptyEnvWithParameter.headers()
+    #expect(
+      fromEmptyEnvWithParameterHeaders.values(for: "x-goog-user-project")
+        == ["config-quota-project"]
+    )
+
+    let fromEmptyEnvAndEmptyParameter = try ADC.resolve(
+      quotaProjectID: "",
+      environment: [
+        "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+        "GOOGLE_CLOUD_QUOTA_PROJECT": "",
+      ]
+    )
+    let fromEmptyEnvAndEmptyParameterHeaders = try await fromEmptyEnvAndEmptyParameter.headers()
+    #expect(
+      fromEmptyEnvAndEmptyParameterHeaders.values(for: "x-goog-user-project")
+        == ["json-quota-project"]
+    )
   }
 
   @Test func resolvesUserCredentialsFromFile() async throws {
@@ -360,6 +386,15 @@ import Testing
     let sourceHeaders = try await impersonated.provider.sourceCredentials.headers()
     #expect(sourceHeaders["Authorization"]?.hasPrefix("Bearer ") == true)
     #expect(sourceHeaders.values(for: "x-goog-user-project") == ["source-quota-proj"])
+
+    let noOuterQuotaProvider = try ADC.resolve(
+      environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+    )
+    let noOuterQuotaImpersonated = try #require(noOuterQuotaProvider as? ImpersonatedCredentials)
+    #expect(noOuterQuotaImpersonated.quotaProjectID == nil)
+    let noOuterSourceHeaders = try await noOuterQuotaImpersonated.provider.sourceCredentials
+      .headers()
+    #expect(noOuterSourceHeaders.values(for: "x-goog-user-project") == ["source-quota-proj"])
   }
 
   @Test func normalizesEmptyUniverseDomainAndQuotaProjectInImpersonatedADC() async throws {
