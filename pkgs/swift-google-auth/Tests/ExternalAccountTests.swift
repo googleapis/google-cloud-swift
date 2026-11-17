@@ -147,50 +147,64 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     }
   }
 
-  @Test("Validates workforce pool audience formats correctly")
-  func workforcePoolAudienceValidation() throws {
+  @Test(
+    "Accepts valid workforce pool audience formats",
+    arguments: [
+      "locations/global/workforcePools/pool/providers/provider",
+      "//iam.googleapis.com/locations/global/workforcePools/pool/providers/provider",
+      "//iam.apis-tpclp.goog/locations/global/workforcePools/pool/providers/provider",
+      "//iam.my-universe.example.com/locations/global/workforcePools/pool/providers/provider",
+      "//IAM.custom-universe.com/locations/global/workforcePools/pool/providers/provider",
+    ]
+  )
+  func acceptsValidWorkforcePoolAudiences(audience: String) throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: audience,
+      subjectTokenType: .idToken,
+      tokenURL: URL(string: "https://sts.apis-tpclp.goog/v1/token")!,
+      workforcePoolUserProject: "billing-project",
+      universeDomain: "apis-tpclp.goog"
+    )
+    #expect(creds.workforcePoolUserProject == "billing-project")
+  }
+
+  @Test(
+    "Rejects invalid workforce pool audience formats",
+    arguments: [
+      "//iam.googleapis.com/locations/global/workforcePools/pool",
+      "//iam.googleapis.com/locations/global/workforcePools/pool/providers/provider/extra",
+      "//iam./locations/global/workforcePools/pool/providers/provider",
+      "//iam.custom.com:8443/locations/global/workforcePools/pool/providers/provider",
+      "//@iam.googleapis.com/locations/global/workforcePools/pool/providers/provider",
+      "//sts.googleapis.com/locations/global/workforcePools/pool/providers/provider",
+      "///locations/global/workforcePools/pool/providers/provider",
+      "//iam.apis-tpclp.goog",
+      "//iam.apis-tpclp.goog/projects/123/locations/global/workloadIdentityPools/pool/providers/provider",
+      "/locations/global/workforcePools/pool/providers/provider",
+      "locations:global/workforcePools/pool/providers/provider",
+      "locations/global/workforcePools/pool/providers/prov?foo=bar",
+      "locations/global/workforcePools/pool/providers/prov#frag",
+    ]
+  )
+  func rejectsInvalidWorkforcePoolAudiences(audience: String) {
     let provider = MockSubjectTokenProvider(token: "mock-provider-token")
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
 
-    // 1. Valid audience without //iam.googleapis.com/ prefix
-    _ = try ExternalAccountCredentials(
-      credentialSource: .programmatic(subjectTokenProvider: provider),
-      audience: "locations/global/workforcePools/pool/providers/provider",
-      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: targetURL,
-      workforcePoolUserProject: "billing-project"
-    )
-
-    // 2. Valid audience with prefix
-    _ = try ExternalAccountCredentials(
-      credentialSource: .programmatic(subjectTokenProvider: provider),
-      audience: "//iam.googleapis.com/locations/global/workforcePools/pool/providers/provider",
-      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: targetURL,
-      workforcePoolUserProject: "billing-project"
-    )
-
-    // 3. Invalid audience: missing provider segment
-    #expect(throws: CredentialsError.self) {
+    #expect {
       _ = try ExternalAccountCredentials(
         credentialSource: .programmatic(subjectTokenProvider: provider),
-        audience: "//iam.googleapis.com/locations/global/workforcePools/pool",
-        subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+        audience: audience,
+        subjectTokenType: .idToken,
         tokenURL: targetURL,
         workforcePoolUserProject: "billing-project"
       )
-    }
-
-    // 4. Invalid audience: extra trailing segments
-    #expect(throws: CredentialsError.self) {
-      _ = try ExternalAccountCredentials(
-        credentialSource: .programmatic(subjectTokenProvider: provider),
-        audience:
-          "//iam.googleapis.com/locations/global/workforcePools/pool/providers/provider/extra",
-        subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-        tokenURL: targetURL,
-        workforcePoolUserProject: "billing-project"
-      )
+    } throws: { error in
+      guard case let CredentialsError.parseError(message) = error else {
+        return false
+      }
+      return message.contains("workforcePoolUserProject")
     }
   }
 
@@ -816,5 +830,35 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       universeDomain: "custom.universe.com"
     )
     #expect(try await creds.universeDomain() == "custom.universe.com")
+
+    let defaultCreds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL
+    )
+    #expect(try await defaultCreds.universeDomain() == "googleapis.com")
+
+    let emptyCreds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      universeDomain: ""
+    )
+    #expect(try await emptyCreds.universeDomain() == "googleapis.com")
+    try await emptyCreds.validateUniverseDomain("googleapis.com")
+
+    let emptyConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: .idToken,
+      tokenURL: targetURL
+    ).with {
+      $0.universeDomain = ""
+    }
+    let publicCreds = try Credentials(configuration: .externalAccount(emptyConfig))
+    #expect(try await publicCreds.universeDomain() == "googleapis.com")
+    try await publicCreds.validateUniverseDomain("googleapis.com")
   }
 }

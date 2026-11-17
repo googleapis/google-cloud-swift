@@ -236,7 +236,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     }
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
-    let effectiveUniverse = universeDomain ?? defaultUniverseDomain
+    let effectiveUniverse = nonEmpty(universeDomain) ?? defaultUniverseDomain
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
@@ -291,26 +291,49 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
   }
 }
 
-/// Helper function to validate if the audience refers to a global workforce pool.
+/// Helper function to validate if the audience refers to a workforce identity pool.
 ///
 /// Workforce pool audience strings follow the pattern:
-/// `//iam.googleapis.com/locations/{location}/workforcePools/{pool}/providers/{provider}`
+/// `//iam.{universe_domain}/locations/{location}/workforcePools/{pool}/providers/{provider}`
+/// (for example, `//iam.googleapis.com/locations/global/workforcePools/{pool}/providers/{provider}`),
+/// or the relative resource path `locations/{location}/workforcePools/{pool}/providers/{provider}`.
 ///
 /// - Parameter audience: The audience string to validate.
 /// - Returns: `true` if the audience represents a valid workforce pool format, `false` otherwise.
 private func isValidWorkforcePoolAudience(_ audience: String) -> Bool {
-  var path = audience
-  if path.hasPrefix("//iam.googleapis.com/") {
-    path.removeFirst("//iam.googleapis.com/".count)
+  guard
+    let url = URLComponents(string: audience, encodingInvalidCharacters: false),
+    url.scheme == nil,
+    url.user == nil,
+    url.password == nil,
+    url.port == nil,
+    url.query == nil,
+    url.fragment == nil
+  else {
+    return false
   }
 
-  let components = path.split(separator: "/", omittingEmptySubsequences: false)
-  guard components.count == 6 else { return false }
+  let path: Substring
+  if let host = url.encodedHost {
+    guard
+      host.lowercased().hasPrefix("iam."),
+      host.count > "iam.".count,
+      url.percentEncodedPath.hasPrefix("/")
+    else {
+      return false
+    }
+    path = url.percentEncodedPath.dropFirst()
+  } else {
+    path = Substring(url.percentEncodedPath)
+  }
 
-  return components[0] == "locations"
-    && !components[1].isEmpty
-    && components[2] == "workforcePools"
-    && !components[3].isEmpty
-    && components[4] == "providers"
-    && !components[5].isEmpty
+  let segments = path.split(separator: "/", omittingEmptySubsequences: false)
+  guard segments.count == 6 else { return false }
+
+  return segments[0] == "locations"
+    && !segments[1].isEmpty
+    && segments[2] == "workforcePools"
+    && !segments[3].isEmpty
+    && segments[4] == "providers"
+    && !segments[5].isEmpty
 }
