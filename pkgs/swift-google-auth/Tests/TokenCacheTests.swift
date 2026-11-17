@@ -1127,8 +1127,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     await provider.configure(token: recoveredToken, error: nil)
 
     clock.advance(by: .seconds(1.1))
-    for _ in 0..<20 {
-      if !cache.hasBackgroundTask { break }
+    for _ in 0..<1_000 where cache.hasBackgroundTask {
       await Task.yield()
     }
 
@@ -1136,9 +1135,7 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(cached == recoveredToken)
     #expect(await provider.count == 2)
     #expect(!clock.hasSleepers)
-    withKnownIssue("backgroundTask is not cleared when loop terminates (#1625)") {
-      #expect(!cache.hasBackgroundTask)
-    }
+    #expect(!cache.hasBackgroundTask)
   }
 
   /// Verifies that when an upstream `TokenProvider` throws `CancellationError` while the
@@ -1177,35 +1174,76 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     timeSource.advance(by: 8.0)
     clock.advance(by: .seconds(8))
 
-    while await provider.count < 2 {
-      await Task.yield()
-    }
-    for _ in 0..<20 {
-      if clock.hasSleepers { break }
-      await Task.yield()
-    }
+    // Background task must NOT terminate; it sleeps for shortRefreshSlack (1s) and does not poison permanentError.
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 2)
+    #expect(cache.hasBackgroundTask)
+    #expect(clock.hasSleepers)
 
-    await withKnownIssue(
-      "Upstream CancellationError terminates background refresh instead of retrying (#1625)"
-    ) {
-      #expect(clock.hasSleepers)
-      guard clock.hasSleepers else { return }
+    let stillValid = try await cache.token()
+    #expect(stillValid == initialToken)
 
-      let stillValid = try await cache.token()
-      #expect(stillValid == initialToken)
+    // Configure a fresh expiring token for the transient retry.
+    let refreshedToken = AccessToken(
+      token: "refreshed-after-cancel", expirationDate: timeSource.now.addingTimeInterval(10.0))
+    await provider.configure(token: refreshedToken, error: nil)
 
-      let refreshedToken = AccessToken(
-        token: "refreshed-after-cancel", expirationDate: timeSource.now.addingTimeInterval(10.0))
-      await provider.configure(token: refreshedToken, error: nil)
+    // Advance by shortRefreshSlack (1s) to trigger the retry.
+    timeSource.advance(by: 1.0)
+    clock.advance(by: .seconds(1))
 
-      timeSource.advance(by: 1.0)
-      clock.advance(by: .seconds(1))
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 3)
+    #expect(cache.hasBackgroundTask)
+    #expect(clock.hasSleepers)
 
-      await clock.sleeperWaiting()
-      #expect(await provider.count == 3)
-      let fetched = try await cache.token()
-      #expect(fetched == refreshedToken)
-    }
+    let token2 = try await cache.token()
+    #expect(token2 == refreshedToken)
+  }
+
+  /// Verifies that an upstream `CancellationError` during proactive background refresh does not
+  /// record `permanentError`, even with `isRetryable: { _ in false }`: once the cached token fully
+  /// expires, `token()` still fetches from the provider.
+  @Test func upstreamCancellationErrorDuringBackgroundRefreshDoesNotPoisonPermanentError()
+    async throws
+  {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let now = Date()
+    let timeSource = MockTimeSource(currentDate: now)
+
+    let initialToken = AccessToken(
+      token: "initial-expiring", expirationDate: now.addingTimeInterval(10.0))
+    await provider.configure(token: initialToken)
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      timeSource: timeSource,
+      normalRefreshSlack: .seconds(2),
+      shortRefreshSlack: .seconds(1),
+      isRetryable: { _ in false }
+    )
+
+    _ = try await cache.token()
+    await clock.sleeperWaiting()
+
+    // Background refresh in the stale window hits an upstream CancellationError and backs off.
+    await provider.configure(token: nil, error: CancellationError())
+    timeSource.advance(by: 8.0)
+    clock.advance(by: .seconds(8))
+    await clock.sleeperWaiting()
+    #expect(await provider.count == 2)
+
+    // Let the cached token fully expire without waking the background loop.
+    timeSource.advance(by: 3.0)
+    let freshToken = AccessToken(
+      token: "fresh-after-expiry", expirationDate: timeSource.now.addingTimeInterval(1000.0))
+    await provider.configure(token: freshToken, error: nil)
+
+    let token = try await cache.token()
+    #expect(token == freshToken)
+    #expect(await provider.count == 3)
   }
 
   /// Verifies that transitioning from an expiring token to a non-expiring token
@@ -1242,18 +1280,12 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     timeSource.advance(by: 8.0)
     clock.advance(by: .seconds(8))
 
-    while await provider.count < 2 {
+    for _ in 0..<1_000 where cache.hasBackgroundTask {
       await Task.yield()
     }
-    for _ in 0..<20 {
-      if !cache.hasBackgroundTask { break }
-      await Task.yield()
-    }
-
+    #expect(!cache.hasBackgroundTask)
     #expect(!clock.hasSleepers)
-    withKnownIssue("backgroundTask is not cleared when loop terminates (#1625)") {
-      #expect(!cache.hasBackgroundTask)
-    }
+    #expect(await provider.count == 2)
 
     timeSource.advance(by: 86_400)
     let token2 = try await cache.token()
@@ -1302,10 +1334,10 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     cache.cancelBackgroundRefresh()
     valuesContinuation.yield(.failure(CancellationError()))
 
-    for _ in 0..<20 {
-      if !cache.hasBackgroundTask { break }
+    for _ in 0..<1_000 where cache.hasBackgroundTask {
       await Task.yield()
     }
+    #expect(!cache.hasBackgroundTask)
     #expect(!clock.hasSleepers)
 
     // Advance past token-1's expiration (total 11s > 10s) and fetch a new expiring token.
@@ -1319,28 +1351,21 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     valuesContinuation.yield(.success(token2))
     #expect(try await secondFetch.value == token2)
 
-    for _ in 0..<20 {
-      if clock.hasSleepers { break }
-      await Task.yield()
-    }
+    // Because backgroundTask was cleared on exit, startBackgroundRefreshIfNeeded spawns a new loop.
+    await clock.sleeperWaiting()
+    #expect(cache.hasBackgroundTask)
+    #expect(clock.hasSleepers)
 
-    await withKnownIssue(
-      "Exited backgroundTask is retained, preventing token() from restarting proactive refresh (#1625)"
-    ) {
-      #expect(clock.hasSleepers)
-      guard clock.hasSleepers else { return }
+    // Verify the restarted proactive loop refreshes token-2 when it becomes stale.
+    timeSource.advance(by: 8.0)
+    clock.advance(by: .seconds(8))
+    await provider.fetcherWaiting()
+    let token3 = AccessToken(
+      token: "token-3", expirationDate: timeSource.now.addingTimeInterval(1000.0))
+    valuesContinuation.yield(.success(token3))
 
-      timeSource.advance(by: 8.0)
-      clock.advance(by: .seconds(8))
-      await provider.fetcherWaiting()
-      let token3 = AccessToken(
-        token: "token-3", expirationDate: timeSource.now.addingTimeInterval(1000.0))
-      valuesContinuation.yield(.success(token3))
-
-      await clock.sleeperWaiting()
-      let fetched = try await cache.token()
-      #expect(fetched == token3)
-      #expect(await provider.count == 4)
-    }
+    await clock.sleeperWaiting()
+    #expect(try await cache.token() == token3)
+    #expect(await provider.count == 4)
   }
 }

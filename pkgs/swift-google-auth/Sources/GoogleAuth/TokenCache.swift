@@ -70,7 +70,11 @@ private let defaultShortRefreshSlack: Duration = .seconds(10)
 ///    Spawns lazily once `token()` is called to fetch new tokens *before* they expire.
 ///    - **Normal Operation:** Sleeps until the current token is *stale* (default: 4 mins before expiry via `normalRefreshSlack`), then refreshes it.
 ///    - **Transient Errors:** Retries with a short back-off (default: 10s via `shortRefreshSlack`).
+///      A `CancellationError` thrown by the provider (for example, from an internal timeout) is
+///      treated as transient: it never records a permanent error and ignores `isRetryable`.
 ///    - **Permanent Errors:** Records the error and permanently terminates the background loop.
+///    - **Exit:** The loop exits on a permanent error, a non-expiring token, or cancellation, and
+///      clears its handle so a later `token()` call can restart it.
 ///
 /// 2. **On-Demand Access (`token()`)**
 ///    Provides tokens to callers while mitigating thundering herds.
@@ -100,12 +104,18 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     }
   }
 
+  private struct BackgroundTaskState: Sendable {
+    var id: UInt64 = 0
+    var task: Task<Void, Never>?
+  }
+
   private let provider: any TokenProvider
   private var cachedToken: AccessToken?
   private var activeRefreshTask: Task<AccessToken, any Error>?
   // Stored in a `Mutex` on a `let` property rather than an actor-isolated `var` so `nonisolated deinit`
-  // can safely cancel the sleeping task upon deallocation under Swift 6 strict concurrency.
-  private let backgroundTask = Mutex<Task<Void, Never>?>(nil)
+  // can safely cancel the sleeping task upon deallocation under Swift 6 strict concurrency. The `id`
+  // identifies the current task so an exiting task never clears the handle of a newer one.
+  private let backgroundTask = Mutex(BackgroundTaskState())
   private let clock: C
   private let timeSource: any TimeSource
 
@@ -155,7 +165,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     // Even though the background loop captures `self` weakly, explicitly cancelling `backgroundTask`
     // wakes `clock.sleep(for:)` immediately on deallocation so the unstructured `Task` does not remain
     // suspended in the clock's timer queue until its scheduled refresh sleep duration elapses.
-    backgroundTask.withLock { $0?.cancel() }
+    backgroundTask.withLock { $0.task?.cancel() }
     activeRefreshTask?.cancel()
   }
 
@@ -163,7 +173,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   ///
   /// Used by unit tests to observe the background refresh loop lifecycle.
   nonisolated var hasBackgroundTask: Bool {
-    backgroundTask.withLock { $0 != nil }
+    backgroundTask.withLock { $0.task != nil }
   }
 
   /// Cancels the proactive background refresh task, if any.
@@ -171,7 +181,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   /// In production the background task is only cancelled from `deinit`. Unit tests call this
   /// method to simulate that cancellation path while the cache is still alive.
   nonisolated func cancelBackgroundRefresh() {
-    backgroundTask.withLock { $0?.cancel() }
+    backgroundTask.withLock { $0.task?.cancel() }
   }
 
   /// Retrieves a valid token, instantly returning cached data if available.
@@ -229,39 +239,56 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   /// - Parameter initialSleep: The sleep duration before the first background refresh check,
   ///   passed as an `@autoclosure` so jitter is only evaluated when the task is first created.
   private func startBackgroundRefreshIfNeeded(initialSleep: @autoclosure () -> Duration) {
-    guard self.backgroundTask.withLock({ $0 == nil }) else {
+    // Check before evaluating `initialSleep` so jitter is not computed needlessly.
+    guard self.backgroundTask.withLock({ $0.task == nil }) else {
       return
     }
 
     let initialSleepDuration = initialSleep()
     let clock = self.clock
 
-    let task = Task { [weak self] in
-      // Sleep for the initial token's refresh window (or transient error backoff) before entering
-      // the loop. Because `token()` just completed the initial fetch, sleeping first prevents an
-      // immediate duplicate fetch if the initial token already had a short lifetime (`<= normalRefreshSlack`),
-      // and avoids holding a strong reference to `self` while suspended on the clock.
-      try? await clock.sleep(for: initialSleepDuration)
-
-      while !Task.isCancelled {
-        let action: RefreshAction? = await { [weak self] in
-          guard let self = self else { return nil }
-          return await self.checkStateAndTriggerRefresh()
-        }()
-
-        guard let action = action else {
-          break
+    self.backgroundTask.withLock { state in
+      guard state.task == nil else {
+        return
+      }
+      state.id &+= 1
+      let taskID = state.id
+      state.task = Task { [weak self] in
+        // Backstop for exits that do not go through `terminateBackgroundRefresh(taskID:)`, such as
+        // cancellation observed by the loop condition or `self` being deallocated.
+        defer {
+          self?.backgroundTask.withLock { current in
+            if current.id == taskID {
+              current.task = nil
+            }
+          }
         }
 
-        switch action {
-        case .sleep(let duration):
-          try? await clock.sleep(for: duration)
-        case .terminate:
-          return
+        // Sleep for the initial token's refresh window (or transient error backoff) before entering
+        // the loop. Because `token()` just completed the initial fetch, sleeping first prevents an
+        // immediate duplicate fetch if the initial token already had a short lifetime (`<= normalRefreshSlack`),
+        // and avoids holding a strong reference to `self` while suspended on the clock.
+        try? await clock.sleep(for: initialSleepDuration)
+
+        while !Task.isCancelled {
+          let action: RefreshAction? = await { [weak self] in
+            guard let self = self else { return nil }
+            return await self.checkStateAndTriggerRefresh(taskID: taskID)
+          }()
+
+          guard let action = action else {
+            break
+          }
+
+          switch action {
+          case .sleep(let duration):
+            try? await clock.sleep(for: duration)
+          case .terminate:
+            return
+          }
         }
       }
     }
-    self.backgroundTask.withLock { $0 = task }
   }
 
   private func isExpired(_ token: AccessToken) -> Bool {
@@ -340,15 +367,18 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     return self.shortRefreshSlack
   }
 
-  private func checkStateAndTriggerRefresh() async -> RefreshAction {
+  private func checkStateAndTriggerRefresh(taskID: UInt64) async -> RefreshAction {
+    if Task.isCancelled {
+      return self.terminateBackgroundRefresh(taskID: taskID)
+    }
     if let _ = self.permanentError {
-      return .terminate
+      return self.terminateBackgroundRefresh(taskID: taskID)
     }
 
     // If we already have a valid, non-stale token, sleep until scheduled refresh
     if let cached = self.cachedToken, !self.isStale(cached) {
       guard let expirationDate = cached.expirationDate else {
-        return .terminate
+        return self.terminateBackgroundRefresh(taskID: taskID)
       }
       let sleepDuration = self.refreshSleepDuration(for: expirationDate)
       if sleepDuration > .zero {
@@ -365,25 +395,45 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       }
 
       guard let expirationDate = token.expirationDate else {
-        return .terminate
+        return self.terminateBackgroundRefresh(taskID: taskID)
       }
       return .sleep(self.refreshSleepDuration(for: expirationDate))
     } catch {
       if self.activeRefreshTask == task {
         self.clearActiveTask()
       }
+      // A cancelled background loop exits without classifying the error, so it never records
+      // `permanentError`.
+      if Task.isCancelled {
+        return self.terminateBackgroundRefresh(taskID: taskID)
+      }
+      // The background task itself is not cancelled, so a `CancellationError` came from the
+      // provider (for example, an internal timeout). Treat it as transient, like `token()` does.
       if error is CancellationError {
-        return .terminate
+        return .sleep(self.transientErrorSleepDuration())
       }
 
       // On permanent errors, break the loop to prevent endless polling.
       if !self.isRetryable(error) {
         self.permanentError = error
-        return .terminate
+        return self.terminateBackgroundRefresh(taskID: taskID)
       }
       // Handle transient errors by sleeping with jitter and retrying
       return .sleep(self.transientErrorSleepDuration())
     }
+  }
+
+  /// Clears the background task handle for `taskID` and returns `.terminate`.
+  ///
+  /// Clearing on the actor, in the same step that decides to terminate, ensures a concurrent
+  /// `token()` call never observes a terminating task as running and skips restarting the loop.
+  private func terminateBackgroundRefresh(taskID: UInt64) -> RefreshAction {
+    self.backgroundTask.withLock { state in
+      if state.id == taskID {
+        state.task = nil
+      }
+    }
+    return .terminate
   }
 }
 
