@@ -159,6 +159,21 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     activeRefreshTask?.cancel()
   }
 
+  /// Whether a proactive background refresh task handle is currently stored.
+  ///
+  /// Used by unit tests to observe the background refresh loop lifecycle.
+  nonisolated var hasBackgroundTask: Bool {
+    backgroundTask.withLock { $0 != nil }
+  }
+
+  /// Cancels the proactive background refresh task, if any.
+  ///
+  /// In production the background task is only cancelled from `deinit`. Unit tests call this
+  /// method to simulate that cancellation path while the cache is still alive.
+  nonisolated func cancelBackgroundRefresh() {
+    backgroundTask.withLock { $0?.cancel() }
+  }
+
   /// Retrieves a valid token, instantly returning cached data if available.
   ///
   /// If missing/expired, awaits the active refresh task (sharing it concurrently to prevent thundering herds)
