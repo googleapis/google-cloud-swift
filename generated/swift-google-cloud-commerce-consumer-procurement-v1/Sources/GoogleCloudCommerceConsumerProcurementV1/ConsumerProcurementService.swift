@@ -31,7 +31,6 @@ import Foundation
 /// infrastructure, as well as third-party systems, and to enable billing setup
 /// for charging for the procured item.
 ///
-///
 /// [google.cloud.commerce.consumer.procurement.v1.ConsumerProcurementService]: <doc:ConsumerProcurementServiceClient>
 ///
 /// @Snippet(path: "ConsumerProcurementServiceQuickstart")

@@ -16,6 +16,8 @@ compares those results to determine how your members' access might change
 under the
 proposed policy.
 
+[google.cloud.policysimulator.v1.Replay]: https://swiftpackageindex.com/googleapis/swift-google-cloud-policysimulator-v1/0.7.0/documentation/googlecloudpolicysimulatorv1/replay
+
 ## Overview
 
 The following types provide methods to make RPCs. They are a good starting point

@@ -28,7 +28,6 @@ import Foundation
 /// provide a `list` method that returns the monitored resource descriptors used
 /// by the API.
 ///
-///
 /// [google.api.MonitoredResource]: <doc:MonitoredResource>
 public struct MonitoredResourceDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable
