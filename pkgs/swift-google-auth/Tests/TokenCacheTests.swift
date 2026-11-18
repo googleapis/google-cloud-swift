@@ -860,13 +860,13 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     #expect(await provider.count == 2)
   }
 
-  /// Verifies that an `UnconfirmedADCFallbackError` (or `CredentialsError.cannotFetchToken`
-  /// wrapping one) neither poisons `permanentError` nor spawns a background refresh loop, so
-  /// workloads outside GCP do not poll in the background while GCP workloads whose first probe
-  /// races metadata server startup can recover on subsequent calls.
-  @Test func unconfirmedADCFallbackErrorDoesNotPoisonPermanentErrorOrStartBackgroundRefresh()
+  /// Verifies that unconfirmed ADC fallback errors and opaque custom provider errors (for which
+  /// `isRetryable` and `shouldCachePermanentError` both return `false`) neither poison
+  /// `permanentError` nor spawn a background refresh loop.
+  @Test func uncachedNonRetryableErrorsDoNotPoisonPermanentErrorOrStartBackgroundRefresh()
     async throws
   {
+    struct CustomSupplierError: Error {}
     let provider = MockTokenProvider()
     let clock = TestClock()
     let unconfirmedError = CredentialsError.cannotFetchToken(
@@ -879,24 +879,38 @@ private actor DelayedFailedTokenProvider: TokenProvider {
     let cache = TokenCache(
       provider: provider,
       clock: clock,
-      isRetryable: AuthHTTPError.isRetryable
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
 
-    let caught = await #expect(throws: CredentialsError.self) {
+    let caught1 = await #expect(throws: CredentialsError.self) {
       _ = try await cache.token()
     }
-    #expect(caught?._isRetryable == false)
+    #expect(caught1?._isRetryable == false)
     #expect(await provider.count == 1)
     #expect(!clock.hasSleepers)
 
-    // Subsequent on-demand call re-probes and succeeds once MDS becomes reachable.
+    // Opaque custom supplier error also fails fast without latching permanentError or sleeping.
+    let customError = CredentialsError.cannotFetchToken(
+      message: "custom supplier failed",
+      underlyingError: CustomSupplierError()
+    )
+    await provider.configure(token: nil, error: customError)
+    let caught2 = await #expect(throws: CredentialsError.self) {
+      _ = try await cache.token()
+    }
+    #expect(caught2?._isRetryable == false)
+    #expect(await provider.count == 2)
+    #expect(!clock.hasSleepers)
+
+    // Subsequent on-demand call re-invokes the provider and succeeds once recovered.
     let validToken = AccessToken(
-      token: "valid-after-mds-startup", expirationDate: Date().addingTimeInterval(1000))
+      token: "valid-after-recovery", expirationDate: Date().addingTimeInterval(1000))
     await provider.configure(token: validToken, error: nil)
 
     let token = try await cache.token()
-    #expect(token.token == "valid-after-mds-startup")
-    #expect(await provider.count == 2)
+    #expect(token.token == "valid-after-recovery")
+    #expect(await provider.count == 3)
   }
 
   @Test func tokenThrowsPermanentError() async throws {

@@ -229,7 +229,8 @@ struct ImpersonatedCredentials: CredentialsProvider, AccessTokenProvider, Sendab
 
     self.cache = TokenCache(
       provider: provider,
-      isRetryable: AuthHTTPError.isRetryable
+      isRetryable: AuthHTTPError.isRetryable,
+      shouldCachePermanentError: AuthHTTPError.shouldCachePermanentError
     )
   }
 

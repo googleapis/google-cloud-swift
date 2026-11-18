@@ -113,6 +113,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   private let shortRefreshSlack: Duration
   private let jitter: JitterGenerator?
   private let isRetryable: @Sendable (any Error) -> Bool
+  private let shouldCachePermanentError: @Sendable (any Error) -> Bool
   private var permanentError: (any Error)?
 
   private enum RefreshAction {
@@ -133,6 +134,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
   ///   - shortRefreshSlack: Backoff delay after a transient refresh error before retrying (defaults to 10 seconds).
   ///   - jitter: Optional jitter generator applied to refresh and retry sleep durations.
   ///   - isRetryable: A closure determining whether an error from the provider is transient and retryable.
+  ///   - shouldCachePermanentError: A closure determining whether a non-retryable error is
+  ///     definitively permanent and should be latched in `permanentError` (defaults to `{ _ in true }`).
   init(
     provider: any TokenProvider,
     clock: C,
@@ -140,7 +143,8 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     normalRefreshSlack: Duration = defaultNormalRefreshSlack,
     shortRefreshSlack: Duration = defaultShortRefreshSlack,
     jitter: JitterGenerator? = nil,
-    isRetryable: @Sendable @escaping (any Error) -> Bool = { _ in true }
+    isRetryable: @Sendable @escaping (any Error) -> Bool = { _ in true },
+    shouldCachePermanentError: @Sendable @escaping (any Error) -> Bool = { _ in true }
   ) {
     self.provider = provider
     self.clock = clock
@@ -149,6 +153,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
     self.shortRefreshSlack = shortRefreshSlack
     self.jitter = jitter
     self.isRetryable = isRetryable
+    self.shouldCachePermanentError = shouldCachePermanentError
   }
 
   deinit {
@@ -193,14 +198,13 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       // does not clear a newer `activeRefreshTask` started after the first waiter resumed.
       if self.activeRefreshTask == task {
         self.clearActiveTask()
-        // Exclude `CancellationError` and unconfirmed ADC metadata server probe failures before
-        // checking `isRetryable` so neither permanently poisons `permanentError` nor spawns a
-        // background polling loop outside Google Cloud.
-        if !(error is CancellationError) && !UnconfirmedADCFallbackError.wraps(error) {
-          if !self.isRetryable(error) {
-            self.permanentError = error
-          } else {
+        // Exclude `CancellationError` before evaluating `isRetryable` / `shouldCachePermanentError`
+        // so providers with `isRetryable: { _ in false }` do not poison `permanentError` on cancel.
+        if !(error is CancellationError) {
+          if self.isRetryable(error) {
             self.startBackgroundRefreshIfNeeded(initialSleep: self.transientErrorSleepDuration())
+          } else if self.shouldCachePermanentError(error) {
+            self.permanentError = error
           }
         }
       }
@@ -358,17 +362,21 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       if self.activeRefreshTask == task {
         self.clearActiveTask()
       }
-      if error is CancellationError || UnconfirmedADCFallbackError.wraps(error) {
+      if error is CancellationError {
         return .terminate
       }
 
-      // On permanent errors, break the loop to prevent endless polling.
-      if !self.isRetryable(error) {
-        self.permanentError = error
-        return .terminate
+      if self.isRetryable(error) {
+        // Handle transient errors by sleeping with jitter and retrying
+        return .sleep(self.transientErrorSleepDuration())
       }
-      // Handle transient errors by sleeping with jitter and retrying
-      return .sleep(self.transientErrorSleepDuration())
+
+      // On non-retryable errors, break the loop to prevent endless polling, latching
+      // `permanentError` only when the failure is known to be permanent.
+      if self.shouldCachePermanentError(error) {
+        self.permanentError = error
+      }
+      return .terminate
     }
   }
 }
@@ -380,7 +388,8 @@ extension TokenCache where C == ContinuousClock {
     normalRefreshSlack: Duration = defaultNormalRefreshSlack,
     shortRefreshSlack: Duration = defaultShortRefreshSlack,
     jitter: JitterGenerator? = nil,
-    isRetryable: @Sendable @escaping (any Error) -> Bool = { _ in true }
+    isRetryable: @Sendable @escaping (any Error) -> Bool = { _ in true },
+    shouldCachePermanentError: @Sendable @escaping (any Error) -> Bool = { _ in true }
   ) {
     self.init(
       provider: provider,
@@ -388,7 +397,8 @@ extension TokenCache where C == ContinuousClock {
       normalRefreshSlack: normalRefreshSlack,
       shortRefreshSlack: shortRefreshSlack,
       jitter: jitter,
-      isRetryable: isRetryable
+      isRetryable: isRetryable,
+      shouldCachePermanentError: shouldCachePermanentError
     )
   }
 }

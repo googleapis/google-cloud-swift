@@ -156,10 +156,40 @@ import Testing
     let cancelledTransport = AuthHTTPError.transportError(URLError(.cancelled))
     #expect(cancelledTransport.isRetryable == false)
     #expect(AuthHTTPError.isRetryable(cancelledTransport) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(cancelledTransport) == false)
     let wrappedCancelledTransport = CredentialsError.cannotFetchToken(
       message: "cancelled", underlyingError: cancelledTransport)
     #expect(AuthHTTPError.isRetryable(wrappedCancelledTransport) == false)
     #expect(wrappedCancelledTransport._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrappedCancelledTransport) == false)
+
+    for transientCode: URLError.Code in [
+      .timedOut,
+      .networkConnectionLost,
+      .cannotConnectToHost,
+      .notConnectedToInternet,
+      .dnsLookupFailed,
+      .cannotFindHost,
+    ] {
+      let err = AuthHTTPError.transportError(URLError(transientCode))
+      #expect(err.isRetryable == true)
+      #expect(AuthHTTPError.isRetryable(URLError(transientCode)) == true)
+      #expect(AuthHTTPError.shouldCachePermanentError(err) == false)
+    }
+
+    for permanentCode: URLError.Code in [
+      .badURL,
+      .unsupportedURL,
+      .fileDoesNotExist,
+      .noPermissionsToReadFile,
+      .userAuthenticationRequired,
+      .serverCertificateUntrusted,
+    ] {
+      let err = AuthHTTPError.transportError(URLError(permanentCode))
+      #expect(err.isRetryable == false)
+      #expect(AuthHTTPError.isRetryable(URLError(permanentCode)) == false)
+      #expect(AuthHTTPError.shouldCachePermanentError(err) == true)
+    }
 
     let unknownError = AuthHTTPError.unknown(URLError(.unknown))
     #expect(unknownError.isRetryable == true)
@@ -174,6 +204,7 @@ import Testing
     // `wraps(_:)` detection across nested `CredentialsError.cannotFetchToken` layers.
     let unconfirmedTransport = UnconfirmedADCFallbackError(underlying: transportError)
     #expect(AuthHTTPError.isRetryable(unconfirmedTransport) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(unconfirmedTransport) == false)
     #expect(unconfirmedTransport.description == transportError.description)
     #expect(unconfirmedTransport.debugDescription == transportError.debugDescription)
     #expect(UnconfirmedADCFallbackError.wraps(unconfirmedTransport) == true)
@@ -183,12 +214,14 @@ import Testing
     #expect(AuthHTTPError.isRetryable(wrappedUnconfirmed) == false)
     #expect(wrappedUnconfirmed._isRetryable == false)
     #expect(UnconfirmedADCFallbackError.wraps(wrappedUnconfirmed) == true)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrappedUnconfirmed) == false)
     let doublyWrappedUnconfirmed = CredentialsError.cannotFetchToken(
       message: "impersonation source failed", underlyingError: wrappedUnconfirmed)
     #expect(doublyWrappedUnconfirmed._isRetryable == false)
     #expect(UnconfirmedADCFallbackError.wraps(doublyWrappedUnconfirmed) == true)
+    #expect(AuthHTTPError.shouldCachePermanentError(doublyWrappedUnconfirmed) == false)
 
-    // Expired static token errors are non-retryable in both `AuthHTTPError.isRetryable` and `_isRetryable`.
+    // Expired static token errors are non-retryable and permanently cacheable.
     let expiredProvider = StaticAccessTokenProvider(
       token: AccessToken(token: "mock-token.expired", expirationDate: .distantPast),
       timeSource: SystemTimeSource()
@@ -199,27 +232,37 @@ import Testing
     if let expiredError {
       #expect(AuthHTTPError.isRetryable(expiredError) == false)
       #expect(expiredError._isRetryable == false)
+      #expect(AuthHTTPError.shouldCachePermanentError(expiredError) == true)
     }
 
-    // Other CredentialsError cases are permanent
+    // Other CredentialsError cases are permanent and cacheable.
     let cannotLoad = CredentialsError.cannotLoadFile(
       message: "missing", underlyingError: URLError(.fileDoesNotExist))
     #expect(AuthHTTPError.isRetryable(cannotLoad) == false)
     #expect(cannotLoad._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(cannotLoad) == true)
     #expect(AuthHTTPError.isRetryable(CredentialsError.parseError("invalid")) == false)
-    #expect(AuthHTTPError.isRetryable(CredentialsError.notSupported("unsupported")) == false)
-    #expect(AuthHTTPError.isRetryable(CredentialsError.credentialsNotFound("missing")) == false)
-
-    // Bare URLError is retryable, while unrecognized non-network error types are permanent.
-    struct UnrecognizedError: Error {}
-    #expect(AuthHTTPError.isRetryable(URLError(.cannotConnectToHost)) == true)
-    #expect(AuthHTTPError.isRetryable(UnrecognizedError()) == false)
     #expect(
-      AuthHTTPError.isRetryable(
-        CredentialsError.cannotFetchToken(
-          message: "custom provider failure", underlyingError: UnrecognizedError())
-      ) == false
-    )
+      AuthHTTPError.shouldCachePermanentError(CredentialsError.parseError("invalid")) == true)
+    #expect(AuthHTTPError.isRetryable(CredentialsError.notSupported("unsupported")) == false)
+    #expect(
+      AuthHTTPError.shouldCachePermanentError(CredentialsError.notSupported("unsupported")) == true)
+    #expect(AuthHTTPError.isRetryable(CredentialsError.credentialsNotFound("missing")) == false)
+    #expect(
+      AuthHTTPError.shouldCachePermanentError(CredentialsError.credentialsNotFound("missing"))
+        == true)
+    #expect(AuthHTTPError.shouldCachePermanentError(CancellationError()) == false)
+
+    // Unrecognized custom provider errors are non-retryable for outer policies, and
+    // `shouldCachePermanentError` returns `false` so transient Linux transport errors from custom
+    // suppliers do not permanently poison `TokenCache`.
+    struct UnrecognizedError: Error {}
+    let customProviderError = CredentialsError.cannotFetchToken(
+      message: "custom provider failure", underlyingError: UnrecognizedError())
+    #expect(AuthHTTPError.isRetryable(UnrecognizedError()) == false)
+    #expect(AuthHTTPError.isRetryable(customProviderError) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(UnrecognizedError()) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(customProviderError) == false)
   }
 
   // MARK: - String Formatting
