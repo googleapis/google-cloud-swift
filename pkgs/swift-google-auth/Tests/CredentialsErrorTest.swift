@@ -80,48 +80,59 @@ import Testing
     #expect(String(reflecting: anyError) == got.debugDescription)
   }
 
-  @Test func isRetryableClassification() async throws {
-    struct CustomFailure: Error {}
+  private struct CustomFailure: Error {}
 
-    #expect(CredentialsError.notSupported("unsupported")._isRetryable == false)
-    #expect(CredentialsError.parseError("invalid")._isRetryable == false)
-    #expect(
+  @Test(arguments: [
+    (CredentialsError.notSupported("unsupported"), false),
+    (CredentialsError.parseError("invalid"), false),
+    (
       CredentialsError.cannotLoadFile(
         message: "missing", underlyingError: URLError(.fileDoesNotExist)
-      )._isRetryable == false
-    )
-    #expect(CredentialsError.credentialsNotFound("none")._isRetryable == false)
-
-    // External or custom error types wrapped in `.cannotFetchToken` are non-retryable.
-    #expect(
+      ),
+      false
+    ),
+    (CredentialsError.credentialsNotFound("none"), false),
+    (
       CredentialsError.cannotFetchToken(
         message: "custom error", underlyingError: CustomFailure()
-      )._isRetryable == false
-    )
-    #expect(
+      ),
+      false
+    ),
+    (
       CredentialsError.cannotFetchToken(
         message: "url error from custom provider", underlyingError: URLError(.timedOut)
-      )._isRetryable == false
-    )
-    #expect(
+      ),
+      false
+    ),
+    (
       CredentialsError.cannotFetchToken(
         message: "inner parse error", underlyingError: CredentialsError.parseError("mismatch")
-      )._isRetryable == false
-    )
+      ),
+      false
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "transient token failure",
+        underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
+      ),
+      true
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "impersonation source failed",
+        underlyingError: CredentialsError.cannotFetchToken(
+          message: "transient token failure",
+          underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
+        )
+      ),
+      true
+    ),
+  ])
+  func isRetryableStaticCases(error: CredentialsError, expected: Bool) {
+    #expect(error._isRetryable == expected)
+  }
 
-    // Transient auth HTTP errors and nested transient CredentialsError values are retryable.
-    let transient = CredentialsError.cannotFetchToken(
-      message: "transient token failure",
-      underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
-    )
-    #expect(transient._isRetryable == true)
-    let nestedTransient = CredentialsError.cannotFetchToken(
-      message: "impersonation source failed",
-      underlyingError: transient
-    )
-    #expect(nestedTransient._isRetryable == true)
-
-    // Expired static access tokens are non-retryable.
+  @Test func expiredStaticAccessTokenIsNotRetryable() async throws {
     let expiredCreds = try Credentials(
       configuration: .accessToken(
         AccessTokenConfig(token: "mock-token.expired", expirationDate: .distantPast)
@@ -131,32 +142,33 @@ import Testing
       _ = try await expiredCreds.headers()
     }
     #expect(expiredError?._isRetryable == false)
+  }
 
-    // Custom AccessTokenProvider errors are non-retryable unless forwarding a transient CredentialsError.
+  @Test(arguments: [
+    (URLError(.timedOut) as any Error, false),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "transient token failure",
+        underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
+      ) as any Error,
+      true
+    ),
+  ])
+  func customAccessTokenProviderRetryability(thrownError: any Error, expected: Bool) async throws {
     struct FailingProvider: AccessTokenProvider {
-      let error: any Error & Sendable
+      let error: any Error
       func accessToken() async throws -> AccessToken {
         throw error
       }
     }
-    let customErrorCreds = try Credentials(
+    let creds = try Credentials(
       configuration: .accessToken(
-        AccessTokenConfig(provider: FailingProvider(error: URLError(.timedOut)))
+        AccessTokenConfig(provider: FailingProvider(error: thrownError))
       )
     )
-    let customProviderError = await #expect(throws: CredentialsError.self) {
-      _ = try await customErrorCreds.headers()
+    let caughtError = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
     }
-    #expect(customProviderError?._isRetryable == false)
-
-    let forwardedTransientCreds = try Credentials(
-      configuration: .accessToken(
-        AccessTokenConfig(provider: FailingProvider(error: transient))
-      )
-    )
-    let forwardedError = await #expect(throws: CredentialsError.self) {
-      _ = try await forwardedTransientCreds.headers()
-    }
-    #expect(forwardedError?._isRetryable == true)
+    #expect(caughtError?._isRetryable == expected)
   }
 }
