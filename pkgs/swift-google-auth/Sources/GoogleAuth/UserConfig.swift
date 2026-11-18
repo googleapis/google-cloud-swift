@@ -46,7 +46,9 @@ public struct UserConfig: Sendable {
   /// When `nil` or empty, falls back to the `"quota_project_id"` field in `keyJSON` if non-empty.
   public var quotaProjectID: String? = nil
 
-  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (must be `googleapis.com` or `nil`).
+  /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) (must be `googleapis.com`, empty, or `nil`).
+  ///
+  /// When `nil` or empty, defaults to `googleapis.com`.
   public var universeDomain: String? = nil
 
   /// Scopes requested for the access token.

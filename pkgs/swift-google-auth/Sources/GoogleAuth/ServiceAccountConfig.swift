@@ -91,7 +91,7 @@ public struct ServiceAccountConfig: Sendable {
 
   /// Optional target [Google Cloud universe domain](https://docs.cloud.google.com/docs/overview#universes_regions_and_zones) override.
   ///
-  /// When `nil`, defaults to the `"universe_domain"` field in `keyJSON` if non-empty, or `googleapis.com`.
+  /// When `nil` or empty, defaults to the `"universe_domain"` field in `keyJSON` if non-empty, or `googleapis.com`.
   public var universeDomain: String? = nil
 
   /// Access specifier (either OAuth 2.0 scopes or JWT audience). Defaults to `.scopes([])`.

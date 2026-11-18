@@ -78,7 +78,7 @@ struct UserCredentials: CredentialsProvider, AccessTokenProvider, Sendable {
     httpClient: AuthHTTPClient = AuthHTTPClient(),
     retryConfiguration: RetryConfiguration = .defaultConfiguration
   ) throws {
-    if let ud = universeDomain {
+    if let ud = nonEmpty(universeDomain) {
       if ud != defaultUniverseDomain {
         throw CredentialsError.notSupported(
           "User accounts are only supported in the default (googleapis.com) universe: \(ud)")
