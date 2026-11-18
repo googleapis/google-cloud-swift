@@ -20,7 +20,6 @@ import Foundation
 /// The request for
 /// [HubService.ListHubSpokes][google.cloud.networkconnectivity.v1.HubService.ListHubSpokes].
 ///
-///
 /// [google.cloud.networkconnectivity.v1.HubService.ListHubSpokes]: <doc:HubServiceClient/listHubSpokes(request:options:)>
 public struct ListHubSpokesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   Sendable

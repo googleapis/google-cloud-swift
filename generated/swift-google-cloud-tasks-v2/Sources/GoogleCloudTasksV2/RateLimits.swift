@@ -76,7 +76,6 @@ public struct RateLimits: Codable, Equatable, GoogleWKT._AnyPackable,
   /// the value of `max_dispatches_per_second`, regardless of whether
   /// `max_dispatches_per_second` is updated.
   ///
-  ///
   /// [google.cloud.tasks.v2.CloudTasks.UpdateQueue]: <doc:CloudTasksClient/updateQueue(request:options:)>
   public var maxBurstSize: Swift.Int32 = Swift.Int32()
 
