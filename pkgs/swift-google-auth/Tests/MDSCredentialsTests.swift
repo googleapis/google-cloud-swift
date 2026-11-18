@@ -936,7 +936,8 @@ import Testing
       retryConfiguration: retryConfig,
       client: AuthHTTPClient(mock: mock),
       fromADC: false,
-      environment: [:]
+      environment: [:],
+      jitter: nil
     )
 
     let error = await #expect(throws: CredentialsError.self) {

@@ -141,8 +141,8 @@ extension AuthHTTPError {
       return status >= 500 || status == 429 || status == 408
     case .decodingError, .invalidUTF8Response:
       return false
-    case .transportError:
-      return true
+    case .transportError(let error):
+      return error.code != .cancelled
     case .unknown(let error):
       return !(error is CancellationError)
     }

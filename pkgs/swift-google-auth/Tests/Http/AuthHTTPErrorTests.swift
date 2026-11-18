@@ -153,6 +153,14 @@ import Testing
     #expect(AuthHTTPError.isRetryable(wrappedTransport) == true)
     #expect(wrappedTransport._isRetryable == true)
 
+    let cancelledTransport = AuthHTTPError.transportError(URLError(.cancelled))
+    #expect(cancelledTransport.isRetryable == false)
+    #expect(AuthHTTPError.isRetryable(cancelledTransport) == false)
+    let wrappedCancelledTransport = CredentialsError.cannotFetchToken(
+      message: "cancelled", underlyingError: cancelledTransport)
+    #expect(AuthHTTPError.isRetryable(wrappedCancelledTransport) == false)
+    #expect(wrappedCancelledTransport._isRetryable == false)
+
     let unknownError = AuthHTTPError.unknown(URLError(.unknown))
     #expect(unknownError.isRetryable == true)
     #expect(AuthHTTPError.isRetryable(unknownError) == true)
