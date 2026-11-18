@@ -141,13 +141,8 @@ final class ShowcaseServer: Sendable {
     _ body: (ShowcaseServer) async throws -> Void
   ) async throws {
     let server = try await Self.start(tlsGroups: tlsGroups)
-    do {
-      try await body(server)
-    } catch {
-      server.stop()
-      throw error
-    }
-    server.stop()
+    defer { server.stop() }
+    try await body(server)
   }
 
   private static func start(tlsGroups: String?) async throws -> ShowcaseServer {
@@ -169,7 +164,13 @@ final class ShowcaseServer: Sendable {
       contents: nil,
       attributes: [.posixPermissions: 0o600]
     )
-    let logHandle = try FileHandle(forWritingTo: logFile)
+    let logHandle: FileHandle
+    do {
+      logHandle = try FileHandle(forWritingTo: logFile)
+    } catch {
+      try? FileManager.default.removeItem(at: tempDir)
+      throw error
+    }
 
     let process = Process()
     process.executableURL = URL(fileURLWithPath: binary)
