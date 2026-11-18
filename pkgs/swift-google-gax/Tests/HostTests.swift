@@ -459,7 +459,7 @@ import Testing
       universeDomain: "googleapis.com",
       uri: "https://storage.googleapis.com:8443/upload?upload_id=1"
     ),
-    // Malformed, relative, non-HTTP, userinfo, fragment, double-slash, and percent-encoded/invalid-label URIs
+    // Malformed, relative, non-HTTP, userinfo, fragment, double-slash, percent-encoded, and empty-region URIs
     (
       endpoint: nil,
       universeDomain: "googleapis.com",
@@ -498,12 +498,12 @@ import Testing
     (
       endpoint: nil,
       universeDomain: "googleapis.com",
-      uri: "https://--storage.googleapis.com/upload?upload_id=1"
+      uri: "https://-storage.googleapis.com/upload?upload_id=1"
     ),
     (
-      endpoint: "http://127.0.0.1:8080",
-      universeDomain: "0.0.1",
-      uri: "http://storage.0.0.1/upload?upload_id=1"
+      endpoint: nil,
+      universeDomain: "googleapis.com",
+      uri: "https://storage..rep.googleapis.com/upload?upload_id=1"
     ),
     (
       endpoint: "https://private.googleapis.com",
