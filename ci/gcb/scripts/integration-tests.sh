@@ -50,6 +50,16 @@ SHOWCASE_VERSION="0.44.2"
 SHOWCASE_DIR="${HOME}/.cache/gapic-showcase/${SHOWCASE_VERSION}"
 SHOWCASE_BIN="${SHOWCASE_DIR}/gapic-showcase"
 if [[ ! -x "${SHOWCASE_BIN}" ]]; then
+    if ! command -v curl >/dev/null 2>&1; then
+        echo "--- Installing curl ---"
+        export DEBIAN_FRONTEND=noninteractive
+        apt-get update -o Acquire::Retries=3 || \
+          (sleep 5 ; apt-get update -o Acquire::Retries=3) || \
+          (sleep 10; apt-get update -o Acquire::Retries=3)
+        apt-get install -y -o Acquire::Retries=3 --no-install-recommends ca-certificates curl || \
+          (sleep 5 ; apt-get install -y -o Acquire::Retries=3 --no-install-recommends ca-certificates curl) || \
+          (sleep 10; apt-get install -y -o Acquire::Retries=3 --no-install-recommends ca-certificates curl)
+    fi
     echo "--- Downloading gapic-showcase v${SHOWCASE_VERSION} ---"
     mkdir -p "${SHOWCASE_DIR}"
     curl -fsSL --retry 5 --retry-delay 15 \
