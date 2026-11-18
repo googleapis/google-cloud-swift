@@ -127,33 +127,6 @@ public enum _Host {
     ).authority
   }
 
-  private static func isValidDNSLabel(_ label: String) -> Bool {
-    let bytes = Array(label.utf8)
-    guard (1...63).contains(bytes.count),
-      bytes.first != UInt8(ascii: "-"),
-      bytes.last != UInt8(ascii: "-")
-    else {
-      return false
-    }
-    return bytes.allSatisfy { b in
-      (UInt8(ascii: "a")...UInt8(ascii: "z")).contains(b)
-        || (UInt8(ascii: "0")...UInt8(ascii: "9")).contains(b)
-        || b == UInt8(ascii: "-")
-    }
-  }
-
-  private static func isValidUniverseDomain(_ universeDomain: String) -> Bool {
-    let labels = universeDomain.split(separator: ".", omittingEmptySubsequences: false).map(
-      String.init)
-    guard let tld = labels.last,
-      labels.allSatisfy(isValidDNSLabel),
-      tld.utf8.contains(where: { (UInt8(ascii: "a")...UInt8(ascii: "z")).contains($0) })
-    else {
-      return false
-    }
-    return true
-  }
-
   private static func extractService(from defaultEndpoint: String) -> String? {
     guard !defaultEndpoint.hasPrefix("/"),
       let components = URLComponents(string: normalizeEndpoint(defaultEndpoint)),
@@ -163,7 +136,7 @@ public enum _Host {
       return nil
     }
     let service = String(defaultHost.dropLast(defaultSuffix.count))
-    return isValidDNSLabel(service) ? service : nil
+    return !service.isEmpty && !service.contains(".") ? service : nil
   }
 
   private static func isRegionalServiceHost(
@@ -172,16 +145,14 @@ public enum _Host {
     universeDomain: String
   ) -> Bool {
     let suffix = ".\(universeDomain)"
-    guard host.hasSuffix(suffix) else { return false }
-    let prefix = String(host.dropLast(suffix.count))
-    let parts = prefix.split(separator: ".", omittingEmptySubsequences: false).map(String.init)
-    guard parts.allSatisfy(isValidDNSLabel) else { return false }
-    if parts.count == 3 && parts[0] == service && parts[2] == "rep" {
+    guard !universeDomain.isEmpty, host.hasSuffix(suffix) else { return false }
+    let prefix = host.dropLast(suffix.count)
+    let parts = prefix.split(separator: ".", omittingEmptySubsequences: false)
+    if parts.count == 3 && parts[0] == service && !parts[1].isEmpty && parts[2] == "rep" {
       return true
     }
     if parts.count == 1 && parts[0].hasSuffix("-\(service)") {
-      let region = String(parts[0].dropLast(service.count + 1))
-      return isValidDNSLabel(region)
+      return !parts[0].dropLast(service.count + 1).isEmpty
     }
     return false
   }
@@ -232,8 +203,8 @@ public enum _Host {
 
     if uriHost == baseHost && uriPort == basePort {
       resolvedHostHeader = defaultHostHeader
-    } else if let service = extractService(from: defaultEndpoint),
-      isValidUniverseDomain(universeDomain),
+    } else if !universeDomain.isEmpty,
+      let service = extractService(from: defaultEndpoint),
       baseHost.hasSuffix(".\(universeDomain)"),
       !isRegionalServiceHost(baseHost, service: service, universeDomain: universeDomain),
       uriHost == "\(service).\(universeDomain)"
