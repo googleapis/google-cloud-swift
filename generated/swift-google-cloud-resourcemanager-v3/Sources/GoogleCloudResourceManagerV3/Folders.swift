@@ -59,8 +59,8 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFolder(request:)``
   /// - ``getFolder(name:)``
+  /// - ``getFolder(request:)``
   public func getFolder(
     request: GetFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.Folder {
@@ -80,9 +80,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFolders(request:)``
+  /// - ``listFoldersByItems(parent:)``
   /// - ``listFoldersByItems(request:)``
   /// - ``listFoldersByItems(request:options:)``
-  /// - ``listFoldersByItems(parent:)``
   public func listFolders(
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListFoldersResponse {
@@ -101,9 +101,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``searchFolders(request:)``
+  /// - ``searchFoldersByItems(query:)``
   /// - ``searchFoldersByItems(request:)``
   /// - ``searchFoldersByItems(request:options:)``
-  /// - ``searchFoldersByItems(query:)``
   public func searchFolders(
     request: SearchFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.SearchFoldersResponse {
@@ -143,9 +143,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createFolder(request:)``
+  /// - ``createFolderPollingUntilDone(folder:)``
   /// - ``createFolderPollingUntilDone(request:)``
   /// - ``createFolderPollingUntilDone(request:options:)``
-  /// - ``createFolderPollingUntilDone(folder:)``
   public func createFolder(
     request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -184,10 +184,10 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createFolderPollingUntilDone(request:)``
-  /// - ``createFolderPollingUntilDone(folder:)``
   /// - ``createFolder(request:)``
   /// - ``createFolder(request:options:)``
+  /// - ``createFolderPollingUntilDone(folder:)``
+  /// - ``createFolderPollingUntilDone(request:)``
   public func createFolderPollingUntilDone(
     request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -237,9 +237,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateFolder(request:)``
+  /// - ``updateFolderPollingUntilDone(folder:updateMask:)``
   /// - ``updateFolderPollingUntilDone(request:)``
   /// - ``updateFolderPollingUntilDone(request:options:)``
-  /// - ``updateFolderPollingUntilDone(folder:updateMask:)``
   public func updateFolder(
     request: UpdateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -270,10 +270,10 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateFolderPollingUntilDone(request:)``
-  /// - ``updateFolderPollingUntilDone(folder:updateMask:)``
   /// - ``updateFolder(request:)``
   /// - ``updateFolder(request:options:)``
+  /// - ``updateFolderPollingUntilDone(folder:updateMask:)``
+  /// - ``updateFolderPollingUntilDone(request:)``
   public func updateFolderPollingUntilDone(
     request: UpdateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -323,9 +323,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``moveFolder(request:)``
+  /// - ``moveFolderPollingUntilDone(name:destinationParent:)``
   /// - ``moveFolderPollingUntilDone(request:)``
   /// - ``moveFolderPollingUntilDone(request:options:)``
-  /// - ``moveFolderPollingUntilDone(name:destinationParent:)``
   public func moveFolder(
     request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -356,10 +356,10 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``moveFolderPollingUntilDone(request:)``
-  /// - ``moveFolderPollingUntilDone(name:destinationParent:)``
   /// - ``moveFolder(request:)``
   /// - ``moveFolder(request:options:)``
+  /// - ``moveFolderPollingUntilDone(name:destinationParent:)``
+  /// - ``moveFolderPollingUntilDone(request:)``
   public func moveFolderPollingUntilDone(
     request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -404,9 +404,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteFolder(request:)``
+  /// - ``deleteFolderPollingUntilDone(name:)``
   /// - ``deleteFolderPollingUntilDone(request:)``
   /// - ``deleteFolderPollingUntilDone(request:options:)``
-  /// - ``deleteFolderPollingUntilDone(name:)``
   public func deleteFolder(
     request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -432,10 +432,10 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFolderPollingUntilDone(request:)``
-  /// - ``deleteFolderPollingUntilDone(name:)``
   /// - ``deleteFolder(request:)``
   /// - ``deleteFolder(request:options:)``
+  /// - ``deleteFolderPollingUntilDone(name:)``
+  /// - ``deleteFolderPollingUntilDone(request:)``
   public func deleteFolderPollingUntilDone(
     request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -480,9 +480,9 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeleteFolder(request:)``
+  /// - ``undeleteFolderPollingUntilDone(name:)``
   /// - ``undeleteFolderPollingUntilDone(request:)``
   /// - ``undeleteFolderPollingUntilDone(request:options:)``
-  /// - ``undeleteFolderPollingUntilDone(name:)``
   public func undeleteFolder(
     request: UndeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -508,10 +508,10 @@ public final class FoldersClient: Clients.FoldersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeleteFolderPollingUntilDone(request:)``
-  /// - ``undeleteFolderPollingUntilDone(name:)``
   /// - ``undeleteFolder(request:)``
   /// - ``undeleteFolder(request:options:)``
+  /// - ``undeleteFolderPollingUntilDone(name:)``
+  /// - ``undeleteFolderPollingUntilDone(request:)``
   public func undeleteFolderPollingUntilDone(
     request: UndeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {

@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``createDeploymentResourcePool(request:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(parent:deploymentResourcePool:deploymentResourcePoolId:)``
     /// - ``createDeploymentResourcePoolPollingUntilDone(request:)``
     /// - ``createDeploymentResourcePoolPollingUntilDone(request:options:)``
-    /// - ``createDeploymentResourcePoolPollingUntilDone(parent:deploymentResourcePool:deploymentResourcePoolId:)``
     public func createDeploymentResourcePool(
       request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDeploymentResourcePoolPollingUntilDone(request:)``
-    /// - ``createDeploymentResourcePoolPollingUntilDone(parent:deploymentResourcePool:deploymentResourcePoolId:)``
     /// - ``createDeploymentResourcePool(request:)``
     /// - ``createDeploymentResourcePool(request:options:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(parent:deploymentResourcePool:deploymentResourcePoolId:)``
+    /// - ``createDeploymentResourcePoolPollingUntilDone(request:)``
     public func createDeploymentResourcePoolPollingUntilDone(
       request: CreateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeploymentResourcePool {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDeploymentResourcePool(request:)``
     /// - ``getDeploymentResourcePool(name:)``
+    /// - ``getDeploymentResourcePool(request:)``
     public func getDeploymentResourcePool(
       request: GetDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DeploymentResourcePool {
@@ -125,9 +125,9 @@
     /// ## See Also
     ///
     /// - ``listDeploymentResourcePools(request:)``
+    /// - ``listDeploymentResourcePoolsByItems(parent:)``
     /// - ``listDeploymentResourcePoolsByItems(request:)``
     /// - ``listDeploymentResourcePoolsByItems(request:options:)``
-    /// - ``listDeploymentResourcePoolsByItems(parent:)``
     public func listDeploymentResourcePools(
       request: ListDeploymentResourcePoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDeploymentResourcePoolsResponse {
@@ -141,9 +141,9 @@
     /// ## See Also
     ///
     /// - ``updateDeploymentResourcePool(request:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(deploymentResourcePool:updateMask:)``
     /// - ``updateDeploymentResourcePoolPollingUntilDone(request:)``
     /// - ``updateDeploymentResourcePoolPollingUntilDone(request:options:)``
-    /// - ``updateDeploymentResourcePoolPollingUntilDone(deploymentResourcePool:updateMask:)``
     public func updateDeploymentResourcePool(
       request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -156,10 +156,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDeploymentResourcePoolPollingUntilDone(request:)``
-    /// - ``updateDeploymentResourcePoolPollingUntilDone(deploymentResourcePool:updateMask:)``
     /// - ``updateDeploymentResourcePool(request:)``
     /// - ``updateDeploymentResourcePool(request:options:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(deploymentResourcePool:updateMask:)``
+    /// - ``updateDeploymentResourcePoolPollingUntilDone(request:)``
     public func updateDeploymentResourcePoolPollingUntilDone(
       request: UpdateDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeploymentResourcePool {
@@ -193,9 +193,9 @@
     /// ## See Also
     ///
     /// - ``deleteDeploymentResourcePool(request:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(name:)``
     /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:)``
     /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:options:)``
-    /// - ``deleteDeploymentResourcePoolPollingUntilDone(name:)``
     public func deleteDeploymentResourcePool(
       request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -208,10 +208,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:)``
-    /// - ``deleteDeploymentResourcePoolPollingUntilDone(name:)``
     /// - ``deleteDeploymentResourcePool(request:)``
     /// - ``deleteDeploymentResourcePool(request:options:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(name:)``
+    /// - ``deleteDeploymentResourcePoolPollingUntilDone(request:)``
     public func deleteDeploymentResourcePoolPollingUntilDone(
       request: DeleteDeploymentResourcePoolRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -244,9 +244,9 @@
     /// ## See Also
     ///
     /// - ``queryDeployedModels(request:)``
+    /// - ``queryDeployedModelsByItems(deploymentResourcePool:)``
     /// - ``queryDeployedModelsByItems(request:)``
     /// - ``queryDeployedModelsByItems(request:options:)``
-    /// - ``queryDeployedModelsByItems(deploymentResourcePool:)``
     public func queryDeployedModels(
       request: QueryDeployedModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.QueryDeployedModelsResponse {
@@ -340,9 +340,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -368,8 +368,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -384,8 +384,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

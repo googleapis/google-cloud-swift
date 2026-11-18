@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``addRule(request:)``
+    /// - ``addRulePollingUntilDone(project:securityPolicy:body:)``
     /// - ``addRulePollingUntilDone(request:)``
     /// - ``addRulePollingUntilDone(request:options:)``
-    /// - ``addRulePollingUntilDone(project:securityPolicy:body:)``
     public func addRule(
       request: SecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addRulePollingUntilDone(request:)``
-    /// - ``addRulePollingUntilDone(project:securityPolicy:body:)``
     /// - ``addRule(request:)``
     /// - ``addRule(request:options:)``
+    /// - ``addRulePollingUntilDone(project:securityPolicy:body:)``
+    /// - ``addRulePollingUntilDone(request:)``
     public func addRulePollingUntilDone(
       request: SecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -125,9 +125,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: SecurityPoliciesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPoliciesAggregatedList {
@@ -141,9 +141,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:securityPolicy:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:securityPolicy:)``
     public func delete(
       request: SecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -161,10 +161,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:securityPolicy:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:securityPolicy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: SecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -209,8 +209,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:securityPolicy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: SecurityPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicy {
@@ -223,8 +223,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRule(request:)``
     /// - ``getRule(project:securityPolicy:)``
+    /// - ``getRule(request:)``
     public func getRule(
       request: SecurityPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule {
@@ -239,9 +239,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: SecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -260,10 +260,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: SecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -309,9 +309,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: SecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyList {
@@ -325,8 +325,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``listPreconfiguredExpressionSets(request:)``
     /// - ``listPreconfiguredExpressionSets(project:)``
+    /// - ``listPreconfiguredExpressionSets(request:)``
     public func listPreconfiguredExpressionSets(
       request: SecurityPoliciesClient.ListPreconfiguredExpressionSetsRequest,
       options: GoogleGax.RequestOptions
@@ -345,9 +345,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:securityPolicy:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:securityPolicy:body:)``
     public func patch(
       request: SecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -369,10 +369,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:securityPolicy:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:securityPolicy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: SecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -419,9 +419,9 @@
     /// ## See Also
     ///
     /// - ``patchRule(request:)``
+    /// - ``patchRulePollingUntilDone(project:securityPolicy:body:)``
     /// - ``patchRulePollingUntilDone(request:)``
     /// - ``patchRulePollingUntilDone(request:options:)``
-    /// - ``patchRulePollingUntilDone(project:securityPolicy:body:)``
     public func patchRule(
       request: SecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -440,10 +440,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchRulePollingUntilDone(request:)``
-    /// - ``patchRulePollingUntilDone(project:securityPolicy:body:)``
     /// - ``patchRule(request:)``
     /// - ``patchRule(request:options:)``
+    /// - ``patchRulePollingUntilDone(project:securityPolicy:body:)``
+    /// - ``patchRulePollingUntilDone(request:)``
     public func patchRulePollingUntilDone(
       request: SecurityPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -489,9 +489,9 @@
     /// ## See Also
     ///
     /// - ``removeRule(request:)``
+    /// - ``removeRulePollingUntilDone(project:securityPolicy:)``
     /// - ``removeRulePollingUntilDone(request:)``
     /// - ``removeRulePollingUntilDone(request:options:)``
-    /// - ``removeRulePollingUntilDone(project:securityPolicy:)``
     public func removeRule(
       request: SecurityPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -509,10 +509,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeRulePollingUntilDone(request:)``
-    /// - ``removeRulePollingUntilDone(project:securityPolicy:)``
     /// - ``removeRule(request:)``
     /// - ``removeRule(request:options:)``
+    /// - ``removeRulePollingUntilDone(project:securityPolicy:)``
+    /// - ``removeRulePollingUntilDone(request:)``
     public func removeRulePollingUntilDone(
       request: SecurityPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -560,9 +560,9 @@
     /// ## See Also
     ///
     /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
     /// - ``setLabelsPollingUntilDone(request:)``
     /// - ``setLabelsPollingUntilDone(request:options:)``
-    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
     public func setLabels(
       request: SecurityPoliciesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -582,10 +582,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setLabelsPollingUntilDone(request:)``
-    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
     /// - ``setLabels(request:)``
     /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: SecurityPoliciesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

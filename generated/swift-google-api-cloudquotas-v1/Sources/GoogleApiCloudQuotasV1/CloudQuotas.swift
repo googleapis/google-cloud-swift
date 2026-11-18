@@ -54,9 +54,9 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listQuotaInfos(request:)``
+  /// - ``listQuotaInfosByItems(parent:)``
   /// - ``listQuotaInfosByItems(request:)``
   /// - ``listQuotaInfosByItems(request:options:)``
-  /// - ``listQuotaInfosByItems(parent:)``
   public func listQuotaInfos(
     request: ListQuotaInfosRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.ListQuotaInfosResponse {
@@ -69,8 +69,8 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getQuotaInfo(request:)``
   /// - ``getQuotaInfo(name:)``
+  /// - ``getQuotaInfo(request:)``
   public func getQuotaInfo(
     request: GetQuotaInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaInfo {
@@ -84,9 +84,9 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listQuotaPreferences(request:)``
+  /// - ``listQuotaPreferencesByItems(parent:)``
   /// - ``listQuotaPreferencesByItems(request:)``
   /// - ``listQuotaPreferencesByItems(request:options:)``
-  /// - ``listQuotaPreferencesByItems(parent:)``
   public func listQuotaPreferences(
     request: ListQuotaPreferencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.ListQuotaPreferencesResponse {
@@ -99,8 +99,8 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getQuotaPreference(request:)``
   /// - ``getQuotaPreference(name:)``
+  /// - ``getQuotaPreference(request:)``
   public func getQuotaPreference(
     request: GetQuotaPreferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -113,9 +113,9 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createQuotaPreference(request:)``
-  /// - ``createQuotaPreference(parent:quotaPreference:quotaPreferenceId:)``
   /// - ``createQuotaPreference(parent:quotaPreference:)``
+  /// - ``createQuotaPreference(parent:quotaPreference:quotaPreferenceId:)``
+  /// - ``createQuotaPreference(request:)``
   public func createQuotaPreference(
     request: CreateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {
@@ -129,8 +129,8 @@ public final class CloudQuotasClient: Clients.CloudQuotasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateQuotaPreference(request:)``
   /// - ``updateQuotaPreference(quotaPreference:updateMask:)``
+  /// - ``updateQuotaPreference(request:)``
   public func updateQuotaPreference(
     request: UpdateQuotaPreferenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaPreference {

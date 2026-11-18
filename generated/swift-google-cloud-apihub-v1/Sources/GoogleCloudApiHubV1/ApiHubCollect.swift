@@ -55,9 +55,9 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``collectApiData(request:)``
+  /// - ``collectApiDataPollingUntilDone(location:collectionType:apiData:)``
   /// - ``collectApiDataPollingUntilDone(request:)``
   /// - ``collectApiDataPollingUntilDone(request:options:)``
-  /// - ``collectApiDataPollingUntilDone(location:collectionType:apiData:)``
   public func collectApiData(
     request: CollectApiDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -70,10 +70,10 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``collectApiDataPollingUntilDone(request:)``
-  /// - ``collectApiDataPollingUntilDone(location:collectionType:apiData:)``
   /// - ``collectApiData(request:)``
   /// - ``collectApiData(request:options:)``
+  /// - ``collectApiDataPollingUntilDone(location:collectionType:apiData:)``
+  /// - ``collectApiDataPollingUntilDone(request:)``
   public func collectApiDataPollingUntilDone(
     request: CollectApiDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> CollectApiDataResponse {
@@ -136,9 +136,9 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -164,8 +164,8 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,8 +180,8 @@ public final class ApiHubCollectClient: Clients.ApiHubCollectProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

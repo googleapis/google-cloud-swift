@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``addHealthCheck(request:)``
+    /// - ``addHealthCheckPollingUntilDone(project:region:targetPool:body:)``
     /// - ``addHealthCheckPollingUntilDone(request:)``
     /// - ``addHealthCheckPollingUntilDone(request:options:)``
-    /// - ``addHealthCheckPollingUntilDone(project:region:targetPool:body:)``
     public func addHealthCheck(
       request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addHealthCheckPollingUntilDone(request:)``
-    /// - ``addHealthCheckPollingUntilDone(project:region:targetPool:body:)``
     /// - ``addHealthCheck(request:)``
     /// - ``addHealthCheck(request:options:)``
+    /// - ``addHealthCheckPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``addHealthCheckPollingUntilDone(request:)``
     public func addHealthCheckPollingUntilDone(
       request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -122,9 +122,9 @@
     /// ## See Also
     ///
     /// - ``addInstance(request:)``
+    /// - ``addInstancePollingUntilDone(project:region:targetPool:body:)``
     /// - ``addInstancePollingUntilDone(request:)``
     /// - ``addInstancePollingUntilDone(request:options:)``
-    /// - ``addInstancePollingUntilDone(project:region:targetPool:body:)``
     public func addInstance(
       request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -142,10 +142,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addInstancePollingUntilDone(request:)``
-    /// - ``addInstancePollingUntilDone(project:region:targetPool:body:)``
     /// - ``addInstance(request:)``
     /// - ``addInstance(request:options:)``
+    /// - ``addInstancePollingUntilDone(project:region:targetPool:body:)``
+    /// - ``addInstancePollingUntilDone(request:)``
     public func addInstancePollingUntilDone(
       request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -195,9 +195,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList {
@@ -211,9 +211,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:targetPool:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:targetPool:)``
     public func delete(
       request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -231,10 +231,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:targetPool:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:targetPool:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -280,8 +280,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:targetPool:)``
+    /// - ``get(request:)``
     public func `get`(
       request: TargetPoolsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPool {
@@ -295,8 +295,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getHealth(request:)``
     /// - ``getHealth(project:region:targetPool:body:)``
+    /// - ``getHealth(request:)``
     public func getHealth(
       request: TargetPoolsClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPoolInstanceHealth {
@@ -311,9 +311,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -332,10 +332,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -383,9 +383,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPoolList {
@@ -399,9 +399,9 @@
     /// ## See Also
     ///
     /// - ``removeHealthCheck(request:)``
+    /// - ``removeHealthCheckPollingUntilDone(project:region:targetPool:body:)``
     /// - ``removeHealthCheckPollingUntilDone(request:)``
     /// - ``removeHealthCheckPollingUntilDone(request:options:)``
-    /// - ``removeHealthCheckPollingUntilDone(project:region:targetPool:body:)``
     public func removeHealthCheck(
       request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -419,10 +419,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeHealthCheckPollingUntilDone(request:)``
-    /// - ``removeHealthCheckPollingUntilDone(project:region:targetPool:body:)``
     /// - ``removeHealthCheck(request:)``
     /// - ``removeHealthCheck(request:options:)``
+    /// - ``removeHealthCheckPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``removeHealthCheckPollingUntilDone(request:)``
     public func removeHealthCheckPollingUntilDone(
       request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -469,9 +469,9 @@
     /// ## See Also
     ///
     /// - ``removeInstance(request:)``
+    /// - ``removeInstancePollingUntilDone(project:region:targetPool:body:)``
     /// - ``removeInstancePollingUntilDone(request:)``
     /// - ``removeInstancePollingUntilDone(request:options:)``
-    /// - ``removeInstancePollingUntilDone(project:region:targetPool:body:)``
     public func removeInstance(
       request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -489,10 +489,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeInstancePollingUntilDone(request:)``
-    /// - ``removeInstancePollingUntilDone(project:region:targetPool:body:)``
     /// - ``removeInstance(request:)``
     /// - ``removeInstance(request:options:)``
+    /// - ``removeInstancePollingUntilDone(project:region:targetPool:body:)``
+    /// - ``removeInstancePollingUntilDone(request:)``
     public func removeInstancePollingUntilDone(
       request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -539,9 +539,9 @@
     /// ## See Also
     ///
     /// - ``setBackup(request:)``
+    /// - ``setBackupPollingUntilDone(project:region:targetPool:body:)``
     /// - ``setBackupPollingUntilDone(request:)``
     /// - ``setBackupPollingUntilDone(request:options:)``
-    /// - ``setBackupPollingUntilDone(project:region:targetPool:body:)``
     public func setBackup(
       request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -559,10 +559,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setBackupPollingUntilDone(request:)``
-    /// - ``setBackupPollingUntilDone(project:region:targetPool:body:)``
     /// - ``setBackup(request:)``
     /// - ``setBackup(request:options:)``
+    /// - ``setBackupPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``setBackupPollingUntilDone(request:)``
     public func setBackupPollingUntilDone(
       request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -611,9 +611,9 @@
     /// ## See Also
     ///
     /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:region:targetPool:body:)``
     /// - ``setSecurityPolicyPollingUntilDone(request:)``
     /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
-    /// - ``setSecurityPolicyPollingUntilDone(project:region:targetPool:body:)``
     public func setSecurityPolicy(
       request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -633,10 +633,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setSecurityPolicyPollingUntilDone(request:)``
-    /// - ``setSecurityPolicyPollingUntilDone(project:region:targetPool:body:)``
     /// - ``setSecurityPolicy(request:)``
     /// - ``setSecurityPolicy(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
     public func setSecurityPolicyPollingUntilDone(
       request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -682,8 +682,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: TargetPoolsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {

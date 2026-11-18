@@ -56,8 +56,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTuningJob(request:)``
     /// - ``createTuningJob(parent:tuningJob:)``
+    /// - ``createTuningJob(request:)``
     public func createTuningJob(
       request: CreateTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TuningJob {
@@ -70,8 +70,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTuningJob(request:)``
     /// - ``getTuningJob(name:)``
+    /// - ``getTuningJob(request:)``
     public func getTuningJob(
       request: GetTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TuningJob {
@@ -85,9 +85,9 @@
     /// ## See Also
     ///
     /// - ``listTuningJobs(request:)``
+    /// - ``listTuningJobsByItems(parent:)``
     /// - ``listTuningJobsByItems(request:)``
     /// - ``listTuningJobsByItems(request:options:)``
-    /// - ``listTuningJobsByItems(parent:)``
     public func listTuningJobs(
       request: ListTuningJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTuningJobsResponse {
@@ -116,8 +116,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelTuningJob(request:)``
     /// - ``cancelTuningJob(name:)``
+    /// - ``cancelTuningJob(request:)``
     public func cancelTuningJob(
       request: CancelTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -131,9 +131,9 @@
     /// ## See Also
     ///
     /// - ``rebaseTunedModel(request:)``
+    /// - ``rebaseTunedModelPollingUntilDone(parent:tunedModelRef:)``
     /// - ``rebaseTunedModelPollingUntilDone(request:)``
     /// - ``rebaseTunedModelPollingUntilDone(request:options:)``
-    /// - ``rebaseTunedModelPollingUntilDone(parent:tunedModelRef:)``
     public func rebaseTunedModel(
       request: RebaseTunedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -146,10 +146,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``rebaseTunedModelPollingUntilDone(request:)``
-    /// - ``rebaseTunedModelPollingUntilDone(parent:tunedModelRef:)``
     /// - ``rebaseTunedModel(request:)``
     /// - ``rebaseTunedModel(request:options:)``
+    /// - ``rebaseTunedModelPollingUntilDone(parent:tunedModelRef:)``
+    /// - ``rebaseTunedModelPollingUntilDone(request:)``
     public func rebaseTunedModelPollingUntilDone(
       request: RebaseTunedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> TuningJob {
@@ -261,9 +261,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -289,8 +289,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -305,8 +305,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

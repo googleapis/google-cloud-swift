@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``addPeering(request:)``
+    /// - ``addPeeringPollingUntilDone(project:network:body:)``
     /// - ``addPeeringPollingUntilDone(request:)``
     /// - ``addPeeringPollingUntilDone(request:options:)``
-    /// - ``addPeeringPollingUntilDone(project:network:body:)``
     public func addPeering(
       request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addPeeringPollingUntilDone(request:)``
-    /// - ``addPeeringPollingUntilDone(project:network:body:)``
     /// - ``addPeering(request:)``
     /// - ``addPeering(request:options:)``
+    /// - ``addPeeringPollingUntilDone(project:network:body:)``
+    /// - ``addPeeringPollingUntilDone(request:)``
     public func addPeeringPollingUntilDone(
       request: NetworksClient.AddPeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -123,9 +123,9 @@
     /// ## See Also
     ///
     /// - ``cancelRequestRemovePeering(request:)``
+    /// - ``cancelRequestRemovePeeringPollingUntilDone(project:network:body:)``
     /// - ``cancelRequestRemovePeeringPollingUntilDone(request:)``
     /// - ``cancelRequestRemovePeeringPollingUntilDone(request:options:)``
-    /// - ``cancelRequestRemovePeeringPollingUntilDone(project:network:body:)``
     public func cancelRequestRemovePeering(
       request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -145,10 +145,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelRequestRemovePeeringPollingUntilDone(request:)``
-    /// - ``cancelRequestRemovePeeringPollingUntilDone(project:network:body:)``
     /// - ``cancelRequestRemovePeering(request:)``
     /// - ``cancelRequestRemovePeering(request:options:)``
+    /// - ``cancelRequestRemovePeeringPollingUntilDone(project:network:body:)``
+    /// - ``cancelRequestRemovePeeringPollingUntilDone(request:)``
     public func cancelRequestRemovePeeringPollingUntilDone(
       request: NetworksClient.CancelRequestRemovePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,9 +194,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:network:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:network:)``
     public func delete(
       request: NetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -214,10 +214,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:network:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:network:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: NetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -262,8 +262,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:network:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NetworksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Network {
@@ -276,8 +276,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEffectiveFirewalls(request:)``
     /// - ``getEffectiveFirewalls(project:network:)``
+    /// - ``getEffectiveFirewalls(request:)``
     public func getEffectiveFirewalls(
       request: NetworksClient.GetEffectiveFirewallsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworksGetEffectiveFirewallsResponse {
@@ -292,9 +292,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -313,10 +313,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: NetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -362,9 +362,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: NetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkList {
@@ -378,9 +378,9 @@
     /// ## See Also
     ///
     /// - ``listPeeringRoutes(request:)``
+    /// - ``listPeeringRoutesByItems(project:network:)``
     /// - ``listPeeringRoutesByItems(request:)``
     /// - ``listPeeringRoutesByItems(request:options:)``
-    /// - ``listPeeringRoutesByItems(project:network:)``
     public func listPeeringRoutes(
       request: NetworksClient.ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ExchangedPeeringRoutesList {
@@ -395,9 +395,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:network:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:network:body:)``
     public func patch(
       request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -416,10 +416,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:network:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:network:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: NetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -465,9 +465,9 @@
     /// ## See Also
     ///
     /// - ``removePeering(request:)``
+    /// - ``removePeeringPollingUntilDone(project:network:body:)``
     /// - ``removePeeringPollingUntilDone(request:)``
     /// - ``removePeeringPollingUntilDone(request:options:)``
-    /// - ``removePeeringPollingUntilDone(project:network:body:)``
     public func removePeering(
       request: NetworksClient.RemovePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -485,10 +485,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removePeeringPollingUntilDone(request:)``
-    /// - ``removePeeringPollingUntilDone(project:network:body:)``
     /// - ``removePeering(request:)``
     /// - ``removePeering(request:options:)``
+    /// - ``removePeeringPollingUntilDone(project:network:body:)``
+    /// - ``removePeeringPollingUntilDone(request:)``
     public func removePeeringPollingUntilDone(
       request: NetworksClient.RemovePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -535,9 +535,9 @@
     /// ## See Also
     ///
     /// - ``requestRemovePeering(request:)``
+    /// - ``requestRemovePeeringPollingUntilDone(project:network:body:)``
     /// - ``requestRemovePeeringPollingUntilDone(request:)``
     /// - ``requestRemovePeeringPollingUntilDone(request:options:)``
-    /// - ``requestRemovePeeringPollingUntilDone(project:network:body:)``
     public func requestRemovePeering(
       request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -556,10 +556,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``requestRemovePeeringPollingUntilDone(request:)``
-    /// - ``requestRemovePeeringPollingUntilDone(project:network:body:)``
     /// - ``requestRemovePeering(request:)``
     /// - ``requestRemovePeering(request:options:)``
+    /// - ``requestRemovePeeringPollingUntilDone(project:network:body:)``
+    /// - ``requestRemovePeeringPollingUntilDone(request:)``
     public func requestRemovePeeringPollingUntilDone(
       request: NetworksClient.RequestRemovePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -605,9 +605,9 @@
     /// ## See Also
     ///
     /// - ``switchToCustomMode(request:)``
+    /// - ``switchToCustomModePollingUntilDone(project:network:)``
     /// - ``switchToCustomModePollingUntilDone(request:)``
     /// - ``switchToCustomModePollingUntilDone(request:options:)``
-    /// - ``switchToCustomModePollingUntilDone(project:network:)``
     public func switchToCustomMode(
       request: NetworksClient.SwitchToCustomModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -625,10 +625,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``switchToCustomModePollingUntilDone(request:)``
-    /// - ``switchToCustomModePollingUntilDone(project:network:)``
     /// - ``switchToCustomMode(request:)``
     /// - ``switchToCustomMode(request:options:)``
+    /// - ``switchToCustomModePollingUntilDone(project:network:)``
+    /// - ``switchToCustomModePollingUntilDone(request:)``
     public func switchToCustomModePollingUntilDone(
       request: NetworksClient.SwitchToCustomModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -676,9 +676,9 @@
     /// ## See Also
     ///
     /// - ``updatePeering(request:)``
+    /// - ``updatePeeringPollingUntilDone(project:network:body:)``
     /// - ``updatePeeringPollingUntilDone(request:)``
     /// - ``updatePeeringPollingUntilDone(request:options:)``
-    /// - ``updatePeeringPollingUntilDone(project:network:body:)``
     public func updatePeering(
       request: NetworksClient.UpdatePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -698,10 +698,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePeeringPollingUntilDone(request:)``
-    /// - ``updatePeeringPollingUntilDone(project:network:body:)``
     /// - ``updatePeering(request:)``
     /// - ``updatePeering(request:options:)``
+    /// - ``updatePeeringPollingUntilDone(project:network:body:)``
+    /// - ``updatePeeringPollingUntilDone(request:)``
     public func updatePeeringPollingUntilDone(
       request: NetworksClient.UpdatePeeringRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

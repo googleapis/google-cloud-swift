@@ -119,10 +119,10 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``asyncBatchAnnotateImagesPollingUntilDone(request:)``
-  /// - ``asyncBatchAnnotateImagesPollingUntilDone(requests:outputConfig:)``
   /// - ``asyncBatchAnnotateImages(request:)``
   /// - ``asyncBatchAnnotateImages(request:options:)``
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(request:)``
+  /// - ``asyncBatchAnnotateImagesPollingUntilDone(requests:outputConfig:)``
   public func asyncBatchAnnotateImagesPollingUntilDone(
     request: AsyncBatchAnnotateImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AsyncBatchAnnotateImagesResponse {
@@ -181,10 +181,10 @@ public final class ImageAnnotatorClient: Clients.ImageAnnotatorProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``asyncBatchAnnotateFilesPollingUntilDone(request:)``
-  /// - ``asyncBatchAnnotateFilesPollingUntilDone(requests:)``
   /// - ``asyncBatchAnnotateFiles(request:)``
   /// - ``asyncBatchAnnotateFiles(request:options:)``
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(request:)``
+  /// - ``asyncBatchAnnotateFilesPollingUntilDone(requests:)``
   public func asyncBatchAnnotateFilesPollingUntilDone(
     request: AsyncBatchAnnotateFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AsyncBatchAnnotateFilesResponse {

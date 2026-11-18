@@ -58,9 +58,9 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   /// ## See Also
   ///
   /// - ``annotateVideo(request:)``
+  /// - ``annotateVideoPollingUntilDone(inputUri:features:)``
   /// - ``annotateVideoPollingUntilDone(request:)``
   /// - ``annotateVideoPollingUntilDone(request:options:)``
-  /// - ``annotateVideoPollingUntilDone(inputUri:features:)``
   public func annotateVideo(
     request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -76,10 +76,10 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   ///
   /// ## See Also
   ///
-  /// - ``annotateVideoPollingUntilDone(request:)``
-  /// - ``annotateVideoPollingUntilDone(inputUri:features:)``
   /// - ``annotateVideo(request:)``
   /// - ``annotateVideo(request:options:)``
+  /// - ``annotateVideoPollingUntilDone(inputUri:features:)``
+  /// - ``annotateVideoPollingUntilDone(request:)``
   public func annotateVideoPollingUntilDone(
     request: AnnotateVideoRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnnotateVideoResponse {
@@ -114,9 +114,9 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -142,8 +142,8 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -158,8 +158,8 @@ public final class VideoIntelligenceServiceClient: Clients.VideoIntelligenceServ
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -53,8 +53,8 @@ public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createControl(request:)``
   /// - ``createControl(parent:control:controlId:)``
+  /// - ``createControl(request:)``
   public func createControl(
     request: CreateControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Control {
@@ -72,8 +72,8 @@ public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteControl(request:)``
   /// - ``deleteControl(name:)``
+  /// - ``deleteControl(request:)``
   public func deleteControl(
     request: DeleteControlRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -93,8 +93,8 @@ public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateControl(request:)``
   /// - ``updateControl(control:updateMask:)``
+  /// - ``updateControl(request:)``
   public func updateControl(
     request: UpdateControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Control {
@@ -107,8 +107,8 @@ public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getControl(request:)``
   /// - ``getControl(name:)``
+  /// - ``getControl(request:)``
   public func getControl(
     request: GetControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Control {
@@ -125,9 +125,9 @@ public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listControls(request:)``
+  /// - ``listControlsByItems(parent:)``
   /// - ``listControlsByItems(request:)``
   /// - ``listControlsByItems(request:options:)``
-  /// - ``listControlsByItems(parent:)``
   public func listControls(
     request: ListControlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListControlsResponse {
@@ -143,9 +143,9 @@ public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

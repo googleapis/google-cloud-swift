@@ -79,8 +79,8 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSequenceReport(request:)``
   /// - ``getSequenceReport(name:)``
+  /// - ``getSequenceReport(request:)``
   public func getSequenceReport(
     request: GetSequenceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.SequenceReport {
@@ -94,8 +94,8 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getStreamingSequenceReport(request:)``
   /// - ``getStreamingSequenceReport(name:)``
+  /// - ``getStreamingSequenceReport(request:)``
   public func getStreamingSequenceReport(
     request: GetStreamingSequenceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.StreamingSequenceReport {
@@ -108,8 +108,8 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``attemptSequence(request:)``
   /// - ``attemptSequence(name:)``
+  /// - ``attemptSequence(request:)``
   public func attemptSequence(
     request: AttemptSequenceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -202,9 +202,9 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -230,8 +230,8 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -246,8 +246,8 @@ public final class SequenceServiceClient: Clients.SequenceServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -53,9 +53,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listGateways(request:)``
+  /// - ``listGatewaysByItems(parent:)``
   /// - ``listGatewaysByItems(request:)``
   /// - ``listGatewaysByItems(request:options:)``
-  /// - ``listGatewaysByItems(parent:)``
   public func listGateways(
     request: ListGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiGatewayV1.ListGatewaysResponse {
@@ -68,8 +68,8 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getGateway(request:)``
   /// - ``getGateway(name:)``
+  /// - ``getGateway(request:)``
   public func getGateway(
     request: GetGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiGatewayV1.Gateway {
@@ -83,9 +83,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createGateway(request:)``
+  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
   /// - ``createGatewayPollingUntilDone(request:)``
   /// - ``createGatewayPollingUntilDone(request:options:)``
-  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
   public func createGateway(
     request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -98,10 +98,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createGatewayPollingUntilDone(request:)``
-  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
   /// - ``createGateway(request:)``
   /// - ``createGateway(request:options:)``
+  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
+  /// - ``createGatewayPollingUntilDone(request:)``
   public func createGatewayPollingUntilDone(
     request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Gateway {
@@ -133,9 +133,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updateGateway(request:)``
+  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
   /// - ``updateGatewayPollingUntilDone(request:)``
   /// - ``updateGatewayPollingUntilDone(request:options:)``
-  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
   public func updateGateway(
     request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,10 +148,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateGatewayPollingUntilDone(request:)``
-  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
   /// - ``updateGateway(request:)``
   /// - ``updateGateway(request:options:)``
+  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
+  /// - ``updateGatewayPollingUntilDone(request:)``
   public func updateGatewayPollingUntilDone(
     request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Gateway {
@@ -183,9 +183,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteGateway(request:)``
+  /// - ``deleteGatewayPollingUntilDone(name:)``
   /// - ``deleteGatewayPollingUntilDone(request:)``
   /// - ``deleteGatewayPollingUntilDone(request:options:)``
-  /// - ``deleteGatewayPollingUntilDone(name:)``
   public func deleteGateway(
     request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -198,10 +198,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteGatewayPollingUntilDone(request:)``
-  /// - ``deleteGatewayPollingUntilDone(name:)``
   /// - ``deleteGateway(request:)``
   /// - ``deleteGateway(request:options:)``
+  /// - ``deleteGatewayPollingUntilDone(name:)``
+  /// - ``deleteGatewayPollingUntilDone(request:)``
   public func deleteGatewayPollingUntilDone(
     request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -233,9 +233,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listApis(request:)``
+  /// - ``listApisByItems(parent:)``
   /// - ``listApisByItems(request:)``
   /// - ``listApisByItems(request:options:)``
-  /// - ``listApisByItems(parent:)``
   public func listApis(
     request: ListApisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiGatewayV1.ListApisResponse {
@@ -248,8 +248,8 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getApi(request:)``
   /// - ``getApi(name:)``
+  /// - ``getApi(request:)``
   public func getApi(
     request: GetApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiGatewayV1.Api {
@@ -263,9 +263,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createApi(request:)``
+  /// - ``createApiPollingUntilDone(parent:api:apiId:)``
   /// - ``createApiPollingUntilDone(request:)``
   /// - ``createApiPollingUntilDone(request:options:)``
-  /// - ``createApiPollingUntilDone(parent:api:apiId:)``
   public func createApi(
     request: CreateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -278,10 +278,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createApiPollingUntilDone(request:)``
-  /// - ``createApiPollingUntilDone(parent:api:apiId:)``
   /// - ``createApi(request:)``
   /// - ``createApi(request:options:)``
+  /// - ``createApiPollingUntilDone(parent:api:apiId:)``
+  /// - ``createApiPollingUntilDone(request:)``
   public func createApiPollingUntilDone(
     request: CreateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> Api {
@@ -313,9 +313,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updateApi(request:)``
+  /// - ``updateApiPollingUntilDone(api:updateMask:)``
   /// - ``updateApiPollingUntilDone(request:)``
   /// - ``updateApiPollingUntilDone(request:options:)``
-  /// - ``updateApiPollingUntilDone(api:updateMask:)``
   public func updateApi(
     request: UpdateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -328,10 +328,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateApiPollingUntilDone(request:)``
-  /// - ``updateApiPollingUntilDone(api:updateMask:)``
   /// - ``updateApi(request:)``
   /// - ``updateApi(request:options:)``
+  /// - ``updateApiPollingUntilDone(api:updateMask:)``
+  /// - ``updateApiPollingUntilDone(request:)``
   public func updateApiPollingUntilDone(
     request: UpdateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> Api {
@@ -363,9 +363,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteApi(request:)``
+  /// - ``deleteApiPollingUntilDone(name:)``
   /// - ``deleteApiPollingUntilDone(request:)``
   /// - ``deleteApiPollingUntilDone(request:options:)``
-  /// - ``deleteApiPollingUntilDone(name:)``
   public func deleteApi(
     request: DeleteApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -378,10 +378,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteApiPollingUntilDone(request:)``
-  /// - ``deleteApiPollingUntilDone(name:)``
   /// - ``deleteApi(request:)``
   /// - ``deleteApi(request:options:)``
+  /// - ``deleteApiPollingUntilDone(name:)``
+  /// - ``deleteApiPollingUntilDone(request:)``
   public func deleteApiPollingUntilDone(
     request: DeleteApiRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -413,9 +413,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listApiConfigs(request:)``
+  /// - ``listApiConfigsByItems(parent:)``
   /// - ``listApiConfigsByItems(request:)``
   /// - ``listApiConfigsByItems(request:options:)``
-  /// - ``listApiConfigsByItems(parent:)``
   public func listApiConfigs(
     request: ListApiConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiGatewayV1.ListApiConfigsResponse {
@@ -428,8 +428,8 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getApiConfig(request:)``
   /// - ``getApiConfig(name:)``
+  /// - ``getApiConfig(request:)``
   public func getApiConfig(
     request: GetApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiGatewayV1.ApiConfig {
@@ -443,9 +443,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createApiConfig(request:)``
+  /// - ``createApiConfigPollingUntilDone(parent:apiConfig:apiConfigId:)``
   /// - ``createApiConfigPollingUntilDone(request:)``
   /// - ``createApiConfigPollingUntilDone(request:options:)``
-  /// - ``createApiConfigPollingUntilDone(parent:apiConfig:apiConfigId:)``
   public func createApiConfig(
     request: CreateApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -458,10 +458,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createApiConfigPollingUntilDone(request:)``
-  /// - ``createApiConfigPollingUntilDone(parent:apiConfig:apiConfigId:)``
   /// - ``createApiConfig(request:)``
   /// - ``createApiConfig(request:options:)``
+  /// - ``createApiConfigPollingUntilDone(parent:apiConfig:apiConfigId:)``
+  /// - ``createApiConfigPollingUntilDone(request:)``
   public func createApiConfigPollingUntilDone(
     request: CreateApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> ApiConfig {
@@ -493,9 +493,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updateApiConfig(request:)``
+  /// - ``updateApiConfigPollingUntilDone(apiConfig:updateMask:)``
   /// - ``updateApiConfigPollingUntilDone(request:)``
   /// - ``updateApiConfigPollingUntilDone(request:options:)``
-  /// - ``updateApiConfigPollingUntilDone(apiConfig:updateMask:)``
   public func updateApiConfig(
     request: UpdateApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -508,10 +508,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateApiConfigPollingUntilDone(request:)``
-  /// - ``updateApiConfigPollingUntilDone(apiConfig:updateMask:)``
   /// - ``updateApiConfig(request:)``
   /// - ``updateApiConfig(request:options:)``
+  /// - ``updateApiConfigPollingUntilDone(apiConfig:updateMask:)``
+  /// - ``updateApiConfigPollingUntilDone(request:)``
   public func updateApiConfigPollingUntilDone(
     request: UpdateApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> ApiConfig {
@@ -543,9 +543,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteApiConfig(request:)``
+  /// - ``deleteApiConfigPollingUntilDone(name:)``
   /// - ``deleteApiConfigPollingUntilDone(request:)``
   /// - ``deleteApiConfigPollingUntilDone(request:options:)``
-  /// - ``deleteApiConfigPollingUntilDone(name:)``
   public func deleteApiConfig(
     request: DeleteApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -558,10 +558,10 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteApiConfigPollingUntilDone(request:)``
-  /// - ``deleteApiConfigPollingUntilDone(name:)``
   /// - ``deleteApiConfig(request:)``
   /// - ``deleteApiConfig(request:options:)``
+  /// - ``deleteApiConfigPollingUntilDone(name:)``
+  /// - ``deleteApiConfigPollingUntilDone(request:)``
   public func deleteApiConfigPollingUntilDone(
     request: DeleteApiConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -595,9 +595,9 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -623,8 +623,8 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -639,8 +639,8 @@ public final class ApiGatewayServiceClient: Clients.ApiGatewayServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

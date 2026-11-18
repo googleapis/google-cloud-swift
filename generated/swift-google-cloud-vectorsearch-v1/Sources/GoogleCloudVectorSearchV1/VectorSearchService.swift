@@ -59,9 +59,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``listCollections(request:)``
+  /// - ``listCollectionsByItems(parent:)``
   /// - ``listCollectionsByItems(request:)``
   /// - ``listCollectionsByItems(request:options:)``
-  /// - ``listCollectionsByItems(parent:)``
   public func listCollections(
     request: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.ListCollectionsResponse {
@@ -74,8 +74,8 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getCollection(request:)``
   /// - ``getCollection(name:)``
+  /// - ``getCollection(request:)``
   public func getCollection(
     request: GetCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.Collection {
@@ -89,9 +89,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``createCollection(request:)``
+  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   /// - ``createCollectionPollingUntilDone(request:)``
   /// - ``createCollectionPollingUntilDone(request:options:)``
-  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   public func createCollection(
     request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -104,10 +104,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createCollectionPollingUntilDone(request:)``
-  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   /// - ``createCollection(request:)``
   /// - ``createCollection(request:options:)``
+  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
+  /// - ``createCollectionPollingUntilDone(request:)``
   public func createCollectionPollingUntilDone(
     request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collection {
@@ -139,9 +139,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``updateCollection(request:)``
+  /// - ``updateCollectionPollingUntilDone(collection:updateMask:)``
   /// - ``updateCollectionPollingUntilDone(request:)``
   /// - ``updateCollectionPollingUntilDone(request:options:)``
-  /// - ``updateCollectionPollingUntilDone(collection:updateMask:)``
   public func updateCollection(
     request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateCollectionPollingUntilDone(request:)``
-  /// - ``updateCollectionPollingUntilDone(collection:updateMask:)``
   /// - ``updateCollection(request:)``
   /// - ``updateCollection(request:options:)``
+  /// - ``updateCollectionPollingUntilDone(collection:updateMask:)``
+  /// - ``updateCollectionPollingUntilDone(request:)``
   public func updateCollectionPollingUntilDone(
     request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collection {
@@ -189,9 +189,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteCollection(request:)``
+  /// - ``deleteCollectionPollingUntilDone(name:)``
   /// - ``deleteCollectionPollingUntilDone(request:)``
   /// - ``deleteCollectionPollingUntilDone(request:options:)``
-  /// - ``deleteCollectionPollingUntilDone(name:)``
   public func deleteCollection(
     request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -204,10 +204,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteCollectionPollingUntilDone(request:)``
-  /// - ``deleteCollectionPollingUntilDone(name:)``
   /// - ``deleteCollection(request:)``
   /// - ``deleteCollection(request:options:)``
+  /// - ``deleteCollectionPollingUntilDone(name:)``
+  /// - ``deleteCollectionPollingUntilDone(request:)``
   public func deleteCollectionPollingUntilDone(
     request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -239,9 +239,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``listIndexes(request:)``
+  /// - ``listIndexesByItems(parent:)``
   /// - ``listIndexesByItems(request:)``
   /// - ``listIndexesByItems(request:options:)``
-  /// - ``listIndexesByItems(parent:)``
   public func listIndexes(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.ListIndexesResponse {
@@ -254,8 +254,8 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getIndex(request:)``
   /// - ``getIndex(name:)``
+  /// - ``getIndex(request:)``
   public func getIndex(
     request: GetIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.Index {
@@ -269,9 +269,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``createIndex(request:)``
+  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   /// - ``createIndexPollingUntilDone(request:)``
   /// - ``createIndexPollingUntilDone(request:options:)``
-  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   public func createIndex(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -284,10 +284,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createIndexPollingUntilDone(request:)``
-  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   /// - ``createIndex(request:)``
   /// - ``createIndex(request:options:)``
+  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
+  /// - ``createIndexPollingUntilDone(request:)``
   public func createIndexPollingUntilDone(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -319,9 +319,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``updateIndex(request:)``
+  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   /// - ``updateIndexPollingUntilDone(request:)``
   /// - ``updateIndexPollingUntilDone(request:options:)``
-  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   public func updateIndex(
     request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -334,10 +334,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateIndexPollingUntilDone(request:)``
-  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   /// - ``updateIndex(request:)``
   /// - ``updateIndex(request:options:)``
+  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
+  /// - ``updateIndexPollingUntilDone(request:)``
   public func updateIndexPollingUntilDone(
     request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -369,9 +369,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteIndex(request:)``
+  /// - ``deleteIndexPollingUntilDone(name:)``
   /// - ``deleteIndexPollingUntilDone(request:)``
   /// - ``deleteIndexPollingUntilDone(request:options:)``
-  /// - ``deleteIndexPollingUntilDone(name:)``
   public func deleteIndex(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -384,10 +384,10 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteIndexPollingUntilDone(request:)``
-  /// - ``deleteIndexPollingUntilDone(name:)``
   /// - ``deleteIndex(request:)``
   /// - ``deleteIndex(request:options:)``
+  /// - ``deleteIndexPollingUntilDone(name:)``
+  /// - ``deleteIndexPollingUntilDone(request:)``
   public func deleteIndexPollingUntilDone(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -433,9 +433,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``importDataObjectsPollingUntilDone(request:)``
   /// - ``importDataObjects(request:)``
   /// - ``importDataObjects(request:options:)``
+  /// - ``importDataObjectsPollingUntilDone(request:)``
   public func importDataObjectsPollingUntilDone(
     request: ImportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportDataObjectsResponse {
@@ -483,9 +483,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``exportDataObjectsPollingUntilDone(request:)``
   /// - ``exportDataObjects(request:)``
   /// - ``exportDataObjects(request:options:)``
+  /// - ``exportDataObjectsPollingUntilDone(request:)``
   public func exportDataObjectsPollingUntilDone(
     request: ExportDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportDataObjectsResponse {
@@ -566,9 +566,9 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -594,8 +594,8 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -610,8 +610,8 @@ public final class VectorSearchServiceClient: Clients.VectorSearchServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

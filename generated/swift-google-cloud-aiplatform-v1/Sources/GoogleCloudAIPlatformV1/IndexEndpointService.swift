@@ -57,9 +57,9 @@
     /// ## See Also
     ///
     /// - ``createIndexEndpoint(request:)``
+    /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:)``
     /// - ``createIndexEndpointPollingUntilDone(request:)``
     /// - ``createIndexEndpointPollingUntilDone(request:options:)``
-    /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:)``
     public func createIndexEndpoint(
       request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createIndexEndpointPollingUntilDone(request:)``
-    /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:)``
     /// - ``createIndexEndpoint(request:)``
     /// - ``createIndexEndpoint(request:options:)``
+    /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:)``
+    /// - ``createIndexEndpointPollingUntilDone(request:)``
     public func createIndexEndpointPollingUntilDone(
       request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> IndexEndpoint {
@@ -107,8 +107,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIndexEndpoint(request:)``
     /// - ``getIndexEndpoint(name:)``
+    /// - ``getIndexEndpoint(request:)``
     public func getIndexEndpoint(
       request: GetIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
@@ -122,9 +122,9 @@
     /// ## See Also
     ///
     /// - ``listIndexEndpoints(request:)``
+    /// - ``listIndexEndpointsByItems(parent:)``
     /// - ``listIndexEndpointsByItems(request:)``
     /// - ``listIndexEndpointsByItems(request:options:)``
-    /// - ``listIndexEndpointsByItems(parent:)``
     public func listIndexEndpoints(
       request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListIndexEndpointsResponse {
@@ -137,8 +137,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateIndexEndpoint(request:)``
     /// - ``updateIndexEndpoint(indexEndpoint:updateMask:)``
+    /// - ``updateIndexEndpoint(request:)``
     public func updateIndexEndpoint(
       request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
@@ -152,9 +152,9 @@
     /// ## See Also
     ///
     /// - ``deleteIndexEndpoint(request:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(name:)``
     /// - ``deleteIndexEndpointPollingUntilDone(request:)``
     /// - ``deleteIndexEndpointPollingUntilDone(request:options:)``
-    /// - ``deleteIndexEndpointPollingUntilDone(name:)``
     public func deleteIndexEndpoint(
       request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -167,10 +167,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteIndexEndpointPollingUntilDone(request:)``
-    /// - ``deleteIndexEndpointPollingUntilDone(name:)``
     /// - ``deleteIndexEndpoint(request:)``
     /// - ``deleteIndexEndpoint(request:options:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(name:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(request:)``
     public func deleteIndexEndpointPollingUntilDone(
       request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -205,9 +205,9 @@
     /// ## See Also
     ///
     /// - ``deployIndex(request:)``
+    /// - ``deployIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
     /// - ``deployIndexPollingUntilDone(request:)``
     /// - ``deployIndexPollingUntilDone(request:options:)``
-    /// - ``deployIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -222,10 +222,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deployIndexPollingUntilDone(request:)``
-    /// - ``deployIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
     /// - ``deployIndex(request:)``
     /// - ``deployIndex(request:options:)``
+    /// - ``deployIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
+    /// - ``deployIndexPollingUntilDone(request:)``
     public func deployIndexPollingUntilDone(
       request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeployIndexResponse {
@@ -259,9 +259,9 @@
     /// ## See Also
     ///
     /// - ``undeployIndex(request:)``
+    /// - ``undeployIndexPollingUntilDone(indexEndpoint:deployedIndexId:)``
     /// - ``undeployIndexPollingUntilDone(request:)``
     /// - ``undeployIndexPollingUntilDone(request:options:)``
-    /// - ``undeployIndexPollingUntilDone(indexEndpoint:deployedIndexId:)``
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -275,10 +275,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``undeployIndexPollingUntilDone(request:)``
-    /// - ``undeployIndexPollingUntilDone(indexEndpoint:deployedIndexId:)``
     /// - ``undeployIndex(request:)``
     /// - ``undeployIndex(request:options:)``
+    /// - ``undeployIndexPollingUntilDone(indexEndpoint:deployedIndexId:)``
+    /// - ``undeployIndexPollingUntilDone(request:)``
     public func undeployIndexPollingUntilDone(
       request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> UndeployIndexResponse {
@@ -312,9 +312,9 @@
     /// ## See Also
     ///
     /// - ``mutateDeployedIndex(request:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
     /// - ``mutateDeployedIndexPollingUntilDone(request:)``
     /// - ``mutateDeployedIndexPollingUntilDone(request:options:)``
-    /// - ``mutateDeployedIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
     public func mutateDeployedIndex(
       request: MutateDeployedIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -327,10 +327,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``mutateDeployedIndexPollingUntilDone(request:)``
-    /// - ``mutateDeployedIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
     /// - ``mutateDeployedIndex(request:)``
     /// - ``mutateDeployedIndex(request:options:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(request:)``
     public func mutateDeployedIndexPollingUntilDone(
       request: MutateDeployedIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> MutateDeployedIndexResponse {
@@ -444,9 +444,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -472,8 +472,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -488,8 +488,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -76,9 +76,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:compositeHealthCheck:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:compositeHealthCheck:)``
     public func delete(
       request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -96,10 +96,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:compositeHealthCheck:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:compositeHealthCheck:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -145,8 +145,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:compositeHealthCheck:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionCompositeHealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CompositeHealthCheck {
@@ -160,8 +160,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getHealth(request:)``
     /// - ``getHealth(project:region:compositeHealthCheck:)``
+    /// - ``getHealth(request:)``
     public func getHealth(
       request: RegionCompositeHealthChecksClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CompositeHealthCheckHealth {
@@ -176,9 +176,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -197,10 +197,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -247,9 +247,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CompositeHealthCheckList {
@@ -266,9 +266,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:compositeHealthCheck:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:region:compositeHealthCheck:body:)``
     public func patch(
       request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -289,10 +289,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:region:compositeHealthCheck:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:compositeHealthCheck:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -338,8 +338,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: RegionCompositeHealthChecksClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions

@@ -58,9 +58,9 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listQueues(request:)``
+  /// - ``listQueuesByItems(parent:)``
   /// - ``listQueuesByItems(request:)``
   /// - ``listQueuesByItems(request:options:)``
-  /// - ``listQueuesByItems(parent:)``
   public func listQueues(
     request: ListQueuesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.ListQueuesResponse {
@@ -73,8 +73,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getQueue(request:)``
   /// - ``getQueue(name:)``
+  /// - ``getQueue(request:)``
   public func getQueue(
     request: GetQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -98,8 +98,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createQueue(request:)``
   /// - ``createQueue(parent:queue:)``
+  /// - ``createQueue(request:)``
   public func createQueue(
     request: CreateQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -126,8 +126,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateQueue(request:)``
   /// - ``updateQueue(queue:updateMask:)``
+  /// - ``updateQueue(request:)``
   public func updateQueue(
     request: UpdateQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -159,8 +159,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteQueue(request:)``
   /// - ``deleteQueue(name:)``
+  /// - ``deleteQueue(request:)``
   public func deleteQueue(
     request: DeleteQueueRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -178,8 +178,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``purgeQueue(request:)``
   /// - ``purgeQueue(name:)``
+  /// - ``purgeQueue(request:)``
   public func purgeQueue(
     request: PurgeQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -203,8 +203,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``pauseQueue(request:)``
   /// - ``pauseQueue(name:)``
+  /// - ``pauseQueue(request:)``
   public func pauseQueue(
     request: PauseQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -235,8 +235,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resumeQueue(request:)``
   /// - ``resumeQueue(name:)``
+  /// - ``resumeQueue(request:)``
   public func resumeQueue(
     request: ResumeQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -334,9 +334,9 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(parent:)``
   /// - ``listTasksByItems(request:)``
   /// - ``listTasksByItems(request:options:)``
-  /// - ``listTasksByItems(parent:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.ListTasksResponse {
@@ -353,8 +353,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTask(request:)``
   /// - ``getTask(name:)``
+  /// - ``getTask(request:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -371,8 +371,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTask(request:)``
   /// - ``createTask(parent:task:)``
+  /// - ``createTask(request:)``
   public func createTask(
     request: CreateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -389,9 +389,9 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchCreateTasks(request:)``
+  /// - ``batchCreateTasksPollingUntilDone(parent:requests:)``
   /// - ``batchCreateTasksPollingUntilDone(request:)``
   /// - ``batchCreateTasksPollingUntilDone(request:options:)``
-  /// - ``batchCreateTasksPollingUntilDone(parent:requests:)``
   public func batchCreateTasks(
     request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -407,10 +407,10 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchCreateTasksPollingUntilDone(request:)``
-  /// - ``batchCreateTasksPollingUntilDone(parent:requests:)``
   /// - ``batchCreateTasks(request:)``
   /// - ``batchCreateTasks(request:options:)``
+  /// - ``batchCreateTasksPollingUntilDone(parent:requests:)``
+  /// - ``batchCreateTasksPollingUntilDone(request:)``
   public func batchCreateTasksPollingUntilDone(
     request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchCreateTasksResponse {
@@ -447,8 +447,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTask(request:)``
   /// - ``deleteTask(name:)``
+  /// - ``deleteTask(request:)``
   public func deleteTask(
     request: DeleteTaskRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -466,9 +466,9 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchDeleteTasks(request:)``
+  /// - ``batchDeleteTasksPollingUntilDone(parent:names:)``
   /// - ``batchDeleteTasksPollingUntilDone(request:)``
   /// - ``batchDeleteTasksPollingUntilDone(request:options:)``
-  /// - ``batchDeleteTasksPollingUntilDone(parent:names:)``
   public func batchDeleteTasks(
     request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -485,10 +485,10 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchDeleteTasksPollingUntilDone(request:)``
-  /// - ``batchDeleteTasksPollingUntilDone(parent:names:)``
   /// - ``batchDeleteTasks(request:)``
   /// - ``batchDeleteTasks(request:options:)``
+  /// - ``batchDeleteTasksPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteTasksPollingUntilDone(request:)``
   public func batchDeleteTasksPollingUntilDone(
     request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -546,8 +546,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``runTask(request:)``
   /// - ``runTask(name:)``
+  /// - ``runTask(request:)``
   public func runTask(
     request: RunTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -565,8 +565,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCmekConfig(request:)``
   /// - ``updateCmekConfig(cmekConfig:updateMask:)``
+  /// - ``updateCmekConfig(request:)``
   public func updateCmekConfig(
     request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.CmekConfig {
@@ -582,8 +582,8 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCmekConfig(request:)``
   /// - ``getCmekConfig(name:)``
+  /// - ``getCmekConfig(request:)``
   public func getCmekConfig(
     request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.CmekConfig {

@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouterAggregatedList {
@@ -71,9 +71,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:router:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:router:)``
     public func delete(
       request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -91,10 +91,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:router:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:router:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -141,9 +141,9 @@
     /// ## See Also
     ///
     /// - ``deleteNamedSet(request:)``
+    /// - ``deleteNamedSetPollingUntilDone(project:region:router:)``
     /// - ``deleteNamedSetPollingUntilDone(request:)``
     /// - ``deleteNamedSetPollingUntilDone(request:options:)``
-    /// - ``deleteNamedSetPollingUntilDone(project:region:router:)``
     public func deleteNamedSet(
       request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -161,10 +161,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNamedSetPollingUntilDone(request:)``
-    /// - ``deleteNamedSetPollingUntilDone(project:region:router:)``
     /// - ``deleteNamedSet(request:)``
     /// - ``deleteNamedSet(request:options:)``
+    /// - ``deleteNamedSetPollingUntilDone(project:region:router:)``
+    /// - ``deleteNamedSetPollingUntilDone(request:)``
     public func deleteNamedSetPollingUntilDone(
       request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -211,9 +211,9 @@
     /// ## See Also
     ///
     /// - ``deleteRoutePolicy(request:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(project:region:router:)``
     /// - ``deleteRoutePolicyPollingUntilDone(request:)``
     /// - ``deleteRoutePolicyPollingUntilDone(request:options:)``
-    /// - ``deleteRoutePolicyPollingUntilDone(project:region:router:)``
     public func deleteRoutePolicy(
       request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -231,10 +231,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteRoutePolicyPollingUntilDone(request:)``
-    /// - ``deleteRoutePolicyPollingUntilDone(project:region:router:)``
     /// - ``deleteRoutePolicy(request:)``
     /// - ``deleteRoutePolicy(request:options:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(project:region:router:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(request:)``
     public func deleteRoutePolicyPollingUntilDone(
       request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -280,8 +280,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:router:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RoutersClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Router {
@@ -294,8 +294,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNamedSet(request:)``
     /// - ``getNamedSet(project:region:router:)``
+    /// - ``getNamedSet(request:)``
     public func getNamedSet(
       request: RoutersClient.GetNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersGetNamedSetResponse {
@@ -308,8 +308,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNatIpInfo(request:)``
     /// - ``getNatIpInfo(project:region:router:)``
+    /// - ``getNatIpInfo(request:)``
     public func getNatIpInfo(
       request: RoutersClient.GetNatIpInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NatIpInfoResponse {
@@ -323,9 +323,9 @@
     /// ## See Also
     ///
     /// - ``getNatMappingInfo(request:)``
+    /// - ``getNatMappingInfoByItems(project:region:router:)``
     /// - ``getNatMappingInfoByItems(request:)``
     /// - ``getNatMappingInfoByItems(request:options:)``
-    /// - ``getNatMappingInfoByItems(project:region:router:)``
     public func getNatMappingInfo(
       request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VmEndpointNatMappingsList {
@@ -338,8 +338,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRoutePolicy(request:)``
     /// - ``getRoutePolicy(project:region:router:)``
+    /// - ``getRoutePolicy(request:)``
     public func getRoutePolicy(
       request: RoutersClient.GetRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersGetRoutePolicyResponse {
@@ -352,8 +352,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRouterStatus(request:)``
     /// - ``getRouterStatus(project:region:router:)``
+    /// - ``getRouterStatus(request:)``
     public func getRouterStatus(
       request: RoutersClient.GetRouterStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouterStatusResponse {
@@ -368,9 +368,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -389,10 +389,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -439,9 +439,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouterList {
@@ -455,9 +455,9 @@
     /// ## See Also
     ///
     /// - ``listBgpRoutes(request:)``
+    /// - ``listBgpRoutesByItems(project:region:router:)``
     /// - ``listBgpRoutesByItems(request:)``
     /// - ``listBgpRoutesByItems(request:options:)``
-    /// - ``listBgpRoutesByItems(project:region:router:)``
     public func listBgpRoutes(
       request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersListBgpRoutes {
@@ -472,9 +472,9 @@
     /// ## See Also
     ///
     /// - ``listNamedSets(request:)``
+    /// - ``listNamedSetsByItems(project:region:router:)``
     /// - ``listNamedSetsByItems(request:)``
     /// - ``listNamedSetsByItems(request:options:)``
-    /// - ``listNamedSetsByItems(project:region:router:)``
     public func listNamedSets(
       request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersListNamedSets {
@@ -489,9 +489,9 @@
     /// ## See Also
     ///
     /// - ``listRoutePolicies(request:)``
+    /// - ``listRoutePoliciesByItems(project:region:router:)``
     /// - ``listRoutePoliciesByItems(request:)``
     /// - ``listRoutePoliciesByItems(request:options:)``
-    /// - ``listRoutePoliciesByItems(project:region:router:)``
     public func listRoutePolicies(
       request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersListRoutePolicies {
@@ -508,9 +508,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:router:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:region:router:body:)``
     public func patch(
       request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -531,10 +531,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:region:router:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:router:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -581,9 +581,9 @@
     /// ## See Also
     ///
     /// - ``patchNamedSet(request:)``
+    /// - ``patchNamedSetPollingUntilDone(project:region:router:body:)``
     /// - ``patchNamedSetPollingUntilDone(request:)``
     /// - ``patchNamedSetPollingUntilDone(request:options:)``
-    /// - ``patchNamedSetPollingUntilDone(project:region:router:body:)``
     public func patchNamedSet(
       request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -601,10 +601,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchNamedSetPollingUntilDone(request:)``
-    /// - ``patchNamedSetPollingUntilDone(project:region:router:body:)``
     /// - ``patchNamedSet(request:)``
     /// - ``patchNamedSet(request:options:)``
+    /// - ``patchNamedSetPollingUntilDone(project:region:router:body:)``
+    /// - ``patchNamedSetPollingUntilDone(request:)``
     public func patchNamedSetPollingUntilDone(
       request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -651,9 +651,9 @@
     /// ## See Also
     ///
     /// - ``patchRoutePolicy(request:)``
+    /// - ``patchRoutePolicyPollingUntilDone(project:region:router:body:)``
     /// - ``patchRoutePolicyPollingUntilDone(request:)``
     /// - ``patchRoutePolicyPollingUntilDone(request:options:)``
-    /// - ``patchRoutePolicyPollingUntilDone(project:region:router:body:)``
     public func patchRoutePolicy(
       request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -671,10 +671,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchRoutePolicyPollingUntilDone(request:)``
-    /// - ``patchRoutePolicyPollingUntilDone(project:region:router:body:)``
     /// - ``patchRoutePolicy(request:)``
     /// - ``patchRoutePolicy(request:options:)``
+    /// - ``patchRoutePolicyPollingUntilDone(project:region:router:body:)``
+    /// - ``patchRoutePolicyPollingUntilDone(request:)``
     public func patchRoutePolicyPollingUntilDone(
       request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -721,8 +721,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``preview(request:)``
     /// - ``preview(project:region:router:body:)``
+    /// - ``preview(request:)``
     public func preview(
       request: RoutersClient.PreviewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersPreviewResponse {
@@ -739,9 +739,9 @@
     /// ## See Also
     ///
     /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:region:router:body:)``
     /// - ``updatePollingUntilDone(request:)``
     /// - ``updatePollingUntilDone(request:options:)``
-    /// - ``updatePollingUntilDone(project:region:router:body:)``
     public func update(
       request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -762,10 +762,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePollingUntilDone(request:)``
-    /// - ``updatePollingUntilDone(project:region:router:body:)``
     /// - ``update(request:)``
     /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:region:router:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -812,9 +812,9 @@
     /// ## See Also
     ///
     /// - ``updateNamedSet(request:)``
+    /// - ``updateNamedSetPollingUntilDone(project:region:router:body:)``
     /// - ``updateNamedSetPollingUntilDone(request:)``
     /// - ``updateNamedSetPollingUntilDone(request:options:)``
-    /// - ``updateNamedSetPollingUntilDone(project:region:router:body:)``
     public func updateNamedSet(
       request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -832,10 +832,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateNamedSetPollingUntilDone(request:)``
-    /// - ``updateNamedSetPollingUntilDone(project:region:router:body:)``
     /// - ``updateNamedSet(request:)``
     /// - ``updateNamedSet(request:options:)``
+    /// - ``updateNamedSetPollingUntilDone(project:region:router:body:)``
+    /// - ``updateNamedSetPollingUntilDone(request:)``
     public func updateNamedSetPollingUntilDone(
       request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -882,9 +882,9 @@
     /// ## See Also
     ///
     /// - ``updateRoutePolicy(request:)``
+    /// - ``updateRoutePolicyPollingUntilDone(project:region:router:body:)``
     /// - ``updateRoutePolicyPollingUntilDone(request:)``
     /// - ``updateRoutePolicyPollingUntilDone(request:options:)``
-    /// - ``updateRoutePolicyPollingUntilDone(project:region:router:body:)``
     public func updateRoutePolicy(
       request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -902,10 +902,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateRoutePolicyPollingUntilDone(request:)``
-    /// - ``updateRoutePolicyPollingUntilDone(project:region:router:body:)``
     /// - ``updateRoutePolicy(request:)``
     /// - ``updateRoutePolicy(request:options:)``
+    /// - ``updateRoutePolicyPollingUntilDone(project:region:router:body:)``
+    /// - ``updateRoutePolicyPollingUntilDone(request:)``
     public func updateRoutePolicyPollingUntilDone(
       request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

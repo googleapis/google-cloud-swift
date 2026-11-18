@@ -51,8 +51,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:association:host:)``
+    /// - ``get(request:)``
     public func `get`(
       request: HostsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Host {
@@ -66,9 +66,9 @@
     /// ## See Also
     ///
     /// - ``getVersion(request:)``
+    /// - ``getVersionPollingUntilDone(project:zone:association:host:body:)``
     /// - ``getVersionPollingUntilDone(request:)``
     /// - ``getVersionPollingUntilDone(request:options:)``
-    /// - ``getVersionPollingUntilDone(project:zone:association:host:body:)``
     public func getVersion(
       request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -86,10 +86,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``getVersionPollingUntilDone(request:)``
-    /// - ``getVersionPollingUntilDone(project:zone:association:host:body:)``
     /// - ``getVersion(request:)``
     /// - ``getVersion(request:options:)``
+    /// - ``getVersionPollingUntilDone(project:zone:association:host:body:)``
+    /// - ``getVersionPollingUntilDone(request:)``
     public func getVersionPollingUntilDone(
       request: HostsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -136,9 +136,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:association:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:association:)``
     public func list(
       request: HostsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HostsListResponse {

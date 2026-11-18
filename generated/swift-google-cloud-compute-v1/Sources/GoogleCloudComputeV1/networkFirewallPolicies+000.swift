@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``addAssociation(request:)``
+    /// - ``addAssociationPollingUntilDone(project:firewallPolicy:body:)``
     /// - ``addAssociationPollingUntilDone(request:)``
     /// - ``addAssociationPollingUntilDone(request:options:)``
-    /// - ``addAssociationPollingUntilDone(project:firewallPolicy:body:)``
     public func addAssociation(
       request: NetworkFirewallPoliciesClient.AddAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -76,10 +76,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addAssociationPollingUntilDone(request:)``
-    /// - ``addAssociationPollingUntilDone(project:firewallPolicy:body:)``
     /// - ``addAssociation(request:)``
     /// - ``addAssociation(request:options:)``
+    /// - ``addAssociationPollingUntilDone(project:firewallPolicy:body:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
     public func addAssociationPollingUntilDone(
       request: NetworkFirewallPoliciesClient.AddAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -126,9 +126,9 @@
     /// ## See Also
     ///
     /// - ``addPacketMirroringRule(request:)``
+    /// - ``addPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``addPacketMirroringRulePollingUntilDone(request:)``
     /// - ``addPacketMirroringRulePollingUntilDone(request:options:)``
-    /// - ``addPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
     public func addPacketMirroringRule(
       request: NetworkFirewallPoliciesClient.AddPacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -147,10 +147,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addPacketMirroringRulePollingUntilDone(request:)``
-    /// - ``addPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``addPacketMirroringRule(request:)``
     /// - ``addPacketMirroringRule(request:options:)``
+    /// - ``addPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
+    /// - ``addPacketMirroringRulePollingUntilDone(request:)``
     public func addPacketMirroringRulePollingUntilDone(
       request: NetworkFirewallPoliciesClient.AddPacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -197,9 +197,9 @@
     /// ## See Also
     ///
     /// - ``addRule(request:)``
+    /// - ``addRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``addRulePollingUntilDone(request:)``
     /// - ``addRulePollingUntilDone(request:options:)``
-    /// - ``addRulePollingUntilDone(project:firewallPolicy:body:)``
     public func addRule(
       request: NetworkFirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -217,10 +217,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addRulePollingUntilDone(request:)``
-    /// - ``addRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``addRule(request:)``
     /// - ``addRule(request:options:)``
+    /// - ``addRulePollingUntilDone(project:firewallPolicy:body:)``
+    /// - ``addRulePollingUntilDone(request:)``
     public func addRulePollingUntilDone(
       request: NetworkFirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -271,9 +271,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: NetworkFirewallPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -288,9 +288,9 @@
     /// ## See Also
     ///
     /// - ``cloneRules(request:)``
+    /// - ``cloneRulesPollingUntilDone(project:firewallPolicy:)``
     /// - ``cloneRulesPollingUntilDone(request:)``
     /// - ``cloneRulesPollingUntilDone(request:options:)``
-    /// - ``cloneRulesPollingUntilDone(project:firewallPolicy:)``
     public func cloneRules(
       request: NetworkFirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -308,10 +308,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``cloneRulesPollingUntilDone(request:)``
-    /// - ``cloneRulesPollingUntilDone(project:firewallPolicy:)``
     /// - ``cloneRules(request:)``
     /// - ``cloneRules(request:options:)``
+    /// - ``cloneRulesPollingUntilDone(project:firewallPolicy:)``
+    /// - ``cloneRulesPollingUntilDone(request:)``
     public func cloneRulesPollingUntilDone(
       request: NetworkFirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -357,9 +357,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:firewallPolicy:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:firewallPolicy:)``
     public func delete(
       request: NetworkFirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -377,10 +377,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:firewallPolicy:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:firewallPolicy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: NetworkFirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -425,8 +425,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:firewallPolicy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NetworkFirewallPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
@@ -439,8 +439,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getAssociation(request:)``
     /// - ``getAssociation(project:firewallPolicy:)``
+    /// - ``getAssociation(request:)``
     public func getAssociation(
       request: NetworkFirewallPoliciesClient.GetAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -455,8 +455,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: NetworkFirewallPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -469,8 +469,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getPacketMirroringRule(request:)``
     /// - ``getPacketMirroringRule(project:firewallPolicy:)``
+    /// - ``getPacketMirroringRule(request:)``
     public func getPacketMirroringRule(
       request: NetworkFirewallPoliciesClient.GetPacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -484,8 +484,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRule(request:)``
     /// - ``getRule(project:firewallPolicy:)``
+    /// - ``getRule(request:)``
     public func getRule(
       request: NetworkFirewallPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
@@ -500,9 +500,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: NetworkFirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -521,10 +521,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: NetworkFirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -570,9 +570,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: NetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyList {
@@ -586,9 +586,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:firewallPolicy:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:firewallPolicy:body:)``
     public func patch(
       request: NetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -606,10 +606,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:firewallPolicy:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:firewallPolicy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: NetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -655,9 +655,9 @@
     /// ## See Also
     ///
     /// - ``patchPacketMirroringRule(request:)``
+    /// - ``patchPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``patchPacketMirroringRulePollingUntilDone(request:)``
     /// - ``patchPacketMirroringRulePollingUntilDone(request:options:)``
-    /// - ``patchPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
     public func patchPacketMirroringRule(
       request: NetworkFirewallPoliciesClient.PatchPacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -676,10 +676,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPacketMirroringRulePollingUntilDone(request:)``
-    /// - ``patchPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``patchPacketMirroringRule(request:)``
     /// - ``patchPacketMirroringRule(request:options:)``
+    /// - ``patchPacketMirroringRulePollingUntilDone(project:firewallPolicy:body:)``
+    /// - ``patchPacketMirroringRulePollingUntilDone(request:)``
     public func patchPacketMirroringRulePollingUntilDone(
       request: NetworkFirewallPoliciesClient.PatchPacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -726,9 +726,9 @@
     /// ## See Also
     ///
     /// - ``patchRule(request:)``
+    /// - ``patchRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``patchRulePollingUntilDone(request:)``
     /// - ``patchRulePollingUntilDone(request:options:)``
-    /// - ``patchRulePollingUntilDone(project:firewallPolicy:body:)``
     public func patchRule(
       request: NetworkFirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -746,10 +746,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchRulePollingUntilDone(request:)``
-    /// - ``patchRulePollingUntilDone(project:firewallPolicy:body:)``
     /// - ``patchRule(request:)``
     /// - ``patchRule(request:options:)``
+    /// - ``patchRulePollingUntilDone(project:firewallPolicy:body:)``
+    /// - ``patchRulePollingUntilDone(request:)``
     public func patchRulePollingUntilDone(
       request: NetworkFirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -795,9 +795,9 @@
     /// ## See Also
     ///
     /// - ``removeAssociation(request:)``
+    /// - ``removeAssociationPollingUntilDone(project:firewallPolicy:)``
     /// - ``removeAssociationPollingUntilDone(request:)``
     /// - ``removeAssociationPollingUntilDone(request:options:)``
-    /// - ``removeAssociationPollingUntilDone(project:firewallPolicy:)``
     public func removeAssociation(
       request: NetworkFirewallPoliciesClient.RemoveAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -816,10 +816,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeAssociationPollingUntilDone(request:)``
-    /// - ``removeAssociationPollingUntilDone(project:firewallPolicy:)``
     /// - ``removeAssociation(request:)``
     /// - ``removeAssociation(request:options:)``
+    /// - ``removeAssociationPollingUntilDone(project:firewallPolicy:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
     public func removeAssociationPollingUntilDone(
       request: NetworkFirewallPoliciesClient.RemoveAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -866,9 +866,9 @@
     /// ## See Also
     ///
     /// - ``removePacketMirroringRule(request:)``
+    /// - ``removePacketMirroringRulePollingUntilDone(project:firewallPolicy:)``
     /// - ``removePacketMirroringRulePollingUntilDone(request:)``
     /// - ``removePacketMirroringRulePollingUntilDone(request:options:)``
-    /// - ``removePacketMirroringRulePollingUntilDone(project:firewallPolicy:)``
     public func removePacketMirroringRule(
       request: NetworkFirewallPoliciesClient.RemovePacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -887,10 +887,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removePacketMirroringRulePollingUntilDone(request:)``
-    /// - ``removePacketMirroringRulePollingUntilDone(project:firewallPolicy:)``
     /// - ``removePacketMirroringRule(request:)``
     /// - ``removePacketMirroringRule(request:options:)``
+    /// - ``removePacketMirroringRulePollingUntilDone(project:firewallPolicy:)``
+    /// - ``removePacketMirroringRulePollingUntilDone(request:)``
     public func removePacketMirroringRulePollingUntilDone(
       request: NetworkFirewallPoliciesClient.RemovePacketMirroringRuleRequest,
       options: GoogleGax.RequestOptions
@@ -937,9 +937,9 @@
     /// ## See Also
     ///
     /// - ``removeRule(request:)``
+    /// - ``removeRulePollingUntilDone(project:firewallPolicy:)``
     /// - ``removeRulePollingUntilDone(request:)``
     /// - ``removeRulePollingUntilDone(request:options:)``
-    /// - ``removeRulePollingUntilDone(project:firewallPolicy:)``
     public func removeRule(
       request: NetworkFirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -957,10 +957,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeRulePollingUntilDone(request:)``
-    /// - ``removeRulePollingUntilDone(project:firewallPolicy:)``
     /// - ``removeRule(request:)``
     /// - ``removeRule(request:options:)``
+    /// - ``removeRulePollingUntilDone(project:firewallPolicy:)``
+    /// - ``removeRulePollingUntilDone(request:)``
     public func removeRulePollingUntilDone(
       request: NetworkFirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1006,8 +1006,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: NetworkFirewallPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -1020,8 +1020,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: NetworkFirewallPoliciesClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions

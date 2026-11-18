@@ -56,9 +56,9 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// ## See Also
   ///
   /// - ``listConnectClusters(request:)``
+  /// - ``listConnectClustersByItems(parent:)``
   /// - ``listConnectClustersByItems(request:)``
   /// - ``listConnectClustersByItems(request:options:)``
-  /// - ``listConnectClustersByItems(parent:)``
   public func listConnectClusters(
     request: ListConnectClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListConnectClustersResponse {
@@ -71,8 +71,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getConnectCluster(request:)``
   /// - ``getConnectCluster(name:)``
+  /// - ``getConnectCluster(request:)``
   public func getConnectCluster(
     request: GetConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ConnectCluster {
@@ -86,9 +86,9 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// ## See Also
   ///
   /// - ``createConnectCluster(request:)``
+  /// - ``createConnectClusterPollingUntilDone(parent:connectCluster:connectClusterId:)``
   /// - ``createConnectClusterPollingUntilDone(request:)``
   /// - ``createConnectClusterPollingUntilDone(request:options:)``
-  /// - ``createConnectClusterPollingUntilDone(parent:connectCluster:connectClusterId:)``
   public func createConnectCluster(
     request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createConnectClusterPollingUntilDone(request:)``
-  /// - ``createConnectClusterPollingUntilDone(parent:connectCluster:connectClusterId:)``
   /// - ``createConnectCluster(request:)``
   /// - ``createConnectCluster(request:options:)``
+  /// - ``createConnectClusterPollingUntilDone(parent:connectCluster:connectClusterId:)``
+  /// - ``createConnectClusterPollingUntilDone(request:)``
   public func createConnectClusterPollingUntilDone(
     request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectCluster {
@@ -137,9 +137,9 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// ## See Also
   ///
   /// - ``updateConnectCluster(request:)``
+  /// - ``updateConnectClusterPollingUntilDone(connectCluster:updateMask:)``
   /// - ``updateConnectClusterPollingUntilDone(request:)``
   /// - ``updateConnectClusterPollingUntilDone(request:options:)``
-  /// - ``updateConnectClusterPollingUntilDone(connectCluster:updateMask:)``
   public func updateConnectCluster(
     request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -152,10 +152,10 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectClusterPollingUntilDone(request:)``
-  /// - ``updateConnectClusterPollingUntilDone(connectCluster:updateMask:)``
   /// - ``updateConnectCluster(request:)``
   /// - ``updateConnectCluster(request:options:)``
+  /// - ``updateConnectClusterPollingUntilDone(connectCluster:updateMask:)``
+  /// - ``updateConnectClusterPollingUntilDone(request:)``
   public func updateConnectClusterPollingUntilDone(
     request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectCluster {
@@ -188,9 +188,9 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// ## See Also
   ///
   /// - ``deleteConnectCluster(request:)``
+  /// - ``deleteConnectClusterPollingUntilDone(name:)``
   /// - ``deleteConnectClusterPollingUntilDone(request:)``
   /// - ``deleteConnectClusterPollingUntilDone(request:options:)``
-  /// - ``deleteConnectClusterPollingUntilDone(name:)``
   public func deleteConnectCluster(
     request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -203,10 +203,10 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectClusterPollingUntilDone(request:)``
-  /// - ``deleteConnectClusterPollingUntilDone(name:)``
   /// - ``deleteConnectCluster(request:)``
   /// - ``deleteConnectCluster(request:options:)``
+  /// - ``deleteConnectClusterPollingUntilDone(name:)``
+  /// - ``deleteConnectClusterPollingUntilDone(request:)``
   public func deleteConnectClusterPollingUntilDone(
     request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -238,9 +238,9 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// ## See Also
   ///
   /// - ``listConnectors(request:)``
+  /// - ``listConnectorsByItems(parent:)``
   /// - ``listConnectorsByItems(request:)``
   /// - ``listConnectorsByItems(request:options:)``
-  /// - ``listConnectorsByItems(parent:)``
   public func listConnectors(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListConnectorsResponse {
@@ -253,8 +253,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getConnector(request:)``
   /// - ``getConnector(name:)``
+  /// - ``getConnector(request:)``
   public func getConnector(
     request: GetConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -267,8 +267,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createConnector(request:)``
   /// - ``createConnector(parent:connector:connectorId:)``
+  /// - ``createConnector(request:)``
   public func createConnector(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -281,8 +281,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateConnector(request:)``
   /// - ``updateConnector(connector:updateMask:)``
+  /// - ``updateConnector(request:)``
   public func updateConnector(
     request: UpdateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -295,8 +295,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnector(request:)``
   /// - ``deleteConnector(name:)``
+  /// - ``deleteConnector(request:)``
   public func deleteConnector(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -309,8 +309,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``pauseConnector(request:)``
   /// - ``pauseConnector(name:)``
+  /// - ``pauseConnector(request:)``
   public func pauseConnector(
     request: PauseConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.PauseConnectorResponse {
@@ -323,8 +323,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``resumeConnector(request:)``
   /// - ``resumeConnector(name:)``
+  /// - ``resumeConnector(request:)``
   public func resumeConnector(
     request: ResumeConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ResumeConnectorResponse {
@@ -337,8 +337,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``restartConnector(request:)``
   /// - ``restartConnector(name:)``
+  /// - ``restartConnector(request:)``
   public func restartConnector(
     request: RestartConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.RestartConnectorResponse {
@@ -351,8 +351,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``stopConnector(request:)``
   /// - ``stopConnector(name:)``
+  /// - ``stopConnector(request:)``
   public func stopConnector(
     request: StopConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.StopConnectorResponse {
@@ -396,9 +396,9 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -424,8 +424,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -440,8 +440,8 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

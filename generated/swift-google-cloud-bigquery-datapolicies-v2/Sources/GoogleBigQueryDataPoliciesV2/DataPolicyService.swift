@@ -49,8 +49,8 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createDataPolicy(request:)``
   /// - ``createDataPolicy(parent:dataPolicy:dataPolicyId:)``
+  /// - ``createDataPolicy(request:)``
   public func createDataPolicy(
     request: CreateDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -67,8 +67,8 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``addGrantees(request:)``
   /// - ``addGrantees(dataPolicy:grantees:)``
+  /// - ``addGrantees(request:)``
   public func addGrantees(
     request: AddGranteesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -84,8 +84,8 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``removeGrantees(request:)``
   /// - ``removeGrantees(dataPolicy:grantees:)``
+  /// - ``removeGrantees(request:)``
   public func removeGrantees(
     request: RemoveGranteesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -99,8 +99,8 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateDataPolicy(request:)``
   /// - ``updateDataPolicy(dataPolicy:updateMask:)``
+  /// - ``updateDataPolicy(request:)``
   public func updateDataPolicy(
     request: UpdateDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -113,8 +113,8 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataPolicy(request:)``
   /// - ``deleteDataPolicy(name:)``
+  /// - ``deleteDataPolicy(request:)``
   public func deleteDataPolicy(
     request: DeleteDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -127,8 +127,8 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getDataPolicy(request:)``
   /// - ``getDataPolicy(name:)``
+  /// - ``getDataPolicy(request:)``
   public func getDataPolicy(
     request: GetDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -142,9 +142,9 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listDataPolicies(request:)``
+  /// - ``listDataPoliciesByItems(parent:)``
   /// - ``listDataPoliciesByItems(request:)``
   /// - ``listDataPoliciesByItems(request:options:)``
-  /// - ``listDataPoliciesByItems(parent:)``
   public func listDataPolicies(
     request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse {

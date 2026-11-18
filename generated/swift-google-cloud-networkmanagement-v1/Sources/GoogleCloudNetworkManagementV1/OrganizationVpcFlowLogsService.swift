@@ -61,9 +61,9 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listVpcFlowLogsConfigs(request:)``
+  /// - ``listVpcFlowLogsConfigsByItems(parent:)``
   /// - ``listVpcFlowLogsConfigsByItems(request:)``
   /// - ``listVpcFlowLogsConfigsByItems(request:options:)``
-  /// - ``listVpcFlowLogsConfigsByItems(parent:)``
   public func listVpcFlowLogsConfigs(
     request: ListVpcFlowLogsConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.ListVpcFlowLogsConfigsResponse {
@@ -76,8 +76,8 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getVpcFlowLogsConfig(request:)``
   /// - ``getVpcFlowLogsConfig(name:)``
+  /// - ``getVpcFlowLogsConfig(request:)``
   public func getVpcFlowLogsConfig(
     request: GetVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.VpcFlowLogsConfig {
@@ -105,9 +105,9 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// ## See Also
   ///
   /// - ``createVpcFlowLogsConfig(request:)``
+  /// - ``createVpcFlowLogsConfigPollingUntilDone(parent:vpcFlowLogsConfig:vpcFlowLogsConfigId:)``
   /// - ``createVpcFlowLogsConfigPollingUntilDone(request:)``
   /// - ``createVpcFlowLogsConfigPollingUntilDone(request:options:)``
-  /// - ``createVpcFlowLogsConfigPollingUntilDone(parent:vpcFlowLogsConfig:vpcFlowLogsConfigId:)``
   public func createVpcFlowLogsConfig(
     request: CreateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -134,10 +134,10 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createVpcFlowLogsConfigPollingUntilDone(request:)``
-  /// - ``createVpcFlowLogsConfigPollingUntilDone(parent:vpcFlowLogsConfig:vpcFlowLogsConfigId:)``
   /// - ``createVpcFlowLogsConfig(request:)``
   /// - ``createVpcFlowLogsConfig(request:options:)``
+  /// - ``createVpcFlowLogsConfigPollingUntilDone(parent:vpcFlowLogsConfig:vpcFlowLogsConfigId:)``
+  /// - ``createVpcFlowLogsConfigPollingUntilDone(request:)``
   public func createVpcFlowLogsConfigPollingUntilDone(
     request: CreateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> VpcFlowLogsConfig {
@@ -213,10 +213,10 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``updateVpcFlowLogsConfigPollingUntilDone(request:)``
-  /// - ``updateVpcFlowLogsConfigPollingUntilDone(vpcFlowLogsConfig:updateMask:)``
   /// - ``updateVpcFlowLogsConfig(request:)``
   /// - ``updateVpcFlowLogsConfig(request:options:)``
+  /// - ``updateVpcFlowLogsConfigPollingUntilDone(request:)``
+  /// - ``updateVpcFlowLogsConfigPollingUntilDone(vpcFlowLogsConfig:updateMask:)``
   public func updateVpcFlowLogsConfigPollingUntilDone(
     request: UpdateVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> VpcFlowLogsConfig {
@@ -249,9 +249,9 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// ## See Also
   ///
   /// - ``deleteVpcFlowLogsConfig(request:)``
+  /// - ``deleteVpcFlowLogsConfigPollingUntilDone(name:)``
   /// - ``deleteVpcFlowLogsConfigPollingUntilDone(request:)``
   /// - ``deleteVpcFlowLogsConfigPollingUntilDone(request:options:)``
-  /// - ``deleteVpcFlowLogsConfigPollingUntilDone(name:)``
   public func deleteVpcFlowLogsConfig(
     request: DeleteVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -264,10 +264,10 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteVpcFlowLogsConfigPollingUntilDone(request:)``
-  /// - ``deleteVpcFlowLogsConfigPollingUntilDone(name:)``
   /// - ``deleteVpcFlowLogsConfig(request:)``
   /// - ``deleteVpcFlowLogsConfig(request:options:)``
+  /// - ``deleteVpcFlowLogsConfigPollingUntilDone(name:)``
+  /// - ``deleteVpcFlowLogsConfigPollingUntilDone(request:)``
   public func deleteVpcFlowLogsConfigPollingUntilDone(
     request: DeleteVpcFlowLogsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -386,9 +386,9 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -414,8 +414,8 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -430,8 +430,8 @@ public final class OrganizationVpcFlowLogsServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

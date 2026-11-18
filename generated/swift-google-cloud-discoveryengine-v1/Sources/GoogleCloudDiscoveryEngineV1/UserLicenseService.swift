@@ -54,9 +54,9 @@
     /// ## See Also
     ///
     /// - ``listUserLicenses(request:)``
+    /// - ``listUserLicensesByItems(parent:)``
     /// - ``listUserLicensesByItems(request:)``
     /// - ``listUserLicensesByItems(request:options:)``
-    /// - ``listUserLicensesByItems(parent:)``
     public func listUserLicenses(
       request: ListUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``listLicenseConfigsUsageStats(request:)``
     /// - ``listLicenseConfigsUsageStats(parent:)``
+    /// - ``listLicenseConfigsUsageStats(request:)``
     public func listLicenseConfigsUsageStats(
       request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
@@ -104,9 +104,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchUpdateUserLicensesPollingUntilDone(request:)``
     /// - ``batchUpdateUserLicenses(request:)``
     /// - ``batchUpdateUserLicenses(request:options:)``
+    /// - ``batchUpdateUserLicensesPollingUntilDone(request:)``
     public func batchUpdateUserLicensesPollingUntilDone(
       request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchUpdateUserLicensesResponse {
@@ -142,9 +142,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -170,8 +170,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -53,9 +53,9 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// ## See Also
   ///
   /// - ``createBatch(request:)``
+  /// - ``createBatchPollingUntilDone(parent:batch:batchId:)``
   /// - ``createBatchPollingUntilDone(request:)``
   /// - ``createBatchPollingUntilDone(request:options:)``
-  /// - ``createBatchPollingUntilDone(parent:batch:batchId:)``
   public func createBatch(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -68,10 +68,10 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createBatchPollingUntilDone(request:)``
-  /// - ``createBatchPollingUntilDone(parent:batch:batchId:)``
   /// - ``createBatch(request:)``
   /// - ``createBatch(request:options:)``
+  /// - ``createBatchPollingUntilDone(parent:batch:batchId:)``
+  /// - ``createBatchPollingUntilDone(request:)``
   public func createBatchPollingUntilDone(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> Batch {
@@ -102,8 +102,8 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getBatch(request:)``
   /// - ``getBatch(name:)``
+  /// - ``getBatch(request:)``
   public func getBatch(
     request: GetBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Batch {
@@ -117,9 +117,9 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listBatches(request:)``
+  /// - ``listBatchesByItems(parent:)``
   /// - ``listBatchesByItems(request:)``
   /// - ``listBatchesByItems(request:options:)``
-  /// - ``listBatchesByItems(parent:)``
   public func listBatches(
     request: ListBatchesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListBatchesResponse {
@@ -137,8 +137,8 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteBatch(request:)``
   /// - ``deleteBatch(name:)``
+  /// - ``deleteBatch(request:)``
   public func deleteBatch(
     request: DeleteBatchRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -204,9 +204,9 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -232,8 +232,8 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -248,8 +248,8 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -52,8 +52,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRule(request:)``
   /// - ``createRule(parent:rule:)``
+  /// - ``createRule(request:)``
   public func createRule(
     request: CreateRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Rule {
@@ -66,8 +66,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRule(request:)``
   /// - ``getRule(name:)``
+  /// - ``getRule(request:)``
   public func getRule(
     request: GetRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Rule {
@@ -81,9 +81,9 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRules(request:)``
+  /// - ``listRulesByItems(parent:)``
   /// - ``listRulesByItems(request:)``
   /// - ``listRulesByItems(request:options:)``
-  /// - ``listRulesByItems(parent:)``
   public func listRules(
     request: ListRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListRulesResponse {
@@ -110,8 +110,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRule(request:)``
   /// - ``deleteRule(name:)``
+  /// - ``deleteRule(request:)``
   public func deleteRule(
     request: DeleteRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -124,8 +124,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``verifyRuleText(request:)``
   /// - ``verifyRuleText(instance:ruleText:)``
+  /// - ``verifyRuleText(request:)``
   public func verifyRuleText(
     request: VerifyRuleTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.VerifyRuleTextResponse {
@@ -139,9 +139,9 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRuleRevisions(request:)``
+  /// - ``listRuleRevisionsByItems(name:)``
   /// - ``listRuleRevisionsByItems(request:)``
   /// - ``listRuleRevisionsByItems(request:options:)``
-  /// - ``listRuleRevisionsByItems(name:)``
   public func listRuleRevisions(
     request: ListRuleRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListRuleRevisionsResponse {
@@ -155,9 +155,9 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createRetrohunt(request:)``
+  /// - ``createRetrohuntPollingUntilDone(parent:retrohunt:)``
   /// - ``createRetrohuntPollingUntilDone(request:)``
   /// - ``createRetrohuntPollingUntilDone(request:options:)``
-  /// - ``createRetrohuntPollingUntilDone(parent:retrohunt:)``
   public func createRetrohunt(
     request: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -170,10 +170,10 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRetrohuntPollingUntilDone(request:)``
-  /// - ``createRetrohuntPollingUntilDone(parent:retrohunt:)``
   /// - ``createRetrohunt(request:)``
   /// - ``createRetrohunt(request:options:)``
+  /// - ``createRetrohuntPollingUntilDone(parent:retrohunt:)``
+  /// - ``createRetrohuntPollingUntilDone(request:)``
   public func createRetrohuntPollingUntilDone(
     request: CreateRetrohuntRequest, options: GoogleGax.RequestOptions
   ) async throws -> Retrohunt {
@@ -204,8 +204,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRetrohunt(request:)``
   /// - ``getRetrohunt(name:)``
+  /// - ``getRetrohunt(request:)``
   public func getRetrohunt(
     request: GetRetrohuntRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Retrohunt {
@@ -219,9 +219,9 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRetrohunts(request:)``
+  /// - ``listRetrohuntsByItems(parent:)``
   /// - ``listRetrohuntsByItems(request:)``
   /// - ``listRetrohuntsByItems(request:options:)``
-  /// - ``listRetrohuntsByItems(parent:)``
   public func listRetrohunts(
     request: ListRetrohuntsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListRetrohuntsResponse {
@@ -234,8 +234,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRuleDeployment(request:)``
   /// - ``getRuleDeployment(name:)``
+  /// - ``getRuleDeployment(request:)``
   public func getRuleDeployment(
     request: GetRuleDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.RuleDeployment {
@@ -249,9 +249,9 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRuleDeployments(request:)``
+  /// - ``listRuleDeploymentsByItems(parent:)``
   /// - ``listRuleDeploymentsByItems(request:)``
   /// - ``listRuleDeploymentsByItems(request:options:)``
-  /// - ``listRuleDeploymentsByItems(parent:)``
   public func listRuleDeployments(
     request: ListRuleDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListRuleDeploymentsResponse {
@@ -284,9 +284,9 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -312,8 +312,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -328,8 +328,8 @@ public final class RuleServiceClient: Clients.RuleServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

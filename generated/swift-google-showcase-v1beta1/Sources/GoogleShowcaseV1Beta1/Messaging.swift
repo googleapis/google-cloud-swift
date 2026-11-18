@@ -69,8 +69,8 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRoom(request:)``
   /// - ``getRoom(name:)``
+  /// - ``getRoom(request:)``
   public func getRoom(
     request: GetRoomRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.Room {
@@ -96,8 +96,8 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRoom(request:)``
   /// - ``deleteRoom(name:)``
+  /// - ``deleteRoom(request:)``
   public func deleteRoom(
     request: DeleteRoomRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -140,8 +140,8 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBlurb(request:)``
   /// - ``getBlurb(name:)``
+  /// - ``getBlurb(request:)``
   public func getBlurb(
     request: GetBlurbRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.Blurb {
@@ -167,8 +167,8 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBlurb(request:)``
   /// - ``deleteBlurb(name:)``
+  /// - ``deleteBlurb(request:)``
   public func deleteBlurb(
     request: DeleteBlurbRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -183,9 +183,9 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBlurbs(request:)``
+  /// - ``listBlurbsByItems(parent:)``
   /// - ``listBlurbsByItems(request:)``
   /// - ``listBlurbsByItems(request:options:)``
-  /// - ``listBlurbsByItems(parent:)``
   public func listBlurbs(
     request: ListBlurbsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.ListBlurbsResponse {
@@ -201,9 +201,9 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``searchBlurbs(request:)``
+  /// - ``searchBlurbsPollingUntilDone(parent:query:)``
   /// - ``searchBlurbsPollingUntilDone(request:)``
   /// - ``searchBlurbsPollingUntilDone(request:options:)``
-  /// - ``searchBlurbsPollingUntilDone(parent:query:)``
   public func searchBlurbs(
     request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,10 +218,10 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``searchBlurbsPollingUntilDone(request:)``
-  /// - ``searchBlurbsPollingUntilDone(parent:query:)``
   /// - ``searchBlurbs(request:)``
   /// - ``searchBlurbs(request:options:)``
+  /// - ``searchBlurbsPollingUntilDone(parent:query:)``
+  /// - ``searchBlurbsPollingUntilDone(request:)``
   public func searchBlurbsPollingUntilDone(
     request: SearchBlurbsRequest, options: GoogleGax.RequestOptions
   ) async throws -> SearchBlurbsResponse {
@@ -333,9 +333,9 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -361,8 +361,8 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -377,8 +377,8 @@ public final class MessagingClient: Clients.MessagingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

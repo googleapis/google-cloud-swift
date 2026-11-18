@@ -54,9 +54,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listSacrealms(request:)``
+  /// - ``listSacrealmsByItems(parent:)``
   /// - ``listSacrealmsByItems(request:)``
   /// - ``listSacrealmsByItems(request:options:)``
-  /// - ``listSacrealmsByItems(parent:)``
   public func listSacrealms(
     request: ListSACRealmsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListSACRealmsResponse {
@@ -69,8 +69,8 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSacrealm(request:)``
   /// - ``getSacrealm(name:)``
+  /// - ``getSacrealm(request:)``
   public func getSacrealm(
     request: GetSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.SACRealm {
@@ -84,9 +84,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createSacrealm(request:)``
+  /// - ``createSacrealmPollingUntilDone(parent:sacRealm:sacRealmId:)``
   /// - ``createSacrealmPollingUntilDone(request:)``
   /// - ``createSacrealmPollingUntilDone(request:options:)``
-  /// - ``createSacrealmPollingUntilDone(parent:sacRealm:sacRealmId:)``
   public func createSacrealm(
     request: CreateSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createSacrealmPollingUntilDone(request:)``
-  /// - ``createSacrealmPollingUntilDone(parent:sacRealm:sacRealmId:)``
   /// - ``createSacrealm(request:)``
   /// - ``createSacrealm(request:options:)``
+  /// - ``createSacrealmPollingUntilDone(parent:sacRealm:sacRealmId:)``
+  /// - ``createSacrealmPollingUntilDone(request:)``
   public func createSacrealmPollingUntilDone(
     request: CreateSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> SACRealm {
@@ -134,9 +134,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteSacrealm(request:)``
+  /// - ``deleteSacrealmPollingUntilDone(name:)``
   /// - ``deleteSacrealmPollingUntilDone(request:)``
   /// - ``deleteSacrealmPollingUntilDone(request:options:)``
-  /// - ``deleteSacrealmPollingUntilDone(name:)``
   public func deleteSacrealm(
     request: DeleteSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,10 +149,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteSacrealmPollingUntilDone(request:)``
-  /// - ``deleteSacrealmPollingUntilDone(name:)``
   /// - ``deleteSacrealm(request:)``
   /// - ``deleteSacrealm(request:options:)``
+  /// - ``deleteSacrealmPollingUntilDone(name:)``
+  /// - ``deleteSacrealmPollingUntilDone(request:)``
   public func deleteSacrealmPollingUntilDone(
     request: DeleteSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -184,9 +184,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listSacattachments(request:)``
+  /// - ``listSacattachmentsByItems(parent:)``
   /// - ``listSacattachmentsByItems(request:)``
   /// - ``listSacattachmentsByItems(request:options:)``
-  /// - ``listSacattachmentsByItems(parent:)``
   public func listSacattachments(
     request: ListSACAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListSACAttachmentsResponse {
@@ -199,8 +199,8 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSacattachment(request:)``
   /// - ``getSacattachment(name:)``
+  /// - ``getSacattachment(request:)``
   public func getSacattachment(
     request: GetSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.SACAttachment {
@@ -214,9 +214,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createSacattachment(request:)``
+  /// - ``createSacattachmentPollingUntilDone(parent:sacAttachment:sacAttachmentId:)``
   /// - ``createSacattachmentPollingUntilDone(request:)``
   /// - ``createSacattachmentPollingUntilDone(request:options:)``
-  /// - ``createSacattachmentPollingUntilDone(parent:sacAttachment:sacAttachmentId:)``
   public func createSacattachment(
     request: CreateSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -229,10 +229,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createSacattachmentPollingUntilDone(request:)``
-  /// - ``createSacattachmentPollingUntilDone(parent:sacAttachment:sacAttachmentId:)``
   /// - ``createSacattachment(request:)``
   /// - ``createSacattachment(request:options:)``
+  /// - ``createSacattachmentPollingUntilDone(parent:sacAttachment:sacAttachmentId:)``
+  /// - ``createSacattachmentPollingUntilDone(request:)``
   public func createSacattachmentPollingUntilDone(
     request: CreateSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> SACAttachment {
@@ -265,9 +265,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteSacattachment(request:)``
+  /// - ``deleteSacattachmentPollingUntilDone(name:)``
   /// - ``deleteSacattachmentPollingUntilDone(request:)``
   /// - ``deleteSacattachmentPollingUntilDone(request:options:)``
-  /// - ``deleteSacattachmentPollingUntilDone(name:)``
   public func deleteSacattachment(
     request: DeleteSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -280,10 +280,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteSacattachmentPollingUntilDone(request:)``
-  /// - ``deleteSacattachmentPollingUntilDone(name:)``
   /// - ``deleteSacattachment(request:)``
   /// - ``deleteSacattachment(request:options:)``
+  /// - ``deleteSacattachmentPollingUntilDone(name:)``
+  /// - ``deleteSacattachmentPollingUntilDone(request:)``
   public func deleteSacattachmentPollingUntilDone(
     request: DeleteSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -412,9 +412,9 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -440,8 +440,8 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -456,8 +456,8 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

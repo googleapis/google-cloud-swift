@@ -59,9 +59,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createLake(request:)``
+  /// - ``createLakePollingUntilDone(parent:lake:lakeId:)``
   /// - ``createLakePollingUntilDone(request:)``
   /// - ``createLakePollingUntilDone(request:options:)``
-  /// - ``createLakePollingUntilDone(parent:lake:lakeId:)``
   public func createLake(
     request: CreateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createLakePollingUntilDone(request:)``
-  /// - ``createLakePollingUntilDone(parent:lake:lakeId:)``
   /// - ``createLake(request:)``
   /// - ``createLake(request:options:)``
+  /// - ``createLakePollingUntilDone(parent:lake:lakeId:)``
+  /// - ``createLakePollingUntilDone(request:)``
   public func createLakePollingUntilDone(
     request: CreateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Lake {
@@ -109,9 +109,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateLake(request:)``
+  /// - ``updateLakePollingUntilDone(lake:updateMask:)``
   /// - ``updateLakePollingUntilDone(request:)``
   /// - ``updateLakePollingUntilDone(request:options:)``
-  /// - ``updateLakePollingUntilDone(lake:updateMask:)``
   public func updateLake(
     request: UpdateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -124,10 +124,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateLakePollingUntilDone(request:)``
-  /// - ``updateLakePollingUntilDone(lake:updateMask:)``
   /// - ``updateLake(request:)``
   /// - ``updateLake(request:options:)``
+  /// - ``updateLakePollingUntilDone(lake:updateMask:)``
+  /// - ``updateLakePollingUntilDone(request:)``
   public func updateLakePollingUntilDone(
     request: UpdateLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Lake {
@@ -160,9 +160,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteLake(request:)``
+  /// - ``deleteLakePollingUntilDone(name:)``
   /// - ``deleteLakePollingUntilDone(request:)``
   /// - ``deleteLakePollingUntilDone(request:options:)``
-  /// - ``deleteLakePollingUntilDone(name:)``
   public func deleteLake(
     request: DeleteLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -176,10 +176,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteLakePollingUntilDone(request:)``
-  /// - ``deleteLakePollingUntilDone(name:)``
   /// - ``deleteLake(request:)``
   /// - ``deleteLake(request:options:)``
+  /// - ``deleteLakePollingUntilDone(name:)``
+  /// - ``deleteLakePollingUntilDone(request:)``
   public func deleteLakePollingUntilDone(
     request: DeleteLakeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,9 +211,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listLakes(request:)``
+  /// - ``listLakesByItems(parent:)``
   /// - ``listLakesByItems(request:)``
   /// - ``listLakesByItems(request:options:)``
-  /// - ``listLakesByItems(parent:)``
   public func listLakes(
     request: ListLakesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListLakesResponse {
@@ -226,8 +226,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getLake(request:)``
   /// - ``getLake(name:)``
+  /// - ``getLake(request:)``
   public func getLake(
     request: GetLakeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Lake {
@@ -241,9 +241,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listLakeActions(request:)``
+  /// - ``listLakeActionsByItems(parent:)``
   /// - ``listLakeActionsByItems(request:)``
   /// - ``listLakeActionsByItems(request:options:)``
-  /// - ``listLakeActionsByItems(parent:)``
   public func listLakeActions(
     request: ListLakeActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListActionsResponse {
@@ -257,9 +257,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createZone(request:)``
+  /// - ``createZonePollingUntilDone(parent:zone:zoneId:)``
   /// - ``createZonePollingUntilDone(request:)``
   /// - ``createZonePollingUntilDone(request:options:)``
-  /// - ``createZonePollingUntilDone(parent:zone:zoneId:)``
   public func createZone(
     request: CreateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -272,10 +272,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createZonePollingUntilDone(request:)``
-  /// - ``createZonePollingUntilDone(parent:zone:zoneId:)``
   /// - ``createZone(request:)``
   /// - ``createZone(request:options:)``
+  /// - ``createZonePollingUntilDone(parent:zone:zoneId:)``
+  /// - ``createZonePollingUntilDone(request:)``
   public func createZonePollingUntilDone(
     request: CreateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> Zone {
@@ -322,10 +322,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateZonePollingUntilDone(request:)``
-  /// - ``updateZonePollingUntilDone(zone:updateMask:)``
   /// - ``updateZone(request:)``
   /// - ``updateZone(request:options:)``
+  /// - ``updateZonePollingUntilDone(request:)``
+  /// - ``updateZonePollingUntilDone(zone:updateMask:)``
   public func updateZonePollingUntilDone(
     request: UpdateZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> Zone {
@@ -358,9 +358,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteZone(request:)``
+  /// - ``deleteZonePollingUntilDone(name:)``
   /// - ``deleteZonePollingUntilDone(request:)``
   /// - ``deleteZonePollingUntilDone(request:options:)``
-  /// - ``deleteZonePollingUntilDone(name:)``
   public func deleteZone(
     request: DeleteZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -374,10 +374,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteZonePollingUntilDone(request:)``
-  /// - ``deleteZonePollingUntilDone(name:)``
   /// - ``deleteZone(request:)``
   /// - ``deleteZone(request:options:)``
+  /// - ``deleteZonePollingUntilDone(name:)``
+  /// - ``deleteZonePollingUntilDone(request:)``
   public func deleteZonePollingUntilDone(
     request: DeleteZoneRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -409,9 +409,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listZones(request:)``
+  /// - ``listZonesByItems(parent:)``
   /// - ``listZonesByItems(request:)``
   /// - ``listZonesByItems(request:options:)``
-  /// - ``listZonesByItems(parent:)``
   public func listZones(
     request: ListZonesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListZonesResponse {
@@ -424,8 +424,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getZone(request:)``
   /// - ``getZone(name:)``
+  /// - ``getZone(request:)``
   public func getZone(
     request: GetZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Zone {
@@ -439,9 +439,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listZoneActions(request:)``
+  /// - ``listZoneActionsByItems(parent:)``
   /// - ``listZoneActionsByItems(request:)``
   /// - ``listZoneActionsByItems(request:options:)``
-  /// - ``listZoneActionsByItems(parent:)``
   public func listZoneActions(
     request: ListZoneActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListActionsResponse {
@@ -455,9 +455,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createAsset(request:)``
+  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   /// - ``createAssetPollingUntilDone(request:)``
   /// - ``createAssetPollingUntilDone(request:options:)``
-  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   public func createAsset(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -470,10 +470,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createAssetPollingUntilDone(request:)``
-  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   /// - ``createAsset(request:)``
   /// - ``createAsset(request:options:)``
+  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
+  /// - ``createAssetPollingUntilDone(request:)``
   public func createAssetPollingUntilDone(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Asset {
@@ -505,9 +505,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateAsset(request:)``
+  /// - ``updateAssetPollingUntilDone(asset:updateMask:)``
   /// - ``updateAssetPollingUntilDone(request:)``
   /// - ``updateAssetPollingUntilDone(request:options:)``
-  /// - ``updateAssetPollingUntilDone(asset:updateMask:)``
   public func updateAsset(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -520,10 +520,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateAssetPollingUntilDone(request:)``
-  /// - ``updateAssetPollingUntilDone(asset:updateMask:)``
   /// - ``updateAsset(request:)``
   /// - ``updateAsset(request:options:)``
+  /// - ``updateAssetPollingUntilDone(asset:updateMask:)``
+  /// - ``updateAssetPollingUntilDone(request:)``
   public func updateAssetPollingUntilDone(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Asset {
@@ -556,9 +556,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteAsset(request:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
   /// - ``deleteAssetPollingUntilDone(request:)``
   /// - ``deleteAssetPollingUntilDone(request:options:)``
-  /// - ``deleteAssetPollingUntilDone(name:)``
   public func deleteAsset(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -572,10 +572,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteAssetPollingUntilDone(request:)``
-  /// - ``deleteAssetPollingUntilDone(name:)``
   /// - ``deleteAsset(request:)``
   /// - ``deleteAsset(request:options:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
+  /// - ``deleteAssetPollingUntilDone(request:)``
   public func deleteAssetPollingUntilDone(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -607,9 +607,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
   /// - ``listAssetsByItems(request:)``
   /// - ``listAssetsByItems(request:options:)``
-  /// - ``listAssetsByItems(parent:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListAssetsResponse {
@@ -622,8 +622,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getAsset(request:)``
   /// - ``getAsset(name:)``
+  /// - ``getAsset(request:)``
   public func getAsset(
     request: GetAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Asset {
@@ -637,9 +637,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listAssetActions(request:)``
+  /// - ``listAssetActionsByItems(parent:)``
   /// - ``listAssetActionsByItems(request:)``
   /// - ``listAssetActionsByItems(request:options:)``
-  /// - ``listAssetActionsByItems(parent:)``
   public func listAssetActions(
     request: ListAssetActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListActionsResponse {
@@ -653,9 +653,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createTask(request:)``
+  /// - ``createTaskPollingUntilDone(parent:task:taskId:)``
   /// - ``createTaskPollingUntilDone(request:)``
   /// - ``createTaskPollingUntilDone(request:options:)``
-  /// - ``createTaskPollingUntilDone(parent:task:taskId:)``
   public func createTask(
     request: CreateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -668,10 +668,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createTaskPollingUntilDone(request:)``
-  /// - ``createTaskPollingUntilDone(parent:task:taskId:)``
   /// - ``createTask(request:)``
   /// - ``createTask(request:options:)``
+  /// - ``createTaskPollingUntilDone(parent:task:taskId:)``
+  /// - ``createTaskPollingUntilDone(request:)``
   public func createTaskPollingUntilDone(
     request: CreateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> Task {
@@ -718,10 +718,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateTaskPollingUntilDone(request:)``
-  /// - ``updateTaskPollingUntilDone(task:updateMask:)``
   /// - ``updateTask(request:)``
   /// - ``updateTask(request:options:)``
+  /// - ``updateTaskPollingUntilDone(request:)``
+  /// - ``updateTaskPollingUntilDone(task:updateMask:)``
   public func updateTaskPollingUntilDone(
     request: UpdateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> Task {
@@ -753,9 +753,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteTask(request:)``
+  /// - ``deleteTaskPollingUntilDone(name:)``
   /// - ``deleteTaskPollingUntilDone(request:)``
   /// - ``deleteTaskPollingUntilDone(request:options:)``
-  /// - ``deleteTaskPollingUntilDone(name:)``
   public func deleteTask(
     request: DeleteTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -768,10 +768,10 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteTaskPollingUntilDone(request:)``
-  /// - ``deleteTaskPollingUntilDone(name:)``
   /// - ``deleteTask(request:)``
   /// - ``deleteTask(request:options:)``
+  /// - ``deleteTaskPollingUntilDone(name:)``
+  /// - ``deleteTaskPollingUntilDone(request:)``
   public func deleteTaskPollingUntilDone(
     request: DeleteTaskRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -803,9 +803,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(parent:)``
   /// - ``listTasksByItems(request:)``
   /// - ``listTasksByItems(request:options:)``
-  /// - ``listTasksByItems(parent:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListTasksResponse {
@@ -818,8 +818,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getTask(request:)``
   /// - ``getTask(name:)``
+  /// - ``getTask(request:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Task {
@@ -833,9 +833,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListJobsResponse {
@@ -848,8 +848,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``runTask(request:)``
   /// - ``runTask(name:)``
+  /// - ``runTask(request:)``
   public func runTask(
     request: RunTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.RunTaskResponse {
@@ -862,8 +862,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Job {
@@ -876,8 +876,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelJob(request:)``
   /// - ``cancelJob(name:)``
+  /// - ``cancelJob(request:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -988,9 +988,9 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1016,8 +1016,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1032,8 +1032,8 @@ public final class DataplexServiceClient: Clients.DataplexServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

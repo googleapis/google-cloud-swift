@@ -53,9 +53,9 @@
     /// ## See Also
     ///
     /// - ``addSignedUrlKey(request:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(project:backendBucket:body:)``
     /// - ``addSignedUrlKeyPollingUntilDone(request:)``
     /// - ``addSignedUrlKeyPollingUntilDone(request:options:)``
-    /// - ``addSignedUrlKeyPollingUntilDone(project:backendBucket:body:)``
     public func addSignedUrlKey(
       request: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -74,10 +74,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addSignedUrlKeyPollingUntilDone(request:)``
-    /// - ``addSignedUrlKeyPollingUntilDone(project:backendBucket:body:)``
     /// - ``addSignedUrlKey(request:)``
     /// - ``addSignedUrlKey(request:options:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(project:backendBucket:body:)``
+    /// - ``addSignedUrlKeyPollingUntilDone(request:)``
     public func addSignedUrlKeyPollingUntilDone(
       request: BackendBucketsClient.AddSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -127,9 +127,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: BackendBucketsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendBucketAggregatedList {
@@ -143,9 +143,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:backendBucket:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:backendBucket:)``
     public func delete(
       request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -163,10 +163,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:backendBucket:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:backendBucket:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: BackendBucketsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -213,9 +213,9 @@
     /// ## See Also
     ///
     /// - ``deleteSignedUrlKey(request:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(project:backendBucket:keyName:)``
     /// - ``deleteSignedUrlKeyPollingUntilDone(request:)``
     /// - ``deleteSignedUrlKeyPollingUntilDone(request:options:)``
-    /// - ``deleteSignedUrlKeyPollingUntilDone(project:backendBucket:keyName:)``
     public func deleteSignedUrlKey(
       request: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -234,10 +234,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSignedUrlKeyPollingUntilDone(request:)``
-    /// - ``deleteSignedUrlKeyPollingUntilDone(project:backendBucket:keyName:)``
     /// - ``deleteSignedUrlKey(request:)``
     /// - ``deleteSignedUrlKey(request:options:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(project:backendBucket:keyName:)``
+    /// - ``deleteSignedUrlKeyPollingUntilDone(request:)``
     public func deleteSignedUrlKeyPollingUntilDone(
       request: BackendBucketsClient.DeleteSignedUrlKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -282,8 +282,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:backendBucket:)``
+    /// - ``get(request:)``
     public func `get`(
       request: BackendBucketsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendBucket {
@@ -297,8 +297,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: BackendBucketsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -313,9 +313,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -334,10 +334,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: BackendBucketsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -384,9 +384,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: BackendBucketsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendBucketList {
@@ -400,9 +400,9 @@
     /// ## See Also
     ///
     /// - ``listUsable(request:)``
+    /// - ``listUsableByItems(project:)``
     /// - ``listUsableByItems(request:)``
     /// - ``listUsableByItems(request:options:)``
-    /// - ``listUsableByItems(project:)``
     public func listUsable(
       request: BackendBucketsClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.BackendBucketListUsable {
@@ -419,9 +419,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:backendBucket:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:backendBucket:body:)``
     public func patch(
       request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -442,10 +442,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:backendBucket:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:backendBucket:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: BackendBucketsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -491,9 +491,9 @@
     /// ## See Also
     ///
     /// - ``setEdgeSecurityPolicy(request:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(project:backendBucket:body:)``
     /// - ``setEdgeSecurityPolicyPollingUntilDone(request:)``
     /// - ``setEdgeSecurityPolicyPollingUntilDone(request:options:)``
-    /// - ``setEdgeSecurityPolicyPollingUntilDone(project:backendBucket:body:)``
     public func setEdgeSecurityPolicy(
       request: BackendBucketsClient.SetEdgeSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -511,10 +511,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setEdgeSecurityPolicyPollingUntilDone(request:)``
-    /// - ``setEdgeSecurityPolicyPollingUntilDone(project:backendBucket:body:)``
     /// - ``setEdgeSecurityPolicy(request:)``
     /// - ``setEdgeSecurityPolicy(request:options:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(project:backendBucket:body:)``
+    /// - ``setEdgeSecurityPolicyPollingUntilDone(request:)``
     public func setEdgeSecurityPolicyPollingUntilDone(
       request: BackendBucketsClient.SetEdgeSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -560,8 +560,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: BackendBucketsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -574,8 +574,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: BackendBucketsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -590,9 +590,9 @@
     /// ## See Also
     ///
     /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:backendBucket:body:)``
     /// - ``updatePollingUntilDone(request:)``
     /// - ``updatePollingUntilDone(request:options:)``
-    /// - ``updatePollingUntilDone(project:backendBucket:body:)``
     public func update(
       request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -611,10 +611,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePollingUntilDone(request:)``
-    /// - ``updatePollingUntilDone(project:backendBucket:body:)``
     /// - ``update(request:)``
     /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:backendBucket:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: BackendBucketsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

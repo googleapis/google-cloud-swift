@@ -56,9 +56,9 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPolicies(request:)``
+  /// - ``listPoliciesByItems(parent:)``
   /// - ``listPoliciesByItems(request:)``
   /// - ``listPoliciesByItems(request:options:)``
-  /// - ``listPoliciesByItems(parent:)``
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV2.ListPoliciesResponse {
@@ -71,8 +71,8 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPolicy(request:)``
   /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV2.Policy {
@@ -86,9 +86,9 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPolicy(request:)``
+  /// - ``createPolicyPollingUntilDone(parent:policy:policyId:)``
   /// - ``createPolicyPollingUntilDone(request:)``
   /// - ``createPolicyPollingUntilDone(request:options:)``
-  /// - ``createPolicyPollingUntilDone(parent:policy:policyId:)``
   public func createPolicy(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPolicyPollingUntilDone(request:)``
-  /// - ``createPolicyPollingUntilDone(parent:policy:policyId:)``
   /// - ``createPolicy(request:)``
   /// - ``createPolicy(request:options:)``
+  /// - ``createPolicyPollingUntilDone(parent:policy:policyId:)``
+  /// - ``createPolicyPollingUntilDone(request:)``
   public func createPolicyPollingUntilDone(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -174,9 +174,9 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicyPollingUntilDone(request:)``
   /// - ``updatePolicy(request:)``
   /// - ``updatePolicy(request:options:)``
+  /// - ``updatePolicyPollingUntilDone(request:)``
   public func updatePolicyPollingUntilDone(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -208,9 +208,9 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePolicy(request:)``
+  /// - ``deletePolicyPollingUntilDone(name:)``
   /// - ``deletePolicyPollingUntilDone(request:)``
   /// - ``deletePolicyPollingUntilDone(request:options:)``
-  /// - ``deletePolicyPollingUntilDone(name:)``
   public func deletePolicy(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -223,10 +223,10 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePolicyPollingUntilDone(request:)``
-  /// - ``deletePolicyPollingUntilDone(name:)``
   /// - ``deletePolicy(request:)``
   /// - ``deletePolicy(request:options:)``
+  /// - ``deletePolicyPollingUntilDone(name:)``
+  /// - ``deletePolicyPollingUntilDone(request:)``
   public func deletePolicyPollingUntilDone(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {

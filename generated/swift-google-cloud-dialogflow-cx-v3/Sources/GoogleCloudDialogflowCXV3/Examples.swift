@@ -52,8 +52,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createExample(request:)``
     /// - ``createExample(parent:example:)``
+    /// - ``createExample(request:)``
     public func createExample(
       request: CreateExampleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -66,8 +66,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteExample(request:)``
     /// - ``deleteExample(name:)``
+    /// - ``deleteExample(request:)``
     public func deleteExample(
       request: DeleteExampleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -81,9 +81,9 @@
     /// ## See Also
     ///
     /// - ``listExamples(request:)``
+    /// - ``listExamplesByItems(parent:)``
     /// - ``listExamplesByItems(request:)``
     /// - ``listExamplesByItems(request:options:)``
-    /// - ``listExamplesByItems(parent:)``
     public func listExamples(
       request: ListExamplesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListExamplesResponse {
@@ -96,8 +96,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getExample(request:)``
     /// - ``getExample(name:)``
+    /// - ``getExample(request:)``
     public func getExample(
       request: GetExampleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateExample(request:)``
     /// - ``updateExample(example:updateMask:)``
+    /// - ``updateExample(request:)``
     public func updateExample(
       request: UpdateExampleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -172,9 +172,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -200,8 +200,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

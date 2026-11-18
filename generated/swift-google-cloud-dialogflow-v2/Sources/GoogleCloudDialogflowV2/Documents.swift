@@ -58,9 +58,9 @@
     /// ## See Also
     ///
     /// - ``listDocuments(request:)``
+    /// - ``listDocumentsByItems(parent:)``
     /// - ``listDocumentsByItems(request:)``
     /// - ``listDocumentsByItems(request:options:)``
-    /// - ``listDocumentsByItems(parent:)``
     public func listDocuments(
       request: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListDocumentsResponse {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDocument(request:)``
     /// - ``getDocument(name:)``
+    /// - ``getDocument(request:)``
     public func getDocument(
       request: GetDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Document {
@@ -99,9 +99,9 @@
     /// ## See Also
     ///
     /// - ``createDocument(request:)``
+    /// - ``createDocumentPollingUntilDone(parent:document:)``
     /// - ``createDocumentPollingUntilDone(request:)``
     /// - ``createDocumentPollingUntilDone(request:options:)``
-    /// - ``createDocumentPollingUntilDone(parent:document:)``
     public func createDocument(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -125,10 +125,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDocumentPollingUntilDone(request:)``
-    /// - ``createDocumentPollingUntilDone(parent:document:)``
     /// - ``createDocument(request:)``
     /// - ``createDocument(request:options:)``
+    /// - ``createDocumentPollingUntilDone(parent:document:)``
+    /// - ``createDocumentPollingUntilDone(request:)``
     public func createDocumentPollingUntilDone(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -202,9 +202,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importDocumentsPollingUntilDone(request:)``
     /// - ``importDocuments(request:)``
     /// - ``importDocuments(request:options:)``
+    /// - ``importDocumentsPollingUntilDone(request:)``
     public func importDocumentsPollingUntilDone(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportDocumentsResponse {
@@ -249,9 +249,9 @@
     /// ## See Also
     ///
     /// - ``deleteDocument(request:)``
+    /// - ``deleteDocumentPollingUntilDone(name:)``
     /// - ``deleteDocumentPollingUntilDone(request:)``
     /// - ``deleteDocumentPollingUntilDone(request:options:)``
-    /// - ``deleteDocumentPollingUntilDone(name:)``
     public func deleteDocument(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -275,10 +275,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDocumentPollingUntilDone(request:)``
-    /// - ``deleteDocumentPollingUntilDone(name:)``
     /// - ``deleteDocument(request:)``
     /// - ``deleteDocument(request:options:)``
+    /// - ``deleteDocumentPollingUntilDone(name:)``
+    /// - ``deleteDocumentPollingUntilDone(request:)``
     public func deleteDocumentPollingUntilDone(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -322,9 +322,9 @@
     /// ## See Also
     ///
     /// - ``updateDocument(request:)``
+    /// - ``updateDocumentPollingUntilDone(document:updateMask:)``
     /// - ``updateDocumentPollingUntilDone(request:)``
     /// - ``updateDocumentPollingUntilDone(request:options:)``
-    /// - ``updateDocumentPollingUntilDone(document:updateMask:)``
     public func updateDocument(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -348,10 +348,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDocumentPollingUntilDone(request:)``
-    /// - ``updateDocumentPollingUntilDone(document:updateMask:)``
     /// - ``updateDocument(request:)``
     /// - ``updateDocument(request:options:)``
+    /// - ``updateDocumentPollingUntilDone(document:updateMask:)``
+    /// - ``updateDocumentPollingUntilDone(request:)``
     public func updateDocumentPollingUntilDone(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -400,9 +400,9 @@
     /// ## See Also
     ///
     /// - ``reloadDocument(request:)``
+    /// - ``reloadDocumentPollingUntilDone(name:contentUri:)``
     /// - ``reloadDocumentPollingUntilDone(request:)``
     /// - ``reloadDocumentPollingUntilDone(request:options:)``
-    /// - ``reloadDocumentPollingUntilDone(name:contentUri:)``
     public func reloadDocument(
       request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -432,10 +432,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``reloadDocumentPollingUntilDone(request:)``
-    /// - ``reloadDocumentPollingUntilDone(name:contentUri:)``
     /// - ``reloadDocument(request:)``
     /// - ``reloadDocument(request:options:)``
+    /// - ``reloadDocumentPollingUntilDone(name:contentUri:)``
+    /// - ``reloadDocumentPollingUntilDone(request:)``
     public func reloadDocumentPollingUntilDone(
       request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -505,9 +505,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportDocumentPollingUntilDone(request:)``
     /// - ``exportDocument(request:)``
     /// - ``exportDocument(request:options:)``
+    /// - ``exportDocumentPollingUntilDone(request:)``
     public func exportDocumentPollingUntilDone(
       request: ExportDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -586,9 +586,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -614,8 +614,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

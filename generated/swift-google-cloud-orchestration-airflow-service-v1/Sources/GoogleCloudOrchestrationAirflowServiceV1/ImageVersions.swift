@@ -48,9 +48,9 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listImageVersions(request:)``
+  /// - ``listImageVersionsByItems(parent:)``
   /// - ``listImageVersionsByItems(request:)``
   /// - ``listImageVersionsByItems(request:options:)``
-  /// - ``listImageVersionsByItems(parent:)``
   public func listImageVersions(
     request: ListImageVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse {
@@ -66,9 +66,9 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -94,8 +94,8 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

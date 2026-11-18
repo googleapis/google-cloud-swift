@@ -142,9 +142,9 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listTunnelDestGroups(request:)``
+  /// - ``listTunnelDestGroupsByItems(parent:)``
   /// - ``listTunnelDestGroupsByItems(request:)``
   /// - ``listTunnelDestGroupsByItems(request:options:)``
-  /// - ``listTunnelDestGroupsByItems(parent:)``
   public func listTunnelDestGroups(
     request: ListTunnelDestGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.ListTunnelDestGroupsResponse {
@@ -157,8 +157,8 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createTunnelDestGroup(request:)``
   /// - ``createTunnelDestGroup(parent:tunnelDestGroup:tunnelDestGroupId:)``
+  /// - ``createTunnelDestGroup(request:)``
   public func createTunnelDestGroup(
     request: CreateTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -171,8 +171,8 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getTunnelDestGroup(request:)``
   /// - ``getTunnelDestGroup(name:)``
+  /// - ``getTunnelDestGroup(request:)``
   public func getTunnelDestGroup(
     request: GetTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIAPV1.TunnelDestGroup {
@@ -185,8 +185,8 @@ public final class IdentityAwareProxyAdminServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteTunnelDestGroup(request:)``
   /// - ``deleteTunnelDestGroup(name:)``
+  /// - ``deleteTunnelDestGroup(request:)``
   public func deleteTunnelDestGroup(
     request: DeleteTunnelDestGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {

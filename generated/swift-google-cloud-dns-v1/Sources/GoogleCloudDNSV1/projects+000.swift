@@ -46,8 +46,8 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {

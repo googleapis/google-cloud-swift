@@ -51,8 +51,8 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getFeaturedContentNativeDashboard(request:)``
   /// - ``getFeaturedContentNativeDashboard(name:)``
+  /// - ``getFeaturedContentNativeDashboard(request:)``
   public func getFeaturedContentNativeDashboard(
     request: GetFeaturedContentNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FeaturedContentNativeDashboard {
@@ -66,9 +66,9 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listFeaturedContentNativeDashboards(request:)``
+  /// - ``listFeaturedContentNativeDashboardsByItems(parent:)``
   /// - ``listFeaturedContentNativeDashboardsByItems(request:)``
   /// - ``listFeaturedContentNativeDashboardsByItems(request:options:)``
-  /// - ``listFeaturedContentNativeDashboardsByItems(parent:)``
   public func listFeaturedContentNativeDashboards(
     request: ListFeaturedContentNativeDashboardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeaturedContentNativeDashboardsResponse {
@@ -81,8 +81,8 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``installFeaturedContentNativeDashboard(request:)``
   /// - ``installFeaturedContentNativeDashboard(name:)``
+  /// - ``installFeaturedContentNativeDashboard(request:)``
   public func installFeaturedContentNativeDashboard(
     request: InstallFeaturedContentNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.InstallFeaturedContentNativeDashboardResponse {
@@ -98,9 +98,9 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -126,8 +126,8 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -142,8 +142,8 @@ public final class FeaturedContentNativeDashboardServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

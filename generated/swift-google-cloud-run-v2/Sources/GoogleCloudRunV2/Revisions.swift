@@ -51,8 +51,8 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRevision(request:)``
   /// - ``getRevision(name:)``
+  /// - ``getRevision(request:)``
   public func getRevision(
     request: GetRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Revision {
@@ -67,9 +67,9 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRevisions(request:)``
+  /// - ``listRevisionsByItems(parent:)``
   /// - ``listRevisionsByItems(request:)``
   /// - ``listRevisionsByItems(request:options:)``
-  /// - ``listRevisionsByItems(parent:)``
   public func listRevisions(
     request: ListRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListRevisionsResponse {
@@ -83,9 +83,9 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteRevision(request:)``
+  /// - ``deleteRevisionPollingUntilDone(name:)``
   /// - ``deleteRevisionPollingUntilDone(request:)``
   /// - ``deleteRevisionPollingUntilDone(request:options:)``
-  /// - ``deleteRevisionPollingUntilDone(name:)``
   public func deleteRevision(
     request: DeleteRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -98,10 +98,10 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRevisionPollingUntilDone(request:)``
-  /// - ``deleteRevisionPollingUntilDone(name:)``
   /// - ``deleteRevision(request:)``
   /// - ``deleteRevision(request:options:)``
+  /// - ``deleteRevisionPollingUntilDone(name:)``
+  /// - ``deleteRevisionPollingUntilDone(request:)``
   public func deleteRevisionPollingUntilDone(
     request: DeleteRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Revision {
@@ -135,9 +135,9 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -163,8 +163,8 @@ public final class RevisionsClient: Clients.RevisionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

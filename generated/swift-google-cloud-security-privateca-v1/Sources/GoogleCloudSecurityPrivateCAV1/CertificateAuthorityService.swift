@@ -66,8 +66,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``createCertificate(request:)``
   /// - ``createCertificate(parent:certificate:certificateId:)``
+  /// - ``createCertificate(request:)``
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -82,8 +82,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``getCertificate(request:)``
   /// - ``getCertificate(name:)``
+  /// - ``getCertificate(request:)``
   public func getCertificate(
     request: GetCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -99,9 +99,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``listCertificates(request:)``
+  /// - ``listCertificatesByItems(parent:)``
   /// - ``listCertificatesByItems(request:)``
   /// - ``listCertificatesByItems(request:options:)``
-  /// - ``listCertificatesByItems(parent:)``
   public func listCertificates(
     request: ListCertificatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificatesResponse {
@@ -116,8 +116,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``revokeCertificate(request:)``
   /// - ``revokeCertificate(name:)``
+  /// - ``revokeCertificate(request:)``
   public func revokeCertificate(
     request: RevokeCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -135,8 +135,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificate(request:)``
   /// - ``updateCertificate(certificate:updateMask:)``
+  /// - ``updateCertificate(request:)``
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.Certificate {
@@ -164,9 +164,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``activateCertificateAuthority(request:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(name:)``
   /// - ``activateCertificateAuthorityPollingUntilDone(request:)``
   /// - ``activateCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``activateCertificateAuthorityPollingUntilDone(name:)``
   public func activateCertificateAuthority(
     request: ActivateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -193,10 +193,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``activateCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``activateCertificateAuthorityPollingUntilDone(name:)``
   /// - ``activateCertificateAuthority(request:)``
   /// - ``activateCertificateAuthority(request:options:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``activateCertificateAuthorityPollingUntilDone(request:)``
   public func activateCertificateAuthorityPollingUntilDone(
     request: ActivateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -233,9 +233,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``createCertificateAuthority(request:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(parent:certificateAuthority:certificateAuthorityId:)``
   /// - ``createCertificateAuthorityPollingUntilDone(request:)``
   /// - ``createCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``createCertificateAuthorityPollingUntilDone(parent:certificateAuthority:certificateAuthorityId:)``
   public func createCertificateAuthority(
     request: CreateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -252,10 +252,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``createCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``createCertificateAuthorityPollingUntilDone(parent:certificateAuthority:certificateAuthorityId:)``
   /// - ``createCertificateAuthority(request:)``
   /// - ``createCertificateAuthority(request:options:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(parent:certificateAuthority:certificateAuthorityId:)``
+  /// - ``createCertificateAuthorityPollingUntilDone(request:)``
   public func createCertificateAuthorityPollingUntilDone(
     request: CreateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -291,9 +291,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``disableCertificateAuthority(request:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(name:)``
   /// - ``disableCertificateAuthorityPollingUntilDone(request:)``
   /// - ``disableCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``disableCertificateAuthorityPollingUntilDone(name:)``
   public func disableCertificateAuthority(
     request: DisableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -309,10 +309,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``disableCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``disableCertificateAuthorityPollingUntilDone(name:)``
   /// - ``disableCertificateAuthority(request:)``
   /// - ``disableCertificateAuthority(request:options:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``disableCertificateAuthorityPollingUntilDone(request:)``
   public func disableCertificateAuthorityPollingUntilDone(
     request: DisableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -348,9 +348,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``enableCertificateAuthority(request:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(name:)``
   /// - ``enableCertificateAuthorityPollingUntilDone(request:)``
   /// - ``enableCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``enableCertificateAuthorityPollingUntilDone(name:)``
   public func enableCertificateAuthority(
     request: EnableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -366,10 +366,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``enableCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``enableCertificateAuthorityPollingUntilDone(name:)``
   /// - ``enableCertificateAuthority(request:)``
   /// - ``enableCertificateAuthority(request:options:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``enableCertificateAuthorityPollingUntilDone(request:)``
   public func enableCertificateAuthorityPollingUntilDone(
     request: EnableCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -416,8 +416,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``fetchCertificateAuthorityCsr(request:)``
   /// - ``fetchCertificateAuthorityCsr(name:)``
+  /// - ``fetchCertificateAuthorityCsr(request:)``
   public func fetchCertificateAuthorityCsr(
     request: FetchCertificateAuthorityCsrRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCertificateAuthorityCsrResponse {
@@ -433,8 +433,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateAuthority(request:)``
   /// - ``getCertificateAuthority(name:)``
+  /// - ``getCertificateAuthority(request:)``
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateAuthority {
@@ -451,9 +451,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``listCertificateAuthorities(request:)``
+  /// - ``listCertificateAuthoritiesByItems(parent:)``
   /// - ``listCertificateAuthoritiesByItems(request:)``
   /// - ``listCertificateAuthoritiesByItems(request:options:)``
-  /// - ``listCertificateAuthoritiesByItems(parent:)``
   public func listCertificateAuthorities(
     request: ListCertificateAuthoritiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateAuthoritiesResponse {
@@ -471,9 +471,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``undeleteCertificateAuthority(request:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(name:)``
   /// - ``undeleteCertificateAuthorityPollingUntilDone(request:)``
   /// - ``undeleteCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``undeleteCertificateAuthorityPollingUntilDone(name:)``
   public func undeleteCertificateAuthority(
     request: UndeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -490,10 +490,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``undeleteCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``undeleteCertificateAuthorityPollingUntilDone(name:)``
   /// - ``undeleteCertificateAuthority(request:)``
   /// - ``undeleteCertificateAuthority(request:options:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``undeleteCertificateAuthorityPollingUntilDone(request:)``
   public func undeleteCertificateAuthorityPollingUntilDone(
     request: UndeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -529,9 +529,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``deleteCertificateAuthority(request:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(name:)``
   /// - ``deleteCertificateAuthorityPollingUntilDone(request:)``
   /// - ``deleteCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``deleteCertificateAuthorityPollingUntilDone(name:)``
   public func deleteCertificateAuthority(
     request: DeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -547,10 +547,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``deleteCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``deleteCertificateAuthorityPollingUntilDone(name:)``
   /// - ``deleteCertificateAuthority(request:)``
   /// - ``deleteCertificateAuthority(request:options:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(name:)``
+  /// - ``deleteCertificateAuthorityPollingUntilDone(request:)``
   public func deleteCertificateAuthorityPollingUntilDone(
     request: DeleteCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -586,9 +586,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``updateCertificateAuthority(request:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(certificateAuthority:updateMask:)``
   /// - ``updateCertificateAuthorityPollingUntilDone(request:)``
   /// - ``updateCertificateAuthorityPollingUntilDone(request:options:)``
-  /// - ``updateCertificateAuthorityPollingUntilDone(certificateAuthority:updateMask:)``
   public func updateCertificateAuthority(
     request: UpdateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -604,10 +604,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificateAuthorityPollingUntilDone(request:)``
-  /// - ``updateCertificateAuthorityPollingUntilDone(certificateAuthority:updateMask:)``
   /// - ``updateCertificateAuthority(request:)``
   /// - ``updateCertificateAuthority(request:options:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(certificateAuthority:updateMask:)``
+  /// - ``updateCertificateAuthorityPollingUntilDone(request:)``
   public func updateCertificateAuthorityPollingUntilDone(
     request: UpdateCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateAuthority {
@@ -642,9 +642,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``createCaPool(request:)``
+  /// - ``createCaPoolPollingUntilDone(parent:caPool:caPoolId:)``
   /// - ``createCaPoolPollingUntilDone(request:)``
   /// - ``createCaPoolPollingUntilDone(request:options:)``
-  /// - ``createCaPoolPollingUntilDone(parent:caPool:caPoolId:)``
   public func createCaPool(
     request: CreateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -659,10 +659,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``createCaPoolPollingUntilDone(request:)``
-  /// - ``createCaPoolPollingUntilDone(parent:caPool:caPoolId:)``
   /// - ``createCaPool(request:)``
   /// - ``createCaPool(request:options:)``
+  /// - ``createCaPoolPollingUntilDone(parent:caPool:caPoolId:)``
+  /// - ``createCaPoolPollingUntilDone(request:)``
   public func createCaPoolPollingUntilDone(
     request: CreateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> CaPool {
@@ -696,9 +696,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``updateCaPool(request:)``
+  /// - ``updateCaPoolPollingUntilDone(caPool:updateMask:)``
   /// - ``updateCaPoolPollingUntilDone(request:)``
   /// - ``updateCaPoolPollingUntilDone(request:options:)``
-  /// - ``updateCaPoolPollingUntilDone(caPool:updateMask:)``
   public func updateCaPool(
     request: UpdateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -713,10 +713,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``updateCaPoolPollingUntilDone(request:)``
-  /// - ``updateCaPoolPollingUntilDone(caPool:updateMask:)``
   /// - ``updateCaPool(request:)``
   /// - ``updateCaPool(request:options:)``
+  /// - ``updateCaPoolPollingUntilDone(caPool:updateMask:)``
+  /// - ``updateCaPoolPollingUntilDone(request:)``
   public func updateCaPoolPollingUntilDone(
     request: UpdateCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> CaPool {
@@ -749,8 +749,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``getCaPool(request:)``
   /// - ``getCaPool(name:)``
+  /// - ``getCaPool(request:)``
   public func getCaPool(
     request: GetCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CaPool {
@@ -766,9 +766,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``listCaPools(request:)``
+  /// - ``listCaPoolsByItems(parent:)``
   /// - ``listCaPoolsByItems(request:)``
   /// - ``listCaPoolsByItems(request:options:)``
-  /// - ``listCaPoolsByItems(parent:)``
   public func listCaPools(
     request: ListCaPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCaPoolsResponse {
@@ -784,9 +784,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``deleteCaPool(request:)``
+  /// - ``deleteCaPoolPollingUntilDone(name:)``
   /// - ``deleteCaPoolPollingUntilDone(request:)``
   /// - ``deleteCaPoolPollingUntilDone(request:options:)``
-  /// - ``deleteCaPoolPollingUntilDone(name:)``
   public func deleteCaPool(
     request: DeleteCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -801,10 +801,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``deleteCaPoolPollingUntilDone(request:)``
-  /// - ``deleteCaPoolPollingUntilDone(name:)``
   /// - ``deleteCaPool(request:)``
   /// - ``deleteCaPool(request:options:)``
+  /// - ``deleteCaPoolPollingUntilDone(name:)``
+  /// - ``deleteCaPoolPollingUntilDone(request:)``
   public func deleteCaPoolPollingUntilDone(
     request: DeleteCaPoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -840,8 +840,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``fetchCaCerts(request:)``
   /// - ``fetchCaCerts(caPool:)``
+  /// - ``fetchCaCerts(request:)``
   public func fetchCaCerts(
     request: FetchCaCertsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.FetchCaCertsResponse {
@@ -857,8 +857,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateRevocationList(request:)``
   /// - ``getCertificateRevocationList(name:)``
+  /// - ``getCertificateRevocationList(request:)``
   public func getCertificateRevocationList(
     request: GetCertificateRevocationListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateRevocationList {
@@ -875,9 +875,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``listCertificateRevocationLists(request:)``
+  /// - ``listCertificateRevocationListsByItems(parent:)``
   /// - ``listCertificateRevocationListsByItems(request:)``
   /// - ``listCertificateRevocationListsByItems(request:options:)``
-  /// - ``listCertificateRevocationListsByItems(parent:)``
   public func listCertificateRevocationLists(
     request: ListCertificateRevocationListsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateRevocationListsResponse {
@@ -894,9 +894,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``updateCertificateRevocationList(request:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(certificateRevocationList:updateMask:)``
   /// - ``updateCertificateRevocationListPollingUntilDone(request:)``
   /// - ``updateCertificateRevocationListPollingUntilDone(request:options:)``
-  /// - ``updateCertificateRevocationListPollingUntilDone(certificateRevocationList:updateMask:)``
   public func updateCertificateRevocationList(
     request: UpdateCertificateRevocationListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -912,10 +912,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificateRevocationListPollingUntilDone(request:)``
-  /// - ``updateCertificateRevocationListPollingUntilDone(certificateRevocationList:updateMask:)``
   /// - ``updateCertificateRevocationList(request:)``
   /// - ``updateCertificateRevocationList(request:options:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(certificateRevocationList:updateMask:)``
+  /// - ``updateCertificateRevocationListPollingUntilDone(request:)``
   public func updateCertificateRevocationListPollingUntilDone(
     request: UpdateCertificateRevocationListRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateRevocationList {
@@ -953,9 +953,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``createCertificateTemplate(request:)``
+  /// - ``createCertificateTemplatePollingUntilDone(parent:certificateTemplate:certificateTemplateId:)``
   /// - ``createCertificateTemplatePollingUntilDone(request:)``
   /// - ``createCertificateTemplatePollingUntilDone(request:options:)``
-  /// - ``createCertificateTemplatePollingUntilDone(parent:certificateTemplate:certificateTemplateId:)``
   public func createCertificateTemplate(
     request: CreateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -972,10 +972,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``createCertificateTemplatePollingUntilDone(request:)``
-  /// - ``createCertificateTemplatePollingUntilDone(parent:certificateTemplate:certificateTemplateId:)``
   /// - ``createCertificateTemplate(request:)``
   /// - ``createCertificateTemplate(request:options:)``
+  /// - ``createCertificateTemplatePollingUntilDone(parent:certificateTemplate:certificateTemplateId:)``
+  /// - ``createCertificateTemplatePollingUntilDone(request:)``
   public func createCertificateTemplatePollingUntilDone(
     request: CreateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateTemplate {
@@ -1011,9 +1011,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``deleteCertificateTemplate(request:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(name:)``
   /// - ``deleteCertificateTemplatePollingUntilDone(request:)``
   /// - ``deleteCertificateTemplatePollingUntilDone(request:options:)``
-  /// - ``deleteCertificateTemplatePollingUntilDone(name:)``
   public func deleteCertificateTemplate(
     request: DeleteCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1029,10 +1029,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``deleteCertificateTemplatePollingUntilDone(request:)``
-  /// - ``deleteCertificateTemplatePollingUntilDone(name:)``
   /// - ``deleteCertificateTemplate(request:)``
   /// - ``deleteCertificateTemplate(request:options:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(name:)``
+  /// - ``deleteCertificateTemplatePollingUntilDone(request:)``
   public func deleteCertificateTemplatePollingUntilDone(
     request: DeleteCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1066,8 +1066,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateTemplate(request:)``
   /// - ``getCertificateTemplate(name:)``
+  /// - ``getCertificateTemplate(request:)``
   public func getCertificateTemplate(
     request: GetCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.CertificateTemplate {
@@ -1084,9 +1084,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``listCertificateTemplates(request:)``
+  /// - ``listCertificateTemplatesByItems(parent:)``
   /// - ``listCertificateTemplatesByItems(request:)``
   /// - ``listCertificateTemplatesByItems(request:options:)``
-  /// - ``listCertificateTemplatesByItems(parent:)``
   public func listCertificateTemplates(
     request: ListCertificateTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPrivateCAV1.ListCertificateTemplatesResponse {
@@ -1103,9 +1103,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``updateCertificateTemplate(request:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(certificateTemplate:updateMask:)``
   /// - ``updateCertificateTemplatePollingUntilDone(request:)``
   /// - ``updateCertificateTemplatePollingUntilDone(request:options:)``
-  /// - ``updateCertificateTemplatePollingUntilDone(certificateTemplate:updateMask:)``
   public func updateCertificateTemplate(
     request: UpdateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1121,10 +1121,10 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificateTemplatePollingUntilDone(request:)``
-  /// - ``updateCertificateTemplatePollingUntilDone(certificateTemplate:updateMask:)``
   /// - ``updateCertificateTemplate(request:)``
   /// - ``updateCertificateTemplate(request:options:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(certificateTemplate:updateMask:)``
+  /// - ``updateCertificateTemplatePollingUntilDone(request:)``
   public func updateCertificateTemplatePollingUntilDone(
     request: UpdateCertificateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateTemplate {
@@ -1254,9 +1254,9 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1282,8 +1282,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1298,8 +1298,8 @@ public final class CertificateAuthorityServiceClient: Clients.CertificateAuthori
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

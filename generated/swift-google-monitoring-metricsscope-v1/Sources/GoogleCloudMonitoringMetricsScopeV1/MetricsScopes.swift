@@ -52,8 +52,8 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getMetricsScope(request:)``
   /// - ``getMetricsScope(name:)``
+  /// - ``getMetricsScope(request:)``
   public func getMetricsScope(
     request: GetMetricsScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope {
@@ -84,9 +84,9 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createMonitoredProject(request:)``
+  /// - ``createMonitoredProjectPollingUntilDone(parent:monitoredProject:)``
   /// - ``createMonitoredProjectPollingUntilDone(request:)``
   /// - ``createMonitoredProjectPollingUntilDone(request:options:)``
-  /// - ``createMonitoredProjectPollingUntilDone(parent:monitoredProject:)``
   public func createMonitoredProject(
     request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createMonitoredProjectPollingUntilDone(request:)``
-  /// - ``createMonitoredProjectPollingUntilDone(parent:monitoredProject:)``
   /// - ``createMonitoredProject(request:)``
   /// - ``createMonitoredProject(request:options:)``
+  /// - ``createMonitoredProjectPollingUntilDone(parent:monitoredProject:)``
+  /// - ``createMonitoredProjectPollingUntilDone(request:)``
   public func createMonitoredProjectPollingUntilDone(
     request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> MonitoredProject {
@@ -136,9 +136,9 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteMonitoredProject(request:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(name:)``
   /// - ``deleteMonitoredProjectPollingUntilDone(request:)``
   /// - ``deleteMonitoredProjectPollingUntilDone(request:options:)``
-  /// - ``deleteMonitoredProjectPollingUntilDone(name:)``
   public func deleteMonitoredProject(
     request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,10 +151,10 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteMonitoredProjectPollingUntilDone(request:)``
-  /// - ``deleteMonitoredProjectPollingUntilDone(name:)``
   /// - ``deleteMonitoredProject(request:)``
   /// - ``deleteMonitoredProject(request:options:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(name:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(request:)``
   public func deleteMonitoredProjectPollingUntilDone(
     request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws {

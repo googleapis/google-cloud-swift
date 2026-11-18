@@ -53,9 +53,9 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createJob(request:)``
+  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
   /// - ``createJobPollingUntilDone(request:)``
   /// - ``createJobPollingUntilDone(request:options:)``
-  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -68,10 +68,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createJobPollingUntilDone(request:)``
-  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
   /// - ``createJob(request:)``
   /// - ``createJob(request:options:)``
+  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
+  /// - ``createJobPollingUntilDone(request:)``
   public func createJobPollingUntilDone(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -102,8 +102,8 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Job {
@@ -117,9 +117,9 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListJobsResponse {
@@ -133,9 +133,9 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateJob(request:)``
+  /// - ``updateJobPollingUntilDone(job:)``
   /// - ``updateJobPollingUntilDone(request:)``
   /// - ``updateJobPollingUntilDone(request:options:)``
-  /// - ``updateJobPollingUntilDone(job:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,10 +148,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateJobPollingUntilDone(request:)``
-  /// - ``updateJobPollingUntilDone(job:)``
   /// - ``updateJob(request:)``
   /// - ``updateJob(request:options:)``
+  /// - ``updateJobPollingUntilDone(job:)``
+  /// - ``updateJobPollingUntilDone(request:)``
   public func updateJobPollingUntilDone(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -183,9 +183,9 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteJob(request:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
   /// - ``deleteJobPollingUntilDone(request:)``
   /// - ``deleteJobPollingUntilDone(request:options:)``
-  /// - ``deleteJobPollingUntilDone(name:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -198,10 +198,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteJobPollingUntilDone(request:)``
-  /// - ``deleteJobPollingUntilDone(name:)``
   /// - ``deleteJob(request:)``
   /// - ``deleteJob(request:options:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
+  /// - ``deleteJobPollingUntilDone(request:)``
   public func deleteJobPollingUntilDone(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -233,9 +233,9 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``runJob(request:)``
+  /// - ``runJobPollingUntilDone(name:)``
   /// - ``runJobPollingUntilDone(request:)``
   /// - ``runJobPollingUntilDone(request:options:)``
-  /// - ``runJobPollingUntilDone(name:)``
   public func runJob(
     request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -248,10 +248,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``runJobPollingUntilDone(request:)``
-  /// - ``runJobPollingUntilDone(name:)``
   /// - ``runJob(request:)``
   /// - ``runJob(request:options:)``
+  /// - ``runJobPollingUntilDone(name:)``
+  /// - ``runJobPollingUntilDone(request:)``
   public func runJobPollingUntilDone(
     request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -328,9 +328,9 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -356,8 +356,8 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

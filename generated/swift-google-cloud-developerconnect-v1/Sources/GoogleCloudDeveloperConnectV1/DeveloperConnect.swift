@@ -54,9 +54,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
   /// - ``listConnectionsByItems(request:)``
   /// - ``listConnectionsByItems(request:options:)``
-  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListConnectionsResponse {
@@ -69,8 +69,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getConnection(request:)``
   /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.Connection {
@@ -84,9 +84,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``createConnection(request:)``
+  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   /// - ``createConnectionPollingUntilDone(request:)``
   /// - ``createConnectionPollingUntilDone(request:options:)``
-  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createConnectionPollingUntilDone(request:)``
-  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   /// - ``createConnection(request:)``
   /// - ``createConnection(request:options:)``
+  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
+  /// - ``createConnectionPollingUntilDone(request:)``
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connection {
@@ -134,9 +134,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``updateConnection(request:)``
+  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   /// - ``updateConnectionPollingUntilDone(request:)``
   /// - ``updateConnectionPollingUntilDone(request:options:)``
-  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,10 +149,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectionPollingUntilDone(request:)``
-  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   /// - ``updateConnection(request:)``
   /// - ``updateConnection(request:options:)``
+  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
+  /// - ``updateConnectionPollingUntilDone(request:)``
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connection {
@@ -184,9 +184,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteConnection(request:)``
+  /// - ``deleteConnectionPollingUntilDone(name:)``
   /// - ``deleteConnectionPollingUntilDone(request:)``
   /// - ``deleteConnectionPollingUntilDone(request:options:)``
-  /// - ``deleteConnectionPollingUntilDone(name:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,10 +199,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectionPollingUntilDone(request:)``
-  /// - ``deleteConnectionPollingUntilDone(name:)``
   /// - ``deleteConnection(request:)``
   /// - ``deleteConnection(request:options:)``
+  /// - ``deleteConnectionPollingUntilDone(name:)``
+  /// - ``deleteConnectionPollingUntilDone(request:)``
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -239,9 +239,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``createGitRepositoryLink(request:)``
+  /// - ``createGitRepositoryLinkPollingUntilDone(parent:gitRepositoryLink:gitRepositoryLinkId:)``
   /// - ``createGitRepositoryLinkPollingUntilDone(request:)``
   /// - ``createGitRepositoryLinkPollingUntilDone(request:options:)``
-  /// - ``createGitRepositoryLinkPollingUntilDone(parent:gitRepositoryLink:gitRepositoryLinkId:)``
   public func createGitRepositoryLink(
     request: CreateGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -259,10 +259,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createGitRepositoryLinkPollingUntilDone(request:)``
-  /// - ``createGitRepositoryLinkPollingUntilDone(parent:gitRepositoryLink:gitRepositoryLinkId:)``
   /// - ``createGitRepositoryLink(request:)``
   /// - ``createGitRepositoryLink(request:options:)``
+  /// - ``createGitRepositoryLinkPollingUntilDone(parent:gitRepositoryLink:gitRepositoryLinkId:)``
+  /// - ``createGitRepositoryLinkPollingUntilDone(request:)``
   public func createGitRepositoryLinkPollingUntilDone(
     request: CreateGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GitRepositoryLink {
@@ -295,9 +295,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteGitRepositoryLink(request:)``
+  /// - ``deleteGitRepositoryLinkPollingUntilDone(name:)``
   /// - ``deleteGitRepositoryLinkPollingUntilDone(request:)``
   /// - ``deleteGitRepositoryLinkPollingUntilDone(request:options:)``
-  /// - ``deleteGitRepositoryLinkPollingUntilDone(name:)``
   public func deleteGitRepositoryLink(
     request: DeleteGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -310,10 +310,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteGitRepositoryLinkPollingUntilDone(request:)``
-  /// - ``deleteGitRepositoryLinkPollingUntilDone(name:)``
   /// - ``deleteGitRepositoryLink(request:)``
   /// - ``deleteGitRepositoryLink(request:options:)``
+  /// - ``deleteGitRepositoryLinkPollingUntilDone(name:)``
+  /// - ``deleteGitRepositoryLinkPollingUntilDone(request:)``
   public func deleteGitRepositoryLinkPollingUntilDone(
     request: DeleteGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -345,9 +345,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``listGitRepositoryLinks(request:)``
+  /// - ``listGitRepositoryLinksByItems(parent:)``
   /// - ``listGitRepositoryLinksByItems(request:)``
   /// - ``listGitRepositoryLinksByItems(request:options:)``
-  /// - ``listGitRepositoryLinksByItems(parent:)``
   public func listGitRepositoryLinks(
     request: ListGitRepositoryLinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListGitRepositoryLinksResponse {
@@ -360,8 +360,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getGitRepositoryLink(request:)``
   /// - ``getGitRepositoryLink(name:)``
+  /// - ``getGitRepositoryLink(request:)``
   public func getGitRepositoryLink(
     request: GetGitRepositoryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.GitRepositoryLink {
@@ -374,8 +374,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchReadWriteToken(request:)``
   /// - ``fetchReadWriteToken(gitRepositoryLink:)``
+  /// - ``fetchReadWriteToken(request:)``
   public func fetchReadWriteToken(
     request: FetchReadWriteTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadWriteTokenResponse {
@@ -388,8 +388,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchReadToken(request:)``
   /// - ``fetchReadToken(gitRepositoryLink:)``
+  /// - ``fetchReadToken(request:)``
   public func fetchReadToken(
     request: FetchReadTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchReadTokenResponse {
@@ -403,8 +403,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``openGitRepositoryLinkPullRequest(request:)``
   /// - ``openGitRepositoryLinkPullRequest(name:pullRequest:)``
+  /// - ``openGitRepositoryLinkPullRequest(request:)``
   public func openGitRepositoryLinkPullRequest(
     request: OpenGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
@@ -419,9 +419,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``fetchLinkableGitRepositories(request:)``
+  /// - ``fetchLinkableGitRepositoriesByItems(connection:)``
   /// - ``fetchLinkableGitRepositoriesByItems(request:)``
   /// - ``fetchLinkableGitRepositoriesByItems(request:options:)``
-  /// - ``fetchLinkableGitRepositoriesByItems(connection:)``
   public func fetchLinkableGitRepositories(
     request: FetchLinkableGitRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchLinkableGitRepositoriesResponse {
@@ -437,8 +437,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchGitHubInstallations(request:)``
   /// - ``fetchGitHubInstallations(connection:)``
+  /// - ``fetchGitHubInstallations(request:)``
   public func fetchGitHubInstallations(
     request: FetchGitHubInstallationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitHubInstallationsResponse {
@@ -451,8 +451,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchGitRefs(request:)``
   /// - ``fetchGitRefs(gitRepositoryLink:refType:)``
+  /// - ``fetchGitRefs(request:)``
   public func fetchGitRefs(
     request: FetchGitRefsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRefsResponse {
@@ -465,8 +465,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``diffGitRepositoryLinkCommit(request:)``
   /// - ``diffGitRepositoryLinkCommit(name:baseSha:headSha:)``
+  /// - ``diffGitRepositoryLinkCommit(request:)``
   public func diffGitRepositoryLinkCommit(
     request: DiffGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.DiffGitRepositoryLinkCommitResponse {
@@ -479,8 +479,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchGitRepositoryLinkCommit(request:)``
   /// - ``fetchGitRepositoryLinkCommit(name:commitSha:)``
+  /// - ``fetchGitRepositoryLinkCommit(request:)``
   public func fetchGitRepositoryLinkCommit(
     request: FetchGitRepositoryLinkCommitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitResponse {
@@ -494,9 +494,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``fetchGitRepositoryLinkCommitList(request:)``
+  /// - ``fetchGitRepositoryLinkCommitListByItems(name:ref:)``
   /// - ``fetchGitRepositoryLinkCommitListByItems(request:)``
   /// - ``fetchGitRepositoryLinkCommitListByItems(request:options:)``
-  /// - ``fetchGitRepositoryLinkCommitListByItems(name:ref:)``
   public func fetchGitRepositoryLinkCommitList(
     request: FetchGitRepositoryLinkCommitListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkCommitListResponse {
@@ -509,8 +509,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchGitRepositoryLinkFileBlame(request:)``
   /// - ``fetchGitRepositoryLinkFileBlame(name:ref:path:)``
+  /// - ``fetchGitRepositoryLinkFileBlame(request:)``
   public func fetchGitRepositoryLinkFileBlame(
     request: FetchGitRepositoryLinkFileBlameRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkFileBlameResponse {
@@ -523,8 +523,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchGitRepositoryLinkPullRequest(request:)``
   /// - ``fetchGitRepositoryLinkPullRequest(name:pullRequestId:)``
+  /// - ``fetchGitRepositoryLinkPullRequest(request:)``
   public func fetchGitRepositoryLinkPullRequest(
     request: FetchGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
@@ -537,8 +537,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``addGitRepositoryLinkPullRequestComment(request:)``
   /// - ``addGitRepositoryLinkPullRequestComment(name:pullRequestId:comment:)``
+  /// - ``addGitRepositoryLinkPullRequestComment(request:)``
   public func addGitRepositoryLinkPullRequestComment(
     request: AddGitRepositoryLinkPullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestComment {
@@ -551,8 +551,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``addGitRepositoryLinkPullRequestReviewComment(request:)``
   /// - ``addGitRepositoryLinkPullRequestReviewComment(name:pullRequestId:comment:)``
+  /// - ``addGitRepositoryLinkPullRequestReviewComment(request:)``
   public func addGitRepositoryLinkPullRequestReviewComment(
     request: AddGitRepositoryLinkPullRequestReviewCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.PullRequestReviewComment {
@@ -567,8 +567,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``modifyGitRepositoryLinkPullRequest(request:)``
   /// - ``modifyGitRepositoryLinkPullRequest(name:pullRequestId:)``
+  /// - ``modifyGitRepositoryLinkPullRequest(request:)``
   public func modifyGitRepositoryLinkPullRequest(
     request: ModifyGitRepositoryLinkPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.PullRequest {
@@ -582,9 +582,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``fetchGitRepositoryLinkPullRequestList(request:)``
+  /// - ``fetchGitRepositoryLinkPullRequestListByItems(name:)``
   /// - ``fetchGitRepositoryLinkPullRequestListByItems(request:)``
   /// - ``fetchGitRepositoryLinkPullRequestListByItems(request:options:)``
-  /// - ``fetchGitRepositoryLinkPullRequestListByItems(name:)``
   public func fetchGitRepositoryLinkPullRequestList(
     request: FetchGitRepositoryLinkPullRequestListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchGitRepositoryLinkPullRequestListResponse {
@@ -598,9 +598,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``listAccountConnectors(request:)``
+  /// - ``listAccountConnectorsByItems(parent:)``
   /// - ``listAccountConnectorsByItems(request:)``
   /// - ``listAccountConnectorsByItems(request:options:)``
-  /// - ``listAccountConnectorsByItems(parent:)``
   public func listAccountConnectors(
     request: ListAccountConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListAccountConnectorsResponse {
@@ -613,8 +613,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getAccountConnector(request:)``
   /// - ``getAccountConnector(name:)``
+  /// - ``getAccountConnector(request:)``
   public func getAccountConnector(
     request: GetAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.AccountConnector {
@@ -628,9 +628,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``createAccountConnector(request:)``
+  /// - ``createAccountConnectorPollingUntilDone(parent:accountConnector:accountConnectorId:)``
   /// - ``createAccountConnectorPollingUntilDone(request:)``
   /// - ``createAccountConnectorPollingUntilDone(request:options:)``
-  /// - ``createAccountConnectorPollingUntilDone(parent:accountConnector:accountConnectorId:)``
   public func createAccountConnector(
     request: CreateAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -643,10 +643,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createAccountConnectorPollingUntilDone(request:)``
-  /// - ``createAccountConnectorPollingUntilDone(parent:accountConnector:accountConnectorId:)``
   /// - ``createAccountConnector(request:)``
   /// - ``createAccountConnector(request:options:)``
+  /// - ``createAccountConnectorPollingUntilDone(parent:accountConnector:accountConnectorId:)``
+  /// - ``createAccountConnectorPollingUntilDone(request:)``
   public func createAccountConnectorPollingUntilDone(
     request: CreateAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccountConnector {
@@ -679,9 +679,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``updateAccountConnector(request:)``
+  /// - ``updateAccountConnectorPollingUntilDone(accountConnector:updateMask:)``
   /// - ``updateAccountConnectorPollingUntilDone(request:)``
   /// - ``updateAccountConnectorPollingUntilDone(request:options:)``
-  /// - ``updateAccountConnectorPollingUntilDone(accountConnector:updateMask:)``
   public func updateAccountConnector(
     request: UpdateAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -694,10 +694,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateAccountConnectorPollingUntilDone(request:)``
-  /// - ``updateAccountConnectorPollingUntilDone(accountConnector:updateMask:)``
   /// - ``updateAccountConnector(request:)``
   /// - ``updateAccountConnector(request:options:)``
+  /// - ``updateAccountConnectorPollingUntilDone(accountConnector:updateMask:)``
+  /// - ``updateAccountConnectorPollingUntilDone(request:)``
   public func updateAccountConnectorPollingUntilDone(
     request: UpdateAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccountConnector {
@@ -730,9 +730,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteAccountConnector(request:)``
+  /// - ``deleteAccountConnectorPollingUntilDone(name:)``
   /// - ``deleteAccountConnectorPollingUntilDone(request:)``
   /// - ``deleteAccountConnectorPollingUntilDone(request:options:)``
-  /// - ``deleteAccountConnectorPollingUntilDone(name:)``
   public func deleteAccountConnector(
     request: DeleteAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -745,10 +745,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteAccountConnectorPollingUntilDone(request:)``
-  /// - ``deleteAccountConnectorPollingUntilDone(name:)``
   /// - ``deleteAccountConnector(request:)``
   /// - ``deleteAccountConnector(request:options:)``
+  /// - ``deleteAccountConnectorPollingUntilDone(name:)``
+  /// - ``deleteAccountConnectorPollingUntilDone(request:)``
   public func deleteAccountConnectorPollingUntilDone(
     request: DeleteAccountConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -779,8 +779,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchAccessToken(request:)``
   /// - ``fetchAccessToken(accountConnector:)``
+  /// - ``fetchAccessToken(request:)``
   public func fetchAccessToken(
     request: FetchAccessTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FetchAccessTokenResponse {
@@ -794,9 +794,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``listUsers(request:)``
+  /// - ``listUsersByItems(parent:)``
   /// - ``listUsersByItems(request:)``
   /// - ``listUsersByItems(request:options:)``
-  /// - ``listUsersByItems(parent:)``
   public func listUsers(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListUsersResponse {
@@ -810,9 +810,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteUser(request:)``
+  /// - ``deleteUserPollingUntilDone(name:)``
   /// - ``deleteUserPollingUntilDone(request:)``
   /// - ``deleteUserPollingUntilDone(request:options:)``
-  /// - ``deleteUserPollingUntilDone(name:)``
   public func deleteUser(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -825,10 +825,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteUserPollingUntilDone(request:)``
-  /// - ``deleteUserPollingUntilDone(name:)``
   /// - ``deleteUser(request:)``
   /// - ``deleteUser(request:options:)``
+  /// - ``deleteUserPollingUntilDone(name:)``
+  /// - ``deleteUserPollingUntilDone(request:)``
   public func deleteUserPollingUntilDone(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -859,8 +859,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``fetchSelf(request:)``
   /// - ``fetchSelf(name:)``
+  /// - ``fetchSelf(request:)``
   public func fetchSelf(
     request: FetchSelfRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.User {
@@ -874,9 +874,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteSelf(request:)``
+  /// - ``deleteSelfPollingUntilDone(name:)``
   /// - ``deleteSelfPollingUntilDone(request:)``
   /// - ``deleteSelfPollingUntilDone(request:options:)``
-  /// - ``deleteSelfPollingUntilDone(name:)``
   public func deleteSelf(
     request: DeleteSelfRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -889,10 +889,10 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteSelfPollingUntilDone(request:)``
-  /// - ``deleteSelfPollingUntilDone(name:)``
   /// - ``deleteSelf(request:)``
   /// - ``deleteSelf(request:options:)``
+  /// - ``deleteSelfPollingUntilDone(name:)``
+  /// - ``deleteSelfPollingUntilDone(request:)``
   public func deleteSelfPollingUntilDone(
     request: DeleteSelfRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -923,8 +923,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``startOauth(request:)``
   /// - ``startOauth(accountConnector:)``
+  /// - ``startOauth(request:)``
   public func startOauth(
     request: StartOAuthRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.StartOAuthResponse {
@@ -937,8 +937,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``finishOauth(request:)``
   /// - ``finishOauth(accountConnector:)``
+  /// - ``finishOauth(request:)``
   public func finishOauth(
     request: FinishOAuthRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.FinishOAuthResponse {
@@ -989,9 +989,9 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1017,8 +1017,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1033,8 +1033,8 @@ public final class DeveloperConnectClient: Clients.DeveloperConnectProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

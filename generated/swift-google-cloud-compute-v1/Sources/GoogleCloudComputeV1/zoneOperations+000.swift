@@ -47,8 +47,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``delete(request:)``
     /// - ``delete(project:zone:operation:)``
+    /// - ``delete(request:)``
     public func delete(
       request: ZoneOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -61,8 +61,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:operation:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -77,9 +77,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:)``
     public func list(
       request: ZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.OperationList {
@@ -106,8 +106,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``wait(request:)``
     /// - ``wait(project:zone:operation:)``
+    /// - ``wait(request:)``
     public func wait(
       request: ZoneOperationsClient.WaitRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

@@ -46,8 +46,8 @@ public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(name:)``
+  /// - ``get(request:)``
   public func `get`(
     request: LocationsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Location {
@@ -61,9 +61,9 @@ public final class LocationsClient: Clients.LocationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(name:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(name:)``
   public func list(
     request: LocationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListLocationsResponse {

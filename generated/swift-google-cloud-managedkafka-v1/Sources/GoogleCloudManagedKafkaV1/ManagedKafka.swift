@@ -55,9 +55,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(parent:)``
   /// - ``listClustersByItems(request:)``
   /// - ``listClustersByItems(request:options:)``
-  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListClustersResponse {
@@ -70,8 +70,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Cluster {
@@ -85,9 +85,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -135,9 +135,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateClusterPollingUntilDone(request:options:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -185,9 +185,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteClusterPollingUntilDone(request:)``
   /// - ``deleteClusterPollingUntilDone(request:options:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteClusterPollingUntilDone(request:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -235,9 +235,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTopics(request:)``
+  /// - ``listTopicsByItems(parent:)``
   /// - ``listTopicsByItems(request:)``
   /// - ``listTopicsByItems(request:options:)``
-  /// - ``listTopicsByItems(parent:)``
   public func listTopics(
     request: ListTopicsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListTopicsResponse {
@@ -250,8 +250,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTopic(request:)``
   /// - ``getTopic(name:)``
+  /// - ``getTopic(request:)``
   public func getTopic(
     request: GetTopicRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Topic {
@@ -264,8 +264,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTopic(request:)``
   /// - ``createTopic(parent:topic:topicId:)``
+  /// - ``createTopic(request:)``
   public func createTopic(
     request: CreateTopicRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Topic {
@@ -292,8 +292,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTopic(request:)``
   /// - ``deleteTopic(name:)``
+  /// - ``deleteTopic(request:)``
   public func deleteTopic(
     request: DeleteTopicRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -307,9 +307,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConsumerGroups(request:)``
+  /// - ``listConsumerGroupsByItems(parent:)``
   /// - ``listConsumerGroupsByItems(request:)``
   /// - ``listConsumerGroupsByItems(request:options:)``
-  /// - ``listConsumerGroupsByItems(parent:)``
   public func listConsumerGroups(
     request: ListConsumerGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListConsumerGroupsResponse {
@@ -322,8 +322,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConsumerGroup(request:)``
   /// - ``getConsumerGroup(name:)``
+  /// - ``getConsumerGroup(request:)``
   public func getConsumerGroup(
     request: GetConsumerGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup {
@@ -336,8 +336,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConsumerGroup(request:)``
   /// - ``updateConsumerGroup(consumerGroup:updateMask:)``
+  /// - ``updateConsumerGroup(request:)``
   public func updateConsumerGroup(
     request: UpdateConsumerGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ConsumerGroup {
@@ -350,8 +350,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteConsumerGroup(request:)``
   /// - ``deleteConsumerGroup(name:)``
+  /// - ``deleteConsumerGroup(request:)``
   public func deleteConsumerGroup(
     request: DeleteConsumerGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -365,9 +365,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAcls(request:)``
+  /// - ``listAclsByItems(parent:)``
   /// - ``listAclsByItems(request:)``
   /// - ``listAclsByItems(request:options:)``
-  /// - ``listAclsByItems(parent:)``
   public func listAcls(
     request: ListAclsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListAclsResponse {
@@ -380,8 +380,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAcl(request:)``
   /// - ``getAcl(name:)``
+  /// - ``getAcl(request:)``
   public func getAcl(
     request: GetAclRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -394,8 +394,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAcl(request:)``
   /// - ``createAcl(parent:acl:aclId:)``
+  /// - ``createAcl(request:)``
   public func createAcl(
     request: CreateAclRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -408,8 +408,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAcl(request:)``
   /// - ``updateAcl(acl:updateMask:)``
+  /// - ``updateAcl(request:)``
   public func updateAcl(
     request: UpdateAclRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Acl {
@@ -422,8 +422,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAcl(request:)``
   /// - ``deleteAcl(name:)``
+  /// - ``deleteAcl(request:)``
   public func deleteAcl(
     request: DeleteAclRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -437,8 +437,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``addAclEntry(request:)``
   /// - ``addAclEntry(acl:aclEntry:)``
+  /// - ``addAclEntry(request:)``
   public func addAclEntry(
     request: AddAclEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.AddAclEntryResponse {
@@ -453,8 +453,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``removeAclEntry(request:)``
   /// - ``removeAclEntry(acl:aclEntry:)``
+  /// - ``removeAclEntry(request:)``
   public func removeAclEntry(
     request: RemoveAclEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.RemoveAclEntryResponse {
@@ -498,9 +498,9 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -526,8 +526,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -542,8 +542,8 @@ public final class ManagedKafkaClient: Clients.ManagedKafkaProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -59,8 +59,8 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getFunction(request:)``
   /// - ``getFunction(name:)``
+  /// - ``getFunction(request:)``
   public func getFunction(
     request: GetFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.Function {
@@ -74,9 +74,9 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listFunctions(request:)``
+  /// - ``listFunctionsByItems(parent:)``
   /// - ``listFunctionsByItems(request:)``
   /// - ``listFunctionsByItems(request:options:)``
-  /// - ``listFunctionsByItems(parent:)``
   public func listFunctions(
     request: ListFunctionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.ListFunctionsResponse {
@@ -92,9 +92,9 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createFunction(request:)``
+  /// - ``createFunctionPollingUntilDone(parent:function:functionId:)``
   /// - ``createFunctionPollingUntilDone(request:)``
   /// - ``createFunctionPollingUntilDone(request:options:)``
-  /// - ``createFunctionPollingUntilDone(parent:function:functionId:)``
   public func createFunction(
     request: CreateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,10 +109,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createFunctionPollingUntilDone(request:)``
-  /// - ``createFunctionPollingUntilDone(parent:function:functionId:)``
   /// - ``createFunction(request:)``
   /// - ``createFunction(request:options:)``
+  /// - ``createFunctionPollingUntilDone(parent:function:functionId:)``
+  /// - ``createFunctionPollingUntilDone(request:)``
   public func createFunctionPollingUntilDone(
     request: CreateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Function {
@@ -144,9 +144,9 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateFunction(request:)``
+  /// - ``updateFunctionPollingUntilDone(function:updateMask:)``
   /// - ``updateFunctionPollingUntilDone(request:)``
   /// - ``updateFunctionPollingUntilDone(request:options:)``
-  /// - ``updateFunctionPollingUntilDone(function:updateMask:)``
   public func updateFunction(
     request: UpdateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -159,10 +159,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateFunctionPollingUntilDone(request:)``
-  /// - ``updateFunctionPollingUntilDone(function:updateMask:)``
   /// - ``updateFunction(request:)``
   /// - ``updateFunction(request:options:)``
+  /// - ``updateFunctionPollingUntilDone(function:updateMask:)``
+  /// - ``updateFunctionPollingUntilDone(request:)``
   public func updateFunctionPollingUntilDone(
     request: UpdateFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Function {
@@ -196,9 +196,9 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteFunction(request:)``
+  /// - ``deleteFunctionPollingUntilDone(name:)``
   /// - ``deleteFunctionPollingUntilDone(request:)``
   /// - ``deleteFunctionPollingUntilDone(request:options:)``
-  /// - ``deleteFunctionPollingUntilDone(name:)``
   public func deleteFunction(
     request: DeleteFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -213,10 +213,10 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteFunctionPollingUntilDone(request:)``
-  /// - ``deleteFunctionPollingUntilDone(name:)``
   /// - ``deleteFunction(request:)``
   /// - ``deleteFunction(request:options:)``
+  /// - ``deleteFunctionPollingUntilDone(name:)``
+  /// - ``deleteFunctionPollingUntilDone(request:)``
   public func deleteFunctionPollingUntilDone(
     request: DeleteFunctionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -299,8 +299,8 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``listRuntimes(request:)``
   /// - ``listRuntimes(parent:)``
+  /// - ``listRuntimes(request:)``
   public func listRuntimes(
     request: ListRuntimesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFunctionsV2.ListRuntimesResponse {
@@ -381,9 +381,9 @@ public final class FunctionServiceClient: Clients.FunctionServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

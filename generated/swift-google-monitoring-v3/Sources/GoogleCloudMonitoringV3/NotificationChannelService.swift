@@ -53,9 +53,9 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// ## See Also
   ///
   /// - ``listNotificationChannelDescriptors(request:)``
+  /// - ``listNotificationChannelDescriptorsByItems(name:)``
   /// - ``listNotificationChannelDescriptorsByItems(request:)``
   /// - ``listNotificationChannelDescriptorsByItems(request:options:)``
-  /// - ``listNotificationChannelDescriptorsByItems(name:)``
   public func listNotificationChannelDescriptors(
     request: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse {
@@ -69,8 +69,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``getNotificationChannelDescriptor(request:)``
   /// - ``getNotificationChannelDescriptor(name:)``
+  /// - ``getNotificationChannelDescriptor(request:)``
   public func getNotificationChannelDescriptor(
     request: GetNotificationChannelDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannelDescriptor {
@@ -86,9 +86,9 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// ## See Also
   ///
   /// - ``listNotificationChannels(request:)``
+  /// - ``listNotificationChannelsByItems(name:)``
   /// - ``listNotificationChannelsByItems(request:)``
   /// - ``listNotificationChannelsByItems(request:options:)``
-  /// - ``listNotificationChannelsByItems(name:)``
   public func listNotificationChannels(
     request: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse {
@@ -105,8 +105,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``getNotificationChannel(request:)``
   /// - ``getNotificationChannel(name:)``
+  /// - ``getNotificationChannel(request:)``
   public func getNotificationChannel(
     request: GetNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -125,8 +125,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``createNotificationChannel(request:)``
   /// - ``createNotificationChannel(name:notificationChannel:)``
+  /// - ``createNotificationChannel(request:)``
   public func createNotificationChannel(
     request: CreateNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -164,8 +164,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``deleteNotificationChannel(request:)``
   /// - ``deleteNotificationChannel(name:force:)``
+  /// - ``deleteNotificationChannel(request:)``
   public func deleteNotificationChannel(
     request: DeleteNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -179,8 +179,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``sendNotificationChannelVerificationCode(request:)``
   /// - ``sendNotificationChannelVerificationCode(name:)``
+  /// - ``sendNotificationChannelVerificationCode(request:)``
   public func sendNotificationChannelVerificationCode(
     request: SendNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -213,8 +213,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``getNotificationChannelVerificationCode(request:)``
   /// - ``getNotificationChannelVerificationCode(name:)``
+  /// - ``getNotificationChannelVerificationCode(request:)``
   public func getNotificationChannelVerificationCode(
     request: GetNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.GetNotificationChannelVerificationCodeResponse {
@@ -229,8 +229,8 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   ///
   /// ## See Also
   ///
-  /// - ``verifyNotificationChannel(request:)``
   /// - ``verifyNotificationChannel(name:code:)``
+  /// - ``verifyNotificationChannel(request:)``
   public func verifyNotificationChannel(
     request: VerifyNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {

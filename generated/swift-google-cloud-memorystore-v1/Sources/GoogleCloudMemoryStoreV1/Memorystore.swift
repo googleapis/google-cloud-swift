@@ -62,9 +62,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAclPolicies(request:)``
+  /// - ``listAclPoliciesByItems(parent:)``
   /// - ``listAclPoliciesByItems(request:)``
   /// - ``listAclPoliciesByItems(request:options:)``
-  /// - ``listAclPoliciesByItems(parent:)``
   public func listAclPolicies(
     request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse {
@@ -78,9 +78,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
@@ -93,8 +93,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAclPolicy(request:)``
   /// - ``getAclPolicy(name:)``
+  /// - ``getAclPolicy(request:)``
   public func getAclPolicy(
     request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
@@ -107,8 +107,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.Instance {
@@ -123,8 +123,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAclPolicy(request:)``
   /// - ``createAclPolicy(parent:aclPolicy:aclPolicyId:)``
+  /// - ``createAclPolicy(request:)``
   public func createAclPolicy(
     request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
@@ -138,9 +138,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -197,9 +197,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateAclPolicy(request:)``
+  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
   /// - ``updateAclPolicyPollingUntilDone(request:)``
   /// - ``updateAclPolicyPollingUntilDone(request:options:)``
-  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
   public func updateAclPolicy(
     request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -221,10 +221,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAclPolicyPollingUntilDone(request:)``
-  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
   /// - ``updateAclPolicy(request:)``
   /// - ``updateAclPolicy(request:options:)``
+  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
+  /// - ``updateAclPolicyPollingUntilDone(request:)``
   public func updateAclPolicyPollingUntilDone(
     request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AclPolicy {
@@ -256,9 +256,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -271,10 +271,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -308,9 +308,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteAclPolicy(request:)``
+  /// - ``deleteAclPolicyPollingUntilDone(name:)``
   /// - ``deleteAclPolicyPollingUntilDone(request:)``
   /// - ``deleteAclPolicyPollingUntilDone(request:options:)``
-  /// - ``deleteAclPolicyPollingUntilDone(name:)``
   public func deleteAclPolicy(
     request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -325,10 +325,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAclPolicyPollingUntilDone(request:)``
-  /// - ``deleteAclPolicyPollingUntilDone(name:)``
   /// - ``deleteAclPolicy(request:)``
   /// - ``deleteAclPolicy(request:options:)``
+  /// - ``deleteAclPolicyPollingUntilDone(name:)``
+  /// - ``deleteAclPolicyPollingUntilDone(request:)``
   public func deleteAclPolicyPollingUntilDone(
     request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -359,8 +359,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAclPolicyRevision(request:)``
   /// - ``getAclPolicyRevision(name:)``
+  /// - ``getAclPolicyRevision(request:)``
   public func getAclPolicyRevision(
     request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
@@ -374,9 +374,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAclPolicyRevisions(request:)``
+  /// - ``listAclPolicyRevisionsByItems(parent:)``
   /// - ``listAclPolicyRevisionsByItems(request:)``
   /// - ``listAclPolicyRevisionsByItems(request:options:)``
-  /// - ``listAclPolicyRevisionsByItems(parent:)``
   public func listAclPolicyRevisions(
     request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse {
@@ -390,9 +390,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -405,10 +405,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -439,8 +439,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateAuthority(request:)``
   /// - ``getCertificateAuthority(name:)``
+  /// - ``getCertificateAuthority(request:)``
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
@@ -454,8 +454,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSharedRegionalCertificateAuthority(request:)``
   /// - ``getSharedRegionalCertificateAuthority(name:)``
+  /// - ``getSharedRegionalCertificateAuthority(request:)``
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
@@ -469,9 +469,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   /// - ``rescheduleMaintenancePollingUntilDone(request:options:)``
-  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   public func rescheduleMaintenance(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -484,10 +484,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
-  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   /// - ``rescheduleMaintenance(request:)``
   /// - ``rescheduleMaintenance(request:options:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -523,9 +523,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBackupCollections(request:)``
+  /// - ``listBackupCollectionsByItems(parent:)``
   /// - ``listBackupCollectionsByItems(request:)``
   /// - ``listBackupCollectionsByItems(request:options:)``
-  /// - ``listBackupCollectionsByItems(parent:)``
   public func listBackupCollections(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
@@ -538,8 +538,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBackupCollection(request:)``
   /// - ``getBackupCollection(name:)``
+  /// - ``getBackupCollection(request:)``
   public func getBackupCollection(
     request: GetBackupCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
@@ -553,9 +553,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
   /// - ``listBackupsByItems(request:)``
   /// - ``listBackupsByItems(request:options:)``
-  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
@@ -568,8 +568,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBackup(request:)``
   /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.Backup {
@@ -583,9 +583,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackupPollingUntilDone(request:)``
   /// - ``deleteBackupPollingUntilDone(request:options:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -598,10 +598,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackupPollingUntilDone(request:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackup(request:)``
   /// - ``deleteBackup(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -647,9 +647,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportBackupPollingUntilDone(request:)``
   /// - ``exportBackup(request:)``
   /// - ``exportBackup(request:options:)``
+  /// - ``exportBackupPollingUntilDone(request:)``
   public func exportBackupPollingUntilDone(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -692,9 +692,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``backupInstance(request:)``
+  /// - ``backupInstancePollingUntilDone(name:)``
   /// - ``backupInstancePollingUntilDone(request:)``
   /// - ``backupInstancePollingUntilDone(request:options:)``
-  /// - ``backupInstancePollingUntilDone(name:)``
   public func backupInstance(
     request: BackupInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -718,10 +718,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``backupInstancePollingUntilDone(request:)``
-  /// - ``backupInstancePollingUntilDone(name:)``
   /// - ``backupInstance(request:)``
   /// - ``backupInstance(request:options:)``
+  /// - ``backupInstancePollingUntilDone(name:)``
+  /// - ``backupInstancePollingUntilDone(request:)``
   public func backupInstancePollingUntilDone(
     request: BackupInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -781,9 +781,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startMigrationPollingUntilDone(request:)``
   /// - ``startMigration(request:)``
   /// - ``startMigration(request:options:)``
+  /// - ``startMigrationPollingUntilDone(request:)``
   public func startMigrationPollingUntilDone(
     request: StartMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -820,9 +820,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``finishMigration(request:)``
+  /// - ``finishMigrationPollingUntilDone(name:force:)``
   /// - ``finishMigrationPollingUntilDone(request:)``
   /// - ``finishMigrationPollingUntilDone(request:options:)``
-  /// - ``finishMigrationPollingUntilDone(name:force:)``
   public func finishMigration(
     request: FinishMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -840,10 +840,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``finishMigrationPollingUntilDone(request:)``
-  /// - ``finishMigrationPollingUntilDone(name:force:)``
   /// - ``finishMigration(request:)``
   /// - ``finishMigration(request:options:)``
+  /// - ``finishMigrationPollingUntilDone(name:force:)``
+  /// - ``finishMigrationPollingUntilDone(request:)``
   public func finishMigrationPollingUntilDone(
     request: FinishMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -875,9 +875,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTokenAuthUsers(request:)``
+  /// - ``listTokenAuthUsersByItems(parent:)``
   /// - ``listTokenAuthUsersByItems(request:)``
   /// - ``listTokenAuthUsersByItems(request:options:)``
-  /// - ``listTokenAuthUsersByItems(parent:)``
   public func listTokenAuthUsers(
     request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
@@ -890,8 +890,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTokenAuthUser(request:)``
   /// - ``getTokenAuthUser(name:)``
+  /// - ``getTokenAuthUser(request:)``
   public func getTokenAuthUser(
     request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
@@ -905,9 +905,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAuthTokens(request:)``
+  /// - ``listAuthTokensByItems(parent:)``
   /// - ``listAuthTokensByItems(request:)``
   /// - ``listAuthTokensByItems(request:options:)``
-  /// - ``listAuthTokensByItems(parent:)``
   public func listAuthTokens(
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
@@ -920,8 +920,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAuthToken(request:)``
   /// - ``getAuthToken(name:)``
+  /// - ``getAuthToken(request:)``
   public func getAuthToken(
     request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
@@ -935,9 +935,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``addTokenAuthUser(request:)``
+  /// - ``addTokenAuthUserPollingUntilDone(instance:tokenAuthUser:)``
   /// - ``addTokenAuthUserPollingUntilDone(request:)``
   /// - ``addTokenAuthUserPollingUntilDone(request:options:)``
-  /// - ``addTokenAuthUserPollingUntilDone(instance:tokenAuthUser:)``
   public func addTokenAuthUser(
     request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -950,10 +950,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``addTokenAuthUserPollingUntilDone(request:)``
-  /// - ``addTokenAuthUserPollingUntilDone(instance:tokenAuthUser:)``
   /// - ``addTokenAuthUser(request:)``
   /// - ``addTokenAuthUser(request:options:)``
+  /// - ``addTokenAuthUserPollingUntilDone(instance:tokenAuthUser:)``
+  /// - ``addTokenAuthUserPollingUntilDone(request:)``
   public func addTokenAuthUserPollingUntilDone(
     request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -985,9 +985,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTokenAuthUser(request:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
   /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
   /// - ``deleteTokenAuthUserPollingUntilDone(request:options:)``
-  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
   public func deleteTokenAuthUser(
     request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1000,10 +1000,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
-  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
   /// - ``deleteTokenAuthUser(request:)``
   /// - ``deleteTokenAuthUser(request:options:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
   public func deleteTokenAuthUserPollingUntilDone(
     request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1050,10 +1050,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``addAuthTokenPollingUntilDone(request:)``
-  /// - ``addAuthTokenPollingUntilDone(tokenAuthUser:authToken:)``
   /// - ``addAuthToken(request:)``
   /// - ``addAuthToken(request:options:)``
+  /// - ``addAuthTokenPollingUntilDone(request:)``
+  /// - ``addAuthTokenPollingUntilDone(tokenAuthUser:authToken:)``
   public func addAuthTokenPollingUntilDone(
     request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> TokenAuthUser {
@@ -1086,9 +1086,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteAuthToken(request:)``
+  /// - ``deleteAuthTokenPollingUntilDone(name:)``
   /// - ``deleteAuthTokenPollingUntilDone(request:)``
   /// - ``deleteAuthTokenPollingUntilDone(request:options:)``
-  /// - ``deleteAuthTokenPollingUntilDone(name:)``
   public func deleteAuthToken(
     request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1101,10 +1101,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAuthTokenPollingUntilDone(request:)``
-  /// - ``deleteAuthTokenPollingUntilDone(name:)``
   /// - ``deleteAuthToken(request:)``
   /// - ``deleteAuthToken(request:options:)``
+  /// - ``deleteAuthTokenPollingUntilDone(name:)``
+  /// - ``deleteAuthTokenPollingUntilDone(request:)``
   public func deleteAuthTokenPollingUntilDone(
     request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1183,9 +1183,9 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1211,8 +1211,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1227,8 +1227,8 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

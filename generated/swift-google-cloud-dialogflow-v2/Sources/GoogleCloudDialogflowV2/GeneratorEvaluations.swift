@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``createGeneratorEvaluation(request:)``
+    /// - ``createGeneratorEvaluationPollingUntilDone(parent:generatorEvaluation:)``
     /// - ``createGeneratorEvaluationPollingUntilDone(request:)``
     /// - ``createGeneratorEvaluationPollingUntilDone(request:options:)``
-    /// - ``createGeneratorEvaluationPollingUntilDone(parent:generatorEvaluation:)``
     public func createGeneratorEvaluation(
       request: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -70,10 +70,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createGeneratorEvaluationPollingUntilDone(request:)``
-    /// - ``createGeneratorEvaluationPollingUntilDone(parent:generatorEvaluation:)``
     /// - ``createGeneratorEvaluation(request:)``
     /// - ``createGeneratorEvaluation(request:options:)``
+    /// - ``createGeneratorEvaluationPollingUntilDone(parent:generatorEvaluation:)``
+    /// - ``createGeneratorEvaluationPollingUntilDone(request:)``
     public func createGeneratorEvaluationPollingUntilDone(
       request: CreateGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GeneratorEvaluation {
@@ -105,8 +105,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getGeneratorEvaluation(request:)``
     /// - ``getGeneratorEvaluation(name:)``
+    /// - ``getGeneratorEvaluation(request:)``
     public func getGeneratorEvaluation(
       request: GetGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.GeneratorEvaluation {
@@ -120,9 +120,9 @@
     /// ## See Also
     ///
     /// - ``listGeneratorEvaluations(request:)``
+    /// - ``listGeneratorEvaluationsByItems(parent:)``
     /// - ``listGeneratorEvaluationsByItems(request:)``
     /// - ``listGeneratorEvaluationsByItems(request:options:)``
-    /// - ``listGeneratorEvaluationsByItems(parent:)``
     public func listGeneratorEvaluations(
       request: ListGeneratorEvaluationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListGeneratorEvaluationsResponse {
@@ -135,8 +135,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteGeneratorEvaluation(request:)``
     /// - ``deleteGeneratorEvaluation(name:)``
+    /// - ``deleteGeneratorEvaluation(request:)``
     public func deleteGeneratorEvaluation(
       request: DeleteGeneratorEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -197,9 +197,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -225,8 +225,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

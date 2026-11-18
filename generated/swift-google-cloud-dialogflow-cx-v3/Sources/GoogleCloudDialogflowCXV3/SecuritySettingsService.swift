@@ -53,8 +53,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSecuritySettings(request:)``
     /// - ``createSecuritySettings(parent:securitySettings:)``
+    /// - ``createSecuritySettings(request:)``
     public func createSecuritySettings(
       request: CreateSecuritySettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
@@ -71,8 +71,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSecuritySettings(request:)``
     /// - ``getSecuritySettings(name:)``
+    /// - ``getSecuritySettings(request:)``
     public func getSecuritySettings(
       request: GetSecuritySettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SecuritySettings {
@@ -103,9 +103,9 @@
     /// ## See Also
     ///
     /// - ``listSecuritySettings(request:)``
+    /// - ``listSecuritySettingsByItems(parent:)``
     /// - ``listSecuritySettingsByItems(request:)``
     /// - ``listSecuritySettingsByItems(request:options:)``
-    /// - ``listSecuritySettingsByItems(parent:)``
     public func listSecuritySettings(
       request: ListSecuritySettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListSecuritySettingsResponse {
@@ -121,8 +121,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSecuritySettings(request:)``
     /// - ``deleteSecuritySettings(name:)``
+    /// - ``deleteSecuritySettings(request:)``
     public func deleteSecuritySettings(
       request: DeleteSecuritySettingsRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -183,9 +183,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -211,8 +211,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

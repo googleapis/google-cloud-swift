@@ -58,9 +58,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOrchestrationClusters(request:)``
+  /// - ``listOrchestrationClustersByItems(parent:)``
   /// - ``listOrchestrationClustersByItems(request:)``
   /// - ``listOrchestrationClustersByItems(request:options:)``
-  /// - ``listOrchestrationClustersByItems(parent:)``
   public func listOrchestrationClusters(
     request: ListOrchestrationClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListOrchestrationClustersResponse {
@@ -73,8 +73,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getOrchestrationCluster(request:)``
   /// - ``getOrchestrationCluster(name:)``
+  /// - ``getOrchestrationCluster(request:)``
   public func getOrchestrationCluster(
     request: GetOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.OrchestrationCluster {
@@ -88,9 +88,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``createOrchestrationCluster(request:)``
+  /// - ``createOrchestrationClusterPollingUntilDone(parent:orchestrationCluster:orchestrationClusterId:)``
   /// - ``createOrchestrationClusterPollingUntilDone(request:)``
   /// - ``createOrchestrationClusterPollingUntilDone(request:options:)``
-  /// - ``createOrchestrationClusterPollingUntilDone(parent:orchestrationCluster:orchestrationClusterId:)``
   public func createOrchestrationCluster(
     request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -103,10 +103,10 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createOrchestrationClusterPollingUntilDone(request:)``
-  /// - ``createOrchestrationClusterPollingUntilDone(parent:orchestrationCluster:orchestrationClusterId:)``
   /// - ``createOrchestrationCluster(request:)``
   /// - ``createOrchestrationCluster(request:options:)``
+  /// - ``createOrchestrationClusterPollingUntilDone(parent:orchestrationCluster:orchestrationClusterId:)``
+  /// - ``createOrchestrationClusterPollingUntilDone(request:)``
   public func createOrchestrationClusterPollingUntilDone(
     request: CreateOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> OrchestrationCluster {
@@ -139,9 +139,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteOrchestrationCluster(request:)``
+  /// - ``deleteOrchestrationClusterPollingUntilDone(name:)``
   /// - ``deleteOrchestrationClusterPollingUntilDone(request:)``
   /// - ``deleteOrchestrationClusterPollingUntilDone(request:options:)``
-  /// - ``deleteOrchestrationClusterPollingUntilDone(name:)``
   public func deleteOrchestrationCluster(
     request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOrchestrationClusterPollingUntilDone(request:)``
-  /// - ``deleteOrchestrationClusterPollingUntilDone(name:)``
   /// - ``deleteOrchestrationCluster(request:)``
   /// - ``deleteOrchestrationCluster(request:options:)``
+  /// - ``deleteOrchestrationClusterPollingUntilDone(name:)``
+  /// - ``deleteOrchestrationClusterPollingUntilDone(request:)``
   public func deleteOrchestrationClusterPollingUntilDone(
     request: DeleteOrchestrationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -189,9 +189,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listEdgeSlms(request:)``
+  /// - ``listEdgeSlmsByItems(parent:)``
   /// - ``listEdgeSlmsByItems(request:)``
   /// - ``listEdgeSlmsByItems(request:options:)``
-  /// - ``listEdgeSlmsByItems(parent:)``
   public func listEdgeSlms(
     request: ListEdgeSlmsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListEdgeSlmsResponse {
@@ -204,8 +204,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getEdgeSlm(request:)``
   /// - ``getEdgeSlm(name:)``
+  /// - ``getEdgeSlm(request:)``
   public func getEdgeSlm(
     request: GetEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.EdgeSlm {
@@ -219,9 +219,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``createEdgeSlm(request:)``
+  /// - ``createEdgeSlmPollingUntilDone(parent:edgeSlm:edgeSlmId:)``
   /// - ``createEdgeSlmPollingUntilDone(request:)``
   /// - ``createEdgeSlmPollingUntilDone(request:options:)``
-  /// - ``createEdgeSlmPollingUntilDone(parent:edgeSlm:edgeSlmId:)``
   public func createEdgeSlm(
     request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -234,10 +234,10 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createEdgeSlmPollingUntilDone(request:)``
-  /// - ``createEdgeSlmPollingUntilDone(parent:edgeSlm:edgeSlmId:)``
   /// - ``createEdgeSlm(request:)``
   /// - ``createEdgeSlm(request:options:)``
+  /// - ``createEdgeSlmPollingUntilDone(parent:edgeSlm:edgeSlmId:)``
+  /// - ``createEdgeSlmPollingUntilDone(request:)``
   public func createEdgeSlmPollingUntilDone(
     request: CreateEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> EdgeSlm {
@@ -269,9 +269,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteEdgeSlm(request:)``
+  /// - ``deleteEdgeSlmPollingUntilDone(name:)``
   /// - ``deleteEdgeSlmPollingUntilDone(request:)``
   /// - ``deleteEdgeSlmPollingUntilDone(request:options:)``
-  /// - ``deleteEdgeSlmPollingUntilDone(name:)``
   public func deleteEdgeSlm(
     request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -284,10 +284,10 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteEdgeSlmPollingUntilDone(request:)``
-  /// - ``deleteEdgeSlmPollingUntilDone(name:)``
   /// - ``deleteEdgeSlm(request:)``
   /// - ``deleteEdgeSlm(request:options:)``
+  /// - ``deleteEdgeSlmPollingUntilDone(name:)``
+  /// - ``deleteEdgeSlmPollingUntilDone(request:)``
   public func deleteEdgeSlmPollingUntilDone(
     request: DeleteEdgeSlmRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -318,8 +318,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createBlueprint(request:)``
   /// - ``createBlueprint(parent:blueprint:blueprintId:)``
+  /// - ``createBlueprint(request:)``
   public func createBlueprint(
     request: CreateBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -332,8 +332,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateBlueprint(request:)``
   /// - ``updateBlueprint(blueprint:updateMask:)``
+  /// - ``updateBlueprint(request:)``
   public func updateBlueprint(
     request: UpdateBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -346,8 +346,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getBlueprint(request:)``
   /// - ``getBlueprint(name:)``
+  /// - ``getBlueprint(request:)``
   public func getBlueprint(
     request: GetBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -360,8 +360,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteBlueprint(request:)``
   /// - ``deleteBlueprint(name:)``
+  /// - ``deleteBlueprint(request:)``
   public func deleteBlueprint(
     request: DeleteBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -375,9 +375,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listBlueprints(request:)``
+  /// - ``listBlueprintsByItems(parent:)``
   /// - ``listBlueprintsByItems(request:)``
   /// - ``listBlueprintsByItems(request:options:)``
-  /// - ``listBlueprintsByItems(parent:)``
   public func listBlueprints(
     request: ListBlueprintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintsResponse {
@@ -390,8 +390,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``approveBlueprint(request:)``
   /// - ``approveBlueprint(name:)``
+  /// - ``approveBlueprint(request:)``
   public func approveBlueprint(
     request: ApproveBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -404,8 +404,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``proposeBlueprint(request:)``
   /// - ``proposeBlueprint(name:)``
+  /// - ``proposeBlueprint(request:)``
   public func proposeBlueprint(
     request: ProposeBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -418,8 +418,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``rejectBlueprint(request:)``
   /// - ``rejectBlueprint(name:)``
+  /// - ``rejectBlueprint(request:)``
   public func rejectBlueprint(
     request: RejectBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Blueprint {
@@ -433,9 +433,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listBlueprintRevisions(request:)``
+  /// - ``listBlueprintRevisionsByItems(name:)``
   /// - ``listBlueprintRevisionsByItems(request:)``
   /// - ``listBlueprintRevisionsByItems(request:options:)``
-  /// - ``listBlueprintRevisionsByItems(name:)``
   public func listBlueprintRevisions(
     request: ListBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListBlueprintRevisionsResponse {
@@ -449,9 +449,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``searchBlueprintRevisions(request:)``
+  /// - ``searchBlueprintRevisionsByItems(parent:query:)``
   /// - ``searchBlueprintRevisionsByItems(request:)``
   /// - ``searchBlueprintRevisionsByItems(request:options:)``
-  /// - ``searchBlueprintRevisionsByItems(parent:query:)``
   public func searchBlueprintRevisions(
     request: SearchBlueprintRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.SearchBlueprintRevisionsResponse {
@@ -465,9 +465,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``searchDeploymentRevisions(request:)``
+  /// - ``searchDeploymentRevisionsByItems(parent:query:)``
   /// - ``searchDeploymentRevisionsByItems(request:)``
   /// - ``searchDeploymentRevisionsByItems(request:options:)``
-  /// - ``searchDeploymentRevisionsByItems(parent:query:)``
   public func searchDeploymentRevisions(
     request: SearchDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.SearchDeploymentRevisionsResponse {
@@ -482,8 +482,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``discardBlueprintChanges(request:)``
   /// - ``discardBlueprintChanges(name:)``
+  /// - ``discardBlueprintChanges(request:)``
   public func discardBlueprintChanges(
     request: DiscardBlueprintChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.DiscardBlueprintChangesResponse {
@@ -498,9 +498,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPublicBlueprints(request:)``
+  /// - ``listPublicBlueprintsByItems(parent:)``
   /// - ``listPublicBlueprintsByItems(request:)``
   /// - ``listPublicBlueprintsByItems(request:options:)``
-  /// - ``listPublicBlueprintsByItems(parent:)``
   public func listPublicBlueprints(
     request: ListPublicBlueprintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListPublicBlueprintsResponse {
@@ -513,8 +513,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPublicBlueprint(request:)``
   /// - ``getPublicBlueprint(name:)``
+  /// - ``getPublicBlueprint(request:)``
   public func getPublicBlueprint(
     request: GetPublicBlueprintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.PublicBlueprint {
@@ -527,8 +527,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createDeployment(request:)``
   /// - ``createDeployment(parent:deployment:deploymentId:)``
+  /// - ``createDeployment(request:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -541,8 +541,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateDeployment(request:)``
   /// - ``updateDeployment(deployment:updateMask:)``
+  /// - ``updateDeployment(request:)``
   public func updateDeployment(
     request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -555,8 +555,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDeployment(request:)``
   /// - ``getDeployment(name:)``
+  /// - ``getDeployment(request:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -570,8 +570,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``removeDeployment(request:)``
   /// - ``removeDeployment(name:)``
+  /// - ``removeDeployment(request:)``
   public func removeDeployment(
     request: RemoveDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -585,9 +585,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(parent:)``
   /// - ``listDeploymentsByItems(request:)``
   /// - ``listDeploymentsByItems(request:options:)``
-  /// - ``listDeploymentsByItems(parent:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentsResponse {
@@ -601,9 +601,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDeploymentRevisions(request:)``
+  /// - ``listDeploymentRevisionsByItems(name:)``
   /// - ``listDeploymentRevisionsByItems(request:)``
   /// - ``listDeploymentRevisionsByItems(request:options:)``
-  /// - ``listDeploymentRevisionsByItems(name:)``
   public func listDeploymentRevisions(
     request: ListDeploymentRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListDeploymentRevisionsResponse {
@@ -618,8 +618,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``discardDeploymentChanges(request:)``
   /// - ``discardDeploymentChanges(name:)``
+  /// - ``discardDeploymentChanges(request:)``
   public func discardDeploymentChanges(
     request: DiscardDeploymentChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.DiscardDeploymentChangesResponse {
@@ -632,8 +632,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``applyDeployment(request:)``
   /// - ``applyDeployment(name:)``
+  /// - ``applyDeployment(request:)``
   public func applyDeployment(
     request: ApplyDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -646,8 +646,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``computeDeploymentStatus(request:)``
   /// - ``computeDeploymentStatus(name:)``
+  /// - ``computeDeploymentStatus(request:)``
   public func computeDeploymentStatus(
     request: ComputeDeploymentStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ComputeDeploymentStatusResponse {
@@ -661,8 +661,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``rollbackDeployment(request:)``
   /// - ``rollbackDeployment(name:revisionId:)``
+  /// - ``rollbackDeployment(request:)``
   public func rollbackDeployment(
     request: RollbackDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.Deployment {
@@ -675,8 +675,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getHydratedDeployment(request:)``
   /// - ``getHydratedDeployment(name:)``
+  /// - ``getHydratedDeployment(request:)``
   public func getHydratedDeployment(
     request: GetHydratedDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
@@ -690,9 +690,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listHydratedDeployments(request:)``
+  /// - ``listHydratedDeploymentsByItems(parent:)``
   /// - ``listHydratedDeploymentsByItems(request:)``
   /// - ``listHydratedDeploymentsByItems(request:options:)``
-  /// - ``listHydratedDeploymentsByItems(parent:)``
   public func listHydratedDeployments(
     request: ListHydratedDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.ListHydratedDeploymentsResponse {
@@ -705,8 +705,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateHydratedDeployment(request:)``
   /// - ``updateHydratedDeployment(hydratedDeployment:updateMask:)``
+  /// - ``updateHydratedDeployment(request:)``
   public func updateHydratedDeployment(
     request: UpdateHydratedDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
@@ -719,8 +719,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``applyHydratedDeployment(request:)``
   /// - ``applyHydratedDeployment(name:)``
+  /// - ``applyHydratedDeployment(request:)``
   public func applyHydratedDeployment(
     request: ApplyHydratedDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTelcoAutomationV1.HydratedDeployment {
@@ -764,9 +764,9 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -792,8 +792,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -808,8 +808,8 @@ public final class TelcoAutomationClient: Clients.TelcoAutomationProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

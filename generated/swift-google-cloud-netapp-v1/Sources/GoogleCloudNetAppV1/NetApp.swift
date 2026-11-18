@@ -54,9 +54,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listStoragePools(request:)``
+  /// - ``listStoragePoolsByItems(parent:)``
   /// - ``listStoragePoolsByItems(request:)``
   /// - ``listStoragePoolsByItems(request:options:)``
-  /// - ``listStoragePoolsByItems(parent:)``
   public func listStoragePools(
     request: ListStoragePoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListStoragePoolsResponse {
@@ -70,9 +70,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createStoragePool(request:)``
+  /// - ``createStoragePoolPollingUntilDone(parent:storagePool:storagePoolId:)``
   /// - ``createStoragePoolPollingUntilDone(request:)``
   /// - ``createStoragePoolPollingUntilDone(request:options:)``
-  /// - ``createStoragePoolPollingUntilDone(parent:storagePool:storagePoolId:)``
   public func createStoragePool(
     request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -85,10 +85,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createStoragePoolPollingUntilDone(request:)``
-  /// - ``createStoragePoolPollingUntilDone(parent:storagePool:storagePoolId:)``
   /// - ``createStoragePool(request:)``
   /// - ``createStoragePool(request:options:)``
+  /// - ``createStoragePoolPollingUntilDone(parent:storagePool:storagePoolId:)``
+  /// - ``createStoragePoolPollingUntilDone(request:)``
   public func createStoragePoolPollingUntilDone(
     request: CreateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> StoragePool {
@@ -119,8 +119,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getStoragePool(request:)``
   /// - ``getStoragePool(name:)``
+  /// - ``getStoragePool(request:)``
   public func getStoragePool(
     request: GetStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.StoragePool {
@@ -149,10 +149,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateStoragePoolPollingUntilDone(request:)``
-  /// - ``updateStoragePoolPollingUntilDone(storagePool:updateMask:)``
   /// - ``updateStoragePool(request:)``
   /// - ``updateStoragePool(request:options:)``
+  /// - ``updateStoragePoolPollingUntilDone(request:)``
+  /// - ``updateStoragePoolPollingUntilDone(storagePool:updateMask:)``
   public func updateStoragePoolPollingUntilDone(
     request: UpdateStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> StoragePool {
@@ -184,9 +184,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteStoragePool(request:)``
+  /// - ``deleteStoragePoolPollingUntilDone(name:)``
   /// - ``deleteStoragePoolPollingUntilDone(request:)``
   /// - ``deleteStoragePoolPollingUntilDone(request:options:)``
-  /// - ``deleteStoragePoolPollingUntilDone(name:)``
   public func deleteStoragePool(
     request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,10 +199,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteStoragePoolPollingUntilDone(request:)``
-  /// - ``deleteStoragePoolPollingUntilDone(name:)``
   /// - ``deleteStoragePool(request:)``
   /// - ``deleteStoragePool(request:options:)``
+  /// - ``deleteStoragePoolPollingUntilDone(name:)``
+  /// - ``deleteStoragePoolPollingUntilDone(request:)``
   public func deleteStoragePoolPollingUntilDone(
     request: DeleteStoragePoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -250,9 +250,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``validateDirectoryServicePollingUntilDone(request:)``
   /// - ``validateDirectoryService(request:)``
   /// - ``validateDirectoryService(request:options:)``
+  /// - ``validateDirectoryServicePollingUntilDone(request:)``
   public func validateDirectoryServicePollingUntilDone(
     request: ValidateDirectoryServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -300,9 +300,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``switchActiveReplicaZonePollingUntilDone(request:)``
   /// - ``switchActiveReplicaZone(request:)``
   /// - ``switchActiveReplicaZone(request:options:)``
+  /// - ``switchActiveReplicaZonePollingUntilDone(request:)``
   public func switchActiveReplicaZonePollingUntilDone(
     request: SwitchActiveReplicaZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> StoragePool {
@@ -334,9 +334,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listVolumes(request:)``
+  /// - ``listVolumesByItems(parent:)``
   /// - ``listVolumesByItems(request:)``
   /// - ``listVolumesByItems(request:options:)``
-  /// - ``listVolumesByItems(parent:)``
   public func listVolumes(
     request: ListVolumesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListVolumesResponse {
@@ -349,8 +349,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getVolume(request:)``
   /// - ``getVolume(name:)``
+  /// - ``getVolume(request:)``
   public func getVolume(
     request: GetVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Volume {
@@ -364,9 +364,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createVolume(request:)``
+  /// - ``createVolumePollingUntilDone(parent:volume:volumeId:)``
   /// - ``createVolumePollingUntilDone(request:)``
   /// - ``createVolumePollingUntilDone(request:options:)``
-  /// - ``createVolumePollingUntilDone(parent:volume:volumeId:)``
   public func createVolume(
     request: CreateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -379,10 +379,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createVolumePollingUntilDone(request:)``
-  /// - ``createVolumePollingUntilDone(parent:volume:volumeId:)``
   /// - ``createVolume(request:)``
   /// - ``createVolume(request:options:)``
+  /// - ``createVolumePollingUntilDone(parent:volume:volumeId:)``
+  /// - ``createVolumePollingUntilDone(request:)``
   public func createVolumePollingUntilDone(
     request: CreateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -429,10 +429,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateVolumePollingUntilDone(request:)``
-  /// - ``updateVolumePollingUntilDone(volume:updateMask:)``
   /// - ``updateVolume(request:)``
   /// - ``updateVolume(request:options:)``
+  /// - ``updateVolumePollingUntilDone(request:)``
+  /// - ``updateVolumePollingUntilDone(volume:updateMask:)``
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -464,9 +464,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteVolume(request:)``
+  /// - ``deleteVolumePollingUntilDone(name:)``
   /// - ``deleteVolumePollingUntilDone(request:)``
   /// - ``deleteVolumePollingUntilDone(request:options:)``
-  /// - ``deleteVolumePollingUntilDone(name:)``
   public func deleteVolume(
     request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -479,10 +479,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteVolumePollingUntilDone(request:)``
-  /// - ``deleteVolumePollingUntilDone(name:)``
   /// - ``deleteVolume(request:)``
   /// - ``deleteVolume(request:options:)``
+  /// - ``deleteVolumePollingUntilDone(name:)``
+  /// - ``deleteVolumePollingUntilDone(request:)``
   public func deleteVolumePollingUntilDone(
     request: DeleteVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -532,9 +532,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``revertVolumePollingUntilDone(request:)``
   /// - ``revertVolume(request:)``
   /// - ``revertVolume(request:options:)``
+  /// - ``revertVolumePollingUntilDone(request:)``
   public func revertVolumePollingUntilDone(
     request: RevertVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -569,9 +569,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``startSplit(request:)``
+  /// - ``startSplitPollingUntilDone(name:)``
   /// - ``startSplitPollingUntilDone(request:)``
   /// - ``startSplitPollingUntilDone(request:options:)``
-  /// - ``startSplitPollingUntilDone(name:)``
   public func startSplit(
     request: StartSplitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -587,10 +587,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startSplitPollingUntilDone(request:)``
-  /// - ``startSplitPollingUntilDone(name:)``
   /// - ``startSplit(request:)``
   /// - ``startSplit(request:options:)``
+  /// - ``startSplitPollingUntilDone(name:)``
+  /// - ``startSplitPollingUntilDone(request:)``
   public func startSplitPollingUntilDone(
     request: StartSplitRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -623,8 +623,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSplitStatus(request:)``
   /// - ``getSplitStatus(name:)``
+  /// - ``getSplitStatus(request:)``
   public func getSplitStatus(
     request: GetSplitStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.SplitStatus {
@@ -654,9 +654,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``establishVolumePeeringPollingUntilDone(request:)``
   /// - ``establishVolumePeering(request:)``
   /// - ``establishVolumePeering(request:options:)``
+  /// - ``establishVolumePeeringPollingUntilDone(request:)``
   public func establishVolumePeeringPollingUntilDone(
     request: EstablishVolumePeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -688,9 +688,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSnapshots(request:)``
+  /// - ``listSnapshotsByItems(parent:)``
   /// - ``listSnapshotsByItems(request:)``
   /// - ``listSnapshotsByItems(request:options:)``
-  /// - ``listSnapshotsByItems(parent:)``
   public func listSnapshots(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListSnapshotsResponse {
@@ -703,8 +703,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSnapshot(request:)``
   /// - ``getSnapshot(name:)``
+  /// - ``getSnapshot(request:)``
   public func getSnapshot(
     request: GetSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Snapshot {
@@ -718,9 +718,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createSnapshot(request:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   /// - ``createSnapshotPollingUntilDone(request:)``
   /// - ``createSnapshotPollingUntilDone(request:options:)``
-  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   public func createSnapshot(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -733,10 +733,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSnapshotPollingUntilDone(request:)``
-  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   /// - ``createSnapshot(request:)``
   /// - ``createSnapshot(request:options:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
+  /// - ``createSnapshotPollingUntilDone(request:)``
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -768,9 +768,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteSnapshot(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
   /// - ``deleteSnapshotPollingUntilDone(request:)``
   /// - ``deleteSnapshotPollingUntilDone(request:options:)``
-  /// - ``deleteSnapshotPollingUntilDone(name:)``
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -783,10 +783,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSnapshotPollingUntilDone(request:)``
-  /// - ``deleteSnapshotPollingUntilDone(name:)``
   /// - ``deleteSnapshot(request:)``
   /// - ``deleteSnapshot(request:options:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:)``
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -833,10 +833,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateSnapshotPollingUntilDone(request:)``
-  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   /// - ``updateSnapshot(request:)``
   /// - ``updateSnapshot(request:options:)``
+  /// - ``updateSnapshotPollingUntilDone(request:)``
+  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -868,9 +868,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listActiveDirectories(request:)``
+  /// - ``listActiveDirectoriesByItems(parent:)``
   /// - ``listActiveDirectoriesByItems(request:)``
   /// - ``listActiveDirectoriesByItems(request:options:)``
-  /// - ``listActiveDirectoriesByItems(parent:)``
   public func listActiveDirectories(
     request: ListActiveDirectoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListActiveDirectoriesResponse {
@@ -883,8 +883,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getActiveDirectory(request:)``
   /// - ``getActiveDirectory(name:)``
+  /// - ``getActiveDirectory(request:)``
   public func getActiveDirectory(
     request: GetActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ActiveDirectory {
@@ -899,9 +899,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createActiveDirectory(request:)``
+  /// - ``createActiveDirectoryPollingUntilDone(parent:activeDirectory:activeDirectoryId:)``
   /// - ``createActiveDirectoryPollingUntilDone(request:)``
   /// - ``createActiveDirectoryPollingUntilDone(request:options:)``
-  /// - ``createActiveDirectoryPollingUntilDone(parent:activeDirectory:activeDirectoryId:)``
   public func createActiveDirectory(
     request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -915,10 +915,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createActiveDirectoryPollingUntilDone(request:)``
-  /// - ``createActiveDirectoryPollingUntilDone(parent:activeDirectory:activeDirectoryId:)``
   /// - ``createActiveDirectory(request:)``
   /// - ``createActiveDirectory(request:options:)``
+  /// - ``createActiveDirectoryPollingUntilDone(parent:activeDirectory:activeDirectoryId:)``
+  /// - ``createActiveDirectoryPollingUntilDone(request:)``
   public func createActiveDirectoryPollingUntilDone(
     request: CreateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> ActiveDirectory {
@@ -951,9 +951,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateActiveDirectory(request:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(activeDirectory:updateMask:)``
   /// - ``updateActiveDirectoryPollingUntilDone(request:)``
   /// - ``updateActiveDirectoryPollingUntilDone(request:options:)``
-  /// - ``updateActiveDirectoryPollingUntilDone(activeDirectory:updateMask:)``
   public func updateActiveDirectory(
     request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -966,10 +966,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateActiveDirectoryPollingUntilDone(request:)``
-  /// - ``updateActiveDirectoryPollingUntilDone(activeDirectory:updateMask:)``
   /// - ``updateActiveDirectory(request:)``
   /// - ``updateActiveDirectory(request:options:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(activeDirectory:updateMask:)``
+  /// - ``updateActiveDirectoryPollingUntilDone(request:)``
   public func updateActiveDirectoryPollingUntilDone(
     request: UpdateActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> ActiveDirectory {
@@ -1002,9 +1002,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteActiveDirectory(request:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(name:)``
   /// - ``deleteActiveDirectoryPollingUntilDone(request:)``
   /// - ``deleteActiveDirectoryPollingUntilDone(request:options:)``
-  /// - ``deleteActiveDirectoryPollingUntilDone(name:)``
   public func deleteActiveDirectory(
     request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1017,10 +1017,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteActiveDirectoryPollingUntilDone(request:)``
-  /// - ``deleteActiveDirectoryPollingUntilDone(name:)``
   /// - ``deleteActiveDirectory(request:)``
   /// - ``deleteActiveDirectory(request:options:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(name:)``
+  /// - ``deleteActiveDirectoryPollingUntilDone(request:)``
   public func deleteActiveDirectoryPollingUntilDone(
     request: DeleteActiveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1052,9 +1052,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listKmsConfigs(request:)``
+  /// - ``listKmsConfigsByItems(parent:)``
   /// - ``listKmsConfigsByItems(request:)``
   /// - ``listKmsConfigsByItems(request:options:)``
-  /// - ``listKmsConfigsByItems(parent:)``
   public func listKmsConfigs(
     request: ListKmsConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListKmsConfigsResponse {
@@ -1068,9 +1068,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createKmsConfig(request:)``
+  /// - ``createKmsConfigPollingUntilDone(parent:kmsConfig:kmsConfigId:)``
   /// - ``createKmsConfigPollingUntilDone(request:)``
   /// - ``createKmsConfigPollingUntilDone(request:options:)``
-  /// - ``createKmsConfigPollingUntilDone(parent:kmsConfig:kmsConfigId:)``
   public func createKmsConfig(
     request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1083,10 +1083,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createKmsConfigPollingUntilDone(request:)``
-  /// - ``createKmsConfigPollingUntilDone(parent:kmsConfig:kmsConfigId:)``
   /// - ``createKmsConfig(request:)``
   /// - ``createKmsConfig(request:options:)``
+  /// - ``createKmsConfigPollingUntilDone(parent:kmsConfig:kmsConfigId:)``
+  /// - ``createKmsConfigPollingUntilDone(request:)``
   public func createKmsConfigPollingUntilDone(
     request: CreateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> KmsConfig {
@@ -1117,8 +1117,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getKmsConfig(request:)``
   /// - ``getKmsConfig(name:)``
+  /// - ``getKmsConfig(request:)``
   public func getKmsConfig(
     request: GetKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.KmsConfig {
@@ -1132,9 +1132,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateKmsConfig(request:)``
+  /// - ``updateKmsConfigPollingUntilDone(kmsConfig:updateMask:)``
   /// - ``updateKmsConfigPollingUntilDone(request:)``
   /// - ``updateKmsConfigPollingUntilDone(request:options:)``
-  /// - ``updateKmsConfigPollingUntilDone(kmsConfig:updateMask:)``
   public func updateKmsConfig(
     request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1147,10 +1147,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateKmsConfigPollingUntilDone(request:)``
-  /// - ``updateKmsConfigPollingUntilDone(kmsConfig:updateMask:)``
   /// - ``updateKmsConfig(request:)``
   /// - ``updateKmsConfig(request:options:)``
+  /// - ``updateKmsConfigPollingUntilDone(kmsConfig:updateMask:)``
+  /// - ``updateKmsConfigPollingUntilDone(request:)``
   public func updateKmsConfigPollingUntilDone(
     request: UpdateKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> KmsConfig {
@@ -1198,9 +1198,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``encryptVolumesPollingUntilDone(request:)``
   /// - ``encryptVolumes(request:)``
   /// - ``encryptVolumes(request:options:)``
+  /// - ``encryptVolumesPollingUntilDone(request:)``
   public func encryptVolumesPollingUntilDone(
     request: EncryptVolumesRequest, options: GoogleGax.RequestOptions
   ) async throws -> KmsConfig {
@@ -1245,9 +1245,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteKmsConfig(request:)``
+  /// - ``deleteKmsConfigPollingUntilDone(name:)``
   /// - ``deleteKmsConfigPollingUntilDone(request:)``
   /// - ``deleteKmsConfigPollingUntilDone(request:options:)``
-  /// - ``deleteKmsConfigPollingUntilDone(name:)``
   public func deleteKmsConfig(
     request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1260,10 +1260,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteKmsConfigPollingUntilDone(request:)``
-  /// - ``deleteKmsConfigPollingUntilDone(name:)``
   /// - ``deleteKmsConfig(request:)``
   /// - ``deleteKmsConfig(request:options:)``
+  /// - ``deleteKmsConfigPollingUntilDone(name:)``
+  /// - ``deleteKmsConfigPollingUntilDone(request:)``
   public func deleteKmsConfigPollingUntilDone(
     request: DeleteKmsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1295,9 +1295,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listReplications(request:)``
+  /// - ``listReplicationsByItems(parent:)``
   /// - ``listReplicationsByItems(request:)``
   /// - ``listReplicationsByItems(request:options:)``
-  /// - ``listReplicationsByItems(parent:)``
   public func listReplications(
     request: ListReplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListReplicationsResponse {
@@ -1310,8 +1310,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getReplication(request:)``
   /// - ``getReplication(name:)``
+  /// - ``getReplication(request:)``
   public func getReplication(
     request: GetReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Replication {
@@ -1325,9 +1325,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createReplication(request:)``
+  /// - ``createReplicationPollingUntilDone(parent:replication:replicationId:)``
   /// - ``createReplicationPollingUntilDone(request:)``
   /// - ``createReplicationPollingUntilDone(request:options:)``
-  /// - ``createReplicationPollingUntilDone(parent:replication:replicationId:)``
   public func createReplication(
     request: CreateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1340,10 +1340,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createReplicationPollingUntilDone(request:)``
-  /// - ``createReplicationPollingUntilDone(parent:replication:replicationId:)``
   /// - ``createReplication(request:)``
   /// - ``createReplication(request:options:)``
+  /// - ``createReplicationPollingUntilDone(parent:replication:replicationId:)``
+  /// - ``createReplicationPollingUntilDone(request:)``
   public func createReplicationPollingUntilDone(
     request: CreateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1375,9 +1375,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteReplication(request:)``
+  /// - ``deleteReplicationPollingUntilDone(name:)``
   /// - ``deleteReplicationPollingUntilDone(request:)``
   /// - ``deleteReplicationPollingUntilDone(request:options:)``
-  /// - ``deleteReplicationPollingUntilDone(name:)``
   public func deleteReplication(
     request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1390,10 +1390,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteReplicationPollingUntilDone(request:)``
-  /// - ``deleteReplicationPollingUntilDone(name:)``
   /// - ``deleteReplication(request:)``
   /// - ``deleteReplication(request:options:)``
+  /// - ``deleteReplicationPollingUntilDone(name:)``
+  /// - ``deleteReplicationPollingUntilDone(request:)``
   public func deleteReplicationPollingUntilDone(
     request: DeleteReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1425,9 +1425,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateReplication(request:)``
+  /// - ``updateReplicationPollingUntilDone(replication:updateMask:)``
   /// - ``updateReplicationPollingUntilDone(request:)``
   /// - ``updateReplicationPollingUntilDone(request:options:)``
-  /// - ``updateReplicationPollingUntilDone(replication:updateMask:)``
   public func updateReplication(
     request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1440,10 +1440,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateReplicationPollingUntilDone(request:)``
-  /// - ``updateReplicationPollingUntilDone(replication:updateMask:)``
   /// - ``updateReplication(request:)``
   /// - ``updateReplication(request:options:)``
+  /// - ``updateReplicationPollingUntilDone(replication:updateMask:)``
+  /// - ``updateReplicationPollingUntilDone(request:)``
   public func updateReplicationPollingUntilDone(
     request: UpdateReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1489,9 +1489,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``stopReplicationPollingUntilDone(request:)``
   /// - ``stopReplication(request:)``
   /// - ``stopReplication(request:options:)``
+  /// - ``stopReplicationPollingUntilDone(request:)``
   public func stopReplicationPollingUntilDone(
     request: StopReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1537,9 +1537,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resumeReplicationPollingUntilDone(request:)``
   /// - ``resumeReplication(request:)``
   /// - ``resumeReplication(request:options:)``
+  /// - ``resumeReplicationPollingUntilDone(request:)``
   public func resumeReplicationPollingUntilDone(
     request: ResumeReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1587,9 +1587,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``reverseReplicationDirectionPollingUntilDone(request:)``
   /// - ``reverseReplicationDirection(request:)``
   /// - ``reverseReplicationDirection(request:options:)``
+  /// - ``reverseReplicationDirectionPollingUntilDone(request:)``
   public func reverseReplicationDirectionPollingUntilDone(
     request: ReverseReplicationDirectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1635,9 +1635,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``establishPeeringPollingUntilDone(request:)``
   /// - ``establishPeering(request:)``
   /// - ``establishPeering(request:options:)``
+  /// - ``establishPeeringPollingUntilDone(request:)``
   public func establishPeeringPollingUntilDone(
     request: EstablishPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1685,9 +1685,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``syncReplicationPollingUntilDone(request:)``
   /// - ``syncReplication(request:)``
   /// - ``syncReplication(request:options:)``
+  /// - ``syncReplicationPollingUntilDone(request:)``
   public func syncReplicationPollingUntilDone(
     request: SyncReplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replication {
@@ -1719,9 +1719,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createBackupVault(request:)``
+  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
   /// - ``createBackupVaultPollingUntilDone(request:)``
   /// - ``createBackupVaultPollingUntilDone(request:options:)``
-  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
   public func createBackupVault(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1734,10 +1734,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBackupVaultPollingUntilDone(request:)``
-  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
   /// - ``createBackupVault(request:)``
   /// - ``createBackupVault(request:options:)``
+  /// - ``createBackupVaultPollingUntilDone(parent:backupVault:backupVaultId:)``
+  /// - ``createBackupVaultPollingUntilDone(request:)``
   public func createBackupVaultPollingUntilDone(
     request: CreateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupVault {
@@ -1768,8 +1768,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBackupVault(request:)``
   /// - ``getBackupVault(name:)``
+  /// - ``getBackupVault(request:)``
   public func getBackupVault(
     request: GetBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.BackupVault {
@@ -1783,9 +1783,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBackupVaults(request:)``
+  /// - ``listBackupVaultsByItems(parent:)``
   /// - ``listBackupVaultsByItems(request:)``
   /// - ``listBackupVaultsByItems(request:options:)``
-  /// - ``listBackupVaultsByItems(parent:)``
   public func listBackupVaults(
     request: ListBackupVaultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupVaultsResponse {
@@ -1799,9 +1799,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateBackupVault(request:)``
+  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
   /// - ``updateBackupVaultPollingUntilDone(request:)``
   /// - ``updateBackupVaultPollingUntilDone(request:options:)``
-  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
   public func updateBackupVault(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1814,10 +1814,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBackupVaultPollingUntilDone(request:)``
-  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
   /// - ``updateBackupVault(request:)``
   /// - ``updateBackupVault(request:options:)``
+  /// - ``updateBackupVaultPollingUntilDone(backupVault:updateMask:)``
+  /// - ``updateBackupVaultPollingUntilDone(request:)``
   public func updateBackupVaultPollingUntilDone(
     request: UpdateBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupVault {
@@ -1849,9 +1849,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteBackupVault(request:)``
+  /// - ``deleteBackupVaultPollingUntilDone(name:)``
   /// - ``deleteBackupVaultPollingUntilDone(request:)``
   /// - ``deleteBackupVaultPollingUntilDone(request:options:)``
-  /// - ``deleteBackupVaultPollingUntilDone(name:)``
   public func deleteBackupVault(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1864,10 +1864,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackupVaultPollingUntilDone(request:)``
-  /// - ``deleteBackupVaultPollingUntilDone(name:)``
   /// - ``deleteBackupVault(request:)``
   /// - ``deleteBackupVault(request:options:)``
+  /// - ``deleteBackupVaultPollingUntilDone(name:)``
+  /// - ``deleteBackupVaultPollingUntilDone(request:)``
   public func deleteBackupVaultPollingUntilDone(
     request: DeleteBackupVaultRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1902,9 +1902,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createBackup(request:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   /// - ``createBackupPollingUntilDone(request:)``
   /// - ``createBackupPollingUntilDone(request:options:)``
-  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   public func createBackup(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1920,10 +1920,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBackupPollingUntilDone(request:)``
-  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   /// - ``createBackup(request:)``
   /// - ``createBackup(request:options:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
+  /// - ``createBackupPollingUntilDone(request:)``
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -1954,8 +1954,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBackup(request:)``
   /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.Backup {
@@ -1969,9 +1969,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
   /// - ``listBackupsByItems(request:)``
   /// - ``listBackupsByItems(request:options:)``
-  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupsResponse {
@@ -1985,9 +1985,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackupPollingUntilDone(request:)``
   /// - ``deleteBackupPollingUntilDone(request:options:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2000,10 +2000,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackupPollingUntilDone(request:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackup(request:)``
   /// - ``deleteBackup(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2035,9 +2035,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateBackup(request:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   /// - ``updateBackupPollingUntilDone(request:)``
   /// - ``updateBackupPollingUntilDone(request:options:)``
-  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2050,10 +2050,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBackupPollingUntilDone(request:)``
-  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   /// - ``updateBackup(request:)``
   /// - ``updateBackup(request:options:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
+  /// - ``updateBackupPollingUntilDone(request:)``
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -2085,9 +2085,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createBackupPolicy(request:)``
+  /// - ``createBackupPolicyPollingUntilDone(parent:backupPolicy:backupPolicyId:)``
   /// - ``createBackupPolicyPollingUntilDone(request:)``
   /// - ``createBackupPolicyPollingUntilDone(request:options:)``
-  /// - ``createBackupPolicyPollingUntilDone(parent:backupPolicy:backupPolicyId:)``
   public func createBackupPolicy(
     request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2100,10 +2100,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBackupPolicyPollingUntilDone(request:)``
-  /// - ``createBackupPolicyPollingUntilDone(parent:backupPolicy:backupPolicyId:)``
   /// - ``createBackupPolicy(request:)``
   /// - ``createBackupPolicy(request:options:)``
+  /// - ``createBackupPolicyPollingUntilDone(parent:backupPolicy:backupPolicyId:)``
+  /// - ``createBackupPolicyPollingUntilDone(request:)``
   public func createBackupPolicyPollingUntilDone(
     request: CreateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPolicy {
@@ -2135,8 +2135,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBackupPolicy(request:)``
   /// - ``getBackupPolicy(name:)``
+  /// - ``getBackupPolicy(request:)``
   public func getBackupPolicy(
     request: GetBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.BackupPolicy {
@@ -2150,9 +2150,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBackupPolicies(request:)``
+  /// - ``listBackupPoliciesByItems(parent:)``
   /// - ``listBackupPoliciesByItems(request:)``
   /// - ``listBackupPoliciesByItems(request:options:)``
-  /// - ``listBackupPoliciesByItems(parent:)``
   public func listBackupPolicies(
     request: ListBackupPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupPoliciesResponse {
@@ -2166,9 +2166,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateBackupPolicy(request:)``
+  /// - ``updateBackupPolicyPollingUntilDone(backupPolicy:updateMask:)``
   /// - ``updateBackupPolicyPollingUntilDone(request:)``
   /// - ``updateBackupPolicyPollingUntilDone(request:options:)``
-  /// - ``updateBackupPolicyPollingUntilDone(backupPolicy:updateMask:)``
   public func updateBackupPolicy(
     request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2181,10 +2181,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBackupPolicyPollingUntilDone(request:)``
-  /// - ``updateBackupPolicyPollingUntilDone(backupPolicy:updateMask:)``
   /// - ``updateBackupPolicy(request:)``
   /// - ``updateBackupPolicy(request:options:)``
+  /// - ``updateBackupPolicyPollingUntilDone(backupPolicy:updateMask:)``
+  /// - ``updateBackupPolicyPollingUntilDone(request:)``
   public func updateBackupPolicyPollingUntilDone(
     request: UpdateBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackupPolicy {
@@ -2217,9 +2217,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteBackupPolicy(request:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(name:)``
   /// - ``deleteBackupPolicyPollingUntilDone(request:)``
   /// - ``deleteBackupPolicyPollingUntilDone(request:options:)``
-  /// - ``deleteBackupPolicyPollingUntilDone(name:)``
   public func deleteBackupPolicy(
     request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2232,10 +2232,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackupPolicyPollingUntilDone(request:)``
-  /// - ``deleteBackupPolicyPollingUntilDone(name:)``
   /// - ``deleteBackupPolicy(request:)``
   /// - ``deleteBackupPolicy(request:options:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(name:)``
+  /// - ``deleteBackupPolicyPollingUntilDone(request:)``
   public func deleteBackupPolicyPollingUntilDone(
     request: DeleteBackupPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2267,9 +2267,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listQuotaRules(request:)``
+  /// - ``listQuotaRulesByItems(parent:)``
   /// - ``listQuotaRulesByItems(request:)``
   /// - ``listQuotaRulesByItems(request:options:)``
-  /// - ``listQuotaRulesByItems(parent:)``
   public func listQuotaRules(
     request: ListQuotaRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListQuotaRulesResponse {
@@ -2282,8 +2282,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getQuotaRule(request:)``
   /// - ``getQuotaRule(name:)``
+  /// - ``getQuotaRule(request:)``
   public func getQuotaRule(
     request: GetQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.QuotaRule {
@@ -2297,9 +2297,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createQuotaRule(request:)``
+  /// - ``createQuotaRulePollingUntilDone(parent:quotaRule:quotaRuleId:)``
   /// - ``createQuotaRulePollingUntilDone(request:)``
   /// - ``createQuotaRulePollingUntilDone(request:options:)``
-  /// - ``createQuotaRulePollingUntilDone(parent:quotaRule:quotaRuleId:)``
   public func createQuotaRule(
     request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2312,10 +2312,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createQuotaRulePollingUntilDone(request:)``
-  /// - ``createQuotaRulePollingUntilDone(parent:quotaRule:quotaRuleId:)``
   /// - ``createQuotaRule(request:)``
   /// - ``createQuotaRule(request:options:)``
+  /// - ``createQuotaRulePollingUntilDone(parent:quotaRule:quotaRuleId:)``
+  /// - ``createQuotaRulePollingUntilDone(request:)``
   public func createQuotaRulePollingUntilDone(
     request: CreateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> QuotaRule {
@@ -2347,9 +2347,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateQuotaRule(request:)``
+  /// - ``updateQuotaRulePollingUntilDone(quotaRule:updateMask:)``
   /// - ``updateQuotaRulePollingUntilDone(request:)``
   /// - ``updateQuotaRulePollingUntilDone(request:options:)``
-  /// - ``updateQuotaRulePollingUntilDone(quotaRule:updateMask:)``
   public func updateQuotaRule(
     request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2362,10 +2362,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateQuotaRulePollingUntilDone(request:)``
-  /// - ``updateQuotaRulePollingUntilDone(quotaRule:updateMask:)``
   /// - ``updateQuotaRule(request:)``
   /// - ``updateQuotaRule(request:options:)``
+  /// - ``updateQuotaRulePollingUntilDone(quotaRule:updateMask:)``
+  /// - ``updateQuotaRulePollingUntilDone(request:)``
   public func updateQuotaRulePollingUntilDone(
     request: UpdateQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> QuotaRule {
@@ -2397,9 +2397,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteQuotaRule(request:)``
+  /// - ``deleteQuotaRulePollingUntilDone(name:)``
   /// - ``deleteQuotaRulePollingUntilDone(request:)``
   /// - ``deleteQuotaRulePollingUntilDone(request:options:)``
-  /// - ``deleteQuotaRulePollingUntilDone(name:)``
   public func deleteQuotaRule(
     request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2412,10 +2412,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteQuotaRulePollingUntilDone(request:)``
-  /// - ``deleteQuotaRulePollingUntilDone(name:)``
   /// - ``deleteQuotaRule(request:)``
   /// - ``deleteQuotaRule(request:options:)``
+  /// - ``deleteQuotaRulePollingUntilDone(name:)``
+  /// - ``deleteQuotaRulePollingUntilDone(request:)``
   public func deleteQuotaRulePollingUntilDone(
     request: DeleteQuotaRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2461,9 +2461,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``restoreBackupFilesPollingUntilDone(request:)``
   /// - ``restoreBackupFiles(request:)``
   /// - ``restoreBackupFiles(request:options:)``
+  /// - ``restoreBackupFilesPollingUntilDone(request:)``
   public func restoreBackupFilesPollingUntilDone(
     request: RestoreBackupFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreBackupFilesResponse {
@@ -2498,9 +2498,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listHostGroups(request:)``
+  /// - ``listHostGroupsByItems(parent:)``
   /// - ``listHostGroupsByItems(request:)``
   /// - ``listHostGroupsByItems(request:options:)``
-  /// - ``listHostGroupsByItems(parent:)``
   public func listHostGroups(
     request: ListHostGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListHostGroupsResponse {
@@ -2513,8 +2513,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getHostGroup(request:)``
   /// - ``getHostGroup(name:)``
+  /// - ``getHostGroup(request:)``
   public func getHostGroup(
     request: GetHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.HostGroup {
@@ -2528,9 +2528,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createHostGroup(request:)``
+  /// - ``createHostGroupPollingUntilDone(parent:hostGroup:hostGroupId:)``
   /// - ``createHostGroupPollingUntilDone(request:)``
   /// - ``createHostGroupPollingUntilDone(request:options:)``
-  /// - ``createHostGroupPollingUntilDone(parent:hostGroup:hostGroupId:)``
   public func createHostGroup(
     request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2543,10 +2543,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createHostGroupPollingUntilDone(request:)``
-  /// - ``createHostGroupPollingUntilDone(parent:hostGroup:hostGroupId:)``
   /// - ``createHostGroup(request:)``
   /// - ``createHostGroup(request:options:)``
+  /// - ``createHostGroupPollingUntilDone(parent:hostGroup:hostGroupId:)``
+  /// - ``createHostGroupPollingUntilDone(request:)``
   public func createHostGroupPollingUntilDone(
     request: CreateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> HostGroup {
@@ -2578,9 +2578,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateHostGroup(request:)``
+  /// - ``updateHostGroupPollingUntilDone(hostGroup:updateMask:)``
   /// - ``updateHostGroupPollingUntilDone(request:)``
   /// - ``updateHostGroupPollingUntilDone(request:options:)``
-  /// - ``updateHostGroupPollingUntilDone(hostGroup:updateMask:)``
   public func updateHostGroup(
     request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2593,10 +2593,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateHostGroupPollingUntilDone(request:)``
-  /// - ``updateHostGroupPollingUntilDone(hostGroup:updateMask:)``
   /// - ``updateHostGroup(request:)``
   /// - ``updateHostGroup(request:options:)``
+  /// - ``updateHostGroupPollingUntilDone(hostGroup:updateMask:)``
+  /// - ``updateHostGroupPollingUntilDone(request:)``
   public func updateHostGroupPollingUntilDone(
     request: UpdateHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> HostGroup {
@@ -2628,9 +2628,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteHostGroup(request:)``
+  /// - ``deleteHostGroupPollingUntilDone(name:)``
   /// - ``deleteHostGroupPollingUntilDone(request:)``
   /// - ``deleteHostGroupPollingUntilDone(request:options:)``
-  /// - ``deleteHostGroupPollingUntilDone(name:)``
   public func deleteHostGroup(
     request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2643,10 +2643,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteHostGroupPollingUntilDone(request:)``
-  /// - ``deleteHostGroupPollingUntilDone(name:)``
   /// - ``deleteHostGroup(request:)``
   /// - ``deleteHostGroup(request:options:)``
+  /// - ``deleteHostGroupPollingUntilDone(name:)``
+  /// - ``deleteHostGroupPollingUntilDone(request:)``
   public func deleteHostGroupPollingUntilDone(
     request: DeleteHostGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2734,9 +2734,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``restoreVolume(request:)``
+  /// - ``restoreVolumePollingUntilDone(name:backupSource:ontapVolumeTarget:)``
   /// - ``restoreVolumePollingUntilDone(request:)``
   /// - ``restoreVolumePollingUntilDone(request:options:)``
-  /// - ``restoreVolumePollingUntilDone(name:backupSource:ontapVolumeTarget:)``
   public func restoreVolume(
     request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2749,10 +2749,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``restoreVolumePollingUntilDone(request:)``
-  /// - ``restoreVolumePollingUntilDone(name:backupSource:ontapVolumeTarget:)``
   /// - ``restoreVolume(request:)``
   /// - ``restoreVolume(request:options:)``
+  /// - ``restoreVolumePollingUntilDone(name:backupSource:ontapVolumeTarget:)``
+  /// - ``restoreVolumePollingUntilDone(request:)``
   public func restoreVolumePollingUntilDone(
     request: RestoreVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreVolumeResponse {
@@ -2785,9 +2785,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBackupConfigs(request:)``
+  /// - ``listBackupConfigsByItems(parent:)``
   /// - ``listBackupConfigsByItems(request:)``
   /// - ``listBackupConfigsByItems(request:options:)``
-  /// - ``listBackupConfigsByItems(parent:)``
   public func listBackupConfigs(
     request: ListBackupConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetAppV1.ListBackupConfigsResponse {
@@ -2801,9 +2801,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateBackupConfig(request:)``
+  /// - ``updateBackupConfigPollingUntilDone(name:volumeUuid:backupConfig:updateMask:)``
   /// - ``updateBackupConfigPollingUntilDone(request:)``
   /// - ``updateBackupConfigPollingUntilDone(request:options:)``
-  /// - ``updateBackupConfigPollingUntilDone(name:volumeUuid:backupConfig:updateMask:)``
   public func updateBackupConfig(
     request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2816,10 +2816,10 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBackupConfigPollingUntilDone(request:)``
-  /// - ``updateBackupConfigPollingUntilDone(name:volumeUuid:backupConfig:updateMask:)``
   /// - ``updateBackupConfig(request:)``
   /// - ``updateBackupConfig(request:options:)``
+  /// - ``updateBackupConfigPollingUntilDone(name:volumeUuid:backupConfig:updateMask:)``
+  /// - ``updateBackupConfigPollingUntilDone(request:)``
   public func updateBackupConfigPollingUntilDone(
     request: UpdateBackupConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> UpdateBackupConfigResponse {
@@ -2900,9 +2900,9 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2928,8 +2928,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2944,8 +2944,8 @@ public final class NetAppClient: Clients.NetAppProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

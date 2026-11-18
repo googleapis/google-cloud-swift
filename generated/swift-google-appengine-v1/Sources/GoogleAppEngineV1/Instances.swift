@@ -119,9 +119,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -181,9 +181,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``debugInstancePollingUntilDone(request:)``
   /// - ``debugInstance(request:)``
   /// - ``debugInstance(request:options:)``
+  /// - ``debugInstancePollingUntilDone(request:)``
   public func debugInstancePollingUntilDone(
     request: DebugInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -217,9 +217,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

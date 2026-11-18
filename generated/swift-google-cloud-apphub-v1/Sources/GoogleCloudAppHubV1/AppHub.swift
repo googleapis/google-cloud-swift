@@ -55,8 +55,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``lookupServiceProjectAttachment(request:)``
   /// - ``lookupServiceProjectAttachment(name:)``
+  /// - ``lookupServiceProjectAttachment(request:)``
   public func lookupServiceProjectAttachment(
     request: LookupServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.LookupServiceProjectAttachmentResponse {
@@ -70,9 +70,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listServiceProjectAttachments(request:)``
+  /// - ``listServiceProjectAttachmentsByItems(parent:)``
   /// - ``listServiceProjectAttachmentsByItems(request:)``
   /// - ``listServiceProjectAttachmentsByItems(request:options:)``
-  /// - ``listServiceProjectAttachmentsByItems(parent:)``
   public func listServiceProjectAttachments(
     request: ListServiceProjectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListServiceProjectAttachmentsResponse {
@@ -86,9 +86,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createServiceProjectAttachment(request:)``
+  /// - ``createServiceProjectAttachmentPollingUntilDone(parent:serviceProjectAttachment:serviceProjectAttachmentId:)``
   /// - ``createServiceProjectAttachmentPollingUntilDone(request:)``
   /// - ``createServiceProjectAttachmentPollingUntilDone(request:options:)``
-  /// - ``createServiceProjectAttachmentPollingUntilDone(parent:serviceProjectAttachment:serviceProjectAttachmentId:)``
   public func createServiceProjectAttachment(
     request: CreateServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createServiceProjectAttachmentPollingUntilDone(request:)``
-  /// - ``createServiceProjectAttachmentPollingUntilDone(parent:serviceProjectAttachment:serviceProjectAttachmentId:)``
   /// - ``createServiceProjectAttachment(request:)``
   /// - ``createServiceProjectAttachment(request:options:)``
+  /// - ``createServiceProjectAttachmentPollingUntilDone(parent:serviceProjectAttachment:serviceProjectAttachmentId:)``
+  /// - ``createServiceProjectAttachmentPollingUntilDone(request:)``
   public func createServiceProjectAttachmentPollingUntilDone(
     request: CreateServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceProjectAttachment {
@@ -137,8 +137,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getServiceProjectAttachment(request:)``
   /// - ``getServiceProjectAttachment(name:)``
+  /// - ``getServiceProjectAttachment(request:)``
   public func getServiceProjectAttachment(
     request: GetServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ServiceProjectAttachment {
@@ -152,9 +152,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteServiceProjectAttachment(request:)``
+  /// - ``deleteServiceProjectAttachmentPollingUntilDone(name:)``
   /// - ``deleteServiceProjectAttachmentPollingUntilDone(request:)``
   /// - ``deleteServiceProjectAttachmentPollingUntilDone(request:options:)``
-  /// - ``deleteServiceProjectAttachmentPollingUntilDone(name:)``
   public func deleteServiceProjectAttachment(
     request: DeleteServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -167,10 +167,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServiceProjectAttachmentPollingUntilDone(request:)``
-  /// - ``deleteServiceProjectAttachmentPollingUntilDone(name:)``
   /// - ``deleteServiceProjectAttachment(request:)``
   /// - ``deleteServiceProjectAttachment(request:options:)``
+  /// - ``deleteServiceProjectAttachmentPollingUntilDone(name:)``
+  /// - ``deleteServiceProjectAttachmentPollingUntilDone(request:)``
   public func deleteServiceProjectAttachmentPollingUntilDone(
     request: DeleteServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -203,8 +203,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``detachServiceProjectAttachment(request:)``
   /// - ``detachServiceProjectAttachment(name:)``
+  /// - ``detachServiceProjectAttachment(request:)``
   public func detachServiceProjectAttachment(
     request: DetachServiceProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.DetachServiceProjectAttachmentResponse {
@@ -219,9 +219,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDiscoveredServices(request:)``
+  /// - ``listDiscoveredServicesByItems(parent:)``
   /// - ``listDiscoveredServicesByItems(request:)``
   /// - ``listDiscoveredServicesByItems(request:options:)``
-  /// - ``listDiscoveredServicesByItems(parent:)``
   public func listDiscoveredServices(
     request: ListDiscoveredServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListDiscoveredServicesResponse {
@@ -234,8 +234,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDiscoveredService(request:)``
   /// - ``getDiscoveredService(name:)``
+  /// - ``getDiscoveredService(request:)``
   public func getDiscoveredService(
     request: GetDiscoveredServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.DiscoveredService {
@@ -249,8 +249,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``lookupDiscoveredService(request:)``
   /// - ``lookupDiscoveredService(parent:uri:)``
+  /// - ``lookupDiscoveredService(request:)``
   public func lookupDiscoveredService(
     request: LookupDiscoveredServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.LookupDiscoveredServiceResponse {
@@ -264,9 +264,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listServices(request:)``
+  /// - ``listServicesByItems(parent:)``
   /// - ``listServicesByItems(request:)``
   /// - ``listServicesByItems(request:options:)``
-  /// - ``listServicesByItems(parent:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListServicesResponse {
@@ -280,9 +280,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createService(request:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   /// - ``createServicePollingUntilDone(request:)``
   /// - ``createServicePollingUntilDone(request:options:)``
-  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -295,10 +295,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createServicePollingUntilDone(request:)``
-  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   /// - ``createService(request:)``
   /// - ``createService(request:options:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
+  /// - ``createServicePollingUntilDone(request:)``
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -329,8 +329,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getService(request:)``
   /// - ``getService(name:)``
+  /// - ``getService(request:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.Service {
@@ -359,10 +359,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateServicePollingUntilDone(request:)``
-  /// - ``updateServicePollingUntilDone(service:updateMask:)``
   /// - ``updateService(request:)``
   /// - ``updateService(request:options:)``
+  /// - ``updateServicePollingUntilDone(request:)``
+  /// - ``updateServicePollingUntilDone(service:updateMask:)``
   public func updateServicePollingUntilDone(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -394,9 +394,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteService(request:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
   /// - ``deleteServicePollingUntilDone(request:)``
   /// - ``deleteServicePollingUntilDone(request:options:)``
-  /// - ``deleteServicePollingUntilDone(name:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -409,10 +409,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServicePollingUntilDone(request:)``
-  /// - ``deleteServicePollingUntilDone(name:)``
   /// - ``deleteService(request:)``
   /// - ``deleteService(request:options:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -445,9 +445,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDiscoveredWorkloads(request:)``
+  /// - ``listDiscoveredWorkloadsByItems(parent:)``
   /// - ``listDiscoveredWorkloadsByItems(request:)``
   /// - ``listDiscoveredWorkloadsByItems(request:options:)``
-  /// - ``listDiscoveredWorkloadsByItems(parent:)``
   public func listDiscoveredWorkloads(
     request: ListDiscoveredWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListDiscoveredWorkloadsResponse {
@@ -460,8 +460,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDiscoveredWorkload(request:)``
   /// - ``getDiscoveredWorkload(name:)``
+  /// - ``getDiscoveredWorkload(request:)``
   public func getDiscoveredWorkload(
     request: GetDiscoveredWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.DiscoveredWorkload {
@@ -475,8 +475,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``lookupDiscoveredWorkload(request:)``
   /// - ``lookupDiscoveredWorkload(parent:uri:)``
+  /// - ``lookupDiscoveredWorkload(request:)``
   public func lookupDiscoveredWorkload(
     request: LookupDiscoveredWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.LookupDiscoveredWorkloadResponse {
@@ -490,9 +490,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkloads(request:)``
+  /// - ``listWorkloadsByItems(parent:)``
   /// - ``listWorkloadsByItems(request:)``
   /// - ``listWorkloadsByItems(request:options:)``
-  /// - ``listWorkloadsByItems(parent:)``
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListWorkloadsResponse {
@@ -506,9 +506,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkload(request:)``
+  /// - ``createWorkloadPollingUntilDone(parent:workload:workloadId:)``
   /// - ``createWorkloadPollingUntilDone(request:)``
   /// - ``createWorkloadPollingUntilDone(request:options:)``
-  /// - ``createWorkloadPollingUntilDone(parent:workload:workloadId:)``
   public func createWorkload(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -521,10 +521,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkloadPollingUntilDone(request:)``
-  /// - ``createWorkloadPollingUntilDone(parent:workload:workloadId:)``
   /// - ``createWorkload(request:)``
   /// - ``createWorkload(request:options:)``
+  /// - ``createWorkloadPollingUntilDone(parent:workload:workloadId:)``
+  /// - ``createWorkloadPollingUntilDone(request:)``
   public func createWorkloadPollingUntilDone(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workload {
@@ -555,8 +555,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkload(request:)``
   /// - ``getWorkload(name:)``
+  /// - ``getWorkload(request:)``
   public func getWorkload(
     request: GetWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.Workload {
@@ -585,10 +585,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateWorkloadPollingUntilDone(request:)``
-  /// - ``updateWorkloadPollingUntilDone(workload:updateMask:)``
   /// - ``updateWorkload(request:)``
   /// - ``updateWorkload(request:options:)``
+  /// - ``updateWorkloadPollingUntilDone(request:)``
+  /// - ``updateWorkloadPollingUntilDone(workload:updateMask:)``
   public func updateWorkloadPollingUntilDone(
     request: UpdateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workload {
@@ -620,9 +620,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkload(request:)``
+  /// - ``deleteWorkloadPollingUntilDone(name:)``
   /// - ``deleteWorkloadPollingUntilDone(request:)``
   /// - ``deleteWorkloadPollingUntilDone(request:options:)``
-  /// - ``deleteWorkloadPollingUntilDone(name:)``
   public func deleteWorkload(
     request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -635,10 +635,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkloadPollingUntilDone(request:)``
-  /// - ``deleteWorkloadPollingUntilDone(name:)``
   /// - ``deleteWorkload(request:)``
   /// - ``deleteWorkload(request:options:)``
+  /// - ``deleteWorkloadPollingUntilDone(name:)``
+  /// - ``deleteWorkloadPollingUntilDone(request:)``
   public func deleteWorkloadPollingUntilDone(
     request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -670,9 +670,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApplications(request:)``
+  /// - ``listApplicationsByItems(parent:)``
   /// - ``listApplicationsByItems(request:)``
   /// - ``listApplicationsByItems(request:options:)``
-  /// - ``listApplicationsByItems(parent:)``
   public func listApplications(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListApplicationsResponse {
@@ -686,9 +686,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createApplication(request:)``
+  /// - ``createApplicationPollingUntilDone(parent:application:applicationId:)``
   /// - ``createApplicationPollingUntilDone(request:)``
   /// - ``createApplicationPollingUntilDone(request:options:)``
-  /// - ``createApplicationPollingUntilDone(parent:application:applicationId:)``
   public func createApplication(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -701,10 +701,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApplicationPollingUntilDone(request:)``
-  /// - ``createApplicationPollingUntilDone(parent:application:applicationId:)``
   /// - ``createApplication(request:)``
   /// - ``createApplication(request:options:)``
+  /// - ``createApplicationPollingUntilDone(parent:application:applicationId:)``
+  /// - ``createApplicationPollingUntilDone(request:)``
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -735,8 +735,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplication(request:)``
   /// - ``getApplication(name:)``
+  /// - ``getApplication(request:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.Application {
@@ -750,9 +750,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateApplication(request:)``
+  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   /// - ``updateApplicationPollingUntilDone(request:)``
   /// - ``updateApplicationPollingUntilDone(request:options:)``
-  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   public func updateApplication(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -765,10 +765,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplicationPollingUntilDone(request:)``
-  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   /// - ``updateApplication(request:)``
   /// - ``updateApplication(request:options:)``
+  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
+  /// - ``updateApplicationPollingUntilDone(request:)``
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -800,9 +800,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteApplication(request:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
   /// - ``deleteApplicationPollingUntilDone(request:)``
   /// - ``deleteApplicationPollingUntilDone(request:options:)``
-  /// - ``deleteApplicationPollingUntilDone(name:)``
   public func deleteApplication(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -815,10 +815,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApplicationPollingUntilDone(request:)``
-  /// - ``deleteApplicationPollingUntilDone(name:)``
   /// - ``deleteApplication(request:)``
   /// - ``deleteApplication(request:options:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
+  /// - ``deleteApplicationPollingUntilDone(request:)``
   public func deleteApplicationPollingUntilDone(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -849,8 +849,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBoundary(request:)``
   /// - ``getBoundary(name:)``
+  /// - ``getBoundary(request:)``
   public func getBoundary(
     request: GetBoundaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.Boundary {
@@ -864,9 +864,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateBoundary(request:)``
+  /// - ``updateBoundaryPollingUntilDone(boundary:updateMask:)``
   /// - ``updateBoundaryPollingUntilDone(request:)``
   /// - ``updateBoundaryPollingUntilDone(request:options:)``
-  /// - ``updateBoundaryPollingUntilDone(boundary:updateMask:)``
   public func updateBoundary(
     request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -879,10 +879,10 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBoundaryPollingUntilDone(request:)``
-  /// - ``updateBoundaryPollingUntilDone(boundary:updateMask:)``
   /// - ``updateBoundary(request:)``
   /// - ``updateBoundary(request:options:)``
+  /// - ``updateBoundaryPollingUntilDone(boundary:updateMask:)``
+  /// - ``updateBoundaryPollingUntilDone(request:)``
   public func updateBoundaryPollingUntilDone(
     request: UpdateBoundaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Boundary {
@@ -913,8 +913,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExtendedMetadataSchema(request:)``
   /// - ``getExtendedMetadataSchema(name:)``
+  /// - ``getExtendedMetadataSchema(request:)``
   public func getExtendedMetadataSchema(
     request: GetExtendedMetadataSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ExtendedMetadataSchema {
@@ -928,9 +928,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExtendedMetadataSchemas(request:)``
+  /// - ``listExtendedMetadataSchemasByItems(parent:)``
   /// - ``listExtendedMetadataSchemasByItems(request:)``
   /// - ``listExtendedMetadataSchemasByItems(request:options:)``
-  /// - ``listExtendedMetadataSchemasByItems(parent:)``
   public func listExtendedMetadataSchemas(
     request: ListExtendedMetadataSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppHubV1.ListExtendedMetadataSchemasResponse {
@@ -1041,9 +1041,9 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1069,8 +1069,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1085,8 +1085,8 @@ public final class AppHubClient: Clients.AppHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

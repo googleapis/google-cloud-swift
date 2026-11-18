@@ -67,8 +67,8 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getReplay(request:)``
   /// - ``getReplay(name:)``
+  /// - ``getReplay(request:)``
   public func getReplay(
     request: GetReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.Replay {
@@ -86,9 +86,9 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createReplay(request:)``
+  /// - ``createReplayPollingUntilDone(parent:replay:)``
   /// - ``createReplayPollingUntilDone(request:)``
   /// - ``createReplayPollingUntilDone(request:options:)``
-  /// - ``createReplayPollingUntilDone(parent:replay:)``
   public func createReplay(
     request: CreateReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -105,10 +105,10 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createReplayPollingUntilDone(request:)``
-  /// - ``createReplayPollingUntilDone(parent:replay:)``
   /// - ``createReplay(request:)``
   /// - ``createReplay(request:options:)``
+  /// - ``createReplayPollingUntilDone(parent:replay:)``
+  /// - ``createReplayPollingUntilDone(request:)``
   public func createReplayPollingUntilDone(
     request: CreateReplayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Replay {
@@ -143,9 +143,9 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listReplayResults(request:)``
+  /// - ``listReplayResultsByItems(parent:)``
   /// - ``listReplayResultsByItems(request:)``
   /// - ``listReplayResultsByItems(request:options:)``
-  /// - ``listReplayResultsByItems(parent:)``
   public func listReplayResults(
     request: ListReplayResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.ListReplayResultsResponse {
@@ -161,9 +161,9 @@ public final class SimulatorClient: Clients.SimulatorProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

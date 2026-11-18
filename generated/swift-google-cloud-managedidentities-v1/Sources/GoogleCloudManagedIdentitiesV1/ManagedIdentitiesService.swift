@@ -87,9 +87,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``createMicrosoftAdDomain(request:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(parent:domainName:domain:)``
   /// - ``createMicrosoftAdDomainPollingUntilDone(request:)``
   /// - ``createMicrosoftAdDomainPollingUntilDone(request:options:)``
-  /// - ``createMicrosoftAdDomainPollingUntilDone(parent:domainName:domain:)``
   public func createMicrosoftAdDomain(
     request: CreateMicrosoftAdDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,10 +102,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``createMicrosoftAdDomainPollingUntilDone(request:)``
-  /// - ``createMicrosoftAdDomainPollingUntilDone(parent:domainName:domain:)``
   /// - ``createMicrosoftAdDomain(request:)``
   /// - ``createMicrosoftAdDomain(request:options:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(parent:domainName:domain:)``
+  /// - ``createMicrosoftAdDomainPollingUntilDone(request:)``
   public func createMicrosoftAdDomainPollingUntilDone(
     request: CreateMicrosoftAdDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -136,8 +136,8 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``resetAdminPassword(request:)``
   /// - ``resetAdminPassword(name:)``
+  /// - ``resetAdminPassword(request:)``
   public func resetAdminPassword(
     request: ResetAdminPasswordRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedIdentitiesV1.ResetAdminPasswordResponse {
@@ -151,9 +151,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``listDomains(request:)``
+  /// - ``listDomainsByItems(parent:)``
   /// - ``listDomainsByItems(request:)``
   /// - ``listDomainsByItems(request:options:)``
-  /// - ``listDomainsByItems(parent:)``
   public func listDomains(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedIdentitiesV1.ListDomainsResponse {
@@ -166,8 +166,8 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``getDomain(request:)``
   /// - ``getDomain(name:)``
+  /// - ``getDomain(request:)``
   public func getDomain(
     request: GetDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedIdentitiesV1.Domain {
@@ -181,9 +181,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``updateDomain(request:)``
+  /// - ``updateDomainPollingUntilDone(domain:updateMask:)``
   /// - ``updateDomainPollingUntilDone(request:)``
   /// - ``updateDomainPollingUntilDone(request:options:)``
-  /// - ``updateDomainPollingUntilDone(domain:updateMask:)``
   public func updateDomain(
     request: UpdateDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -196,10 +196,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``updateDomainPollingUntilDone(request:)``
-  /// - ``updateDomainPollingUntilDone(domain:updateMask:)``
   /// - ``updateDomain(request:)``
   /// - ``updateDomain(request:options:)``
+  /// - ``updateDomainPollingUntilDone(domain:updateMask:)``
+  /// - ``updateDomainPollingUntilDone(request:)``
   public func updateDomainPollingUntilDone(
     request: UpdateDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -231,9 +231,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``deleteDomain(request:)``
+  /// - ``deleteDomainPollingUntilDone(name:)``
   /// - ``deleteDomainPollingUntilDone(request:)``
   /// - ``deleteDomainPollingUntilDone(request:options:)``
-  /// - ``deleteDomainPollingUntilDone(name:)``
   public func deleteDomain(
     request: DeleteDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -246,10 +246,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteDomainPollingUntilDone(request:)``
-  /// - ``deleteDomainPollingUntilDone(name:)``
   /// - ``deleteDomain(request:)``
   /// - ``deleteDomain(request:options:)``
+  /// - ``deleteDomainPollingUntilDone(name:)``
+  /// - ``deleteDomainPollingUntilDone(request:)``
   public func deleteDomainPollingUntilDone(
     request: DeleteDomainRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -281,9 +281,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``attachTrust(request:)``
+  /// - ``attachTrustPollingUntilDone(name:trust:)``
   /// - ``attachTrustPollingUntilDone(request:)``
   /// - ``attachTrustPollingUntilDone(request:options:)``
-  /// - ``attachTrustPollingUntilDone(name:trust:)``
   public func attachTrust(
     request: AttachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -296,10 +296,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``attachTrustPollingUntilDone(request:)``
-  /// - ``attachTrustPollingUntilDone(name:trust:)``
   /// - ``attachTrust(request:)``
   /// - ``attachTrust(request:options:)``
+  /// - ``attachTrustPollingUntilDone(name:trust:)``
+  /// - ``attachTrustPollingUntilDone(request:)``
   public func attachTrustPollingUntilDone(
     request: AttachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -331,9 +331,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``reconfigureTrust(request:)``
+  /// - ``reconfigureTrustPollingUntilDone(name:targetDomainName:targetDnsIpAddresses:)``
   /// - ``reconfigureTrustPollingUntilDone(request:)``
   /// - ``reconfigureTrustPollingUntilDone(request:options:)``
-  /// - ``reconfigureTrustPollingUntilDone(name:targetDomainName:targetDnsIpAddresses:)``
   public func reconfigureTrust(
     request: ReconfigureTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -346,10 +346,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``reconfigureTrustPollingUntilDone(request:)``
-  /// - ``reconfigureTrustPollingUntilDone(name:targetDomainName:targetDnsIpAddresses:)``
   /// - ``reconfigureTrust(request:)``
   /// - ``reconfigureTrust(request:options:)``
+  /// - ``reconfigureTrustPollingUntilDone(name:targetDomainName:targetDnsIpAddresses:)``
+  /// - ``reconfigureTrustPollingUntilDone(request:)``
   public func reconfigureTrustPollingUntilDone(
     request: ReconfigureTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -381,9 +381,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``detachTrust(request:)``
+  /// - ``detachTrustPollingUntilDone(name:trust:)``
   /// - ``detachTrustPollingUntilDone(request:)``
   /// - ``detachTrustPollingUntilDone(request:options:)``
-  /// - ``detachTrustPollingUntilDone(name:trust:)``
   public func detachTrust(
     request: DetachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -396,10 +396,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``detachTrustPollingUntilDone(request:)``
-  /// - ``detachTrustPollingUntilDone(name:trust:)``
   /// - ``detachTrust(request:)``
   /// - ``detachTrust(request:options:)``
+  /// - ``detachTrustPollingUntilDone(name:trust:)``
+  /// - ``detachTrustPollingUntilDone(request:)``
   public func detachTrustPollingUntilDone(
     request: DetachTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -432,9 +432,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``validateTrust(request:)``
+  /// - ``validateTrustPollingUntilDone(name:trust:)``
   /// - ``validateTrustPollingUntilDone(request:)``
   /// - ``validateTrustPollingUntilDone(request:options:)``
-  /// - ``validateTrustPollingUntilDone(name:trust:)``
   public func validateTrust(
     request: ValidateTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -448,10 +448,10 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``validateTrustPollingUntilDone(request:)``
-  /// - ``validateTrustPollingUntilDone(name:trust:)``
   /// - ``validateTrust(request:)``
   /// - ``validateTrust(request:options:)``
+  /// - ``validateTrustPollingUntilDone(name:trust:)``
+  /// - ``validateTrustPollingUntilDone(request:)``
   public func validateTrustPollingUntilDone(
     request: ValidateTrustRequest, options: GoogleGax.RequestOptions
   ) async throws -> Domain {
@@ -485,9 +485,9 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -513,8 +513,8 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -529,8 +529,8 @@ public final class ManagedIdentitiesServiceClient: Clients.ManagedIdentitiesServ
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -57,9 +57,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(parent:)``
   /// - ``listClustersByItems(request:)``
   /// - ``listClustersByItems(request:options:)``
-  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListClustersResponse {
@@ -72,8 +72,8 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Cluster {
@@ -87,9 +87,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,10 +102,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -137,9 +137,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateClusterPollingUntilDone(request:options:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -152,10 +152,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -187,9 +187,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteClusterPollingUntilDone(request:)``
   /// - ``deleteClusterPollingUntilDone(request:options:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -202,10 +202,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteClusterPollingUntilDone(request:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -237,9 +237,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listStreams(request:)``
+  /// - ``listStreamsByItems(parent:)``
   /// - ``listStreamsByItems(request:)``
   /// - ``listStreamsByItems(request:options:)``
-  /// - ``listStreamsByItems(parent:)``
   public func listStreams(
     request: ListStreamsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListStreamsResponse {
@@ -252,8 +252,8 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getStream(request:)``
   /// - ``getStream(name:)``
+  /// - ``getStream(request:)``
   public func getStream(
     request: GetStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Stream {
@@ -267,9 +267,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createStream(request:)``
+  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   /// - ``createStreamPollingUntilDone(request:)``
   /// - ``createStreamPollingUntilDone(request:options:)``
-  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   public func createStream(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -282,10 +282,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createStreamPollingUntilDone(request:)``
-  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   /// - ``createStream(request:)``
   /// - ``createStream(request:options:)``
+  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
+  /// - ``createStreamPollingUntilDone(request:)``
   public func createStreamPollingUntilDone(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -332,10 +332,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateStreamPollingUntilDone(request:)``
-  /// - ``updateStreamPollingUntilDone(stream:updateMask:)``
   /// - ``updateStream(request:)``
   /// - ``updateStream(request:options:)``
+  /// - ``updateStreamPollingUntilDone(request:)``
+  /// - ``updateStreamPollingUntilDone(stream:updateMask:)``
   public func updateStreamPollingUntilDone(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -367,9 +367,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteStream(request:)``
+  /// - ``deleteStreamPollingUntilDone(name:)``
   /// - ``deleteStreamPollingUntilDone(request:)``
   /// - ``deleteStreamPollingUntilDone(request:options:)``
-  /// - ``deleteStreamPollingUntilDone(name:)``
   public func deleteStream(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -382,10 +382,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteStreamPollingUntilDone(request:)``
-  /// - ``deleteStreamPollingUntilDone(name:)``
   /// - ``deleteStream(request:)``
   /// - ``deleteStream(request:options:)``
+  /// - ``deleteStreamPollingUntilDone(name:)``
+  /// - ``deleteStreamPollingUntilDone(request:)``
   public func deleteStreamPollingUntilDone(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -432,10 +432,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getStreamThumbnailPollingUntilDone(request:)``
-  /// - ``getStreamThumbnailPollingUntilDone(stream:gcsObjectName:)``
   /// - ``getStreamThumbnail(request:)``
   /// - ``getStreamThumbnail(request:options:)``
+  /// - ``getStreamThumbnailPollingUntilDone(request:)``
+  /// - ``getStreamThumbnailPollingUntilDone(stream:gcsObjectName:)``
   public func getStreamThumbnailPollingUntilDone(
     request: GetStreamThumbnailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GetStreamThumbnailResponse {
@@ -483,9 +483,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listEvents(request:)``
+  /// - ``listEventsByItems(parent:)``
   /// - ``listEventsByItems(request:)``
   /// - ``listEventsByItems(request:options:)``
-  /// - ``listEventsByItems(parent:)``
   public func listEvents(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListEventsResponse {
@@ -498,8 +498,8 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getEvent(request:)``
   /// - ``getEvent(name:)``
+  /// - ``getEvent(request:)``
   public func getEvent(
     request: GetEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Event {
@@ -513,9 +513,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createEvent(request:)``
+  /// - ``createEventPollingUntilDone(parent:event:eventId:)``
   /// - ``createEventPollingUntilDone(request:)``
   /// - ``createEventPollingUntilDone(request:options:)``
-  /// - ``createEventPollingUntilDone(parent:event:eventId:)``
   public func createEvent(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -528,10 +528,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createEventPollingUntilDone(request:)``
-  /// - ``createEventPollingUntilDone(parent:event:eventId:)``
   /// - ``createEvent(request:)``
   /// - ``createEvent(request:options:)``
+  /// - ``createEventPollingUntilDone(parent:event:eventId:)``
+  /// - ``createEventPollingUntilDone(request:)``
   public func createEventPollingUntilDone(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> Event {
@@ -563,9 +563,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateEvent(request:)``
+  /// - ``updateEventPollingUntilDone(event:updateMask:)``
   /// - ``updateEventPollingUntilDone(request:)``
   /// - ``updateEventPollingUntilDone(request:options:)``
-  /// - ``updateEventPollingUntilDone(event:updateMask:)``
   public func updateEvent(
     request: UpdateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -578,10 +578,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateEventPollingUntilDone(request:)``
-  /// - ``updateEventPollingUntilDone(event:updateMask:)``
   /// - ``updateEvent(request:)``
   /// - ``updateEvent(request:options:)``
+  /// - ``updateEventPollingUntilDone(event:updateMask:)``
+  /// - ``updateEventPollingUntilDone(request:)``
   public func updateEventPollingUntilDone(
     request: UpdateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> Event {
@@ -613,9 +613,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteEvent(request:)``
+  /// - ``deleteEventPollingUntilDone(name:)``
   /// - ``deleteEventPollingUntilDone(request:)``
   /// - ``deleteEventPollingUntilDone(request:options:)``
-  /// - ``deleteEventPollingUntilDone(name:)``
   public func deleteEvent(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -628,10 +628,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteEventPollingUntilDone(request:)``
-  /// - ``deleteEventPollingUntilDone(name:)``
   /// - ``deleteEvent(request:)``
   /// - ``deleteEvent(request:options:)``
+  /// - ``deleteEventPollingUntilDone(name:)``
+  /// - ``deleteEventPollingUntilDone(request:)``
   public func deleteEventPollingUntilDone(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -663,9 +663,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listSeries(request:)``
+  /// - ``listSeriesByItems(parent:)``
   /// - ``listSeriesByItems(request:)``
   /// - ``listSeriesByItems(request:options:)``
-  /// - ``listSeriesByItems(parent:)``
   public func listSeries(
     request: ListSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListSeriesResponse {
@@ -678,8 +678,8 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getSeries(request:)``
   /// - ``getSeries(name:)``
+  /// - ``getSeries(request:)``
   public func getSeries(
     request: GetSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Series {
@@ -693,9 +693,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createSeries(request:)``
+  /// - ``createSeriesPollingUntilDone(parent:series:seriesId:)``
   /// - ``createSeriesPollingUntilDone(request:)``
   /// - ``createSeriesPollingUntilDone(request:options:)``
-  /// - ``createSeriesPollingUntilDone(parent:series:seriesId:)``
   public func createSeries(
     request: CreateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -708,10 +708,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createSeriesPollingUntilDone(request:)``
-  /// - ``createSeriesPollingUntilDone(parent:series:seriesId:)``
   /// - ``createSeries(request:)``
   /// - ``createSeries(request:options:)``
+  /// - ``createSeriesPollingUntilDone(parent:series:seriesId:)``
+  /// - ``createSeriesPollingUntilDone(request:)``
   public func createSeriesPollingUntilDone(
     request: CreateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> Series {
@@ -758,10 +758,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateSeriesPollingUntilDone(request:)``
-  /// - ``updateSeriesPollingUntilDone(series:updateMask:)``
   /// - ``updateSeries(request:)``
   /// - ``updateSeries(request:options:)``
+  /// - ``updateSeriesPollingUntilDone(request:)``
+  /// - ``updateSeriesPollingUntilDone(series:updateMask:)``
   public func updateSeriesPollingUntilDone(
     request: UpdateSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> Series {
@@ -793,9 +793,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteSeries(request:)``
+  /// - ``deleteSeriesPollingUntilDone(name:)``
   /// - ``deleteSeriesPollingUntilDone(request:)``
   /// - ``deleteSeriesPollingUntilDone(request:options:)``
-  /// - ``deleteSeriesPollingUntilDone(name:)``
   public func deleteSeries(
     request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -808,10 +808,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteSeriesPollingUntilDone(request:)``
-  /// - ``deleteSeriesPollingUntilDone(name:)``
   /// - ``deleteSeries(request:)``
   /// - ``deleteSeries(request:options:)``
+  /// - ``deleteSeriesPollingUntilDone(name:)``
+  /// - ``deleteSeriesPollingUntilDone(request:)``
   public func deleteSeriesPollingUntilDone(
     request: DeleteSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -843,9 +843,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``materializeChannel(request:)``
+  /// - ``materializeChannelPollingUntilDone(parent:channel:channelId:)``
   /// - ``materializeChannelPollingUntilDone(request:)``
   /// - ``materializeChannelPollingUntilDone(request:options:)``
-  /// - ``materializeChannelPollingUntilDone(parent:channel:channelId:)``
   public func materializeChannel(
     request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -858,10 +858,10 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``materializeChannelPollingUntilDone(request:)``
-  /// - ``materializeChannelPollingUntilDone(parent:channel:channelId:)``
   /// - ``materializeChannel(request:)``
   /// - ``materializeChannel(request:options:)``
+  /// - ``materializeChannelPollingUntilDone(parent:channel:channelId:)``
+  /// - ``materializeChannelPollingUntilDone(request:)``
   public func materializeChannelPollingUntilDone(
     request: MaterializeChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -923,9 +923,9 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -951,8 +951,8 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -967,8 +967,8 @@ public final class StreamsServiceClient: Clients.StreamsServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

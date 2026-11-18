@@ -51,9 +51,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: GlobalOperationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.OperationAggregatedList {
@@ -66,8 +66,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``delete(request:)``
     /// - ``delete(project:operation:)``
+    /// - ``delete(request:)``
     public func delete(
       request: GlobalOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -80,8 +80,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:operation:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -96,9 +96,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: GlobalOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.OperationList {
@@ -126,8 +126,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``wait(request:)``
     /// - ``wait(project:operation:)``
+    /// - ``wait(request:)``
     public func wait(
       request: GlobalOperationsClient.WaitRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

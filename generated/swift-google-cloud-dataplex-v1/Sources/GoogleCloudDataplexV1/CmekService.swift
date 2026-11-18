@@ -55,9 +55,9 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createEncryptionConfig(request:)``
+  /// - ``createEncryptionConfigPollingUntilDone(parent:encryptionConfig:encryptionConfigId:)``
   /// - ``createEncryptionConfigPollingUntilDone(request:)``
   /// - ``createEncryptionConfigPollingUntilDone(request:options:)``
-  /// - ``createEncryptionConfigPollingUntilDone(parent:encryptionConfig:encryptionConfigId:)``
   public func createEncryptionConfig(
     request: CreateEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -70,10 +70,10 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEncryptionConfigPollingUntilDone(request:)``
-  /// - ``createEncryptionConfigPollingUntilDone(parent:encryptionConfig:encryptionConfigId:)``
   /// - ``createEncryptionConfig(request:)``
   /// - ``createEncryptionConfig(request:options:)``
+  /// - ``createEncryptionConfigPollingUntilDone(parent:encryptionConfig:encryptionConfigId:)``
+  /// - ``createEncryptionConfigPollingUntilDone(request:)``
   public func createEncryptionConfigPollingUntilDone(
     request: CreateEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> EncryptionConfig {
@@ -106,9 +106,9 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateEncryptionConfig(request:)``
+  /// - ``updateEncryptionConfigPollingUntilDone(encryptionConfig:updateMask:)``
   /// - ``updateEncryptionConfigPollingUntilDone(request:)``
   /// - ``updateEncryptionConfigPollingUntilDone(request:options:)``
-  /// - ``updateEncryptionConfigPollingUntilDone(encryptionConfig:updateMask:)``
   public func updateEncryptionConfig(
     request: UpdateEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -121,10 +121,10 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEncryptionConfigPollingUntilDone(request:)``
-  /// - ``updateEncryptionConfigPollingUntilDone(encryptionConfig:updateMask:)``
   /// - ``updateEncryptionConfig(request:)``
   /// - ``updateEncryptionConfig(request:options:)``
+  /// - ``updateEncryptionConfigPollingUntilDone(encryptionConfig:updateMask:)``
+  /// - ``updateEncryptionConfigPollingUntilDone(request:)``
   public func updateEncryptionConfigPollingUntilDone(
     request: UpdateEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> EncryptionConfig {
@@ -157,9 +157,9 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteEncryptionConfig(request:)``
+  /// - ``deleteEncryptionConfigPollingUntilDone(name:)``
   /// - ``deleteEncryptionConfigPollingUntilDone(request:)``
   /// - ``deleteEncryptionConfigPollingUntilDone(request:options:)``
-  /// - ``deleteEncryptionConfigPollingUntilDone(name:)``
   public func deleteEncryptionConfig(
     request: DeleteEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -172,10 +172,10 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEncryptionConfigPollingUntilDone(request:)``
-  /// - ``deleteEncryptionConfigPollingUntilDone(name:)``
   /// - ``deleteEncryptionConfig(request:)``
   /// - ``deleteEncryptionConfig(request:options:)``
+  /// - ``deleteEncryptionConfigPollingUntilDone(name:)``
+  /// - ``deleteEncryptionConfigPollingUntilDone(request:)``
   public func deleteEncryptionConfigPollingUntilDone(
     request: DeleteEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -207,9 +207,9 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEncryptionConfigs(request:)``
+  /// - ``listEncryptionConfigsByItems(parent:)``
   /// - ``listEncryptionConfigsByItems(request:)``
   /// - ``listEncryptionConfigsByItems(request:options:)``
-  /// - ``listEncryptionConfigsByItems(parent:)``
   public func listEncryptionConfigs(
     request: ListEncryptionConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEncryptionConfigsResponse {
@@ -222,8 +222,8 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEncryptionConfig(request:)``
   /// - ``getEncryptionConfig(name:)``
+  /// - ``getEncryptionConfig(request:)``
   public func getEncryptionConfig(
     request: GetEncryptionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EncryptionConfig {
@@ -334,9 +334,9 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -362,8 +362,8 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -378,8 +378,8 @@ public final class CmekServiceClient: Clients.CmekServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

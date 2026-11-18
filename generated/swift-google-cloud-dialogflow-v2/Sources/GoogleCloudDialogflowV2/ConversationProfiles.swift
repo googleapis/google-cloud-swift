@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``listConversationProfiles(request:)``
+    /// - ``listConversationProfilesByItems(parent:)``
     /// - ``listConversationProfilesByItems(request:)``
     /// - ``listConversationProfilesByItems(request:options:)``
-    /// - ``listConversationProfilesByItems(parent:)``
     public func listConversationProfiles(
       request: ListConversationProfilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationProfilesResponse {
@@ -74,8 +74,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getConversationProfile(request:)``
     /// - ``getConversationProfile(name:)``
+    /// - ``getConversationProfile(request:)``
     public func getConversationProfile(
       request: GetConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -99,8 +99,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createConversationProfile(request:)``
     /// - ``createConversationProfile(parent:conversationProfile:)``
+    /// - ``createConversationProfile(request:)``
     public func createConversationProfile(
       request: CreateConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -124,8 +124,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateConversationProfile(request:)``
     /// - ``updateConversationProfile(conversationProfile:updateMask:)``
+    /// - ``updateConversationProfile(request:)``
     public func updateConversationProfile(
       request: UpdateConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationProfile {
@@ -138,8 +138,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteConversationProfile(request:)``
     /// - ``deleteConversationProfile(name:)``
+    /// - ``deleteConversationProfile(request:)``
     public func deleteConversationProfile(
       request: DeleteConversationProfileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -173,10 +173,10 @@
     /// ## See Also
     ///
     /// - ``setSuggestionFeatureConfig(request:)``
-    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:)``
-    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:options:)``
     /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
     /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureConfig:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func setSuggestionFeatureConfig(
       request: SetSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -209,11 +209,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:)``
-    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
-    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureConfig:)``
     /// - ``setSuggestionFeatureConfig(request:)``
     /// - ``setSuggestionFeatureConfig(request:options:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureConfig:)``
+    /// - ``setSuggestionFeatureConfigPollingUntilDone(request:)``
     public func setSuggestionFeatureConfigPollingUntilDone(
       request: SetSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationProfile {
@@ -259,10 +259,10 @@
     /// ## See Also
     ///
     /// - ``clearSuggestionFeatureConfig(request:)``
-    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:)``
-    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:options:)``
     /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
     /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureType:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:options:)``
     public func clearSuggestionFeatureConfig(
       request: ClearSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -288,11 +288,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:)``
-    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
-    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureType:)``
     /// - ``clearSuggestionFeatureConfig(request:)``
     /// - ``clearSuggestionFeatureConfig(request:options:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(conversationProfile:participantRole:suggestionFeatureType:)``
+    /// - ``clearSuggestionFeatureConfigPollingUntilDone(request:)``
     public func clearSuggestionFeatureConfigPollingUntilDone(
       request: ClearSuggestionFeatureConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationProfile {
@@ -372,9 +372,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -400,8 +400,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

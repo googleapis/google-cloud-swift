@@ -50,8 +50,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createEntityReconciliationJob(request:)``
   /// - ``createEntityReconciliationJob(parent:entityReconciliationJob:)``
+  /// - ``createEntityReconciliationJob(request:)``
   public func createEntityReconciliationJob(
     request: CreateEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob {
@@ -64,8 +64,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getEntityReconciliationJob(request:)``
   /// - ``getEntityReconciliationJob(name:)``
+  /// - ``getEntityReconciliationJob(request:)``
   public func getEntityReconciliationJob(
     request: GetEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.EntityReconciliationJob {
@@ -79,9 +79,9 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listEntityReconciliationJobs(request:)``
+  /// - ``listEntityReconciliationJobsByItems(parent:)``
   /// - ``listEntityReconciliationJobsByItems(request:)``
   /// - ``listEntityReconciliationJobsByItems(request:options:)``
-  /// - ``listEntityReconciliationJobsByItems(parent:)``
   public func listEntityReconciliationJobs(
     request: ListEntityReconciliationJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.ListEntityReconciliationJobsResponse {
@@ -95,8 +95,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``cancelEntityReconciliationJob(request:)``
   /// - ``cancelEntityReconciliationJob(name:)``
+  /// - ``cancelEntityReconciliationJob(request:)``
   public func cancelEntityReconciliationJob(
     request: CancelEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -111,8 +111,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntityReconciliationJob(request:)``
   /// - ``deleteEntityReconciliationJob(name:)``
+  /// - ``deleteEntityReconciliationJob(request:)``
   public func deleteEntityReconciliationJob(
     request: DeleteEntityReconciliationJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -125,8 +125,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``lookup(request:)``
   /// - ``lookup(parent:ids:)``
+  /// - ``lookup(request:)``
   public func lookup(
     request: LookupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.LookupResponse {
@@ -139,8 +139,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``search(request:)``
   /// - ``search(parent:query:)``
+  /// - ``search(request:)``
   public func search(
     request: SearchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.SearchResponse {
@@ -153,8 +153,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``lookupPublicKg(request:)``
   /// - ``lookupPublicKg(parent:ids:)``
+  /// - ``lookupPublicKg(request:)``
   public func lookupPublicKg(
     request: LookupPublicKgRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.LookupPublicKgResponse {
@@ -167,8 +167,8 @@ public final class EnterpriseKnowledgeGraphServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``searchPublicKg(request:)``
   /// - ``searchPublicKg(parent:query:)``
+  /// - ``searchPublicKg(request:)``
   public func searchPublicKg(
     request: SearchPublicKgRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEnterpriseKnowledgeGraphV1.SearchPublicKgResponse {

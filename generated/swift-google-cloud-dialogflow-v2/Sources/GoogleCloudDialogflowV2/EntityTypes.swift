@@ -56,10 +56,10 @@
     /// ## See Also
     ///
     /// - ``listEntityTypes(request:)``
-    /// - ``listEntityTypesByItems(request:)``
-    /// - ``listEntityTypesByItems(request:options:)``
     /// - ``listEntityTypesByItems(parent:)``
     /// - ``listEntityTypesByItems(parent:languageCode:)``
+    /// - ``listEntityTypesByItems(request:)``
+    /// - ``listEntityTypesByItems(request:options:)``
     public func listEntityTypes(
       request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse {
@@ -72,9 +72,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEntityType(request:)``
     /// - ``getEntityType(name:)``
     /// - ``getEntityType(name:languageCode:)``
+    /// - ``getEntityType(request:)``
     public func getEntityType(
       request: GetEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -91,9 +91,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``createEntityType(request:)``
     /// - ``createEntityType(parent:entityType:)``
     /// - ``createEntityType(parent:entityType:languageCode:)``
+    /// - ``createEntityType(request:)``
     public func createEntityType(
       request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -110,9 +110,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateEntityType(request:)``
     /// - ``updateEntityType(entityType:)``
     /// - ``updateEntityType(entityType:languageCode:)``
+    /// - ``updateEntityType(request:)``
     public func updateEntityType(
       request: UpdateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -129,8 +129,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteEntityType(request:)``
     /// - ``deleteEntityType(name:)``
+    /// - ``deleteEntityType(request:)``
     public func deleteEntityType(
       request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -188,9 +188,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchUpdateEntityTypesPollingUntilDone(request:)``
     /// - ``batchUpdateEntityTypes(request:)``
     /// - ``batchUpdateEntityTypes(request:options:)``
+    /// - ``batchUpdateEntityTypesPollingUntilDone(request:)``
     public func batchUpdateEntityTypesPollingUntilDone(
       request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchUpdateEntityTypesResponse {
@@ -237,9 +237,9 @@
     /// ## See Also
     ///
     /// - ``batchDeleteEntityTypes(request:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(parent:entityTypeNames:)``
     /// - ``batchDeleteEntityTypesPollingUntilDone(request:)``
     /// - ``batchDeleteEntityTypesPollingUntilDone(request:options:)``
-    /// - ``batchDeleteEntityTypesPollingUntilDone(parent:entityTypeNames:)``
     public func batchDeleteEntityTypes(
       request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -265,10 +265,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchDeleteEntityTypesPollingUntilDone(request:)``
-    /// - ``batchDeleteEntityTypesPollingUntilDone(parent:entityTypeNames:)``
     /// - ``batchDeleteEntityTypes(request:)``
     /// - ``batchDeleteEntityTypes(request:options:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(parent:entityTypeNames:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(request:)``
     public func batchDeleteEntityTypesPollingUntilDone(
       request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -314,10 +314,10 @@
     /// ## See Also
     ///
     /// - ``batchCreateEntities(request:)``
-    /// - ``batchCreateEntitiesPollingUntilDone(request:)``
-    /// - ``batchCreateEntitiesPollingUntilDone(request:options:)``
     /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:)``
     /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(request:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(request:options:)``
     public func batchCreateEntities(
       request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -343,11 +343,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchCreateEntitiesPollingUntilDone(request:)``
-    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:)``
-    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:languageCode:)``
     /// - ``batchCreateEntities(request:)``
     /// - ``batchCreateEntities(request:options:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(request:)``
     public func batchCreateEntitiesPollingUntilDone(
       request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -396,10 +396,10 @@
     /// ## See Also
     ///
     /// - ``batchUpdateEntities(request:)``
-    /// - ``batchUpdateEntitiesPollingUntilDone(request:)``
-    /// - ``batchUpdateEntitiesPollingUntilDone(request:options:)``
     /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:)``
     /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(request:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(request:options:)``
     public func batchUpdateEntities(
       request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -428,11 +428,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchUpdateEntitiesPollingUntilDone(request:)``
-    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:)``
-    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:languageCode:)``
     /// - ``batchUpdateEntities(request:)``
     /// - ``batchUpdateEntities(request:options:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(request:)``
     public func batchUpdateEntitiesPollingUntilDone(
       request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -478,10 +478,10 @@
     /// ## See Also
     ///
     /// - ``batchDeleteEntities(request:)``
-    /// - ``batchDeleteEntitiesPollingUntilDone(request:)``
-    /// - ``batchDeleteEntitiesPollingUntilDone(request:options:)``
     /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:)``
     /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:languageCode:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(request:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(request:options:)``
     public func batchDeleteEntities(
       request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -507,11 +507,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchDeleteEntitiesPollingUntilDone(request:)``
-    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:)``
-    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:languageCode:)``
     /// - ``batchDeleteEntities(request:)``
     /// - ``batchDeleteEntities(request:options:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:languageCode:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(request:)``
     public func batchDeleteEntitiesPollingUntilDone(
       request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -591,9 +591,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -619,8 +619,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

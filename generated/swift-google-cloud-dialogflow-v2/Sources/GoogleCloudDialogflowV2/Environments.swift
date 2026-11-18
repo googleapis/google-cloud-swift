@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``listEnvironments(request:)``
+    /// - ``listEnvironmentsByItems(parent:)``
     /// - ``listEnvironmentsByItems(request:)``
     /// - ``listEnvironmentsByItems(request:options:)``
-    /// - ``listEnvironmentsByItems(parent:)``
     public func listEnvironments(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListEnvironmentsResponse {
@@ -193,9 +193,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -221,8 +221,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

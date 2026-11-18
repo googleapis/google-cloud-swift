@@ -49,9 +49,9 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listParameters(request:)``
+  /// - ``listParametersByItems(parent:)``
   /// - ``listParametersByItems(request:)``
   /// - ``listParametersByItems(request:options:)``
-  /// - ``listParametersByItems(parent:)``
   public func listParameters(
     request: ListParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListParametersResponse {
@@ -64,8 +64,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getParameter(request:)``
   /// - ``getParameter(name:)``
+  /// - ``getParameter(request:)``
   public func getParameter(
     request: GetParameterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -78,8 +78,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createParameter(request:)``
   /// - ``createParameter(parent:parameter:parameterId:)``
+  /// - ``createParameter(request:)``
   public func createParameter(
     request: CreateParameterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -92,8 +92,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateParameter(request:)``
   /// - ``updateParameter(parameter:updateMask:)``
+  /// - ``updateParameter(request:)``
   public func updateParameter(
     request: UpdateParameterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Parameter {
@@ -106,8 +106,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteParameter(request:)``
   /// - ``deleteParameter(name:)``
+  /// - ``deleteParameter(request:)``
   public func deleteParameter(
     request: DeleteParameterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,9 +121,9 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listParameterVersions(request:)``
+  /// - ``listParameterVersionsByItems(parent:)``
   /// - ``listParameterVersionsByItems(request:)``
   /// - ``listParameterVersionsByItems(request:options:)``
-  /// - ``listParameterVersionsByItems(parent:)``
   public func listParameterVersions(
     request: ListParameterVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListParameterVersionsResponse {
@@ -136,8 +136,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getParameterVersion(request:)``
   /// - ``getParameterVersion(name:)``
+  /// - ``getParameterVersion(request:)``
   public func getParameterVersion(
     request: GetParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -150,8 +150,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``renderParameterVersion(request:)``
   /// - ``renderParameterVersion(name:)``
+  /// - ``renderParameterVersion(request:)``
   public func renderParameterVersion(
     request: RenderParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.RenderParameterVersionResponse {
@@ -164,8 +164,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createParameterVersion(request:)``
   /// - ``createParameterVersion(parent:parameterVersion:parameterVersionId:)``
+  /// - ``createParameterVersion(request:)``
   public func createParameterVersion(
     request: CreateParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -178,8 +178,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateParameterVersion(request:)``
   /// - ``updateParameterVersion(parameterVersion:updateMask:)``
+  /// - ``updateParameterVersion(request:)``
   public func updateParameterVersion(
     request: UpdateParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ParameterVersion {
@@ -192,8 +192,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteParameterVersion(request:)``
   /// - ``deleteParameterVersion(name:)``
+  /// - ``deleteParameterVersion(request:)``
   public func deleteParameterVersion(
     request: DeleteParameterVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -207,9 +207,9 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listTemplates(request:)``
+  /// - ``listTemplatesByItems(parent:)``
   /// - ``listTemplatesByItems(request:)``
   /// - ``listTemplatesByItems(request:options:)``
-  /// - ``listTemplatesByItems(parent:)``
   public func listTemplates(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListTemplatesResponse {
@@ -222,8 +222,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getTemplate(request:)``
   /// - ``getTemplate(name:)``
+  /// - ``getTemplate(request:)``
   public func getTemplate(
     request: GetTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -236,8 +236,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createTemplate(request:)``
   /// - ``createTemplate(parent:template:templateId:)``
+  /// - ``createTemplate(request:)``
   public func createTemplate(
     request: CreateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.Template {
@@ -264,8 +264,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteTemplate(request:)``
   /// - ``deleteTemplate(name:)``
+  /// - ``deleteTemplate(request:)``
   public func deleteTemplate(
     request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -279,9 +279,9 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listTemplateVersions(request:)``
+  /// - ``listTemplateVersionsByItems(parent:)``
   /// - ``listTemplateVersionsByItems(request:)``
   /// - ``listTemplateVersionsByItems(request:options:)``
-  /// - ``listTemplateVersionsByItems(parent:)``
   public func listTemplateVersions(
     request: ListTemplateVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.ListTemplateVersionsResponse {
@@ -294,8 +294,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getTemplateVersion(request:)``
   /// - ``getTemplateVersion(name:)``
+  /// - ``getTemplateVersion(request:)``
   public func getTemplateVersion(
     request: GetTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -308,8 +308,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createTemplateVersion(request:)``
   /// - ``createTemplateVersion(parent:templateVersion:templateVersionId:)``
+  /// - ``createTemplateVersion(request:)``
   public func createTemplateVersion(
     request: CreateTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.TemplateVersion {
@@ -336,8 +336,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteTemplateVersion(request:)``
   /// - ``deleteTemplateVersion(name:)``
+  /// - ``deleteTemplateVersion(request:)``
   public func deleteTemplateVersion(
     request: DeleteTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -350,8 +350,8 @@ public final class ParameterManagerClient: Clients.ParameterManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``renderTemplateVersion(request:)``
   /// - ``renderTemplateVersion(name:)``
+  /// - ``renderTemplateVersion(request:)``
   public func renderTemplateVersion(
     request: RenderTemplateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudParameterManagerV1.RenderTemplateVersionResponse {

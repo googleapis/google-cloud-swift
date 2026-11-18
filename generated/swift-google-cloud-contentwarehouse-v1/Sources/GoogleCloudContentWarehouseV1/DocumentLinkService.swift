@@ -49,8 +49,8 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``listLinkedTargets(request:)``
   /// - ``listLinkedTargets(parent:)``
+  /// - ``listLinkedTargets(request:)``
   public func listLinkedTargets(
     request: ListLinkedTargetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse {
@@ -64,9 +64,9 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   /// ## See Also
   ///
   /// - ``listLinkedSources(request:)``
+  /// - ``listLinkedSourcesByItems(parent:)``
   /// - ``listLinkedSourcesByItems(request:)``
   /// - ``listLinkedSourcesByItems(request:options:)``
-  /// - ``listLinkedSourcesByItems(parent:)``
   public func listLinkedSources(
     request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse {
@@ -79,8 +79,8 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDocumentLink(request:)``
   /// - ``createDocumentLink(parent:documentLink:)``
+  /// - ``createDocumentLink(request:)``
   public func createDocumentLink(
     request: CreateDocumentLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentLink {
@@ -93,8 +93,8 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteDocumentLink(request:)``
   /// - ``deleteDocumentLink(name:)``
+  /// - ``deleteDocumentLink(request:)``
   public func deleteDocumentLink(
     request: DeleteDocumentLinkRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -48,8 +48,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:family:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ImageFamilyViewsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ImageFamilyView {

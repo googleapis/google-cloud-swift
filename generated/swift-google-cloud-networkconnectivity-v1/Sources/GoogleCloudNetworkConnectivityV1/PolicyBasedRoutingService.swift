@@ -58,9 +58,9 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   /// ## See Also
   ///
   /// - ``listPolicyBasedRoutes(request:)``
+  /// - ``listPolicyBasedRoutesByItems(parent:)``
   /// - ``listPolicyBasedRoutesByItems(request:)``
   /// - ``listPolicyBasedRoutesByItems(request:options:)``
-  /// - ``listPolicyBasedRoutesByItems(parent:)``
   public func listPolicyBasedRoutes(
     request: ListPolicyBasedRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListPolicyBasedRoutesResponse {
@@ -73,8 +73,8 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   ///
   /// ## See Also
   ///
-  /// - ``getPolicyBasedRoute(request:)``
   /// - ``getPolicyBasedRoute(name:)``
+  /// - ``getPolicyBasedRoute(request:)``
   public func getPolicyBasedRoute(
     request: GetPolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.PolicyBasedRoute {
@@ -88,9 +88,9 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   /// ## See Also
   ///
   /// - ``createPolicyBasedRoute(request:)``
+  /// - ``createPolicyBasedRoutePollingUntilDone(parent:policyBasedRoute:policyBasedRouteId:)``
   /// - ``createPolicyBasedRoutePollingUntilDone(request:)``
   /// - ``createPolicyBasedRoutePollingUntilDone(request:options:)``
-  /// - ``createPolicyBasedRoutePollingUntilDone(parent:policyBasedRoute:policyBasedRouteId:)``
   public func createPolicyBasedRoute(
     request: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -103,10 +103,10 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   ///
   /// ## See Also
   ///
-  /// - ``createPolicyBasedRoutePollingUntilDone(request:)``
-  /// - ``createPolicyBasedRoutePollingUntilDone(parent:policyBasedRoute:policyBasedRouteId:)``
   /// - ``createPolicyBasedRoute(request:)``
   /// - ``createPolicyBasedRoute(request:options:)``
+  /// - ``createPolicyBasedRoutePollingUntilDone(parent:policyBasedRoute:policyBasedRouteId:)``
+  /// - ``createPolicyBasedRoutePollingUntilDone(request:)``
   public func createPolicyBasedRoutePollingUntilDone(
     request: CreatePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> PolicyBasedRoute {
@@ -139,9 +139,9 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   /// ## See Also
   ///
   /// - ``deletePolicyBasedRoute(request:)``
+  /// - ``deletePolicyBasedRoutePollingUntilDone(name:)``
   /// - ``deletePolicyBasedRoutePollingUntilDone(request:)``
   /// - ``deletePolicyBasedRoutePollingUntilDone(request:options:)``
-  /// - ``deletePolicyBasedRoutePollingUntilDone(name:)``
   public func deletePolicyBasedRoute(
     request: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   ///
   /// ## See Also
   ///
-  /// - ``deletePolicyBasedRoutePollingUntilDone(request:)``
-  /// - ``deletePolicyBasedRoutePollingUntilDone(name:)``
   /// - ``deletePolicyBasedRoute(request:)``
   /// - ``deletePolicyBasedRoute(request:options:)``
+  /// - ``deletePolicyBasedRoutePollingUntilDone(name:)``
+  /// - ``deletePolicyBasedRoutePollingUntilDone(request:)``
   public func deletePolicyBasedRoutePollingUntilDone(
     request: DeletePolicyBasedRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -269,9 +269,9 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -297,8 +297,8 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -313,8 +313,8 @@ public final class PolicyBasedRoutingServiceClient: Clients.PolicyBasedRoutingSe
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

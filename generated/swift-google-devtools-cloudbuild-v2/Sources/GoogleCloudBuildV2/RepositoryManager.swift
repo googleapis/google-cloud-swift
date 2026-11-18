@@ -54,9 +54,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``createConnection(request:)``
+  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   /// - ``createConnectionPollingUntilDone(request:)``
   /// - ``createConnectionPollingUntilDone(request:options:)``
-  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -69,10 +69,10 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createConnectionPollingUntilDone(request:)``
-  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   /// - ``createConnection(request:)``
   /// - ``createConnection(request:options:)``
+  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
+  /// - ``createConnectionPollingUntilDone(request:)``
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connection {
@@ -103,8 +103,8 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getConnection(request:)``
   /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.Connection {
@@ -118,9 +118,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
   /// - ``listConnectionsByItems(request:)``
   /// - ``listConnectionsByItems(request:options:)``
-  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.ListConnectionsResponse {
@@ -134,9 +134,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``updateConnection(request:)``
+  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   /// - ``updateConnectionPollingUntilDone(request:)``
   /// - ``updateConnectionPollingUntilDone(request:options:)``
-  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,10 +149,10 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectionPollingUntilDone(request:)``
-  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   /// - ``updateConnection(request:)``
   /// - ``updateConnection(request:options:)``
+  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
+  /// - ``updateConnectionPollingUntilDone(request:)``
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connection {
@@ -184,9 +184,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``deleteConnection(request:)``
+  /// - ``deleteConnectionPollingUntilDone(name:)``
   /// - ``deleteConnectionPollingUntilDone(request:)``
   /// - ``deleteConnectionPollingUntilDone(request:options:)``
-  /// - ``deleteConnectionPollingUntilDone(name:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,10 +199,10 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectionPollingUntilDone(request:)``
-  /// - ``deleteConnectionPollingUntilDone(name:)``
   /// - ``deleteConnection(request:)``
   /// - ``deleteConnection(request:options:)``
+  /// - ``deleteConnectionPollingUntilDone(name:)``
+  /// - ``deleteConnectionPollingUntilDone(request:)``
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -234,9 +234,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``createRepository(request:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
   /// - ``createRepositoryPollingUntilDone(request:)``
   /// - ``createRepositoryPollingUntilDone(request:options:)``
-  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
   public func createRepository(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -249,10 +249,10 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createRepositoryPollingUntilDone(request:)``
-  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
   /// - ``createRepository(request:)``
   /// - ``createRepository(request:options:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
+  /// - ``createRepositoryPollingUntilDone(request:)``
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Repository {
@@ -284,9 +284,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``batchCreateRepositories(request:)``
+  /// - ``batchCreateRepositoriesPollingUntilDone(parent:requests:)``
   /// - ``batchCreateRepositoriesPollingUntilDone(request:)``
   /// - ``batchCreateRepositoriesPollingUntilDone(request:options:)``
-  /// - ``batchCreateRepositoriesPollingUntilDone(parent:requests:)``
   public func batchCreateRepositories(
     request: BatchCreateRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -299,10 +299,10 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``batchCreateRepositoriesPollingUntilDone(request:)``
-  /// - ``batchCreateRepositoriesPollingUntilDone(parent:requests:)``
   /// - ``batchCreateRepositories(request:)``
   /// - ``batchCreateRepositories(request:options:)``
+  /// - ``batchCreateRepositoriesPollingUntilDone(parent:requests:)``
+  /// - ``batchCreateRepositoriesPollingUntilDone(request:)``
   public func batchCreateRepositoriesPollingUntilDone(
     request: BatchCreateRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchCreateRepositoriesResponse {
@@ -335,8 +335,8 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getRepository(request:)``
   /// - ``getRepository(name:)``
+  /// - ``getRepository(request:)``
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.Repository {
@@ -350,9 +350,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``listRepositories(request:)``
+  /// - ``listRepositoriesByItems(parent:)``
   /// - ``listRepositoriesByItems(request:)``
   /// - ``listRepositoriesByItems(request:options:)``
-  /// - ``listRepositoriesByItems(parent:)``
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.ListRepositoriesResponse {
@@ -366,9 +366,9 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   /// ## See Also
   ///
   /// - ``deleteRepository(request:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
   /// - ``deleteRepositoryPollingUntilDone(request:)``
   /// - ``deleteRepositoryPollingUntilDone(request:options:)``
-  /// - ``deleteRepositoryPollingUntilDone(name:)``
   public func deleteRepository(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -381,10 +381,10 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteRepositoryPollingUntilDone(request:)``
-  /// - ``deleteRepositoryPollingUntilDone(name:)``
   /// - ``deleteRepository(request:)``
   /// - ``deleteRepository(request:options:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:)``
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -415,8 +415,8 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``fetchReadWriteToken(request:)``
   /// - ``fetchReadWriteToken(repository:)``
+  /// - ``fetchReadWriteToken(request:)``
   public func fetchReadWriteToken(
     request: FetchReadWriteTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.FetchReadWriteTokenResponse {
@@ -429,8 +429,8 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``fetchReadToken(request:)``
   /// - ``fetchReadToken(repository:)``
+  /// - ``fetchReadToken(request:)``
   public func fetchReadToken(
     request: FetchReadTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.FetchReadTokenResponse {
@@ -459,8 +459,8 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``fetchGitRefs(request:)``
   /// - ``fetchGitRefs(repository:)``
+  /// - ``fetchGitRefs(request:)``
   public func fetchGitRefs(
     request: FetchGitRefsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV2.FetchGitRefsResponse {
@@ -536,8 +536,8 @@ public final class RepositoryManagerClient: Clients.RepositoryManagerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

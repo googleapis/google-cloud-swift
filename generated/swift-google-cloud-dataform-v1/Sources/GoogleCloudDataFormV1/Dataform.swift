@@ -55,8 +55,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTeamFolder(request:)``
   /// - ``getTeamFolder(name:)``
+  /// - ``getTeamFolder(request:)``
   public func getTeamFolder(
     request: GetTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -69,8 +69,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTeamFolder(request:)``
   /// - ``createTeamFolder(parent:teamFolder:)``
+  /// - ``createTeamFolder(request:)``
   public func createTeamFolder(
     request: CreateTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -97,8 +97,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTeamFolder(request:)``
   /// - ``deleteTeamFolder(name:)``
+  /// - ``deleteTeamFolder(request:)``
   public func deleteTeamFolder(
     request: DeleteTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -113,9 +113,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTeamFolderTree(request:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(name:force:)``
   /// - ``deleteTeamFolderTreePollingUntilDone(request:)``
   /// - ``deleteTeamFolderTreePollingUntilDone(request:options:)``
-  /// - ``deleteTeamFolderTreePollingUntilDone(name:force:)``
   public func deleteTeamFolderTree(
     request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -129,10 +129,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTeamFolderTreePollingUntilDone(request:)``
-  /// - ``deleteTeamFolderTreePollingUntilDone(name:force:)``
   /// - ``deleteTeamFolderTree(request:)``
   /// - ``deleteTeamFolderTree(request:options:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(name:force:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(request:)``
   public func deleteTeamFolderTreePollingUntilDone(
     request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -195,8 +195,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFolder(request:)``
   /// - ``getFolder(name:)``
+  /// - ``getFolder(request:)``
   public func getFolder(
     request: GetFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -209,8 +209,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createFolder(request:)``
   /// - ``createFolder(parent:folder:)``
+  /// - ``createFolder(request:)``
   public func createFolder(
     request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -223,8 +223,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateFolder(request:)``
   /// - ``updateFolder(folder:updateMask:)``
+  /// - ``updateFolder(request:)``
   public func updateFolder(
     request: UpdateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -237,8 +237,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFolder(request:)``
   /// - ``deleteFolder(name:)``
+  /// - ``deleteFolder(request:)``
   public func deleteFolder(
     request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -253,9 +253,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteFolderTree(request:)``
+  /// - ``deleteFolderTreePollingUntilDone(name:force:)``
   /// - ``deleteFolderTreePollingUntilDone(request:)``
   /// - ``deleteFolderTreePollingUntilDone(request:options:)``
-  /// - ``deleteFolderTreePollingUntilDone(name:force:)``
   public func deleteFolderTree(
     request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -269,10 +269,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFolderTreePollingUntilDone(request:)``
-  /// - ``deleteFolderTreePollingUntilDone(name:force:)``
   /// - ``deleteFolderTree(request:)``
   /// - ``deleteFolderTree(request:options:)``
+  /// - ``deleteFolderTreePollingUntilDone(name:force:)``
+  /// - ``deleteFolderTreePollingUntilDone(request:)``
   public func deleteFolderTreePollingUntilDone(
     request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -304,9 +304,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``queryFolderContents(request:)``
+  /// - ``queryFolderContentsByItems(folder:)``
   /// - ``queryFolderContentsByItems(request:)``
   /// - ``queryFolderContentsByItems(request:options:)``
-  /// - ``queryFolderContentsByItems(folder:)``
   public func queryFolderContents(
     request: QueryFolderContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryFolderContentsResponse {
@@ -322,9 +322,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``queryUserRootContents(request:)``
+  /// - ``queryUserRootContentsByItems(location:)``
   /// - ``queryUserRootContentsByItems(request:)``
   /// - ``queryUserRootContentsByItems(request:options:)``
-  /// - ``queryUserRootContentsByItems(location:)``
   public func queryUserRootContents(
     request: QueryUserRootContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryUserRootContentsResponse {
@@ -338,9 +338,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``moveFolder(request:)``
+  /// - ``moveFolderPollingUntilDone(name:destinationContainingFolder:)``
   /// - ``moveFolderPollingUntilDone(request:)``
   /// - ``moveFolderPollingUntilDone(request:options:)``
-  /// - ``moveFolderPollingUntilDone(name:destinationContainingFolder:)``
   public func moveFolder(
     request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -353,10 +353,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``moveFolderPollingUntilDone(request:)``
-  /// - ``moveFolderPollingUntilDone(name:destinationContainingFolder:)``
   /// - ``moveFolder(request:)``
   /// - ``moveFolder(request:options:)``
+  /// - ``moveFolderPollingUntilDone(name:destinationContainingFolder:)``
+  /// - ``moveFolderPollingUntilDone(request:)``
   public func moveFolderPollingUntilDone(
     request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -391,9 +391,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRepositories(request:)``
+  /// - ``listRepositoriesByItems(parent:)``
   /// - ``listRepositoriesByItems(request:)``
   /// - ``listRepositoriesByItems(request:options:)``
-  /// - ``listRepositoriesByItems(parent:)``
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListRepositoriesResponse {
@@ -406,8 +406,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRepository(request:)``
   /// - ``getRepository(name:)``
+  /// - ``getRepository(request:)``
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -420,8 +420,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRepository(request:)``
   /// - ``createRepository(parent:repository:repositoryId:)``
+  /// - ``createRepository(request:)``
   public func createRepository(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -439,8 +439,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateRepository(request:)``
   /// - ``updateRepository(repository:updateMask:)``
+  /// - ``updateRepository(request:)``
   public func updateRepository(
     request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -453,8 +453,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRepository(request:)``
   /// - ``deleteRepository(name:)``
+  /// - ``deleteRepository(request:)``
   public func deleteRepository(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -468,9 +468,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``moveRepository(request:)``
+  /// - ``moveRepositoryPollingUntilDone(name:destinationContainingFolder:)``
   /// - ``moveRepositoryPollingUntilDone(request:)``
   /// - ``moveRepositoryPollingUntilDone(request:options:)``
-  /// - ``moveRepositoryPollingUntilDone(name:destinationContainingFolder:)``
   public func moveRepository(
     request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -483,10 +483,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``moveRepositoryPollingUntilDone(request:)``
-  /// - ``moveRepositoryPollingUntilDone(name:destinationContainingFolder:)``
   /// - ``moveRepository(request:)``
   /// - ``moveRepository(request:options:)``
+  /// - ``moveRepositoryPollingUntilDone(name:destinationContainingFolder:)``
+  /// - ``moveRepositoryPollingUntilDone(request:)``
   public func moveRepositoryPollingUntilDone(
     request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -604,9 +604,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkspaces(request:)``
+  /// - ``listWorkspacesByItems(parent:)``
   /// - ``listWorkspacesByItems(request:)``
   /// - ``listWorkspacesByItems(request:options:)``
-  /// - ``listWorkspacesByItems(parent:)``
   public func listWorkspaces(
     request: ListWorkspacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListWorkspacesResponse {
@@ -619,8 +619,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkspace(request:)``
   /// - ``getWorkspace(name:)``
+  /// - ``getWorkspace(request:)``
   public func getWorkspace(
     request: GetWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -633,8 +633,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkspace(request:)``
   /// - ``createWorkspace(parent:workspace:workspaceId:)``
+  /// - ``createWorkspace(request:)``
   public func createWorkspace(
     request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -648,9 +648,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkspaceLongRunning(request:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(parent:workspace:workspaceId:)``
   /// - ``createWorkspaceLongRunningPollingUntilDone(request:)``
   /// - ``createWorkspaceLongRunningPollingUntilDone(request:options:)``
-  /// - ``createWorkspaceLongRunningPollingUntilDone(parent:workspace:workspaceId:)``
   public func createWorkspaceLongRunning(
     request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -663,10 +663,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkspaceLongRunningPollingUntilDone(request:)``
-  /// - ``createWorkspaceLongRunningPollingUntilDone(parent:workspace:workspaceId:)``
   /// - ``createWorkspaceLongRunning(request:)``
   /// - ``createWorkspaceLongRunning(request:options:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(parent:workspace:workspaceId:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(request:)``
   public func createWorkspaceLongRunningPollingUntilDone(
     request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workspace {
@@ -697,8 +697,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkspace(request:)``
   /// - ``deleteWorkspace(name:)``
+  /// - ``deleteWorkspace(request:)``
   public func deleteWorkspace(
     request: DeleteWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -938,9 +938,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listReleaseConfigs(request:)``
+  /// - ``listReleaseConfigsByItems(parent:)``
   /// - ``listReleaseConfigsByItems(request:)``
   /// - ``listReleaseConfigsByItems(request:options:)``
-  /// - ``listReleaseConfigsByItems(parent:)``
   public func listReleaseConfigs(
     request: ListReleaseConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListReleaseConfigsResponse {
@@ -953,8 +953,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getReleaseConfig(request:)``
   /// - ``getReleaseConfig(name:)``
+  /// - ``getReleaseConfig(request:)``
   public func getReleaseConfig(
     request: GetReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -967,8 +967,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createReleaseConfig(request:)``
   /// - ``createReleaseConfig(parent:releaseConfig:releaseConfigId:)``
+  /// - ``createReleaseConfig(request:)``
   public func createReleaseConfig(
     request: CreateReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -986,8 +986,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateReleaseConfig(request:)``
   /// - ``updateReleaseConfig(releaseConfig:updateMask:)``
+  /// - ``updateReleaseConfig(request:)``
   public func updateReleaseConfig(
     request: UpdateReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -1000,8 +1000,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteReleaseConfig(request:)``
   /// - ``deleteReleaseConfig(name:)``
+  /// - ``deleteReleaseConfig(request:)``
   public func deleteReleaseConfig(
     request: DeleteReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1015,9 +1015,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCompilationResults(request:)``
+  /// - ``listCompilationResultsByItems(parent:)``
   /// - ``listCompilationResultsByItems(request:)``
   /// - ``listCompilationResultsByItems(request:options:)``
-  /// - ``listCompilationResultsByItems(parent:)``
   public func listCompilationResults(
     request: ListCompilationResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListCompilationResultsResponse {
@@ -1030,8 +1030,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCompilationResult(request:)``
   /// - ``getCompilationResult(name:)``
+  /// - ``getCompilationResult(request:)``
   public func getCompilationResult(
     request: GetCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -1044,8 +1044,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCompilationResult(request:)``
   /// - ``createCompilationResult(parent:compilationResult:)``
+  /// - ``createCompilationResult(request:)``
   public func createCompilationResult(
     request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -1060,9 +1060,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCompilationResultLongRunning(request:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(parent:compilationResult:)``
   /// - ``createCompilationResultLongRunningPollingUntilDone(request:)``
   /// - ``createCompilationResultLongRunningPollingUntilDone(request:options:)``
-  /// - ``createCompilationResultLongRunningPollingUntilDone(parent:compilationResult:)``
   public func createCompilationResultLongRunning(
     request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1076,10 +1076,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCompilationResultLongRunningPollingUntilDone(request:)``
-  /// - ``createCompilationResultLongRunningPollingUntilDone(parent:compilationResult:)``
   /// - ``createCompilationResultLongRunning(request:)``
   /// - ``createCompilationResultLongRunning(request:options:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(parent:compilationResult:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(request:)``
   public func createCompilationResultLongRunningPollingUntilDone(
     request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> CompilationResult {
@@ -1128,9 +1128,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkflowConfigs(request:)``
+  /// - ``listWorkflowConfigsByItems(parent:)``
   /// - ``listWorkflowConfigsByItems(request:)``
   /// - ``listWorkflowConfigsByItems(request:options:)``
-  /// - ``listWorkflowConfigsByItems(parent:)``
   public func listWorkflowConfigs(
     request: ListWorkflowConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListWorkflowConfigsResponse {
@@ -1143,8 +1143,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkflowConfig(request:)``
   /// - ``getWorkflowConfig(name:)``
+  /// - ``getWorkflowConfig(request:)``
   public func getWorkflowConfig(
     request: GetWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -1157,8 +1157,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkflowConfig(request:)``
   /// - ``createWorkflowConfig(parent:workflowConfig:workflowConfigId:)``
+  /// - ``createWorkflowConfig(request:)``
   public func createWorkflowConfig(
     request: CreateWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -1190,8 +1190,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkflowConfig(request:)``
   /// - ``deleteWorkflowConfig(name:)``
+  /// - ``deleteWorkflowConfig(request:)``
   public func deleteWorkflowConfig(
     request: DeleteWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1205,9 +1205,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkflowInvocations(request:)``
+  /// - ``listWorkflowInvocationsByItems(parent:)``
   /// - ``listWorkflowInvocationsByItems(request:)``
   /// - ``listWorkflowInvocationsByItems(request:options:)``
-  /// - ``listWorkflowInvocationsByItems(parent:)``
   public func listWorkflowInvocations(
     request: ListWorkflowInvocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListWorkflowInvocationsResponse {
@@ -1220,8 +1220,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkflowInvocation(request:)``
   /// - ``getWorkflowInvocation(name:)``
+  /// - ``getWorkflowInvocation(request:)``
   public func getWorkflowInvocation(
     request: GetWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -1234,8 +1234,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkflowInvocation(request:)``
   /// - ``createWorkflowInvocation(parent:workflowInvocation:)``
+  /// - ``createWorkflowInvocation(request:)``
   public func createWorkflowInvocation(
     request: CreateWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -1248,8 +1248,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkflowInvocation(request:)``
   /// - ``deleteWorkflowInvocation(name:)``
+  /// - ``deleteWorkflowInvocation(request:)``
   public func deleteWorkflowInvocation(
     request: DeleteWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1290,8 +1290,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConfig(request:)``
   /// - ``getConfig(name:)``
+  /// - ``getConfig(request:)``
   public func getConfig(
     request: GetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Config {
@@ -1309,8 +1309,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConfig(request:)``
   /// - ``updateConfig(config:updateMask:)``
+  /// - ``updateConfig(request:)``
   public func updateConfig(
     request: UpdateConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Config {
@@ -1422,9 +1422,9 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1450,8 +1450,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1466,8 +1466,8 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

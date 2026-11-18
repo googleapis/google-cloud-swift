@@ -51,8 +51,8 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   ///
   /// ## See Also
   ///
-  /// - ``getLicensePool(request:)``
   /// - ``getLicensePool(name:)``
+  /// - ``getLicensePool(request:)``
   public func getLicensePool(
     request: GetLicensePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -65,8 +65,8 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   ///
   /// ## See Also
   ///
-  /// - ``updateLicensePool(request:)``
   /// - ``updateLicensePool(licensePool:updateMask:)``
+  /// - ``updateLicensePool(request:)``
   public func updateLicensePool(
     request: UpdateLicensePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -79,8 +79,8 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   ///
   /// ## See Also
   ///
-  /// - ``assign(request:)``
   /// - ``assign(parent:usernames:)``
+  /// - ``assign(request:)``
   public func assign(
     request: AssignRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.AssignResponse {
@@ -93,8 +93,8 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   ///
   /// ## See Also
   ///
-  /// - ``unassign(request:)``
   /// - ``unassign(parent:usernames:)``
+  /// - ``unassign(request:)``
   public func unassign(
     request: UnassignRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.UnassignResponse {
@@ -108,9 +108,9 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// ## See Also
   ///
   /// - ``enumerateLicensedUsers(request:)``
+  /// - ``enumerateLicensedUsersByItems(parent:)``
   /// - ``enumerateLicensedUsersByItems(request:)``
   /// - ``enumerateLicensedUsersByItems(request:options:)``
-  /// - ``enumerateLicensedUsersByItems(parent:)``
   public func enumerateLicensedUsers(
     request: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse {

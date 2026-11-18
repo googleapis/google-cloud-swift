@@ -93,8 +93,8 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``searchHashes(request:)``
   /// - ``searchHashes(hashPrefix:threatTypes:)``
+  /// - ``searchHashes(request:)``
   public func searchHashes(
     request: SearchHashesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebRiskV1.SearchHashesResponse {
@@ -113,8 +113,8 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createSubmission(request:)``
   /// - ``createSubmission(parent:submission:)``
+  /// - ``createSubmission(request:)``
   public func createSubmission(
     request: CreateSubmissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebRiskV1.Submission {
@@ -137,9 +137,9 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``submitUri(request:)``
+  /// - ``submitUriPollingUntilDone(parent:submission:)``
   /// - ``submitUriPollingUntilDone(request:)``
   /// - ``submitUriPollingUntilDone(request:options:)``
-  /// - ``submitUriPollingUntilDone(parent:submission:)``
   public func submitUri(
     request: SubmitUriRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -161,10 +161,10 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``submitUriPollingUntilDone(request:)``
-  /// - ``submitUriPollingUntilDone(parent:submission:)``
   /// - ``submitUri(request:)``
   /// - ``submitUri(request:options:)``
+  /// - ``submitUriPollingUntilDone(parent:submission:)``
+  /// - ``submitUriPollingUntilDone(request:)``
   public func submitUriPollingUntilDone(
     request: SubmitUriRequest, options: GoogleGax.RequestOptions
   ) async throws -> Submission {
@@ -198,9 +198,9 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -226,8 +226,8 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -242,8 +242,8 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -47,8 +47,8 @@ public final class ResponsePolicyRulesClient: Clients.ResponsePolicyRulesProtoco
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(project:responsePolicy:body:)``
+  /// - ``create(request:)``
   public func create(
     request: ResponsePolicyRulesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicyRule {
@@ -61,8 +61,8 @@ public final class ResponsePolicyRulesClient: Clients.ResponsePolicyRulesProtoco
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(project:responsePolicy:responsePolicyRule:)``
+  /// - ``delete(request:)``
   public func delete(
     request: ResponsePolicyRulesClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -75,8 +75,8 @@ public final class ResponsePolicyRulesClient: Clients.ResponsePolicyRulesProtoco
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:responsePolicy:responsePolicyRule:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ResponsePolicyRulesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicyRule {
@@ -90,9 +90,9 @@ public final class ResponsePolicyRulesClient: Clients.ResponsePolicyRulesProtoco
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:responsePolicy:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:responsePolicy:)``
   public func list(
     request: ResponsePolicyRulesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicyRulesListResponse {
@@ -105,8 +105,8 @@ public final class ResponsePolicyRulesClient: Clients.ResponsePolicyRulesProtoco
   ///
   /// ## See Also
   ///
-  /// - ``patch(request:)``
   /// - ``patch(project:responsePolicy:responsePolicyRule:body:)``
+  /// - ``patch(request:)``
   public func patch(
     request: ResponsePolicyRulesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicyRulesPatchResponse {
@@ -119,8 +119,8 @@ public final class ResponsePolicyRulesClient: Clients.ResponsePolicyRulesProtoco
   ///
   /// ## See Also
   ///
-  /// - ``update(request:)``
   /// - ``update(project:responsePolicy:responsePolicyRule:body:)``
+  /// - ``update(request:)``
   public func update(
     request: ResponsePolicyRulesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicyRulesUpdateResponse {

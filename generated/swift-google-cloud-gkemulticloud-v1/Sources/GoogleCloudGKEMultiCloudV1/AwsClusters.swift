@@ -63,9 +63,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createAwsCluster(request:)``
+  /// - ``createAwsClusterPollingUntilDone(parent:awsCluster:awsClusterId:)``
   /// - ``createAwsClusterPollingUntilDone(request:)``
   /// - ``createAwsClusterPollingUntilDone(request:options:)``
-  /// - ``createAwsClusterPollingUntilDone(parent:awsCluster:awsClusterId:)``
   @available(*, deprecated)
   public func createAwsCluster(
     request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -87,10 +87,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAwsClusterPollingUntilDone(request:)``
-  /// - ``createAwsClusterPollingUntilDone(parent:awsCluster:awsClusterId:)``
   /// - ``createAwsCluster(request:)``
   /// - ``createAwsCluster(request:options:)``
+  /// - ``createAwsClusterPollingUntilDone(parent:awsCluster:awsClusterId:)``
+  /// - ``createAwsClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAwsClusterPollingUntilDone(
     request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -125,9 +125,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateAwsCluster(request:)``
+  /// - ``updateAwsClusterPollingUntilDone(awsCluster:updateMask:)``
   /// - ``updateAwsClusterPollingUntilDone(request:)``
   /// - ``updateAwsClusterPollingUntilDone(request:options:)``
-  /// - ``updateAwsClusterPollingUntilDone(awsCluster:updateMask:)``
   @available(*, deprecated)
   public func updateAwsCluster(
     request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -143,10 +143,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAwsClusterPollingUntilDone(request:)``
-  /// - ``updateAwsClusterPollingUntilDone(awsCluster:updateMask:)``
   /// - ``updateAwsCluster(request:)``
   /// - ``updateAwsCluster(request:options:)``
+  /// - ``updateAwsClusterPollingUntilDone(awsCluster:updateMask:)``
+  /// - ``updateAwsClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAwsClusterPollingUntilDone(
     request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -181,8 +181,8 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAwsCluster(request:)``
   /// - ``getAwsCluster(name:)``
+  /// - ``getAwsCluster(request:)``
   @available(*, deprecated)
   public func getAwsCluster(
     request: GetAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -200,9 +200,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAwsClusters(request:)``
+  /// - ``listAwsClustersByItems(parent:)``
   /// - ``listAwsClustersByItems(request:)``
   /// - ``listAwsClustersByItems(request:options:)``
-  /// - ``listAwsClustersByItems(parent:)``
   @available(*, deprecated)
   public func listAwsClusters(
     request: ListAwsClustersRequest, options: GoogleGax.RequestOptions
@@ -229,9 +229,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteAwsCluster(request:)``
+  /// - ``deleteAwsClusterPollingUntilDone(name:)``
   /// - ``deleteAwsClusterPollingUntilDone(request:)``
   /// - ``deleteAwsClusterPollingUntilDone(request:options:)``
-  /// - ``deleteAwsClusterPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAwsCluster(
     request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -257,10 +257,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAwsClusterPollingUntilDone(request:)``
-  /// - ``deleteAwsClusterPollingUntilDone(name:)``
   /// - ``deleteAwsCluster(request:)``
   /// - ``deleteAwsCluster(request:options:)``
+  /// - ``deleteAwsClusterPollingUntilDone(name:)``
+  /// - ``deleteAwsClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAwsClusterPollingUntilDone(
     request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -333,9 +333,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createAwsNodePool(request:)``
+  /// - ``createAwsNodePoolPollingUntilDone(parent:awsNodePool:awsNodePoolId:)``
   /// - ``createAwsNodePoolPollingUntilDone(request:)``
   /// - ``createAwsNodePoolPollingUntilDone(request:options:)``
-  /// - ``createAwsNodePoolPollingUntilDone(parent:awsNodePool:awsNodePoolId:)``
   @available(*, deprecated)
   public func createAwsNodePool(
     request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -358,10 +358,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAwsNodePoolPollingUntilDone(request:)``
-  /// - ``createAwsNodePoolPollingUntilDone(parent:awsNodePool:awsNodePoolId:)``
   /// - ``createAwsNodePool(request:)``
   /// - ``createAwsNodePool(request:options:)``
+  /// - ``createAwsNodePoolPollingUntilDone(parent:awsNodePool:awsNodePoolId:)``
+  /// - ``createAwsNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAwsNodePoolPollingUntilDone(
     request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -396,9 +396,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateAwsNodePool(request:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(awsNodePool:updateMask:)``
   /// - ``updateAwsNodePoolPollingUntilDone(request:)``
   /// - ``updateAwsNodePoolPollingUntilDone(request:options:)``
-  /// - ``updateAwsNodePoolPollingUntilDone(awsNodePool:updateMask:)``
   @available(*, deprecated)
   public func updateAwsNodePool(
     request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -414,10 +414,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAwsNodePoolPollingUntilDone(request:)``
-  /// - ``updateAwsNodePoolPollingUntilDone(awsNodePool:updateMask:)``
   /// - ``updateAwsNodePool(request:)``
   /// - ``updateAwsNodePool(request:options:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(awsNodePool:updateMask:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAwsNodePoolPollingUntilDone(
     request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -457,9 +457,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``rollbackAwsNodePoolUpdate(request:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(name:)``
   /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:)``
   /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:options:)``
-  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(name:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdate(
     request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
@@ -480,10 +480,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:)``
-  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(name:)``
   /// - ``rollbackAwsNodePoolUpdate(request:)``
   /// - ``rollbackAwsNodePoolUpdate(request:options:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(name:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdatePollingUntilDone(
     request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
@@ -518,8 +518,8 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAwsNodePool(request:)``
   /// - ``getAwsNodePool(name:)``
+  /// - ``getAwsNodePool(request:)``
   @available(*, deprecated)
   public func getAwsNodePool(
     request: GetAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -539,9 +539,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAwsNodePools(request:)``
+  /// - ``listAwsNodePoolsByItems(parent:)``
   /// - ``listAwsNodePoolsByItems(request:)``
   /// - ``listAwsNodePoolsByItems(request:options:)``
-  /// - ``listAwsNodePoolsByItems(parent:)``
   @available(*, deprecated)
   public func listAwsNodePools(
     request: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
@@ -564,9 +564,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteAwsNodePool(request:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(name:)``
   /// - ``deleteAwsNodePoolPollingUntilDone(request:)``
   /// - ``deleteAwsNodePoolPollingUntilDone(request:options:)``
-  /// - ``deleteAwsNodePoolPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAwsNodePool(
     request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -588,10 +588,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAwsNodePoolPollingUntilDone(request:)``
-  /// - ``deleteAwsNodePoolPollingUntilDone(name:)``
   /// - ``deleteAwsNodePool(request:)``
   /// - ``deleteAwsNodePool(request:options:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(name:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAwsNodePoolPollingUntilDone(
     request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -657,8 +657,8 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAwsServerConfig(request:)``
   /// - ``getAwsServerConfig(name:)``
+  /// - ``getAwsServerConfig(request:)``
   @available(*, deprecated)
   public func getAwsServerConfig(
     request: GetAwsServerConfigRequest, options: GoogleGax.RequestOptions
@@ -675,9 +675,9 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -703,8 +703,8 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -719,8 +719,8 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

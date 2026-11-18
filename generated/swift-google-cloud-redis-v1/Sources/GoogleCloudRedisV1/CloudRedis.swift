@@ -76,9 +76,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisV1.ListInstancesResponse {
@@ -91,8 +91,8 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisV1.Instance {
@@ -107,8 +107,8 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstanceAuthString(request:)``
   /// - ``getInstanceAuthString(name:)``
+  /// - ``getInstanceAuthString(request:)``
   public func getInstanceAuthString(
     request: GetInstanceAuthStringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisV1.InstanceAuthString {
@@ -133,9 +133,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -159,10 +159,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -217,10 +217,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(updateMask:instance:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(updateMask:instance:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -253,9 +253,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``upgradeInstance(request:)``
+  /// - ``upgradeInstancePollingUntilDone(name:redisVersion:)``
   /// - ``upgradeInstancePollingUntilDone(request:)``
   /// - ``upgradeInstancePollingUntilDone(request:options:)``
-  /// - ``upgradeInstancePollingUntilDone(name:redisVersion:)``
   public func upgradeInstance(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -269,10 +269,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``upgradeInstancePollingUntilDone(request:)``
-  /// - ``upgradeInstancePollingUntilDone(name:redisVersion:)``
   /// - ``upgradeInstance(request:)``
   /// - ``upgradeInstance(request:options:)``
+  /// - ``upgradeInstancePollingUntilDone(name:redisVersion:)``
+  /// - ``upgradeInstancePollingUntilDone(request:)``
   public func upgradeInstancePollingUntilDone(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -311,9 +311,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``importInstance(request:)``
+  /// - ``importInstancePollingUntilDone(name:inputConfig:)``
   /// - ``importInstancePollingUntilDone(request:)``
   /// - ``importInstancePollingUntilDone(request:options:)``
-  /// - ``importInstancePollingUntilDone(name:inputConfig:)``
   public func importInstance(
     request: ImportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -333,10 +333,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importInstancePollingUntilDone(request:)``
-  /// - ``importInstancePollingUntilDone(name:inputConfig:)``
   /// - ``importInstance(request:)``
   /// - ``importInstance(request:options:)``
+  /// - ``importInstancePollingUntilDone(name:inputConfig:)``
+  /// - ``importInstancePollingUntilDone(request:)``
   public func importInstancePollingUntilDone(
     request: ImportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -373,9 +373,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportInstance(request:)``
+  /// - ``exportInstancePollingUntilDone(name:outputConfig:)``
   /// - ``exportInstancePollingUntilDone(request:)``
   /// - ``exportInstancePollingUntilDone(request:options:)``
-  /// - ``exportInstancePollingUntilDone(name:outputConfig:)``
   public func exportInstance(
     request: ExportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -393,10 +393,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportInstancePollingUntilDone(request:)``
-  /// - ``exportInstancePollingUntilDone(name:outputConfig:)``
   /// - ``exportInstance(request:)``
   /// - ``exportInstance(request:options:)``
+  /// - ``exportInstancePollingUntilDone(name:outputConfig:)``
+  /// - ``exportInstancePollingUntilDone(request:)``
   public func exportInstancePollingUntilDone(
     request: ExportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -429,9 +429,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``failoverInstance(request:)``
+  /// - ``failoverInstancePollingUntilDone(name:dataProtectionMode:)``
   /// - ``failoverInstancePollingUntilDone(request:)``
   /// - ``failoverInstancePollingUntilDone(request:options:)``
-  /// - ``failoverInstancePollingUntilDone(name:dataProtectionMode:)``
   public func failoverInstance(
     request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -445,10 +445,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``failoverInstancePollingUntilDone(request:)``
-  /// - ``failoverInstancePollingUntilDone(name:dataProtectionMode:)``
   /// - ``failoverInstance(request:)``
   /// - ``failoverInstance(request:options:)``
+  /// - ``failoverInstancePollingUntilDone(name:dataProtectionMode:)``
+  /// - ``failoverInstancePollingUntilDone(request:)``
   public func failoverInstancePollingUntilDone(
     request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -481,9 +481,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -497,10 +497,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -533,9 +533,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   /// - ``rescheduleMaintenancePollingUntilDone(request:options:)``
-  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   public func rescheduleMaintenance(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -549,10 +549,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
-  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
   /// - ``rescheduleMaintenance(request:)``
   /// - ``rescheduleMaintenance(request:options:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -614,9 +614,9 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -642,8 +642,8 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -658,8 +658,8 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

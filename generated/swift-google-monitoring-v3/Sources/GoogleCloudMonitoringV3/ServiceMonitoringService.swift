@@ -52,8 +52,8 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   ///
   /// ## See Also
   ///
-  /// - ``createService(request:)``
   /// - ``createService(parent:service:)``
+  /// - ``createService(request:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Service {
@@ -66,8 +66,8 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   ///
   /// ## See Also
   ///
-  /// - ``getService(request:)``
   /// - ``getService(name:)``
+  /// - ``getService(request:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Service {
@@ -81,9 +81,9 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   /// ## See Also
   ///
   /// - ``listServices(request:)``
+  /// - ``listServicesByItems(parent:)``
   /// - ``listServicesByItems(request:)``
   /// - ``listServicesByItems(request:options:)``
-  /// - ``listServicesByItems(parent:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListServicesResponse {
@@ -110,8 +110,8 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteService(request:)``
   /// - ``deleteService(name:)``
+  /// - ``deleteService(request:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -124,8 +124,8 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   ///
   /// ## See Also
   ///
-  /// - ``createServiceLevelObjective(request:)``
   /// - ``createServiceLevelObjective(parent:serviceLevelObjective:)``
+  /// - ``createServiceLevelObjective(request:)``
   public func createServiceLevelObjective(
     request: CreateServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
@@ -138,8 +138,8 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   ///
   /// ## See Also
   ///
-  /// - ``getServiceLevelObjective(request:)``
   /// - ``getServiceLevelObjective(name:)``
+  /// - ``getServiceLevelObjective(request:)``
   public func getServiceLevelObjective(
     request: GetServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ServiceLevelObjective {
@@ -153,9 +153,9 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   /// ## See Also
   ///
   /// - ``listServiceLevelObjectives(request:)``
+  /// - ``listServiceLevelObjectivesByItems(parent:)``
   /// - ``listServiceLevelObjectivesByItems(request:)``
   /// - ``listServiceLevelObjectivesByItems(request:options:)``
-  /// - ``listServiceLevelObjectivesByItems(parent:)``
   public func listServiceLevelObjectives(
     request: ListServiceLevelObjectivesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListServiceLevelObjectivesResponse {
@@ -182,8 +182,8 @@ public final class ServiceMonitoringServiceClient: Clients.ServiceMonitoringServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteServiceLevelObjective(request:)``
   /// - ``deleteServiceLevelObjective(name:)``
+  /// - ``deleteServiceLevelObjective(request:)``
   public func deleteServiceLevelObjective(
     request: DeleteServiceLevelObjectiveRequest, options: GoogleGax.RequestOptions
   ) async throws {

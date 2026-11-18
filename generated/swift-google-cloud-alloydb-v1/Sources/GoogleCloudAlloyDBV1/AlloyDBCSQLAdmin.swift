@@ -53,9 +53,9 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// ## See Also
   ///
   /// - ``restoreFromCloudSql(request:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(parent:clusterId:)``
   /// - ``restoreFromCloudSqlPollingUntilDone(request:)``
   /// - ``restoreFromCloudSqlPollingUntilDone(request:options:)``
-  /// - ``restoreFromCloudSqlPollingUntilDone(parent:clusterId:)``
   public func restoreFromCloudSql(
     request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -68,10 +68,10 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``restoreFromCloudSqlPollingUntilDone(request:)``
-  /// - ``restoreFromCloudSqlPollingUntilDone(parent:clusterId:)``
   /// - ``restoreFromCloudSql(request:)``
   /// - ``restoreFromCloudSql(request:options:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(parent:clusterId:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(request:)``
   public func restoreFromCloudSqlPollingUntilDone(
     request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -133,9 +133,9 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -161,8 +161,8 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,8 +177,8 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

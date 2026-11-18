@@ -48,8 +48,8 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createDocument(request:)``
   /// - ``createDocument(parent:document:)``
+  /// - ``createDocument(request:)``
   public func createDocument(
     request: CreateDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.CreateDocumentResponse {
@@ -62,8 +62,8 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDocument(request:)``
   /// - ``getDocument(name:)``
+  /// - ``getDocument(request:)``
   public func getDocument(
     request: GetDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.Document {
@@ -77,8 +77,8 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateDocument(request:)``
   /// - ``updateDocument(name:document:)``
+  /// - ``updateDocument(request:)``
   public func updateDocument(
     request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.UpdateDocumentResponse {
@@ -91,8 +91,8 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteDocument(request:)``
   /// - ``deleteDocument(name:)``
+  /// - ``deleteDocument(request:)``
   public func deleteDocument(
     request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -111,9 +111,9 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``searchDocuments(request:)``
+  /// - ``searchDocumentsByItems(parent:)``
   /// - ``searchDocumentsByItems(request:)``
   /// - ``searchDocumentsByItems(request:options:)``
-  /// - ``searchDocumentsByItems(parent:)``
   public func searchDocuments(
     request: SearchDocumentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse {
@@ -126,8 +126,8 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``lockDocument(request:)``
   /// - ``lockDocument(name:)``
+  /// - ``lockDocument(request:)``
   public func lockDocument(
     request: LockDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.Document {

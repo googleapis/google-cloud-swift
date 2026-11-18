@@ -52,9 +52,9 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``runPipeline(request:)``
+  /// - ``runPipelinePollingUntilDone(name:)``
   /// - ``runPipelinePollingUntilDone(request:)``
   /// - ``runPipelinePollingUntilDone(request:options:)``
-  /// - ``runPipelinePollingUntilDone(name:)``
   public func runPipeline(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -67,10 +67,10 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``runPipelinePollingUntilDone(request:)``
-  /// - ``runPipelinePollingUntilDone(name:)``
   /// - ``runPipeline(request:)``
   /// - ``runPipeline(request:options:)``
+  /// - ``runPipelinePollingUntilDone(name:)``
+  /// - ``runPipelinePollingUntilDone(request:)``
   public func runPipelinePollingUntilDone(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> RunPipelineResponse {

@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList {
@@ -75,9 +75,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:storagePool:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:zone:storagePool:)``
     public func delete(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,10 +99,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:zone:storagePool:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:storagePool:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,8 +149,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:storagePool:)``
+    /// - ``get(request:)``
     public func `get`(
       request: StoragePoolsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePool {
@@ -164,8 +164,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:zone:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: StoragePoolsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -180,9 +180,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:zone:body:)``
     public func insert(
       request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -201,10 +201,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:zone:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -252,9 +252,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:)``
     public func list(
       request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolList {
@@ -268,9 +268,9 @@
     /// ## See Also
     ///
     /// - ``listDisks(request:)``
+    /// - ``listDisksByItems(project:zone:storagePool:)``
     /// - ``listDisksByItems(request:)``
     /// - ``listDisksByItems(request:options:)``
-    /// - ``listDisksByItems(project:zone:storagePool:)``
     public func listDisks(
       request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolListDisks {
@@ -284,8 +284,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:zone:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: StoragePoolsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -298,8 +298,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: StoragePoolsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -317,9 +317,9 @@
     /// ## See Also
     ///
     /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:zone:storagePool:body:)``
     /// - ``updatePollingUntilDone(request:)``
     /// - ``updatePollingUntilDone(request:options:)``
-    /// - ``updatePollingUntilDone(project:zone:storagePool:body:)``
     public func update(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -341,10 +341,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePollingUntilDone(request:)``
-    /// - ``updatePollingUntilDone(project:zone:storagePool:body:)``
     /// - ``update(request:)``
     /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:storagePool:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

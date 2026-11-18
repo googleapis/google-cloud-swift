@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``createDataset(request:)``
+    /// - ``createDatasetPollingUntilDone(parent:dataset:)``
     /// - ``createDatasetPollingUntilDone(request:)``
     /// - ``createDatasetPollingUntilDone(request:options:)``
-    /// - ``createDatasetPollingUntilDone(parent:dataset:)``
     public func createDataset(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -71,10 +71,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDatasetPollingUntilDone(request:)``
-    /// - ``createDatasetPollingUntilDone(parent:dataset:)``
     /// - ``createDataset(request:)``
     /// - ``createDataset(request:options:)``
+    /// - ``createDatasetPollingUntilDone(parent:dataset:)``
+    /// - ``createDatasetPollingUntilDone(request:)``
     public func createDatasetPollingUntilDone(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Dataset {
@@ -105,8 +105,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDataset(request:)``
     /// - ``getDataset(name:)``
+    /// - ``getDataset(request:)``
     public func getDataset(
       request: GetDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
@@ -119,8 +119,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDataset(request:)``
     /// - ``updateDataset(dataset:updateMask:)``
+    /// - ``updateDataset(request:)``
     public func updateDataset(
       request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
@@ -134,9 +134,9 @@
     /// ## See Also
     ///
     /// - ``listDatasets(request:)``
+    /// - ``listDatasetsByItems(parent:)``
     /// - ``listDatasetsByItems(request:)``
     /// - ``listDatasetsByItems(request:options:)``
-    /// - ``listDatasetsByItems(parent:)``
     public func listDatasets(
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDatasetsResponse {
@@ -150,9 +150,9 @@
     /// ## See Also
     ///
     /// - ``deleteDataset(request:)``
+    /// - ``deleteDatasetPollingUntilDone(name:)``
     /// - ``deleteDatasetPollingUntilDone(request:)``
     /// - ``deleteDatasetPollingUntilDone(request:options:)``
-    /// - ``deleteDatasetPollingUntilDone(name:)``
     public func deleteDataset(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -165,10 +165,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDatasetPollingUntilDone(request:)``
-    /// - ``deleteDatasetPollingUntilDone(name:)``
     /// - ``deleteDataset(request:)``
     /// - ``deleteDataset(request:options:)``
+    /// - ``deleteDatasetPollingUntilDone(name:)``
+    /// - ``deleteDatasetPollingUntilDone(request:)``
     public func deleteDatasetPollingUntilDone(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -201,9 +201,9 @@
     /// ## See Also
     ///
     /// - ``importData(request:)``
+    /// - ``importDataPollingUntilDone(name:importConfigs:)``
     /// - ``importDataPollingUntilDone(request:)``
     /// - ``importDataPollingUntilDone(request:options:)``
-    /// - ``importDataPollingUntilDone(name:importConfigs:)``
     public func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -216,10 +216,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``importDataPollingUntilDone(request:)``
-    /// - ``importDataPollingUntilDone(name:importConfigs:)``
     /// - ``importData(request:)``
     /// - ``importData(request:options:)``
+    /// - ``importDataPollingUntilDone(name:importConfigs:)``
+    /// - ``importDataPollingUntilDone(request:)``
     public func importDataPollingUntilDone(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportDataResponse {
@@ -252,9 +252,9 @@
     /// ## See Also
     ///
     /// - ``exportData(request:)``
+    /// - ``exportDataPollingUntilDone(name:exportConfig:)``
     /// - ``exportDataPollingUntilDone(request:)``
     /// - ``exportDataPollingUntilDone(request:options:)``
-    /// - ``exportDataPollingUntilDone(name:exportConfig:)``
     public func exportData(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -267,10 +267,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportDataPollingUntilDone(request:)``
-    /// - ``exportDataPollingUntilDone(name:exportConfig:)``
     /// - ``exportData(request:)``
     /// - ``exportData(request:options:)``
+    /// - ``exportDataPollingUntilDone(name:exportConfig:)``
+    /// - ``exportDataPollingUntilDone(request:)``
     public func exportDataPollingUntilDone(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportDataResponse {
@@ -303,9 +303,9 @@
     /// ## See Also
     ///
     /// - ``createDatasetVersion(request:)``
+    /// - ``createDatasetVersionPollingUntilDone(parent:datasetVersion:)``
     /// - ``createDatasetVersionPollingUntilDone(request:)``
     /// - ``createDatasetVersionPollingUntilDone(request:options:)``
-    /// - ``createDatasetVersionPollingUntilDone(parent:datasetVersion:)``
     public func createDatasetVersion(
       request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -318,10 +318,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDatasetVersionPollingUntilDone(request:)``
-    /// - ``createDatasetVersionPollingUntilDone(parent:datasetVersion:)``
     /// - ``createDatasetVersion(request:)``
     /// - ``createDatasetVersion(request:options:)``
+    /// - ``createDatasetVersionPollingUntilDone(parent:datasetVersion:)``
+    /// - ``createDatasetVersionPollingUntilDone(request:)``
     public func createDatasetVersionPollingUntilDone(
       request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> DatasetVersion {
@@ -353,8 +353,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDatasetVersion(request:)``
     /// - ``updateDatasetVersion(datasetVersion:updateMask:)``
+    /// - ``updateDatasetVersion(request:)``
     public func updateDatasetVersion(
       request: UpdateDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
@@ -368,9 +368,9 @@
     /// ## See Also
     ///
     /// - ``deleteDatasetVersion(request:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(name:)``
     /// - ``deleteDatasetVersionPollingUntilDone(request:)``
     /// - ``deleteDatasetVersionPollingUntilDone(request:options:)``
-    /// - ``deleteDatasetVersionPollingUntilDone(name:)``
     public func deleteDatasetVersion(
       request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -383,10 +383,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDatasetVersionPollingUntilDone(request:)``
-    /// - ``deleteDatasetVersionPollingUntilDone(name:)``
     /// - ``deleteDatasetVersion(request:)``
     /// - ``deleteDatasetVersion(request:options:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(name:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(request:)``
     public func deleteDatasetVersionPollingUntilDone(
       request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -418,8 +418,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDatasetVersion(request:)``
     /// - ``getDatasetVersion(name:)``
+    /// - ``getDatasetVersion(request:)``
     public func getDatasetVersion(
       request: GetDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
@@ -433,9 +433,9 @@
     /// ## See Also
     ///
     /// - ``listDatasetVersions(request:)``
+    /// - ``listDatasetVersionsByItems(parent:)``
     /// - ``listDatasetVersionsByItems(request:)``
     /// - ``listDatasetVersionsByItems(request:options:)``
-    /// - ``listDatasetVersionsByItems(parent:)``
     public func listDatasetVersions(
       request: ListDatasetVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDatasetVersionsResponse {
@@ -449,9 +449,9 @@
     /// ## See Also
     ///
     /// - ``restoreDatasetVersion(request:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(name:)``
     /// - ``restoreDatasetVersionPollingUntilDone(request:)``
     /// - ``restoreDatasetVersionPollingUntilDone(request:options:)``
-    /// - ``restoreDatasetVersionPollingUntilDone(name:)``
     public func restoreDatasetVersion(
       request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -464,10 +464,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``restoreDatasetVersionPollingUntilDone(request:)``
-    /// - ``restoreDatasetVersionPollingUntilDone(name:)``
     /// - ``restoreDatasetVersion(request:)``
     /// - ``restoreDatasetVersion(request:options:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(name:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(request:)``
     public func restoreDatasetVersionPollingUntilDone(
       request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> DatasetVersion {
@@ -500,9 +500,9 @@
     /// ## See Also
     ///
     /// - ``listDataItems(request:)``
+    /// - ``listDataItemsByItems(parent:)``
     /// - ``listDataItemsByItems(request:)``
     /// - ``listDataItemsByItems(request:options:)``
-    /// - ``listDataItemsByItems(parent:)``
     public func listDataItems(
       request: ListDataItemsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDataItemsResponse {
@@ -531,9 +531,9 @@
     /// ## See Also
     ///
     /// - ``listSavedQueries(request:)``
+    /// - ``listSavedQueriesByItems(parent:)``
     /// - ``listSavedQueriesByItems(request:)``
     /// - ``listSavedQueriesByItems(request:options:)``
-    /// - ``listSavedQueriesByItems(parent:)``
     public func listSavedQueries(
       request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListSavedQueriesResponse {
@@ -547,9 +547,9 @@
     /// ## See Also
     ///
     /// - ``deleteSavedQuery(request:)``
+    /// - ``deleteSavedQueryPollingUntilDone(name:)``
     /// - ``deleteSavedQueryPollingUntilDone(request:)``
     /// - ``deleteSavedQueryPollingUntilDone(request:options:)``
-    /// - ``deleteSavedQueryPollingUntilDone(name:)``
     public func deleteSavedQuery(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -562,10 +562,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSavedQueryPollingUntilDone(request:)``
-    /// - ``deleteSavedQueryPollingUntilDone(name:)``
     /// - ``deleteSavedQuery(request:)``
     /// - ``deleteSavedQuery(request:options:)``
+    /// - ``deleteSavedQueryPollingUntilDone(name:)``
+    /// - ``deleteSavedQueryPollingUntilDone(request:)``
     public func deleteSavedQueryPollingUntilDone(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -597,8 +597,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getAnnotationSpec(request:)``
     /// - ``getAnnotationSpec(name:)``
+    /// - ``getAnnotationSpec(request:)``
     public func getAnnotationSpec(
       request: GetAnnotationSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AnnotationSpec {
@@ -612,9 +612,9 @@
     /// ## See Also
     ///
     /// - ``listAnnotations(request:)``
+    /// - ``listAnnotationsByItems(parent:)``
     /// - ``listAnnotationsByItems(request:)``
     /// - ``listAnnotationsByItems(request:options:)``
-    /// - ``listAnnotationsByItems(parent:)``
     public func listAnnotations(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListAnnotationsResponse {
@@ -708,9 +708,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -736,8 +736,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -752,8 +752,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

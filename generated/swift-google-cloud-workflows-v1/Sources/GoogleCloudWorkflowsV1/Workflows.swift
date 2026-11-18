@@ -57,9 +57,9 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkflows(request:)``
+  /// - ``listWorkflowsByItems(parent:)``
   /// - ``listWorkflowsByItems(request:)``
   /// - ``listWorkflowsByItems(request:options:)``
-  /// - ``listWorkflowsByItems(parent:)``
   public func listWorkflows(
     request: ListWorkflowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsV1.ListWorkflowsResponse {
@@ -72,8 +72,8 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkflow(request:)``
   /// - ``getWorkflow(name:)``
+  /// - ``getWorkflow(request:)``
   public func getWorkflow(
     request: GetWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsV1.Workflow {
@@ -89,9 +89,9 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkflow(request:)``
+  /// - ``createWorkflowPollingUntilDone(parent:workflow:workflowId:)``
   /// - ``createWorkflowPollingUntilDone(request:)``
   /// - ``createWorkflowPollingUntilDone(request:options:)``
-  /// - ``createWorkflowPollingUntilDone(parent:workflow:workflowId:)``
   public func createWorkflow(
     request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -106,10 +106,10 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkflowPollingUntilDone(request:)``
-  /// - ``createWorkflowPollingUntilDone(parent:workflow:workflowId:)``
   /// - ``createWorkflow(request:)``
   /// - ``createWorkflow(request:options:)``
+  /// - ``createWorkflowPollingUntilDone(parent:workflow:workflowId:)``
+  /// - ``createWorkflowPollingUntilDone(request:)``
   public func createWorkflowPollingUntilDone(
     request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workflow {
@@ -143,9 +143,9 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkflow(request:)``
+  /// - ``deleteWorkflowPollingUntilDone(name:)``
   /// - ``deleteWorkflowPollingUntilDone(request:)``
   /// - ``deleteWorkflowPollingUntilDone(request:options:)``
-  /// - ``deleteWorkflowPollingUntilDone(name:)``
   public func deleteWorkflow(
     request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -160,10 +160,10 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkflowPollingUntilDone(request:)``
-  /// - ``deleteWorkflowPollingUntilDone(name:)``
   /// - ``deleteWorkflow(request:)``
   /// - ``deleteWorkflow(request:options:)``
+  /// - ``deleteWorkflowPollingUntilDone(name:)``
+  /// - ``deleteWorkflowPollingUntilDone(request:)``
   public func deleteWorkflowPollingUntilDone(
     request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -218,10 +218,10 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateWorkflowPollingUntilDone(request:)``
-  /// - ``updateWorkflowPollingUntilDone(workflow:updateMask:)``
   /// - ``updateWorkflow(request:)``
   /// - ``updateWorkflow(request:options:)``
+  /// - ``updateWorkflowPollingUntilDone(request:)``
+  /// - ``updateWorkflowPollingUntilDone(workflow:updateMask:)``
   public func updateWorkflowPollingUntilDone(
     request: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workflow {
@@ -298,9 +298,9 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -326,8 +326,8 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -73,9 +73,9 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOrgPolicyViolationsPreviews(request:)``
+  /// - ``listOrgPolicyViolationsPreviewsByItems(parent:)``
   /// - ``listOrgPolicyViolationsPreviewsByItems(request:)``
   /// - ``listOrgPolicyViolationsPreviewsByItems(request:options:)``
-  /// - ``listOrgPolicyViolationsPreviewsByItems(parent:)``
   public func listOrgPolicyViolationsPreviews(
     request: ListOrgPolicyViolationsPreviewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsPreviewsResponse {
@@ -94,8 +94,8 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getOrgPolicyViolationsPreview(request:)``
   /// - ``getOrgPolicyViolationsPreview(name:)``
+  /// - ``getOrgPolicyViolationsPreview(request:)``
   public func getOrgPolicyViolationsPreview(
     request: GetOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.OrgPolicyViolationsPreview {
@@ -116,9 +116,9 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// ## See Also
   ///
   /// - ``createOrgPolicyViolationsPreview(request:)``
+  /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(parent:orgPolicyViolationsPreview:orgPolicyViolationsPreviewId:)``
   /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(request:)``
   /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(request:options:)``
-  /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(parent:orgPolicyViolationsPreview:orgPolicyViolationsPreviewId:)``
   public func createOrgPolicyViolationsPreview(
     request: CreateOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -138,10 +138,10 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(request:)``
-  /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(parent:orgPolicyViolationsPreview:orgPolicyViolationsPreviewId:)``
   /// - ``createOrgPolicyViolationsPreview(request:)``
   /// - ``createOrgPolicyViolationsPreview(request:options:)``
+  /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(parent:orgPolicyViolationsPreview:orgPolicyViolationsPreviewId:)``
+  /// - ``createOrgPolicyViolationsPreviewPollingUntilDone(request:)``
   public func createOrgPolicyViolationsPreviewPollingUntilDone(
     request: CreateOrgPolicyViolationsPreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> OrgPolicyViolationsPreview {
@@ -177,9 +177,9 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOrgPolicyViolations(request:)``
+  /// - ``listOrgPolicyViolationsByItems(parent:)``
   /// - ``listOrgPolicyViolationsByItems(request:)``
   /// - ``listOrgPolicyViolationsByItems(request:options:)``
-  /// - ``listOrgPolicyViolationsByItems(parent:)``
   public func listOrgPolicyViolations(
     request: ListOrgPolicyViolationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicySimulatorV1.ListOrgPolicyViolationsResponse {
@@ -195,9 +195,9 @@ public final class OrgPolicyViolationsPreviewServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

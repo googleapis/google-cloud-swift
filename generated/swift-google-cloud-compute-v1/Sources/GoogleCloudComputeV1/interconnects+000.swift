@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:interconnect:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:interconnect:)``
     public func delete(
       request: InterconnectsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:interconnect:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:interconnect:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: InterconnectsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -121,8 +121,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:interconnect:)``
+    /// - ``get(request:)``
     public func `get`(
       request: InterconnectsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Interconnect {
@@ -144,8 +144,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDiagnostics(request:)``
     /// - ``getDiagnostics(project:interconnect:)``
+    /// - ``getDiagnostics(request:)``
     public func getDiagnostics(
       request: InterconnectsClient.GetDiagnosticsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InterconnectsGetDiagnosticsResponse {
@@ -159,8 +159,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getMacsecConfig(request:)``
     /// - ``getMacsecConfig(project:interconnect:)``
+    /// - ``getMacsecConfig(request:)``
     public func getMacsecConfig(
       request: InterconnectsClient.GetMacsecConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InterconnectsGetMacsecConfigResponse {
@@ -175,9 +175,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: InterconnectsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -196,10 +196,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: InterconnectsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -245,9 +245,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: InterconnectsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InterconnectList {
@@ -264,9 +264,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:interconnect:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:interconnect:body:)``
     public func patch(
       request: InterconnectsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -287,10 +287,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:interconnect:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:interconnect:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: InterconnectsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -338,9 +338,9 @@
     /// ## See Also
     ///
     /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
     /// - ``setLabelsPollingUntilDone(request:)``
     /// - ``setLabelsPollingUntilDone(request:options:)``
-    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
     public func setLabels(
       request: InterconnectsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -360,10 +360,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setLabelsPollingUntilDone(request:)``
-    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
     /// - ``setLabels(request:)``
     /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: InterconnectsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -409,9 +409,9 @@
     /// ## See Also
     ///
     /// - ``setName(request:)``
+    /// - ``setNamePollingUntilDone(project:interconnect:body:)``
     /// - ``setNamePollingUntilDone(request:)``
     /// - ``setNamePollingUntilDone(request:options:)``
-    /// - ``setNamePollingUntilDone(project:interconnect:body:)``
     public func setName(
       request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -429,10 +429,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setNamePollingUntilDone(request:)``
-    /// - ``setNamePollingUntilDone(project:interconnect:body:)``
     /// - ``setName(request:)``
     /// - ``setName(request:options:)``
+    /// - ``setNamePollingUntilDone(project:interconnect:body:)``
+    /// - ``setNamePollingUntilDone(request:)``
     public func setNamePollingUntilDone(
       request: InterconnectsClient.SetNameRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

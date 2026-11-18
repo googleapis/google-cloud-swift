@@ -49,8 +49,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createDataObject(request:)``
   /// - ``createDataObject(parent:dataObject:dataObjectId:)``
+  /// - ``createDataObject(request:)``
   public func createDataObject(
     request: CreateDataObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.DataObject {
@@ -76,8 +76,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getDataObject(request:)``
   /// - ``getDataObject(name:)``
+  /// - ``getDataObject(request:)``
   public func getDataObject(
     request: GetDataObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.DataObject {
@@ -90,8 +90,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateDataObject(request:)``
   /// - ``updateDataObject(dataObject:updateMask:)``
+  /// - ``updateDataObject(request:)``
   public func updateDataObject(
     request: UpdateDataObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.DataObject {
@@ -104,8 +104,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``batchUpdateDataObjects(request:)``
   /// - ``batchUpdateDataObjects(parent:requests:)``
+  /// - ``batchUpdateDataObjects(request:)``
   public func batchUpdateDataObjects(
     request: BatchUpdateDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.BatchUpdateDataObjectsResponse {
@@ -118,8 +118,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataObject(request:)``
   /// - ``deleteDataObject(name:)``
+  /// - ``deleteDataObject(request:)``
   public func deleteDataObject(
     request: DeleteDataObjectRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -132,8 +132,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``batchDeleteDataObjects(request:)``
   /// - ``batchDeleteDataObjects(parent:requests:)``
+  /// - ``batchDeleteDataObjects(request:)``
   public func batchDeleteDataObjects(
     request: BatchDeleteDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -194,9 +194,9 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -222,8 +222,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -238,8 +238,8 @@ public final class DataObjectServiceClient: Clients.DataObjectServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -47,9 +47,9 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``analyzeSentiment(request:)``
-  /// - ``analyzeSentiment(document:encodingType:)``
   /// - ``analyzeSentiment(document:)``
+  /// - ``analyzeSentiment(document:encodingType:)``
+  /// - ``analyzeSentiment(request:)``
   public func analyzeSentiment(
     request: AnalyzeSentimentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse {
@@ -64,9 +64,9 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``analyzeEntities(request:)``
-  /// - ``analyzeEntities(document:encodingType:)``
   /// - ``analyzeEntities(document:)``
+  /// - ``analyzeEntities(document:encodingType:)``
+  /// - ``analyzeEntities(request:)``
   public func analyzeEntities(
     request: AnalyzeEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse {
@@ -79,8 +79,8 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``classifyText(request:)``
   /// - ``classifyText(document:)``
+  /// - ``classifyText(request:)``
   public func classifyText(
     request: ClassifyTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse {
@@ -93,8 +93,8 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``moderateText(request:)``
   /// - ``moderateText(document:)``
+  /// - ``moderateText(request:)``
   public func moderateText(
     request: ModerateTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse {
@@ -107,9 +107,9 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``annotateText(request:)``
-  /// - ``annotateText(document:features:encodingType:)``
   /// - ``annotateText(document:features:)``
+  /// - ``annotateText(document:features:encodingType:)``
+  /// - ``annotateText(request:)``
   public func annotateText(
     request: AnnotateTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse {

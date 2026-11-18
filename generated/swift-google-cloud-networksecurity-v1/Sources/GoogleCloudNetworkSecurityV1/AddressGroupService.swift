@@ -58,9 +58,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``listAddressGroups(request:)``
+  /// - ``listAddressGroupsByItems(parent:)``
   /// - ``listAddressGroupsByItems(request:)``
   /// - ``listAddressGroupsByItems(request:options:)``
-  /// - ``listAddressGroupsByItems(parent:)``
   public func listAddressGroups(
     request: ListAddressGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListAddressGroupsResponse {
@@ -73,8 +73,8 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getAddressGroup(request:)``
   /// - ``getAddressGroup(name:)``
+  /// - ``getAddressGroup(request:)``
   public func getAddressGroup(
     request: GetAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.AddressGroup {
@@ -88,9 +88,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``createAddressGroup(request:)``
+  /// - ``createAddressGroupPollingUntilDone(parent:addressGroup:addressGroupId:)``
   /// - ``createAddressGroupPollingUntilDone(request:)``
   /// - ``createAddressGroupPollingUntilDone(request:options:)``
-  /// - ``createAddressGroupPollingUntilDone(parent:addressGroup:addressGroupId:)``
   public func createAddressGroup(
     request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -103,10 +103,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createAddressGroupPollingUntilDone(request:)``
-  /// - ``createAddressGroupPollingUntilDone(parent:addressGroup:addressGroupId:)``
   /// - ``createAddressGroup(request:)``
   /// - ``createAddressGroup(request:options:)``
+  /// - ``createAddressGroupPollingUntilDone(parent:addressGroup:addressGroupId:)``
+  /// - ``createAddressGroupPollingUntilDone(request:)``
   public func createAddressGroupPollingUntilDone(
     request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -139,9 +139,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``updateAddressGroup(request:)``
+  /// - ``updateAddressGroupPollingUntilDone(addressGroup:updateMask:)``
   /// - ``updateAddressGroupPollingUntilDone(request:)``
   /// - ``updateAddressGroupPollingUntilDone(request:options:)``
-  /// - ``updateAddressGroupPollingUntilDone(addressGroup:updateMask:)``
   public func updateAddressGroup(
     request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateAddressGroupPollingUntilDone(request:)``
-  /// - ``updateAddressGroupPollingUntilDone(addressGroup:updateMask:)``
   /// - ``updateAddressGroup(request:)``
   /// - ``updateAddressGroup(request:options:)``
+  /// - ``updateAddressGroupPollingUntilDone(addressGroup:updateMask:)``
+  /// - ``updateAddressGroupPollingUntilDone(request:)``
   public func updateAddressGroupPollingUntilDone(
     request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -190,9 +190,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``addAddressGroupItems(request:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(addressGroup:items:)``
   /// - ``addAddressGroupItemsPollingUntilDone(request:)``
   /// - ``addAddressGroupItemsPollingUntilDone(request:options:)``
-  /// - ``addAddressGroupItemsPollingUntilDone(addressGroup:items:)``
   public func addAddressGroupItems(
     request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -205,10 +205,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``addAddressGroupItemsPollingUntilDone(request:)``
-  /// - ``addAddressGroupItemsPollingUntilDone(addressGroup:items:)``
   /// - ``addAddressGroupItems(request:)``
   /// - ``addAddressGroupItems(request:options:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(addressGroup:items:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(request:)``
   public func addAddressGroupItemsPollingUntilDone(
     request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -241,9 +241,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``removeAddressGroupItems(request:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(addressGroup:items:)``
   /// - ``removeAddressGroupItemsPollingUntilDone(request:)``
   /// - ``removeAddressGroupItemsPollingUntilDone(request:options:)``
-  /// - ``removeAddressGroupItemsPollingUntilDone(addressGroup:items:)``
   public func removeAddressGroupItems(
     request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -256,10 +256,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``removeAddressGroupItemsPollingUntilDone(request:)``
-  /// - ``removeAddressGroupItemsPollingUntilDone(addressGroup:items:)``
   /// - ``removeAddressGroupItems(request:)``
   /// - ``removeAddressGroupItems(request:options:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(addressGroup:items:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(request:)``
   public func removeAddressGroupItemsPollingUntilDone(
     request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -292,9 +292,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``cloneAddressGroupItems(request:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(addressGroup:sourceAddressGroup:)``
   /// - ``cloneAddressGroupItemsPollingUntilDone(request:)``
   /// - ``cloneAddressGroupItemsPollingUntilDone(request:options:)``
-  /// - ``cloneAddressGroupItemsPollingUntilDone(addressGroup:sourceAddressGroup:)``
   public func cloneAddressGroupItems(
     request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -307,10 +307,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cloneAddressGroupItemsPollingUntilDone(request:)``
-  /// - ``cloneAddressGroupItemsPollingUntilDone(addressGroup:sourceAddressGroup:)``
   /// - ``cloneAddressGroupItems(request:)``
   /// - ``cloneAddressGroupItems(request:options:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(addressGroup:sourceAddressGroup:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(request:)``
   public func cloneAddressGroupItemsPollingUntilDone(
     request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -343,9 +343,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteAddressGroup(request:)``
+  /// - ``deleteAddressGroupPollingUntilDone(name:)``
   /// - ``deleteAddressGroupPollingUntilDone(request:)``
   /// - ``deleteAddressGroupPollingUntilDone(request:options:)``
-  /// - ``deleteAddressGroupPollingUntilDone(name:)``
   public func deleteAddressGroup(
     request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -358,10 +358,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteAddressGroupPollingUntilDone(request:)``
-  /// - ``deleteAddressGroupPollingUntilDone(name:)``
   /// - ``deleteAddressGroup(request:)``
   /// - ``deleteAddressGroup(request:options:)``
+  /// - ``deleteAddressGroupPollingUntilDone(name:)``
+  /// - ``deleteAddressGroupPollingUntilDone(request:)``
   public func deleteAddressGroupPollingUntilDone(
     request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -393,9 +393,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``listAddressGroupReferences(request:)``
+  /// - ``listAddressGroupReferencesByItems(addressGroup:)``
   /// - ``listAddressGroupReferencesByItems(request:)``
   /// - ``listAddressGroupReferencesByItems(request:options:)``
-  /// - ``listAddressGroupReferencesByItems(addressGroup:)``
   public func listAddressGroupReferences(
     request: ListAddressGroupReferencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListAddressGroupReferencesResponse {
@@ -506,9 +506,9 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -534,8 +534,8 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -550,8 +550,8 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

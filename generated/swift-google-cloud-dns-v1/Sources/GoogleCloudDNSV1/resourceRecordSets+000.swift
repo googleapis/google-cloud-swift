@@ -46,8 +46,8 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(project:managedZone:body:)``
+  /// - ``create(request:)``
   public func create(
     request: ResourceRecordSetsClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSet {
@@ -60,8 +60,8 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(project:managedZone:name:type:)``
+  /// - ``delete(request:)``
   public func delete(
     request: ResourceRecordSetsClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSetsDeleteResponse {
@@ -74,8 +74,8 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:managedZone:name:type:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ResourceRecordSetsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSet {
@@ -89,9 +89,9 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:managedZone:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:managedZone:)``
   public func list(
     request: ResourceRecordSetsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSetsListResponse {
@@ -104,8 +104,8 @@ public final class ResourceRecordSetsClient: Clients.ResourceRecordSetsProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``patch(request:)``
   /// - ``patch(project:managedZone:name:type:body:)``
+  /// - ``patch(request:)``
   public func patch(
     request: ResourceRecordSetsClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResourceRecordSet {

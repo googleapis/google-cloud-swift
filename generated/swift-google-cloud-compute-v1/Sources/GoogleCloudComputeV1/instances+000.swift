@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``addAccessConfig(request:)``
+    /// - ``addAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     /// - ``addAccessConfigPollingUntilDone(request:)``
     /// - ``addAccessConfigPollingUntilDone(request:options:)``
-    /// - ``addAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     public func addAccessConfig(
       request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addAccessConfigPollingUntilDone(request:)``
-    /// - ``addAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     /// - ``addAccessConfig(request:)``
     /// - ``addAccessConfig(request:options:)``
+    /// - ``addAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
+    /// - ``addAccessConfigPollingUntilDone(request:)``
     public func addAccessConfigPollingUntilDone(
       request: InstancesClient.AddAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -122,9 +122,9 @@
     /// ## See Also
     ///
     /// - ``addNetworkInterface(request:)``
+    /// - ``addNetworkInterfacePollingUntilDone(project:zone:instance:body:)``
     /// - ``addNetworkInterfacePollingUntilDone(request:)``
     /// - ``addNetworkInterfacePollingUntilDone(request:options:)``
-    /// - ``addNetworkInterfacePollingUntilDone(project:zone:instance:body:)``
     public func addNetworkInterface(
       request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -142,10 +142,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addNetworkInterfacePollingUntilDone(request:)``
-    /// - ``addNetworkInterfacePollingUntilDone(project:zone:instance:body:)``
     /// - ``addNetworkInterface(request:)``
     /// - ``addNetworkInterface(request:options:)``
+    /// - ``addNetworkInterfacePollingUntilDone(project:zone:instance:body:)``
+    /// - ``addNetworkInterfacePollingUntilDone(request:)``
     public func addNetworkInterfacePollingUntilDone(
       request: InstancesClient.AddNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,9 +194,9 @@
     /// ## See Also
     ///
     /// - ``addResourcePolicies(request:)``
+    /// - ``addResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     /// - ``addResourcePoliciesPollingUntilDone(request:)``
     /// - ``addResourcePoliciesPollingUntilDone(request:options:)``
-    /// - ``addResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     public func addResourcePolicies(
       request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -216,10 +216,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addResourcePoliciesPollingUntilDone(request:)``
-    /// - ``addResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     /// - ``addResourcePolicies(request:)``
     /// - ``addResourcePolicies(request:options:)``
+    /// - ``addResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
+    /// - ``addResourcePoliciesPollingUntilDone(request:)``
     public func addResourcePoliciesPollingUntilDone(
       request: InstancesClient.AddResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -273,9 +273,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: InstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceAggregatedList {
@@ -292,9 +292,9 @@
     /// ## See Also
     ///
     /// - ``attachDisk(request:)``
+    /// - ``attachDiskPollingUntilDone(project:zone:instance:body:)``
     /// - ``attachDiskPollingUntilDone(request:)``
     /// - ``attachDiskPollingUntilDone(request:options:)``
-    /// - ``attachDiskPollingUntilDone(project:zone:instance:body:)``
     public func attachDisk(
       request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -315,10 +315,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``attachDiskPollingUntilDone(request:)``
-    /// - ``attachDiskPollingUntilDone(project:zone:instance:body:)``
     /// - ``attachDisk(request:)``
     /// - ``attachDisk(request:options:)``
+    /// - ``attachDiskPollingUntilDone(project:zone:instance:body:)``
+    /// - ``attachDiskPollingUntilDone(request:)``
     public func attachDiskPollingUntilDone(
       request: InstancesClient.AttachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -367,9 +367,9 @@
     /// ## See Also
     ///
     /// - ``bulkInsert(request:)``
+    /// - ``bulkInsertPollingUntilDone(project:zone:body:)``
     /// - ``bulkInsertPollingUntilDone(request:)``
     /// - ``bulkInsertPollingUntilDone(request:options:)``
-    /// - ``bulkInsertPollingUntilDone(project:zone:body:)``
     public func bulkInsert(
       request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -389,10 +389,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``bulkInsertPollingUntilDone(request:)``
-    /// - ``bulkInsertPollingUntilDone(project:zone:body:)``
     /// - ``bulkInsert(request:)``
     /// - ``bulkInsert(request:options:)``
+    /// - ``bulkInsertPollingUntilDone(project:zone:body:)``
+    /// - ``bulkInsertPollingUntilDone(request:)``
     public func bulkInsertPollingUntilDone(
       request: InstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -440,9 +440,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:instance:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:zone:instance:)``
     public func delete(
       request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -461,10 +461,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:zone:instance:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:instance:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: InstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -511,9 +511,9 @@
     /// ## See Also
     ///
     /// - ``deleteAccessConfig(request:)``
+    /// - ``deleteAccessConfigPollingUntilDone(project:zone:instance:accessConfig:networkInterface:)``
     /// - ``deleteAccessConfigPollingUntilDone(request:)``
     /// - ``deleteAccessConfigPollingUntilDone(request:options:)``
-    /// - ``deleteAccessConfigPollingUntilDone(project:zone:instance:accessConfig:networkInterface:)``
     public func deleteAccessConfig(
       request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -531,10 +531,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteAccessConfigPollingUntilDone(request:)``
-    /// - ``deleteAccessConfigPollingUntilDone(project:zone:instance:accessConfig:networkInterface:)``
     /// - ``deleteAccessConfig(request:)``
     /// - ``deleteAccessConfig(request:options:)``
+    /// - ``deleteAccessConfigPollingUntilDone(project:zone:instance:accessConfig:networkInterface:)``
+    /// - ``deleteAccessConfigPollingUntilDone(request:)``
     public func deleteAccessConfigPollingUntilDone(
       request: InstancesClient.DeleteAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -585,9 +585,9 @@
     /// ## See Also
     ///
     /// - ``deleteNetworkInterface(request:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(project:zone:instance:networkInterfaceName:)``
     /// - ``deleteNetworkInterfacePollingUntilDone(request:)``
     /// - ``deleteNetworkInterfacePollingUntilDone(request:options:)``
-    /// - ``deleteNetworkInterfacePollingUntilDone(project:zone:instance:networkInterfaceName:)``
     public func deleteNetworkInterface(
       request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -609,10 +609,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNetworkInterfacePollingUntilDone(request:)``
-    /// - ``deleteNetworkInterfacePollingUntilDone(project:zone:instance:networkInterfaceName:)``
     /// - ``deleteNetworkInterface(request:)``
     /// - ``deleteNetworkInterface(request:options:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(project:zone:instance:networkInterfaceName:)``
+    /// - ``deleteNetworkInterfacePollingUntilDone(request:)``
     public func deleteNetworkInterfacePollingUntilDone(
       request: InstancesClient.DeleteNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -659,9 +659,9 @@
     /// ## See Also
     ///
     /// - ``detachDisk(request:)``
+    /// - ``detachDiskPollingUntilDone(project:zone:instance:deviceName:)``
     /// - ``detachDiskPollingUntilDone(request:)``
     /// - ``detachDiskPollingUntilDone(request:options:)``
-    /// - ``detachDiskPollingUntilDone(project:zone:instance:deviceName:)``
     public func detachDisk(
       request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -679,10 +679,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``detachDiskPollingUntilDone(request:)``
-    /// - ``detachDiskPollingUntilDone(project:zone:instance:deviceName:)``
     /// - ``detachDisk(request:)``
     /// - ``detachDisk(request:options:)``
+    /// - ``detachDiskPollingUntilDone(project:zone:instance:deviceName:)``
+    /// - ``detachDiskPollingUntilDone(request:)``
     public func detachDiskPollingUntilDone(
       request: InstancesClient.DetachDiskRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -728,8 +728,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:instance:)``
+    /// - ``get(request:)``
     public func `get`(
       request: InstancesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Instance {
@@ -742,8 +742,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEffectiveFirewalls(request:)``
     /// - ``getEffectiveFirewalls(project:zone:instance:networkInterface:)``
+    /// - ``getEffectiveFirewalls(request:)``
     public func getEffectiveFirewalls(
       request: InstancesClient.GetEffectiveFirewallsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstancesGetEffectiveFirewallsResponse {
@@ -756,8 +756,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getGuestAttributes(request:)``
     /// - ``getGuestAttributes(project:zone:instance:)``
+    /// - ``getGuestAttributes(request:)``
     public func getGuestAttributes(
       request: InstancesClient.GetGuestAttributesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GuestAttributes {
@@ -771,8 +771,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:zone:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: InstancesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -785,8 +785,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getScreenshot(request:)``
     /// - ``getScreenshot(project:zone:instance:)``
+    /// - ``getScreenshot(request:)``
     public func getScreenshot(
       request: InstancesClient.GetScreenshotRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Screenshot {
@@ -799,8 +799,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSerialPortOutput(request:)``
     /// - ``getSerialPortOutput(project:zone:instance:)``
+    /// - ``getSerialPortOutput(request:)``
     public func getSerialPortOutput(
       request: InstancesClient.GetSerialPortOutputRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SerialPortOutput {
@@ -813,8 +813,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getShieldedInstanceIdentity(request:)``
     /// - ``getShieldedInstanceIdentity(project:zone:instance:)``
+    /// - ``getShieldedInstanceIdentity(request:)``
     public func getShieldedInstanceIdentity(
       request: InstancesClient.GetShieldedInstanceIdentityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ShieldedInstanceIdentity {
@@ -829,9 +829,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:zone:body:)``
     public func insert(
       request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -850,10 +850,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:zone:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: InstancesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -901,9 +901,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:)``
     public func list(
       request: InstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceList {
@@ -921,9 +921,9 @@
     /// ## See Also
     ///
     /// - ``listReferrers(request:)``
+    /// - ``listReferrersByItems(project:zone:instance:)``
     /// - ``listReferrersByItems(request:)``
     /// - ``listReferrersByItems(request:options:)``
-    /// - ``listReferrersByItems(project:zone:instance:)``
     public func listReferrers(
       request: InstancesClient.ListReferrersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceListReferrers {
@@ -937,9 +937,9 @@
     /// ## See Also
     ///
     /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:instance:)``
     /// - ``performMaintenancePollingUntilDone(request:)``
     /// - ``performMaintenancePollingUntilDone(request:options:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:instance:)``
     public func performMaintenance(
       request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -957,10 +957,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``performMaintenancePollingUntilDone(request:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:instance:)``
     /// - ``performMaintenance(request:)``
     /// - ``performMaintenance(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:instance:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
     public func performMaintenancePollingUntilDone(
       request: InstancesClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1007,9 +1007,9 @@
     /// ## See Also
     ///
     /// - ``removeResourcePolicies(request:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     /// - ``removeResourcePoliciesPollingUntilDone(request:)``
     /// - ``removeResourcePoliciesPollingUntilDone(request:options:)``
-    /// - ``removeResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     public func removeResourcePolicies(
       request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1027,10 +1027,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeResourcePoliciesPollingUntilDone(request:)``
-    /// - ``removeResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
     /// - ``removeResourcePolicies(request:)``
     /// - ``removeResourcePolicies(request:options:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(project:zone:instance:body:)``
+    /// - ``removeResourcePoliciesPollingUntilDone(request:)``
     public func removeResourcePoliciesPollingUntilDone(
       request: InstancesClient.RemoveResourcePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1077,9 +1077,9 @@
     /// ## See Also
     ///
     /// - ``reportHostAsFaulty(request:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(project:zone:instance:body:)``
     /// - ``reportHostAsFaultyPollingUntilDone(request:)``
     /// - ``reportHostAsFaultyPollingUntilDone(request:options:)``
-    /// - ``reportHostAsFaultyPollingUntilDone(project:zone:instance:body:)``
     public func reportHostAsFaulty(
       request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1097,10 +1097,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``reportHostAsFaultyPollingUntilDone(request:)``
-    /// - ``reportHostAsFaultyPollingUntilDone(project:zone:instance:body:)``
     /// - ``reportHostAsFaulty(request:)``
     /// - ``reportHostAsFaulty(request:options:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``reportHostAsFaultyPollingUntilDone(request:)``
     public func reportHostAsFaultyPollingUntilDone(
       request: InstancesClient.ReportHostAsFaultyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1149,9 +1149,9 @@
     /// ## See Also
     ///
     /// - ``reset(request:)``
+    /// - ``resetPollingUntilDone(project:zone:instance:)``
     /// - ``resetPollingUntilDone(request:)``
     /// - ``resetPollingUntilDone(request:options:)``
-    /// - ``resetPollingUntilDone(project:zone:instance:)``
     public func reset(
       request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1171,10 +1171,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``resetPollingUntilDone(request:)``
-    /// - ``resetPollingUntilDone(project:zone:instance:)``
     /// - ``reset(request:)``
     /// - ``reset(request:options:)``
+    /// - ``resetPollingUntilDone(project:zone:instance:)``
+    /// - ``resetPollingUntilDone(request:)``
     public func resetPollingUntilDone(
       request: InstancesClient.ResetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1222,9 +1222,9 @@
     /// ## See Also
     ///
     /// - ``resume(request:)``
+    /// - ``resumePollingUntilDone(project:zone:instance:)``
     /// - ``resumePollingUntilDone(request:)``
     /// - ``resumePollingUntilDone(request:options:)``
-    /// - ``resumePollingUntilDone(project:zone:instance:)``
     public func resume(
       request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1243,10 +1243,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``resumePollingUntilDone(request:)``
-    /// - ``resumePollingUntilDone(project:zone:instance:)``
     /// - ``resume(request:)``
     /// - ``resume(request:options:)``
+    /// - ``resumePollingUntilDone(project:zone:instance:)``
+    /// - ``resumePollingUntilDone(request:)``
     public func resumePollingUntilDone(
       request: InstancesClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1292,8 +1292,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``sendDiagnosticInterrupt(request:)``
     /// - ``sendDiagnosticInterrupt(project:zone:instance:)``
+    /// - ``sendDiagnosticInterrupt(request:)``
     public func sendDiagnosticInterrupt(
       request: InstancesClient.SendDiagnosticInterruptRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1307,9 +1307,9 @@
     /// ## See Also
     ///
     /// - ``setDeletionProtection(request:)``
+    /// - ``setDeletionProtectionPollingUntilDone(project:zone:resource:)``
     /// - ``setDeletionProtectionPollingUntilDone(request:)``
     /// - ``setDeletionProtectionPollingUntilDone(request:options:)``
-    /// - ``setDeletionProtectionPollingUntilDone(project:zone:resource:)``
     public func setDeletionProtection(
       request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1327,10 +1327,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setDeletionProtectionPollingUntilDone(request:)``
-    /// - ``setDeletionProtectionPollingUntilDone(project:zone:resource:)``
     /// - ``setDeletionProtection(request:)``
     /// - ``setDeletionProtection(request:options:)``
+    /// - ``setDeletionProtectionPollingUntilDone(project:zone:resource:)``
+    /// - ``setDeletionProtectionPollingUntilDone(request:)``
     public func setDeletionProtectionPollingUntilDone(
       request: InstancesClient.SetDeletionProtectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1377,9 +1377,9 @@
     /// ## See Also
     ///
     /// - ``setDiskAutoDelete(request:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(project:zone:instance:autoDelete:deviceName:)``
     /// - ``setDiskAutoDeletePollingUntilDone(request:)``
     /// - ``setDiskAutoDeletePollingUntilDone(request:options:)``
-    /// - ``setDiskAutoDeletePollingUntilDone(project:zone:instance:autoDelete:deviceName:)``
     public func setDiskAutoDelete(
       request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1397,10 +1397,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setDiskAutoDeletePollingUntilDone(request:)``
-    /// - ``setDiskAutoDeletePollingUntilDone(project:zone:instance:autoDelete:deviceName:)``
     /// - ``setDiskAutoDelete(request:)``
     /// - ``setDiskAutoDelete(request:options:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(project:zone:instance:autoDelete:deviceName:)``
+    /// - ``setDiskAutoDeletePollingUntilDone(request:)``
     public func setDiskAutoDeletePollingUntilDone(
       request: InstancesClient.SetDiskAutoDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1447,8 +1447,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:zone:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: InstancesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -1463,9 +1463,9 @@
     /// ## See Also
     ///
     /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:zone:instance:body:)``
     /// - ``setLabelsPollingUntilDone(request:)``
     /// - ``setLabelsPollingUntilDone(request:options:)``
-    /// - ``setLabelsPollingUntilDone(project:zone:instance:body:)``
     public func setLabels(
       request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1484,10 +1484,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setLabelsPollingUntilDone(request:)``
-    /// - ``setLabelsPollingUntilDone(project:zone:instance:body:)``
     /// - ``setLabels(request:)``
     /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: InstancesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1535,9 +1535,9 @@
     /// ## See Also
     ///
     /// - ``setMachineResources(request:)``
+    /// - ``setMachineResourcesPollingUntilDone(project:zone:instance:body:)``
     /// - ``setMachineResourcesPollingUntilDone(request:)``
     /// - ``setMachineResourcesPollingUntilDone(request:options:)``
-    /// - ``setMachineResourcesPollingUntilDone(project:zone:instance:body:)``
     public func setMachineResources(
       request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1556,10 +1556,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setMachineResourcesPollingUntilDone(request:)``
-    /// - ``setMachineResourcesPollingUntilDone(project:zone:instance:body:)``
     /// - ``setMachineResources(request:)``
     /// - ``setMachineResources(request:options:)``
+    /// - ``setMachineResourcesPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMachineResourcesPollingUntilDone(request:)``
     public func setMachineResourcesPollingUntilDone(
       request: InstancesClient.SetMachineResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1607,9 +1607,9 @@
     /// ## See Also
     ///
     /// - ``setMachineType(request:)``
+    /// - ``setMachineTypePollingUntilDone(project:zone:instance:body:)``
     /// - ``setMachineTypePollingUntilDone(request:)``
     /// - ``setMachineTypePollingUntilDone(request:options:)``
-    /// - ``setMachineTypePollingUntilDone(project:zone:instance:body:)``
     public func setMachineType(
       request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1628,10 +1628,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setMachineTypePollingUntilDone(request:)``
-    /// - ``setMachineTypePollingUntilDone(project:zone:instance:body:)``
     /// - ``setMachineType(request:)``
     /// - ``setMachineType(request:options:)``
+    /// - ``setMachineTypePollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMachineTypePollingUntilDone(request:)``
     public func setMachineTypePollingUntilDone(
       request: InstancesClient.SetMachineTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1679,9 +1679,9 @@
     /// ## See Also
     ///
     /// - ``setMetadata(request:)``
+    /// - ``setMetadataPollingUntilDone(project:zone:instance:body:)``
     /// - ``setMetadataPollingUntilDone(request:)``
     /// - ``setMetadataPollingUntilDone(request:options:)``
-    /// - ``setMetadataPollingUntilDone(project:zone:instance:body:)``
     public func setMetadata(
       request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1700,10 +1700,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setMetadataPollingUntilDone(request:)``
-    /// - ``setMetadataPollingUntilDone(project:zone:instance:body:)``
     /// - ``setMetadata(request:)``
     /// - ``setMetadata(request:options:)``
+    /// - ``setMetadataPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMetadataPollingUntilDone(request:)``
     public func setMetadataPollingUntilDone(
       request: InstancesClient.SetMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1753,9 +1753,9 @@
     /// ## See Also
     ///
     /// - ``setMinCpuPlatform(request:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(project:zone:instance:body:)``
     /// - ``setMinCpuPlatformPollingUntilDone(request:)``
     /// - ``setMinCpuPlatformPollingUntilDone(request:options:)``
-    /// - ``setMinCpuPlatformPollingUntilDone(project:zone:instance:body:)``
     public func setMinCpuPlatform(
       request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1776,10 +1776,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setMinCpuPlatformPollingUntilDone(request:)``
-    /// - ``setMinCpuPlatformPollingUntilDone(project:zone:instance:body:)``
     /// - ``setMinCpuPlatform(request:)``
     /// - ``setMinCpuPlatform(request:options:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setMinCpuPlatformPollingUntilDone(request:)``
     public func setMinCpuPlatformPollingUntilDone(
       request: InstancesClient.SetMinCpuPlatformRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1826,9 +1826,9 @@
     /// ## See Also
     ///
     /// - ``setName(request:)``
+    /// - ``setNamePollingUntilDone(project:zone:instance:body:)``
     /// - ``setNamePollingUntilDone(request:)``
     /// - ``setNamePollingUntilDone(request:options:)``
-    /// - ``setNamePollingUntilDone(project:zone:instance:body:)``
     public func setName(
       request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1846,10 +1846,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setNamePollingUntilDone(request:)``
-    /// - ``setNamePollingUntilDone(project:zone:instance:body:)``
     /// - ``setName(request:)``
     /// - ``setName(request:options:)``
+    /// - ``setNamePollingUntilDone(project:zone:instance:body:)``
+    /// - ``setNamePollingUntilDone(request:)``
     public func setNamePollingUntilDone(
       request: InstancesClient.SetNameRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1900,9 +1900,9 @@
     /// ## See Also
     ///
     /// - ``setScheduling(request:)``
+    /// - ``setSchedulingPollingUntilDone(project:zone:instance:body:)``
     /// - ``setSchedulingPollingUntilDone(request:)``
     /// - ``setSchedulingPollingUntilDone(request:options:)``
-    /// - ``setSchedulingPollingUntilDone(project:zone:instance:body:)``
     public func setScheduling(
       request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1924,10 +1924,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setSchedulingPollingUntilDone(request:)``
-    /// - ``setSchedulingPollingUntilDone(project:zone:instance:body:)``
     /// - ``setScheduling(request:)``
     /// - ``setScheduling(request:options:)``
+    /// - ``setSchedulingPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setSchedulingPollingUntilDone(request:)``
     public func setSchedulingPollingUntilDone(
       request: InstancesClient.SetSchedulingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1976,9 +1976,9 @@
     /// ## See Also
     ///
     /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:zone:instance:body:)``
     /// - ``setSecurityPolicyPollingUntilDone(request:)``
     /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
-    /// - ``setSecurityPolicyPollingUntilDone(project:zone:instance:body:)``
     public func setSecurityPolicy(
       request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1998,10 +1998,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setSecurityPolicyPollingUntilDone(request:)``
-    /// - ``setSecurityPolicyPollingUntilDone(project:zone:instance:body:)``
     /// - ``setSecurityPolicy(request:)``
     /// - ``setSecurityPolicy(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
     public func setSecurityPolicyPollingUntilDone(
       request: InstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2050,9 +2050,9 @@
     /// ## See Also
     ///
     /// - ``setServiceAccount(request:)``
+    /// - ``setServiceAccountPollingUntilDone(project:zone:instance:body:)``
     /// - ``setServiceAccountPollingUntilDone(request:)``
     /// - ``setServiceAccountPollingUntilDone(request:options:)``
-    /// - ``setServiceAccountPollingUntilDone(project:zone:instance:body:)``
     public func setServiceAccount(
       request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2072,10 +2072,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setServiceAccountPollingUntilDone(request:)``
-    /// - ``setServiceAccountPollingUntilDone(project:zone:instance:body:)``
     /// - ``setServiceAccount(request:)``
     /// - ``setServiceAccount(request:options:)``
+    /// - ``setServiceAccountPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setServiceAccountPollingUntilDone(request:)``
     public func setServiceAccountPollingUntilDone(
       request: InstancesClient.SetServiceAccountRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2125,9 +2125,9 @@
     /// ## See Also
     ///
     /// - ``setShieldedInstanceIntegrityPolicy(request:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(project:zone:instance:body:)``
     /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:)``
     /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:options:)``
-    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(project:zone:instance:body:)``
     public func setShieldedInstanceIntegrityPolicy(
       request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -2149,10 +2149,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:)``
-    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(project:zone:instance:body:)``
     /// - ``setShieldedInstanceIntegrityPolicy(request:)``
     /// - ``setShieldedInstanceIntegrityPolicy(request:options:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setShieldedInstanceIntegrityPolicyPollingUntilDone(request:)``
     public func setShieldedInstanceIntegrityPolicyPollingUntilDone(
       request: InstancesClient.SetShieldedInstanceIntegrityPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -2202,9 +2202,9 @@
     /// ## See Also
     ///
     /// - ``setTags(request:)``
+    /// - ``setTagsPollingUntilDone(project:zone:instance:body:)``
     /// - ``setTagsPollingUntilDone(request:)``
     /// - ``setTagsPollingUntilDone(request:options:)``
-    /// - ``setTagsPollingUntilDone(project:zone:instance:body:)``
     public func setTags(
       request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2223,10 +2223,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setTagsPollingUntilDone(request:)``
-    /// - ``setTagsPollingUntilDone(project:zone:instance:body:)``
     /// - ``setTags(request:)``
     /// - ``setTags(request:options:)``
+    /// - ``setTagsPollingUntilDone(project:zone:instance:body:)``
+    /// - ``setTagsPollingUntilDone(request:)``
     public func setTagsPollingUntilDone(
       request: InstancesClient.SetTagsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2274,9 +2274,9 @@
     /// ## See Also
     ///
     /// - ``simulateMaintenanceEvent(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:instance:)``
     /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
     /// - ``simulateMaintenanceEventPollingUntilDone(request:options:)``
-    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:instance:)``
     public func simulateMaintenanceEvent(
       request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2295,10 +2295,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
-    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:instance:)``
     /// - ``simulateMaintenanceEvent(request:)``
     /// - ``simulateMaintenanceEvent(request:options:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:instance:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
     public func simulateMaintenanceEventPollingUntilDone(
       request: InstancesClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2347,9 +2347,9 @@
     /// ## See Also
     ///
     /// - ``start(request:)``
+    /// - ``startPollingUntilDone(project:zone:instance:)``
     /// - ``startPollingUntilDone(request:)``
     /// - ``startPollingUntilDone(request:options:)``
-    /// - ``startPollingUntilDone(project:zone:instance:)``
     public func start(
       request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2369,10 +2369,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``startPollingUntilDone(request:)``
-    /// - ``startPollingUntilDone(project:zone:instance:)``
     /// - ``start(request:)``
     /// - ``start(request:options:)``
+    /// - ``startPollingUntilDone(project:zone:instance:)``
+    /// - ``startPollingUntilDone(request:)``
     public func startPollingUntilDone(
       request: InstancesClient.StartRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2421,9 +2421,9 @@
     /// ## See Also
     ///
     /// - ``startWithEncryptionKey(request:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(project:zone:instance:body:)``
     /// - ``startWithEncryptionKeyPollingUntilDone(request:)``
     /// - ``startWithEncryptionKeyPollingUntilDone(request:options:)``
-    /// - ``startWithEncryptionKeyPollingUntilDone(project:zone:instance:body:)``
     public func startWithEncryptionKey(
       request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2443,10 +2443,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``startWithEncryptionKeyPollingUntilDone(request:)``
-    /// - ``startWithEncryptionKeyPollingUntilDone(project:zone:instance:body:)``
     /// - ``startWithEncryptionKey(request:)``
     /// - ``startWithEncryptionKey(request:options:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(project:zone:instance:body:)``
+    /// - ``startWithEncryptionKeyPollingUntilDone(request:)``
     public func startWithEncryptionKeyPollingUntilDone(
       request: InstancesClient.StartWithEncryptionKeyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2498,9 +2498,9 @@
     /// ## See Also
     ///
     /// - ``stop(request:)``
+    /// - ``stopPollingUntilDone(project:zone:instance:)``
     /// - ``stopPollingUntilDone(request:)``
     /// - ``stopPollingUntilDone(request:options:)``
-    /// - ``stopPollingUntilDone(project:zone:instance:)``
     public func stop(
       request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2523,10 +2523,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``stopPollingUntilDone(request:)``
-    /// - ``stopPollingUntilDone(project:zone:instance:)``
     /// - ``stop(request:)``
     /// - ``stop(request:options:)``
+    /// - ``stopPollingUntilDone(project:zone:instance:)``
+    /// - ``stopPollingUntilDone(request:)``
     public func stopPollingUntilDone(
       request: InstancesClient.StopRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2580,9 +2580,9 @@
     /// ## See Also
     ///
     /// - ``suspend(request:)``
+    /// - ``suspendPollingUntilDone(project:zone:instance:)``
     /// - ``suspendPollingUntilDone(request:)``
     /// - ``suspendPollingUntilDone(request:options:)``
-    /// - ``suspendPollingUntilDone(project:zone:instance:)``
     public func suspend(
       request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2607,10 +2607,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``suspendPollingUntilDone(request:)``
-    /// - ``suspendPollingUntilDone(project:zone:instance:)``
     /// - ``suspend(request:)``
     /// - ``suspend(request:options:)``
+    /// - ``suspendPollingUntilDone(project:zone:instance:)``
+    /// - ``suspendPollingUntilDone(request:)``
     public func suspendPollingUntilDone(
       request: InstancesClient.SuspendRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2656,8 +2656,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: InstancesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -2674,9 +2674,9 @@
     /// ## See Also
     ///
     /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:zone:instance:body:)``
     /// - ``updatePollingUntilDone(request:)``
     /// - ``updatePollingUntilDone(request:options:)``
-    /// - ``updatePollingUntilDone(project:zone:instance:body:)``
     public func update(
       request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2697,10 +2697,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePollingUntilDone(request:)``
-    /// - ``updatePollingUntilDone(project:zone:instance:body:)``
     /// - ``update(request:)``
     /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:instance:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: InstancesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2750,9 +2750,9 @@
     /// ## See Also
     ///
     /// - ``updateAccessConfig(request:)``
+    /// - ``updateAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     /// - ``updateAccessConfigPollingUntilDone(request:)``
     /// - ``updateAccessConfigPollingUntilDone(request:options:)``
-    /// - ``updateAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     public func updateAccessConfig(
       request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2773,10 +2773,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateAccessConfigPollingUntilDone(request:)``
-    /// - ``updateAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
     /// - ``updateAccessConfig(request:)``
     /// - ``updateAccessConfig(request:options:)``
+    /// - ``updateAccessConfigPollingUntilDone(project:zone:instance:networkInterface:body:)``
+    /// - ``updateAccessConfigPollingUntilDone(request:)``
     public func updateAccessConfigPollingUntilDone(
       request: InstancesClient.UpdateAccessConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2826,9 +2826,9 @@
     /// ## See Also
     ///
     /// - ``updateDisplayDevice(request:)``
+    /// - ``updateDisplayDevicePollingUntilDone(project:zone:instance:body:)``
     /// - ``updateDisplayDevicePollingUntilDone(request:)``
     /// - ``updateDisplayDevicePollingUntilDone(request:options:)``
-    /// - ``updateDisplayDevicePollingUntilDone(project:zone:instance:body:)``
     public func updateDisplayDevice(
       request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2849,10 +2849,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDisplayDevicePollingUntilDone(request:)``
-    /// - ``updateDisplayDevicePollingUntilDone(project:zone:instance:body:)``
     /// - ``updateDisplayDevice(request:)``
     /// - ``updateDisplayDevice(request:options:)``
+    /// - ``updateDisplayDevicePollingUntilDone(project:zone:instance:body:)``
+    /// - ``updateDisplayDevicePollingUntilDone(request:)``
     public func updateDisplayDevicePollingUntilDone(
       request: InstancesClient.UpdateDisplayDeviceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2904,9 +2904,9 @@
     /// ## See Also
     ///
     /// - ``updateNetworkInterface(request:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(project:zone:instance:networkInterface:body:)``
     /// - ``updateNetworkInterfacePollingUntilDone(request:)``
     /// - ``updateNetworkInterfacePollingUntilDone(request:options:)``
-    /// - ``updateNetworkInterfacePollingUntilDone(project:zone:instance:networkInterface:body:)``
     public func updateNetworkInterface(
       request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2929,10 +2929,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateNetworkInterfacePollingUntilDone(request:)``
-    /// - ``updateNetworkInterfacePollingUntilDone(project:zone:instance:networkInterface:body:)``
     /// - ``updateNetworkInterface(request:)``
     /// - ``updateNetworkInterface(request:options:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(project:zone:instance:networkInterface:body:)``
+    /// - ``updateNetworkInterfacePollingUntilDone(request:)``
     public func updateNetworkInterfacePollingUntilDone(
       request: InstancesClient.UpdateNetworkInterfaceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2982,9 +2982,9 @@
     /// ## See Also
     ///
     /// - ``updateShieldedInstanceConfig(request:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(project:zone:instance:body:)``
     /// - ``updateShieldedInstanceConfigPollingUntilDone(request:)``
     /// - ``updateShieldedInstanceConfigPollingUntilDone(request:options:)``
-    /// - ``updateShieldedInstanceConfigPollingUntilDone(project:zone:instance:body:)``
     public func updateShieldedInstanceConfig(
       request: InstancesClient.UpdateShieldedInstanceConfigRequest,
       options: GoogleGax.RequestOptions
@@ -3006,10 +3006,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateShieldedInstanceConfigPollingUntilDone(request:)``
-    /// - ``updateShieldedInstanceConfigPollingUntilDone(project:zone:instance:body:)``
     /// - ``updateShieldedInstanceConfig(request:)``
     /// - ``updateShieldedInstanceConfig(request:options:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(project:zone:instance:body:)``
+    /// - ``updateShieldedInstanceConfigPollingUntilDone(request:)``
     public func updateShieldedInstanceConfigPollingUntilDone(
       request: InstancesClient.UpdateShieldedInstanceConfigRequest,
       options: GoogleGax.RequestOptions

@@ -48,8 +48,8 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createDocumentSchema(request:)``
   /// - ``createDocumentSchema(parent:documentSchema:)``
+  /// - ``createDocumentSchema(request:)``
   public func createDocumentSchema(
     request: CreateDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -70,8 +70,8 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   ///
   /// ## See Also
   ///
-  /// - ``updateDocumentSchema(request:)``
   /// - ``updateDocumentSchema(name:documentSchema:)``
+  /// - ``updateDocumentSchema(request:)``
   public func updateDocumentSchema(
     request: UpdateDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -85,8 +85,8 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getDocumentSchema(request:)``
   /// - ``getDocumentSchema(name:)``
+  /// - ``getDocumentSchema(request:)``
   public func getDocumentSchema(
     request: GetDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentSchema {
@@ -101,8 +101,8 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteDocumentSchema(request:)``
   /// - ``deleteDocumentSchema(name:)``
+  /// - ``deleteDocumentSchema(request:)``
   public func deleteDocumentSchema(
     request: DeleteDocumentSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -116,9 +116,9 @@ public final class DocumentSchemaServiceClient: Clients.DocumentSchemaServicePro
   /// ## See Also
   ///
   /// - ``listDocumentSchemas(request:)``
+  /// - ``listDocumentSchemasByItems(parent:)``
   /// - ``listDocumentSchemasByItems(request:)``
   /// - ``listDocumentSchemasByItems(request:options:)``
-  /// - ``listDocumentSchemasByItems(parent:)``
   public func listDocumentSchemas(
     request: ListDocumentSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListDocumentSchemasResponse {

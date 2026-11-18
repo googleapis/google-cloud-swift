@@ -49,8 +49,8 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createSynonymSet(request:)``
   /// - ``createSynonymSet(parent:synonymSet:)``
+  /// - ``createSynonymSet(request:)``
   public func createSynonymSet(
     request: CreateSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -65,8 +65,8 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getSynonymSet(request:)``
   /// - ``getSynonymSet(name:)``
+  /// - ``getSynonymSet(request:)``
   public func getSynonymSet(
     request: GetSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -81,8 +81,8 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateSynonymSet(request:)``
   /// - ``updateSynonymSet(name:synonymSet:)``
+  /// - ``updateSynonymSet(request:)``
   public func updateSynonymSet(
     request: UpdateSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -96,8 +96,8 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteSynonymSet(request:)``
   /// - ``deleteSynonymSet(name:)``
+  /// - ``deleteSynonymSet(request:)``
   public func deleteSynonymSet(
     request: DeleteSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -111,9 +111,9 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listSynonymSets(request:)``
+  /// - ``listSynonymSetsByItems(parent:)``
   /// - ``listSynonymSetsByItems(request:)``
   /// - ``listSynonymSetsByItems(request:options:)``
-  /// - ``listSynonymSetsByItems(parent:)``
   public func listSynonymSets(
     request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse {

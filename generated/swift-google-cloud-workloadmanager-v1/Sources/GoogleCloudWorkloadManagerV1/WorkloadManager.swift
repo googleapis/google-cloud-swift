@@ -55,9 +55,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listEvaluations(request:)``
+  /// - ``listEvaluationsByItems(parent:)``
   /// - ``listEvaluationsByItems(request:)``
   /// - ``listEvaluationsByItems(request:options:)``
-  /// - ``listEvaluationsByItems(parent:)``
   public func listEvaluations(
     request: ListEvaluationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.ListEvaluationsResponse {
@@ -70,8 +70,8 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getEvaluation(request:)``
   /// - ``getEvaluation(name:)``
+  /// - ``getEvaluation(request:)``
   public func getEvaluation(
     request: GetEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.Evaluation {
@@ -85,9 +85,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``createEvaluation(request:)``
+  /// - ``createEvaluationPollingUntilDone(parent:evaluation:evaluationId:)``
   /// - ``createEvaluationPollingUntilDone(request:)``
   /// - ``createEvaluationPollingUntilDone(request:options:)``
-  /// - ``createEvaluationPollingUntilDone(parent:evaluation:evaluationId:)``
   public func createEvaluation(
     request: CreateEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createEvaluationPollingUntilDone(request:)``
-  /// - ``createEvaluationPollingUntilDone(parent:evaluation:evaluationId:)``
   /// - ``createEvaluation(request:)``
   /// - ``createEvaluation(request:options:)``
+  /// - ``createEvaluationPollingUntilDone(parent:evaluation:evaluationId:)``
+  /// - ``createEvaluationPollingUntilDone(request:)``
   public func createEvaluationPollingUntilDone(
     request: CreateEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Evaluation {
@@ -135,9 +135,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateEvaluation(request:)``
+  /// - ``updateEvaluationPollingUntilDone(evaluation:updateMask:)``
   /// - ``updateEvaluationPollingUntilDone(request:)``
   /// - ``updateEvaluationPollingUntilDone(request:options:)``
-  /// - ``updateEvaluationPollingUntilDone(evaluation:updateMask:)``
   public func updateEvaluation(
     request: UpdateEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateEvaluationPollingUntilDone(request:)``
-  /// - ``updateEvaluationPollingUntilDone(evaluation:updateMask:)``
   /// - ``updateEvaluation(request:)``
   /// - ``updateEvaluation(request:options:)``
+  /// - ``updateEvaluationPollingUntilDone(evaluation:updateMask:)``
+  /// - ``updateEvaluationPollingUntilDone(request:)``
   public func updateEvaluationPollingUntilDone(
     request: UpdateEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Evaluation {
@@ -185,9 +185,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteEvaluation(request:)``
+  /// - ``deleteEvaluationPollingUntilDone(name:)``
   /// - ``deleteEvaluationPollingUntilDone(request:)``
   /// - ``deleteEvaluationPollingUntilDone(request:options:)``
-  /// - ``deleteEvaluationPollingUntilDone(name:)``
   public func deleteEvaluation(
     request: DeleteEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteEvaluationPollingUntilDone(request:)``
-  /// - ``deleteEvaluationPollingUntilDone(name:)``
   /// - ``deleteEvaluation(request:)``
   /// - ``deleteEvaluation(request:options:)``
+  /// - ``deleteEvaluationPollingUntilDone(name:)``
+  /// - ``deleteEvaluationPollingUntilDone(request:)``
   public func deleteEvaluationPollingUntilDone(
     request: DeleteEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -235,9 +235,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listExecutions(request:)``
+  /// - ``listExecutionsByItems(parent:)``
   /// - ``listExecutionsByItems(request:)``
   /// - ``listExecutionsByItems(request:options:)``
-  /// - ``listExecutionsByItems(parent:)``
   public func listExecutions(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.ListExecutionsResponse {
@@ -250,8 +250,8 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getExecution(request:)``
   /// - ``getExecution(name:)``
+  /// - ``getExecution(request:)``
   public func getExecution(
     request: GetExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.Execution {
@@ -265,9 +265,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``runEvaluation(request:)``
+  /// - ``runEvaluationPollingUntilDone(name:execution:executionId:)``
   /// - ``runEvaluationPollingUntilDone(request:)``
   /// - ``runEvaluationPollingUntilDone(request:options:)``
-  /// - ``runEvaluationPollingUntilDone(name:execution:executionId:)``
   public func runEvaluation(
     request: RunEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -280,10 +280,10 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``runEvaluationPollingUntilDone(request:)``
-  /// - ``runEvaluationPollingUntilDone(name:execution:executionId:)``
   /// - ``runEvaluation(request:)``
   /// - ``runEvaluation(request:options:)``
+  /// - ``runEvaluationPollingUntilDone(name:execution:executionId:)``
+  /// - ``runEvaluationPollingUntilDone(request:)``
   public func runEvaluationPollingUntilDone(
     request: RunEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -315,9 +315,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteExecution(request:)``
+  /// - ``deleteExecutionPollingUntilDone(name:)``
   /// - ``deleteExecutionPollingUntilDone(request:)``
   /// - ``deleteExecutionPollingUntilDone(request:options:)``
-  /// - ``deleteExecutionPollingUntilDone(name:)``
   public func deleteExecution(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -330,10 +330,10 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteExecutionPollingUntilDone(request:)``
-  /// - ``deleteExecutionPollingUntilDone(name:)``
   /// - ``deleteExecution(request:)``
   /// - ``deleteExecution(request:options:)``
+  /// - ``deleteExecutionPollingUntilDone(name:)``
+  /// - ``deleteExecutionPollingUntilDone(request:)``
   public func deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -365,9 +365,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listExecutionResults(request:)``
+  /// - ``listExecutionResultsByItems(parent:)``
   /// - ``listExecutionResultsByItems(request:)``
   /// - ``listExecutionResultsByItems(request:options:)``
-  /// - ``listExecutionResultsByItems(parent:)``
   public func listExecutionResults(
     request: ListExecutionResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.ListExecutionResultsResponse {
@@ -380,8 +380,8 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``listRules(request:)``
   /// - ``listRules(parent:)``
+  /// - ``listRules(request:)``
   public func listRules(
     request: ListRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.ListRulesResponse {
@@ -395,9 +395,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listScannedResources(request:)``
+  /// - ``listScannedResourcesByItems(parent:)``
   /// - ``listScannedResourcesByItems(request:)``
   /// - ``listScannedResourcesByItems(request:options:)``
-  /// - ``listScannedResourcesByItems(parent:)``
   public func listScannedResources(
     request: ListScannedResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkloadManagerV1.ListScannedResourcesResponse {
@@ -448,9 +448,9 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -476,8 +476,8 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -492,8 +492,8 @@ public final class WorkloadManagerClient: Clients.WorkloadManagerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

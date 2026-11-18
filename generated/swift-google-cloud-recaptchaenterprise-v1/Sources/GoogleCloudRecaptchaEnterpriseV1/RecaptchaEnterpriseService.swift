@@ -50,8 +50,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``createAssessment(request:)``
   /// - ``createAssessment(parent:assessment:)``
+  /// - ``createAssessment(request:)``
   public func createAssessment(
     request: CreateAssessmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Assessment {
@@ -65,8 +65,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``annotateAssessment(request:)``
   /// - ``annotateAssessment(name:annotation:)``
+  /// - ``annotateAssessment(request:)``
   public func annotateAssessment(
     request: AnnotateAssessmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.AnnotateAssessmentResponse {
@@ -79,8 +79,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``createKey(request:)``
   /// - ``createKey(parent:key:)``
+  /// - ``createKey(request:)``
   public func createKey(
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -94,9 +94,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// ## See Also
   ///
   /// - ``listKeys(request:)``
+  /// - ``listKeysByItems(parent:)``
   /// - ``listKeysByItems(request:)``
   /// - ``listKeysByItems(request:options:)``
-  /// - ``listKeysByItems(parent:)``
   public func listKeys(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListKeysResponse {
@@ -111,8 +111,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``retrieveLegacySecretKey(request:)``
   /// - ``retrieveLegacySecretKey(key:)``
+  /// - ``retrieveLegacySecretKey(request:)``
   public func retrieveLegacySecretKey(
     request: RetrieveLegacySecretKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.RetrieveLegacySecretKeyResponse {
@@ -125,8 +125,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``getKey(request:)``
   /// - ``getKey(name:)``
+  /// - ``getKey(request:)``
   public func getKey(
     request: GetKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -139,8 +139,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``updateKey(request:)``
   /// - ``updateKey(key:updateMask:)``
+  /// - ``updateKey(request:)``
   public func updateKey(
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Key {
@@ -153,8 +153,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``deleteKey(request:)``
   /// - ``deleteKey(name:)``
+  /// - ``deleteKey(request:)``
   public func deleteKey(
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -188,8 +188,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``addIpOverride(request:)``
   /// - ``addIpOverride(name:ipOverrideData:)``
+  /// - ``addIpOverride(request:)``
   public func addIpOverride(
     request: AddIpOverrideRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.AddIpOverrideResponse {
@@ -206,8 +206,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``removeIpOverride(request:)``
   /// - ``removeIpOverride(name:ipOverrideData:)``
+  /// - ``removeIpOverride(request:)``
   public func removeIpOverride(
     request: RemoveIpOverrideRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.RemoveIpOverrideResponse {
@@ -221,9 +221,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// ## See Also
   ///
   /// - ``listIpOverrides(request:)``
+  /// - ``listIpOverridesByItems(parent:)``
   /// - ``listIpOverridesByItems(request:)``
   /// - ``listIpOverridesByItems(request:options:)``
-  /// - ``listIpOverridesByItems(parent:)``
   public func listIpOverrides(
     request: ListIpOverridesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListIpOverridesResponse {
@@ -237,8 +237,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``getMetrics(request:)``
   /// - ``getMetrics(name:)``
+  /// - ``getMetrics(request:)``
   public func getMetrics(
     request: GetMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Metrics {
@@ -251,8 +251,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``getPolicy(request:)``
   /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
@@ -265,8 +265,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicy(request:)``
   /// - ``updatePolicy(policy:updateMask:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.Policy {
@@ -281,8 +281,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``createFirewallPolicy(request:)``
   /// - ``createFirewallPolicy(parent:firewallPolicy:)``
+  /// - ``createFirewallPolicy(request:)``
   public func createFirewallPolicy(
     request: CreateFirewallPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
@@ -296,9 +296,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// ## See Also
   ///
   /// - ``listFirewallPolicies(request:)``
+  /// - ``listFirewallPoliciesByItems(parent:)``
   /// - ``listFirewallPoliciesByItems(request:)``
   /// - ``listFirewallPoliciesByItems(request:options:)``
-  /// - ``listFirewallPoliciesByItems(parent:)``
   public func listFirewallPolicies(
     request: ListFirewallPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListFirewallPoliciesResponse {
@@ -311,8 +311,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``getFirewallPolicy(request:)``
   /// - ``getFirewallPolicy(name:)``
+  /// - ``getFirewallPolicy(request:)``
   public func getFirewallPolicy(
     request: GetFirewallPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
@@ -325,8 +325,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``updateFirewallPolicy(request:)``
   /// - ``updateFirewallPolicy(firewallPolicy:updateMask:)``
+  /// - ``updateFirewallPolicy(request:)``
   public func updateFirewallPolicy(
     request: UpdateFirewallPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.FirewallPolicy {
@@ -339,8 +339,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``deleteFirewallPolicy(request:)``
   /// - ``deleteFirewallPolicy(name:)``
+  /// - ``deleteFirewallPolicy(request:)``
   public func deleteFirewallPolicy(
     request: DeleteFirewallPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -353,8 +353,8 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   ///
   /// ## See Also
   ///
-  /// - ``reorderFirewallPolicies(request:)``
   /// - ``reorderFirewallPolicies(parent:names:)``
+  /// - ``reorderFirewallPolicies(request:)``
   public func reorderFirewallPolicies(
     request: ReorderFirewallPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ReorderFirewallPoliciesResponse {
@@ -368,9 +368,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// ## See Also
   ///
   /// - ``listRelatedAccountGroups(request:)``
+  /// - ``listRelatedAccountGroupsByItems(parent:)``
   /// - ``listRelatedAccountGroupsByItems(request:)``
   /// - ``listRelatedAccountGroupsByItems(request:options:)``
-  /// - ``listRelatedAccountGroupsByItems(parent:)``
   public func listRelatedAccountGroups(
     request: ListRelatedAccountGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupsResponse {
@@ -384,9 +384,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// ## See Also
   ///
   /// - ``listRelatedAccountGroupMemberships(request:)``
+  /// - ``listRelatedAccountGroupMembershipsByItems(parent:)``
   /// - ``listRelatedAccountGroupMembershipsByItems(request:)``
   /// - ``listRelatedAccountGroupMembershipsByItems(request:options:)``
-  /// - ``listRelatedAccountGroupMembershipsByItems(parent:)``
   public func listRelatedAccountGroupMemberships(
     request: ListRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.ListRelatedAccountGroupMembershipsResponse {
@@ -400,9 +400,9 @@ public final class RecaptchaEnterpriseServiceClient: Clients.RecaptchaEnterprise
   /// ## See Also
   ///
   /// - ``searchRelatedAccountGroupMemberships(request:)``
+  /// - ``searchRelatedAccountGroupMembershipsByItems(project:hashedAccountId:)``
   /// - ``searchRelatedAccountGroupMembershipsByItems(request:)``
   /// - ``searchRelatedAccountGroupMembershipsByItems(request:options:)``
-  /// - ``searchRelatedAccountGroupMembershipsByItems(project:hashedAccountId:)``
   public func searchRelatedAccountGroupMemberships(
     request: SearchRelatedAccountGroupMembershipsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecaptchaEnterpriseV1.SearchRelatedAccountGroupMembershipsResponse {

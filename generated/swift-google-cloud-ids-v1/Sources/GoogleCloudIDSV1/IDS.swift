@@ -52,9 +52,9 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEndpoints(request:)``
+  /// - ``listEndpointsByItems(parent:)``
   /// - ``listEndpointsByItems(request:)``
   /// - ``listEndpointsByItems(request:options:)``
-  /// - ``listEndpointsByItems(parent:)``
   public func listEndpoints(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIDSV1.ListEndpointsResponse {
@@ -67,8 +67,8 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEndpoint(request:)``
   /// - ``getEndpoint(name:)``
+  /// - ``getEndpoint(request:)``
   public func getEndpoint(
     request: GetEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudIDSV1.Endpoint {
@@ -82,9 +82,9 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createEndpoint(request:)``
+  /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
   /// - ``createEndpointPollingUntilDone(request:)``
   /// - ``createEndpointPollingUntilDone(request:options:)``
-  /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
   public func createEndpoint(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -97,10 +97,10 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEndpointPollingUntilDone(request:)``
-  /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
   /// - ``createEndpoint(request:)``
   /// - ``createEndpoint(request:options:)``
+  /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
+  /// - ``createEndpointPollingUntilDone(request:)``
   public func createEndpointPollingUntilDone(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> Endpoint {
@@ -132,9 +132,9 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteEndpoint(request:)``
+  /// - ``deleteEndpointPollingUntilDone(name:)``
   /// - ``deleteEndpointPollingUntilDone(request:)``
   /// - ``deleteEndpointPollingUntilDone(request:options:)``
-  /// - ``deleteEndpointPollingUntilDone(name:)``
   public func deleteEndpoint(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -147,10 +147,10 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEndpointPollingUntilDone(request:)``
-  /// - ``deleteEndpointPollingUntilDone(name:)``
   /// - ``deleteEndpoint(request:)``
   /// - ``deleteEndpoint(request:options:)``
+  /// - ``deleteEndpointPollingUntilDone(name:)``
+  /// - ``deleteEndpointPollingUntilDone(request:)``
   public func deleteEndpointPollingUntilDone(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -184,9 +184,9 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -212,8 +212,8 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -228,8 +228,8 @@ public final class IDSClient: Clients.IDSProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

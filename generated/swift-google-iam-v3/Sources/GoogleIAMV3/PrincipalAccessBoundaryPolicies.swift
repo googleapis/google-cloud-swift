@@ -58,9 +58,9 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// ## See Also
   ///
   /// - ``createPrincipalAccessBoundaryPolicy(request:)``
+  /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(parent:principalAccessBoundaryPolicy:principalAccessBoundaryPolicyId:)``
   /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
   /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(request:options:)``
-  /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(parent:principalAccessBoundaryPolicy:principalAccessBoundaryPolicyId:)``
   public func createPrincipalAccessBoundaryPolicy(
     request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
-  /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(parent:principalAccessBoundaryPolicy:principalAccessBoundaryPolicyId:)``
   /// - ``createPrincipalAccessBoundaryPolicy(request:)``
   /// - ``createPrincipalAccessBoundaryPolicy(request:options:)``
+  /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(parent:principalAccessBoundaryPolicy:principalAccessBoundaryPolicyId:)``
+  /// - ``createPrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
   public func createPrincipalAccessBoundaryPolicyPollingUntilDone(
     request: CreatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrincipalAccessBoundaryPolicy {
@@ -111,8 +111,8 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getPrincipalAccessBoundaryPolicy(request:)``
   /// - ``getPrincipalAccessBoundaryPolicy(name:)``
+  /// - ``getPrincipalAccessBoundaryPolicy(request:)``
   public func getPrincipalAccessBoundaryPolicy(
     request: GetPrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.PrincipalAccessBoundaryPolicy {
@@ -126,9 +126,9 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// ## See Also
   ///
   /// - ``updatePrincipalAccessBoundaryPolicy(request:)``
+  /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(principalAccessBoundaryPolicy:updateMask:)``
   /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
   /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(request:options:)``
-  /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(principalAccessBoundaryPolicy:updateMask:)``
   public func updatePrincipalAccessBoundaryPolicy(
     request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -141,10 +141,10 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
-  /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(principalAccessBoundaryPolicy:updateMask:)``
   /// - ``updatePrincipalAccessBoundaryPolicy(request:)``
   /// - ``updatePrincipalAccessBoundaryPolicy(request:options:)``
+  /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(principalAccessBoundaryPolicy:updateMask:)``
+  /// - ``updatePrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
   public func updatePrincipalAccessBoundaryPolicyPollingUntilDone(
     request: UpdatePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrincipalAccessBoundaryPolicy {
@@ -179,9 +179,9 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// ## See Also
   ///
   /// - ``deletePrincipalAccessBoundaryPolicy(request:)``
+  /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(name:)``
   /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
   /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(request:options:)``
-  /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(name:)``
   public func deletePrincipalAccessBoundaryPolicy(
     request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -194,10 +194,10 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
-  /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(name:)``
   /// - ``deletePrincipalAccessBoundaryPolicy(request:)``
   /// - ``deletePrincipalAccessBoundaryPolicy(request:options:)``
+  /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(name:)``
+  /// - ``deletePrincipalAccessBoundaryPolicyPollingUntilDone(request:)``
   public func deletePrincipalAccessBoundaryPolicyPollingUntilDone(
     request: DeletePrincipalAccessBoundaryPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -230,9 +230,9 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// ## See Also
   ///
   /// - ``listPrincipalAccessBoundaryPolicies(request:)``
+  /// - ``listPrincipalAccessBoundaryPoliciesByItems(parent:)``
   /// - ``listPrincipalAccessBoundaryPoliciesByItems(request:)``
   /// - ``listPrincipalAccessBoundaryPoliciesByItems(request:options:)``
-  /// - ``listPrincipalAccessBoundaryPoliciesByItems(parent:)``
   public func listPrincipalAccessBoundaryPolicies(
     request: ListPrincipalAccessBoundaryPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.ListPrincipalAccessBoundaryPoliciesResponse {
@@ -247,9 +247,9 @@ public final class PrincipalAccessBoundaryPoliciesClient: Clients
   /// ## See Also
   ///
   /// - ``searchPrincipalAccessBoundaryPolicyBindings(request:)``
+  /// - ``searchPrincipalAccessBoundaryPolicyBindingsByItems(name:)``
   /// - ``searchPrincipalAccessBoundaryPolicyBindingsByItems(request:)``
   /// - ``searchPrincipalAccessBoundaryPolicyBindingsByItems(request:options:)``
-  /// - ``searchPrincipalAccessBoundaryPolicyBindingsByItems(name:)``
   public func searchPrincipalAccessBoundaryPolicyBindings(
     request: SearchPrincipalAccessBoundaryPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.SearchPrincipalAccessBoundaryPolicyBindingsResponse {

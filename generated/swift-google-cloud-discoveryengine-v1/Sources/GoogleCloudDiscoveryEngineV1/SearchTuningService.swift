@@ -68,9 +68,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``trainCustomModelPollingUntilDone(request:)``
     /// - ``trainCustomModel(request:)``
     /// - ``trainCustomModel(request:options:)``
+    /// - ``trainCustomModelPollingUntilDone(request:)``
     public func trainCustomModelPollingUntilDone(
       request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> TrainCustomModelResponse {
@@ -119,9 +119,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -147,8 +147,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

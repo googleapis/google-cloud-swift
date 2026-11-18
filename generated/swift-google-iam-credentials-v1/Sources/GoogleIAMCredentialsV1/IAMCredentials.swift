@@ -55,8 +55,8 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``generateAccessToken(request:)``
   /// - ``generateAccessToken(name:delegates:scope:lifetime:)``
+  /// - ``generateAccessToken(request:)``
   public func generateAccessToken(
     request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse {
@@ -69,8 +69,8 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``generateIdToken(request:)``
   /// - ``generateIdToken(name:delegates:audience:includeEmail:)``
+  /// - ``generateIdToken(request:)``
   public func generateIdToken(
     request: GenerateIdTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.GenerateIdTokenResponse {
@@ -83,8 +83,8 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``signBlob(request:)``
   /// - ``signBlob(name:delegates:payload:)``
+  /// - ``signBlob(request:)``
   public func signBlob(
     request: SignBlobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.SignBlobResponse {
@@ -97,8 +97,8 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``signJwt(request:)``
   /// - ``signJwt(name:delegates:payload:)``
+  /// - ``signJwt(request:)``
   public func signJwt(
     request: SignJwtRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.SignJwtResponse {

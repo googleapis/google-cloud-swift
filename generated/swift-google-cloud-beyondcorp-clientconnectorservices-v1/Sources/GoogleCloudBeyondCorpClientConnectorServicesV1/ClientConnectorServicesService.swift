@@ -68,9 +68,9 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listClientConnectorServices(request:)``
+  /// - ``listClientConnectorServicesByItems(parent:)``
   /// - ``listClientConnectorServicesByItems(request:)``
   /// - ``listClientConnectorServicesByItems(request:options:)``
-  /// - ``listClientConnectorServicesByItems(parent:)``
   public func listClientConnectorServices(
     request: ListClientConnectorServicesRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -85,8 +85,8 @@ public final class ClientConnectorServicesServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getClientConnectorService(request:)``
   /// - ``getClientConnectorService(name:)``
+  /// - ``getClientConnectorService(request:)``
   public func getClientConnectorService(
     request: GetClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpClientConnectorServicesV1.ClientConnectorService {
@@ -100,9 +100,9 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// ## See Also
   ///
   /// - ``createClientConnectorService(request:)``
+  /// - ``createClientConnectorServicePollingUntilDone(parent:clientConnectorService:clientConnectorServiceId:)``
   /// - ``createClientConnectorServicePollingUntilDone(request:)``
   /// - ``createClientConnectorServicePollingUntilDone(request:options:)``
-  /// - ``createClientConnectorServicePollingUntilDone(parent:clientConnectorService:clientConnectorServiceId:)``
   public func createClientConnectorService(
     request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -115,10 +115,10 @@ public final class ClientConnectorServicesServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createClientConnectorServicePollingUntilDone(request:)``
-  /// - ``createClientConnectorServicePollingUntilDone(parent:clientConnectorService:clientConnectorServiceId:)``
   /// - ``createClientConnectorService(request:)``
   /// - ``createClientConnectorService(request:options:)``
+  /// - ``createClientConnectorServicePollingUntilDone(parent:clientConnectorService:clientConnectorServiceId:)``
+  /// - ``createClientConnectorServicePollingUntilDone(request:)``
   public func createClientConnectorServicePollingUntilDone(
     request: CreateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ClientConnectorService {
@@ -151,9 +151,9 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// ## See Also
   ///
   /// - ``updateClientConnectorService(request:)``
+  /// - ``updateClientConnectorServicePollingUntilDone(clientConnectorService:updateMask:)``
   /// - ``updateClientConnectorServicePollingUntilDone(request:)``
   /// - ``updateClientConnectorServicePollingUntilDone(request:options:)``
-  /// - ``updateClientConnectorServicePollingUntilDone(clientConnectorService:updateMask:)``
   public func updateClientConnectorService(
     request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -166,10 +166,10 @@ public final class ClientConnectorServicesServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``updateClientConnectorServicePollingUntilDone(request:)``
-  /// - ``updateClientConnectorServicePollingUntilDone(clientConnectorService:updateMask:)``
   /// - ``updateClientConnectorService(request:)``
   /// - ``updateClientConnectorService(request:options:)``
+  /// - ``updateClientConnectorServicePollingUntilDone(clientConnectorService:updateMask:)``
+  /// - ``updateClientConnectorServicePollingUntilDone(request:)``
   public func updateClientConnectorServicePollingUntilDone(
     request: UpdateClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ClientConnectorService {
@@ -202,9 +202,9 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// ## See Also
   ///
   /// - ``deleteClientConnectorService(request:)``
+  /// - ``deleteClientConnectorServicePollingUntilDone(name:)``
   /// - ``deleteClientConnectorServicePollingUntilDone(request:)``
   /// - ``deleteClientConnectorServicePollingUntilDone(request:options:)``
-  /// - ``deleteClientConnectorServicePollingUntilDone(name:)``
   public func deleteClientConnectorService(
     request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -217,10 +217,10 @@ public final class ClientConnectorServicesServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteClientConnectorServicePollingUntilDone(request:)``
-  /// - ``deleteClientConnectorServicePollingUntilDone(name:)``
   /// - ``deleteClientConnectorService(request:)``
   /// - ``deleteClientConnectorService(request:options:)``
+  /// - ``deleteClientConnectorServicePollingUntilDone(name:)``
+  /// - ``deleteClientConnectorServicePollingUntilDone(request:)``
   public func deleteClientConnectorServicePollingUntilDone(
     request: DeleteClientConnectorServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -332,9 +332,9 @@ public final class ClientConnectorServicesServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -360,8 +360,8 @@ public final class ClientConnectorServicesServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -376,8 +376,8 @@ public final class ClientConnectorServicesServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

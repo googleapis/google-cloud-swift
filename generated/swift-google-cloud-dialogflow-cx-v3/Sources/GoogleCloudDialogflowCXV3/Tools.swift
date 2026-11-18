@@ -55,8 +55,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTool(request:)``
     /// - ``createTool(parent:tool:)``
+    /// - ``createTool(request:)``
     public func createTool(
       request: CreateToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -73,9 +73,9 @@
     /// ## See Also
     ///
     /// - ``listTools(request:)``
+    /// - ``listToolsByItems(parent:)``
     /// - ``listToolsByItems(request:)``
     /// - ``listToolsByItems(request:options:)``
-    /// - ``listToolsByItems(parent:)``
     public func listTools(
       request: ListToolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListToolsResponse {
@@ -90,8 +90,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTool(request:)``
     /// - ``getTool(name:)``
+    /// - ``getTool(request:)``
     public func getTool(
       request: GetToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -122,8 +122,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTool(request:)``
     /// - ``deleteTool(name:)``
+    /// - ``deleteTool(request:)``
     public func deleteTool(
       request: DeleteToolRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -139,9 +139,9 @@
     /// ## See Also
     ///
     /// - ``listToolVersions(request:)``
+    /// - ``listToolVersionsByItems(parent:)``
     /// - ``listToolVersionsByItems(request:)``
     /// - ``listToolVersionsByItems(request:options:)``
-    /// - ``listToolVersionsByItems(parent:)``
     public func listToolVersions(
       request: ListToolVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListToolVersionsResponse {
@@ -157,8 +157,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createToolVersion(request:)``
     /// - ``createToolVersion(parent:toolVersion:)``
+    /// - ``createToolVersion(request:)``
     public func createToolVersion(
       request: CreateToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -174,8 +174,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getToolVersion(request:)``
     /// - ``getToolVersion(name:)``
+    /// - ``getToolVersion(request:)``
     public func getToolVersion(
       request: GetToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -191,8 +191,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteToolVersion(request:)``
     /// - ``deleteToolVersion(name:)``
+    /// - ``deleteToolVersion(request:)``
     public func deleteToolVersion(
       request: DeleteToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -206,8 +206,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``restoreToolVersion(request:)``
     /// - ``restoreToolVersion(name:)``
+    /// - ``restoreToolVersion(request:)``
     public func restoreToolVersion(
       request: RestoreToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.RestoreToolVersionResponse {
@@ -268,9 +268,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -296,8 +296,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

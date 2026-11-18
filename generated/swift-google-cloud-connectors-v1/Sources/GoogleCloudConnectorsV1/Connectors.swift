@@ -55,9 +55,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
   /// - ``listConnectionsByItems(request:)``
   /// - ``listConnectionsByItems(request:options:)``
-  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ListConnectionsResponse {
@@ -70,8 +70,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnection(request:)``
   /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.Connection {
@@ -85,9 +85,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createConnection(request:)``
+  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   /// - ``createConnectionPollingUntilDone(request:)``
   /// - ``createConnectionPollingUntilDone(request:options:)``
-  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createConnectionPollingUntilDone(request:)``
-  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
   /// - ``createConnection(request:)``
   /// - ``createConnection(request:options:)``
+  /// - ``createConnectionPollingUntilDone(parent:connection:connectionId:)``
+  /// - ``createConnectionPollingUntilDone(request:)``
   public func createConnectionPollingUntilDone(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connection {
@@ -135,9 +135,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateConnection(request:)``
+  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   /// - ``updateConnectionPollingUntilDone(request:)``
   /// - ``updateConnectionPollingUntilDone(request:options:)``
-  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectionPollingUntilDone(request:)``
-  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
   /// - ``updateConnection(request:)``
   /// - ``updateConnection(request:options:)``
+  /// - ``updateConnectionPollingUntilDone(connection:updateMask:)``
+  /// - ``updateConnectionPollingUntilDone(request:)``
   public func updateConnectionPollingUntilDone(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connection {
@@ -185,9 +185,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteConnection(request:)``
+  /// - ``deleteConnectionPollingUntilDone(name:)``
   /// - ``deleteConnectionPollingUntilDone(request:)``
   /// - ``deleteConnectionPollingUntilDone(request:options:)``
-  /// - ``deleteConnectionPollingUntilDone(name:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectionPollingUntilDone(request:)``
-  /// - ``deleteConnectionPollingUntilDone(name:)``
   /// - ``deleteConnection(request:)``
   /// - ``deleteConnection(request:options:)``
+  /// - ``deleteConnectionPollingUntilDone(name:)``
+  /// - ``deleteConnectionPollingUntilDone(request:)``
   public func deleteConnectionPollingUntilDone(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -235,9 +235,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProviders(request:)``
+  /// - ``listProvidersByItems(parent:)``
   /// - ``listProvidersByItems(request:)``
   /// - ``listProvidersByItems(request:options:)``
-  /// - ``listProvidersByItems(parent:)``
   public func listProviders(
     request: ListProvidersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ListProvidersResponse {
@@ -250,8 +250,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProvider(request:)``
   /// - ``getProvider(name:)``
+  /// - ``getProvider(request:)``
   public func getProvider(
     request: GetProviderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.Provider {
@@ -265,9 +265,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConnectors(request:)``
+  /// - ``listConnectorsByItems(parent:)``
   /// - ``listConnectorsByItems(request:)``
   /// - ``listConnectorsByItems(request:options:)``
-  /// - ``listConnectorsByItems(parent:)``
   public func listConnectors(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ListConnectorsResponse {
@@ -280,8 +280,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnector(request:)``
   /// - ``getConnector(name:)``
+  /// - ``getConnector(request:)``
   public func getConnector(
     request: GetConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.Connector {
@@ -295,9 +295,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConnectorVersions(request:)``
+  /// - ``listConnectorVersionsByItems(parent:)``
   /// - ``listConnectorVersionsByItems(request:)``
   /// - ``listConnectorVersionsByItems(request:options:)``
-  /// - ``listConnectorVersionsByItems(parent:)``
   public func listConnectorVersions(
     request: ListConnectorVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ListConnectorVersionsResponse {
@@ -310,8 +310,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnectorVersion(request:)``
   /// - ``getConnectorVersion(name:)``
+  /// - ``getConnectorVersion(request:)``
   public func getConnectorVersion(
     request: GetConnectorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ConnectorVersion {
@@ -325,8 +325,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnectionSchemaMetadata(request:)``
   /// - ``getConnectionSchemaMetadata(name:)``
+  /// - ``getConnectionSchemaMetadata(request:)``
   public func getConnectionSchemaMetadata(
     request: GetConnectionSchemaMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ConnectionSchemaMetadata {
@@ -340,9 +340,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``refreshConnectionSchemaMetadata(request:)``
+  /// - ``refreshConnectionSchemaMetadataPollingUntilDone(name:)``
   /// - ``refreshConnectionSchemaMetadataPollingUntilDone(request:)``
   /// - ``refreshConnectionSchemaMetadataPollingUntilDone(request:options:)``
-  /// - ``refreshConnectionSchemaMetadataPollingUntilDone(name:)``
   public func refreshConnectionSchemaMetadata(
     request: RefreshConnectionSchemaMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -355,10 +355,10 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``refreshConnectionSchemaMetadataPollingUntilDone(request:)``
-  /// - ``refreshConnectionSchemaMetadataPollingUntilDone(name:)``
   /// - ``refreshConnectionSchemaMetadata(request:)``
   /// - ``refreshConnectionSchemaMetadata(request:options:)``
+  /// - ``refreshConnectionSchemaMetadataPollingUntilDone(name:)``
+  /// - ``refreshConnectionSchemaMetadataPollingUntilDone(request:)``
   public func refreshConnectionSchemaMetadataPollingUntilDone(
     request: RefreshConnectionSchemaMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionSchemaMetadata {
@@ -392,9 +392,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRuntimeEntitySchemas(request:)``
+  /// - ``listRuntimeEntitySchemasByItems(parent:)``
   /// - ``listRuntimeEntitySchemasByItems(request:)``
   /// - ``listRuntimeEntitySchemasByItems(request:options:)``
-  /// - ``listRuntimeEntitySchemasByItems(parent:)``
   public func listRuntimeEntitySchemas(
     request: ListRuntimeEntitySchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ListRuntimeEntitySchemasResponse {
@@ -408,9 +408,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRuntimeActionSchemas(request:)``
+  /// - ``listRuntimeActionSchemasByItems(parent:)``
   /// - ``listRuntimeActionSchemasByItems(request:)``
   /// - ``listRuntimeActionSchemasByItems(request:options:)``
-  /// - ``listRuntimeActionSchemasByItems(parent:)``
   public func listRuntimeActionSchemas(
     request: ListRuntimeActionSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.ListRuntimeActionSchemasResponse {
@@ -424,8 +424,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRuntimeConfig(request:)``
   /// - ``getRuntimeConfig(name:)``
+  /// - ``getRuntimeConfig(request:)``
   public func getRuntimeConfig(
     request: GetRuntimeConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.RuntimeConfig {
@@ -439,8 +439,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getGlobalSettings(request:)``
   /// - ``getGlobalSettings(name:)``
+  /// - ``getGlobalSettings(request:)``
   public func getGlobalSettings(
     request: GetGlobalSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConnectorsV1.Settings {
@@ -533,9 +533,9 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -561,8 +561,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -577,8 +577,8 @@ public final class ConnectorsClient: Clients.ConnectorsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -51,8 +51,8 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createSnooze(request:)``
   /// - ``createSnooze(parent:snooze:)``
+  /// - ``createSnooze(request:)``
   public func createSnooze(
     request: CreateSnoozeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Snooze {
@@ -67,9 +67,9 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listSnoozes(request:)``
+  /// - ``listSnoozesByItems(parent:)``
   /// - ``listSnoozesByItems(request:)``
   /// - ``listSnoozesByItems(request:options:)``
-  /// - ``listSnoozesByItems(parent:)``
   public func listSnoozes(
     request: ListSnoozesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListSnoozesResponse {
@@ -82,8 +82,8 @@ public final class SnoozeServiceClient: Clients.SnoozeServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getSnooze(request:)``
   /// - ``getSnooze(name:)``
+  /// - ``getSnooze(request:)``
   public func getSnooze(
     request: GetSnoozeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Snooze {

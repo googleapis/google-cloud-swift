@@ -48,9 +48,9 @@ public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServicePro
   /// ## See Also
   ///
   /// - ``listAttachments(request:)``
+  /// - ``listAttachmentsByItems(parent:)``
   /// - ``listAttachmentsByItems(request:)``
   /// - ``listAttachmentsByItems(request:options:)``
-  /// - ``listAttachmentsByItems(parent:)``
   public func listAttachments(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse {
@@ -93,8 +93,8 @@ public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getAttachment(request:)``
   /// - ``getAttachment(name:)``
+  /// - ``getAttachment(request:)``
   public func getAttachment(
     request: GetAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Attachment {

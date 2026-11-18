@@ -58,8 +58,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSiteSearchEngine(request:)``
     /// - ``getSiteSearchEngine(name:)``
+    /// - ``getSiteSearchEngine(request:)``
     public func getSiteSearchEngine(
       request: GetSiteSearchEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.SiteSearchEngine {
@@ -75,9 +75,9 @@
     /// ## See Also
     ///
     /// - ``createTargetSite(request:)``
+    /// - ``createTargetSitePollingUntilDone(parent:targetSite:)``
     /// - ``createTargetSitePollingUntilDone(request:)``
     /// - ``createTargetSitePollingUntilDone(request:options:)``
-    /// - ``createTargetSitePollingUntilDone(parent:targetSite:)``
     public func createTargetSite(
       request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -92,10 +92,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTargetSitePollingUntilDone(request:)``
-    /// - ``createTargetSitePollingUntilDone(parent:targetSite:)``
     /// - ``createTargetSite(request:)``
     /// - ``createTargetSite(request:options:)``
+    /// - ``createTargetSitePollingUntilDone(parent:targetSite:)``
+    /// - ``createTargetSitePollingUntilDone(request:)``
     public func createTargetSitePollingUntilDone(
       request: CreateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> TargetSite {
@@ -148,9 +148,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchCreateTargetSitesPollingUntilDone(request:)``
     /// - ``batchCreateTargetSites(request:)``
     /// - ``batchCreateTargetSites(request:options:)``
+    /// - ``batchCreateTargetSitesPollingUntilDone(request:)``
     public func batchCreateTargetSitesPollingUntilDone(
       request: BatchCreateTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchCreateTargetSitesResponse {
@@ -185,8 +185,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTargetSite(request:)``
     /// - ``getTargetSite(name:)``
+    /// - ``getTargetSite(request:)``
     public func getTargetSite(
       request: GetTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.TargetSite {
@@ -219,10 +219,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateTargetSitePollingUntilDone(request:)``
-    /// - ``updateTargetSitePollingUntilDone(targetSite:)``
     /// - ``updateTargetSite(request:)``
     /// - ``updateTargetSite(request:options:)``
+    /// - ``updateTargetSitePollingUntilDone(request:)``
+    /// - ``updateTargetSitePollingUntilDone(targetSite:)``
     public func updateTargetSitePollingUntilDone(
       request: UpdateTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> TargetSite {
@@ -257,9 +257,9 @@
     /// ## See Also
     ///
     /// - ``deleteTargetSite(request:)``
+    /// - ``deleteTargetSitePollingUntilDone(name:)``
     /// - ``deleteTargetSitePollingUntilDone(request:)``
     /// - ``deleteTargetSitePollingUntilDone(request:options:)``
-    /// - ``deleteTargetSitePollingUntilDone(name:)``
     public func deleteTargetSite(
       request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -274,10 +274,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTargetSitePollingUntilDone(request:)``
-    /// - ``deleteTargetSitePollingUntilDone(name:)``
     /// - ``deleteTargetSite(request:)``
     /// - ``deleteTargetSite(request:options:)``
+    /// - ``deleteTargetSitePollingUntilDone(name:)``
+    /// - ``deleteTargetSitePollingUntilDone(request:)``
     public func deleteTargetSitePollingUntilDone(
       request: DeleteTargetSiteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -312,9 +312,9 @@
     /// ## See Also
     ///
     /// - ``listTargetSites(request:)``
+    /// - ``listTargetSitesByItems(parent:)``
     /// - ``listTargetSitesByItems(request:)``
     /// - ``listTargetSitesByItems(request:options:)``
-    /// - ``listTargetSitesByItems(parent:)``
     public func listTargetSites(
       request: ListTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListTargetSitesResponse {
@@ -330,9 +330,9 @@
     /// ## See Also
     ///
     /// - ``createSitemap(request:)``
+    /// - ``createSitemapPollingUntilDone(parent:sitemap:)``
     /// - ``createSitemapPollingUntilDone(request:)``
     /// - ``createSitemapPollingUntilDone(request:options:)``
-    /// - ``createSitemapPollingUntilDone(parent:sitemap:)``
     public func createSitemap(
       request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -347,10 +347,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSitemapPollingUntilDone(request:)``
-    /// - ``createSitemapPollingUntilDone(parent:sitemap:)``
     /// - ``createSitemap(request:)``
     /// - ``createSitemap(request:options:)``
+    /// - ``createSitemapPollingUntilDone(parent:sitemap:)``
+    /// - ``createSitemapPollingUntilDone(request:)``
     public func createSitemapPollingUntilDone(
       request: CreateSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> Sitemap {
@@ -384,9 +384,9 @@
     /// ## See Also
     ///
     /// - ``deleteSitemap(request:)``
+    /// - ``deleteSitemapPollingUntilDone(name:)``
     /// - ``deleteSitemapPollingUntilDone(request:)``
     /// - ``deleteSitemapPollingUntilDone(request:options:)``
-    /// - ``deleteSitemapPollingUntilDone(name:)``
     public func deleteSitemap(
       request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -401,10 +401,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSitemapPollingUntilDone(request:)``
-    /// - ``deleteSitemapPollingUntilDone(name:)``
     /// - ``deleteSitemap(request:)``
     /// - ``deleteSitemap(request:options:)``
+    /// - ``deleteSitemapPollingUntilDone(name:)``
+    /// - ``deleteSitemapPollingUntilDone(request:)``
     public func deleteSitemapPollingUntilDone(
       request: DeleteSitemapRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -440,8 +440,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``fetchSitemaps(request:)``
     /// - ``fetchSitemaps(parent:)``
+    /// - ``fetchSitemaps(request:)``
     public func fetchSitemaps(
       request: FetchSitemapsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.FetchSitemapsResponse {
@@ -469,9 +469,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``enableAdvancedSiteSearchPollingUntilDone(request:)``
     /// - ``enableAdvancedSiteSearch(request:)``
     /// - ``enableAdvancedSiteSearch(request:options:)``
+    /// - ``enableAdvancedSiteSearchPollingUntilDone(request:)``
     public func enableAdvancedSiteSearchPollingUntilDone(
       request: EnableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> EnableAdvancedSiteSearchResponse {
@@ -519,9 +519,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``disableAdvancedSiteSearchPollingUntilDone(request:)``
     /// - ``disableAdvancedSiteSearch(request:)``
     /// - ``disableAdvancedSiteSearch(request:options:)``
+    /// - ``disableAdvancedSiteSearchPollingUntilDone(request:)``
     public func disableAdvancedSiteSearchPollingUntilDone(
       request: DisableAdvancedSiteSearchRequest, options: GoogleGax.RequestOptions
     ) async throws -> DisableAdvancedSiteSearchResponse {
@@ -569,9 +569,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``recrawlUrisPollingUntilDone(request:)``
     /// - ``recrawlUris(request:)``
     /// - ``recrawlUris(request:options:)``
+    /// - ``recrawlUrisPollingUntilDone(request:)``
     public func recrawlUrisPollingUntilDone(
       request: RecrawlUrisRequest, options: GoogleGax.RequestOptions
     ) async throws -> RecrawlUrisResponse {
@@ -622,9 +622,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchVerifyTargetSitesPollingUntilDone(request:)``
     /// - ``batchVerifyTargetSites(request:)``
     /// - ``batchVerifyTargetSites(request:options:)``
+    /// - ``batchVerifyTargetSitesPollingUntilDone(request:)``
     public func batchVerifyTargetSitesPollingUntilDone(
       request: BatchVerifyTargetSitesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchVerifyTargetSitesResponse {
@@ -677,9 +677,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -705,8 +705,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -65,8 +65,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPatchJob(request:)``
   /// - ``getPatchJob(name:)``
+  /// - ``getPatchJob(request:)``
   public func getPatchJob(
     request: GetPatchJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -94,9 +94,9 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPatchJobs(request:)``
+  /// - ``listPatchJobsByItems(parent:)``
   /// - ``listPatchJobsByItems(request:)``
   /// - ``listPatchJobsByItems(request:options:)``
-  /// - ``listPatchJobsByItems(parent:)``
   public func listPatchJobs(
     request: ListPatchJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse {
@@ -110,9 +110,9 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPatchJobInstanceDetails(request:)``
+  /// - ``listPatchJobInstanceDetailsByItems(parent:)``
   /// - ``listPatchJobInstanceDetailsByItems(request:)``
   /// - ``listPatchJobInstanceDetailsByItems(request:options:)``
-  /// - ``listPatchJobInstanceDetailsByItems(parent:)``
   public func listPatchJobInstanceDetails(
     request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse {
@@ -125,8 +125,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createPatchDeployment(request:)``
   /// - ``createPatchDeployment(parent:patchDeployment:patchDeploymentId:)``
+  /// - ``createPatchDeployment(request:)``
   public func createPatchDeployment(
     request: CreatePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -139,8 +139,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPatchDeployment(request:)``
   /// - ``getPatchDeployment(name:)``
+  /// - ``getPatchDeployment(request:)``
   public func getPatchDeployment(
     request: GetPatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -154,9 +154,9 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPatchDeployments(request:)``
+  /// - ``listPatchDeploymentsByItems(parent:)``
   /// - ``listPatchDeploymentsByItems(request:)``
   /// - ``listPatchDeploymentsByItems(request:options:)``
-  /// - ``listPatchDeploymentsByItems(parent:)``
   public func listPatchDeployments(
     request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse {
@@ -169,8 +169,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deletePatchDeployment(request:)``
   /// - ``deletePatchDeployment(name:)``
+  /// - ``deletePatchDeployment(request:)``
   public func deletePatchDeployment(
     request: DeletePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -183,8 +183,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updatePatchDeployment(request:)``
   /// - ``updatePatchDeployment(patchDeployment:updateMask:)``
+  /// - ``updatePatchDeployment(request:)``
   public func updatePatchDeployment(
     request: UpdatePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -198,8 +198,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``pausePatchDeployment(request:)``
   /// - ``pausePatchDeployment(name:)``
+  /// - ``pausePatchDeployment(request:)``
   public func pausePatchDeployment(
     request: PausePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -213,8 +213,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``resumePatchDeployment(request:)``
   /// - ``resumePatchDeployment(name:)``
+  /// - ``resumePatchDeployment(request:)``
   public func resumePatchDeployment(
     request: ResumePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -240,8 +240,8 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

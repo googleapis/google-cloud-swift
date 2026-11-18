@@ -46,8 +46,8 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(project:body:)``
+  /// - ``create(request:)``
   public func create(
     request: PoliciesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -60,8 +60,8 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(project:policy:)``
+  /// - ``delete(request:)``
   public func delete(
     request: PoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -74,8 +74,8 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:policy:)``
+  /// - ``get(request:)``
   public func `get`(
     request: PoliciesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -89,9 +89,9 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:)``
   public func list(
     request: PoliciesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> PoliciesListResponse {
@@ -104,8 +104,8 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``patch(request:)``
   /// - ``patch(project:policy:body:)``
+  /// - ``patch(request:)``
   public func patch(
     request: PoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> PoliciesPatchResponse {
@@ -118,8 +118,8 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``update(request:)``
   /// - ``update(project:policy:body:)``
+  /// - ``update(request:)``
   public func update(
     request: PoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> PoliciesUpdateResponse {

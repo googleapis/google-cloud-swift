@@ -52,8 +52,8 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   ///
   /// ## See Also
   ///
-  /// - ``updateGenerativeQuestionsFeatureConfig(request:)``
   /// - ``updateGenerativeQuestionsFeatureConfig(generativeQuestionsFeatureConfig:updateMask:)``
+  /// - ``updateGenerativeQuestionsFeatureConfig(request:)``
   public func updateGenerativeQuestionsFeatureConfig(
     request: UpdateGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -67,8 +67,8 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   ///
   /// ## See Also
   ///
-  /// - ``getGenerativeQuestionsFeatureConfig(request:)``
   /// - ``getGenerativeQuestionsFeatureConfig(catalog:)``
+  /// - ``getGenerativeQuestionsFeatureConfig(request:)``
   public func getGenerativeQuestionsFeatureConfig(
     request: GetGenerativeQuestionsFeatureConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionsFeatureConfig {
@@ -81,8 +81,8 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   ///
   /// ## See Also
   ///
-  /// - ``listGenerativeQuestionConfigs(request:)``
   /// - ``listGenerativeQuestionConfigs(parent:)``
+  /// - ``listGenerativeQuestionConfigs(request:)``
   public func listGenerativeQuestionConfigs(
     request: ListGenerativeQuestionConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListGenerativeQuestionConfigsResponse {
@@ -95,8 +95,8 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   ///
   /// ## See Also
   ///
-  /// - ``updateGenerativeQuestionConfig(request:)``
   /// - ``updateGenerativeQuestionConfig(generativeQuestionConfig:updateMask:)``
+  /// - ``updateGenerativeQuestionConfig(request:)``
   public func updateGenerativeQuestionConfig(
     request: UpdateGenerativeQuestionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GenerativeQuestionConfig {
@@ -109,8 +109,8 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   ///
   /// ## See Also
   ///
-  /// - ``batchUpdateGenerativeQuestionConfigs(request:)``
   /// - ``batchUpdateGenerativeQuestionConfigs(parent:requests:)``
+  /// - ``batchUpdateGenerativeQuestionConfigs(request:)``
   public func batchUpdateGenerativeQuestionConfigs(
     request: BatchUpdateGenerativeQuestionConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.BatchUpdateGenerativeQuestionConfigsResponse {
@@ -126,9 +126,9 @@ public final class GenerativeQuestionServiceClient: Clients.GenerativeQuestionSe
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -142,9 +142,9 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   ///
   /// ## See Also
   ///
-  /// - ``runReportJobPollingUntilDone(request:)``
   /// - ``runReportJob(request:)``
   /// - ``runReportJob(request:options:)``
+  /// - ``runReportJobPollingUntilDone(request:)``
   @available(*, deprecated)
   public func runReportJobPollingUntilDone(
     request: RunReportJobRequest, options: GoogleGax.RequestOptions
@@ -185,9 +185,9 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// ## See Also
   ///
   /// - ``fetchReportResults(request:)``
+  /// - ``fetchReportResultsByItems(reportJob:)``
   /// - ``fetchReportResultsByItems(request:)``
   /// - ``fetchReportResultsByItems(request:options:)``
-  /// - ``fetchReportResultsByItems(reportJob:)``
   @available(*, deprecated)
   public func fetchReportResults(
     request: FetchReportResultsRequest, options: GoogleGax.RequestOptions
@@ -207,9 +207,9 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// ## See Also
   ///
   /// - ``listReports(request:)``
+  /// - ``listReportsByItems(parent:)``
   /// - ``listReportsByItems(request:)``
   /// - ``listReportsByItems(request:options:)``
-  /// - ``listReportsByItems(parent:)``
   @available(*, deprecated)
   public func listReports(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
@@ -226,9 +226,9 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -254,8 +254,8 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -270,8 +270,8 @@ public final class CloudChannelReportsServiceClient: Clients.CloudChannelReports
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

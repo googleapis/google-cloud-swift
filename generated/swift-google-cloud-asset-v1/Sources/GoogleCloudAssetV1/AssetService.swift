@@ -93,9 +93,9 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportAssetsPollingUntilDone(request:)``
   /// - ``exportAssets(request:)``
   /// - ``exportAssets(request:options:)``
+  /// - ``exportAssetsPollingUntilDone(request:)``
   public func exportAssetsPollingUntilDone(
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportAssetsResponse {
@@ -129,9 +129,9 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
   /// - ``listAssetsByItems(request:)``
   /// - ``listAssetsByItems(request:options:)``
-  /// - ``listAssetsByItems(parent:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.ListAssetsResponse {
@@ -164,8 +164,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createFeed(request:)``
   /// - ``createFeed(parent:)``
+  /// - ``createFeed(request:)``
   public func createFeed(
     request: CreateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -178,8 +178,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFeed(request:)``
   /// - ``getFeed(name:)``
+  /// - ``getFeed(request:)``
   public func getFeed(
     request: GetFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -192,8 +192,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``listFeeds(request:)``
   /// - ``listFeeds(parent:)``
+  /// - ``listFeeds(request:)``
   public func listFeeds(
     request: ListFeedsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.ListFeedsResponse {
@@ -206,8 +206,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateFeed(request:)``
   /// - ``updateFeed(feed:)``
+  /// - ``updateFeed(request:)``
   public func updateFeed(
     request: UpdateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -220,8 +220,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFeed(request:)``
   /// - ``deleteFeed(name:)``
+  /// - ``deleteFeed(request:)``
   public func deleteFeed(
     request: DeleteFeedRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -325,9 +325,9 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``analyzeIamPolicyLongrunningPollingUntilDone(request:)``
   /// - ``analyzeIamPolicyLongrunning(request:)``
   /// - ``analyzeIamPolicyLongrunning(request:options:)``
+  /// - ``analyzeIamPolicyLongrunningPollingUntilDone(request:)``
   public func analyzeIamPolicyLongrunningPollingUntilDone(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnalyzeIamPolicyLongrunningResponse {
@@ -401,8 +401,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSavedQuery(request:)``
   /// - ``createSavedQuery(parent:savedQuery:savedQueryId:)``
+  /// - ``createSavedQuery(request:)``
   public func createSavedQuery(
     request: CreateSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -415,8 +415,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSavedQuery(request:)``
   /// - ``getSavedQuery(name:)``
+  /// - ``getSavedQuery(request:)``
   public func getSavedQuery(
     request: GetSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -430,9 +430,9 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSavedQueries(request:)``
+  /// - ``listSavedQueriesByItems(parent:)``
   /// - ``listSavedQueriesByItems(request:)``
   /// - ``listSavedQueriesByItems(request:options:)``
-  /// - ``listSavedQueriesByItems(parent:)``
   public func listSavedQueries(
     request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse {
@@ -459,8 +459,8 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSavedQuery(request:)``
   /// - ``deleteSavedQuery(name:)``
+  /// - ``deleteSavedQuery(request:)``
   public func deleteSavedQuery(
     request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws {

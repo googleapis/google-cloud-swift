@@ -57,8 +57,8 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProject(request:)``
   /// - ``getProject(name:)``
+  /// - ``getProject(request:)``
   public func getProject(
     request: GetProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.Project {
@@ -77,9 +77,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProjects(request:)``
+  /// - ``listProjectsByItems(parent:)``
   /// - ``listProjectsByItems(request:)``
   /// - ``listProjectsByItems(request:options:)``
-  /// - ``listProjectsByItems(parent:)``
   public func listProjects(
     request: ListProjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListProjectsResponse {
@@ -104,9 +104,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``searchProjects(request:)``
+  /// - ``searchProjectsByItems(query:)``
   /// - ``searchProjectsByItems(request:)``
   /// - ``searchProjectsByItems(request:options:)``
-  /// - ``searchProjectsByItems(query:)``
   public func searchProjects(
     request: SearchProjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.SearchProjectsResponse {
@@ -124,9 +124,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createProject(request:)``
+  /// - ``createProjectPollingUntilDone(project:)``
   /// - ``createProjectPollingUntilDone(request:)``
   /// - ``createProjectPollingUntilDone(request:options:)``
-  /// - ``createProjectPollingUntilDone(project:)``
   public func createProject(
     request: CreateProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -143,10 +143,10 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createProjectPollingUntilDone(request:)``
-  /// - ``createProjectPollingUntilDone(project:)``
   /// - ``createProject(request:)``
   /// - ``createProject(request:options:)``
+  /// - ``createProjectPollingUntilDone(project:)``
+  /// - ``createProjectPollingUntilDone(request:)``
   public func createProjectPollingUntilDone(
     request: CreateProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {
@@ -183,9 +183,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateProject(request:)``
+  /// - ``updateProjectPollingUntilDone(project:updateMask:)``
   /// - ``updateProjectPollingUntilDone(request:)``
   /// - ``updateProjectPollingUntilDone(request:options:)``
-  /// - ``updateProjectPollingUntilDone(project:updateMask:)``
   public func updateProject(
     request: UpdateProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -203,10 +203,10 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateProjectPollingUntilDone(request:)``
-  /// - ``updateProjectPollingUntilDone(project:updateMask:)``
   /// - ``updateProject(request:)``
   /// - ``updateProject(request:options:)``
+  /// - ``updateProjectPollingUntilDone(project:updateMask:)``
+  /// - ``updateProjectPollingUntilDone(request:)``
   public func updateProjectPollingUntilDone(
     request: UpdateProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {
@@ -253,9 +253,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``moveProject(request:)``
+  /// - ``moveProjectPollingUntilDone(name:destinationParent:)``
   /// - ``moveProjectPollingUntilDone(request:)``
   /// - ``moveProjectPollingUntilDone(request:options:)``
-  /// - ``moveProjectPollingUntilDone(name:destinationParent:)``
   public func moveProject(
     request: MoveProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -283,10 +283,10 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``moveProjectPollingUntilDone(request:)``
-  /// - ``moveProjectPollingUntilDone(name:destinationParent:)``
   /// - ``moveProject(request:)``
   /// - ``moveProject(request:options:)``
+  /// - ``moveProjectPollingUntilDone(name:destinationParent:)``
+  /// - ``moveProjectPollingUntilDone(request:)``
   public func moveProjectPollingUntilDone(
     request: MoveProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {
@@ -354,9 +354,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteProject(request:)``
+  /// - ``deleteProjectPollingUntilDone(name:)``
   /// - ``deleteProjectPollingUntilDone(request:)``
   /// - ``deleteProjectPollingUntilDone(request:options:)``
-  /// - ``deleteProjectPollingUntilDone(name:)``
   public func deleteProject(
     request: DeleteProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -405,10 +405,10 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteProjectPollingUntilDone(request:)``
-  /// - ``deleteProjectPollingUntilDone(name:)``
   /// - ``deleteProject(request:)``
   /// - ``deleteProject(request:options:)``
+  /// - ``deleteProjectPollingUntilDone(name:)``
+  /// - ``deleteProjectPollingUntilDone(request:)``
   public func deleteProjectPollingUntilDone(
     request: DeleteProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {
@@ -448,9 +448,9 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeleteProject(request:)``
+  /// - ``undeleteProjectPollingUntilDone(name:)``
   /// - ``undeleteProjectPollingUntilDone(request:)``
   /// - ``undeleteProjectPollingUntilDone(request:options:)``
-  /// - ``undeleteProjectPollingUntilDone(name:)``
   public func undeleteProject(
     request: UndeleteProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -471,10 +471,10 @@ public final class ProjectsClient: Clients.ProjectsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeleteProjectPollingUntilDone(request:)``
-  /// - ``undeleteProjectPollingUntilDone(name:)``
   /// - ``undeleteProject(request:)``
   /// - ``undeleteProject(request:options:)``
+  /// - ``undeleteProjectPollingUntilDone(name:)``
+  /// - ``undeleteProjectPollingUntilDone(request:)``
   public func undeleteProjectPollingUntilDone(
     request: UndeleteProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Project {

@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: SubnetworksClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SubnetworkAggregatedList {
@@ -71,9 +71,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:subnetwork:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:subnetwork:)``
     public func delete(
       request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -91,10 +91,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:subnetwork:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:subnetwork:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: SubnetworksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -141,9 +141,9 @@
     /// ## See Also
     ///
     /// - ``expandIpCidrRange(request:)``
+    /// - ``expandIpCidrRangePollingUntilDone(project:region:subnetwork:body:)``
     /// - ``expandIpCidrRangePollingUntilDone(request:)``
     /// - ``expandIpCidrRangePollingUntilDone(request:options:)``
-    /// - ``expandIpCidrRangePollingUntilDone(project:region:subnetwork:body:)``
     public func expandIpCidrRange(
       request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -161,10 +161,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``expandIpCidrRangePollingUntilDone(request:)``
-    /// - ``expandIpCidrRangePollingUntilDone(project:region:subnetwork:body:)``
     /// - ``expandIpCidrRange(request:)``
     /// - ``expandIpCidrRange(request:options:)``
+    /// - ``expandIpCidrRangePollingUntilDone(project:region:subnetwork:body:)``
+    /// - ``expandIpCidrRangePollingUntilDone(request:)``
     public func expandIpCidrRangePollingUntilDone(
       request: SubnetworksClient.ExpandIpCidrRangeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -210,8 +210,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:subnetwork:)``
+    /// - ``get(request:)``
     public func `get`(
       request: SubnetworksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Subnetwork {
@@ -225,8 +225,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:region:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: SubnetworksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -241,9 +241,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -262,10 +262,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: SubnetworksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -313,9 +313,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: SubnetworksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SubnetworkList {
@@ -329,9 +329,9 @@
     /// ## See Also
     ///
     /// - ``listUsable(request:)``
+    /// - ``listUsableByItems(project:)``
     /// - ``listUsableByItems(request:)``
     /// - ``listUsableByItems(request:options:)``
-    /// - ``listUsableByItems(project:)``
     public func listUsable(
       request: SubnetworksClient.ListUsableRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.UsableSubnetworksAggregatedList {
@@ -349,9 +349,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:subnetwork:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:region:subnetwork:body:)``
     public func patch(
       request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -373,10 +373,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:region:subnetwork:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:subnetwork:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: SubnetworksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -423,8 +423,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:region:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: SubnetworksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -439,9 +439,9 @@
     /// ## See Also
     ///
     /// - ``setPrivateIpGoogleAccess(request:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(project:region:subnetwork:body:)``
     /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:)``
     /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:options:)``
-    /// - ``setPrivateIpGoogleAccessPollingUntilDone(project:region:subnetwork:body:)``
     public func setPrivateIpGoogleAccess(
       request: SubnetworksClient.SetPrivateIpGoogleAccessRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -460,10 +460,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:)``
-    /// - ``setPrivateIpGoogleAccessPollingUntilDone(project:region:subnetwork:body:)``
     /// - ``setPrivateIpGoogleAccess(request:)``
     /// - ``setPrivateIpGoogleAccess(request:options:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(project:region:subnetwork:body:)``
+    /// - ``setPrivateIpGoogleAccessPollingUntilDone(request:)``
     public func setPrivateIpGoogleAccessPollingUntilDone(
       request: SubnetworksClient.SetPrivateIpGoogleAccessRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -509,8 +509,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: SubnetworksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {

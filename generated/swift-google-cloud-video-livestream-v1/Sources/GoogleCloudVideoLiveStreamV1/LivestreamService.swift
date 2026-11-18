@@ -59,9 +59,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createChannel(request:)``
+  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   /// - ``createChannelPollingUntilDone(request:)``
   /// - ``createChannelPollingUntilDone(request:options:)``
-  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   public func createChannel(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,10 +75,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createChannelPollingUntilDone(request:)``
-  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   /// - ``createChannel(request:)``
   /// - ``createChannel(request:options:)``
+  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
+  /// - ``createChannelPollingUntilDone(request:)``
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -110,9 +110,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listChannels(request:)``
+  /// - ``listChannelsByItems(parent:)``
   /// - ``listChannelsByItems(request:)``
   /// - ``listChannelsByItems(request:options:)``
-  /// - ``listChannelsByItems(parent:)``
   public func listChannels(
     request: ListChannelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.ListChannelsResponse {
@@ -125,8 +125,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getChannel(request:)``
   /// - ``getChannel(name:)``
+  /// - ``getChannel(request:)``
   public func getChannel(
     request: GetChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Channel {
@@ -140,9 +140,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteChannel(request:)``
+  /// - ``deleteChannelPollingUntilDone(name:)``
   /// - ``deleteChannelPollingUntilDone(request:)``
   /// - ``deleteChannelPollingUntilDone(request:options:)``
-  /// - ``deleteChannelPollingUntilDone(name:)``
   public func deleteChannel(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -155,10 +155,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteChannelPollingUntilDone(request:)``
-  /// - ``deleteChannelPollingUntilDone(name:)``
   /// - ``deleteChannel(request:)``
   /// - ``deleteChannel(request:options:)``
+  /// - ``deleteChannelPollingUntilDone(name:)``
+  /// - ``deleteChannelPollingUntilDone(request:)``
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -190,9 +190,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updateChannel(request:)``
+  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   /// - ``updateChannelPollingUntilDone(request:)``
   /// - ``updateChannelPollingUntilDone(request:options:)``
-  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   public func updateChannel(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -205,10 +205,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateChannelPollingUntilDone(request:)``
-  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   /// - ``updateChannel(request:)``
   /// - ``updateChannel(request:options:)``
+  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
+  /// - ``updateChannelPollingUntilDone(request:)``
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -241,9 +241,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``startChannel(request:)``
+  /// - ``startChannelPollingUntilDone(name:)``
   /// - ``startChannelPollingUntilDone(request:)``
   /// - ``startChannelPollingUntilDone(request:options:)``
-  /// - ``startChannelPollingUntilDone(name:)``
   public func startChannel(
     request: StartChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -257,10 +257,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``startChannelPollingUntilDone(request:)``
-  /// - ``startChannelPollingUntilDone(name:)``
   /// - ``startChannel(request:)``
   /// - ``startChannel(request:options:)``
+  /// - ``startChannelPollingUntilDone(name:)``
+  /// - ``startChannelPollingUntilDone(request:)``
   public func startChannelPollingUntilDone(
     request: StartChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelOperationResponse {
@@ -295,9 +295,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``stopChannel(request:)``
+  /// - ``stopChannelPollingUntilDone(name:)``
   /// - ``stopChannelPollingUntilDone(request:)``
   /// - ``stopChannelPollingUntilDone(request:options:)``
-  /// - ``stopChannelPollingUntilDone(name:)``
   public func stopChannel(
     request: StopChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -311,10 +311,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``stopChannelPollingUntilDone(request:)``
-  /// - ``stopChannelPollingUntilDone(name:)``
   /// - ``stopChannel(request:)``
   /// - ``stopChannel(request:options:)``
+  /// - ``stopChannelPollingUntilDone(name:)``
+  /// - ``stopChannelPollingUntilDone(request:)``
   public func stopChannelPollingUntilDone(
     request: StopChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelOperationResponse {
@@ -349,9 +349,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``startDistribution(request:)``
+  /// - ``startDistributionPollingUntilDone(name:distributionKeys:)``
   /// - ``startDistributionPollingUntilDone(request:)``
   /// - ``startDistributionPollingUntilDone(request:options:)``
-  /// - ``startDistributionPollingUntilDone(name:distributionKeys:)``
   public func startDistribution(
     request: StartDistributionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -365,10 +365,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``startDistributionPollingUntilDone(request:)``
-  /// - ``startDistributionPollingUntilDone(name:distributionKeys:)``
   /// - ``startDistribution(request:)``
   /// - ``startDistribution(request:options:)``
+  /// - ``startDistributionPollingUntilDone(name:distributionKeys:)``
+  /// - ``startDistributionPollingUntilDone(request:)``
   public func startDistributionPollingUntilDone(
     request: StartDistributionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelOperationResponse {
@@ -402,9 +402,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``stopDistribution(request:)``
+  /// - ``stopDistributionPollingUntilDone(name:distributionKeys:)``
   /// - ``stopDistributionPollingUntilDone(request:)``
   /// - ``stopDistributionPollingUntilDone(request:options:)``
-  /// - ``stopDistributionPollingUntilDone(name:distributionKeys:)``
   public func stopDistribution(
     request: StopDistributionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -417,10 +417,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``stopDistributionPollingUntilDone(request:)``
-  /// - ``stopDistributionPollingUntilDone(name:distributionKeys:)``
   /// - ``stopDistribution(request:)``
   /// - ``stopDistribution(request:options:)``
+  /// - ``stopDistributionPollingUntilDone(name:distributionKeys:)``
+  /// - ``stopDistributionPollingUntilDone(request:)``
   public func stopDistributionPollingUntilDone(
     request: StopDistributionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelOperationResponse {
@@ -454,9 +454,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createInput(request:)``
+  /// - ``createInputPollingUntilDone(parent:input:inputId:)``
   /// - ``createInputPollingUntilDone(request:)``
   /// - ``createInputPollingUntilDone(request:options:)``
-  /// - ``createInputPollingUntilDone(parent:input:inputId:)``
   public func createInput(
     request: CreateInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -469,10 +469,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createInputPollingUntilDone(request:)``
-  /// - ``createInputPollingUntilDone(parent:input:inputId:)``
   /// - ``createInput(request:)``
   /// - ``createInput(request:options:)``
+  /// - ``createInputPollingUntilDone(parent:input:inputId:)``
+  /// - ``createInputPollingUntilDone(request:)``
   public func createInputPollingUntilDone(
     request: CreateInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> Input {
@@ -504,9 +504,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listInputs(request:)``
+  /// - ``listInputsByItems(parent:)``
   /// - ``listInputsByItems(request:)``
   /// - ``listInputsByItems(request:options:)``
-  /// - ``listInputsByItems(parent:)``
   public func listInputs(
     request: ListInputsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.ListInputsResponse {
@@ -519,8 +519,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getInput(request:)``
   /// - ``getInput(name:)``
+  /// - ``getInput(request:)``
   public func getInput(
     request: GetInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Input {
@@ -534,9 +534,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteInput(request:)``
+  /// - ``deleteInputPollingUntilDone(name:)``
   /// - ``deleteInputPollingUntilDone(request:)``
   /// - ``deleteInputPollingUntilDone(request:options:)``
-  /// - ``deleteInputPollingUntilDone(name:)``
   public func deleteInput(
     request: DeleteInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -549,10 +549,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteInputPollingUntilDone(request:)``
-  /// - ``deleteInputPollingUntilDone(name:)``
   /// - ``deleteInput(request:)``
   /// - ``deleteInput(request:options:)``
+  /// - ``deleteInputPollingUntilDone(name:)``
+  /// - ``deleteInputPollingUntilDone(request:)``
   public func deleteInputPollingUntilDone(
     request: DeleteInputRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -584,9 +584,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updateInput(request:)``
+  /// - ``updateInputPollingUntilDone(input:updateMask:)``
   /// - ``updateInputPollingUntilDone(request:)``
   /// - ``updateInputPollingUntilDone(request:options:)``
-  /// - ``updateInputPollingUntilDone(input:updateMask:)``
   public func updateInput(
     request: UpdateInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -599,10 +599,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateInputPollingUntilDone(request:)``
-  /// - ``updateInputPollingUntilDone(input:updateMask:)``
   /// - ``updateInput(request:)``
   /// - ``updateInput(request:options:)``
+  /// - ``updateInputPollingUntilDone(input:updateMask:)``
+  /// - ``updateInputPollingUntilDone(request:)``
   public func updateInputPollingUntilDone(
     request: UpdateInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> Input {
@@ -633,8 +633,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``previewInput(request:)``
   /// - ``previewInput(name:)``
+  /// - ``previewInput(request:)``
   public func previewInput(
     request: PreviewInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.PreviewInputResponse {
@@ -647,8 +647,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createEvent(request:)``
   /// - ``createEvent(parent:event:eventId:)``
+  /// - ``createEvent(request:)``
   public func createEvent(
     request: CreateEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Event {
@@ -662,9 +662,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listEvents(request:)``
+  /// - ``listEventsByItems(parent:)``
   /// - ``listEventsByItems(request:)``
   /// - ``listEventsByItems(request:options:)``
-  /// - ``listEventsByItems(parent:)``
   public func listEvents(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.ListEventsResponse {
@@ -677,8 +677,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getEvent(request:)``
   /// - ``getEvent(name:)``
+  /// - ``getEvent(request:)``
   public func getEvent(
     request: GetEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Event {
@@ -691,8 +691,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteEvent(request:)``
   /// - ``deleteEvent(name:)``
+  /// - ``deleteEvent(request:)``
   public func deleteEvent(
     request: DeleteEventRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -706,9 +706,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listClips(request:)``
+  /// - ``listClipsByItems(parent:)``
   /// - ``listClipsByItems(request:)``
   /// - ``listClipsByItems(request:options:)``
-  /// - ``listClipsByItems(parent:)``
   public func listClips(
     request: ListClipsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.ListClipsResponse {
@@ -721,8 +721,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getClip(request:)``
   /// - ``getClip(name:)``
+  /// - ``getClip(request:)``
   public func getClip(
     request: GetClipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Clip {
@@ -736,9 +736,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createClip(request:)``
+  /// - ``createClipPollingUntilDone(parent:clip:clipId:)``
   /// - ``createClipPollingUntilDone(request:)``
   /// - ``createClipPollingUntilDone(request:options:)``
-  /// - ``createClipPollingUntilDone(parent:clip:clipId:)``
   public func createClip(
     request: CreateClipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -751,10 +751,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createClipPollingUntilDone(request:)``
-  /// - ``createClipPollingUntilDone(parent:clip:clipId:)``
   /// - ``createClip(request:)``
   /// - ``createClip(request:options:)``
+  /// - ``createClipPollingUntilDone(parent:clip:clipId:)``
+  /// - ``createClipPollingUntilDone(request:)``
   public func createClipPollingUntilDone(
     request: CreateClipRequest, options: GoogleGax.RequestOptions
   ) async throws -> Clip {
@@ -787,9 +787,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteClip(request:)``
+  /// - ``deleteClipPollingUntilDone(name:)``
   /// - ``deleteClipPollingUntilDone(request:)``
   /// - ``deleteClipPollingUntilDone(request:options:)``
-  /// - ``deleteClipPollingUntilDone(name:)``
   public func deleteClip(
     request: DeleteClipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -803,10 +803,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteClipPollingUntilDone(request:)``
-  /// - ``deleteClipPollingUntilDone(name:)``
   /// - ``deleteClip(request:)``
   /// - ``deleteClip(request:options:)``
+  /// - ``deleteClipPollingUntilDone(name:)``
+  /// - ``deleteClipPollingUntilDone(request:)``
   public func deleteClipPollingUntilDone(
     request: DeleteClipRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -838,9 +838,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createDvrSession(request:)``
+  /// - ``createDvrSessionPollingUntilDone(parent:dvrSession:dvrSessionId:)``
   /// - ``createDvrSessionPollingUntilDone(request:)``
   /// - ``createDvrSessionPollingUntilDone(request:options:)``
-  /// - ``createDvrSessionPollingUntilDone(parent:dvrSession:dvrSessionId:)``
   public func createDvrSession(
     request: CreateDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -853,10 +853,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createDvrSessionPollingUntilDone(request:)``
-  /// - ``createDvrSessionPollingUntilDone(parent:dvrSession:dvrSessionId:)``
   /// - ``createDvrSession(request:)``
   /// - ``createDvrSession(request:options:)``
+  /// - ``createDvrSessionPollingUntilDone(parent:dvrSession:dvrSessionId:)``
+  /// - ``createDvrSessionPollingUntilDone(request:)``
   public func createDvrSessionPollingUntilDone(
     request: CreateDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> DvrSession {
@@ -888,9 +888,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listDvrSessions(request:)``
+  /// - ``listDvrSessionsByItems(parent:)``
   /// - ``listDvrSessionsByItems(request:)``
   /// - ``listDvrSessionsByItems(request:options:)``
-  /// - ``listDvrSessionsByItems(parent:)``
   public func listDvrSessions(
     request: ListDvrSessionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.ListDvrSessionsResponse {
@@ -903,8 +903,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getDvrSession(request:)``
   /// - ``getDvrSession(name:)``
+  /// - ``getDvrSession(request:)``
   public func getDvrSession(
     request: GetDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.DvrSession {
@@ -918,9 +918,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteDvrSession(request:)``
+  /// - ``deleteDvrSessionPollingUntilDone(name:)``
   /// - ``deleteDvrSessionPollingUntilDone(request:)``
   /// - ``deleteDvrSessionPollingUntilDone(request:options:)``
-  /// - ``deleteDvrSessionPollingUntilDone(name:)``
   public func deleteDvrSession(
     request: DeleteDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -933,10 +933,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteDvrSessionPollingUntilDone(request:)``
-  /// - ``deleteDvrSessionPollingUntilDone(name:)``
   /// - ``deleteDvrSession(request:)``
   /// - ``deleteDvrSession(request:options:)``
+  /// - ``deleteDvrSessionPollingUntilDone(name:)``
+  /// - ``deleteDvrSessionPollingUntilDone(request:)``
   public func deleteDvrSessionPollingUntilDone(
     request: DeleteDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -968,9 +968,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updateDvrSession(request:)``
+  /// - ``updateDvrSessionPollingUntilDone(dvrSession:updateMask:)``
   /// - ``updateDvrSessionPollingUntilDone(request:)``
   /// - ``updateDvrSessionPollingUntilDone(request:options:)``
-  /// - ``updateDvrSessionPollingUntilDone(dvrSession:updateMask:)``
   public func updateDvrSession(
     request: UpdateDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -983,10 +983,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateDvrSessionPollingUntilDone(request:)``
-  /// - ``updateDvrSessionPollingUntilDone(dvrSession:updateMask:)``
   /// - ``updateDvrSession(request:)``
   /// - ``updateDvrSession(request:options:)``
+  /// - ``updateDvrSessionPollingUntilDone(dvrSession:updateMask:)``
+  /// - ``updateDvrSessionPollingUntilDone(request:)``
   public func updateDvrSessionPollingUntilDone(
     request: UpdateDvrSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> DvrSession {
@@ -1019,9 +1019,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``createAsset(request:)``
+  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   /// - ``createAssetPollingUntilDone(request:)``
   /// - ``createAssetPollingUntilDone(request:options:)``
-  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   public func createAsset(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1035,10 +1035,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createAssetPollingUntilDone(request:)``
-  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
   /// - ``createAsset(request:)``
   /// - ``createAsset(request:options:)``
+  /// - ``createAssetPollingUntilDone(parent:asset:assetId:)``
+  /// - ``createAssetPollingUntilDone(request:)``
   public func createAssetPollingUntilDone(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Asset {
@@ -1070,9 +1070,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``deleteAsset(request:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
   /// - ``deleteAssetPollingUntilDone(request:)``
   /// - ``deleteAssetPollingUntilDone(request:options:)``
-  /// - ``deleteAssetPollingUntilDone(name:)``
   public func deleteAsset(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1085,10 +1085,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteAssetPollingUntilDone(request:)``
-  /// - ``deleteAssetPollingUntilDone(name:)``
   /// - ``deleteAsset(request:)``
   /// - ``deleteAsset(request:options:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
+  /// - ``deleteAssetPollingUntilDone(request:)``
   public func deleteAssetPollingUntilDone(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1119,8 +1119,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getAsset(request:)``
   /// - ``getAsset(name:)``
+  /// - ``getAsset(request:)``
   public func getAsset(
     request: GetAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Asset {
@@ -1134,9 +1134,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
   /// - ``listAssetsByItems(request:)``
   /// - ``listAssetsByItems(request:options:)``
-  /// - ``listAssetsByItems(parent:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.ListAssetsResponse {
@@ -1149,8 +1149,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getPool(request:)``
   /// - ``getPool(name:)``
+  /// - ``getPool(request:)``
   public func getPool(
     request: GetPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoLiveStreamV1.Pool {
@@ -1164,9 +1164,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``updatePool(request:)``
+  /// - ``updatePoolPollingUntilDone(pool:updateMask:)``
   /// - ``updatePoolPollingUntilDone(request:)``
   /// - ``updatePoolPollingUntilDone(request:options:)``
-  /// - ``updatePoolPollingUntilDone(pool:updateMask:)``
   public func updatePool(
     request: UpdatePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1179,10 +1179,10 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updatePoolPollingUntilDone(request:)``
-  /// - ``updatePoolPollingUntilDone(pool:updateMask:)``
   /// - ``updatePool(request:)``
   /// - ``updatePool(request:options:)``
+  /// - ``updatePoolPollingUntilDone(pool:updateMask:)``
+  /// - ``updatePoolPollingUntilDone(request:)``
   public func updatePoolPollingUntilDone(
     request: UpdatePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pool {
@@ -1244,9 +1244,9 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1272,8 +1272,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1288,8 +1288,8 @@ public final class LivestreamServiceClient: Clients.LivestreamServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

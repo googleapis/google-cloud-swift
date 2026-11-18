@@ -64,9 +64,9 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createModel(request:)``
+  /// - ``createModelPollingUntilDone(parent:model:)``
   /// - ``createModelPollingUntilDone(request:)``
   /// - ``createModelPollingUntilDone(request:options:)``
-  /// - ``createModelPollingUntilDone(parent:model:)``
   public func createModel(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -79,10 +79,10 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createModelPollingUntilDone(request:)``
-  /// - ``createModelPollingUntilDone(parent:model:)``
   /// - ``createModel(request:)``
   /// - ``createModel(request:options:)``
+  /// - ``createModelPollingUntilDone(parent:model:)``
+  /// - ``createModelPollingUntilDone(request:)``
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Model {
@@ -113,8 +113,8 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getModel(request:)``
   /// - ``getModel(name:)``
+  /// - ``getModel(request:)``
   public func getModel(
     request: GetModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -127,8 +127,8 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``pauseModel(request:)``
   /// - ``pauseModel(name:)``
+  /// - ``pauseModel(request:)``
   public func pauseModel(
     request: PauseModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -141,8 +141,8 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resumeModel(request:)``
   /// - ``resumeModel(name:)``
+  /// - ``resumeModel(request:)``
   public func resumeModel(
     request: ResumeModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -155,8 +155,8 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteModel(request:)``
   /// - ``deleteModel(name:)``
+  /// - ``deleteModel(request:)``
   public func deleteModel(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -170,9 +170,9 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listModels(request:)``
+  /// - ``listModelsByItems(parent:)``
   /// - ``listModelsByItems(request:)``
   /// - ``listModelsByItems(request:options:)``
-  /// - ``listModelsByItems(parent:)``
   public func listModels(
     request: ListModelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListModelsResponse {
@@ -188,8 +188,8 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateModel(request:)``
   /// - ``updateModel(model:updateMask:)``
+  /// - ``updateModel(request:)``
   public func updateModel(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Model {
@@ -203,9 +203,9 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``tuneModel(request:)``
+  /// - ``tuneModelPollingUntilDone(name:)``
   /// - ``tuneModelPollingUntilDone(request:)``
   /// - ``tuneModelPollingUntilDone(request:options:)``
-  /// - ``tuneModelPollingUntilDone(name:)``
   public func tuneModel(
     request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,10 +218,10 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``tuneModelPollingUntilDone(request:)``
-  /// - ``tuneModelPollingUntilDone(name:)``
   /// - ``tuneModel(request:)``
   /// - ``tuneModel(request:options:)``
+  /// - ``tuneModelPollingUntilDone(name:)``
+  /// - ``tuneModelPollingUntilDone(request:)``
   public func tuneModelPollingUntilDone(
     request: TuneModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> TuneModelResponse {
@@ -256,9 +256,9 @@ public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

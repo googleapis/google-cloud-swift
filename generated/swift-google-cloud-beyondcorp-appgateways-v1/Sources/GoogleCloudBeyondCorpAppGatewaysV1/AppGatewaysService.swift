@@ -72,9 +72,9 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// ## See Also
   ///
   /// - ``listAppGateways(request:)``
+  /// - ``listAppGatewaysByItems(parent:)``
   /// - ``listAppGatewaysByItems(request:)``
   /// - ``listAppGatewaysByItems(request:options:)``
-  /// - ``listAppGatewaysByItems(parent:)``
   @available(*, deprecated)
   public func listAppGateways(
     request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
@@ -88,8 +88,8 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getAppGateway(request:)``
   /// - ``getAppGateway(name:)``
+  /// - ``getAppGateway(request:)``
   @available(*, deprecated)
   public func getAppGateway(
     request: GetAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -104,9 +104,9 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// ## See Also
   ///
   /// - ``createAppGateway(request:)``
+  /// - ``createAppGatewayPollingUntilDone(parent:appGateway:appGatewayId:)``
   /// - ``createAppGatewayPollingUntilDone(request:)``
   /// - ``createAppGatewayPollingUntilDone(request:options:)``
-  /// - ``createAppGatewayPollingUntilDone(parent:appGateway:appGatewayId:)``
   @available(*, deprecated)
   public func createAppGateway(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -120,10 +120,10 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createAppGatewayPollingUntilDone(request:)``
-  /// - ``createAppGatewayPollingUntilDone(parent:appGateway:appGatewayId:)``
   /// - ``createAppGateway(request:)``
   /// - ``createAppGateway(request:options:)``
+  /// - ``createAppGatewayPollingUntilDone(parent:appGateway:appGatewayId:)``
+  /// - ``createAppGatewayPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -156,9 +156,9 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// ## See Also
   ///
   /// - ``deleteAppGateway(request:)``
+  /// - ``deleteAppGatewayPollingUntilDone(name:)``
   /// - ``deleteAppGatewayPollingUntilDone(request:)``
   /// - ``deleteAppGatewayPollingUntilDone(request:options:)``
-  /// - ``deleteAppGatewayPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAppGateway(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -172,10 +172,10 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteAppGatewayPollingUntilDone(request:)``
-  /// - ``deleteAppGatewayPollingUntilDone(name:)``
   /// - ``deleteAppGateway(request:)``
   /// - ``deleteAppGateway(request:options:)``
+  /// - ``deleteAppGatewayPollingUntilDone(name:)``
+  /// - ``deleteAppGatewayPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -305,9 +305,9 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -333,8 +333,8 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -349,8 +349,8 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

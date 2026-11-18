@@ -185,9 +185,9 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``waitPollingUntilDone(request:)``
   /// - ``wait(request:)``
   /// - ``wait(request:options:)``
+  /// - ``waitPollingUntilDone(request:)``
   public func waitPollingUntilDone(
     request: WaitRequest, options: GoogleGax.RequestOptions
   ) async throws -> WaitResponse {
@@ -314,9 +314,9 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -342,8 +342,8 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -358,8 +358,8 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

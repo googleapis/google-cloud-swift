@@ -57,9 +57,9 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   /// ## See Also
   ///
   /// - ``listInternalRanges(request:)``
+  /// - ``listInternalRangesByItems(parent:)``
   /// - ``listInternalRangesByItems(request:)``
   /// - ``listInternalRangesByItems(request:options:)``
-  /// - ``listInternalRangesByItems(parent:)``
   public func listInternalRanges(
     request: ListInternalRangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListInternalRangesResponse {
@@ -72,8 +72,8 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getInternalRange(request:)``
   /// - ``getInternalRange(name:)``
+  /// - ``getInternalRange(request:)``
   public func getInternalRange(
     request: GetInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.InternalRange {
@@ -87,9 +87,9 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   /// ## See Also
   ///
   /// - ``createInternalRange(request:)``
+  /// - ``createInternalRangePollingUntilDone(parent:internalRange:internalRangeId:)``
   /// - ``createInternalRangePollingUntilDone(request:)``
   /// - ``createInternalRangePollingUntilDone(request:options:)``
-  /// - ``createInternalRangePollingUntilDone(parent:internalRange:internalRangeId:)``
   public func createInternalRange(
     request: CreateInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,10 +102,10 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createInternalRangePollingUntilDone(request:)``
-  /// - ``createInternalRangePollingUntilDone(parent:internalRange:internalRangeId:)``
   /// - ``createInternalRange(request:)``
   /// - ``createInternalRange(request:options:)``
+  /// - ``createInternalRangePollingUntilDone(parent:internalRange:internalRangeId:)``
+  /// - ``createInternalRangePollingUntilDone(request:)``
   public func createInternalRangePollingUntilDone(
     request: CreateInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> InternalRange {
@@ -138,9 +138,9 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   /// ## See Also
   ///
   /// - ``updateInternalRange(request:)``
+  /// - ``updateInternalRangePollingUntilDone(internalRange:updateMask:)``
   /// - ``updateInternalRangePollingUntilDone(request:)``
   /// - ``updateInternalRangePollingUntilDone(request:options:)``
-  /// - ``updateInternalRangePollingUntilDone(internalRange:updateMask:)``
   public func updateInternalRange(
     request: UpdateInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateInternalRangePollingUntilDone(request:)``
-  /// - ``updateInternalRangePollingUntilDone(internalRange:updateMask:)``
   /// - ``updateInternalRange(request:)``
   /// - ``updateInternalRange(request:options:)``
+  /// - ``updateInternalRangePollingUntilDone(internalRange:updateMask:)``
+  /// - ``updateInternalRangePollingUntilDone(request:)``
   public func updateInternalRangePollingUntilDone(
     request: UpdateInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> InternalRange {
@@ -189,9 +189,9 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   /// ## See Also
   ///
   /// - ``deleteInternalRange(request:)``
+  /// - ``deleteInternalRangePollingUntilDone(name:)``
   /// - ``deleteInternalRangePollingUntilDone(request:)``
   /// - ``deleteInternalRangePollingUntilDone(request:options:)``
-  /// - ``deleteInternalRangePollingUntilDone(name:)``
   public func deleteInternalRange(
     request: DeleteInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -204,10 +204,10 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteInternalRangePollingUntilDone(request:)``
-  /// - ``deleteInternalRangePollingUntilDone(name:)``
   /// - ``deleteInternalRange(request:)``
   /// - ``deleteInternalRange(request:options:)``
+  /// - ``deleteInternalRangePollingUntilDone(name:)``
+  /// - ``deleteInternalRangePollingUntilDone(request:)``
   public func deleteInternalRangePollingUntilDone(
     request: DeleteInternalRangeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -319,9 +319,9 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -347,8 +347,8 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -363,8 +363,8 @@ public final class InternalRangeServiceClient: Clients.InternalRangeServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

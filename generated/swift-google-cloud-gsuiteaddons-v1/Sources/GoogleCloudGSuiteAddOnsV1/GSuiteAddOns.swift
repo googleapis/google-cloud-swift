@@ -73,8 +73,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAuthorization(request:)``
   /// - ``getAuthorization(name:)``
+  /// - ``getAuthorization(request:)``
   public func getAuthorization(
     request: GetAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization {
@@ -87,8 +87,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDeployment(request:)``
   /// - ``createDeployment(parent:deployment:deploymentId:)``
+  /// - ``createDeployment(request:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -101,8 +101,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``replaceDeployment(request:)``
   /// - ``replaceDeployment(deployment:)``
+  /// - ``replaceDeployment(request:)``
   public func replaceDeployment(
     request: ReplaceDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -115,8 +115,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeployment(request:)``
   /// - ``getDeployment(name:)``
+  /// - ``getDeployment(request:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -130,9 +130,9 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(parent:)``
   /// - ``listDeploymentsByItems(request:)``
   /// - ``listDeploymentsByItems(request:options:)``
-  /// - ``listDeploymentsByItems(parent:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse {
@@ -145,8 +145,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDeployment(request:)``
   /// - ``deleteDeployment(name:)``
+  /// - ``deleteDeployment(request:)``
   public func deleteDeployment(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -161,8 +161,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``installDeployment(request:)``
   /// - ``installDeployment(name:)``
+  /// - ``installDeployment(request:)``
   public func installDeployment(
     request: InstallDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,8 +177,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``uninstallDeployment(request:)``
   /// - ``uninstallDeployment(name:)``
+  /// - ``uninstallDeployment(request:)``
   public func uninstallDeployment(
     request: UninstallDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -191,8 +191,8 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstallStatus(request:)``
   /// - ``getInstallStatus(name:)``
+  /// - ``getInstallStatus(request:)``
   public func getInstallStatus(
     request: GetInstallStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.InstallStatus {

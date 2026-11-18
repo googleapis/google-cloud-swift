@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``listTestCases(request:)``
+    /// - ``listTestCasesByItems(parent:)``
     /// - ``listTestCasesByItems(request:)``
     /// - ``listTestCasesByItems(request:options:)``
-    /// - ``listTestCasesByItems(parent:)``
     public func listTestCases(
       request: ListTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListTestCasesResponse {
@@ -74,8 +74,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchDeleteTestCases(request:)``
     /// - ``batchDeleteTestCases(parent:)``
+    /// - ``batchDeleteTestCases(request:)``
     public func batchDeleteTestCases(
       request: BatchDeleteTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -88,8 +88,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTestCase(request:)``
     /// - ``getTestCase(name:)``
+    /// - ``getTestCase(request:)``
     public func getTestCase(
       request: GetTestCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
@@ -102,8 +102,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTestCase(request:)``
     /// - ``createTestCase(parent:testCase:)``
+    /// - ``createTestCase(request:)``
     public func createTestCase(
       request: CreateTestCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TestCase {
@@ -169,9 +169,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``runTestCasePollingUntilDone(request:)``
     /// - ``runTestCase(request:)``
     /// - ``runTestCase(request:options:)``
+    /// - ``runTestCasePollingUntilDone(request:)``
     public func runTestCasePollingUntilDone(
       request: RunTestCaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> RunTestCaseResponse {
@@ -242,9 +242,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchRunTestCasesPollingUntilDone(request:)``
     /// - ``batchRunTestCases(request:)``
     /// - ``batchRunTestCases(request:options:)``
+    /// - ``batchRunTestCasesPollingUntilDone(request:)``
     public func batchRunTestCasesPollingUntilDone(
       request: BatchRunTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchRunTestCasesResponse {
@@ -333,9 +333,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importTestCasesPollingUntilDone(request:)``
     /// - ``importTestCases(request:)``
     /// - ``importTestCases(request:options:)``
+    /// - ``importTestCasesPollingUntilDone(request:)``
     public func importTestCasesPollingUntilDone(
       request: ImportTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportTestCasesResponse {
@@ -409,9 +409,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportTestCasesPollingUntilDone(request:)``
     /// - ``exportTestCases(request:)``
     /// - ``exportTestCases(request:options:)``
+    /// - ``exportTestCasesPollingUntilDone(request:)``
     public func exportTestCasesPollingUntilDone(
       request: ExportTestCasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportTestCasesResponse {
@@ -446,9 +446,9 @@
     /// ## See Also
     ///
     /// - ``listTestCaseResults(request:)``
+    /// - ``listTestCaseResultsByItems(parent:)``
     /// - ``listTestCaseResultsByItems(request:)``
     /// - ``listTestCaseResultsByItems(request:options:)``
-    /// - ``listTestCaseResultsByItems(parent:)``
     public func listTestCaseResults(
       request: ListTestCaseResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListTestCaseResultsResponse {
@@ -461,8 +461,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTestCaseResult(request:)``
     /// - ``getTestCaseResult(name:)``
+    /// - ``getTestCaseResult(request:)``
     public func getTestCaseResult(
       request: GetTestCaseResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TestCaseResult {
@@ -523,9 +523,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -551,8 +551,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

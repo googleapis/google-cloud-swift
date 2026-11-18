@@ -58,9 +58,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``createCdnKey(request:)``
+  /// - ``createCdnKeyPollingUntilDone(parent:cdnKey:cdnKeyId:)``
   /// - ``createCdnKeyPollingUntilDone(request:)``
   /// - ``createCdnKeyPollingUntilDone(request:options:)``
-  /// - ``createCdnKeyPollingUntilDone(parent:cdnKey:cdnKeyId:)``
   public func createCdnKey(
     request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,10 +73,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createCdnKeyPollingUntilDone(request:)``
-  /// - ``createCdnKeyPollingUntilDone(parent:cdnKey:cdnKeyId:)``
   /// - ``createCdnKey(request:)``
   /// - ``createCdnKey(request:options:)``
+  /// - ``createCdnKeyPollingUntilDone(parent:cdnKey:cdnKeyId:)``
+  /// - ``createCdnKeyPollingUntilDone(request:)``
   public func createCdnKeyPollingUntilDone(
     request: CreateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> CdnKey {
@@ -108,9 +108,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listCdnKeys(request:)``
+  /// - ``listCdnKeysByItems(parent:)``
   /// - ``listCdnKeysByItems(request:)``
   /// - ``listCdnKeysByItems(request:options:)``
-  /// - ``listCdnKeysByItems(parent:)``
   public func listCdnKeys(
     request: ListCdnKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListCdnKeysResponse {
@@ -123,8 +123,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getCdnKey(request:)``
   /// - ``getCdnKey(name:)``
+  /// - ``getCdnKey(request:)``
   public func getCdnKey(
     request: GetCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.CdnKey {
@@ -138,9 +138,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``deleteCdnKey(request:)``
+  /// - ``deleteCdnKeyPollingUntilDone(name:)``
   /// - ``deleteCdnKeyPollingUntilDone(request:)``
   /// - ``deleteCdnKeyPollingUntilDone(request:options:)``
-  /// - ``deleteCdnKeyPollingUntilDone(name:)``
   public func deleteCdnKey(
     request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteCdnKeyPollingUntilDone(request:)``
-  /// - ``deleteCdnKeyPollingUntilDone(name:)``
   /// - ``deleteCdnKey(request:)``
   /// - ``deleteCdnKey(request:options:)``
+  /// - ``deleteCdnKeyPollingUntilDone(name:)``
+  /// - ``deleteCdnKeyPollingUntilDone(request:)``
   public func deleteCdnKeyPollingUntilDone(
     request: DeleteCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -189,9 +189,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``updateCdnKey(request:)``
+  /// - ``updateCdnKeyPollingUntilDone(cdnKey:updateMask:)``
   /// - ``updateCdnKeyPollingUntilDone(request:)``
   /// - ``updateCdnKeyPollingUntilDone(request:options:)``
-  /// - ``updateCdnKeyPollingUntilDone(cdnKey:updateMask:)``
   public func updateCdnKey(
     request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -205,10 +205,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateCdnKeyPollingUntilDone(request:)``
-  /// - ``updateCdnKeyPollingUntilDone(cdnKey:updateMask:)``
   /// - ``updateCdnKey(request:)``
   /// - ``updateCdnKey(request:options:)``
+  /// - ``updateCdnKeyPollingUntilDone(cdnKey:updateMask:)``
+  /// - ``updateCdnKeyPollingUntilDone(request:)``
   public func updateCdnKeyPollingUntilDone(
     request: UpdateCdnKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> CdnKey {
@@ -240,8 +240,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createVodSession(request:)``
   /// - ``createVodSession(parent:vodSession:)``
+  /// - ``createVodSession(request:)``
   public func createVodSession(
     request: CreateVodSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodSession {
@@ -255,8 +255,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getVodSession(request:)``
   /// - ``getVodSession(name:)``
+  /// - ``getVodSession(request:)``
   public func getVodSession(
     request: GetVodSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodSession {
@@ -271,9 +271,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listVodStitchDetails(request:)``
+  /// - ``listVodStitchDetailsByItems(parent:)``
   /// - ``listVodStitchDetailsByItems(request:)``
   /// - ``listVodStitchDetailsByItems(request:options:)``
-  /// - ``listVodStitchDetailsByItems(parent:)``
   public func listVodStitchDetails(
     request: ListVodStitchDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListVodStitchDetailsResponse {
@@ -286,8 +286,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getVodStitchDetail(request:)``
   /// - ``getVodStitchDetail(name:)``
+  /// - ``getVodStitchDetail(request:)``
   public func getVodStitchDetail(
     request: GetVodStitchDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodStitchDetail {
@@ -301,9 +301,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listVodAdTagDetails(request:)``
+  /// - ``listVodAdTagDetailsByItems(parent:)``
   /// - ``listVodAdTagDetailsByItems(request:)``
   /// - ``listVodAdTagDetailsByItems(request:options:)``
-  /// - ``listVodAdTagDetailsByItems(parent:)``
   public func listVodAdTagDetails(
     request: ListVodAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListVodAdTagDetailsResponse {
@@ -316,8 +316,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getVodAdTagDetail(request:)``
   /// - ``getVodAdTagDetail(name:)``
+  /// - ``getVodAdTagDetail(request:)``
   public func getVodAdTagDetail(
     request: GetVodAdTagDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodAdTagDetail {
@@ -331,9 +331,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listLiveAdTagDetails(request:)``
+  /// - ``listLiveAdTagDetailsByItems(parent:)``
   /// - ``listLiveAdTagDetailsByItems(request:)``
   /// - ``listLiveAdTagDetailsByItems(request:options:)``
-  /// - ``listLiveAdTagDetailsByItems(parent:)``
   public func listLiveAdTagDetails(
     request: ListLiveAdTagDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListLiveAdTagDetailsResponse {
@@ -346,8 +346,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getLiveAdTagDetail(request:)``
   /// - ``getLiveAdTagDetail(name:)``
+  /// - ``getLiveAdTagDetail(request:)``
   public func getLiveAdTagDetail(
     request: GetLiveAdTagDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveAdTagDetail {
@@ -361,9 +361,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``createSlate(request:)``
+  /// - ``createSlatePollingUntilDone(parent:slate:slateId:)``
   /// - ``createSlatePollingUntilDone(request:)``
   /// - ``createSlatePollingUntilDone(request:options:)``
-  /// - ``createSlatePollingUntilDone(parent:slate:slateId:)``
   public func createSlate(
     request: CreateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -376,10 +376,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createSlatePollingUntilDone(request:)``
-  /// - ``createSlatePollingUntilDone(parent:slate:slateId:)``
   /// - ``createSlate(request:)``
   /// - ``createSlate(request:options:)``
+  /// - ``createSlatePollingUntilDone(parent:slate:slateId:)``
+  /// - ``createSlatePollingUntilDone(request:)``
   public func createSlatePollingUntilDone(
     request: CreateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Slate {
@@ -411,9 +411,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listSlates(request:)``
+  /// - ``listSlatesByItems(parent:)``
   /// - ``listSlatesByItems(request:)``
   /// - ``listSlatesByItems(request:options:)``
-  /// - ``listSlatesByItems(parent:)``
   public func listSlates(
     request: ListSlatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListSlatesResponse {
@@ -426,8 +426,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getSlate(request:)``
   /// - ``getSlate(name:)``
+  /// - ``getSlate(request:)``
   public func getSlate(
     request: GetSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.Slate {
@@ -456,10 +456,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateSlatePollingUntilDone(request:)``
-  /// - ``updateSlatePollingUntilDone(slate:updateMask:)``
   /// - ``updateSlate(request:)``
   /// - ``updateSlate(request:options:)``
+  /// - ``updateSlatePollingUntilDone(request:)``
+  /// - ``updateSlatePollingUntilDone(slate:updateMask:)``
   public func updateSlatePollingUntilDone(
     request: UpdateSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Slate {
@@ -491,9 +491,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``deleteSlate(request:)``
+  /// - ``deleteSlatePollingUntilDone(name:)``
   /// - ``deleteSlatePollingUntilDone(request:)``
   /// - ``deleteSlatePollingUntilDone(request:options:)``
-  /// - ``deleteSlatePollingUntilDone(name:)``
   public func deleteSlate(
     request: DeleteSlateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -506,10 +506,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteSlatePollingUntilDone(request:)``
-  /// - ``deleteSlatePollingUntilDone(name:)``
   /// - ``deleteSlate(request:)``
   /// - ``deleteSlate(request:options:)``
+  /// - ``deleteSlatePollingUntilDone(name:)``
+  /// - ``deleteSlatePollingUntilDone(request:)``
   public func deleteSlatePollingUntilDone(
     request: DeleteSlateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -540,8 +540,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createLiveSession(request:)``
   /// - ``createLiveSession(parent:liveSession:)``
+  /// - ``createLiveSession(request:)``
   public func createLiveSession(
     request: CreateLiveSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveSession {
@@ -554,8 +554,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getLiveSession(request:)``
   /// - ``getLiveSession(name:)``
+  /// - ``getLiveSession(request:)``
   public func getLiveSession(
     request: GetLiveSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveSession {
@@ -570,9 +570,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``createLiveConfig(request:)``
+  /// - ``createLiveConfigPollingUntilDone(parent:liveConfig:liveConfigId:)``
   /// - ``createLiveConfigPollingUntilDone(request:)``
   /// - ``createLiveConfigPollingUntilDone(request:options:)``
-  /// - ``createLiveConfigPollingUntilDone(parent:liveConfig:liveConfigId:)``
   public func createLiveConfig(
     request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -586,10 +586,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createLiveConfigPollingUntilDone(request:)``
-  /// - ``createLiveConfigPollingUntilDone(parent:liveConfig:liveConfigId:)``
   /// - ``createLiveConfig(request:)``
   /// - ``createLiveConfig(request:options:)``
+  /// - ``createLiveConfigPollingUntilDone(parent:liveConfig:liveConfigId:)``
+  /// - ``createLiveConfigPollingUntilDone(request:)``
   public func createLiveConfigPollingUntilDone(
     request: CreateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> LiveConfig {
@@ -622,9 +622,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listLiveConfigs(request:)``
+  /// - ``listLiveConfigsByItems(parent:)``
   /// - ``listLiveConfigsByItems(request:)``
   /// - ``listLiveConfigsByItems(request:options:)``
-  /// - ``listLiveConfigsByItems(parent:)``
   public func listLiveConfigs(
     request: ListLiveConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListLiveConfigsResponse {
@@ -638,8 +638,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getLiveConfig(request:)``
   /// - ``getLiveConfig(name:)``
+  /// - ``getLiveConfig(request:)``
   public func getLiveConfig(
     request: GetLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.LiveConfig {
@@ -653,9 +653,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``deleteLiveConfig(request:)``
+  /// - ``deleteLiveConfigPollingUntilDone(name:)``
   /// - ``deleteLiveConfigPollingUntilDone(request:)``
   /// - ``deleteLiveConfigPollingUntilDone(request:options:)``
-  /// - ``deleteLiveConfigPollingUntilDone(name:)``
   public func deleteLiveConfig(
     request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -668,10 +668,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteLiveConfigPollingUntilDone(request:)``
-  /// - ``deleteLiveConfigPollingUntilDone(name:)``
   /// - ``deleteLiveConfig(request:)``
   /// - ``deleteLiveConfig(request:options:)``
+  /// - ``deleteLiveConfigPollingUntilDone(name:)``
+  /// - ``deleteLiveConfigPollingUntilDone(request:)``
   public func deleteLiveConfigPollingUntilDone(
     request: DeleteLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -704,9 +704,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``updateLiveConfig(request:)``
+  /// - ``updateLiveConfigPollingUntilDone(liveConfig:updateMask:)``
   /// - ``updateLiveConfigPollingUntilDone(request:)``
   /// - ``updateLiveConfigPollingUntilDone(request:options:)``
-  /// - ``updateLiveConfigPollingUntilDone(liveConfig:updateMask:)``
   public func updateLiveConfig(
     request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -720,10 +720,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateLiveConfigPollingUntilDone(request:)``
-  /// - ``updateLiveConfigPollingUntilDone(liveConfig:updateMask:)``
   /// - ``updateLiveConfig(request:)``
   /// - ``updateLiveConfig(request:options:)``
+  /// - ``updateLiveConfigPollingUntilDone(liveConfig:updateMask:)``
+  /// - ``updateLiveConfigPollingUntilDone(request:)``
   public func updateLiveConfigPollingUntilDone(
     request: UpdateLiveConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> LiveConfig {
@@ -756,9 +756,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``createVodConfig(request:)``
+  /// - ``createVodConfigPollingUntilDone(parent:vodConfig:vodConfigId:)``
   /// - ``createVodConfigPollingUntilDone(request:)``
   /// - ``createVodConfigPollingUntilDone(request:options:)``
-  /// - ``createVodConfigPollingUntilDone(parent:vodConfig:vodConfigId:)``
   public func createVodConfig(
     request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -772,10 +772,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createVodConfigPollingUntilDone(request:)``
-  /// - ``createVodConfigPollingUntilDone(parent:vodConfig:vodConfigId:)``
   /// - ``createVodConfig(request:)``
   /// - ``createVodConfig(request:options:)``
+  /// - ``createVodConfigPollingUntilDone(parent:vodConfig:vodConfigId:)``
+  /// - ``createVodConfigPollingUntilDone(request:)``
   public func createVodConfigPollingUntilDone(
     request: CreateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> VodConfig {
@@ -808,9 +808,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listVodConfigs(request:)``
+  /// - ``listVodConfigsByItems(parent:)``
   /// - ``listVodConfigsByItems(request:)``
   /// - ``listVodConfigsByItems(request:options:)``
-  /// - ``listVodConfigsByItems(parent:)``
   public func listVodConfigs(
     request: ListVodConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.ListVodConfigsResponse {
@@ -824,8 +824,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getVodConfig(request:)``
   /// - ``getVodConfig(name:)``
+  /// - ``getVodConfig(request:)``
   public func getVodConfig(
     request: GetVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoStitcherV1.VodConfig {
@@ -839,9 +839,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``deleteVodConfig(request:)``
+  /// - ``deleteVodConfigPollingUntilDone(name:)``
   /// - ``deleteVodConfigPollingUntilDone(request:)``
   /// - ``deleteVodConfigPollingUntilDone(request:options:)``
-  /// - ``deleteVodConfigPollingUntilDone(name:)``
   public func deleteVodConfig(
     request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -854,10 +854,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteVodConfigPollingUntilDone(request:)``
-  /// - ``deleteVodConfigPollingUntilDone(name:)``
   /// - ``deleteVodConfig(request:)``
   /// - ``deleteVodConfig(request:options:)``
+  /// - ``deleteVodConfigPollingUntilDone(name:)``
+  /// - ``deleteVodConfigPollingUntilDone(request:)``
   public func deleteVodConfigPollingUntilDone(
     request: DeleteVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -906,10 +906,10 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateVodConfigPollingUntilDone(request:)``
-  /// - ``updateVodConfigPollingUntilDone(vodConfig:updateMask:)``
   /// - ``updateVodConfig(request:)``
   /// - ``updateVodConfig(request:options:)``
+  /// - ``updateVodConfigPollingUntilDone(request:)``
+  /// - ``updateVodConfigPollingUntilDone(vodConfig:updateMask:)``
   public func updateVodConfigPollingUntilDone(
     request: UpdateVodConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> VodConfig {
@@ -943,9 +943,9 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -971,8 +971,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -987,8 +987,8 @@ public final class VideoStitcherServiceClient: Clients.VideoStitcherServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

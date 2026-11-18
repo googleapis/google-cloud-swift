@@ -56,8 +56,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``initializeZone(request:)``
   /// - ``initializeZone(name:)``
+  /// - ``initializeZone(request:)``
   public func initializeZone(
     request: InitializeZoneRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.InitializeZoneResponse {
@@ -72,9 +72,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listZones(request:)``
+  /// - ``listZonesByItems(parent:)``
   /// - ``listZonesByItems(request:)``
   /// - ``listZonesByItems(request:options:)``
-  /// - ``listZonesByItems(parent:)``
   @available(*, deprecated)
   public func listZones(
     request: ListZonesRequest, options: GoogleGax.RequestOptions
@@ -89,8 +89,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getZone(request:)``
   /// - ``getZone(name:)``
+  /// - ``getZone(request:)``
   @available(*, deprecated)
   public func getZone(
     request: GetZoneRequest, options: GoogleGax.RequestOptions
@@ -105,9 +105,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNetworks(request:)``
+  /// - ``listNetworksByItems(parent:)``
   /// - ``listNetworksByItems(request:)``
   /// - ``listNetworksByItems(request:options:)``
-  /// - ``listNetworksByItems(parent:)``
   public func listNetworks(
     request: ListNetworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.ListNetworksResponse {
@@ -120,8 +120,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNetwork(request:)``
   /// - ``getNetwork(name:)``
+  /// - ``getNetwork(request:)``
   public func getNetwork(
     request: GetNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.Network {
@@ -134,8 +134,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``diagnoseNetwork(request:)``
   /// - ``diagnoseNetwork(name:)``
+  /// - ``diagnoseNetwork(request:)``
   public func diagnoseNetwork(
     request: DiagnoseNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.DiagnoseNetworkResponse {
@@ -149,9 +149,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createNetwork(request:)``
+  /// - ``createNetworkPollingUntilDone(parent:network:networkId:)``
   /// - ``createNetworkPollingUntilDone(request:)``
   /// - ``createNetworkPollingUntilDone(request:options:)``
-  /// - ``createNetworkPollingUntilDone(parent:network:networkId:)``
   public func createNetwork(
     request: CreateNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,10 +164,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createNetworkPollingUntilDone(request:)``
-  /// - ``createNetworkPollingUntilDone(parent:network:networkId:)``
   /// - ``createNetwork(request:)``
   /// - ``createNetwork(request:options:)``
+  /// - ``createNetworkPollingUntilDone(parent:network:networkId:)``
+  /// - ``createNetworkPollingUntilDone(request:)``
   public func createNetworkPollingUntilDone(
     request: CreateNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> Network {
@@ -199,9 +199,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteNetwork(request:)``
+  /// - ``deleteNetworkPollingUntilDone(name:)``
   /// - ``deleteNetworkPollingUntilDone(request:)``
   /// - ``deleteNetworkPollingUntilDone(request:options:)``
-  /// - ``deleteNetworkPollingUntilDone(name:)``
   public func deleteNetwork(
     request: DeleteNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -214,10 +214,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteNetworkPollingUntilDone(request:)``
-  /// - ``deleteNetworkPollingUntilDone(name:)``
   /// - ``deleteNetwork(request:)``
   /// - ``deleteNetwork(request:options:)``
+  /// - ``deleteNetworkPollingUntilDone(name:)``
+  /// - ``deleteNetworkPollingUntilDone(request:)``
   public func deleteNetworkPollingUntilDone(
     request: DeleteNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -249,9 +249,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSubnets(request:)``
+  /// - ``listSubnetsByItems(parent:)``
   /// - ``listSubnetsByItems(request:)``
   /// - ``listSubnetsByItems(request:options:)``
-  /// - ``listSubnetsByItems(parent:)``
   public func listSubnets(
     request: ListSubnetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.ListSubnetsResponse {
@@ -264,8 +264,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSubnet(request:)``
   /// - ``getSubnet(name:)``
+  /// - ``getSubnet(request:)``
   public func getSubnet(
     request: GetSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.Subnet {
@@ -279,9 +279,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createSubnet(request:)``
+  /// - ``createSubnetPollingUntilDone(parent:subnet:subnetId:)``
   /// - ``createSubnetPollingUntilDone(request:)``
   /// - ``createSubnetPollingUntilDone(request:options:)``
-  /// - ``createSubnetPollingUntilDone(parent:subnet:subnetId:)``
   public func createSubnet(
     request: CreateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -294,10 +294,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSubnetPollingUntilDone(request:)``
-  /// - ``createSubnetPollingUntilDone(parent:subnet:subnetId:)``
   /// - ``createSubnet(request:)``
   /// - ``createSubnet(request:options:)``
+  /// - ``createSubnetPollingUntilDone(parent:subnet:subnetId:)``
+  /// - ``createSubnetPollingUntilDone(request:)``
   public func createSubnetPollingUntilDone(
     request: CreateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Subnet {
@@ -344,10 +344,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateSubnetPollingUntilDone(request:)``
-  /// - ``updateSubnetPollingUntilDone(subnet:updateMask:)``
   /// - ``updateSubnet(request:)``
   /// - ``updateSubnet(request:options:)``
+  /// - ``updateSubnetPollingUntilDone(request:)``
+  /// - ``updateSubnetPollingUntilDone(subnet:updateMask:)``
   public func updateSubnetPollingUntilDone(
     request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Subnet {
@@ -379,9 +379,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteSubnet(request:)``
+  /// - ``deleteSubnetPollingUntilDone(name:)``
   /// - ``deleteSubnetPollingUntilDone(request:)``
   /// - ``deleteSubnetPollingUntilDone(request:options:)``
-  /// - ``deleteSubnetPollingUntilDone(name:)``
   public func deleteSubnet(
     request: DeleteSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -394,10 +394,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSubnetPollingUntilDone(request:)``
-  /// - ``deleteSubnetPollingUntilDone(name:)``
   /// - ``deleteSubnet(request:)``
   /// - ``deleteSubnet(request:options:)``
+  /// - ``deleteSubnetPollingUntilDone(name:)``
+  /// - ``deleteSubnetPollingUntilDone(request:)``
   public func deleteSubnetPollingUntilDone(
     request: DeleteSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -429,9 +429,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInterconnects(request:)``
+  /// - ``listInterconnectsByItems(parent:)``
   /// - ``listInterconnectsByItems(request:)``
   /// - ``listInterconnectsByItems(request:options:)``
-  /// - ``listInterconnectsByItems(parent:)``
   public func listInterconnects(
     request: ListInterconnectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.ListInterconnectsResponse {
@@ -444,8 +444,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInterconnect(request:)``
   /// - ``getInterconnect(name:)``
+  /// - ``getInterconnect(request:)``
   public func getInterconnect(
     request: GetInterconnectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.Interconnect {
@@ -458,8 +458,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``diagnoseInterconnect(request:)``
   /// - ``diagnoseInterconnect(name:)``
+  /// - ``diagnoseInterconnect(request:)``
   public func diagnoseInterconnect(
     request: DiagnoseInterconnectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.DiagnoseInterconnectResponse {
@@ -473,9 +473,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInterconnectAttachments(request:)``
+  /// - ``listInterconnectAttachmentsByItems(parent:)``
   /// - ``listInterconnectAttachmentsByItems(request:)``
   /// - ``listInterconnectAttachmentsByItems(request:options:)``
-  /// - ``listInterconnectAttachmentsByItems(parent:)``
   public func listInterconnectAttachments(
     request: ListInterconnectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.ListInterconnectAttachmentsResponse {
@@ -488,8 +488,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInterconnectAttachment(request:)``
   /// - ``getInterconnectAttachment(name:)``
+  /// - ``getInterconnectAttachment(request:)``
   public func getInterconnectAttachment(
     request: GetInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.InterconnectAttachment {
@@ -503,9 +503,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInterconnectAttachment(request:)``
+  /// - ``createInterconnectAttachmentPollingUntilDone(parent:interconnectAttachment:interconnectAttachmentId:)``
   /// - ``createInterconnectAttachmentPollingUntilDone(request:)``
   /// - ``createInterconnectAttachmentPollingUntilDone(request:options:)``
-  /// - ``createInterconnectAttachmentPollingUntilDone(parent:interconnectAttachment:interconnectAttachmentId:)``
   public func createInterconnectAttachment(
     request: CreateInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -518,10 +518,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInterconnectAttachmentPollingUntilDone(request:)``
-  /// - ``createInterconnectAttachmentPollingUntilDone(parent:interconnectAttachment:interconnectAttachmentId:)``
   /// - ``createInterconnectAttachment(request:)``
   /// - ``createInterconnectAttachment(request:options:)``
+  /// - ``createInterconnectAttachmentPollingUntilDone(parent:interconnectAttachment:interconnectAttachmentId:)``
+  /// - ``createInterconnectAttachmentPollingUntilDone(request:)``
   public func createInterconnectAttachmentPollingUntilDone(
     request: CreateInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterconnectAttachment {
@@ -554,9 +554,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInterconnectAttachment(request:)``
+  /// - ``deleteInterconnectAttachmentPollingUntilDone(name:)``
   /// - ``deleteInterconnectAttachmentPollingUntilDone(request:)``
   /// - ``deleteInterconnectAttachmentPollingUntilDone(request:options:)``
-  /// - ``deleteInterconnectAttachmentPollingUntilDone(name:)``
   public func deleteInterconnectAttachment(
     request: DeleteInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -569,10 +569,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInterconnectAttachmentPollingUntilDone(request:)``
-  /// - ``deleteInterconnectAttachmentPollingUntilDone(name:)``
   /// - ``deleteInterconnectAttachment(request:)``
   /// - ``deleteInterconnectAttachment(request:options:)``
+  /// - ``deleteInterconnectAttachmentPollingUntilDone(name:)``
+  /// - ``deleteInterconnectAttachmentPollingUntilDone(request:)``
   public func deleteInterconnectAttachmentPollingUntilDone(
     request: DeleteInterconnectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -604,9 +604,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRouters(request:)``
+  /// - ``listRoutersByItems(parent:)``
   /// - ``listRoutersByItems(request:)``
   /// - ``listRoutersByItems(request:options:)``
-  /// - ``listRoutersByItems(parent:)``
   public func listRouters(
     request: ListRoutersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.ListRoutersResponse {
@@ -619,8 +619,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRouter(request:)``
   /// - ``getRouter(name:)``
+  /// - ``getRouter(request:)``
   public func getRouter(
     request: GetRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.Router {
@@ -633,8 +633,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``diagnoseRouter(request:)``
   /// - ``diagnoseRouter(name:)``
+  /// - ``diagnoseRouter(request:)``
   public func diagnoseRouter(
     request: DiagnoseRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeNetworkV1.DiagnoseRouterResponse {
@@ -648,9 +648,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createRouter(request:)``
+  /// - ``createRouterPollingUntilDone(parent:router:routerId:)``
   /// - ``createRouterPollingUntilDone(request:)``
   /// - ``createRouterPollingUntilDone(request:options:)``
-  /// - ``createRouterPollingUntilDone(parent:router:routerId:)``
   public func createRouter(
     request: CreateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -663,10 +663,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRouterPollingUntilDone(request:)``
-  /// - ``createRouterPollingUntilDone(parent:router:routerId:)``
   /// - ``createRouter(request:)``
   /// - ``createRouter(request:options:)``
+  /// - ``createRouterPollingUntilDone(parent:router:routerId:)``
+  /// - ``createRouterPollingUntilDone(request:)``
   public func createRouterPollingUntilDone(
     request: CreateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Router {
@@ -713,10 +713,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateRouterPollingUntilDone(request:)``
-  /// - ``updateRouterPollingUntilDone(router:updateMask:)``
   /// - ``updateRouter(request:)``
   /// - ``updateRouter(request:options:)``
+  /// - ``updateRouterPollingUntilDone(request:)``
+  /// - ``updateRouterPollingUntilDone(router:updateMask:)``
   public func updateRouterPollingUntilDone(
     request: UpdateRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Router {
@@ -748,9 +748,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteRouter(request:)``
+  /// - ``deleteRouterPollingUntilDone(name:)``
   /// - ``deleteRouterPollingUntilDone(request:)``
   /// - ``deleteRouterPollingUntilDone(request:options:)``
-  /// - ``deleteRouterPollingUntilDone(name:)``
   public func deleteRouter(
     request: DeleteRouterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -763,10 +763,10 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRouterPollingUntilDone(request:)``
-  /// - ``deleteRouterPollingUntilDone(name:)``
   /// - ``deleteRouter(request:)``
   /// - ``deleteRouter(request:options:)``
+  /// - ``deleteRouterPollingUntilDone(name:)``
+  /// - ``deleteRouterPollingUntilDone(request:)``
   public func deleteRouterPollingUntilDone(
     request: DeleteRouterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -828,9 +828,9 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -856,8 +856,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -872,8 +872,8 @@ public final class EdgeNetworkClient: Clients.EdgeNetworkProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

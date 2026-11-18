@@ -56,9 +56,9 @@ public final class CloudControlsPartnerMonitoringClient: Clients
   /// ## See Also
   ///
   /// - ``listViolations(request:)``
+  /// - ``listViolationsByItems(parent:)``
   /// - ``listViolationsByItems(request:)``
   /// - ``listViolationsByItems(request:options:)``
-  /// - ``listViolationsByItems(parent:)``
   public func listViolations(
     request: ListViolationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse {
@@ -71,8 +71,8 @@ public final class CloudControlsPartnerMonitoringClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getViolation(request:)``
   /// - ``getViolation(name:)``
+  /// - ``getViolation(request:)``
   public func getViolation(
     request: GetViolationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Violation {

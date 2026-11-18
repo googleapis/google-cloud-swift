@@ -48,8 +48,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createDataTable(request:)``
   /// - ``createDataTable(parent:dataTable:dataTableId:)``
+  /// - ``createDataTable(request:)``
   public func createDataTable(
     request: CreateDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -63,9 +63,9 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listDataTables(request:)``
+  /// - ``listDataTablesByItems(parent:)``
   /// - ``listDataTablesByItems(request:)``
   /// - ``listDataTablesByItems(request:options:)``
-  /// - ``listDataTablesByItems(parent:)``
   public func listDataTables(
     request: ListDataTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse {
@@ -78,8 +78,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getDataTable(request:)``
   /// - ``getDataTable(name:)``
+  /// - ``getDataTable(request:)``
   public func getDataTable(
     request: GetDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -92,8 +92,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateDataTable(request:)``
   /// - ``updateDataTable(dataTable:updateMask:)``
+  /// - ``updateDataTable(request:)``
   public func updateDataTable(
     request: UpdateDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -106,8 +106,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataTable(request:)``
   /// - ``deleteDataTable(name:force:)``
+  /// - ``deleteDataTable(request:)``
   public func deleteDataTable(
     request: DeleteDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -120,8 +120,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createDataTableRow(request:)``
   /// - ``createDataTableRow(parent:dataTableRow:)``
+  /// - ``createDataTableRow(request:)``
   public func createDataTableRow(
     request: CreateDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -134,8 +134,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateDataTableRow(request:)``
   /// - ``updateDataTableRow(dataTableRow:updateMask:)``
+  /// - ``updateDataTableRow(request:)``
   public func updateDataTableRow(
     request: UpdateDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -149,9 +149,9 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listDataTableRows(request:)``
+  /// - ``listDataTableRowsByItems(parent:)``
   /// - ``listDataTableRowsByItems(request:)``
   /// - ``listDataTableRowsByItems(request:options:)``
-  /// - ``listDataTableRowsByItems(parent:)``
   public func listDataTableRows(
     request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse {
@@ -164,8 +164,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getDataTableRow(request:)``
   /// - ``getDataTableRow(name:)``
+  /// - ``getDataTableRow(request:)``
   public func getDataTableRow(
     request: GetDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -178,8 +178,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataTableRow(request:)``
   /// - ``deleteDataTableRow(name:)``
+  /// - ``deleteDataTableRow(request:)``
   public func deleteDataTableRow(
     request: DeleteDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -192,8 +192,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``bulkCreateDataTableRows(request:)``
   /// - ``bulkCreateDataTableRows(parent:requests:)``
+  /// - ``bulkCreateDataTableRows(request:)``
   public func bulkCreateDataTableRows(
     request: BulkCreateDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkCreateDataTableRowsResponse {
@@ -206,8 +206,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``bulkGetDataTableRows(request:)``
   /// - ``bulkGetDataTableRows(parent:requests:)``
+  /// - ``bulkGetDataTableRows(request:)``
   public func bulkGetDataTableRows(
     request: BulkGetDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkGetDataTableRowsResponse {
@@ -220,8 +220,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``bulkReplaceDataTableRows(request:)``
   /// - ``bulkReplaceDataTableRows(parent:requests:)``
+  /// - ``bulkReplaceDataTableRows(request:)``
   public func bulkReplaceDataTableRows(
     request: BulkReplaceDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkReplaceDataTableRowsResponse {
@@ -234,8 +234,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``bulkUpdateDataTableRows(request:)``
   /// - ``bulkUpdateDataTableRows(parent:requests:)``
+  /// - ``bulkUpdateDataTableRows(request:)``
   public func bulkUpdateDataTableRows(
     request: BulkUpdateDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkUpdateDataTableRowsResponse {
@@ -248,8 +248,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getDataTableOperationErrors(request:)``
   /// - ``getDataTableOperationErrors(name:)``
+  /// - ``getDataTableOperationErrors(request:)``
   public func getDataTableOperationErrors(
     request: GetDataTableOperationErrorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableOperationErrors {
@@ -265,9 +265,9 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -293,8 +293,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -309,8 +309,8 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -105,9 +105,9 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``purgeUserEventsPollingUntilDone(request:)``
   /// - ``purgeUserEvents(request:)``
   /// - ``purgeUserEvents(request:options:)``
+  /// - ``purgeUserEventsPollingUntilDone(request:)``
   public func purgeUserEventsPollingUntilDone(
     request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> PurgeUserEventsResponse {
@@ -167,9 +167,9 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``importUserEventsPollingUntilDone(request:)``
   /// - ``importUserEvents(request:)``
   /// - ``importUserEvents(request:options:)``
+  /// - ``importUserEventsPollingUntilDone(request:)``
   public func importUserEventsPollingUntilDone(
     request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportUserEventsResponse {
@@ -231,9 +231,9 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``rejoinUserEventsPollingUntilDone(request:)``
   /// - ``rejoinUserEvents(request:)``
   /// - ``rejoinUserEvents(request:options:)``
+  /// - ``rejoinUserEventsPollingUntilDone(request:)``
   public func rejoinUserEventsPollingUntilDone(
     request: RejoinUserEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> RejoinUserEventsResponse {
@@ -269,9 +269,9 @@ public final class UserEventServiceClient: Clients.UserEventServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

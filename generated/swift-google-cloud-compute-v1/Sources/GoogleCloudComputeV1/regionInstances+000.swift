@@ -53,9 +53,9 @@
     /// ## See Also
     ///
     /// - ``bulkInsert(request:)``
+    /// - ``bulkInsertPollingUntilDone(project:region:body:)``
     /// - ``bulkInsertPollingUntilDone(request:)``
     /// - ``bulkInsertPollingUntilDone(request:options:)``
-    /// - ``bulkInsertPollingUntilDone(project:region:body:)``
     public func bulkInsert(
       request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -74,10 +74,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``bulkInsertPollingUntilDone(request:)``
-    /// - ``bulkInsertPollingUntilDone(project:region:body:)``
     /// - ``bulkInsert(request:)``
     /// - ``bulkInsert(request:options:)``
+    /// - ``bulkInsertPollingUntilDone(project:region:body:)``
+    /// - ``bulkInsertPollingUntilDone(request:)``
     public func bulkInsertPollingUntilDone(
       request: RegionInstancesClient.BulkInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

@@ -60,9 +60,9 @@
     /// ## See Also
     ///
     /// - ``createEngine(request:)``
+    /// - ``createEnginePollingUntilDone(parent:engine:engineId:)``
     /// - ``createEnginePollingUntilDone(request:)``
     /// - ``createEnginePollingUntilDone(request:options:)``
-    /// - ``createEnginePollingUntilDone(parent:engine:engineId:)``
     public func createEngine(
       request: CreateEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -77,10 +77,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createEnginePollingUntilDone(request:)``
-    /// - ``createEnginePollingUntilDone(parent:engine:engineId:)``
     /// - ``createEngine(request:)``
     /// - ``createEngine(request:options:)``
+    /// - ``createEnginePollingUntilDone(parent:engine:engineId:)``
+    /// - ``createEnginePollingUntilDone(request:)``
     public func createEnginePollingUntilDone(
       request: CreateEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> Engine {
@@ -114,9 +114,9 @@
     /// ## See Also
     ///
     /// - ``deleteEngine(request:)``
+    /// - ``deleteEnginePollingUntilDone(name:)``
     /// - ``deleteEnginePollingUntilDone(request:)``
     /// - ``deleteEnginePollingUntilDone(request:options:)``
-    /// - ``deleteEnginePollingUntilDone(name:)``
     public func deleteEngine(
       request: DeleteEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -131,10 +131,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteEnginePollingUntilDone(request:)``
-    /// - ``deleteEnginePollingUntilDone(name:)``
     /// - ``deleteEngine(request:)``
     /// - ``deleteEngine(request:options:)``
+    /// - ``deleteEnginePollingUntilDone(name:)``
+    /// - ``deleteEnginePollingUntilDone(request:)``
     public func deleteEnginePollingUntilDone(
       request: DeleteEngineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -168,8 +168,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateEngine(request:)``
     /// - ``updateEngine(engine:updateMask:)``
+    /// - ``updateEngine(request:)``
     public func updateEngine(
       request: UpdateEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -184,8 +184,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEngine(request:)``
     /// - ``getEngine(name:)``
+    /// - ``getEngine(request:)``
     public func getEngine(
       request: GetEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -202,9 +202,9 @@
     /// ## See Also
     ///
     /// - ``listEngines(request:)``
+    /// - ``listEnginesByItems(parent:)``
     /// - ``listEnginesByItems(request:)``
     /// - ``listEnginesByItems(request:options:)``
-    /// - ``listEnginesByItems(parent:)``
     public func listEngines(
       request: ListEnginesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse {
@@ -267,9 +267,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -295,8 +295,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``attachNetworkEndpoints(request:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
     /// - ``attachNetworkEndpointsPollingUntilDone(request:)``
     /// - ``attachNetworkEndpointsPollingUntilDone(request:options:)``
-    /// - ``attachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
     public func attachNetworkEndpoints(
       request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -76,10 +76,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``attachNetworkEndpointsPollingUntilDone(request:)``
-    /// - ``attachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
     /// - ``attachNetworkEndpoints(request:)``
     /// - ``attachNetworkEndpoints(request:options:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(request:)``
     public func attachNetworkEndpointsPollingUntilDone(
       request: RegionNetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -128,9 +128,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:networkEndpointGroup:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:networkEndpointGroup:)``
     public func delete(
       request: RegionNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,10 +149,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:networkEndpointGroup:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:networkEndpointGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionNetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -199,9 +199,9 @@
     /// ## See Also
     ///
     /// - ``detachNetworkEndpoints(request:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
     /// - ``detachNetworkEndpointsPollingUntilDone(request:)``
     /// - ``detachNetworkEndpointsPollingUntilDone(request:options:)``
-    /// - ``detachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
     public func detachNetworkEndpoints(
       request: RegionNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -220,10 +220,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``detachNetworkEndpointsPollingUntilDone(request:)``
-    /// - ``detachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
     /// - ``detachNetworkEndpoints(request:)``
     /// - ``detachNetworkEndpoints(request:options:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(project:region:networkEndpointGroup:body:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(request:)``
     public func detachNetworkEndpointsPollingUntilDone(
       request: RegionNetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -270,8 +270,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:networkEndpointGroup:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionNetworkEndpointGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroup {
@@ -300,9 +300,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -335,10 +335,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionNetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -386,9 +386,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionNetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList {
@@ -402,9 +402,9 @@
     /// ## See Also
     ///
     /// - ``listNetworkEndpoints(request:)``
+    /// - ``listNetworkEndpointsByItems(project:region:networkEndpointGroup:)``
     /// - ``listNetworkEndpointsByItems(request:)``
     /// - ``listNetworkEndpointsByItems(request:options:)``
-    /// - ``listNetworkEndpointsByItems(project:region:networkEndpointGroup:)``
     public func listNetworkEndpoints(
       request: RegionNetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions

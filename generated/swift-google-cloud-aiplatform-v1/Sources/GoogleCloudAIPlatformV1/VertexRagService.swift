@@ -54,8 +54,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``retrieveContexts(request:)``
     /// - ``retrieveContexts(parent:query:)``
+    /// - ``retrieveContexts(request:)``
     public func retrieveContexts(
       request: RetrieveContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.RetrieveContextsResponse {
@@ -69,8 +69,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``augmentPrompt(request:)``
     /// - ``augmentPrompt(parent:model:vertexRagStore:)``
+    /// - ``augmentPrompt(request:)``
     public func augmentPrompt(
       request: AugmentPromptRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AugmentPromptResponse {
@@ -85,8 +85,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``corroborateContent(request:)``
     /// - ``corroborateContent(parent:content:facts:)``
+    /// - ``corroborateContent(request:)``
     public func corroborateContent(
       request: CorroborateContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CorroborateContentResponse {
@@ -99,8 +99,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``askContexts(request:)``
     /// - ``askContexts(parent:query:)``
+    /// - ``askContexts(request:)``
     public func askContexts(
       request: AskContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AskContextsResponse {
@@ -114,9 +114,9 @@
     /// ## See Also
     ///
     /// - ``asyncRetrieveContexts(request:)``
+    /// - ``asyncRetrieveContextsPollingUntilDone(parent:query:)``
     /// - ``asyncRetrieveContextsPollingUntilDone(request:)``
     /// - ``asyncRetrieveContextsPollingUntilDone(request:options:)``
-    /// - ``asyncRetrieveContextsPollingUntilDone(parent:query:)``
     public func asyncRetrieveContexts(
       request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -129,10 +129,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``asyncRetrieveContextsPollingUntilDone(request:)``
-    /// - ``asyncRetrieveContextsPollingUntilDone(parent:query:)``
     /// - ``asyncRetrieveContexts(request:)``
     /// - ``asyncRetrieveContexts(request:options:)``
+    /// - ``asyncRetrieveContextsPollingUntilDone(parent:query:)``
+    /// - ``asyncRetrieveContextsPollingUntilDone(request:)``
     public func asyncRetrieveContextsPollingUntilDone(
       request: AsyncRetrieveContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> AsyncRetrieveContextsResponse {
@@ -246,9 +246,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -274,8 +274,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -290,8 +290,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -68,9 +68,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemcacheV1.ListInstancesResponse {
@@ -83,8 +83,8 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemcacheV1.Instance {
@@ -98,9 +98,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,10 +113,10 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -148,9 +148,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -163,10 +163,10 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -201,9 +201,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``updateParameters(request:)``
+  /// - ``updateParametersPollingUntilDone(name:updateMask:parameters:)``
   /// - ``updateParametersPollingUntilDone(request:)``
   /// - ``updateParametersPollingUntilDone(request:options:)``
-  /// - ``updateParametersPollingUntilDone(name:updateMask:parameters:)``
   public func updateParameters(
     request: UpdateParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -219,10 +219,10 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateParametersPollingUntilDone(request:)``
-  /// - ``updateParametersPollingUntilDone(name:updateMask:parameters:)``
   /// - ``updateParameters(request:)``
   /// - ``updateParameters(request:options:)``
+  /// - ``updateParametersPollingUntilDone(name:updateMask:parameters:)``
+  /// - ``updateParametersPollingUntilDone(request:)``
   public func updateParametersPollingUntilDone(
     request: UpdateParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -254,9 +254,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -269,10 +269,10 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -305,9 +305,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``applyParameters(request:)``
+  /// - ``applyParametersPollingUntilDone(name:nodeIds:applyAll:)``
   /// - ``applyParametersPollingUntilDone(request:)``
   /// - ``applyParametersPollingUntilDone(request:options:)``
-  /// - ``applyParametersPollingUntilDone(name:nodeIds:applyAll:)``
   public func applyParameters(
     request: ApplyParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -321,10 +321,10 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``applyParametersPollingUntilDone(request:)``
-  /// - ``applyParametersPollingUntilDone(name:nodeIds:applyAll:)``
   /// - ``applyParameters(request:)``
   /// - ``applyParameters(request:options:)``
+  /// - ``applyParametersPollingUntilDone(name:nodeIds:applyAll:)``
+  /// - ``applyParametersPollingUntilDone(request:)``
   public func applyParametersPollingUntilDone(
     request: ApplyParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -356,9 +356,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(instance:rescheduleType:scheduleTime:)``
   /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   /// - ``rescheduleMaintenancePollingUntilDone(request:options:)``
-  /// - ``rescheduleMaintenancePollingUntilDone(instance:rescheduleType:scheduleTime:)``
   public func rescheduleMaintenance(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -371,10 +371,10 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
-  /// - ``rescheduleMaintenancePollingUntilDone(instance:rescheduleType:scheduleTime:)``
   /// - ``rescheduleMaintenance(request:)``
   /// - ``rescheduleMaintenance(request:options:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(instance:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -436,9 +436,9 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -464,8 +464,8 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -480,8 +480,8 @@ public final class CloudMemcacheClient: Clients.CloudMemcacheProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

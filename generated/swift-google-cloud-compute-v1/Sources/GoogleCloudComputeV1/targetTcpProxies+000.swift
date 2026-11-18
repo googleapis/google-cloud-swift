@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList {
@@ -72,9 +72,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:targetTcpProxy:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:targetTcpProxy:)``
     public func delete(
       request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -92,10 +92,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:targetTcpProxy:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:targetTcpProxy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -140,8 +140,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:targetTcpProxy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: TargetTcpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxy {
@@ -156,9 +156,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -177,10 +177,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -227,9 +227,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxyList {
@@ -243,9 +243,9 @@
     /// ## See Also
     ///
     /// - ``setBackendService(request:)``
+    /// - ``setBackendServicePollingUntilDone(project:targetTcpProxy:body:)``
     /// - ``setBackendServicePollingUntilDone(request:)``
     /// - ``setBackendServicePollingUntilDone(request:options:)``
-    /// - ``setBackendServicePollingUntilDone(project:targetTcpProxy:body:)``
     public func setBackendService(
       request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -263,10 +263,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setBackendServicePollingUntilDone(request:)``
-    /// - ``setBackendServicePollingUntilDone(project:targetTcpProxy:body:)``
     /// - ``setBackendService(request:)``
     /// - ``setBackendService(request:options:)``
+    /// - ``setBackendServicePollingUntilDone(project:targetTcpProxy:body:)``
+    /// - ``setBackendServicePollingUntilDone(request:)``
     public func setBackendServicePollingUntilDone(
       request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -312,9 +312,9 @@
     /// ## See Also
     ///
     /// - ``setProxyHeader(request:)``
+    /// - ``setProxyHeaderPollingUntilDone(project:targetTcpProxy:body:)``
     /// - ``setProxyHeaderPollingUntilDone(request:)``
     /// - ``setProxyHeaderPollingUntilDone(request:options:)``
-    /// - ``setProxyHeaderPollingUntilDone(project:targetTcpProxy:body:)``
     public func setProxyHeader(
       request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -332,10 +332,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setProxyHeaderPollingUntilDone(request:)``
-    /// - ``setProxyHeaderPollingUntilDone(project:targetTcpProxy:body:)``
     /// - ``setProxyHeader(request:)``
     /// - ``setProxyHeader(request:options:)``
+    /// - ``setProxyHeaderPollingUntilDone(project:targetTcpProxy:body:)``
+    /// - ``setProxyHeaderPollingUntilDone(request:)``
     public func setProxyHeaderPollingUntilDone(
       request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -380,8 +380,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: TargetTcpProxiesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {

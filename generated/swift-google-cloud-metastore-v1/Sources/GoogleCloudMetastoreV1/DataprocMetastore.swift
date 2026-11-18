@@ -71,9 +71,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``listServices(request:)``
+  /// - ``listServicesByItems(parent:)``
   /// - ``listServicesByItems(request:)``
   /// - ``listServicesByItems(request:options:)``
-  /// - ``listServicesByItems(parent:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.ListServicesResponse {
@@ -86,8 +86,8 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getService(request:)``
   /// - ``getService(name:)``
+  /// - ``getService(request:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.Service {
@@ -101,9 +101,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``createService(request:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   /// - ``createServicePollingUntilDone(request:)``
   /// - ``createServicePollingUntilDone(request:options:)``
-  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -116,10 +116,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createServicePollingUntilDone(request:)``
-  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   /// - ``createService(request:)``
   /// - ``createService(request:options:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
+  /// - ``createServicePollingUntilDone(request:)``
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -166,10 +166,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateServicePollingUntilDone(request:)``
-  /// - ``updateServicePollingUntilDone(service:updateMask:)``
   /// - ``updateService(request:)``
   /// - ``updateService(request:options:)``
+  /// - ``updateServicePollingUntilDone(request:)``
+  /// - ``updateServicePollingUntilDone(service:updateMask:)``
   public func updateServicePollingUntilDone(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -201,9 +201,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``deleteService(request:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
   /// - ``deleteServicePollingUntilDone(request:)``
   /// - ``deleteServicePollingUntilDone(request:options:)``
-  /// - ``deleteServicePollingUntilDone(name:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -216,10 +216,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteServicePollingUntilDone(request:)``
-  /// - ``deleteServicePollingUntilDone(name:)``
   /// - ``deleteService(request:)``
   /// - ``deleteService(request:options:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -251,9 +251,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``listMetadataImports(request:)``
+  /// - ``listMetadataImportsByItems(parent:)``
   /// - ``listMetadataImportsByItems(request:)``
   /// - ``listMetadataImportsByItems(request:options:)``
-  /// - ``listMetadataImportsByItems(parent:)``
   public func listMetadataImports(
     request: ListMetadataImportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.ListMetadataImportsResponse {
@@ -266,8 +266,8 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getMetadataImport(request:)``
   /// - ``getMetadataImport(name:)``
+  /// - ``getMetadataImport(request:)``
   public func getMetadataImport(
     request: GetMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.MetadataImport {
@@ -281,9 +281,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``createMetadataImport(request:)``
+  /// - ``createMetadataImportPollingUntilDone(parent:metadataImport:metadataImportId:)``
   /// - ``createMetadataImportPollingUntilDone(request:)``
   /// - ``createMetadataImportPollingUntilDone(request:options:)``
-  /// - ``createMetadataImportPollingUntilDone(parent:metadataImport:metadataImportId:)``
   public func createMetadataImport(
     request: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -296,10 +296,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createMetadataImportPollingUntilDone(request:)``
-  /// - ``createMetadataImportPollingUntilDone(parent:metadataImport:metadataImportId:)``
   /// - ``createMetadataImport(request:)``
   /// - ``createMetadataImport(request:options:)``
+  /// - ``createMetadataImportPollingUntilDone(parent:metadataImport:metadataImportId:)``
+  /// - ``createMetadataImportPollingUntilDone(request:)``
   public func createMetadataImportPollingUntilDone(
     request: CreateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataImport {
@@ -333,9 +333,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``updateMetadataImport(request:)``
+  /// - ``updateMetadataImportPollingUntilDone(metadataImport:updateMask:)``
   /// - ``updateMetadataImportPollingUntilDone(request:)``
   /// - ``updateMetadataImportPollingUntilDone(request:options:)``
-  /// - ``updateMetadataImportPollingUntilDone(metadataImport:updateMask:)``
   public func updateMetadataImport(
     request: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -349,10 +349,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateMetadataImportPollingUntilDone(request:)``
-  /// - ``updateMetadataImportPollingUntilDone(metadataImport:updateMask:)``
   /// - ``updateMetadataImport(request:)``
   /// - ``updateMetadataImport(request:options:)``
+  /// - ``updateMetadataImportPollingUntilDone(metadataImport:updateMask:)``
+  /// - ``updateMetadataImportPollingUntilDone(request:)``
   public func updateMetadataImportPollingUntilDone(
     request: UpdateMetadataImportRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataImport {
@@ -399,9 +399,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``exportMetadataPollingUntilDone(request:)``
   /// - ``exportMetadata(request:)``
   /// - ``exportMetadata(request:options:)``
+  /// - ``exportMetadataPollingUntilDone(request:)``
   public func exportMetadataPollingUntilDone(
     request: ExportMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataExport {
@@ -449,10 +449,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``restoreServicePollingUntilDone(request:)``
-  /// - ``restoreServicePollingUntilDone(service:backup:)``
   /// - ``restoreService(request:)``
   /// - ``restoreService(request:options:)``
+  /// - ``restoreServicePollingUntilDone(request:)``
+  /// - ``restoreServicePollingUntilDone(service:backup:)``
   public func restoreServicePollingUntilDone(
     request: RestoreServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Restore {
@@ -484,9 +484,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
   /// - ``listBackupsByItems(request:)``
   /// - ``listBackupsByItems(request:options:)``
-  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.ListBackupsResponse {
@@ -499,8 +499,8 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getBackup(request:)``
   /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.Backup {
@@ -514,9 +514,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``createBackup(request:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   /// - ``createBackupPollingUntilDone(request:)``
   /// - ``createBackupPollingUntilDone(request:options:)``
-  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   public func createBackup(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -529,10 +529,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createBackupPollingUntilDone(request:)``
-  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   /// - ``createBackup(request:)``
   /// - ``createBackup(request:options:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
+  /// - ``createBackupPollingUntilDone(request:)``
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -564,9 +564,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackupPollingUntilDone(request:)``
   /// - ``deleteBackupPollingUntilDone(request:options:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -579,10 +579,10 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackupPollingUntilDone(request:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackup(request:)``
   /// - ``deleteBackup(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -628,9 +628,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``queryMetadataPollingUntilDone(request:)``
   /// - ``queryMetadata(request:)``
   /// - ``queryMetadata(request:options:)``
+  /// - ``queryMetadataPollingUntilDone(request:)``
   public func queryMetadataPollingUntilDone(
     request: QueryMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> QueryMetadataResponse {
@@ -677,9 +677,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``moveTableToDatabasePollingUntilDone(request:)``
   /// - ``moveTableToDatabase(request:)``
   /// - ``moveTableToDatabase(request:options:)``
+  /// - ``moveTableToDatabasePollingUntilDone(request:)``
   public func moveTableToDatabasePollingUntilDone(
     request: MoveTableToDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> MoveTableToDatabaseResponse {
@@ -733,9 +733,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``alterMetadataResourceLocationPollingUntilDone(request:)``
   /// - ``alterMetadataResourceLocation(request:)``
   /// - ``alterMetadataResourceLocation(request:options:)``
+  /// - ``alterMetadataResourceLocationPollingUntilDone(request:)``
   public func alterMetadataResourceLocationPollingUntilDone(
     request: AlterMetadataResourceLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> AlterMetadataResourceLocationResponse {
@@ -849,9 +849,9 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -877,8 +877,8 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -893,8 +893,8 @@ public final class DataprocMetastoreClient: Clients.DataprocMetastoreProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

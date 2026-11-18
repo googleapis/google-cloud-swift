@@ -54,9 +54,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createService(request:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   /// - ``createServicePollingUntilDone(request:)``
   /// - ``createServicePollingUntilDone(request:options:)``
-  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -69,10 +69,10 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createServicePollingUntilDone(request:)``
-  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
   /// - ``createService(request:)``
   /// - ``createService(request:options:)``
+  /// - ``createServicePollingUntilDone(parent:service:serviceId:)``
+  /// - ``createServicePollingUntilDone(request:)``
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -103,8 +103,8 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getService(request:)``
   /// - ``getService(name:)``
+  /// - ``getService(request:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Service {
@@ -118,9 +118,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listServices(request:)``
+  /// - ``listServicesByItems(parent:)``
   /// - ``listServicesByItems(request:)``
   /// - ``listServicesByItems(request:options:)``
-  /// - ``listServicesByItems(parent:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListServicesResponse {
@@ -150,11 +150,11 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
+  /// - ``updateService(request:)``
+  /// - ``updateService(request:options:)``
   /// - ``updateServicePollingUntilDone(request:)``
   /// - ``updateServicePollingUntilDone(service:)``
   /// - ``updateServicePollingUntilDone(service:updateMask:)``
-  /// - ``updateService(request:)``
-  /// - ``updateService(request:options:)``
   public func updateServicePollingUntilDone(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -188,9 +188,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteService(request:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
   /// - ``deleteServicePollingUntilDone(request:)``
   /// - ``deleteServicePollingUntilDone(request:options:)``
-  /// - ``deleteServicePollingUntilDone(name:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -205,10 +205,10 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServicePollingUntilDone(request:)``
-  /// - ``deleteServicePollingUntilDone(name:)``
   /// - ``deleteService(request:)``
   /// - ``deleteService(request:options:)``
+  /// - ``deleteServicePollingUntilDone(name:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -285,9 +285,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -313,8 +313,8 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

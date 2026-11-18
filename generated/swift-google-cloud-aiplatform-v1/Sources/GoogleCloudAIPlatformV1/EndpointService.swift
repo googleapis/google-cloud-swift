@@ -56,10 +56,10 @@
     /// ## See Also
     ///
     /// - ``createEndpoint(request:)``
-    /// - ``createEndpointPollingUntilDone(request:)``
-    /// - ``createEndpointPollingUntilDone(request:options:)``
     /// - ``createEndpointPollingUntilDone(parent:endpoint:)``
     /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
+    /// - ``createEndpointPollingUntilDone(request:)``
+    /// - ``createEndpointPollingUntilDone(request:options:)``
     public func createEndpoint(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -72,11 +72,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``createEndpointPollingUntilDone(request:)``
-    /// - ``createEndpointPollingUntilDone(parent:endpoint:)``
-    /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
     /// - ``createEndpoint(request:)``
     /// - ``createEndpoint(request:options:)``
+    /// - ``createEndpointPollingUntilDone(parent:endpoint:)``
+    /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
+    /// - ``createEndpointPollingUntilDone(request:)``
     public func createEndpointPollingUntilDone(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> Endpoint {
@@ -107,8 +107,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEndpoint(request:)``
     /// - ``getEndpoint(name:)``
+    /// - ``getEndpoint(request:)``
     public func getEndpoint(
       request: GetEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
@@ -122,9 +122,9 @@
     /// ## See Also
     ///
     /// - ``listEndpoints(request:)``
+    /// - ``listEndpointsByItems(parent:)``
     /// - ``listEndpointsByItems(request:)``
     /// - ``listEndpointsByItems(request:options:)``
-    /// - ``listEndpointsByItems(parent:)``
     public func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListEndpointsResponse {
@@ -137,8 +137,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateEndpoint(request:)``
     /// - ``updateEndpoint(endpoint:updateMask:)``
+    /// - ``updateEndpoint(request:)``
     public func updateEndpoint(
       request: UpdateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
@@ -152,9 +152,9 @@
     /// ## See Also
     ///
     /// - ``updateEndpointLongRunning(request:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(endpoint:)``
     /// - ``updateEndpointLongRunningPollingUntilDone(request:)``
     /// - ``updateEndpointLongRunningPollingUntilDone(request:options:)``
-    /// - ``updateEndpointLongRunningPollingUntilDone(endpoint:)``
     public func updateEndpointLongRunning(
       request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -167,10 +167,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateEndpointLongRunningPollingUntilDone(request:)``
-    /// - ``updateEndpointLongRunningPollingUntilDone(endpoint:)``
     /// - ``updateEndpointLongRunning(request:)``
     /// - ``updateEndpointLongRunning(request:options:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(endpoint:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(request:)``
     public func updateEndpointLongRunningPollingUntilDone(
       request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> Endpoint {
@@ -202,9 +202,9 @@
     /// ## See Also
     ///
     /// - ``deleteEndpoint(request:)``
+    /// - ``deleteEndpointPollingUntilDone(name:)``
     /// - ``deleteEndpointPollingUntilDone(request:)``
     /// - ``deleteEndpointPollingUntilDone(request:options:)``
-    /// - ``deleteEndpointPollingUntilDone(name:)``
     public func deleteEndpoint(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -217,10 +217,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteEndpointPollingUntilDone(request:)``
-    /// - ``deleteEndpointPollingUntilDone(name:)``
     /// - ``deleteEndpoint(request:)``
     /// - ``deleteEndpoint(request:options:)``
+    /// - ``deleteEndpointPollingUntilDone(name:)``
+    /// - ``deleteEndpointPollingUntilDone(request:)``
     public func deleteEndpointPollingUntilDone(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -253,9 +253,9 @@
     /// ## See Also
     ///
     /// - ``deployModel(request:)``
+    /// - ``deployModelPollingUntilDone(endpoint:deployedModel:trafficSplit:)``
     /// - ``deployModelPollingUntilDone(request:)``
     /// - ``deployModelPollingUntilDone(request:options:)``
-    /// - ``deployModelPollingUntilDone(endpoint:deployedModel:trafficSplit:)``
     public func deployModel(
       request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -268,10 +268,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deployModelPollingUntilDone(request:)``
-    /// - ``deployModelPollingUntilDone(endpoint:deployedModel:trafficSplit:)``
     /// - ``deployModel(request:)``
     /// - ``deployModel(request:options:)``
+    /// - ``deployModelPollingUntilDone(endpoint:deployedModel:trafficSplit:)``
+    /// - ``deployModelPollingUntilDone(request:)``
     public func deployModelPollingUntilDone(
       request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeployModelResponse {
@@ -305,9 +305,9 @@
     /// ## See Also
     ///
     /// - ``undeployModel(request:)``
+    /// - ``undeployModelPollingUntilDone(endpoint:deployedModelId:trafficSplit:)``
     /// - ``undeployModelPollingUntilDone(request:)``
     /// - ``undeployModelPollingUntilDone(request:options:)``
-    /// - ``undeployModelPollingUntilDone(endpoint:deployedModelId:trafficSplit:)``
     public func undeployModel(
       request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -321,10 +321,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``undeployModelPollingUntilDone(request:)``
-    /// - ``undeployModelPollingUntilDone(endpoint:deployedModelId:trafficSplit:)``
     /// - ``undeployModel(request:)``
     /// - ``undeployModel(request:options:)``
+    /// - ``undeployModelPollingUntilDone(endpoint:deployedModelId:trafficSplit:)``
+    /// - ``undeployModelPollingUntilDone(request:)``
     public func undeployModelPollingUntilDone(
       request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> UndeployModelResponse {
@@ -361,9 +361,9 @@
     /// ## See Also
     ///
     /// - ``mutateDeployedModel(request:)``
+    /// - ``mutateDeployedModelPollingUntilDone(endpoint:deployedModel:updateMask:)``
     /// - ``mutateDeployedModelPollingUntilDone(request:)``
     /// - ``mutateDeployedModelPollingUntilDone(request:options:)``
-    /// - ``mutateDeployedModelPollingUntilDone(endpoint:deployedModel:updateMask:)``
     public func mutateDeployedModel(
       request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -379,10 +379,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``mutateDeployedModelPollingUntilDone(request:)``
-    /// - ``mutateDeployedModelPollingUntilDone(endpoint:deployedModel:updateMask:)``
     /// - ``mutateDeployedModel(request:)``
     /// - ``mutateDeployedModel(request:options:)``
+    /// - ``mutateDeployedModelPollingUntilDone(endpoint:deployedModel:updateMask:)``
+    /// - ``mutateDeployedModelPollingUntilDone(request:)``
     public func mutateDeployedModelPollingUntilDone(
       request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> MutateDeployedModelResponse {
@@ -496,9 +496,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -524,8 +524,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -540,8 +540,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

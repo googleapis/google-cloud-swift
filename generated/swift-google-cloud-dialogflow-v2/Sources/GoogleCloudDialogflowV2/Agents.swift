@@ -55,8 +55,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getAgent(request:)``
     /// - ``getAgent(parent:)``
+    /// - ``getAgent(request:)``
     public func getAgent(
       request: GetAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Agent {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setAgent(request:)``
     /// - ``setAgent(agent:)``
+    /// - ``setAgent(request:)``
     public func setAgent(
       request: SetAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Agent {
@@ -87,8 +87,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteAgent(request:)``
     /// - ``deleteAgent(parent:)``
+    /// - ``deleteAgent(request:)``
     public func deleteAgent(
       request: DeleteAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -108,9 +108,9 @@
     /// ## See Also
     ///
     /// - ``searchAgents(request:)``
+    /// - ``searchAgentsByItems(parent:)``
     /// - ``searchAgentsByItems(request:)``
     /// - ``searchAgentsByItems(request:options:)``
-    /// - ``searchAgentsByItems(parent:)``
     public func searchAgents(
       request: SearchAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SearchAgentsResponse {
@@ -137,9 +137,9 @@
     /// ## See Also
     ///
     /// - ``trainAgent(request:)``
+    /// - ``trainAgentPollingUntilDone(parent:)``
     /// - ``trainAgentPollingUntilDone(request:)``
     /// - ``trainAgentPollingUntilDone(request:options:)``
-    /// - ``trainAgentPollingUntilDone(parent:)``
     public func trainAgent(
       request: TrainAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -165,10 +165,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``trainAgentPollingUntilDone(request:)``
-    /// - ``trainAgentPollingUntilDone(parent:)``
     /// - ``trainAgent(request:)``
     /// - ``trainAgent(request:options:)``
+    /// - ``trainAgentPollingUntilDone(parent:)``
+    /// - ``trainAgentPollingUntilDone(request:)``
     public func trainAgentPollingUntilDone(
       request: TrainAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -212,9 +212,9 @@
     /// ## See Also
     ///
     /// - ``exportAgent(request:)``
+    /// - ``exportAgentPollingUntilDone(parent:)``
     /// - ``exportAgentPollingUntilDone(request:)``
     /// - ``exportAgentPollingUntilDone(request:options:)``
-    /// - ``exportAgentPollingUntilDone(parent:)``
     public func exportAgent(
       request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -238,10 +238,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportAgentPollingUntilDone(request:)``
-    /// - ``exportAgentPollingUntilDone(parent:)``
     /// - ``exportAgent(request:)``
     /// - ``exportAgent(request:options:)``
+    /// - ``exportAgentPollingUntilDone(parent:)``
+    /// - ``exportAgentPollingUntilDone(request:)``
     public func exportAgentPollingUntilDone(
       request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportAgentResponse {
@@ -346,9 +346,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importAgentPollingUntilDone(request:)``
     /// - ``importAgent(request:)``
     /// - ``importAgent(request:options:)``
+    /// - ``importAgentPollingUntilDone(request:)``
     public func importAgentPollingUntilDone(
       request: ImportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -447,9 +447,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``restoreAgentPollingUntilDone(request:)``
     /// - ``restoreAgent(request:)``
     /// - ``restoreAgent(request:options:)``
+    /// - ``restoreAgentPollingUntilDone(request:)``
     public func restoreAgentPollingUntilDone(
       request: RestoreAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -543,9 +543,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -571,8 +571,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

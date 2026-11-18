@@ -47,8 +47,8 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCase(request:)``
   /// - ``getCase(name:)``
+  /// - ``getCase(request:)``
   public func getCase(
     request: GetCaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Case {
@@ -66,9 +66,9 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCases(request:)``
+  /// - ``listCasesByItems(parent:)``
   /// - ``listCasesByItems(request:)``
   /// - ``listCasesByItems(request:options:)``
-  /// - ``listCasesByItems(parent:)``
   public func listCases(
     request: ListCasesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListCasesResponse {
@@ -100,8 +100,8 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCase(request:)``
   /// - ``createCase(parent:case:)``
+  /// - ``createCase(request:)``
   public func createCase(
     request: CreateCaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Case {
@@ -114,8 +114,8 @@ public final class CaseServiceClient: Clients.CaseServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCase(request:)``
   /// - ``updateCase(case:updateMask:)``
+  /// - ``updateCase(request:)``
   public func updateCase(
     request: UpdateCaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Case {

@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``addNodes(request:)``
+    /// - ``addNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``addNodesPollingUntilDone(request:)``
     /// - ``addNodesPollingUntilDone(request:options:)``
-    /// - ``addNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     public func addNodes(
       request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``addNodesPollingUntilDone(request:)``
-    /// - ``addNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``addNodes(request:)``
     /// - ``addNodes(request:options:)``
+    /// - ``addNodesPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``addNodesPollingUntilDone(request:)``
     public func addNodesPollingUntilDone(
       request: NodeGroupsClient.AddNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -126,9 +126,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: NodeGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroupAggregatedList {
@@ -142,9 +142,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:nodeGroup:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:zone:nodeGroup:)``
     public func delete(
       request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -162,10 +162,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:zone:nodeGroup:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:nodeGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: NodeGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -212,9 +212,9 @@
     /// ## See Also
     ///
     /// - ``deleteNodes(request:)``
+    /// - ``deleteNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``deleteNodesPollingUntilDone(request:)``
     /// - ``deleteNodesPollingUntilDone(request:options:)``
-    /// - ``deleteNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     public func deleteNodes(
       request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -232,10 +232,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNodesPollingUntilDone(request:)``
-    /// - ``deleteNodesPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``deleteNodes(request:)``
     /// - ``deleteNodes(request:options:)``
+    /// - ``deleteNodesPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``deleteNodesPollingUntilDone(request:)``
     public func deleteNodesPollingUntilDone(
       request: NodeGroupsClient.DeleteNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -284,8 +284,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:nodeGroup:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NodeGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroup {
@@ -299,8 +299,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:zone:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: NodeGroupsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -315,9 +315,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:initialNodeCount:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:zone:initialNodeCount:body:)``
     public func insert(
       request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -336,10 +336,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:zone:initialNodeCount:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:initialNodeCount:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: NodeGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -387,9 +387,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:)``
     public func list(
       request: NodeGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroupList {
@@ -403,9 +403,9 @@
     /// ## See Also
     ///
     /// - ``listNodes(request:)``
+    /// - ``listNodesByItems(project:zone:nodeGroup:)``
     /// - ``listNodesByItems(request:)``
     /// - ``listNodesByItems(request:options:)``
-    /// - ``listNodesByItems(project:zone:nodeGroup:)``
     public func listNodes(
       request: NodeGroupsClient.ListNodesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeGroupsListNodes {
@@ -419,9 +419,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:zone:nodeGroup:body:)``
     public func patch(
       request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -439,10 +439,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: NodeGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -489,9 +489,9 @@
     /// ## See Also
     ///
     /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``performMaintenancePollingUntilDone(request:)``
     /// - ``performMaintenancePollingUntilDone(request:options:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:nodeGroup:body:)``
     public func performMaintenance(
       request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -509,10 +509,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``performMaintenancePollingUntilDone(request:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``performMaintenance(request:)``
     /// - ``performMaintenance(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
     public func performMaintenancePollingUntilDone(
       request: NodeGroupsClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -559,8 +559,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:zone:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: NodeGroupsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -574,9 +574,9 @@
     /// ## See Also
     ///
     /// - ``setNodeTemplate(request:)``
+    /// - ``setNodeTemplatePollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``setNodeTemplatePollingUntilDone(request:)``
     /// - ``setNodeTemplatePollingUntilDone(request:options:)``
-    /// - ``setNodeTemplatePollingUntilDone(project:zone:nodeGroup:body:)``
     public func setNodeTemplate(
       request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -594,10 +594,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setNodeTemplatePollingUntilDone(request:)``
-    /// - ``setNodeTemplatePollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``setNodeTemplate(request:)``
     /// - ``setNodeTemplate(request:options:)``
+    /// - ``setNodeTemplatePollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``setNodeTemplatePollingUntilDone(request:)``
     public func setNodeTemplatePollingUntilDone(
       request: NodeGroupsClient.SetNodeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -644,9 +644,9 @@
     /// ## See Also
     ///
     /// - ``simulateMaintenanceEvent(request:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
     /// - ``simulateMaintenanceEventPollingUntilDone(request:options:)``
-    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:nodeGroup:body:)``
     public func simulateMaintenanceEvent(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -664,10 +664,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
-    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:nodeGroup:body:)``
     /// - ``simulateMaintenanceEvent(request:)``
     /// - ``simulateMaintenanceEvent(request:options:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(project:zone:nodeGroup:body:)``
+    /// - ``simulateMaintenanceEventPollingUntilDone(request:)``
     public func simulateMaintenanceEventPollingUntilDone(
       request: NodeGroupsClient.SimulateMaintenanceEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -713,8 +713,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: NodeGroupsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {

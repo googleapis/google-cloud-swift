@@ -59,9 +59,9 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// ## See Also
   ///
   /// - ``createNodeGroup(request:)``
+  /// - ``createNodeGroupPollingUntilDone(parent:nodeGroup:nodeGroupId:)``
   /// - ``createNodeGroupPollingUntilDone(request:)``
   /// - ``createNodeGroupPollingUntilDone(request:options:)``
-  /// - ``createNodeGroupPollingUntilDone(parent:nodeGroup:nodeGroupId:)``
   public func createNodeGroup(
     request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -78,10 +78,10 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createNodeGroupPollingUntilDone(request:)``
-  /// - ``createNodeGroupPollingUntilDone(parent:nodeGroup:nodeGroupId:)``
   /// - ``createNodeGroup(request:)``
   /// - ``createNodeGroup(request:options:)``
+  /// - ``createNodeGroupPollingUntilDone(parent:nodeGroup:nodeGroupId:)``
+  /// - ``createNodeGroupPollingUntilDone(request:)``
   public func createNodeGroupPollingUntilDone(
     request: CreateNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> NodeGroup {
@@ -117,9 +117,9 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// ## See Also
   ///
   /// - ``resizeNodeGroup(request:)``
+  /// - ``resizeNodeGroupPollingUntilDone(name:size:)``
   /// - ``resizeNodeGroupPollingUntilDone(request:)``
   /// - ``resizeNodeGroupPollingUntilDone(request:options:)``
-  /// - ``resizeNodeGroupPollingUntilDone(name:size:)``
   public func resizeNodeGroup(
     request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -136,10 +136,10 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   ///
   /// ## See Also
   ///
-  /// - ``resizeNodeGroupPollingUntilDone(request:)``
-  /// - ``resizeNodeGroupPollingUntilDone(name:size:)``
   /// - ``resizeNodeGroup(request:)``
   /// - ``resizeNodeGroup(request:options:)``
+  /// - ``resizeNodeGroupPollingUntilDone(name:size:)``
+  /// - ``resizeNodeGroupPollingUntilDone(request:)``
   public func resizeNodeGroupPollingUntilDone(
     request: ResizeNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> NodeGroup {
@@ -171,8 +171,8 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getNodeGroup(request:)``
   /// - ``getNodeGroup(name:)``
+  /// - ``getNodeGroup(request:)``
   public func getNodeGroup(
     request: GetNodeGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.NodeGroup {
@@ -238,9 +238,9 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -266,8 +266,8 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -282,8 +282,8 @@ public final class NodeGroupControllerClient: Clients.NodeGroupControllerProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

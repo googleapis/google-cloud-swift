@@ -52,8 +52,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createCachedContent(request:)``
     /// - ``createCachedContent(parent:cachedContent:)``
+    /// - ``createCachedContent(request:)``
     public func createCachedContent(
       request: CreateCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -66,8 +66,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getCachedContent(request:)``
     /// - ``getCachedContent(name:)``
+    /// - ``getCachedContent(request:)``
     public func getCachedContent(
       request: GetCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -80,8 +80,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateCachedContent(request:)``
     /// - ``updateCachedContent(cachedContent:updateMask:)``
+    /// - ``updateCachedContent(request:)``
     public func updateCachedContent(
       request: UpdateCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CachedContent {
@@ -94,8 +94,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteCachedContent(request:)``
     /// - ``deleteCachedContent(name:)``
+    /// - ``deleteCachedContent(request:)``
     public func deleteCachedContent(
       request: DeleteCachedContentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -109,9 +109,9 @@
     /// ## See Also
     ///
     /// - ``listCachedContents(request:)``
+    /// - ``listCachedContentsByItems(parent:)``
     /// - ``listCachedContentsByItems(request:)``
     /// - ``listCachedContentsByItems(request:options:)``
-    /// - ``listCachedContentsByItems(parent:)``
     public func listCachedContents(
       request: ListCachedContentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListCachedContentsResponse {
@@ -205,9 +205,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -233,8 +233,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -249,8 +249,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

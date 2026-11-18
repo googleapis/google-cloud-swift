@@ -48,8 +48,8 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getWatchlist(request:)``
   /// - ``getWatchlist(name:)``
+  /// - ``getWatchlist(request:)``
   public func getWatchlist(
     request: GetWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
@@ -63,9 +63,9 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listWatchlists(request:)``
+  /// - ``listWatchlistsByItems(parent:)``
   /// - ``listWatchlistsByItems(request:)``
   /// - ``listWatchlistsByItems(request:options:)``
-  /// - ``listWatchlistsByItems(parent:)``
   public func listWatchlists(
     request: ListWatchlistsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListWatchlistsResponse {
@@ -79,8 +79,8 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createWatchlist(request:)``
   /// - ``createWatchlist(parent:watchlist:watchlistId:)``
+  /// - ``createWatchlist(request:)``
   public func createWatchlist(
     request: CreateWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Watchlist {
@@ -107,8 +107,8 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteWatchlist(request:)``
   /// - ``deleteWatchlist(name:force:)``
+  /// - ``deleteWatchlist(request:)``
   public func deleteWatchlist(
     request: DeleteWatchlistRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -124,9 +124,9 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -152,8 +152,8 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -168,8 +168,8 @@ public final class EntityServiceClient: Clients.EntityServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

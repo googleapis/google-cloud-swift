@@ -54,9 +54,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listServers(request:)``
+  /// - ``listServersByItems(parent:)``
   /// - ``listServersByItems(request:)``
   /// - ``listServersByItems(request:options:)``
-  /// - ``listServersByItems(parent:)``
   public func listServers(
     request: ListServersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.ListServersResponse {
@@ -69,8 +69,8 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getServer(request:)``
   /// - ``getServer(name:)``
+  /// - ``getServer(request:)``
   public func getServer(
     request: GetServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.Server {
@@ -84,9 +84,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createServer(request:)``
+  /// - ``createServerPollingUntilDone(parent:server:serverId:)``
   /// - ``createServerPollingUntilDone(request:)``
   /// - ``createServerPollingUntilDone(request:options:)``
-  /// - ``createServerPollingUntilDone(parent:server:serverId:)``
   public func createServer(
     request: CreateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createServerPollingUntilDone(request:)``
-  /// - ``createServerPollingUntilDone(parent:server:serverId:)``
   /// - ``createServer(request:)``
   /// - ``createServer(request:options:)``
+  /// - ``createServerPollingUntilDone(parent:server:serverId:)``
+  /// - ``createServerPollingUntilDone(request:)``
   public func createServerPollingUntilDone(
     request: CreateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -149,10 +149,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateServerPollingUntilDone(request:)``
-  /// - ``updateServerPollingUntilDone(server:updateMask:)``
   /// - ``updateServer(request:)``
   /// - ``updateServer(request:options:)``
+  /// - ``updateServerPollingUntilDone(request:)``
+  /// - ``updateServerPollingUntilDone(server:updateMask:)``
   public func updateServerPollingUntilDone(
     request: UpdateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -184,9 +184,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteServer(request:)``
+  /// - ``deleteServerPollingUntilDone(name:)``
   /// - ``deleteServerPollingUntilDone(request:)``
   /// - ``deleteServerPollingUntilDone(request:options:)``
-  /// - ``deleteServerPollingUntilDone(name:)``
   public func deleteServer(
     request: DeleteServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,10 +199,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServerPollingUntilDone(request:)``
-  /// - ``deleteServerPollingUntilDone(name:)``
   /// - ``deleteServer(request:)``
   /// - ``deleteServer(request:options:)``
+  /// - ``deleteServerPollingUntilDone(name:)``
+  /// - ``deleteServerPollingUntilDone(request:)``
   public func deleteServerPollingUntilDone(
     request: DeleteServerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -234,9 +234,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listUsers(request:)``
+  /// - ``listUsersByItems(parent:)``
   /// - ``listUsersByItems(request:)``
   /// - ``listUsersByItems(request:options:)``
-  /// - ``listUsersByItems(parent:)``
   public func listUsers(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.ListUsersResponse {
@@ -249,8 +249,8 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getUser(request:)``
   /// - ``getUser(name:)``
+  /// - ``getUser(request:)``
   public func getUser(
     request: GetUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.User {
@@ -264,9 +264,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createUser(request:)``
+  /// - ``createUserPollingUntilDone(parent:user:userId:)``
   /// - ``createUserPollingUntilDone(request:)``
   /// - ``createUserPollingUntilDone(request:options:)``
-  /// - ``createUserPollingUntilDone(parent:user:userId:)``
   public func createUser(
     request: CreateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -279,10 +279,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createUserPollingUntilDone(request:)``
-  /// - ``createUserPollingUntilDone(parent:user:userId:)``
   /// - ``createUser(request:)``
   /// - ``createUser(request:options:)``
+  /// - ``createUserPollingUntilDone(parent:user:userId:)``
+  /// - ``createUserPollingUntilDone(request:)``
   public func createUserPollingUntilDone(
     request: CreateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> User {
@@ -329,10 +329,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateUserPollingUntilDone(request:)``
-  /// - ``updateUserPollingUntilDone(user:updateMask:)``
   /// - ``updateUser(request:)``
   /// - ``updateUser(request:options:)``
+  /// - ``updateUserPollingUntilDone(request:)``
+  /// - ``updateUserPollingUntilDone(user:updateMask:)``
   public func updateUserPollingUntilDone(
     request: UpdateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> User {
@@ -364,9 +364,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteUser(request:)``
+  /// - ``deleteUserPollingUntilDone(name:)``
   /// - ``deleteUserPollingUntilDone(request:)``
   /// - ``deleteUserPollingUntilDone(request:options:)``
-  /// - ``deleteUserPollingUntilDone(name:)``
   public func deleteUser(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -379,10 +379,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteUserPollingUntilDone(request:)``
-  /// - ``deleteUserPollingUntilDone(name:)``
   /// - ``deleteUser(request:)``
   /// - ``deleteUser(request:options:)``
+  /// - ``deleteUserPollingUntilDone(name:)``
+  /// - ``deleteUserPollingUntilDone(request:)``
   public func deleteUserPollingUntilDone(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -414,9 +414,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``startServer(request:)``
+  /// - ``startServerPollingUntilDone(name:)``
   /// - ``startServerPollingUntilDone(request:)``
   /// - ``startServerPollingUntilDone(request:options:)``
-  /// - ``startServerPollingUntilDone(name:)``
   public func startServer(
     request: StartServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -429,10 +429,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startServerPollingUntilDone(request:)``
-  /// - ``startServerPollingUntilDone(name:)``
   /// - ``startServer(request:)``
   /// - ``startServer(request:options:)``
+  /// - ``startServerPollingUntilDone(name:)``
+  /// - ``startServerPollingUntilDone(request:)``
   public func startServerPollingUntilDone(
     request: StartServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -464,9 +464,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``stopServer(request:)``
+  /// - ``stopServerPollingUntilDone(name:)``
   /// - ``stopServerPollingUntilDone(request:)``
   /// - ``stopServerPollingUntilDone(request:options:)``
-  /// - ``stopServerPollingUntilDone(name:)``
   public func stopServer(
     request: StopServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -479,10 +479,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``stopServerPollingUntilDone(request:)``
-  /// - ``stopServerPollingUntilDone(name:)``
   /// - ``stopServer(request:)``
   /// - ``stopServer(request:options:)``
+  /// - ``stopServerPollingUntilDone(name:)``
+  /// - ``stopServerPollingUntilDone(request:)``
   public func stopServerPollingUntilDone(
     request: StopServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -561,9 +561,9 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -589,8 +589,8 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -605,8 +605,8 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

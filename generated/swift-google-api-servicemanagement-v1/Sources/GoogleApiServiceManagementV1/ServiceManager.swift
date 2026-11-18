@@ -60,9 +60,9 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listServices(request:)``
+  /// - ``listServicesByItems(producerProjectId:consumerId:)``
   /// - ``listServicesByItems(request:)``
   /// - ``listServicesByItems(request:options:)``
-  /// - ``listServicesByItems(producerProjectId:consumerId:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.ListServicesResponse {
@@ -126,10 +126,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createServicePollingUntilDone(request:)``
-  /// - ``createServicePollingUntilDone(service:)``
   /// - ``createService(request:)``
   /// - ``createService(request:options:)``
+  /// - ``createServicePollingUntilDone(request:)``
+  /// - ``createServicePollingUntilDone(service:)``
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedService {
@@ -195,10 +195,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteServicePollingUntilDone(request:)``
-  /// - ``deleteServicePollingUntilDone(serviceName:)``
   /// - ``deleteService(request:)``
   /// - ``deleteService(request:options:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
+  /// - ``deleteServicePollingUntilDone(serviceName:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -255,10 +255,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``undeleteServicePollingUntilDone(request:)``
-  /// - ``undeleteServicePollingUntilDone(serviceName:)``
   /// - ``undeleteService(request:)``
   /// - ``undeleteService(request:options:)``
+  /// - ``undeleteServicePollingUntilDone(request:)``
+  /// - ``undeleteServicePollingUntilDone(serviceName:)``
   public func undeleteServicePollingUntilDone(
     request: UndeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeleteServiceResponse {
@@ -391,10 +391,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``submitConfigSourcePollingUntilDone(request:)``
-  /// - ``submitConfigSourcePollingUntilDone(serviceName:configSource:validateOnly:)``
   /// - ``submitConfigSource(request:)``
   /// - ``submitConfigSource(request:options:)``
+  /// - ``submitConfigSourcePollingUntilDone(request:)``
+  /// - ``submitConfigSourcePollingUntilDone(serviceName:configSource:validateOnly:)``
   public func submitConfigSourcePollingUntilDone(
     request: SubmitConfigSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> SubmitConfigSourceResponse {
@@ -503,10 +503,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createServiceRolloutPollingUntilDone(request:)``
-  /// - ``createServiceRolloutPollingUntilDone(serviceName:rollout:)``
   /// - ``createServiceRollout(request:)``
   /// - ``createServiceRollout(request:options:)``
+  /// - ``createServiceRolloutPollingUntilDone(request:)``
+  /// - ``createServiceRolloutPollingUntilDone(serviceName:rollout:)``
   public func createServiceRolloutPollingUntilDone(
     request: CreateServiceRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> Rollout {
@@ -547,8 +547,8 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``generateConfigReport(request:)``
   /// - ``generateConfigReport(newConfig:oldConfig:)``
+  /// - ``generateConfigReport(request:)``
   public func generateConfigReport(
     request: GenerateConfigReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.GenerateConfigReportResponse {
@@ -612,9 +612,9 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``createRagCorpus(request:)``
+    /// - ``createRagCorpusPollingUntilDone(parent:ragCorpus:)``
     /// - ``createRagCorpusPollingUntilDone(request:)``
     /// - ``createRagCorpusPollingUntilDone(request:options:)``
-    /// - ``createRagCorpusPollingUntilDone(parent:ragCorpus:)``
     public func createRagCorpus(
       request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -71,10 +71,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createRagCorpusPollingUntilDone(request:)``
-    /// - ``createRagCorpusPollingUntilDone(parent:ragCorpus:)``
     /// - ``createRagCorpus(request:)``
     /// - ``createRagCorpus(request:options:)``
+    /// - ``createRagCorpusPollingUntilDone(parent:ragCorpus:)``
+    /// - ``createRagCorpusPollingUntilDone(request:)``
     public func createRagCorpusPollingUntilDone(
       request: CreateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> RagCorpus {
@@ -106,9 +106,9 @@
     /// ## See Also
     ///
     /// - ``updateRagCorpus(request:)``
+    /// - ``updateRagCorpusPollingUntilDone(ragCorpus:)``
     /// - ``updateRagCorpusPollingUntilDone(request:)``
     /// - ``updateRagCorpusPollingUntilDone(request:options:)``
-    /// - ``updateRagCorpusPollingUntilDone(ragCorpus:)``
     public func updateRagCorpus(
       request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -121,10 +121,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateRagCorpusPollingUntilDone(request:)``
-    /// - ``updateRagCorpusPollingUntilDone(ragCorpus:)``
     /// - ``updateRagCorpus(request:)``
     /// - ``updateRagCorpus(request:options:)``
+    /// - ``updateRagCorpusPollingUntilDone(ragCorpus:)``
+    /// - ``updateRagCorpusPollingUntilDone(request:)``
     public func updateRagCorpusPollingUntilDone(
       request: UpdateRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> RagCorpus {
@@ -155,8 +155,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRagCorpus(request:)``
     /// - ``getRagCorpus(name:)``
+    /// - ``getRagCorpus(request:)``
     public func getRagCorpus(
       request: GetRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.RagCorpus {
@@ -170,9 +170,9 @@
     /// ## See Also
     ///
     /// - ``listRagCorpora(request:)``
+    /// - ``listRagCorporaByItems(parent:)``
     /// - ``listRagCorporaByItems(request:)``
     /// - ``listRagCorporaByItems(request:options:)``
-    /// - ``listRagCorporaByItems(parent:)``
     public func listRagCorpora(
       request: ListRagCorporaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListRagCorporaResponse {
@@ -186,9 +186,9 @@
     /// ## See Also
     ///
     /// - ``deleteRagCorpus(request:)``
+    /// - ``deleteRagCorpusPollingUntilDone(name:)``
     /// - ``deleteRagCorpusPollingUntilDone(request:)``
     /// - ``deleteRagCorpusPollingUntilDone(request:options:)``
-    /// - ``deleteRagCorpusPollingUntilDone(name:)``
     public func deleteRagCorpus(
       request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteRagCorpusPollingUntilDone(request:)``
-    /// - ``deleteRagCorpusPollingUntilDone(name:)``
     /// - ``deleteRagCorpus(request:)``
     /// - ``deleteRagCorpus(request:options:)``
+    /// - ``deleteRagCorpusPollingUntilDone(name:)``
+    /// - ``deleteRagCorpusPollingUntilDone(request:)``
     public func deleteRagCorpusPollingUntilDone(
       request: DeleteRagCorpusRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -236,8 +236,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``uploadRagFile(request:)``
     /// - ``uploadRagFile(parent:ragFile:uploadRagFileConfig:)``
+    /// - ``uploadRagFile(request:)``
     public func uploadRagFile(
       request: UploadRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.UploadRagFileResponse {
@@ -251,9 +251,9 @@
     /// ## See Also
     ///
     /// - ``importRagFiles(request:)``
+    /// - ``importRagFilesPollingUntilDone(parent:importRagFilesConfig:)``
     /// - ``importRagFilesPollingUntilDone(request:)``
     /// - ``importRagFilesPollingUntilDone(request:options:)``
-    /// - ``importRagFilesPollingUntilDone(parent:importRagFilesConfig:)``
     public func importRagFiles(
       request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -266,10 +266,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``importRagFilesPollingUntilDone(request:)``
-    /// - ``importRagFilesPollingUntilDone(parent:importRagFilesConfig:)``
     /// - ``importRagFiles(request:)``
     /// - ``importRagFiles(request:options:)``
+    /// - ``importRagFilesPollingUntilDone(parent:importRagFilesConfig:)``
+    /// - ``importRagFilesPollingUntilDone(request:)``
     public func importRagFilesPollingUntilDone(
       request: ImportRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportRagFilesResponse {
@@ -302,8 +302,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRagFile(request:)``
     /// - ``getRagFile(name:)``
+    /// - ``getRagFile(request:)``
     public func getRagFile(
       request: GetRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.RagFile {
@@ -317,9 +317,9 @@
     /// ## See Also
     ///
     /// - ``listRagFiles(request:)``
+    /// - ``listRagFilesByItems(parent:)``
     /// - ``listRagFilesByItems(request:)``
     /// - ``listRagFilesByItems(request:options:)``
-    /// - ``listRagFilesByItems(parent:)``
     public func listRagFiles(
       request: ListRagFilesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListRagFilesResponse {
@@ -333,9 +333,9 @@
     /// ## See Also
     ///
     /// - ``deleteRagFile(request:)``
+    /// - ``deleteRagFilePollingUntilDone(name:)``
     /// - ``deleteRagFilePollingUntilDone(request:)``
     /// - ``deleteRagFilePollingUntilDone(request:options:)``
-    /// - ``deleteRagFilePollingUntilDone(name:)``
     public func deleteRagFile(
       request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -348,10 +348,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteRagFilePollingUntilDone(request:)``
-    /// - ``deleteRagFilePollingUntilDone(name:)``
     /// - ``deleteRagFile(request:)``
     /// - ``deleteRagFile(request:options:)``
+    /// - ``deleteRagFilePollingUntilDone(name:)``
+    /// - ``deleteRagFilePollingUntilDone(request:)``
     public func deleteRagFilePollingUntilDone(
       request: DeleteRagFileRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -384,9 +384,9 @@
     /// ## See Also
     ///
     /// - ``updateRagEngineConfig(request:)``
+    /// - ``updateRagEngineConfigPollingUntilDone(ragEngineConfig:)``
     /// - ``updateRagEngineConfigPollingUntilDone(request:)``
     /// - ``updateRagEngineConfigPollingUntilDone(request:options:)``
-    /// - ``updateRagEngineConfigPollingUntilDone(ragEngineConfig:)``
     public func updateRagEngineConfig(
       request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -399,10 +399,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateRagEngineConfigPollingUntilDone(request:)``
-    /// - ``updateRagEngineConfigPollingUntilDone(ragEngineConfig:)``
     /// - ``updateRagEngineConfig(request:)``
     /// - ``updateRagEngineConfig(request:options:)``
+    /// - ``updateRagEngineConfigPollingUntilDone(ragEngineConfig:)``
+    /// - ``updateRagEngineConfigPollingUntilDone(request:)``
     public func updateRagEngineConfigPollingUntilDone(
       request: UpdateRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> RagEngineConfig {
@@ -434,8 +434,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getRagEngineConfig(request:)``
     /// - ``getRagEngineConfig(name:)``
+    /// - ``getRagEngineConfig(request:)``
     public func getRagEngineConfig(
       request: GetRagEngineConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.RagEngineConfig {
@@ -529,9 +529,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -557,8 +557,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -573,8 +573,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

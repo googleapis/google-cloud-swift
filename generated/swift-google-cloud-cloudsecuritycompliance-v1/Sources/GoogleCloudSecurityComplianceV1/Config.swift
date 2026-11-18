@@ -54,9 +54,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFrameworks(request:)``
+  /// - ``listFrameworksByItems(parent:)``
   /// - ``listFrameworksByItems(request:)``
   /// - ``listFrameworksByItems(request:options:)``
-  /// - ``listFrameworksByItems(parent:)``
   public func listFrameworks(
     request: ListFrameworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse {
@@ -73,8 +73,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFramework(request:)``
   /// - ``getFramework(name:)``
+  /// - ``getFramework(request:)``
   public func getFramework(
     request: GetFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -89,8 +89,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createFramework(request:)``
   /// - ``createFramework(parent:framework:frameworkId:)``
+  /// - ``createFramework(request:)``
   public func createFramework(
     request: CreateFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -114,8 +114,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateFramework(request:)``
   /// - ``updateFramework(framework:updateMask:)``
+  /// - ``updateFramework(request:)``
   public func updateFramework(
     request: UpdateFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -134,8 +134,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFramework(request:)``
   /// - ``deleteFramework(name:)``
+  /// - ``deleteFramework(request:)``
   public func deleteFramework(
     request: DeleteFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -152,9 +152,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCloudControls(request:)``
+  /// - ``listCloudControlsByItems(parent:)``
   /// - ``listCloudControlsByItems(request:)``
   /// - ``listCloudControlsByItems(request:options:)``
-  /// - ``listCloudControlsByItems(parent:)``
   public func listCloudControls(
     request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse {
@@ -173,8 +173,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCloudControl(request:)``
   /// - ``getCloudControl(name:)``
+  /// - ``getCloudControl(request:)``
   public func getCloudControl(
     request: GetCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -190,8 +190,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCloudControl(request:)``
   /// - ``createCloudControl(parent:cloudControl:cloudControlId:)``
+  /// - ``createCloudControl(request:)``
   public func createCloudControl(
     request: CreateCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -215,8 +215,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCloudControl(request:)``
   /// - ``updateCloudControl(cloudControl:updateMask:)``
+  /// - ``updateCloudControl(request:)``
   public func updateCloudControl(
     request: UpdateCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -236,8 +236,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCloudControl(request:)``
   /// - ``deleteCloudControl(name:)``
+  /// - ``deleteCloudControl(request:)``
   public func deleteCloudControl(
     request: DeleteCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -298,9 +298,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -326,8 +326,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -342,8 +342,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

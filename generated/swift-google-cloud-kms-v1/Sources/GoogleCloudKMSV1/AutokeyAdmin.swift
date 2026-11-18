@@ -71,8 +71,8 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAutokeyConfig(request:)``
   /// - ``updateAutokeyConfig(autokeyConfig:updateMask:)``
+  /// - ``updateAutokeyConfig(request:)``
   public func updateAutokeyConfig(
     request: UpdateAutokeyConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
@@ -88,8 +88,8 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAutokeyConfig(request:)``
   /// - ``getAutokeyConfig(name:)``
+  /// - ``getAutokeyConfig(request:)``
   public func getAutokeyConfig(
     request: GetAutokeyConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
@@ -102,8 +102,8 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``showEffectiveAutokeyConfig(request:)``
   /// - ``showEffectiveAutokeyConfig(parent:)``
+  /// - ``showEffectiveAutokeyConfig(request:)``
   public func showEffectiveAutokeyConfig(
     request: ShowEffectiveAutokeyConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ShowEffectiveAutokeyConfigResponse {

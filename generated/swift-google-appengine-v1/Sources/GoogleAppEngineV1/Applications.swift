@@ -51,8 +51,8 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplication(request:)``
   /// - ``getApplication(name:)``
+  /// - ``getApplication(request:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.Application {
@@ -92,9 +92,9 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApplicationPollingUntilDone(request:)``
   /// - ``createApplication(request:)``
   /// - ``createApplication(request:options:)``
+  /// - ``createApplicationPollingUntilDone(request:)``
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -150,9 +150,9 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplicationPollingUntilDone(request:)``
   /// - ``updateApplication(request:)``
   /// - ``updateApplication(request:options:)``
+  /// - ``updateApplicationPollingUntilDone(request:)``
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -216,9 +216,9 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``repairApplicationPollingUntilDone(request:)``
   /// - ``repairApplication(request:)``
   /// - ``repairApplication(request:options:)``
+  /// - ``repairApplicationPollingUntilDone(request:)``
   public func repairApplicationPollingUntilDone(
     request: RepairApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -252,9 +252,9 @@ public final class ApplicationsClient: Clients.ApplicationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

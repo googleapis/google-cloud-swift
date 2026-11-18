@@ -49,9 +49,9 @@ public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtoco
   /// ## See Also
   ///
   /// - ``listCloudLocations(request:)``
+  /// - ``listCloudLocationsByItems(parent:)``
   /// - ``listCloudLocationsByItems(request:)``
   /// - ``listCloudLocationsByItems(request:options:)``
-  /// - ``listCloudLocationsByItems(parent:)``
   public func listCloudLocations(
     request: ListCloudLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocationFinderV1.ListCloudLocationsResponse {
@@ -64,8 +64,8 @@ public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getCloudLocation(request:)``
   /// - ``getCloudLocation(name:)``
+  /// - ``getCloudLocation(request:)``
   public func getCloudLocation(
     request: GetCloudLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocationFinderV1.CloudLocation {
@@ -79,9 +79,9 @@ public final class CloudLocationFinderClient: Clients.CloudLocationFinderProtoco
   /// ## See Also
   ///
   /// - ``searchCloudLocations(request:)``
+  /// - ``searchCloudLocationsByItems(parent:sourceCloudLocation:query:)``
   /// - ``searchCloudLocationsByItems(request:)``
   /// - ``searchCloudLocationsByItems(request:options:)``
-  /// - ``searchCloudLocationsByItems(parent:sourceCloudLocation:query:)``
   public func searchCloudLocations(
     request: SearchCloudLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocationFinderV1.SearchCloudLocationsResponse {

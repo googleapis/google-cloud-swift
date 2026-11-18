@@ -46,8 +46,8 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createMigrationWorkflow(request:)``
   /// - ``createMigrationWorkflow(parent:migrationWorkflow:)``
+  /// - ``createMigrationWorkflow(request:)``
   public func createMigrationWorkflow(
     request: CreateMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -60,8 +60,8 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getMigrationWorkflow(request:)``
   /// - ``getMigrationWorkflow(name:)``
+  /// - ``getMigrationWorkflow(request:)``
   public func getMigrationWorkflow(
     request: GetMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -75,9 +75,9 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listMigrationWorkflows(request:)``
+  /// - ``listMigrationWorkflowsByItems(parent:)``
   /// - ``listMigrationWorkflowsByItems(request:)``
   /// - ``listMigrationWorkflowsByItems(request:options:)``
-  /// - ``listMigrationWorkflowsByItems(parent:)``
   public func listMigrationWorkflows(
     request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse {
@@ -90,8 +90,8 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteMigrationWorkflow(request:)``
   /// - ``deleteMigrationWorkflow(name:)``
+  /// - ``deleteMigrationWorkflow(request:)``
   public func deleteMigrationWorkflow(
     request: DeleteMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -107,8 +107,8 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``startMigrationWorkflow(request:)``
   /// - ``startMigrationWorkflow(name:)``
+  /// - ``startMigrationWorkflow(request:)``
   public func startMigrationWorkflow(
     request: StartMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,8 +121,8 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getMigrationSubtask(request:)``
   /// - ``getMigrationSubtask(name:)``
+  /// - ``getMigrationSubtask(request:)``
   public func getMigrationSubtask(
     request: GetMigrationSubtaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.MigrationSubtask {
@@ -136,9 +136,9 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listMigrationSubtasks(request:)``
+  /// - ``listMigrationSubtasksByItems(parent:)``
   /// - ``listMigrationSubtasksByItems(request:)``
   /// - ``listMigrationSubtasksByItems(request:options:)``
-  /// - ``listMigrationSubtasksByItems(parent:)``
   public func listMigrationSubtasks(
     request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse {

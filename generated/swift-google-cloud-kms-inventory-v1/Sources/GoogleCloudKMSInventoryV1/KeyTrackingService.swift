@@ -60,8 +60,8 @@ public final class KeyTrackingServiceClient: Clients.KeyTrackingServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getProtectedResourcesSummary(request:)``
   /// - ``getProtectedResourcesSummary(name:)``
+  /// - ``getProtectedResourcesSummary(request:)``
   public func getProtectedResourcesSummary(
     request: GetProtectedResourcesSummaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSInventoryV1.ProtectedResourcesSummary {

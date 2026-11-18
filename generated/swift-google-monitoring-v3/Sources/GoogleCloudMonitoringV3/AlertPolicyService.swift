@@ -56,9 +56,9 @@ public final class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol,
   /// ## See Also
   ///
   /// - ``listAlertPolicies(request:)``
+  /// - ``listAlertPoliciesByItems(name:)``
   /// - ``listAlertPoliciesByItems(request:)``
   /// - ``listAlertPoliciesByItems(request:options:)``
-  /// - ``listAlertPoliciesByItems(name:)``
   public func listAlertPolicies(
     request: ListAlertPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListAlertPoliciesResponse {
@@ -71,8 +71,8 @@ public final class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getAlertPolicy(request:)``
   /// - ``getAlertPolicy(name:)``
+  /// - ``getAlertPolicy(request:)``
   public func getAlertPolicy(
     request: GetAlertPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
@@ -89,8 +89,8 @@ public final class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createAlertPolicy(request:)``
   /// - ``createAlertPolicy(name:alertPolicy:)``
+  /// - ``createAlertPolicy(request:)``
   public func createAlertPolicy(
     request: CreateAlertPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.AlertPolicy {
@@ -107,8 +107,8 @@ public final class AlertPolicyServiceClient: Clients.AlertPolicyServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteAlertPolicy(request:)``
   /// - ``deleteAlertPolicy(name:)``
+  /// - ``deleteAlertPolicy(request:)``
   public func deleteAlertPolicy(
     request: DeleteAlertPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {

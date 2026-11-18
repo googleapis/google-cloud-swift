@@ -53,8 +53,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``getFindingsRefinement(request:)``
   /// - ``getFindingsRefinement(name:)``
+  /// - ``getFindingsRefinement(request:)``
   public func getFindingsRefinement(
     request: GetFindingsRefinementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -68,9 +68,9 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// ## See Also
   ///
   /// - ``listFindingsRefinements(request:)``
+  /// - ``listFindingsRefinementsByItems(parent:)``
   /// - ``listFindingsRefinementsByItems(request:)``
   /// - ``listFindingsRefinementsByItems(request:options:)``
-  /// - ``listFindingsRefinementsByItems(parent:)``
   public func listFindingsRefinements(
     request: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFindingsRefinementsResponse {
@@ -83,8 +83,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``createFindingsRefinement(request:)``
   /// - ``createFindingsRefinement(parent:findingsRefinement:)``
+  /// - ``createFindingsRefinement(request:)``
   public func createFindingsRefinement(
     request: CreateFindingsRefinementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -97,8 +97,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``updateFindingsRefinement(request:)``
   /// - ``updateFindingsRefinement(findingsRefinement:updateMask:)``
+  /// - ``updateFindingsRefinement(request:)``
   public func updateFindingsRefinement(
     request: UpdateFindingsRefinementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -111,8 +111,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``getFindingsRefinementDeployment(request:)``
   /// - ``getFindingsRefinementDeployment(name:)``
+  /// - ``getFindingsRefinementDeployment(request:)``
   public func getFindingsRefinementDeployment(
     request: GetFindingsRefinementDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -125,8 +125,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``updateFindingsRefinementDeployment(request:)``
   /// - ``updateFindingsRefinementDeployment(findingsRefinementDeployment:updateMask:)``
+  /// - ``updateFindingsRefinementDeployment(request:)``
   public func updateFindingsRefinementDeployment(
     request: UpdateFindingsRefinementDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -140,9 +140,9 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// ## See Also
   ///
   /// - ``listAllFindingsRefinementDeployments(request:)``
+  /// - ``listAllFindingsRefinementDeploymentsByItems(instance:)``
   /// - ``listAllFindingsRefinementDeploymentsByItems(request:)``
   /// - ``listAllFindingsRefinementDeploymentsByItems(request:options:)``
-  /// - ``listAllFindingsRefinementDeploymentsByItems(instance:)``
   public func listAllFindingsRefinementDeployments(
     request: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListAllFindingsRefinementDeploymentsResponse {
@@ -155,8 +155,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``computeFindingsRefinementActivity(request:)``
   /// - ``computeFindingsRefinementActivity(name:)``
+  /// - ``computeFindingsRefinementActivity(request:)``
   public func computeFindingsRefinementActivity(
     request: ComputeFindingsRefinementActivityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ComputeFindingsRefinementActivityResponse {
@@ -169,8 +169,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``computeAllFindingsRefinementActivities(request:)``
   /// - ``computeAllFindingsRefinementActivities(instance:)``
+  /// - ``computeAllFindingsRefinementActivities(request:)``
   public func computeAllFindingsRefinementActivities(
     request: ComputeAllFindingsRefinementActivitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ComputeAllFindingsRefinementActivitiesResponse {
@@ -186,9 +186,9 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -214,8 +214,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -230,8 +230,8 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

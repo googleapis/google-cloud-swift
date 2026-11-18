@@ -48,9 +48,9 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   /// ## See Also
   ///
   /// - ``listLogMetrics(request:)``
+  /// - ``listLogMetricsByItems(parent:)``
   /// - ``listLogMetricsByItems(request:)``
   /// - ``listLogMetricsByItems(request:options:)``
-  /// - ``listLogMetricsByItems(parent:)``
   public func listLogMetrics(
     request: ListLogMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListLogMetricsResponse {
@@ -63,8 +63,8 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getLogMetric(request:)``
   /// - ``getLogMetric(metricName:)``
+  /// - ``getLogMetric(request:)``
   public func getLogMetric(
     request: GetLogMetricRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogMetric {
@@ -77,8 +77,8 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createLogMetric(request:)``
   /// - ``createLogMetric(parent:metric:)``
+  /// - ``createLogMetric(request:)``
   public func createLogMetric(
     request: CreateLogMetricRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogMetric {
@@ -91,8 +91,8 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateLogMetric(request:)``
   /// - ``updateLogMetric(metricName:metric:)``
+  /// - ``updateLogMetric(request:)``
   public func updateLogMetric(
     request: UpdateLogMetricRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogMetric {
@@ -105,8 +105,8 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteLogMetric(request:)``
   /// - ``deleteLogMetric(metricName:)``
+  /// - ``deleteLogMetric(request:)``
   public func deleteLogMetric(
     request: DeleteLogMetricRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,9 +122,9 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -150,8 +150,8 @@ public final class MetricsServiceV2Client: Clients.MetricsServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

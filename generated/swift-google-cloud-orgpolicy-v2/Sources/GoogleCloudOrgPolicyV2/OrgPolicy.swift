@@ -66,9 +66,9 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConstraints(request:)``
+  /// - ``listConstraintsByItems(parent:)``
   /// - ``listConstraintsByItems(request:)``
   /// - ``listConstraintsByItems(request:options:)``
-  /// - ``listConstraintsByItems(parent:)``
   public func listConstraints(
     request: ListConstraintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse {
@@ -82,9 +82,9 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPolicies(request:)``
+  /// - ``listPoliciesByItems(parent:)``
   /// - ``listPoliciesByItems(request:)``
   /// - ``listPoliciesByItems(request:options:)``
-  /// - ``listPoliciesByItems(parent:)``
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse {
@@ -101,8 +101,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPolicy(request:)``
   /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -120,8 +120,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEffectivePolicy(request:)``
   /// - ``getEffectivePolicy(name:)``
+  /// - ``getEffectivePolicy(request:)``
   public func getEffectivePolicy(
     request: GetEffectivePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -139,8 +139,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPolicy(request:)``
   /// - ``createPolicy(parent:policy:)``
+  /// - ``createPolicy(request:)``
   public func createPolicy(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -161,8 +161,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicy(request:)``
   /// - ``updatePolicy(policy:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -178,8 +178,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePolicy(request:)``
   /// - ``deletePolicy(name:)``
+  /// - ``deletePolicy(request:)``
   public func deletePolicy(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -197,8 +197,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCustomConstraint(request:)``
   /// - ``createCustomConstraint(parent:customConstraint:)``
+  /// - ``createCustomConstraint(request:)``
   public func createCustomConstraint(
     request: CreateCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -217,8 +217,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCustomConstraint(request:)``
   /// - ``updateCustomConstraint(customConstraint:)``
+  /// - ``updateCustomConstraint(request:)``
   public func updateCustomConstraint(
     request: UpdateCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -234,8 +234,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCustomConstraint(request:)``
   /// - ``getCustomConstraint(name:)``
+  /// - ``getCustomConstraint(request:)``
   public func getCustomConstraint(
     request: GetCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -250,9 +250,9 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCustomConstraints(request:)``
+  /// - ``listCustomConstraintsByItems(parent:)``
   /// - ``listCustomConstraintsByItems(request:)``
   /// - ``listCustomConstraintsByItems(request:options:)``
-  /// - ``listCustomConstraintsByItems(parent:)``
   public func listCustomConstraints(
     request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse {
@@ -268,8 +268,8 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCustomConstraint(request:)``
   /// - ``deleteCustomConstraint(name:)``
+  /// - ``deleteCustomConstraint(request:)``
   public func deleteCustomConstraint(
     request: DeleteCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws {

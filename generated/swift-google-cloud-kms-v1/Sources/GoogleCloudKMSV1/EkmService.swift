@@ -59,9 +59,9 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEkmConnections(request:)``
+  /// - ``listEkmConnectionsByItems(parent:)``
   /// - ``listEkmConnectionsByItems(request:)``
   /// - ``listEkmConnectionsByItems(request:options:)``
-  /// - ``listEkmConnectionsByItems(parent:)``
   public func listEkmConnections(
     request: ListEkmConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListEkmConnectionsResponse {
@@ -77,8 +77,8 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEkmConnection(request:)``
   /// - ``getEkmConnection(name:)``
+  /// - ``getEkmConnection(request:)``
   public func getEkmConnection(
     request: GetEkmConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.EkmConnection {
@@ -94,8 +94,8 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEkmConnection(request:)``
   /// - ``createEkmConnection(parent:ekmConnectionId:ekmConnection:)``
+  /// - ``createEkmConnection(request:)``
   public func createEkmConnection(
     request: CreateEkmConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.EkmConnection {
@@ -110,8 +110,8 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEkmConnection(request:)``
   /// - ``updateEkmConnection(ekmConnection:updateMask:)``
+  /// - ``updateEkmConnection(request:)``
   public func updateEkmConnection(
     request: UpdateEkmConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.EkmConnection {
@@ -127,8 +127,8 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEkmConfig(request:)``
   /// - ``getEkmConfig(name:)``
+  /// - ``getEkmConfig(request:)``
   public func getEkmConfig(
     request: GetEkmConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.EkmConfig {
@@ -144,8 +144,8 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEkmConfig(request:)``
   /// - ``updateEkmConfig(ekmConfig:updateMask:)``
+  /// - ``updateEkmConfig(request:)``
   public func updateEkmConfig(
     request: UpdateEkmConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.EkmConfig {
@@ -164,8 +164,8 @@ public final class EkmServiceClient: Clients.EkmServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``verifyConnectivity(request:)``
   /// - ``verifyConnectivity(name:)``
+  /// - ``verifyConnectivity(request:)``
   public func verifyConnectivity(
     request: VerifyConnectivityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.VerifyConnectivityResponse {

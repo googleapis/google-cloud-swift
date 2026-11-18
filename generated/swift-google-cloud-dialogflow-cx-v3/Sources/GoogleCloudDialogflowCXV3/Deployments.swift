@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``listDeployments(request:)``
+    /// - ``listDeploymentsByItems(parent:)``
     /// - ``listDeploymentsByItems(request:)``
     /// - ``listDeploymentsByItems(request:options:)``
-    /// - ``listDeploymentsByItems(parent:)``
     public func listDeployments(
       request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListDeploymentsResponse {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDeployment(request:)``
     /// - ``getDeployment(name:)``
+    /// - ``getDeployment(request:)``
     public func getDeployment(
       request: GetDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Deployment {
@@ -135,9 +135,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -163,8 +163,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

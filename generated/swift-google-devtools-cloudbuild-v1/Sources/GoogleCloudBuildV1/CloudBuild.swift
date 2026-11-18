@@ -64,10 +64,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createBuild(request:)``
+  /// - ``createBuildPollingUntilDone(parent:)``
+  /// - ``createBuildPollingUntilDone(projectId:build:)``
   /// - ``createBuildPollingUntilDone(request:)``
   /// - ``createBuildPollingUntilDone(request:options:)``
-  /// - ``createBuildPollingUntilDone(projectId:build:)``
-  /// - ``createBuildPollingUntilDone(parent:)``
   public func createBuild(
     request: CreateBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -84,11 +84,11 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBuildPollingUntilDone(request:)``
-  /// - ``createBuildPollingUntilDone(projectId:build:)``
-  /// - ``createBuildPollingUntilDone(parent:)``
   /// - ``createBuild(request:)``
   /// - ``createBuild(request:options:)``
+  /// - ``createBuildPollingUntilDone(parent:)``
+  /// - ``createBuildPollingUntilDone(projectId:build:)``
+  /// - ``createBuildPollingUntilDone(request:)``
   public func createBuildPollingUntilDone(
     request: CreateBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -122,9 +122,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBuild(request:)``
-  /// - ``getBuild(projectId:id:)``
   /// - ``getBuild(name:)``
+  /// - ``getBuild(projectId:id:)``
+  /// - ``getBuild(request:)``
   public func getBuild(
     request: GetBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.Build {
@@ -141,9 +141,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBuilds(request:)``
+  /// - ``listBuildsByItems(projectId:filter:)``
   /// - ``listBuildsByItems(request:)``
   /// - ``listBuildsByItems(request:options:)``
-  /// - ``listBuildsByItems(projectId:filter:)``
   public func listBuilds(
     request: ListBuildsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ListBuildsResponse {
@@ -156,9 +156,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelBuild(request:)``
-  /// - ``cancelBuild(projectId:id:)``
   /// - ``cancelBuild(name:)``
+  /// - ``cancelBuild(projectId:id:)``
+  /// - ``cancelBuild(request:)``
   public func cancelBuild(
     request: CancelBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.Build {
@@ -198,10 +198,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``retryBuild(request:)``
+  /// - ``retryBuildPollingUntilDone(name:)``
+  /// - ``retryBuildPollingUntilDone(projectId:id:)``
   /// - ``retryBuildPollingUntilDone(request:)``
   /// - ``retryBuildPollingUntilDone(request:options:)``
-  /// - ``retryBuildPollingUntilDone(projectId:id:)``
-  /// - ``retryBuildPollingUntilDone(name:)``
   public func retryBuild(
     request: RetryBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -240,11 +240,11 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``retryBuildPollingUntilDone(request:)``
-  /// - ``retryBuildPollingUntilDone(projectId:id:)``
-  /// - ``retryBuildPollingUntilDone(name:)``
   /// - ``retryBuild(request:)``
   /// - ``retryBuild(request:options:)``
+  /// - ``retryBuildPollingUntilDone(name:)``
+  /// - ``retryBuildPollingUntilDone(projectId:id:)``
+  /// - ``retryBuildPollingUntilDone(request:)``
   public func retryBuildPollingUntilDone(
     request: RetryBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -281,9 +281,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``approveBuild(request:)``
+  /// - ``approveBuildPollingUntilDone(name:approvalResult:)``
   /// - ``approveBuildPollingUntilDone(request:)``
   /// - ``approveBuildPollingUntilDone(request:options:)``
-  /// - ``approveBuildPollingUntilDone(name:approvalResult:)``
   public func approveBuild(
     request: ApproveBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -301,10 +301,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``approveBuildPollingUntilDone(request:)``
-  /// - ``approveBuildPollingUntilDone(name:approvalResult:)``
   /// - ``approveBuild(request:)``
   /// - ``approveBuild(request:options:)``
+  /// - ``approveBuildPollingUntilDone(name:approvalResult:)``
+  /// - ``approveBuildPollingUntilDone(request:)``
   public func approveBuildPollingUntilDone(
     request: ApproveBuildRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -335,9 +335,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBuildTrigger(request:)``
-  /// - ``createBuildTrigger(projectId:trigger:)``
   /// - ``createBuildTrigger(parent:)``
+  /// - ``createBuildTrigger(projectId:trigger:)``
+  /// - ``createBuildTrigger(request:)``
   public func createBuildTrigger(
     request: CreateBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -350,9 +350,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBuildTrigger(request:)``
-  /// - ``getBuildTrigger(projectId:triggerId:)``
   /// - ``getBuildTrigger(name:)``
+  /// - ``getBuildTrigger(projectId:triggerId:)``
+  /// - ``getBuildTrigger(request:)``
   public func getBuildTrigger(
     request: GetBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -366,9 +366,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBuildTriggers(request:)``
+  /// - ``listBuildTriggersByItems(projectId:)``
   /// - ``listBuildTriggersByItems(request:)``
   /// - ``listBuildTriggersByItems(request:options:)``
-  /// - ``listBuildTriggersByItems(projectId:)``
   public func listBuildTriggers(
     request: ListBuildTriggersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ListBuildTriggersResponse {
@@ -381,9 +381,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBuildTrigger(request:)``
-  /// - ``deleteBuildTrigger(projectId:triggerId:)``
   /// - ``deleteBuildTrigger(name:)``
+  /// - ``deleteBuildTrigger(projectId:triggerId:)``
+  /// - ``deleteBuildTrigger(request:)``
   public func deleteBuildTrigger(
     request: DeleteBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -396,8 +396,8 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBuildTrigger(request:)``
   /// - ``updateBuildTrigger(projectId:triggerId:trigger:)``
+  /// - ``updateBuildTrigger(request:)``
   public func updateBuildTrigger(
     request: UpdateBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.BuildTrigger {
@@ -417,9 +417,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``runBuildTrigger(request:)``
+  /// - ``runBuildTriggerPollingUntilDone(projectId:triggerId:source:)``
   /// - ``runBuildTriggerPollingUntilDone(request:)``
   /// - ``runBuildTriggerPollingUntilDone(request:options:)``
-  /// - ``runBuildTriggerPollingUntilDone(projectId:triggerId:source:)``
   public func runBuildTrigger(
     request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -438,10 +438,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``runBuildTriggerPollingUntilDone(request:)``
-  /// - ``runBuildTriggerPollingUntilDone(projectId:triggerId:source:)``
   /// - ``runBuildTrigger(request:)``
   /// - ``runBuildTrigger(request:options:)``
+  /// - ``runBuildTriggerPollingUntilDone(projectId:triggerId:source:)``
+  /// - ``runBuildTriggerPollingUntilDone(request:)``
   public func runBuildTriggerPollingUntilDone(
     request: RunBuildTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Build {
@@ -487,9 +487,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkerPool(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   /// - ``createWorkerPoolPollingUntilDone(request:)``
   /// - ``createWorkerPoolPollingUntilDone(request:options:)``
-  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   public func createWorkerPool(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -502,10 +502,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkerPoolPollingUntilDone(request:)``
-  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   /// - ``createWorkerPool(request:)``
   /// - ``createWorkerPool(request:options:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:)``
   public func createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -536,8 +536,8 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkerPool(request:)``
   /// - ``getWorkerPool(name:)``
+  /// - ``getWorkerPool(request:)``
   public func getWorkerPool(
     request: GetWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.WorkerPool {
@@ -551,9 +551,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkerPool(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   /// - ``deleteWorkerPoolPollingUntilDone(request:)``
   /// - ``deleteWorkerPoolPollingUntilDone(request:options:)``
-  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   public func deleteWorkerPool(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -566,10 +566,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
-  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   /// - ``deleteWorkerPool(request:)``
   /// - ``deleteWorkerPool(request:options:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
   public func deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -616,10 +616,10 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateWorkerPoolPollingUntilDone(request:)``
-  /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
   /// - ``updateWorkerPool(request:)``
   /// - ``updateWorkerPool(request:options:)``
+  /// - ``updateWorkerPoolPollingUntilDone(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
   public func updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -651,9 +651,9 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkerPools(request:)``
+  /// - ``listWorkerPoolsByItems(parent:)``
   /// - ``listWorkerPoolsByItems(request:)``
   /// - ``listWorkerPoolsByItems(request:options:)``
-  /// - ``listWorkerPoolsByItems(parent:)``
   public func listWorkerPools(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.ListWorkerPoolsResponse {
@@ -666,8 +666,8 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDefaultServiceAccount(request:)``
   /// - ``getDefaultServiceAccount(name:)``
+  /// - ``getDefaultServiceAccount(request:)``
   public func getDefaultServiceAccount(
     request: GetDefaultServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBuildV1.DefaultServiceAccount {
@@ -693,8 +693,8 @@ public final class CloudBuildClient: Clients.CloudBuildProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

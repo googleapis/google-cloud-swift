@@ -57,8 +57,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTrainingPipeline(request:)``
     /// - ``createTrainingPipeline(parent:trainingPipeline:)``
+    /// - ``createTrainingPipeline(request:)``
     public func createTrainingPipeline(
       request: CreateTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline {
@@ -71,8 +71,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTrainingPipeline(request:)``
     /// - ``getTrainingPipeline(name:)``
+    /// - ``getTrainingPipeline(request:)``
     public func getTrainingPipeline(
       request: GetTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TrainingPipeline {
@@ -86,9 +86,9 @@
     /// ## See Also
     ///
     /// - ``listTrainingPipelines(request:)``
+    /// - ``listTrainingPipelinesByItems(parent:)``
     /// - ``listTrainingPipelinesByItems(request:)``
     /// - ``listTrainingPipelinesByItems(request:options:)``
-    /// - ``listTrainingPipelinesByItems(parent:)``
     public func listTrainingPipelines(
       request: ListTrainingPipelinesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTrainingPipelinesResponse {
@@ -102,9 +102,9 @@
     /// ## See Also
     ///
     /// - ``deleteTrainingPipeline(request:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(name:)``
     /// - ``deleteTrainingPipelinePollingUntilDone(request:)``
     /// - ``deleteTrainingPipelinePollingUntilDone(request:options:)``
-    /// - ``deleteTrainingPipelinePollingUntilDone(name:)``
     public func deleteTrainingPipeline(
       request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -117,10 +117,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTrainingPipelinePollingUntilDone(request:)``
-    /// - ``deleteTrainingPipelinePollingUntilDone(name:)``
     /// - ``deleteTrainingPipeline(request:)``
     /// - ``deleteTrainingPipeline(request:options:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(name:)``
+    /// - ``deleteTrainingPipelinePollingUntilDone(request:)``
     public func deleteTrainingPipelinePollingUntilDone(
       request: DeleteTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -170,8 +170,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelTrainingPipeline(request:)``
     /// - ``cancelTrainingPipeline(name:)``
+    /// - ``cancelTrainingPipeline(request:)``
     public func cancelTrainingPipeline(
       request: CancelTrainingPipelineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -184,8 +184,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createPipelineJob(request:)``
     /// - ``createPipelineJob(parent:pipelineJob:pipelineJobId:)``
+    /// - ``createPipelineJob(request:)``
     public func createPipelineJob(
       request: CreatePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PipelineJob {
@@ -198,8 +198,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getPipelineJob(request:)``
     /// - ``getPipelineJob(name:)``
+    /// - ``getPipelineJob(request:)``
     public func getPipelineJob(
       request: GetPipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PipelineJob {
@@ -213,9 +213,9 @@
     /// ## See Also
     ///
     /// - ``listPipelineJobs(request:)``
+    /// - ``listPipelineJobsByItems(parent:)``
     /// - ``listPipelineJobsByItems(request:)``
     /// - ``listPipelineJobsByItems(request:options:)``
-    /// - ``listPipelineJobsByItems(parent:)``
     public func listPipelineJobs(
       request: ListPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListPipelineJobsResponse {
@@ -229,9 +229,9 @@
     /// ## See Also
     ///
     /// - ``deletePipelineJob(request:)``
+    /// - ``deletePipelineJobPollingUntilDone(name:)``
     /// - ``deletePipelineJobPollingUntilDone(request:)``
     /// - ``deletePipelineJobPollingUntilDone(request:options:)``
-    /// - ``deletePipelineJobPollingUntilDone(name:)``
     public func deletePipelineJob(
       request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -244,10 +244,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePipelineJobPollingUntilDone(request:)``
-    /// - ``deletePipelineJobPollingUntilDone(name:)``
     /// - ``deletePipelineJob(request:)``
     /// - ``deletePipelineJob(request:options:)``
+    /// - ``deletePipelineJobPollingUntilDone(name:)``
+    /// - ``deletePipelineJobPollingUntilDone(request:)``
     public func deletePipelineJobPollingUntilDone(
       request: DeletePipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -282,9 +282,9 @@
     /// ## See Also
     ///
     /// - ``batchDeletePipelineJobs(request:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(parent:names:)``
     /// - ``batchDeletePipelineJobsPollingUntilDone(request:)``
     /// - ``batchDeletePipelineJobsPollingUntilDone(request:options:)``
-    /// - ``batchDeletePipelineJobsPollingUntilDone(parent:names:)``
     public func batchDeletePipelineJobs(
       request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -299,10 +299,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchDeletePipelineJobsPollingUntilDone(request:)``
-    /// - ``batchDeletePipelineJobsPollingUntilDone(parent:names:)``
     /// - ``batchDeletePipelineJobs(request:)``
     /// - ``batchDeletePipelineJobs(request:options:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(parent:names:)``
+    /// - ``batchDeletePipelineJobsPollingUntilDone(request:)``
     public func batchDeletePipelineJobsPollingUntilDone(
       request: BatchDeletePipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchDeletePipelineJobsResponse {
@@ -352,8 +352,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelPipelineJob(request:)``
     /// - ``cancelPipelineJob(name:)``
+    /// - ``cancelPipelineJob(request:)``
     public func cancelPipelineJob(
       request: CancelPipelineJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -373,9 +373,9 @@
     /// ## See Also
     ///
     /// - ``batchCancelPipelineJobs(request:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(parent:names:)``
     /// - ``batchCancelPipelineJobsPollingUntilDone(request:)``
     /// - ``batchCancelPipelineJobsPollingUntilDone(request:options:)``
-    /// - ``batchCancelPipelineJobsPollingUntilDone(parent:names:)``
     public func batchCancelPipelineJobs(
       request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -394,10 +394,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchCancelPipelineJobsPollingUntilDone(request:)``
-    /// - ``batchCancelPipelineJobsPollingUntilDone(parent:names:)``
     /// - ``batchCancelPipelineJobs(request:)``
     /// - ``batchCancelPipelineJobs(request:options:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(parent:names:)``
+    /// - ``batchCancelPipelineJobsPollingUntilDone(request:)``
     public func batchCancelPipelineJobsPollingUntilDone(
       request: BatchCancelPipelineJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchCancelPipelineJobsResponse {
@@ -511,9 +511,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -539,8 +539,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -555,8 +555,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

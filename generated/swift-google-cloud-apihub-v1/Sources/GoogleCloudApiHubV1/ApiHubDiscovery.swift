@@ -50,9 +50,9 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDiscoveredApiObservations(request:)``
+  /// - ``listDiscoveredApiObservationsByItems(parent:)``
   /// - ``listDiscoveredApiObservationsByItems(request:)``
   /// - ``listDiscoveredApiObservationsByItems(request:options:)``
-  /// - ``listDiscoveredApiObservationsByItems(parent:)``
   public func listDiscoveredApiObservations(
     request: ListDiscoveredApiObservationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiObservationsResponse {
@@ -66,8 +66,8 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDiscoveredApiObservation(request:)``
   /// - ``getDiscoveredApiObservation(name:)``
+  /// - ``getDiscoveredApiObservation(request:)``
   public func getDiscoveredApiObservation(
     request: GetDiscoveredApiObservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.DiscoveredApiObservation {
@@ -82,9 +82,9 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDiscoveredApiOperations(request:)``
+  /// - ``listDiscoveredApiOperationsByItems(parent:)``
   /// - ``listDiscoveredApiOperationsByItems(request:)``
   /// - ``listDiscoveredApiOperationsByItems(request:options:)``
-  /// - ``listDiscoveredApiOperationsByItems(parent:)``
   public func listDiscoveredApiOperations(
     request: ListDiscoveredApiOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDiscoveredApiOperationsResponse {
@@ -98,8 +98,8 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDiscoveredApiOperation(request:)``
   /// - ``getDiscoveredApiOperation(name:)``
+  /// - ``getDiscoveredApiOperation(request:)``
   public func getDiscoveredApiOperation(
     request: GetDiscoveredApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.DiscoveredApiOperation {
@@ -143,9 +143,9 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -171,8 +171,8 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -187,8 +187,8 @@ public final class ApiHubDiscoveryClient: Clients.ApiHubDiscoveryProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

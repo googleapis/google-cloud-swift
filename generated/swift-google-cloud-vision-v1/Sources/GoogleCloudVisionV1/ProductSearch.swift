@@ -76,8 +76,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createProductSet(request:)``
   /// - ``createProductSet(parent:productSet:productSetId:)``
+  /// - ``createProductSet(request:)``
   public func createProductSet(
     request: CreateProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -96,9 +96,9 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listProductSets(request:)``
+  /// - ``listProductSetsByItems(parent:)``
   /// - ``listProductSetsByItems(request:)``
   /// - ``listProductSetsByItems(request:options:)``
-  /// - ``listProductSetsByItems(parent:)``
   public func listProductSets(
     request: ListProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListProductSetsResponse {
@@ -115,8 +115,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getProductSet(request:)``
   /// - ``getProductSet(name:)``
+  /// - ``getProductSet(request:)``
   public func getProductSet(
     request: GetProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -136,8 +136,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateProductSet(request:)``
   /// - ``updateProductSet(productSet:updateMask:)``
+  /// - ``updateProductSet(request:)``
   public func updateProductSet(
     request: UpdateProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -153,8 +153,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteProductSet(request:)``
   /// - ``deleteProductSet(name:)``
+  /// - ``deleteProductSet(request:)``
   public func deleteProductSet(
     request: DeleteProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -174,8 +174,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createProduct(request:)``
   /// - ``createProduct(parent:product:productId:)``
+  /// - ``createProduct(request:)``
   public func createProduct(
     request: CreateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -193,9 +193,9 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(parent:)``
   /// - ``listProductsByItems(request:)``
   /// - ``listProductsByItems(request:options:)``
-  /// - ``listProductsByItems(parent:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListProductsResponse {
@@ -212,8 +212,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getProduct(request:)``
   /// - ``getProduct(name:)``
+  /// - ``getProduct(request:)``
   public func getProduct(
     request: GetProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -240,8 +240,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateProduct(request:)``
   /// - ``updateProduct(product:updateMask:)``
+  /// - ``updateProduct(request:)``
   public func updateProduct(
     request: UpdateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -258,8 +258,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteProduct(request:)``
   /// - ``deleteProduct(name:)``
+  /// - ``deleteProduct(request:)``
   public func deleteProduct(
     request: DeleteProductRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -290,8 +290,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createReferenceImage(request:)``
   /// - ``createReferenceImage(parent:referenceImage:referenceImageId:)``
+  /// - ``createReferenceImage(request:)``
   public func createReferenceImage(
     request: CreateReferenceImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -310,8 +310,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteReferenceImage(request:)``
   /// - ``deleteReferenceImage(name:)``
+  /// - ``deleteReferenceImage(request:)``
   public func deleteReferenceImage(
     request: DeleteReferenceImageRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -331,9 +331,9 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listReferenceImages(request:)``
+  /// - ``listReferenceImagesByItems(parent:)``
   /// - ``listReferenceImagesByItems(request:)``
   /// - ``listReferenceImagesByItems(request:options:)``
-  /// - ``listReferenceImagesByItems(parent:)``
   public func listReferenceImages(
     request: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListReferenceImagesResponse {
@@ -350,8 +350,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getReferenceImage(request:)``
   /// - ``getReferenceImage(name:)``
+  /// - ``getReferenceImage(request:)``
   public func getReferenceImage(
     request: GetReferenceImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -371,8 +371,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``addProductToProductSet(request:)``
   /// - ``addProductToProductSet(name:product:)``
+  /// - ``addProductToProductSet(request:)``
   public func addProductToProductSet(
     request: AddProductToProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -385,8 +385,8 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``removeProductFromProductSet(request:)``
   /// - ``removeProductFromProductSet(name:product:)``
+  /// - ``removeProductFromProductSet(request:)``
   public func removeProductFromProductSet(
     request: RemoveProductFromProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -406,9 +406,9 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listProductsInProductSet(request:)``
+  /// - ``listProductsInProductSetByItems(name:)``
   /// - ``listProductsInProductSetByItems(request:)``
   /// - ``listProductsInProductSetByItems(request:options:)``
-  /// - ``listProductsInProductSetByItems(name:)``
   public func listProductsInProductSet(
     request: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListProductsInProductSetResponse {
@@ -435,9 +435,9 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``importProductSets(request:)``
+  /// - ``importProductSetsPollingUntilDone(parent:inputConfig:)``
   /// - ``importProductSetsPollingUntilDone(request:)``
   /// - ``importProductSetsPollingUntilDone(request:options:)``
-  /// - ``importProductSetsPollingUntilDone(parent:inputConfig:)``
   public func importProductSets(
     request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -463,10 +463,10 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``importProductSetsPollingUntilDone(request:)``
-  /// - ``importProductSetsPollingUntilDone(parent:inputConfig:)``
   /// - ``importProductSets(request:)``
   /// - ``importProductSets(request:options:)``
+  /// - ``importProductSetsPollingUntilDone(parent:inputConfig:)``
+  /// - ``importProductSetsPollingUntilDone(request:)``
   public func importProductSetsPollingUntilDone(
     request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportProductSetsResponse {
@@ -525,9 +525,9 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``purgeProducts(request:)``
+  /// - ``purgeProductsPollingUntilDone(parent:)``
   /// - ``purgeProductsPollingUntilDone(request:)``
   /// - ``purgeProductsPollingUntilDone(request:options:)``
-  /// - ``purgeProductsPollingUntilDone(parent:)``
   public func purgeProducts(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -565,10 +565,10 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``purgeProductsPollingUntilDone(request:)``
-  /// - ``purgeProductsPollingUntilDone(parent:)``
   /// - ``purgeProducts(request:)``
   /// - ``purgeProducts(request:options:)``
+  /// - ``purgeProductsPollingUntilDone(parent:)``
+  /// - ``purgeProductsPollingUntilDone(request:)``
   public func purgeProductsPollingUntilDone(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws {

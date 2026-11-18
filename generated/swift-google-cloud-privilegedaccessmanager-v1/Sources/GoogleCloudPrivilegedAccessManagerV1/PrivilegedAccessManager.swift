@@ -90,9 +90,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// ## See Also
   ///
   /// - ``listEntitlements(request:)``
+  /// - ``listEntitlementsByItems(parent:)``
   /// - ``listEntitlementsByItems(request:)``
   /// - ``listEntitlementsByItems(request:options:)``
-  /// - ``listEntitlementsByItems(parent:)``
   public func listEntitlements(
     request: ListEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListEntitlementsResponse {
@@ -121,8 +121,8 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``getEntitlement(request:)``
   /// - ``getEntitlement(name:)``
+  /// - ``getEntitlement(request:)``
   public func getEntitlement(
     request: GetEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Entitlement {
@@ -137,9 +137,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// ## See Also
   ///
   /// - ``createEntitlement(request:)``
+  /// - ``createEntitlementPollingUntilDone(parent:entitlement:entitlementId:)``
   /// - ``createEntitlementPollingUntilDone(request:)``
   /// - ``createEntitlementPollingUntilDone(request:options:)``
-  /// - ``createEntitlementPollingUntilDone(parent:entitlement:entitlementId:)``
   public func createEntitlement(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``createEntitlementPollingUntilDone(request:)``
-  /// - ``createEntitlementPollingUntilDone(parent:entitlement:entitlementId:)``
   /// - ``createEntitlement(request:)``
   /// - ``createEntitlement(request:options:)``
+  /// - ``createEntitlementPollingUntilDone(parent:entitlement:entitlementId:)``
+  /// - ``createEntitlementPollingUntilDone(request:)``
   public func createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -190,9 +190,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// ## See Also
   ///
   /// - ``deleteEntitlement(request:)``
+  /// - ``deleteEntitlementPollingUntilDone(name:)``
   /// - ``deleteEntitlementPollingUntilDone(request:)``
   /// - ``deleteEntitlementPollingUntilDone(request:options:)``
-  /// - ``deleteEntitlementPollingUntilDone(name:)``
   public func deleteEntitlement(
     request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -207,10 +207,10 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntitlementPollingUntilDone(request:)``
-  /// - ``deleteEntitlementPollingUntilDone(name:)``
   /// - ``deleteEntitlement(request:)``
   /// - ``deleteEntitlement(request:options:)``
+  /// - ``deleteEntitlementPollingUntilDone(name:)``
+  /// - ``deleteEntitlementPollingUntilDone(request:)``
   public func deleteEntitlementPollingUntilDone(
     request: DeleteEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -261,9 +261,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// ## See Also
   ///
   /// - ``updateEntitlement(request:)``
+  /// - ``updateEntitlementPollingUntilDone(entitlement:updateMask:)``
   /// - ``updateEntitlementPollingUntilDone(request:)``
   /// - ``updateEntitlementPollingUntilDone(request:options:)``
-  /// - ``updateEntitlementPollingUntilDone(entitlement:updateMask:)``
   public func updateEntitlement(
     request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -295,10 +295,10 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``updateEntitlementPollingUntilDone(request:)``
-  /// - ``updateEntitlementPollingUntilDone(entitlement:updateMask:)``
   /// - ``updateEntitlement(request:)``
   /// - ``updateEntitlement(request:options:)``
+  /// - ``updateEntitlementPollingUntilDone(entitlement:updateMask:)``
+  /// - ``updateEntitlementPollingUntilDone(request:)``
   public func updateEntitlementPollingUntilDone(
     request: UpdateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -330,9 +330,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// ## See Also
   ///
   /// - ``listGrants(request:)``
+  /// - ``listGrantsByItems(parent:)``
   /// - ``listGrantsByItems(request:)``
   /// - ``listGrantsByItems(request:options:)``
-  /// - ``listGrantsByItems(parent:)``
   public func listGrants(
     request: ListGrantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.ListGrantsResponse {
@@ -361,8 +361,8 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``getGrant(request:)``
   /// - ``getGrant(name:)``
+  /// - ``getGrant(request:)``
   public func getGrant(
     request: GetGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant {
@@ -376,8 +376,8 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``createGrant(request:)``
   /// - ``createGrant(parent:grant:)``
+  /// - ``createGrant(request:)``
   public func createGrant(
     request: CreateGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPrivilegedAccessManagerV1.Grant {
@@ -437,9 +437,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``revokeGrantPollingUntilDone(request:)``
   /// - ``revokeGrant(request:)``
   /// - ``revokeGrant(request:options:)``
+  /// - ``revokeGrantPollingUntilDone(request:)``
   public func revokeGrantPollingUntilDone(
     request: RevokeGrantRequest, options: GoogleGax.RequestOptions
   ) async throws -> Grant {
@@ -501,9 +501,9 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -529,8 +529,8 @@ public final class PrivilegedAccessManagerClient: Clients.PrivilegedAccessManage
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

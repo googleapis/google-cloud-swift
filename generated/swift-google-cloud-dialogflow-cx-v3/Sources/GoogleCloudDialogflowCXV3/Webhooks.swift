@@ -53,9 +53,9 @@
     /// ## See Also
     ///
     /// - ``listWebhooks(request:)``
+    /// - ``listWebhooksByItems(parent:)``
     /// - ``listWebhooksByItems(request:)``
     /// - ``listWebhooksByItems(request:options:)``
-    /// - ``listWebhooksByItems(parent:)``
     public func listWebhooks(
       request: ListWebhooksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListWebhooksResponse {
@@ -68,8 +68,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getWebhook(request:)``
     /// - ``getWebhook(name:)``
+    /// - ``getWebhook(request:)``
     public func getWebhook(
       request: GetWebhookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Webhook {
@@ -82,8 +82,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createWebhook(request:)``
     /// - ``createWebhook(parent:webhook:)``
+    /// - ``createWebhook(request:)``
     public func createWebhook(
       request: CreateWebhookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Webhook {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteWebhook(request:)``
     /// - ``deleteWebhook(name:)``
+    /// - ``deleteWebhook(request:)``
     public func deleteWebhook(
       request: DeleteWebhookRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -172,9 +172,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -200,8 +200,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

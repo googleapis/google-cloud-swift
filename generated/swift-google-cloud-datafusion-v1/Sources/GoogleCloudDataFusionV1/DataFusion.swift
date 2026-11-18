@@ -56,9 +56,9 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAvailableVersions(request:)``
+  /// - ``listAvailableVersionsByItems(parent:)``
   /// - ``listAvailableVersionsByItems(request:)``
   /// - ``listAvailableVersionsByItems(request:options:)``
-  /// - ``listAvailableVersionsByItems(parent:)``
   public func listAvailableVersions(
     request: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFusionV1.ListAvailableVersionsResponse {
@@ -100,9 +100,9 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -115,10 +115,10 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -150,9 +150,9 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -165,10 +165,10 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -200,9 +200,9 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -215,10 +215,10 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -266,9 +266,9 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``restartInstancePollingUntilDone(request:)``
   /// - ``restartInstance(request:)``
   /// - ``restartInstance(request:options:)``
+  /// - ``restartInstancePollingUntilDone(request:)``
   public func restartInstancePollingUntilDone(
     request: RestartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -302,9 +302,9 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -330,8 +330,8 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -346,8 +346,8 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -67,9 +67,9 @@
     /// ## See Also
     ///
     /// - ``createConversationModel(request:)``
+    /// - ``createConversationModelPollingUntilDone(parent:conversationModel:)``
     /// - ``createConversationModelPollingUntilDone(request:)``
     /// - ``createConversationModelPollingUntilDone(request:options:)``
-    /// - ``createConversationModelPollingUntilDone(parent:conversationModel:)``
     public func createConversationModel(
       request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -94,10 +94,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createConversationModelPollingUntilDone(request:)``
-    /// - ``createConversationModelPollingUntilDone(parent:conversationModel:)``
     /// - ``createConversationModel(request:)``
     /// - ``createConversationModel(request:options:)``
+    /// - ``createConversationModelPollingUntilDone(parent:conversationModel:)``
+    /// - ``createConversationModelPollingUntilDone(request:)``
     public func createConversationModelPollingUntilDone(
       request: CreateConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationModel {
@@ -129,8 +129,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getConversationModel(request:)``
     /// - ``getConversationModel(name:)``
+    /// - ``getConversationModel(request:)``
     public func getConversationModel(
       request: GetConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationModel {
@@ -144,9 +144,9 @@
     /// ## See Also
     ///
     /// - ``listConversationModels(request:)``
+    /// - ``listConversationModelsByItems(parent:)``
     /// - ``listConversationModelsByItems(request:)``
     /// - ``listConversationModelsByItems(request:options:)``
-    /// - ``listConversationModelsByItems(parent:)``
     public func listConversationModels(
       request: ListConversationModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationModelsResponse {
@@ -171,9 +171,9 @@
     /// ## See Also
     ///
     /// - ``deleteConversationModel(request:)``
+    /// - ``deleteConversationModelPollingUntilDone(name:)``
     /// - ``deleteConversationModelPollingUntilDone(request:)``
     /// - ``deleteConversationModelPollingUntilDone(request:options:)``
-    /// - ``deleteConversationModelPollingUntilDone(name:)``
     public func deleteConversationModel(
       request: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -197,10 +197,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteConversationModelPollingUntilDone(request:)``
-    /// - ``deleteConversationModelPollingUntilDone(name:)``
     /// - ``deleteConversationModel(request:)``
     /// - ``deleteConversationModel(request:options:)``
+    /// - ``deleteConversationModelPollingUntilDone(name:)``
+    /// - ``deleteConversationModelPollingUntilDone(request:)``
     public func deleteConversationModelPollingUntilDone(
       request: DeleteConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -275,9 +275,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``deployConversationModelPollingUntilDone(request:)``
     /// - ``deployConversationModel(request:)``
     /// - ``deployConversationModel(request:options:)``
+    /// - ``deployConversationModelPollingUntilDone(request:)``
     public func deployConversationModelPollingUntilDone(
       request: DeployConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -352,9 +352,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``undeployConversationModelPollingUntilDone(request:)``
     /// - ``undeployConversationModel(request:)``
     /// - ``undeployConversationModel(request:options:)``
+    /// - ``undeployConversationModelPollingUntilDone(request:)``
     public func undeployConversationModelPollingUntilDone(
       request: UndeployConversationModelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -386,8 +386,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getConversationModelEvaluation(request:)``
     /// - ``getConversationModelEvaluation(name:)``
+    /// - ``getConversationModelEvaluation(request:)``
     public func getConversationModelEvaluation(
       request: GetConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationModelEvaluation {
@@ -401,9 +401,9 @@
     /// ## See Also
     ///
     /// - ``listConversationModelEvaluations(request:)``
+    /// - ``listConversationModelEvaluationsByItems(parent:)``
     /// - ``listConversationModelEvaluationsByItems(request:)``
     /// - ``listConversationModelEvaluationsByItems(request:options:)``
-    /// - ``listConversationModelEvaluationsByItems(parent:)``
     public func listConversationModelEvaluations(
       request: ListConversationModelEvaluationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationModelEvaluationsResponse {
@@ -417,9 +417,9 @@
     /// ## See Also
     ///
     /// - ``createConversationModelEvaluation(request:)``
+    /// - ``createConversationModelEvaluationPollingUntilDone(parent:conversationModelEvaluation:)``
     /// - ``createConversationModelEvaluationPollingUntilDone(request:)``
     /// - ``createConversationModelEvaluationPollingUntilDone(request:options:)``
-    /// - ``createConversationModelEvaluationPollingUntilDone(parent:conversationModelEvaluation:)``
     public func createConversationModelEvaluation(
       request: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -432,10 +432,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createConversationModelEvaluationPollingUntilDone(request:)``
-    /// - ``createConversationModelEvaluationPollingUntilDone(parent:conversationModelEvaluation:)``
     /// - ``createConversationModelEvaluation(request:)``
     /// - ``createConversationModelEvaluation(request:options:)``
+    /// - ``createConversationModelEvaluationPollingUntilDone(parent:conversationModelEvaluation:)``
+    /// - ``createConversationModelEvaluationPollingUntilDone(request:)``
     public func createConversationModelEvaluationPollingUntilDone(
       request: CreateConversationModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationModelEvaluation {
@@ -517,9 +517,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -545,8 +545,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

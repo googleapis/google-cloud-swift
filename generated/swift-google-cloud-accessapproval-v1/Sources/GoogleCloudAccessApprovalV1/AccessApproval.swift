@@ -84,9 +84,9 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listApprovalRequests(request:)``
+  /// - ``listApprovalRequestsByItems(parent:)``
   /// - ``listApprovalRequestsByItems(request:)``
   /// - ``listApprovalRequestsByItems(request:options:)``
-  /// - ``listApprovalRequestsByItems(parent:)``
   public func listApprovalRequests(
     request: ListApprovalRequestsMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ListApprovalRequestsResponse {
@@ -99,8 +99,8 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getApprovalRequest(request:)``
   /// - ``getApprovalRequest(name:)``
+  /// - ``getApprovalRequest(request:)``
   public func getApprovalRequest(
     request: GetApprovalRequestMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.ApprovalRequest {
@@ -171,8 +171,8 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getAccessApprovalSettings(request:)``
   /// - ``getAccessApprovalSettings(name:)``
+  /// - ``getAccessApprovalSettings(request:)``
   public func getAccessApprovalSettings(
     request: GetAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalSettings {
@@ -205,8 +205,8 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteAccessApprovalSettings(request:)``
   /// - ``deleteAccessApprovalSettings(name:)``
+  /// - ``deleteAccessApprovalSettings(request:)``
   public func deleteAccessApprovalSettings(
     request: DeleteAccessApprovalSettingsMessage, options: GoogleGax.RequestOptions
   ) async throws {
@@ -220,8 +220,8 @@ public final class AccessApprovalClient: Clients.AccessApprovalProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getAccessApprovalServiceAccount(request:)``
   /// - ``getAccessApprovalServiceAccount(name:)``
+  /// - ``getAccessApprovalServiceAccount(request:)``
   public func getAccessApprovalServiceAccount(
     request: GetAccessApprovalServiceAccountMessage, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAccessApprovalV1.AccessApprovalServiceAccount {

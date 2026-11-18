@@ -55,9 +55,9 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// ## See Also
   ///
   /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(parent:)``
   /// - ``listClustersByItems(request:)``
   /// - ``listClustersByItems(request:options:)``
-  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudHypercomputeClusterV1.ListClustersResponse {
@@ -70,8 +70,8 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudHypercomputeClusterV1.Cluster {
@@ -85,9 +85,9 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -135,9 +135,9 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// ## See Also
   ///
   /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateClusterPollingUntilDone(request:options:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -185,9 +185,9 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// ## See Also
   ///
   /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteClusterPollingUntilDone(request:)``
   /// - ``deleteClusterPollingUntilDone(request:options:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteClusterPollingUntilDone(request:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -272,9 +272,9 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -300,8 +300,8 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -316,8 +316,8 @@ public final class HypercomputeClusterClient: Clients.HypercomputeClusterProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

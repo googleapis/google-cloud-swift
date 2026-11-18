@@ -54,8 +54,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSession(request:)``
     /// - ``createSession(parent:session:)``
+    /// - ``createSession(request:)``
     public func createSession(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSession(request:)``
     /// - ``deleteSession(name:)``
+    /// - ``deleteSession(request:)``
     public func deleteSession(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -107,8 +107,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSession(request:)``
     /// - ``getSession(name:)``
+    /// - ``getSession(request:)``
     public func getSession(
       request: GetSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -125,9 +125,9 @@
     /// ## See Also
     ///
     /// - ``listSessions(request:)``
+    /// - ``listSessionsByItems(parent:)``
     /// - ``listSessionsByItems(request:)``
     /// - ``listSessionsByItems(request:options:)``
-    /// - ``listSessionsByItems(parent:)``
     public func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse {
@@ -143,9 +143,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -171,8 +171,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

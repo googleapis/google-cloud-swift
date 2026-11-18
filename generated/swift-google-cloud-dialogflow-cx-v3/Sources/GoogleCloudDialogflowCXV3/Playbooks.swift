@@ -56,8 +56,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createPlaybook(request:)``
     /// - ``createPlaybook(parent:playbook:)``
+    /// - ``createPlaybook(request:)``
     public func createPlaybook(
       request: CreatePlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -70,8 +70,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePlaybook(request:)``
     /// - ``deletePlaybook(name:)``
+    /// - ``deletePlaybook(request:)``
     public func deletePlaybook(
       request: DeletePlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -85,9 +85,9 @@
     /// ## See Also
     ///
     /// - ``listPlaybooks(request:)``
+    /// - ``listPlaybooksByItems(parent:)``
     /// - ``listPlaybooksByItems(request:)``
     /// - ``listPlaybooksByItems(request:options:)``
-    /// - ``listPlaybooksByItems(parent:)``
     public func listPlaybooks(
       request: ListPlaybooksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse {
@@ -100,8 +100,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getPlaybook(request:)``
     /// - ``getPlaybook(name:)``
+    /// - ``getPlaybook(request:)``
     public func getPlaybook(
       request: GetPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -135,9 +135,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportPlaybookPollingUntilDone(request:)``
     /// - ``exportPlaybook(request:)``
     /// - ``exportPlaybook(request:options:)``
+    /// - ``exportPlaybookPollingUntilDone(request:)``
     public func exportPlaybookPollingUntilDone(
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportPlaybookResponse {
@@ -185,9 +185,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importPlaybookPollingUntilDone(request:)``
     /// - ``importPlaybook(request:)``
     /// - ``importPlaybook(request:options:)``
+    /// - ``importPlaybookPollingUntilDone(request:)``
     public func importPlaybookPollingUntilDone(
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportPlaybookResponse {
@@ -220,8 +220,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePlaybook(request:)``
     /// - ``updatePlaybook(playbook:updateMask:)``
+    /// - ``updatePlaybook(request:)``
     public func updatePlaybook(
       request: UpdatePlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -234,8 +234,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createPlaybookVersion(request:)``
     /// - ``createPlaybookVersion(parent:playbookVersion:)``
+    /// - ``createPlaybookVersion(request:)``
     public func createPlaybookVersion(
       request: CreatePlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -248,8 +248,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getPlaybookVersion(request:)``
     /// - ``getPlaybookVersion(name:)``
+    /// - ``getPlaybookVersion(request:)``
     public func getPlaybookVersion(
       request: GetPlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -263,8 +263,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``restorePlaybookVersion(request:)``
     /// - ``restorePlaybookVersion(name:)``
+    /// - ``restorePlaybookVersion(request:)``
     public func restorePlaybookVersion(
       request: RestorePlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.RestorePlaybookVersionResponse {
@@ -278,9 +278,9 @@
     /// ## See Also
     ///
     /// - ``listPlaybookVersions(request:)``
+    /// - ``listPlaybookVersionsByItems(parent:)``
     /// - ``listPlaybookVersionsByItems(request:)``
     /// - ``listPlaybookVersionsByItems(request:options:)``
-    /// - ``listPlaybookVersionsByItems(parent:)``
     public func listPlaybookVersions(
       request: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse {
@@ -293,8 +293,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePlaybookVersion(request:)``
     /// - ``deletePlaybookVersion(name:)``
+    /// - ``deletePlaybookVersion(request:)``
     public func deletePlaybookVersion(
       request: DeletePlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -355,9 +355,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -383,8 +383,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

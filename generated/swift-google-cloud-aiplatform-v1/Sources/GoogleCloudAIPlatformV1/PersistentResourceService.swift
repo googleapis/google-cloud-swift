@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``createPersistentResource(request:)``
+    /// - ``createPersistentResourcePollingUntilDone(parent:persistentResource:persistentResourceId:)``
     /// - ``createPersistentResourcePollingUntilDone(request:)``
     /// - ``createPersistentResourcePollingUntilDone(request:options:)``
-    /// - ``createPersistentResourcePollingUntilDone(parent:persistentResource:persistentResourceId:)``
     public func createPersistentResource(
       request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createPersistentResourcePollingUntilDone(request:)``
-    /// - ``createPersistentResourcePollingUntilDone(parent:persistentResource:persistentResourceId:)``
     /// - ``createPersistentResource(request:)``
     /// - ``createPersistentResource(request:options:)``
+    /// - ``createPersistentResourcePollingUntilDone(parent:persistentResource:persistentResourceId:)``
+    /// - ``createPersistentResourcePollingUntilDone(request:)``
     public func createPersistentResourcePollingUntilDone(
       request: CreatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> PersistentResource {
@@ -109,8 +109,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getPersistentResource(request:)``
     /// - ``getPersistentResource(name:)``
+    /// - ``getPersistentResource(request:)``
     public func getPersistentResource(
       request: GetPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PersistentResource {
@@ -124,9 +124,9 @@
     /// ## See Also
     ///
     /// - ``listPersistentResources(request:)``
+    /// - ``listPersistentResourcesByItems(parent:)``
     /// - ``listPersistentResourcesByItems(request:)``
     /// - ``listPersistentResourcesByItems(request:options:)``
-    /// - ``listPersistentResourcesByItems(parent:)``
     public func listPersistentResources(
       request: ListPersistentResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListPersistentResourcesResponse {
@@ -140,9 +140,9 @@
     /// ## See Also
     ///
     /// - ``deletePersistentResource(request:)``
+    /// - ``deletePersistentResourcePollingUntilDone(name:)``
     /// - ``deletePersistentResourcePollingUntilDone(request:)``
     /// - ``deletePersistentResourcePollingUntilDone(request:options:)``
-    /// - ``deletePersistentResourcePollingUntilDone(name:)``
     public func deletePersistentResource(
       request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -155,10 +155,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePersistentResourcePollingUntilDone(request:)``
-    /// - ``deletePersistentResourcePollingUntilDone(name:)``
     /// - ``deletePersistentResource(request:)``
     /// - ``deletePersistentResource(request:options:)``
+    /// - ``deletePersistentResourcePollingUntilDone(name:)``
+    /// - ``deletePersistentResourcePollingUntilDone(request:)``
     public func deletePersistentResourcePollingUntilDone(
       request: DeletePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -191,9 +191,9 @@
     /// ## See Also
     ///
     /// - ``updatePersistentResource(request:)``
+    /// - ``updatePersistentResourcePollingUntilDone(persistentResource:updateMask:)``
     /// - ``updatePersistentResourcePollingUntilDone(request:)``
     /// - ``updatePersistentResourcePollingUntilDone(request:options:)``
-    /// - ``updatePersistentResourcePollingUntilDone(persistentResource:updateMask:)``
     public func updatePersistentResource(
       request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -206,10 +206,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePersistentResourcePollingUntilDone(request:)``
-    /// - ``updatePersistentResourcePollingUntilDone(persistentResource:updateMask:)``
     /// - ``updatePersistentResource(request:)``
     /// - ``updatePersistentResource(request:options:)``
+    /// - ``updatePersistentResourcePollingUntilDone(persistentResource:updateMask:)``
+    /// - ``updatePersistentResourcePollingUntilDone(request:)``
     public func updatePersistentResourcePollingUntilDone(
       request: UpdatePersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> PersistentResource {
@@ -242,9 +242,9 @@
     /// ## See Also
     ///
     /// - ``rebootPersistentResource(request:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(name:)``
     /// - ``rebootPersistentResourcePollingUntilDone(request:)``
     /// - ``rebootPersistentResourcePollingUntilDone(request:options:)``
-    /// - ``rebootPersistentResourcePollingUntilDone(name:)``
     public func rebootPersistentResource(
       request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -257,10 +257,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``rebootPersistentResourcePollingUntilDone(request:)``
-    /// - ``rebootPersistentResourcePollingUntilDone(name:)``
     /// - ``rebootPersistentResource(request:)``
     /// - ``rebootPersistentResource(request:options:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(name:)``
+    /// - ``rebootPersistentResourcePollingUntilDone(request:)``
     public func rebootPersistentResourcePollingUntilDone(
       request: RebootPersistentResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> PersistentResource {
@@ -373,9 +373,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -401,8 +401,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -417,8 +417,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

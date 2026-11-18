@@ -52,8 +52,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:parentName:reservationSubBlock:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ReservationSubBlocksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationSubBlocksGetResponse {
@@ -67,8 +67,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:zone:parentResource:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: ReservationSubBlocksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -82,9 +82,9 @@
     /// ## See Also
     ///
     /// - ``getVersion(request:)``
+    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
     /// - ``getVersionPollingUntilDone(request:)``
     /// - ``getVersionPollingUntilDone(request:options:)``
-    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
     public func getVersion(
       request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -102,10 +102,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``getVersionPollingUntilDone(request:)``
-    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
     /// - ``getVersion(request:)``
     /// - ``getVersion(request:options:)``
+    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
+    /// - ``getVersionPollingUntilDone(request:)``
     public func getVersionPollingUntilDone(
       request: ReservationSubBlocksClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -152,9 +152,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:parentName:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:parentName:)``
     public func list(
       request: ReservationSubBlocksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationSubBlocksListResponse {
@@ -168,9 +168,9 @@
     /// ## See Also
     ///
     /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:parentName:reservationSubBlock:)``
     /// - ``performMaintenancePollingUntilDone(request:)``
     /// - ``performMaintenancePollingUntilDone(request:options:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:parentName:reservationSubBlock:)``
     public func performMaintenance(
       request: ReservationSubBlocksClient.PerformMaintenanceRequest,
       options: GoogleGax.RequestOptions
@@ -189,10 +189,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``performMaintenancePollingUntilDone(request:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:parentName:reservationSubBlock:)``
     /// - ``performMaintenance(request:)``
     /// - ``performMaintenance(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:parentName:reservationSubBlock:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
     public func performMaintenancePollingUntilDone(
       request: ReservationSubBlocksClient.PerformMaintenanceRequest,
       options: GoogleGax.RequestOptions
@@ -240,9 +240,9 @@
     /// ## See Also
     ///
     /// - ``reportFaulty(request:)``
+    /// - ``reportFaultyPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
     /// - ``reportFaultyPollingUntilDone(request:)``
     /// - ``reportFaultyPollingUntilDone(request:options:)``
-    /// - ``reportFaultyPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
     public func reportFaulty(
       request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -260,10 +260,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``reportFaultyPollingUntilDone(request:)``
-    /// - ``reportFaultyPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
     /// - ``reportFaulty(request:)``
     /// - ``reportFaulty(request:options:)``
+    /// - ``reportFaultyPollingUntilDone(project:zone:parentName:reservationSubBlock:body:)``
+    /// - ``reportFaultyPollingUntilDone(request:)``
     public func reportFaultyPollingUntilDone(
       request: ReservationSubBlocksClient.ReportFaultyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -310,8 +310,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:zone:parentResource:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: ReservationSubBlocksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -324,8 +324,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:zone:parentResource:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: ReservationSubBlocksClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions

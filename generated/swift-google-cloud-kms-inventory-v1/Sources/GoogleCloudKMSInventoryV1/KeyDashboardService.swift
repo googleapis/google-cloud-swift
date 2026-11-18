@@ -51,9 +51,9 @@ public final class KeyDashboardServiceClient: Clients.KeyDashboardServiceProtoco
   /// ## See Also
   ///
   /// - ``listCryptoKeys(request:)``
+  /// - ``listCryptoKeysByItems(parent:)``
   /// - ``listCryptoKeysByItems(request:)``
   /// - ``listCryptoKeysByItems(request:options:)``
-  /// - ``listCryptoKeysByItems(parent:)``
   public func listCryptoKeys(
     request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse {

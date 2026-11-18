@@ -68,8 +68,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createNamespace(request:)``
   /// - ``createNamespace(parent:namespace:namespaceId:)``
+  /// - ``createNamespace(request:)``
   public func createNamespace(
     request: CreateNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
@@ -83,9 +83,9 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// ## See Also
   ///
   /// - ``listNamespaces(request:)``
+  /// - ``listNamespacesByItems(parent:)``
   /// - ``listNamespacesByItems(request:)``
   /// - ``listNamespacesByItems(request:options:)``
-  /// - ``listNamespacesByItems(parent:)``
   public func listNamespaces(
     request: ListNamespacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.ListNamespacesResponse {
@@ -98,8 +98,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getNamespace(request:)``
   /// - ``getNamespace(name:)``
+  /// - ``getNamespace(request:)``
   public func getNamespace(
     request: GetNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
@@ -112,8 +112,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateNamespace(request:)``
   /// - ``updateNamespace(namespace:updateMask:)``
+  /// - ``updateNamespace(request:)``
   public func updateNamespace(
     request: UpdateNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Namespace {
@@ -127,8 +127,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteNamespace(request:)``
   /// - ``deleteNamespace(name:)``
+  /// - ``deleteNamespace(request:)``
   public func deleteNamespace(
     request: DeleteNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -141,8 +141,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createService(request:)``
   /// - ``createService(parent:service:serviceId:)``
+  /// - ``createService(request:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Service {
@@ -156,9 +156,9 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// ## See Also
   ///
   /// - ``listServices(request:)``
+  /// - ``listServicesByItems(parent:)``
   /// - ``listServicesByItems(request:)``
   /// - ``listServicesByItems(request:options:)``
-  /// - ``listServicesByItems(parent:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.ListServicesResponse {
@@ -171,8 +171,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getService(request:)``
   /// - ``getService(name:)``
+  /// - ``getService(request:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Service {
@@ -200,8 +200,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteService(request:)``
   /// - ``deleteService(name:)``
+  /// - ``deleteService(request:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -214,8 +214,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createEndpoint(request:)``
   /// - ``createEndpoint(parent:endpoint:endpointId:)``
+  /// - ``createEndpoint(request:)``
   public func createEndpoint(
     request: CreateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
@@ -229,9 +229,9 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   /// ## See Also
   ///
   /// - ``listEndpoints(request:)``
+  /// - ``listEndpointsByItems(parent:)``
   /// - ``listEndpointsByItems(request:)``
   /// - ``listEndpointsByItems(request:options:)``
-  /// - ``listEndpointsByItems(parent:)``
   public func listEndpoints(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.ListEndpointsResponse {
@@ -244,8 +244,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getEndpoint(request:)``
   /// - ``getEndpoint(name:)``
+  /// - ``getEndpoint(request:)``
   public func getEndpoint(
     request: GetEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
@@ -258,8 +258,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateEndpoint(request:)``
   /// - ``updateEndpoint(endpoint:updateMask:)``
+  /// - ``updateEndpoint(request:)``
   public func updateEndpoint(
     request: UpdateEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.Endpoint {
@@ -272,8 +272,8 @@ public final class RegistrationServiceClient: Clients.RegistrationServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteEndpoint(request:)``
   /// - ``deleteEndpoint(name:)``
+  /// - ``deleteEndpoint(request:)``
   public func deleteEndpoint(
     request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws {

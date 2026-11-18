@@ -51,8 +51,8 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCuration(request:)``
   /// - ``createCuration(parent:curation:curationId:)``
+  /// - ``createCuration(request:)``
   public func createCuration(
     request: CreateCurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Curation {
@@ -65,8 +65,8 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCuration(request:)``
   /// - ``getCuration(name:)``
+  /// - ``getCuration(request:)``
   public func getCuration(
     request: GetCurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Curation {
@@ -80,9 +80,9 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCurations(request:)``
+  /// - ``listCurationsByItems(parent:)``
   /// - ``listCurationsByItems(request:)``
   /// - ``listCurationsByItems(request:options:)``
-  /// - ``listCurationsByItems(parent:)``
   public func listCurations(
     request: ListCurationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListCurationsResponse {
@@ -108,8 +108,8 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCuration(request:)``
   /// - ``updateCuration(curation:updateMask:)``
+  /// - ``updateCuration(request:)``
   public func updateCuration(
     request: UpdateCurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Curation {
@@ -123,8 +123,8 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCuration(request:)``
   /// - ``deleteCuration(name:)``
+  /// - ``deleteCuration(request:)``
   public func deleteCuration(
     request: DeleteCurationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -168,9 +168,9 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -196,8 +196,8 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -212,8 +212,8 @@ public final class ApiHubCurateClient: Clients.ApiHubCurateProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

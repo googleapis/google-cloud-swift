@@ -54,8 +54,8 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createJob(request:)``
   /// - ``createJob(parent:job:jobId:)``
+  /// - ``createJob(request:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.Job {
@@ -68,8 +68,8 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.Job {
@@ -83,9 +83,9 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteJob(request:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
   /// - ``deleteJobPollingUntilDone(request:)``
   /// - ``deleteJobPollingUntilDone(request:options:)``
-  /// - ``deleteJobPollingUntilDone(name:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -98,10 +98,10 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteJobPollingUntilDone(request:)``
-  /// - ``deleteJobPollingUntilDone(name:)``
   /// - ``deleteJob(request:)``
   /// - ``deleteJob(request:options:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
+  /// - ``deleteJobPollingUntilDone(request:)``
   public func deleteJobPollingUntilDone(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -133,9 +133,9 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``cancelJob(request:)``
+  /// - ``cancelJobPollingUntilDone(name:)``
   /// - ``cancelJobPollingUntilDone(request:)``
   /// - ``cancelJobPollingUntilDone(request:options:)``
-  /// - ``cancelJobPollingUntilDone(name:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,10 +148,10 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelJobPollingUntilDone(request:)``
-  /// - ``cancelJobPollingUntilDone(name:)``
   /// - ``cancelJob(request:)``
   /// - ``cancelJob(request:options:)``
+  /// - ``cancelJobPollingUntilDone(name:)``
+  /// - ``cancelJobPollingUntilDone(request:)``
   public func cancelJobPollingUntilDone(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> CancelJobResponse {
@@ -184,9 +184,9 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.ListJobsResponse {
@@ -199,8 +199,8 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTask(request:)``
   /// - ``getTask(name:)``
+  /// - ``getTask(request:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.Task {
@@ -214,9 +214,9 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(parent:)``
   /// - ``listTasksByItems(request:)``
   /// - ``listTasksByItems(request:options:)``
-  /// - ``listTasksByItems(parent:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.ListTasksResponse {
@@ -277,9 +277,9 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -305,8 +305,8 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -321,8 +321,8 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

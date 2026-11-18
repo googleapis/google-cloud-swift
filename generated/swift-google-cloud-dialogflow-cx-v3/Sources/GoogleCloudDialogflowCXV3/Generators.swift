@@ -53,9 +53,9 @@
     /// ## See Also
     ///
     /// - ``listGenerators(request:)``
+    /// - ``listGeneratorsByItems(parent:)``
     /// - ``listGeneratorsByItems(request:)``
     /// - ``listGeneratorsByItems(request:options:)``
-    /// - ``listGeneratorsByItems(parent:)``
     public func listGenerators(
       request: ListGeneratorsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListGeneratorsResponse {
@@ -68,8 +68,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getGenerator(request:)``
     /// - ``getGenerator(name:)``
+    /// - ``getGenerator(request:)``
     public func getGenerator(
       request: GetGeneratorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Generator {
@@ -82,8 +82,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createGenerator(request:)``
     /// - ``createGenerator(parent:generator:)``
+    /// - ``createGenerator(request:)``
     public func createGenerator(
       request: CreateGeneratorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Generator {
@@ -96,8 +96,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateGenerator(request:)``
     /// - ``updateGenerator(generator:updateMask:)``
+    /// - ``updateGenerator(request:)``
     public func updateGenerator(
       request: UpdateGeneratorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Generator {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteGenerator(request:)``
     /// - ``deleteGenerator(name:)``
+    /// - ``deleteGenerator(request:)``
     public func deleteGenerator(
       request: DeleteGeneratorRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -172,9 +172,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -200,8 +200,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

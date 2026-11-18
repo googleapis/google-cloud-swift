@@ -54,8 +54,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSpace(request:)``
   /// - ``getSpace(name:)``
+  /// - ``getSpace(request:)``
   public func getSpace(
     request: GetSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Space {
@@ -69,9 +69,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSpaces(request:)``
+  /// - ``listSpacesByItems(parent:)``
   /// - ``listSpacesByItems(request:)``
   /// - ``listSpacesByItems(request:options:)``
-  /// - ``listSpacesByItems(parent:)``
   public func listSpaces(
     request: ListSpacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSpacesResponse {
@@ -84,8 +84,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSpace(request:)``
   /// - ``createSpace(parent:space:spaceId:)``
+  /// - ``createSpace(request:)``
   public func createSpace(
     request: CreateSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Space {
@@ -112,8 +112,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSpace(request:)``
   /// - ``deleteSpace(name:)``
+  /// - ``deleteSpace(request:)``
   public func deleteSpace(
     request: DeleteSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -126,8 +126,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplicationTemplate(request:)``
   /// - ``getApplicationTemplate(name:)``
+  /// - ``getApplicationTemplate(request:)``
   public func getApplicationTemplate(
     request: GetApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -141,9 +141,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApplicationTemplates(request:)``
+  /// - ``listApplicationTemplatesByItems(parent:)``
   /// - ``listApplicationTemplatesByItems(request:)``
   /// - ``listApplicationTemplatesByItems(request:options:)``
-  /// - ``listApplicationTemplatesByItems(parent:)``
   public func listApplicationTemplates(
     request: ListApplicationTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplatesResponse {
@@ -156,8 +156,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApplicationTemplate(request:)``
   /// - ``createApplicationTemplate(parent:applicationTemplate:applicationTemplateId:)``
+  /// - ``createApplicationTemplate(request:)``
   public func createApplicationTemplate(
     request: CreateApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -170,8 +170,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplicationTemplate(request:)``
   /// - ``updateApplicationTemplate(applicationTemplate:updateMask:)``
+  /// - ``updateApplicationTemplate(request:)``
   public func updateApplicationTemplate(
     request: UpdateApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -184,8 +184,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importApplicationTemplate(request:)``
   /// - ``importApplicationTemplate(name:applicationTemplateRevisionUri:)``
+  /// - ``importApplicationTemplate(request:)``
   public func importApplicationTemplate(
     request: ImportApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -198,8 +198,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApplicationTemplate(request:)``
   /// - ``deleteApplicationTemplate(name:)``
+  /// - ``deleteApplicationTemplate(request:)``
   public func deleteApplicationTemplate(
     request: DeleteApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -212,8 +212,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``commitApplicationTemplate(request:)``
   /// - ``commitApplicationTemplate(name:)``
+  /// - ``commitApplicationTemplate(request:)``
   public func commitApplicationTemplate(
     request: CommitApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision {
@@ -227,9 +227,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``snapshotApplicationTemplate(request:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(name:)``
   /// - ``snapshotApplicationTemplatePollingUntilDone(request:)``
   /// - ``snapshotApplicationTemplatePollingUntilDone(request:options:)``
-  /// - ``snapshotApplicationTemplatePollingUntilDone(name:)``
   public func snapshotApplicationTemplate(
     request: SnapshotApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -242,10 +242,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``snapshotApplicationTemplatePollingUntilDone(request:)``
-  /// - ``snapshotApplicationTemplatePollingUntilDone(name:)``
   /// - ``snapshotApplicationTemplate(request:)``
   /// - ``snapshotApplicationTemplate(request:options:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(name:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(request:)``
   public func snapshotApplicationTemplatePollingUntilDone(
     request: SnapshotApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> SnapshotApplicationTemplateResponse {
@@ -281,8 +281,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateApplicationTemplateIaC(request:)``
   /// - ``generateApplicationTemplateIaC(name:)``
+  /// - ``generateApplicationTemplateIaC(request:)``
   public func generateApplicationTemplateIaC(
     request: GenerateApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateIaCResponse {
@@ -298,9 +298,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportApplicationTemplateIaC(request:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(name:)``
   /// - ``exportApplicationTemplateIaCPollingUntilDone(request:)``
   /// - ``exportApplicationTemplateIaCPollingUntilDone(request:options:)``
-  /// - ``exportApplicationTemplateIaCPollingUntilDone(name:)``
   public func exportApplicationTemplateIaC(
     request: ExportApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -315,10 +315,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportApplicationTemplateIaCPollingUntilDone(request:)``
-  /// - ``exportApplicationTemplateIaCPollingUntilDone(name:)``
   /// - ``exportApplicationTemplateIaC(request:)``
   /// - ``exportApplicationTemplateIaC(request:options:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(request:)``
   public func exportApplicationTemplateIaCPollingUntilDone(
     request: ExportApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportApplicationTemplateIaCResponse {
@@ -354,8 +354,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateApplicationTemplateRevisionIaC(request:)``
   /// - ``generateApplicationTemplateRevisionIaC(name:)``
+  /// - ``generateApplicationTemplateRevisionIaC(request:)``
   public func generateApplicationTemplateRevisionIaC(
     request: GenerateApplicationTemplateRevisionIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateRevisionIaCResponse {
@@ -371,9 +371,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportApplicationTemplateRevisionIaC(request:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(name:)``
   /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:)``
   /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:options:)``
-  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(name:)``
   public func exportApplicationTemplateRevisionIaC(
     request: ExportApplicationTemplateRevisionIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -388,10 +388,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:)``
-  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(name:)``
   /// - ``exportApplicationTemplateRevisionIaC(request:)``
   /// - ``exportApplicationTemplateRevisionIaC(request:options:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:)``
   public func exportApplicationTemplateRevisionIaCPollingUntilDone(
     request: ExportApplicationTemplateRevisionIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportApplicationTemplateRevisionIaCResponse {
@@ -425,8 +425,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getComponent(request:)``
   /// - ``getComponent(name:)``
+  /// - ``getComponent(request:)``
   public func getComponent(
     request: GetComponentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -440,9 +440,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listComponents(request:)``
+  /// - ``listComponentsByItems(parent:)``
   /// - ``listComponentsByItems(request:)``
   /// - ``listComponentsByItems(request:options:)``
-  /// - ``listComponentsByItems(parent:)``
   public func listComponents(
     request: ListComponentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListComponentsResponse {
@@ -455,8 +455,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createComponent(request:)``
   /// - ``createComponent(parent:component:componentId:)``
+  /// - ``createComponent(request:)``
   public func createComponent(
     request: CreateComponentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -469,8 +469,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateComponent(request:)``
   /// - ``updateComponent(component:updateMask:)``
+  /// - ``updateComponent(request:)``
   public func updateComponent(
     request: UpdateComponentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -483,8 +483,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteComponent(request:)``
   /// - ``deleteComponent(name:)``
+  /// - ``deleteComponent(request:)``
   public func deleteComponent(
     request: DeleteComponentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -497,8 +497,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnection(request:)``
   /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -512,9 +512,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
   /// - ``listConnectionsByItems(request:)``
   /// - ``listConnectionsByItems(request:options:)``
-  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListConnectionsResponse {
@@ -527,8 +527,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createConnection(request:)``
   /// - ``createConnection(parent:connection:connectionId:)``
+  /// - ``createConnection(request:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -541,8 +541,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConnection(request:)``
   /// - ``updateConnection(connection:updateMask:)``
+  /// - ``updateConnection(request:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -555,8 +555,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnection(request:)``
   /// - ``deleteConnection(name:)``
+  /// - ``deleteConnection(request:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -569,8 +569,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplicationTemplateRevision(request:)``
   /// - ``getApplicationTemplateRevision(name:)``
+  /// - ``getApplicationTemplateRevision(request:)``
   public func getApplicationTemplateRevision(
     request: GetApplicationTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision {
@@ -584,9 +584,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApplicationTemplateRevisions(request:)``
+  /// - ``listApplicationTemplateRevisionsByItems(parent:)``
   /// - ``listApplicationTemplateRevisionsByItems(request:)``
   /// - ``listApplicationTemplateRevisionsByItems(request:options:)``
-  /// - ``listApplicationTemplateRevisionsByItems(parent:)``
   public func listApplicationTemplateRevisions(
     request: ListApplicationTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplateRevisionsResponse {
@@ -599,8 +599,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApplicationTemplateRevision(request:)``
   /// - ``deleteApplicationTemplateRevision(name:)``
+  /// - ``deleteApplicationTemplateRevision(request:)``
   public func deleteApplicationTemplateRevision(
     request: DeleteApplicationTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -613,8 +613,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCatalog(request:)``
   /// - ``getCatalog(name:)``
+  /// - ``getCatalog(request:)``
   public func getCatalog(
     request: GetCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -628,9 +628,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCatalogs(request:)``
+  /// - ``listCatalogsByItems(parent:)``
   /// - ``listCatalogsByItems(request:)``
   /// - ``listCatalogsByItems(request:options:)``
-  /// - ``listCatalogsByItems(parent:)``
   public func listCatalogs(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListCatalogsResponse {
@@ -643,8 +643,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCatalog(request:)``
   /// - ``createCatalog(parent:catalog:catalogId:)``
+  /// - ``createCatalog(request:)``
   public func createCatalog(
     request: CreateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -657,8 +657,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCatalog(request:)``
   /// - ``updateCatalog(catalog:updateMask:)``
+  /// - ``updateCatalog(request:)``
   public func updateCatalog(
     request: UpdateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -672,9 +672,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCatalog(request:)``
+  /// - ``deleteCatalogPollingUntilDone(name:)``
   /// - ``deleteCatalogPollingUntilDone(request:)``
   /// - ``deleteCatalogPollingUntilDone(request:options:)``
-  /// - ``deleteCatalogPollingUntilDone(name:)``
   public func deleteCatalog(
     request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -687,10 +687,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCatalogPollingUntilDone(request:)``
-  /// - ``deleteCatalogPollingUntilDone(name:)``
   /// - ``deleteCatalog(request:)``
   /// - ``deleteCatalog(request:options:)``
+  /// - ``deleteCatalogPollingUntilDone(name:)``
+  /// - ``deleteCatalogPollingUntilDone(request:)``
   public func deleteCatalogPollingUntilDone(
     request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -721,8 +721,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCatalogTemplate(request:)``
   /// - ``createCatalogTemplate(parent:catalogTemplate:catalogTemplateId:)``
+  /// - ``createCatalogTemplate(request:)``
   public func createCatalogTemplate(
     request: CreateCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -735,8 +735,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCatalogTemplate(request:)``
   /// - ``getCatalogTemplate(name:)``
+  /// - ``getCatalogTemplate(request:)``
   public func getCatalogTemplate(
     request: GetCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -750,9 +750,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCatalogTemplates(request:)``
+  /// - ``listCatalogTemplatesByItems(parent:)``
   /// - ``listCatalogTemplatesByItems(request:)``
   /// - ``listCatalogTemplatesByItems(request:options:)``
-  /// - ``listCatalogTemplatesByItems(parent:)``
   public func listCatalogTemplates(
     request: ListCatalogTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListCatalogTemplatesResponse {
@@ -765,8 +765,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCatalogTemplate(request:)``
   /// - ``updateCatalogTemplate(catalogTemplate:updateMask:)``
+  /// - ``updateCatalogTemplate(request:)``
   public func updateCatalogTemplate(
     request: UpdateCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -780,9 +780,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCatalogTemplate(request:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(name:)``
   /// - ``deleteCatalogTemplatePollingUntilDone(request:)``
   /// - ``deleteCatalogTemplatePollingUntilDone(request:options:)``
-  /// - ``deleteCatalogTemplatePollingUntilDone(name:)``
   public func deleteCatalogTemplate(
     request: DeleteCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -795,10 +795,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCatalogTemplatePollingUntilDone(request:)``
-  /// - ``deleteCatalogTemplatePollingUntilDone(name:)``
   /// - ``deleteCatalogTemplate(request:)``
   /// - ``deleteCatalogTemplate(request:options:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(name:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(request:)``
   public func deleteCatalogTemplatePollingUntilDone(
     request: DeleteCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -830,9 +830,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createShare(request:)``
+  /// - ``createSharePollingUntilDone(parent:share:shareId:)``
   /// - ``createSharePollingUntilDone(request:)``
   /// - ``createSharePollingUntilDone(request:options:)``
-  /// - ``createSharePollingUntilDone(parent:share:shareId:)``
   public func createShare(
     request: CreateShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -845,10 +845,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSharePollingUntilDone(request:)``
-  /// - ``createSharePollingUntilDone(parent:share:shareId:)``
   /// - ``createShare(request:)``
   /// - ``createShare(request:options:)``
+  /// - ``createSharePollingUntilDone(parent:share:shareId:)``
+  /// - ``createSharePollingUntilDone(request:)``
   public func createSharePollingUntilDone(
     request: CreateShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> Share {
@@ -880,9 +880,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listShares(request:)``
+  /// - ``listSharesByItems(parent:)``
   /// - ``listSharesByItems(request:)``
   /// - ``listSharesByItems(request:options:)``
-  /// - ``listSharesByItems(parent:)``
   public func listShares(
     request: ListSharesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSharesResponse {
@@ -895,8 +895,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getShare(request:)``
   /// - ``getShare(name:)``
+  /// - ``getShare(request:)``
   public func getShare(
     request: GetShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Share {
@@ -910,9 +910,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteShare(request:)``
+  /// - ``deleteSharePollingUntilDone(name:)``
   /// - ``deleteSharePollingUntilDone(request:)``
   /// - ``deleteSharePollingUntilDone(request:options:)``
-  /// - ``deleteSharePollingUntilDone(name:)``
   public func deleteShare(
     request: DeleteShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -925,10 +925,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSharePollingUntilDone(request:)``
-  /// - ``deleteSharePollingUntilDone(name:)``
   /// - ``deleteShare(request:)``
   /// - ``deleteShare(request:options:)``
+  /// - ``deleteSharePollingUntilDone(name:)``
+  /// - ``deleteSharePollingUntilDone(request:)``
   public func deleteSharePollingUntilDone(
     request: DeleteShareRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -961,9 +961,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``syncShare(request:)``
+  /// - ``syncSharePollingUntilDone(name:)``
   /// - ``syncSharePollingUntilDone(request:)``
   /// - ``syncSharePollingUntilDone(request:options:)``
-  /// - ``syncSharePollingUntilDone(name:)``
   public func syncShare(
     request: SyncShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -977,10 +977,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``syncSharePollingUntilDone(request:)``
-  /// - ``syncSharePollingUntilDone(name:)``
   /// - ``syncShare(request:)``
   /// - ``syncShare(request:options:)``
+  /// - ``syncSharePollingUntilDone(name:)``
+  /// - ``syncSharePollingUntilDone(request:)``
   public func syncSharePollingUntilDone(
     request: SyncShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> Share {
@@ -1011,8 +1011,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSharedTemplate(request:)``
   /// - ``getSharedTemplate(name:)``
+  /// - ``getSharedTemplate(request:)``
   public func getSharedTemplate(
     request: GetSharedTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.SharedTemplate {
@@ -1026,9 +1026,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSharedTemplates(request:)``
+  /// - ``listSharedTemplatesByItems(parent:)``
   /// - ``listSharedTemplatesByItems(request:)``
   /// - ``listSharedTemplatesByItems(request:options:)``
-  /// - ``listSharedTemplatesByItems(parent:)``
   public func listSharedTemplates(
     request: ListSharedTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSharedTemplatesResponse {
@@ -1041,8 +1041,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSharedTemplateRevision(request:)``
   /// - ``getSharedTemplateRevision(name:)``
+  /// - ``getSharedTemplateRevision(request:)``
   public func getSharedTemplateRevision(
     request: GetSharedTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.SharedTemplateRevision {
@@ -1056,9 +1056,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSharedTemplateRevisions(request:)``
+  /// - ``listSharedTemplateRevisionsByItems(parent:)``
   /// - ``listSharedTemplateRevisionsByItems(request:)``
   /// - ``listSharedTemplateRevisionsByItems(request:options:)``
-  /// - ``listSharedTemplateRevisionsByItems(parent:)``
   public func listSharedTemplateRevisions(
     request: ListSharedTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSharedTemplateRevisionsResponse {
@@ -1072,9 +1072,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCatalogTemplateRevision(request:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(parent:catalogTemplateRevision:catalogTemplateRevisionId:)``
   /// - ``createCatalogTemplateRevisionPollingUntilDone(request:)``
   /// - ``createCatalogTemplateRevisionPollingUntilDone(request:options:)``
-  /// - ``createCatalogTemplateRevisionPollingUntilDone(parent:catalogTemplateRevision:catalogTemplateRevisionId:)``
   public func createCatalogTemplateRevision(
     request: CreateCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1087,10 +1087,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCatalogTemplateRevisionPollingUntilDone(request:)``
-  /// - ``createCatalogTemplateRevisionPollingUntilDone(parent:catalogTemplateRevision:catalogTemplateRevisionId:)``
   /// - ``createCatalogTemplateRevision(request:)``
   /// - ``createCatalogTemplateRevision(request:options:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(parent:catalogTemplateRevision:catalogTemplateRevisionId:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(request:)``
   public func createCatalogTemplateRevisionPollingUntilDone(
     request: CreateCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> CatalogTemplateRevision {
@@ -1123,8 +1123,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCatalogTemplateRevision(request:)``
   /// - ``getCatalogTemplateRevision(name:)``
+  /// - ``getCatalogTemplateRevision(request:)``
   public func getCatalogTemplateRevision(
     request: GetCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplateRevision {
@@ -1138,9 +1138,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCatalogTemplateRevisions(request:)``
+  /// - ``listCatalogTemplateRevisionsByItems(parent:)``
   /// - ``listCatalogTemplateRevisionsByItems(request:)``
   /// - ``listCatalogTemplateRevisionsByItems(request:options:)``
-  /// - ``listCatalogTemplateRevisionsByItems(parent:)``
   public func listCatalogTemplateRevisions(
     request: ListCatalogTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListCatalogTemplateRevisionsResponse {
@@ -1154,9 +1154,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCatalogTemplateRevision(request:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(name:)``
   /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:)``
   /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:options:)``
-  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(name:)``
   public func deleteCatalogTemplateRevision(
     request: DeleteCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1169,10 +1169,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:)``
-  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(name:)``
   /// - ``deleteCatalogTemplateRevision(request:)``
   /// - ``deleteCatalogTemplateRevision(request:options:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(name:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:)``
   public func deleteCatalogTemplateRevisionPollingUntilDone(
     request: DeleteCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1203,8 +1203,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApplication(request:)``
   /// - ``createApplication(parent:application:applicationId:)``
+  /// - ``createApplication(request:)``
   public func createApplication(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -1217,8 +1217,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplication(request:)``
   /// - ``getApplication(name:)``
+  /// - ``getApplication(request:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -1232,9 +1232,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApplications(request:)``
+  /// - ``listApplicationsByItems(parent:)``
   /// - ``listApplicationsByItems(request:)``
   /// - ``listApplicationsByItems(request:options:)``
-  /// - ``listApplicationsByItems(parent:)``
   public func listApplications(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationsResponse {
@@ -1247,8 +1247,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplication(request:)``
   /// - ``updateApplication(application:updateMask:)``
+  /// - ``updateApplication(request:)``
   public func updateApplication(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -1262,9 +1262,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteApplication(request:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
   /// - ``deleteApplicationPollingUntilDone(request:)``
   /// - ``deleteApplicationPollingUntilDone(request:options:)``
-  /// - ``deleteApplicationPollingUntilDone(name:)``
   public func deleteApplication(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1277,10 +1277,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApplicationPollingUntilDone(request:)``
-  /// - ``deleteApplicationPollingUntilDone(name:)``
   /// - ``deleteApplication(request:)``
   /// - ``deleteApplication(request:options:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
+  /// - ``deleteApplicationPollingUntilDone(request:)``
   public func deleteApplicationPollingUntilDone(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1312,9 +1312,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deployApplication(request:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
   /// - ``deployApplicationPollingUntilDone(request:)``
   /// - ``deployApplicationPollingUntilDone(request:options:)``
-  /// - ``deployApplicationPollingUntilDone(name:)``
   public func deployApplication(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1327,10 +1327,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deployApplicationPollingUntilDone(request:)``
-  /// - ``deployApplicationPollingUntilDone(name:)``
   /// - ``deployApplication(request:)``
   /// - ``deployApplication(request:options:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
+  /// - ``deployApplicationPollingUntilDone(request:)``
   public func deployApplicationPollingUntilDone(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployApplicationResponse {
@@ -1364,9 +1364,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``previewApplication(request:)``
+  /// - ``previewApplicationPollingUntilDone(name:)``
   /// - ``previewApplicationPollingUntilDone(request:)``
   /// - ``previewApplicationPollingUntilDone(request:options:)``
-  /// - ``previewApplicationPollingUntilDone(name:)``
   public func previewApplication(
     request: PreviewApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1379,10 +1379,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``previewApplicationPollingUntilDone(request:)``
-  /// - ``previewApplicationPollingUntilDone(name:)``
   /// - ``previewApplication(request:)``
   /// - ``previewApplication(request:options:)``
+  /// - ``previewApplicationPollingUntilDone(name:)``
+  /// - ``previewApplicationPollingUntilDone(request:)``
   public func previewApplicationPollingUntilDone(
     request: PreviewApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> PreviewApplicationResponse {
@@ -1415,8 +1415,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``fetchApplicationAssessmentReport(request:)``
   /// - ``fetchApplicationAssessmentReport(name:)``
+  /// - ``fetchApplicationAssessmentReport(request:)``
   public func fetchApplicationAssessmentReport(
     request: FetchApplicationAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.FetchApplicationAssessmentReportResponse {
@@ -1430,9 +1430,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``generateApplicationAssessmentReport(request:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(name:)``
   /// - ``generateApplicationAssessmentReportPollingUntilDone(request:)``
   /// - ``generateApplicationAssessmentReportPollingUntilDone(request:options:)``
-  /// - ``generateApplicationAssessmentReportPollingUntilDone(name:)``
   public func generateApplicationAssessmentReport(
     request: GenerateApplicationAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1445,10 +1445,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateApplicationAssessmentReportPollingUntilDone(request:)``
-  /// - ``generateApplicationAssessmentReportPollingUntilDone(name:)``
   /// - ``generateApplicationAssessmentReport(request:)``
   /// - ``generateApplicationAssessmentReport(request:options:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(name:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(request:)``
   public func generateApplicationAssessmentReportPollingUntilDone(
     request: GenerateApplicationAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateApplicationAssessmentReportResponse {
@@ -1483,9 +1483,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``generateApplicationTemplateAssessmentReport(request:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(name:)``
   /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:)``
   /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:options:)``
-  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(name:)``
   public func generateApplicationTemplateAssessmentReport(
     request: GenerateApplicationTemplateAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1499,10 +1499,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:)``
-  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(name:)``
   /// - ``generateApplicationTemplateAssessmentReport(request:)``
   /// - ``generateApplicationTemplateAssessmentReport(request:options:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(name:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:)``
   public func generateApplicationTemplateAssessmentReportPollingUntilDone(
     request: GenerateApplicationTemplateAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateApplicationTemplateAssessmentReportResponse {
@@ -1559,10 +1559,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateAssessmentReportPollingUntilDone(request:)``
-  /// - ``generateAssessmentReportPollingUntilDone(spaceName:)``
   /// - ``generateAssessmentReport(request:)``
   /// - ``generateAssessmentReport(request:options:)``
+  /// - ``generateAssessmentReportPollingUntilDone(request:)``
+  /// - ``generateAssessmentReportPollingUntilDone(spaceName:)``
   @available(*, deprecated)
   public func generateAssessmentReportPollingUntilDone(
     request: GenerateAssessmentReportRequest, options: GoogleGax.RequestOptions
@@ -1597,9 +1597,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``generateTerraformPlanAssessmentReport(request:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(name:terraformPlan:)``
   /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:)``
   /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:options:)``
-  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(name:terraformPlan:)``
   public func generateTerraformPlanAssessmentReport(
     request: GenerateTerraformPlanAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1612,10 +1612,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:)``
-  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(name:terraformPlan:)``
   /// - ``generateTerraformPlanAssessmentReport(request:)``
   /// - ``generateTerraformPlanAssessmentReport(request:options:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(name:terraformPlan:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:)``
   public func generateTerraformPlanAssessmentReportPollingUntilDone(
     request: GenerateTerraformPlanAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateTerraformPlanAssessmentReportResponse {
@@ -1650,8 +1650,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPolicy(request:)``
   /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -1665,9 +1665,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPolicies(request:)``
+  /// - ``listPoliciesByItems(parent:)``
   /// - ``listPoliciesByItems(request:)``
   /// - ``listPoliciesByItems(request:options:)``
-  /// - ``listPoliciesByItems(parent:)``
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListPoliciesResponse {
@@ -1680,8 +1680,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPolicy(request:)``
   /// - ``createPolicy(parent:policy:policyId:)``
+  /// - ``createPolicy(request:)``
   public func createPolicy(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -1694,8 +1694,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicy(request:)``
   /// - ``updatePolicy(policy:updateMask:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -1708,8 +1708,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePolicy(request:)``
   /// - ``deletePolicy(name:)``
+  /// - ``deletePolicy(request:)``
   public func deletePolicy(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1723,9 +1723,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``fetchFrameworks(request:)``
+  /// - ``fetchFrameworksByItems(parent:)``
   /// - ``fetchFrameworksByItems(request:)``
   /// - ``fetchFrameworksByItems(request:options:)``
-  /// - ``fetchFrameworksByItems(parent:)``
   public func fetchFrameworks(
     request: FetchFrameworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.FetchFrameworksResponse {
@@ -1738,8 +1738,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateApplicationIaC(request:)``
   /// - ``generateApplicationIaC(name:)``
+  /// - ``generateApplicationIaC(request:)``
   public func generateApplicationIaC(
     request: GenerateApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationIaCResponse {
@@ -1753,9 +1753,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportApplicationIaC(request:)``
+  /// - ``exportApplicationIaCPollingUntilDone(name:)``
   /// - ``exportApplicationIaCPollingUntilDone(request:)``
   /// - ``exportApplicationIaCPollingUntilDone(request:options:)``
-  /// - ``exportApplicationIaCPollingUntilDone(name:)``
   public func exportApplicationIaC(
     request: ExportApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1768,10 +1768,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportApplicationIaCPollingUntilDone(request:)``
-  /// - ``exportApplicationIaCPollingUntilDone(name:)``
   /// - ``exportApplicationIaC(request:)``
   /// - ``exportApplicationIaC(request:options:)``
+  /// - ``exportApplicationIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationIaCPollingUntilDone(request:)``
   public func exportApplicationIaCPollingUntilDone(
     request: ExportApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportApplicationIaCResponse {
@@ -1804,8 +1804,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importApplicationTemplateIaC(request:)``
   /// - ``importApplicationTemplateIaC(name:)``
+  /// - ``importApplicationTemplateIaC(request:)``
   public func importApplicationTemplateIaC(
     request: ImportApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ImportApplicationTemplateIaCResponse {
@@ -1819,9 +1819,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``ingestApplicationTemplateIaC(request:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(name:)``
   /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:)``
   /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:options:)``
-  /// - ``ingestApplicationTemplateIaCPollingUntilDone(name:)``
   public func ingestApplicationTemplateIaC(
     request: IngestApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1834,10 +1834,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:)``
-  /// - ``ingestApplicationTemplateIaCPollingUntilDone(name:)``
   /// - ``ingestApplicationTemplateIaC(request:)``
   /// - ``ingestApplicationTemplateIaC(request:options:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(name:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:)``
   public func ingestApplicationTemplateIaCPollingUntilDone(
     request: IngestApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> IngestApplicationTemplateIaCResponse {
@@ -1870,8 +1870,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importApplicationIaC(request:)``
   /// - ``importApplicationIaC(name:)``
+  /// - ``importApplicationIaC(request:)``
   public func importApplicationIaC(
     request: ImportApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ImportApplicationIaCResponse {
@@ -1886,9 +1886,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``registerAppHubApplicationResources(request:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(parent:apphubApplication:tfstateContent:)``
   /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:)``
   /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:options:)``
-  /// - ``registerAppHubApplicationResourcesPollingUntilDone(parent:apphubApplication:tfstateContent:)``
   public func registerAppHubApplicationResources(
     request: RegisterAppHubApplicationResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1902,10 +1902,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:)``
-  /// - ``registerAppHubApplicationResourcesPollingUntilDone(parent:apphubApplication:tfstateContent:)``
   /// - ``registerAppHubApplicationResources(request:)``
   /// - ``registerAppHubApplicationResources(request:options:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(parent:apphubApplication:tfstateContent:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:)``
   public func registerAppHubApplicationResourcesPollingUntilDone(
     request: RegisterAppHubApplicationResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RegisterAppHubApplicationResourcesResponse {
@@ -1941,9 +1941,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApplicationTemplateSystemRevisions(request:)``
+  /// - ``listApplicationTemplateSystemRevisionsByItems(parent:)``
   /// - ``listApplicationTemplateSystemRevisionsByItems(request:)``
   /// - ``listApplicationTemplateSystemRevisionsByItems(request:options:)``
-  /// - ``listApplicationTemplateSystemRevisionsByItems(parent:)``
   public func listApplicationTemplateSystemRevisions(
     request: ListApplicationTemplateSystemRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplateSystemRevisionsResponse {
@@ -1956,8 +1956,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplicationTemplateSystemRevision(request:)``
   /// - ``getApplicationTemplateSystemRevision(name:)``
+  /// - ``getApplicationTemplateSystemRevision(request:)``
   public func getApplicationTemplateSystemRevision(
     request: GetApplicationTemplateSystemRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateSystemRevision {
@@ -1981,9 +1981,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``recommendIamroles(request:)``
+  /// - ``recommendIamrolesPollingUntilDone(name:)``
   /// - ``recommendIamrolesPollingUntilDone(request:)``
   /// - ``recommendIamrolesPollingUntilDone(request:options:)``
-  /// - ``recommendIamrolesPollingUntilDone(name:)``
   public func recommendIamroles(
     request: RecommendIAMRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2006,10 +2006,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``recommendIamrolesPollingUntilDone(request:)``
-  /// - ``recommendIamrolesPollingUntilDone(name:)``
   /// - ``recommendIamroles(request:)``
   /// - ``recommendIamroles(request:options:)``
+  /// - ``recommendIamrolesPollingUntilDone(name:)``
+  /// - ``recommendIamrolesPollingUntilDone(request:)``
   public func recommendIamrolesPollingUntilDone(
     request: RecommendIAMRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RecommendIAMRolesResponse {
@@ -2140,9 +2140,9 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2168,8 +2168,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2184,8 +2184,8 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

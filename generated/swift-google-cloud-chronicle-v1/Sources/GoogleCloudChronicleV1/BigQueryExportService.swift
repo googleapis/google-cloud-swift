@@ -49,8 +49,8 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getBigQueryExport(request:)``
   /// - ``getBigQueryExport(name:)``
+  /// - ``getBigQueryExport(request:)``
   public func getBigQueryExport(
     request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -63,8 +63,8 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   ///
   /// ## See Also
   ///
-  /// - ``updateBigQueryExport(request:)``
   /// - ``updateBigQueryExport(bigQueryExport:updateMask:)``
+  /// - ``updateBigQueryExport(request:)``
   public func updateBigQueryExport(
     request: UpdateBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -79,8 +79,8 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   ///
   /// ## See Also
   ///
-  /// - ``provisionBigQueryExport(request:)``
   /// - ``provisionBigQueryExport(parent:)``
+  /// - ``provisionBigQueryExport(request:)``
   public func provisionBigQueryExport(
     request: ProvisionBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -96,9 +96,9 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -124,8 +124,8 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -140,8 +140,8 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

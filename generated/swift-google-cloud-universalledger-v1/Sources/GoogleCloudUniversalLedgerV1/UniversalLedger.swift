@@ -58,8 +58,8 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``submitTransaction(request:)``
   /// - ``submitTransaction(endpoint:serializedSignedTransaction:)``
+  /// - ``submitTransaction(request:)``
   public func submitTransaction(
     request: SubmitTransactionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse {
@@ -73,9 +73,9 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// ## See Also
   ///
   /// - ``listEndpoints(request:)``
+  /// - ``listEndpointsByItems(parent:)``
   /// - ``listEndpointsByItems(request:)``
   /// - ``listEndpointsByItems(request:options:)``
-  /// - ``listEndpointsByItems(parent:)``
   public func listEndpoints(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse {
@@ -88,8 +88,8 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getEndpoint(request:)``
   /// - ``getEndpoint(name:)``
+  /// - ``getEndpoint(request:)``
   public func getEndpoint(
     request: GetEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.Endpoint {
@@ -104,8 +104,8 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``submitOperationalTransaction(request:)``
   /// - ``submitOperationalTransaction(endpoint:serializedSignedOperationalTransaction:)``
+  /// - ``submitOperationalTransaction(request:)``
   public func submitOperationalTransaction(
     request: SubmitOperationalTransactionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse {
@@ -126,8 +126,8 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``queryTransactionState(request:)``
   /// - ``queryTransactionState(endpoint:transactionDigestHex:)``
+  /// - ``queryTransactionState(request:)``
   @available(*, deprecated)
   public func queryTransactionState(
     request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
@@ -149,8 +149,8 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``queryAccount(request:)``
   /// - ``queryAccount(endpoint:accountId:)``
+  /// - ``queryAccount(request:)``
   @available(*, deprecated)
   public func queryAccount(
     request: QueryAccountRequest, options: GoogleGax.RequestOptions
@@ -170,8 +170,8 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``queryData(request:)``
   /// - ``queryData(endpoint:serializedSignedQueryRequest:)``
+  /// - ``queryData(request:)``
   public func queryData(
     request: QueryDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {

@@ -55,8 +55,8 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createJob(request:)``
   /// - ``createJob(parent:job:)``
+  /// - ``createJob(request:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -70,9 +70,9 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchCreateJobs(request:)``
+  /// - ``batchCreateJobsPollingUntilDone(parent:jobs:)``
   /// - ``batchCreateJobsPollingUntilDone(request:)``
   /// - ``batchCreateJobsPollingUntilDone(request:options:)``
-  /// - ``batchCreateJobsPollingUntilDone(parent:jobs:)``
   public func batchCreateJobs(
     request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -85,10 +85,10 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchCreateJobsPollingUntilDone(request:)``
-  /// - ``batchCreateJobsPollingUntilDone(parent:jobs:)``
   /// - ``batchCreateJobs(request:)``
   /// - ``batchCreateJobs(request:options:)``
+  /// - ``batchCreateJobsPollingUntilDone(parent:jobs:)``
+  /// - ``batchCreateJobsPollingUntilDone(request:)``
   public func batchCreateJobsPollingUntilDone(
     request: BatchCreateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchCreateJobsResponse {
@@ -122,8 +122,8 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -139,8 +139,8 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateJob(request:)``
   /// - ``updateJob(job:updateMask:)``
+  /// - ``updateJob(request:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Job {
@@ -154,9 +154,9 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchUpdateJobs(request:)``
+  /// - ``batchUpdateJobsPollingUntilDone(parent:jobs:)``
   /// - ``batchUpdateJobsPollingUntilDone(request:)``
   /// - ``batchUpdateJobsPollingUntilDone(request:options:)``
-  /// - ``batchUpdateJobsPollingUntilDone(parent:jobs:)``
   public func batchUpdateJobs(
     request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -169,10 +169,10 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchUpdateJobsPollingUntilDone(request:)``
-  /// - ``batchUpdateJobsPollingUntilDone(parent:jobs:)``
   /// - ``batchUpdateJobs(request:)``
   /// - ``batchUpdateJobs(request:options:)``
+  /// - ``batchUpdateJobsPollingUntilDone(parent:jobs:)``
+  /// - ``batchUpdateJobsPollingUntilDone(request:)``
   public func batchUpdateJobsPollingUntilDone(
     request: BatchUpdateJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchUpdateJobsResponse {
@@ -208,8 +208,8 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteJob(request:)``
   /// - ``deleteJob(name:)``
+  /// - ``deleteJob(request:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -223,9 +223,9 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchDeleteJobs(request:)``
+  /// - ``batchDeleteJobsPollingUntilDone(parent:names:)``
   /// - ``batchDeleteJobsPollingUntilDone(request:)``
   /// - ``batchDeleteJobsPollingUntilDone(request:options:)``
-  /// - ``batchDeleteJobsPollingUntilDone(parent:names:)``
   public func batchDeleteJobs(
     request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -238,10 +238,10 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchDeleteJobsPollingUntilDone(request:)``
-  /// - ``batchDeleteJobsPollingUntilDone(parent:names:)``
   /// - ``batchDeleteJobs(request:)``
   /// - ``batchDeleteJobs(request:options:)``
+  /// - ``batchDeleteJobsPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteJobsPollingUntilDone(request:)``
   public func batchDeleteJobsPollingUntilDone(
     request: BatchDeleteJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchDeleteJobsResponse {
@@ -275,9 +275,9 @@ public final class JobServiceClient: Clients.JobServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:filter:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:filter:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ListJobsResponse {

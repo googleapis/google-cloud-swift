@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``updateCmekConfig(request:)``
+    /// - ``updateCmekConfigPollingUntilDone(config:)``
     /// - ``updateCmekConfigPollingUntilDone(request:)``
     /// - ``updateCmekConfigPollingUntilDone(request:options:)``
-    /// - ``updateCmekConfigPollingUntilDone(config:)``
     public func updateCmekConfig(
       request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateCmekConfigPollingUntilDone(request:)``
-    /// - ``updateCmekConfigPollingUntilDone(config:)``
     /// - ``updateCmekConfig(request:)``
     /// - ``updateCmekConfig(request:options:)``
+    /// - ``updateCmekConfigPollingUntilDone(config:)``
+    /// - ``updateCmekConfigPollingUntilDone(request:)``
     public func updateCmekConfigPollingUntilDone(
       request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> CmekConfig {
@@ -111,8 +111,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getCmekConfig(request:)``
     /// - ``getCmekConfig(name:)``
+    /// - ``getCmekConfig(request:)``
     public func getCmekConfig(
       request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.CmekConfig {
@@ -128,8 +128,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``listCmekConfigs(request:)``
     /// - ``listCmekConfigs(parent:)``
+    /// - ``listCmekConfigs(request:)``
     public func listCmekConfigs(
       request: ListCmekConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListCmekConfigsResponse {
@@ -143,9 +143,9 @@
     /// ## See Also
     ///
     /// - ``deleteCmekConfig(request:)``
+    /// - ``deleteCmekConfigPollingUntilDone(name:)``
     /// - ``deleteCmekConfigPollingUntilDone(request:)``
     /// - ``deleteCmekConfigPollingUntilDone(request:options:)``
-    /// - ``deleteCmekConfigPollingUntilDone(name:)``
     public func deleteCmekConfig(
       request: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -158,10 +158,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteCmekConfigPollingUntilDone(request:)``
-    /// - ``deleteCmekConfigPollingUntilDone(name:)``
     /// - ``deleteCmekConfig(request:)``
     /// - ``deleteCmekConfig(request:options:)``
+    /// - ``deleteCmekConfigPollingUntilDone(name:)``
+    /// - ``deleteCmekConfigPollingUntilDone(request:)``
     public func deleteCmekConfigPollingUntilDone(
       request: DeleteCmekConfigRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -196,9 +196,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -224,8 +224,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

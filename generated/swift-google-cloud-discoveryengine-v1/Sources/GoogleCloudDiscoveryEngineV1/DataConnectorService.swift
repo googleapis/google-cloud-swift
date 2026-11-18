@@ -65,9 +65,9 @@
     /// ## See Also
     ///
     /// - ``setUpDataConnector(request:)``
+    /// - ``setUpDataConnectorPollingUntilDone(parent:collectionId:collectionDisplayName:dataConnector:)``
     /// - ``setUpDataConnectorPollingUntilDone(request:)``
     /// - ``setUpDataConnectorPollingUntilDone(request:options:)``
-    /// - ``setUpDataConnectorPollingUntilDone(parent:collectionId:collectionDisplayName:dataConnector:)``
     public func setUpDataConnector(
       request: SetUpDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -90,10 +90,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setUpDataConnectorPollingUntilDone(request:)``
-    /// - ``setUpDataConnectorPollingUntilDone(parent:collectionId:collectionDisplayName:dataConnector:)``
     /// - ``setUpDataConnector(request:)``
     /// - ``setUpDataConnector(request:options:)``
+    /// - ``setUpDataConnectorPollingUntilDone(parent:collectionId:collectionDisplayName:dataConnector:)``
+    /// - ``setUpDataConnectorPollingUntilDone(request:)``
     public func setUpDataConnectorPollingUntilDone(
       request: SetUpDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> DataConnector {
@@ -131,8 +131,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDataConnector(request:)``
     /// - ``getDataConnector(name:)``
+    /// - ``getDataConnector(request:)``
     public func getDataConnector(
       request: GetDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataConnector {
@@ -147,8 +147,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDataConnector(request:)``
     /// - ``updateDataConnector(dataConnector:updateMask:)``
+    /// - ``updateDataConnector(request:)``
     public func updateDataConnector(
       request: UpdateDataConnectorRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataConnector {
@@ -164,9 +164,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -192,8 +192,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

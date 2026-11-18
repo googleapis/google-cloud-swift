@@ -61,9 +61,9 @@
     /// ## See Also
     ///
     /// - ``listEnvironments(request:)``
+    /// - ``listEnvironmentsByItems(parent:)``
     /// - ``listEnvironmentsByItems(request:)``
     /// - ``listEnvironmentsByItems(request:options:)``
-    /// - ``listEnvironmentsByItems(parent:)``
     public func listEnvironments(
       request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListEnvironmentsResponse {
@@ -79,8 +79,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEnvironment(request:)``
     /// - ``getEnvironment(name:)``
+    /// - ``getEnvironment(request:)``
     public func getEnvironment(
       request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Environment {
@@ -106,9 +106,9 @@
     /// ## See Also
     ///
     /// - ``createEnvironment(request:)``
+    /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
     /// - ``createEnvironmentPollingUntilDone(request:)``
     /// - ``createEnvironmentPollingUntilDone(request:options:)``
-    /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
     public func createEnvironment(
       request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -133,10 +133,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createEnvironmentPollingUntilDone(request:)``
-    /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
     /// - ``createEnvironment(request:)``
     /// - ``createEnvironment(request:options:)``
+    /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
+    /// - ``createEnvironmentPollingUntilDone(request:)``
     public func createEnvironmentPollingUntilDone(
       request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Environment {
@@ -180,9 +180,9 @@
     /// ## See Also
     ///
     /// - ``updateEnvironment(request:)``
+    /// - ``updateEnvironmentPollingUntilDone(environment:updateMask:)``
     /// - ``updateEnvironmentPollingUntilDone(request:)``
     /// - ``updateEnvironmentPollingUntilDone(request:options:)``
-    /// - ``updateEnvironmentPollingUntilDone(environment:updateMask:)``
     public func updateEnvironment(
       request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -206,10 +206,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateEnvironmentPollingUntilDone(request:)``
-    /// - ``updateEnvironmentPollingUntilDone(environment:updateMask:)``
     /// - ``updateEnvironment(request:)``
     /// - ``updateEnvironment(request:options:)``
+    /// - ``updateEnvironmentPollingUntilDone(environment:updateMask:)``
+    /// - ``updateEnvironmentPollingUntilDone(request:)``
     public func updateEnvironmentPollingUntilDone(
       request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Environment {
@@ -244,8 +244,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteEnvironment(request:)``
     /// - ``deleteEnvironment(name:)``
+    /// - ``deleteEnvironment(request:)``
     public func deleteEnvironment(
       request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -262,9 +262,9 @@
     /// ## See Also
     ///
     /// - ``lookupEnvironmentHistory(request:)``
+    /// - ``lookupEnvironmentHistoryByItems(name:)``
     /// - ``lookupEnvironmentHistoryByItems(request:)``
     /// - ``lookupEnvironmentHistoryByItems(request:options:)``
-    /// - ``lookupEnvironmentHistoryByItems(name:)``
     public func lookupEnvironmentHistory(
       request: LookupEnvironmentHistoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.LookupEnvironmentHistoryResponse {
@@ -320,9 +320,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``runContinuousTestPollingUntilDone(request:)``
     /// - ``runContinuousTest(request:)``
     /// - ``runContinuousTest(request:options:)``
+    /// - ``runContinuousTestPollingUntilDone(request:)``
     public func runContinuousTestPollingUntilDone(
       request: RunContinuousTestRequest, options: GoogleGax.RequestOptions
     ) async throws -> RunContinuousTestResponse {
@@ -356,9 +356,9 @@
     /// ## See Also
     ///
     /// - ``listContinuousTestResults(request:)``
+    /// - ``listContinuousTestResultsByItems(parent:)``
     /// - ``listContinuousTestResultsByItems(request:)``
     /// - ``listContinuousTestResultsByItems(request:options:)``
-    /// - ``listContinuousTestResultsByItems(parent:)``
     public func listContinuousTestResults(
       request: ListContinuousTestResultsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListContinuousTestResultsResponse {
@@ -414,9 +414,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``deployFlowPollingUntilDone(request:)``
     /// - ``deployFlow(request:)``
     /// - ``deployFlow(request:options:)``
+    /// - ``deployFlowPollingUntilDone(request:)``
     public func deployFlowPollingUntilDone(
       request: DeployFlowRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeployFlowResponse {
@@ -496,9 +496,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -524,8 +524,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

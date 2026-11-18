@@ -76,8 +76,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createConversation(request:)``
     /// - ``createConversation(parent:conversation:)``
+    /// - ``createConversation(request:)``
     public func createConversation(
       request: CreateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Conversation {
@@ -91,9 +91,9 @@
     /// ## See Also
     ///
     /// - ``listConversations(request:)``
+    /// - ``listConversationsByItems(parent:)``
     /// - ``listConversationsByItems(request:)``
     /// - ``listConversationsByItems(request:options:)``
-    /// - ``listConversationsByItems(parent:)``
     public func listConversations(
       request: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationsResponse {
@@ -106,8 +106,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getConversation(request:)``
     /// - ``getConversation(name:)``
+    /// - ``getConversation(request:)``
     public func getConversation(
       request: GetConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Conversation {
@@ -121,8 +121,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``completeConversation(request:)``
     /// - ``completeConversation(name:)``
+    /// - ``completeConversation(request:)``
     public func completeConversation(
       request: CompleteConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Conversation {
@@ -136,8 +136,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``ingestContextReferences(request:)``
     /// - ``ingestContextReferences(conversation:contextReferences:)``
+    /// - ``ingestContextReferences(request:)``
     public func ingestContextReferences(
       request: IngestContextReferencesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.IngestContextReferencesResponse {
@@ -155,9 +155,9 @@
     /// ## See Also
     ///
     /// - ``listMessages(request:)``
+    /// - ``listMessagesByItems(parent:)``
     /// - ``listMessagesByItems(request:)``
     /// - ``listMessagesByItems(request:options:)``
-    /// - ``listMessagesByItems(parent:)``
     public func listMessages(
       request: ListMessagesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListMessagesResponse {
@@ -172,8 +172,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``suggestConversationSummary(request:)``
     /// - ``suggestConversationSummary(conversation:)``
+    /// - ``suggestConversationSummary(request:)``
     public func suggestConversationSummary(
       request: SuggestConversationSummaryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestConversationSummaryResponse {
@@ -229,8 +229,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``generateSuggestions(request:)``
     /// - ``generateSuggestions(conversation:)``
+    /// - ``generateSuggestions(request:)``
     public func generateSuggestions(
       request: GenerateSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.GenerateSuggestionsResponse {
@@ -291,9 +291,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -319,8 +319,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

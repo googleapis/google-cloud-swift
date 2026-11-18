@@ -47,9 +47,9 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listComments(request:)``
+  /// - ``listCommentsByItems(parent:)``
   /// - ``listCommentsByItems(request:)``
   /// - ``listCommentsByItems(request:options:)``
-  /// - ``listCommentsByItems(parent:)``
   public func listComments(
     request: ListCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListCommentsResponse {
@@ -64,8 +64,8 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createComment(request:)``
   /// - ``createComment(parent:comment:)``
+  /// - ``createComment(request:)``
   public func createComment(
     request: CreateCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Comment {
@@ -107,8 +107,8 @@ public final class CommentServiceClient: Clients.CommentServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getComment(request:)``
   /// - ``getComment(name:)``
+  /// - ``getComment(request:)``
   public func getComment(
     request: GetCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Comment {

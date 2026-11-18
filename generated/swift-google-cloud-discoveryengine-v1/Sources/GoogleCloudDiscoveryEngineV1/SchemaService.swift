@@ -56,8 +56,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSchema(request:)``
     /// - ``getSchema(name:)``
+    /// - ``getSchema(request:)``
     public func getSchema(
       request: GetSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Schema {
@@ -73,9 +73,9 @@
     /// ## See Also
     ///
     /// - ``listSchemas(request:)``
+    /// - ``listSchemasByItems(parent:)``
     /// - ``listSchemasByItems(request:)``
     /// - ``listSchemasByItems(request:options:)``
-    /// - ``listSchemasByItems(parent:)``
     public func listSchemas(
       request: ListSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListSchemasResponse {
@@ -91,9 +91,9 @@
     /// ## See Also
     ///
     /// - ``createSchema(request:)``
+    /// - ``createSchemaPollingUntilDone(parent:schema:schemaId:)``
     /// - ``createSchemaPollingUntilDone(request:)``
     /// - ``createSchemaPollingUntilDone(request:options:)``
-    /// - ``createSchemaPollingUntilDone(parent:schema:schemaId:)``
     public func createSchema(
       request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -108,10 +108,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSchemaPollingUntilDone(request:)``
-    /// - ``createSchemaPollingUntilDone(parent:schema:schemaId:)``
     /// - ``createSchema(request:)``
     /// - ``createSchema(request:options:)``
+    /// - ``createSchemaPollingUntilDone(parent:schema:schemaId:)``
+    /// - ``createSchemaPollingUntilDone(request:)``
     public func createSchemaPollingUntilDone(
       request: CreateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> Schema {
@@ -161,9 +161,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateSchemaPollingUntilDone(request:)``
     /// - ``updateSchema(request:)``
     /// - ``updateSchema(request:options:)``
+    /// - ``updateSchemaPollingUntilDone(request:)``
     public func updateSchemaPollingUntilDone(
       request: UpdateSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> Schema {
@@ -197,9 +197,9 @@
     /// ## See Also
     ///
     /// - ``deleteSchema(request:)``
+    /// - ``deleteSchemaPollingUntilDone(name:)``
     /// - ``deleteSchemaPollingUntilDone(request:)``
     /// - ``deleteSchemaPollingUntilDone(request:options:)``
-    /// - ``deleteSchemaPollingUntilDone(name:)``
     public func deleteSchema(
       request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -214,10 +214,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSchemaPollingUntilDone(request:)``
-    /// - ``deleteSchemaPollingUntilDone(name:)``
     /// - ``deleteSchema(request:)``
     /// - ``deleteSchema(request:options:)``
+    /// - ``deleteSchemaPollingUntilDone(name:)``
+    /// - ``deleteSchemaPollingUntilDone(request:)``
     public func deleteSchemaPollingUntilDone(
       request: DeleteSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -252,9 +252,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -280,8 +280,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

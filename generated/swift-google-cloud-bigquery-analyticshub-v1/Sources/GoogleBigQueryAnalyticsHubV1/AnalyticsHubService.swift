@@ -60,9 +60,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``listDataExchanges(request:)``
+  /// - ``listDataExchangesByItems(parent:)``
   /// - ``listDataExchangesByItems(request:)``
   /// - ``listDataExchangesByItems(request:options:)``
-  /// - ``listDataExchangesByItems(parent:)``
   public func listDataExchanges(
     request: ListDataExchangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListDataExchangesResponse {
@@ -77,9 +77,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``listOrgDataExchanges(request:)``
+  /// - ``listOrgDataExchangesByItems(organization:)``
   /// - ``listOrgDataExchangesByItems(request:)``
   /// - ``listOrgDataExchangesByItems(request:options:)``
-  /// - ``listOrgDataExchangesByItems(organization:)``
   public func listOrgDataExchanges(
     request: ListOrgDataExchangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListOrgDataExchangesResponse {
@@ -92,8 +92,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDataExchange(request:)``
   /// - ``getDataExchange(name:)``
+  /// - ``getDataExchange(request:)``
   public func getDataExchange(
     request: GetDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
@@ -106,8 +106,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDataExchange(request:)``
   /// - ``createDataExchange(parent:dataExchange:)``
+  /// - ``createDataExchange(request:)``
   public func createDataExchange(
     request: CreateDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
@@ -120,8 +120,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateDataExchange(request:)``
   /// - ``updateDataExchange(dataExchange:updateMask:)``
+  /// - ``updateDataExchange(request:)``
   public func updateDataExchange(
     request: UpdateDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.DataExchange {
@@ -134,8 +134,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataExchange(request:)``
   /// - ``deleteDataExchange(name:)``
+  /// - ``deleteDataExchange(request:)``
   public func deleteDataExchange(
     request: DeleteDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -149,9 +149,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``listListings(request:)``
+  /// - ``listListingsByItems(parent:)``
   /// - ``listListingsByItems(request:)``
   /// - ``listListingsByItems(request:options:)``
-  /// - ``listListingsByItems(parent:)``
   public func listListings(
     request: ListListingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListListingsResponse {
@@ -164,8 +164,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getListing(request:)``
   /// - ``getListing(name:)``
+  /// - ``getListing(request:)``
   public func getListing(
     request: GetListingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
@@ -178,8 +178,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createListing(request:)``
   /// - ``createListing(parent:listing:)``
+  /// - ``createListing(request:)``
   public func createListing(
     request: CreateListingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
@@ -192,8 +192,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateListing(request:)``
   /// - ``updateListing(listing:updateMask:)``
+  /// - ``updateListing(request:)``
   public func updateListing(
     request: UpdateListingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.Listing {
@@ -206,8 +206,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteListing(request:)``
   /// - ``deleteListing(name:)``
+  /// - ``deleteListing(request:)``
   public func deleteListing(
     request: DeleteListingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -225,8 +225,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``subscribeListing(request:)``
   /// - ``subscribeListing(name:)``
+  /// - ``subscribeListing(request:)``
   public func subscribeListing(
     request: SubscribeListingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.SubscribeListingResponse {
@@ -243,9 +243,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``subscribeDataExchange(request:)``
+  /// - ``subscribeDataExchangePollingUntilDone(name:)``
   /// - ``subscribeDataExchangePollingUntilDone(request:)``
   /// - ``subscribeDataExchangePollingUntilDone(request:options:)``
-  /// - ``subscribeDataExchangePollingUntilDone(name:)``
   public func subscribeDataExchange(
     request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -261,10 +261,10 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``subscribeDataExchangePollingUntilDone(request:)``
-  /// - ``subscribeDataExchangePollingUntilDone(name:)``
   /// - ``subscribeDataExchange(request:)``
   /// - ``subscribeDataExchange(request:options:)``
+  /// - ``subscribeDataExchangePollingUntilDone(name:)``
+  /// - ``subscribeDataExchangePollingUntilDone(request:)``
   public func subscribeDataExchangePollingUntilDone(
     request: SubscribeDataExchangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> SubscribeDataExchangeResponse {
@@ -300,9 +300,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``refreshSubscription(request:)``
+  /// - ``refreshSubscriptionPollingUntilDone(name:)``
   /// - ``refreshSubscriptionPollingUntilDone(request:)``
   /// - ``refreshSubscriptionPollingUntilDone(request:options:)``
-  /// - ``refreshSubscriptionPollingUntilDone(name:)``
   public func refreshSubscription(
     request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -317,10 +317,10 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``refreshSubscriptionPollingUntilDone(request:)``
-  /// - ``refreshSubscriptionPollingUntilDone(name:)``
   /// - ``refreshSubscription(request:)``
   /// - ``refreshSubscription(request:options:)``
+  /// - ``refreshSubscriptionPollingUntilDone(name:)``
+  /// - ``refreshSubscriptionPollingUntilDone(request:)``
   public func refreshSubscriptionPollingUntilDone(
     request: RefreshSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> RefreshSubscriptionResponse {
@@ -353,8 +353,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getSubscription(request:)``
   /// - ``getSubscription(name:)``
+  /// - ``getSubscription(request:)``
   public func getSubscription(
     request: GetSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.Subscription {
@@ -368,9 +368,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``listSubscriptions(request:)``
+  /// - ``listSubscriptionsByItems(parent:)``
   /// - ``listSubscriptionsByItems(request:)``
   /// - ``listSubscriptionsByItems(request:options:)``
-  /// - ``listSubscriptionsByItems(parent:)``
   public func listSubscriptions(
     request: ListSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListSubscriptionsResponse {
@@ -399,8 +399,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``revokeSubscription(request:)``
   /// - ``revokeSubscription(name:)``
+  /// - ``revokeSubscription(request:)``
   public func revokeSubscription(
     request: RevokeSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.RevokeSubscriptionResponse {
@@ -414,9 +414,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteSubscription(request:)``
+  /// - ``deleteSubscriptionPollingUntilDone(name:)``
   /// - ``deleteSubscriptionPollingUntilDone(request:)``
   /// - ``deleteSubscriptionPollingUntilDone(request:options:)``
-  /// - ``deleteSubscriptionPollingUntilDone(name:)``
   public func deleteSubscription(
     request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -429,10 +429,10 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteSubscriptionPollingUntilDone(request:)``
-  /// - ``deleteSubscriptionPollingUntilDone(name:)``
   /// - ``deleteSubscription(request:)``
   /// - ``deleteSubscription(request:options:)``
+  /// - ``deleteSubscriptionPollingUntilDone(name:)``
+  /// - ``deleteSubscriptionPollingUntilDone(request:)``
   public func deleteSubscriptionPollingUntilDone(
     request: DeleteSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -502,8 +502,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createQueryTemplate(request:)``
   /// - ``createQueryTemplate(parent:queryTemplate:queryTemplateId:)``
+  /// - ``createQueryTemplate(request:)``
   public func createQueryTemplate(
     request: CreateQueryTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -516,8 +516,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getQueryTemplate(request:)``
   /// - ``getQueryTemplate(name:)``
+  /// - ``getQueryTemplate(request:)``
   public func getQueryTemplate(
     request: GetQueryTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -531,9 +531,9 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   /// ## See Also
   ///
   /// - ``listQueryTemplates(request:)``
+  /// - ``listQueryTemplatesByItems(parent:)``
   /// - ``listQueryTemplatesByItems(request:)``
   /// - ``listQueryTemplatesByItems(request:options:)``
-  /// - ``listQueryTemplatesByItems(parent:)``
   public func listQueryTemplates(
     request: ListQueryTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.ListQueryTemplatesResponse {
@@ -546,8 +546,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateQueryTemplate(request:)``
   /// - ``updateQueryTemplate(queryTemplate:updateMask:)``
+  /// - ``updateQueryTemplate(request:)``
   public func updateQueryTemplate(
     request: UpdateQueryTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -560,8 +560,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteQueryTemplate(request:)``
   /// - ``deleteQueryTemplate(name:)``
+  /// - ``deleteQueryTemplate(request:)``
   public func deleteQueryTemplate(
     request: DeleteQueryTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -574,8 +574,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``submitQueryTemplate(request:)``
   /// - ``submitQueryTemplate(name:)``
+  /// - ``submitQueryTemplate(request:)``
   public func submitQueryTemplate(
     request: SubmitQueryTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {
@@ -588,8 +588,8 @@ public final class AnalyticsHubServiceClient: Clients.AnalyticsHubServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``approveQueryTemplate(request:)``
   /// - ``approveQueryTemplate(name:)``
+  /// - ``approveQueryTemplate(request:)``
   public func approveQueryTemplate(
     request: ApproveQueryTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryAnalyticsHubV1.QueryTemplate {

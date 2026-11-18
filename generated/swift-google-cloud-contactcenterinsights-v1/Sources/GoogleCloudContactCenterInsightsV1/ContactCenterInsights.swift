@@ -55,8 +55,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createConversation(request:)``
   /// - ``createConversation(parent:conversation:conversationId:)``
+  /// - ``createConversation(request:)``
   public func createConversation(
     request: CreateConversationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
@@ -88,9 +88,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``uploadConversationPollingUntilDone(request:)``
   /// - ``uploadConversation(request:)``
   /// - ``uploadConversation(request:options:)``
+  /// - ``uploadConversationPollingUntilDone(request:)``
   public func uploadConversationPollingUntilDone(
     request: UploadConversationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Conversation {
@@ -122,8 +122,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateConversation(request:)``
   /// - ``updateConversation(conversation:updateMask:)``
+  /// - ``updateConversation(request:)``
   public func updateConversation(
     request: UpdateConversationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
@@ -136,8 +136,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getConversation(request:)``
   /// - ``getConversation(name:)``
+  /// - ``getConversation(request:)``
   public func getConversation(
     request: GetConversationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Conversation {
@@ -151,9 +151,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listConversations(request:)``
+  /// - ``listConversationsByItems(parent:)``
   /// - ``listConversationsByItems(request:)``
   /// - ``listConversationsByItems(request:options:)``
-  /// - ``listConversationsByItems(parent:)``
   public func listConversations(
     request: ListConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListConversationsResponse {
@@ -166,8 +166,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteConversation(request:)``
   /// - ``deleteConversation(name:)``
+  /// - ``deleteConversation(request:)``
   public func deleteConversation(
     request: DeleteConversationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -182,9 +182,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``createAnalysis(request:)``
+  /// - ``createAnalysisPollingUntilDone(parent:analysis:)``
   /// - ``createAnalysisPollingUntilDone(request:)``
   /// - ``createAnalysisPollingUntilDone(request:options:)``
-  /// - ``createAnalysisPollingUntilDone(parent:analysis:)``
   public func createAnalysis(
     request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -198,10 +198,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createAnalysisPollingUntilDone(request:)``
-  /// - ``createAnalysisPollingUntilDone(parent:analysis:)``
   /// - ``createAnalysis(request:)``
   /// - ``createAnalysis(request:options:)``
+  /// - ``createAnalysisPollingUntilDone(parent:analysis:)``
+  /// - ``createAnalysisPollingUntilDone(request:)``
   public func createAnalysisPollingUntilDone(
     request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> Analysis {
@@ -232,8 +232,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getAnalysis(request:)``
   /// - ``getAnalysis(name:)``
+  /// - ``getAnalysis(request:)``
   public func getAnalysis(
     request: GetAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Analysis {
@@ -247,9 +247,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listAnalyses(request:)``
+  /// - ``listAnalysesByItems(parent:)``
   /// - ``listAnalysesByItems(request:)``
   /// - ``listAnalysesByItems(request:options:)``
-  /// - ``listAnalysesByItems(parent:)``
   public func listAnalyses(
     request: ListAnalysesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListAnalysesResponse {
@@ -262,8 +262,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteAnalysis(request:)``
   /// - ``deleteAnalysis(name:)``
+  /// - ``deleteAnalysis(request:)``
   public func deleteAnalysis(
     request: DeleteAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -277,9 +277,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``bulkAnalyzeConversations(request:)``
+  /// - ``bulkAnalyzeConversationsPollingUntilDone(parent:filter:analysisPercentage:)``
   /// - ``bulkAnalyzeConversationsPollingUntilDone(request:)``
   /// - ``bulkAnalyzeConversationsPollingUntilDone(request:options:)``
-  /// - ``bulkAnalyzeConversationsPollingUntilDone(parent:filter:analysisPercentage:)``
   public func bulkAnalyzeConversations(
     request: BulkAnalyzeConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -292,10 +292,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``bulkAnalyzeConversationsPollingUntilDone(request:)``
-  /// - ``bulkAnalyzeConversationsPollingUntilDone(parent:filter:analysisPercentage:)``
   /// - ``bulkAnalyzeConversations(request:)``
   /// - ``bulkAnalyzeConversations(request:options:)``
+  /// - ``bulkAnalyzeConversationsPollingUntilDone(parent:filter:analysisPercentage:)``
+  /// - ``bulkAnalyzeConversationsPollingUntilDone(request:)``
   public func bulkAnalyzeConversationsPollingUntilDone(
     request: BulkAnalyzeConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BulkAnalyzeConversationsResponse {
@@ -329,9 +329,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``bulkDeleteConversations(request:)``
+  /// - ``bulkDeleteConversationsPollingUntilDone(parent:filter:)``
   /// - ``bulkDeleteConversationsPollingUntilDone(request:)``
   /// - ``bulkDeleteConversationsPollingUntilDone(request:options:)``
-  /// - ``bulkDeleteConversationsPollingUntilDone(parent:filter:)``
   public func bulkDeleteConversations(
     request: BulkDeleteConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -344,10 +344,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``bulkDeleteConversationsPollingUntilDone(request:)``
-  /// - ``bulkDeleteConversationsPollingUntilDone(parent:filter:)``
   /// - ``bulkDeleteConversations(request:)``
   /// - ``bulkDeleteConversations(request:options:)``
+  /// - ``bulkDeleteConversationsPollingUntilDone(parent:filter:)``
+  /// - ``bulkDeleteConversationsPollingUntilDone(request:)``
   public func bulkDeleteConversationsPollingUntilDone(
     request: BulkDeleteConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BulkDeleteConversationsResponse {
@@ -382,9 +382,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``ingestConversations(request:)``
+  /// - ``ingestConversationsPollingUntilDone(parent:)``
   /// - ``ingestConversationsPollingUntilDone(request:)``
   /// - ``ingestConversationsPollingUntilDone(request:options:)``
-  /// - ``ingestConversationsPollingUntilDone(parent:)``
   public func ingestConversations(
     request: IngestConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -398,10 +398,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``ingestConversationsPollingUntilDone(request:)``
-  /// - ``ingestConversationsPollingUntilDone(parent:)``
   /// - ``ingestConversations(request:)``
   /// - ``ingestConversations(request:options:)``
+  /// - ``ingestConversationsPollingUntilDone(parent:)``
+  /// - ``ingestConversationsPollingUntilDone(request:)``
   public func ingestConversationsPollingUntilDone(
     request: IngestConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> IngestConversationsResponse {
@@ -435,9 +435,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``exportInsightsData(request:)``
+  /// - ``exportInsightsDataPollingUntilDone(parent:)``
   /// - ``exportInsightsDataPollingUntilDone(request:)``
   /// - ``exportInsightsDataPollingUntilDone(request:options:)``
-  /// - ``exportInsightsDataPollingUntilDone(parent:)``
   public func exportInsightsData(
     request: ExportInsightsDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -450,10 +450,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``exportInsightsDataPollingUntilDone(request:)``
-  /// - ``exportInsightsDataPollingUntilDone(parent:)``
   /// - ``exportInsightsData(request:)``
   /// - ``exportInsightsData(request:options:)``
+  /// - ``exportInsightsDataPollingUntilDone(parent:)``
+  /// - ``exportInsightsDataPollingUntilDone(request:)``
   public func exportInsightsDataPollingUntilDone(
     request: ExportInsightsDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportInsightsDataResponse {
@@ -487,9 +487,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``createIssueModel(request:)``
+  /// - ``createIssueModelPollingUntilDone(parent:issueModel:)``
   /// - ``createIssueModelPollingUntilDone(request:)``
   /// - ``createIssueModelPollingUntilDone(request:options:)``
-  /// - ``createIssueModelPollingUntilDone(parent:issueModel:)``
   public func createIssueModel(
     request: CreateIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -502,10 +502,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createIssueModelPollingUntilDone(request:)``
-  /// - ``createIssueModelPollingUntilDone(parent:issueModel:)``
   /// - ``createIssueModel(request:)``
   /// - ``createIssueModel(request:options:)``
+  /// - ``createIssueModelPollingUntilDone(parent:issueModel:)``
+  /// - ``createIssueModelPollingUntilDone(request:)``
   public func createIssueModelPollingUntilDone(
     request: CreateIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> IssueModel {
@@ -536,8 +536,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateIssueModel(request:)``
   /// - ``updateIssueModel(issueModel:updateMask:)``
+  /// - ``updateIssueModel(request:)``
   public func updateIssueModel(
     request: UpdateIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.IssueModel {
@@ -550,8 +550,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getIssueModel(request:)``
   /// - ``getIssueModel(name:)``
+  /// - ``getIssueModel(request:)``
   public func getIssueModel(
     request: GetIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.IssueModel {
@@ -564,8 +564,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``listIssueModels(request:)``
   /// - ``listIssueModels(parent:)``
+  /// - ``listIssueModels(request:)``
   public func listIssueModels(
     request: ListIssueModelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListIssueModelsResponse {
@@ -579,9 +579,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``deleteIssueModel(request:)``
+  /// - ``deleteIssueModelPollingUntilDone(name:)``
   /// - ``deleteIssueModelPollingUntilDone(request:)``
   /// - ``deleteIssueModelPollingUntilDone(request:options:)``
-  /// - ``deleteIssueModelPollingUntilDone(name:)``
   public func deleteIssueModel(
     request: DeleteIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -594,10 +594,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteIssueModelPollingUntilDone(request:)``
-  /// - ``deleteIssueModelPollingUntilDone(name:)``
   /// - ``deleteIssueModel(request:)``
   /// - ``deleteIssueModel(request:options:)``
+  /// - ``deleteIssueModelPollingUntilDone(name:)``
+  /// - ``deleteIssueModelPollingUntilDone(request:)``
   public func deleteIssueModelPollingUntilDone(
     request: DeleteIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -630,9 +630,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``deployIssueModel(request:)``
+  /// - ``deployIssueModelPollingUntilDone(name:)``
   /// - ``deployIssueModelPollingUntilDone(request:)``
   /// - ``deployIssueModelPollingUntilDone(request:options:)``
-  /// - ``deployIssueModelPollingUntilDone(name:)``
   public func deployIssueModel(
     request: DeployIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -646,10 +646,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deployIssueModelPollingUntilDone(request:)``
-  /// - ``deployIssueModelPollingUntilDone(name:)``
   /// - ``deployIssueModel(request:)``
   /// - ``deployIssueModel(request:options:)``
+  /// - ``deployIssueModelPollingUntilDone(name:)``
+  /// - ``deployIssueModelPollingUntilDone(request:)``
   public func deployIssueModelPollingUntilDone(
     request: DeployIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployIssueModelResponse {
@@ -684,9 +684,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``undeployIssueModel(request:)``
+  /// - ``undeployIssueModelPollingUntilDone(name:)``
   /// - ``undeployIssueModelPollingUntilDone(request:)``
   /// - ``undeployIssueModelPollingUntilDone(request:options:)``
-  /// - ``undeployIssueModelPollingUntilDone(name:)``
   public func undeployIssueModel(
     request: UndeployIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -700,10 +700,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``undeployIssueModelPollingUntilDone(request:)``
-  /// - ``undeployIssueModelPollingUntilDone(name:)``
   /// - ``undeployIssueModel(request:)``
   /// - ``undeployIssueModel(request:options:)``
+  /// - ``undeployIssueModelPollingUntilDone(name:)``
+  /// - ``undeployIssueModelPollingUntilDone(request:)``
   public func undeployIssueModelPollingUntilDone(
     request: UndeployIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeployIssueModelResponse {
@@ -737,9 +737,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``exportIssueModel(request:)``
+  /// - ``exportIssueModelPollingUntilDone(name:)``
   /// - ``exportIssueModelPollingUntilDone(request:)``
   /// - ``exportIssueModelPollingUntilDone(request:options:)``
-  /// - ``exportIssueModelPollingUntilDone(name:)``
   public func exportIssueModel(
     request: ExportIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -752,10 +752,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``exportIssueModelPollingUntilDone(request:)``
-  /// - ``exportIssueModelPollingUntilDone(name:)``
   /// - ``exportIssueModel(request:)``
   /// - ``exportIssueModel(request:options:)``
+  /// - ``exportIssueModelPollingUntilDone(name:)``
+  /// - ``exportIssueModelPollingUntilDone(request:)``
   public func exportIssueModelPollingUntilDone(
     request: ExportIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportIssueModelResponse {
@@ -789,9 +789,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``importIssueModel(request:)``
+  /// - ``importIssueModelPollingUntilDone(parent:)``
   /// - ``importIssueModelPollingUntilDone(request:)``
   /// - ``importIssueModelPollingUntilDone(request:options:)``
-  /// - ``importIssueModelPollingUntilDone(parent:)``
   public func importIssueModel(
     request: ImportIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -804,10 +804,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``importIssueModelPollingUntilDone(request:)``
-  /// - ``importIssueModelPollingUntilDone(parent:)``
   /// - ``importIssueModel(request:)``
   /// - ``importIssueModel(request:options:)``
+  /// - ``importIssueModelPollingUntilDone(parent:)``
+  /// - ``importIssueModelPollingUntilDone(request:)``
   public func importIssueModelPollingUntilDone(
     request: ImportIssueModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportIssueModelResponse {
@@ -840,8 +840,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getIssue(request:)``
   /// - ``getIssue(name:)``
+  /// - ``getIssue(request:)``
   public func getIssue(
     request: GetIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Issue {
@@ -854,8 +854,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``listIssues(request:)``
   /// - ``listIssues(parent:)``
+  /// - ``listIssues(request:)``
   public func listIssues(
     request: ListIssuesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListIssuesResponse {
@@ -868,8 +868,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateIssue(request:)``
   /// - ``updateIssue(issue:updateMask:)``
+  /// - ``updateIssue(request:)``
   public func updateIssue(
     request: UpdateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Issue {
@@ -882,8 +882,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteIssue(request:)``
   /// - ``deleteIssue(name:)``
+  /// - ``deleteIssue(request:)``
   public func deleteIssue(
     request: DeleteIssueRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -896,8 +896,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``calculateIssueModelStats(request:)``
   /// - ``calculateIssueModelStats(issueModel:)``
+  /// - ``calculateIssueModelStats(request:)``
   public func calculateIssueModelStats(
     request: CalculateIssueModelStatsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.CalculateIssueModelStatsResponse {
@@ -910,8 +910,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createPhraseMatcher(request:)``
   /// - ``createPhraseMatcher(parent:phraseMatcher:)``
+  /// - ``createPhraseMatcher(request:)``
   public func createPhraseMatcher(
     request: CreatePhraseMatcherRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
@@ -924,8 +924,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getPhraseMatcher(request:)``
   /// - ``getPhraseMatcher(name:)``
+  /// - ``getPhraseMatcher(request:)``
   public func getPhraseMatcher(
     request: GetPhraseMatcherRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
@@ -939,9 +939,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listPhraseMatchers(request:)``
+  /// - ``listPhraseMatchersByItems(parent:)``
   /// - ``listPhraseMatchersByItems(request:)``
   /// - ``listPhraseMatchersByItems(request:options:)``
-  /// - ``listPhraseMatchersByItems(parent:)``
   public func listPhraseMatchers(
     request: ListPhraseMatchersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListPhraseMatchersResponse {
@@ -954,8 +954,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deletePhraseMatcher(request:)``
   /// - ``deletePhraseMatcher(name:)``
+  /// - ``deletePhraseMatcher(request:)``
   public func deletePhraseMatcher(
     request: DeletePhraseMatcherRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -968,8 +968,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updatePhraseMatcher(request:)``
   /// - ``updatePhraseMatcher(phraseMatcher:updateMask:)``
+  /// - ``updatePhraseMatcher(request:)``
   public func updatePhraseMatcher(
     request: UpdatePhraseMatcherRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.PhraseMatcher {
@@ -982,8 +982,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``calculateStats(request:)``
   /// - ``calculateStats(location:)``
+  /// - ``calculateStats(request:)``
   public func calculateStats(
     request: CalculateStatsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.CalculateStatsResponse {
@@ -996,8 +996,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getSettings(request:)``
   /// - ``getSettings(name:)``
+  /// - ``getSettings(request:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.Settings {
@@ -1024,8 +1024,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createAnalysisRule(request:)``
   /// - ``createAnalysisRule(parent:analysisRule:)``
+  /// - ``createAnalysisRule(request:)``
   public func createAnalysisRule(
     request: CreateAnalysisRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
@@ -1038,8 +1038,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getAnalysisRule(request:)``
   /// - ``getAnalysisRule(name:)``
+  /// - ``getAnalysisRule(request:)``
   public func getAnalysisRule(
     request: GetAnalysisRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
@@ -1053,9 +1053,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listAnalysisRules(request:)``
+  /// - ``listAnalysisRulesByItems(parent:)``
   /// - ``listAnalysisRulesByItems(request:)``
   /// - ``listAnalysisRulesByItems(request:options:)``
-  /// - ``listAnalysisRulesByItems(parent:)``
   public func listAnalysisRules(
     request: ListAnalysisRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListAnalysisRulesResponse {
@@ -1068,8 +1068,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateAnalysisRule(request:)``
   /// - ``updateAnalysisRule(analysisRule:updateMask:)``
+  /// - ``updateAnalysisRule(request:)``
   public func updateAnalysisRule(
     request: UpdateAnalysisRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.AnalysisRule {
@@ -1082,8 +1082,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteAnalysisRule(request:)``
   /// - ``deleteAnalysisRule(name:)``
+  /// - ``deleteAnalysisRule(request:)``
   public func deleteAnalysisRule(
     request: DeleteAnalysisRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1096,8 +1096,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getEncryptionSpec(request:)``
   /// - ``getEncryptionSpec(name:)``
+  /// - ``getEncryptionSpec(request:)``
   public func getEncryptionSpec(
     request: GetEncryptionSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.EncryptionSpec {
@@ -1115,9 +1115,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``initializeEncryptionSpec(request:)``
+  /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
   /// - ``initializeEncryptionSpecPollingUntilDone(request:)``
   /// - ``initializeEncryptionSpecPollingUntilDone(request:options:)``
-  /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
   public func initializeEncryptionSpec(
     request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1134,10 +1134,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``initializeEncryptionSpecPollingUntilDone(request:)``
-  /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
   /// - ``initializeEncryptionSpec(request:)``
   /// - ``initializeEncryptionSpec(request:options:)``
+  /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
+  /// - ``initializeEncryptionSpecPollingUntilDone(request:)``
   public func initializeEncryptionSpecPollingUntilDone(
     request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> InitializeEncryptionSpecResponse {
@@ -1170,8 +1170,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createView(request:)``
   /// - ``createView(parent:view:)``
+  /// - ``createView(request:)``
   public func createView(
     request: CreateViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.View {
@@ -1184,8 +1184,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getView(request:)``
   /// - ``getView(name:)``
+  /// - ``getView(request:)``
   public func getView(
     request: GetViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.View {
@@ -1199,9 +1199,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listViews(request:)``
+  /// - ``listViewsByItems(parent:)``
   /// - ``listViewsByItems(request:)``
   /// - ``listViewsByItems(request:options:)``
-  /// - ``listViewsByItems(parent:)``
   public func listViews(
     request: ListViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListViewsResponse {
@@ -1228,8 +1228,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteView(request:)``
   /// - ``deleteView(name:)``
+  /// - ``deleteView(request:)``
   public func deleteView(
     request: DeleteViewRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1257,9 +1257,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``queryMetricsPollingUntilDone(request:)``
   /// - ``queryMetrics(request:)``
   /// - ``queryMetrics(request:options:)``
+  /// - ``queryMetricsPollingUntilDone(request:)``
   public func queryMetricsPollingUntilDone(
     request: QueryMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> QueryMetricsResponse {
@@ -1291,8 +1291,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createQaQuestion(request:)``
   /// - ``createQaQuestion(parent:qaQuestion:qaQuestionId:)``
+  /// - ``createQaQuestion(request:)``
   public func createQaQuestion(
     request: CreateQaQuestionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
@@ -1305,8 +1305,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getQaQuestion(request:)``
   /// - ``getQaQuestion(name:)``
+  /// - ``getQaQuestion(request:)``
   public func getQaQuestion(
     request: GetQaQuestionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
@@ -1319,8 +1319,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateQaQuestion(request:)``
   /// - ``updateQaQuestion(qaQuestion:updateMask:)``
+  /// - ``updateQaQuestion(request:)``
   public func updateQaQuestion(
     request: UpdateQaQuestionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaQuestion {
@@ -1333,8 +1333,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteQaQuestion(request:)``
   /// - ``deleteQaQuestion(name:)``
+  /// - ``deleteQaQuestion(request:)``
   public func deleteQaQuestion(
     request: DeleteQaQuestionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1348,9 +1348,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listQaQuestions(request:)``
+  /// - ``listQaQuestionsByItems(parent:)``
   /// - ``listQaQuestionsByItems(request:)``
   /// - ``listQaQuestionsByItems(request:options:)``
-  /// - ``listQaQuestionsByItems(parent:)``
   public func listQaQuestions(
     request: ListQaQuestionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListQaQuestionsResponse {
@@ -1363,8 +1363,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createQaScorecard(request:)``
   /// - ``createQaScorecard(parent:qaScorecard:qaScorecardId:)``
+  /// - ``createQaScorecard(request:)``
   public func createQaScorecard(
     request: CreateQaScorecardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
@@ -1377,8 +1377,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getQaScorecard(request:)``
   /// - ``getQaScorecard(name:)``
+  /// - ``getQaScorecard(request:)``
   public func getQaScorecard(
     request: GetQaScorecardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
@@ -1391,8 +1391,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateQaScorecard(request:)``
   /// - ``updateQaScorecard(qaScorecard:updateMask:)``
+  /// - ``updateQaScorecard(request:)``
   public func updateQaScorecard(
     request: UpdateQaScorecardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecard {
@@ -1405,8 +1405,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteQaScorecard(request:)``
   /// - ``deleteQaScorecard(name:)``
+  /// - ``deleteQaScorecard(request:)``
   public func deleteQaScorecard(
     request: DeleteQaScorecardRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1420,9 +1420,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listQaScorecards(request:)``
+  /// - ``listQaScorecardsByItems(parent:)``
   /// - ``listQaScorecardsByItems(request:)``
   /// - ``listQaScorecardsByItems(request:options:)``
-  /// - ``listQaScorecardsByItems(parent:)``
   public func listQaScorecards(
     request: ListQaScorecardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListQaScorecardsResponse {
@@ -1435,8 +1435,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createQaScorecardRevision(request:)``
   /// - ``createQaScorecardRevision(parent:qaScorecardRevision:qaScorecardRevisionId:)``
+  /// - ``createQaScorecardRevision(request:)``
   public func createQaScorecardRevision(
     request: CreateQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecardRevision {
@@ -1449,8 +1449,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getQaScorecardRevision(request:)``
   /// - ``getQaScorecardRevision(name:)``
+  /// - ``getQaScorecardRevision(request:)``
   public func getQaScorecardRevision(
     request: GetQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.QaScorecardRevision {
@@ -1464,9 +1464,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``tuneQaScorecardRevision(request:)``
+  /// - ``tuneQaScorecardRevisionPollingUntilDone(parent:filter:validateOnly:)``
   /// - ``tuneQaScorecardRevisionPollingUntilDone(request:)``
   /// - ``tuneQaScorecardRevisionPollingUntilDone(request:options:)``
-  /// - ``tuneQaScorecardRevisionPollingUntilDone(parent:filter:validateOnly:)``
   public func tuneQaScorecardRevision(
     request: TuneQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1479,10 +1479,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``tuneQaScorecardRevisionPollingUntilDone(request:)``
-  /// - ``tuneQaScorecardRevisionPollingUntilDone(parent:filter:validateOnly:)``
   /// - ``tuneQaScorecardRevision(request:)``
   /// - ``tuneQaScorecardRevision(request:options:)``
+  /// - ``tuneQaScorecardRevisionPollingUntilDone(parent:filter:validateOnly:)``
+  /// - ``tuneQaScorecardRevisionPollingUntilDone(request:)``
   public func tuneQaScorecardRevisionPollingUntilDone(
     request: TuneQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> TuneQaScorecardRevisionResponse {
@@ -1541,8 +1541,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteQaScorecardRevision(request:)``
   /// - ``deleteQaScorecardRevision(name:)``
+  /// - ``deleteQaScorecardRevision(request:)``
   public func deleteQaScorecardRevision(
     request: DeleteQaScorecardRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1556,9 +1556,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listQaScorecardRevisions(request:)``
+  /// - ``listQaScorecardRevisionsByItems(parent:)``
   /// - ``listQaScorecardRevisionsByItems(request:)``
   /// - ``listQaScorecardRevisionsByItems(request:options:)``
-  /// - ``listQaScorecardRevisionsByItems(parent:)``
   public func listQaScorecardRevisions(
     request: ListQaScorecardRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListQaScorecardRevisionsResponse {
@@ -1571,8 +1571,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``createFeedbackLabel(request:)``
   /// - ``createFeedbackLabel(parent:feedbackLabel:feedbackLabelId:)``
+  /// - ``createFeedbackLabel(request:)``
   public func createFeedbackLabel(
     request: CreateFeedbackLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
@@ -1586,9 +1586,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listFeedbackLabels(request:)``
+  /// - ``listFeedbackLabelsByItems(parent:)``
   /// - ``listFeedbackLabelsByItems(request:)``
   /// - ``listFeedbackLabelsByItems(request:options:)``
-  /// - ``listFeedbackLabelsByItems(parent:)``
   public func listFeedbackLabels(
     request: ListFeedbackLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListFeedbackLabelsResponse {
@@ -1601,8 +1601,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``getFeedbackLabel(request:)``
   /// - ``getFeedbackLabel(name:)``
+  /// - ``getFeedbackLabel(request:)``
   public func getFeedbackLabel(
     request: GetFeedbackLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
@@ -1615,8 +1615,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``updateFeedbackLabel(request:)``
   /// - ``updateFeedbackLabel(feedbackLabel:updateMask:)``
+  /// - ``updateFeedbackLabel(request:)``
   public func updateFeedbackLabel(
     request: UpdateFeedbackLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.FeedbackLabel {
@@ -1629,8 +1629,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteFeedbackLabel(request:)``
   /// - ``deleteFeedbackLabel(name:)``
+  /// - ``deleteFeedbackLabel(request:)``
   public func deleteFeedbackLabel(
     request: DeleteFeedbackLabelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1644,9 +1644,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listAllFeedbackLabels(request:)``
+  /// - ``listAllFeedbackLabelsByItems(parent:)``
   /// - ``listAllFeedbackLabelsByItems(request:)``
   /// - ``listAllFeedbackLabelsByItems(request:options:)``
-  /// - ``listAllFeedbackLabelsByItems(parent:)``
   public func listAllFeedbackLabels(
     request: ListAllFeedbackLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContactCenterInsightsV1.ListAllFeedbackLabelsResponse {
@@ -1660,9 +1660,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``bulkUploadFeedbackLabels(request:)``
+  /// - ``bulkUploadFeedbackLabelsPollingUntilDone(parent:)``
   /// - ``bulkUploadFeedbackLabelsPollingUntilDone(request:)``
   /// - ``bulkUploadFeedbackLabelsPollingUntilDone(request:options:)``
-  /// - ``bulkUploadFeedbackLabelsPollingUntilDone(parent:)``
   public func bulkUploadFeedbackLabels(
     request: BulkUploadFeedbackLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1675,10 +1675,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``bulkUploadFeedbackLabelsPollingUntilDone(request:)``
-  /// - ``bulkUploadFeedbackLabelsPollingUntilDone(parent:)``
   /// - ``bulkUploadFeedbackLabels(request:)``
   /// - ``bulkUploadFeedbackLabels(request:options:)``
+  /// - ``bulkUploadFeedbackLabelsPollingUntilDone(parent:)``
+  /// - ``bulkUploadFeedbackLabelsPollingUntilDone(request:)``
   public func bulkUploadFeedbackLabelsPollingUntilDone(
     request: BulkUploadFeedbackLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BulkUploadFeedbackLabelsResponse {
@@ -1712,9 +1712,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``bulkDownloadFeedbackLabels(request:)``
+  /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(parent:)``
   /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(request:)``
   /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(request:options:)``
-  /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(parent:)``
   public func bulkDownloadFeedbackLabels(
     request: BulkDownloadFeedbackLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1727,10 +1727,10 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(request:)``
-  /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(parent:)``
   /// - ``bulkDownloadFeedbackLabels(request:)``
   /// - ``bulkDownloadFeedbackLabels(request:options:)``
+  /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(parent:)``
+  /// - ``bulkDownloadFeedbackLabelsPollingUntilDone(request:)``
   public func bulkDownloadFeedbackLabelsPollingUntilDone(
     request: BulkDownloadFeedbackLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BulkDownloadFeedbackLabelsResponse {
@@ -1766,9 +1766,9 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1794,8 +1794,8 @@ public final class ContactCenterInsightsClient: Clients.ContactCenterInsightsPro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

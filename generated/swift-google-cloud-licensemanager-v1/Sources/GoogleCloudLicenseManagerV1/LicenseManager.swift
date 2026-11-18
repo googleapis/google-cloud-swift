@@ -54,9 +54,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listConfigurations(request:)``
+  /// - ``listConfigurationsByItems(parent:)``
   /// - ``listConfigurationsByItems(request:)``
   /// - ``listConfigurationsByItems(request:options:)``
-  /// - ``listConfigurationsByItems(parent:)``
   public func listConfigurations(
     request: ListConfigurationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.ListConfigurationsResponse {
@@ -69,8 +69,8 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getConfiguration(request:)``
   /// - ``getConfiguration(name:)``
+  /// - ``getConfiguration(request:)``
   public func getConfiguration(
     request: GetConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.Configuration {
@@ -84,9 +84,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createConfiguration(request:)``
+  /// - ``createConfigurationPollingUntilDone(parent:configuration:configurationId:)``
   /// - ``createConfigurationPollingUntilDone(request:)``
   /// - ``createConfigurationPollingUntilDone(request:options:)``
-  /// - ``createConfigurationPollingUntilDone(parent:configuration:configurationId:)``
   public func createConfiguration(
     request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createConfigurationPollingUntilDone(request:)``
-  /// - ``createConfigurationPollingUntilDone(parent:configuration:configurationId:)``
   /// - ``createConfiguration(request:)``
   /// - ``createConfiguration(request:options:)``
+  /// - ``createConfigurationPollingUntilDone(parent:configuration:configurationId:)``
+  /// - ``createConfigurationPollingUntilDone(request:)``
   public func createConfigurationPollingUntilDone(
     request: CreateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -135,9 +135,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateConfiguration(request:)``
+  /// - ``updateConfigurationPollingUntilDone(configuration:updateMask:)``
   /// - ``updateConfigurationPollingUntilDone(request:)``
   /// - ``updateConfigurationPollingUntilDone(request:options:)``
-  /// - ``updateConfigurationPollingUntilDone(configuration:updateMask:)``
   public func updateConfiguration(
     request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateConfigurationPollingUntilDone(request:)``
-  /// - ``updateConfigurationPollingUntilDone(configuration:updateMask:)``
   /// - ``updateConfiguration(request:)``
   /// - ``updateConfiguration(request:options:)``
+  /// - ``updateConfigurationPollingUntilDone(configuration:updateMask:)``
+  /// - ``updateConfigurationPollingUntilDone(request:)``
   public func updateConfigurationPollingUntilDone(
     request: UpdateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -186,9 +186,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteConfiguration(request:)``
+  /// - ``deleteConfigurationPollingUntilDone(name:)``
   /// - ``deleteConfigurationPollingUntilDone(request:)``
   /// - ``deleteConfigurationPollingUntilDone(request:options:)``
-  /// - ``deleteConfigurationPollingUntilDone(name:)``
   public func deleteConfiguration(
     request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteConfigurationPollingUntilDone(request:)``
-  /// - ``deleteConfigurationPollingUntilDone(name:)``
   /// - ``deleteConfiguration(request:)``
   /// - ``deleteConfiguration(request:options:)``
+  /// - ``deleteConfigurationPollingUntilDone(name:)``
+  /// - ``deleteConfigurationPollingUntilDone(request:)``
   public func deleteConfigurationPollingUntilDone(
     request: DeleteConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -236,9 +236,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.ListInstancesResponse {
@@ -251,8 +251,8 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.Instance {
@@ -266,9 +266,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deactivateConfiguration(request:)``
+  /// - ``deactivateConfigurationPollingUntilDone(name:)``
   /// - ``deactivateConfigurationPollingUntilDone(request:)``
   /// - ``deactivateConfigurationPollingUntilDone(request:options:)``
-  /// - ``deactivateConfigurationPollingUntilDone(name:)``
   public func deactivateConfiguration(
     request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -281,10 +281,10 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deactivateConfigurationPollingUntilDone(request:)``
-  /// - ``deactivateConfigurationPollingUntilDone(name:)``
   /// - ``deactivateConfiguration(request:)``
   /// - ``deactivateConfiguration(request:options:)``
+  /// - ``deactivateConfigurationPollingUntilDone(name:)``
+  /// - ``deactivateConfigurationPollingUntilDone(request:)``
   public func deactivateConfigurationPollingUntilDone(
     request: DeactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -317,9 +317,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``reactivateConfiguration(request:)``
+  /// - ``reactivateConfigurationPollingUntilDone(name:)``
   /// - ``reactivateConfigurationPollingUntilDone(request:)``
   /// - ``reactivateConfigurationPollingUntilDone(request:options:)``
-  /// - ``reactivateConfigurationPollingUntilDone(name:)``
   public func reactivateConfiguration(
     request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -332,10 +332,10 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``reactivateConfigurationPollingUntilDone(request:)``
-  /// - ``reactivateConfigurationPollingUntilDone(name:)``
   /// - ``reactivateConfiguration(request:)``
   /// - ``reactivateConfiguration(request:options:)``
+  /// - ``reactivateConfigurationPollingUntilDone(name:)``
+  /// - ``reactivateConfigurationPollingUntilDone(request:)``
   public func reactivateConfigurationPollingUntilDone(
     request: ReactivateConfigurationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Configuration {
@@ -367,8 +367,8 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``queryConfigurationLicenseUsage(request:)``
   /// - ``queryConfigurationLicenseUsage(name:startTime:endTime:)``
+  /// - ``queryConfigurationLicenseUsage(request:)``
   public func queryConfigurationLicenseUsage(
     request: QueryConfigurationLicenseUsageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.QueryConfigurationLicenseUsageResponse {
@@ -382,9 +382,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``aggregateUsage(request:)``
+  /// - ``aggregateUsageByItems(name:startTime:endTime:)``
   /// - ``aggregateUsageByItems(request:)``
   /// - ``aggregateUsageByItems(request:options:)``
-  /// - ``aggregateUsageByItems(name:startTime:endTime:)``
   public func aggregateUsage(
     request: AggregateUsageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.AggregateUsageResponse {
@@ -398,9 +398,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(parent:)``
   /// - ``listProductsByItems(request:)``
   /// - ``listProductsByItems(request:options:)``
-  /// - ``listProductsByItems(parent:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.ListProductsResponse {
@@ -413,8 +413,8 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getProduct(request:)``
   /// - ``getProduct(name:)``
+  /// - ``getProduct(request:)``
   public func getProduct(
     request: GetProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLicenseManagerV1.Product {
@@ -458,9 +458,9 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -486,8 +486,8 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -502,8 +502,8 @@ public final class LicenseManagerClient: Clients.LicenseManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

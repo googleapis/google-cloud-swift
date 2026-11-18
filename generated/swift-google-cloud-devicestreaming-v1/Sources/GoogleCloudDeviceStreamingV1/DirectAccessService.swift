@@ -57,8 +57,8 @@ public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDeviceSession(request:)``
   /// - ``createDeviceSession(parent:deviceSession:deviceSessionId:)``
+  /// - ``createDeviceSession(request:)``
   public func createDeviceSession(
     request: CreateDeviceSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
@@ -72,9 +72,9 @@ public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtoco
   /// ## See Also
   ///
   /// - ``listDeviceSessions(request:)``
+  /// - ``listDeviceSessionsByItems(parent:)``
   /// - ``listDeviceSessionsByItems(request:)``
   /// - ``listDeviceSessionsByItems(request:options:)``
-  /// - ``listDeviceSessionsByItems(parent:)``
   public func listDeviceSessions(
     request: ListDeviceSessionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeviceStreamingV1.ListDeviceSessionsResponse {
@@ -89,8 +89,8 @@ public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDeviceSession(request:)``
   /// - ``getDeviceSession(name:)``
+  /// - ``getDeviceSession(request:)``
   public func getDeviceSession(
     request: GetDeviceSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {
@@ -121,8 +121,8 @@ public final class DirectAccessServiceClient: Clients.DirectAccessServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateDeviceSession(request:)``
   /// - ``updateDeviceSession(deviceSession:updateMask:)``
+  /// - ``updateDeviceSession(request:)``
   public func updateDeviceSession(
     request: UpdateDeviceSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeviceStreamingV1.DeviceSession {

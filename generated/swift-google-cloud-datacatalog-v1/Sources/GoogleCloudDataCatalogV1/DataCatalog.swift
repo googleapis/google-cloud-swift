@@ -114,8 +114,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEntryGroup(request:)``
   /// - ``createEntryGroup(parent:entryGroupId:entryGroup:)``
+  /// - ``createEntryGroup(request:)``
   @available(*, deprecated)
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -129,9 +129,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEntryGroup(request:)``
   /// - ``getEntryGroup(name:)``
   /// - ``getEntryGroup(name:readMask:)``
+  /// - ``getEntryGroup(request:)``
   @available(*, deprecated)
   public func getEntryGroup(
     request: GetEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -150,9 +150,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEntryGroup(request:)``
   /// - ``updateEntryGroup(entryGroup:)``
   /// - ``updateEntryGroup(entryGroup:updateMask:)``
+  /// - ``updateEntryGroup(request:)``
   @available(*, deprecated)
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -171,8 +171,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntryGroup(request:)``
   /// - ``deleteEntryGroup(name:)``
+  /// - ``deleteEntryGroup(request:)``
   @available(*, deprecated)
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -187,9 +187,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEntryGroups(request:)``
+  /// - ``listEntryGroupsByItems(parent:)``
   /// - ``listEntryGroupsByItems(request:)``
   /// - ``listEntryGroupsByItems(request:options:)``
-  /// - ``listEntryGroupsByItems(parent:)``
   @available(*, deprecated)
   public func listEntryGroups(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
@@ -213,8 +213,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEntry(request:)``
   /// - ``createEntry(parent:entryId:entry:)``
+  /// - ``createEntry(request:)``
   @available(*, deprecated)
   public func createEntry(
     request: CreateEntryRequest, options: GoogleGax.RequestOptions
@@ -233,9 +233,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEntry(request:)``
   /// - ``updateEntry(entry:)``
   /// - ``updateEntry(entry:updateMask:)``
+  /// - ``updateEntry(request:)``
   @available(*, deprecated)
   public func updateEntry(
     request: UpdateEntryRequest, options: GoogleGax.RequestOptions
@@ -260,8 +260,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntry(request:)``
   /// - ``deleteEntry(name:)``
+  /// - ``deleteEntry(request:)``
   @available(*, deprecated)
   public func deleteEntry(
     request: DeleteEntryRequest, options: GoogleGax.RequestOptions
@@ -275,8 +275,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEntry(request:)``
   /// - ``getEntry(name:)``
+  /// - ``getEntry(request:)``
   @available(*, deprecated)
   public func getEntry(
     request: GetEntryRequest, options: GoogleGax.RequestOptions
@@ -313,9 +313,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEntries(request:)``
+  /// - ``listEntriesByItems(parent:)``
   /// - ``listEntriesByItems(request:)``
   /// - ``listEntriesByItems(request:options:)``
-  /// - ``listEntriesByItems(parent:)``
   @available(*, deprecated)
   public func listEntries(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
@@ -374,8 +374,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTagTemplate(request:)``
   /// - ``createTagTemplate(parent:tagTemplateId:tagTemplate:)``
+  /// - ``createTagTemplate(request:)``
   @available(*, deprecated)
   public func createTagTemplate(
     request: CreateTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -389,8 +389,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTagTemplate(request:)``
   /// - ``getTagTemplate(name:)``
+  /// - ``getTagTemplate(request:)``
   @available(*, deprecated)
   public func getTagTemplate(
     request: GetTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -432,8 +432,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTagTemplate(request:)``
   /// - ``deleteTagTemplate(name:force:)``
+  /// - ``deleteTagTemplate(request:)``
   @available(*, deprecated)
   public func deleteTagTemplate(
     request: DeleteTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -451,8 +451,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTagTemplateField(request:)``
   /// - ``createTagTemplateField(parent:tagTemplateFieldId:tagTemplateField:)``
+  /// - ``createTagTemplateField(request:)``
   @available(*, deprecated)
   public func createTagTemplateField(
     request: CreateTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -473,9 +473,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateTagTemplateField(request:)``
   /// - ``updateTagTemplateField(name:tagTemplateField:)``
   /// - ``updateTagTemplateField(name:tagTemplateField:updateMask:)``
+  /// - ``updateTagTemplateField(request:)``
   @available(*, deprecated)
   public func updateTagTemplateField(
     request: UpdateTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -493,8 +493,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``renameTagTemplateField(request:)``
   /// - ``renameTagTemplateField(name:newTagTemplateFieldId:)``
+  /// - ``renameTagTemplateField(request:)``
   @available(*, deprecated)
   public func renameTagTemplateField(
     request: RenameTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -510,8 +510,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``renameTagTemplateFieldEnumValue(request:)``
   /// - ``renameTagTemplateFieldEnumValue(name:newEnumValueDisplayName:)``
+  /// - ``renameTagTemplateFieldEnumValue(request:)``
   @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(
     request: RenameTagTemplateFieldEnumValueRequest, options: GoogleGax.RequestOptions
@@ -530,8 +530,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTagTemplateField(request:)``
   /// - ``deleteTagTemplateField(name:force:)``
+  /// - ``deleteTagTemplateField(request:)``
   @available(*, deprecated)
   public func deleteTagTemplateField(
     request: DeleteTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -559,8 +559,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTag(request:)``
   /// - ``createTag(parent:tag:)``
+  /// - ``createTag(request:)``
   @available(*, deprecated)
   public func createTag(
     request: CreateTagRequest, options: GoogleGax.RequestOptions
@@ -590,8 +590,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTag(request:)``
   /// - ``deleteTag(name:)``
+  /// - ``deleteTag(request:)``
   @available(*, deprecated)
   public func deleteTag(
     request: DeleteTagRequest, options: GoogleGax.RequestOptions
@@ -611,9 +611,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTags(request:)``
+  /// - ``listTagsByItems(parent:)``
   /// - ``listTagsByItems(request:)``
   /// - ``listTagsByItems(request:options:)``
-  /// - ``listTagsByItems(parent:)``
   @available(*, deprecated)
   public func listTags(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
@@ -671,9 +671,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``reconcileTagsPollingUntilDone(request:)``
   /// - ``reconcileTags(request:)``
   /// - ``reconcileTags(request:options:)``
+  /// - ``reconcileTagsPollingUntilDone(request:)``
   @available(*, deprecated)
   public func reconcileTagsPollingUntilDone(
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
@@ -709,8 +709,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``starEntry(request:)``
   /// - ``starEntry(name:)``
+  /// - ``starEntry(request:)``
   @available(*, deprecated)
   public func starEntry(
     request: StarEntryRequest, options: GoogleGax.RequestOptions
@@ -727,8 +727,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``unstarEntry(request:)``
   /// - ``unstarEntry(name:)``
+  /// - ``unstarEntry(request:)``
   @available(*, deprecated)
   public func unstarEntry(
     request: UnstarEntryRequest, options: GoogleGax.RequestOptions
@@ -893,9 +893,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importEntriesPollingUntilDone(request:)``
   /// - ``importEntries(request:)``
   /// - ``importEntries(request:options:)``
+  /// - ``importEntriesPollingUntilDone(request:)``
   @available(*, deprecated)
   public func importEntriesPollingUntilDone(
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
@@ -980,9 +980,9 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1008,8 +1008,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1024,8 +1024,8 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

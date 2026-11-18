@@ -49,9 +49,9 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFrameworkComplianceSummaries(request:)``
+  /// - ``listFrameworkComplianceSummariesByItems(parent:)``
   /// - ``listFrameworkComplianceSummariesByItems(request:)``
   /// - ``listFrameworkComplianceSummariesByItems(request:options:)``
-  /// - ``listFrameworkComplianceSummariesByItems(parent:)``
   public func listFrameworkComplianceSummaries(
     request: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse {
@@ -65,9 +65,9 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFindingSummaries(request:)``
+  /// - ``listFindingSummariesByItems(parent:)``
   /// - ``listFindingSummariesByItems(request:)``
   /// - ``listFindingSummariesByItems(request:options:)``
-  /// - ``listFindingSummariesByItems(parent:)``
   public func listFindingSummaries(
     request: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFindingSummariesResponse {
@@ -80,8 +80,8 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``fetchFrameworkComplianceReport(request:)``
   /// - ``fetchFrameworkComplianceReport(name:)``
+  /// - ``fetchFrameworkComplianceReport(request:)``
   public func fetchFrameworkComplianceReport(
     request: FetchFrameworkComplianceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.FrameworkComplianceReport {
@@ -95,9 +95,9 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listControlComplianceSummaries(request:)``
+  /// - ``listControlComplianceSummariesByItems(parent:)``
   /// - ``listControlComplianceSummariesByItems(request:)``
   /// - ``listControlComplianceSummariesByItems(request:options:)``
-  /// - ``listControlComplianceSummariesByItems(parent:)``
   public func listControlComplianceSummaries(
     request: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListControlComplianceSummariesResponse {
@@ -110,8 +110,8 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``aggregateFrameworkComplianceReport(request:)``
   /// - ``aggregateFrameworkComplianceReport(name:)``
+  /// - ``aggregateFrameworkComplianceReport(request:)``
   public func aggregateFrameworkComplianceReport(
     request: AggregateFrameworkComplianceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.AggregateFrameworkComplianceReportResponse {
@@ -172,9 +172,9 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -200,8 +200,8 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -216,8 +216,8 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

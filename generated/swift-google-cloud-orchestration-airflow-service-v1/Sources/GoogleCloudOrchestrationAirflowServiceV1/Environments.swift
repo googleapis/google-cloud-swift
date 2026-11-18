@@ -53,9 +53,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createEnvironment(request:)``
+  /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
   /// - ``createEnvironmentPollingUntilDone(request:)``
   /// - ``createEnvironmentPollingUntilDone(request:options:)``
-  /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
   public func createEnvironment(
     request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -68,10 +68,10 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEnvironmentPollingUntilDone(request:)``
-  /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
   /// - ``createEnvironment(request:)``
   /// - ``createEnvironment(request:options:)``
+  /// - ``createEnvironmentPollingUntilDone(parent:environment:)``
+  /// - ``createEnvironmentPollingUntilDone(request:)``
   public func createEnvironmentPollingUntilDone(
     request: CreateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Environment {
@@ -102,8 +102,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEnvironment(request:)``
   /// - ``getEnvironment(name:)``
+  /// - ``getEnvironment(request:)``
   public func getEnvironment(
     request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.Environment {
@@ -117,9 +117,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEnvironments(request:)``
+  /// - ``listEnvironmentsByItems(parent:)``
   /// - ``listEnvironmentsByItems(request:)``
   /// - ``listEnvironmentsByItems(request:options:)``
-  /// - ``listEnvironmentsByItems(parent:)``
   public func listEnvironments(
     request: ListEnvironmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListEnvironmentsResponse {
@@ -133,9 +133,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateEnvironment(request:)``
+  /// - ``updateEnvironmentPollingUntilDone(name:environment:updateMask:)``
   /// - ``updateEnvironmentPollingUntilDone(request:)``
   /// - ``updateEnvironmentPollingUntilDone(request:options:)``
-  /// - ``updateEnvironmentPollingUntilDone(name:environment:updateMask:)``
   public func updateEnvironment(
     request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,10 +148,10 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEnvironmentPollingUntilDone(request:)``
-  /// - ``updateEnvironmentPollingUntilDone(name:environment:updateMask:)``
   /// - ``updateEnvironment(request:)``
   /// - ``updateEnvironment(request:options:)``
+  /// - ``updateEnvironmentPollingUntilDone(name:environment:updateMask:)``
+  /// - ``updateEnvironmentPollingUntilDone(request:)``
   public func updateEnvironmentPollingUntilDone(
     request: UpdateEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Environment {
@@ -183,9 +183,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteEnvironment(request:)``
+  /// - ``deleteEnvironmentPollingUntilDone(name:)``
   /// - ``deleteEnvironmentPollingUntilDone(request:)``
   /// - ``deleteEnvironmentPollingUntilDone(request:options:)``
-  /// - ``deleteEnvironmentPollingUntilDone(name:)``
   public func deleteEnvironment(
     request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -198,10 +198,10 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEnvironmentPollingUntilDone(request:)``
-  /// - ``deleteEnvironmentPollingUntilDone(name:)``
   /// - ``deleteEnvironment(request:)``
   /// - ``deleteEnvironment(request:options:)``
+  /// - ``deleteEnvironmentPollingUntilDone(name:)``
+  /// - ``deleteEnvironmentPollingUntilDone(request:)``
   public func deleteEnvironmentPollingUntilDone(
     request: DeleteEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -276,9 +276,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkloads(request:)``
+  /// - ``listWorkloadsByItems(parent:)``
   /// - ``listWorkloadsByItems(request:)``
   /// - ``listWorkloadsByItems(request:options:)``
-  /// - ``listWorkloadsByItems(parent:)``
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListWorkloadsResponse {
@@ -310,9 +310,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``checkUpgradePollingUntilDone(request:)``
   /// - ``checkUpgrade(request:)``
   /// - ``checkUpgrade(request:options:)``
+  /// - ``checkUpgradePollingUntilDone(request:)``
   public func checkUpgradePollingUntilDone(
     request: CheckUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> CheckUpgradeResponse {
@@ -347,8 +347,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createUserWorkloadsSecret(request:)``
   /// - ``createUserWorkloadsSecret(parent:userWorkloadsSecret:)``
+  /// - ``createUserWorkloadsSecret(request:)``
   public func createUserWorkloadsSecret(
     request: CreateUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
@@ -365,8 +365,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getUserWorkloadsSecret(request:)``
   /// - ``getUserWorkloadsSecret(name:)``
+  /// - ``getUserWorkloadsSecret(request:)``
   public func getUserWorkloadsSecret(
     request: GetUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsSecret {
@@ -383,9 +383,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listUserWorkloadsSecrets(request:)``
+  /// - ``listUserWorkloadsSecretsByItems(parent:)``
   /// - ``listUserWorkloadsSecretsByItems(request:)``
   /// - ``listUserWorkloadsSecretsByItems(request:options:)``
-  /// - ``listUserWorkloadsSecretsByItems(parent:)``
   public func listUserWorkloadsSecrets(
     request: ListUserWorkloadsSecretsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsSecretsResponse {
@@ -418,8 +418,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteUserWorkloadsSecret(request:)``
   /// - ``deleteUserWorkloadsSecret(name:)``
+  /// - ``deleteUserWorkloadsSecret(request:)``
   public func deleteUserWorkloadsSecret(
     request: DeleteUserWorkloadsSecretRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -435,8 +435,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createUserWorkloadsConfigMap(request:)``
   /// - ``createUserWorkloadsConfigMap(parent:userWorkloadsConfigMap:)``
+  /// - ``createUserWorkloadsConfigMap(request:)``
   public func createUserWorkloadsConfigMap(
     request: CreateUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
@@ -452,8 +452,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getUserWorkloadsConfigMap(request:)``
   /// - ``getUserWorkloadsConfigMap(name:)``
+  /// - ``getUserWorkloadsConfigMap(request:)``
   public func getUserWorkloadsConfigMap(
     request: GetUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.UserWorkloadsConfigMap {
@@ -470,9 +470,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listUserWorkloadsConfigMaps(request:)``
+  /// - ``listUserWorkloadsConfigMapsByItems(parent:)``
   /// - ``listUserWorkloadsConfigMapsByItems(request:)``
   /// - ``listUserWorkloadsConfigMapsByItems(request:options:)``
-  /// - ``listUserWorkloadsConfigMapsByItems(parent:)``
   public func listUserWorkloadsConfigMaps(
     request: ListUserWorkloadsConfigMapsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListUserWorkloadsConfigMapsResponse {
@@ -505,8 +505,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteUserWorkloadsConfigMap(request:)``
   /// - ``deleteUserWorkloadsConfigMap(name:)``
+  /// - ``deleteUserWorkloadsConfigMap(request:)``
   public func deleteUserWorkloadsConfigMap(
     request: DeleteUserWorkloadsConfigMapRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -540,9 +540,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``saveSnapshotPollingUntilDone(request:)``
   /// - ``saveSnapshot(request:)``
   /// - ``saveSnapshot(request:options:)``
+  /// - ``saveSnapshotPollingUntilDone(request:)``
   public func saveSnapshotPollingUntilDone(
     request: SaveSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> SaveSnapshotResponse {
@@ -595,9 +595,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``loadSnapshotPollingUntilDone(request:)``
   /// - ``loadSnapshot(request:)``
   /// - ``loadSnapshot(request:options:)``
+  /// - ``loadSnapshotPollingUntilDone(request:)``
   public func loadSnapshotPollingUntilDone(
     request: LoadSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> LoadSnapshotResponse {
@@ -644,9 +644,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``databaseFailoverPollingUntilDone(request:)``
   /// - ``databaseFailover(request:)``
   /// - ``databaseFailover(request:options:)``
+  /// - ``databaseFailoverPollingUntilDone(request:)``
   public func databaseFailoverPollingUntilDone(
     request: DatabaseFailoverRequest, options: GoogleGax.RequestOptions
   ) async throws -> DatabaseFailoverResponse {
@@ -695,9 +695,9 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -723,8 +723,8 @@ public final class EnvironmentsClient: Clients.EnvironmentsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

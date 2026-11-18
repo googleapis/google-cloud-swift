@@ -51,8 +51,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:parentName:reservationSlot:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ReservationSlotsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse {
@@ -66,9 +66,9 @@
     /// ## See Also
     ///
     /// - ``getHealth(request:)``
+    /// - ``getHealthPollingUntilDone(project:zone:parentName:reservationSlot:)``
     /// - ``getHealthPollingUntilDone(request:)``
     /// - ``getHealthPollingUntilDone(request:options:)``
-    /// - ``getHealthPollingUntilDone(project:zone:parentName:reservationSlot:)``
     public func getHealth(
       request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -86,10 +86,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``getHealthPollingUntilDone(request:)``
-    /// - ``getHealthPollingUntilDone(project:zone:parentName:reservationSlot:)``
     /// - ``getHealth(request:)``
     /// - ``getHealth(request:options:)``
+    /// - ``getHealthPollingUntilDone(project:zone:parentName:reservationSlot:)``
+    /// - ``getHealthPollingUntilDone(request:)``
     public func getHealthPollingUntilDone(
       request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -136,9 +136,9 @@
     /// ## See Also
     ///
     /// - ``getVersion(request:)``
+    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSlot:body:)``
     /// - ``getVersionPollingUntilDone(request:)``
     /// - ``getVersionPollingUntilDone(request:options:)``
-    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSlot:body:)``
     public func getVersion(
       request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -156,10 +156,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``getVersionPollingUntilDone(request:)``
-    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSlot:body:)``
     /// - ``getVersion(request:)``
     /// - ``getVersion(request:options:)``
+    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSlot:body:)``
+    /// - ``getVersionPollingUntilDone(request:)``
     public func getVersionPollingUntilDone(
       request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -206,9 +206,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:parentName:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:parentName:)``
     public func list(
       request: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationSlotsListResponse {
@@ -222,9 +222,9 @@
     /// ## See Also
     ///
     /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:zone:parentName:reservationSlot:body:)``
     /// - ``updatePollingUntilDone(request:)``
     /// - ``updatePollingUntilDone(request:options:)``
-    /// - ``updatePollingUntilDone(project:zone:parentName:reservationSlot:body:)``
     public func update(
       request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -242,10 +242,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePollingUntilDone(request:)``
-    /// - ``updatePollingUntilDone(project:zone:parentName:reservationSlot:body:)``
     /// - ``update(request:)``
     /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:parentName:reservationSlot:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

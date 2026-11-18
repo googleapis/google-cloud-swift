@@ -188,9 +188,9 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   ///
   /// ## See Also
   ///
-  /// - ``runTransferJobPollingUntilDone(request:)``
   /// - ``runTransferJob(request:)``
   /// - ``runTransferJob(request:options:)``
+  /// - ``runTransferJobPollingUntilDone(request:)``
   public func runTransferJobPollingUntilDone(
     request: RunTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -237,8 +237,8 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   ///
   /// ## See Also
   ///
-  /// - ``createAgentPool(request:)``
   /// - ``createAgentPool(projectId:agentPool:agentPoolId:)``
+  /// - ``createAgentPool(request:)``
   public func createAgentPool(
     request: CreateAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -251,8 +251,8 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   ///
   /// ## See Also
   ///
-  /// - ``updateAgentPool(request:)``
   /// - ``updateAgentPool(agentPool:updateMask:)``
+  /// - ``updateAgentPool(request:)``
   public func updateAgentPool(
     request: UpdateAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -265,8 +265,8 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   ///
   /// ## See Also
   ///
-  /// - ``getAgentPool(request:)``
   /// - ``getAgentPool(name:)``
+  /// - ``getAgentPool(request:)``
   public func getAgentPool(
     request: GetAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -280,9 +280,9 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// ## See Also
   ///
   /// - ``listAgentPools(request:)``
+  /// - ``listAgentPoolsByItems(projectId:)``
   /// - ``listAgentPoolsByItems(request:)``
   /// - ``listAgentPoolsByItems(request:options:)``
-  /// - ``listAgentPoolsByItems(projectId:)``
   public func listAgentPools(
     request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse {
@@ -295,8 +295,8 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   ///
   /// ## See Also
   ///
-  /// - ``deleteAgentPool(request:)``
   /// - ``deleteAgentPool(name:)``
+  /// - ``deleteAgentPool(request:)``
   public func deleteAgentPool(
     request: DeleteAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -311,9 +311,9 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -363,8 +363,8 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

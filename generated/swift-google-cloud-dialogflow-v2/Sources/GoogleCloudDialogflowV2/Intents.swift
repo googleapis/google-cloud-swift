@@ -57,10 +57,10 @@
     /// ## See Also
     ///
     /// - ``listIntents(request:)``
-    /// - ``listIntentsByItems(request:)``
-    /// - ``listIntentsByItems(request:options:)``
     /// - ``listIntentsByItems(parent:)``
     /// - ``listIntentsByItems(parent:languageCode:)``
+    /// - ``listIntentsByItems(request:)``
+    /// - ``listIntentsByItems(request:options:)``
     public func listIntents(
       request: ListIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListIntentsResponse {
@@ -73,9 +73,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIntent(request:)``
     /// - ``getIntent(name:)``
     /// - ``getIntent(name:languageCode:)``
+    /// - ``getIntent(request:)``
     public func getIntent(
       request: GetIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Intent {
@@ -92,9 +92,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``createIntent(request:)``
     /// - ``createIntent(parent:intent:)``
     /// - ``createIntent(parent:intent:languageCode:)``
+    /// - ``createIntent(request:)``
     public func createIntent(
       request: CreateIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Intent {
@@ -111,9 +111,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateIntent(request:)``
     /// - ``updateIntent(intent:languageCode:)``
     /// - ``updateIntent(intent:languageCode:updateMask:)``
+    /// - ``updateIntent(request:)``
     public func updateIntent(
       request: UpdateIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Intent {
@@ -130,8 +130,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteIntent(request:)``
     /// - ``deleteIntent(name:)``
+    /// - ``deleteIntent(request:)``
     public func deleteIntent(
       request: DeleteIntentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -160,10 +160,10 @@
     /// ## See Also
     ///
     /// - ``batchUpdateIntents(request:)``
+    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchInline:)``
+    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchUri:)``
     /// - ``batchUpdateIntentsPollingUntilDone(request:)``
     /// - ``batchUpdateIntentsPollingUntilDone(request:options:)``
-    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchUri:)``
-    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchInline:)``
     public func batchUpdateIntents(
       request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -191,11 +191,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchUpdateIntentsPollingUntilDone(request:)``
-    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchUri:)``
-    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchInline:)``
     /// - ``batchUpdateIntents(request:)``
     /// - ``batchUpdateIntents(request:options:)``
+    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchInline:)``
+    /// - ``batchUpdateIntentsPollingUntilDone(parent:intentBatchUri:)``
+    /// - ``batchUpdateIntentsPollingUntilDone(request:)``
     public func batchUpdateIntentsPollingUntilDone(
       request: BatchUpdateIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchUpdateIntentsResponse {
@@ -242,9 +242,9 @@
     /// ## See Also
     ///
     /// - ``batchDeleteIntents(request:)``
+    /// - ``batchDeleteIntentsPollingUntilDone(parent:intents:)``
     /// - ``batchDeleteIntentsPollingUntilDone(request:)``
     /// - ``batchDeleteIntentsPollingUntilDone(request:options:)``
-    /// - ``batchDeleteIntentsPollingUntilDone(parent:intents:)``
     public func batchDeleteIntents(
       request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -270,10 +270,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchDeleteIntentsPollingUntilDone(request:)``
-    /// - ``batchDeleteIntentsPollingUntilDone(parent:intents:)``
     /// - ``batchDeleteIntents(request:)``
     /// - ``batchDeleteIntents(request:options:)``
+    /// - ``batchDeleteIntentsPollingUntilDone(parent:intents:)``
+    /// - ``batchDeleteIntentsPollingUntilDone(request:)``
     public func batchDeleteIntentsPollingUntilDone(
       request: BatchDeleteIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -353,9 +353,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -381,8 +381,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

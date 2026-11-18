@@ -67,9 +67,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listDockerImages(request:)``
+  /// - ``listDockerImagesByItems(parent:)``
   /// - ``listDockerImagesByItems(request:)``
   /// - ``listDockerImagesByItems(request:options:)``
-  /// - ``listDockerImagesByItems(parent:)``
   public func listDockerImages(
     request: ListDockerImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse {
@@ -82,8 +82,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getDockerImage(request:)``
   /// - ``getDockerImage(name:)``
+  /// - ``getDockerImage(request:)``
   public func getDockerImage(
     request: GetDockerImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.DockerImage {
@@ -97,9 +97,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listMavenArtifacts(request:)``
+  /// - ``listMavenArtifactsByItems(parent:)``
   /// - ``listMavenArtifactsByItems(request:)``
   /// - ``listMavenArtifactsByItems(request:options:)``
-  /// - ``listMavenArtifactsByItems(parent:)``
   public func listMavenArtifacts(
     request: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListMavenArtifactsResponse {
@@ -112,8 +112,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getMavenArtifact(request:)``
   /// - ``getMavenArtifact(name:)``
+  /// - ``getMavenArtifact(request:)``
   public func getMavenArtifact(
     request: GetMavenArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.MavenArtifact {
@@ -127,9 +127,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listNpmPackages(request:)``
+  /// - ``listNpmPackagesByItems(parent:)``
   /// - ``listNpmPackagesByItems(request:)``
   /// - ``listNpmPackagesByItems(request:options:)``
-  /// - ``listNpmPackagesByItems(parent:)``
   public func listNpmPackages(
     request: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListNpmPackagesResponse {
@@ -142,8 +142,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getNpmPackage(request:)``
   /// - ``getNpmPackage(name:)``
+  /// - ``getNpmPackage(request:)``
   public func getNpmPackage(
     request: GetNpmPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.NpmPackage {
@@ -157,9 +157,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listPythonPackages(request:)``
+  /// - ``listPythonPackagesByItems(parent:)``
   /// - ``listPythonPackagesByItems(request:)``
   /// - ``listPythonPackagesByItems(request:options:)``
-  /// - ``listPythonPackagesByItems(parent:)``
   public func listPythonPackages(
     request: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListPythonPackagesResponse {
@@ -172,8 +172,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getPythonPackage(request:)``
   /// - ``getPythonPackage(name:)``
+  /// - ``getPythonPackage(request:)``
   public func getPythonPackage(
     request: GetPythonPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.PythonPackage {
@@ -207,9 +207,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``importAptArtifactsPollingUntilDone(request:)``
   /// - ``importAptArtifacts(request:)``
   /// - ``importAptArtifacts(request:options:)``
+  /// - ``importAptArtifactsPollingUntilDone(request:)``
   public func importAptArtifactsPollingUntilDone(
     request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportAptArtifactsResponse {
@@ -263,9 +263,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``importYumArtifactsPollingUntilDone(request:)``
   /// - ``importYumArtifacts(request:)``
   /// - ``importYumArtifacts(request:options:)``
+  /// - ``importYumArtifactsPollingUntilDone(request:)``
   public func importYumArtifactsPollingUntilDone(
     request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportYumArtifactsResponse {
@@ -299,9 +299,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listRepositories(request:)``
+  /// - ``listRepositoriesByItems(parent:)``
   /// - ``listRepositoriesByItems(request:)``
   /// - ``listRepositoriesByItems(request:options:)``
-  /// - ``listRepositoriesByItems(parent:)``
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListRepositoriesResponse {
@@ -314,8 +314,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getRepository(request:)``
   /// - ``getRepository(name:)``
+  /// - ``getRepository(request:)``
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -330,9 +330,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``createRepository(request:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
   /// - ``createRepositoryPollingUntilDone(request:)``
   /// - ``createRepositoryPollingUntilDone(request:options:)``
-  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
   public func createRepository(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -346,10 +346,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createRepositoryPollingUntilDone(request:)``
-  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
   /// - ``createRepository(request:)``
   /// - ``createRepository(request:options:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
+  /// - ``createRepositoryPollingUntilDone(request:)``
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Repository {
@@ -380,8 +380,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateRepository(request:)``
   /// - ``updateRepository(repository:updateMask:)``
+  /// - ``updateRepository(request:)``
   public func updateRepository(
     request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -397,9 +397,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteRepository(request:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
   /// - ``deleteRepositoryPollingUntilDone(request:)``
   /// - ``deleteRepositoryPollingUntilDone(request:options:)``
-  /// - ``deleteRepositoryPollingUntilDone(name:)``
   public func deleteRepository(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -414,10 +414,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteRepositoryPollingUntilDone(request:)``
-  /// - ``deleteRepositoryPollingUntilDone(name:)``
   /// - ``deleteRepository(request:)``
   /// - ``deleteRepository(request:options:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:)``
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -449,9 +449,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listPackages(request:)``
+  /// - ``listPackagesByItems(parent:)``
   /// - ``listPackagesByItems(request:)``
   /// - ``listPackagesByItems(request:options:)``
-  /// - ``listPackagesByItems(parent:)``
   public func listPackages(
     request: ListPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListPackagesResponse {
@@ -464,8 +464,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getPackage(request:)``
   /// - ``getPackage(name:)``
+  /// - ``getPackage(request:)``
   public func getPackage(
     request: GetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -480,9 +480,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``deletePackage(request:)``
+  /// - ``deletePackagePollingUntilDone(name:)``
   /// - ``deletePackagePollingUntilDone(request:)``
   /// - ``deletePackagePollingUntilDone(request:options:)``
-  /// - ``deletePackagePollingUntilDone(name:)``
   public func deletePackage(
     request: DeletePackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -496,10 +496,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deletePackagePollingUntilDone(request:)``
-  /// - ``deletePackagePollingUntilDone(name:)``
   /// - ``deletePackage(request:)``
   /// - ``deletePackage(request:options:)``
+  /// - ``deletePackagePollingUntilDone(name:)``
+  /// - ``deletePackagePollingUntilDone(request:)``
   public func deletePackagePollingUntilDone(
     request: DeletePackageRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -531,9 +531,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listVersions(request:)``
+  /// - ``listVersionsByItems(parent:)``
   /// - ``listVersionsByItems(request:)``
   /// - ``listVersionsByItems(request:options:)``
-  /// - ``listVersionsByItems(parent:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListVersionsResponse {
@@ -546,8 +546,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getVersion(request:)``
   /// - ``getVersion(name:)``
+  /// - ``getVersion(request:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Version {
@@ -562,9 +562,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteVersion(request:)``
+  /// - ``deleteVersionPollingUntilDone(name:)``
   /// - ``deleteVersionPollingUntilDone(request:)``
   /// - ``deleteVersionPollingUntilDone(request:options:)``
-  /// - ``deleteVersionPollingUntilDone(name:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -578,10 +578,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteVersionPollingUntilDone(request:)``
-  /// - ``deleteVersionPollingUntilDone(name:)``
   /// - ``deleteVersion(request:)``
   /// - ``deleteVersion(request:options:)``
+  /// - ``deleteVersionPollingUntilDone(name:)``
+  /// - ``deleteVersionPollingUntilDone(request:)``
   public func deleteVersionPollingUntilDone(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -614,9 +614,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``batchDeleteVersions(request:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(parent:names:)``
   /// - ``batchDeleteVersionsPollingUntilDone(request:)``
   /// - ``batchDeleteVersionsPollingUntilDone(request:options:)``
-  /// - ``batchDeleteVersionsPollingUntilDone(parent:names:)``
   public func batchDeleteVersions(
     request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -630,10 +630,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``batchDeleteVersionsPollingUntilDone(request:)``
-  /// - ``batchDeleteVersionsPollingUntilDone(parent:names:)``
   /// - ``batchDeleteVersions(request:)``
   /// - ``batchDeleteVersions(request:options:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(request:)``
   public func batchDeleteVersionsPollingUntilDone(
     request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -679,9 +679,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listFiles(request:)``
+  /// - ``listFilesByItems(parent:)``
   /// - ``listFilesByItems(request:)``
   /// - ``listFilesByItems(request:options:)``
-  /// - ``listFilesByItems(parent:)``
   public func listFiles(
     request: ListFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListFilesResponse {
@@ -694,8 +694,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getFile(request:)``
   /// - ``getFile(name:)``
+  /// - ``getFile(request:)``
   public func getFile(
     request: GetFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -711,9 +711,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteFile(request:)``
+  /// - ``deleteFilePollingUntilDone(name:)``
   /// - ``deleteFilePollingUntilDone(request:)``
   /// - ``deleteFilePollingUntilDone(request:options:)``
-  /// - ``deleteFilePollingUntilDone(name:)``
   public func deleteFile(
     request: DeleteFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -728,10 +728,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteFilePollingUntilDone(request:)``
-  /// - ``deleteFilePollingUntilDone(name:)``
   /// - ``deleteFile(request:)``
   /// - ``deleteFile(request:options:)``
+  /// - ``deleteFilePollingUntilDone(name:)``
+  /// - ``deleteFilePollingUntilDone(request:)``
   public func deleteFilePollingUntilDone(
     request: DeleteFileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -762,8 +762,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateFile(request:)``
   /// - ``updateFile(file:updateMask:)``
+  /// - ``updateFile(request:)``
   public func updateFile(
     request: UpdateFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -777,9 +777,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listTags(request:)``
+  /// - ``listTagsByItems(parent:)``
   /// - ``listTagsByItems(request:)``
   /// - ``listTagsByItems(request:options:)``
-  /// - ``listTagsByItems(parent:)``
   public func listTags(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListTagsResponse {
@@ -792,8 +792,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getTag(request:)``
   /// - ``getTag(name:)``
+  /// - ``getTag(request:)``
   public func getTag(
     request: GetTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -806,8 +806,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createTag(request:)``
   /// - ``createTag(parent:tag:tagId:)``
+  /// - ``createTag(request:)``
   public func createTag(
     request: CreateTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -834,8 +834,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteTag(request:)``
   /// - ``deleteTag(name:)``
+  /// - ``deleteTag(request:)``
   public func deleteTag(
     request: DeleteTagRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -848,8 +848,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createRule(request:)``
   /// - ``createRule(parent:rule:ruleId:)``
+  /// - ``createRule(request:)``
   public func createRule(
     request: CreateRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -863,9 +863,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listRules(request:)``
+  /// - ``listRulesByItems(parent:)``
   /// - ``listRulesByItems(request:)``
   /// - ``listRulesByItems(request:options:)``
-  /// - ``listRulesByItems(parent:)``
   public func listRules(
     request: ListRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListRulesResponse {
@@ -878,8 +878,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getRule(request:)``
   /// - ``getRule(name:)``
+  /// - ``getRule(request:)``
   public func getRule(
     request: GetRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -906,8 +906,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteRule(request:)``
   /// - ``deleteRule(name:)``
+  /// - ``deleteRule(request:)``
   public func deleteRule(
     request: DeleteRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -959,8 +959,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getProjectSettings(request:)``
   /// - ``getProjectSettings(name:)``
+  /// - ``getProjectSettings(request:)``
   public func getProjectSettings(
     request: GetProjectSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -973,8 +973,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateProjectSettings(request:)``
   /// - ``updateProjectSettings(projectSettings:updateMask:)``
+  /// - ``updateProjectSettings(request:)``
   public func updateProjectSettings(
     request: UpdateProjectSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -987,8 +987,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getVpcscconfig(request:)``
   /// - ``getVpcscconfig(name:)``
+  /// - ``getVpcscconfig(request:)``
   public func getVpcscconfig(
     request: GetVPCSCConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
@@ -1015,8 +1015,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updatePackage(request:)``
   /// - ``updatePackage(package:updateMask:)``
+  /// - ``updatePackage(request:)``
   public func updatePackage(
     request: UpdatePackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -1030,9 +1030,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listAttachments(request:)``
+  /// - ``listAttachmentsByItems(parent:)``
   /// - ``listAttachmentsByItems(request:)``
   /// - ``listAttachmentsByItems(request:options:)``
-  /// - ``listAttachmentsByItems(parent:)``
   public func listAttachments(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListAttachmentsResponse {
@@ -1045,8 +1045,8 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getAttachment(request:)``
   /// - ``getAttachment(name:)``
+  /// - ``getAttachment(request:)``
   public func getAttachment(
     request: GetAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Attachment {
@@ -1061,9 +1061,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``createAttachment(request:)``
+  /// - ``createAttachmentPollingUntilDone(parent:attachment:attachmentId:)``
   /// - ``createAttachmentPollingUntilDone(request:)``
   /// - ``createAttachmentPollingUntilDone(request:options:)``
-  /// - ``createAttachmentPollingUntilDone(parent:attachment:attachmentId:)``
   public func createAttachment(
     request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1077,10 +1077,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createAttachmentPollingUntilDone(request:)``
-  /// - ``createAttachmentPollingUntilDone(parent:attachment:attachmentId:)``
   /// - ``createAttachment(request:)``
   /// - ``createAttachment(request:options:)``
+  /// - ``createAttachmentPollingUntilDone(parent:attachment:attachmentId:)``
+  /// - ``createAttachmentPollingUntilDone(request:)``
   public func createAttachmentPollingUntilDone(
     request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Attachment {
@@ -1114,9 +1114,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteAttachment(request:)``
+  /// - ``deleteAttachmentPollingUntilDone(name:)``
   /// - ``deleteAttachmentPollingUntilDone(request:)``
   /// - ``deleteAttachmentPollingUntilDone(request:options:)``
-  /// - ``deleteAttachmentPollingUntilDone(name:)``
   public func deleteAttachment(
     request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1131,10 +1131,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteAttachmentPollingUntilDone(request:)``
-  /// - ``deleteAttachmentPollingUntilDone(name:)``
   /// - ``deleteAttachment(request:)``
   /// - ``deleteAttachment(request:options:)``
+  /// - ``deleteAttachmentPollingUntilDone(name:)``
+  /// - ``deleteAttachmentPollingUntilDone(request:)``
   public func deleteAttachmentPollingUntilDone(
     request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1180,9 +1180,9 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``exportArtifactPollingUntilDone(request:)``
   /// - ``exportArtifact(request:)``
   /// - ``exportArtifact(request:options:)``
+  /// - ``exportArtifactPollingUntilDone(request:)``
   public func exportArtifactPollingUntilDone(
     request: ExportArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportArtifactResponse {

@@ -57,9 +57,9 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createDataScan(request:)``
+  /// - ``createDataScanPollingUntilDone(parent:dataScan:dataScanId:)``
   /// - ``createDataScanPollingUntilDone(request:)``
   /// - ``createDataScanPollingUntilDone(request:options:)``
-  /// - ``createDataScanPollingUntilDone(parent:dataScan:dataScanId:)``
   public func createDataScan(
     request: CreateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -72,10 +72,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createDataScanPollingUntilDone(request:)``
-  /// - ``createDataScanPollingUntilDone(parent:dataScan:dataScanId:)``
   /// - ``createDataScan(request:)``
   /// - ``createDataScan(request:options:)``
+  /// - ``createDataScanPollingUntilDone(parent:dataScan:dataScanId:)``
+  /// - ``createDataScanPollingUntilDone(request:)``
   public func createDataScanPollingUntilDone(
     request: CreateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataScan {
@@ -107,9 +107,9 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateDataScan(request:)``
+  /// - ``updateDataScanPollingUntilDone(dataScan:updateMask:)``
   /// - ``updateDataScanPollingUntilDone(request:)``
   /// - ``updateDataScanPollingUntilDone(request:options:)``
-  /// - ``updateDataScanPollingUntilDone(dataScan:updateMask:)``
   public func updateDataScan(
     request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -122,10 +122,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateDataScanPollingUntilDone(request:)``
-  /// - ``updateDataScanPollingUntilDone(dataScan:updateMask:)``
   /// - ``updateDataScan(request:)``
   /// - ``updateDataScan(request:options:)``
+  /// - ``updateDataScanPollingUntilDone(dataScan:updateMask:)``
+  /// - ``updateDataScanPollingUntilDone(request:)``
   public func updateDataScanPollingUntilDone(
     request: UpdateDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataScan {
@@ -157,9 +157,9 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteDataScan(request:)``
+  /// - ``deleteDataScanPollingUntilDone(name:)``
   /// - ``deleteDataScanPollingUntilDone(request:)``
   /// - ``deleteDataScanPollingUntilDone(request:options:)``
-  /// - ``deleteDataScanPollingUntilDone(name:)``
   public func deleteDataScan(
     request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -172,10 +172,10 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataScanPollingUntilDone(request:)``
-  /// - ``deleteDataScanPollingUntilDone(name:)``
   /// - ``deleteDataScan(request:)``
   /// - ``deleteDataScan(request:options:)``
+  /// - ``deleteDataScanPollingUntilDone(name:)``
+  /// - ``deleteDataScanPollingUntilDone(request:)``
   public func deleteDataScanPollingUntilDone(
     request: DeleteDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -206,8 +206,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDataScan(request:)``
   /// - ``getDataScan(name:)``
+  /// - ``getDataScan(request:)``
   public func getDataScan(
     request: GetDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataScan {
@@ -221,9 +221,9 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDataScans(request:)``
+  /// - ``listDataScansByItems(parent:)``
   /// - ``listDataScansByItems(request:)``
   /// - ``listDataScansByItems(request:options:)``
-  /// - ``listDataScansByItems(parent:)``
   public func listDataScans(
     request: ListDataScansRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataScansResponse {
@@ -236,8 +236,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``runDataScan(request:)``
   /// - ``runDataScan(name:)``
+  /// - ``runDataScan(request:)``
   public func runDataScan(
     request: RunDataScanRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.RunDataScanResponse {
@@ -250,8 +250,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDataScanJob(request:)``
   /// - ``getDataScanJob(name:)``
+  /// - ``getDataScanJob(request:)``
   public func getDataScanJob(
     request: GetDataScanJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataScanJob {
@@ -265,9 +265,9 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDataScanJobs(request:)``
+  /// - ``listDataScanJobsByItems(parent:)``
   /// - ``listDataScanJobsByItems(request:)``
   /// - ``listDataScanJobsByItems(request:options:)``
-  /// - ``listDataScanJobsByItems(parent:)``
   public func listDataScanJobs(
     request: ListDataScanJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataScanJobsResponse {
@@ -280,8 +280,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelDataScanJob(request:)``
   /// - ``cancelDataScanJob(name:)``
+  /// - ``cancelDataScanJob(request:)``
   public func cancelDataScanJob(
     request: CancelDataScanJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.CancelDataScanJobResponse {
@@ -297,8 +297,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``generateDataQualityRules(request:)``
   /// - ``generateDataQualityRules(name:)``
+  /// - ``generateDataQualityRules(request:)``
   public func generateDataQualityRules(
     request: GenerateDataQualityRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GenerateDataQualityRulesResponse {
@@ -409,9 +409,9 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -437,8 +437,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -453,8 +453,8 @@ public final class DataScanServiceClient: Clients.DataScanServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

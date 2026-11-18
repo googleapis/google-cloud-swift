@@ -52,8 +52,8 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateDiscoveredResourcesTopology(request:)``
   /// - ``generateDiscoveredResourcesTopology(name:topologyDomains:)``
+  /// - ``generateDiscoveredResourcesTopology(request:)``
   public func generateDiscoveredResourcesTopology(
     request: GenerateDiscoveredResourcesTopologyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.GenerateDiscoveredResourcesTopologyResponse {
@@ -69,8 +69,8 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSchema(request:)``
   /// - ``getSchema(name:)``
+  /// - ``getSchema(request:)``
   public func getSchema(
     request: GetSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.Schema {
@@ -85,9 +85,9 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exploreSchema(request:)``
+  /// - ``exploreSchemaByItems(name:)``
   /// - ``exploreSchemaByItems(request:)``
   /// - ``exploreSchemaByItems(request:options:)``
-  /// - ``exploreSchemaByItems(name:)``
   public func exploreSchema(
     request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
@@ -100,8 +100,8 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDomain(request:)``
   /// - ``getDomain(name:)``
+  /// - ``getDomain(request:)``
   public func getDomain(
     request: GetDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.Domain {
@@ -116,9 +116,9 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDomains(request:)``
+  /// - ``listDomainsByItems(parent:)``
   /// - ``listDomainsByItems(request:)``
   /// - ``listDomainsByItems(request:options:)``
-  /// - ``listDomainsByItems(parent:)``
   public func listDomains(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.ListDomainsResponse {
@@ -179,9 +179,9 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -207,8 +207,8 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -223,8 +223,8 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

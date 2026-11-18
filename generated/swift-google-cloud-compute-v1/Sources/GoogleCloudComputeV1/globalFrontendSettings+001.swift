@@ -49,8 +49,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalFrontendSettingsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GlobalFrontendSettings {
@@ -63,8 +63,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``patch(request:)``
     /// - ``patch(project:body:)``
+    /// - ``patch(request:)``
     public func patch(
       request: GlobalFrontendSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GlobalFrontendSettingsPatchResponse {

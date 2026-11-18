@@ -52,9 +52,9 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   /// ## See Also
   ///
   /// - ``listRuleExecutionErrors(request:)``
+  /// - ``listRuleExecutionErrorsByItems(parent:)``
   /// - ``listRuleExecutionErrorsByItems(request:)``
   /// - ``listRuleExecutionErrorsByItems(request:options:)``
-  /// - ``listRuleExecutionErrorsByItems(parent:)``
   public func listRuleExecutionErrors(
     request: ListRuleExecutionErrorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListRuleExecutionErrorsResponse {
@@ -70,9 +70,9 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -98,8 +98,8 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -114,8 +114,8 @@ public final class RuleExecutionErrorServiceClient: Clients.RuleExecutionErrorSe
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``uploadModel(request:)``
+    /// - ``uploadModelPollingUntilDone(parent:model:)``
     /// - ``uploadModelPollingUntilDone(request:)``
     /// - ``uploadModelPollingUntilDone(request:options:)``
-    /// - ``uploadModelPollingUntilDone(parent:model:)``
     public func uploadModel(
       request: UploadModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -71,10 +71,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``uploadModelPollingUntilDone(request:)``
-    /// - ``uploadModelPollingUntilDone(parent:model:)``
     /// - ``uploadModel(request:)``
     /// - ``uploadModel(request:options:)``
+    /// - ``uploadModelPollingUntilDone(parent:model:)``
+    /// - ``uploadModelPollingUntilDone(request:)``
     public func uploadModelPollingUntilDone(
       request: UploadModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> UploadModelResponse {
@@ -106,8 +106,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getModel(request:)``
     /// - ``getModel(name:)``
+    /// - ``getModel(request:)``
     public func getModel(
       request: GetModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -121,9 +121,9 @@
     /// ## See Also
     ///
     /// - ``listModels(request:)``
+    /// - ``listModelsByItems(parent:)``
     /// - ``listModelsByItems(request:)``
     /// - ``listModelsByItems(request:options:)``
-    /// - ``listModelsByItems(parent:)``
     public func listModels(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelsResponse {
@@ -137,9 +137,9 @@
     /// ## See Also
     ///
     /// - ``listModelVersions(request:)``
+    /// - ``listModelVersionsByItems(name:)``
     /// - ``listModelVersionsByItems(request:)``
     /// - ``listModelVersionsByItems(request:options:)``
-    /// - ``listModelVersionsByItems(name:)``
     public func listModelVersions(
       request: ListModelVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelVersionsResponse {
@@ -153,9 +153,9 @@
     /// ## See Also
     ///
     /// - ``listModelVersionCheckpoints(request:)``
+    /// - ``listModelVersionCheckpointsByItems(name:)``
     /// - ``listModelVersionCheckpointsByItems(request:)``
     /// - ``listModelVersionCheckpointsByItems(request:options:)``
-    /// - ``listModelVersionCheckpointsByItems(name:)``
     public func listModelVersionCheckpoints(
       request: ListModelVersionCheckpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelVersionCheckpointsResponse {
@@ -168,8 +168,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateModel(request:)``
     /// - ``updateModel(model:updateMask:)``
+    /// - ``updateModel(request:)``
     public func updateModel(
       request: UpdateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -183,9 +183,9 @@
     /// ## See Also
     ///
     /// - ``updateExplanationDataset(request:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(model:)``
     /// - ``updateExplanationDatasetPollingUntilDone(request:)``
     /// - ``updateExplanationDatasetPollingUntilDone(request:options:)``
-    /// - ``updateExplanationDatasetPollingUntilDone(model:)``
     public func updateExplanationDataset(
       request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -198,10 +198,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateExplanationDatasetPollingUntilDone(request:)``
-    /// - ``updateExplanationDatasetPollingUntilDone(model:)``
     /// - ``updateExplanationDataset(request:)``
     /// - ``updateExplanationDataset(request:options:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(model:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(request:)``
     public func updateExplanationDatasetPollingUntilDone(
       request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> UpdateExplanationDatasetResponse {
@@ -246,9 +246,9 @@
     /// ## See Also
     ///
     /// - ``deleteModel(request:)``
+    /// - ``deleteModelPollingUntilDone(name:)``
     /// - ``deleteModelPollingUntilDone(request:)``
     /// - ``deleteModelPollingUntilDone(request:options:)``
-    /// - ``deleteModelPollingUntilDone(name:)``
     public func deleteModel(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -272,10 +272,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteModelPollingUntilDone(request:)``
-    /// - ``deleteModelPollingUntilDone(name:)``
     /// - ``deleteModel(request:)``
     /// - ``deleteModel(request:options:)``
+    /// - ``deleteModelPollingUntilDone(name:)``
+    /// - ``deleteModelPollingUntilDone(request:)``
     public func deleteModelPollingUntilDone(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -317,9 +317,9 @@
     /// ## See Also
     ///
     /// - ``deleteModelVersion(request:)``
+    /// - ``deleteModelVersionPollingUntilDone(name:)``
     /// - ``deleteModelVersionPollingUntilDone(request:)``
     /// - ``deleteModelVersionPollingUntilDone(request:options:)``
-    /// - ``deleteModelVersionPollingUntilDone(name:)``
     public func deleteModelVersion(
       request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -341,10 +341,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteModelVersionPollingUntilDone(request:)``
-    /// - ``deleteModelVersionPollingUntilDone(name:)``
     /// - ``deleteModelVersion(request:)``
     /// - ``deleteModelVersion(request:options:)``
+    /// - ``deleteModelVersionPollingUntilDone(name:)``
+    /// - ``deleteModelVersionPollingUntilDone(request:)``
     public func deleteModelVersionPollingUntilDone(
       request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -376,8 +376,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``mergeVersionAliases(request:)``
     /// - ``mergeVersionAliases(name:versionAliases:)``
+    /// - ``mergeVersionAliases(request:)``
     public func mergeVersionAliases(
       request: MergeVersionAliasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -396,9 +396,9 @@
     /// ## See Also
     ///
     /// - ``exportModel(request:)``
+    /// - ``exportModelPollingUntilDone(name:outputConfig:)``
     /// - ``exportModelPollingUntilDone(request:)``
     /// - ``exportModelPollingUntilDone(request:options:)``
-    /// - ``exportModelPollingUntilDone(name:outputConfig:)``
     public func exportModel(
       request: ExportModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -416,10 +416,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportModelPollingUntilDone(request:)``
-    /// - ``exportModelPollingUntilDone(name:outputConfig:)``
     /// - ``exportModel(request:)``
     /// - ``exportModel(request:options:)``
+    /// - ``exportModelPollingUntilDone(name:outputConfig:)``
+    /// - ``exportModelPollingUntilDone(request:)``
     public func exportModelPollingUntilDone(
       request: ExportModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportModelResponse {
@@ -459,9 +459,9 @@
     /// ## See Also
     ///
     /// - ``copyModel(request:)``
+    /// - ``copyModelPollingUntilDone(parent:sourceModel:)``
     /// - ``copyModelPollingUntilDone(request:)``
     /// - ``copyModelPollingUntilDone(request:options:)``
-    /// - ``copyModelPollingUntilDone(parent:sourceModel:)``
     public func copyModel(
       request: CopyModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -481,10 +481,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``copyModelPollingUntilDone(request:)``
-    /// - ``copyModelPollingUntilDone(parent:sourceModel:)``
     /// - ``copyModel(request:)``
     /// - ``copyModel(request:options:)``
+    /// - ``copyModelPollingUntilDone(parent:sourceModel:)``
+    /// - ``copyModelPollingUntilDone(request:)``
     public func copyModelPollingUntilDone(
       request: CopyModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> CopyModelResponse {
@@ -516,8 +516,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``importModelEvaluation(request:)``
     /// - ``importModelEvaluation(parent:modelEvaluation:)``
+    /// - ``importModelEvaluation(request:)``
     public func importModelEvaluation(
       request: ImportModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
@@ -530,8 +530,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchImportModelEvaluationSlices(request:)``
     /// - ``batchImportModelEvaluationSlices(parent:modelEvaluationSlices:)``
+    /// - ``batchImportModelEvaluationSlices(request:)``
     public func batchImportModelEvaluationSlices(
       request: BatchImportModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchImportModelEvaluationSlicesResponse {
@@ -544,8 +544,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchImportEvaluatedAnnotations(request:)``
     /// - ``batchImportEvaluatedAnnotations(parent:evaluatedAnnotations:)``
+    /// - ``batchImportEvaluatedAnnotations(request:)``
     public func batchImportEvaluatedAnnotations(
       request: BatchImportEvaluatedAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchImportEvaluatedAnnotationsResponse {
@@ -558,8 +558,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getModelEvaluation(request:)``
     /// - ``getModelEvaluation(name:)``
+    /// - ``getModelEvaluation(request:)``
     public func getModelEvaluation(
       request: GetModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
@@ -573,9 +573,9 @@
     /// ## See Also
     ///
     /// - ``listModelEvaluations(request:)``
+    /// - ``listModelEvaluationsByItems(parent:)``
     /// - ``listModelEvaluationsByItems(request:)``
     /// - ``listModelEvaluationsByItems(request:options:)``
-    /// - ``listModelEvaluationsByItems(parent:)``
     public func listModelEvaluations(
       request: ListModelEvaluationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelEvaluationsResponse {
@@ -588,8 +588,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getModelEvaluationSlice(request:)``
     /// - ``getModelEvaluationSlice(name:)``
+    /// - ``getModelEvaluationSlice(request:)``
     public func getModelEvaluationSlice(
       request: GetModelEvaluationSliceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluationSlice {
@@ -603,9 +603,9 @@
     /// ## See Also
     ///
     /// - ``listModelEvaluationSlices(request:)``
+    /// - ``listModelEvaluationSlicesByItems(parent:)``
     /// - ``listModelEvaluationSlicesByItems(request:)``
     /// - ``listModelEvaluationSlicesByItems(request:options:)``
-    /// - ``listModelEvaluationSlicesByItems(parent:)``
     public func listModelEvaluationSlices(
       request: ListModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelEvaluationSlicesResponse {
@@ -699,9 +699,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -727,8 +727,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -743,8 +743,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

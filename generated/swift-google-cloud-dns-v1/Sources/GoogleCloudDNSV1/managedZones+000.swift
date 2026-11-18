@@ -50,8 +50,8 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(project:body:)``
+  /// - ``create(request:)``
   public func create(
     request: ManagedZonesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZone {
@@ -64,8 +64,8 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(project:managedZone:)``
+  /// - ``delete(request:)``
   public func delete(
     request: ManagedZonesClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -78,8 +78,8 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:managedZone:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ManagedZonesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZone {
@@ -107,9 +107,9 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:)``
   public func list(
     request: ManagedZonesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZonesListResponse {
@@ -123,9 +123,9 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``patch(request:)``
+  /// - ``patchPollingUntilDone(project:managedZone:body:)``
   /// - ``patchPollingUntilDone(request:)``
   /// - ``patchPollingUntilDone(request:options:)``
-  /// - ``patchPollingUntilDone(project:managedZone:body:)``
   public func patch(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -143,10 +143,10 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``patchPollingUntilDone(request:)``
-  /// - ``patchPollingUntilDone(project:managedZone:body:)``
   /// - ``patch(request:)``
   /// - ``patch(request:options:)``
+  /// - ``patchPollingUntilDone(project:managedZone:body:)``
+  /// - ``patchPollingUntilDone(request:)``
   public func patchPollingUntilDone(
     request: ManagedZonesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -218,9 +218,9 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``update(request:)``
+  /// - ``updatePollingUntilDone(project:managedZone:body:)``
   /// - ``updatePollingUntilDone(request:)``
   /// - ``updatePollingUntilDone(request:options:)``
-  /// - ``updatePollingUntilDone(project:managedZone:body:)``
   public func update(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -238,10 +238,10 @@ public final class ManagedZonesClient: Clients.ManagedZonesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePollingUntilDone(request:)``
-  /// - ``updatePollingUntilDone(project:managedZone:body:)``
   /// - ``update(request:)``
   /// - ``update(request:options:)``
+  /// - ``updatePollingUntilDone(project:managedZone:body:)``
+  /// - ``updatePollingUntilDone(request:)``
   public func updatePollingUntilDone(
     request: ManagedZonesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {

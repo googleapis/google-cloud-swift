@@ -74,9 +74,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.ListInstancesResponse {
@@ -89,8 +89,8 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.Instance {
@@ -107,9 +107,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -125,10 +125,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -160,9 +160,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -175,10 +175,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -232,9 +232,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``restoreInstancePollingUntilDone(request:)``
   /// - ``restoreInstance(request:)``
   /// - ``restoreInstance(request:options:)``
+  /// - ``restoreInstancePollingUntilDone(request:)``
   public func restoreInstancePollingUntilDone(
     request: RestoreInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -280,9 +280,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``revertInstancePollingUntilDone(request:)``
   /// - ``revertInstance(request:)``
   /// - ``revertInstance(request:options:)``
+  /// - ``revertInstancePollingUntilDone(request:)``
   public func revertInstancePollingUntilDone(
     request: RevertInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -314,9 +314,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -329,10 +329,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -365,9 +365,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``listSnapshots(request:)``
+  /// - ``listSnapshotsByItems(parent:)``
   /// - ``listSnapshotsByItems(request:)``
   /// - ``listSnapshotsByItems(request:options:)``
-  /// - ``listSnapshotsByItems(parent:)``
   public func listSnapshots(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.ListSnapshotsResponse {
@@ -380,8 +380,8 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``getSnapshot(request:)``
   /// - ``getSnapshot(name:)``
+  /// - ``getSnapshot(request:)``
   public func getSnapshot(
     request: GetSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.Snapshot {
@@ -395,9 +395,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``createSnapshot(request:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   /// - ``createSnapshotPollingUntilDone(request:)``
   /// - ``createSnapshotPollingUntilDone(request:options:)``
-  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   public func createSnapshot(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -410,10 +410,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``createSnapshotPollingUntilDone(request:)``
-  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
   /// - ``createSnapshot(request:)``
   /// - ``createSnapshot(request:options:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
+  /// - ``createSnapshotPollingUntilDone(request:)``
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -445,9 +445,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``deleteSnapshot(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
   /// - ``deleteSnapshotPollingUntilDone(request:)``
   /// - ``deleteSnapshotPollingUntilDone(request:options:)``
-  /// - ``deleteSnapshotPollingUntilDone(name:)``
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -460,10 +460,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSnapshotPollingUntilDone(request:)``
-  /// - ``deleteSnapshotPollingUntilDone(name:)``
   /// - ``deleteSnapshot(request:)``
   /// - ``deleteSnapshot(request:options:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:)``
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -510,10 +510,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``updateSnapshotPollingUntilDone(request:)``
-  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   /// - ``updateSnapshot(request:)``
   /// - ``updateSnapshot(request:options:)``
+  /// - ``updateSnapshotPollingUntilDone(request:)``
+  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -546,9 +546,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
   /// - ``listBackupsByItems(request:)``
   /// - ``listBackupsByItems(request:options:)``
-  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.ListBackupsResponse {
@@ -561,8 +561,8 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``getBackup(request:)``
   /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.Backup {
@@ -576,9 +576,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``createBackup(request:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   /// - ``createBackupPollingUntilDone(request:)``
   /// - ``createBackupPollingUntilDone(request:options:)``
-  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   public func createBackup(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -591,10 +591,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``createBackupPollingUntilDone(request:)``
-  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
   /// - ``createBackup(request:)``
   /// - ``createBackup(request:options:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
+  /// - ``createBackupPollingUntilDone(request:)``
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -626,9 +626,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackupPollingUntilDone(request:)``
   /// - ``deleteBackupPollingUntilDone(request:options:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -641,10 +641,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackupPollingUntilDone(request:)``
-  /// - ``deleteBackupPollingUntilDone(name:)``
   /// - ``deleteBackup(request:)``
   /// - ``deleteBackup(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -676,9 +676,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``updateBackup(request:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   /// - ``updateBackupPollingUntilDone(request:)``
   /// - ``updateBackupPollingUntilDone(request:options:)``
-  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -691,10 +691,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``updateBackupPollingUntilDone(request:)``
-  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
   /// - ``updateBackup(request:)``
   /// - ``updateBackup(request:options:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
+  /// - ``updateBackupPollingUntilDone(request:)``
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -740,9 +740,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``promoteReplicaPollingUntilDone(request:)``
   /// - ``promoteReplica(request:)``
   /// - ``promoteReplica(request:options:)``
+  /// - ``promoteReplicaPollingUntilDone(request:)``
   public func promoteReplicaPollingUntilDone(
     request: PromoteReplicaRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -804,9 +804,9 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -832,8 +832,8 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -848,8 +848,8 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

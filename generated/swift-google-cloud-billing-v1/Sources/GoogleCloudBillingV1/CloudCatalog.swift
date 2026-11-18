@@ -64,9 +64,9 @@ public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSkus(request:)``
+  /// - ``listSkusByItems(parent:)``
   /// - ``listSkusByItems(request:)``
   /// - ``listSkusByItems(request:options:)``
-  /// - ``listSkusByItems(parent:)``
   public func listSkus(
     request: ListSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListSkusResponse {

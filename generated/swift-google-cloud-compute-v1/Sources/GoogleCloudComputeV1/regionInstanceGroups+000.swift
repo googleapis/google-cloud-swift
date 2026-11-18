@@ -52,8 +52,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:instanceGroup:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionInstanceGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroup {
@@ -68,9 +68,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionInstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupList {
@@ -87,9 +87,9 @@
     /// ## See Also
     ///
     /// - ``listInstances(request:)``
+    /// - ``listInstancesByItems(project:region:instanceGroup:body:)``
     /// - ``listInstancesByItems(request:)``
     /// - ``listInstancesByItems(request:options:)``
-    /// - ``listInstancesByItems(project:region:instanceGroup:body:)``
     public func listInstances(
       request: RegionInstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupsListInstances {
@@ -103,9 +103,9 @@
     /// ## See Also
     ///
     /// - ``setNamedPorts(request:)``
+    /// - ``setNamedPortsPollingUntilDone(project:region:instanceGroup:body:)``
     /// - ``setNamedPortsPollingUntilDone(request:)``
     /// - ``setNamedPortsPollingUntilDone(request:options:)``
-    /// - ``setNamedPortsPollingUntilDone(project:region:instanceGroup:body:)``
     public func setNamedPorts(
       request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -123,10 +123,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setNamedPortsPollingUntilDone(request:)``
-    /// - ``setNamedPortsPollingUntilDone(project:region:instanceGroup:body:)``
     /// - ``setNamedPorts(request:)``
     /// - ``setNamedPorts(request:options:)``
+    /// - ``setNamedPortsPollingUntilDone(project:region:instanceGroup:body:)``
+    /// - ``setNamedPortsPollingUntilDone(request:)``
     public func setNamedPortsPollingUntilDone(
       request: RegionInstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -172,8 +172,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: RegionInstanceGroupsClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions

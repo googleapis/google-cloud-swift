@@ -63,9 +63,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:clusters:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:clusters:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -84,10 +84,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:clusters:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:clusters:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -118,8 +118,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Instance {
@@ -132,8 +132,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``listInstances(request:)``
   /// - ``listInstances(parent:)``
+  /// - ``listInstances(request:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListInstancesResponse {
@@ -163,9 +163,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``partialUpdateInstance(request:)``
+  /// - ``partialUpdateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``partialUpdateInstancePollingUntilDone(request:)``
   /// - ``partialUpdateInstancePollingUntilDone(request:options:)``
-  /// - ``partialUpdateInstancePollingUntilDone(instance:updateMask:)``
   public func partialUpdateInstance(
     request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -179,10 +179,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``partialUpdateInstancePollingUntilDone(request:)``
-  /// - ``partialUpdateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``partialUpdateInstance(request:)``
   /// - ``partialUpdateInstance(request:options:)``
+  /// - ``partialUpdateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``partialUpdateInstancePollingUntilDone(request:)``
   public func partialUpdateInstancePollingUntilDone(
     request: PartialUpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -213,8 +213,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(name:)``
+  /// - ``deleteInstance(request:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -234,9 +234,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(parent:clusterId:cluster:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(parent:clusterId:cluster:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -255,10 +255,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(parent:clusterId:cluster:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:clusterId:cluster:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -289,8 +289,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Cluster {
@@ -303,8 +303,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``listClusters(request:)``
   /// - ``listClusters(parent:)``
+  /// - ``listClusters(request:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListClustersResponse {
@@ -340,9 +340,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: Cluster, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -385,9 +385,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``partialUpdateCluster(request:)``
+  /// - ``partialUpdateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``partialUpdateClusterPollingUntilDone(request:)``
   /// - ``partialUpdateClusterPollingUntilDone(request:options:)``
-  /// - ``partialUpdateClusterPollingUntilDone(cluster:updateMask:)``
   public func partialUpdateCluster(
     request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -411,10 +411,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``partialUpdateClusterPollingUntilDone(request:)``
-  /// - ``partialUpdateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``partialUpdateCluster(request:)``
   /// - ``partialUpdateCluster(request:options:)``
+  /// - ``partialUpdateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``partialUpdateClusterPollingUntilDone(request:)``
   public func partialUpdateClusterPollingUntilDone(
     request: PartialUpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -445,8 +445,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(name:)``
+  /// - ``deleteCluster(request:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -463,9 +463,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``updateMemoryLayer(request:)``
+  /// - ``updateMemoryLayerPollingUntilDone(memoryLayer:updateMask:)``
   /// - ``updateMemoryLayerPollingUntilDone(request:)``
   /// - ``updateMemoryLayerPollingUntilDone(request:options:)``
-  /// - ``updateMemoryLayerPollingUntilDone(memoryLayer:updateMask:)``
   public func updateMemoryLayer(
     request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -481,10 +481,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``updateMemoryLayerPollingUntilDone(request:)``
-  /// - ``updateMemoryLayerPollingUntilDone(memoryLayer:updateMask:)``
   /// - ``updateMemoryLayer(request:)``
   /// - ``updateMemoryLayer(request:options:)``
+  /// - ``updateMemoryLayerPollingUntilDone(memoryLayer:updateMask:)``
+  /// - ``updateMemoryLayerPollingUntilDone(request:)``
   public func updateMemoryLayerPollingUntilDone(
     request: UpdateMemoryLayerRequest, options: GoogleGax.RequestOptions
   ) async throws -> MemoryLayer {
@@ -516,9 +516,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``listMemoryLayers(request:)``
+  /// - ``listMemoryLayersByItems(parent:)``
   /// - ``listMemoryLayersByItems(request:)``
   /// - ``listMemoryLayersByItems(request:options:)``
-  /// - ``listMemoryLayersByItems(parent:)``
   public func listMemoryLayers(
     request: ListMemoryLayersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListMemoryLayersResponse {
@@ -531,8 +531,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``getMemoryLayer(request:)``
   /// - ``getMemoryLayer(name:)``
+  /// - ``getMemoryLayer(request:)``
   public func getMemoryLayer(
     request: GetMemoryLayerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.MemoryLayer {
@@ -545,8 +545,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``createAppProfile(request:)``
   /// - ``createAppProfile(parent:appProfileId:appProfile:)``
+  /// - ``createAppProfile(request:)``
   public func createAppProfile(
     request: CreateAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
@@ -559,8 +559,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``getAppProfile(request:)``
   /// - ``getAppProfile(name:)``
+  /// - ``getAppProfile(request:)``
   public func getAppProfile(
     request: GetAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.AppProfile {
@@ -574,9 +574,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``listAppProfiles(request:)``
+  /// - ``listAppProfilesByItems(parent:)``
   /// - ``listAppProfilesByItems(request:)``
   /// - ``listAppProfilesByItems(request:options:)``
-  /// - ``listAppProfilesByItems(parent:)``
   public func listAppProfiles(
     request: ListAppProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListAppProfilesResponse {
@@ -590,9 +590,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``updateAppProfile(request:)``
+  /// - ``updateAppProfilePollingUntilDone(appProfile:updateMask:)``
   /// - ``updateAppProfilePollingUntilDone(request:)``
   /// - ``updateAppProfilePollingUntilDone(request:options:)``
-  /// - ``updateAppProfilePollingUntilDone(appProfile:updateMask:)``
   public func updateAppProfile(
     request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -605,10 +605,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``updateAppProfilePollingUntilDone(request:)``
-  /// - ``updateAppProfilePollingUntilDone(appProfile:updateMask:)``
   /// - ``updateAppProfile(request:)``
   /// - ``updateAppProfile(request:options:)``
+  /// - ``updateAppProfilePollingUntilDone(appProfile:updateMask:)``
+  /// - ``updateAppProfilePollingUntilDone(request:)``
   public func updateAppProfilePollingUntilDone(
     request: UpdateAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> AppProfile {
@@ -639,9 +639,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteAppProfile(request:)``
   /// - ``deleteAppProfile(name:)``
   /// - ``deleteAppProfile(name:ignoreWarnings:)``
+  /// - ``deleteAppProfile(request:)``
   public func deleteAppProfile(
     request: DeleteAppProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -700,9 +700,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``listHotTablets(request:)``
+  /// - ``listHotTabletsByItems(parent:)``
   /// - ``listHotTabletsByItems(request:)``
   /// - ``listHotTabletsByItems(request:options:)``
-  /// - ``listHotTabletsByItems(parent:)``
   public func listHotTablets(
     request: ListHotTabletsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListHotTabletsResponse {
@@ -716,9 +716,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``createLogicalView(request:)``
+  /// - ``createLogicalViewPollingUntilDone(parent:logicalView:logicalViewId:)``
   /// - ``createLogicalViewPollingUntilDone(request:)``
   /// - ``createLogicalViewPollingUntilDone(request:options:)``
-  /// - ``createLogicalViewPollingUntilDone(parent:logicalView:logicalViewId:)``
   public func createLogicalView(
     request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -731,10 +731,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``createLogicalViewPollingUntilDone(request:)``
-  /// - ``createLogicalViewPollingUntilDone(parent:logicalView:logicalViewId:)``
   /// - ``createLogicalView(request:)``
   /// - ``createLogicalView(request:options:)``
+  /// - ``createLogicalViewPollingUntilDone(parent:logicalView:logicalViewId:)``
+  /// - ``createLogicalViewPollingUntilDone(request:)``
   public func createLogicalViewPollingUntilDone(
     request: CreateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> LogicalView {
@@ -765,8 +765,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``getLogicalView(request:)``
   /// - ``getLogicalView(name:)``
+  /// - ``getLogicalView(request:)``
   public func getLogicalView(
     request: GetLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.LogicalView {
@@ -780,9 +780,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``listLogicalViews(request:)``
+  /// - ``listLogicalViewsByItems(parent:)``
   /// - ``listLogicalViewsByItems(request:)``
   /// - ``listLogicalViewsByItems(request:options:)``
-  /// - ``listLogicalViewsByItems(parent:)``
   public func listLogicalViews(
     request: ListLogicalViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListLogicalViewsResponse {
@@ -796,9 +796,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``updateLogicalView(request:)``
+  /// - ``updateLogicalViewPollingUntilDone(logicalView:updateMask:)``
   /// - ``updateLogicalViewPollingUntilDone(request:)``
   /// - ``updateLogicalViewPollingUntilDone(request:options:)``
-  /// - ``updateLogicalViewPollingUntilDone(logicalView:updateMask:)``
   public func updateLogicalView(
     request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -811,10 +811,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``updateLogicalViewPollingUntilDone(request:)``
-  /// - ``updateLogicalViewPollingUntilDone(logicalView:updateMask:)``
   /// - ``updateLogicalView(request:)``
   /// - ``updateLogicalView(request:options:)``
+  /// - ``updateLogicalViewPollingUntilDone(logicalView:updateMask:)``
+  /// - ``updateLogicalViewPollingUntilDone(request:)``
   public func updateLogicalViewPollingUntilDone(
     request: UpdateLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> LogicalView {
@@ -845,8 +845,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteLogicalView(request:)``
   /// - ``deleteLogicalView(name:)``
+  /// - ``deleteLogicalView(request:)``
   public func deleteLogicalView(
     request: DeleteLogicalViewRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -860,9 +860,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``createMaterializedView(request:)``
+  /// - ``createMaterializedViewPollingUntilDone(parent:materializedView:materializedViewId:)``
   /// - ``createMaterializedViewPollingUntilDone(request:)``
   /// - ``createMaterializedViewPollingUntilDone(request:options:)``
-  /// - ``createMaterializedViewPollingUntilDone(parent:materializedView:materializedViewId:)``
   public func createMaterializedView(
     request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -875,10 +875,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``createMaterializedViewPollingUntilDone(request:)``
-  /// - ``createMaterializedViewPollingUntilDone(parent:materializedView:materializedViewId:)``
   /// - ``createMaterializedView(request:)``
   /// - ``createMaterializedView(request:options:)``
+  /// - ``createMaterializedViewPollingUntilDone(parent:materializedView:materializedViewId:)``
+  /// - ``createMaterializedViewPollingUntilDone(request:)``
   public func createMaterializedViewPollingUntilDone(
     request: CreateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> MaterializedView {
@@ -910,8 +910,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``getMaterializedView(request:)``
   /// - ``getMaterializedView(name:)``
+  /// - ``getMaterializedView(request:)``
   public func getMaterializedView(
     request: GetMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.MaterializedView {
@@ -925,9 +925,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``listMaterializedViews(request:)``
+  /// - ``listMaterializedViewsByItems(parent:)``
   /// - ``listMaterializedViewsByItems(request:)``
   /// - ``listMaterializedViewsByItems(request:options:)``
-  /// - ``listMaterializedViewsByItems(parent:)``
   public func listMaterializedViews(
     request: ListMaterializedViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListMaterializedViewsResponse {
@@ -941,9 +941,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``updateMaterializedView(request:)``
+  /// - ``updateMaterializedViewPollingUntilDone(materializedView:updateMask:)``
   /// - ``updateMaterializedViewPollingUntilDone(request:)``
   /// - ``updateMaterializedViewPollingUntilDone(request:options:)``
-  /// - ``updateMaterializedViewPollingUntilDone(materializedView:updateMask:)``
   public func updateMaterializedView(
     request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -956,10 +956,10 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``updateMaterializedViewPollingUntilDone(request:)``
-  /// - ``updateMaterializedViewPollingUntilDone(materializedView:updateMask:)``
   /// - ``updateMaterializedView(request:)``
   /// - ``updateMaterializedView(request:options:)``
+  /// - ``updateMaterializedViewPollingUntilDone(materializedView:updateMask:)``
+  /// - ``updateMaterializedViewPollingUntilDone(request:)``
   public func updateMaterializedViewPollingUntilDone(
     request: UpdateMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> MaterializedView {
@@ -991,8 +991,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteMaterializedView(request:)``
   /// - ``deleteMaterializedView(name:)``
+  /// - ``deleteMaterializedView(request:)``
   public func deleteMaterializedView(
     request: DeleteMaterializedViewRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1008,9 +1008,9 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1036,8 +1036,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1052,8 +1052,8 @@ public final class BigtableInstanceAdminClient: Clients.BigtableInstanceAdminPro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

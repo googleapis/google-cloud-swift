@@ -65,9 +65,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``createOspolicyAssignment(request:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(parent:osPolicyAssignment:osPolicyAssignmentId:)``
   /// - ``createOspolicyAssignmentPollingUntilDone(request:)``
   /// - ``createOspolicyAssignmentPollingUntilDone(request:options:)``
-  /// - ``createOspolicyAssignmentPollingUntilDone(parent:osPolicyAssignment:osPolicyAssignmentId:)``
   public func createOspolicyAssignment(
     request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -88,10 +88,10 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createOspolicyAssignmentPollingUntilDone(request:)``
-  /// - ``createOspolicyAssignmentPollingUntilDone(parent:osPolicyAssignment:osPolicyAssignmentId:)``
   /// - ``createOspolicyAssignment(request:)``
   /// - ``createOspolicyAssignment(request:options:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(parent:osPolicyAssignment:osPolicyAssignmentId:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(request:)``
   public func createOspolicyAssignmentPollingUntilDone(
     request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> OSPolicyAssignment {
@@ -132,9 +132,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``updateOspolicyAssignment(request:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(osPolicyAssignment:updateMask:)``
   /// - ``updateOspolicyAssignmentPollingUntilDone(request:)``
   /// - ``updateOspolicyAssignmentPollingUntilDone(request:options:)``
-  /// - ``updateOspolicyAssignmentPollingUntilDone(osPolicyAssignment:updateMask:)``
   public func updateOspolicyAssignment(
     request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -155,10 +155,10 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateOspolicyAssignmentPollingUntilDone(request:)``
-  /// - ``updateOspolicyAssignmentPollingUntilDone(osPolicyAssignment:updateMask:)``
   /// - ``updateOspolicyAssignment(request:)``
   /// - ``updateOspolicyAssignment(request:options:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(osPolicyAssignment:updateMask:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(request:)``
   public func updateOspolicyAssignmentPollingUntilDone(
     request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> OSPolicyAssignment {
@@ -194,8 +194,8 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getOspolicyAssignment(request:)``
   /// - ``getOspolicyAssignment(name:)``
+  /// - ``getOspolicyAssignment(request:)``
   public func getOspolicyAssignment(
     request: GetOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignment {
@@ -211,9 +211,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``listOspolicyAssignments(request:)``
+  /// - ``listOspolicyAssignmentsByItems(parent:)``
   /// - ``listOspolicyAssignmentsByItems(request:)``
   /// - ``listOspolicyAssignmentsByItems(request:options:)``
-  /// - ``listOspolicyAssignmentsByItems(parent:)``
   public func listOspolicyAssignments(
     request: ListOSPolicyAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentsResponse {
@@ -227,9 +227,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``listOspolicyAssignmentRevisions(request:)``
+  /// - ``listOspolicyAssignmentRevisionsByItems(name:)``
   /// - ``listOspolicyAssignmentRevisionsByItems(request:)``
   /// - ``listOspolicyAssignmentRevisionsByItems(request:options:)``
-  /// - ``listOspolicyAssignmentRevisionsByItems(name:)``
   public func listOspolicyAssignmentRevisions(
     request: ListOSPolicyAssignmentRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentRevisionsResponse {
@@ -254,9 +254,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``deleteOspolicyAssignment(request:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(name:)``
   /// - ``deleteOspolicyAssignmentPollingUntilDone(request:)``
   /// - ``deleteOspolicyAssignmentPollingUntilDone(request:options:)``
-  /// - ``deleteOspolicyAssignmentPollingUntilDone(name:)``
   public func deleteOspolicyAssignment(
     request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -280,10 +280,10 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteOspolicyAssignmentPollingUntilDone(request:)``
-  /// - ``deleteOspolicyAssignmentPollingUntilDone(name:)``
   /// - ``deleteOspolicyAssignment(request:)``
   /// - ``deleteOspolicyAssignment(request:options:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(name:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(request:)``
   public func deleteOspolicyAssignmentPollingUntilDone(
     request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -315,8 +315,8 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getOspolicyAssignmentReport(request:)``
   /// - ``getOspolicyAssignmentReport(name:)``
+  /// - ``getOspolicyAssignmentReport(request:)``
   public func getOspolicyAssignmentReport(
     request: GetOSPolicyAssignmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignmentReport {
@@ -331,9 +331,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``listOspolicyAssignmentReports(request:)``
+  /// - ``listOspolicyAssignmentReportsByItems(parent:)``
   /// - ``listOspolicyAssignmentReportsByItems(request:)``
   /// - ``listOspolicyAssignmentReportsByItems(request:options:)``
-  /// - ``listOspolicyAssignmentReportsByItems(parent:)``
   public func listOspolicyAssignmentReports(
     request: ListOSPolicyAssignmentReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentReportsResponse {
@@ -347,8 +347,8 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getInventory(request:)``
   /// - ``getInventory(name:)``
+  /// - ``getInventory(request:)``
   public func getInventory(
     request: GetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.Inventory {
@@ -362,9 +362,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``listInventories(request:)``
+  /// - ``listInventoriesByItems(parent:)``
   /// - ``listInventoriesByItems(request:)``
   /// - ``listInventoriesByItems(request:options:)``
-  /// - ``listInventoriesByItems(parent:)``
   public func listInventories(
     request: ListInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListInventoriesResponse {
@@ -378,8 +378,8 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getVulnerabilityReport(request:)``
   /// - ``getVulnerabilityReport(name:)``
+  /// - ``getVulnerabilityReport(request:)``
   public func getVulnerabilityReport(
     request: GetVulnerabilityReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.VulnerabilityReport {
@@ -393,9 +393,9 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// ## See Also
   ///
   /// - ``listVulnerabilityReports(request:)``
+  /// - ``listVulnerabilityReportsByItems(parent:)``
   /// - ``listVulnerabilityReportsByItems(request:)``
   /// - ``listVulnerabilityReportsByItems(request:options:)``
-  /// - ``listVulnerabilityReportsByItems(parent:)``
   public func listVulnerabilityReports(
     request: ListVulnerabilityReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListVulnerabilityReportsResponse {
@@ -421,8 +421,8 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -55,9 +55,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``listFirewallEndpoints(request:)``
+  /// - ``listFirewallEndpointsByItems(parent:)``
   /// - ``listFirewallEndpointsByItems(request:)``
   /// - ``listFirewallEndpointsByItems(request:options:)``
-  /// - ``listFirewallEndpointsByItems(parent:)``
   public func listFirewallEndpoints(
     request: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse {
@@ -71,9 +71,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``listProjectFirewallEndpoints(request:)``
+  /// - ``listProjectFirewallEndpointsByItems(parent:)``
   /// - ``listProjectFirewallEndpointsByItems(request:)``
   /// - ``listProjectFirewallEndpointsByItems(request:options:)``
-  /// - ``listProjectFirewallEndpointsByItems(parent:)``
   public func listProjectFirewallEndpoints(
     request: ListFirewallEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointsResponse {
@@ -86,8 +86,8 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getFirewallEndpoint(request:)``
   /// - ``getFirewallEndpoint(name:)``
+  /// - ``getFirewallEndpoint(request:)``
   public func getFirewallEndpoint(
     request: GetFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.FirewallEndpoint {
@@ -100,8 +100,8 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getProjectFirewallEndpoint(request:)``
   /// - ``getProjectFirewallEndpoint(name:)``
+  /// - ``getProjectFirewallEndpoint(request:)``
   public func getProjectFirewallEndpoint(
     request: GetFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.FirewallEndpoint {
@@ -115,9 +115,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``createFirewallEndpoint(request:)``
+  /// - ``createFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
   /// - ``createFirewallEndpointPollingUntilDone(request:)``
   /// - ``createFirewallEndpointPollingUntilDone(request:options:)``
-  /// - ``createFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
   public func createFirewallEndpoint(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -130,10 +130,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createFirewallEndpointPollingUntilDone(request:)``
-  /// - ``createFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
   /// - ``createFirewallEndpoint(request:)``
   /// - ``createFirewallEndpoint(request:options:)``
+  /// - ``createFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
+  /// - ``createFirewallEndpointPollingUntilDone(request:)``
   public func createFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> FirewallEndpoint {
@@ -166,9 +166,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``createProjectFirewallEndpoint(request:)``
+  /// - ``createProjectFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
   /// - ``createProjectFirewallEndpointPollingUntilDone(request:)``
   /// - ``createProjectFirewallEndpointPollingUntilDone(request:options:)``
-  /// - ``createProjectFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
   public func createProjectFirewallEndpoint(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -181,10 +181,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createProjectFirewallEndpointPollingUntilDone(request:)``
-  /// - ``createProjectFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
   /// - ``createProjectFirewallEndpoint(request:)``
   /// - ``createProjectFirewallEndpoint(request:options:)``
+  /// - ``createProjectFirewallEndpointPollingUntilDone(parent:firewallEndpoint:firewallEndpointId:)``
+  /// - ``createProjectFirewallEndpointPollingUntilDone(request:)``
   public func createProjectFirewallEndpointPollingUntilDone(
     request: CreateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> FirewallEndpoint {
@@ -217,9 +217,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``deleteFirewallEndpoint(request:)``
+  /// - ``deleteFirewallEndpointPollingUntilDone(name:)``
   /// - ``deleteFirewallEndpointPollingUntilDone(request:)``
   /// - ``deleteFirewallEndpointPollingUntilDone(request:options:)``
-  /// - ``deleteFirewallEndpointPollingUntilDone(name:)``
   public func deleteFirewallEndpoint(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -232,10 +232,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteFirewallEndpointPollingUntilDone(request:)``
-  /// - ``deleteFirewallEndpointPollingUntilDone(name:)``
   /// - ``deleteFirewallEndpoint(request:)``
   /// - ``deleteFirewallEndpoint(request:options:)``
+  /// - ``deleteFirewallEndpointPollingUntilDone(name:)``
+  /// - ``deleteFirewallEndpointPollingUntilDone(request:)``
   public func deleteFirewallEndpointPollingUntilDone(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -267,9 +267,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``deleteProjectFirewallEndpoint(request:)``
+  /// - ``deleteProjectFirewallEndpointPollingUntilDone(name:)``
   /// - ``deleteProjectFirewallEndpointPollingUntilDone(request:)``
   /// - ``deleteProjectFirewallEndpointPollingUntilDone(request:options:)``
-  /// - ``deleteProjectFirewallEndpointPollingUntilDone(name:)``
   public func deleteProjectFirewallEndpoint(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -282,10 +282,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteProjectFirewallEndpointPollingUntilDone(request:)``
-  /// - ``deleteProjectFirewallEndpointPollingUntilDone(name:)``
   /// - ``deleteProjectFirewallEndpoint(request:)``
   /// - ``deleteProjectFirewallEndpoint(request:options:)``
+  /// - ``deleteProjectFirewallEndpointPollingUntilDone(name:)``
+  /// - ``deleteProjectFirewallEndpointPollingUntilDone(request:)``
   public func deleteProjectFirewallEndpointPollingUntilDone(
     request: DeleteFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -317,9 +317,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``updateFirewallEndpoint(request:)``
+  /// - ``updateFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
   /// - ``updateFirewallEndpointPollingUntilDone(request:)``
   /// - ``updateFirewallEndpointPollingUntilDone(request:options:)``
-  /// - ``updateFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
   public func updateFirewallEndpoint(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -332,10 +332,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateFirewallEndpointPollingUntilDone(request:)``
-  /// - ``updateFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
   /// - ``updateFirewallEndpoint(request:)``
   /// - ``updateFirewallEndpoint(request:options:)``
+  /// - ``updateFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
+  /// - ``updateFirewallEndpointPollingUntilDone(request:)``
   public func updateFirewallEndpointPollingUntilDone(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> FirewallEndpoint {
@@ -368,9 +368,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``updateProjectFirewallEndpoint(request:)``
+  /// - ``updateProjectFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
   /// - ``updateProjectFirewallEndpointPollingUntilDone(request:)``
   /// - ``updateProjectFirewallEndpointPollingUntilDone(request:options:)``
-  /// - ``updateProjectFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
   public func updateProjectFirewallEndpoint(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -383,10 +383,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateProjectFirewallEndpointPollingUntilDone(request:)``
-  /// - ``updateProjectFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
   /// - ``updateProjectFirewallEndpoint(request:)``
   /// - ``updateProjectFirewallEndpoint(request:options:)``
+  /// - ``updateProjectFirewallEndpointPollingUntilDone(firewallEndpoint:updateMask:)``
+  /// - ``updateProjectFirewallEndpointPollingUntilDone(request:)``
   public func updateProjectFirewallEndpointPollingUntilDone(
     request: UpdateFirewallEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> FirewallEndpoint {
@@ -419,9 +419,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``listFirewallEndpointAssociations(request:)``
+  /// - ``listFirewallEndpointAssociationsByItems(parent:)``
   /// - ``listFirewallEndpointAssociationsByItems(request:)``
   /// - ``listFirewallEndpointAssociationsByItems(request:options:)``
-  /// - ``listFirewallEndpointAssociationsByItems(parent:)``
   public func listFirewallEndpointAssociations(
     request: ListFirewallEndpointAssociationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListFirewallEndpointAssociationsResponse {
@@ -434,8 +434,8 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getFirewallEndpointAssociation(request:)``
   /// - ``getFirewallEndpointAssociation(name:)``
+  /// - ``getFirewallEndpointAssociation(request:)``
   public func getFirewallEndpointAssociation(
     request: GetFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.FirewallEndpointAssociation {
@@ -449,9 +449,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``createFirewallEndpointAssociation(request:)``
+  /// - ``createFirewallEndpointAssociationPollingUntilDone(parent:firewallEndpointAssociation:firewallEndpointAssociationId:)``
   /// - ``createFirewallEndpointAssociationPollingUntilDone(request:)``
   /// - ``createFirewallEndpointAssociationPollingUntilDone(request:options:)``
-  /// - ``createFirewallEndpointAssociationPollingUntilDone(parent:firewallEndpointAssociation:firewallEndpointAssociationId:)``
   public func createFirewallEndpointAssociation(
     request: CreateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -464,10 +464,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createFirewallEndpointAssociationPollingUntilDone(request:)``
-  /// - ``createFirewallEndpointAssociationPollingUntilDone(parent:firewallEndpointAssociation:firewallEndpointAssociationId:)``
   /// - ``createFirewallEndpointAssociation(request:)``
   /// - ``createFirewallEndpointAssociation(request:options:)``
+  /// - ``createFirewallEndpointAssociationPollingUntilDone(parent:firewallEndpointAssociation:firewallEndpointAssociationId:)``
+  /// - ``createFirewallEndpointAssociationPollingUntilDone(request:)``
   public func createFirewallEndpointAssociationPollingUntilDone(
     request: CreateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> FirewallEndpointAssociation {
@@ -501,9 +501,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``deleteFirewallEndpointAssociation(request:)``
+  /// - ``deleteFirewallEndpointAssociationPollingUntilDone(name:)``
   /// - ``deleteFirewallEndpointAssociationPollingUntilDone(request:)``
   /// - ``deleteFirewallEndpointAssociationPollingUntilDone(request:options:)``
-  /// - ``deleteFirewallEndpointAssociationPollingUntilDone(name:)``
   public func deleteFirewallEndpointAssociation(
     request: DeleteFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -516,10 +516,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteFirewallEndpointAssociationPollingUntilDone(request:)``
-  /// - ``deleteFirewallEndpointAssociationPollingUntilDone(name:)``
   /// - ``deleteFirewallEndpointAssociation(request:)``
   /// - ``deleteFirewallEndpointAssociation(request:options:)``
+  /// - ``deleteFirewallEndpointAssociationPollingUntilDone(name:)``
+  /// - ``deleteFirewallEndpointAssociationPollingUntilDone(request:)``
   public func deleteFirewallEndpointAssociationPollingUntilDone(
     request: DeleteFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -551,9 +551,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``updateFirewallEndpointAssociation(request:)``
+  /// - ``updateFirewallEndpointAssociationPollingUntilDone(firewallEndpointAssociation:updateMask:)``
   /// - ``updateFirewallEndpointAssociationPollingUntilDone(request:)``
   /// - ``updateFirewallEndpointAssociationPollingUntilDone(request:options:)``
-  /// - ``updateFirewallEndpointAssociationPollingUntilDone(firewallEndpointAssociation:updateMask:)``
   public func updateFirewallEndpointAssociation(
     request: UpdateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -566,10 +566,10 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateFirewallEndpointAssociationPollingUntilDone(request:)``
-  /// - ``updateFirewallEndpointAssociationPollingUntilDone(firewallEndpointAssociation:updateMask:)``
   /// - ``updateFirewallEndpointAssociation(request:)``
   /// - ``updateFirewallEndpointAssociation(request:options:)``
+  /// - ``updateFirewallEndpointAssociationPollingUntilDone(firewallEndpointAssociation:updateMask:)``
+  /// - ``updateFirewallEndpointAssociationPollingUntilDone(request:)``
   public func updateFirewallEndpointAssociationPollingUntilDone(
     request: UpdateFirewallEndpointAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> FirewallEndpointAssociation {
@@ -700,9 +700,9 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -728,8 +728,8 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -744,8 +744,8 @@ public final class FirewallActivationClient: Clients.FirewallActivationProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

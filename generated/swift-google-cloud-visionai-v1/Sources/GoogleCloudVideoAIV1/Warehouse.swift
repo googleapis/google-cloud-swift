@@ -53,8 +53,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAsset(request:)``
   /// - ``createAsset(parent:asset:assetId:)``
+  /// - ``createAsset(request:)``
   public func createAsset(
     request: CreateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Asset {
@@ -67,8 +67,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAsset(request:)``
   /// - ``updateAsset(asset:updateMask:)``
+  /// - ``updateAsset(request:)``
   public func updateAsset(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Asset {
@@ -81,8 +81,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAsset(request:)``
   /// - ``getAsset(name:)``
+  /// - ``getAsset(request:)``
   public func getAsset(
     request: GetAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Asset {
@@ -96,9 +96,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
   /// - ``listAssetsByItems(request:)``
   /// - ``listAssetsByItems(request:options:)``
-  /// - ``listAssetsByItems(parent:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListAssetsResponse {
@@ -112,9 +112,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteAsset(request:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
   /// - ``deleteAssetPollingUntilDone(request:)``
   /// - ``deleteAssetPollingUntilDone(request:options:)``
-  /// - ``deleteAssetPollingUntilDone(name:)``
   public func deleteAsset(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,10 +127,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAssetPollingUntilDone(request:)``
-  /// - ``deleteAssetPollingUntilDone(name:)``
   /// - ``deleteAsset(request:)``
   /// - ``deleteAsset(request:options:)``
+  /// - ``deleteAssetPollingUntilDone(name:)``
+  /// - ``deleteAssetPollingUntilDone(request:)``
   public func deleteAssetPollingUntilDone(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -194,9 +194,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``uploadAssetPollingUntilDone(request:)``
   /// - ``uploadAsset(request:)``
   /// - ``uploadAsset(request:options:)``
+  /// - ``uploadAssetPollingUntilDone(request:)``
   public func uploadAssetPollingUntilDone(
     request: UploadAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> UploadAssetResponse {
@@ -258,9 +258,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``analyzeAssetPollingUntilDone(request:)``
   /// - ``analyzeAsset(request:)``
   /// - ``analyzeAsset(request:options:)``
+  /// - ``analyzeAssetPollingUntilDone(request:)``
   public func analyzeAssetPollingUntilDone(
     request: AnalyzeAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnalyzeAssetResponse {
@@ -309,9 +309,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``indexAssetPollingUntilDone(request:)``
   /// - ``indexAsset(request:)``
   /// - ``indexAsset(request:options:)``
+  /// - ``indexAssetPollingUntilDone(request:)``
   public func indexAssetPollingUntilDone(
     request: IndexAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> IndexAssetResponse {
@@ -360,9 +360,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``removeIndexAssetPollingUntilDone(request:)``
   /// - ``removeIndexAsset(request:)``
   /// - ``removeIndexAsset(request:options:)``
+  /// - ``removeIndexAssetPollingUntilDone(request:)``
   public func removeIndexAssetPollingUntilDone(
     request: RemoveIndexAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveIndexAssetResponse {
@@ -396,9 +396,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``viewIndexedAssets(request:)``
+  /// - ``viewIndexedAssetsByItems(index:)``
   /// - ``viewIndexedAssetsByItems(request:)``
   /// - ``viewIndexedAssetsByItems(request:options:)``
-  /// - ``viewIndexedAssetsByItems(index:)``
   public func viewIndexedAssets(
     request: ViewIndexedAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ViewIndexedAssetsResponse {
@@ -412,9 +412,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createIndex(request:)``
+  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   /// - ``createIndexPollingUntilDone(request:)``
   /// - ``createIndexPollingUntilDone(request:options:)``
-  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   public func createIndex(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -427,10 +427,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createIndexPollingUntilDone(request:)``
-  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
   /// - ``createIndex(request:)``
   /// - ``createIndex(request:options:)``
+  /// - ``createIndexPollingUntilDone(parent:index:indexId:)``
+  /// - ``createIndexPollingUntilDone(request:)``
   public func createIndexPollingUntilDone(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -464,9 +464,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateIndex(request:)``
+  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   /// - ``updateIndexPollingUntilDone(request:)``
   /// - ``updateIndexPollingUntilDone(request:options:)``
-  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   public func updateIndex(
     request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -481,10 +481,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateIndexPollingUntilDone(request:)``
-  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
   /// - ``updateIndex(request:)``
   /// - ``updateIndex(request:options:)``
+  /// - ``updateIndexPollingUntilDone(index:updateMask:)``
+  /// - ``updateIndexPollingUntilDone(request:)``
   public func updateIndexPollingUntilDone(
     request: UpdateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -515,8 +515,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getIndex(request:)``
   /// - ``getIndex(name:)``
+  /// - ``getIndex(request:)``
   public func getIndex(
     request: GetIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Index {
@@ -530,9 +530,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listIndexes(request:)``
+  /// - ``listIndexesByItems(parent:)``
   /// - ``listIndexesByItems(request:)``
   /// - ``listIndexesByItems(request:options:)``
-  /// - ``listIndexesByItems(parent:)``
   public func listIndexes(
     request: ListIndexesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListIndexesResponse {
@@ -547,9 +547,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteIndex(request:)``
+  /// - ``deleteIndexPollingUntilDone(name:)``
   /// - ``deleteIndexPollingUntilDone(request:)``
   /// - ``deleteIndexPollingUntilDone(request:options:)``
-  /// - ``deleteIndexPollingUntilDone(name:)``
   public func deleteIndex(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -563,10 +563,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteIndexPollingUntilDone(request:)``
-  /// - ``deleteIndexPollingUntilDone(name:)``
   /// - ``deleteIndex(request:)``
   /// - ``deleteIndex(request:options:)``
+  /// - ``deleteIndexPollingUntilDone(name:)``
+  /// - ``deleteIndexPollingUntilDone(request:)``
   public func deleteIndexPollingUntilDone(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -598,9 +598,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCorpus(request:)``
+  /// - ``createCorpusPollingUntilDone(parent:corpus:)``
   /// - ``createCorpusPollingUntilDone(request:)``
   /// - ``createCorpusPollingUntilDone(request:options:)``
-  /// - ``createCorpusPollingUntilDone(parent:corpus:)``
   public func createCorpus(
     request: CreateCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -613,10 +613,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCorpusPollingUntilDone(request:)``
-  /// - ``createCorpusPollingUntilDone(parent:corpus:)``
   /// - ``createCorpus(request:)``
   /// - ``createCorpus(request:options:)``
+  /// - ``createCorpusPollingUntilDone(parent:corpus:)``
+  /// - ``createCorpusPollingUntilDone(request:)``
   public func createCorpusPollingUntilDone(
     request: CreateCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> Corpus {
@@ -647,8 +647,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCorpus(request:)``
   /// - ``getCorpus(name:)``
+  /// - ``getCorpus(request:)``
   public func getCorpus(
     request: GetCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Corpus {
@@ -661,8 +661,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCorpus(request:)``
   /// - ``updateCorpus(corpus:updateMask:)``
+  /// - ``updateCorpus(request:)``
   public func updateCorpus(
     request: UpdateCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Corpus {
@@ -676,9 +676,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCorpora(request:)``
+  /// - ``listCorporaByItems(parent:)``
   /// - ``listCorporaByItems(request:)``
   /// - ``listCorporaByItems(request:options:)``
-  /// - ``listCorporaByItems(parent:)``
   public func listCorpora(
     request: ListCorporaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListCorporaResponse {
@@ -692,8 +692,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCorpus(request:)``
   /// - ``deleteCorpus(name:)``
+  /// - ``deleteCorpus(request:)``
   public func deleteCorpus(
     request: DeleteCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -721,9 +721,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``analyzeCorpusPollingUntilDone(request:)``
   /// - ``analyzeCorpus(request:)``
   /// - ``analyzeCorpus(request:options:)``
+  /// - ``analyzeCorpusPollingUntilDone(request:)``
   public func analyzeCorpusPollingUntilDone(
     request: AnalyzeCorpusRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnalyzeCorpusResponse {
@@ -755,8 +755,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDataSchema(request:)``
   /// - ``createDataSchema(parent:dataSchema:)``
+  /// - ``createDataSchema(request:)``
   public func createDataSchema(
     request: CreateDataSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.DataSchema {
@@ -769,8 +769,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDataSchema(request:)``
   /// - ``updateDataSchema(dataSchema:updateMask:)``
+  /// - ``updateDataSchema(request:)``
   public func updateDataSchema(
     request: UpdateDataSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.DataSchema {
@@ -783,8 +783,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDataSchema(request:)``
   /// - ``getDataSchema(name:)``
+  /// - ``getDataSchema(request:)``
   public func getDataSchema(
     request: GetDataSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.DataSchema {
@@ -797,8 +797,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataSchema(request:)``
   /// - ``deleteDataSchema(name:)``
+  /// - ``deleteDataSchema(request:)``
   public func deleteDataSchema(
     request: DeleteDataSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -812,9 +812,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDataSchemas(request:)``
+  /// - ``listDataSchemasByItems(parent:)``
   /// - ``listDataSchemasByItems(request:)``
   /// - ``listDataSchemasByItems(request:options:)``
-  /// - ``listDataSchemasByItems(parent:)``
   public func listDataSchemas(
     request: ListDataSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListDataSchemasResponse {
@@ -827,8 +827,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAnnotation(request:)``
   /// - ``createAnnotation(parent:annotation:annotationId:)``
+  /// - ``createAnnotation(request:)``
   public func createAnnotation(
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Annotation {
@@ -841,8 +841,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAnnotation(request:)``
   /// - ``getAnnotation(name:)``
+  /// - ``getAnnotation(request:)``
   public func getAnnotation(
     request: GetAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Annotation {
@@ -856,9 +856,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAnnotations(request:)``
+  /// - ``listAnnotationsByItems(parent:)``
   /// - ``listAnnotationsByItems(request:)``
   /// - ``listAnnotationsByItems(request:options:)``
-  /// - ``listAnnotationsByItems(parent:)``
   public func listAnnotations(
     request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListAnnotationsResponse {
@@ -871,8 +871,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAnnotation(request:)``
   /// - ``updateAnnotation(annotation:updateMask:)``
+  /// - ``updateAnnotation(request:)``
   public func updateAnnotation(
     request: UpdateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Annotation {
@@ -885,8 +885,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAnnotation(request:)``
   /// - ``deleteAnnotation(name:)``
+  /// - ``deleteAnnotation(request:)``
   public func deleteAnnotation(
     request: DeleteAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -951,9 +951,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importAssetsPollingUntilDone(request:)``
   /// - ``importAssets(request:)``
   /// - ``importAssets(request:options:)``
+  /// - ``importAssetsPollingUntilDone(request:)``
   public func importAssetsPollingUntilDone(
     request: ImportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportAssetsResponse {
@@ -999,8 +999,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSearchConfig(request:)``
   /// - ``createSearchConfig(parent:searchConfig:searchConfigId:)``
+  /// - ``createSearchConfig(request:)``
   public func createSearchConfig(
     request: CreateSearchConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
@@ -1040,8 +1040,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSearchConfig(request:)``
   /// - ``getSearchConfig(name:)``
+  /// - ``getSearchConfig(request:)``
   public func getSearchConfig(
     request: GetSearchConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.SearchConfig {
@@ -1057,8 +1057,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSearchConfig(request:)``
   /// - ``deleteSearchConfig(name:)``
+  /// - ``deleteSearchConfig(request:)``
   public func deleteSearchConfig(
     request: DeleteSearchConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1072,9 +1072,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSearchConfigs(request:)``
+  /// - ``listSearchConfigsByItems(parent:)``
   /// - ``listSearchConfigsByItems(request:)``
   /// - ``listSearchConfigsByItems(request:options:)``
-  /// - ``listSearchConfigsByItems(parent:)``
   public func listSearchConfigs(
     request: ListSearchConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListSearchConfigsResponse {
@@ -1087,8 +1087,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSearchHypernym(request:)``
   /// - ``createSearchHypernym(parent:searchHypernym:searchHypernymId:)``
+  /// - ``createSearchHypernym(request:)``
   public func createSearchHypernym(
     request: CreateSearchHypernymRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
@@ -1115,8 +1115,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSearchHypernym(request:)``
   /// - ``getSearchHypernym(name:)``
+  /// - ``getSearchHypernym(request:)``
   public func getSearchHypernym(
     request: GetSearchHypernymRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.SearchHypernym {
@@ -1129,8 +1129,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSearchHypernym(request:)``
   /// - ``deleteSearchHypernym(name:)``
+  /// - ``deleteSearchHypernym(request:)``
   public func deleteSearchHypernym(
     request: DeleteSearchHypernymRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1144,9 +1144,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSearchHypernyms(request:)``
+  /// - ``listSearchHypernymsByItems(parent:)``
   /// - ``listSearchHypernymsByItems(request:)``
   /// - ``listSearchHypernymsByItems(request:options:)``
-  /// - ``listSearchHypernymsByItems(parent:)``
   public func listSearchHypernyms(
     request: ListSearchHypernymsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListSearchHypernymsResponse {
@@ -1190,9 +1190,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createIndexEndpoint(request:)``
+  /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:indexEndpointId:)``
   /// - ``createIndexEndpointPollingUntilDone(request:)``
   /// - ``createIndexEndpointPollingUntilDone(request:options:)``
-  /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:indexEndpointId:)``
   public func createIndexEndpoint(
     request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1205,10 +1205,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createIndexEndpointPollingUntilDone(request:)``
-  /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:indexEndpointId:)``
   /// - ``createIndexEndpoint(request:)``
   /// - ``createIndexEndpoint(request:options:)``
+  /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:indexEndpointId:)``
+  /// - ``createIndexEndpointPollingUntilDone(request:)``
   public func createIndexEndpointPollingUntilDone(
     request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> IndexEndpoint {
@@ -1240,8 +1240,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getIndexEndpoint(request:)``
   /// - ``getIndexEndpoint(name:)``
+  /// - ``getIndexEndpoint(request:)``
   public func getIndexEndpoint(
     request: GetIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.IndexEndpoint {
@@ -1255,9 +1255,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listIndexEndpoints(request:)``
+  /// - ``listIndexEndpointsByItems(parent:)``
   /// - ``listIndexEndpointsByItems(request:)``
   /// - ``listIndexEndpointsByItems(request:options:)``
-  /// - ``listIndexEndpointsByItems(parent:)``
   public func listIndexEndpoints(
     request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListIndexEndpointsResponse {
@@ -1271,9 +1271,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateIndexEndpoint(request:)``
+  /// - ``updateIndexEndpointPollingUntilDone(indexEndpoint:updateMask:)``
   /// - ``updateIndexEndpointPollingUntilDone(request:)``
   /// - ``updateIndexEndpointPollingUntilDone(request:options:)``
-  /// - ``updateIndexEndpointPollingUntilDone(indexEndpoint:updateMask:)``
   public func updateIndexEndpoint(
     request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1286,10 +1286,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateIndexEndpointPollingUntilDone(request:)``
-  /// - ``updateIndexEndpointPollingUntilDone(indexEndpoint:updateMask:)``
   /// - ``updateIndexEndpoint(request:)``
   /// - ``updateIndexEndpoint(request:options:)``
+  /// - ``updateIndexEndpointPollingUntilDone(indexEndpoint:updateMask:)``
+  /// - ``updateIndexEndpointPollingUntilDone(request:)``
   public func updateIndexEndpointPollingUntilDone(
     request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> IndexEndpoint {
@@ -1322,9 +1322,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteIndexEndpoint(request:)``
+  /// - ``deleteIndexEndpointPollingUntilDone(name:)``
   /// - ``deleteIndexEndpointPollingUntilDone(request:)``
   /// - ``deleteIndexEndpointPollingUntilDone(request:options:)``
-  /// - ``deleteIndexEndpointPollingUntilDone(name:)``
   public func deleteIndexEndpoint(
     request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1337,10 +1337,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteIndexEndpointPollingUntilDone(request:)``
-  /// - ``deleteIndexEndpointPollingUntilDone(name:)``
   /// - ``deleteIndexEndpoint(request:)``
   /// - ``deleteIndexEndpoint(request:options:)``
+  /// - ``deleteIndexEndpointPollingUntilDone(name:)``
+  /// - ``deleteIndexEndpointPollingUntilDone(request:)``
   public func deleteIndexEndpointPollingUntilDone(
     request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1386,9 +1386,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deployIndexPollingUntilDone(request:)``
   /// - ``deployIndex(request:)``
   /// - ``deployIndex(request:options:)``
+  /// - ``deployIndexPollingUntilDone(request:)``
   public func deployIndexPollingUntilDone(
     request: DeployIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployIndexResponse {
@@ -1435,9 +1435,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeployIndexPollingUntilDone(request:)``
   /// - ``undeployIndex(request:)``
   /// - ``undeployIndex(request:options:)``
+  /// - ``undeployIndexPollingUntilDone(request:)``
   public func undeployIndexPollingUntilDone(
     request: UndeployIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeployIndexResponse {
@@ -1470,9 +1470,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCollection(request:)``
+  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   /// - ``createCollectionPollingUntilDone(request:)``
   /// - ``createCollectionPollingUntilDone(request:options:)``
-  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   public func createCollection(
     request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1485,10 +1485,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCollectionPollingUntilDone(request:)``
-  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
   /// - ``createCollection(request:)``
   /// - ``createCollection(request:options:)``
+  /// - ``createCollectionPollingUntilDone(parent:collection:collectionId:)``
+  /// - ``createCollectionPollingUntilDone(request:)``
   public func createCollectionPollingUntilDone(
     request: CreateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collection {
@@ -1520,9 +1520,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCollection(request:)``
+  /// - ``deleteCollectionPollingUntilDone(name:)``
   /// - ``deleteCollectionPollingUntilDone(request:)``
   /// - ``deleteCollectionPollingUntilDone(request:options:)``
-  /// - ``deleteCollectionPollingUntilDone(name:)``
   public func deleteCollection(
     request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1535,10 +1535,10 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCollectionPollingUntilDone(request:)``
-  /// - ``deleteCollectionPollingUntilDone(name:)``
   /// - ``deleteCollection(request:)``
   /// - ``deleteCollection(request:options:)``
+  /// - ``deleteCollectionPollingUntilDone(name:)``
+  /// - ``deleteCollectionPollingUntilDone(request:)``
   public func deleteCollectionPollingUntilDone(
     request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1569,8 +1569,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCollection(request:)``
   /// - ``getCollection(name:)``
+  /// - ``getCollection(request:)``
   public func getCollection(
     request: GetCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Collection {
@@ -1583,8 +1583,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCollection(request:)``
   /// - ``updateCollection(collection:updateMask:)``
+  /// - ``updateCollection(request:)``
   public func updateCollection(
     request: UpdateCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Collection {
@@ -1598,9 +1598,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCollections(request:)``
+  /// - ``listCollectionsByItems(parent:)``
   /// - ``listCollectionsByItems(request:)``
   /// - ``listCollectionsByItems(request:options:)``
-  /// - ``listCollectionsByItems(parent:)``
   public func listCollections(
     request: ListCollectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListCollectionsResponse {
@@ -1613,8 +1613,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``addCollectionItem(request:)``
   /// - ``addCollectionItem(item:)``
+  /// - ``addCollectionItem(request:)``
   public func addCollectionItem(
     request: AddCollectionItemRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.AddCollectionItemResponse {
@@ -1627,8 +1627,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``removeCollectionItem(request:)``
   /// - ``removeCollectionItem(item:)``
+  /// - ``removeCollectionItem(request:)``
   public func removeCollectionItem(
     request: RemoveCollectionItemRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.RemoveCollectionItemResponse {
@@ -1642,9 +1642,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``viewCollectionItems(request:)``
+  /// - ``viewCollectionItemsByItems(collection:)``
   /// - ``viewCollectionItemsByItems(request:)``
   /// - ``viewCollectionItemsByItems(request:options:)``
-  /// - ``viewCollectionItemsByItems(collection:)``
   public func viewCollectionItems(
     request: ViewCollectionItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ViewCollectionItemsResponse {
@@ -1688,9 +1688,9 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1716,8 +1716,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1732,8 +1732,8 @@ public final class WarehouseClient: Clients.WarehouseProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

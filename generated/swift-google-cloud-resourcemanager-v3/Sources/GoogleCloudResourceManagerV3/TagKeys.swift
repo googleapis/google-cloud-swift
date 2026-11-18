@@ -54,9 +54,9 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTagKeys(request:)``
+  /// - ``listTagKeysByItems(parent:)``
   /// - ``listTagKeysByItems(request:)``
   /// - ``listTagKeysByItems(request:options:)``
-  /// - ``listTagKeysByItems(parent:)``
   public func listTagKeys(
     request: ListTagKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListTagKeysResponse {
@@ -70,8 +70,8 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTagKey(request:)``
   /// - ``getTagKey(name:)``
+  /// - ``getTagKey(request:)``
   public func getTagKey(
     request: GetTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.TagKey {
@@ -86,8 +86,8 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNamespacedTagKey(request:)``
   /// - ``getNamespacedTagKey(name:)``
+  /// - ``getNamespacedTagKey(request:)``
   public func getNamespacedTagKey(
     request: GetNamespacedTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.TagKey {
@@ -122,10 +122,10 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTagKeyPollingUntilDone(request:)``
-  /// - ``createTagKeyPollingUntilDone(tagKey:)``
   /// - ``createTagKey(request:)``
   /// - ``createTagKey(request:options:)``
+  /// - ``createTagKeyPollingUntilDone(request:)``
+  /// - ``createTagKeyPollingUntilDone(tagKey:)``
   public func createTagKeyPollingUntilDone(
     request: CreateTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagKey {
@@ -172,10 +172,10 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateTagKeyPollingUntilDone(request:)``
-  /// - ``updateTagKeyPollingUntilDone(tagKey:updateMask:)``
   /// - ``updateTagKey(request:)``
   /// - ``updateTagKey(request:options:)``
+  /// - ``updateTagKeyPollingUntilDone(request:)``
+  /// - ``updateTagKeyPollingUntilDone(tagKey:updateMask:)``
   public func updateTagKeyPollingUntilDone(
     request: UpdateTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagKey {
@@ -208,9 +208,9 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTagKey(request:)``
+  /// - ``deleteTagKeyPollingUntilDone(name:)``
   /// - ``deleteTagKeyPollingUntilDone(request:)``
   /// - ``deleteTagKeyPollingUntilDone(request:options:)``
-  /// - ``deleteTagKeyPollingUntilDone(name:)``
   public func deleteTagKey(
     request: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -224,10 +224,10 @@ public final class TagKeysClient: Clients.TagKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTagKeyPollingUntilDone(request:)``
-  /// - ``deleteTagKeyPollingUntilDone(name:)``
   /// - ``deleteTagKey(request:)``
   /// - ``deleteTagKey(request:options:)``
+  /// - ``deleteTagKeyPollingUntilDone(name:)``
+  /// - ``deleteTagKeyPollingUntilDone(request:)``
   public func deleteTagKeyPollingUntilDone(
     request: DeleteTagKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagKey {

@@ -48,8 +48,8 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   ///
   /// ## See Also
   ///
-  /// - ``createChallenge(request:)``
   /// - ``createChallenge(parent:challenge:)``
+  /// - ``createChallenge(request:)``
   public func createChallenge(
     request: CreateChallengeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfidentialComputingV1.Challenge {

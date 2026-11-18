@@ -116,8 +116,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getCustomer(request:)``
   /// - ``getCustomer(name:)``
+  /// - ``getCustomer(request:)``
   public func getCustomer(
     request: GetCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.Customer {
@@ -231,8 +231,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteCustomer(request:)``
   /// - ``deleteCustomer(name:)``
+  /// - ``deleteCustomer(request:)``
   public func deleteCustomer(
     request: DeleteCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -344,9 +344,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``provisionCloudIdentityPollingUntilDone(request:)``
   /// - ``provisionCloudIdentity(request:)``
   /// - ``provisionCloudIdentity(request:options:)``
+  /// - ``provisionCloudIdentityPollingUntilDone(request:)``
   public func provisionCloudIdentityPollingUntilDone(
     request: ProvisionCloudIdentityRequest, options: GoogleGax.RequestOptions
   ) async throws -> Customer {
@@ -597,9 +597,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createEntitlementPollingUntilDone(request:)``
   /// - ``createEntitlement(request:)``
   /// - ``createEntitlement(request:options:)``
+  /// - ``createEntitlementPollingUntilDone(request:)``
   public func createEntitlementPollingUntilDone(
     request: CreateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -693,9 +693,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``changeParametersPollingUntilDone(request:)``
   /// - ``changeParameters(request:)``
   /// - ``changeParameters(request:options:)``
+  /// - ``changeParametersPollingUntilDone(request:)``
   public func changeParametersPollingUntilDone(
     request: ChangeParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -789,9 +789,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``changeRenewalSettingsPollingUntilDone(request:)``
   /// - ``changeRenewalSettings(request:)``
   /// - ``changeRenewalSettings(request:options:)``
+  /// - ``changeRenewalSettingsPollingUntilDone(request:)``
   public func changeRenewalSettingsPollingUntilDone(
     request: ChangeRenewalSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -881,9 +881,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``changeOfferPollingUntilDone(request:)``
   /// - ``changeOffer(request:)``
   /// - ``changeOffer(request:options:)``
+  /// - ``changeOfferPollingUntilDone(request:)``
   public func changeOfferPollingUntilDone(
     request: ChangeOfferRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -979,9 +979,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``startPaidServicePollingUntilDone(request:)``
   /// - ``startPaidService(request:)``
   /// - ``startPaidService(request:options:)``
+  /// - ``startPaidServicePollingUntilDone(request:)``
   public func startPaidServicePollingUntilDone(
     request: StartPaidServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -1071,9 +1071,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``suspendEntitlementPollingUntilDone(request:)``
   /// - ``suspendEntitlement(request:)``
   /// - ``suspendEntitlement(request:options:)``
+  /// - ``suspendEntitlementPollingUntilDone(request:)``
   public func suspendEntitlementPollingUntilDone(
     request: SuspendEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -1173,9 +1173,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelEntitlementPollingUntilDone(request:)``
   /// - ``cancelEntitlement(request:)``
   /// - ``cancelEntitlement(request:options:)``
+  /// - ``cancelEntitlementPollingUntilDone(request:)``
   public func cancelEntitlementPollingUntilDone(
     request: CancelEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1277,9 +1277,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``activateEntitlementPollingUntilDone(request:)``
   /// - ``activateEntitlement(request:)``
   /// - ``activateEntitlement(request:options:)``
+  /// - ``activateEntitlementPollingUntilDone(request:)``
   public func activateEntitlementPollingUntilDone(
     request: ActivateEntitlementRequest, options: GoogleGax.RequestOptions
   ) async throws -> Entitlement {
@@ -1391,9 +1391,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``transferEntitlementsPollingUntilDone(request:)``
   /// - ``transferEntitlements(request:)``
   /// - ``transferEntitlements(request:options:)``
+  /// - ``transferEntitlementsPollingUntilDone(request:)``
   public func transferEntitlementsPollingUntilDone(
     request: TransferEntitlementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> TransferEntitlementsResponse {
@@ -1501,9 +1501,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``transferEntitlementsToGooglePollingUntilDone(request:)``
   /// - ``transferEntitlementsToGoogle(request:)``
   /// - ``transferEntitlementsToGoogle(request:options:)``
+  /// - ``transferEntitlementsToGooglePollingUntilDone(request:)``
   public func transferEntitlementsToGooglePollingUntilDone(
     request: TransferEntitlementsToGoogleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1682,8 +1682,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getCustomerRepricingConfig(request:)``
   /// - ``getCustomerRepricingConfig(name:)``
+  /// - ``getCustomerRepricingConfig(request:)``
   public func getCustomerRepricingConfig(
     request: GetCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1726,9 +1726,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// ## See Also
   ///
   /// - ``listCustomerRepricingConfigs(request:)``
+  /// - ``listCustomerRepricingConfigsByItems(parent:)``
   /// - ``listCustomerRepricingConfigsByItems(request:)``
   /// - ``listCustomerRepricingConfigsByItems(request:options:)``
-  /// - ``listCustomerRepricingConfigsByItems(parent:)``
   public func listCustomerRepricingConfigs(
     request: ListCustomerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListCustomerRepricingConfigsResponse {
@@ -1787,8 +1787,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createCustomerRepricingConfig(request:)``
   /// - ``createCustomerRepricingConfig(parent:customerRepricingConfig:)``
+  /// - ``createCustomerRepricingConfig(request:)``
   public func createCustomerRepricingConfig(
     request: CreateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1836,8 +1836,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateCustomerRepricingConfig(request:)``
   /// - ``updateCustomerRepricingConfig(customerRepricingConfig:)``
+  /// - ``updateCustomerRepricingConfig(request:)``
   public func updateCustomerRepricingConfig(
     request: UpdateCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.CustomerRepricingConfig {
@@ -1869,8 +1869,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteCustomerRepricingConfig(request:)``
   /// - ``deleteCustomerRepricingConfig(name:)``
+  /// - ``deleteCustomerRepricingConfig(request:)``
   public func deleteCustomerRepricingConfig(
     request: DeleteCustomerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1901,8 +1901,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getChannelPartnerRepricingConfig(request:)``
   /// - ``getChannelPartnerRepricingConfig(name:)``
+  /// - ``getChannelPartnerRepricingConfig(request:)``
   public func getChannelPartnerRepricingConfig(
     request: GetChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -1943,9 +1943,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// ## See Also
   ///
   /// - ``listChannelPartnerRepricingConfigs(request:)``
+  /// - ``listChannelPartnerRepricingConfigsByItems(parent:)``
   /// - ``listChannelPartnerRepricingConfigsByItems(request:)``
   /// - ``listChannelPartnerRepricingConfigsByItems(request:options:)``
-  /// - ``listChannelPartnerRepricingConfigsByItems(parent:)``
   public func listChannelPartnerRepricingConfigs(
     request: ListChannelPartnerRepricingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListChannelPartnerRepricingConfigsResponse {
@@ -2005,8 +2005,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createChannelPartnerRepricingConfig(request:)``
   /// - ``createChannelPartnerRepricingConfig(parent:channelPartnerRepricingConfig:)``
+  /// - ``createChannelPartnerRepricingConfig(request:)``
   public func createChannelPartnerRepricingConfig(
     request: CreateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -2054,8 +2054,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateChannelPartnerRepricingConfig(request:)``
   /// - ``updateChannelPartnerRepricingConfig(channelPartnerRepricingConfig:)``
+  /// - ``updateChannelPartnerRepricingConfig(request:)``
   public func updateChannelPartnerRepricingConfig(
     request: UpdateChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ChannelPartnerRepricingConfig {
@@ -2087,8 +2087,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteChannelPartnerRepricingConfig(request:)``
   /// - ``deleteChannelPartnerRepricingConfig(name:)``
+  /// - ``deleteChannelPartnerRepricingConfig(request:)``
   public func deleteChannelPartnerRepricingConfig(
     request: DeleteChannelPartnerRepricingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2123,9 +2123,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// ## See Also
   ///
   /// - ``listSkuGroups(request:)``
+  /// - ``listSkuGroupsByItems(parent:)``
   /// - ``listSkuGroupsByItems(request:)``
   /// - ``listSkuGroupsByItems(request:options:)``
-  /// - ``listSkuGroupsByItems(parent:)``
   public func listSkuGroups(
     request: ListSkuGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSkuGroupsResponse {
@@ -2161,9 +2161,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// ## See Also
   ///
   /// - ``listSkuGroupBillableSkus(request:)``
+  /// - ``listSkuGroupBillableSkusByItems(parent:)``
   /// - ``listSkuGroupBillableSkusByItems(request:)``
   /// - ``listSkuGroupBillableSkusByItems(request:options:)``
-  /// - ``listSkuGroupBillableSkusByItems(parent:)``
   public func listSkuGroupBillableSkus(
     request: ListSkuGroupBillableSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListSkuGroupBillableSkusResponse {
@@ -2442,9 +2442,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// ## See Also
   ///
   /// - ``listEntitlementChanges(request:)``
+  /// - ``listEntitlementChangesByItems(parent:)``
   /// - ``listEntitlementChangesByItems(request:)``
   /// - ``listEntitlementChangesByItems(request:options:)``
-  /// - ``listEntitlementChangesByItems(parent:)``
   public func listEntitlementChanges(
     request: ListEntitlementChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChannelV1.ListEntitlementChangesResponse {
@@ -2460,9 +2460,9 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2488,8 +2488,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2504,8 +2504,8 @@ public final class CloudChannelServiceClient: Clients.CloudChannelServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

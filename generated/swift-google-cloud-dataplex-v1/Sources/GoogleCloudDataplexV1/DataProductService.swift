@@ -56,9 +56,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``createDataProduct(request:)``
+  /// - ``createDataProductPollingUntilDone(parent:dataProduct:dataProductId:)``
   /// - ``createDataProductPollingUntilDone(request:)``
   /// - ``createDataProductPollingUntilDone(request:options:)``
-  /// - ``createDataProductPollingUntilDone(parent:dataProduct:dataProductId:)``
   public func createDataProduct(
     request: CreateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -71,10 +71,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createDataProductPollingUntilDone(request:)``
-  /// - ``createDataProductPollingUntilDone(parent:dataProduct:dataProductId:)``
   /// - ``createDataProduct(request:)``
   /// - ``createDataProduct(request:options:)``
+  /// - ``createDataProductPollingUntilDone(parent:dataProduct:dataProductId:)``
+  /// - ``createDataProductPollingUntilDone(request:)``
   public func createDataProductPollingUntilDone(
     request: CreateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataProduct {
@@ -107,9 +107,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``deleteDataProduct(request:)``
+  /// - ``deleteDataProductPollingUntilDone(name:)``
   /// - ``deleteDataProductPollingUntilDone(request:)``
   /// - ``deleteDataProductPollingUntilDone(request:options:)``
-  /// - ``deleteDataProductPollingUntilDone(name:)``
   public func deleteDataProduct(
     request: DeleteDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -123,10 +123,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataProductPollingUntilDone(request:)``
-  /// - ``deleteDataProductPollingUntilDone(name:)``
   /// - ``deleteDataProduct(request:)``
   /// - ``deleteDataProduct(request:options:)``
+  /// - ``deleteDataProductPollingUntilDone(name:)``
+  /// - ``deleteDataProductPollingUntilDone(request:)``
   public func deleteDataProductPollingUntilDone(
     request: DeleteDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -157,8 +157,8 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getDataProduct(request:)``
   /// - ``getDataProduct(name:)``
+  /// - ``getDataProduct(request:)``
   public func getDataProduct(
     request: GetDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataProduct {
@@ -172,9 +172,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``listDataProducts(request:)``
+  /// - ``listDataProductsByItems(parent:)``
   /// - ``listDataProductsByItems(request:)``
   /// - ``listDataProductsByItems(request:options:)``
-  /// - ``listDataProductsByItems(parent:)``
   public func listDataProducts(
     request: ListDataProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataProductsResponse {
@@ -188,9 +188,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``updateDataProduct(request:)``
+  /// - ``updateDataProductPollingUntilDone(dataProduct:updateMask:)``
   /// - ``updateDataProductPollingUntilDone(request:)``
   /// - ``updateDataProductPollingUntilDone(request:options:)``
-  /// - ``updateDataProductPollingUntilDone(dataProduct:updateMask:)``
   public func updateDataProduct(
     request: UpdateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -203,10 +203,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateDataProductPollingUntilDone(request:)``
-  /// - ``updateDataProductPollingUntilDone(dataProduct:updateMask:)``
   /// - ``updateDataProduct(request:)``
   /// - ``updateDataProduct(request:options:)``
+  /// - ``updateDataProductPollingUntilDone(dataProduct:updateMask:)``
+  /// - ``updateDataProductPollingUntilDone(request:)``
   public func updateDataProductPollingUntilDone(
     request: UpdateDataProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataProduct {
@@ -239,8 +239,8 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``requestDataProductAccess(request:)``
   /// - ``requestDataProductAccess(parent:changeRequest:)``
+  /// - ``requestDataProductAccess(request:)``
   public func requestDataProductAccess(
     request: RequestDataProductAccessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.RequestDataProductAccessResponse {
@@ -254,9 +254,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``createDataAsset(request:)``
+  /// - ``createDataAssetPollingUntilDone(parent:dataAsset:dataAssetId:)``
   /// - ``createDataAssetPollingUntilDone(request:)``
   /// - ``createDataAssetPollingUntilDone(request:options:)``
-  /// - ``createDataAssetPollingUntilDone(parent:dataAsset:dataAssetId:)``
   public func createDataAsset(
     request: CreateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -269,10 +269,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createDataAssetPollingUntilDone(request:)``
-  /// - ``createDataAssetPollingUntilDone(parent:dataAsset:dataAssetId:)``
   /// - ``createDataAsset(request:)``
   /// - ``createDataAsset(request:options:)``
+  /// - ``createDataAssetPollingUntilDone(parent:dataAsset:dataAssetId:)``
+  /// - ``createDataAssetPollingUntilDone(request:)``
   public func createDataAssetPollingUntilDone(
     request: CreateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataAsset {
@@ -304,9 +304,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``updateDataAsset(request:)``
+  /// - ``updateDataAssetPollingUntilDone(dataAsset:updateMask:)``
   /// - ``updateDataAssetPollingUntilDone(request:)``
   /// - ``updateDataAssetPollingUntilDone(request:options:)``
-  /// - ``updateDataAssetPollingUntilDone(dataAsset:updateMask:)``
   public func updateDataAsset(
     request: UpdateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -319,10 +319,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateDataAssetPollingUntilDone(request:)``
-  /// - ``updateDataAssetPollingUntilDone(dataAsset:updateMask:)``
   /// - ``updateDataAsset(request:)``
   /// - ``updateDataAsset(request:options:)``
+  /// - ``updateDataAssetPollingUntilDone(dataAsset:updateMask:)``
+  /// - ``updateDataAssetPollingUntilDone(request:)``
   public func updateDataAssetPollingUntilDone(
     request: UpdateDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> DataAsset {
@@ -354,9 +354,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``deleteDataAsset(request:)``
+  /// - ``deleteDataAssetPollingUntilDone(name:)``
   /// - ``deleteDataAssetPollingUntilDone(request:)``
   /// - ``deleteDataAssetPollingUntilDone(request:options:)``
-  /// - ``deleteDataAssetPollingUntilDone(name:)``
   public func deleteDataAsset(
     request: DeleteDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -369,10 +369,10 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataAssetPollingUntilDone(request:)``
-  /// - ``deleteDataAssetPollingUntilDone(name:)``
   /// - ``deleteDataAsset(request:)``
   /// - ``deleteDataAsset(request:options:)``
+  /// - ``deleteDataAssetPollingUntilDone(name:)``
+  /// - ``deleteDataAssetPollingUntilDone(request:)``
   public func deleteDataAssetPollingUntilDone(
     request: DeleteDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -403,8 +403,8 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getDataAsset(request:)``
   /// - ``getDataAsset(name:)``
+  /// - ``getDataAsset(request:)``
   public func getDataAsset(
     request: GetDataAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.DataAsset {
@@ -418,9 +418,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``listDataAssets(request:)``
+  /// - ``listDataAssetsByItems(parent:)``
   /// - ``listDataAssetsByItems(request:)``
   /// - ``listDataAssetsByItems(request:options:)``
-  /// - ``listDataAssetsByItems(parent:)``
   public func listDataAssets(
     request: ListDataAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListDataAssetsResponse {
@@ -531,9 +531,9 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -559,8 +559,8 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -575,8 +575,8 @@ public final class DataProductServiceClient: Clients.DataProductServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

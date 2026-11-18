@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``listTransitionRouteGroups(request:)``
+    /// - ``listTransitionRouteGroupsByItems(parent:)``
     /// - ``listTransitionRouteGroupsByItems(request:)``
     /// - ``listTransitionRouteGroupsByItems(request:options:)``
-    /// - ``listTransitionRouteGroupsByItems(parent:)``
     public func listTransitionRouteGroups(
       request: ListTransitionRouteGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListTransitionRouteGroupsResponse {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTransitionRouteGroup(request:)``
     /// - ``getTransitionRouteGroup(name:)``
+    /// - ``getTransitionRouteGroup(request:)``
     public func getTransitionRouteGroup(
       request: GetTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
@@ -95,8 +95,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTransitionRouteGroup(request:)``
     /// - ``createTransitionRouteGroup(parent:transitionRouteGroup:)``
+    /// - ``createTransitionRouteGroup(request:)``
     public func createTransitionRouteGroup(
       request: CreateTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.TransitionRouteGroup {
@@ -137,8 +137,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTransitionRouteGroup(request:)``
     /// - ``deleteTransitionRouteGroup(name:)``
+    /// - ``deleteTransitionRouteGroup(request:)``
     public func deleteTransitionRouteGroup(
       request: DeleteTransitionRouteGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -199,9 +199,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -227,8 +227,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

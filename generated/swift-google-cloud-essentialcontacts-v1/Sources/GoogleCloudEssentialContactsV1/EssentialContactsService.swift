@@ -50,8 +50,8 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   ///
   /// ## See Also
   ///
-  /// - ``createContact(request:)``
   /// - ``createContact(parent:contact:)``
+  /// - ``createContact(request:)``
   public func createContact(
     request: CreateContactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -65,8 +65,8 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   ///
   /// ## See Also
   ///
-  /// - ``updateContact(request:)``
   /// - ``updateContact(contact:updateMask:)``
+  /// - ``updateContact(request:)``
   public func updateContact(
     request: UpdateContactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -80,9 +80,9 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   /// ## See Also
   ///
   /// - ``listContacts(request:)``
+  /// - ``listContactsByItems(parent:)``
   /// - ``listContactsByItems(request:)``
   /// - ``listContactsByItems(request:options:)``
-  /// - ``listContactsByItems(parent:)``
   public func listContacts(
     request: ListContactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.ListContactsResponse {
@@ -95,8 +95,8 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   ///
   /// ## See Also
   ///
-  /// - ``getContact(request:)``
   /// - ``getContact(name:)``
+  /// - ``getContact(request:)``
   public func getContact(
     request: GetContactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEssentialContactsV1.Contact {
@@ -109,8 +109,8 @@ public final class EssentialContactsServiceClient: Clients.EssentialContactsServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteContact(request:)``
   /// - ``deleteContact(name:)``
+  /// - ``deleteContact(request:)``
   public func deleteContact(
     request: DeleteContactRequest, options: GoogleGax.RequestOptions
   ) async throws {

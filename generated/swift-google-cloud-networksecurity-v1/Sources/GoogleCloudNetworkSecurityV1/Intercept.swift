@@ -57,9 +57,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInterceptEndpointGroups(request:)``
+  /// - ``listInterceptEndpointGroupsByItems(parent:)``
   /// - ``listInterceptEndpointGroupsByItems(request:)``
   /// - ``listInterceptEndpointGroupsByItems(request:options:)``
-  /// - ``listInterceptEndpointGroupsByItems(parent:)``
   public func listInterceptEndpointGroups(
     request: ListInterceptEndpointGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupsResponse {
@@ -73,8 +73,8 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInterceptEndpointGroup(request:)``
   /// - ``getInterceptEndpointGroup(name:)``
+  /// - ``getInterceptEndpointGroup(request:)``
   public func getInterceptEndpointGroup(
     request: GetInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.InterceptEndpointGroup {
@@ -89,9 +89,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInterceptEndpointGroup(request:)``
+  /// - ``createInterceptEndpointGroupPollingUntilDone(parent:interceptEndpointGroup:interceptEndpointGroupId:)``
   /// - ``createInterceptEndpointGroupPollingUntilDone(request:)``
   /// - ``createInterceptEndpointGroupPollingUntilDone(request:options:)``
-  /// - ``createInterceptEndpointGroupPollingUntilDone(parent:interceptEndpointGroup:interceptEndpointGroupId:)``
   public func createInterceptEndpointGroup(
     request: CreateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -105,10 +105,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInterceptEndpointGroupPollingUntilDone(request:)``
-  /// - ``createInterceptEndpointGroupPollingUntilDone(parent:interceptEndpointGroup:interceptEndpointGroupId:)``
   /// - ``createInterceptEndpointGroup(request:)``
   /// - ``createInterceptEndpointGroup(request:options:)``
+  /// - ``createInterceptEndpointGroupPollingUntilDone(parent:interceptEndpointGroup:interceptEndpointGroupId:)``
+  /// - ``createInterceptEndpointGroupPollingUntilDone(request:)``
   public func createInterceptEndpointGroupPollingUntilDone(
     request: CreateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptEndpointGroup {
@@ -142,9 +142,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInterceptEndpointGroup(request:)``
+  /// - ``updateInterceptEndpointGroupPollingUntilDone(interceptEndpointGroup:updateMask:)``
   /// - ``updateInterceptEndpointGroupPollingUntilDone(request:)``
   /// - ``updateInterceptEndpointGroupPollingUntilDone(request:options:)``
-  /// - ``updateInterceptEndpointGroupPollingUntilDone(interceptEndpointGroup:updateMask:)``
   public func updateInterceptEndpointGroup(
     request: UpdateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -158,10 +158,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInterceptEndpointGroupPollingUntilDone(request:)``
-  /// - ``updateInterceptEndpointGroupPollingUntilDone(interceptEndpointGroup:updateMask:)``
   /// - ``updateInterceptEndpointGroup(request:)``
   /// - ``updateInterceptEndpointGroup(request:options:)``
+  /// - ``updateInterceptEndpointGroupPollingUntilDone(interceptEndpointGroup:updateMask:)``
+  /// - ``updateInterceptEndpointGroupPollingUntilDone(request:)``
   public func updateInterceptEndpointGroupPollingUntilDone(
     request: UpdateInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptEndpointGroup {
@@ -195,9 +195,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInterceptEndpointGroup(request:)``
+  /// - ``deleteInterceptEndpointGroupPollingUntilDone(name:)``
   /// - ``deleteInterceptEndpointGroupPollingUntilDone(request:)``
   /// - ``deleteInterceptEndpointGroupPollingUntilDone(request:options:)``
-  /// - ``deleteInterceptEndpointGroupPollingUntilDone(name:)``
   public func deleteInterceptEndpointGroup(
     request: DeleteInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -211,10 +211,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInterceptEndpointGroupPollingUntilDone(request:)``
-  /// - ``deleteInterceptEndpointGroupPollingUntilDone(name:)``
   /// - ``deleteInterceptEndpointGroup(request:)``
   /// - ``deleteInterceptEndpointGroup(request:options:)``
+  /// - ``deleteInterceptEndpointGroupPollingUntilDone(name:)``
+  /// - ``deleteInterceptEndpointGroupPollingUntilDone(request:)``
   public func deleteInterceptEndpointGroupPollingUntilDone(
     request: DeleteInterceptEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -247,9 +247,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInterceptEndpointGroupAssociations(request:)``
+  /// - ``listInterceptEndpointGroupAssociationsByItems(parent:)``
   /// - ``listInterceptEndpointGroupAssociationsByItems(request:)``
   /// - ``listInterceptEndpointGroupAssociationsByItems(request:options:)``
-  /// - ``listInterceptEndpointGroupAssociationsByItems(parent:)``
   public func listInterceptEndpointGroupAssociations(
     request: ListInterceptEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptEndpointGroupAssociationsResponse {
@@ -263,8 +263,8 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInterceptEndpointGroupAssociation(request:)``
   /// - ``getInterceptEndpointGroupAssociation(name:)``
+  /// - ``getInterceptEndpointGroupAssociation(request:)``
   public func getInterceptEndpointGroupAssociation(
     request: GetInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.InterceptEndpointGroupAssociation {
@@ -279,9 +279,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInterceptEndpointGroupAssociation(request:)``
+  /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(parent:interceptEndpointGroupAssociation:interceptEndpointGroupAssociationId:)``
   /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(request:)``
   /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(request:options:)``
-  /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(parent:interceptEndpointGroupAssociation:interceptEndpointGroupAssociationId:)``
   public func createInterceptEndpointGroupAssociation(
     request: CreateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -295,10 +295,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(request:)``
-  /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(parent:interceptEndpointGroupAssociation:interceptEndpointGroupAssociationId:)``
   /// - ``createInterceptEndpointGroupAssociation(request:)``
   /// - ``createInterceptEndpointGroupAssociation(request:options:)``
+  /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(parent:interceptEndpointGroupAssociation:interceptEndpointGroupAssociationId:)``
+  /// - ``createInterceptEndpointGroupAssociationPollingUntilDone(request:)``
   public func createInterceptEndpointGroupAssociationPollingUntilDone(
     request: CreateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptEndpointGroupAssociation {
@@ -334,9 +334,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInterceptEndpointGroupAssociation(request:)``
+  /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(interceptEndpointGroupAssociation:updateMask:)``
   /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(request:)``
   /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(request:options:)``
-  /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(interceptEndpointGroupAssociation:updateMask:)``
   public func updateInterceptEndpointGroupAssociation(
     request: UpdateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -350,10 +350,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(request:)``
-  /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(interceptEndpointGroupAssociation:updateMask:)``
   /// - ``updateInterceptEndpointGroupAssociation(request:)``
   /// - ``updateInterceptEndpointGroupAssociation(request:options:)``
+  /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(interceptEndpointGroupAssociation:updateMask:)``
+  /// - ``updateInterceptEndpointGroupAssociationPollingUntilDone(request:)``
   public func updateInterceptEndpointGroupAssociationPollingUntilDone(
     request: UpdateInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptEndpointGroupAssociation {
@@ -389,9 +389,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInterceptEndpointGroupAssociation(request:)``
+  /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(name:)``
   /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(request:)``
   /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(request:options:)``
-  /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(name:)``
   public func deleteInterceptEndpointGroupAssociation(
     request: DeleteInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -405,10 +405,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(request:)``
-  /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(name:)``
   /// - ``deleteInterceptEndpointGroupAssociation(request:)``
   /// - ``deleteInterceptEndpointGroupAssociation(request:options:)``
+  /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(name:)``
+  /// - ``deleteInterceptEndpointGroupAssociationPollingUntilDone(request:)``
   public func deleteInterceptEndpointGroupAssociationPollingUntilDone(
     request: DeleteInterceptEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -442,9 +442,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInterceptDeploymentGroups(request:)``
+  /// - ``listInterceptDeploymentGroupsByItems(parent:)``
   /// - ``listInterceptDeploymentGroupsByItems(request:)``
   /// - ``listInterceptDeploymentGroupsByItems(request:options:)``
-  /// - ``listInterceptDeploymentGroupsByItems(parent:)``
   public func listInterceptDeploymentGroups(
     request: ListInterceptDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentGroupsResponse {
@@ -458,8 +458,8 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInterceptDeploymentGroup(request:)``
   /// - ``getInterceptDeploymentGroup(name:)``
+  /// - ``getInterceptDeploymentGroup(request:)``
   public func getInterceptDeploymentGroup(
     request: GetInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.InterceptDeploymentGroup {
@@ -474,9 +474,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInterceptDeploymentGroup(request:)``
+  /// - ``createInterceptDeploymentGroupPollingUntilDone(parent:interceptDeploymentGroup:interceptDeploymentGroupId:)``
   /// - ``createInterceptDeploymentGroupPollingUntilDone(request:)``
   /// - ``createInterceptDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``createInterceptDeploymentGroupPollingUntilDone(parent:interceptDeploymentGroup:interceptDeploymentGroupId:)``
   public func createInterceptDeploymentGroup(
     request: CreateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -490,10 +490,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInterceptDeploymentGroupPollingUntilDone(request:)``
-  /// - ``createInterceptDeploymentGroupPollingUntilDone(parent:interceptDeploymentGroup:interceptDeploymentGroupId:)``
   /// - ``createInterceptDeploymentGroup(request:)``
   /// - ``createInterceptDeploymentGroup(request:options:)``
+  /// - ``createInterceptDeploymentGroupPollingUntilDone(parent:interceptDeploymentGroup:interceptDeploymentGroupId:)``
+  /// - ``createInterceptDeploymentGroupPollingUntilDone(request:)``
   public func createInterceptDeploymentGroupPollingUntilDone(
     request: CreateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptDeploymentGroup {
@@ -528,9 +528,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInterceptDeploymentGroup(request:)``
+  /// - ``updateInterceptDeploymentGroupPollingUntilDone(interceptDeploymentGroup:updateMask:)``
   /// - ``updateInterceptDeploymentGroupPollingUntilDone(request:)``
   /// - ``updateInterceptDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``updateInterceptDeploymentGroupPollingUntilDone(interceptDeploymentGroup:updateMask:)``
   public func updateInterceptDeploymentGroup(
     request: UpdateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -544,10 +544,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInterceptDeploymentGroupPollingUntilDone(request:)``
-  /// - ``updateInterceptDeploymentGroupPollingUntilDone(interceptDeploymentGroup:updateMask:)``
   /// - ``updateInterceptDeploymentGroup(request:)``
   /// - ``updateInterceptDeploymentGroup(request:options:)``
+  /// - ``updateInterceptDeploymentGroupPollingUntilDone(interceptDeploymentGroup:updateMask:)``
+  /// - ``updateInterceptDeploymentGroupPollingUntilDone(request:)``
   public func updateInterceptDeploymentGroupPollingUntilDone(
     request: UpdateInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptDeploymentGroup {
@@ -582,9 +582,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInterceptDeploymentGroup(request:)``
+  /// - ``deleteInterceptDeploymentGroupPollingUntilDone(name:)``
   /// - ``deleteInterceptDeploymentGroupPollingUntilDone(request:)``
   /// - ``deleteInterceptDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``deleteInterceptDeploymentGroupPollingUntilDone(name:)``
   public func deleteInterceptDeploymentGroup(
     request: DeleteInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -598,10 +598,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInterceptDeploymentGroupPollingUntilDone(request:)``
-  /// - ``deleteInterceptDeploymentGroupPollingUntilDone(name:)``
   /// - ``deleteInterceptDeploymentGroup(request:)``
   /// - ``deleteInterceptDeploymentGroup(request:options:)``
+  /// - ``deleteInterceptDeploymentGroupPollingUntilDone(name:)``
+  /// - ``deleteInterceptDeploymentGroupPollingUntilDone(request:)``
   public func deleteInterceptDeploymentGroupPollingUntilDone(
     request: DeleteInterceptDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -634,9 +634,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInterceptDeployments(request:)``
+  /// - ``listInterceptDeploymentsByItems(parent:)``
   /// - ``listInterceptDeploymentsByItems(request:)``
   /// - ``listInterceptDeploymentsByItems(request:options:)``
-  /// - ``listInterceptDeploymentsByItems(parent:)``
   public func listInterceptDeployments(
     request: ListInterceptDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListInterceptDeploymentsResponse {
@@ -650,8 +650,8 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInterceptDeployment(request:)``
   /// - ``getInterceptDeployment(name:)``
+  /// - ``getInterceptDeployment(request:)``
   public func getInterceptDeployment(
     request: GetInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.InterceptDeployment {
@@ -666,9 +666,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInterceptDeployment(request:)``
+  /// - ``createInterceptDeploymentPollingUntilDone(parent:interceptDeployment:interceptDeploymentId:)``
   /// - ``createInterceptDeploymentPollingUntilDone(request:)``
   /// - ``createInterceptDeploymentPollingUntilDone(request:options:)``
-  /// - ``createInterceptDeploymentPollingUntilDone(parent:interceptDeployment:interceptDeploymentId:)``
   public func createInterceptDeployment(
     request: CreateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -682,10 +682,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInterceptDeploymentPollingUntilDone(request:)``
-  /// - ``createInterceptDeploymentPollingUntilDone(parent:interceptDeployment:interceptDeploymentId:)``
   /// - ``createInterceptDeployment(request:)``
   /// - ``createInterceptDeployment(request:options:)``
+  /// - ``createInterceptDeploymentPollingUntilDone(parent:interceptDeployment:interceptDeploymentId:)``
+  /// - ``createInterceptDeploymentPollingUntilDone(request:)``
   public func createInterceptDeploymentPollingUntilDone(
     request: CreateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptDeployment {
@@ -719,9 +719,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInterceptDeployment(request:)``
+  /// - ``updateInterceptDeploymentPollingUntilDone(interceptDeployment:updateMask:)``
   /// - ``updateInterceptDeploymentPollingUntilDone(request:)``
   /// - ``updateInterceptDeploymentPollingUntilDone(request:options:)``
-  /// - ``updateInterceptDeploymentPollingUntilDone(interceptDeployment:updateMask:)``
   public func updateInterceptDeployment(
     request: UpdateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -735,10 +735,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInterceptDeploymentPollingUntilDone(request:)``
-  /// - ``updateInterceptDeploymentPollingUntilDone(interceptDeployment:updateMask:)``
   /// - ``updateInterceptDeployment(request:)``
   /// - ``updateInterceptDeployment(request:options:)``
+  /// - ``updateInterceptDeploymentPollingUntilDone(interceptDeployment:updateMask:)``
+  /// - ``updateInterceptDeploymentPollingUntilDone(request:)``
   public func updateInterceptDeploymentPollingUntilDone(
     request: UpdateInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> InterceptDeployment {
@@ -772,9 +772,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInterceptDeployment(request:)``
+  /// - ``deleteInterceptDeploymentPollingUntilDone(name:)``
   /// - ``deleteInterceptDeploymentPollingUntilDone(request:)``
   /// - ``deleteInterceptDeploymentPollingUntilDone(request:options:)``
-  /// - ``deleteInterceptDeploymentPollingUntilDone(name:)``
   public func deleteInterceptDeployment(
     request: DeleteInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -788,10 +788,10 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInterceptDeploymentPollingUntilDone(request:)``
-  /// - ``deleteInterceptDeploymentPollingUntilDone(name:)``
   /// - ``deleteInterceptDeployment(request:)``
   /// - ``deleteInterceptDeployment(request:options:)``
+  /// - ``deleteInterceptDeploymentPollingUntilDone(name:)``
+  /// - ``deleteInterceptDeploymentPollingUntilDone(request:)``
   public func deleteInterceptDeploymentPollingUntilDone(
     request: DeleteInterceptDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -920,9 +920,9 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -948,8 +948,8 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -964,8 +964,8 @@ public final class InterceptClient: Clients.InterceptProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``createMetadataStore(request:)``
+    /// - ``createMetadataStorePollingUntilDone(parent:metadataStore:metadataStoreId:)``
     /// - ``createMetadataStorePollingUntilDone(request:)``
     /// - ``createMetadataStorePollingUntilDone(request:options:)``
-    /// - ``createMetadataStorePollingUntilDone(parent:metadataStore:metadataStoreId:)``
     public func createMetadataStore(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -71,10 +71,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createMetadataStorePollingUntilDone(request:)``
-    /// - ``createMetadataStorePollingUntilDone(parent:metadataStore:metadataStoreId:)``
     /// - ``createMetadataStore(request:)``
     /// - ``createMetadataStore(request:options:)``
+    /// - ``createMetadataStorePollingUntilDone(parent:metadataStore:metadataStoreId:)``
+    /// - ``createMetadataStorePollingUntilDone(request:)``
     public func createMetadataStorePollingUntilDone(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> MetadataStore {
@@ -106,8 +106,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getMetadataStore(request:)``
     /// - ``getMetadataStore(name:)``
+    /// - ``getMetadataStore(request:)``
     public func getMetadataStore(
       request: GetMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.MetadataStore {
@@ -121,9 +121,9 @@
     /// ## See Also
     ///
     /// - ``listMetadataStores(request:)``
+    /// - ``listMetadataStoresByItems(parent:)``
     /// - ``listMetadataStoresByItems(request:)``
     /// - ``listMetadataStoresByItems(request:options:)``
-    /// - ``listMetadataStoresByItems(parent:)``
     public func listMetadataStores(
       request: ListMetadataStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListMetadataStoresResponse {
@@ -138,9 +138,9 @@
     /// ## See Also
     ///
     /// - ``deleteMetadataStore(request:)``
+    /// - ``deleteMetadataStorePollingUntilDone(name:)``
     /// - ``deleteMetadataStorePollingUntilDone(request:)``
     /// - ``deleteMetadataStorePollingUntilDone(request:options:)``
-    /// - ``deleteMetadataStorePollingUntilDone(name:)``
     public func deleteMetadataStore(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteMetadataStorePollingUntilDone(request:)``
-    /// - ``deleteMetadataStorePollingUntilDone(name:)``
     /// - ``deleteMetadataStore(request:)``
     /// - ``deleteMetadataStore(request:options:)``
+    /// - ``deleteMetadataStorePollingUntilDone(name:)``
+    /// - ``deleteMetadataStorePollingUntilDone(request:)``
     public func deleteMetadataStorePollingUntilDone(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -189,8 +189,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createArtifact(request:)``
     /// - ``createArtifact(parent:artifact:artifactId:)``
+    /// - ``createArtifact(request:)``
     public func createArtifact(
       request: CreateArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -203,8 +203,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getArtifact(request:)``
     /// - ``getArtifact(name:)``
+    /// - ``getArtifact(request:)``
     public func getArtifact(
       request: GetArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -218,9 +218,9 @@
     /// ## See Also
     ///
     /// - ``listArtifacts(request:)``
+    /// - ``listArtifactsByItems(parent:)``
     /// - ``listArtifactsByItems(request:)``
     /// - ``listArtifactsByItems(request:options:)``
-    /// - ``listArtifactsByItems(parent:)``
     public func listArtifacts(
       request: ListArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListArtifactsResponse {
@@ -233,8 +233,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateArtifact(request:)``
     /// - ``updateArtifact(artifact:updateMask:)``
+    /// - ``updateArtifact(request:)``
     public func updateArtifact(
       request: UpdateArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -248,9 +248,9 @@
     /// ## See Also
     ///
     /// - ``deleteArtifact(request:)``
+    /// - ``deleteArtifactPollingUntilDone(name:)``
     /// - ``deleteArtifactPollingUntilDone(request:)``
     /// - ``deleteArtifactPollingUntilDone(request:options:)``
-    /// - ``deleteArtifactPollingUntilDone(name:)``
     public func deleteArtifact(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -263,10 +263,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteArtifactPollingUntilDone(request:)``
-    /// - ``deleteArtifactPollingUntilDone(name:)``
     /// - ``deleteArtifact(request:)``
     /// - ``deleteArtifact(request:options:)``
+    /// - ``deleteArtifactPollingUntilDone(name:)``
+    /// - ``deleteArtifactPollingUntilDone(request:)``
     public func deleteArtifactPollingUntilDone(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -299,9 +299,9 @@
     /// ## See Also
     ///
     /// - ``purgeArtifacts(request:)``
+    /// - ``purgeArtifactsPollingUntilDone(parent:)``
     /// - ``purgeArtifactsPollingUntilDone(request:)``
     /// - ``purgeArtifactsPollingUntilDone(request:options:)``
-    /// - ``purgeArtifactsPollingUntilDone(parent:)``
     public func purgeArtifacts(
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -314,10 +314,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeArtifactsPollingUntilDone(request:)``
-    /// - ``purgeArtifactsPollingUntilDone(parent:)``
     /// - ``purgeArtifacts(request:)``
     /// - ``purgeArtifacts(request:options:)``
+    /// - ``purgeArtifactsPollingUntilDone(parent:)``
+    /// - ``purgeArtifactsPollingUntilDone(request:)``
     public func purgeArtifactsPollingUntilDone(
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeArtifactsResponse {
@@ -350,8 +350,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createContext(request:)``
     /// - ``createContext(parent:context:contextId:)``
+    /// - ``createContext(request:)``
     public func createContext(
       request: CreateContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -364,8 +364,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getContext(request:)``
     /// - ``getContext(name:)``
+    /// - ``getContext(request:)``
     public func getContext(
       request: GetContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -379,9 +379,9 @@
     /// ## See Also
     ///
     /// - ``listContexts(request:)``
+    /// - ``listContextsByItems(parent:)``
     /// - ``listContextsByItems(request:)``
     /// - ``listContextsByItems(request:options:)``
-    /// - ``listContextsByItems(parent:)``
     public func listContexts(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListContextsResponse {
@@ -394,8 +394,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateContext(request:)``
     /// - ``updateContext(context:updateMask:)``
+    /// - ``updateContext(request:)``
     public func updateContext(
       request: UpdateContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -409,9 +409,9 @@
     /// ## See Also
     ///
     /// - ``deleteContext(request:)``
+    /// - ``deleteContextPollingUntilDone(name:)``
     /// - ``deleteContextPollingUntilDone(request:)``
     /// - ``deleteContextPollingUntilDone(request:options:)``
-    /// - ``deleteContextPollingUntilDone(name:)``
     public func deleteContext(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -424,10 +424,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteContextPollingUntilDone(request:)``
-    /// - ``deleteContextPollingUntilDone(name:)``
     /// - ``deleteContext(request:)``
     /// - ``deleteContext(request:options:)``
+    /// - ``deleteContextPollingUntilDone(name:)``
+    /// - ``deleteContextPollingUntilDone(request:)``
     public func deleteContextPollingUntilDone(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -460,9 +460,9 @@
     /// ## See Also
     ///
     /// - ``purgeContexts(request:)``
+    /// - ``purgeContextsPollingUntilDone(parent:)``
     /// - ``purgeContextsPollingUntilDone(request:)``
     /// - ``purgeContextsPollingUntilDone(request:options:)``
-    /// - ``purgeContextsPollingUntilDone(parent:)``
     public func purgeContexts(
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -475,10 +475,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeContextsPollingUntilDone(request:)``
-    /// - ``purgeContextsPollingUntilDone(parent:)``
     /// - ``purgeContexts(request:)``
     /// - ``purgeContexts(request:options:)``
+    /// - ``purgeContextsPollingUntilDone(parent:)``
+    /// - ``purgeContextsPollingUntilDone(request:)``
     public func purgeContextsPollingUntilDone(
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeContextsResponse {
@@ -513,8 +513,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``addContextArtifactsAndExecutions(request:)``
     /// - ``addContextArtifactsAndExecutions(context:artifacts:executions:)``
+    /// - ``addContextArtifactsAndExecutions(request:)``
     public func addContextArtifactsAndExecutions(
       request: AddContextArtifactsAndExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AddContextArtifactsAndExecutionsResponse {
@@ -531,8 +531,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``addContextChildren(request:)``
     /// - ``addContextChildren(context:childContexts:)``
+    /// - ``addContextChildren(request:)``
     public func addContextChildren(
       request: AddContextChildrenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AddContextChildrenResponse {
@@ -547,8 +547,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``removeContextChildren(request:)``
     /// - ``removeContextChildren(context:childContexts:)``
+    /// - ``removeContextChildren(request:)``
     public func removeContextChildren(
       request: RemoveContextChildrenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.RemoveContextChildrenResponse {
@@ -562,8 +562,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``queryContextLineageSubgraph(request:)``
     /// - ``queryContextLineageSubgraph(context:)``
+    /// - ``queryContextLineageSubgraph(request:)``
     public func queryContextLineageSubgraph(
       request: QueryContextLineageSubgraphRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -576,8 +576,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createExecution(request:)``
     /// - ``createExecution(parent:execution:executionId:)``
+    /// - ``createExecution(request:)``
     public func createExecution(
       request: CreateExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -590,8 +590,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getExecution(request:)``
     /// - ``getExecution(name:)``
+    /// - ``getExecution(request:)``
     public func getExecution(
       request: GetExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -605,9 +605,9 @@
     /// ## See Also
     ///
     /// - ``listExecutions(request:)``
+    /// - ``listExecutionsByItems(parent:)``
     /// - ``listExecutionsByItems(request:)``
     /// - ``listExecutionsByItems(request:options:)``
-    /// - ``listExecutionsByItems(parent:)``
     public func listExecutions(
       request: ListExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListExecutionsResponse {
@@ -620,8 +620,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateExecution(request:)``
     /// - ``updateExecution(execution:updateMask:)``
+    /// - ``updateExecution(request:)``
     public func updateExecution(
       request: UpdateExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -635,9 +635,9 @@
     /// ## See Also
     ///
     /// - ``deleteExecution(request:)``
+    /// - ``deleteExecutionPollingUntilDone(name:)``
     /// - ``deleteExecutionPollingUntilDone(request:)``
     /// - ``deleteExecutionPollingUntilDone(request:options:)``
-    /// - ``deleteExecutionPollingUntilDone(name:)``
     public func deleteExecution(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -650,10 +650,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteExecutionPollingUntilDone(request:)``
-    /// - ``deleteExecutionPollingUntilDone(name:)``
     /// - ``deleteExecution(request:)``
     /// - ``deleteExecution(request:options:)``
+    /// - ``deleteExecutionPollingUntilDone(name:)``
+    /// - ``deleteExecutionPollingUntilDone(request:)``
     public func deleteExecutionPollingUntilDone(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -686,9 +686,9 @@
     /// ## See Also
     ///
     /// - ``purgeExecutions(request:)``
+    /// - ``purgeExecutionsPollingUntilDone(parent:)``
     /// - ``purgeExecutionsPollingUntilDone(request:)``
     /// - ``purgeExecutionsPollingUntilDone(request:options:)``
-    /// - ``purgeExecutionsPollingUntilDone(parent:)``
     public func purgeExecutions(
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -701,10 +701,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeExecutionsPollingUntilDone(request:)``
-    /// - ``purgeExecutionsPollingUntilDone(parent:)``
     /// - ``purgeExecutions(request:)``
     /// - ``purgeExecutions(request:options:)``
+    /// - ``purgeExecutionsPollingUntilDone(parent:)``
+    /// - ``purgeExecutionsPollingUntilDone(request:)``
     public func purgeExecutionsPollingUntilDone(
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeExecutionsResponse {
@@ -740,8 +740,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``addExecutionEvents(request:)``
     /// - ``addExecutionEvents(execution:events:)``
+    /// - ``addExecutionEvents(request:)``
     public func addExecutionEvents(
       request: AddExecutionEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AddExecutionEventsResponse {
@@ -756,8 +756,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``queryExecutionInputsAndOutputs(request:)``
     /// - ``queryExecutionInputsAndOutputs(execution:)``
+    /// - ``queryExecutionInputsAndOutputs(request:)``
     public func queryExecutionInputsAndOutputs(
       request: QueryExecutionInputsAndOutputsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -770,8 +770,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createMetadataSchema(request:)``
     /// - ``createMetadataSchema(parent:metadataSchema:metadataSchemaId:)``
+    /// - ``createMetadataSchema(request:)``
     public func createMetadataSchema(
       request: CreateMetadataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -784,8 +784,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getMetadataSchema(request:)``
     /// - ``getMetadataSchema(name:)``
+    /// - ``getMetadataSchema(request:)``
     public func getMetadataSchema(
       request: GetMetadataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -799,9 +799,9 @@
     /// ## See Also
     ///
     /// - ``listMetadataSchemas(request:)``
+    /// - ``listMetadataSchemasByItems(parent:)``
     /// - ``listMetadataSchemasByItems(request:)``
     /// - ``listMetadataSchemasByItems(request:options:)``
-    /// - ``listMetadataSchemasByItems(parent:)``
     public func listMetadataSchemas(
       request: ListMetadataSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListMetadataSchemasResponse {
@@ -815,8 +815,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``queryArtifactLineageSubgraph(request:)``
     /// - ``queryArtifactLineageSubgraph(artifact:)``
+    /// - ``queryArtifactLineageSubgraph(request:)``
     public func queryArtifactLineageSubgraph(
       request: QueryArtifactLineageSubgraphRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -910,9 +910,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -938,8 +938,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -954,8 +954,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

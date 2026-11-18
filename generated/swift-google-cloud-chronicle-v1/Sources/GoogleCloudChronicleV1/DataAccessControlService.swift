@@ -57,8 +57,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``createDataAccessLabel(request:)``
   /// - ``createDataAccessLabel(parent:dataAccessLabel:dataAccessLabelId:)``
+  /// - ``createDataAccessLabel(request:)``
   public func createDataAccessLabel(
     request: CreateDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -71,8 +71,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``getDataAccessLabel(request:)``
   /// - ``getDataAccessLabel(name:)``
+  /// - ``getDataAccessLabel(request:)``
   public func getDataAccessLabel(
     request: GetDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -86,9 +86,9 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// ## See Also
   ///
   /// - ``listDataAccessLabels(request:)``
+  /// - ``listDataAccessLabelsByItems(parent:)``
   /// - ``listDataAccessLabelsByItems(request:)``
   /// - ``listDataAccessLabelsByItems(request:options:)``
-  /// - ``listDataAccessLabelsByItems(parent:)``
   public func listDataAccessLabels(
     request: ListDataAccessLabelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataAccessLabelsResponse {
@@ -101,8 +101,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``updateDataAccessLabel(request:)``
   /// - ``updateDataAccessLabel(dataAccessLabel:updateMask:)``
+  /// - ``updateDataAccessLabel(request:)``
   public func updateDataAccessLabel(
     request: UpdateDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessLabel {
@@ -117,8 +117,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataAccessLabel(request:)``
   /// - ``deleteDataAccessLabel(name:)``
+  /// - ``deleteDataAccessLabel(request:)``
   public func deleteDataAccessLabel(
     request: DeleteDataAccessLabelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -136,8 +136,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``createDataAccessScope(request:)``
   /// - ``createDataAccessScope(parent:dataAccessScope:dataAccessScopeId:)``
+  /// - ``createDataAccessScope(request:)``
   public func createDataAccessScope(
     request: CreateDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -150,8 +150,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``getDataAccessScope(request:)``
   /// - ``getDataAccessScope(name:)``
+  /// - ``getDataAccessScope(request:)``
   public func getDataAccessScope(
     request: GetDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -165,9 +165,9 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// ## See Also
   ///
   /// - ``listDataAccessScopes(request:)``
+  /// - ``listDataAccessScopesByItems(parent:)``
   /// - ``listDataAccessScopesByItems(request:)``
   /// - ``listDataAccessScopesByItems(request:options:)``
-  /// - ``listDataAccessScopesByItems(parent:)``
   public func listDataAccessScopes(
     request: ListDataAccessScopesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataAccessScopesResponse {
@@ -180,8 +180,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``updateDataAccessScope(request:)``
   /// - ``updateDataAccessScope(dataAccessScope:updateMask:)``
+  /// - ``updateDataAccessScope(request:)``
   public func updateDataAccessScope(
     request: UpdateDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataAccessScope {
@@ -194,8 +194,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataAccessScope(request:)``
   /// - ``deleteDataAccessScope(name:)``
+  /// - ``deleteDataAccessScope(request:)``
   public func deleteDataAccessScope(
     request: DeleteDataAccessScopeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,9 +211,9 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -239,8 +239,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -255,8 +255,8 @@ public final class DataAccessControlServiceClient: Clients.DataAccessControlServ
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

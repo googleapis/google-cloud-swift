@@ -46,8 +46,8 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancel(request:)``
   /// - ``cancel(name:)``
+  /// - ``cancel(request:)``
   public func cancel(
     request: OperationsClient.CancelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Empty {
@@ -60,8 +60,8 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(name:)``
+  /// - ``delete(request:)``
   public func delete(
     request: OperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws -> Empty {
@@ -74,8 +74,8 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(name:)``
+  /// - ``get(request:)``
   public func `get`(
     request: OperationsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {
@@ -89,9 +89,9 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(name:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(name:)``
   public func list(
     request: OperationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningListOperationsResponse {

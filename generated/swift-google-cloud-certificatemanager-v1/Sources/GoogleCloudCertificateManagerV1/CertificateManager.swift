@@ -79,9 +79,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listCertificates(request:)``
+  /// - ``listCertificatesByItems(parent:)``
   /// - ``listCertificatesByItems(request:)``
   /// - ``listCertificatesByItems(request:options:)``
-  /// - ``listCertificatesByItems(parent:)``
   public func listCertificates(
     request: ListCertificatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.ListCertificatesResponse {
@@ -94,8 +94,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getCertificate(request:)``
   /// - ``getCertificate(name:)``
+  /// - ``getCertificate(request:)``
   public func getCertificate(
     request: GetCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.Certificate {
@@ -109,9 +109,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``createCertificate(request:)``
+  /// - ``createCertificatePollingUntilDone(parent:certificate:certificateId:)``
   /// - ``createCertificatePollingUntilDone(request:)``
   /// - ``createCertificatePollingUntilDone(request:options:)``
-  /// - ``createCertificatePollingUntilDone(parent:certificate:certificateId:)``
   public func createCertificate(
     request: CreateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -124,10 +124,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createCertificatePollingUntilDone(request:)``
-  /// - ``createCertificatePollingUntilDone(parent:certificate:certificateId:)``
   /// - ``createCertificate(request:)``
   /// - ``createCertificate(request:options:)``
+  /// - ``createCertificatePollingUntilDone(parent:certificate:certificateId:)``
+  /// - ``createCertificatePollingUntilDone(request:)``
   public func createCertificatePollingUntilDone(
     request: CreateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Certificate {
@@ -159,9 +159,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``updateCertificate(request:)``
+  /// - ``updateCertificatePollingUntilDone(certificate:updateMask:)``
   /// - ``updateCertificatePollingUntilDone(request:)``
   /// - ``updateCertificatePollingUntilDone(request:options:)``
-  /// - ``updateCertificatePollingUntilDone(certificate:updateMask:)``
   public func updateCertificate(
     request: UpdateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -174,10 +174,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificatePollingUntilDone(request:)``
-  /// - ``updateCertificatePollingUntilDone(certificate:updateMask:)``
   /// - ``updateCertificate(request:)``
   /// - ``updateCertificate(request:options:)``
+  /// - ``updateCertificatePollingUntilDone(certificate:updateMask:)``
+  /// - ``updateCertificatePollingUntilDone(request:)``
   public func updateCertificatePollingUntilDone(
     request: UpdateCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Certificate {
@@ -209,9 +209,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``deleteCertificate(request:)``
+  /// - ``deleteCertificatePollingUntilDone(name:)``
   /// - ``deleteCertificatePollingUntilDone(request:)``
   /// - ``deleteCertificatePollingUntilDone(request:options:)``
-  /// - ``deleteCertificatePollingUntilDone(name:)``
   public func deleteCertificate(
     request: DeleteCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -224,10 +224,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteCertificatePollingUntilDone(request:)``
-  /// - ``deleteCertificatePollingUntilDone(name:)``
   /// - ``deleteCertificate(request:)``
   /// - ``deleteCertificate(request:options:)``
+  /// - ``deleteCertificatePollingUntilDone(name:)``
+  /// - ``deleteCertificatePollingUntilDone(request:)``
   public func deleteCertificatePollingUntilDone(
     request: DeleteCertificateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -259,9 +259,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listCertificateMaps(request:)``
+  /// - ``listCertificateMapsByItems(parent:)``
   /// - ``listCertificateMapsByItems(request:)``
   /// - ``listCertificateMapsByItems(request:options:)``
-  /// - ``listCertificateMapsByItems(parent:)``
   public func listCertificateMaps(
     request: ListCertificateMapsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.ListCertificateMapsResponse {
@@ -274,8 +274,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateMap(request:)``
   /// - ``getCertificateMap(name:)``
+  /// - ``getCertificateMap(request:)``
   public func getCertificateMap(
     request: GetCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.CertificateMap {
@@ -289,9 +289,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``createCertificateMap(request:)``
+  /// - ``createCertificateMapPollingUntilDone(parent:certificateMap:certificateMapId:)``
   /// - ``createCertificateMapPollingUntilDone(request:)``
   /// - ``createCertificateMapPollingUntilDone(request:options:)``
-  /// - ``createCertificateMapPollingUntilDone(parent:certificateMap:certificateMapId:)``
   public func createCertificateMap(
     request: CreateCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -304,10 +304,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createCertificateMapPollingUntilDone(request:)``
-  /// - ``createCertificateMapPollingUntilDone(parent:certificateMap:certificateMapId:)``
   /// - ``createCertificateMap(request:)``
   /// - ``createCertificateMap(request:options:)``
+  /// - ``createCertificateMapPollingUntilDone(parent:certificateMap:certificateMapId:)``
+  /// - ``createCertificateMapPollingUntilDone(request:)``
   public func createCertificateMapPollingUntilDone(
     request: CreateCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateMap {
@@ -340,9 +340,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``updateCertificateMap(request:)``
+  /// - ``updateCertificateMapPollingUntilDone(certificateMap:updateMask:)``
   /// - ``updateCertificateMapPollingUntilDone(request:)``
   /// - ``updateCertificateMapPollingUntilDone(request:options:)``
-  /// - ``updateCertificateMapPollingUntilDone(certificateMap:updateMask:)``
   public func updateCertificateMap(
     request: UpdateCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -355,10 +355,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificateMapPollingUntilDone(request:)``
-  /// - ``updateCertificateMapPollingUntilDone(certificateMap:updateMask:)``
   /// - ``updateCertificateMap(request:)``
   /// - ``updateCertificateMap(request:options:)``
+  /// - ``updateCertificateMapPollingUntilDone(certificateMap:updateMask:)``
+  /// - ``updateCertificateMapPollingUntilDone(request:)``
   public func updateCertificateMapPollingUntilDone(
     request: UpdateCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateMap {
@@ -393,9 +393,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``deleteCertificateMap(request:)``
+  /// - ``deleteCertificateMapPollingUntilDone(name:)``
   /// - ``deleteCertificateMapPollingUntilDone(request:)``
   /// - ``deleteCertificateMapPollingUntilDone(request:options:)``
-  /// - ``deleteCertificateMapPollingUntilDone(name:)``
   public func deleteCertificateMap(
     request: DeleteCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -410,10 +410,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteCertificateMapPollingUntilDone(request:)``
-  /// - ``deleteCertificateMapPollingUntilDone(name:)``
   /// - ``deleteCertificateMap(request:)``
   /// - ``deleteCertificateMap(request:options:)``
+  /// - ``deleteCertificateMapPollingUntilDone(name:)``
+  /// - ``deleteCertificateMapPollingUntilDone(request:)``
   public func deleteCertificateMapPollingUntilDone(
     request: DeleteCertificateMapRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -445,9 +445,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listCertificateMapEntries(request:)``
+  /// - ``listCertificateMapEntriesByItems(parent:)``
   /// - ``listCertificateMapEntriesByItems(request:)``
   /// - ``listCertificateMapEntriesByItems(request:options:)``
-  /// - ``listCertificateMapEntriesByItems(parent:)``
   public func listCertificateMapEntries(
     request: ListCertificateMapEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.ListCertificateMapEntriesResponse {
@@ -460,8 +460,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateMapEntry(request:)``
   /// - ``getCertificateMapEntry(name:)``
+  /// - ``getCertificateMapEntry(request:)``
   public func getCertificateMapEntry(
     request: GetCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.CertificateMapEntry {
@@ -475,9 +475,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``createCertificateMapEntry(request:)``
+  /// - ``createCertificateMapEntryPollingUntilDone(parent:certificateMapEntry:certificateMapEntryId:)``
   /// - ``createCertificateMapEntryPollingUntilDone(request:)``
   /// - ``createCertificateMapEntryPollingUntilDone(request:options:)``
-  /// - ``createCertificateMapEntryPollingUntilDone(parent:certificateMapEntry:certificateMapEntryId:)``
   public func createCertificateMapEntry(
     request: CreateCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -490,10 +490,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createCertificateMapEntryPollingUntilDone(request:)``
-  /// - ``createCertificateMapEntryPollingUntilDone(parent:certificateMapEntry:certificateMapEntryId:)``
   /// - ``createCertificateMapEntry(request:)``
   /// - ``createCertificateMapEntry(request:options:)``
+  /// - ``createCertificateMapEntryPollingUntilDone(parent:certificateMapEntry:certificateMapEntryId:)``
+  /// - ``createCertificateMapEntryPollingUntilDone(request:)``
   public func createCertificateMapEntryPollingUntilDone(
     request: CreateCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateMapEntry {
@@ -526,9 +526,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``updateCertificateMapEntry(request:)``
+  /// - ``updateCertificateMapEntryPollingUntilDone(certificateMapEntry:updateMask:)``
   /// - ``updateCertificateMapEntryPollingUntilDone(request:)``
   /// - ``updateCertificateMapEntryPollingUntilDone(request:options:)``
-  /// - ``updateCertificateMapEntryPollingUntilDone(certificateMapEntry:updateMask:)``
   public func updateCertificateMapEntry(
     request: UpdateCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -541,10 +541,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificateMapEntryPollingUntilDone(request:)``
-  /// - ``updateCertificateMapEntryPollingUntilDone(certificateMapEntry:updateMask:)``
   /// - ``updateCertificateMapEntry(request:)``
   /// - ``updateCertificateMapEntry(request:options:)``
+  /// - ``updateCertificateMapEntryPollingUntilDone(certificateMapEntry:updateMask:)``
+  /// - ``updateCertificateMapEntryPollingUntilDone(request:)``
   public func updateCertificateMapEntryPollingUntilDone(
     request: UpdateCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateMapEntry {
@@ -577,9 +577,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``deleteCertificateMapEntry(request:)``
+  /// - ``deleteCertificateMapEntryPollingUntilDone(name:)``
   /// - ``deleteCertificateMapEntryPollingUntilDone(request:)``
   /// - ``deleteCertificateMapEntryPollingUntilDone(request:options:)``
-  /// - ``deleteCertificateMapEntryPollingUntilDone(name:)``
   public func deleteCertificateMapEntry(
     request: DeleteCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -592,10 +592,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteCertificateMapEntryPollingUntilDone(request:)``
-  /// - ``deleteCertificateMapEntryPollingUntilDone(name:)``
   /// - ``deleteCertificateMapEntry(request:)``
   /// - ``deleteCertificateMapEntry(request:options:)``
+  /// - ``deleteCertificateMapEntryPollingUntilDone(name:)``
+  /// - ``deleteCertificateMapEntryPollingUntilDone(request:)``
   public func deleteCertificateMapEntryPollingUntilDone(
     request: DeleteCertificateMapEntryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -627,9 +627,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listDnsAuthorizations(request:)``
+  /// - ``listDnsAuthorizationsByItems(parent:)``
   /// - ``listDnsAuthorizationsByItems(request:)``
   /// - ``listDnsAuthorizationsByItems(request:options:)``
-  /// - ``listDnsAuthorizationsByItems(parent:)``
   public func listDnsAuthorizations(
     request: ListDnsAuthorizationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.ListDnsAuthorizationsResponse {
@@ -642,8 +642,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getDnsAuthorization(request:)``
   /// - ``getDnsAuthorization(name:)``
+  /// - ``getDnsAuthorization(request:)``
   public func getDnsAuthorization(
     request: GetDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.DnsAuthorization {
@@ -657,9 +657,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``createDnsAuthorization(request:)``
+  /// - ``createDnsAuthorizationPollingUntilDone(parent:dnsAuthorization:dnsAuthorizationId:)``
   /// - ``createDnsAuthorizationPollingUntilDone(request:)``
   /// - ``createDnsAuthorizationPollingUntilDone(request:options:)``
-  /// - ``createDnsAuthorizationPollingUntilDone(parent:dnsAuthorization:dnsAuthorizationId:)``
   public func createDnsAuthorization(
     request: CreateDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -672,10 +672,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createDnsAuthorizationPollingUntilDone(request:)``
-  /// - ``createDnsAuthorizationPollingUntilDone(parent:dnsAuthorization:dnsAuthorizationId:)``
   /// - ``createDnsAuthorization(request:)``
   /// - ``createDnsAuthorization(request:options:)``
+  /// - ``createDnsAuthorizationPollingUntilDone(parent:dnsAuthorization:dnsAuthorizationId:)``
+  /// - ``createDnsAuthorizationPollingUntilDone(request:)``
   public func createDnsAuthorizationPollingUntilDone(
     request: CreateDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsAuthorization {
@@ -708,9 +708,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``updateDnsAuthorization(request:)``
+  /// - ``updateDnsAuthorizationPollingUntilDone(dnsAuthorization:updateMask:)``
   /// - ``updateDnsAuthorizationPollingUntilDone(request:)``
   /// - ``updateDnsAuthorizationPollingUntilDone(request:options:)``
-  /// - ``updateDnsAuthorizationPollingUntilDone(dnsAuthorization:updateMask:)``
   public func updateDnsAuthorization(
     request: UpdateDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -723,10 +723,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateDnsAuthorizationPollingUntilDone(request:)``
-  /// - ``updateDnsAuthorizationPollingUntilDone(dnsAuthorization:updateMask:)``
   /// - ``updateDnsAuthorization(request:)``
   /// - ``updateDnsAuthorization(request:options:)``
+  /// - ``updateDnsAuthorizationPollingUntilDone(dnsAuthorization:updateMask:)``
+  /// - ``updateDnsAuthorizationPollingUntilDone(request:)``
   public func updateDnsAuthorizationPollingUntilDone(
     request: UpdateDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsAuthorization {
@@ -759,9 +759,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``deleteDnsAuthorization(request:)``
+  /// - ``deleteDnsAuthorizationPollingUntilDone(name:)``
   /// - ``deleteDnsAuthorizationPollingUntilDone(request:)``
   /// - ``deleteDnsAuthorizationPollingUntilDone(request:options:)``
-  /// - ``deleteDnsAuthorizationPollingUntilDone(name:)``
   public func deleteDnsAuthorization(
     request: DeleteDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -774,10 +774,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteDnsAuthorizationPollingUntilDone(request:)``
-  /// - ``deleteDnsAuthorizationPollingUntilDone(name:)``
   /// - ``deleteDnsAuthorization(request:)``
   /// - ``deleteDnsAuthorization(request:options:)``
+  /// - ``deleteDnsAuthorizationPollingUntilDone(name:)``
+  /// - ``deleteDnsAuthorizationPollingUntilDone(request:)``
   public func deleteDnsAuthorizationPollingUntilDone(
     request: DeleteDnsAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -809,9 +809,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listCertificateIssuanceConfigs(request:)``
+  /// - ``listCertificateIssuanceConfigsByItems(parent:)``
   /// - ``listCertificateIssuanceConfigsByItems(request:)``
   /// - ``listCertificateIssuanceConfigsByItems(request:options:)``
-  /// - ``listCertificateIssuanceConfigsByItems(parent:)``
   public func listCertificateIssuanceConfigs(
     request: ListCertificateIssuanceConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.ListCertificateIssuanceConfigsResponse {
@@ -824,8 +824,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getCertificateIssuanceConfig(request:)``
   /// - ``getCertificateIssuanceConfig(name:)``
+  /// - ``getCertificateIssuanceConfig(request:)``
   public func getCertificateIssuanceConfig(
     request: GetCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.CertificateIssuanceConfig {
@@ -839,9 +839,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``createCertificateIssuanceConfig(request:)``
+  /// - ``createCertificateIssuanceConfigPollingUntilDone(parent:certificateIssuanceConfig:certificateIssuanceConfigId:)``
   /// - ``createCertificateIssuanceConfigPollingUntilDone(request:)``
   /// - ``createCertificateIssuanceConfigPollingUntilDone(request:options:)``
-  /// - ``createCertificateIssuanceConfigPollingUntilDone(parent:certificateIssuanceConfig:certificateIssuanceConfigId:)``
   public func createCertificateIssuanceConfig(
     request: CreateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -854,10 +854,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createCertificateIssuanceConfigPollingUntilDone(request:)``
-  /// - ``createCertificateIssuanceConfigPollingUntilDone(parent:certificateIssuanceConfig:certificateIssuanceConfigId:)``
   /// - ``createCertificateIssuanceConfig(request:)``
   /// - ``createCertificateIssuanceConfig(request:options:)``
+  /// - ``createCertificateIssuanceConfigPollingUntilDone(parent:certificateIssuanceConfig:certificateIssuanceConfigId:)``
+  /// - ``createCertificateIssuanceConfigPollingUntilDone(request:)``
   public func createCertificateIssuanceConfigPollingUntilDone(
     request: CreateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateIssuanceConfig {
@@ -891,9 +891,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``updateCertificateIssuanceConfig(request:)``
+  /// - ``updateCertificateIssuanceConfigPollingUntilDone(certificateIssuanceConfig:updateMask:)``
   /// - ``updateCertificateIssuanceConfigPollingUntilDone(request:)``
   /// - ``updateCertificateIssuanceConfigPollingUntilDone(request:options:)``
-  /// - ``updateCertificateIssuanceConfigPollingUntilDone(certificateIssuanceConfig:updateMask:)``
   public func updateCertificateIssuanceConfig(
     request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -906,10 +906,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateCertificateIssuanceConfigPollingUntilDone(request:)``
-  /// - ``updateCertificateIssuanceConfigPollingUntilDone(certificateIssuanceConfig:updateMask:)``
   /// - ``updateCertificateIssuanceConfig(request:)``
   /// - ``updateCertificateIssuanceConfig(request:options:)``
+  /// - ``updateCertificateIssuanceConfigPollingUntilDone(certificateIssuanceConfig:updateMask:)``
+  /// - ``updateCertificateIssuanceConfigPollingUntilDone(request:)``
   public func updateCertificateIssuanceConfigPollingUntilDone(
     request: UpdateCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> CertificateIssuanceConfig {
@@ -943,9 +943,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``deleteCertificateIssuanceConfig(request:)``
+  /// - ``deleteCertificateIssuanceConfigPollingUntilDone(name:)``
   /// - ``deleteCertificateIssuanceConfigPollingUntilDone(request:)``
   /// - ``deleteCertificateIssuanceConfigPollingUntilDone(request:options:)``
-  /// - ``deleteCertificateIssuanceConfigPollingUntilDone(name:)``
   public func deleteCertificateIssuanceConfig(
     request: DeleteCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -958,10 +958,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteCertificateIssuanceConfigPollingUntilDone(request:)``
-  /// - ``deleteCertificateIssuanceConfigPollingUntilDone(name:)``
   /// - ``deleteCertificateIssuanceConfig(request:)``
   /// - ``deleteCertificateIssuanceConfig(request:options:)``
+  /// - ``deleteCertificateIssuanceConfigPollingUntilDone(name:)``
+  /// - ``deleteCertificateIssuanceConfigPollingUntilDone(request:)``
   public func deleteCertificateIssuanceConfigPollingUntilDone(
     request: DeleteCertificateIssuanceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -993,9 +993,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listTrustConfigs(request:)``
+  /// - ``listTrustConfigsByItems(parent:)``
   /// - ``listTrustConfigsByItems(request:)``
   /// - ``listTrustConfigsByItems(request:options:)``
-  /// - ``listTrustConfigsByItems(parent:)``
   public func listTrustConfigs(
     request: ListTrustConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.ListTrustConfigsResponse {
@@ -1008,8 +1008,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getTrustConfig(request:)``
   /// - ``getTrustConfig(name:)``
+  /// - ``getTrustConfig(request:)``
   public func getTrustConfig(
     request: GetTrustConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCertificateManagerV1.TrustConfig {
@@ -1023,9 +1023,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``createTrustConfig(request:)``
+  /// - ``createTrustConfigPollingUntilDone(parent:trustConfig:trustConfigId:)``
   /// - ``createTrustConfigPollingUntilDone(request:)``
   /// - ``createTrustConfigPollingUntilDone(request:options:)``
-  /// - ``createTrustConfigPollingUntilDone(parent:trustConfig:trustConfigId:)``
   public func createTrustConfig(
     request: CreateTrustConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1038,10 +1038,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createTrustConfigPollingUntilDone(request:)``
-  /// - ``createTrustConfigPollingUntilDone(parent:trustConfig:trustConfigId:)``
   /// - ``createTrustConfig(request:)``
   /// - ``createTrustConfig(request:options:)``
+  /// - ``createTrustConfigPollingUntilDone(parent:trustConfig:trustConfigId:)``
+  /// - ``createTrustConfigPollingUntilDone(request:)``
   public func createTrustConfigPollingUntilDone(
     request: CreateTrustConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> TrustConfig {
@@ -1088,10 +1088,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateTrustConfigPollingUntilDone(request:)``
-  /// - ``updateTrustConfigPollingUntilDone(trustConfig:updateMask:)``
   /// - ``updateTrustConfig(request:)``
   /// - ``updateTrustConfig(request:options:)``
+  /// - ``updateTrustConfigPollingUntilDone(request:)``
+  /// - ``updateTrustConfigPollingUntilDone(trustConfig:updateMask:)``
   public func updateTrustConfigPollingUntilDone(
     request: UpdateTrustConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> TrustConfig {
@@ -1123,9 +1123,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``deleteTrustConfig(request:)``
+  /// - ``deleteTrustConfigPollingUntilDone(name:)``
   /// - ``deleteTrustConfigPollingUntilDone(request:)``
   /// - ``deleteTrustConfigPollingUntilDone(request:options:)``
-  /// - ``deleteTrustConfigPollingUntilDone(name:)``
   public func deleteTrustConfig(
     request: DeleteTrustConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1138,10 +1138,10 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteTrustConfigPollingUntilDone(request:)``
-  /// - ``deleteTrustConfigPollingUntilDone(name:)``
   /// - ``deleteTrustConfig(request:)``
   /// - ``deleteTrustConfig(request:options:)``
+  /// - ``deleteTrustConfigPollingUntilDone(name:)``
+  /// - ``deleteTrustConfigPollingUntilDone(request:)``
   public func deleteTrustConfigPollingUntilDone(
     request: DeleteTrustConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1220,9 +1220,9 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1248,8 +1248,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1264,8 +1264,8 @@ public final class CertificateManagerClient: Clients.CertificateManagerProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

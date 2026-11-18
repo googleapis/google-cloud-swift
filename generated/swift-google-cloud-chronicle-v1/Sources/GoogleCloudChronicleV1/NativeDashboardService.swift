@@ -49,8 +49,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``createNativeDashboard(request:)``
   /// - ``createNativeDashboard(parent:nativeDashboard:)``
+  /// - ``createNativeDashboard(request:)``
   public func createNativeDashboard(
     request: CreateNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -63,8 +63,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``getNativeDashboard(request:)``
   /// - ``getNativeDashboard(name:)``
+  /// - ``getNativeDashboard(request:)``
   public func getNativeDashboard(
     request: GetNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -78,9 +78,9 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   /// ## See Also
   ///
   /// - ``listNativeDashboards(request:)``
+  /// - ``listNativeDashboardsByItems(parent:)``
   /// - ``listNativeDashboardsByItems(request:)``
   /// - ``listNativeDashboardsByItems(request:options:)``
-  /// - ``listNativeDashboardsByItems(parent:)``
   public func listNativeDashboards(
     request: ListNativeDashboardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListNativeDashboardsResponse {
@@ -93,8 +93,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``updateNativeDashboard(request:)``
   /// - ``updateNativeDashboard(nativeDashboard:updateMask:)``
+  /// - ``updateNativeDashboard(request:)``
   public func updateNativeDashboard(
     request: UpdateNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -107,8 +107,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``duplicateNativeDashboard(request:)``
   /// - ``duplicateNativeDashboard(name:nativeDashboard:)``
+  /// - ``duplicateNativeDashboard(request:)``
   public func duplicateNativeDashboard(
     request: DuplicateNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -121,8 +121,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``deleteNativeDashboard(request:)``
   /// - ``deleteNativeDashboard(name:)``
+  /// - ``deleteNativeDashboard(request:)``
   public func deleteNativeDashboard(
     request: DeleteNativeDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -135,8 +135,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``addChart(request:)``
   /// - ``addChart(name:dashboardQuery:dashboardChart:)``
+  /// - ``addChart(request:)``
   public func addChart(
     request: AddChartRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.AddChartResponse {
@@ -149,8 +149,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``removeChart(request:)``
   /// - ``removeChart(name:)``
+  /// - ``removeChart(request:)``
   public func removeChart(
     request: RemoveChartRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.NativeDashboard {
@@ -163,8 +163,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``editChart(request:)``
   /// - ``editChart(name:dashboardQuery:dashboardChart:editMask:)``
+  /// - ``editChart(request:)``
   public func editChart(
     request: EditChartRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.EditChartResponse {
@@ -177,8 +177,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``duplicateChart(request:)``
   /// - ``duplicateChart(name:)``
+  /// - ``duplicateChart(request:)``
   public func duplicateChart(
     request: DuplicateChartRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DuplicateChartResponse {
@@ -191,8 +191,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``exportNativeDashboards(request:)``
   /// - ``exportNativeDashboards(parent:names:)``
+  /// - ``exportNativeDashboards(request:)``
   public func exportNativeDashboards(
     request: ExportNativeDashboardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ExportNativeDashboardsResponse {
@@ -205,8 +205,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``importNativeDashboards(request:)``
   /// - ``importNativeDashboards(parent:source:)``
+  /// - ``importNativeDashboards(request:)``
   public func importNativeDashboards(
     request: ImportNativeDashboardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ImportNativeDashboardsResponse {
@@ -222,9 +222,9 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -250,8 +250,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -266,8 +266,8 @@ public final class NativeDashboardServiceClient: Clients.NativeDashboardServiceP
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

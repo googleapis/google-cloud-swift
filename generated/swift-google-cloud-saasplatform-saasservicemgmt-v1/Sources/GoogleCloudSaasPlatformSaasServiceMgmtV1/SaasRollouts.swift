@@ -49,9 +49,9 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRollouts(request:)``
+  /// - ``listRolloutsByItems(parent:)``
   /// - ``listRolloutsByItems(request:)``
   /// - ``listRolloutsByItems(request:options:)``
-  /// - ``listRolloutsByItems(parent:)``
   public func listRollouts(
     request: ListRolloutsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListRolloutsResponse {
@@ -64,8 +64,8 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRollout(request:)``
   /// - ``getRollout(name:)``
+  /// - ``getRollout(request:)``
   public func getRollout(
     request: GetRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout {
@@ -78,8 +78,8 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRollout(request:)``
   /// - ``createRollout(parent:rollout:rolloutId:)``
+  /// - ``createRollout(request:)``
   public func createRollout(
     request: CreateRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Rollout {
@@ -106,8 +106,8 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRollout(request:)``
   /// - ``deleteRollout(name:)``
+  /// - ``deleteRollout(request:)``
   public func deleteRollout(
     request: DeleteRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,9 +121,9 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRolloutKinds(request:)``
+  /// - ``listRolloutKindsByItems(parent:)``
   /// - ``listRolloutKindsByItems(request:)``
   /// - ``listRolloutKindsByItems(request:options:)``
-  /// - ``listRolloutKindsByItems(parent:)``
   public func listRolloutKinds(
     request: ListRolloutKindsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListRolloutKindsResponse {
@@ -136,8 +136,8 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRolloutKind(request:)``
   /// - ``getRolloutKind(name:)``
+  /// - ``getRolloutKind(request:)``
   public func getRolloutKind(
     request: GetRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind {
@@ -150,8 +150,8 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRolloutKind(request:)``
   /// - ``createRolloutKind(parent:rolloutKind:rolloutKindId:)``
+  /// - ``createRolloutKind(request:)``
   public func createRolloutKind(
     request: CreateRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.RolloutKind {
@@ -178,8 +178,8 @@ public final class SaasRolloutsClient: Clients.SaasRolloutsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRolloutKind(request:)``
   /// - ``deleteRolloutKind(name:)``
+  /// - ``deleteRolloutKind(request:)``
   public func deleteRolloutKind(
     request: DeleteRolloutKindRequest, options: GoogleGax.RequestOptions
   ) async throws {

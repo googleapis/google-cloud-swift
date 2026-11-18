@@ -57,8 +57,8 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``searchDomains(request:)``
   /// - ``searchDomains(location:query:)``
+  /// - ``searchDomains(request:)``
   public func searchDomains(
     request: SearchDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.SearchDomainsResponse {
@@ -72,8 +72,8 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``retrieveRegisterParameters(request:)``
   /// - ``retrieveRegisterParameters(location:domainName:)``
+  /// - ``retrieveRegisterParameters(request:)``
   public func retrieveRegisterParameters(
     request: RetrieveRegisterParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse {
@@ -99,9 +99,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``registerDomain(request:)``
+  /// - ``registerDomainPollingUntilDone(parent:registration:yearlyPrice:)``
   /// - ``registerDomainPollingUntilDone(request:)``
   /// - ``registerDomainPollingUntilDone(request:options:)``
-  /// - ``registerDomainPollingUntilDone(parent:registration:yearlyPrice:)``
   public func registerDomain(
     request: RegisterDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -126,10 +126,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``registerDomainPollingUntilDone(request:)``
-  /// - ``registerDomainPollingUntilDone(parent:registration:yearlyPrice:)``
   /// - ``registerDomain(request:)``
   /// - ``registerDomain(request:options:)``
+  /// - ``registerDomainPollingUntilDone(parent:registration:yearlyPrice:)``
+  /// - ``registerDomainPollingUntilDone(request:)``
   public func registerDomainPollingUntilDone(
     request: RegisterDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -166,8 +166,8 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``retrieveTransferParameters(request:)``
   /// - ``retrieveTransferParameters(location:domainName:)``
+  /// - ``retrieveTransferParameters(request:)``
   public func retrieveTransferParameters(
     request: RetrieveTransferParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse {
@@ -201,9 +201,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``transferDomain(request:)``
+  /// - ``transferDomainPollingUntilDone(parent:registration:yearlyPrice:authorizationCode:)``
   /// - ``transferDomainPollingUntilDone(request:)``
   /// - ``transferDomainPollingUntilDone(request:options:)``
-  /// - ``transferDomainPollingUntilDone(parent:registration:yearlyPrice:authorizationCode:)``
   public func transferDomain(
     request: TransferDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -236,10 +236,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``transferDomainPollingUntilDone(request:)``
-  /// - ``transferDomainPollingUntilDone(parent:registration:yearlyPrice:authorizationCode:)``
   /// - ``transferDomain(request:)``
   /// - ``transferDomain(request:options:)``
+  /// - ``transferDomainPollingUntilDone(parent:registration:yearlyPrice:authorizationCode:)``
+  /// - ``transferDomainPollingUntilDone(request:)``
   public func transferDomainPollingUntilDone(
     request: TransferDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -272,9 +272,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRegistrations(request:)``
+  /// - ``listRegistrationsByItems(parent:)``
   /// - ``listRegistrationsByItems(request:)``
   /// - ``listRegistrationsByItems(request:options:)``
-  /// - ``listRegistrationsByItems(parent:)``
   public func listRegistrations(
     request: ListRegistrationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse {
@@ -287,8 +287,8 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRegistration(request:)``
   /// - ``getRegistration(name:)``
+  /// - ``getRegistration(request:)``
   public func getRegistration(
     request: GetRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.Registration {
@@ -307,9 +307,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateRegistration(request:)``
+  /// - ``updateRegistrationPollingUntilDone(registration:updateMask:)``
   /// - ``updateRegistrationPollingUntilDone(request:)``
   /// - ``updateRegistrationPollingUntilDone(request:options:)``
-  /// - ``updateRegistrationPollingUntilDone(registration:updateMask:)``
   public func updateRegistration(
     request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -327,10 +327,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateRegistrationPollingUntilDone(request:)``
-  /// - ``updateRegistrationPollingUntilDone(registration:updateMask:)``
   /// - ``updateRegistration(request:)``
   /// - ``updateRegistration(request:options:)``
+  /// - ``updateRegistrationPollingUntilDone(registration:updateMask:)``
+  /// - ``updateRegistrationPollingUntilDone(request:)``
   public func updateRegistrationPollingUntilDone(
     request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -363,9 +363,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``configureManagementSettings(request:)``
+  /// - ``configureManagementSettingsPollingUntilDone(registration:managementSettings:updateMask:)``
   /// - ``configureManagementSettingsPollingUntilDone(request:)``
   /// - ``configureManagementSettingsPollingUntilDone(request:options:)``
-  /// - ``configureManagementSettingsPollingUntilDone(registration:managementSettings:updateMask:)``
   public func configureManagementSettings(
     request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -378,10 +378,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``configureManagementSettingsPollingUntilDone(request:)``
-  /// - ``configureManagementSettingsPollingUntilDone(registration:managementSettings:updateMask:)``
   /// - ``configureManagementSettings(request:)``
   /// - ``configureManagementSettings(request:options:)``
+  /// - ``configureManagementSettingsPollingUntilDone(registration:managementSettings:updateMask:)``
+  /// - ``configureManagementSettingsPollingUntilDone(request:)``
   public func configureManagementSettingsPollingUntilDone(
     request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -414,9 +414,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``configureDnsSettings(request:)``
+  /// - ``configureDnsSettingsPollingUntilDone(registration:dnsSettings:updateMask:)``
   /// - ``configureDnsSettingsPollingUntilDone(request:)``
   /// - ``configureDnsSettingsPollingUntilDone(request:options:)``
-  /// - ``configureDnsSettingsPollingUntilDone(registration:dnsSettings:updateMask:)``
   public func configureDnsSettings(
     request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -429,10 +429,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``configureDnsSettingsPollingUntilDone(request:)``
-  /// - ``configureDnsSettingsPollingUntilDone(registration:dnsSettings:updateMask:)``
   /// - ``configureDnsSettings(request:)``
   /// - ``configureDnsSettings(request:options:)``
+  /// - ``configureDnsSettingsPollingUntilDone(registration:dnsSettings:updateMask:)``
+  /// - ``configureDnsSettingsPollingUntilDone(request:)``
   public func configureDnsSettingsPollingUntilDone(
     request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -466,9 +466,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``configureContactSettings(request:)``
+  /// - ``configureContactSettingsPollingUntilDone(registration:contactSettings:updateMask:)``
   /// - ``configureContactSettingsPollingUntilDone(request:)``
   /// - ``configureContactSettingsPollingUntilDone(request:options:)``
-  /// - ``configureContactSettingsPollingUntilDone(registration:contactSettings:updateMask:)``
   public func configureContactSettings(
     request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -482,10 +482,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``configureContactSettingsPollingUntilDone(request:)``
-  /// - ``configureContactSettingsPollingUntilDone(registration:contactSettings:updateMask:)``
   /// - ``configureContactSettings(request:)``
   /// - ``configureContactSettings(request:options:)``
+  /// - ``configureContactSettingsPollingUntilDone(registration:contactSettings:updateMask:)``
+  /// - ``configureContactSettingsPollingUntilDone(request:)``
   public func configureContactSettingsPollingUntilDone(
     request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -526,9 +526,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportRegistration(request:)``
+  /// - ``exportRegistrationPollingUntilDone(name:)``
   /// - ``exportRegistrationPollingUntilDone(request:)``
   /// - ``exportRegistrationPollingUntilDone(request:options:)``
-  /// - ``exportRegistrationPollingUntilDone(name:)``
   public func exportRegistration(
     request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -549,10 +549,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportRegistrationPollingUntilDone(request:)``
-  /// - ``exportRegistrationPollingUntilDone(name:)``
   /// - ``exportRegistration(request:)``
   /// - ``exportRegistration(request:options:)``
+  /// - ``exportRegistrationPollingUntilDone(name:)``
+  /// - ``exportRegistrationPollingUntilDone(request:)``
   public func exportRegistrationPollingUntilDone(
     request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -603,9 +603,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteRegistration(request:)``
+  /// - ``deleteRegistrationPollingUntilDone(name:)``
   /// - ``deleteRegistrationPollingUntilDone(request:)``
   /// - ``deleteRegistrationPollingUntilDone(request:options:)``
-  /// - ``deleteRegistrationPollingUntilDone(name:)``
   public func deleteRegistration(
     request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -636,10 +636,10 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRegistrationPollingUntilDone(request:)``
-  /// - ``deleteRegistrationPollingUntilDone(name:)``
   /// - ``deleteRegistration(request:)``
   /// - ``deleteRegistration(request:options:)``
+  /// - ``deleteRegistrationPollingUntilDone(name:)``
+  /// - ``deleteRegistrationPollingUntilDone(request:)``
   public func deleteRegistrationPollingUntilDone(
     request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -674,8 +674,8 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``retrieveAuthorizationCode(request:)``
   /// - ``retrieveAuthorizationCode(registration:)``
+  /// - ``retrieveAuthorizationCode(request:)``
   public func retrieveAuthorizationCode(
     request: RetrieveAuthorizationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -691,8 +691,8 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resetAuthorizationCode(request:)``
   /// - ``resetAuthorizationCode(registration:)``
+  /// - ``resetAuthorizationCode(request:)``
   public func resetAuthorizationCode(
     request: ResetAuthorizationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -708,9 +708,9 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

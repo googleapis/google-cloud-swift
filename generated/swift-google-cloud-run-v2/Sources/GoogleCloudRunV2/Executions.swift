@@ -51,8 +51,8 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExecution(request:)``
   /// - ``getExecution(name:)``
+  /// - ``getExecution(request:)``
   public func getExecution(
     request: GetExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Execution {
@@ -67,9 +67,9 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExecutions(request:)``
+  /// - ``listExecutionsByItems(parent:)``
   /// - ``listExecutionsByItems(request:)``
   /// - ``listExecutionsByItems(request:options:)``
-  /// - ``listExecutionsByItems(parent:)``
   public func listExecutions(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListExecutionsResponse {
@@ -83,9 +83,9 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteExecution(request:)``
+  /// - ``deleteExecutionPollingUntilDone(name:)``
   /// - ``deleteExecutionPollingUntilDone(request:)``
   /// - ``deleteExecutionPollingUntilDone(request:options:)``
-  /// - ``deleteExecutionPollingUntilDone(name:)``
   public func deleteExecution(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -98,10 +98,10 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteExecutionPollingUntilDone(request:)``
-  /// - ``deleteExecutionPollingUntilDone(name:)``
   /// - ``deleteExecution(request:)``
   /// - ``deleteExecution(request:options:)``
+  /// - ``deleteExecutionPollingUntilDone(name:)``
+  /// - ``deleteExecutionPollingUntilDone(request:)``
   public func deleteExecutionPollingUntilDone(
     request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -133,9 +133,9 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``cancelExecution(request:)``
+  /// - ``cancelExecutionPollingUntilDone(name:)``
   /// - ``cancelExecutionPollingUntilDone(request:)``
   /// - ``cancelExecutionPollingUntilDone(request:options:)``
-  /// - ``cancelExecutionPollingUntilDone(name:)``
   public func cancelExecution(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,10 +148,10 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelExecutionPollingUntilDone(request:)``
-  /// - ``cancelExecutionPollingUntilDone(name:)``
   /// - ``cancelExecution(request:)``
   /// - ``cancelExecution(request:options:)``
+  /// - ``cancelExecutionPollingUntilDone(name:)``
+  /// - ``cancelExecutionPollingUntilDone(request:)``
   public func cancelExecutionPollingUntilDone(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -185,9 +185,9 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -213,8 +213,8 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

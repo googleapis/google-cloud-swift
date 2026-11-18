@@ -58,9 +58,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``createDataTaxonomy(request:)``
+  /// - ``createDataTaxonomyPollingUntilDone(parent:dataTaxonomy:dataTaxonomyId:)``
   /// - ``createDataTaxonomyPollingUntilDone(request:)``
   /// - ``createDataTaxonomyPollingUntilDone(request:options:)``
-  /// - ``createDataTaxonomyPollingUntilDone(parent:dataTaxonomy:dataTaxonomyId:)``
   @available(*, deprecated)
   public func createDataTaxonomy(
     request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -74,10 +74,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDataTaxonomyPollingUntilDone(request:)``
-  /// - ``createDataTaxonomyPollingUntilDone(parent:dataTaxonomy:dataTaxonomyId:)``
   /// - ``createDataTaxonomy(request:)``
   /// - ``createDataTaxonomy(request:options:)``
+  /// - ``createDataTaxonomyPollingUntilDone(parent:dataTaxonomy:dataTaxonomyId:)``
+  /// - ``createDataTaxonomyPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createDataTaxonomyPollingUntilDone(
     request: CreateDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -111,9 +111,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``updateDataTaxonomy(request:)``
+  /// - ``updateDataTaxonomyPollingUntilDone(dataTaxonomy:updateMask:)``
   /// - ``updateDataTaxonomyPollingUntilDone(request:)``
   /// - ``updateDataTaxonomyPollingUntilDone(request:options:)``
-  /// - ``updateDataTaxonomyPollingUntilDone(dataTaxonomy:updateMask:)``
   @available(*, deprecated)
   public func updateDataTaxonomy(
     request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -127,10 +127,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateDataTaxonomyPollingUntilDone(request:)``
-  /// - ``updateDataTaxonomyPollingUntilDone(dataTaxonomy:updateMask:)``
   /// - ``updateDataTaxonomy(request:)``
   /// - ``updateDataTaxonomy(request:options:)``
+  /// - ``updateDataTaxonomyPollingUntilDone(dataTaxonomy:updateMask:)``
+  /// - ``updateDataTaxonomyPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateDataTaxonomyPollingUntilDone(
     request: UpdateDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -165,9 +165,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteDataTaxonomy(request:)``
+  /// - ``deleteDataTaxonomyPollingUntilDone(name:)``
   /// - ``deleteDataTaxonomyPollingUntilDone(request:)``
   /// - ``deleteDataTaxonomyPollingUntilDone(request:options:)``
-  /// - ``deleteDataTaxonomyPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteDataTaxonomy(
     request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -182,10 +182,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataTaxonomyPollingUntilDone(request:)``
-  /// - ``deleteDataTaxonomyPollingUntilDone(name:)``
   /// - ``deleteDataTaxonomy(request:)``
   /// - ``deleteDataTaxonomy(request:options:)``
+  /// - ``deleteDataTaxonomyPollingUntilDone(name:)``
+  /// - ``deleteDataTaxonomyPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteDataTaxonomyPollingUntilDone(
     request: DeleteDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -218,9 +218,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``listDataTaxonomies(request:)``
+  /// - ``listDataTaxonomiesByItems(parent:)``
   /// - ``listDataTaxonomiesByItems(request:)``
   /// - ``listDataTaxonomiesByItems(request:options:)``
-  /// - ``listDataTaxonomiesByItems(parent:)``
   @available(*, deprecated)
   public func listDataTaxonomies(
     request: ListDataTaxonomiesRequest, options: GoogleGax.RequestOptions
@@ -234,8 +234,8 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDataTaxonomy(request:)``
   /// - ``getDataTaxonomy(name:)``
+  /// - ``getDataTaxonomy(request:)``
   @available(*, deprecated)
   public func getDataTaxonomy(
     request: GetDataTaxonomyRequest, options: GoogleGax.RequestOptions
@@ -250,9 +250,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``createDataAttributeBinding(request:)``
+  /// - ``createDataAttributeBindingPollingUntilDone(parent:dataAttributeBinding:dataAttributeBindingId:)``
   /// - ``createDataAttributeBindingPollingUntilDone(request:)``
   /// - ``createDataAttributeBindingPollingUntilDone(request:options:)``
-  /// - ``createDataAttributeBindingPollingUntilDone(parent:dataAttributeBinding:dataAttributeBindingId:)``
   @available(*, deprecated)
   public func createDataAttributeBinding(
     request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -266,10 +266,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDataAttributeBindingPollingUntilDone(request:)``
-  /// - ``createDataAttributeBindingPollingUntilDone(parent:dataAttributeBinding:dataAttributeBindingId:)``
   /// - ``createDataAttributeBinding(request:)``
   /// - ``createDataAttributeBinding(request:options:)``
+  /// - ``createDataAttributeBindingPollingUntilDone(parent:dataAttributeBinding:dataAttributeBindingId:)``
+  /// - ``createDataAttributeBindingPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createDataAttributeBindingPollingUntilDone(
     request: CreateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -303,9 +303,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``updateDataAttributeBinding(request:)``
+  /// - ``updateDataAttributeBindingPollingUntilDone(dataAttributeBinding:updateMask:)``
   /// - ``updateDataAttributeBindingPollingUntilDone(request:)``
   /// - ``updateDataAttributeBindingPollingUntilDone(request:options:)``
-  /// - ``updateDataAttributeBindingPollingUntilDone(dataAttributeBinding:updateMask:)``
   @available(*, deprecated)
   public func updateDataAttributeBinding(
     request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -319,10 +319,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateDataAttributeBindingPollingUntilDone(request:)``
-  /// - ``updateDataAttributeBindingPollingUntilDone(dataAttributeBinding:updateMask:)``
   /// - ``updateDataAttributeBinding(request:)``
   /// - ``updateDataAttributeBinding(request:options:)``
+  /// - ``updateDataAttributeBindingPollingUntilDone(dataAttributeBinding:updateMask:)``
+  /// - ``updateDataAttributeBindingPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateDataAttributeBindingPollingUntilDone(
     request: UpdateDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -358,9 +358,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteDataAttributeBinding(request:)``
+  /// - ``deleteDataAttributeBindingPollingUntilDone(name:)``
   /// - ``deleteDataAttributeBindingPollingUntilDone(request:)``
   /// - ``deleteDataAttributeBindingPollingUntilDone(request:options:)``
-  /// - ``deleteDataAttributeBindingPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteDataAttributeBinding(
     request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -376,10 +376,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataAttributeBindingPollingUntilDone(request:)``
-  /// - ``deleteDataAttributeBindingPollingUntilDone(name:)``
   /// - ``deleteDataAttributeBinding(request:)``
   /// - ``deleteDataAttributeBinding(request:options:)``
+  /// - ``deleteDataAttributeBindingPollingUntilDone(name:)``
+  /// - ``deleteDataAttributeBindingPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteDataAttributeBindingPollingUntilDone(
     request: DeleteDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -412,9 +412,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``listDataAttributeBindings(request:)``
+  /// - ``listDataAttributeBindingsByItems(parent:)``
   /// - ``listDataAttributeBindingsByItems(request:)``
   /// - ``listDataAttributeBindingsByItems(request:options:)``
-  /// - ``listDataAttributeBindingsByItems(parent:)``
   @available(*, deprecated)
   public func listDataAttributeBindings(
     request: ListDataAttributeBindingsRequest, options: GoogleGax.RequestOptions
@@ -428,8 +428,8 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDataAttributeBinding(request:)``
   /// - ``getDataAttributeBinding(name:)``
+  /// - ``getDataAttributeBinding(request:)``
   @available(*, deprecated)
   public func getDataAttributeBinding(
     request: GetDataAttributeBindingRequest, options: GoogleGax.RequestOptions
@@ -444,9 +444,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``createDataAttribute(request:)``
+  /// - ``createDataAttributePollingUntilDone(parent:dataAttribute:dataAttributeId:)``
   /// - ``createDataAttributePollingUntilDone(request:)``
   /// - ``createDataAttributePollingUntilDone(request:options:)``
-  /// - ``createDataAttributePollingUntilDone(parent:dataAttribute:dataAttributeId:)``
   @available(*, deprecated)
   public func createDataAttribute(
     request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -460,10 +460,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDataAttributePollingUntilDone(request:)``
-  /// - ``createDataAttributePollingUntilDone(parent:dataAttribute:dataAttributeId:)``
   /// - ``createDataAttribute(request:)``
   /// - ``createDataAttribute(request:options:)``
+  /// - ``createDataAttributePollingUntilDone(parent:dataAttribute:dataAttributeId:)``
+  /// - ``createDataAttributePollingUntilDone(request:)``
   @available(*, deprecated)
   public func createDataAttributePollingUntilDone(
     request: CreateDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -497,9 +497,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``updateDataAttribute(request:)``
+  /// - ``updateDataAttributePollingUntilDone(dataAttribute:updateMask:)``
   /// - ``updateDataAttributePollingUntilDone(request:)``
   /// - ``updateDataAttributePollingUntilDone(request:options:)``
-  /// - ``updateDataAttributePollingUntilDone(dataAttribute:updateMask:)``
   @available(*, deprecated)
   public func updateDataAttribute(
     request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -513,10 +513,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateDataAttributePollingUntilDone(request:)``
-  /// - ``updateDataAttributePollingUntilDone(dataAttribute:updateMask:)``
   /// - ``updateDataAttribute(request:)``
   /// - ``updateDataAttribute(request:options:)``
+  /// - ``updateDataAttributePollingUntilDone(dataAttribute:updateMask:)``
+  /// - ``updateDataAttributePollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateDataAttributePollingUntilDone(
     request: UpdateDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -550,9 +550,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteDataAttribute(request:)``
+  /// - ``deleteDataAttributePollingUntilDone(name:)``
   /// - ``deleteDataAttributePollingUntilDone(request:)``
   /// - ``deleteDataAttributePollingUntilDone(request:options:)``
-  /// - ``deleteDataAttributePollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteDataAttribute(
     request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -566,10 +566,10 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteDataAttributePollingUntilDone(request:)``
-  /// - ``deleteDataAttributePollingUntilDone(name:)``
   /// - ``deleteDataAttribute(request:)``
   /// - ``deleteDataAttribute(request:options:)``
+  /// - ``deleteDataAttributePollingUntilDone(name:)``
+  /// - ``deleteDataAttributePollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteDataAttributePollingUntilDone(
     request: DeleteDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -602,9 +602,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``listDataAttributes(request:)``
+  /// - ``listDataAttributesByItems(parent:)``
   /// - ``listDataAttributesByItems(request:)``
   /// - ``listDataAttributesByItems(request:options:)``
-  /// - ``listDataAttributesByItems(parent:)``
   @available(*, deprecated)
   public func listDataAttributes(
     request: ListDataAttributesRequest, options: GoogleGax.RequestOptions
@@ -618,8 +618,8 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDataAttribute(request:)``
   /// - ``getDataAttribute(name:)``
+  /// - ``getDataAttribute(request:)``
   @available(*, deprecated)
   public func getDataAttribute(
     request: GetDataAttributeRequest, options: GoogleGax.RequestOptions
@@ -731,9 +731,9 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -759,8 +759,8 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -775,8 +775,8 @@ public final class DataTaxonomyServiceClient: Clients.DataTaxonomyServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

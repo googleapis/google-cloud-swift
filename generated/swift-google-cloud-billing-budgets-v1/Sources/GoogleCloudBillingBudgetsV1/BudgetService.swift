@@ -50,8 +50,8 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createBudget(request:)``
   /// - ``createBudget(parent:budget:)``
+  /// - ``createBudget(request:)``
   public func createBudget(
     request: CreateBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -68,8 +68,8 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateBudget(request:)``
   /// - ``updateBudget(budget:updateMask:)``
+  /// - ``updateBudget(request:)``
   public func updateBudget(
     request: UpdateBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -87,8 +87,8 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getBudget(request:)``
   /// - ``getBudget(name:)``
+  /// - ``getBudget(request:)``
   public func getBudget(
     request: GetBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -107,9 +107,9 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listBudgets(request:)``
+  /// - ``listBudgetsByItems(parent:)``
   /// - ``listBudgetsByItems(request:)``
   /// - ``listBudgetsByItems(request:options:)``
-  /// - ``listBudgetsByItems(parent:)``
   public func listBudgets(
     request: ListBudgetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse {
@@ -122,8 +122,8 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteBudget(request:)``
   /// - ``deleteBudget(name:)``
+  /// - ``deleteBudget(request:)``
   public func deleteBudget(
     request: DeleteBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws {

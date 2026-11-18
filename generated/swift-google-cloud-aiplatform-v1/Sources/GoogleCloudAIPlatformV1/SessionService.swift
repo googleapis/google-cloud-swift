@@ -58,10 +58,10 @@
     /// ## See Also
     ///
     /// - ``createSession(request:)``
-    /// - ``createSessionPollingUntilDone(request:)``
-    /// - ``createSessionPollingUntilDone(request:options:)``
     /// - ``createSessionPollingUntilDone(parent:session:)``
     /// - ``createSessionPollingUntilDone(parent:session:sessionId:)``
+    /// - ``createSessionPollingUntilDone(request:)``
+    /// - ``createSessionPollingUntilDone(request:options:)``
     public func createSession(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -76,11 +76,11 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSessionPollingUntilDone(request:)``
-    /// - ``createSessionPollingUntilDone(parent:session:)``
-    /// - ``createSessionPollingUntilDone(parent:session:sessionId:)``
     /// - ``createSession(request:)``
     /// - ``createSession(request:options:)``
+    /// - ``createSessionPollingUntilDone(parent:session:)``
+    /// - ``createSessionPollingUntilDone(parent:session:sessionId:)``
+    /// - ``createSessionPollingUntilDone(request:)``
     public func createSessionPollingUntilDone(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> Session {
@@ -113,8 +113,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSession(request:)``
     /// - ``getSession(name:)``
+    /// - ``getSession(request:)``
     public func getSession(
       request: GetSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Session {
@@ -131,9 +131,9 @@
     /// ## See Also
     ///
     /// - ``listSessions(request:)``
+    /// - ``listSessionsByItems(parent:)``
     /// - ``listSessionsByItems(request:)``
     /// - ``listSessionsByItems(request:options:)``
-    /// - ``listSessionsByItems(parent:)``
     public func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListSessionsResponse {
@@ -166,9 +166,9 @@
     /// ## See Also
     ///
     /// - ``deleteSession(request:)``
+    /// - ``deleteSessionPollingUntilDone(name:)``
     /// - ``deleteSessionPollingUntilDone(request:)``
     /// - ``deleteSessionPollingUntilDone(request:options:)``
-    /// - ``deleteSessionPollingUntilDone(name:)``
     public func deleteSession(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -184,10 +184,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSessionPollingUntilDone(request:)``
-    /// - ``deleteSessionPollingUntilDone(name:)``
     /// - ``deleteSession(request:)``
     /// - ``deleteSession(request:options:)``
+    /// - ``deleteSessionPollingUntilDone(name:)``
+    /// - ``deleteSessionPollingUntilDone(request:)``
     public func deleteSessionPollingUntilDone(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -222,9 +222,9 @@
     /// ## See Also
     ///
     /// - ``listEvents(request:)``
+    /// - ``listEventsByItems(parent:)``
     /// - ``listEventsByItems(request:)``
     /// - ``listEventsByItems(request:options:)``
-    /// - ``listEventsByItems(parent:)``
     public func listEvents(
       request: ListEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListEventsResponse {
@@ -237,8 +237,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``appendEvent(request:)``
     /// - ``appendEvent(name:event:)``
+    /// - ``appendEvent(request:)``
     public func appendEvent(
       request: AppendEventRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AppendEventResponse {
@@ -332,9 +332,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -360,8 +360,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -376,8 +376,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

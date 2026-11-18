@@ -50,8 +50,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``fetchServiceAccountForCustomer(request:)``
   /// - ``fetchServiceAccountForCustomer(parent:)``
+  /// - ``fetchServiceAccountForCustomer(request:)``
   public func fetchServiceAccountForCustomer(
     request: FetchServiceAccountForCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FeedServiceAccount {
@@ -64,8 +64,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createFeed(request:)``
   /// - ``createFeed(parent:feed:)``
+  /// - ``createFeed(request:)``
   public func createFeed(
     request: CreateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -78,8 +78,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFeed(request:)``
   /// - ``getFeed(name:)``
+  /// - ``getFeed(request:)``
   public func getFeed(
     request: GetFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -92,8 +92,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFeed(request:)``
   /// - ``deleteFeed(name:)``
+  /// - ``deleteFeed(request:)``
   public func deleteFeed(
     request: DeleteFeedRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -106,8 +106,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``enableFeed(request:)``
   /// - ``enableFeed(name:)``
+  /// - ``enableFeed(request:)``
   public func enableFeed(
     request: EnableFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -120,8 +120,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``disableFeed(request:)``
   /// - ``disableFeed(name:)``
+  /// - ``disableFeed(request:)``
   public func disableFeed(
     request: DisableFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -135,9 +135,9 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFeeds(request:)``
+  /// - ``listFeedsByItems(parent:)``
   /// - ``listFeedsByItems(request:)``
   /// - ``listFeedsByItems(request:options:)``
-  /// - ``listFeedsByItems(parent:)``
   public func listFeeds(
     request: ListFeedsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeedsResponse {
@@ -151,9 +151,9 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFeedPacks(request:)``
+  /// - ``listFeedPacksByItems(parent:)``
   /// - ``listFeedPacksByItems(request:)``
   /// - ``listFeedPacksByItems(request:options:)``
-  /// - ``listFeedPacksByItems(parent:)``
   public func listFeedPacks(
     request: ListFeedPacksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeedPacksResponse {
@@ -166,8 +166,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFeedPack(request:)``
   /// - ``getFeedPack(name:)``
+  /// - ``getFeedPack(request:)``
   public func getFeedPack(
     request: GetFeedPackRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FeedPack {
@@ -180,8 +180,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateFeed(request:)``
   /// - ``updateFeed(feed:updateMask:)``
+  /// - ``updateFeed(request:)``
   public func updateFeed(
     request: UpdateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.Feed {
@@ -195,9 +195,9 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFeedSourceTypeSchemas(request:)``
+  /// - ``listFeedSourceTypeSchemasByItems(parent:)``
   /// - ``listFeedSourceTypeSchemasByItems(request:)``
   /// - ``listFeedSourceTypeSchemasByItems(request:options:)``
-  /// - ``listFeedSourceTypeSchemasByItems(parent:)``
   public func listFeedSourceTypeSchemas(
     request: ListFeedSourceTypeSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFeedSourceTypeSchemasResponse {
@@ -212,9 +212,9 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listLogTypeSchemas(request:)``
+  /// - ``listLogTypeSchemasByItems(parent:)``
   /// - ``listLogTypeSchemasByItems(request:)``
   /// - ``listLogTypeSchemasByItems(request:options:)``
-  /// - ``listLogTypeSchemasByItems(parent:)``
   public func listLogTypeSchemas(
     request: ListLogTypeSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListLogTypeSchemasResponse {
@@ -229,8 +229,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importPushLogs(request:)``
   /// - ``importPushLogs(parent:)``
+  /// - ``importPushLogs(request:)``
   public func importPushLogs(
     request: ImportPushLogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -247,8 +247,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateSecret(request:)``
   /// - ``generateSecret(name:)``
+  /// - ``generateSecret(request:)``
   public func generateSecret(
     request: GenerateSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.GenerateSecretResponse {
@@ -264,9 +264,9 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -292,8 +292,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -308,8 +308,8 @@ public final class FeedsServiceClient: Clients.FeedsServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -55,9 +55,9 @@
     /// ## See Also
     ///
     /// - ``listSessionEntityTypes(request:)``
+    /// - ``listSessionEntityTypesByItems(parent:)``
     /// - ``listSessionEntityTypesByItems(request:)``
     /// - ``listSessionEntityTypesByItems(request:options:)``
-    /// - ``listSessionEntityTypesByItems(parent:)``
     public func listSessionEntityTypes(
       request: ListSessionEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListSessionEntityTypesResponse {
@@ -70,8 +70,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSessionEntityType(request:)``
     /// - ``getSessionEntityType(name:)``
+    /// - ``getSessionEntityType(request:)``
     public func getSessionEntityType(
       request: GetSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
@@ -84,8 +84,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSessionEntityType(request:)``
     /// - ``createSessionEntityType(parent:sessionEntityType:)``
+    /// - ``createSessionEntityType(request:)``
     public func createSessionEntityType(
       request: CreateSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.SessionEntityType {
@@ -112,8 +112,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSessionEntityType(request:)``
     /// - ``deleteSessionEntityType(name:)``
+    /// - ``deleteSessionEntityType(request:)``
     public func deleteSessionEntityType(
       request: DeleteSessionEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -174,9 +174,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -202,8 +202,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

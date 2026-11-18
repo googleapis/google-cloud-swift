@@ -51,8 +51,8 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteLog(request:)``
   /// - ``deleteLog(logName:)``
+  /// - ``deleteLog(request:)``
   public func deleteLog(
     request: DeleteLogRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -71,8 +71,8 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``writeLogEntries(request:)``
   /// - ``writeLogEntries(logName:resource:labels:entries:)``
+  /// - ``writeLogEntries(request:)``
   public func writeLogEntries(
     request: WriteLogEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.WriteLogEntriesResponse {
@@ -120,8 +120,8 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``listLogs(request:)``
   /// - ``listLogs(parent:)``
+  /// - ``listLogs(request:)``
   public func listLogs(
     request: ListLogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListLogsResponse {
@@ -137,9 +137,9 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -165,8 +165,8 @@ public final class LoggingServiceV2Client: Clients.LoggingServiceV2Protocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

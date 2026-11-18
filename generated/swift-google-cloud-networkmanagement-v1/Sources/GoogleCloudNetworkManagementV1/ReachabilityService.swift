@@ -63,9 +63,9 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// ## See Also
   ///
   /// - ``listConnectivityTests(request:)``
+  /// - ``listConnectivityTestsByItems(parent:)``
   /// - ``listConnectivityTestsByItems(request:)``
   /// - ``listConnectivityTestsByItems(request:options:)``
-  /// - ``listConnectivityTestsByItems(parent:)``
   public func listConnectivityTests(
     request: ListConnectivityTestsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.ListConnectivityTestsResponse {
@@ -78,8 +78,8 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getConnectivityTest(request:)``
   /// - ``getConnectivityTest(name:)``
+  /// - ``getConnectivityTest(request:)``
   public func getConnectivityTest(
     request: GetConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkManagementV1.ConnectivityTest {
@@ -105,9 +105,9 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// ## See Also
   ///
   /// - ``createConnectivityTest(request:)``
+  /// - ``createConnectivityTestPollingUntilDone(parent:testId:resource:)``
   /// - ``createConnectivityTestPollingUntilDone(request:)``
   /// - ``createConnectivityTestPollingUntilDone(request:options:)``
-  /// - ``createConnectivityTestPollingUntilDone(parent:testId:resource:)``
   public func createConnectivityTest(
     request: CreateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -132,10 +132,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createConnectivityTestPollingUntilDone(request:)``
-  /// - ``createConnectivityTestPollingUntilDone(parent:testId:resource:)``
   /// - ``createConnectivityTest(request:)``
   /// - ``createConnectivityTest(request:options:)``
+  /// - ``createConnectivityTestPollingUntilDone(parent:testId:resource:)``
+  /// - ``createConnectivityTestPollingUntilDone(request:)``
   public func createConnectivityTestPollingUntilDone(
     request: CreateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectivityTest {
@@ -209,10 +209,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectivityTestPollingUntilDone(request:)``
-  /// - ``updateConnectivityTestPollingUntilDone(updateMask:resource:)``
   /// - ``updateConnectivityTest(request:)``
   /// - ``updateConnectivityTest(request:options:)``
+  /// - ``updateConnectivityTestPollingUntilDone(request:)``
+  /// - ``updateConnectivityTestPollingUntilDone(updateMask:resource:)``
   public func updateConnectivityTestPollingUntilDone(
     request: UpdateConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectivityTest {
@@ -281,9 +281,9 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``rerunConnectivityTestPollingUntilDone(request:)``
   /// - ``rerunConnectivityTest(request:)``
   /// - ``rerunConnectivityTest(request:options:)``
+  /// - ``rerunConnectivityTestPollingUntilDone(request:)``
   public func rerunConnectivityTestPollingUntilDone(
     request: RerunConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectivityTest {
@@ -316,9 +316,9 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteConnectivityTest(request:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(name:)``
   /// - ``deleteConnectivityTestPollingUntilDone(request:)``
   /// - ``deleteConnectivityTestPollingUntilDone(request:options:)``
-  /// - ``deleteConnectivityTestPollingUntilDone(name:)``
   public func deleteConnectivityTest(
     request: DeleteConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -331,10 +331,10 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectivityTestPollingUntilDone(request:)``
-  /// - ``deleteConnectivityTestPollingUntilDone(name:)``
   /// - ``deleteConnectivityTest(request:)``
   /// - ``deleteConnectivityTest(request:options:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(name:)``
+  /// - ``deleteConnectivityTestPollingUntilDone(request:)``
   public func deleteConnectivityTestPollingUntilDone(
     request: DeleteConnectivityTestRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -453,9 +453,9 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -481,8 +481,8 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -497,8 +497,8 @@ public final class ReachabilityServiceClient: Clients.ReachabilityServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

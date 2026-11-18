@@ -56,9 +56,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNodes(request:)``
+  /// - ``listNodesByItems(parent:)``
   /// - ``listNodesByItems(request:)``
   /// - ``listNodesByItems(request:options:)``
-  /// - ``listNodesByItems(parent:)``
   public func listNodes(
     request: ListNodesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListNodesResponse {
@@ -71,8 +71,8 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNode(request:)``
   /// - ``getNode(name:)``
+  /// - ``getNode(request:)``
   public func getNode(
     request: GetNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.Node {
@@ -86,9 +86,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createNode(request:)``
+  /// - ``createNodePollingUntilDone(parent:node:nodeId:)``
   /// - ``createNodePollingUntilDone(request:)``
   /// - ``createNodePollingUntilDone(request:options:)``
-  /// - ``createNodePollingUntilDone(parent:node:nodeId:)``
   public func createNode(
     request: CreateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createNodePollingUntilDone(request:)``
-  /// - ``createNodePollingUntilDone(parent:node:nodeId:)``
   /// - ``createNode(request:)``
   /// - ``createNode(request:options:)``
+  /// - ``createNodePollingUntilDone(parent:node:nodeId:)``
+  /// - ``createNodePollingUntilDone(request:)``
   public func createNodePollingUntilDone(
     request: CreateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -136,9 +136,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteNode(request:)``
+  /// - ``deleteNodePollingUntilDone(name:)``
   /// - ``deleteNodePollingUntilDone(request:)``
   /// - ``deleteNodePollingUntilDone(request:options:)``
-  /// - ``deleteNodePollingUntilDone(name:)``
   public func deleteNode(
     request: DeleteNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,10 +151,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteNodePollingUntilDone(request:)``
-  /// - ``deleteNodePollingUntilDone(name:)``
   /// - ``deleteNode(request:)``
   /// - ``deleteNode(request:options:)``
+  /// - ``deleteNodePollingUntilDone(name:)``
+  /// - ``deleteNodePollingUntilDone(request:)``
   public func deleteNodePollingUntilDone(
     request: DeleteNodeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -200,9 +200,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``stopNodePollingUntilDone(request:)``
   /// - ``stopNode(request:)``
   /// - ``stopNode(request:options:)``
+  /// - ``stopNodePollingUntilDone(request:)``
   public func stopNodePollingUntilDone(
     request: StopNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -248,9 +248,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startNodePollingUntilDone(request:)``
   /// - ``startNode(request:)``
   /// - ``startNode(request:options:)``
+  /// - ``startNodePollingUntilDone(request:)``
   public func startNodePollingUntilDone(
     request: StartNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -282,9 +282,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateNode(request:)``
+  /// - ``updateNodePollingUntilDone(node:updateMask:)``
   /// - ``updateNodePollingUntilDone(request:)``
   /// - ``updateNodePollingUntilDone(request:options:)``
-  /// - ``updateNodePollingUntilDone(node:updateMask:)``
   public func updateNode(
     request: UpdateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -297,10 +297,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateNodePollingUntilDone(request:)``
-  /// - ``updateNodePollingUntilDone(node:updateMask:)``
   /// - ``updateNode(request:)``
   /// - ``updateNode(request:options:)``
+  /// - ``updateNodePollingUntilDone(node:updateMask:)``
+  /// - ``updateNodePollingUntilDone(request:)``
   public func updateNodePollingUntilDone(
     request: UpdateNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Node {
@@ -332,9 +332,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listQueuedResources(request:)``
+  /// - ``listQueuedResourcesByItems(parent:)``
   /// - ``listQueuedResourcesByItems(request:)``
   /// - ``listQueuedResourcesByItems(request:options:)``
-  /// - ``listQueuedResourcesByItems(parent:)``
   public func listQueuedResources(
     request: ListQueuedResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListQueuedResourcesResponse {
@@ -347,8 +347,8 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getQueuedResource(request:)``
   /// - ``getQueuedResource(name:)``
+  /// - ``getQueuedResource(request:)``
   public func getQueuedResource(
     request: GetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.QueuedResource {
@@ -362,9 +362,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createQueuedResource(request:)``
+  /// - ``createQueuedResourcePollingUntilDone(parent:queuedResource:queuedResourceId:)``
   /// - ``createQueuedResourcePollingUntilDone(request:)``
   /// - ``createQueuedResourcePollingUntilDone(request:options:)``
-  /// - ``createQueuedResourcePollingUntilDone(parent:queuedResource:queuedResourceId:)``
   public func createQueuedResource(
     request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -377,10 +377,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createQueuedResourcePollingUntilDone(request:)``
-  /// - ``createQueuedResourcePollingUntilDone(parent:queuedResource:queuedResourceId:)``
   /// - ``createQueuedResource(request:)``
   /// - ``createQueuedResource(request:options:)``
+  /// - ``createQueuedResourcePollingUntilDone(parent:queuedResource:queuedResourceId:)``
+  /// - ``createQueuedResourcePollingUntilDone(request:)``
   public func createQueuedResourcePollingUntilDone(
     request: CreateQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> QueuedResource {
@@ -413,9 +413,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteQueuedResource(request:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(name:)``
   /// - ``deleteQueuedResourcePollingUntilDone(request:)``
   /// - ``deleteQueuedResourcePollingUntilDone(request:options:)``
-  /// - ``deleteQueuedResourcePollingUntilDone(name:)``
   public func deleteQueuedResource(
     request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -428,10 +428,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteQueuedResourcePollingUntilDone(request:)``
-  /// - ``deleteQueuedResourcePollingUntilDone(name:)``
   /// - ``deleteQueuedResource(request:)``
   /// - ``deleteQueuedResource(request:options:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(name:)``
+  /// - ``deleteQueuedResourcePollingUntilDone(request:)``
   public func deleteQueuedResourcePollingUntilDone(
     request: DeleteQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -463,9 +463,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``resetQueuedResource(request:)``
+  /// - ``resetQueuedResourcePollingUntilDone(name:)``
   /// - ``resetQueuedResourcePollingUntilDone(request:)``
   /// - ``resetQueuedResourcePollingUntilDone(request:options:)``
-  /// - ``resetQueuedResourcePollingUntilDone(name:)``
   public func resetQueuedResource(
     request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -478,10 +478,10 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resetQueuedResourcePollingUntilDone(request:)``
-  /// - ``resetQueuedResourcePollingUntilDone(name:)``
   /// - ``resetQueuedResource(request:)``
   /// - ``resetQueuedResource(request:options:)``
+  /// - ``resetQueuedResourcePollingUntilDone(name:)``
+  /// - ``resetQueuedResourcePollingUntilDone(request:)``
   public func resetQueuedResourcePollingUntilDone(
     request: ResetQueuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> QueuedResource {
@@ -527,9 +527,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAcceleratorTypes(request:)``
+  /// - ``listAcceleratorTypesByItems(parent:)``
   /// - ``listAcceleratorTypesByItems(request:)``
   /// - ``listAcceleratorTypesByItems(request:options:)``
-  /// - ``listAcceleratorTypesByItems(parent:)``
   public func listAcceleratorTypes(
     request: ListAcceleratorTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListAcceleratorTypesResponse {
@@ -542,8 +542,8 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAcceleratorType(request:)``
   /// - ``getAcceleratorType(name:)``
+  /// - ``getAcceleratorType(request:)``
   public func getAcceleratorType(
     request: GetAcceleratorTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.AcceleratorType {
@@ -557,9 +557,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRuntimeVersions(request:)``
+  /// - ``listRuntimeVersionsByItems(parent:)``
   /// - ``listRuntimeVersionsByItems(request:)``
   /// - ``listRuntimeVersionsByItems(request:options:)``
-  /// - ``listRuntimeVersionsByItems(parent:)``
   public func listRuntimeVersions(
     request: ListRuntimeVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.ListRuntimeVersionsResponse {
@@ -572,8 +572,8 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRuntimeVersion(request:)``
   /// - ``getRuntimeVersion(name:)``
+  /// - ``getRuntimeVersion(request:)``
   public func getRuntimeVersion(
     request: GetRuntimeVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTpuV2.RuntimeVersion {
@@ -630,9 +630,9 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -658,8 +658,8 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -674,8 +674,8 @@ public final class TpuClient: Clients.TpuProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

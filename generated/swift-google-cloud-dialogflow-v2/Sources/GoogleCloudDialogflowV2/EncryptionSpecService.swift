@@ -54,8 +54,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEncryptionSpec(request:)``
     /// - ``getEncryptionSpec(name:)``
+    /// - ``getEncryptionSpec(request:)``
     public func getEncryptionSpec(
       request: GetEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EncryptionSpec {
@@ -73,9 +73,9 @@
     /// ## See Also
     ///
     /// - ``initializeEncryptionSpec(request:)``
+    /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
     /// - ``initializeEncryptionSpecPollingUntilDone(request:)``
     /// - ``initializeEncryptionSpecPollingUntilDone(request:options:)``
-    /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
     public func initializeEncryptionSpec(
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -92,10 +92,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``initializeEncryptionSpecPollingUntilDone(request:)``
-    /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
     /// - ``initializeEncryptionSpec(request:)``
     /// - ``initializeEncryptionSpec(request:options:)``
+    /// - ``initializeEncryptionSpecPollingUntilDone(encryptionSpec:)``
+    /// - ``initializeEncryptionSpecPollingUntilDone(request:)``
     public func initializeEncryptionSpecPollingUntilDone(
       request: InitializeEncryptionSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> InitializeEncryptionSpecResponse {
@@ -176,9 +176,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -204,8 +204,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

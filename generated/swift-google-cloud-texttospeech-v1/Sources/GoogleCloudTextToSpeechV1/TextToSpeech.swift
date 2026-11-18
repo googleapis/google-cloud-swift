@@ -47,8 +47,8 @@ public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``listVoices(request:)``
   /// - ``listVoices(languageCode:)``
+  /// - ``listVoices(request:)``
   public func listVoices(
     request: ListVoicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTextToSpeechV1.ListVoicesResponse {
@@ -62,8 +62,8 @@ public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``synthesizeSpeech(request:)``
   /// - ``synthesizeSpeech(input:voice:audioConfig:)``
+  /// - ``synthesizeSpeech(request:)``
   public func synthesizeSpeech(
     request: SynthesizeSpeechRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTextToSpeechV1.SynthesizeSpeechResponse {
@@ -79,9 +79,9 @@ public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

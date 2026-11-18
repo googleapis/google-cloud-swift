@@ -57,9 +57,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listHubs(request:)``
+  /// - ``listHubsByItems(parent:)``
   /// - ``listHubsByItems(request:)``
   /// - ``listHubsByItems(request:options:)``
-  /// - ``listHubsByItems(parent:)``
   public func listHubs(
     request: ListHubsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListHubsResponse {
@@ -72,8 +72,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getHub(request:)``
   /// - ``getHub(name:)``
+  /// - ``getHub(request:)``
   public func getHub(
     request: GetHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.Hub {
@@ -87,9 +87,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createHub(request:)``
+  /// - ``createHubPollingUntilDone(parent:hub:hubId:)``
   /// - ``createHubPollingUntilDone(request:)``
   /// - ``createHubPollingUntilDone(request:options:)``
-  /// - ``createHubPollingUntilDone(parent:hub:hubId:)``
   public func createHub(
     request: CreateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,10 +102,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createHubPollingUntilDone(request:)``
-  /// - ``createHubPollingUntilDone(parent:hub:hubId:)``
   /// - ``createHub(request:)``
   /// - ``createHub(request:options:)``
+  /// - ``createHubPollingUntilDone(parent:hub:hubId:)``
+  /// - ``createHubPollingUntilDone(request:)``
   public func createHubPollingUntilDone(
     request: CreateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> Hub {
@@ -138,9 +138,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateHub(request:)``
+  /// - ``updateHubPollingUntilDone(hub:updateMask:)``
   /// - ``updateHubPollingUntilDone(request:)``
   /// - ``updateHubPollingUntilDone(request:options:)``
-  /// - ``updateHubPollingUntilDone(hub:updateMask:)``
   public func updateHub(
     request: UpdateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateHubPollingUntilDone(request:)``
-  /// - ``updateHubPollingUntilDone(hub:updateMask:)``
   /// - ``updateHub(request:)``
   /// - ``updateHub(request:options:)``
+  /// - ``updateHubPollingUntilDone(hub:updateMask:)``
+  /// - ``updateHubPollingUntilDone(request:)``
   public func updateHubPollingUntilDone(
     request: UpdateHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> Hub {
@@ -189,9 +189,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteHub(request:)``
+  /// - ``deleteHubPollingUntilDone(name:)``
   /// - ``deleteHubPollingUntilDone(request:)``
   /// - ``deleteHubPollingUntilDone(request:options:)``
-  /// - ``deleteHubPollingUntilDone(name:)``
   public func deleteHub(
     request: DeleteHubRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -204,10 +204,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteHubPollingUntilDone(request:)``
-  /// - ``deleteHubPollingUntilDone(name:)``
   /// - ``deleteHub(request:)``
   /// - ``deleteHub(request:options:)``
+  /// - ``deleteHubPollingUntilDone(name:)``
+  /// - ``deleteHubPollingUntilDone(request:)``
   public func deleteHubPollingUntilDone(
     request: DeleteHubRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -241,9 +241,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listHubSpokes(request:)``
+  /// - ``listHubSpokesByItems(name:)``
   /// - ``listHubSpokesByItems(request:)``
   /// - ``listHubSpokesByItems(request:options:)``
-  /// - ``listHubSpokesByItems(name:)``
   public func listHubSpokes(
     request: ListHubSpokesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListHubSpokesResponse {
@@ -258,9 +258,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``queryHubStatus(request:)``
+  /// - ``queryHubStatusByItems(name:)``
   /// - ``queryHubStatusByItems(request:)``
   /// - ``queryHubStatusByItems(request:options:)``
-  /// - ``queryHubStatusByItems(name:)``
   public func queryHubStatus(
     request: QueryHubStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.QueryHubStatusResponse {
@@ -275,9 +275,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSpokes(request:)``
+  /// - ``listSpokesByItems(parent:)``
   /// - ``listSpokesByItems(request:)``
   /// - ``listSpokesByItems(request:options:)``
-  /// - ``listSpokesByItems(parent:)``
   public func listSpokes(
     request: ListSpokesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListSpokesResponse {
@@ -290,8 +290,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSpoke(request:)``
   /// - ``getSpoke(name:)``
+  /// - ``getSpoke(request:)``
   public func getSpoke(
     request: GetSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.Spoke {
@@ -305,9 +305,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createSpoke(request:)``
+  /// - ``createSpokePollingUntilDone(parent:spoke:spokeId:)``
   /// - ``createSpokePollingUntilDone(request:)``
   /// - ``createSpokePollingUntilDone(request:options:)``
-  /// - ``createSpokePollingUntilDone(parent:spoke:spokeId:)``
   public func createSpoke(
     request: CreateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -320,10 +320,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSpokePollingUntilDone(request:)``
-  /// - ``createSpokePollingUntilDone(parent:spoke:spokeId:)``
   /// - ``createSpoke(request:)``
   /// - ``createSpoke(request:options:)``
+  /// - ``createSpokePollingUntilDone(parent:spoke:spokeId:)``
+  /// - ``createSpokePollingUntilDone(request:)``
   public func createSpokePollingUntilDone(
     request: CreateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Spoke {
@@ -370,10 +370,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateSpokePollingUntilDone(request:)``
-  /// - ``updateSpokePollingUntilDone(spoke:updateMask:)``
   /// - ``updateSpoke(request:)``
   /// - ``updateSpoke(request:options:)``
+  /// - ``updateSpokePollingUntilDone(request:)``
+  /// - ``updateSpokePollingUntilDone(spoke:updateMask:)``
   public func updateSpokePollingUntilDone(
     request: UpdateSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Spoke {
@@ -408,9 +408,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``rejectHubSpoke(request:)``
+  /// - ``rejectHubSpokePollingUntilDone(name:spokeUri:)``
   /// - ``rejectHubSpokePollingUntilDone(request:)``
   /// - ``rejectHubSpokePollingUntilDone(request:options:)``
-  /// - ``rejectHubSpokePollingUntilDone(name:spokeUri:)``
   public func rejectHubSpoke(
     request: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -426,10 +426,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``rejectHubSpokePollingUntilDone(request:)``
-  /// - ``rejectHubSpokePollingUntilDone(name:spokeUri:)``
   /// - ``rejectHubSpoke(request:)``
   /// - ``rejectHubSpoke(request:options:)``
+  /// - ``rejectHubSpokePollingUntilDone(name:spokeUri:)``
+  /// - ``rejectHubSpokePollingUntilDone(request:)``
   public func rejectHubSpokePollingUntilDone(
     request: RejectHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> RejectHubSpokeResponse {
@@ -463,9 +463,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``acceptHubSpoke(request:)``
+  /// - ``acceptHubSpokePollingUntilDone(name:spokeUri:)``
   /// - ``acceptHubSpokePollingUntilDone(request:)``
   /// - ``acceptHubSpokePollingUntilDone(request:options:)``
-  /// - ``acceptHubSpokePollingUntilDone(name:spokeUri:)``
   public func acceptHubSpoke(
     request: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -479,10 +479,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``acceptHubSpokePollingUntilDone(request:)``
-  /// - ``acceptHubSpokePollingUntilDone(name:spokeUri:)``
   /// - ``acceptHubSpoke(request:)``
   /// - ``acceptHubSpoke(request:options:)``
+  /// - ``acceptHubSpokePollingUntilDone(name:spokeUri:)``
+  /// - ``acceptHubSpokePollingUntilDone(request:)``
   public func acceptHubSpokePollingUntilDone(
     request: AcceptHubSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> AcceptHubSpokeResponse {
@@ -515,9 +515,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``acceptSpokeUpdate(request:)``
+  /// - ``acceptSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
   /// - ``acceptSpokeUpdatePollingUntilDone(request:)``
   /// - ``acceptSpokeUpdatePollingUntilDone(request:options:)``
-  /// - ``acceptSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
   public func acceptSpokeUpdate(
     request: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -530,10 +530,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``acceptSpokeUpdatePollingUntilDone(request:)``
-  /// - ``acceptSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
   /// - ``acceptSpokeUpdate(request:)``
   /// - ``acceptSpokeUpdate(request:options:)``
+  /// - ``acceptSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
+  /// - ``acceptSpokeUpdatePollingUntilDone(request:)``
   public func acceptSpokeUpdatePollingUntilDone(
     request: AcceptSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> AcceptSpokeUpdateResponse {
@@ -567,9 +567,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``rejectSpokeUpdate(request:)``
+  /// - ``rejectSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
   /// - ``rejectSpokeUpdatePollingUntilDone(request:)``
   /// - ``rejectSpokeUpdatePollingUntilDone(request:options:)``
-  /// - ``rejectSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
   public func rejectSpokeUpdate(
     request: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -582,10 +582,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``rejectSpokeUpdatePollingUntilDone(request:)``
-  /// - ``rejectSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
   /// - ``rejectSpokeUpdate(request:)``
   /// - ``rejectSpokeUpdate(request:options:)``
+  /// - ``rejectSpokeUpdatePollingUntilDone(name:spokeUri:spokeEtag:)``
+  /// - ``rejectSpokeUpdatePollingUntilDone(request:)``
   public func rejectSpokeUpdatePollingUntilDone(
     request: RejectSpokeUpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> RejectSpokeUpdateResponse {
@@ -619,9 +619,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteSpoke(request:)``
+  /// - ``deleteSpokePollingUntilDone(name:)``
   /// - ``deleteSpokePollingUntilDone(request:)``
   /// - ``deleteSpokePollingUntilDone(request:options:)``
-  /// - ``deleteSpokePollingUntilDone(name:)``
   public func deleteSpoke(
     request: DeleteSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -634,10 +634,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSpokePollingUntilDone(request:)``
-  /// - ``deleteSpokePollingUntilDone(name:)``
   /// - ``deleteSpoke(request:)``
   /// - ``deleteSpoke(request:options:)``
+  /// - ``deleteSpokePollingUntilDone(name:)``
+  /// - ``deleteSpokePollingUntilDone(request:)``
   public func deleteSpokePollingUntilDone(
     request: DeleteSpokeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -668,8 +668,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRouteTable(request:)``
   /// - ``getRouteTable(name:)``
+  /// - ``getRouteTable(request:)``
   public func getRouteTable(
     request: GetRouteTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.RouteTable {
@@ -682,8 +682,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRoute(request:)``
   /// - ``getRoute(name:)``
+  /// - ``getRoute(request:)``
   public func getRoute(
     request: GetRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.Route {
@@ -697,9 +697,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRoutes(request:)``
+  /// - ``listRoutesByItems(parent:)``
   /// - ``listRoutesByItems(request:)``
   /// - ``listRoutesByItems(request:options:)``
-  /// - ``listRoutesByItems(parent:)``
   public func listRoutes(
     request: ListRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListRoutesResponse {
@@ -713,9 +713,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRouteTables(request:)``
+  /// - ``listRouteTablesByItems(parent:)``
   /// - ``listRouteTablesByItems(request:)``
   /// - ``listRouteTablesByItems(request:options:)``
-  /// - ``listRouteTablesByItems(parent:)``
   public func listRouteTables(
     request: ListRouteTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListRouteTablesResponse {
@@ -728,8 +728,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getGroup(request:)``
   /// - ``getGroup(name:)``
+  /// - ``getGroup(request:)``
   public func getGroup(
     request: GetGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.Group {
@@ -743,9 +743,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listGroups(request:)``
+  /// - ``listGroupsByItems(parent:)``
   /// - ``listGroupsByItems(request:)``
   /// - ``listGroupsByItems(request:options:)``
-  /// - ``listGroupsByItems(parent:)``
   public func listGroups(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListGroupsResponse {
@@ -759,9 +759,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateGroup(request:)``
+  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
   /// - ``updateGroupPollingUntilDone(request:)``
   /// - ``updateGroupPollingUntilDone(request:options:)``
-  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -774,10 +774,10 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateGroupPollingUntilDone(request:)``
-  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
   /// - ``updateGroup(request:)``
   /// - ``updateGroup(request:options:)``
+  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
+  /// - ``updateGroupPollingUntilDone(request:)``
   public func updateGroupPollingUntilDone(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -889,9 +889,9 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -917,8 +917,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -933,8 +933,8 @@ public final class HubServiceClient: Clients.HubServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

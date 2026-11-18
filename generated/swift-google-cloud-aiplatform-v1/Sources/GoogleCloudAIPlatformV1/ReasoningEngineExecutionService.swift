@@ -85,9 +85,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``asyncQueryReasoningEnginePollingUntilDone(request:)``
     /// - ``asyncQueryReasoningEngine(request:)``
     /// - ``asyncQueryReasoningEngine(request:options:)``
+    /// - ``asyncQueryReasoningEnginePollingUntilDone(request:)``
     public func asyncQueryReasoningEnginePollingUntilDone(
       request: AsyncQueryReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> AsyncQueryReasoningEngineResponse {
@@ -214,9 +214,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -242,8 +242,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -258,8 +258,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

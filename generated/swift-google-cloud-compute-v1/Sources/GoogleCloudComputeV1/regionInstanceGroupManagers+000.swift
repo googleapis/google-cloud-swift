@@ -69,9 +69,9 @@
     /// ## See Also
     ///
     /// - ``abandonInstances(request:)``
+    /// - ``abandonInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``abandonInstancesPollingUntilDone(request:)``
     /// - ``abandonInstancesPollingUntilDone(request:options:)``
-    /// - ``abandonInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func abandonInstances(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -104,10 +104,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``abandonInstancesPollingUntilDone(request:)``
-    /// - ``abandonInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``abandonInstances(request:)``
     /// - ``abandonInstances(request:options:)``
+    /// - ``abandonInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``abandonInstancesPollingUntilDone(request:)``
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -155,9 +155,9 @@
     /// ## See Also
     ///
     /// - ``applyUpdatesToInstances(request:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``applyUpdatesToInstancesPollingUntilDone(request:)``
     /// - ``applyUpdatesToInstancesPollingUntilDone(request:options:)``
-    /// - ``applyUpdatesToInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func applyUpdatesToInstances(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -176,10 +176,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``applyUpdatesToInstancesPollingUntilDone(request:)``
-    /// - ``applyUpdatesToInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``applyUpdatesToInstances(request:)``
     /// - ``applyUpdatesToInstances(request:options:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(request:)``
     public func applyUpdatesToInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -232,9 +232,9 @@
     /// ## See Also
     ///
     /// - ``createInstances(request:)``
+    /// - ``createInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``createInstancesPollingUntilDone(request:)``
     /// - ``createInstancesPollingUntilDone(request:options:)``
-    /// - ``createInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func createInstances(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -258,10 +258,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createInstancesPollingUntilDone(request:)``
-    /// - ``createInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``createInstances(request:)``
     /// - ``createInstances(request:options:)``
+    /// - ``createInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``createInstancesPollingUntilDone(request:)``
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -310,9 +310,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:)``
     public func delete(
       request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -331,10 +331,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -395,9 +395,9 @@
     /// ## See Also
     ///
     /// - ``deleteInstances(request:)``
+    /// - ``deleteInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``deleteInstancesPollingUntilDone(request:)``
     /// - ``deleteInstancesPollingUntilDone(request:options:)``
-    /// - ``deleteInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func deleteInstances(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -430,10 +430,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteInstancesPollingUntilDone(request:)``
-    /// - ``deleteInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``deleteInstances(request:)``
     /// - ``deleteInstances(request:options:)``
+    /// - ``deleteInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``deleteInstancesPollingUntilDone(request:)``
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -482,9 +482,9 @@
     /// ## See Also
     ///
     /// - ``deletePerInstanceConfigs(request:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``deletePerInstanceConfigsPollingUntilDone(request:)``
     /// - ``deletePerInstanceConfigsPollingUntilDone(request:options:)``
-    /// - ``deletePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func deletePerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -504,10 +504,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePerInstanceConfigsPollingUntilDone(request:)``
-    /// - ``deletePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``deletePerInstanceConfigs(request:)``
     /// - ``deletePerInstanceConfigs(request:options:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(request:)``
     public func deletePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -554,8 +554,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:instanceGroupManager:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionInstanceGroupManagersClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroupManager {
@@ -577,9 +577,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -605,10 +605,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -656,9 +656,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagerList {
@@ -673,9 +673,9 @@
     /// ## See Also
     ///
     /// - ``listErrors(request:)``
+    /// - ``listErrorsByItems(project:region:instanceGroupManager:)``
     /// - ``listErrorsByItems(request:)``
     /// - ``listErrorsByItems(request:options:)``
-    /// - ``listErrorsByItems(project:region:instanceGroupManager:)``
     public func listErrors(
       request: RegionInstanceGroupManagersClient.ListErrorsRequest,
       options: GoogleGax.RequestOptions
@@ -695,9 +695,9 @@
     /// ## See Also
     ///
     /// - ``listManagedInstances(request:)``
+    /// - ``listManagedInstancesByItems(project:region:instanceGroupManager:)``
     /// - ``listManagedInstancesByItems(request:)``
     /// - ``listManagedInstancesByItems(request:options:)``
-    /// - ``listManagedInstancesByItems(project:region:instanceGroupManager:)``
     public func listManagedInstances(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -713,9 +713,9 @@
     /// ## See Also
     ///
     /// - ``listPerInstanceConfigs(request:)``
+    /// - ``listPerInstanceConfigsByItems(project:region:instanceGroupManager:)``
     /// - ``listPerInstanceConfigsByItems(request:)``
     /// - ``listPerInstanceConfigsByItems(request:options:)``
-    /// - ``listPerInstanceConfigsByItems(project:region:instanceGroupManager:)``
     public func listPerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -744,9 +744,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func patch(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -778,10 +778,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -830,9 +830,9 @@
     /// ## See Also
     ///
     /// - ``patchPerInstanceConfigs(request:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``patchPerInstanceConfigsPollingUntilDone(request:)``
     /// - ``patchPerInstanceConfigsPollingUntilDone(request:options:)``
-    /// - ``patchPerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func patchPerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -853,10 +853,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPerInstanceConfigsPollingUntilDone(request:)``
-    /// - ``patchPerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``patchPerInstanceConfigs(request:)``
     /// - ``patchPerInstanceConfigs(request:options:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(request:)``
     public func patchPerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -916,9 +916,9 @@
     /// ## See Also
     ///
     /// - ``recreateInstances(request:)``
+    /// - ``recreateInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``recreateInstancesPollingUntilDone(request:)``
     /// - ``recreateInstancesPollingUntilDone(request:options:)``
-    /// - ``recreateInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func recreateInstances(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -949,10 +949,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``recreateInstancesPollingUntilDone(request:)``
-    /// - ``recreateInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``recreateInstances(request:)``
     /// - ``recreateInstances(request:options:)``
+    /// - ``recreateInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``recreateInstancesPollingUntilDone(request:)``
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1012,9 +1012,9 @@
     /// ## See Also
     ///
     /// - ``resize(request:)``
+    /// - ``resizePollingUntilDone(project:region:instanceGroupManager:size:)``
     /// - ``resizePollingUntilDone(request:)``
     /// - ``resizePollingUntilDone(request:options:)``
-    /// - ``resizePollingUntilDone(project:region:instanceGroupManager:size:)``
     public func resize(
       request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1044,10 +1044,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``resizePollingUntilDone(request:)``
-    /// - ``resizePollingUntilDone(project:region:instanceGroupManager:size:)``
     /// - ``resize(request:)``
     /// - ``resize(request:options:)``
+    /// - ``resizePollingUntilDone(project:region:instanceGroupManager:size:)``
+    /// - ``resizePollingUntilDone(request:)``
     public func resizePollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1109,9 +1109,9 @@
     /// ## See Also
     ///
     /// - ``resumeInstances(request:)``
+    /// - ``resumeInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``resumeInstancesPollingUntilDone(request:)``
     /// - ``resumeInstancesPollingUntilDone(request:options:)``
-    /// - ``resumeInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func resumeInstances(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1145,10 +1145,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``resumeInstancesPollingUntilDone(request:)``
-    /// - ``resumeInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``resumeInstances(request:)``
     /// - ``resumeInstances(request:options:)``
+    /// - ``resumeInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``resumeInstancesPollingUntilDone(request:)``
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1197,9 +1197,9 @@
     /// ## See Also
     ///
     /// - ``setInstanceTemplate(request:)``
+    /// - ``setInstanceTemplatePollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``setInstanceTemplatePollingUntilDone(request:)``
     /// - ``setInstanceTemplatePollingUntilDone(request:options:)``
-    /// - ``setInstanceTemplatePollingUntilDone(project:region:instanceGroupManager:body:)``
     public func setInstanceTemplate(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
       options: GoogleGax.RequestOptions
@@ -1219,10 +1219,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setInstanceTemplatePollingUntilDone(request:)``
-    /// - ``setInstanceTemplatePollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``setInstanceTemplate(request:)``
     /// - ``setInstanceTemplate(request:options:)``
+    /// - ``setInstanceTemplatePollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``setInstanceTemplatePollingUntilDone(request:)``
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
       options: GoogleGax.RequestOptions
@@ -1271,9 +1271,9 @@
     /// ## See Also
     ///
     /// - ``setTargetPools(request:)``
+    /// - ``setTargetPoolsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``setTargetPoolsPollingUntilDone(request:)``
     /// - ``setTargetPoolsPollingUntilDone(request:options:)``
-    /// - ``setTargetPoolsPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func setTargetPools(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
       options: GoogleGax.RequestOptions
@@ -1293,10 +1293,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setTargetPoolsPollingUntilDone(request:)``
-    /// - ``setTargetPoolsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``setTargetPools(request:)``
     /// - ``setTargetPools(request:options:)``
+    /// - ``setTargetPoolsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``setTargetPoolsPollingUntilDone(request:)``
     public func setTargetPoolsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
       options: GoogleGax.RequestOptions
@@ -1359,9 +1359,9 @@
     /// ## See Also
     ///
     /// - ``startInstances(request:)``
+    /// - ``startInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``startInstancesPollingUntilDone(request:)``
     /// - ``startInstancesPollingUntilDone(request:options:)``
-    /// - ``startInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func startInstances(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1395,10 +1395,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``startInstancesPollingUntilDone(request:)``
-    /// - ``startInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``startInstances(request:)``
     /// - ``startInstances(request:options:)``
+    /// - ``startInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``startInstancesPollingUntilDone(request:)``
     public func startInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1470,9 +1470,9 @@
     /// ## See Also
     ///
     /// - ``stopInstances(request:)``
+    /// - ``stopInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``stopInstancesPollingUntilDone(request:)``
     /// - ``stopInstancesPollingUntilDone(request:options:)``
-    /// - ``stopInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func stopInstances(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1515,10 +1515,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``stopInstancesPollingUntilDone(request:)``
-    /// - ``stopInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``stopInstances(request:)``
     /// - ``stopInstances(request:options:)``
+    /// - ``stopInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``stopInstancesPollingUntilDone(request:)``
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1590,9 +1590,9 @@
     /// ## See Also
     ///
     /// - ``suspendInstances(request:)``
+    /// - ``suspendInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``suspendInstancesPollingUntilDone(request:)``
     /// - ``suspendInstancesPollingUntilDone(request:options:)``
-    /// - ``suspendInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func suspendInstances(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1635,10 +1635,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``suspendInstancesPollingUntilDone(request:)``
-    /// - ``suspendInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``suspendInstances(request:)``
     /// - ``suspendInstances(request:options:)``
+    /// - ``suspendInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``suspendInstancesPollingUntilDone(request:)``
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1688,9 +1688,9 @@
     /// ## See Also
     ///
     /// - ``updatePerInstanceConfigs(request:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``updatePerInstanceConfigsPollingUntilDone(request:)``
     /// - ``updatePerInstanceConfigsPollingUntilDone(request:options:)``
-    /// - ``updatePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func updatePerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -1711,10 +1711,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updatePerInstanceConfigsPollingUntilDone(request:)``
-    /// - ``updatePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``updatePerInstanceConfigs(request:)``
     /// - ``updatePerInstanceConfigs(request:options:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(request:)``
     public func updatePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions

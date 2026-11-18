@@ -50,8 +50,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApi(request:)``
   /// - ``createApi(parent:api:apiId:)``
+  /// - ``createApi(request:)``
   public func createApi(
     request: CreateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -64,8 +64,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApi(request:)``
   /// - ``getApi(name:)``
+  /// - ``getApi(request:)``
   public func getApi(
     request: GetApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -79,9 +79,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApis(request:)``
+  /// - ``listApisByItems(parent:)``
   /// - ``listApisByItems(request:)``
   /// - ``listApisByItems(request:options:)``
-  /// - ``listApisByItems(parent:)``
   public func listApis(
     request: ListApisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListApisResponse {
@@ -126,8 +126,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApi(request:)``
   /// - ``updateApi(api:updateMask:)``
+  /// - ``updateApi(request:)``
   public func updateApi(
     request: UpdateApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Api {
@@ -141,8 +141,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApi(request:)``
   /// - ``deleteApi(name:)``
+  /// - ``deleteApi(request:)``
   public func deleteApi(
     request: DeleteApiRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -155,8 +155,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createVersion(request:)``
   /// - ``createVersion(parent:version:versionId:)``
+  /// - ``createVersion(request:)``
   public func createVersion(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Version {
@@ -171,8 +171,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getVersion(request:)``
   /// - ``getVersion(name:)``
+  /// - ``getVersion(request:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Version {
@@ -186,9 +186,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listVersions(request:)``
+  /// - ``listVersionsByItems(parent:)``
   /// - ``listVersionsByItems(request:)``
   /// - ``listVersionsByItems(request:options:)``
-  /// - ``listVersionsByItems(parent:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListVersionsResponse {
@@ -241,8 +241,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteVersion(request:)``
   /// - ``deleteVersion(name:)``
+  /// - ``deleteVersion(request:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -279,8 +279,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createSpec(request:)``
   /// - ``createSpec(parent:spec:specId:)``
+  /// - ``createSpec(request:)``
   public func createSpec(
     request: CreateSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Spec {
@@ -298,8 +298,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSpec(request:)``
   /// - ``getSpec(name:)``
+  /// - ``getSpec(request:)``
   public func getSpec(
     request: GetSpecRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Spec {
@@ -312,8 +312,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSpecContents(request:)``
   /// - ``getSpecContents(name:)``
+  /// - ``getSpecContents(request:)``
   public func getSpecContents(
     request: GetSpecContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.SpecContents {
@@ -327,9 +327,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSpecs(request:)``
+  /// - ``listSpecsByItems(parent:)``
   /// - ``listSpecsByItems(request:)``
   /// - ``listSpecsByItems(request:options:)``
-  /// - ``listSpecsByItems(parent:)``
   public func listSpecs(
     request: ListSpecsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListSpecsResponse {
@@ -388,8 +388,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteSpec(request:)``
   /// - ``deleteSpec(name:)``
+  /// - ``deleteSpec(request:)``
   public func deleteSpec(
     request: DeleteSpecRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -404,8 +404,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApiOperation(request:)``
   /// - ``createApiOperation(parent:apiOperation:apiOperationId:)``
+  /// - ``createApiOperation(request:)``
   public func createApiOperation(
     request: CreateApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -418,8 +418,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApiOperation(request:)``
   /// - ``getApiOperation(name:)``
+  /// - ``getApiOperation(request:)``
   public func getApiOperation(
     request: GetApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -433,9 +433,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApiOperations(request:)``
+  /// - ``listApiOperationsByItems(parent:)``
   /// - ``listApiOperationsByItems(request:)``
   /// - ``listApiOperationsByItems(request:options:)``
-  /// - ``listApiOperationsByItems(parent:)``
   public func listApiOperations(
     request: ListApiOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListApiOperationsResponse {
@@ -471,8 +471,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApiOperation(request:)``
   /// - ``updateApiOperation(apiOperation:updateMask:)``
+  /// - ``updateApiOperation(request:)``
   public func updateApiOperation(
     request: UpdateApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiOperation {
@@ -487,8 +487,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApiOperation(request:)``
   /// - ``deleteApiOperation(name:)``
+  /// - ``deleteApiOperation(request:)``
   public func deleteApiOperation(
     request: DeleteApiOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -501,8 +501,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDefinition(request:)``
   /// - ``getDefinition(name:)``
+  /// - ``getDefinition(request:)``
   public func getDefinition(
     request: GetDefinitionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Definition {
@@ -517,8 +517,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDeployment(request:)``
   /// - ``createDeployment(parent:deployment:deploymentId:)``
+  /// - ``createDeployment(request:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -531,8 +531,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeployment(request:)``
   /// - ``getDeployment(name:)``
+  /// - ``getDeployment(request:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -546,9 +546,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(parent:)``
   /// - ``listDeploymentsByItems(request:)``
   /// - ``listDeploymentsByItems(request:options:)``
-  /// - ``listDeploymentsByItems(parent:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDeploymentsResponse {
@@ -595,8 +595,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDeployment(request:)``
   /// - ``updateDeployment(deployment:updateMask:)``
+  /// - ``updateDeployment(request:)``
   public func updateDeployment(
     request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Deployment {
@@ -609,8 +609,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDeployment(request:)``
   /// - ``deleteDeployment(name:)``
+  /// - ``deleteDeployment(request:)``
   public func deleteDeployment(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -632,8 +632,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAttribute(request:)``
   /// - ``createAttribute(parent:attribute:attributeId:)``
+  /// - ``createAttribute(request:)``
   public func createAttribute(
     request: CreateAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -646,8 +646,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAttribute(request:)``
   /// - ``getAttribute(name:)``
+  /// - ``getAttribute(request:)``
   public func getAttribute(
     request: GetAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -689,8 +689,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAttribute(request:)``
   /// - ``updateAttribute(attribute:updateMask:)``
+  /// - ``updateAttribute(request:)``
   public func updateAttribute(
     request: UpdateAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Attribute {
@@ -707,8 +707,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAttribute(request:)``
   /// - ``deleteAttribute(name:)``
+  /// - ``deleteAttribute(request:)``
   public func deleteAttribute(
     request: DeleteAttributeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -722,9 +722,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAttributes(request:)``
+  /// - ``listAttributesByItems(parent:)``
   /// - ``listAttributesByItems(request:)``
   /// - ``listAttributesByItems(request:options:)``
-  /// - ``listAttributesByItems(parent:)``
   public func listAttributes(
     request: ListAttributesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListAttributesResponse {
@@ -738,9 +738,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``searchResources(request:)``
+  /// - ``searchResourcesByItems(location:query:)``
   /// - ``searchResourcesByItems(request:)``
   /// - ``searchResourcesByItems(request:options:)``
-  /// - ``searchResourcesByItems(location:query:)``
   public func searchResources(
     request: SearchResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.SearchResourcesResponse {
@@ -753,8 +753,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createExternalApi(request:)``
   /// - ``createExternalApi(parent:externalApi:externalApiId:)``
+  /// - ``createExternalApi(request:)``
   public func createExternalApi(
     request: CreateExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -767,8 +767,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExternalApi(request:)``
   /// - ``getExternalApi(name:)``
+  /// - ``getExternalApi(request:)``
   public func getExternalApi(
     request: GetExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -799,8 +799,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateExternalApi(request:)``
   /// - ``updateExternalApi(externalApi:updateMask:)``
+  /// - ``updateExternalApi(request:)``
   public func updateExternalApi(
     request: UpdateExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ExternalApi {
@@ -813,8 +813,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteExternalApi(request:)``
   /// - ``deleteExternalApi(name:)``
+  /// - ``deleteExternalApi(request:)``
   public func deleteExternalApi(
     request: DeleteExternalApiRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -828,9 +828,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExternalApis(request:)``
+  /// - ``listExternalApisByItems(parent:)``
   /// - ``listExternalApisByItems(request:)``
   /// - ``listExternalApisByItems(request:options:)``
-  /// - ``listExternalApisByItems(parent:)``
   public func listExternalApis(
     request: ListExternalApisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListExternalApisResponse {
@@ -874,9 +874,9 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -902,8 +902,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -918,8 +918,8 @@ public final class ApiHubClient: Clients.ApiHubProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

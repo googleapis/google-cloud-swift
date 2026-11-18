@@ -57,8 +57,8 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createProduct(request:)``
   /// - ``createProduct(parent:product:productId:)``
+  /// - ``createProduct(request:)``
   public func createProduct(
     request: CreateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -73,8 +73,8 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getProduct(request:)``
   /// - ``getProduct(name:)``
+  /// - ``getProduct(request:)``
   public func getProduct(
     request: GetProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -90,9 +90,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(parent:)``
   /// - ``listProductsByItems(request:)``
   /// - ``listProductsByItems(request:options:)``
-  /// - ``listProductsByItems(parent:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListProductsResponse {
@@ -107,8 +107,8 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateProduct(request:)``
   /// - ``updateProduct(product:updateMask:)``
+  /// - ``updateProduct(request:)``
   public func updateProduct(
     request: UpdateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Product {
@@ -123,8 +123,8 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteProduct(request:)``
   /// - ``deleteProduct(name:)``
+  /// - ``deleteProduct(request:)``
   public func deleteProduct(
     request: DeleteProductRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -194,9 +194,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``purgeProductsPollingUntilDone(request:)``
   /// - ``purgeProducts(request:)``
   /// - ``purgeProducts(request:options:)``
+  /// - ``purgeProductsPollingUntilDone(request:)``
   public func purgeProductsPollingUntilDone(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> PurgeProductsResponse {
@@ -259,9 +259,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``importProductsPollingUntilDone(request:)``
   /// - ``importProducts(request:)``
   /// - ``importProducts(request:options:)``
+  /// - ``importProductsPollingUntilDone(request:)``
   public func importProductsPollingUntilDone(
     request: ImportProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportProductsResponse {
@@ -355,9 +355,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``setInventory(request:)``
+  /// - ``setInventoryPollingUntilDone(inventory:setMask:)``
   /// - ``setInventoryPollingUntilDone(request:)``
   /// - ``setInventoryPollingUntilDone(request:options:)``
-  /// - ``setInventoryPollingUntilDone(inventory:setMask:)``
   public func setInventory(
     request: SetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -431,10 +431,10 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setInventoryPollingUntilDone(request:)``
-  /// - ``setInventoryPollingUntilDone(inventory:setMask:)``
   /// - ``setInventory(request:)``
   /// - ``setInventory(request:options:)``
+  /// - ``setInventoryPollingUntilDone(inventory:setMask:)``
+  /// - ``setInventoryPollingUntilDone(request:)``
   public func setInventoryPollingUntilDone(
     request: SetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> SetInventoryResponse {
@@ -505,9 +505,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``addFulfillmentPlaces(request:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(product:)``
   /// - ``addFulfillmentPlacesPollingUntilDone(request:)``
   /// - ``addFulfillmentPlacesPollingUntilDone(request:options:)``
-  /// - ``addFulfillmentPlacesPollingUntilDone(product:)``
   public func addFulfillmentPlaces(
     request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -558,10 +558,10 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``addFulfillmentPlacesPollingUntilDone(request:)``
-  /// - ``addFulfillmentPlacesPollingUntilDone(product:)``
   /// - ``addFulfillmentPlaces(request:)``
   /// - ``addFulfillmentPlaces(request:options:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(product:)``
+  /// - ``addFulfillmentPlacesPollingUntilDone(request:)``
   public func addFulfillmentPlacesPollingUntilDone(
     request: AddFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddFulfillmentPlacesResponse {
@@ -633,9 +633,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``removeFulfillmentPlaces(request:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(product:)``
   /// - ``removeFulfillmentPlacesPollingUntilDone(request:)``
   /// - ``removeFulfillmentPlacesPollingUntilDone(request:options:)``
-  /// - ``removeFulfillmentPlacesPollingUntilDone(product:)``
   public func removeFulfillmentPlaces(
     request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -686,10 +686,10 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``removeFulfillmentPlacesPollingUntilDone(request:)``
-  /// - ``removeFulfillmentPlacesPollingUntilDone(product:)``
   /// - ``removeFulfillmentPlaces(request:)``
   /// - ``removeFulfillmentPlaces(request:options:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(product:)``
+  /// - ``removeFulfillmentPlacesPollingUntilDone(request:)``
   public func removeFulfillmentPlacesPollingUntilDone(
     request: RemoveFulfillmentPlacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveFulfillmentPlacesResponse {
@@ -758,9 +758,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``addLocalInventories(request:)``
+  /// - ``addLocalInventoriesPollingUntilDone(product:)``
   /// - ``addLocalInventoriesPollingUntilDone(request:)``
   /// - ``addLocalInventoriesPollingUntilDone(request:options:)``
-  /// - ``addLocalInventoriesPollingUntilDone(product:)``
   public func addLocalInventories(
     request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -808,10 +808,10 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``addLocalInventoriesPollingUntilDone(request:)``
-  /// - ``addLocalInventoriesPollingUntilDone(product:)``
   /// - ``addLocalInventories(request:)``
   /// - ``addLocalInventories(request:options:)``
+  /// - ``addLocalInventoriesPollingUntilDone(product:)``
+  /// - ``addLocalInventoriesPollingUntilDone(request:)``
   public func addLocalInventoriesPollingUntilDone(
     request: AddLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddLocalInventoriesResponse {
@@ -878,9 +878,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``removeLocalInventories(request:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(product:)``
   /// - ``removeLocalInventoriesPollingUntilDone(request:)``
   /// - ``removeLocalInventoriesPollingUntilDone(request:options:)``
-  /// - ``removeLocalInventoriesPollingUntilDone(product:)``
   public func removeLocalInventories(
     request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -926,10 +926,10 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``removeLocalInventoriesPollingUntilDone(request:)``
-  /// - ``removeLocalInventoriesPollingUntilDone(product:)``
   /// - ``removeLocalInventories(request:)``
   /// - ``removeLocalInventories(request:options:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(product:)``
+  /// - ``removeLocalInventoriesPollingUntilDone(request:)``
   public func removeLocalInventoriesPollingUntilDone(
     request: RemoveLocalInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveLocalInventoriesResponse {
@@ -965,9 +965,9 @@ public final class ProductServiceClient: Clients.ProductServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -55,8 +55,8 @@ public final class PublicCertificateAuthorityServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createExternalAccountKey(request:)``
   /// - ``createExternalAccountKey(parent:externalAccountKey:)``
+  /// - ``createExternalAccountKey(request:)``
   public func createExternalAccountKey(
     request: CreateExternalAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityPublicCAV1.ExternalAccountKey {

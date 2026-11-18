@@ -58,9 +58,9 @@
     /// ## See Also
     ///
     /// - ``createReasoningEngine(request:)``
+    /// - ``createReasoningEnginePollingUntilDone(parent:reasoningEngine:)``
     /// - ``createReasoningEnginePollingUntilDone(request:)``
     /// - ``createReasoningEnginePollingUntilDone(request:options:)``
-    /// - ``createReasoningEnginePollingUntilDone(parent:reasoningEngine:)``
     public func createReasoningEngine(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -73,10 +73,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createReasoningEnginePollingUntilDone(request:)``
-    /// - ``createReasoningEnginePollingUntilDone(parent:reasoningEngine:)``
     /// - ``createReasoningEngine(request:)``
     /// - ``createReasoningEngine(request:options:)``
+    /// - ``createReasoningEnginePollingUntilDone(parent:reasoningEngine:)``
+    /// - ``createReasoningEnginePollingUntilDone(request:)``
     public func createReasoningEnginePollingUntilDone(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> ReasoningEngine {
@@ -108,8 +108,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getReasoningEngine(request:)``
     /// - ``getReasoningEngine(name:)``
+    /// - ``getReasoningEngine(request:)``
     public func getReasoningEngine(
       request: GetReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ReasoningEngine {
@@ -123,9 +123,9 @@
     /// ## See Also
     ///
     /// - ``listReasoningEngines(request:)``
+    /// - ``listReasoningEnginesByItems(parent:)``
     /// - ``listReasoningEnginesByItems(request:)``
     /// - ``listReasoningEnginesByItems(request:options:)``
-    /// - ``listReasoningEnginesByItems(parent:)``
     public func listReasoningEngines(
       request: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse {
@@ -139,9 +139,9 @@
     /// ## See Also
     ///
     /// - ``updateReasoningEngine(request:)``
+    /// - ``updateReasoningEnginePollingUntilDone(reasoningEngine:updateMask:)``
     /// - ``updateReasoningEnginePollingUntilDone(request:)``
     /// - ``updateReasoningEnginePollingUntilDone(request:options:)``
-    /// - ``updateReasoningEnginePollingUntilDone(reasoningEngine:updateMask:)``
     public func updateReasoningEngine(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -154,10 +154,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateReasoningEnginePollingUntilDone(request:)``
-    /// - ``updateReasoningEnginePollingUntilDone(reasoningEngine:updateMask:)``
     /// - ``updateReasoningEngine(request:)``
     /// - ``updateReasoningEngine(request:options:)``
+    /// - ``updateReasoningEnginePollingUntilDone(reasoningEngine:updateMask:)``
+    /// - ``updateReasoningEnginePollingUntilDone(request:)``
     public func updateReasoningEnginePollingUntilDone(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> ReasoningEngine {
@@ -190,9 +190,9 @@
     /// ## See Also
     ///
     /// - ``deleteReasoningEngine(request:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(name:)``
     /// - ``deleteReasoningEnginePollingUntilDone(request:)``
     /// - ``deleteReasoningEnginePollingUntilDone(request:options:)``
-    /// - ``deleteReasoningEnginePollingUntilDone(name:)``
     public func deleteReasoningEngine(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -205,10 +205,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteReasoningEnginePollingUntilDone(request:)``
-    /// - ``deleteReasoningEnginePollingUntilDone(name:)``
     /// - ``deleteReasoningEngine(request:)``
     /// - ``deleteReasoningEngine(request:options:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(name:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(request:)``
     public func deleteReasoningEnginePollingUntilDone(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -321,9 +321,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -349,8 +349,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -365,8 +365,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -55,8 +55,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createTaxonomy(request:)``
   /// - ``createTaxonomy(parent:taxonomy:)``
+  /// - ``createTaxonomy(request:)``
   public func createTaxonomy(
     request: CreateTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Taxonomy {
@@ -71,8 +71,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteTaxonomy(request:)``
   /// - ``deleteTaxonomy(name:)``
+  /// - ``deleteTaxonomy(request:)``
   public func deleteTaxonomy(
     request: DeleteTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -102,9 +102,9 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listTaxonomies(request:)``
+  /// - ``listTaxonomiesByItems(parent:)``
   /// - ``listTaxonomiesByItems(request:)``
   /// - ``listTaxonomiesByItems(request:options:)``
-  /// - ``listTaxonomiesByItems(parent:)``
   public func listTaxonomies(
     request: ListTaxonomiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListTaxonomiesResponse {
@@ -117,8 +117,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getTaxonomy(request:)``
   /// - ``getTaxonomy(name:)``
+  /// - ``getTaxonomy(request:)``
   public func getTaxonomy(
     request: GetTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Taxonomy {
@@ -131,8 +131,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createPolicyTag(request:)``
   /// - ``createPolicyTag(parent:policyTag:)``
+  /// - ``createPolicyTag(request:)``
   public func createPolicyTag(
     request: CreatePolicyTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.PolicyTag {
@@ -150,8 +150,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deletePolicyTag(request:)``
   /// - ``deletePolicyTag(name:)``
+  /// - ``deletePolicyTag(request:)``
   public func deletePolicyTag(
     request: DeletePolicyTagRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -165,8 +165,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicyTag(request:)``
   /// - ``updatePolicyTag(policyTag:)``
+  /// - ``updatePolicyTag(request:)``
   public func updatePolicyTag(
     request: UpdatePolicyTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.PolicyTag {
@@ -180,9 +180,9 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listPolicyTags(request:)``
+  /// - ``listPolicyTagsByItems(parent:)``
   /// - ``listPolicyTagsByItems(request:)``
   /// - ``listPolicyTagsByItems(request:options:)``
-  /// - ``listPolicyTagsByItems(parent:)``
   public func listPolicyTags(
     request: ListPolicyTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ListPolicyTagsResponse {
@@ -195,8 +195,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getPolicyTag(request:)``
   /// - ``getPolicyTag(name:)``
+  /// - ``getPolicyTag(request:)``
   public func getPolicyTag(
     request: GetPolicyTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.PolicyTag {
@@ -252,9 +252,9 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -280,8 +280,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -296,8 +296,8 @@ public final class PolicyTagManagerClient: Clients.PolicyTagManagerProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

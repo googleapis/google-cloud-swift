@@ -62,9 +62,9 @@
     /// ## See Also
     ///
     /// - ``createSpecialistPool(request:)``
+    /// - ``createSpecialistPoolPollingUntilDone(parent:specialistPool:)``
     /// - ``createSpecialistPoolPollingUntilDone(request:)``
     /// - ``createSpecialistPoolPollingUntilDone(request:options:)``
-    /// - ``createSpecialistPoolPollingUntilDone(parent:specialistPool:)``
     public func createSpecialistPool(
       request: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -77,10 +77,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSpecialistPoolPollingUntilDone(request:)``
-    /// - ``createSpecialistPoolPollingUntilDone(parent:specialistPool:)``
     /// - ``createSpecialistPool(request:)``
     /// - ``createSpecialistPool(request:options:)``
+    /// - ``createSpecialistPoolPollingUntilDone(parent:specialistPool:)``
+    /// - ``createSpecialistPoolPollingUntilDone(request:)``
     public func createSpecialistPoolPollingUntilDone(
       request: CreateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> SpecialistPool {
@@ -112,8 +112,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSpecialistPool(request:)``
     /// - ``getSpecialistPool(name:)``
+    /// - ``getSpecialistPool(request:)``
     public func getSpecialistPool(
       request: GetSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.SpecialistPool {
@@ -127,9 +127,9 @@
     /// ## See Also
     ///
     /// - ``listSpecialistPools(request:)``
+    /// - ``listSpecialistPoolsByItems(parent:)``
     /// - ``listSpecialistPoolsByItems(request:)``
     /// - ``listSpecialistPoolsByItems(request:options:)``
-    /// - ``listSpecialistPoolsByItems(parent:)``
     public func listSpecialistPools(
       request: ListSpecialistPoolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListSpecialistPoolsResponse {
@@ -143,9 +143,9 @@
     /// ## See Also
     ///
     /// - ``deleteSpecialistPool(request:)``
+    /// - ``deleteSpecialistPoolPollingUntilDone(name:)``
     /// - ``deleteSpecialistPoolPollingUntilDone(request:)``
     /// - ``deleteSpecialistPoolPollingUntilDone(request:options:)``
-    /// - ``deleteSpecialistPoolPollingUntilDone(name:)``
     public func deleteSpecialistPool(
       request: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -158,10 +158,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSpecialistPoolPollingUntilDone(request:)``
-    /// - ``deleteSpecialistPoolPollingUntilDone(name:)``
     /// - ``deleteSpecialistPool(request:)``
     /// - ``deleteSpecialistPool(request:options:)``
+    /// - ``deleteSpecialistPoolPollingUntilDone(name:)``
+    /// - ``deleteSpecialistPoolPollingUntilDone(request:)``
     public func deleteSpecialistPoolPollingUntilDone(
       request: DeleteSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -209,10 +209,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateSpecialistPoolPollingUntilDone(request:)``
-    /// - ``updateSpecialistPoolPollingUntilDone(specialistPool:updateMask:)``
     /// - ``updateSpecialistPool(request:)``
     /// - ``updateSpecialistPool(request:options:)``
+    /// - ``updateSpecialistPoolPollingUntilDone(request:)``
+    /// - ``updateSpecialistPoolPollingUntilDone(specialistPool:updateMask:)``
     public func updateSpecialistPoolPollingUntilDone(
       request: UpdateSpecialistPoolRequest, options: GoogleGax.RequestOptions
     ) async throws -> SpecialistPool {
@@ -325,9 +325,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -353,8 +353,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -369,8 +369,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

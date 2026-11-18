@@ -50,9 +50,9 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   /// ## See Also
   ///
   /// - ``listNotifications(request:)``
+  /// - ``listNotificationsByItems(parent:)``
   /// - ``listNotificationsByItems(request:)``
   /// - ``listNotificationsByItems(request:options:)``
-  /// - ``listNotificationsByItems(parent:)``
   public func listNotifications(
     request: ListNotificationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.ListNotificationsResponse {
@@ -65,8 +65,8 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   ///
   /// ## See Also
   ///
-  /// - ``getNotification(request:)``
   /// - ``getNotification(name:)``
+  /// - ``getNotification(request:)``
   public func getNotification(
     request: GetNotificationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Notification {
@@ -79,8 +79,8 @@ public final class AdvisoryNotificationsServiceClient: Clients.AdvisoryNotificat
   ///
   /// ## See Also
   ///
-  /// - ``getSettings(request:)``
   /// - ``getSettings(name:)``
+  /// - ``getSettings(request:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAdvisoryNotificationsV1.Settings {

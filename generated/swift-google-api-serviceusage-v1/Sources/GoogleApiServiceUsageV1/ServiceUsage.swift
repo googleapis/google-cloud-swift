@@ -70,9 +70,9 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``enableServicePollingUntilDone(request:)``
   /// - ``enableService(request:)``
   /// - ``enableService(request:options:)``
+  /// - ``enableServicePollingUntilDone(request:)``
   public func enableServicePollingUntilDone(
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> EnableServiceResponse {
@@ -131,9 +131,9 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``disableServicePollingUntilDone(request:)``
   /// - ``disableService(request:)``
   /// - ``disableService(request:options:)``
+  /// - ``disableServicePollingUntilDone(request:)``
   public func disableServicePollingUntilDone(
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> DisableServiceResponse {
@@ -224,9 +224,9 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchEnableServicesPollingUntilDone(request:)``
   /// - ``batchEnableServices(request:)``
   /// - ``batchEnableServices(request:options:)``
+  /// - ``batchEnableServicesPollingUntilDone(request:)``
   public func batchEnableServicesPollingUntilDone(
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchEnableServicesResponse {
@@ -276,9 +276,9 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -57,9 +57,9 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createTagHold(request:)``
+  /// - ``createTagHoldPollingUntilDone(parent:tagHold:)``
   /// - ``createTagHoldPollingUntilDone(request:)``
   /// - ``createTagHoldPollingUntilDone(request:options:)``
-  /// - ``createTagHoldPollingUntilDone(parent:tagHold:)``
   public func createTagHold(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,10 +73,10 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTagHoldPollingUntilDone(request:)``
-  /// - ``createTagHoldPollingUntilDone(parent:tagHold:)``
   /// - ``createTagHold(request:)``
   /// - ``createTagHold(request:options:)``
+  /// - ``createTagHoldPollingUntilDone(parent:tagHold:)``
+  /// - ``createTagHoldPollingUntilDone(request:)``
   public func createTagHoldPollingUntilDone(
     request: CreateTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagHold {
@@ -108,9 +108,9 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTagHold(request:)``
+  /// - ``deleteTagHoldPollingUntilDone(name:)``
   /// - ``deleteTagHoldPollingUntilDone(request:)``
   /// - ``deleteTagHoldPollingUntilDone(request:options:)``
-  /// - ``deleteTagHoldPollingUntilDone(name:)``
   public func deleteTagHold(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -123,10 +123,10 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTagHoldPollingUntilDone(request:)``
-  /// - ``deleteTagHoldPollingUntilDone(name:)``
   /// - ``deleteTagHold(request:)``
   /// - ``deleteTagHold(request:options:)``
+  /// - ``deleteTagHoldPollingUntilDone(name:)``
+  /// - ``deleteTagHoldPollingUntilDone(request:)``
   public func deleteTagHoldPollingUntilDone(
     request: DeleteTagHoldRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -158,9 +158,9 @@ public final class TagHoldsClient: Clients.TagHoldsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTagHolds(request:)``
+  /// - ``listTagHoldsByItems(parent:)``
   /// - ``listTagHoldsByItems(request:)``
   /// - ``listTagHoldsByItems(request:options:)``
-  /// - ``listTagHoldsByItems(parent:)``
   public func listTagHolds(
     request: ListTagHoldsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListTagHoldsResponse {

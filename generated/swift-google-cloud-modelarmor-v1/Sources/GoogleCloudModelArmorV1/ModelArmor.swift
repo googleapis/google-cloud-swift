@@ -49,9 +49,9 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTemplates(request:)``
+  /// - ``listTemplatesByItems(parent:)``
   /// - ``listTemplatesByItems(request:)``
   /// - ``listTemplatesByItems(request:options:)``
-  /// - ``listTemplatesByItems(parent:)``
   public func listTemplates(
     request: ListTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.ListTemplatesResponse {
@@ -64,8 +64,8 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTemplate(request:)``
   /// - ``getTemplate(name:)``
+  /// - ``getTemplate(request:)``
   public func getTemplate(
     request: GetTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -78,8 +78,8 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTemplate(request:)``
   /// - ``createTemplate(parent:template:templateId:)``
+  /// - ``createTemplate(request:)``
   public func createTemplate(
     request: CreateTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.Template {
@@ -106,8 +106,8 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTemplate(request:)``
   /// - ``deleteTemplate(name:)``
+  /// - ``deleteTemplate(request:)``
   public func deleteTemplate(
     request: DeleteTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -120,8 +120,8 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFloorSetting(request:)``
   /// - ``getFloorSetting(name:)``
+  /// - ``getFloorSetting(request:)``
   public func getFloorSetting(
     request: GetFloorSettingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {
@@ -134,8 +134,8 @@ public final class ModelArmorClient: Clients.ModelArmorProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateFloorSetting(request:)``
   /// - ``updateFloorSetting(floorSetting:updateMask:)``
+  /// - ``updateFloorSetting(request:)``
   public func updateFloorSetting(
     request: UpdateFloorSettingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudModelArmorV1.FloorSetting {

@@ -77,8 +77,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``listIcebergNamespaces(request:)``
   /// - ``listIcebergNamespaces(apiParent:)``
+  /// - ``listIcebergNamespaces(request:)``
   public func listIcebergNamespaces(
     request: ListIcebergNamespacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergNamespacesResponse {
@@ -92,8 +92,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getIcebergNamespace(request:)``
   /// - ``getIcebergNamespace(name:)``
+  /// - ``getIcebergNamespace(request:)``
   public func getIcebergNamespace(
     request: GetIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -106,8 +106,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createIcebergNamespace(request:)``
   /// - ``createIcebergNamespace(parent:icebergNamespace:)``
+  /// - ``createIcebergNamespace(request:)``
   public func createIcebergNamespace(
     request: CreateIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergNamespace {
@@ -120,8 +120,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteIcebergNamespace(request:)``
   /// - ``deleteIcebergNamespace(name:)``
+  /// - ``deleteIcebergNamespace(request:)``
   public func deleteIcebergNamespace(
     request: DeleteIcebergNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -147,8 +147,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``listIcebergTableIdentifiers(request:)``
   /// - ``listIcebergTableIdentifiers(parent:)``
+  /// - ``listIcebergTableIdentifiers(request:)``
   public func listIcebergTableIdentifiers(
     request: ListIcebergTableIdentifiersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergTableIdentifiersResponse {
@@ -161,8 +161,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createIcebergTable(request:)``
   /// - ``createIcebergTable(parent:)``
+  /// - ``createIcebergTable(request:)``
   public func createIcebergTable(
     request: CreateIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -175,8 +175,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteIcebergTable(request:)``
   /// - ``deleteIcebergTable(name:)``
+  /// - ``deleteIcebergTable(request:)``
   public func deleteIcebergTable(
     request: DeleteIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -189,8 +189,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getIcebergTable(request:)``
   /// - ``getIcebergTable(name:snapshots:)``
+  /// - ``getIcebergTable(request:)``
   public func getIcebergTable(
     request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -203,8 +203,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``loadIcebergTableCredentials(request:)``
   /// - ``loadIcebergTableCredentials(name:)``
+  /// - ``loadIcebergTableCredentials(request:)``
   public func loadIcebergTableCredentials(
     request: GetIcebergTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.LoadIcebergTableCredentialsResponse {
@@ -244,8 +244,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``reportIcebergTableMetrics(request:)``
   /// - ``reportIcebergTableMetrics(name:)``
+  /// - ``reportIcebergTableMetrics(request:)``
   public func reportIcebergTableMetrics(
     request: ReportIcebergTableMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -258,8 +258,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getIcebergCatalog(request:)``
   /// - ``getIcebergCatalog(name:)``
+  /// - ``getIcebergCatalog(request:)``
   public func getIcebergCatalog(
     request: GetIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -272,8 +272,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``listIcebergCatalogs(request:)``
   /// - ``listIcebergCatalogs(parent:)``
+  /// - ``listIcebergCatalogs(request:)``
   public func listIcebergCatalogs(
     request: ListIcebergCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.ListIcebergCatalogsResponse {
@@ -290,8 +290,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteIcebergCatalog(request:)``
   /// - ``deleteIcebergCatalog(name:)``
+  /// - ``deleteIcebergCatalog(request:)``
   public func deleteIcebergCatalog(
     request: DeleteIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -304,8 +304,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``updateIcebergCatalog(request:)``
   /// - ``updateIcebergCatalog(icebergCatalog:updateMask:)``
+  /// - ``updateIcebergCatalog(request:)``
   public func updateIcebergCatalog(
     request: UpdateIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -323,9 +323,9 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createIcebergCatalog(request:)``
   /// - ``createIcebergCatalog(parent:icebergCatalog:icebergCatalogId:)``
   /// - ``createIcebergCatalog(parent:icebergCatalog:icebergCatalogId:primaryLocation:)``
+  /// - ``createIcebergCatalog(request:)``
   public func createIcebergCatalog(
     request: CreateIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.IcebergCatalog {
@@ -338,8 +338,8 @@ public final class IcebergCatalogServiceClient: Clients.IcebergCatalogServicePro
   ///
   /// ## See Also
   ///
-  /// - ``failoverIcebergCatalog(request:)``
   /// - ``failoverIcebergCatalog(name:primaryReplica:)``
+  /// - ``failoverIcebergCatalog(request:)``
   public func failoverIcebergCatalog(
     request: FailoverIcebergCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBiglakeV1.FailoverIcebergCatalogResponse {

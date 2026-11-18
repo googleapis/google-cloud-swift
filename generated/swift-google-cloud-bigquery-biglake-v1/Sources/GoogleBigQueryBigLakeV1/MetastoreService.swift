@@ -56,8 +56,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createCatalog(request:)``
   /// - ``createCatalog(parent:catalog:catalogId:)``
+  /// - ``createCatalog(request:)``
   public func createCatalog(
     request: CreateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -70,8 +70,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteCatalog(request:)``
   /// - ``deleteCatalog(name:)``
+  /// - ``deleteCatalog(request:)``
   public func deleteCatalog(
     request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -84,8 +84,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getCatalog(request:)``
   /// - ``getCatalog(name:)``
+  /// - ``getCatalog(request:)``
   public func getCatalog(
     request: GetCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Catalog {
@@ -99,9 +99,9 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listCatalogs(request:)``
+  /// - ``listCatalogsByItems(parent:)``
   /// - ``listCatalogsByItems(request:)``
   /// - ``listCatalogsByItems(request:options:)``
-  /// - ``listCatalogsByItems(parent:)``
   public func listCatalogs(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.ListCatalogsResponse {
@@ -114,8 +114,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createDatabase(request:)``
   /// - ``createDatabase(parent:database:databaseId:)``
+  /// - ``createDatabase(request:)``
   public func createDatabase(
     request: CreateDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -128,8 +128,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteDatabase(request:)``
   /// - ``deleteDatabase(name:)``
+  /// - ``deleteDatabase(request:)``
   public func deleteDatabase(
     request: DeleteDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -142,8 +142,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateDatabase(request:)``
   /// - ``updateDatabase(database:updateMask:)``
+  /// - ``updateDatabase(request:)``
   public func updateDatabase(
     request: UpdateDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -156,8 +156,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getDatabase(request:)``
   /// - ``getDatabase(name:)``
+  /// - ``getDatabase(request:)``
   public func getDatabase(
     request: GetDatabaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Database {
@@ -171,9 +171,9 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listDatabases(request:)``
+  /// - ``listDatabasesByItems(parent:)``
   /// - ``listDatabasesByItems(request:)``
   /// - ``listDatabasesByItems(request:options:)``
-  /// - ``listDatabasesByItems(parent:)``
   public func listDatabases(
     request: ListDatabasesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.ListDatabasesResponse {
@@ -186,8 +186,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createTable(request:)``
   /// - ``createTable(parent:table:tableId:)``
+  /// - ``createTable(request:)``
   public func createTable(
     request: CreateTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -200,8 +200,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteTable(request:)``
   /// - ``deleteTable(name:)``
+  /// - ``deleteTable(request:)``
   public func deleteTable(
     request: DeleteTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -228,8 +228,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``renameTable(request:)``
   /// - ``renameTable(name:newName:)``
+  /// - ``renameTable(request:)``
   public func renameTable(
     request: RenameTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -242,8 +242,8 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getTable(request:)``
   /// - ``getTable(name:)``
+  /// - ``getTable(request:)``
   public func getTable(
     request: GetTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.Table {
@@ -257,9 +257,9 @@ public final class MetastoreServiceClient: Clients.MetastoreServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listTables(request:)``
+  /// - ``listTablesByItems(parent:)``
   /// - ``listTablesByItems(request:)``
   /// - ``listTablesByItems(request:options:)``
-  /// - ``listTablesByItems(parent:)``
   public func listTables(
     request: ListTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryBigLakeV1.ListTablesResponse {

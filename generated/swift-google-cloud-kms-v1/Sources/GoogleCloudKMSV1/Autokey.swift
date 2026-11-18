@@ -85,9 +85,9 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createKeyHandle(request:)``
+  /// - ``createKeyHandlePollingUntilDone(parent:keyHandle:keyHandleId:)``
   /// - ``createKeyHandlePollingUntilDone(request:)``
   /// - ``createKeyHandlePollingUntilDone(request:options:)``
-  /// - ``createKeyHandlePollingUntilDone(parent:keyHandle:keyHandleId:)``
   public func createKeyHandle(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,10 +109,10 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createKeyHandlePollingUntilDone(request:)``
-  /// - ``createKeyHandlePollingUntilDone(parent:keyHandle:keyHandleId:)``
   /// - ``createKeyHandle(request:)``
   /// - ``createKeyHandle(request:options:)``
+  /// - ``createKeyHandlePollingUntilDone(parent:keyHandle:keyHandleId:)``
+  /// - ``createKeyHandlePollingUntilDone(request:)``
   public func createKeyHandlePollingUntilDone(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> KeyHandle {
@@ -145,8 +145,8 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getKeyHandle(request:)``
   /// - ``getKeyHandle(name:)``
+  /// - ``getKeyHandle(request:)``
   public func getKeyHandle(
     request: GetKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.KeyHandle {
@@ -162,9 +162,9 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listKeyHandles(request:)``
+  /// - ``listKeyHandlesByItems(parent:)``
   /// - ``listKeyHandlesByItems(request:)``
   /// - ``listKeyHandlesByItems(request:options:)``
-  /// - ``listKeyHandlesByItems(parent:)``
   public func listKeyHandles(
     request: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse {

@@ -54,9 +54,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
   /// - ``listAssetsByItems(request:)``
   /// - ``listAssetsByItems(request:options:)``
-  /// - ``listAssetsByItems(parent:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListAssetsResponse {
@@ -69,8 +69,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getAsset(request:)``
   /// - ``getAsset(name:)``
+  /// - ``getAsset(request:)``
   public func getAsset(
     request: GetAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Asset {
@@ -83,8 +83,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateAsset(request:)``
   /// - ``updateAsset(asset:updateMask:)``
+  /// - ``updateAsset(request:)``
   public func updateAsset(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Asset {
@@ -97,8 +97,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``batchUpdateAssets(request:)``
   /// - ``batchUpdateAssets(parent:requests:)``
+  /// - ``batchUpdateAssets(request:)``
   public func batchUpdateAssets(
     request: BatchUpdateAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.BatchUpdateAssetsResponse {
@@ -111,8 +111,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteAsset(request:)``
   /// - ``deleteAsset(name:)``
+  /// - ``deleteAsset(request:)``
   public func deleteAsset(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -125,8 +125,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``batchDeleteAssets(request:)``
   /// - ``batchDeleteAssets(parent:names:)``
+  /// - ``batchDeleteAssets(request:)``
   public func batchDeleteAssets(
     request: BatchDeleteAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -166,9 +166,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createImportJob(request:)``
+  /// - ``createImportJobPollingUntilDone(parent:importJob:importJobId:)``
   /// - ``createImportJobPollingUntilDone(request:)``
   /// - ``createImportJobPollingUntilDone(request:options:)``
-  /// - ``createImportJobPollingUntilDone(parent:importJob:importJobId:)``
   public func createImportJob(
     request: CreateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -181,10 +181,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createImportJobPollingUntilDone(request:)``
-  /// - ``createImportJobPollingUntilDone(parent:importJob:importJobId:)``
   /// - ``createImportJob(request:)``
   /// - ``createImportJob(request:options:)``
+  /// - ``createImportJobPollingUntilDone(parent:importJob:importJobId:)``
+  /// - ``createImportJobPollingUntilDone(request:)``
   public func createImportJobPollingUntilDone(
     request: CreateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportJob {
@@ -216,9 +216,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listImportJobs(request:)``
+  /// - ``listImportJobsByItems(parent:)``
   /// - ``listImportJobsByItems(request:)``
   /// - ``listImportJobsByItems(request:options:)``
-  /// - ``listImportJobsByItems(parent:)``
   public func listImportJobs(
     request: ListImportJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListImportJobsResponse {
@@ -231,8 +231,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getImportJob(request:)``
   /// - ``getImportJob(name:)``
+  /// - ``getImportJob(request:)``
   public func getImportJob(
     request: GetImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ImportJob {
@@ -246,9 +246,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteImportJob(request:)``
+  /// - ``deleteImportJobPollingUntilDone(name:)``
   /// - ``deleteImportJobPollingUntilDone(request:)``
   /// - ``deleteImportJobPollingUntilDone(request:options:)``
-  /// - ``deleteImportJobPollingUntilDone(name:)``
   public func deleteImportJob(
     request: DeleteImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -261,10 +261,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteImportJobPollingUntilDone(request:)``
-  /// - ``deleteImportJobPollingUntilDone(name:)``
   /// - ``deleteImportJob(request:)``
   /// - ``deleteImportJob(request:options:)``
+  /// - ``deleteImportJobPollingUntilDone(name:)``
+  /// - ``deleteImportJobPollingUntilDone(request:)``
   public func deleteImportJobPollingUntilDone(
     request: DeleteImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -296,9 +296,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateImportJob(request:)``
+  /// - ``updateImportJobPollingUntilDone(importJob:updateMask:)``
   /// - ``updateImportJobPollingUntilDone(request:)``
   /// - ``updateImportJobPollingUntilDone(request:options:)``
-  /// - ``updateImportJobPollingUntilDone(importJob:updateMask:)``
   public func updateImportJob(
     request: UpdateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -311,10 +311,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateImportJobPollingUntilDone(request:)``
-  /// - ``updateImportJobPollingUntilDone(importJob:updateMask:)``
   /// - ``updateImportJob(request:)``
   /// - ``updateImportJob(request:options:)``
+  /// - ``updateImportJobPollingUntilDone(importJob:updateMask:)``
+  /// - ``updateImportJobPollingUntilDone(request:)``
   public func updateImportJobPollingUntilDone(
     request: UpdateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportJob {
@@ -346,9 +346,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``validateImportJob(request:)``
+  /// - ``validateImportJobPollingUntilDone(name:)``
   /// - ``validateImportJobPollingUntilDone(request:)``
   /// - ``validateImportJobPollingUntilDone(request:options:)``
-  /// - ``validateImportJobPollingUntilDone(name:)``
   public func validateImportJob(
     request: ValidateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -361,10 +361,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``validateImportJobPollingUntilDone(request:)``
-  /// - ``validateImportJobPollingUntilDone(name:)``
   /// - ``validateImportJob(request:)``
   /// - ``validateImportJob(request:options:)``
+  /// - ``validateImportJobPollingUntilDone(name:)``
+  /// - ``validateImportJobPollingUntilDone(request:)``
   public func validateImportJobPollingUntilDone(
     request: ValidateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -396,9 +396,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``runImportJob(request:)``
+  /// - ``runImportJobPollingUntilDone(name:)``
   /// - ``runImportJobPollingUntilDone(request:)``
   /// - ``runImportJobPollingUntilDone(request:options:)``
-  /// - ``runImportJobPollingUntilDone(name:)``
   public func runImportJob(
     request: RunImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -411,10 +411,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``runImportJobPollingUntilDone(request:)``
-  /// - ``runImportJobPollingUntilDone(name:)``
   /// - ``runImportJob(request:)``
   /// - ``runImportJob(request:options:)``
+  /// - ``runImportJobPollingUntilDone(name:)``
+  /// - ``runImportJobPollingUntilDone(request:)``
   public func runImportJobPollingUntilDone(
     request: RunImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -445,8 +445,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getImportDataFile(request:)``
   /// - ``getImportDataFile(name:)``
+  /// - ``getImportDataFile(request:)``
   public func getImportDataFile(
     request: GetImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ImportDataFile {
@@ -460,9 +460,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listImportDataFiles(request:)``
+  /// - ``listImportDataFilesByItems(parent:)``
   /// - ``listImportDataFilesByItems(request:)``
   /// - ``listImportDataFilesByItems(request:options:)``
-  /// - ``listImportDataFilesByItems(parent:)``
   public func listImportDataFiles(
     request: ListImportDataFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListImportDataFilesResponse {
@@ -476,9 +476,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createImportDataFile(request:)``
+  /// - ``createImportDataFilePollingUntilDone(parent:importDataFile:importDataFileId:)``
   /// - ``createImportDataFilePollingUntilDone(request:)``
   /// - ``createImportDataFilePollingUntilDone(request:options:)``
-  /// - ``createImportDataFilePollingUntilDone(parent:importDataFile:importDataFileId:)``
   public func createImportDataFile(
     request: CreateImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -491,10 +491,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createImportDataFilePollingUntilDone(request:)``
-  /// - ``createImportDataFilePollingUntilDone(parent:importDataFile:importDataFileId:)``
   /// - ``createImportDataFile(request:)``
   /// - ``createImportDataFile(request:options:)``
+  /// - ``createImportDataFilePollingUntilDone(parent:importDataFile:importDataFileId:)``
+  /// - ``createImportDataFilePollingUntilDone(request:)``
   public func createImportDataFilePollingUntilDone(
     request: CreateImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportDataFile {
@@ -527,9 +527,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteImportDataFile(request:)``
+  /// - ``deleteImportDataFilePollingUntilDone(name:)``
   /// - ``deleteImportDataFilePollingUntilDone(request:)``
   /// - ``deleteImportDataFilePollingUntilDone(request:options:)``
-  /// - ``deleteImportDataFilePollingUntilDone(name:)``
   public func deleteImportDataFile(
     request: DeleteImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -542,10 +542,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteImportDataFilePollingUntilDone(request:)``
-  /// - ``deleteImportDataFilePollingUntilDone(name:)``
   /// - ``deleteImportDataFile(request:)``
   /// - ``deleteImportDataFile(request:options:)``
+  /// - ``deleteImportDataFilePollingUntilDone(name:)``
+  /// - ``deleteImportDataFilePollingUntilDone(request:)``
   public func deleteImportDataFilePollingUntilDone(
     request: DeleteImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -577,9 +577,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listGroups(request:)``
+  /// - ``listGroupsByItems(parent:)``
   /// - ``listGroupsByItems(request:)``
   /// - ``listGroupsByItems(request:options:)``
-  /// - ``listGroupsByItems(parent:)``
   public func listGroups(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListGroupsResponse {
@@ -592,8 +592,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getGroup(request:)``
   /// - ``getGroup(name:)``
+  /// - ``getGroup(request:)``
   public func getGroup(
     request: GetGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Group {
@@ -607,9 +607,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createGroup(request:)``
+  /// - ``createGroupPollingUntilDone(parent:group:groupId:)``
   /// - ``createGroupPollingUntilDone(request:)``
   /// - ``createGroupPollingUntilDone(request:options:)``
-  /// - ``createGroupPollingUntilDone(parent:group:groupId:)``
   public func createGroup(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -622,10 +622,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createGroupPollingUntilDone(request:)``
-  /// - ``createGroupPollingUntilDone(parent:group:groupId:)``
   /// - ``createGroup(request:)``
   /// - ``createGroup(request:options:)``
+  /// - ``createGroupPollingUntilDone(parent:group:groupId:)``
+  /// - ``createGroupPollingUntilDone(request:)``
   public func createGroupPollingUntilDone(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -657,9 +657,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateGroup(request:)``
+  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
   /// - ``updateGroupPollingUntilDone(request:)``
   /// - ``updateGroupPollingUntilDone(request:options:)``
-  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -672,10 +672,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateGroupPollingUntilDone(request:)``
-  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
   /// - ``updateGroup(request:)``
   /// - ``updateGroup(request:options:)``
+  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
+  /// - ``updateGroupPollingUntilDone(request:)``
   public func updateGroupPollingUntilDone(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -707,9 +707,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteGroup(request:)``
+  /// - ``deleteGroupPollingUntilDone(name:)``
   /// - ``deleteGroupPollingUntilDone(request:)``
   /// - ``deleteGroupPollingUntilDone(request:options:)``
-  /// - ``deleteGroupPollingUntilDone(name:)``
   public func deleteGroup(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -722,10 +722,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteGroupPollingUntilDone(request:)``
-  /// - ``deleteGroupPollingUntilDone(name:)``
   /// - ``deleteGroup(request:)``
   /// - ``deleteGroup(request:options:)``
+  /// - ``deleteGroupPollingUntilDone(name:)``
+  /// - ``deleteGroupPollingUntilDone(request:)``
   public func deleteGroupPollingUntilDone(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -757,9 +757,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``addAssetsToGroup(request:)``
+  /// - ``addAssetsToGroupPollingUntilDone(group:)``
   /// - ``addAssetsToGroupPollingUntilDone(request:)``
   /// - ``addAssetsToGroupPollingUntilDone(request:options:)``
-  /// - ``addAssetsToGroupPollingUntilDone(group:)``
   public func addAssetsToGroup(
     request: AddAssetsToGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -772,10 +772,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``addAssetsToGroupPollingUntilDone(request:)``
-  /// - ``addAssetsToGroupPollingUntilDone(group:)``
   /// - ``addAssetsToGroup(request:)``
   /// - ``addAssetsToGroup(request:options:)``
+  /// - ``addAssetsToGroupPollingUntilDone(group:)``
+  /// - ``addAssetsToGroupPollingUntilDone(request:)``
   public func addAssetsToGroupPollingUntilDone(
     request: AddAssetsToGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -807,9 +807,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``removeAssetsFromGroup(request:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(group:)``
   /// - ``removeAssetsFromGroupPollingUntilDone(request:)``
   /// - ``removeAssetsFromGroupPollingUntilDone(request:options:)``
-  /// - ``removeAssetsFromGroupPollingUntilDone(group:)``
   public func removeAssetsFromGroup(
     request: RemoveAssetsFromGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -822,10 +822,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``removeAssetsFromGroupPollingUntilDone(request:)``
-  /// - ``removeAssetsFromGroupPollingUntilDone(group:)``
   /// - ``removeAssetsFromGroup(request:)``
   /// - ``removeAssetsFromGroup(request:options:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(group:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(request:)``
   public func removeAssetsFromGroupPollingUntilDone(
     request: RemoveAssetsFromGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -857,9 +857,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listErrorFrames(request:)``
+  /// - ``listErrorFramesByItems(parent:)``
   /// - ``listErrorFramesByItems(request:)``
   /// - ``listErrorFramesByItems(request:options:)``
-  /// - ``listErrorFramesByItems(parent:)``
   public func listErrorFrames(
     request: ListErrorFramesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListErrorFramesResponse {
@@ -872,8 +872,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getErrorFrame(request:)``
   /// - ``getErrorFrame(name:)``
+  /// - ``getErrorFrame(request:)``
   public func getErrorFrame(
     request: GetErrorFrameRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ErrorFrame {
@@ -887,9 +887,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listSources(request:)``
+  /// - ``listSourcesByItems(parent:)``
   /// - ``listSourcesByItems(request:)``
   /// - ``listSourcesByItems(request:options:)``
-  /// - ``listSourcesByItems(parent:)``
   public func listSources(
     request: ListSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListSourcesResponse {
@@ -902,8 +902,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSource(request:)``
   /// - ``getSource(name:)``
+  /// - ``getSource(request:)``
   public func getSource(
     request: GetSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Source {
@@ -917,9 +917,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createSource(request:)``
+  /// - ``createSourcePollingUntilDone(parent:source:sourceId:)``
   /// - ``createSourcePollingUntilDone(request:)``
   /// - ``createSourcePollingUntilDone(request:options:)``
-  /// - ``createSourcePollingUntilDone(parent:source:sourceId:)``
   public func createSource(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -932,10 +932,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createSourcePollingUntilDone(request:)``
-  /// - ``createSourcePollingUntilDone(parent:source:sourceId:)``
   /// - ``createSource(request:)``
   /// - ``createSource(request:options:)``
+  /// - ``createSourcePollingUntilDone(parent:source:sourceId:)``
+  /// - ``createSourcePollingUntilDone(request:)``
   public func createSourcePollingUntilDone(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Source {
@@ -982,10 +982,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateSourcePollingUntilDone(request:)``
-  /// - ``updateSourcePollingUntilDone(source:updateMask:)``
   /// - ``updateSource(request:)``
   /// - ``updateSource(request:options:)``
+  /// - ``updateSourcePollingUntilDone(request:)``
+  /// - ``updateSourcePollingUntilDone(source:updateMask:)``
   public func updateSourcePollingUntilDone(
     request: UpdateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Source {
@@ -1017,9 +1017,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteSource(request:)``
+  /// - ``deleteSourcePollingUntilDone(name:)``
   /// - ``deleteSourcePollingUntilDone(request:)``
   /// - ``deleteSourcePollingUntilDone(request:options:)``
-  /// - ``deleteSourcePollingUntilDone(name:)``
   public func deleteSource(
     request: DeleteSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1032,10 +1032,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteSourcePollingUntilDone(request:)``
-  /// - ``deleteSourcePollingUntilDone(name:)``
   /// - ``deleteSource(request:)``
   /// - ``deleteSource(request:options:)``
+  /// - ``deleteSourcePollingUntilDone(name:)``
+  /// - ``deleteSourcePollingUntilDone(request:)``
   public func deleteSourcePollingUntilDone(
     request: DeleteSourceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1067,9 +1067,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPreferenceSets(request:)``
+  /// - ``listPreferenceSetsByItems(parent:)``
   /// - ``listPreferenceSetsByItems(request:)``
   /// - ``listPreferenceSetsByItems(request:options:)``
-  /// - ``listPreferenceSetsByItems(parent:)``
   public func listPreferenceSets(
     request: ListPreferenceSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListPreferenceSetsResponse {
@@ -1082,8 +1082,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPreferenceSet(request:)``
   /// - ``getPreferenceSet(name:)``
+  /// - ``getPreferenceSet(request:)``
   public func getPreferenceSet(
     request: GetPreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.PreferenceSet {
@@ -1097,9 +1097,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createPreferenceSet(request:)``
+  /// - ``createPreferenceSetPollingUntilDone(parent:preferenceSet:preferenceSetId:)``
   /// - ``createPreferenceSetPollingUntilDone(request:)``
   /// - ``createPreferenceSetPollingUntilDone(request:options:)``
-  /// - ``createPreferenceSetPollingUntilDone(parent:preferenceSet:preferenceSetId:)``
   public func createPreferenceSet(
     request: CreatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1112,10 +1112,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createPreferenceSetPollingUntilDone(request:)``
-  /// - ``createPreferenceSetPollingUntilDone(parent:preferenceSet:preferenceSetId:)``
   /// - ``createPreferenceSet(request:)``
   /// - ``createPreferenceSet(request:options:)``
+  /// - ``createPreferenceSetPollingUntilDone(parent:preferenceSet:preferenceSetId:)``
+  /// - ``createPreferenceSetPollingUntilDone(request:)``
   public func createPreferenceSetPollingUntilDone(
     request: CreatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PreferenceSet {
@@ -1148,9 +1148,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``updatePreferenceSet(request:)``
+  /// - ``updatePreferenceSetPollingUntilDone(preferenceSet:updateMask:)``
   /// - ``updatePreferenceSetPollingUntilDone(request:)``
   /// - ``updatePreferenceSetPollingUntilDone(request:options:)``
-  /// - ``updatePreferenceSetPollingUntilDone(preferenceSet:updateMask:)``
   public func updatePreferenceSet(
     request: UpdatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1163,10 +1163,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updatePreferenceSetPollingUntilDone(request:)``
-  /// - ``updatePreferenceSetPollingUntilDone(preferenceSet:updateMask:)``
   /// - ``updatePreferenceSet(request:)``
   /// - ``updatePreferenceSet(request:options:)``
+  /// - ``updatePreferenceSetPollingUntilDone(preferenceSet:updateMask:)``
+  /// - ``updatePreferenceSetPollingUntilDone(request:)``
   public func updatePreferenceSetPollingUntilDone(
     request: UpdatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PreferenceSet {
@@ -1199,9 +1199,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deletePreferenceSet(request:)``
+  /// - ``deletePreferenceSetPollingUntilDone(name:)``
   /// - ``deletePreferenceSetPollingUntilDone(request:)``
   /// - ``deletePreferenceSetPollingUntilDone(request:options:)``
-  /// - ``deletePreferenceSetPollingUntilDone(name:)``
   public func deletePreferenceSet(
     request: DeletePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1214,10 +1214,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deletePreferenceSetPollingUntilDone(request:)``
-  /// - ``deletePreferenceSetPollingUntilDone(name:)``
   /// - ``deletePreferenceSet(request:)``
   /// - ``deletePreferenceSet(request:options:)``
+  /// - ``deletePreferenceSetPollingUntilDone(name:)``
+  /// - ``deletePreferenceSetPollingUntilDone(request:)``
   public func deletePreferenceSetPollingUntilDone(
     request: DeletePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1248,8 +1248,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSettings(request:)``
   /// - ``getSettings(name:)``
+  /// - ``getSettings(request:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Settings {
@@ -1278,10 +1278,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateSettingsPollingUntilDone(request:)``
-  /// - ``updateSettingsPollingUntilDone(settings:updateMask:)``
   /// - ``updateSettings(request:)``
   /// - ``updateSettings(request:options:)``
+  /// - ``updateSettingsPollingUntilDone(request:)``
+  /// - ``updateSettingsPollingUntilDone(settings:updateMask:)``
   public func updateSettingsPollingUntilDone(
     request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Settings {
@@ -1313,9 +1313,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createReportConfig(request:)``
+  /// - ``createReportConfigPollingUntilDone(parent:reportConfig:reportConfigId:)``
   /// - ``createReportConfigPollingUntilDone(request:)``
   /// - ``createReportConfigPollingUntilDone(request:options:)``
-  /// - ``createReportConfigPollingUntilDone(parent:reportConfig:reportConfigId:)``
   public func createReportConfig(
     request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1328,10 +1328,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createReportConfigPollingUntilDone(request:)``
-  /// - ``createReportConfigPollingUntilDone(parent:reportConfig:reportConfigId:)``
   /// - ``createReportConfig(request:)``
   /// - ``createReportConfig(request:options:)``
+  /// - ``createReportConfigPollingUntilDone(parent:reportConfig:reportConfigId:)``
+  /// - ``createReportConfigPollingUntilDone(request:)``
   public func createReportConfigPollingUntilDone(
     request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> ReportConfig {
@@ -1363,8 +1363,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getReportConfig(request:)``
   /// - ``getReportConfig(name:)``
+  /// - ``getReportConfig(request:)``
   public func getReportConfig(
     request: GetReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ReportConfig {
@@ -1378,9 +1378,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listReportConfigs(request:)``
+  /// - ``listReportConfigsByItems(parent:)``
   /// - ``listReportConfigsByItems(request:)``
   /// - ``listReportConfigsByItems(request:options:)``
-  /// - ``listReportConfigsByItems(parent:)``
   public func listReportConfigs(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListReportConfigsResponse {
@@ -1394,9 +1394,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteReportConfig(request:)``
+  /// - ``deleteReportConfigPollingUntilDone(name:)``
   /// - ``deleteReportConfigPollingUntilDone(request:)``
   /// - ``deleteReportConfigPollingUntilDone(request:options:)``
-  /// - ``deleteReportConfigPollingUntilDone(name:)``
   public func deleteReportConfig(
     request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1409,10 +1409,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteReportConfigPollingUntilDone(request:)``
-  /// - ``deleteReportConfigPollingUntilDone(name:)``
   /// - ``deleteReportConfig(request:)``
   /// - ``deleteReportConfig(request:options:)``
+  /// - ``deleteReportConfigPollingUntilDone(name:)``
+  /// - ``deleteReportConfigPollingUntilDone(request:)``
   public func deleteReportConfigPollingUntilDone(
     request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1444,9 +1444,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``createReport(request:)``
+  /// - ``createReportPollingUntilDone(parent:report:reportId:)``
   /// - ``createReportPollingUntilDone(request:)``
   /// - ``createReportPollingUntilDone(request:options:)``
-  /// - ``createReportPollingUntilDone(parent:report:reportId:)``
   public func createReport(
     request: CreateReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1459,10 +1459,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createReportPollingUntilDone(request:)``
-  /// - ``createReportPollingUntilDone(parent:report:reportId:)``
   /// - ``createReport(request:)``
   /// - ``createReport(request:options:)``
+  /// - ``createReportPollingUntilDone(parent:report:reportId:)``
+  /// - ``createReportPollingUntilDone(request:)``
   public func createReportPollingUntilDone(
     request: CreateReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> Report {
@@ -1493,8 +1493,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getReport(request:)``
   /// - ``getReport(name:)``
+  /// - ``getReport(request:)``
   public func getReport(
     request: GetReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Report {
@@ -1508,9 +1508,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listReports(request:)``
+  /// - ``listReportsByItems(parent:)``
   /// - ``listReportsByItems(request:)``
   /// - ``listReportsByItems(request:options:)``
-  /// - ``listReportsByItems(parent:)``
   public func listReports(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListReportsResponse {
@@ -1524,9 +1524,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteReport(request:)``
+  /// - ``deleteReportPollingUntilDone(name:)``
   /// - ``deleteReportPollingUntilDone(request:)``
   /// - ``deleteReportPollingUntilDone(request:options:)``
-  /// - ``deleteReportPollingUntilDone(name:)``
   public func deleteReport(
     request: DeleteReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1539,10 +1539,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteReportPollingUntilDone(request:)``
-  /// - ``deleteReportPollingUntilDone(name:)``
   /// - ``deleteReport(request:)``
   /// - ``deleteReport(request:options:)``
+  /// - ``deleteReportPollingUntilDone(name:)``
+  /// - ``deleteReportPollingUntilDone(request:)``
   public func deleteReportPollingUntilDone(
     request: DeleteReportRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1604,9 +1604,9 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1632,8 +1632,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1648,8 +1648,8 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

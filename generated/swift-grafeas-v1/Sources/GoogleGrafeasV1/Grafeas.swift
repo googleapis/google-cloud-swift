@@ -60,8 +60,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getOccurrence(request:)``
   /// - ``getOccurrence(name:)``
+  /// - ``getOccurrence(request:)``
   public func getOccurrence(
     request: GetOccurrenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Occurrence {
@@ -75,9 +75,9 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOccurrences(request:)``
+  /// - ``listOccurrencesByItems(parent:filter:)``
   /// - ``listOccurrencesByItems(request:)``
   /// - ``listOccurrencesByItems(request:options:)``
-  /// - ``listOccurrencesByItems(parent:filter:)``
   public func listOccurrences(
     request: ListOccurrencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.ListOccurrencesResponse {
@@ -92,8 +92,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOccurrence(request:)``
   /// - ``deleteOccurrence(name:)``
+  /// - ``deleteOccurrence(request:)``
   public func deleteOccurrence(
     request: DeleteOccurrenceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -106,8 +106,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createOccurrence(request:)``
   /// - ``createOccurrence(parent:occurrence:)``
+  /// - ``createOccurrence(request:)``
   public func createOccurrence(
     request: CreateOccurrenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Occurrence {
@@ -120,8 +120,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchCreateOccurrences(request:)``
   /// - ``batchCreateOccurrences(parent:occurrences:)``
+  /// - ``batchCreateOccurrences(request:)``
   public func batchCreateOccurrences(
     request: BatchCreateOccurrencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.BatchCreateOccurrencesResponse {
@@ -134,8 +134,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateOccurrence(request:)``
   /// - ``updateOccurrence(name:occurrence:updateMask:)``
+  /// - ``updateOccurrence(request:)``
   public func updateOccurrence(
     request: UpdateOccurrenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Occurrence {
@@ -149,8 +149,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getOccurrenceNote(request:)``
   /// - ``getOccurrenceNote(name:)``
+  /// - ``getOccurrenceNote(request:)``
   public func getOccurrenceNote(
     request: GetOccurrenceNoteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Note {
@@ -163,8 +163,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNote(request:)``
   /// - ``getNote(name:)``
+  /// - ``getNote(request:)``
   public func getNote(
     request: GetNoteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Note {
@@ -178,9 +178,9 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNotes(request:)``
+  /// - ``listNotesByItems(parent:filter:)``
   /// - ``listNotesByItems(request:)``
   /// - ``listNotesByItems(request:options:)``
-  /// - ``listNotesByItems(parent:filter:)``
   public func listNotes(
     request: ListNotesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.ListNotesResponse {
@@ -193,8 +193,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteNote(request:)``
   /// - ``deleteNote(name:)``
+  /// - ``deleteNote(request:)``
   public func deleteNote(
     request: DeleteNoteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -207,8 +207,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createNote(request:)``
   /// - ``createNote(parent:noteId:note:)``
+  /// - ``createNote(request:)``
   public func createNote(
     request: CreateNoteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Note {
@@ -221,8 +221,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchCreateNotes(request:)``
   /// - ``batchCreateNotes(parent:notes:)``
+  /// - ``batchCreateNotes(request:)``
   public func batchCreateNotes(
     request: BatchCreateNotesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.BatchCreateNotesResponse {
@@ -235,8 +235,8 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateNote(request:)``
   /// - ``updateNote(name:note:updateMask:)``
+  /// - ``updateNote(request:)``
   public func updateNote(
     request: UpdateNoteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.Note {
@@ -252,9 +252,9 @@ public final class GrafeasClient: Clients.GrafeasProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNoteOccurrences(request:)``
+  /// - ``listNoteOccurrencesByItems(name:filter:)``
   /// - ``listNoteOccurrencesByItems(request:)``
   /// - ``listNoteOccurrencesByItems(request:options:)``
-  /// - ``listNoteOccurrencesByItems(name:filter:)``
   public func listNoteOccurrences(
     request: ListNoteOccurrencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleGrafeasV1.ListNoteOccurrencesResponse {

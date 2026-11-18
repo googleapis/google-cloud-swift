@@ -57,9 +57,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listMulticloudDataTransferConfigs(request:)``
+  /// - ``listMulticloudDataTransferConfigsByItems(parent:)``
   /// - ``listMulticloudDataTransferConfigsByItems(request:)``
   /// - ``listMulticloudDataTransferConfigsByItems(request:options:)``
-  /// - ``listMulticloudDataTransferConfigsByItems(parent:)``
   public func listMulticloudDataTransferConfigs(
     request: ListMulticloudDataTransferConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListMulticloudDataTransferConfigsResponse {
@@ -72,8 +72,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getMulticloudDataTransferConfig(request:)``
   /// - ``getMulticloudDataTransferConfig(name:)``
+  /// - ``getMulticloudDataTransferConfig(request:)``
   public func getMulticloudDataTransferConfig(
     request: GetMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.MulticloudDataTransferConfig {
@@ -88,9 +88,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``createMulticloudDataTransferConfig(request:)``
+  /// - ``createMulticloudDataTransferConfigPollingUntilDone(parent:multicloudDataTransferConfig:multicloudDataTransferConfigId:)``
   /// - ``createMulticloudDataTransferConfigPollingUntilDone(request:)``
   /// - ``createMulticloudDataTransferConfigPollingUntilDone(request:options:)``
-  /// - ``createMulticloudDataTransferConfigPollingUntilDone(parent:multicloudDataTransferConfig:multicloudDataTransferConfigId:)``
   public func createMulticloudDataTransferConfig(
     request: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -104,10 +104,10 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createMulticloudDataTransferConfigPollingUntilDone(request:)``
-  /// - ``createMulticloudDataTransferConfigPollingUntilDone(parent:multicloudDataTransferConfig:multicloudDataTransferConfigId:)``
   /// - ``createMulticloudDataTransferConfig(request:)``
   /// - ``createMulticloudDataTransferConfig(request:options:)``
+  /// - ``createMulticloudDataTransferConfigPollingUntilDone(parent:multicloudDataTransferConfig:multicloudDataTransferConfigId:)``
+  /// - ``createMulticloudDataTransferConfigPollingUntilDone(request:)``
   public func createMulticloudDataTransferConfigPollingUntilDone(
     request: CreateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> MulticloudDataTransferConfig {
@@ -143,9 +143,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``updateMulticloudDataTransferConfig(request:)``
+  /// - ``updateMulticloudDataTransferConfigPollingUntilDone(multicloudDataTransferConfig:updateMask:)``
   /// - ``updateMulticloudDataTransferConfigPollingUntilDone(request:)``
   /// - ``updateMulticloudDataTransferConfigPollingUntilDone(request:options:)``
-  /// - ``updateMulticloudDataTransferConfigPollingUntilDone(multicloudDataTransferConfig:updateMask:)``
   public func updateMulticloudDataTransferConfig(
     request: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -159,10 +159,10 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateMulticloudDataTransferConfigPollingUntilDone(request:)``
-  /// - ``updateMulticloudDataTransferConfigPollingUntilDone(multicloudDataTransferConfig:updateMask:)``
   /// - ``updateMulticloudDataTransferConfig(request:)``
   /// - ``updateMulticloudDataTransferConfig(request:options:)``
+  /// - ``updateMulticloudDataTransferConfigPollingUntilDone(multicloudDataTransferConfig:updateMask:)``
+  /// - ``updateMulticloudDataTransferConfigPollingUntilDone(request:)``
   public func updateMulticloudDataTransferConfigPollingUntilDone(
     request: UpdateMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> MulticloudDataTransferConfig {
@@ -197,9 +197,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteMulticloudDataTransferConfig(request:)``
+  /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(name:)``
   /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(request:)``
   /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(request:options:)``
-  /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(name:)``
   public func deleteMulticloudDataTransferConfig(
     request: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -212,10 +212,10 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(request:)``
-  /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(name:)``
   /// - ``deleteMulticloudDataTransferConfig(request:)``
   /// - ``deleteMulticloudDataTransferConfig(request:options:)``
+  /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(name:)``
+  /// - ``deleteMulticloudDataTransferConfigPollingUntilDone(request:)``
   public func deleteMulticloudDataTransferConfigPollingUntilDone(
     request: DeleteMulticloudDataTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -248,9 +248,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listDestinations(request:)``
+  /// - ``listDestinationsByItems(parent:)``
   /// - ``listDestinationsByItems(request:)``
   /// - ``listDestinationsByItems(request:options:)``
-  /// - ``listDestinationsByItems(parent:)``
   public func listDestinations(
     request: ListDestinationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.ListDestinationsResponse {
@@ -263,8 +263,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDestination(request:)``
   /// - ``getDestination(name:)``
+  /// - ``getDestination(request:)``
   public func getDestination(
     request: GetDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.Destination {
@@ -278,9 +278,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``createDestination(request:)``
+  /// - ``createDestinationPollingUntilDone(parent:destination:destinationId:)``
   /// - ``createDestinationPollingUntilDone(request:)``
   /// - ``createDestinationPollingUntilDone(request:options:)``
-  /// - ``createDestinationPollingUntilDone(parent:destination:destinationId:)``
   public func createDestination(
     request: CreateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -293,10 +293,10 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createDestinationPollingUntilDone(request:)``
-  /// - ``createDestinationPollingUntilDone(parent:destination:destinationId:)``
   /// - ``createDestination(request:)``
   /// - ``createDestination(request:options:)``
+  /// - ``createDestinationPollingUntilDone(parent:destination:destinationId:)``
+  /// - ``createDestinationPollingUntilDone(request:)``
   public func createDestinationPollingUntilDone(
     request: CreateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Destination {
@@ -328,9 +328,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``updateDestination(request:)``
+  /// - ``updateDestinationPollingUntilDone(destination:updateMask:)``
   /// - ``updateDestinationPollingUntilDone(request:)``
   /// - ``updateDestinationPollingUntilDone(request:options:)``
-  /// - ``updateDestinationPollingUntilDone(destination:updateMask:)``
   public func updateDestination(
     request: UpdateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -343,10 +343,10 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``updateDestinationPollingUntilDone(request:)``
-  /// - ``updateDestinationPollingUntilDone(destination:updateMask:)``
   /// - ``updateDestination(request:)``
   /// - ``updateDestination(request:options:)``
+  /// - ``updateDestinationPollingUntilDone(destination:updateMask:)``
+  /// - ``updateDestinationPollingUntilDone(request:)``
   public func updateDestinationPollingUntilDone(
     request: UpdateDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Destination {
@@ -378,9 +378,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``deleteDestination(request:)``
+  /// - ``deleteDestinationPollingUntilDone(name:)``
   /// - ``deleteDestinationPollingUntilDone(request:)``
   /// - ``deleteDestinationPollingUntilDone(request:options:)``
-  /// - ``deleteDestinationPollingUntilDone(name:)``
   public func deleteDestination(
     request: DeleteDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -393,10 +393,10 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteDestinationPollingUntilDone(request:)``
-  /// - ``deleteDestinationPollingUntilDone(name:)``
   /// - ``deleteDestination(request:)``
   /// - ``deleteDestination(request:options:)``
+  /// - ``deleteDestinationPollingUntilDone(name:)``
+  /// - ``deleteDestinationPollingUntilDone(request:)``
   public func deleteDestinationPollingUntilDone(
     request: DeleteDestinationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -428,8 +428,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getMulticloudDataTransferSupportedService(request:)``
   /// - ``getMulticloudDataTransferSupportedService(name:)``
+  /// - ``getMulticloudDataTransferSupportedService(request:)``
   public func getMulticloudDataTransferSupportedService(
     request: GetMulticloudDataTransferSupportedServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkConnectivityV1.MulticloudDataTransferSupportedService {
@@ -445,9 +445,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listMulticloudDataTransferSupportedServices(request:)``
+  /// - ``listMulticloudDataTransferSupportedServicesByItems(parent:)``
   /// - ``listMulticloudDataTransferSupportedServicesByItems(request:)``
   /// - ``listMulticloudDataTransferSupportedServicesByItems(request:options:)``
-  /// - ``listMulticloudDataTransferSupportedServicesByItems(parent:)``
   public func listMulticloudDataTransferSupportedServices(
     request: ListMulticloudDataTransferSupportedServicesRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -544,9 +544,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -572,8 +572,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -588,8 +588,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

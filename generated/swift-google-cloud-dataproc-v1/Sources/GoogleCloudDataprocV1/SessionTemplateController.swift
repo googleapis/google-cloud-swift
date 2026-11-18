@@ -51,8 +51,8 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   ///
   /// ## See Also
   ///
-  /// - ``createSessionTemplate(request:)``
   /// - ``createSessionTemplate(parent:sessionTemplate:)``
+  /// - ``createSessionTemplate(request:)``
   public func createSessionTemplate(
     request: CreateSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -79,8 +79,8 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   ///
   /// ## See Also
   ///
-  /// - ``getSessionTemplate(request:)``
   /// - ``getSessionTemplate(name:)``
+  /// - ``getSessionTemplate(request:)``
   public func getSessionTemplate(
     request: GetSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -94,9 +94,9 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// ## See Also
   ///
   /// - ``listSessionTemplates(request:)``
+  /// - ``listSessionTemplatesByItems(parent:)``
   /// - ``listSessionTemplatesByItems(request:)``
   /// - ``listSessionTemplatesByItems(request:options:)``
-  /// - ``listSessionTemplatesByItems(parent:)``
   public func listSessionTemplates(
     request: ListSessionTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListSessionTemplatesResponse {
@@ -109,8 +109,8 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   ///
   /// ## See Also
   ///
-  /// - ``deleteSessionTemplate(request:)``
   /// - ``deleteSessionTemplate(name:)``
+  /// - ``deleteSessionTemplate(request:)``
   public func deleteSessionTemplate(
     request: DeleteSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,9 +176,9 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -204,8 +204,8 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -220,8 +220,8 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

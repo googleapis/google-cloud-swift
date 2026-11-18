@@ -56,9 +56,9 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// ## See Also
   ///
   /// - ``listBlockchainNodes(request:)``
+  /// - ``listBlockchainNodesByItems(parent:)``
   /// - ``listBlockchainNodesByItems(request:)``
   /// - ``listBlockchainNodesByItems(request:options:)``
-  /// - ``listBlockchainNodesByItems(parent:)``
   public func listBlockchainNodes(
     request: ListBlockchainNodesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBlockChainNodeEngineV1.ListBlockchainNodesResponse {
@@ -71,8 +71,8 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   ///
   /// ## See Also
   ///
-  /// - ``getBlockchainNode(request:)``
   /// - ``getBlockchainNode(name:)``
+  /// - ``getBlockchainNode(request:)``
   public func getBlockchainNode(
     request: GetBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBlockChainNodeEngineV1.BlockchainNode {
@@ -86,9 +86,9 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// ## See Also
   ///
   /// - ``createBlockchainNode(request:)``
+  /// - ``createBlockchainNodePollingUntilDone(parent:blockchainNode:blockchainNodeId:)``
   /// - ``createBlockchainNodePollingUntilDone(request:)``
   /// - ``createBlockchainNodePollingUntilDone(request:options:)``
-  /// - ``createBlockchainNodePollingUntilDone(parent:blockchainNode:blockchainNodeId:)``
   public func createBlockchainNode(
     request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   ///
   /// ## See Also
   ///
-  /// - ``createBlockchainNodePollingUntilDone(request:)``
-  /// - ``createBlockchainNodePollingUntilDone(parent:blockchainNode:blockchainNodeId:)``
   /// - ``createBlockchainNode(request:)``
   /// - ``createBlockchainNode(request:options:)``
+  /// - ``createBlockchainNodePollingUntilDone(parent:blockchainNode:blockchainNodeId:)``
+  /// - ``createBlockchainNodePollingUntilDone(request:)``
   public func createBlockchainNodePollingUntilDone(
     request: CreateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> BlockchainNode {
@@ -137,9 +137,9 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// ## See Also
   ///
   /// - ``updateBlockchainNode(request:)``
+  /// - ``updateBlockchainNodePollingUntilDone(blockchainNode:updateMask:)``
   /// - ``updateBlockchainNodePollingUntilDone(request:)``
   /// - ``updateBlockchainNodePollingUntilDone(request:options:)``
-  /// - ``updateBlockchainNodePollingUntilDone(blockchainNode:updateMask:)``
   public func updateBlockchainNode(
     request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -152,10 +152,10 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   ///
   /// ## See Also
   ///
-  /// - ``updateBlockchainNodePollingUntilDone(request:)``
-  /// - ``updateBlockchainNodePollingUntilDone(blockchainNode:updateMask:)``
   /// - ``updateBlockchainNode(request:)``
   /// - ``updateBlockchainNode(request:options:)``
+  /// - ``updateBlockchainNodePollingUntilDone(blockchainNode:updateMask:)``
+  /// - ``updateBlockchainNodePollingUntilDone(request:)``
   public func updateBlockchainNodePollingUntilDone(
     request: UpdateBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> BlockchainNode {
@@ -188,9 +188,9 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// ## See Also
   ///
   /// - ``deleteBlockchainNode(request:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(name:)``
   /// - ``deleteBlockchainNodePollingUntilDone(request:)``
   /// - ``deleteBlockchainNodePollingUntilDone(request:options:)``
-  /// - ``deleteBlockchainNodePollingUntilDone(name:)``
   public func deleteBlockchainNode(
     request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -203,10 +203,10 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteBlockchainNodePollingUntilDone(request:)``
-  /// - ``deleteBlockchainNodePollingUntilDone(name:)``
   /// - ``deleteBlockchainNode(request:)``
   /// - ``deleteBlockchainNode(request:options:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(name:)``
+  /// - ``deleteBlockchainNodePollingUntilDone(request:)``
   public func deleteBlockchainNodePollingUntilDone(
     request: DeleteBlockchainNodeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -268,9 +268,9 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -296,8 +296,8 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,8 +312,8 @@ public final class BlockchainNodeEngineClient: Clients.BlockchainNodeEngineProto
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

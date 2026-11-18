@@ -55,9 +55,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listEndpointPolicies(request:)``
+  /// - ``listEndpointPoliciesByItems(parent:)``
   /// - ``listEndpointPoliciesByItems(request:)``
   /// - ``listEndpointPoliciesByItems(request:options:)``
-  /// - ``listEndpointPoliciesByItems(parent:)``
   public func listEndpointPolicies(
     request: ListEndpointPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListEndpointPoliciesResponse {
@@ -70,8 +70,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getEndpointPolicy(request:)``
   /// - ``getEndpointPolicy(name:)``
+  /// - ``getEndpointPolicy(request:)``
   public func getEndpointPolicy(
     request: GetEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.EndpointPolicy {
@@ -85,9 +85,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createEndpointPolicy(request:)``
+  /// - ``createEndpointPolicyPollingUntilDone(parent:endpointPolicy:endpointPolicyId:)``
   /// - ``createEndpointPolicyPollingUntilDone(request:)``
   /// - ``createEndpointPolicyPollingUntilDone(request:options:)``
-  /// - ``createEndpointPolicyPollingUntilDone(parent:endpointPolicy:endpointPolicyId:)``
   public func createEndpointPolicy(
     request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createEndpointPolicyPollingUntilDone(request:)``
-  /// - ``createEndpointPolicyPollingUntilDone(parent:endpointPolicy:endpointPolicyId:)``
   /// - ``createEndpointPolicy(request:)``
   /// - ``createEndpointPolicy(request:options:)``
+  /// - ``createEndpointPolicyPollingUntilDone(parent:endpointPolicy:endpointPolicyId:)``
+  /// - ``createEndpointPolicyPollingUntilDone(request:)``
   public func createEndpointPolicyPollingUntilDone(
     request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> EndpointPolicy {
@@ -136,9 +136,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateEndpointPolicy(request:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(endpointPolicy:updateMask:)``
   /// - ``updateEndpointPolicyPollingUntilDone(request:)``
   /// - ``updateEndpointPolicyPollingUntilDone(request:options:)``
-  /// - ``updateEndpointPolicyPollingUntilDone(endpointPolicy:updateMask:)``
   public func updateEndpointPolicy(
     request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,10 +151,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateEndpointPolicyPollingUntilDone(request:)``
-  /// - ``updateEndpointPolicyPollingUntilDone(endpointPolicy:updateMask:)``
   /// - ``updateEndpointPolicy(request:)``
   /// - ``updateEndpointPolicy(request:options:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(endpointPolicy:updateMask:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(request:)``
   public func updateEndpointPolicyPollingUntilDone(
     request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> EndpointPolicy {
@@ -187,9 +187,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteEndpointPolicy(request:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(name:)``
   /// - ``deleteEndpointPolicyPollingUntilDone(request:)``
   /// - ``deleteEndpointPolicyPollingUntilDone(request:options:)``
-  /// - ``deleteEndpointPolicyPollingUntilDone(name:)``
   public func deleteEndpointPolicy(
     request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -202,10 +202,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteEndpointPolicyPollingUntilDone(request:)``
-  /// - ``deleteEndpointPolicyPollingUntilDone(name:)``
   /// - ``deleteEndpointPolicy(request:)``
   /// - ``deleteEndpointPolicy(request:options:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(name:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(request:)``
   public func deleteEndpointPolicyPollingUntilDone(
     request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -238,9 +238,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listWasmPluginVersions(request:)``
+  /// - ``listWasmPluginVersionsByItems(parent:)``
   /// - ``listWasmPluginVersionsByItems(request:)``
   /// - ``listWasmPluginVersionsByItems(request:options:)``
-  /// - ``listWasmPluginVersionsByItems(parent:)``
   public func listWasmPluginVersions(
     request: ListWasmPluginVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginVersionsResponse {
@@ -253,8 +253,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getWasmPluginVersion(request:)``
   /// - ``getWasmPluginVersion(name:)``
+  /// - ``getWasmPluginVersion(request:)``
   public func getWasmPluginVersion(
     request: GetWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.WasmPluginVersion {
@@ -269,9 +269,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createWasmPluginVersion(request:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(parent:wasmPluginVersion:wasmPluginVersionId:)``
   /// - ``createWasmPluginVersionPollingUntilDone(request:)``
   /// - ``createWasmPluginVersionPollingUntilDone(request:options:)``
-  /// - ``createWasmPluginVersionPollingUntilDone(parent:wasmPluginVersion:wasmPluginVersionId:)``
   public func createWasmPluginVersion(
     request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -285,10 +285,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createWasmPluginVersionPollingUntilDone(request:)``
-  /// - ``createWasmPluginVersionPollingUntilDone(parent:wasmPluginVersion:wasmPluginVersionId:)``
   /// - ``createWasmPluginVersion(request:)``
   /// - ``createWasmPluginVersion(request:options:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(parent:wasmPluginVersion:wasmPluginVersionId:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(request:)``
   public func createWasmPluginVersionPollingUntilDone(
     request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> WasmPluginVersion {
@@ -321,9 +321,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteWasmPluginVersion(request:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(name:)``
   /// - ``deleteWasmPluginVersionPollingUntilDone(request:)``
   /// - ``deleteWasmPluginVersionPollingUntilDone(request:options:)``
-  /// - ``deleteWasmPluginVersionPollingUntilDone(name:)``
   public func deleteWasmPluginVersion(
     request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -336,10 +336,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteWasmPluginVersionPollingUntilDone(request:)``
-  /// - ``deleteWasmPluginVersionPollingUntilDone(name:)``
   /// - ``deleteWasmPluginVersion(request:)``
   /// - ``deleteWasmPluginVersion(request:options:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(name:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(request:)``
   public func deleteWasmPluginVersionPollingUntilDone(
     request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -372,9 +372,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listWasmPlugins(request:)``
+  /// - ``listWasmPluginsByItems(parent:)``
   /// - ``listWasmPluginsByItems(request:)``
   /// - ``listWasmPluginsByItems(request:options:)``
-  /// - ``listWasmPluginsByItems(parent:)``
   public func listWasmPlugins(
     request: ListWasmPluginsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginsResponse {
@@ -387,8 +387,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getWasmPlugin(request:)``
   /// - ``getWasmPlugin(name:)``
+  /// - ``getWasmPlugin(request:)``
   public func getWasmPlugin(
     request: GetWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.WasmPlugin {
@@ -403,9 +403,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createWasmPlugin(request:)``
+  /// - ``createWasmPluginPollingUntilDone(parent:wasmPlugin:wasmPluginId:)``
   /// - ``createWasmPluginPollingUntilDone(request:)``
   /// - ``createWasmPluginPollingUntilDone(request:options:)``
-  /// - ``createWasmPluginPollingUntilDone(parent:wasmPlugin:wasmPluginId:)``
   public func createWasmPlugin(
     request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -419,10 +419,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createWasmPluginPollingUntilDone(request:)``
-  /// - ``createWasmPluginPollingUntilDone(parent:wasmPlugin:wasmPluginId:)``
   /// - ``createWasmPlugin(request:)``
   /// - ``createWasmPlugin(request:options:)``
+  /// - ``createWasmPluginPollingUntilDone(parent:wasmPlugin:wasmPluginId:)``
+  /// - ``createWasmPluginPollingUntilDone(request:)``
   public func createWasmPluginPollingUntilDone(
     request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> WasmPlugin {
@@ -469,10 +469,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateWasmPluginPollingUntilDone(request:)``
-  /// - ``updateWasmPluginPollingUntilDone(wasmPlugin:updateMask:)``
   /// - ``updateWasmPlugin(request:)``
   /// - ``updateWasmPlugin(request:options:)``
+  /// - ``updateWasmPluginPollingUntilDone(request:)``
+  /// - ``updateWasmPluginPollingUntilDone(wasmPlugin:updateMask:)``
   public func updateWasmPluginPollingUntilDone(
     request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> WasmPlugin {
@@ -504,9 +504,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteWasmPlugin(request:)``
+  /// - ``deleteWasmPluginPollingUntilDone(name:)``
   /// - ``deleteWasmPluginPollingUntilDone(request:)``
   /// - ``deleteWasmPluginPollingUntilDone(request:options:)``
-  /// - ``deleteWasmPluginPollingUntilDone(name:)``
   public func deleteWasmPlugin(
     request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -519,10 +519,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteWasmPluginPollingUntilDone(request:)``
-  /// - ``deleteWasmPluginPollingUntilDone(name:)``
   /// - ``deleteWasmPlugin(request:)``
   /// - ``deleteWasmPlugin(request:options:)``
+  /// - ``deleteWasmPluginPollingUntilDone(name:)``
+  /// - ``deleteWasmPluginPollingUntilDone(request:)``
   public func deleteWasmPluginPollingUntilDone(
     request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -554,9 +554,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listGateways(request:)``
+  /// - ``listGatewaysByItems(parent:)``
   /// - ``listGatewaysByItems(request:)``
   /// - ``listGatewaysByItems(request:options:)``
-  /// - ``listGatewaysByItems(parent:)``
   public func listGateways(
     request: ListGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListGatewaysResponse {
@@ -569,8 +569,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getGateway(request:)``
   /// - ``getGateway(name:)``
+  /// - ``getGateway(request:)``
   public func getGateway(
     request: GetGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.Gateway {
@@ -584,9 +584,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createGateway(request:)``
+  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
   /// - ``createGatewayPollingUntilDone(request:)``
   /// - ``createGatewayPollingUntilDone(request:options:)``
-  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
   public func createGateway(
     request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -599,10 +599,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createGatewayPollingUntilDone(request:)``
-  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
   /// - ``createGateway(request:)``
   /// - ``createGateway(request:options:)``
+  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
+  /// - ``createGatewayPollingUntilDone(request:)``
   public func createGatewayPollingUntilDone(
     request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Gateway {
@@ -634,9 +634,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateGateway(request:)``
+  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
   /// - ``updateGatewayPollingUntilDone(request:)``
   /// - ``updateGatewayPollingUntilDone(request:options:)``
-  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
   public func updateGateway(
     request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -649,10 +649,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateGatewayPollingUntilDone(request:)``
-  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
   /// - ``updateGateway(request:)``
   /// - ``updateGateway(request:options:)``
+  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
+  /// - ``updateGatewayPollingUntilDone(request:)``
   public func updateGatewayPollingUntilDone(
     request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Gateway {
@@ -684,9 +684,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteGateway(request:)``
+  /// - ``deleteGatewayPollingUntilDone(name:)``
   /// - ``deleteGatewayPollingUntilDone(request:)``
   /// - ``deleteGatewayPollingUntilDone(request:options:)``
-  /// - ``deleteGatewayPollingUntilDone(name:)``
   public func deleteGateway(
     request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -699,10 +699,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteGatewayPollingUntilDone(request:)``
-  /// - ``deleteGatewayPollingUntilDone(name:)``
   /// - ``deleteGateway(request:)``
   /// - ``deleteGateway(request:options:)``
+  /// - ``deleteGatewayPollingUntilDone(name:)``
+  /// - ``deleteGatewayPollingUntilDone(request:)``
   public func deleteGatewayPollingUntilDone(
     request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -734,9 +734,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listGrpcRoutes(request:)``
+  /// - ``listGrpcRoutesByItems(parent:)``
   /// - ``listGrpcRoutesByItems(request:)``
   /// - ``listGrpcRoutesByItems(request:options:)``
-  /// - ``listGrpcRoutesByItems(parent:)``
   public func listGrpcRoutes(
     request: ListGrpcRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListGrpcRoutesResponse {
@@ -749,8 +749,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getGrpcRoute(request:)``
   /// - ``getGrpcRoute(name:)``
+  /// - ``getGrpcRoute(request:)``
   public func getGrpcRoute(
     request: GetGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.GrpcRoute {
@@ -764,9 +764,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createGrpcRoute(request:)``
+  /// - ``createGrpcRoutePollingUntilDone(parent:grpcRoute:grpcRouteId:)``
   /// - ``createGrpcRoutePollingUntilDone(request:)``
   /// - ``createGrpcRoutePollingUntilDone(request:options:)``
-  /// - ``createGrpcRoutePollingUntilDone(parent:grpcRoute:grpcRouteId:)``
   public func createGrpcRoute(
     request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -779,10 +779,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createGrpcRoutePollingUntilDone(request:)``
-  /// - ``createGrpcRoutePollingUntilDone(parent:grpcRoute:grpcRouteId:)``
   /// - ``createGrpcRoute(request:)``
   /// - ``createGrpcRoute(request:options:)``
+  /// - ``createGrpcRoutePollingUntilDone(parent:grpcRoute:grpcRouteId:)``
+  /// - ``createGrpcRoutePollingUntilDone(request:)``
   public func createGrpcRoutePollingUntilDone(
     request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GrpcRoute {
@@ -814,9 +814,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateGrpcRoute(request:)``
+  /// - ``updateGrpcRoutePollingUntilDone(grpcRoute:updateMask:)``
   /// - ``updateGrpcRoutePollingUntilDone(request:)``
   /// - ``updateGrpcRoutePollingUntilDone(request:options:)``
-  /// - ``updateGrpcRoutePollingUntilDone(grpcRoute:updateMask:)``
   public func updateGrpcRoute(
     request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -829,10 +829,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateGrpcRoutePollingUntilDone(request:)``
-  /// - ``updateGrpcRoutePollingUntilDone(grpcRoute:updateMask:)``
   /// - ``updateGrpcRoute(request:)``
   /// - ``updateGrpcRoute(request:options:)``
+  /// - ``updateGrpcRoutePollingUntilDone(grpcRoute:updateMask:)``
+  /// - ``updateGrpcRoutePollingUntilDone(request:)``
   public func updateGrpcRoutePollingUntilDone(
     request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GrpcRoute {
@@ -864,9 +864,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteGrpcRoute(request:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(name:)``
   /// - ``deleteGrpcRoutePollingUntilDone(request:)``
   /// - ``deleteGrpcRoutePollingUntilDone(request:options:)``
-  /// - ``deleteGrpcRoutePollingUntilDone(name:)``
   public func deleteGrpcRoute(
     request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -879,10 +879,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteGrpcRoutePollingUntilDone(request:)``
-  /// - ``deleteGrpcRoutePollingUntilDone(name:)``
   /// - ``deleteGrpcRoute(request:)``
   /// - ``deleteGrpcRoute(request:options:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(name:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(request:)``
   public func deleteGrpcRoutePollingUntilDone(
     request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -914,9 +914,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listHttpRoutes(request:)``
+  /// - ``listHttpRoutesByItems(parent:)``
   /// - ``listHttpRoutesByItems(request:)``
   /// - ``listHttpRoutesByItems(request:options:)``
-  /// - ``listHttpRoutesByItems(parent:)``
   public func listHttpRoutes(
     request: ListHttpRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListHttpRoutesResponse {
@@ -929,8 +929,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getHttpRoute(request:)``
   /// - ``getHttpRoute(name:)``
+  /// - ``getHttpRoute(request:)``
   public func getHttpRoute(
     request: GetHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.HttpRoute {
@@ -944,9 +944,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createHttpRoute(request:)``
+  /// - ``createHttpRoutePollingUntilDone(parent:httpRoute:httpRouteId:)``
   /// - ``createHttpRoutePollingUntilDone(request:)``
   /// - ``createHttpRoutePollingUntilDone(request:options:)``
-  /// - ``createHttpRoutePollingUntilDone(parent:httpRoute:httpRouteId:)``
   public func createHttpRoute(
     request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -959,10 +959,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createHttpRoutePollingUntilDone(request:)``
-  /// - ``createHttpRoutePollingUntilDone(parent:httpRoute:httpRouteId:)``
   /// - ``createHttpRoute(request:)``
   /// - ``createHttpRoute(request:options:)``
+  /// - ``createHttpRoutePollingUntilDone(parent:httpRoute:httpRouteId:)``
+  /// - ``createHttpRoutePollingUntilDone(request:)``
   public func createHttpRoutePollingUntilDone(
     request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> HttpRoute {
@@ -994,9 +994,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateHttpRoute(request:)``
+  /// - ``updateHttpRoutePollingUntilDone(httpRoute:updateMask:)``
   /// - ``updateHttpRoutePollingUntilDone(request:)``
   /// - ``updateHttpRoutePollingUntilDone(request:options:)``
-  /// - ``updateHttpRoutePollingUntilDone(httpRoute:updateMask:)``
   public func updateHttpRoute(
     request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1009,10 +1009,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateHttpRoutePollingUntilDone(request:)``
-  /// - ``updateHttpRoutePollingUntilDone(httpRoute:updateMask:)``
   /// - ``updateHttpRoute(request:)``
   /// - ``updateHttpRoute(request:options:)``
+  /// - ``updateHttpRoutePollingUntilDone(httpRoute:updateMask:)``
+  /// - ``updateHttpRoutePollingUntilDone(request:)``
   public func updateHttpRoutePollingUntilDone(
     request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> HttpRoute {
@@ -1044,9 +1044,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteHttpRoute(request:)``
+  /// - ``deleteHttpRoutePollingUntilDone(name:)``
   /// - ``deleteHttpRoutePollingUntilDone(request:)``
   /// - ``deleteHttpRoutePollingUntilDone(request:options:)``
-  /// - ``deleteHttpRoutePollingUntilDone(name:)``
   public func deleteHttpRoute(
     request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1059,10 +1059,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteHttpRoutePollingUntilDone(request:)``
-  /// - ``deleteHttpRoutePollingUntilDone(name:)``
   /// - ``deleteHttpRoute(request:)``
   /// - ``deleteHttpRoute(request:options:)``
+  /// - ``deleteHttpRoutePollingUntilDone(name:)``
+  /// - ``deleteHttpRoutePollingUntilDone(request:)``
   public func deleteHttpRoutePollingUntilDone(
     request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1094,9 +1094,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listTcpRoutes(request:)``
+  /// - ``listTcpRoutesByItems(parent:)``
   /// - ``listTcpRoutesByItems(request:)``
   /// - ``listTcpRoutesByItems(request:options:)``
-  /// - ``listTcpRoutesByItems(parent:)``
   public func listTcpRoutes(
     request: ListTcpRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListTcpRoutesResponse {
@@ -1109,8 +1109,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getTcpRoute(request:)``
   /// - ``getTcpRoute(name:)``
+  /// - ``getTcpRoute(request:)``
   public func getTcpRoute(
     request: GetTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.TcpRoute {
@@ -1124,9 +1124,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createTcpRoute(request:)``
+  /// - ``createTcpRoutePollingUntilDone(parent:tcpRoute:tcpRouteId:)``
   /// - ``createTcpRoutePollingUntilDone(request:)``
   /// - ``createTcpRoutePollingUntilDone(request:options:)``
-  /// - ``createTcpRoutePollingUntilDone(parent:tcpRoute:tcpRouteId:)``
   public func createTcpRoute(
     request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1139,10 +1139,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createTcpRoutePollingUntilDone(request:)``
-  /// - ``createTcpRoutePollingUntilDone(parent:tcpRoute:tcpRouteId:)``
   /// - ``createTcpRoute(request:)``
   /// - ``createTcpRoute(request:options:)``
+  /// - ``createTcpRoutePollingUntilDone(parent:tcpRoute:tcpRouteId:)``
+  /// - ``createTcpRoutePollingUntilDone(request:)``
   public func createTcpRoutePollingUntilDone(
     request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TcpRoute {
@@ -1189,10 +1189,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateTcpRoutePollingUntilDone(request:)``
-  /// - ``updateTcpRoutePollingUntilDone(tcpRoute:updateMask:)``
   /// - ``updateTcpRoute(request:)``
   /// - ``updateTcpRoute(request:options:)``
+  /// - ``updateTcpRoutePollingUntilDone(request:)``
+  /// - ``updateTcpRoutePollingUntilDone(tcpRoute:updateMask:)``
   public func updateTcpRoutePollingUntilDone(
     request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TcpRoute {
@@ -1224,9 +1224,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteTcpRoute(request:)``
+  /// - ``deleteTcpRoutePollingUntilDone(name:)``
   /// - ``deleteTcpRoutePollingUntilDone(request:)``
   /// - ``deleteTcpRoutePollingUntilDone(request:options:)``
-  /// - ``deleteTcpRoutePollingUntilDone(name:)``
   public func deleteTcpRoute(
     request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1239,10 +1239,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteTcpRoutePollingUntilDone(request:)``
-  /// - ``deleteTcpRoutePollingUntilDone(name:)``
   /// - ``deleteTcpRoute(request:)``
   /// - ``deleteTcpRoute(request:options:)``
+  /// - ``deleteTcpRoutePollingUntilDone(name:)``
+  /// - ``deleteTcpRoutePollingUntilDone(request:)``
   public func deleteTcpRoutePollingUntilDone(
     request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1274,9 +1274,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listTlsRoutes(request:)``
+  /// - ``listTlsRoutesByItems(parent:)``
   /// - ``listTlsRoutesByItems(request:)``
   /// - ``listTlsRoutesByItems(request:options:)``
-  /// - ``listTlsRoutesByItems(parent:)``
   public func listTlsRoutes(
     request: ListTlsRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListTlsRoutesResponse {
@@ -1289,8 +1289,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getTlsRoute(request:)``
   /// - ``getTlsRoute(name:)``
+  /// - ``getTlsRoute(request:)``
   public func getTlsRoute(
     request: GetTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.TlsRoute {
@@ -1304,9 +1304,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createTlsRoute(request:)``
+  /// - ``createTlsRoutePollingUntilDone(parent:tlsRoute:tlsRouteId:)``
   /// - ``createTlsRoutePollingUntilDone(request:)``
   /// - ``createTlsRoutePollingUntilDone(request:options:)``
-  /// - ``createTlsRoutePollingUntilDone(parent:tlsRoute:tlsRouteId:)``
   public func createTlsRoute(
     request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1319,10 +1319,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createTlsRoutePollingUntilDone(request:)``
-  /// - ``createTlsRoutePollingUntilDone(parent:tlsRoute:tlsRouteId:)``
   /// - ``createTlsRoute(request:)``
   /// - ``createTlsRoute(request:options:)``
+  /// - ``createTlsRoutePollingUntilDone(parent:tlsRoute:tlsRouteId:)``
+  /// - ``createTlsRoutePollingUntilDone(request:)``
   public func createTlsRoutePollingUntilDone(
     request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TlsRoute {
@@ -1369,10 +1369,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateTlsRoutePollingUntilDone(request:)``
-  /// - ``updateTlsRoutePollingUntilDone(tlsRoute:updateMask:)``
   /// - ``updateTlsRoute(request:)``
   /// - ``updateTlsRoute(request:options:)``
+  /// - ``updateTlsRoutePollingUntilDone(request:)``
+  /// - ``updateTlsRoutePollingUntilDone(tlsRoute:updateMask:)``
   public func updateTlsRoutePollingUntilDone(
     request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TlsRoute {
@@ -1404,9 +1404,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteTlsRoute(request:)``
+  /// - ``deleteTlsRoutePollingUntilDone(name:)``
   /// - ``deleteTlsRoutePollingUntilDone(request:)``
   /// - ``deleteTlsRoutePollingUntilDone(request:options:)``
-  /// - ``deleteTlsRoutePollingUntilDone(name:)``
   public func deleteTlsRoute(
     request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1419,10 +1419,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteTlsRoutePollingUntilDone(request:)``
-  /// - ``deleteTlsRoutePollingUntilDone(name:)``
   /// - ``deleteTlsRoute(request:)``
   /// - ``deleteTlsRoute(request:options:)``
+  /// - ``deleteTlsRoutePollingUntilDone(name:)``
+  /// - ``deleteTlsRoutePollingUntilDone(request:)``
   public func deleteTlsRoutePollingUntilDone(
     request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1454,9 +1454,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listServiceBindings(request:)``
+  /// - ``listServiceBindingsByItems(parent:)``
   /// - ``listServiceBindingsByItems(request:)``
   /// - ``listServiceBindingsByItems(request:options:)``
-  /// - ``listServiceBindingsByItems(parent:)``
   public func listServiceBindings(
     request: ListServiceBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListServiceBindingsResponse {
@@ -1469,8 +1469,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getServiceBinding(request:)``
   /// - ``getServiceBinding(name:)``
+  /// - ``getServiceBinding(request:)``
   public func getServiceBinding(
     request: GetServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ServiceBinding {
@@ -1484,9 +1484,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createServiceBinding(request:)``
+  /// - ``createServiceBindingPollingUntilDone(parent:serviceBinding:serviceBindingId:)``
   /// - ``createServiceBindingPollingUntilDone(request:)``
   /// - ``createServiceBindingPollingUntilDone(request:options:)``
-  /// - ``createServiceBindingPollingUntilDone(parent:serviceBinding:serviceBindingId:)``
   public func createServiceBinding(
     request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1499,10 +1499,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createServiceBindingPollingUntilDone(request:)``
-  /// - ``createServiceBindingPollingUntilDone(parent:serviceBinding:serviceBindingId:)``
   /// - ``createServiceBinding(request:)``
   /// - ``createServiceBinding(request:options:)``
+  /// - ``createServiceBindingPollingUntilDone(parent:serviceBinding:serviceBindingId:)``
+  /// - ``createServiceBindingPollingUntilDone(request:)``
   public func createServiceBindingPollingUntilDone(
     request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceBinding {
@@ -1550,10 +1550,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateServiceBindingPollingUntilDone(request:)``
-  /// - ``updateServiceBindingPollingUntilDone(serviceBinding:updateMask:)``
   /// - ``updateServiceBinding(request:)``
   /// - ``updateServiceBinding(request:options:)``
+  /// - ``updateServiceBindingPollingUntilDone(request:)``
+  /// - ``updateServiceBindingPollingUntilDone(serviceBinding:updateMask:)``
   public func updateServiceBindingPollingUntilDone(
     request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceBinding {
@@ -1586,9 +1586,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteServiceBinding(request:)``
+  /// - ``deleteServiceBindingPollingUntilDone(name:)``
   /// - ``deleteServiceBindingPollingUntilDone(request:)``
   /// - ``deleteServiceBindingPollingUntilDone(request:options:)``
-  /// - ``deleteServiceBindingPollingUntilDone(name:)``
   public func deleteServiceBinding(
     request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1601,10 +1601,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteServiceBindingPollingUntilDone(request:)``
-  /// - ``deleteServiceBindingPollingUntilDone(name:)``
   /// - ``deleteServiceBinding(request:)``
   /// - ``deleteServiceBinding(request:options:)``
+  /// - ``deleteServiceBindingPollingUntilDone(name:)``
+  /// - ``deleteServiceBindingPollingUntilDone(request:)``
   public func deleteServiceBindingPollingUntilDone(
     request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1636,9 +1636,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listMeshes(request:)``
+  /// - ``listMeshesByItems(parent:)``
   /// - ``listMeshesByItems(request:)``
   /// - ``listMeshesByItems(request:options:)``
-  /// - ``listMeshesByItems(parent:)``
   public func listMeshes(
     request: ListMeshesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListMeshesResponse {
@@ -1651,8 +1651,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getMesh(request:)``
   /// - ``getMesh(name:)``
+  /// - ``getMesh(request:)``
   public func getMesh(
     request: GetMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.Mesh {
@@ -1666,9 +1666,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createMesh(request:)``
+  /// - ``createMeshPollingUntilDone(parent:mesh:meshId:)``
   /// - ``createMeshPollingUntilDone(request:)``
   /// - ``createMeshPollingUntilDone(request:options:)``
-  /// - ``createMeshPollingUntilDone(parent:mesh:meshId:)``
   public func createMesh(
     request: CreateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1681,10 +1681,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createMeshPollingUntilDone(request:)``
-  /// - ``createMeshPollingUntilDone(parent:mesh:meshId:)``
   /// - ``createMesh(request:)``
   /// - ``createMesh(request:options:)``
+  /// - ``createMeshPollingUntilDone(parent:mesh:meshId:)``
+  /// - ``createMeshPollingUntilDone(request:)``
   public func createMeshPollingUntilDone(
     request: CreateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> Mesh {
@@ -1716,9 +1716,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateMesh(request:)``
+  /// - ``updateMeshPollingUntilDone(mesh:updateMask:)``
   /// - ``updateMeshPollingUntilDone(request:)``
   /// - ``updateMeshPollingUntilDone(request:options:)``
-  /// - ``updateMeshPollingUntilDone(mesh:updateMask:)``
   public func updateMesh(
     request: UpdateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1731,10 +1731,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateMeshPollingUntilDone(request:)``
-  /// - ``updateMeshPollingUntilDone(mesh:updateMask:)``
   /// - ``updateMesh(request:)``
   /// - ``updateMesh(request:options:)``
+  /// - ``updateMeshPollingUntilDone(mesh:updateMask:)``
+  /// - ``updateMeshPollingUntilDone(request:)``
   public func updateMeshPollingUntilDone(
     request: UpdateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> Mesh {
@@ -1766,9 +1766,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteMesh(request:)``
+  /// - ``deleteMeshPollingUntilDone(name:)``
   /// - ``deleteMeshPollingUntilDone(request:)``
   /// - ``deleteMeshPollingUntilDone(request:options:)``
-  /// - ``deleteMeshPollingUntilDone(name:)``
   public func deleteMesh(
     request: DeleteMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1781,10 +1781,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteMeshPollingUntilDone(request:)``
-  /// - ``deleteMeshPollingUntilDone(name:)``
   /// - ``deleteMesh(request:)``
   /// - ``deleteMesh(request:options:)``
+  /// - ``deleteMeshPollingUntilDone(name:)``
+  /// - ``deleteMeshPollingUntilDone(request:)``
   public func deleteMeshPollingUntilDone(
     request: DeleteMeshRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1816,9 +1816,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listServiceLbPolicies(request:)``
+  /// - ``listServiceLbPoliciesByItems(parent:)``
   /// - ``listServiceLbPoliciesByItems(request:)``
   /// - ``listServiceLbPoliciesByItems(request:options:)``
-  /// - ``listServiceLbPoliciesByItems(parent:)``
   public func listServiceLbPolicies(
     request: ListServiceLbPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListServiceLbPoliciesResponse {
@@ -1831,8 +1831,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getServiceLbPolicy(request:)``
   /// - ``getServiceLbPolicy(name:)``
+  /// - ``getServiceLbPolicy(request:)``
   public func getServiceLbPolicy(
     request: GetServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ServiceLbPolicy {
@@ -1846,9 +1846,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createServiceLbPolicy(request:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(parent:serviceLbPolicy:serviceLbPolicyId:)``
   /// - ``createServiceLbPolicyPollingUntilDone(request:)``
   /// - ``createServiceLbPolicyPollingUntilDone(request:options:)``
-  /// - ``createServiceLbPolicyPollingUntilDone(parent:serviceLbPolicy:serviceLbPolicyId:)``
   public func createServiceLbPolicy(
     request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1861,10 +1861,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createServiceLbPolicyPollingUntilDone(request:)``
-  /// - ``createServiceLbPolicyPollingUntilDone(parent:serviceLbPolicy:serviceLbPolicyId:)``
   /// - ``createServiceLbPolicy(request:)``
   /// - ``createServiceLbPolicy(request:options:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(parent:serviceLbPolicy:serviceLbPolicyId:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(request:)``
   public func createServiceLbPolicyPollingUntilDone(
     request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceLbPolicy {
@@ -1912,10 +1912,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateServiceLbPolicyPollingUntilDone(request:)``
-  /// - ``updateServiceLbPolicyPollingUntilDone(serviceLbPolicy:updateMask:)``
   /// - ``updateServiceLbPolicy(request:)``
   /// - ``updateServiceLbPolicy(request:options:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(request:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(serviceLbPolicy:updateMask:)``
   public func updateServiceLbPolicyPollingUntilDone(
     request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceLbPolicy {
@@ -1948,9 +1948,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteServiceLbPolicy(request:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(name:)``
   /// - ``deleteServiceLbPolicyPollingUntilDone(request:)``
   /// - ``deleteServiceLbPolicyPollingUntilDone(request:options:)``
-  /// - ``deleteServiceLbPolicyPollingUntilDone(name:)``
   public func deleteServiceLbPolicy(
     request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1963,10 +1963,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteServiceLbPolicyPollingUntilDone(request:)``
-  /// - ``deleteServiceLbPolicyPollingUntilDone(name:)``
   /// - ``deleteServiceLbPolicy(request:)``
   /// - ``deleteServiceLbPolicy(request:options:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(name:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(request:)``
   public func deleteServiceLbPolicyPollingUntilDone(
     request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1997,8 +1997,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getGatewayRouteView(request:)``
   /// - ``getGatewayRouteView(name:)``
+  /// - ``getGatewayRouteView(request:)``
   public func getGatewayRouteView(
     request: GetGatewayRouteViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.GatewayRouteView {
@@ -2011,8 +2011,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getMeshRouteView(request:)``
   /// - ``getMeshRouteView(name:)``
+  /// - ``getMeshRouteView(request:)``
   public func getMeshRouteView(
     request: GetMeshRouteViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.MeshRouteView {
@@ -2026,9 +2026,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listGatewayRouteViews(request:)``
+  /// - ``listGatewayRouteViewsByItems(parent:)``
   /// - ``listGatewayRouteViewsByItems(request:)``
   /// - ``listGatewayRouteViewsByItems(request:options:)``
-  /// - ``listGatewayRouteViewsByItems(parent:)``
   public func listGatewayRouteViews(
     request: ListGatewayRouteViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListGatewayRouteViewsResponse {
@@ -2042,9 +2042,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listMeshRouteViews(request:)``
+  /// - ``listMeshRouteViewsByItems(parent:)``
   /// - ``listMeshRouteViewsByItems(request:)``
   /// - ``listMeshRouteViewsByItems(request:options:)``
-  /// - ``listMeshRouteViewsByItems(parent:)``
   public func listMeshRouteViews(
     request: ListMeshRouteViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListMeshRouteViewsResponse {
@@ -2058,9 +2058,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listAgentGateways(request:)``
+  /// - ``listAgentGatewaysByItems(parent:)``
   /// - ``listAgentGatewaysByItems(request:)``
   /// - ``listAgentGatewaysByItems(request:options:)``
-  /// - ``listAgentGatewaysByItems(parent:)``
   public func listAgentGateways(
     request: ListAgentGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListAgentGatewaysResponse {
@@ -2073,8 +2073,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getAgentGateway(request:)``
   /// - ``getAgentGateway(name:)``
+  /// - ``getAgentGateway(request:)``
   public func getAgentGateway(
     request: GetAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.AgentGateway {
@@ -2088,9 +2088,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``createAgentGateway(request:)``
+  /// - ``createAgentGatewayPollingUntilDone(parent:agentGateway:agentGatewayId:)``
   /// - ``createAgentGatewayPollingUntilDone(request:)``
   /// - ``createAgentGatewayPollingUntilDone(request:options:)``
-  /// - ``createAgentGatewayPollingUntilDone(parent:agentGateway:agentGatewayId:)``
   public func createAgentGateway(
     request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2103,10 +2103,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createAgentGatewayPollingUntilDone(request:)``
-  /// - ``createAgentGatewayPollingUntilDone(parent:agentGateway:agentGatewayId:)``
   /// - ``createAgentGateway(request:)``
   /// - ``createAgentGateway(request:options:)``
+  /// - ``createAgentGatewayPollingUntilDone(parent:agentGateway:agentGatewayId:)``
+  /// - ``createAgentGatewayPollingUntilDone(request:)``
   public func createAgentGatewayPollingUntilDone(
     request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> AgentGateway {
@@ -2139,9 +2139,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateAgentGateway(request:)``
+  /// - ``updateAgentGatewayPollingUntilDone(agentGateway:updateMask:)``
   /// - ``updateAgentGatewayPollingUntilDone(request:)``
   /// - ``updateAgentGatewayPollingUntilDone(request:options:)``
-  /// - ``updateAgentGatewayPollingUntilDone(agentGateway:updateMask:)``
   public func updateAgentGateway(
     request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2154,10 +2154,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateAgentGatewayPollingUntilDone(request:)``
-  /// - ``updateAgentGatewayPollingUntilDone(agentGateway:updateMask:)``
   /// - ``updateAgentGateway(request:)``
   /// - ``updateAgentGateway(request:options:)``
+  /// - ``updateAgentGatewayPollingUntilDone(agentGateway:updateMask:)``
+  /// - ``updateAgentGatewayPollingUntilDone(request:)``
   public func updateAgentGatewayPollingUntilDone(
     request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> AgentGateway {
@@ -2190,9 +2190,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteAgentGateway(request:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(name:)``
   /// - ``deleteAgentGatewayPollingUntilDone(request:)``
   /// - ``deleteAgentGatewayPollingUntilDone(request:options:)``
-  /// - ``deleteAgentGatewayPollingUntilDone(name:)``
   public func deleteAgentGateway(
     request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2205,10 +2205,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteAgentGatewayPollingUntilDone(request:)``
-  /// - ``deleteAgentGatewayPollingUntilDone(name:)``
   /// - ``deleteAgentGateway(request:)``
   /// - ``deleteAgentGateway(request:options:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(name:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(request:)``
   public func deleteAgentGatewayPollingUntilDone(
     request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2320,9 +2320,9 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2348,8 +2348,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2364,8 +2364,8 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

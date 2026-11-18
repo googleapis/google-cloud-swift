@@ -51,9 +51,9 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTraces(request:)``
+  /// - ``listTracesByItems(projectId:)``
   /// - ``listTracesByItems(request:)``
   /// - ``listTracesByItems(request:options:)``
-  /// - ``listTracesByItems(projectId:)``
   public func listTraces(
     request: ListTracesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTraceV1.ListTracesResponse {
@@ -66,8 +66,8 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTrace(request:)``
   /// - ``getTrace(projectId:traceId:)``
+  /// - ``getTrace(request:)``
   public func getTrace(
     request: GetTraceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTraceV1.Trace {
@@ -84,8 +84,8 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``patchTraces(request:)``
   /// - ``patchTraces(projectId:traces:)``
+  /// - ``patchTraces(request:)``
   public func patchTraces(
     request: PatchTracesRequest, options: GoogleGax.RequestOptions
   ) async throws {

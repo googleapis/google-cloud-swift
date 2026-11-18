@@ -59,9 +59,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createEntryType(request:)``
+  /// - ``createEntryTypePollingUntilDone(parent:entryType:entryTypeId:)``
   /// - ``createEntryTypePollingUntilDone(request:)``
   /// - ``createEntryTypePollingUntilDone(request:options:)``
-  /// - ``createEntryTypePollingUntilDone(parent:entryType:entryTypeId:)``
   public func createEntryType(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createEntryTypePollingUntilDone(request:)``
-  /// - ``createEntryTypePollingUntilDone(parent:entryType:entryTypeId:)``
   /// - ``createEntryType(request:)``
   /// - ``createEntryType(request:options:)``
+  /// - ``createEntryTypePollingUntilDone(parent:entryType:entryTypeId:)``
+  /// - ``createEntryTypePollingUntilDone(request:)``
   public func createEntryTypePollingUntilDone(
     request: CreateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryType {
@@ -109,9 +109,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateEntryType(request:)``
+  /// - ``updateEntryTypePollingUntilDone(entryType:updateMask:)``
   /// - ``updateEntryTypePollingUntilDone(request:)``
   /// - ``updateEntryTypePollingUntilDone(request:options:)``
-  /// - ``updateEntryTypePollingUntilDone(entryType:updateMask:)``
   public func updateEntryType(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -124,10 +124,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateEntryTypePollingUntilDone(request:)``
-  /// - ``updateEntryTypePollingUntilDone(entryType:updateMask:)``
   /// - ``updateEntryType(request:)``
   /// - ``updateEntryType(request:options:)``
+  /// - ``updateEntryTypePollingUntilDone(entryType:updateMask:)``
+  /// - ``updateEntryTypePollingUntilDone(request:)``
   public func updateEntryTypePollingUntilDone(
     request: UpdateEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryType {
@@ -159,9 +159,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteEntryType(request:)``
+  /// - ``deleteEntryTypePollingUntilDone(name:)``
   /// - ``deleteEntryTypePollingUntilDone(request:)``
   /// - ``deleteEntryTypePollingUntilDone(request:options:)``
-  /// - ``deleteEntryTypePollingUntilDone(name:)``
   public func deleteEntryType(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -174,10 +174,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntryTypePollingUntilDone(request:)``
-  /// - ``deleteEntryTypePollingUntilDone(name:)``
   /// - ``deleteEntryType(request:)``
   /// - ``deleteEntryType(request:options:)``
+  /// - ``deleteEntryTypePollingUntilDone(name:)``
+  /// - ``deleteEntryTypePollingUntilDone(request:)``
   public func deleteEntryTypePollingUntilDone(
     request: DeleteEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -209,9 +209,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listEntryTypes(request:)``
+  /// - ``listEntryTypesByItems(parent:)``
   /// - ``listEntryTypesByItems(request:)``
   /// - ``listEntryTypesByItems(request:options:)``
-  /// - ``listEntryTypesByItems(parent:)``
   public func listEntryTypes(
     request: ListEntryTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntryTypesResponse {
@@ -224,8 +224,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getEntryType(request:)``
   /// - ``getEntryType(name:)``
+  /// - ``getEntryType(request:)``
   public func getEntryType(
     request: GetEntryTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryType {
@@ -239,9 +239,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createAspectType(request:)``
+  /// - ``createAspectTypePollingUntilDone(parent:aspectType:aspectTypeId:)``
   /// - ``createAspectTypePollingUntilDone(request:)``
   /// - ``createAspectTypePollingUntilDone(request:options:)``
-  /// - ``createAspectTypePollingUntilDone(parent:aspectType:aspectTypeId:)``
   public func createAspectType(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -254,10 +254,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createAspectTypePollingUntilDone(request:)``
-  /// - ``createAspectTypePollingUntilDone(parent:aspectType:aspectTypeId:)``
   /// - ``createAspectType(request:)``
   /// - ``createAspectType(request:options:)``
+  /// - ``createAspectTypePollingUntilDone(parent:aspectType:aspectTypeId:)``
+  /// - ``createAspectTypePollingUntilDone(request:)``
   public func createAspectTypePollingUntilDone(
     request: CreateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> AspectType {
@@ -289,9 +289,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateAspectType(request:)``
+  /// - ``updateAspectTypePollingUntilDone(aspectType:updateMask:)``
   /// - ``updateAspectTypePollingUntilDone(request:)``
   /// - ``updateAspectTypePollingUntilDone(request:options:)``
-  /// - ``updateAspectTypePollingUntilDone(aspectType:updateMask:)``
   public func updateAspectType(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -304,10 +304,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateAspectTypePollingUntilDone(request:)``
-  /// - ``updateAspectTypePollingUntilDone(aspectType:updateMask:)``
   /// - ``updateAspectType(request:)``
   /// - ``updateAspectType(request:options:)``
+  /// - ``updateAspectTypePollingUntilDone(aspectType:updateMask:)``
+  /// - ``updateAspectTypePollingUntilDone(request:)``
   public func updateAspectTypePollingUntilDone(
     request: UpdateAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> AspectType {
@@ -339,9 +339,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteAspectType(request:)``
+  /// - ``deleteAspectTypePollingUntilDone(name:)``
   /// - ``deleteAspectTypePollingUntilDone(request:)``
   /// - ``deleteAspectTypePollingUntilDone(request:options:)``
-  /// - ``deleteAspectTypePollingUntilDone(name:)``
   public func deleteAspectType(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -354,10 +354,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteAspectTypePollingUntilDone(request:)``
-  /// - ``deleteAspectTypePollingUntilDone(name:)``
   /// - ``deleteAspectType(request:)``
   /// - ``deleteAspectType(request:options:)``
+  /// - ``deleteAspectTypePollingUntilDone(name:)``
+  /// - ``deleteAspectTypePollingUntilDone(request:)``
   public func deleteAspectTypePollingUntilDone(
     request: DeleteAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -389,9 +389,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listAspectTypes(request:)``
+  /// - ``listAspectTypesByItems(parent:)``
   /// - ``listAspectTypesByItems(request:)``
   /// - ``listAspectTypesByItems(request:options:)``
-  /// - ``listAspectTypesByItems(parent:)``
   public func listAspectTypes(
     request: ListAspectTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListAspectTypesResponse {
@@ -404,8 +404,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getAspectType(request:)``
   /// - ``getAspectType(name:)``
+  /// - ``getAspectType(request:)``
   public func getAspectType(
     request: GetAspectTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.AspectType {
@@ -419,9 +419,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createEntryGroup(request:)``
+  /// - ``createEntryGroupPollingUntilDone(parent:entryGroup:entryGroupId:)``
   /// - ``createEntryGroupPollingUntilDone(request:)``
   /// - ``createEntryGroupPollingUntilDone(request:options:)``
-  /// - ``createEntryGroupPollingUntilDone(parent:entryGroup:entryGroupId:)``
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -434,10 +434,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createEntryGroupPollingUntilDone(request:)``
-  /// - ``createEntryGroupPollingUntilDone(parent:entryGroup:entryGroupId:)``
   /// - ``createEntryGroup(request:)``
   /// - ``createEntryGroup(request:options:)``
+  /// - ``createEntryGroupPollingUntilDone(parent:entryGroup:entryGroupId:)``
+  /// - ``createEntryGroupPollingUntilDone(request:)``
   public func createEntryGroupPollingUntilDone(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryGroup {
@@ -469,9 +469,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateEntryGroup(request:)``
+  /// - ``updateEntryGroupPollingUntilDone(entryGroup:updateMask:)``
   /// - ``updateEntryGroupPollingUntilDone(request:)``
   /// - ``updateEntryGroupPollingUntilDone(request:options:)``
-  /// - ``updateEntryGroupPollingUntilDone(entryGroup:updateMask:)``
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -484,10 +484,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateEntryGroupPollingUntilDone(request:)``
-  /// - ``updateEntryGroupPollingUntilDone(entryGroup:updateMask:)``
   /// - ``updateEntryGroup(request:)``
   /// - ``updateEntryGroup(request:options:)``
+  /// - ``updateEntryGroupPollingUntilDone(entryGroup:updateMask:)``
+  /// - ``updateEntryGroupPollingUntilDone(request:)``
   public func updateEntryGroupPollingUntilDone(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> EntryGroup {
@@ -519,9 +519,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteEntryGroup(request:)``
+  /// - ``deleteEntryGroupPollingUntilDone(name:)``
   /// - ``deleteEntryGroupPollingUntilDone(request:)``
   /// - ``deleteEntryGroupPollingUntilDone(request:options:)``
-  /// - ``deleteEntryGroupPollingUntilDone(name:)``
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -534,10 +534,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntryGroupPollingUntilDone(request:)``
-  /// - ``deleteEntryGroupPollingUntilDone(name:)``
   /// - ``deleteEntryGroup(request:)``
   /// - ``deleteEntryGroup(request:options:)``
+  /// - ``deleteEntryGroupPollingUntilDone(name:)``
+  /// - ``deleteEntryGroupPollingUntilDone(request:)``
   public func deleteEntryGroupPollingUntilDone(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -569,9 +569,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listEntryGroups(request:)``
+  /// - ``listEntryGroupsByItems(parent:)``
   /// - ``listEntryGroupsByItems(request:)``
   /// - ``listEntryGroupsByItems(request:options:)``
-  /// - ``listEntryGroupsByItems(parent:)``
   public func listEntryGroups(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntryGroupsResponse {
@@ -584,8 +584,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getEntryGroup(request:)``
   /// - ``getEntryGroup(name:)``
+  /// - ``getEntryGroup(request:)``
   public func getEntryGroup(
     request: GetEntryGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryGroup {
@@ -598,8 +598,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createEntry(request:)``
   /// - ``createEntry(parent:entry:entryId:)``
+  /// - ``createEntry(request:)``
   public func createEntry(
     request: CreateEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -612,8 +612,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateEntry(request:)``
   /// - ``updateEntry(entry:updateMask:)``
+  /// - ``updateEntry(request:)``
   public func updateEntry(
     request: UpdateEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -626,8 +626,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntry(request:)``
   /// - ``deleteEntry(name:)``
+  /// - ``deleteEntry(request:)``
   public func deleteEntry(
     request: DeleteEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -641,9 +641,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listEntries(request:)``
+  /// - ``listEntriesByItems(parent:)``
   /// - ``listEntriesByItems(request:)``
   /// - ``listEntriesByItems(request:options:)``
-  /// - ``listEntriesByItems(parent:)``
   public func listEntries(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntriesResponse {
@@ -656,8 +656,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getEntry(request:)``
   /// - ``getEntry(name:)``
+  /// - ``getEntry(request:)``
   public func getEntry(
     request: GetEntryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entry {
@@ -697,9 +697,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``searchEntries(request:)``
+  /// - ``searchEntriesByItems(name:query:)``
   /// - ``searchEntriesByItems(request:)``
   /// - ``searchEntriesByItems(request:options:)``
-  /// - ``searchEntriesByItems(name:query:)``
   public func searchEntries(
     request: SearchEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.SearchEntriesResponse {
@@ -714,9 +714,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createMetadataJob(request:)``
+  /// - ``createMetadataJobPollingUntilDone(parent:metadataJob:metadataJobId:)``
   /// - ``createMetadataJobPollingUntilDone(request:)``
   /// - ``createMetadataJobPollingUntilDone(request:options:)``
-  /// - ``createMetadataJobPollingUntilDone(parent:metadataJob:metadataJobId:)``
   public func createMetadataJob(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -730,10 +730,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createMetadataJobPollingUntilDone(request:)``
-  /// - ``createMetadataJobPollingUntilDone(parent:metadataJob:metadataJobId:)``
   /// - ``createMetadataJob(request:)``
   /// - ``createMetadataJob(request:options:)``
+  /// - ``createMetadataJobPollingUntilDone(parent:metadataJob:metadataJobId:)``
+  /// - ``createMetadataJobPollingUntilDone(request:)``
   public func createMetadataJobPollingUntilDone(
     request: CreateMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataJob {
@@ -764,8 +764,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getMetadataJob(request:)``
   /// - ``getMetadataJob(name:)``
+  /// - ``getMetadataJob(request:)``
   public func getMetadataJob(
     request: GetMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.MetadataJob {
@@ -779,9 +779,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listMetadataJobs(request:)``
+  /// - ``listMetadataJobsByItems(parent:)``
   /// - ``listMetadataJobsByItems(request:)``
   /// - ``listMetadataJobsByItems(request:options:)``
-  /// - ``listMetadataJobsByItems(parent:)``
   public func listMetadataJobs(
     request: ListMetadataJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListMetadataJobsResponse {
@@ -799,8 +799,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelMetadataJob(request:)``
   /// - ``cancelMetadataJob(name:)``
+  /// - ``cancelMetadataJob(request:)``
   public func cancelMetadataJob(
     request: CancelMetadataJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -813,8 +813,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createEntryLink(request:)``
   /// - ``createEntryLink(parent:entryLink:entryLinkId:)``
+  /// - ``createEntryLink(request:)``
   public func createEntryLink(
     request: CreateEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -827,8 +827,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateEntryLink(request:)``
   /// - ``updateEntryLink(entryLink:)``
+  /// - ``updateEntryLink(request:)``
   public func updateEntryLink(
     request: UpdateEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -841,8 +841,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntryLink(request:)``
   /// - ``deleteEntryLink(name:)``
+  /// - ``deleteEntryLink(request:)``
   public func deleteEntryLink(
     request: DeleteEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -883,8 +883,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getEntryLink(request:)``
   /// - ``getEntryLink(name:)``
+  /// - ``getEntryLink(request:)``
   public func getEntryLink(
     request: GetEntryLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.EntryLink {
@@ -898,9 +898,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createMetadataFeed(request:)``
+  /// - ``createMetadataFeedPollingUntilDone(parent:metadataFeed:metadataFeedId:)``
   /// - ``createMetadataFeedPollingUntilDone(request:)``
   /// - ``createMetadataFeedPollingUntilDone(request:options:)``
-  /// - ``createMetadataFeedPollingUntilDone(parent:metadataFeed:metadataFeedId:)``
   public func createMetadataFeed(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -913,10 +913,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createMetadataFeedPollingUntilDone(request:)``
-  /// - ``createMetadataFeedPollingUntilDone(parent:metadataFeed:metadataFeedId:)``
   /// - ``createMetadataFeed(request:)``
   /// - ``createMetadataFeed(request:options:)``
+  /// - ``createMetadataFeedPollingUntilDone(parent:metadataFeed:metadataFeedId:)``
+  /// - ``createMetadataFeedPollingUntilDone(request:)``
   public func createMetadataFeedPollingUntilDone(
     request: CreateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataFeed {
@@ -948,8 +948,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getMetadataFeed(request:)``
   /// - ``getMetadataFeed(name:)``
+  /// - ``getMetadataFeed(request:)``
   public func getMetadataFeed(
     request: GetMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.MetadataFeed {
@@ -963,9 +963,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listMetadataFeeds(request:)``
+  /// - ``listMetadataFeedsByItems(parent:)``
   /// - ``listMetadataFeedsByItems(request:)``
   /// - ``listMetadataFeedsByItems(request:options:)``
-  /// - ``listMetadataFeedsByItems(parent:)``
   public func listMetadataFeeds(
     request: ListMetadataFeedsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListMetadataFeedsResponse {
@@ -979,9 +979,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteMetadataFeed(request:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(name:)``
   /// - ``deleteMetadataFeedPollingUntilDone(request:)``
   /// - ``deleteMetadataFeedPollingUntilDone(request:options:)``
-  /// - ``deleteMetadataFeedPollingUntilDone(name:)``
   public func deleteMetadataFeed(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -994,10 +994,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteMetadataFeedPollingUntilDone(request:)``
-  /// - ``deleteMetadataFeedPollingUntilDone(name:)``
   /// - ``deleteMetadataFeed(request:)``
   /// - ``deleteMetadataFeed(request:options:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(name:)``
+  /// - ``deleteMetadataFeedPollingUntilDone(request:)``
   public func deleteMetadataFeedPollingUntilDone(
     request: DeleteMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1029,9 +1029,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updateMetadataFeed(request:)``
+  /// - ``updateMetadataFeedPollingUntilDone(metadataFeed:updateMask:)``
   /// - ``updateMetadataFeedPollingUntilDone(request:)``
   /// - ``updateMetadataFeedPollingUntilDone(request:options:)``
-  /// - ``updateMetadataFeedPollingUntilDone(metadataFeed:updateMask:)``
   public func updateMetadataFeed(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1044,10 +1044,10 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateMetadataFeedPollingUntilDone(request:)``
-  /// - ``updateMetadataFeedPollingUntilDone(metadataFeed:updateMask:)``
   /// - ``updateMetadataFeed(request:)``
   /// - ``updateMetadataFeed(request:options:)``
+  /// - ``updateMetadataFeedPollingUntilDone(metadataFeed:updateMask:)``
+  /// - ``updateMetadataFeedPollingUntilDone(request:)``
   public func updateMetadataFeedPollingUntilDone(
     request: UpdateMetadataFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> MetadataFeed {
@@ -1177,9 +1177,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1205,8 +1205,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1221,8 +1221,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

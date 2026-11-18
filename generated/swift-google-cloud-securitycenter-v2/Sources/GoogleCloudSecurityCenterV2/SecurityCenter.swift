@@ -54,8 +54,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``batchCreateResourceValueConfigs(request:)``
   /// - ``batchCreateResourceValueConfigs(parent:requests:)``
+  /// - ``batchCreateResourceValueConfigs(request:)``
   public func batchCreateResourceValueConfigs(
     request: BatchCreateResourceValueConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.BatchCreateResourceValueConfigsResponse {
@@ -72,9 +72,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``bulkMuteFindings(request:)``
+  /// - ``bulkMuteFindingsPollingUntilDone(parent:)``
   /// - ``bulkMuteFindingsPollingUntilDone(request:)``
   /// - ``bulkMuteFindingsPollingUntilDone(request:options:)``
-  /// - ``bulkMuteFindingsPollingUntilDone(parent:)``
   public func bulkMuteFindings(
     request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -90,10 +90,10 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``bulkMuteFindingsPollingUntilDone(request:)``
-  /// - ``bulkMuteFindingsPollingUntilDone(parent:)``
   /// - ``bulkMuteFindings(request:)``
   /// - ``bulkMuteFindings(request:options:)``
+  /// - ``bulkMuteFindingsPollingUntilDone(parent:)``
+  /// - ``bulkMuteFindingsPollingUntilDone(request:)``
   public func bulkMuteFindingsPollingUntilDone(
     request: BulkMuteFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BulkMuteFindingsResponse {
@@ -126,8 +126,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createBigQueryExport(request:)``
   /// - ``createBigQueryExport(parent:bigQueryExport:bigQueryExportId:)``
+  /// - ``createBigQueryExport(request:)``
   public func createBigQueryExport(
     request: CreateBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
@@ -141,8 +141,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createFinding(request:)``
   /// - ``createFinding(parent:finding:findingId:)``
+  /// - ``createFinding(request:)``
   public func createFinding(
     request: CreateFindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -155,8 +155,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createMuteConfig(request:)``
   /// - ``createMuteConfig(parent:muteConfig:muteConfigId:)``
+  /// - ``createMuteConfig(request:)``
   public func createMuteConfig(
     request: CreateMuteConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
@@ -169,8 +169,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createNotificationConfig(request:)``
   /// - ``createNotificationConfig(parent:notificationConfig:configId:)``
+  /// - ``createNotificationConfig(request:)``
   public func createNotificationConfig(
     request: CreateNotificationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
@@ -183,8 +183,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createSource(request:)``
   /// - ``createSource(parent:source:)``
+  /// - ``createSource(request:)``
   public func createSource(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Source {
@@ -197,8 +197,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteBigQueryExport(request:)``
   /// - ``deleteBigQueryExport(name:)``
+  /// - ``deleteBigQueryExport(request:)``
   public func deleteBigQueryExport(
     request: DeleteBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -212,8 +212,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteMuteConfig(request:)``
   /// - ``deleteMuteConfig(name:)``
+  /// - ``deleteMuteConfig(request:)``
   public func deleteMuteConfig(
     request: DeleteMuteConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -226,8 +226,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteNotificationConfig(request:)``
   /// - ``deleteNotificationConfig(name:)``
+  /// - ``deleteNotificationConfig(request:)``
   public func deleteNotificationConfig(
     request: DeleteNotificationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -240,8 +240,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteResourceValueConfig(request:)``
   /// - ``deleteResourceValueConfig(name:)``
+  /// - ``deleteResourceValueConfig(request:)``
   public func deleteResourceValueConfig(
     request: DeleteResourceValueConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -254,8 +254,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getBigQueryExport(request:)``
   /// - ``getBigQueryExport(name:)``
+  /// - ``getBigQueryExport(request:)``
   public func getBigQueryExport(
     request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
@@ -269,8 +269,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getSimulation(request:)``
   /// - ``getSimulation(name:)``
+  /// - ``getSimulation(request:)``
   public func getSimulation(
     request: GetSimulationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Simulation {
@@ -283,8 +283,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getValuedResource(request:)``
   /// - ``getValuedResource(name:)``
+  /// - ``getValuedResource(request:)``
   public func getValuedResource(
     request: GetValuedResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ValuedResource {
@@ -312,8 +312,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getMuteConfig(request:)``
   /// - ``getMuteConfig(name:)``
+  /// - ``getMuteConfig(request:)``
   public func getMuteConfig(
     request: GetMuteConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
@@ -326,8 +326,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getNotificationConfig(request:)``
   /// - ``getNotificationConfig(name:)``
+  /// - ``getNotificationConfig(request:)``
   public func getNotificationConfig(
     request: GetNotificationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
@@ -340,8 +340,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getResourceValueConfig(request:)``
   /// - ``getResourceValueConfig(name:)``
+  /// - ``getResourceValueConfig(request:)``
   public func getResourceValueConfig(
     request: GetResourceValueConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ResourceValueConfig {
@@ -354,8 +354,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getSource(request:)``
   /// - ``getSource(name:)``
+  /// - ``getSource(request:)``
   public func getSource(
     request: GetSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Source {
@@ -382,9 +382,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``groupFindings(request:)``
+  /// - ``groupFindingsByItems(parent:groupBy:)``
   /// - ``groupFindingsByItems(request:)``
   /// - ``groupFindingsByItems(request:options:)``
-  /// - ``groupFindingsByItems(parent:groupBy:)``
   public func groupFindings(
     request: GroupFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.GroupFindingsResponse {
@@ -399,9 +399,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listAttackPaths(request:)``
+  /// - ``listAttackPathsByItems(parent:)``
   /// - ``listAttackPathsByItems(request:)``
   /// - ``listAttackPathsByItems(request:options:)``
-  /// - ``listAttackPathsByItems(parent:)``
   public func listAttackPaths(
     request: ListAttackPathsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListAttackPathsResponse {
@@ -419,9 +419,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listBigQueryExports(request:)``
+  /// - ``listBigQueryExportsByItems(parent:)``
   /// - ``listBigQueryExportsByItems(request:)``
   /// - ``listBigQueryExportsByItems(request:options:)``
-  /// - ``listBigQueryExportsByItems(parent:)``
   public func listBigQueryExports(
     request: ListBigQueryExportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListBigQueryExportsResponse {
@@ -443,9 +443,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listFindings(request:)``
+  /// - ``listFindingsByItems(parent:)``
   /// - ``listFindingsByItems(request:)``
   /// - ``listFindingsByItems(request:options:)``
-  /// - ``listFindingsByItems(parent:)``
   public func listFindings(
     request: ListFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListFindingsResponse {
@@ -460,9 +460,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listMuteConfigs(request:)``
+  /// - ``listMuteConfigsByItems(parent:)``
   /// - ``listMuteConfigsByItems(request:)``
   /// - ``listMuteConfigsByItems(request:options:)``
-  /// - ``listMuteConfigsByItems(parent:)``
   public func listMuteConfigs(
     request: ListMuteConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListMuteConfigsResponse {
@@ -476,9 +476,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listNotificationConfigs(request:)``
+  /// - ``listNotificationConfigsByItems(parent:)``
   /// - ``listNotificationConfigsByItems(request:)``
   /// - ``listNotificationConfigsByItems(request:options:)``
-  /// - ``listNotificationConfigsByItems(parent:)``
   public func listNotificationConfigs(
     request: ListNotificationConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListNotificationConfigsResponse {
@@ -492,9 +492,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listResourceValueConfigs(request:)``
+  /// - ``listResourceValueConfigsByItems(parent:)``
   /// - ``listResourceValueConfigsByItems(request:)``
   /// - ``listResourceValueConfigsByItems(request:options:)``
-  /// - ``listResourceValueConfigsByItems(parent:)``
   public func listResourceValueConfigs(
     request: ListResourceValueConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListResourceValueConfigsResponse {
@@ -508,9 +508,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listSources(request:)``
+  /// - ``listSourcesByItems(parent:)``
   /// - ``listSourcesByItems(request:)``
   /// - ``listSourcesByItems(request:options:)``
-  /// - ``listSourcesByItems(parent:)``
   public func listSources(
     request: ListSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListSourcesResponse {
@@ -524,9 +524,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listValuedResources(request:)``
+  /// - ``listValuedResourcesByItems(parent:)``
   /// - ``listValuedResourcesByItems(request:)``
   /// - ``listValuedResourcesByItems(request:options:)``
-  /// - ``listValuedResourcesByItems(parent:)``
   public func listValuedResources(
     request: ListValuedResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ListValuedResourcesResponse {
@@ -540,8 +540,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setFindingState(request:)``
   /// - ``setFindingState(name:state:)``
+  /// - ``setFindingState(request:)``
   public func setFindingState(
     request: SetFindingStateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -569,8 +569,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setMute(request:)``
   /// - ``setMute(name:mute:)``
+  /// - ``setMute(request:)``
   public func setMute(
     request: SetMuteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -597,8 +597,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateBigQueryExport(request:)``
   /// - ``updateBigQueryExport(bigQueryExport:updateMask:)``
+  /// - ``updateBigQueryExport(request:)``
   public func updateBigQueryExport(
     request: UpdateBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.BigQueryExport {
@@ -612,8 +612,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateExternalSystem(request:)``
   /// - ``updateExternalSystem(externalSystem:updateMask:)``
+  /// - ``updateExternalSystem(request:)``
   public func updateExternalSystem(
     request: UpdateExternalSystemRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.ExternalSystem {
@@ -628,8 +628,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateFinding(request:)``
   /// - ``updateFinding(finding:updateMask:)``
+  /// - ``updateFinding(request:)``
   public func updateFinding(
     request: UpdateFindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.Finding {
@@ -643,8 +643,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateMuteConfig(request:)``
   /// - ``updateMuteConfig(muteConfig:updateMask:)``
+  /// - ``updateMuteConfig(request:)``
   public func updateMuteConfig(
     request: UpdateMuteConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.MuteConfig {
@@ -658,8 +658,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateNotificationConfig(request:)``
   /// - ``updateNotificationConfig(notificationConfig:updateMask:)``
+  /// - ``updateNotificationConfig(request:)``
   public func updateNotificationConfig(
     request: UpdateNotificationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterV2.NotificationConfig {
@@ -719,9 +719,9 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -747,8 +747,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -763,8 +763,8 @@ public final class SecurityCenterClient: Clients.SecurityCenterProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -51,8 +51,8 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createJob(request:)``
   /// - ``createJob(parent:job:)``
+  /// - ``createJob(request:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -66,9 +66,9 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.ListJobsResponse {
@@ -81,8 +81,8 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.Job {
@@ -95,8 +95,8 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteJob(request:)``
   /// - ``deleteJob(name:)``
+  /// - ``deleteJob(request:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -109,8 +109,8 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createJobTemplate(request:)``
   /// - ``createJobTemplate(parent:jobTemplate:jobTemplateId:)``
+  /// - ``createJobTemplate(request:)``
   public func createJobTemplate(
     request: CreateJobTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -124,9 +124,9 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listJobTemplates(request:)``
+  /// - ``listJobTemplatesByItems(parent:)``
   /// - ``listJobTemplatesByItems(request:)``
   /// - ``listJobTemplatesByItems(request:options:)``
-  /// - ``listJobTemplatesByItems(parent:)``
   public func listJobTemplates(
     request: ListJobTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.ListJobTemplatesResponse {
@@ -139,8 +139,8 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getJobTemplate(request:)``
   /// - ``getJobTemplate(name:)``
+  /// - ``getJobTemplate(request:)``
   public func getJobTemplate(
     request: GetJobTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoTranscoderV1.JobTemplate {
@@ -153,8 +153,8 @@ public final class TranscoderServiceClient: Clients.TranscoderServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteJobTemplate(request:)``
   /// - ``deleteJobTemplate(name:)``
+  /// - ``deleteJobTemplate(request:)``
   public func deleteJobTemplate(
     request: DeleteJobTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {

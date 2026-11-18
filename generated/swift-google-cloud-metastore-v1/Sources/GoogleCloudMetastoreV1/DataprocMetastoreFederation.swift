@@ -70,9 +70,9 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// ## See Also
   ///
   /// - ``listFederations(request:)``
+  /// - ``listFederationsByItems(parent:)``
   /// - ``listFederationsByItems(request:)``
   /// - ``listFederationsByItems(request:options:)``
-  /// - ``listFederationsByItems(parent:)``
   public func listFederations(
     request: ListFederationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.ListFederationsResponse {
@@ -85,8 +85,8 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// ## See Also
   ///
-  /// - ``getFederation(request:)``
   /// - ``getFederation(name:)``
+  /// - ``getFederation(request:)``
   public func getFederation(
     request: GetFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMetastoreV1.Federation {
@@ -100,9 +100,9 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// ## See Also
   ///
   /// - ``createFederation(request:)``
+  /// - ``createFederationPollingUntilDone(parent:federation:federationId:)``
   /// - ``createFederationPollingUntilDone(request:)``
   /// - ``createFederationPollingUntilDone(request:options:)``
-  /// - ``createFederationPollingUntilDone(parent:federation:federationId:)``
   public func createFederation(
     request: CreateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -115,10 +115,10 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// ## See Also
   ///
-  /// - ``createFederationPollingUntilDone(request:)``
-  /// - ``createFederationPollingUntilDone(parent:federation:federationId:)``
   /// - ``createFederation(request:)``
   /// - ``createFederation(request:options:)``
+  /// - ``createFederationPollingUntilDone(parent:federation:federationId:)``
+  /// - ``createFederationPollingUntilDone(request:)``
   public func createFederationPollingUntilDone(
     request: CreateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Federation {
@@ -150,9 +150,9 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// ## See Also
   ///
   /// - ``updateFederation(request:)``
+  /// - ``updateFederationPollingUntilDone(federation:updateMask:)``
   /// - ``updateFederationPollingUntilDone(request:)``
   /// - ``updateFederationPollingUntilDone(request:options:)``
-  /// - ``updateFederationPollingUntilDone(federation:updateMask:)``
   public func updateFederation(
     request: UpdateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -165,10 +165,10 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// ## See Also
   ///
-  /// - ``updateFederationPollingUntilDone(request:)``
-  /// - ``updateFederationPollingUntilDone(federation:updateMask:)``
   /// - ``updateFederation(request:)``
   /// - ``updateFederation(request:options:)``
+  /// - ``updateFederationPollingUntilDone(federation:updateMask:)``
+  /// - ``updateFederationPollingUntilDone(request:)``
   public func updateFederationPollingUntilDone(
     request: UpdateFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Federation {
@@ -200,9 +200,9 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// ## See Also
   ///
   /// - ``deleteFederation(request:)``
+  /// - ``deleteFederationPollingUntilDone(name:)``
   /// - ``deleteFederationPollingUntilDone(request:)``
   /// - ``deleteFederationPollingUntilDone(request:options:)``
-  /// - ``deleteFederationPollingUntilDone(name:)``
   public func deleteFederation(
     request: DeleteFederationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -215,10 +215,10 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// ## See Also
   ///
-  /// - ``deleteFederationPollingUntilDone(request:)``
-  /// - ``deleteFederationPollingUntilDone(name:)``
   /// - ``deleteFederation(request:)``
   /// - ``deleteFederation(request:options:)``
+  /// - ``deleteFederationPollingUntilDone(name:)``
+  /// - ``deleteFederationPollingUntilDone(request:)``
   public func deleteFederationPollingUntilDone(
     request: DeleteFederationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -330,9 +330,9 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -358,8 +358,8 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -374,8 +374,8 @@ public final class DataprocMetastoreFederationClient: Clients.DataprocMetastoreF
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

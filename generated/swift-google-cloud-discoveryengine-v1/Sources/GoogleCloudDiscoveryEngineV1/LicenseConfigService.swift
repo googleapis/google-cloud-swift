@@ -54,8 +54,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createLicenseConfig(request:)``
     /// - ``createLicenseConfig(parent:licenseConfig:licenseConfigId:)``
+    /// - ``createLicenseConfig(request:)``
     public func createLicenseConfig(
       request: CreateLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -70,8 +70,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateLicenseConfig(request:)``
     /// - ``updateLicenseConfig(licenseConfig:updateMask:)``
+    /// - ``updateLicenseConfig(request:)``
     public func updateLicenseConfig(
       request: UpdateLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -86,8 +86,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getLicenseConfig(request:)``
     /// - ``getLicenseConfig(name:)``
+    /// - ``getLicenseConfig(request:)``
     public func getLicenseConfig(
       request: GetLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.LicenseConfig {
@@ -105,9 +105,9 @@
     /// ## See Also
     ///
     /// - ``listLicenseConfigs(request:)``
+    /// - ``listLicenseConfigsByItems(parent:)``
     /// - ``listLicenseConfigsByItems(request:)``
     /// - ``listLicenseConfigsByItems(request:options:)``
-    /// - ``listLicenseConfigsByItems(parent:)``
     public func listLicenseConfigs(
       request: ListLicenseConfigsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsResponse {
@@ -124,8 +124,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``distributeLicenseConfig(request:)``
     /// - ``distributeLicenseConfig(billingAccountLicenseConfig:projectNumber:location:licenseCount:licenseConfigId:)``
+    /// - ``distributeLicenseConfig(request:)``
     public func distributeLicenseConfig(
       request: DistributeLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DistributeLicenseConfigResponse {
@@ -142,8 +142,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``retractLicenseConfig(request:)``
     /// - ``retractLicenseConfig(billingAccountLicenseConfig:licenseConfig:fullRetract:licenseCount:)``
+    /// - ``retractLicenseConfig(request:)``
     public func retractLicenseConfig(
       request: RetractLicenseConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.RetractLicenseConfigResponse {
@@ -159,9 +159,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -187,8 +187,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -55,9 +55,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPrivateClouds(request:)``
+  /// - ``listPrivateCloudsByItems(parent:)``
   /// - ``listPrivateCloudsByItems(request:)``
   /// - ``listPrivateCloudsByItems(request:options:)``
-  /// - ``listPrivateCloudsByItems(parent:)``
   public func listPrivateClouds(
     request: ListPrivateCloudsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateCloudsResponse {
@@ -70,8 +70,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPrivateCloud(request:)``
   /// - ``getPrivateCloud(name:)``
+  /// - ``getPrivateCloud(request:)``
   public func getPrivateCloud(
     request: GetPrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.PrivateCloud {
@@ -91,9 +91,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPrivateCloud(request:)``
+  /// - ``createPrivateCloudPollingUntilDone(parent:privateCloud:privateCloudId:)``
   /// - ``createPrivateCloudPollingUntilDone(request:)``
   /// - ``createPrivateCloudPollingUntilDone(request:options:)``
-  /// - ``createPrivateCloudPollingUntilDone(parent:privateCloud:privateCloudId:)``
   public func createPrivateCloud(
     request: CreatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -112,10 +112,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPrivateCloudPollingUntilDone(request:)``
-  /// - ``createPrivateCloudPollingUntilDone(parent:privateCloud:privateCloudId:)``
   /// - ``createPrivateCloud(request:)``
   /// - ``createPrivateCloud(request:options:)``
+  /// - ``createPrivateCloudPollingUntilDone(parent:privateCloud:privateCloudId:)``
+  /// - ``createPrivateCloudPollingUntilDone(request:)``
   public func createPrivateCloudPollingUntilDone(
     request: CreatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateCloud {
@@ -155,9 +155,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updatePrivateCloud(request:)``
+  /// - ``updatePrivateCloudPollingUntilDone(privateCloud:updateMask:)``
   /// - ``updatePrivateCloudPollingUntilDone(request:)``
   /// - ``updatePrivateCloudPollingUntilDone(request:options:)``
-  /// - ``updatePrivateCloudPollingUntilDone(privateCloud:updateMask:)``
   public func updatePrivateCloud(
     request: UpdatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -177,10 +177,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePrivateCloudPollingUntilDone(request:)``
-  /// - ``updatePrivateCloudPollingUntilDone(privateCloud:updateMask:)``
   /// - ``updatePrivateCloud(request:)``
   /// - ``updatePrivateCloud(request:options:)``
+  /// - ``updatePrivateCloudPollingUntilDone(privateCloud:updateMask:)``
+  /// - ``updatePrivateCloudPollingUntilDone(request:)``
   public func updatePrivateCloudPollingUntilDone(
     request: UpdatePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateCloud {
@@ -227,9 +227,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePrivateCloud(request:)``
+  /// - ``deletePrivateCloudPollingUntilDone(name:)``
   /// - ``deletePrivateCloudPollingUntilDone(request:)``
   /// - ``deletePrivateCloudPollingUntilDone(request:options:)``
-  /// - ``deletePrivateCloudPollingUntilDone(name:)``
   public func deletePrivateCloud(
     request: DeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -256,10 +256,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePrivateCloudPollingUntilDone(request:)``
-  /// - ``deletePrivateCloudPollingUntilDone(name:)``
   /// - ``deletePrivateCloud(request:)``
   /// - ``deletePrivateCloud(request:options:)``
+  /// - ``deletePrivateCloudPollingUntilDone(name:)``
+  /// - ``deletePrivateCloudPollingUntilDone(request:)``
   public func deletePrivateCloudPollingUntilDone(
     request: DeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateCloud {
@@ -295,9 +295,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeletePrivateCloud(request:)``
+  /// - ``undeletePrivateCloudPollingUntilDone(name:)``
   /// - ``undeletePrivateCloudPollingUntilDone(request:)``
   /// - ``undeletePrivateCloudPollingUntilDone(request:options:)``
-  /// - ``undeletePrivateCloudPollingUntilDone(name:)``
   public func undeletePrivateCloud(
     request: UndeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -313,10 +313,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeletePrivateCloudPollingUntilDone(request:)``
-  /// - ``undeletePrivateCloudPollingUntilDone(name:)``
   /// - ``undeletePrivateCloud(request:)``
   /// - ``undeletePrivateCloud(request:options:)``
+  /// - ``undeletePrivateCloudPollingUntilDone(name:)``
+  /// - ``undeletePrivateCloudPollingUntilDone(request:)``
   public func undeletePrivateCloudPollingUntilDone(
     request: UndeletePrivateCloudRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateCloud {
@@ -349,9 +349,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(parent:)``
   /// - ``listClustersByItems(request:)``
   /// - ``listClustersByItems(request:options:)``
-  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListClustersResponse {
@@ -364,8 +364,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.Cluster {
@@ -382,9 +382,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -400,10 +400,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -441,9 +441,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateClusterPollingUntilDone(request:options:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -462,10 +462,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -500,9 +500,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteClusterPollingUntilDone(request:)``
   /// - ``deleteClusterPollingUntilDone(request:options:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -518,10 +518,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteClusterPollingUntilDone(request:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -553,9 +553,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNodes(request:)``
+  /// - ``listNodesByItems(parent:)``
   /// - ``listNodesByItems(request:)``
   /// - ``listNodesByItems(request:options:)``
-  /// - ``listNodesByItems(parent:)``
   public func listNodes(
     request: ListNodesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListNodesResponse {
@@ -568,8 +568,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNode(request:)``
   /// - ``getNode(name:)``
+  /// - ``getNode(request:)``
   public func getNode(
     request: GetNodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.Node {
@@ -584,9 +584,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExternalAddresses(request:)``
+  /// - ``listExternalAddressesByItems(parent:)``
   /// - ``listExternalAddressesByItems(request:)``
   /// - ``listExternalAddressesByItems(request:options:)``
-  /// - ``listExternalAddressesByItems(parent:)``
   public func listExternalAddresses(
     request: ListExternalAddressesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListExternalAddressesResponse {
@@ -601,9 +601,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``fetchNetworkPolicyExternalAddresses(request:)``
+  /// - ``fetchNetworkPolicyExternalAddressesByItems(networkPolicy:)``
   /// - ``fetchNetworkPolicyExternalAddressesByItems(request:)``
   /// - ``fetchNetworkPolicyExternalAddressesByItems(request:options:)``
-  /// - ``fetchNetworkPolicyExternalAddressesByItems(networkPolicy:)``
   public func fetchNetworkPolicyExternalAddresses(
     request: FetchNetworkPolicyExternalAddressesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.FetchNetworkPolicyExternalAddressesResponse {
@@ -616,8 +616,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExternalAddress(request:)``
   /// - ``getExternalAddress(name:)``
+  /// - ``getExternalAddress(request:)``
   public func getExternalAddress(
     request: GetExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ExternalAddress {
@@ -633,9 +633,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createExternalAddress(request:)``
+  /// - ``createExternalAddressPollingUntilDone(parent:externalAddress:externalAddressId:)``
   /// - ``createExternalAddressPollingUntilDone(request:)``
   /// - ``createExternalAddressPollingUntilDone(request:options:)``
-  /// - ``createExternalAddressPollingUntilDone(parent:externalAddress:externalAddressId:)``
   public func createExternalAddress(
     request: CreateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -650,10 +650,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createExternalAddressPollingUntilDone(request:)``
-  /// - ``createExternalAddressPollingUntilDone(parent:externalAddress:externalAddressId:)``
   /// - ``createExternalAddress(request:)``
   /// - ``createExternalAddress(request:options:)``
+  /// - ``createExternalAddressPollingUntilDone(parent:externalAddress:externalAddressId:)``
+  /// - ``createExternalAddressPollingUntilDone(request:)``
   public func createExternalAddressPollingUntilDone(
     request: CreateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExternalAddress {
@@ -692,9 +692,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateExternalAddress(request:)``
+  /// - ``updateExternalAddressPollingUntilDone(externalAddress:updateMask:)``
   /// - ``updateExternalAddressPollingUntilDone(request:)``
   /// - ``updateExternalAddressPollingUntilDone(request:options:)``
-  /// - ``updateExternalAddressPollingUntilDone(externalAddress:updateMask:)``
   public func updateExternalAddress(
     request: UpdateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -713,10 +713,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateExternalAddressPollingUntilDone(request:)``
-  /// - ``updateExternalAddressPollingUntilDone(externalAddress:updateMask:)``
   /// - ``updateExternalAddress(request:)``
   /// - ``updateExternalAddress(request:options:)``
+  /// - ``updateExternalAddressPollingUntilDone(externalAddress:updateMask:)``
+  /// - ``updateExternalAddressPollingUntilDone(request:)``
   public func updateExternalAddressPollingUntilDone(
     request: UpdateExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExternalAddress {
@@ -751,9 +751,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteExternalAddress(request:)``
+  /// - ``deleteExternalAddressPollingUntilDone(name:)``
   /// - ``deleteExternalAddressPollingUntilDone(request:)``
   /// - ``deleteExternalAddressPollingUntilDone(request:options:)``
-  /// - ``deleteExternalAddressPollingUntilDone(name:)``
   public func deleteExternalAddress(
     request: DeleteExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -768,10 +768,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteExternalAddressPollingUntilDone(request:)``
-  /// - ``deleteExternalAddressPollingUntilDone(name:)``
   /// - ``deleteExternalAddress(request:)``
   /// - ``deleteExternalAddress(request:options:)``
+  /// - ``deleteExternalAddressPollingUntilDone(name:)``
+  /// - ``deleteExternalAddressPollingUntilDone(request:)``
   public func deleteExternalAddressPollingUntilDone(
     request: DeleteExternalAddressRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -803,9 +803,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listSubnets(request:)``
+  /// - ``listSubnetsByItems(parent:)``
   /// - ``listSubnetsByItems(request:)``
   /// - ``listSubnetsByItems(request:options:)``
-  /// - ``listSubnetsByItems(parent:)``
   public func listSubnets(
     request: ListSubnetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListSubnetsResponse {
@@ -818,8 +818,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getSubnet(request:)``
   /// - ``getSubnet(name:)``
+  /// - ``getSubnet(request:)``
   public func getSubnet(
     request: GetSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.Subnet {
@@ -858,10 +858,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateSubnetPollingUntilDone(request:)``
-  /// - ``updateSubnetPollingUntilDone(subnet:updateMask:)``
   /// - ``updateSubnet(request:)``
   /// - ``updateSubnet(request:options:)``
+  /// - ``updateSubnetPollingUntilDone(request:)``
+  /// - ``updateSubnetPollingUntilDone(subnet:updateMask:)``
   public func updateSubnetPollingUntilDone(
     request: UpdateSubnetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Subnet {
@@ -893,9 +893,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExternalAccessRules(request:)``
+  /// - ``listExternalAccessRulesByItems(parent:)``
   /// - ``listExternalAccessRulesByItems(request:)``
   /// - ``listExternalAccessRulesByItems(request:options:)``
-  /// - ``listExternalAccessRulesByItems(parent:)``
   public func listExternalAccessRules(
     request: ListExternalAccessRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListExternalAccessRulesResponse {
@@ -908,8 +908,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExternalAccessRule(request:)``
   /// - ``getExternalAccessRule(name:)``
+  /// - ``getExternalAccessRule(request:)``
   public func getExternalAccessRule(
     request: GetExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ExternalAccessRule {
@@ -923,9 +923,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createExternalAccessRule(request:)``
+  /// - ``createExternalAccessRulePollingUntilDone(parent:externalAccessRule:externalAccessRuleId:)``
   /// - ``createExternalAccessRulePollingUntilDone(request:)``
   /// - ``createExternalAccessRulePollingUntilDone(request:options:)``
-  /// - ``createExternalAccessRulePollingUntilDone(parent:externalAccessRule:externalAccessRuleId:)``
   public func createExternalAccessRule(
     request: CreateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -938,10 +938,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createExternalAccessRulePollingUntilDone(request:)``
-  /// - ``createExternalAccessRulePollingUntilDone(parent:externalAccessRule:externalAccessRuleId:)``
   /// - ``createExternalAccessRule(request:)``
   /// - ``createExternalAccessRule(request:options:)``
+  /// - ``createExternalAccessRulePollingUntilDone(parent:externalAccessRule:externalAccessRuleId:)``
+  /// - ``createExternalAccessRulePollingUntilDone(request:)``
   public func createExternalAccessRulePollingUntilDone(
     request: CreateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExternalAccessRule {
@@ -975,9 +975,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateExternalAccessRule(request:)``
+  /// - ``updateExternalAccessRulePollingUntilDone(externalAccessRule:updateMask:)``
   /// - ``updateExternalAccessRulePollingUntilDone(request:)``
   /// - ``updateExternalAccessRulePollingUntilDone(request:options:)``
-  /// - ``updateExternalAccessRulePollingUntilDone(externalAccessRule:updateMask:)``
   public func updateExternalAccessRule(
     request: UpdateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -991,10 +991,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateExternalAccessRulePollingUntilDone(request:)``
-  /// - ``updateExternalAccessRulePollingUntilDone(externalAccessRule:updateMask:)``
   /// - ``updateExternalAccessRule(request:)``
   /// - ``updateExternalAccessRule(request:options:)``
+  /// - ``updateExternalAccessRulePollingUntilDone(externalAccessRule:updateMask:)``
+  /// - ``updateExternalAccessRulePollingUntilDone(request:)``
   public func updateExternalAccessRulePollingUntilDone(
     request: UpdateExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExternalAccessRule {
@@ -1027,9 +1027,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteExternalAccessRule(request:)``
+  /// - ``deleteExternalAccessRulePollingUntilDone(name:)``
   /// - ``deleteExternalAccessRulePollingUntilDone(request:)``
   /// - ``deleteExternalAccessRulePollingUntilDone(request:options:)``
-  /// - ``deleteExternalAccessRulePollingUntilDone(name:)``
   public func deleteExternalAccessRule(
     request: DeleteExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1042,10 +1042,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteExternalAccessRulePollingUntilDone(request:)``
-  /// - ``deleteExternalAccessRulePollingUntilDone(name:)``
   /// - ``deleteExternalAccessRule(request:)``
   /// - ``deleteExternalAccessRule(request:options:)``
+  /// - ``deleteExternalAccessRulePollingUntilDone(name:)``
+  /// - ``deleteExternalAccessRulePollingUntilDone(request:)``
   public func deleteExternalAccessRulePollingUntilDone(
     request: DeleteExternalAccessRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1078,9 +1078,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listLoggingServers(request:)``
+  /// - ``listLoggingServersByItems(parent:)``
   /// - ``listLoggingServersByItems(request:)``
   /// - ``listLoggingServersByItems(request:options:)``
-  /// - ``listLoggingServersByItems(parent:)``
   public func listLoggingServers(
     request: ListLoggingServersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListLoggingServersResponse {
@@ -1093,8 +1093,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getLoggingServer(request:)``
   /// - ``getLoggingServer(name:)``
+  /// - ``getLoggingServer(request:)``
   public func getLoggingServer(
     request: GetLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.LoggingServer {
@@ -1108,9 +1108,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createLoggingServer(request:)``
+  /// - ``createLoggingServerPollingUntilDone(parent:loggingServer:loggingServerId:)``
   /// - ``createLoggingServerPollingUntilDone(request:)``
   /// - ``createLoggingServerPollingUntilDone(request:options:)``
-  /// - ``createLoggingServerPollingUntilDone(parent:loggingServer:loggingServerId:)``
   public func createLoggingServer(
     request: CreateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1123,10 +1123,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createLoggingServerPollingUntilDone(request:)``
-  /// - ``createLoggingServerPollingUntilDone(parent:loggingServer:loggingServerId:)``
   /// - ``createLoggingServer(request:)``
   /// - ``createLoggingServer(request:options:)``
+  /// - ``createLoggingServerPollingUntilDone(parent:loggingServer:loggingServerId:)``
+  /// - ``createLoggingServerPollingUntilDone(request:)``
   public func createLoggingServerPollingUntilDone(
     request: CreateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> LoggingServer {
@@ -1160,9 +1160,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateLoggingServer(request:)``
+  /// - ``updateLoggingServerPollingUntilDone(loggingServer:updateMask:)``
   /// - ``updateLoggingServerPollingUntilDone(request:)``
   /// - ``updateLoggingServerPollingUntilDone(request:options:)``
-  /// - ``updateLoggingServerPollingUntilDone(loggingServer:updateMask:)``
   public func updateLoggingServer(
     request: UpdateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1176,10 +1176,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateLoggingServerPollingUntilDone(request:)``
-  /// - ``updateLoggingServerPollingUntilDone(loggingServer:updateMask:)``
   /// - ``updateLoggingServer(request:)``
   /// - ``updateLoggingServer(request:options:)``
+  /// - ``updateLoggingServerPollingUntilDone(loggingServer:updateMask:)``
+  /// - ``updateLoggingServerPollingUntilDone(request:)``
   public func updateLoggingServerPollingUntilDone(
     request: UpdateLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> LoggingServer {
@@ -1212,9 +1212,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteLoggingServer(request:)``
+  /// - ``deleteLoggingServerPollingUntilDone(name:)``
   /// - ``deleteLoggingServerPollingUntilDone(request:)``
   /// - ``deleteLoggingServerPollingUntilDone(request:options:)``
-  /// - ``deleteLoggingServerPollingUntilDone(name:)``
   public func deleteLoggingServer(
     request: DeleteLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1227,10 +1227,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteLoggingServerPollingUntilDone(request:)``
-  /// - ``deleteLoggingServerPollingUntilDone(name:)``
   /// - ``deleteLoggingServer(request:)``
   /// - ``deleteLoggingServer(request:options:)``
+  /// - ``deleteLoggingServerPollingUntilDone(name:)``
+  /// - ``deleteLoggingServerPollingUntilDone(request:)``
   public func deleteLoggingServerPollingUntilDone(
     request: DeleteLoggingServerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1262,9 +1262,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNodeTypes(request:)``
+  /// - ``listNodeTypesByItems(parent:)``
   /// - ``listNodeTypesByItems(request:)``
   /// - ``listNodeTypesByItems(request:options:)``
-  /// - ``listNodeTypesByItems(parent:)``
   public func listNodeTypes(
     request: ListNodeTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListNodeTypesResponse {
@@ -1277,8 +1277,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNodeType(request:)``
   /// - ``getNodeType(name:)``
+  /// - ``getNodeType(request:)``
   public func getNodeType(
     request: GetNodeTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.NodeType {
@@ -1291,8 +1291,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``showNsxCredentials(request:)``
   /// - ``showNsxCredentials(privateCloud:)``
+  /// - ``showNsxCredentials(request:)``
   public func showNsxCredentials(
     request: ShowNsxCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.Credentials {
@@ -1305,8 +1305,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``showVcenterCredentials(request:)``
   /// - ``showVcenterCredentials(privateCloud:)``
+  /// - ``showVcenterCredentials(request:)``
   public func showVcenterCredentials(
     request: ShowVcenterCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.Credentials {
@@ -1320,9 +1320,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``resetNsxCredentials(request:)``
+  /// - ``resetNsxCredentialsPollingUntilDone(privateCloud:)``
   /// - ``resetNsxCredentialsPollingUntilDone(request:)``
   /// - ``resetNsxCredentialsPollingUntilDone(request:options:)``
-  /// - ``resetNsxCredentialsPollingUntilDone(privateCloud:)``
   public func resetNsxCredentials(
     request: ResetNsxCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1335,10 +1335,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resetNsxCredentialsPollingUntilDone(request:)``
-  /// - ``resetNsxCredentialsPollingUntilDone(privateCloud:)``
   /// - ``resetNsxCredentials(request:)``
   /// - ``resetNsxCredentials(request:options:)``
+  /// - ``resetNsxCredentialsPollingUntilDone(privateCloud:)``
+  /// - ``resetNsxCredentialsPollingUntilDone(request:)``
   public func resetNsxCredentialsPollingUntilDone(
     request: ResetNsxCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateCloud {
@@ -1371,9 +1371,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``resetVcenterCredentials(request:)``
+  /// - ``resetVcenterCredentialsPollingUntilDone(privateCloud:)``
   /// - ``resetVcenterCredentialsPollingUntilDone(request:)``
   /// - ``resetVcenterCredentialsPollingUntilDone(request:options:)``
-  /// - ``resetVcenterCredentialsPollingUntilDone(privateCloud:)``
   public func resetVcenterCredentials(
     request: ResetVcenterCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1386,10 +1386,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``resetVcenterCredentialsPollingUntilDone(request:)``
-  /// - ``resetVcenterCredentialsPollingUntilDone(privateCloud:)``
   /// - ``resetVcenterCredentials(request:)``
   /// - ``resetVcenterCredentials(request:options:)``
+  /// - ``resetVcenterCredentialsPollingUntilDone(privateCloud:)``
+  /// - ``resetVcenterCredentialsPollingUntilDone(request:)``
   public func resetVcenterCredentialsPollingUntilDone(
     request: ResetVcenterCredentialsRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateCloud {
@@ -1421,8 +1421,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDnsForwarding(request:)``
   /// - ``getDnsForwarding(name:)``
+  /// - ``getDnsForwarding(request:)``
   public func getDnsForwarding(
     request: GetDnsForwardingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.DnsForwarding {
@@ -1437,9 +1437,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateDnsForwarding(request:)``
+  /// - ``updateDnsForwardingPollingUntilDone(dnsForwarding:updateMask:)``
   /// - ``updateDnsForwardingPollingUntilDone(request:)``
   /// - ``updateDnsForwardingPollingUntilDone(request:options:)``
-  /// - ``updateDnsForwardingPollingUntilDone(dnsForwarding:updateMask:)``
   public func updateDnsForwarding(
     request: UpdateDnsForwardingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1453,10 +1453,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDnsForwardingPollingUntilDone(request:)``
-  /// - ``updateDnsForwardingPollingUntilDone(dnsForwarding:updateMask:)``
   /// - ``updateDnsForwarding(request:)``
   /// - ``updateDnsForwarding(request:options:)``
+  /// - ``updateDnsForwardingPollingUntilDone(dnsForwarding:updateMask:)``
+  /// - ``updateDnsForwardingPollingUntilDone(request:)``
   public func updateDnsForwardingPollingUntilDone(
     request: UpdateDnsForwardingRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsForwarding {
@@ -1491,8 +1491,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNetworkPeering(request:)``
   /// - ``getNetworkPeering(name:)``
+  /// - ``getNetworkPeering(request:)``
   public func getNetworkPeering(
     request: GetNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.NetworkPeering {
@@ -1507,9 +1507,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNetworkPeerings(request:)``
+  /// - ``listNetworkPeeringsByItems(parent:)``
   /// - ``listNetworkPeeringsByItems(request:)``
   /// - ``listNetworkPeeringsByItems(request:options:)``
-  /// - ``listNetworkPeeringsByItems(parent:)``
   public func listNetworkPeerings(
     request: ListNetworkPeeringsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPeeringsResponse {
@@ -1525,9 +1525,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createNetworkPeering(request:)``
+  /// - ``createNetworkPeeringPollingUntilDone(parent:networkPeering:networkPeeringId:)``
   /// - ``createNetworkPeeringPollingUntilDone(request:)``
   /// - ``createNetworkPeeringPollingUntilDone(request:options:)``
-  /// - ``createNetworkPeeringPollingUntilDone(parent:networkPeering:networkPeeringId:)``
   public func createNetworkPeering(
     request: CreateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1542,10 +1542,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createNetworkPeeringPollingUntilDone(request:)``
-  /// - ``createNetworkPeeringPollingUntilDone(parent:networkPeering:networkPeeringId:)``
   /// - ``createNetworkPeering(request:)``
   /// - ``createNetworkPeering(request:options:)``
+  /// - ``createNetworkPeeringPollingUntilDone(parent:networkPeering:networkPeeringId:)``
+  /// - ``createNetworkPeeringPollingUntilDone(request:)``
   public func createNetworkPeeringPollingUntilDone(
     request: CreateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> NetworkPeering {
@@ -1581,9 +1581,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteNetworkPeering(request:)``
+  /// - ``deleteNetworkPeeringPollingUntilDone(name:)``
   /// - ``deleteNetworkPeeringPollingUntilDone(request:)``
   /// - ``deleteNetworkPeeringPollingUntilDone(request:options:)``
-  /// - ``deleteNetworkPeeringPollingUntilDone(name:)``
   public func deleteNetworkPeering(
     request: DeleteNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1599,10 +1599,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteNetworkPeeringPollingUntilDone(request:)``
-  /// - ``deleteNetworkPeeringPollingUntilDone(name:)``
   /// - ``deleteNetworkPeering(request:)``
   /// - ``deleteNetworkPeering(request:options:)``
+  /// - ``deleteNetworkPeeringPollingUntilDone(name:)``
+  /// - ``deleteNetworkPeeringPollingUntilDone(request:)``
   public func deleteNetworkPeeringPollingUntilDone(
     request: DeleteNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1636,9 +1636,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateNetworkPeering(request:)``
+  /// - ``updateNetworkPeeringPollingUntilDone(networkPeering:updateMask:)``
   /// - ``updateNetworkPeeringPollingUntilDone(request:)``
   /// - ``updateNetworkPeeringPollingUntilDone(request:options:)``
-  /// - ``updateNetworkPeeringPollingUntilDone(networkPeering:updateMask:)``
   public func updateNetworkPeering(
     request: UpdateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1653,10 +1653,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateNetworkPeeringPollingUntilDone(request:)``
-  /// - ``updateNetworkPeeringPollingUntilDone(networkPeering:updateMask:)``
   /// - ``updateNetworkPeering(request:)``
   /// - ``updateNetworkPeering(request:options:)``
+  /// - ``updateNetworkPeeringPollingUntilDone(networkPeering:updateMask:)``
+  /// - ``updateNetworkPeeringPollingUntilDone(request:)``
   public func updateNetworkPeeringPollingUntilDone(
     request: UpdateNetworkPeeringRequest, options: GoogleGax.RequestOptions
   ) async throws -> NetworkPeering {
@@ -1690,9 +1690,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPeeringRoutes(request:)``
+  /// - ``listPeeringRoutesByItems(parent:)``
   /// - ``listPeeringRoutesByItems(request:)``
   /// - ``listPeeringRoutesByItems(request:options:)``
-  /// - ``listPeeringRoutesByItems(parent:)``
   public func listPeeringRoutes(
     request: ListPeeringRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListPeeringRoutesResponse {
@@ -1706,9 +1706,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createHcxActivationKey(request:)``
+  /// - ``createHcxActivationKeyPollingUntilDone(parent:hcxActivationKey:hcxActivationKeyId:)``
   /// - ``createHcxActivationKeyPollingUntilDone(request:)``
   /// - ``createHcxActivationKeyPollingUntilDone(request:options:)``
-  /// - ``createHcxActivationKeyPollingUntilDone(parent:hcxActivationKey:hcxActivationKeyId:)``
   public func createHcxActivationKey(
     request: CreateHcxActivationKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1721,10 +1721,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createHcxActivationKeyPollingUntilDone(request:)``
-  /// - ``createHcxActivationKeyPollingUntilDone(parent:hcxActivationKey:hcxActivationKeyId:)``
   /// - ``createHcxActivationKey(request:)``
   /// - ``createHcxActivationKey(request:options:)``
+  /// - ``createHcxActivationKeyPollingUntilDone(parent:hcxActivationKey:hcxActivationKeyId:)``
+  /// - ``createHcxActivationKeyPollingUntilDone(request:)``
   public func createHcxActivationKeyPollingUntilDone(
     request: CreateHcxActivationKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> HcxActivationKey {
@@ -1757,9 +1757,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listHcxActivationKeys(request:)``
+  /// - ``listHcxActivationKeysByItems(parent:)``
   /// - ``listHcxActivationKeysByItems(request:)``
   /// - ``listHcxActivationKeysByItems(request:options:)``
-  /// - ``listHcxActivationKeysByItems(parent:)``
   public func listHcxActivationKeys(
     request: ListHcxActivationKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListHcxActivationKeysResponse {
@@ -1772,8 +1772,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getHcxActivationKey(request:)``
   /// - ``getHcxActivationKey(name:)``
+  /// - ``getHcxActivationKey(request:)``
   public func getHcxActivationKey(
     request: GetHcxActivationKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.HcxActivationKey {
@@ -1786,8 +1786,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNetworkPolicy(request:)``
   /// - ``getNetworkPolicy(name:)``
+  /// - ``getNetworkPolicy(request:)``
   public func getNetworkPolicy(
     request: GetNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.NetworkPolicy {
@@ -1801,9 +1801,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listNetworkPolicies(request:)``
+  /// - ``listNetworkPoliciesByItems(parent:)``
   /// - ``listNetworkPoliciesByItems(request:)``
   /// - ``listNetworkPoliciesByItems(request:options:)``
-  /// - ``listNetworkPoliciesByItems(parent:)``
   public func listNetworkPolicies(
     request: ListNetworkPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListNetworkPoliciesResponse {
@@ -1819,9 +1819,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createNetworkPolicy(request:)``
+  /// - ``createNetworkPolicyPollingUntilDone(parent:networkPolicy:networkPolicyId:)``
   /// - ``createNetworkPolicyPollingUntilDone(request:)``
   /// - ``createNetworkPolicyPollingUntilDone(request:options:)``
-  /// - ``createNetworkPolicyPollingUntilDone(parent:networkPolicy:networkPolicyId:)``
   public func createNetworkPolicy(
     request: CreateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1836,10 +1836,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createNetworkPolicyPollingUntilDone(request:)``
-  /// - ``createNetworkPolicyPollingUntilDone(parent:networkPolicy:networkPolicyId:)``
   /// - ``createNetworkPolicy(request:)``
   /// - ``createNetworkPolicy(request:options:)``
+  /// - ``createNetworkPolicyPollingUntilDone(parent:networkPolicy:networkPolicyId:)``
+  /// - ``createNetworkPolicyPollingUntilDone(request:)``
   public func createNetworkPolicyPollingUntilDone(
     request: CreateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> NetworkPolicy {
@@ -1883,9 +1883,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateNetworkPolicy(request:)``
+  /// - ``updateNetworkPolicyPollingUntilDone(networkPolicy:updateMask:)``
   /// - ``updateNetworkPolicyPollingUntilDone(request:)``
   /// - ``updateNetworkPolicyPollingUntilDone(request:options:)``
-  /// - ``updateNetworkPolicyPollingUntilDone(networkPolicy:updateMask:)``
   public func updateNetworkPolicy(
     request: UpdateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1909,10 +1909,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateNetworkPolicyPollingUntilDone(request:)``
-  /// - ``updateNetworkPolicyPollingUntilDone(networkPolicy:updateMask:)``
   /// - ``updateNetworkPolicy(request:)``
   /// - ``updateNetworkPolicy(request:options:)``
+  /// - ``updateNetworkPolicyPollingUntilDone(networkPolicy:updateMask:)``
+  /// - ``updateNetworkPolicyPollingUntilDone(request:)``
   public func updateNetworkPolicyPollingUntilDone(
     request: UpdateNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> NetworkPolicy {
@@ -1947,9 +1947,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteNetworkPolicy(request:)``
+  /// - ``deleteNetworkPolicyPollingUntilDone(name:)``
   /// - ``deleteNetworkPolicyPollingUntilDone(request:)``
   /// - ``deleteNetworkPolicyPollingUntilDone(request:options:)``
-  /// - ``deleteNetworkPolicyPollingUntilDone(name:)``
   public func deleteNetworkPolicy(
     request: DeleteNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1964,10 +1964,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteNetworkPolicyPollingUntilDone(request:)``
-  /// - ``deleteNetworkPolicyPollingUntilDone(name:)``
   /// - ``deleteNetworkPolicy(request:)``
   /// - ``deleteNetworkPolicy(request:options:)``
+  /// - ``deleteNetworkPolicyPollingUntilDone(name:)``
+  /// - ``deleteNetworkPolicyPollingUntilDone(request:)``
   public func deleteNetworkPolicyPollingUntilDone(
     request: DeleteNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1999,9 +1999,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listManagementDnsZoneBindings(request:)``
+  /// - ``listManagementDnsZoneBindingsByItems(parent:)``
   /// - ``listManagementDnsZoneBindingsByItems(request:)``
   /// - ``listManagementDnsZoneBindingsByItems(request:options:)``
-  /// - ``listManagementDnsZoneBindingsByItems(parent:)``
   public func listManagementDnsZoneBindings(
     request: ListManagementDnsZoneBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListManagementDnsZoneBindingsResponse {
@@ -2014,8 +2014,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getManagementDnsZoneBinding(request:)``
   /// - ``getManagementDnsZoneBinding(name:)``
+  /// - ``getManagementDnsZoneBinding(request:)``
   public func getManagementDnsZoneBinding(
     request: GetManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ManagementDnsZoneBinding {
@@ -2035,9 +2035,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createManagementDnsZoneBinding(request:)``
+  /// - ``createManagementDnsZoneBindingPollingUntilDone(parent:managementDnsZoneBinding:managementDnsZoneBindingId:)``
   /// - ``createManagementDnsZoneBindingPollingUntilDone(request:)``
   /// - ``createManagementDnsZoneBindingPollingUntilDone(request:options:)``
-  /// - ``createManagementDnsZoneBindingPollingUntilDone(parent:managementDnsZoneBinding:managementDnsZoneBindingId:)``
   public func createManagementDnsZoneBinding(
     request: CreateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2056,10 +2056,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createManagementDnsZoneBindingPollingUntilDone(request:)``
-  /// - ``createManagementDnsZoneBindingPollingUntilDone(parent:managementDnsZoneBinding:managementDnsZoneBindingId:)``
   /// - ``createManagementDnsZoneBinding(request:)``
   /// - ``createManagementDnsZoneBinding(request:options:)``
+  /// - ``createManagementDnsZoneBindingPollingUntilDone(parent:managementDnsZoneBinding:managementDnsZoneBindingId:)``
+  /// - ``createManagementDnsZoneBindingPollingUntilDone(request:)``
   public func createManagementDnsZoneBindingPollingUntilDone(
     request: CreateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagementDnsZoneBinding {
@@ -2094,9 +2094,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateManagementDnsZoneBinding(request:)``
+  /// - ``updateManagementDnsZoneBindingPollingUntilDone(managementDnsZoneBinding:updateMask:)``
   /// - ``updateManagementDnsZoneBindingPollingUntilDone(request:)``
   /// - ``updateManagementDnsZoneBindingPollingUntilDone(request:options:)``
-  /// - ``updateManagementDnsZoneBindingPollingUntilDone(managementDnsZoneBinding:updateMask:)``
   public func updateManagementDnsZoneBinding(
     request: UpdateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2110,10 +2110,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateManagementDnsZoneBindingPollingUntilDone(request:)``
-  /// - ``updateManagementDnsZoneBindingPollingUntilDone(managementDnsZoneBinding:updateMask:)``
   /// - ``updateManagementDnsZoneBinding(request:)``
   /// - ``updateManagementDnsZoneBinding(request:options:)``
+  /// - ``updateManagementDnsZoneBindingPollingUntilDone(managementDnsZoneBinding:updateMask:)``
+  /// - ``updateManagementDnsZoneBindingPollingUntilDone(request:)``
   public func updateManagementDnsZoneBindingPollingUntilDone(
     request: UpdateManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagementDnsZoneBinding {
@@ -2149,9 +2149,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteManagementDnsZoneBinding(request:)``
+  /// - ``deleteManagementDnsZoneBindingPollingUntilDone(name:)``
   /// - ``deleteManagementDnsZoneBindingPollingUntilDone(request:)``
   /// - ``deleteManagementDnsZoneBindingPollingUntilDone(request:options:)``
-  /// - ``deleteManagementDnsZoneBindingPollingUntilDone(name:)``
   public func deleteManagementDnsZoneBinding(
     request: DeleteManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2166,10 +2166,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteManagementDnsZoneBindingPollingUntilDone(request:)``
-  /// - ``deleteManagementDnsZoneBindingPollingUntilDone(name:)``
   /// - ``deleteManagementDnsZoneBinding(request:)``
   /// - ``deleteManagementDnsZoneBinding(request:options:)``
+  /// - ``deleteManagementDnsZoneBindingPollingUntilDone(name:)``
+  /// - ``deleteManagementDnsZoneBindingPollingUntilDone(request:)``
   public func deleteManagementDnsZoneBindingPollingUntilDone(
     request: DeleteManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2202,9 +2202,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``repairManagementDnsZoneBinding(request:)``
+  /// - ``repairManagementDnsZoneBindingPollingUntilDone(name:)``
   /// - ``repairManagementDnsZoneBindingPollingUntilDone(request:)``
   /// - ``repairManagementDnsZoneBindingPollingUntilDone(request:options:)``
-  /// - ``repairManagementDnsZoneBindingPollingUntilDone(name:)``
   public func repairManagementDnsZoneBinding(
     request: RepairManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2218,10 +2218,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``repairManagementDnsZoneBindingPollingUntilDone(request:)``
-  /// - ``repairManagementDnsZoneBindingPollingUntilDone(name:)``
   /// - ``repairManagementDnsZoneBinding(request:)``
   /// - ``repairManagementDnsZoneBinding(request:options:)``
+  /// - ``repairManagementDnsZoneBindingPollingUntilDone(name:)``
+  /// - ``repairManagementDnsZoneBindingPollingUntilDone(request:)``
   public func repairManagementDnsZoneBindingPollingUntilDone(
     request: RepairManagementDnsZoneBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagementDnsZoneBinding {
@@ -2255,9 +2255,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createVmwareEngineNetwork(request:)``
+  /// - ``createVmwareEngineNetworkPollingUntilDone(parent:vmwareEngineNetwork:vmwareEngineNetworkId:)``
   /// - ``createVmwareEngineNetworkPollingUntilDone(request:)``
   /// - ``createVmwareEngineNetworkPollingUntilDone(request:options:)``
-  /// - ``createVmwareEngineNetworkPollingUntilDone(parent:vmwareEngineNetwork:vmwareEngineNetworkId:)``
   public func createVmwareEngineNetwork(
     request: CreateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2270,10 +2270,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createVmwareEngineNetworkPollingUntilDone(request:)``
-  /// - ``createVmwareEngineNetworkPollingUntilDone(parent:vmwareEngineNetwork:vmwareEngineNetworkId:)``
   /// - ``createVmwareEngineNetwork(request:)``
   /// - ``createVmwareEngineNetwork(request:options:)``
+  /// - ``createVmwareEngineNetworkPollingUntilDone(parent:vmwareEngineNetwork:vmwareEngineNetworkId:)``
+  /// - ``createVmwareEngineNetworkPollingUntilDone(request:)``
   public func createVmwareEngineNetworkPollingUntilDone(
     request: CreateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> VmwareEngineNetwork {
@@ -2325,10 +2325,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateVmwareEngineNetworkPollingUntilDone(request:)``
-  /// - ``updateVmwareEngineNetworkPollingUntilDone(vmwareEngineNetwork:updateMask:)``
   /// - ``updateVmwareEngineNetwork(request:)``
   /// - ``updateVmwareEngineNetwork(request:options:)``
+  /// - ``updateVmwareEngineNetworkPollingUntilDone(request:)``
+  /// - ``updateVmwareEngineNetworkPollingUntilDone(vmwareEngineNetwork:updateMask:)``
   public func updateVmwareEngineNetworkPollingUntilDone(
     request: UpdateVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> VmwareEngineNetwork {
@@ -2364,9 +2364,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteVmwareEngineNetwork(request:)``
+  /// - ``deleteVmwareEngineNetworkPollingUntilDone(name:)``
   /// - ``deleteVmwareEngineNetworkPollingUntilDone(request:)``
   /// - ``deleteVmwareEngineNetworkPollingUntilDone(request:options:)``
-  /// - ``deleteVmwareEngineNetworkPollingUntilDone(name:)``
   public func deleteVmwareEngineNetwork(
     request: DeleteVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2382,10 +2382,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteVmwareEngineNetworkPollingUntilDone(request:)``
-  /// - ``deleteVmwareEngineNetworkPollingUntilDone(name:)``
   /// - ``deleteVmwareEngineNetwork(request:)``
   /// - ``deleteVmwareEngineNetwork(request:options:)``
+  /// - ``deleteVmwareEngineNetworkPollingUntilDone(name:)``
+  /// - ``deleteVmwareEngineNetworkPollingUntilDone(request:)``
   public func deleteVmwareEngineNetworkPollingUntilDone(
     request: DeleteVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2419,8 +2419,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getVmwareEngineNetwork(request:)``
   /// - ``getVmwareEngineNetwork(name:)``
+  /// - ``getVmwareEngineNetwork(request:)``
   public func getVmwareEngineNetwork(
     request: GetVmwareEngineNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.VmwareEngineNetwork {
@@ -2434,9 +2434,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listVmwareEngineNetworks(request:)``
+  /// - ``listVmwareEngineNetworksByItems(parent:)``
   /// - ``listVmwareEngineNetworksByItems(request:)``
   /// - ``listVmwareEngineNetworksByItems(request:options:)``
-  /// - ``listVmwareEngineNetworksByItems(parent:)``
   public func listVmwareEngineNetworks(
     request: ListVmwareEngineNetworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListVmwareEngineNetworksResponse {
@@ -2451,9 +2451,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPrivateConnection(request:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   /// - ``createPrivateConnectionPollingUntilDone(request:)``
   /// - ``createPrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   public func createPrivateConnection(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2467,10 +2467,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPrivateConnectionPollingUntilDone(request:)``
-  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   /// - ``createPrivateConnection(request:)``
   /// - ``createPrivateConnection(request:options:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
+  /// - ``createPrivateConnectionPollingUntilDone(request:)``
   public func createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateConnection {
@@ -2504,8 +2504,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPrivateConnection(request:)``
   /// - ``getPrivateConnection(name:)``
+  /// - ``getPrivateConnection(request:)``
   public func getPrivateConnection(
     request: GetPrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.PrivateConnection {
@@ -2519,9 +2519,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPrivateConnections(request:)``
+  /// - ``listPrivateConnectionsByItems(parent:)``
   /// - ``listPrivateConnectionsByItems(request:)``
   /// - ``listPrivateConnectionsByItems(request:options:)``
-  /// - ``listPrivateConnectionsByItems(parent:)``
   public func listPrivateConnections(
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateConnectionsResponse {
@@ -2537,9 +2537,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updatePrivateConnection(request:)``
+  /// - ``updatePrivateConnectionPollingUntilDone(privateConnection:updateMask:)``
   /// - ``updatePrivateConnectionPollingUntilDone(request:)``
   /// - ``updatePrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``updatePrivateConnectionPollingUntilDone(privateConnection:updateMask:)``
   public func updatePrivateConnection(
     request: UpdatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2554,10 +2554,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePrivateConnectionPollingUntilDone(request:)``
-  /// - ``updatePrivateConnectionPollingUntilDone(privateConnection:updateMask:)``
   /// - ``updatePrivateConnection(request:)``
   /// - ``updatePrivateConnection(request:options:)``
+  /// - ``updatePrivateConnectionPollingUntilDone(privateConnection:updateMask:)``
+  /// - ``updatePrivateConnectionPollingUntilDone(request:)``
   public func updatePrivateConnectionPollingUntilDone(
     request: UpdatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateConnection {
@@ -2592,9 +2592,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePrivateConnection(request:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   /// - ``deletePrivateConnectionPollingUntilDone(request:)``
   /// - ``deletePrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   public func deletePrivateConnection(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2609,10 +2609,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
-  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   /// - ``deletePrivateConnection(request:)``
   /// - ``deletePrivateConnection(request:options:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
   public func deletePrivateConnectionPollingUntilDone(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2644,9 +2644,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPrivateConnectionPeeringRoutes(request:)``
+  /// - ``listPrivateConnectionPeeringRoutesByItems(parent:)``
   /// - ``listPrivateConnectionPeeringRoutesByItems(request:)``
   /// - ``listPrivateConnectionPeeringRoutesByItems(request:options:)``
-  /// - ``listPrivateConnectionPeeringRoutesByItems(parent:)``
   public func listPrivateConnectionPeeringRoutes(
     request: ListPrivateConnectionPeeringRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.ListPrivateConnectionPeeringRoutesResponse {
@@ -2663,9 +2663,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``grantDnsBindPermission(request:)``
+  /// - ``grantDnsBindPermissionPollingUntilDone(name:principal:)``
   /// - ``grantDnsBindPermissionPollingUntilDone(request:)``
   /// - ``grantDnsBindPermissionPollingUntilDone(request:options:)``
-  /// - ``grantDnsBindPermissionPollingUntilDone(name:principal:)``
   public func grantDnsBindPermission(
     request: GrantDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2681,10 +2681,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``grantDnsBindPermissionPollingUntilDone(request:)``
-  /// - ``grantDnsBindPermissionPollingUntilDone(name:principal:)``
   /// - ``grantDnsBindPermission(request:)``
   /// - ``grantDnsBindPermission(request:options:)``
+  /// - ``grantDnsBindPermissionPollingUntilDone(name:principal:)``
+  /// - ``grantDnsBindPermissionPollingUntilDone(request:)``
   public func grantDnsBindPermissionPollingUntilDone(
     request: GrantDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsBindPermission {
@@ -2718,8 +2718,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDnsBindPermission(request:)``
   /// - ``getDnsBindPermission(name:)``
+  /// - ``getDnsBindPermission(request:)``
   public func getDnsBindPermission(
     request: GetDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVMwareEngineV1.DnsBindPermission {
@@ -2735,9 +2735,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``revokeDnsBindPermission(request:)``
+  /// - ``revokeDnsBindPermissionPollingUntilDone(name:principal:)``
   /// - ``revokeDnsBindPermissionPollingUntilDone(request:)``
   /// - ``revokeDnsBindPermissionPollingUntilDone(request:options:)``
-  /// - ``revokeDnsBindPermissionPollingUntilDone(name:principal:)``
   public func revokeDnsBindPermission(
     request: RevokeDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -2752,10 +2752,10 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``revokeDnsBindPermissionPollingUntilDone(request:)``
-  /// - ``revokeDnsBindPermissionPollingUntilDone(name:principal:)``
   /// - ``revokeDnsBindPermission(request:)``
   /// - ``revokeDnsBindPermission(request:options:)``
+  /// - ``revokeDnsBindPermissionPollingUntilDone(name:principal:)``
+  /// - ``revokeDnsBindPermissionPollingUntilDone(request:)``
   public func revokeDnsBindPermissionPollingUntilDone(
     request: RevokeDnsBindPermissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsBindPermission {
@@ -2868,9 +2868,9 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -2896,8 +2896,8 @@ public final class VmwareEngineClient: Clients.VmwareEngineProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

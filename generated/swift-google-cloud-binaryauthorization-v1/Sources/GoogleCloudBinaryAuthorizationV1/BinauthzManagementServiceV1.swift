@@ -71,8 +71,8 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   ///
   /// ## See Also
   ///
-  /// - ``getPolicy(request:)``
   /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -92,8 +92,8 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicy(request:)``
   /// - ``updatePolicy(policy:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -113,8 +113,8 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   ///
   /// ## See Also
   ///
-  /// - ``createAttestor(request:)``
   /// - ``createAttestor(parent:attestorId:attestor:)``
+  /// - ``createAttestor(request:)``
   public func createAttestor(
     request: CreateAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -131,8 +131,8 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   ///
   /// ## See Also
   ///
-  /// - ``getAttestor(request:)``
   /// - ``getAttestor(name:)``
+  /// - ``getAttestor(request:)``
   public func getAttestor(
     request: GetAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -149,8 +149,8 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   ///
   /// ## See Also
   ///
-  /// - ``updateAttestor(request:)``
   /// - ``updateAttestor(attestor:)``
+  /// - ``updateAttestor(request:)``
   public func updateAttestor(
     request: UpdateAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -167,9 +167,9 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// ## See Also
   ///
   /// - ``listAttestors(request:)``
+  /// - ``listAttestorsByItems(parent:)``
   /// - ``listAttestorsByItems(request:)``
   /// - ``listAttestorsByItems(request:options:)``
-  /// - ``listAttestorsByItems(parent:)``
   public func listAttestors(
     request: ListAttestorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse {
@@ -186,8 +186,8 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   ///
   /// ## See Also
   ///
-  /// - ``deleteAttestor(request:)``
   /// - ``deleteAttestor(name:)``
+  /// - ``deleteAttestor(request:)``
   public func deleteAttestor(
     request: DeleteAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws {

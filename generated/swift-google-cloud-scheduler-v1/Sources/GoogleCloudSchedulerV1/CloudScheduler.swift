@@ -50,9 +50,9 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.ListJobsResponse {
@@ -65,8 +65,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -79,8 +79,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createJob(request:)``
   /// - ``createJob(parent:job:)``
+  /// - ``createJob(request:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -105,8 +105,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateJob(request:)``
   /// - ``updateJob(job:updateMask:)``
+  /// - ``updateJob(request:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -119,8 +119,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteJob(request:)``
   /// - ``deleteJob(name:)``
+  /// - ``deleteJob(request:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -147,8 +147,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``pauseJob(request:)``
   /// - ``pauseJob(name:)``
+  /// - ``pauseJob(request:)``
   public func pauseJob(
     request: PauseJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -173,8 +173,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``resumeJob(request:)``
   /// - ``resumeJob(name:)``
+  /// - ``resumeJob(request:)``
   public func resumeJob(
     request: ResumeJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -190,8 +190,8 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``runJob(request:)``
   /// - ``runJob(name:)``
+  /// - ``runJob(request:)``
   public func runJob(
     request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {

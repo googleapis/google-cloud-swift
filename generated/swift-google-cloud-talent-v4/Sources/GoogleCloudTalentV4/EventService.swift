@@ -53,8 +53,8 @@ public final class EventServiceClient: Clients.EventServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createClientEvent(request:)``
   /// - ``createClientEvent(parent:clientEvent:)``
+  /// - ``createClientEvent(request:)``
   public func createClientEvent(
     request: CreateClientEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ClientEvent {

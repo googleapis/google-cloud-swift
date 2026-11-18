@@ -48,8 +48,8 @@ public final class CloudApiRegistryClient: Clients.CloudApiRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getMcpServer(request:)``
   /// - ``getMcpServer(name:)``
+  /// - ``getMcpServer(request:)``
   public func getMcpServer(
     request: GetMcpServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiRegistryV1.McpServer {
@@ -63,9 +63,9 @@ public final class CloudApiRegistryClient: Clients.CloudApiRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listMcpServers(request:)``
+  /// - ``listMcpServersByItems(parent:)``
   /// - ``listMcpServersByItems(request:)``
   /// - ``listMcpServersByItems(request:options:)``
-  /// - ``listMcpServersByItems(parent:)``
   public func listMcpServers(
     request: ListMcpServersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiRegistryV1.ListMcpServersResponse {
@@ -78,8 +78,8 @@ public final class CloudApiRegistryClient: Clients.CloudApiRegistryProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getMcpTool(request:)``
   /// - ``getMcpTool(name:)``
+  /// - ``getMcpTool(request:)``
   public func getMcpTool(
     request: GetMcpToolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiRegistryV1.McpTool {
@@ -93,9 +93,9 @@ public final class CloudApiRegistryClient: Clients.CloudApiRegistryProtocol, Sen
   /// ## See Also
   ///
   /// - ``listMcpTools(request:)``
+  /// - ``listMcpToolsByItems(parent:)``
   /// - ``listMcpToolsByItems(request:)``
   /// - ``listMcpToolsByItems(request:options:)``
-  /// - ``listMcpToolsByItems(parent:)``
   public func listMcpTools(
     request: ListMcpToolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiRegistryV1.ListMcpToolsResponse {

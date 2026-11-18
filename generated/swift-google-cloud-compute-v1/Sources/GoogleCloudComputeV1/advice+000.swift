@@ -50,8 +50,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``calendarMode(request:)``
     /// - ``calendarMode(project:region:body:)``
+    /// - ``calendarMode(request:)``
     public func calendarMode(
       request: AdviceClient.CalendarModeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CalendarModeAdviceResponse {
@@ -66,8 +66,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``capacity(request:)``
     /// - ``capacity(project:region:body:)``
+    /// - ``capacity(request:)``
     public func capacity(
       request: AdviceClient.CapacityRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CapacityAdviceResponse {
@@ -80,8 +80,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``capacityHistory(request:)``
     /// - ``capacityHistory(project:region:body:)``
+    /// - ``capacityHistory(request:)``
     public func capacityHistory(
       request: AdviceClient.CapacityHistoryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CapacityHistoryResponse {

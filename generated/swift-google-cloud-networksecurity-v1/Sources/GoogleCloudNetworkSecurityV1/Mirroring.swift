@@ -56,9 +56,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listMirroringEndpointGroups(request:)``
+  /// - ``listMirroringEndpointGroupsByItems(parent:)``
   /// - ``listMirroringEndpointGroupsByItems(request:)``
   /// - ``listMirroringEndpointGroupsByItems(request:options:)``
-  /// - ``listMirroringEndpointGroupsByItems(parent:)``
   public func listMirroringEndpointGroups(
     request: ListMirroringEndpointGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupsResponse {
@@ -72,8 +72,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getMirroringEndpointGroup(request:)``
   /// - ``getMirroringEndpointGroup(name:)``
+  /// - ``getMirroringEndpointGroup(request:)``
   public func getMirroringEndpointGroup(
     request: GetMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroup {
@@ -88,9 +88,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createMirroringEndpointGroup(request:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(parent:mirroringEndpointGroup:mirroringEndpointGroupId:)``
   /// - ``createMirroringEndpointGroupPollingUntilDone(request:)``
   /// - ``createMirroringEndpointGroupPollingUntilDone(request:options:)``
-  /// - ``createMirroringEndpointGroupPollingUntilDone(parent:mirroringEndpointGroup:mirroringEndpointGroupId:)``
   public func createMirroringEndpointGroup(
     request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -104,10 +104,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createMirroringEndpointGroupPollingUntilDone(request:)``
-  /// - ``createMirroringEndpointGroupPollingUntilDone(parent:mirroringEndpointGroup:mirroringEndpointGroupId:)``
   /// - ``createMirroringEndpointGroup(request:)``
   /// - ``createMirroringEndpointGroup(request:options:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(parent:mirroringEndpointGroup:mirroringEndpointGroupId:)``
+  /// - ``createMirroringEndpointGroupPollingUntilDone(request:)``
   public func createMirroringEndpointGroupPollingUntilDone(
     request: CreateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroup {
@@ -141,9 +141,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateMirroringEndpointGroup(request:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(mirroringEndpointGroup:updateMask:)``
   /// - ``updateMirroringEndpointGroupPollingUntilDone(request:)``
   /// - ``updateMirroringEndpointGroupPollingUntilDone(request:options:)``
-  /// - ``updateMirroringEndpointGroupPollingUntilDone(mirroringEndpointGroup:updateMask:)``
   public func updateMirroringEndpointGroup(
     request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -157,10 +157,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateMirroringEndpointGroupPollingUntilDone(request:)``
-  /// - ``updateMirroringEndpointGroupPollingUntilDone(mirroringEndpointGroup:updateMask:)``
   /// - ``updateMirroringEndpointGroup(request:)``
   /// - ``updateMirroringEndpointGroup(request:options:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(mirroringEndpointGroup:updateMask:)``
+  /// - ``updateMirroringEndpointGroupPollingUntilDone(request:)``
   public func updateMirroringEndpointGroupPollingUntilDone(
     request: UpdateMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroup {
@@ -194,9 +194,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteMirroringEndpointGroup(request:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(name:)``
   /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:)``
   /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:options:)``
-  /// - ``deleteMirroringEndpointGroupPollingUntilDone(name:)``
   public func deleteMirroringEndpointGroup(
     request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -210,10 +210,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:)``
-  /// - ``deleteMirroringEndpointGroupPollingUntilDone(name:)``
   /// - ``deleteMirroringEndpointGroup(request:)``
   /// - ``deleteMirroringEndpointGroup(request:options:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(name:)``
+  /// - ``deleteMirroringEndpointGroupPollingUntilDone(request:)``
   public func deleteMirroringEndpointGroupPollingUntilDone(
     request: DeleteMirroringEndpointGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -246,9 +246,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listMirroringEndpointGroupAssociations(request:)``
+  /// - ``listMirroringEndpointGroupAssociationsByItems(parent:)``
   /// - ``listMirroringEndpointGroupAssociationsByItems(request:)``
   /// - ``listMirroringEndpointGroupAssociationsByItems(request:options:)``
-  /// - ``listMirroringEndpointGroupAssociationsByItems(parent:)``
   public func listMirroringEndpointGroupAssociations(
     request: ListMirroringEndpointGroupAssociationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringEndpointGroupAssociationsResponse {
@@ -262,8 +262,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getMirroringEndpointGroupAssociation(request:)``
   /// - ``getMirroringEndpointGroupAssociation(name:)``
+  /// - ``getMirroringEndpointGroupAssociation(request:)``
   public func getMirroringEndpointGroupAssociation(
     request: GetMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringEndpointGroupAssociation {
@@ -278,9 +278,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createMirroringEndpointGroupAssociation(request:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(parent:mirroringEndpointGroupAssociation:mirroringEndpointGroupAssociationId:)``
   /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:)``
   /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
-  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(parent:mirroringEndpointGroupAssociation:mirroringEndpointGroupAssociationId:)``
   public func createMirroringEndpointGroupAssociation(
     request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -294,10 +294,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:)``
-  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(parent:mirroringEndpointGroupAssociation:mirroringEndpointGroupAssociationId:)``
   /// - ``createMirroringEndpointGroupAssociation(request:)``
   /// - ``createMirroringEndpointGroupAssociation(request:options:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(parent:mirroringEndpointGroupAssociation:mirroringEndpointGroupAssociationId:)``
+  /// - ``createMirroringEndpointGroupAssociationPollingUntilDone(request:)``
   public func createMirroringEndpointGroupAssociationPollingUntilDone(
     request: CreateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroupAssociation {
@@ -333,9 +333,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateMirroringEndpointGroupAssociation(request:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(mirroringEndpointGroupAssociation:updateMask:)``
   /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:)``
   /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
-  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(mirroringEndpointGroupAssociation:updateMask:)``
   public func updateMirroringEndpointGroupAssociation(
     request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -349,10 +349,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:)``
-  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(mirroringEndpointGroupAssociation:updateMask:)``
   /// - ``updateMirroringEndpointGroupAssociation(request:)``
   /// - ``updateMirroringEndpointGroupAssociation(request:options:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(mirroringEndpointGroupAssociation:updateMask:)``
+  /// - ``updateMirroringEndpointGroupAssociationPollingUntilDone(request:)``
   public func updateMirroringEndpointGroupAssociationPollingUntilDone(
     request: UpdateMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringEndpointGroupAssociation {
@@ -388,9 +388,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteMirroringEndpointGroupAssociation(request:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(name:)``
   /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:)``
   /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:options:)``
-  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(name:)``
   public func deleteMirroringEndpointGroupAssociation(
     request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -404,10 +404,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:)``
-  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(name:)``
   /// - ``deleteMirroringEndpointGroupAssociation(request:)``
   /// - ``deleteMirroringEndpointGroupAssociation(request:options:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(name:)``
+  /// - ``deleteMirroringEndpointGroupAssociationPollingUntilDone(request:)``
   public func deleteMirroringEndpointGroupAssociationPollingUntilDone(
     request: DeleteMirroringEndpointGroupAssociationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -441,9 +441,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listMirroringDeploymentGroups(request:)``
+  /// - ``listMirroringDeploymentGroupsByItems(parent:)``
   /// - ``listMirroringDeploymentGroupsByItems(request:)``
   /// - ``listMirroringDeploymentGroupsByItems(request:options:)``
-  /// - ``listMirroringDeploymentGroupsByItems(parent:)``
   public func listMirroringDeploymentGroups(
     request: ListMirroringDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentGroupsResponse {
@@ -457,8 +457,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getMirroringDeploymentGroup(request:)``
   /// - ``getMirroringDeploymentGroup(name:)``
+  /// - ``getMirroringDeploymentGroup(request:)``
   public func getMirroringDeploymentGroup(
     request: GetMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeploymentGroup {
@@ -473,9 +473,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createMirroringDeploymentGroup(request:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(parent:mirroringDeploymentGroup:mirroringDeploymentGroupId:)``
   /// - ``createMirroringDeploymentGroupPollingUntilDone(request:)``
   /// - ``createMirroringDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``createMirroringDeploymentGroupPollingUntilDone(parent:mirroringDeploymentGroup:mirroringDeploymentGroupId:)``
   public func createMirroringDeploymentGroup(
     request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -489,10 +489,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createMirroringDeploymentGroupPollingUntilDone(request:)``
-  /// - ``createMirroringDeploymentGroupPollingUntilDone(parent:mirroringDeploymentGroup:mirroringDeploymentGroupId:)``
   /// - ``createMirroringDeploymentGroup(request:)``
   /// - ``createMirroringDeploymentGroup(request:options:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(parent:mirroringDeploymentGroup:mirroringDeploymentGroupId:)``
+  /// - ``createMirroringDeploymentGroupPollingUntilDone(request:)``
   public func createMirroringDeploymentGroupPollingUntilDone(
     request: CreateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeploymentGroup {
@@ -527,9 +527,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateMirroringDeploymentGroup(request:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(mirroringDeploymentGroup:updateMask:)``
   /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:)``
   /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``updateMirroringDeploymentGroupPollingUntilDone(mirroringDeploymentGroup:updateMask:)``
   public func updateMirroringDeploymentGroup(
     request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -543,10 +543,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:)``
-  /// - ``updateMirroringDeploymentGroupPollingUntilDone(mirroringDeploymentGroup:updateMask:)``
   /// - ``updateMirroringDeploymentGroup(request:)``
   /// - ``updateMirroringDeploymentGroup(request:options:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(mirroringDeploymentGroup:updateMask:)``
+  /// - ``updateMirroringDeploymentGroupPollingUntilDone(request:)``
   public func updateMirroringDeploymentGroupPollingUntilDone(
     request: UpdateMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeploymentGroup {
@@ -581,9 +581,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteMirroringDeploymentGroup(request:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(name:)``
   /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:)``
   /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(name:)``
   public func deleteMirroringDeploymentGroup(
     request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -597,10 +597,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:)``
-  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(name:)``
   /// - ``deleteMirroringDeploymentGroup(request:)``
   /// - ``deleteMirroringDeploymentGroup(request:options:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(name:)``
+  /// - ``deleteMirroringDeploymentGroupPollingUntilDone(request:)``
   public func deleteMirroringDeploymentGroupPollingUntilDone(
     request: DeleteMirroringDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -633,9 +633,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listMirroringDeployments(request:)``
+  /// - ``listMirroringDeploymentsByItems(parent:)``
   /// - ``listMirroringDeploymentsByItems(request:)``
   /// - ``listMirroringDeploymentsByItems(request:options:)``
-  /// - ``listMirroringDeploymentsByItems(parent:)``
   public func listMirroringDeployments(
     request: ListMirroringDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListMirroringDeploymentsResponse {
@@ -649,8 +649,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getMirroringDeployment(request:)``
   /// - ``getMirroringDeployment(name:)``
+  /// - ``getMirroringDeployment(request:)``
   public func getMirroringDeployment(
     request: GetMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.MirroringDeployment {
@@ -665,9 +665,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createMirroringDeployment(request:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(parent:mirroringDeployment:mirroringDeploymentId:)``
   /// - ``createMirroringDeploymentPollingUntilDone(request:)``
   /// - ``createMirroringDeploymentPollingUntilDone(request:options:)``
-  /// - ``createMirroringDeploymentPollingUntilDone(parent:mirroringDeployment:mirroringDeploymentId:)``
   public func createMirroringDeployment(
     request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -681,10 +681,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createMirroringDeploymentPollingUntilDone(request:)``
-  /// - ``createMirroringDeploymentPollingUntilDone(parent:mirroringDeployment:mirroringDeploymentId:)``
   /// - ``createMirroringDeployment(request:)``
   /// - ``createMirroringDeployment(request:options:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(parent:mirroringDeployment:mirroringDeploymentId:)``
+  /// - ``createMirroringDeploymentPollingUntilDone(request:)``
   public func createMirroringDeploymentPollingUntilDone(
     request: CreateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeployment {
@@ -718,9 +718,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateMirroringDeployment(request:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(mirroringDeployment:updateMask:)``
   /// - ``updateMirroringDeploymentPollingUntilDone(request:)``
   /// - ``updateMirroringDeploymentPollingUntilDone(request:options:)``
-  /// - ``updateMirroringDeploymentPollingUntilDone(mirroringDeployment:updateMask:)``
   public func updateMirroringDeployment(
     request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -734,10 +734,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateMirroringDeploymentPollingUntilDone(request:)``
-  /// - ``updateMirroringDeploymentPollingUntilDone(mirroringDeployment:updateMask:)``
   /// - ``updateMirroringDeployment(request:)``
   /// - ``updateMirroringDeployment(request:options:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(mirroringDeployment:updateMask:)``
+  /// - ``updateMirroringDeploymentPollingUntilDone(request:)``
   public func updateMirroringDeploymentPollingUntilDone(
     request: UpdateMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> MirroringDeployment {
@@ -771,9 +771,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteMirroringDeployment(request:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(name:)``
   /// - ``deleteMirroringDeploymentPollingUntilDone(request:)``
   /// - ``deleteMirroringDeploymentPollingUntilDone(request:options:)``
-  /// - ``deleteMirroringDeploymentPollingUntilDone(name:)``
   public func deleteMirroringDeployment(
     request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -787,10 +787,10 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteMirroringDeploymentPollingUntilDone(request:)``
-  /// - ``deleteMirroringDeploymentPollingUntilDone(name:)``
   /// - ``deleteMirroringDeployment(request:)``
   /// - ``deleteMirroringDeployment(request:options:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(name:)``
+  /// - ``deleteMirroringDeploymentPollingUntilDone(request:)``
   public func deleteMirroringDeploymentPollingUntilDone(
     request: DeleteMirroringDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -919,9 +919,9 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -947,8 +947,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -963,8 +963,8 @@ public final class MirroringClient: Clients.MirroringProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

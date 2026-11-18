@@ -47,8 +47,8 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createRuleSet(request:)``
   /// - ``createRuleSet(parent:ruleSet:)``
+  /// - ``createRuleSet(request:)``
   public func createRuleSet(
     request: CreateRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -61,8 +61,8 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getRuleSet(request:)``
   /// - ``getRuleSet(name:)``
+  /// - ``getRuleSet(request:)``
   public func getRuleSet(
     request: GetRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -76,8 +76,8 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateRuleSet(request:)``
   /// - ``updateRuleSet(name:ruleSet:)``
+  /// - ``updateRuleSet(request:)``
   public func updateRuleSet(
     request: UpdateRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -90,8 +90,8 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteRuleSet(request:)``
   /// - ``deleteRuleSet(name:)``
+  /// - ``deleteRuleSet(request:)``
   public func deleteRuleSet(
     request: DeleteRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -105,9 +105,9 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listRuleSets(request:)``
+  /// - ``listRuleSetsByItems(parent:)``
   /// - ``listRuleSetsByItems(request:)``
   /// - ``listRuleSetsByItems(request:options:)``
-  /// - ``listRuleSetsByItems(parent:)``
   public func listRuleSets(
     request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse {

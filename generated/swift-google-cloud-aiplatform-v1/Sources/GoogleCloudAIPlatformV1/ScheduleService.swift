@@ -56,8 +56,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSchedule(request:)``
     /// - ``createSchedule(parent:schedule:)``
+    /// - ``createSchedule(request:)``
     public func createSchedule(
       request: CreateScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Schedule {
@@ -71,9 +71,9 @@
     /// ## See Also
     ///
     /// - ``deleteSchedule(request:)``
+    /// - ``deleteSchedulePollingUntilDone(name:)``
     /// - ``deleteSchedulePollingUntilDone(request:)``
     /// - ``deleteSchedulePollingUntilDone(request:options:)``
-    /// - ``deleteSchedulePollingUntilDone(name:)``
     public func deleteSchedule(
       request: DeleteScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -86,10 +86,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSchedulePollingUntilDone(request:)``
-    /// - ``deleteSchedulePollingUntilDone(name:)``
     /// - ``deleteSchedule(request:)``
     /// - ``deleteSchedule(request:options:)``
+    /// - ``deleteSchedulePollingUntilDone(name:)``
+    /// - ``deleteSchedulePollingUntilDone(request:)``
     public func deleteSchedulePollingUntilDone(
       request: DeleteScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -121,8 +121,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSchedule(request:)``
     /// - ``getSchedule(name:)``
+    /// - ``getSchedule(request:)``
     public func getSchedule(
       request: GetScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Schedule {
@@ -136,9 +136,9 @@
     /// ## See Also
     ///
     /// - ``listSchedules(request:)``
+    /// - ``listSchedulesByItems(parent:)``
     /// - ``listSchedulesByItems(request:)``
     /// - ``listSchedulesByItems(request:options:)``
-    /// - ``listSchedulesByItems(parent:)``
     public func listSchedules(
       request: ListSchedulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListSchedulesResponse {
@@ -156,8 +156,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``pauseSchedule(request:)``
     /// - ``pauseSchedule(name:)``
+    /// - ``pauseSchedule(request:)``
     public func pauseSchedule(
       request: PauseScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -181,9 +181,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``resumeSchedule(request:)``
     /// - ``resumeSchedule(name:)``
     /// - ``resumeSchedule(name:catchUp:)``
+    /// - ``resumeSchedule(request:)``
     public func resumeSchedule(
       request: ResumeScheduleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -297,9 +297,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -325,8 +325,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -341,8 +341,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

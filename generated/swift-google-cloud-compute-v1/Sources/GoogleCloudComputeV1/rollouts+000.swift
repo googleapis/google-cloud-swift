@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``advance(request:)``
+    /// - ``advancePollingUntilDone(project:rollout:)``
     /// - ``advancePollingUntilDone(request:)``
     /// - ``advancePollingUntilDone(request:options:)``
-    /// - ``advancePollingUntilDone(project:rollout:)``
     public func advance(
       request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``advancePollingUntilDone(request:)``
-    /// - ``advancePollingUntilDone(project:rollout:)``
     /// - ``advance(request:)``
     /// - ``advance(request:options:)``
+    /// - ``advancePollingUntilDone(project:rollout:)``
+    /// - ``advancePollingUntilDone(request:)``
     public func advancePollingUntilDone(
       request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -121,9 +121,9 @@
     /// ## See Also
     ///
     /// - ``cancel(request:)``
+    /// - ``cancelPollingUntilDone(project:rollout:)``
     /// - ``cancelPollingUntilDone(request:)``
     /// - ``cancelPollingUntilDone(request:options:)``
-    /// - ``cancelPollingUntilDone(project:rollout:)``
     public func cancel(
       request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -141,10 +141,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelPollingUntilDone(request:)``
-    /// - ``cancelPollingUntilDone(project:rollout:)``
     /// - ``cancel(request:)``
     /// - ``cancel(request:options:)``
+    /// - ``cancelPollingUntilDone(project:rollout:)``
+    /// - ``cancelPollingUntilDone(request:)``
     public func cancelPollingUntilDone(
       request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -190,9 +190,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:rollout:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:rollout:)``
     public func delete(
       request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -210,10 +210,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:rollout:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:rollout:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -258,8 +258,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:rollout:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RolloutsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Rollout {
@@ -273,9 +273,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RolloutsListResponse {
@@ -289,9 +289,9 @@
     /// ## See Also
     ///
     /// - ``pause(request:)``
+    /// - ``pausePollingUntilDone(project:rollout:)``
     /// - ``pausePollingUntilDone(request:)``
     /// - ``pausePollingUntilDone(request:options:)``
-    /// - ``pausePollingUntilDone(project:rollout:)``
     public func pause(
       request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -309,10 +309,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``pausePollingUntilDone(request:)``
-    /// - ``pausePollingUntilDone(project:rollout:)``
     /// - ``pause(request:)``
     /// - ``pause(request:options:)``
+    /// - ``pausePollingUntilDone(project:rollout:)``
+    /// - ``pausePollingUntilDone(request:)``
     public func pausePollingUntilDone(
       request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -358,9 +358,9 @@
     /// ## See Also
     ///
     /// - ``resume(request:)``
+    /// - ``resumePollingUntilDone(project:rollout:)``
     /// - ``resumePollingUntilDone(request:)``
     /// - ``resumePollingUntilDone(request:options:)``
-    /// - ``resumePollingUntilDone(project:rollout:)``
     public func resume(
       request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -378,10 +378,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``resumePollingUntilDone(request:)``
-    /// - ``resumePollingUntilDone(project:rollout:)``
     /// - ``resume(request:)``
     /// - ``resume(request:options:)``
+    /// - ``resumePollingUntilDone(project:rollout:)``
+    /// - ``resumePollingUntilDone(request:)``
     public func resumePollingUntilDone(
       request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

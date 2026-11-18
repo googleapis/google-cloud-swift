@@ -62,8 +62,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createReservation(request:)``
   /// - ``createReservation(parent:reservation:reservationId:)``
+  /// - ``createReservation(request:)``
   public func createReservation(
     request: CreateReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -77,9 +77,9 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// ## See Also
   ///
   /// - ``listReservations(request:)``
+  /// - ``listReservationsByItems(parent:)``
   /// - ``listReservationsByItems(request:)``
   /// - ``listReservationsByItems(request:options:)``
-  /// - ``listReservationsByItems(parent:)``
   public func listReservations(
     request: ListReservationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse {
@@ -92,8 +92,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getReservation(request:)``
   /// - ``getReservation(name:)``
+  /// - ``getReservation(request:)``
   public func getReservation(
     request: GetReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -108,8 +108,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteReservation(request:)``
   /// - ``deleteReservation(name:)``
+  /// - ``deleteReservation(request:)``
   public func deleteReservation(
     request: DeleteReservationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -153,8 +153,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createCapacityCommitment(request:)``
   /// - ``createCapacityCommitment(parent:capacityCommitment:)``
+  /// - ``createCapacityCommitment(request:)``
   public func createCapacityCommitment(
     request: CreateCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -168,9 +168,9 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// ## See Also
   ///
   /// - ``listCapacityCommitments(request:)``
+  /// - ``listCapacityCommitmentsByItems(parent:)``
   /// - ``listCapacityCommitmentsByItems(request:)``
   /// - ``listCapacityCommitmentsByItems(request:options:)``
-  /// - ``listCapacityCommitmentsByItems(parent:)``
   public func listCapacityCommitments(
     request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse {
@@ -183,8 +183,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getCapacityCommitment(request:)``
   /// - ``getCapacityCommitment(name:)``
+  /// - ``getCapacityCommitment(request:)``
   public func getCapacityCommitment(
     request: GetCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -199,8 +199,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteCapacityCommitment(request:)``
   /// - ``deleteCapacityCommitment(name:)``
+  /// - ``deleteCapacityCommitment(request:)``
   public func deleteCapacityCommitment(
     request: DeleteCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -219,8 +219,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateCapacityCommitment(request:)``
   /// - ``updateCapacityCommitment(capacityCommitment:updateMask:)``
+  /// - ``updateCapacityCommitment(request:)``
   public func updateCapacityCommitment(
     request: UpdateCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -240,8 +240,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``splitCapacityCommitment(request:)``
   /// - ``splitCapacityCommitment(name:slotCount:)``
+  /// - ``splitCapacityCommitment(request:)``
   public func splitCapacityCommitment(
     request: SplitCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.SplitCapacityCommitmentResponse {
@@ -260,8 +260,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``mergeCapacityCommitments(request:)``
   /// - ``mergeCapacityCommitments(parent:capacityCommitmentIds:)``
+  /// - ``mergeCapacityCommitments(request:)``
   public func mergeCapacityCommitments(
     request: MergeCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -308,8 +308,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createAssignment(request:)``
   /// - ``createAssignment(parent:assignment:)``
+  /// - ``createAssignment(request:)``
   public func createAssignment(
     request: CreateAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -343,9 +343,9 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// ## See Also
   ///
   /// - ``listAssignments(request:)``
+  /// - ``listAssignmentsByItems(parent:)``
   /// - ``listAssignmentsByItems(request:)``
   /// - ``listAssignmentsByItems(request:options:)``
-  /// - ``listAssignmentsByItems(parent:)``
   public func listAssignments(
     request: ListAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse {
@@ -372,8 +372,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteAssignment(request:)``
   /// - ``deleteAssignment(name:)``
+  /// - ``deleteAssignment(request:)``
   public func deleteAssignment(
     request: DeleteAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -409,9 +409,9 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// ## See Also
   ///
   /// - ``searchAssignments(request:)``
+  /// - ``searchAssignmentsByItems(parent:query:)``
   /// - ``searchAssignmentsByItems(request:)``
   /// - ``searchAssignmentsByItems(request:options:)``
-  /// - ``searchAssignmentsByItems(parent:query:)``
   @available(*, deprecated)
   public func searchAssignments(
     request: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
@@ -445,9 +445,9 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// ## See Also
   ///
   /// - ``searchAllAssignments(request:)``
+  /// - ``searchAllAssignmentsByItems(parent:query:)``
   /// - ``searchAllAssignmentsByItems(request:)``
   /// - ``searchAllAssignmentsByItems(request:options:)``
-  /// - ``searchAllAssignmentsByItems(parent:query:)``
   public func searchAllAssignments(
     request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse {
@@ -464,8 +464,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``moveAssignment(request:)``
   /// - ``moveAssignment(name:destinationId:)``
+  /// - ``moveAssignment(request:)``
   public func moveAssignment(
     request: MoveAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -480,8 +480,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateAssignment(request:)``
   /// - ``updateAssignment(assignment:updateMask:)``
+  /// - ``updateAssignment(request:)``
   public func updateAssignment(
     request: UpdateAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -494,8 +494,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getBiReservation(request:)``
   /// - ``getBiReservation(name:)``
+  /// - ``getBiReservation(request:)``
   public func getBiReservation(
     request: GetBiReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -515,8 +515,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateBiReservation(request:)``
   /// - ``updateBiReservation(biReservation:updateMask:)``
+  /// - ``updateBiReservation(request:)``
   public func updateBiReservation(
     request: UpdateBiReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -612,8 +612,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getReservationGroup(request:)``
   /// - ``getReservationGroup(name:)``
+  /// - ``getReservationGroup(request:)``
   public func getReservationGroup(
     request: GetReservationGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -628,8 +628,8 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteReservationGroup(request:)``
   /// - ``deleteReservationGroup(name:)``
+  /// - ``deleteReservationGroup(request:)``
   public func deleteReservationGroup(
     request: DeleteReservationGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -643,9 +643,9 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// ## See Also
   ///
   /// - ``listReservationGroups(request:)``
+  /// - ``listReservationGroupsByItems(parent:)``
   /// - ``listReservationGroupsByItems(request:)``
   /// - ``listReservationGroupsByItems(request:options:)``
-  /// - ``listReservationGroupsByItems(parent:)``
   public func listReservationGroups(
     request: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListReservationGroupsResponse {

@@ -55,9 +55,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConnectionProfiles(request:)``
+  /// - ``listConnectionProfilesByItems(parent:)``
   /// - ``listConnectionProfilesByItems(request:)``
   /// - ``listConnectionProfilesByItems(request:options:)``
-  /// - ``listConnectionProfilesByItems(parent:)``
   public func listConnectionProfiles(
     request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListConnectionProfilesResponse {
@@ -70,8 +70,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnectionProfile(request:)``
   /// - ``getConnectionProfile(name:)``
+  /// - ``getConnectionProfile(request:)``
   public func getConnectionProfile(
     request: GetConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ConnectionProfile {
@@ -85,9 +85,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createConnectionProfile(request:)``
+  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   /// - ``createConnectionProfilePollingUntilDone(request:)``
   /// - ``createConnectionProfilePollingUntilDone(request:options:)``
-  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   public func createConnectionProfile(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createConnectionProfilePollingUntilDone(request:)``
-  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   /// - ``createConnectionProfile(request:)``
   /// - ``createConnectionProfile(request:options:)``
+  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
+  /// - ``createConnectionProfilePollingUntilDone(request:)``
   public func createConnectionProfilePollingUntilDone(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionProfile {
@@ -136,9 +136,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateConnectionProfile(request:)``
+  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   /// - ``updateConnectionProfilePollingUntilDone(request:)``
   /// - ``updateConnectionProfilePollingUntilDone(request:options:)``
-  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   public func updateConnectionProfile(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,10 +151,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectionProfilePollingUntilDone(request:)``
-  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   /// - ``updateConnectionProfile(request:)``
   /// - ``updateConnectionProfile(request:options:)``
+  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
+  /// - ``updateConnectionProfilePollingUntilDone(request:)``
   public func updateConnectionProfilePollingUntilDone(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionProfile {
@@ -187,9 +187,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteConnectionProfile(request:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   /// - ``deleteConnectionProfilePollingUntilDone(request:)``
   /// - ``deleteConnectionProfilePollingUntilDone(request:options:)``
-  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   public func deleteConnectionProfile(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -202,10 +202,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectionProfilePollingUntilDone(request:)``
-  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   /// - ``deleteConnectionProfile(request:)``
   /// - ``deleteConnectionProfile(request:options:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(request:)``
   public func deleteConnectionProfilePollingUntilDone(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -253,9 +253,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listStreams(request:)``
+  /// - ``listStreamsByItems(parent:)``
   /// - ``listStreamsByItems(request:)``
   /// - ``listStreamsByItems(request:options:)``
-  /// - ``listStreamsByItems(parent:)``
   public func listStreams(
     request: ListStreamsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListStreamsResponse {
@@ -268,8 +268,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getStream(request:)``
   /// - ``getStream(name:)``
+  /// - ``getStream(request:)``
   public func getStream(
     request: GetStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.Stream {
@@ -283,9 +283,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createStream(request:)``
+  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   /// - ``createStreamPollingUntilDone(request:)``
   /// - ``createStreamPollingUntilDone(request:options:)``
-  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   public func createStream(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -298,10 +298,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createStreamPollingUntilDone(request:)``
-  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
   /// - ``createStream(request:)``
   /// - ``createStream(request:options:)``
+  /// - ``createStreamPollingUntilDone(parent:stream:streamId:)``
+  /// - ``createStreamPollingUntilDone(request:)``
   public func createStreamPollingUntilDone(
     request: CreateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -348,10 +348,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateStreamPollingUntilDone(request:)``
-  /// - ``updateStreamPollingUntilDone(stream:updateMask:)``
   /// - ``updateStream(request:)``
   /// - ``updateStream(request:options:)``
+  /// - ``updateStreamPollingUntilDone(request:)``
+  /// - ``updateStreamPollingUntilDone(stream:updateMask:)``
   public func updateStreamPollingUntilDone(
     request: UpdateStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -383,9 +383,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteStream(request:)``
+  /// - ``deleteStreamPollingUntilDone(name:)``
   /// - ``deleteStreamPollingUntilDone(request:)``
   /// - ``deleteStreamPollingUntilDone(request:options:)``
-  /// - ``deleteStreamPollingUntilDone(name:)``
   public func deleteStream(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -398,10 +398,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteStreamPollingUntilDone(request:)``
-  /// - ``deleteStreamPollingUntilDone(name:)``
   /// - ``deleteStream(request:)``
   /// - ``deleteStream(request:options:)``
+  /// - ``deleteStreamPollingUntilDone(name:)``
+  /// - ``deleteStreamPollingUntilDone(request:)``
   public func deleteStreamPollingUntilDone(
     request: DeleteStreamRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -449,9 +449,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``runStreamPollingUntilDone(request:)``
   /// - ``runStream(request:)``
   /// - ``runStream(request:options:)``
+  /// - ``runStreamPollingUntilDone(request:)``
   public func runStreamPollingUntilDone(
     request: RunStreamRequest, options: GoogleGax.RequestOptions
   ) async throws -> Stream {
@@ -482,8 +482,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getStreamObject(request:)``
   /// - ``getStreamObject(name:)``
+  /// - ``getStreamObject(request:)``
   public func getStreamObject(
     request: GetStreamObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.StreamObject {
@@ -510,9 +510,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listStreamObjects(request:)``
+  /// - ``listStreamObjectsByItems(parent:)``
   /// - ``listStreamObjectsByItems(request:)``
   /// - ``listStreamObjectsByItems(request:options:)``
-  /// - ``listStreamObjectsByItems(parent:)``
   public func listStreamObjects(
     request: ListStreamObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListStreamObjectsResponse {
@@ -525,8 +525,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startBackfillJob(request:)``
   /// - ``startBackfillJob(object:)``
+  /// - ``startBackfillJob(request:)``
   public func startBackfillJob(
     request: StartBackfillJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.StartBackfillJobResponse {
@@ -539,8 +539,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``stopBackfillJob(request:)``
   /// - ``stopBackfillJob(object:)``
+  /// - ``stopBackfillJob(request:)``
   public func stopBackfillJob(
     request: StopBackfillJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.StopBackfillJobResponse {
@@ -554,8 +554,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``fetchStaticIps(request:)``
   /// - ``fetchStaticIps(name:)``
+  /// - ``fetchStaticIps(request:)``
   public func fetchStaticIps(
     request: FetchStaticIpsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.FetchStaticIpsResponse {
@@ -569,9 +569,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPrivateConnection(request:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   /// - ``createPrivateConnectionPollingUntilDone(request:)``
   /// - ``createPrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   public func createPrivateConnection(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -584,10 +584,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPrivateConnectionPollingUntilDone(request:)``
-  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   /// - ``createPrivateConnection(request:)``
   /// - ``createPrivateConnection(request:options:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
+  /// - ``createPrivateConnectionPollingUntilDone(request:)``
   public func createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateConnection {
@@ -619,8 +619,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPrivateConnection(request:)``
   /// - ``getPrivateConnection(name:)``
+  /// - ``getPrivateConnection(request:)``
   public func getPrivateConnection(
     request: GetPrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.PrivateConnection {
@@ -635,9 +635,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPrivateConnections(request:)``
+  /// - ``listPrivateConnectionsByItems(parent:)``
   /// - ``listPrivateConnectionsByItems(request:)``
   /// - ``listPrivateConnectionsByItems(request:options:)``
-  /// - ``listPrivateConnectionsByItems(parent:)``
   public func listPrivateConnections(
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListPrivateConnectionsResponse {
@@ -651,9 +651,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePrivateConnection(request:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   /// - ``deletePrivateConnectionPollingUntilDone(request:)``
   /// - ``deletePrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   public func deletePrivateConnection(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -666,10 +666,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
-  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   /// - ``deletePrivateConnection(request:)``
   /// - ``deletePrivateConnection(request:options:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
   public func deletePrivateConnectionPollingUntilDone(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -702,9 +702,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createRoute(request:)``
+  /// - ``createRoutePollingUntilDone(parent:route:routeId:)``
   /// - ``createRoutePollingUntilDone(request:)``
   /// - ``createRoutePollingUntilDone(request:options:)``
-  /// - ``createRoutePollingUntilDone(parent:route:routeId:)``
   public func createRoute(
     request: CreateRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -718,10 +718,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRoutePollingUntilDone(request:)``
-  /// - ``createRoutePollingUntilDone(parent:route:routeId:)``
   /// - ``createRoute(request:)``
   /// - ``createRoute(request:options:)``
+  /// - ``createRoutePollingUntilDone(parent:route:routeId:)``
+  /// - ``createRoutePollingUntilDone(request:)``
   public func createRoutePollingUntilDone(
     request: CreateRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> Route {
@@ -752,8 +752,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRoute(request:)``
   /// - ``getRoute(name:)``
+  /// - ``getRoute(request:)``
   public func getRoute(
     request: GetRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.Route {
@@ -768,9 +768,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRoutes(request:)``
+  /// - ``listRoutesByItems(parent:)``
   /// - ``listRoutesByItems(request:)``
   /// - ``listRoutesByItems(request:options:)``
-  /// - ``listRoutesByItems(parent:)``
   public func listRoutes(
     request: ListRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDatastreamV1.ListRoutesResponse {
@@ -784,9 +784,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteRoute(request:)``
+  /// - ``deleteRoutePollingUntilDone(name:)``
   /// - ``deleteRoutePollingUntilDone(request:)``
   /// - ``deleteRoutePollingUntilDone(request:options:)``
-  /// - ``deleteRoutePollingUntilDone(name:)``
   public func deleteRoute(
     request: DeleteRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -799,10 +799,10 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRoutePollingUntilDone(request:)``
-  /// - ``deleteRoutePollingUntilDone(name:)``
   /// - ``deleteRoute(request:)``
   /// - ``deleteRoute(request:options:)``
+  /// - ``deleteRoutePollingUntilDone(name:)``
+  /// - ``deleteRoutePollingUntilDone(request:)``
   public func deleteRoutePollingUntilDone(
     request: DeleteRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -881,9 +881,9 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -909,8 +909,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -925,8 +925,8 @@ public final class DatastreamClient: Clients.DatastreamProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

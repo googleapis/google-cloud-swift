@@ -55,9 +55,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listClusters(request:)``
+  /// - ``listClustersByItems(parent:)``
   /// - ``listClustersByItems(request:)``
   /// - ``listClustersByItems(request:options:)``
-  /// - ``listClustersByItems(parent:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.ListClustersResponse {
@@ -70,8 +70,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.Cluster {
@@ -85,9 +85,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(parent:cluster:clusterId:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -135,9 +135,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateClusterPollingUntilDone(request:options:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
-  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(cluster:updateMask:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -185,9 +185,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``upgradeCluster(request:)``
+  /// - ``upgradeClusterPollingUntilDone(name:targetVersion:schedule:)``
   /// - ``upgradeClusterPollingUntilDone(request:)``
   /// - ``upgradeClusterPollingUntilDone(request:options:)``
-  /// - ``upgradeClusterPollingUntilDone(name:targetVersion:schedule:)``
   public func upgradeCluster(
     request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``upgradeClusterPollingUntilDone(request:)``
-  /// - ``upgradeClusterPollingUntilDone(name:targetVersion:schedule:)``
   /// - ``upgradeCluster(request:)``
   /// - ``upgradeCluster(request:options:)``
+  /// - ``upgradeClusterPollingUntilDone(name:targetVersion:schedule:)``
+  /// - ``upgradeClusterPollingUntilDone(request:)``
   public func upgradeClusterPollingUntilDone(
     request: UpgradeClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -235,9 +235,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteClusterPollingUntilDone(request:)``
   /// - ``deleteClusterPollingUntilDone(request:options:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -250,10 +250,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteClusterPollingUntilDone(request:)``
-  /// - ``deleteClusterPollingUntilDone(name:)``
   /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(name:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -284,8 +284,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``generateAccessToken(request:)``
   /// - ``generateAccessToken(cluster:)``
+  /// - ``generateAccessToken(request:)``
   public func generateAccessToken(
     request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.GenerateAccessTokenResponse {
@@ -298,8 +298,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``generateOfflineCredential(request:)``
   /// - ``generateOfflineCredential(cluster:)``
+  /// - ``generateOfflineCredential(request:)``
   public func generateOfflineCredential(
     request: GenerateOfflineCredentialRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.GenerateOfflineCredentialResponse {
@@ -313,9 +313,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listNodePools(request:)``
+  /// - ``listNodePoolsByItems(parent:)``
   /// - ``listNodePoolsByItems(request:)``
   /// - ``listNodePoolsByItems(request:options:)``
-  /// - ``listNodePoolsByItems(parent:)``
   public func listNodePools(
     request: ListNodePoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.ListNodePoolsResponse {
@@ -328,8 +328,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getNodePool(request:)``
   /// - ``getNodePool(name:)``
+  /// - ``getNodePool(request:)``
   public func getNodePool(
     request: GetNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.NodePool {
@@ -343,9 +343,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createNodePool(request:)``
+  /// - ``createNodePoolPollingUntilDone(parent:nodePool:nodePoolId:)``
   /// - ``createNodePoolPollingUntilDone(request:)``
   /// - ``createNodePoolPollingUntilDone(request:options:)``
-  /// - ``createNodePoolPollingUntilDone(parent:nodePool:nodePoolId:)``
   public func createNodePool(
     request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -358,10 +358,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createNodePoolPollingUntilDone(request:)``
-  /// - ``createNodePoolPollingUntilDone(parent:nodePool:nodePoolId:)``
   /// - ``createNodePool(request:)``
   /// - ``createNodePool(request:options:)``
+  /// - ``createNodePoolPollingUntilDone(parent:nodePool:nodePoolId:)``
+  /// - ``createNodePoolPollingUntilDone(request:)``
   public func createNodePoolPollingUntilDone(
     request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> NodePool {
@@ -393,9 +393,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``updateNodePool(request:)``
+  /// - ``updateNodePoolPollingUntilDone(nodePool:updateMask:)``
   /// - ``updateNodePoolPollingUntilDone(request:)``
   /// - ``updateNodePoolPollingUntilDone(request:options:)``
-  /// - ``updateNodePoolPollingUntilDone(nodePool:updateMask:)``
   public func updateNodePool(
     request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -408,10 +408,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateNodePoolPollingUntilDone(request:)``
-  /// - ``updateNodePoolPollingUntilDone(nodePool:updateMask:)``
   /// - ``updateNodePool(request:)``
   /// - ``updateNodePool(request:options:)``
+  /// - ``updateNodePoolPollingUntilDone(nodePool:updateMask:)``
+  /// - ``updateNodePoolPollingUntilDone(request:)``
   public func updateNodePoolPollingUntilDone(
     request: UpdateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> NodePool {
@@ -443,9 +443,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteNodePool(request:)``
+  /// - ``deleteNodePoolPollingUntilDone(name:)``
   /// - ``deleteNodePoolPollingUntilDone(request:)``
   /// - ``deleteNodePoolPollingUntilDone(request:options:)``
-  /// - ``deleteNodePoolPollingUntilDone(name:)``
   public func deleteNodePool(
     request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -458,10 +458,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteNodePoolPollingUntilDone(request:)``
-  /// - ``deleteNodePoolPollingUntilDone(name:)``
   /// - ``deleteNodePool(request:)``
   /// - ``deleteNodePool(request:options:)``
+  /// - ``deleteNodePoolPollingUntilDone(name:)``
+  /// - ``deleteNodePoolPollingUntilDone(request:)``
   public func deleteNodePoolPollingUntilDone(
     request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -493,9 +493,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listMachines(request:)``
+  /// - ``listMachinesByItems(parent:)``
   /// - ``listMachinesByItems(request:)``
   /// - ``listMachinesByItems(request:options:)``
-  /// - ``listMachinesByItems(parent:)``
   public func listMachines(
     request: ListMachinesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.ListMachinesResponse {
@@ -508,8 +508,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getMachine(request:)``
   /// - ``getMachine(name:)``
+  /// - ``getMachine(request:)``
   public func getMachine(
     request: GetMachineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.Machine {
@@ -523,9 +523,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listVpnConnections(request:)``
+  /// - ``listVpnConnectionsByItems(parent:)``
   /// - ``listVpnConnectionsByItems(request:)``
   /// - ``listVpnConnectionsByItems(request:options:)``
-  /// - ``listVpnConnectionsByItems(parent:)``
   public func listVpnConnections(
     request: ListVpnConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.ListVpnConnectionsResponse {
@@ -538,8 +538,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getVpnConnection(request:)``
   /// - ``getVpnConnection(name:)``
+  /// - ``getVpnConnection(request:)``
   public func getVpnConnection(
     request: GetVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.VpnConnection {
@@ -553,9 +553,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createVpnConnection(request:)``
+  /// - ``createVpnConnectionPollingUntilDone(parent:vpnConnection:vpnConnectionId:)``
   /// - ``createVpnConnectionPollingUntilDone(request:)``
   /// - ``createVpnConnectionPollingUntilDone(request:options:)``
-  /// - ``createVpnConnectionPollingUntilDone(parent:vpnConnection:vpnConnectionId:)``
   public func createVpnConnection(
     request: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -568,10 +568,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createVpnConnectionPollingUntilDone(request:)``
-  /// - ``createVpnConnectionPollingUntilDone(parent:vpnConnection:vpnConnectionId:)``
   /// - ``createVpnConnection(request:)``
   /// - ``createVpnConnection(request:options:)``
+  /// - ``createVpnConnectionPollingUntilDone(parent:vpnConnection:vpnConnectionId:)``
+  /// - ``createVpnConnectionPollingUntilDone(request:)``
   public func createVpnConnectionPollingUntilDone(
     request: CreateVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> VpnConnection {
@@ -604,9 +604,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteVpnConnection(request:)``
+  /// - ``deleteVpnConnectionPollingUntilDone(name:)``
   /// - ``deleteVpnConnectionPollingUntilDone(request:)``
   /// - ``deleteVpnConnectionPollingUntilDone(request:options:)``
-  /// - ``deleteVpnConnectionPollingUntilDone(name:)``
   public func deleteVpnConnection(
     request: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -619,10 +619,10 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteVpnConnectionPollingUntilDone(request:)``
-  /// - ``deleteVpnConnectionPollingUntilDone(name:)``
   /// - ``deleteVpnConnection(request:)``
   /// - ``deleteVpnConnection(request:options:)``
+  /// - ``deleteVpnConnectionPollingUntilDone(name:)``
+  /// - ``deleteVpnConnectionPollingUntilDone(request:)``
   public func deleteVpnConnectionPollingUntilDone(
     request: DeleteVpnConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -653,8 +653,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getServerConfig(request:)``
   /// - ``getServerConfig(name:)``
+  /// - ``getServerConfig(request:)``
   public func getServerConfig(
     request: GetServerConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEdgeContainerV1.ServerConfig {
@@ -698,9 +698,9 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -726,8 +726,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -742,8 +742,8 @@ public final class EdgeContainerClient: Clients.EdgeContainerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

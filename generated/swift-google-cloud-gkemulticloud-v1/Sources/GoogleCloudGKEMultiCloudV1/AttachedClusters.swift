@@ -64,9 +64,9 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// ## See Also
   ///
   /// - ``createAttachedCluster(request:)``
+  /// - ``createAttachedClusterPollingUntilDone(parent:attachedCluster:attachedClusterId:)``
   /// - ``createAttachedClusterPollingUntilDone(request:)``
   /// - ``createAttachedClusterPollingUntilDone(request:options:)``
-  /// - ``createAttachedClusterPollingUntilDone(parent:attachedCluster:attachedClusterId:)``
   public func createAttachedCluster(
     request: CreateAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -88,10 +88,10 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createAttachedClusterPollingUntilDone(request:)``
-  /// - ``createAttachedClusterPollingUntilDone(parent:attachedCluster:attachedClusterId:)``
   /// - ``createAttachedCluster(request:)``
   /// - ``createAttachedCluster(request:options:)``
+  /// - ``createAttachedClusterPollingUntilDone(parent:attachedCluster:attachedClusterId:)``
+  /// - ``createAttachedClusterPollingUntilDone(request:)``
   public func createAttachedClusterPollingUntilDone(
     request: CreateAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> AttachedCluster {
@@ -127,9 +127,9 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// ## See Also
   ///
   /// - ``updateAttachedCluster(request:)``
+  /// - ``updateAttachedClusterPollingUntilDone(attachedCluster:updateMask:)``
   /// - ``updateAttachedClusterPollingUntilDone(request:)``
   /// - ``updateAttachedClusterPollingUntilDone(request:options:)``
-  /// - ``updateAttachedClusterPollingUntilDone(attachedCluster:updateMask:)``
   public func updateAttachedCluster(
     request: UpdateAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -145,10 +145,10 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``updateAttachedClusterPollingUntilDone(request:)``
-  /// - ``updateAttachedClusterPollingUntilDone(attachedCluster:updateMask:)``
   /// - ``updateAttachedCluster(request:)``
   /// - ``updateAttachedCluster(request:options:)``
+  /// - ``updateAttachedClusterPollingUntilDone(attachedCluster:updateMask:)``
+  /// - ``updateAttachedClusterPollingUntilDone(request:)``
   public func updateAttachedClusterPollingUntilDone(
     request: UpdateAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> AttachedCluster {
@@ -193,9 +193,9 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// ## See Also
   ///
   /// - ``importAttachedCluster(request:)``
+  /// - ``importAttachedClusterPollingUntilDone(parent:fleetMembership:)``
   /// - ``importAttachedClusterPollingUntilDone(request:)``
   /// - ``importAttachedClusterPollingUntilDone(request:options:)``
-  /// - ``importAttachedClusterPollingUntilDone(parent:fleetMembership:)``
   public func importAttachedCluster(
     request: ImportAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -220,10 +220,10 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``importAttachedClusterPollingUntilDone(request:)``
-  /// - ``importAttachedClusterPollingUntilDone(parent:fleetMembership:)``
   /// - ``importAttachedCluster(request:)``
   /// - ``importAttachedCluster(request:options:)``
+  /// - ``importAttachedClusterPollingUntilDone(parent:fleetMembership:)``
+  /// - ``importAttachedClusterPollingUntilDone(request:)``
   public func importAttachedClusterPollingUntilDone(
     request: ImportAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> AttachedCluster {
@@ -258,8 +258,8 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getAttachedCluster(request:)``
   /// - ``getAttachedCluster(name:)``
+  /// - ``getAttachedCluster(request:)``
   public func getAttachedCluster(
     request: GetAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEMultiCloudV1.AttachedCluster {
@@ -276,9 +276,9 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// ## See Also
   ///
   /// - ``listAttachedClusters(request:)``
+  /// - ``listAttachedClustersByItems(parent:)``
   /// - ``listAttachedClustersByItems(request:)``
   /// - ``listAttachedClustersByItems(request:options:)``
-  /// - ``listAttachedClustersByItems(parent:)``
   public func listAttachedClusters(
     request: ListAttachedClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEMultiCloudV1.ListAttachedClustersResponse {
@@ -300,9 +300,9 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteAttachedCluster(request:)``
+  /// - ``deleteAttachedClusterPollingUntilDone(name:)``
   /// - ``deleteAttachedClusterPollingUntilDone(request:)``
   /// - ``deleteAttachedClusterPollingUntilDone(request:options:)``
-  /// - ``deleteAttachedClusterPollingUntilDone(name:)``
   public func deleteAttachedCluster(
     request: DeleteAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -323,10 +323,10 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteAttachedClusterPollingUntilDone(request:)``
-  /// - ``deleteAttachedClusterPollingUntilDone(name:)``
   /// - ``deleteAttachedCluster(request:)``
   /// - ``deleteAttachedCluster(request:options:)``
+  /// - ``deleteAttachedClusterPollingUntilDone(name:)``
+  /// - ``deleteAttachedClusterPollingUntilDone(request:)``
   public func deleteAttachedClusterPollingUntilDone(
     request: DeleteAttachedClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -358,8 +358,8 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getAttachedServerConfig(request:)``
   /// - ``getAttachedServerConfig(name:)``
+  /// - ``getAttachedServerConfig(request:)``
   public func getAttachedServerConfig(
     request: GetAttachedServerConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEMultiCloudV1.AttachedServerConfig {
@@ -372,8 +372,8 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``generateAttachedClusterInstallManifest(request:)``
   /// - ``generateAttachedClusterInstallManifest(parent:attachedClusterId:)``
+  /// - ``generateAttachedClusterInstallManifest(request:)``
   public func generateAttachedClusterInstallManifest(
     request: GenerateAttachedClusterInstallManifestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEMultiCloudV1.GenerateAttachedClusterInstallManifestResponse {
@@ -402,9 +402,9 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -430,8 +430,8 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -446,8 +446,8 @@ public final class AttachedClustersClient: Clients.AttachedClustersProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

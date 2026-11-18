@@ -53,8 +53,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAuditSchedule(request:)``
   /// - ``createAuditSchedule(parent:auditSchedule:auditScheduleId:)``
+  /// - ``createAuditSchedule(request:)``
   public func createAuditSchedule(
     request: CreateAuditScheduleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -67,8 +67,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAuditSchedule(request:)``
   /// - ``updateAuditSchedule(auditSchedule:updateMask:)``
+  /// - ``updateAuditSchedule(request:)``
   public func updateAuditSchedule(
     request: UpdateAuditScheduleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -81,8 +81,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAuditSchedule(request:)``
   /// - ``getAuditSchedule(name:)``
+  /// - ``getAuditSchedule(request:)``
   public func getAuditSchedule(
     request: GetAuditScheduleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditSchedule {
@@ -96,9 +96,9 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAuditSchedules(request:)``
+  /// - ``listAuditSchedulesByItems(parent:)``
   /// - ``listAuditSchedulesByItems(request:)``
   /// - ``listAuditSchedulesByItems(request:options:)``
-  /// - ``listAuditSchedulesByItems(parent:)``
   public func listAuditSchedules(
     request: ListAuditSchedulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListAuditSchedulesResponse {
@@ -170,10 +170,10 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``generateAuditReportPollingUntilDone(request:)``
-  /// - ``generateAuditReportPollingUntilDone(scope:gcsUri:complianceStandard:reportFormat:)``
   /// - ``generateAuditReport(request:)``
   /// - ``generateAuditReport(request:options:)``
+  /// - ``generateAuditReportPollingUntilDone(request:)``
+  /// - ``generateAuditReportPollingUntilDone(scope:gcsUri:complianceStandard:reportFormat:)``
   public func generateAuditReportPollingUntilDone(
     request: GenerateAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuditReport {
@@ -206,9 +206,9 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAuditReports(request:)``
+  /// - ``listAuditReportsByItems(parent:)``
   /// - ``listAuditReportsByItems(request:)``
   /// - ``listAuditReportsByItems(request:options:)``
-  /// - ``listAuditReportsByItems(parent:)``
   public func listAuditReports(
     request: ListAuditReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListAuditReportsResponse {
@@ -221,8 +221,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAuditReport(request:)``
   /// - ``getAuditReport(name:)``
+  /// - ``getAuditReport(request:)``
   public func getAuditReport(
     request: GetAuditReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.AuditReport {
@@ -235,8 +235,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getResourceEnrollmentStatus(request:)``
   /// - ``getResourceEnrollmentStatus(name:)``
+  /// - ``getResourceEnrollmentStatus(request:)``
   public func getResourceEnrollmentStatus(
     request: GetResourceEnrollmentStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ResourceEnrollmentStatus {
@@ -251,9 +251,9 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listResourceEnrollmentStatuses(request:)``
+  /// - ``listResourceEnrollmentStatusesByItems(parent:)``
   /// - ``listResourceEnrollmentStatusesByItems(request:)``
   /// - ``listResourceEnrollmentStatusesByItems(request:options:)``
-  /// - ``listResourceEnrollmentStatusesByItems(parent:)``
   public func listResourceEnrollmentStatuses(
     request: ListResourceEnrollmentStatusesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListResourceEnrollmentStatusesResponse {
@@ -268,9 +268,9 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listControls(request:)``
+  /// - ``listControlsByItems(parent:)``
   /// - ``listControlsByItems(request:)``
   /// - ``listControlsByItems(request:options:)``
-  /// - ``listControlsByItems(parent:)``
   public func listControls(
     request: ListControlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAuditManagerV1.ListControlsResponse {
@@ -331,9 +331,9 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -359,8 +359,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -375,8 +375,8 @@ public final class AuditManagerClient: Clients.AuditManagerProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

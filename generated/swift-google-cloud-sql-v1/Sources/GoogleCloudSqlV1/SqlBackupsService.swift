@@ -49,8 +49,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createBackup(request:)``
     /// - ``createBackup(parent:backup:)``
+    /// - ``createBackup(request:)``
     public func createBackup(
       request: CreateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -63,8 +63,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getBackup(request:)``
     /// - ``getBackup(name:)``
+    /// - ``getBackup(request:)``
     public func getBackup(
       request: GetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Backup {
@@ -78,9 +78,9 @@
     /// ## See Also
     ///
     /// - ``listBackups(request:)``
+    /// - ``listBackupsByItems(parent:)``
     /// - ``listBackupsByItems(request:)``
     /// - ``listBackupsByItems(request:options:)``
-    /// - ``listBackupsByItems(parent:)``
     public func listBackups(
       request: ListBackupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.ListBackupsResponse {
@@ -94,8 +94,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateBackup(request:)``
     /// - ``updateBackup(backup:updateMask:)``
+    /// - ``updateBackup(request:)``
     public func updateBackup(
       request: UpdateBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -108,8 +108,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteBackup(request:)``
     /// - ``deleteBackup(name:)``
+    /// - ``deleteBackup(request:)``
     public func deleteBackup(
       request: DeleteBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {

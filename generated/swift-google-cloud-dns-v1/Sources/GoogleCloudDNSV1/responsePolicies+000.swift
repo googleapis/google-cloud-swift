@@ -46,8 +46,8 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(project:body:)``
+  /// - ``create(request:)``
   public func create(
     request: ResponsePoliciesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicy {
@@ -60,8 +60,8 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(project:responsePolicy:)``
+  /// - ``delete(request:)``
   public func delete(
     request: ResponsePoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -74,8 +74,8 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:responsePolicy:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ResponsePoliciesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePolicy {
@@ -89,9 +89,9 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:)``
   public func list(
     request: ResponsePoliciesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePoliciesListResponse {
@@ -104,8 +104,8 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``patch(request:)``
   /// - ``patch(project:responsePolicy:body:)``
+  /// - ``patch(request:)``
   public func patch(
     request: ResponsePoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePoliciesPatchResponse {
@@ -118,8 +118,8 @@ public final class ResponsePoliciesClient: Clients.ResponsePoliciesProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``update(request:)``
   /// - ``update(project:responsePolicy:body:)``
+  /// - ``update(request:)``
   public func update(
     request: ResponsePoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResponsePoliciesUpdateResponse {

@@ -54,9 +54,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -69,10 +69,10 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -104,9 +104,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -119,10 +119,10 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -154,9 +154,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -169,10 +169,10 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -203,8 +203,8 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Instance {
@@ -218,9 +218,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListInstancesResponse {
@@ -234,9 +234,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``stopInstance(request:)``
+  /// - ``stopInstancePollingUntilDone(name:)``
   /// - ``stopInstancePollingUntilDone(request:)``
   /// - ``stopInstancePollingUntilDone(request:options:)``
-  /// - ``stopInstancePollingUntilDone(name:)``
   public func stopInstance(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -249,10 +249,10 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``stopInstancePollingUntilDone(request:)``
-  /// - ``stopInstancePollingUntilDone(name:)``
   /// - ``stopInstance(request:)``
   /// - ``stopInstance(request:options:)``
+  /// - ``stopInstancePollingUntilDone(name:)``
+  /// - ``stopInstancePollingUntilDone(request:)``
   public func stopInstancePollingUntilDone(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -284,9 +284,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``startInstance(request:)``
+  /// - ``startInstancePollingUntilDone(name:)``
   /// - ``startInstancePollingUntilDone(request:)``
   /// - ``startInstancePollingUntilDone(request:options:)``
-  /// - ``startInstancePollingUntilDone(name:)``
   public func startInstance(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -299,10 +299,10 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startInstancePollingUntilDone(request:)``
-  /// - ``startInstancePollingUntilDone(name:)``
   /// - ``startInstance(request:)``
   /// - ``startInstance(request:options:)``
+  /// - ``startInstancePollingUntilDone(name:)``
+  /// - ``startInstancePollingUntilDone(request:)``
   public func startInstancePollingUntilDone(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -379,9 +379,9 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -407,8 +407,8 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

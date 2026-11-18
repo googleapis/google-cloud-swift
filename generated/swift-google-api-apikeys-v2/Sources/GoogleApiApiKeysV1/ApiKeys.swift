@@ -56,9 +56,9 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createKey(request:)``
+  /// - ``createKeyPollingUntilDone(parent:key:keyId:)``
   /// - ``createKeyPollingUntilDone(request:)``
   /// - ``createKeyPollingUntilDone(request:options:)``
-  /// - ``createKeyPollingUntilDone(parent:key:keyId:)``
   public func createKey(
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createKeyPollingUntilDone(request:)``
-  /// - ``createKeyPollingUntilDone(parent:key:keyId:)``
   /// - ``createKey(request:)``
   /// - ``createKey(request:options:)``
+  /// - ``createKeyPollingUntilDone(parent:key:keyId:)``
+  /// - ``createKeyPollingUntilDone(request:)``
   public func createKeyPollingUntilDone(
     request: CreateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -113,9 +113,9 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listKeys(request:)``
+  /// - ``listKeysByItems(parent:)``
   /// - ``listKeysByItems(request:)``
   /// - ``listKeysByItems(request:options:)``
-  /// - ``listKeysByItems(parent:)``
   public func listKeys(
     request: ListKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.ListKeysResponse {
@@ -132,8 +132,8 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getKey(request:)``
   /// - ``getKey(name:)``
+  /// - ``getKey(request:)``
   public func getKey(
     request: GetKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.Key {
@@ -149,8 +149,8 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getKeyString(request:)``
   /// - ``getKeyString(name:)``
+  /// - ``getKeyString(request:)``
   public func getKeyString(
     request: GetKeyStringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiApiKeysV1.GetKeyStringResponse {
@@ -168,9 +168,9 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateKey(request:)``
+  /// - ``updateKeyPollingUntilDone(key:updateMask:)``
   /// - ``updateKeyPollingUntilDone(request:)``
   /// - ``updateKeyPollingUntilDone(request:options:)``
-  /// - ``updateKeyPollingUntilDone(key:updateMask:)``
   public func updateKey(
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -187,10 +187,10 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateKeyPollingUntilDone(request:)``
-  /// - ``updateKeyPollingUntilDone(key:updateMask:)``
   /// - ``updateKey(request:)``
   /// - ``updateKey(request:options:)``
+  /// - ``updateKeyPollingUntilDone(key:updateMask:)``
+  /// - ``updateKeyPollingUntilDone(request:)``
   public func updateKeyPollingUntilDone(
     request: UpdateKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -226,9 +226,9 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteKey(request:)``
+  /// - ``deleteKeyPollingUntilDone(name:)``
   /// - ``deleteKeyPollingUntilDone(request:)``
   /// - ``deleteKeyPollingUntilDone(request:options:)``
-  /// - ``deleteKeyPollingUntilDone(name:)``
   public func deleteKey(
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -245,10 +245,10 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteKeyPollingUntilDone(request:)``
-  /// - ``deleteKeyPollingUntilDone(name:)``
   /// - ``deleteKey(request:)``
   /// - ``deleteKey(request:options:)``
+  /// - ``deleteKeyPollingUntilDone(name:)``
+  /// - ``deleteKeyPollingUntilDone(request:)``
   public func deleteKeyPollingUntilDone(
     request: DeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {
@@ -300,9 +300,9 @@ public final class ApiKeysClient: Clients.ApiKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeleteKeyPollingUntilDone(request:)``
   /// - ``undeleteKey(request:)``
   /// - ``undeleteKey(request:options:)``
+  /// - ``undeleteKeyPollingUntilDone(request:)``
   public func undeleteKeyPollingUntilDone(
     request: UndeleteKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Key {

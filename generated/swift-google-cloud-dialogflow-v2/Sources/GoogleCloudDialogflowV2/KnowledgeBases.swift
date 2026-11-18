@@ -54,9 +54,9 @@
     /// ## See Also
     ///
     /// - ``listKnowledgeBases(request:)``
+    /// - ``listKnowledgeBasesByItems(parent:)``
     /// - ``listKnowledgeBasesByItems(request:)``
     /// - ``listKnowledgeBasesByItems(request:options:)``
-    /// - ``listKnowledgeBasesByItems(parent:)``
     public func listKnowledgeBases(
       request: ListKnowledgeBasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListKnowledgeBasesResponse {
@@ -69,8 +69,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getKnowledgeBase(request:)``
     /// - ``getKnowledgeBase(name:)``
+    /// - ``getKnowledgeBase(request:)``
     public func getKnowledgeBase(
       request: GetKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -83,8 +83,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createKnowledgeBase(request:)``
     /// - ``createKnowledgeBase(parent:knowledgeBase:)``
+    /// - ``createKnowledgeBase(request:)``
     public func createKnowledgeBase(
       request: CreateKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -97,8 +97,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteKnowledgeBase(request:)``
     /// - ``deleteKnowledgeBase(name:)``
+    /// - ``deleteKnowledgeBase(request:)``
     public func deleteKnowledgeBase(
       request: DeleteKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -111,8 +111,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateKnowledgeBase(request:)``
     /// - ``updateKnowledgeBase(knowledgeBase:updateMask:)``
+    /// - ``updateKnowledgeBase(request:)``
     public func updateKnowledgeBase(
       request: UpdateKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -173,9 +173,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -201,8 +201,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

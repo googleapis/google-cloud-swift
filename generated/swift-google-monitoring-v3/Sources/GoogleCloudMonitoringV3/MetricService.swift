@@ -49,9 +49,9 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listMonitoredResourceDescriptors(request:)``
+  /// - ``listMonitoredResourceDescriptorsByItems(name:)``
   /// - ``listMonitoredResourceDescriptorsByItems(request:)``
   /// - ``listMonitoredResourceDescriptorsByItems(request:options:)``
-  /// - ``listMonitoredResourceDescriptorsByItems(name:)``
   public func listMonitoredResourceDescriptors(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse {
@@ -64,8 +64,8 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getMonitoredResourceDescriptor(request:)``
   /// - ``getMonitoredResourceDescriptor(name:)``
+  /// - ``getMonitoredResourceDescriptor(request:)``
   public func getMonitoredResourceDescriptor(
     request: GetMonitoredResourceDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.MonitoredResourceDescriptor {
@@ -79,9 +79,9 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listMetricDescriptors(request:)``
+  /// - ``listMetricDescriptorsByItems(name:)``
   /// - ``listMetricDescriptorsByItems(request:)``
   /// - ``listMetricDescriptorsByItems(request:options:)``
-  /// - ``listMetricDescriptorsByItems(name:)``
   public func listMetricDescriptors(
     request: ListMetricDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse {
@@ -94,8 +94,8 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getMetricDescriptor(request:)``
   /// - ``getMetricDescriptor(name:)``
+  /// - ``getMetricDescriptor(request:)``
   public func getMetricDescriptor(
     request: GetMetricDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.MetricDescriptor {
@@ -113,8 +113,8 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createMetricDescriptor(request:)``
   /// - ``createMetricDescriptor(name:metricDescriptor:)``
+  /// - ``createMetricDescriptor(request:)``
   public func createMetricDescriptor(
     request: CreateMetricDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.MetricDescriptor {
@@ -129,8 +129,8 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteMetricDescriptor(request:)``
   /// - ``deleteMetricDescriptor(name:)``
+  /// - ``deleteMetricDescriptor(request:)``
   public func deleteMetricDescriptor(
     request: DeleteMetricDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -144,9 +144,9 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listTimeSeries(request:)``
+  /// - ``listTimeSeriesByItems(name:filter:interval:view:)``
   /// - ``listTimeSeriesByItems(request:)``
   /// - ``listTimeSeriesByItems(request:options:)``
-  /// - ``listTimeSeriesByItems(name:filter:interval:view:)``
   public func listTimeSeries(
     request: ListTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListTimeSeriesResponse {
@@ -165,8 +165,8 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createTimeSeries(request:)``
   /// - ``createTimeSeries(name:timeSeries:)``
+  /// - ``createTimeSeries(request:)``
   public func createTimeSeries(
     request: CreateTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -189,8 +189,8 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createServiceTimeSeries(request:)``
   /// - ``createServiceTimeSeries(name:timeSeries:)``
+  /// - ``createServiceTimeSeries(request:)``
   public func createServiceTimeSeries(
     request: CreateTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws {

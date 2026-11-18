@@ -101,9 +101,9 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   ///
   /// ## See Also
   ///
-  /// - ``placeOrderPollingUntilDone(request:)``
   /// - ``placeOrder(request:)``
   /// - ``placeOrder(request:options:)``
+  /// - ``placeOrderPollingUntilDone(request:)``
   public func placeOrderPollingUntilDone(
     request: PlaceOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Order {
@@ -137,8 +137,8 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   ///
   /// ## See Also
   ///
-  /// - ``getOrder(request:)``
   /// - ``getOrder(name:)``
+  /// - ``getOrder(request:)``
   public func getOrder(
     request: GetOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.Order {
@@ -156,9 +156,9 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   /// ## See Also
   ///
   /// - ``listOrders(request:)``
+  /// - ``listOrdersByItems(parent:)``
   /// - ``listOrdersByItems(request:)``
   /// - ``listOrdersByItems(request:options:)``
-  /// - ``listOrdersByItems(parent:)``
   public func listOrders(
     request: ListOrdersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.ListOrdersResponse {
@@ -192,9 +192,9 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   ///
   /// ## See Also
   ///
-  /// - ``modifyOrderPollingUntilDone(request:)``
   /// - ``modifyOrder(request:)``
   /// - ``modifyOrder(request:options:)``
+  /// - ``modifyOrderPollingUntilDone(request:)``
   public func modifyOrderPollingUntilDone(
     request: ModifyOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Order {
@@ -248,9 +248,9 @@ public final class ConsumerProcurementServiceClient: Clients.ConsumerProcurement
   ///
   /// ## See Also
   ///
-  /// - ``cancelOrderPollingUntilDone(request:)``
   /// - ``cancelOrder(request:)``
   /// - ``cancelOrder(request:options:)``
+  /// - ``cancelOrderPollingUntilDone(request:)``
   public func cancelOrderPollingUntilDone(
     request: CancelOrderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Order {

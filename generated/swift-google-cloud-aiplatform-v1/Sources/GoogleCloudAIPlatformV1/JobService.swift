@@ -56,8 +56,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createCustomJob(request:)``
     /// - ``createCustomJob(parent:customJob:)``
+    /// - ``createCustomJob(request:)``
     public func createCustomJob(
       request: CreateCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CustomJob {
@@ -70,8 +70,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getCustomJob(request:)``
     /// - ``getCustomJob(name:)``
+    /// - ``getCustomJob(request:)``
     public func getCustomJob(
       request: GetCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.CustomJob {
@@ -85,9 +85,9 @@
     /// ## See Also
     ///
     /// - ``listCustomJobs(request:)``
+    /// - ``listCustomJobsByItems(parent:)``
     /// - ``listCustomJobsByItems(request:)``
     /// - ``listCustomJobsByItems(request:options:)``
-    /// - ``listCustomJobsByItems(parent:)``
     public func listCustomJobs(
       request: ListCustomJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListCustomJobsResponse {
@@ -101,9 +101,9 @@
     /// ## See Also
     ///
     /// - ``deleteCustomJob(request:)``
+    /// - ``deleteCustomJobPollingUntilDone(name:)``
     /// - ``deleteCustomJobPollingUntilDone(request:)``
     /// - ``deleteCustomJobPollingUntilDone(request:options:)``
-    /// - ``deleteCustomJobPollingUntilDone(name:)``
     public func deleteCustomJob(
       request: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -116,10 +116,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteCustomJobPollingUntilDone(request:)``
-    /// - ``deleteCustomJobPollingUntilDone(name:)``
     /// - ``deleteCustomJob(request:)``
     /// - ``deleteCustomJob(request:options:)``
+    /// - ``deleteCustomJobPollingUntilDone(name:)``
+    /// - ``deleteCustomJobPollingUntilDone(request:)``
     public func deleteCustomJobPollingUntilDone(
       request: DeleteCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -168,8 +168,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelCustomJob(request:)``
     /// - ``cancelCustomJob(name:)``
+    /// - ``cancelCustomJob(request:)``
     public func cancelCustomJob(
       request: CancelCustomJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -182,8 +182,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDataLabelingJob(request:)``
     /// - ``createDataLabelingJob(parent:dataLabelingJob:)``
+    /// - ``createDataLabelingJob(request:)``
     public func createDataLabelingJob(
       request: CreateDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DataLabelingJob {
@@ -196,8 +196,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDataLabelingJob(request:)``
     /// - ``getDataLabelingJob(name:)``
+    /// - ``getDataLabelingJob(request:)``
     public func getDataLabelingJob(
       request: GetDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DataLabelingJob {
@@ -211,9 +211,9 @@
     /// ## See Also
     ///
     /// - ``listDataLabelingJobs(request:)``
+    /// - ``listDataLabelingJobsByItems(parent:)``
     /// - ``listDataLabelingJobsByItems(request:)``
     /// - ``listDataLabelingJobsByItems(request:options:)``
-    /// - ``listDataLabelingJobsByItems(parent:)``
     public func listDataLabelingJobs(
       request: ListDataLabelingJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDataLabelingJobsResponse {
@@ -227,9 +227,9 @@
     /// ## See Also
     ///
     /// - ``deleteDataLabelingJob(request:)``
+    /// - ``deleteDataLabelingJobPollingUntilDone(name:)``
     /// - ``deleteDataLabelingJobPollingUntilDone(request:)``
     /// - ``deleteDataLabelingJobPollingUntilDone(request:options:)``
-    /// - ``deleteDataLabelingJobPollingUntilDone(name:)``
     public func deleteDataLabelingJob(
       request: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -242,10 +242,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDataLabelingJobPollingUntilDone(request:)``
-    /// - ``deleteDataLabelingJobPollingUntilDone(name:)``
     /// - ``deleteDataLabelingJob(request:)``
     /// - ``deleteDataLabelingJob(request:options:)``
+    /// - ``deleteDataLabelingJobPollingUntilDone(name:)``
+    /// - ``deleteDataLabelingJobPollingUntilDone(request:)``
     public func deleteDataLabelingJobPollingUntilDone(
       request: DeleteDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -277,8 +277,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelDataLabelingJob(request:)``
     /// - ``cancelDataLabelingJob(name:)``
+    /// - ``cancelDataLabelingJob(request:)``
     public func cancelDataLabelingJob(
       request: CancelDataLabelingJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -291,8 +291,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createHyperparameterTuningJob(request:)``
     /// - ``createHyperparameterTuningJob(parent:hyperparameterTuningJob:)``
+    /// - ``createHyperparameterTuningJob(request:)``
     public func createHyperparameterTuningJob(
       request: CreateHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.HyperparameterTuningJob {
@@ -305,8 +305,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getHyperparameterTuningJob(request:)``
     /// - ``getHyperparameterTuningJob(name:)``
+    /// - ``getHyperparameterTuningJob(request:)``
     public func getHyperparameterTuningJob(
       request: GetHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.HyperparameterTuningJob {
@@ -320,9 +320,9 @@
     /// ## See Also
     ///
     /// - ``listHyperparameterTuningJobs(request:)``
+    /// - ``listHyperparameterTuningJobsByItems(parent:)``
     /// - ``listHyperparameterTuningJobsByItems(request:)``
     /// - ``listHyperparameterTuningJobsByItems(request:options:)``
-    /// - ``listHyperparameterTuningJobsByItems(parent:)``
     public func listHyperparameterTuningJobs(
       request: ListHyperparameterTuningJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListHyperparameterTuningJobsResponse {
@@ -336,9 +336,9 @@
     /// ## See Also
     ///
     /// - ``deleteHyperparameterTuningJob(request:)``
+    /// - ``deleteHyperparameterTuningJobPollingUntilDone(name:)``
     /// - ``deleteHyperparameterTuningJobPollingUntilDone(request:)``
     /// - ``deleteHyperparameterTuningJobPollingUntilDone(request:options:)``
-    /// - ``deleteHyperparameterTuningJobPollingUntilDone(name:)``
     public func deleteHyperparameterTuningJob(
       request: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -351,10 +351,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteHyperparameterTuningJobPollingUntilDone(request:)``
-    /// - ``deleteHyperparameterTuningJobPollingUntilDone(name:)``
     /// - ``deleteHyperparameterTuningJob(request:)``
     /// - ``deleteHyperparameterTuningJob(request:options:)``
+    /// - ``deleteHyperparameterTuningJobPollingUntilDone(name:)``
+    /// - ``deleteHyperparameterTuningJobPollingUntilDone(request:)``
     public func deleteHyperparameterTuningJobPollingUntilDone(
       request: DeleteHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -404,8 +404,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelHyperparameterTuningJob(request:)``
     /// - ``cancelHyperparameterTuningJob(name:)``
+    /// - ``cancelHyperparameterTuningJob(request:)``
     public func cancelHyperparameterTuningJob(
       request: CancelHyperparameterTuningJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -418,8 +418,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createNasJob(request:)``
     /// - ``createNasJob(parent:nasJob:)``
+    /// - ``createNasJob(request:)``
     public func createNasJob(
       request: CreateNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NasJob {
@@ -432,8 +432,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNasJob(request:)``
     /// - ``getNasJob(name:)``
+    /// - ``getNasJob(request:)``
     public func getNasJob(
       request: GetNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NasJob {
@@ -447,9 +447,9 @@
     /// ## See Also
     ///
     /// - ``listNasJobs(request:)``
+    /// - ``listNasJobsByItems(parent:)``
     /// - ``listNasJobsByItems(request:)``
     /// - ``listNasJobsByItems(request:options:)``
-    /// - ``listNasJobsByItems(parent:)``
     public func listNasJobs(
       request: ListNasJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListNasJobsResponse {
@@ -463,9 +463,9 @@
     /// ## See Also
     ///
     /// - ``deleteNasJob(request:)``
+    /// - ``deleteNasJobPollingUntilDone(name:)``
     /// - ``deleteNasJobPollingUntilDone(request:)``
     /// - ``deleteNasJobPollingUntilDone(request:options:)``
-    /// - ``deleteNasJobPollingUntilDone(name:)``
     public func deleteNasJob(
       request: DeleteNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -478,10 +478,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNasJobPollingUntilDone(request:)``
-    /// - ``deleteNasJobPollingUntilDone(name:)``
     /// - ``deleteNasJob(request:)``
     /// - ``deleteNasJob(request:options:)``
+    /// - ``deleteNasJobPollingUntilDone(name:)``
+    /// - ``deleteNasJobPollingUntilDone(request:)``
     public func deleteNasJobPollingUntilDone(
       request: DeleteNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -530,8 +530,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelNasJob(request:)``
     /// - ``cancelNasJob(name:)``
+    /// - ``cancelNasJob(request:)``
     public func cancelNasJob(
       request: CancelNasJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -544,8 +544,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNasTrialDetail(request:)``
     /// - ``getNasTrialDetail(name:)``
+    /// - ``getNasTrialDetail(request:)``
     public func getNasTrialDetail(
       request: GetNasTrialDetailRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NasTrialDetail {
@@ -559,9 +559,9 @@
     /// ## See Also
     ///
     /// - ``listNasTrialDetails(request:)``
+    /// - ``listNasTrialDetailsByItems(parent:)``
     /// - ``listNasTrialDetailsByItems(request:)``
     /// - ``listNasTrialDetailsByItems(request:options:)``
-    /// - ``listNasTrialDetailsByItems(parent:)``
     public func listNasTrialDetails(
       request: ListNasTrialDetailsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListNasTrialDetailsResponse {
@@ -575,8 +575,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createBatchPredictionJob(request:)``
     /// - ``createBatchPredictionJob(parent:batchPredictionJob:)``
+    /// - ``createBatchPredictionJob(request:)``
     public func createBatchPredictionJob(
       request: CreateBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchPredictionJob {
@@ -589,8 +589,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getBatchPredictionJob(request:)``
     /// - ``getBatchPredictionJob(name:)``
+    /// - ``getBatchPredictionJob(request:)``
     public func getBatchPredictionJob(
       request: GetBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchPredictionJob {
@@ -604,9 +604,9 @@
     /// ## See Also
     ///
     /// - ``listBatchPredictionJobs(request:)``
+    /// - ``listBatchPredictionJobsByItems(parent:)``
     /// - ``listBatchPredictionJobsByItems(request:)``
     /// - ``listBatchPredictionJobsByItems(request:options:)``
-    /// - ``listBatchPredictionJobsByItems(parent:)``
     public func listBatchPredictionJobs(
       request: ListBatchPredictionJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListBatchPredictionJobsResponse {
@@ -621,9 +621,9 @@
     /// ## See Also
     ///
     /// - ``deleteBatchPredictionJob(request:)``
+    /// - ``deleteBatchPredictionJobPollingUntilDone(name:)``
     /// - ``deleteBatchPredictionJobPollingUntilDone(request:)``
     /// - ``deleteBatchPredictionJobPollingUntilDone(request:options:)``
-    /// - ``deleteBatchPredictionJobPollingUntilDone(name:)``
     public func deleteBatchPredictionJob(
       request: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -637,10 +637,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteBatchPredictionJobPollingUntilDone(request:)``
-    /// - ``deleteBatchPredictionJobPollingUntilDone(name:)``
     /// - ``deleteBatchPredictionJob(request:)``
     /// - ``deleteBatchPredictionJob(request:options:)``
+    /// - ``deleteBatchPredictionJobPollingUntilDone(name:)``
+    /// - ``deleteBatchPredictionJobPollingUntilDone(request:)``
     public func deleteBatchPredictionJobPollingUntilDone(
       request: DeleteBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -686,8 +686,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelBatchPredictionJob(request:)``
     /// - ``cancelBatchPredictionJob(name:)``
+    /// - ``cancelBatchPredictionJob(request:)``
     public func cancelBatchPredictionJob(
       request: CancelBatchPredictionJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -701,8 +701,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createModelDeploymentMonitoringJob(request:)``
     /// - ``createModelDeploymentMonitoringJob(parent:modelDeploymentMonitoringJob:)``
+    /// - ``createModelDeploymentMonitoringJob(request:)``
     public func createModelDeploymentMonitoringJob(
       request: CreateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelDeploymentMonitoringJob {
@@ -716,9 +716,9 @@
     /// ## See Also
     ///
     /// - ``searchModelDeploymentMonitoringStatsAnomalies(request:)``
+    /// - ``searchModelDeploymentMonitoringStatsAnomaliesByItems(modelDeploymentMonitoringJob:deployedModelId:)``
     /// - ``searchModelDeploymentMonitoringStatsAnomaliesByItems(request:)``
     /// - ``searchModelDeploymentMonitoringStatsAnomaliesByItems(request:options:)``
-    /// - ``searchModelDeploymentMonitoringStatsAnomaliesByItems(modelDeploymentMonitoringJob:deployedModelId:)``
     public func searchModelDeploymentMonitoringStatsAnomalies(
       request: SearchModelDeploymentMonitoringStatsAnomaliesRequest,
       options: GoogleGax.RequestOptions
@@ -734,8 +734,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getModelDeploymentMonitoringJob(request:)``
     /// - ``getModelDeploymentMonitoringJob(name:)``
+    /// - ``getModelDeploymentMonitoringJob(request:)``
     public func getModelDeploymentMonitoringJob(
       request: GetModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelDeploymentMonitoringJob {
@@ -749,9 +749,9 @@
     /// ## See Also
     ///
     /// - ``listModelDeploymentMonitoringJobs(request:)``
+    /// - ``listModelDeploymentMonitoringJobsByItems(parent:)``
     /// - ``listModelDeploymentMonitoringJobsByItems(request:)``
     /// - ``listModelDeploymentMonitoringJobsByItems(request:options:)``
-    /// - ``listModelDeploymentMonitoringJobsByItems(parent:)``
     public func listModelDeploymentMonitoringJobs(
       request: ListModelDeploymentMonitoringJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelDeploymentMonitoringJobsResponse {
@@ -765,9 +765,9 @@
     /// ## See Also
     ///
     /// - ``updateModelDeploymentMonitoringJob(request:)``
+    /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(modelDeploymentMonitoringJob:updateMask:)``
     /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(request:)``
     /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(request:options:)``
-    /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(modelDeploymentMonitoringJob:updateMask:)``
     public func updateModelDeploymentMonitoringJob(
       request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -780,10 +780,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(request:)``
-    /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(modelDeploymentMonitoringJob:updateMask:)``
     /// - ``updateModelDeploymentMonitoringJob(request:)``
     /// - ``updateModelDeploymentMonitoringJob(request:options:)``
+    /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(modelDeploymentMonitoringJob:updateMask:)``
+    /// - ``updateModelDeploymentMonitoringJobPollingUntilDone(request:)``
     public func updateModelDeploymentMonitoringJobPollingUntilDone(
       request: UpdateModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> ModelDeploymentMonitoringJob {
@@ -818,9 +818,9 @@
     /// ## See Also
     ///
     /// - ``deleteModelDeploymentMonitoringJob(request:)``
+    /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(name:)``
     /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(request:)``
     /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(request:options:)``
-    /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(name:)``
     public func deleteModelDeploymentMonitoringJob(
       request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -833,10 +833,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(request:)``
-    /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(name:)``
     /// - ``deleteModelDeploymentMonitoringJob(request:)``
     /// - ``deleteModelDeploymentMonitoringJob(request:options:)``
+    /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(name:)``
+    /// - ``deleteModelDeploymentMonitoringJobPollingUntilDone(request:)``
     public func deleteModelDeploymentMonitoringJobPollingUntilDone(
       request: DeleteModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -874,8 +874,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``pauseModelDeploymentMonitoringJob(request:)``
     /// - ``pauseModelDeploymentMonitoringJob(name:)``
+    /// - ``pauseModelDeploymentMonitoringJob(request:)``
     public func pauseModelDeploymentMonitoringJob(
       request: PauseModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -890,8 +890,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``resumeModelDeploymentMonitoringJob(request:)``
     /// - ``resumeModelDeploymentMonitoringJob(name:)``
+    /// - ``resumeModelDeploymentMonitoringJob(request:)``
     public func resumeModelDeploymentMonitoringJob(
       request: ResumeModelDeploymentMonitoringJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -985,9 +985,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1013,8 +1013,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -1029,8 +1029,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

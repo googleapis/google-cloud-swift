@@ -55,8 +55,8 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``createWorkflowTemplate(request:)``
   /// - ``createWorkflowTemplate(parent:template:)``
+  /// - ``createWorkflowTemplate(request:)``
   public func createWorkflowTemplate(
     request: CreateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -72,8 +72,8 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``getWorkflowTemplate(request:)``
   /// - ``getWorkflowTemplate(name:)``
+  /// - ``getWorkflowTemplate(request:)``
   public func getWorkflowTemplate(
     request: GetWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.WorkflowTemplate {
@@ -110,10 +110,10 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// ## See Also
   ///
   /// - ``instantiateWorkflowTemplate(request:)``
-  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:)``
-  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:options:)``
   /// - ``instantiateWorkflowTemplatePollingUntilDone(name:)``
   /// - ``instantiateWorkflowTemplatePollingUntilDone(name:parameters:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:options:)``
   public func instantiateWorkflowTemplate(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,11 +149,11 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:)``
-  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:)``
-  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:parameters:)``
   /// - ``instantiateWorkflowTemplate(request:)``
   /// - ``instantiateWorkflowTemplate(request:options:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(name:parameters:)``
+  /// - ``instantiateWorkflowTemplatePollingUntilDone(request:)``
   public func instantiateWorkflowTemplatePollingUntilDone(
     request: InstantiateWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -216,9 +216,9 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// ## See Also
   ///
   /// - ``instantiateInlineWorkflowTemplate(request:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(parent:template:)``
   /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:)``
   /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:options:)``
-  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(parent:template:)``
   public func instantiateInlineWorkflowTemplate(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -262,10 +262,10 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:)``
-  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(parent:template:)``
   /// - ``instantiateInlineWorkflowTemplate(request:)``
   /// - ``instantiateInlineWorkflowTemplate(request:options:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(parent:template:)``
+  /// - ``instantiateInlineWorkflowTemplatePollingUntilDone(request:)``
   public func instantiateInlineWorkflowTemplatePollingUntilDone(
     request: InstantiateInlineWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,9 +312,9 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// ## See Also
   ///
   /// - ``listWorkflowTemplates(request:)``
+  /// - ``listWorkflowTemplatesByItems(parent:)``
   /// - ``listWorkflowTemplatesByItems(request:)``
   /// - ``listWorkflowTemplatesByItems(request:options:)``
-  /// - ``listWorkflowTemplatesByItems(parent:)``
   public func listWorkflowTemplates(
     request: ListWorkflowTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListWorkflowTemplatesResponse {
@@ -327,8 +327,8 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkflowTemplate(request:)``
   /// - ``deleteWorkflowTemplate(name:)``
+  /// - ``deleteWorkflowTemplate(request:)``
   public func deleteWorkflowTemplate(
     request: DeleteWorkflowTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -394,9 +394,9 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -422,8 +422,8 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -438,8 +438,8 @@ public final class WorkflowTemplateServiceClient: Clients.WorkflowTemplateServic
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

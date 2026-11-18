@@ -57,8 +57,8 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getEnvironment(request:)``
   /// - ``getEnvironment(name:)``
+  /// - ``getEnvironment(request:)``
   public func getEnvironment(
     request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudShellV1.Environment {
@@ -96,9 +96,9 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``startEnvironmentPollingUntilDone(request:)``
   /// - ``startEnvironment(request:)``
   /// - ``startEnvironment(request:options:)``
+  /// - ``startEnvironmentPollingUntilDone(request:)``
   public func startEnvironmentPollingUntilDone(
     request: StartEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> StartEnvironmentResponse {
@@ -152,9 +152,9 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``authorizeEnvironmentPollingUntilDone(request:)``
   /// - ``authorizeEnvironment(request:)``
   /// - ``authorizeEnvironment(request:options:)``
+  /// - ``authorizeEnvironmentPollingUntilDone(request:)``
   public func authorizeEnvironmentPollingUntilDone(
     request: AuthorizeEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthorizeEnvironmentResponse {
@@ -206,9 +206,9 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``addPublicKeyPollingUntilDone(request:)``
   /// - ``addPublicKey(request:)``
   /// - ``addPublicKey(request:options:)``
+  /// - ``addPublicKeyPollingUntilDone(request:)``
   public func addPublicKeyPollingUntilDone(
     request: AddPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddPublicKeyResponse {
@@ -261,9 +261,9 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``removePublicKeyPollingUntilDone(request:)``
   /// - ``removePublicKey(request:)``
   /// - ``removePublicKey(request:options:)``
+  /// - ``removePublicKeyPollingUntilDone(request:)``
   public func removePublicKeyPollingUntilDone(
     request: RemovePublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemovePublicKeyResponse {

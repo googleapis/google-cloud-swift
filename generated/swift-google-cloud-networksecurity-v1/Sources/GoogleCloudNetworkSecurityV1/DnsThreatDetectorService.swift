@@ -54,9 +54,9 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// ## See Also
   ///
   /// - ``listDnsThreatDetectors(request:)``
+  /// - ``listDnsThreatDetectorsByItems(parent:)``
   /// - ``listDnsThreatDetectorsByItems(request:)``
   /// - ``listDnsThreatDetectorsByItems(request:options:)``
-  /// - ``listDnsThreatDetectorsByItems(parent:)``
   public func listDnsThreatDetectors(
     request: ListDnsThreatDetectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListDnsThreatDetectorsResponse {
@@ -69,8 +69,8 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   ///
   /// ## See Also
   ///
-  /// - ``getDnsThreatDetector(request:)``
   /// - ``getDnsThreatDetector(name:)``
+  /// - ``getDnsThreatDetector(request:)``
   public func getDnsThreatDetector(
     request: GetDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -83,8 +83,8 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   ///
   /// ## See Also
   ///
-  /// - ``createDnsThreatDetector(request:)``
   /// - ``createDnsThreatDetector(parent:dnsThreatDetector:dnsThreatDetectorId:)``
+  /// - ``createDnsThreatDetector(request:)``
   public func createDnsThreatDetector(
     request: CreateDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -97,8 +97,8 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   ///
   /// ## See Also
   ///
-  /// - ``updateDnsThreatDetector(request:)``
   /// - ``updateDnsThreatDetector(dnsThreatDetector:updateMask:)``
+  /// - ``updateDnsThreatDetector(request:)``
   public func updateDnsThreatDetector(
     request: UpdateDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.DnsThreatDetector {
@@ -111,8 +111,8 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteDnsThreatDetector(request:)``
   /// - ``deleteDnsThreatDetector(name:)``
+  /// - ``deleteDnsThreatDetector(request:)``
   public func deleteDnsThreatDetector(
     request: DeleteDnsThreatDetectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -223,9 +223,9 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -251,8 +251,8 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -267,8 +267,8 @@ public final class DnsThreatDetectorServiceClient: Clients.DnsThreatDetectorServ
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

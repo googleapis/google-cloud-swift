@@ -60,8 +60,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``processOpenLineageRunEvent(request:)``
   /// - ``processOpenLineageRunEvent(parent:openLineage:)``
+  /// - ``processOpenLineageRunEvent(request:)``
   public func processOpenLineageRunEvent(
     request: ProcessOpenLineageRunEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.ProcessOpenLineageRunEventResponse {
@@ -78,8 +78,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createProcess(request:)``
   /// - ``createProcess(parent:process:)``
+  /// - ``createProcess(request:)``
   public func createProcess(
     request: CreateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
@@ -96,8 +96,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateProcess(request:)``
   /// - ``updateProcess(process:updateMask:)``
+  /// - ``updateProcess(request:)``
   public func updateProcess(
     request: UpdateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
@@ -114,8 +114,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProcess(request:)``
   /// - ``getProcess(name:)``
+  /// - ``getProcess(request:)``
   public func getProcess(
     request: GetProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Process {
@@ -130,9 +130,9 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProcesses(request:)``
+  /// - ``listProcessesByItems(parent:)``
   /// - ``listProcessesByItems(request:)``
   /// - ``listProcessesByItems(request:options:)``
-  /// - ``listProcessesByItems(parent:)``
   public func listProcesses(
     request: ListProcessesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.ListProcessesResponse {
@@ -146,9 +146,9 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteProcess(request:)``
+  /// - ``deleteProcessPollingUntilDone(name:)``
   /// - ``deleteProcessPollingUntilDone(request:)``
   /// - ``deleteProcessPollingUntilDone(request:options:)``
-  /// - ``deleteProcessPollingUntilDone(name:)``
   public func deleteProcess(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -161,10 +161,10 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteProcessPollingUntilDone(request:)``
-  /// - ``deleteProcessPollingUntilDone(name:)``
   /// - ``deleteProcess(request:)``
   /// - ``deleteProcess(request:options:)``
+  /// - ``deleteProcessPollingUntilDone(name:)``
+  /// - ``deleteProcessPollingUntilDone(request:)``
   public func deleteProcessPollingUntilDone(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -195,8 +195,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRun(request:)``
   /// - ``createRun(parent:run:)``
+  /// - ``createRun(request:)``
   public func createRun(
     request: CreateRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Run {
@@ -227,8 +227,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRun(request:)``
   /// - ``getRun(name:)``
+  /// - ``getRun(request:)``
   public func getRun(
     request: GetRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.Run {
@@ -243,9 +243,9 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRuns(request:)``
+  /// - ``listRunsByItems(parent:)``
   /// - ``listRunsByItems(request:)``
   /// - ``listRunsByItems(request:options:)``
-  /// - ``listRunsByItems(parent:)``
   public func listRuns(
     request: ListRunsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.ListRunsResponse {
@@ -259,9 +259,9 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteRun(request:)``
+  /// - ``deleteRunPollingUntilDone(name:)``
   /// - ``deleteRunPollingUntilDone(request:)``
   /// - ``deleteRunPollingUntilDone(request:options:)``
-  /// - ``deleteRunPollingUntilDone(name:)``
   public func deleteRun(
     request: DeleteRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -274,10 +274,10 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRunPollingUntilDone(request:)``
-  /// - ``deleteRunPollingUntilDone(name:)``
   /// - ``deleteRun(request:)``
   /// - ``deleteRun(request:options:)``
+  /// - ``deleteRunPollingUntilDone(name:)``
+  /// - ``deleteRunPollingUntilDone(request:)``
   public func deleteRunPollingUntilDone(
     request: DeleteRunRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -308,8 +308,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createLineageEvent(request:)``
   /// - ``createLineageEvent(parent:lineageEvent:)``
+  /// - ``createLineageEvent(request:)``
   public func createLineageEvent(
     request: CreateLineageEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.LineageEvent {
@@ -326,8 +326,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getLineageEvent(request:)``
   /// - ``getLineageEvent(name:)``
+  /// - ``getLineageEvent(request:)``
   public func getLineageEvent(
     request: GetLineageEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.LineageEvent {
@@ -342,9 +342,9 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listLineageEvents(request:)``
+  /// - ``listLineageEventsByItems(parent:)``
   /// - ``listLineageEventsByItems(request:)``
   /// - ``listLineageEventsByItems(request:options:)``
-  /// - ``listLineageEventsByItems(parent:)``
   public func listLineageEvents(
     request: ListLineageEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogLineageV1.ListLineageEventsResponse {
@@ -357,8 +357,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteLineageEvent(request:)``
   /// - ``deleteLineageEvent(name:)``
+  /// - ``deleteLineageEvent(request:)``
   public func deleteLineageEvent(
     request: DeleteLineageEventRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -427,9 +427,9 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -455,8 +455,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -471,8 +471,8 @@ public final class LineageClient: Clients.LineageProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

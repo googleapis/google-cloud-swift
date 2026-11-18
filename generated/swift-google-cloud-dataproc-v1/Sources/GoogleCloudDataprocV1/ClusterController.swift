@@ -59,9 +59,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// ## See Also
   ///
   /// - ``createCluster(request:)``
+  /// - ``createClusterPollingUntilDone(projectId:region:cluster:)``
   /// - ``createClusterPollingUntilDone(request:)``
   /// - ``createClusterPollingUntilDone(request:options:)``
-  /// - ``createClusterPollingUntilDone(projectId:region:cluster:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -78,10 +78,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createClusterPollingUntilDone(request:)``
-  /// - ``createClusterPollingUntilDone(projectId:region:cluster:)``
   /// - ``createCluster(request:)``
   /// - ``createCluster(request:options:)``
+  /// - ``createClusterPollingUntilDone(projectId:region:cluster:)``
+  /// - ``createClusterPollingUntilDone(request:)``
   public func createClusterPollingUntilDone(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -121,9 +121,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// ## See Also
   ///
   /// - ``updateCluster(request:)``
+  /// - ``updateClusterPollingUntilDone(projectId:region:clusterName:cluster:updateMask:)``
   /// - ``updateClusterPollingUntilDone(request:)``
   /// - ``updateClusterPollingUntilDone(request:options:)``
-  /// - ``updateClusterPollingUntilDone(projectId:region:clusterName:cluster:updateMask:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -144,10 +144,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateClusterPollingUntilDone(request:)``
-  /// - ``updateClusterPollingUntilDone(projectId:region:clusterName:cluster:updateMask:)``
   /// - ``updateCluster(request:)``
   /// - ``updateCluster(request:options:)``
+  /// - ``updateClusterPollingUntilDone(projectId:region:clusterName:cluster:updateMask:)``
+  /// - ``updateClusterPollingUntilDone(request:)``
   public func updateClusterPollingUntilDone(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -193,9 +193,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``stopClusterPollingUntilDone(request:)``
   /// - ``stopCluster(request:)``
   /// - ``stopCluster(request:options:)``
+  /// - ``stopClusterPollingUntilDone(request:)``
   public func stopClusterPollingUntilDone(
     request: StopClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -241,9 +241,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``startClusterPollingUntilDone(request:)``
   /// - ``startCluster(request:)``
   /// - ``startCluster(request:options:)``
+  /// - ``startClusterPollingUntilDone(request:)``
   public func startClusterPollingUntilDone(
     request: StartClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -279,9 +279,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// ## See Also
   ///
   /// - ``deleteCluster(request:)``
+  /// - ``deleteClusterPollingUntilDone(projectId:region:clusterName:)``
   /// - ``deleteClusterPollingUntilDone(request:)``
   /// - ``deleteClusterPollingUntilDone(request:options:)``
-  /// - ``deleteClusterPollingUntilDone(projectId:region:clusterName:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -298,10 +298,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteClusterPollingUntilDone(request:)``
-  /// - ``deleteClusterPollingUntilDone(projectId:region:clusterName:)``
   /// - ``deleteCluster(request:)``
   /// - ``deleteCluster(request:options:)``
+  /// - ``deleteClusterPollingUntilDone(projectId:region:clusterName:)``
+  /// - ``deleteClusterPollingUntilDone(request:)``
   public func deleteClusterPollingUntilDone(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -332,8 +332,8 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
   /// - ``getCluster(projectId:region:clusterName:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Cluster {
@@ -347,10 +347,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// ## See Also
   ///
   /// - ``listClusters(request:)``
-  /// - ``listClustersByItems(request:)``
-  /// - ``listClustersByItems(request:options:)``
   /// - ``listClustersByItems(projectId:region:)``
   /// - ``listClustersByItems(projectId:region:filter:)``
+  /// - ``listClustersByItems(request:)``
+  /// - ``listClustersByItems(request:options:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListClustersResponse {
@@ -373,9 +373,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// ## See Also
   ///
   /// - ``diagnoseCluster(request:)``
+  /// - ``diagnoseClusterPollingUntilDone(projectId:region:clusterName:)``
   /// - ``diagnoseClusterPollingUntilDone(request:)``
   /// - ``diagnoseClusterPollingUntilDone(request:options:)``
-  /// - ``diagnoseClusterPollingUntilDone(projectId:region:clusterName:)``
   public func diagnoseCluster(
     request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -397,10 +397,10 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``diagnoseClusterPollingUntilDone(request:)``
-  /// - ``diagnoseClusterPollingUntilDone(projectId:region:clusterName:)``
   /// - ``diagnoseCluster(request:)``
   /// - ``diagnoseCluster(request:options:)``
+  /// - ``diagnoseClusterPollingUntilDone(projectId:region:clusterName:)``
+  /// - ``diagnoseClusterPollingUntilDone(request:)``
   public func diagnoseClusterPollingUntilDone(
     request: DiagnoseClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> DiagnoseClusterResults {
@@ -485,9 +485,9 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -513,8 +513,8 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -529,8 +529,8 @@ public final class ClusterControllerClient: Clients.ClusterControllerProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

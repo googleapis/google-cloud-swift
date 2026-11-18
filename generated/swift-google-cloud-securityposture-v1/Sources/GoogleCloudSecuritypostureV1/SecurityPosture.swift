@@ -60,9 +60,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPostures(request:)``
+  /// - ``listPosturesByItems(parent:)``
   /// - ``listPosturesByItems(request:)``
   /// - ``listPosturesByItems(request:options:)``
-  /// - ``listPosturesByItems(parent:)``
   public func listPostures(
     request: ListPosturesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPosturesResponse {
@@ -95,8 +95,8 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPosture(request:)``
   /// - ``getPosture(name:)``
+  /// - ``getPosture(request:)``
   public func getPosture(
     request: GetPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.Posture {
@@ -113,9 +113,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``createPosture(request:)``
+  /// - ``createPosturePollingUntilDone(parent:posture:postureId:)``
   /// - ``createPosturePollingUntilDone(request:)``
   /// - ``createPosturePollingUntilDone(request:options:)``
-  /// - ``createPosturePollingUntilDone(parent:posture:postureId:)``
   public func createPosture(
     request: CreatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -131,10 +131,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createPosturePollingUntilDone(request:)``
-  /// - ``createPosturePollingUntilDone(parent:posture:postureId:)``
   /// - ``createPosture(request:)``
   /// - ``createPosture(request:options:)``
+  /// - ``createPosturePollingUntilDone(parent:posture:postureId:)``
+  /// - ``createPosturePollingUntilDone(request:)``
   public func createPosturePollingUntilDone(
     request: CreatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Posture {
@@ -177,9 +177,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``updatePosture(request:)``
+  /// - ``updatePosturePollingUntilDone(posture:updateMask:)``
   /// - ``updatePosturePollingUntilDone(request:)``
   /// - ``updatePosturePollingUntilDone(request:options:)``
-  /// - ``updatePosturePollingUntilDone(posture:updateMask:)``
   public func updatePosture(
     request: UpdatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -203,10 +203,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updatePosturePollingUntilDone(request:)``
-  /// - ``updatePosturePollingUntilDone(posture:updateMask:)``
   /// - ``updatePosture(request:)``
   /// - ``updatePosture(request:options:)``
+  /// - ``updatePosturePollingUntilDone(posture:updateMask:)``
+  /// - ``updatePosturePollingUntilDone(request:)``
   public func updatePosturePollingUntilDone(
     request: UpdatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Posture {
@@ -240,9 +240,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``deletePosture(request:)``
+  /// - ``deletePosturePollingUntilDone(name:)``
   /// - ``deletePosturePollingUntilDone(request:)``
   /// - ``deletePosturePollingUntilDone(request:options:)``
-  /// - ``deletePosturePollingUntilDone(name:)``
   public func deletePosture(
     request: DeletePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -257,10 +257,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deletePosturePollingUntilDone(request:)``
-  /// - ``deletePosturePollingUntilDone(name:)``
   /// - ``deletePosture(request:)``
   /// - ``deletePosture(request:options:)``
+  /// - ``deletePosturePollingUntilDone(name:)``
+  /// - ``deletePosturePollingUntilDone(request:)``
   public func deletePosturePollingUntilDone(
     request: DeletePostureRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -294,9 +294,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``extractPosture(request:)``
+  /// - ``extractPosturePollingUntilDone(parent:postureId:workload:)``
   /// - ``extractPosturePollingUntilDone(request:)``
   /// - ``extractPosturePollingUntilDone(request:options:)``
-  /// - ``extractPosturePollingUntilDone(parent:postureId:workload:)``
   public func extractPosture(
     request: ExtractPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -311,10 +311,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``extractPosturePollingUntilDone(request:)``
-  /// - ``extractPosturePollingUntilDone(parent:postureId:workload:)``
   /// - ``extractPosture(request:)``
   /// - ``extractPosture(request:options:)``
+  /// - ``extractPosturePollingUntilDone(parent:postureId:workload:)``
+  /// - ``extractPosturePollingUntilDone(request:)``
   public func extractPosturePollingUntilDone(
     request: ExtractPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Posture {
@@ -347,9 +347,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPostureDeployments(request:)``
+  /// - ``listPostureDeploymentsByItems(parent:)``
   /// - ``listPostureDeploymentsByItems(request:)``
   /// - ``listPostureDeploymentsByItems(request:options:)``
-  /// - ``listPostureDeploymentsByItems(parent:)``
   public func listPostureDeployments(
     request: ListPostureDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPostureDeploymentsResponse {
@@ -362,8 +362,8 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPostureDeployment(request:)``
   /// - ``getPostureDeployment(name:)``
+  /// - ``getPostureDeployment(request:)``
   public func getPostureDeployment(
     request: GetPostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.PostureDeployment {
@@ -377,9 +377,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``createPostureDeployment(request:)``
+  /// - ``createPostureDeploymentPollingUntilDone(parent:postureDeployment:postureDeploymentId:)``
   /// - ``createPostureDeploymentPollingUntilDone(request:)``
   /// - ``createPostureDeploymentPollingUntilDone(request:options:)``
-  /// - ``createPostureDeploymentPollingUntilDone(parent:postureDeployment:postureDeploymentId:)``
   public func createPostureDeployment(
     request: CreatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -392,10 +392,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createPostureDeploymentPollingUntilDone(request:)``
-  /// - ``createPostureDeploymentPollingUntilDone(parent:postureDeployment:postureDeploymentId:)``
   /// - ``createPostureDeployment(request:)``
   /// - ``createPostureDeployment(request:options:)``
+  /// - ``createPostureDeploymentPollingUntilDone(parent:postureDeployment:postureDeploymentId:)``
+  /// - ``createPostureDeploymentPollingUntilDone(request:)``
   public func createPostureDeploymentPollingUntilDone(
     request: CreatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> PostureDeployment {
@@ -428,9 +428,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``updatePostureDeployment(request:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(postureDeployment:updateMask:)``
   /// - ``updatePostureDeploymentPollingUntilDone(request:)``
   /// - ``updatePostureDeploymentPollingUntilDone(request:options:)``
-  /// - ``updatePostureDeploymentPollingUntilDone(postureDeployment:updateMask:)``
   public func updatePostureDeployment(
     request: UpdatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -443,10 +443,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updatePostureDeploymentPollingUntilDone(request:)``
-  /// - ``updatePostureDeploymentPollingUntilDone(postureDeployment:updateMask:)``
   /// - ``updatePostureDeployment(request:)``
   /// - ``updatePostureDeployment(request:options:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(postureDeployment:updateMask:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(request:)``
   public func updatePostureDeploymentPollingUntilDone(
     request: UpdatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> PostureDeployment {
@@ -479,9 +479,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``deletePostureDeployment(request:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(name:)``
   /// - ``deletePostureDeploymentPollingUntilDone(request:)``
   /// - ``deletePostureDeploymentPollingUntilDone(request:options:)``
-  /// - ``deletePostureDeploymentPollingUntilDone(name:)``
   public func deletePostureDeployment(
     request: DeletePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -494,10 +494,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deletePostureDeploymentPollingUntilDone(request:)``
-  /// - ``deletePostureDeploymentPollingUntilDone(name:)``
   /// - ``deletePostureDeployment(request:)``
   /// - ``deletePostureDeployment(request:options:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(name:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(request:)``
   public func deletePostureDeploymentPollingUntilDone(
     request: DeletePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -530,9 +530,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPostureTemplates(request:)``
+  /// - ``listPostureTemplatesByItems(parent:)``
   /// - ``listPostureTemplatesByItems(request:)``
   /// - ``listPostureTemplatesByItems(request:options:)``
-  /// - ``listPostureTemplatesByItems(parent:)``
   public func listPostureTemplates(
     request: ListPostureTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPostureTemplatesResponse {
@@ -550,8 +550,8 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPostureTemplate(request:)``
   /// - ``getPostureTemplate(name:)``
+  /// - ``getPostureTemplate(request:)``
   public func getPostureTemplate(
     request: GetPostureTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.PostureTemplate {
@@ -595,9 +595,9 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -623,8 +623,8 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -639,8 +639,8 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

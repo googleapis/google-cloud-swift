@@ -55,8 +55,8 @@ public final class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSett
   ///
   /// ## See Also
   ///
-  /// - ``updateQuotaAdjusterSettings(request:)``
   /// - ``updateQuotaAdjusterSettings(quotaAdjusterSettings:updateMask:)``
+  /// - ``updateQuotaAdjusterSettings(request:)``
   public func updateQuotaAdjusterSettings(
     request: UpdateQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {
@@ -69,8 +69,8 @@ public final class QuotaAdjusterSettingsManagerClient: Clients.QuotaAdjusterSett
   ///
   /// ## See Also
   ///
-  /// - ``getQuotaAdjusterSettings(request:)``
   /// - ``getQuotaAdjusterSettings(name:)``
+  /// - ``getQuotaAdjusterSettings(request:)``
   public func getQuotaAdjusterSettings(
     request: GetQuotaAdjusterSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiCloudQuotasV1.QuotaAdjusterSettings {

@@ -46,8 +46,8 @@ public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:managedZone:dnsKeyId:)``
+  /// - ``get(request:)``
   public func `get`(
     request: DnsKeysClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsKey {
@@ -61,9 +61,9 @@ public final class DnsKeysClient: Clients.DnsKeysProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:managedZone:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:managedZone:)``
   public func list(
     request: DnsKeysClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> DnsKeysListResponse {

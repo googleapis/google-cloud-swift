@@ -138,8 +138,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``listInfoTypes(request:)``
   /// - ``listInfoTypes(parent:)``
+  /// - ``listInfoTypes(request:)``
   public func listInfoTypes(
     request: ListInfoTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListInfoTypesResponse {
@@ -156,8 +156,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInspectTemplate(request:)``
   /// - ``createInspectTemplate(parent:inspectTemplate:)``
+  /// - ``createInspectTemplate(request:)``
   public func createInspectTemplate(
     request: CreateInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -173,8 +173,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInspectTemplate(request:)``
   /// - ``updateInspectTemplate(name:inspectTemplate:updateMask:)``
+  /// - ``updateInspectTemplate(request:)``
   public func updateInspectTemplate(
     request: UpdateInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -190,8 +190,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInspectTemplate(request:)``
   /// - ``getInspectTemplate(name:)``
+  /// - ``getInspectTemplate(request:)``
   public func getInspectTemplate(
     request: GetInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -208,9 +208,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInspectTemplates(request:)``
+  /// - ``listInspectTemplatesByItems(parent:)``
   /// - ``listInspectTemplatesByItems(request:)``
   /// - ``listInspectTemplatesByItems(request:options:)``
-  /// - ``listInspectTemplatesByItems(parent:)``
   public func listInspectTemplates(
     request: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListInspectTemplatesResponse {
@@ -226,8 +226,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInspectTemplate(request:)``
   /// - ``deleteInspectTemplate(name:)``
+  /// - ``deleteInspectTemplate(request:)``
   public func deleteInspectTemplate(
     request: DeleteInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -244,8 +244,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDeidentifyTemplate(request:)``
   /// - ``createDeidentifyTemplate(parent:deidentifyTemplate:)``
+  /// - ``createDeidentifyTemplate(request:)``
   public func createDeidentifyTemplate(
     request: CreateDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -261,8 +261,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDeidentifyTemplate(request:)``
   /// - ``updateDeidentifyTemplate(name:deidentifyTemplate:updateMask:)``
+  /// - ``updateDeidentifyTemplate(request:)``
   public func updateDeidentifyTemplate(
     request: UpdateDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -278,8 +278,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeidentifyTemplate(request:)``
   /// - ``getDeidentifyTemplate(name:)``
+  /// - ``getDeidentifyTemplate(request:)``
   public func getDeidentifyTemplate(
     request: GetDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -296,9 +296,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeidentifyTemplates(request:)``
+  /// - ``listDeidentifyTemplatesByItems(parent:)``
   /// - ``listDeidentifyTemplatesByItems(request:)``
   /// - ``listDeidentifyTemplatesByItems(request:options:)``
-  /// - ``listDeidentifyTemplatesByItems(parent:)``
   public func listDeidentifyTemplates(
     request: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListDeidentifyTemplatesResponse {
@@ -314,8 +314,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDeidentifyTemplate(request:)``
   /// - ``deleteDeidentifyTemplate(name:)``
+  /// - ``deleteDeidentifyTemplate(request:)``
   public func deleteDeidentifyTemplate(
     request: DeleteDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -332,8 +332,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createJobTrigger(request:)``
   /// - ``createJobTrigger(parent:jobTrigger:)``
+  /// - ``createJobTrigger(request:)``
   public func createJobTrigger(
     request: CreateJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -349,8 +349,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateJobTrigger(request:)``
   /// - ``updateJobTrigger(name:jobTrigger:updateMask:)``
+  /// - ``updateJobTrigger(request:)``
   public func updateJobTrigger(
     request: UpdateJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -365,8 +365,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``hybridInspectJobTrigger(request:)``
   /// - ``hybridInspectJobTrigger(name:)``
+  /// - ``hybridInspectJobTrigger(request:)``
   public func hybridInspectJobTrigger(
     request: HybridInspectJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -382,8 +382,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getJobTrigger(request:)``
   /// - ``getJobTrigger(name:)``
+  /// - ``getJobTrigger(request:)``
   public func getJobTrigger(
     request: GetJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -400,9 +400,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listJobTriggers(request:)``
+  /// - ``listJobTriggersByItems(parent:)``
   /// - ``listJobTriggersByItems(request:)``
   /// - ``listJobTriggersByItems(request:options:)``
-  /// - ``listJobTriggersByItems(parent:)``
   public func listJobTriggers(
     request: ListJobTriggersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListJobTriggersResponse {
@@ -418,8 +418,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteJobTrigger(request:)``
   /// - ``deleteJobTrigger(name:)``
+  /// - ``deleteJobTrigger(request:)``
   public func deleteJobTrigger(
     request: DeleteJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -446,8 +446,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDiscoveryConfig(request:)``
   /// - ``createDiscoveryConfig(parent:discoveryConfig:)``
+  /// - ``createDiscoveryConfig(request:)``
   public func createDiscoveryConfig(
     request: CreateDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -460,8 +460,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDiscoveryConfig(request:)``
   /// - ``updateDiscoveryConfig(name:discoveryConfig:updateMask:)``
+  /// - ``updateDiscoveryConfig(request:)``
   public func updateDiscoveryConfig(
     request: UpdateDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -474,8 +474,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDiscoveryConfig(request:)``
   /// - ``getDiscoveryConfig(name:)``
+  /// - ``getDiscoveryConfig(request:)``
   public func getDiscoveryConfig(
     request: GetDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -489,9 +489,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDiscoveryConfigs(request:)``
+  /// - ``listDiscoveryConfigsByItems(parent:)``
   /// - ``listDiscoveryConfigsByItems(request:)``
   /// - ``listDiscoveryConfigsByItems(request:options:)``
-  /// - ``listDiscoveryConfigsByItems(parent:)``
   public func listDiscoveryConfigs(
     request: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListDiscoveryConfigsResponse {
@@ -504,8 +504,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDiscoveryConfig(request:)``
   /// - ``deleteDiscoveryConfig(name:)``
+  /// - ``deleteDiscoveryConfig(request:)``
   public func deleteDiscoveryConfig(
     request: DeleteDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -527,9 +527,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDlpJob(request:)``
   /// - ``createDlpJob(parent:inspectJob:)``
   /// - ``createDlpJob(parent:riskJob:)``
+  /// - ``createDlpJob(request:)``
   public func createDlpJob(
     request: CreateDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -548,9 +548,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDlpJobs(request:)``
+  /// - ``listDlpJobsByItems(parent:)``
   /// - ``listDlpJobsByItems(request:)``
   /// - ``listDlpJobsByItems(request:options:)``
-  /// - ``listDlpJobsByItems(parent:)``
   public func listDlpJobs(
     request: ListDlpJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListDlpJobsResponse {
@@ -568,8 +568,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDlpJob(request:)``
   /// - ``getDlpJob(name:)``
+  /// - ``getDlpJob(request:)``
   public func getDlpJob(
     request: GetDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -589,8 +589,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDlpJob(request:)``
   /// - ``deleteDlpJob(name:)``
+  /// - ``deleteDlpJob(request:)``
   public func deleteDlpJob(
     request: DeleteDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -626,8 +626,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createStoredInfoType(request:)``
   /// - ``createStoredInfoType(parent:config:)``
+  /// - ``createStoredInfoType(request:)``
   public func createStoredInfoType(
     request: CreateStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -644,8 +644,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateStoredInfoType(request:)``
   /// - ``updateStoredInfoType(name:config:updateMask:)``
+  /// - ``updateStoredInfoType(request:)``
   public func updateStoredInfoType(
     request: UpdateStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -661,8 +661,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getStoredInfoType(request:)``
   /// - ``getStoredInfoType(name:)``
+  /// - ``getStoredInfoType(request:)``
   public func getStoredInfoType(
     request: GetStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -679,9 +679,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listStoredInfoTypes(request:)``
+  /// - ``listStoredInfoTypesByItems(parent:)``
   /// - ``listStoredInfoTypesByItems(request:)``
   /// - ``listStoredInfoTypesByItems(request:options:)``
-  /// - ``listStoredInfoTypesByItems(parent:)``
   public func listStoredInfoTypes(
     request: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListStoredInfoTypesResponse {
@@ -697,8 +697,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteStoredInfoType(request:)``
   /// - ``deleteStoredInfoType(name:)``
+  /// - ``deleteStoredInfoType(request:)``
   public func deleteStoredInfoType(
     request: DeleteStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -712,9 +712,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProjectDataProfiles(request:)``
+  /// - ``listProjectDataProfilesByItems(parent:)``
   /// - ``listProjectDataProfilesByItems(request:)``
   /// - ``listProjectDataProfilesByItems(request:options:)``
-  /// - ``listProjectDataProfilesByItems(parent:)``
   public func listProjectDataProfiles(
     request: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListProjectDataProfilesResponse {
@@ -728,9 +728,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTableDataProfiles(request:)``
+  /// - ``listTableDataProfilesByItems(parent:)``
   /// - ``listTableDataProfilesByItems(request:)``
   /// - ``listTableDataProfilesByItems(request:options:)``
-  /// - ``listTableDataProfilesByItems(parent:)``
   public func listTableDataProfiles(
     request: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListTableDataProfilesResponse {
@@ -744,9 +744,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listColumnDataProfiles(request:)``
+  /// - ``listColumnDataProfilesByItems(parent:)``
   /// - ``listColumnDataProfilesByItems(request:)``
   /// - ``listColumnDataProfilesByItems(request:options:)``
-  /// - ``listColumnDataProfilesByItems(parent:)``
   public func listColumnDataProfiles(
     request: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListColumnDataProfilesResponse {
@@ -759,8 +759,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProjectDataProfile(request:)``
   /// - ``getProjectDataProfile(name:)``
+  /// - ``getProjectDataProfile(request:)``
   public func getProjectDataProfile(
     request: GetProjectDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ProjectDataProfile {
@@ -774,9 +774,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFileStoreDataProfiles(request:)``
+  /// - ``listFileStoreDataProfilesByItems(parent:)``
   /// - ``listFileStoreDataProfilesByItems(request:)``
   /// - ``listFileStoreDataProfilesByItems(request:options:)``
-  /// - ``listFileStoreDataProfilesByItems(parent:)``
   public func listFileStoreDataProfiles(
     request: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListFileStoreDataProfilesResponse {
@@ -789,8 +789,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFileStoreDataProfile(request:)``
   /// - ``getFileStoreDataProfile(name:)``
+  /// - ``getFileStoreDataProfile(request:)``
   public func getFileStoreDataProfile(
     request: GetFileStoreDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.FileStoreDataProfile {
@@ -804,8 +804,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFileStoreDataProfile(request:)``
   /// - ``deleteFileStoreDataProfile(name:)``
+  /// - ``deleteFileStoreDataProfile(request:)``
   public func deleteFileStoreDataProfile(
     request: DeleteFileStoreDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -818,8 +818,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTableDataProfile(request:)``
   /// - ``getTableDataProfile(name:)``
+  /// - ``getTableDataProfile(request:)``
   public func getTableDataProfile(
     request: GetTableDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.TableDataProfile {
@@ -832,8 +832,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getColumnDataProfile(request:)``
   /// - ``getColumnDataProfile(name:)``
+  /// - ``getColumnDataProfile(request:)``
   public func getColumnDataProfile(
     request: GetColumnDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ColumnDataProfile {
@@ -847,8 +847,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTableDataProfile(request:)``
   /// - ``deleteTableDataProfile(name:)``
+  /// - ``deleteTableDataProfile(request:)``
   public func deleteTableDataProfile(
     request: DeleteTableDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -863,8 +863,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``hybridInspectDlpJob(request:)``
   /// - ``hybridInspectDlpJob(name:)``
+  /// - ``hybridInspectDlpJob(request:)``
   public func hybridInspectDlpJob(
     request: HybridInspectDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -891,8 +891,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createConnection(request:)``
   /// - ``createConnection(parent:connection:)``
+  /// - ``createConnection(request:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -905,8 +905,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConnection(request:)``
   /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -921,9 +921,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
   /// - ``listConnectionsByItems(request:)``
   /// - ``listConnectionsByItems(request:options:)``
-  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListConnectionsResponse {
@@ -937,9 +937,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``searchConnections(request:)``
+  /// - ``searchConnectionsByItems(parent:)``
   /// - ``searchConnectionsByItems(request:)``
   /// - ``searchConnectionsByItems(request:options:)``
-  /// - ``searchConnectionsByItems(parent:)``
   public func searchConnections(
     request: SearchConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.SearchConnectionsResponse {
@@ -952,8 +952,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnection(request:)``
   /// - ``deleteConnection(name:)``
+  /// - ``deleteConnection(request:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -966,8 +966,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConnection(request:)``
   /// - ``updateConnection(name:)``
+  /// - ``updateConnection(request:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -980,8 +980,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createContentPolicy(request:)``
   /// - ``createContentPolicy(parent:contentPolicy:)``
+  /// - ``createContentPolicy(request:)``
   public func createContentPolicy(
     request: CreateContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -994,8 +994,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateContentPolicy(request:)``
   /// - ``updateContentPolicy(name:contentPolicy:updateMask:)``
+  /// - ``updateContentPolicy(request:)``
   public func updateContentPolicy(
     request: UpdateContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -1008,8 +1008,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getContentPolicy(request:)``
   /// - ``getContentPolicy(name:)``
+  /// - ``getContentPolicy(request:)``
   public func getContentPolicy(
     request: GetContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -1023,9 +1023,9 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listContentPolicies(request:)``
+  /// - ``listContentPoliciesByItems(parent:)``
   /// - ``listContentPoliciesByItems(request:)``
   /// - ``listContentPoliciesByItems(request:options:)``
-  /// - ``listContentPoliciesByItems(parent:)``
   public func listContentPolicies(
     request: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
@@ -1038,8 +1038,8 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteContentPolicy(request:)``
   /// - ``deleteContentPolicy(name:)``
+  /// - ``deleteContentPolicy(request:)``
   public func deleteContentPolicy(
     request: DeleteContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -96,9 +96,9 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createVersionPollingUntilDone(request:)``
   /// - ``createVersion(request:)``
   /// - ``createVersion(request:options:)``
+  /// - ``createVersionPollingUntilDone(request:)``
   public func createVersionPollingUntilDone(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Version {
@@ -214,9 +214,9 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateVersionPollingUntilDone(request:)``
   /// - ``updateVersion(request:)``
   /// - ``updateVersion(request:options:)``
+  /// - ``updateVersionPollingUntilDone(request:)``
   public func updateVersionPollingUntilDone(
     request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Version {
@@ -262,9 +262,9 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteVersionPollingUntilDone(request:)``
   /// - ``deleteVersion(request:)``
   /// - ``deleteVersion(request:options:)``
+  /// - ``deleteVersionPollingUntilDone(request:)``
   public func deleteVersionPollingUntilDone(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -298,9 +298,9 @@ public final class VersionsClient: Clients.VersionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

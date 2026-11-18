@@ -56,9 +56,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``listMigrationJobs(request:)``
+  /// - ``listMigrationJobsByItems(parent:)``
   /// - ``listMigrationJobsByItems(request:)``
   /// - ``listMigrationJobsByItems(request:options:)``
-  /// - ``listMigrationJobsByItems(parent:)``
   public func listMigrationJobs(
     request: ListMigrationJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListMigrationJobsResponse {
@@ -71,8 +71,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getMigrationJob(request:)``
   /// - ``getMigrationJob(name:)``
+  /// - ``getMigrationJob(request:)``
   public func getMigrationJob(
     request: GetMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.MigrationJob {
@@ -86,9 +86,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``createMigrationJob(request:)``
+  /// - ``createMigrationJobPollingUntilDone(parent:migrationJob:migrationJobId:)``
   /// - ``createMigrationJobPollingUntilDone(request:)``
   /// - ``createMigrationJobPollingUntilDone(request:options:)``
-  /// - ``createMigrationJobPollingUntilDone(parent:migrationJob:migrationJobId:)``
   public func createMigrationJob(
     request: CreateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createMigrationJobPollingUntilDone(request:)``
-  /// - ``createMigrationJobPollingUntilDone(parent:migrationJob:migrationJobId:)``
   /// - ``createMigrationJob(request:)``
   /// - ``createMigrationJob(request:options:)``
+  /// - ``createMigrationJobPollingUntilDone(parent:migrationJob:migrationJobId:)``
+  /// - ``createMigrationJobPollingUntilDone(request:)``
   public func createMigrationJobPollingUntilDone(
     request: CreateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -137,9 +137,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``updateMigrationJob(request:)``
+  /// - ``updateMigrationJobPollingUntilDone(migrationJob:updateMask:)``
   /// - ``updateMigrationJobPollingUntilDone(request:)``
   /// - ``updateMigrationJobPollingUntilDone(request:options:)``
-  /// - ``updateMigrationJobPollingUntilDone(migrationJob:updateMask:)``
   public func updateMigrationJob(
     request: UpdateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -152,10 +152,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateMigrationJobPollingUntilDone(request:)``
-  /// - ``updateMigrationJobPollingUntilDone(migrationJob:updateMask:)``
   /// - ``updateMigrationJob(request:)``
   /// - ``updateMigrationJob(request:options:)``
+  /// - ``updateMigrationJobPollingUntilDone(migrationJob:updateMask:)``
+  /// - ``updateMigrationJobPollingUntilDone(request:)``
   public func updateMigrationJobPollingUntilDone(
     request: UpdateMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -188,9 +188,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``deleteMigrationJob(request:)``
+  /// - ``deleteMigrationJobPollingUntilDone(name:)``
   /// - ``deleteMigrationJobPollingUntilDone(request:)``
   /// - ``deleteMigrationJobPollingUntilDone(request:options:)``
-  /// - ``deleteMigrationJobPollingUntilDone(name:)``
   public func deleteMigrationJob(
     request: DeleteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -203,10 +203,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteMigrationJobPollingUntilDone(request:)``
-  /// - ``deleteMigrationJobPollingUntilDone(name:)``
   /// - ``deleteMigrationJob(request:)``
   /// - ``deleteMigrationJob(request:options:)``
+  /// - ``deleteMigrationJobPollingUntilDone(name:)``
+  /// - ``deleteMigrationJobPollingUntilDone(request:)``
   public func deleteMigrationJobPollingUntilDone(
     request: DeleteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -252,9 +252,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``startMigrationJobPollingUntilDone(request:)``
   /// - ``startMigrationJob(request:)``
   /// - ``startMigrationJob(request:options:)``
+  /// - ``startMigrationJobPollingUntilDone(request:)``
   public func startMigrationJobPollingUntilDone(
     request: StartMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -301,9 +301,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``stopMigrationJobPollingUntilDone(request:)``
   /// - ``stopMigrationJob(request:)``
   /// - ``stopMigrationJob(request:options:)``
+  /// - ``stopMigrationJobPollingUntilDone(request:)``
   public func stopMigrationJobPollingUntilDone(
     request: StopMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -352,9 +352,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``resumeMigrationJobPollingUntilDone(request:)``
   /// - ``resumeMigrationJob(request:)``
   /// - ``resumeMigrationJob(request:options:)``
+  /// - ``resumeMigrationJobPollingUntilDone(request:)``
   public func resumeMigrationJobPollingUntilDone(
     request: ResumeMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -403,9 +403,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``promoteMigrationJobPollingUntilDone(request:)``
   /// - ``promoteMigrationJob(request:)``
   /// - ``promoteMigrationJob(request:options:)``
+  /// - ``promoteMigrationJobPollingUntilDone(request:)``
   public func promoteMigrationJobPollingUntilDone(
     request: PromoteMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -454,9 +454,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``verifyMigrationJobPollingUntilDone(request:)``
   /// - ``verifyMigrationJob(request:)``
   /// - ``verifyMigrationJob(request:options:)``
+  /// - ``verifyMigrationJobPollingUntilDone(request:)``
   public func verifyMigrationJobPollingUntilDone(
     request: VerifyMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -507,9 +507,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``restartMigrationJobPollingUntilDone(request:)``
   /// - ``restartMigrationJob(request:)``
   /// - ``restartMigrationJob(request:options:)``
+  /// - ``restartMigrationJobPollingUntilDone(request:)``
   public func restartMigrationJobPollingUntilDone(
     request: RestartMigrationJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> MigrationJob {
@@ -571,9 +571,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``listConnectionProfiles(request:)``
+  /// - ``listConnectionProfilesByItems(parent:)``
   /// - ``listConnectionProfilesByItems(request:)``
   /// - ``listConnectionProfilesByItems(request:options:)``
-  /// - ``listConnectionProfilesByItems(parent:)``
   public func listConnectionProfiles(
     request: ListConnectionProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListConnectionProfilesResponse {
@@ -586,8 +586,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getConnectionProfile(request:)``
   /// - ``getConnectionProfile(name:)``
+  /// - ``getConnectionProfile(request:)``
   public func getConnectionProfile(
     request: GetConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ConnectionProfile {
@@ -601,9 +601,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``createConnectionProfile(request:)``
+  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   /// - ``createConnectionProfilePollingUntilDone(request:)``
   /// - ``createConnectionProfilePollingUntilDone(request:options:)``
-  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   public func createConnectionProfile(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -616,10 +616,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createConnectionProfilePollingUntilDone(request:)``
-  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
   /// - ``createConnectionProfile(request:)``
   /// - ``createConnectionProfile(request:options:)``
+  /// - ``createConnectionProfilePollingUntilDone(parent:connectionProfile:connectionProfileId:)``
+  /// - ``createConnectionProfilePollingUntilDone(request:)``
   public func createConnectionProfilePollingUntilDone(
     request: CreateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionProfile {
@@ -652,9 +652,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``updateConnectionProfile(request:)``
+  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   /// - ``updateConnectionProfilePollingUntilDone(request:)``
   /// - ``updateConnectionProfilePollingUntilDone(request:options:)``
-  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   public func updateConnectionProfile(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -667,10 +667,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateConnectionProfilePollingUntilDone(request:)``
-  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
   /// - ``updateConnectionProfile(request:)``
   /// - ``updateConnectionProfile(request:options:)``
+  /// - ``updateConnectionProfilePollingUntilDone(connectionProfile:updateMask:)``
+  /// - ``updateConnectionProfilePollingUntilDone(request:)``
   public func updateConnectionProfilePollingUntilDone(
     request: UpdateConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectionProfile {
@@ -705,9 +705,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``deleteConnectionProfile(request:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   /// - ``deleteConnectionProfilePollingUntilDone(request:)``
   /// - ``deleteConnectionProfilePollingUntilDone(request:options:)``
-  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   public func deleteConnectionProfile(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -722,10 +722,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectionProfilePollingUntilDone(request:)``
-  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
   /// - ``deleteConnectionProfile(request:)``
   /// - ``deleteConnectionProfile(request:options:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(name:)``
+  /// - ``deleteConnectionProfilePollingUntilDone(request:)``
   public func deleteConnectionProfilePollingUntilDone(
     request: DeleteConnectionProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -757,9 +757,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``createPrivateConnection(request:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   /// - ``createPrivateConnectionPollingUntilDone(request:)``
   /// - ``createPrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   public func createPrivateConnection(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -772,10 +772,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createPrivateConnectionPollingUntilDone(request:)``
-  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
   /// - ``createPrivateConnection(request:)``
   /// - ``createPrivateConnection(request:options:)``
+  /// - ``createPrivateConnectionPollingUntilDone(parent:privateConnection:privateConnectionId:)``
+  /// - ``createPrivateConnectionPollingUntilDone(request:)``
   public func createPrivateConnectionPollingUntilDone(
     request: CreatePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> PrivateConnection {
@@ -807,8 +807,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getPrivateConnection(request:)``
   /// - ``getPrivateConnection(name:)``
+  /// - ``getPrivateConnection(request:)``
   public func getPrivateConnection(
     request: GetPrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.PrivateConnection {
@@ -822,9 +822,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``listPrivateConnections(request:)``
+  /// - ``listPrivateConnectionsByItems(parent:)``
   /// - ``listPrivateConnectionsByItems(request:)``
   /// - ``listPrivateConnectionsByItems(request:options:)``
-  /// - ``listPrivateConnectionsByItems(parent:)``
   public func listPrivateConnections(
     request: ListPrivateConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListPrivateConnectionsResponse {
@@ -838,9 +838,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``deletePrivateConnection(request:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   /// - ``deletePrivateConnectionPollingUntilDone(request:)``
   /// - ``deletePrivateConnectionPollingUntilDone(request:options:)``
-  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   public func deletePrivateConnection(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -853,10 +853,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
-  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
   /// - ``deletePrivateConnection(request:)``
   /// - ``deletePrivateConnection(request:options:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(name:)``
+  /// - ``deletePrivateConnectionPollingUntilDone(request:)``
   public func deletePrivateConnectionPollingUntilDone(
     request: DeletePrivateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -887,8 +887,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getConversionWorkspace(request:)``
   /// - ``getConversionWorkspace(name:)``
+  /// - ``getConversionWorkspace(request:)``
   public func getConversionWorkspace(
     request: GetConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ConversionWorkspace {
@@ -902,9 +902,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``listConversionWorkspaces(request:)``
+  /// - ``listConversionWorkspacesByItems(parent:)``
   /// - ``listConversionWorkspacesByItems(request:)``
   /// - ``listConversionWorkspacesByItems(request:options:)``
-  /// - ``listConversionWorkspacesByItems(parent:)``
   public func listConversionWorkspaces(
     request: ListConversionWorkspacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListConversionWorkspacesResponse {
@@ -918,9 +918,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``createConversionWorkspace(request:)``
+  /// - ``createConversionWorkspacePollingUntilDone(parent:conversionWorkspace:conversionWorkspaceId:)``
   /// - ``createConversionWorkspacePollingUntilDone(request:)``
   /// - ``createConversionWorkspacePollingUntilDone(request:options:)``
-  /// - ``createConversionWorkspacePollingUntilDone(parent:conversionWorkspace:conversionWorkspaceId:)``
   public func createConversionWorkspace(
     request: CreateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -933,10 +933,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createConversionWorkspacePollingUntilDone(request:)``
-  /// - ``createConversionWorkspacePollingUntilDone(parent:conversionWorkspace:conversionWorkspaceId:)``
   /// - ``createConversionWorkspace(request:)``
   /// - ``createConversionWorkspace(request:options:)``
+  /// - ``createConversionWorkspacePollingUntilDone(parent:conversionWorkspace:conversionWorkspaceId:)``
+  /// - ``createConversionWorkspacePollingUntilDone(request:)``
   public func createConversionWorkspacePollingUntilDone(
     request: CreateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -969,9 +969,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``updateConversionWorkspace(request:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(conversionWorkspace:updateMask:)``
   /// - ``updateConversionWorkspacePollingUntilDone(request:)``
   /// - ``updateConversionWorkspacePollingUntilDone(request:options:)``
-  /// - ``updateConversionWorkspacePollingUntilDone(conversionWorkspace:updateMask:)``
   public func updateConversionWorkspace(
     request: UpdateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -984,10 +984,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateConversionWorkspacePollingUntilDone(request:)``
-  /// - ``updateConversionWorkspacePollingUntilDone(conversionWorkspace:updateMask:)``
   /// - ``updateConversionWorkspace(request:)``
   /// - ``updateConversionWorkspace(request:options:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(conversionWorkspace:updateMask:)``
+  /// - ``updateConversionWorkspacePollingUntilDone(request:)``
   public func updateConversionWorkspacePollingUntilDone(
     request: UpdateConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1020,9 +1020,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``deleteConversionWorkspace(request:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(name:)``
   /// - ``deleteConversionWorkspacePollingUntilDone(request:)``
   /// - ``deleteConversionWorkspacePollingUntilDone(request:options:)``
-  /// - ``deleteConversionWorkspacePollingUntilDone(name:)``
   public func deleteConversionWorkspace(
     request: DeleteConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1035,10 +1035,10 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteConversionWorkspacePollingUntilDone(request:)``
-  /// - ``deleteConversionWorkspacePollingUntilDone(name:)``
   /// - ``deleteConversionWorkspace(request:)``
   /// - ``deleteConversionWorkspace(request:options:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(name:)``
+  /// - ``deleteConversionWorkspacePollingUntilDone(request:)``
   public func deleteConversionWorkspacePollingUntilDone(
     request: DeleteConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1069,8 +1069,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createMappingRule(request:)``
   /// - ``createMappingRule(parent:mappingRule:mappingRuleId:)``
+  /// - ``createMappingRule(request:)``
   public func createMappingRule(
     request: CreateMappingRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.MappingRule {
@@ -1083,8 +1083,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteMappingRule(request:)``
   /// - ``deleteMappingRule(name:)``
+  /// - ``deleteMappingRule(request:)``
   public func deleteMappingRule(
     request: DeleteMappingRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1098,9 +1098,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``listMappingRules(request:)``
+  /// - ``listMappingRulesByItems(parent:)``
   /// - ``listMappingRulesByItems(request:)``
   /// - ``listMappingRulesByItems(request:options:)``
-  /// - ``listMappingRulesByItems(parent:)``
   public func listMappingRules(
     request: ListMappingRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.ListMappingRulesResponse {
@@ -1113,8 +1113,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getMappingRule(request:)``
   /// - ``getMappingRule(name:)``
+  /// - ``getMappingRule(request:)``
   public func getMappingRule(
     request: GetMappingRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.MappingRule {
@@ -1144,9 +1144,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``seedConversionWorkspacePollingUntilDone(request:)``
   /// - ``seedConversionWorkspace(request:)``
   /// - ``seedConversionWorkspace(request:options:)``
+  /// - ``seedConversionWorkspacePollingUntilDone(request:)``
   public func seedConversionWorkspacePollingUntilDone(
     request: SeedConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1195,9 +1195,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``importMappingRulesPollingUntilDone(request:)``
   /// - ``importMappingRules(request:)``
   /// - ``importMappingRules(request:options:)``
+  /// - ``importMappingRulesPollingUntilDone(request:)``
   public func importMappingRulesPollingUntilDone(
     request: ImportMappingRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1244,9 +1244,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``convertConversionWorkspacePollingUntilDone(request:)``
   /// - ``convertConversionWorkspace(request:)``
   /// - ``convertConversionWorkspace(request:options:)``
+  /// - ``convertConversionWorkspacePollingUntilDone(request:)``
   public func convertConversionWorkspacePollingUntilDone(
     request: ConvertConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1293,9 +1293,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``commitConversionWorkspacePollingUntilDone(request:)``
   /// - ``commitConversionWorkspace(request:)``
   /// - ``commitConversionWorkspace(request:options:)``
+  /// - ``commitConversionWorkspacePollingUntilDone(request:)``
   public func commitConversionWorkspacePollingUntilDone(
     request: CommitConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1342,9 +1342,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``rollbackConversionWorkspacePollingUntilDone(request:)``
   /// - ``rollbackConversionWorkspace(request:)``
   /// - ``rollbackConversionWorkspace(request:options:)``
+  /// - ``rollbackConversionWorkspacePollingUntilDone(request:)``
   public func rollbackConversionWorkspacePollingUntilDone(
     request: RollbackConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1391,9 +1391,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``applyConversionWorkspacePollingUntilDone(request:)``
   /// - ``applyConversionWorkspace(request:)``
   /// - ``applyConversionWorkspace(request:options:)``
+  /// - ``applyConversionWorkspacePollingUntilDone(request:)``
   public func applyConversionWorkspacePollingUntilDone(
     request: ApplyConversionWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConversionWorkspace {
@@ -1478,8 +1478,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``fetchStaticIps(request:)``
   /// - ``fetchStaticIps(name:)``
+  /// - ``fetchStaticIps(request:)``
   public func fetchStaticIps(
     request: FetchStaticIpsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDMSV1.FetchStaticIpsResponse {
@@ -1573,9 +1573,9 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1601,8 +1601,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1617,8 +1617,8 @@ public final class DataMigrationServiceClient: Clients.DataMigrationServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -51,8 +51,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:zone:reservation:reservationBlock:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ReservationBlocksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationBlocksGetResponse {
@@ -66,8 +66,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIamPolicy(request:)``
     /// - ``getIamPolicy(project:zone:parentResource:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: ReservationBlocksClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -81,9 +81,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:zone:reservation:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:zone:reservation:)``
     public func list(
       request: ReservationBlocksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationBlocksListResponse {
@@ -97,9 +97,9 @@
     /// ## See Also
     ///
     /// - ``performMaintenance(request:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:reservation:reservationBlock:body:)``
     /// - ``performMaintenancePollingUntilDone(request:)``
     /// - ``performMaintenancePollingUntilDone(request:options:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:reservation:reservationBlock:body:)``
     public func performMaintenance(
       request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -117,10 +117,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``performMaintenancePollingUntilDone(request:)``
-    /// - ``performMaintenancePollingUntilDone(project:zone:reservation:reservationBlock:body:)``
     /// - ``performMaintenance(request:)``
     /// - ``performMaintenance(request:options:)``
+    /// - ``performMaintenancePollingUntilDone(project:zone:reservation:reservationBlock:body:)``
+    /// - ``performMaintenancePollingUntilDone(request:)``
     public func performMaintenancePollingUntilDone(
       request: ReservationBlocksClient.PerformMaintenanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -167,8 +167,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``setIamPolicy(request:)``
     /// - ``setIamPolicy(project:zone:parentResource:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: ReservationBlocksClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -181,8 +181,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``testIamPermissions(request:)``
     /// - ``testIamPermissions(project:zone:parentResource:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: ReservationBlocksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {

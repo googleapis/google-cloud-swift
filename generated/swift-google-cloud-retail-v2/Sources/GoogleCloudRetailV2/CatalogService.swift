@@ -52,9 +52,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listCatalogs(request:)``
+  /// - ``listCatalogsByItems(parent:)``
   /// - ``listCatalogsByItems(request:)``
   /// - ``listCatalogsByItems(request:options:)``
-  /// - ``listCatalogsByItems(parent:)``
   public func listCatalogs(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListCatalogsResponse {
@@ -69,8 +69,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateCatalog(request:)``
   /// - ``updateCatalog(catalog:updateMask:)``
+  /// - ``updateCatalog(request:)``
   public func updateCatalog(
     request: UpdateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.Catalog {
@@ -121,8 +121,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setDefaultBranch(request:)``
   /// - ``setDefaultBranch(catalog:)``
+  /// - ``setDefaultBranch(request:)``
   public func setDefaultBranch(
     request: SetDefaultBranchRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -139,8 +139,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getDefaultBranch(request:)``
   /// - ``getDefaultBranch(catalog:)``
+  /// - ``getDefaultBranch(request:)``
   public func getDefaultBranch(
     request: GetDefaultBranchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.GetDefaultBranchResponse {
@@ -155,8 +155,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getCompletionConfig(request:)``
   /// - ``getCompletionConfig(name:)``
+  /// - ``getCompletionConfig(request:)``
   public func getCompletionConfig(
     request: GetCompletionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -171,8 +171,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateCompletionConfig(request:)``
   /// - ``updateCompletionConfig(completionConfig:updateMask:)``
+  /// - ``updateCompletionConfig(request:)``
   public func updateCompletionConfig(
     request: UpdateCompletionConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.CompletionConfig {
@@ -187,8 +187,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getAttributesConfig(request:)``
   /// - ``getAttributesConfig(name:)``
+  /// - ``getAttributesConfig(request:)``
   public func getAttributesConfig(
     request: GetAttributesConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -210,8 +210,8 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateAttributesConfig(request:)``
   /// - ``updateAttributesConfig(attributesConfig:updateMask:)``
+  /// - ``updateAttributesConfig(request:)``
   public func updateAttributesConfig(
     request: UpdateAttributesConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.AttributesConfig {
@@ -293,9 +293,9 @@ public final class CatalogServiceClient: Clients.CatalogServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

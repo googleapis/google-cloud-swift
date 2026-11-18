@@ -74,9 +74,9 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// ## See Also
   ///
   /// - ``listAppConnections(request:)``
+  /// - ``listAppConnectionsByItems(parent:)``
   /// - ``listAppConnectionsByItems(request:)``
   /// - ``listAppConnectionsByItems(request:options:)``
-  /// - ``listAppConnectionsByItems(parent:)``
   @available(*, deprecated)
   public func listAppConnections(
     request: ListAppConnectionsRequest, options: GoogleGax.RequestOptions
@@ -90,8 +90,8 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getAppConnection(request:)``
   /// - ``getAppConnection(name:)``
+  /// - ``getAppConnection(request:)``
   @available(*, deprecated)
   public func getAppConnection(
     request: GetAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -106,9 +106,9 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// ## See Also
   ///
   /// - ``createAppConnection(request:)``
+  /// - ``createAppConnectionPollingUntilDone(parent:appConnection:appConnectionId:)``
   /// - ``createAppConnectionPollingUntilDone(request:)``
   /// - ``createAppConnectionPollingUntilDone(request:options:)``
-  /// - ``createAppConnectionPollingUntilDone(parent:appConnection:appConnectionId:)``
   @available(*, deprecated)
   public func createAppConnection(
     request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -122,10 +122,10 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createAppConnectionPollingUntilDone(request:)``
-  /// - ``createAppConnectionPollingUntilDone(parent:appConnection:appConnectionId:)``
   /// - ``createAppConnection(request:)``
   /// - ``createAppConnection(request:options:)``
+  /// - ``createAppConnectionPollingUntilDone(parent:appConnection:appConnectionId:)``
+  /// - ``createAppConnectionPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAppConnectionPollingUntilDone(
     request: CreateAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -159,9 +159,9 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// ## See Also
   ///
   /// - ``updateAppConnection(request:)``
+  /// - ``updateAppConnectionPollingUntilDone(appConnection:updateMask:)``
   /// - ``updateAppConnectionPollingUntilDone(request:)``
   /// - ``updateAppConnectionPollingUntilDone(request:options:)``
-  /// - ``updateAppConnectionPollingUntilDone(appConnection:updateMask:)``
   @available(*, deprecated)
   public func updateAppConnection(
     request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -175,10 +175,10 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   ///
   /// ## See Also
   ///
-  /// - ``updateAppConnectionPollingUntilDone(request:)``
-  /// - ``updateAppConnectionPollingUntilDone(appConnection:updateMask:)``
   /// - ``updateAppConnection(request:)``
   /// - ``updateAppConnection(request:options:)``
+  /// - ``updateAppConnectionPollingUntilDone(appConnection:updateMask:)``
+  /// - ``updateAppConnectionPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAppConnectionPollingUntilDone(
     request: UpdateAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -212,9 +212,9 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// ## See Also
   ///
   /// - ``deleteAppConnection(request:)``
+  /// - ``deleteAppConnectionPollingUntilDone(name:)``
   /// - ``deleteAppConnectionPollingUntilDone(request:)``
   /// - ``deleteAppConnectionPollingUntilDone(request:options:)``
-  /// - ``deleteAppConnectionPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAppConnection(
     request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -228,10 +228,10 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteAppConnectionPollingUntilDone(request:)``
-  /// - ``deleteAppConnectionPollingUntilDone(name:)``
   /// - ``deleteAppConnection(request:)``
   /// - ``deleteAppConnection(request:options:)``
+  /// - ``deleteAppConnectionPollingUntilDone(name:)``
+  /// - ``deleteAppConnectionPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAppConnectionPollingUntilDone(
     request: DeleteAppConnectionRequest, options: GoogleGax.RequestOptions
@@ -266,9 +266,9 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// ## See Also
   ///
   /// - ``resolveAppConnections(request:)``
+  /// - ``resolveAppConnectionsByItems(parent:)``
   /// - ``resolveAppConnectionsByItems(request:)``
   /// - ``resolveAppConnectionsByItems(request:options:)``
-  /// - ``resolveAppConnectionsByItems(parent:)``
   @available(*, deprecated)
   public func resolveAppConnections(
     request: ResolveAppConnectionsRequest, options: GoogleGax.RequestOptions
@@ -380,9 +380,9 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -408,8 +408,8 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -424,8 +424,8 @@ public final class AppConnectionsServiceClient: Clients.AppConnectionsServicePro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

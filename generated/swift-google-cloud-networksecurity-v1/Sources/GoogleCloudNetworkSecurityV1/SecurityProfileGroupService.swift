@@ -59,9 +59,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``listSecurityProfileGroups(request:)``
+  /// - ``listSecurityProfileGroupsByItems(parent:)``
   /// - ``listSecurityProfileGroupsByItems(request:)``
   /// - ``listSecurityProfileGroupsByItems(request:options:)``
-  /// - ``listSecurityProfileGroupsByItems(parent:)``
   public func listSecurityProfileGroups(
     request: ListSecurityProfileGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListSecurityProfileGroupsResponse {
@@ -74,8 +74,8 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``getSecurityProfileGroup(request:)``
   /// - ``getSecurityProfileGroup(name:)``
+  /// - ``getSecurityProfileGroup(request:)``
   public func getSecurityProfileGroup(
     request: GetSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.SecurityProfileGroup {
@@ -89,9 +89,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``createSecurityProfileGroup(request:)``
+  /// - ``createSecurityProfileGroupPollingUntilDone(parent:securityProfileGroup:securityProfileGroupId:)``
   /// - ``createSecurityProfileGroupPollingUntilDone(request:)``
   /// - ``createSecurityProfileGroupPollingUntilDone(request:options:)``
-  /// - ``createSecurityProfileGroupPollingUntilDone(parent:securityProfileGroup:securityProfileGroupId:)``
   public func createSecurityProfileGroup(
     request: CreateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -104,10 +104,10 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``createSecurityProfileGroupPollingUntilDone(request:)``
-  /// - ``createSecurityProfileGroupPollingUntilDone(parent:securityProfileGroup:securityProfileGroupId:)``
   /// - ``createSecurityProfileGroup(request:)``
   /// - ``createSecurityProfileGroup(request:options:)``
+  /// - ``createSecurityProfileGroupPollingUntilDone(parent:securityProfileGroup:securityProfileGroupId:)``
+  /// - ``createSecurityProfileGroupPollingUntilDone(request:)``
   public func createSecurityProfileGroupPollingUntilDone(
     request: CreateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> SecurityProfileGroup {
@@ -155,10 +155,10 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``updateSecurityProfileGroupPollingUntilDone(request:)``
-  /// - ``updateSecurityProfileGroupPollingUntilDone(securityProfileGroup:updateMask:)``
   /// - ``updateSecurityProfileGroup(request:)``
   /// - ``updateSecurityProfileGroup(request:options:)``
+  /// - ``updateSecurityProfileGroupPollingUntilDone(request:)``
+  /// - ``updateSecurityProfileGroupPollingUntilDone(securityProfileGroup:updateMask:)``
   public func updateSecurityProfileGroupPollingUntilDone(
     request: UpdateSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> SecurityProfileGroup {
@@ -191,9 +191,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``deleteSecurityProfileGroup(request:)``
+  /// - ``deleteSecurityProfileGroupPollingUntilDone(name:)``
   /// - ``deleteSecurityProfileGroupPollingUntilDone(request:)``
   /// - ``deleteSecurityProfileGroupPollingUntilDone(request:options:)``
-  /// - ``deleteSecurityProfileGroupPollingUntilDone(name:)``
   public func deleteSecurityProfileGroup(
     request: DeleteSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -206,10 +206,10 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSecurityProfileGroupPollingUntilDone(request:)``
-  /// - ``deleteSecurityProfileGroupPollingUntilDone(name:)``
   /// - ``deleteSecurityProfileGroup(request:)``
   /// - ``deleteSecurityProfileGroup(request:options:)``
+  /// - ``deleteSecurityProfileGroupPollingUntilDone(name:)``
+  /// - ``deleteSecurityProfileGroupPollingUntilDone(request:)``
   public func deleteSecurityProfileGroupPollingUntilDone(
     request: DeleteSecurityProfileGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -241,9 +241,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``listSecurityProfiles(request:)``
+  /// - ``listSecurityProfilesByItems(parent:)``
   /// - ``listSecurityProfilesByItems(request:)``
   /// - ``listSecurityProfilesByItems(request:options:)``
-  /// - ``listSecurityProfilesByItems(parent:)``
   public func listSecurityProfiles(
     request: ListSecurityProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListSecurityProfilesResponse {
@@ -256,8 +256,8 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``getSecurityProfile(request:)``
   /// - ``getSecurityProfile(name:)``
+  /// - ``getSecurityProfile(request:)``
   public func getSecurityProfile(
     request: GetSecurityProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.SecurityProfile {
@@ -271,9 +271,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``createSecurityProfile(request:)``
+  /// - ``createSecurityProfilePollingUntilDone(parent:securityProfile:securityProfileId:)``
   /// - ``createSecurityProfilePollingUntilDone(request:)``
   /// - ``createSecurityProfilePollingUntilDone(request:options:)``
-  /// - ``createSecurityProfilePollingUntilDone(parent:securityProfile:securityProfileId:)``
   public func createSecurityProfile(
     request: CreateSecurityProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -286,10 +286,10 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``createSecurityProfilePollingUntilDone(request:)``
-  /// - ``createSecurityProfilePollingUntilDone(parent:securityProfile:securityProfileId:)``
   /// - ``createSecurityProfile(request:)``
   /// - ``createSecurityProfile(request:options:)``
+  /// - ``createSecurityProfilePollingUntilDone(parent:securityProfile:securityProfileId:)``
+  /// - ``createSecurityProfilePollingUntilDone(request:)``
   public func createSecurityProfilePollingUntilDone(
     request: CreateSecurityProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> SecurityProfile {
@@ -337,10 +337,10 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``updateSecurityProfilePollingUntilDone(request:)``
-  /// - ``updateSecurityProfilePollingUntilDone(securityProfile:updateMask:)``
   /// - ``updateSecurityProfile(request:)``
   /// - ``updateSecurityProfile(request:options:)``
+  /// - ``updateSecurityProfilePollingUntilDone(request:)``
+  /// - ``updateSecurityProfilePollingUntilDone(securityProfile:updateMask:)``
   public func updateSecurityProfilePollingUntilDone(
     request: UpdateSecurityProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> SecurityProfile {
@@ -373,9 +373,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``deleteSecurityProfile(request:)``
+  /// - ``deleteSecurityProfilePollingUntilDone(name:)``
   /// - ``deleteSecurityProfilePollingUntilDone(request:)``
   /// - ``deleteSecurityProfilePollingUntilDone(request:options:)``
-  /// - ``deleteSecurityProfilePollingUntilDone(name:)``
   public func deleteSecurityProfile(
     request: DeleteSecurityProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -388,10 +388,10 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSecurityProfilePollingUntilDone(request:)``
-  /// - ``deleteSecurityProfilePollingUntilDone(name:)``
   /// - ``deleteSecurityProfile(request:)``
   /// - ``deleteSecurityProfile(request:options:)``
+  /// - ``deleteSecurityProfilePollingUntilDone(name:)``
+  /// - ``deleteSecurityProfilePollingUntilDone(request:)``
   public func deleteSecurityProfilePollingUntilDone(
     request: DeleteSecurityProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -520,9 +520,9 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -548,8 +548,8 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -564,8 +564,8 @@ public final class SecurityProfileGroupServiceClient: Clients.SecurityProfileGro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

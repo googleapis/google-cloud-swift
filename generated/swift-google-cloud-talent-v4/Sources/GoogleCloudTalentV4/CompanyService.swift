@@ -48,8 +48,8 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createCompany(request:)``
   /// - ``createCompany(parent:company:)``
+  /// - ``createCompany(request:)``
   public func createCompany(
     request: CreateCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -62,8 +62,8 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getCompany(request:)``
   /// - ``getCompany(name:)``
+  /// - ``getCompany(request:)``
   public func getCompany(
     request: GetCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -76,8 +76,8 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateCompany(request:)``
   /// - ``updateCompany(company:updateMask:)``
+  /// - ``updateCompany(request:)``
   public func updateCompany(
     request: UpdateCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -91,8 +91,8 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteCompany(request:)``
   /// - ``deleteCompany(name:)``
+  /// - ``deleteCompany(request:)``
   public func deleteCompany(
     request: DeleteCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -106,9 +106,9 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listCompanies(request:)``
+  /// - ``listCompaniesByItems(parent:)``
   /// - ``listCompaniesByItems(request:)``
   /// - ``listCompaniesByItems(request:options:)``
-  /// - ``listCompaniesByItems(parent:)``
   public func listCompanies(
     request: ListCompaniesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ListCompaniesResponse {

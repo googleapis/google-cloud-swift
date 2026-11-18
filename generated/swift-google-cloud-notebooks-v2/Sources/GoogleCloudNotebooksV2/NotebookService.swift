@@ -55,9 +55,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNotebooksV2.ListInstancesResponse {
@@ -70,8 +70,8 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNotebooksV2.Instance {
@@ -85,9 +85,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -135,9 +135,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -185,9 +185,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -249,9 +249,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``startInstancePollingUntilDone(request:)``
   /// - ``startInstance(request:)``
   /// - ``startInstance(request:options:)``
+  /// - ``startInstancePollingUntilDone(request:)``
   public func startInstancePollingUntilDone(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -297,9 +297,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``stopInstancePollingUntilDone(request:)``
   /// - ``stopInstance(request:)``
   /// - ``stopInstance(request:options:)``
+  /// - ``stopInstancePollingUntilDone(request:)``
   public func stopInstancePollingUntilDone(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -345,9 +345,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``resetInstancePollingUntilDone(request:)``
   /// - ``resetInstance(request:)``
   /// - ``resetInstance(request:options:)``
+  /// - ``resetInstancePollingUntilDone(request:)``
   public func resetInstancePollingUntilDone(
     request: ResetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -406,9 +406,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``upgradeInstancePollingUntilDone(request:)``
   /// - ``upgradeInstance(request:)``
   /// - ``upgradeInstance(request:options:)``
+  /// - ``upgradeInstancePollingUntilDone(request:)``
   public func upgradeInstancePollingUntilDone(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -454,9 +454,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``rollbackInstancePollingUntilDone(request:)``
   /// - ``rollbackInstance(request:)``
   /// - ``rollbackInstance(request:options:)``
+  /// - ``rollbackInstancePollingUntilDone(request:)``
   public func rollbackInstancePollingUntilDone(
     request: RollbackInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -488,9 +488,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``diagnoseInstance(request:)``
+  /// - ``diagnoseInstancePollingUntilDone(name:diagnosticConfig:)``
   /// - ``diagnoseInstancePollingUntilDone(request:)``
   /// - ``diagnoseInstancePollingUntilDone(request:options:)``
-  /// - ``diagnoseInstancePollingUntilDone(name:diagnosticConfig:)``
   public func diagnoseInstance(
     request: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -503,10 +503,10 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``diagnoseInstancePollingUntilDone(request:)``
-  /// - ``diagnoseInstancePollingUntilDone(name:diagnosticConfig:)``
   /// - ``diagnoseInstance(request:)``
   /// - ``diagnoseInstance(request:options:)``
+  /// - ``diagnoseInstancePollingUntilDone(name:diagnosticConfig:)``
+  /// - ``diagnoseInstancePollingUntilDone(request:)``
   public func diagnoseInstancePollingUntilDone(
     request: DiagnoseInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -618,9 +618,9 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -646,8 +646,8 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -662,8 +662,8 @@ public final class NotebookServiceClient: Clients.NotebookServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

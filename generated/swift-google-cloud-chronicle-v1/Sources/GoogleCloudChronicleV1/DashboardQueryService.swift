@@ -48,8 +48,8 @@ public final class DashboardQueryServiceClient: Clients.DashboardQueryServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getDashboardQuery(request:)``
   /// - ``getDashboardQuery(name:)``
+  /// - ``getDashboardQuery(request:)``
   public func getDashboardQuery(
     request: GetDashboardQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DashboardQuery {
@@ -62,8 +62,8 @@ public final class DashboardQueryServiceClient: Clients.DashboardQueryServicePro
   ///
   /// ## See Also
   ///
-  /// - ``executeDashboardQuery(request:)``
   /// - ``executeDashboardQuery(parent:query:)``
+  /// - ``executeDashboardQuery(request:)``
   public func executeDashboardQuery(
     request: ExecuteDashboardQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ExecuteDashboardQueryResponse {
@@ -79,9 +79,9 @@ public final class DashboardQueryServiceClient: Clients.DashboardQueryServicePro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -107,8 +107,8 @@ public final class DashboardQueryServiceClient: Clients.DashboardQueryServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -123,8 +123,8 @@ public final class DashboardQueryServiceClient: Clients.DashboardQueryServicePro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -55,8 +55,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTrigger(request:)``
   /// - ``getTrigger(name:)``
+  /// - ``getTrigger(request:)``
   public func getTrigger(
     request: GetTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Trigger {
@@ -70,9 +70,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTriggers(request:)``
+  /// - ``listTriggersByItems(parent:)``
   /// - ``listTriggersByItems(request:)``
   /// - ``listTriggersByItems(request:options:)``
-  /// - ``listTriggersByItems(parent:)``
   public func listTriggers(
     request: ListTriggersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListTriggersResponse {
@@ -86,9 +86,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createTrigger(request:)``
+  /// - ``createTriggerPollingUntilDone(parent:trigger:triggerId:)``
   /// - ``createTriggerPollingUntilDone(request:)``
   /// - ``createTriggerPollingUntilDone(request:options:)``
-  /// - ``createTriggerPollingUntilDone(parent:trigger:triggerId:)``
   public func createTrigger(
     request: CreateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,10 +101,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTriggerPollingUntilDone(request:)``
-  /// - ``createTriggerPollingUntilDone(parent:trigger:triggerId:)``
   /// - ``createTrigger(request:)``
   /// - ``createTrigger(request:options:)``
+  /// - ``createTriggerPollingUntilDone(parent:trigger:triggerId:)``
+  /// - ``createTriggerPollingUntilDone(request:)``
   public func createTriggerPollingUntilDone(
     request: CreateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Trigger {
@@ -151,10 +151,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateTriggerPollingUntilDone(request:)``
-  /// - ``updateTriggerPollingUntilDone(trigger:updateMask:allowMissing:)``
   /// - ``updateTrigger(request:)``
   /// - ``updateTrigger(request:options:)``
+  /// - ``updateTriggerPollingUntilDone(request:)``
+  /// - ``updateTriggerPollingUntilDone(trigger:updateMask:allowMissing:)``
   public func updateTriggerPollingUntilDone(
     request: UpdateTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Trigger {
@@ -186,9 +186,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTrigger(request:)``
+  /// - ``deleteTriggerPollingUntilDone(name:allowMissing:)``
   /// - ``deleteTriggerPollingUntilDone(request:)``
   /// - ``deleteTriggerPollingUntilDone(request:options:)``
-  /// - ``deleteTriggerPollingUntilDone(name:allowMissing:)``
   public func deleteTrigger(
     request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTriggerPollingUntilDone(request:)``
-  /// - ``deleteTriggerPollingUntilDone(name:allowMissing:)``
   /// - ``deleteTrigger(request:)``
   /// - ``deleteTrigger(request:options:)``
+  /// - ``deleteTriggerPollingUntilDone(name:allowMissing:)``
+  /// - ``deleteTriggerPollingUntilDone(request:)``
   public func deleteTriggerPollingUntilDone(
     request: DeleteTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Trigger {
@@ -235,8 +235,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getChannel(request:)``
   /// - ``getChannel(name:)``
+  /// - ``getChannel(request:)``
   public func getChannel(
     request: GetChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Channel {
@@ -250,9 +250,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listChannels(request:)``
+  /// - ``listChannelsByItems(parent:)``
   /// - ``listChannelsByItems(request:)``
   /// - ``listChannelsByItems(request:options:)``
-  /// - ``listChannelsByItems(parent:)``
   public func listChannels(
     request: ListChannelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListChannelsResponse {
@@ -266,9 +266,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createChannel(request:)``
+  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   /// - ``createChannelPollingUntilDone(request:)``
   /// - ``createChannelPollingUntilDone(request:options:)``
-  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   public func createChannel(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -281,10 +281,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createChannelPollingUntilDone(request:)``
-  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
   /// - ``createChannel(request:)``
   /// - ``createChannel(request:options:)``
+  /// - ``createChannelPollingUntilDone(parent:channel:channelId:)``
+  /// - ``createChannelPollingUntilDone(request:)``
   public func createChannelPollingUntilDone(
     request: CreateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -316,9 +316,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateChannel(request:)``
+  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   /// - ``updateChannelPollingUntilDone(request:)``
   /// - ``updateChannelPollingUntilDone(request:options:)``
-  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   public func updateChannel(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -331,10 +331,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateChannelPollingUntilDone(request:)``
-  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
   /// - ``updateChannel(request:)``
   /// - ``updateChannel(request:options:)``
+  /// - ``updateChannelPollingUntilDone(channel:updateMask:)``
+  /// - ``updateChannelPollingUntilDone(request:)``
   public func updateChannelPollingUntilDone(
     request: UpdateChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -366,9 +366,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteChannel(request:)``
+  /// - ``deleteChannelPollingUntilDone(name:)``
   /// - ``deleteChannelPollingUntilDone(request:)``
   /// - ``deleteChannelPollingUntilDone(request:options:)``
-  /// - ``deleteChannelPollingUntilDone(name:)``
   public func deleteChannel(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -381,10 +381,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteChannelPollingUntilDone(request:)``
-  /// - ``deleteChannelPollingUntilDone(name:)``
   /// - ``deleteChannel(request:)``
   /// - ``deleteChannel(request:options:)``
+  /// - ``deleteChannelPollingUntilDone(name:)``
+  /// - ``deleteChannelPollingUntilDone(request:)``
   public func deleteChannelPollingUntilDone(
     request: DeleteChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Channel {
@@ -415,8 +415,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProvider(request:)``
   /// - ``getProvider(name:)``
+  /// - ``getProvider(request:)``
   public func getProvider(
     request: GetProviderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Provider {
@@ -430,9 +430,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProviders(request:)``
+  /// - ``listProvidersByItems(parent:)``
   /// - ``listProvidersByItems(request:)``
   /// - ``listProvidersByItems(request:options:)``
-  /// - ``listProvidersByItems(parent:)``
   public func listProviders(
     request: ListProvidersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListProvidersResponse {
@@ -445,8 +445,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getChannelConnection(request:)``
   /// - ``getChannelConnection(name:)``
+  /// - ``getChannelConnection(request:)``
   public func getChannelConnection(
     request: GetChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ChannelConnection {
@@ -460,9 +460,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listChannelConnections(request:)``
+  /// - ``listChannelConnectionsByItems(parent:)``
   /// - ``listChannelConnectionsByItems(request:)``
   /// - ``listChannelConnectionsByItems(request:options:)``
-  /// - ``listChannelConnectionsByItems(parent:)``
   public func listChannelConnections(
     request: ListChannelConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListChannelConnectionsResponse {
@@ -476,9 +476,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createChannelConnection(request:)``
+  /// - ``createChannelConnectionPollingUntilDone(parent:channelConnection:channelConnectionId:)``
   /// - ``createChannelConnectionPollingUntilDone(request:)``
   /// - ``createChannelConnectionPollingUntilDone(request:options:)``
-  /// - ``createChannelConnectionPollingUntilDone(parent:channelConnection:channelConnectionId:)``
   public func createChannelConnection(
     request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -491,10 +491,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createChannelConnectionPollingUntilDone(request:)``
-  /// - ``createChannelConnectionPollingUntilDone(parent:channelConnection:channelConnectionId:)``
   /// - ``createChannelConnection(request:)``
   /// - ``createChannelConnection(request:options:)``
+  /// - ``createChannelConnectionPollingUntilDone(parent:channelConnection:channelConnectionId:)``
+  /// - ``createChannelConnectionPollingUntilDone(request:)``
   public func createChannelConnectionPollingUntilDone(
     request: CreateChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelConnection {
@@ -527,9 +527,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteChannelConnection(request:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(name:)``
   /// - ``deleteChannelConnectionPollingUntilDone(request:)``
   /// - ``deleteChannelConnectionPollingUntilDone(request:options:)``
-  /// - ``deleteChannelConnectionPollingUntilDone(name:)``
   public func deleteChannelConnection(
     request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -542,10 +542,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteChannelConnectionPollingUntilDone(request:)``
-  /// - ``deleteChannelConnectionPollingUntilDone(name:)``
   /// - ``deleteChannelConnection(request:)``
   /// - ``deleteChannelConnection(request:options:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(name:)``
+  /// - ``deleteChannelConnectionPollingUntilDone(request:)``
   public func deleteChannelConnectionPollingUntilDone(
     request: DeleteChannelConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChannelConnection {
@@ -579,8 +579,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getGoogleChannelConfig(request:)``
   /// - ``getGoogleChannelConfig(name:)``
+  /// - ``getGoogleChannelConfig(request:)``
   public func getGoogleChannelConfig(
     request: GetGoogleChannelConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig {
@@ -593,8 +593,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateGoogleChannelConfig(request:)``
   /// - ``updateGoogleChannelConfig(googleChannelConfig:updateMask:)``
+  /// - ``updateGoogleChannelConfig(request:)``
   public func updateGoogleChannelConfig(
     request: UpdateGoogleChannelConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.GoogleChannelConfig {
@@ -607,8 +607,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getMessageBus(request:)``
   /// - ``getMessageBus(name:)``
+  /// - ``getMessageBus(request:)``
   public func getMessageBus(
     request: GetMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.MessageBus {
@@ -622,9 +622,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listMessageBuses(request:)``
+  /// - ``listMessageBusesByItems(parent:)``
   /// - ``listMessageBusesByItems(request:)``
   /// - ``listMessageBusesByItems(request:options:)``
-  /// - ``listMessageBusesByItems(parent:)``
   public func listMessageBuses(
     request: ListMessageBusesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListMessageBusesResponse {
@@ -637,8 +637,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``listMessageBusEnrollments(request:)``
   /// - ``listMessageBusEnrollments(parent:)``
+  /// - ``listMessageBusEnrollments(request:)``
   public func listMessageBusEnrollments(
     request: ListMessageBusEnrollmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListMessageBusEnrollmentsResponse {
@@ -652,9 +652,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createMessageBus(request:)``
+  /// - ``createMessageBusPollingUntilDone(parent:messageBus:messageBusId:)``
   /// - ``createMessageBusPollingUntilDone(request:)``
   /// - ``createMessageBusPollingUntilDone(request:options:)``
-  /// - ``createMessageBusPollingUntilDone(parent:messageBus:messageBusId:)``
   public func createMessageBus(
     request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -667,10 +667,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createMessageBusPollingUntilDone(request:)``
-  /// - ``createMessageBusPollingUntilDone(parent:messageBus:messageBusId:)``
   /// - ``createMessageBus(request:)``
   /// - ``createMessageBus(request:options:)``
+  /// - ``createMessageBusPollingUntilDone(parent:messageBus:messageBusId:)``
+  /// - ``createMessageBusPollingUntilDone(request:)``
   public func createMessageBusPollingUntilDone(
     request: CreateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> MessageBus {
@@ -702,9 +702,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateMessageBus(request:)``
+  /// - ``updateMessageBusPollingUntilDone(messageBus:updateMask:)``
   /// - ``updateMessageBusPollingUntilDone(request:)``
   /// - ``updateMessageBusPollingUntilDone(request:options:)``
-  /// - ``updateMessageBusPollingUntilDone(messageBus:updateMask:)``
   public func updateMessageBus(
     request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -717,10 +717,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateMessageBusPollingUntilDone(request:)``
-  /// - ``updateMessageBusPollingUntilDone(messageBus:updateMask:)``
   /// - ``updateMessageBus(request:)``
   /// - ``updateMessageBus(request:options:)``
+  /// - ``updateMessageBusPollingUntilDone(messageBus:updateMask:)``
+  /// - ``updateMessageBusPollingUntilDone(request:)``
   public func updateMessageBusPollingUntilDone(
     request: UpdateMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> MessageBus {
@@ -752,9 +752,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteMessageBus(request:)``
+  /// - ``deleteMessageBusPollingUntilDone(name:etag:)``
   /// - ``deleteMessageBusPollingUntilDone(request:)``
   /// - ``deleteMessageBusPollingUntilDone(request:options:)``
-  /// - ``deleteMessageBusPollingUntilDone(name:etag:)``
   public func deleteMessageBus(
     request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -767,10 +767,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteMessageBusPollingUntilDone(request:)``
-  /// - ``deleteMessageBusPollingUntilDone(name:etag:)``
   /// - ``deleteMessageBus(request:)``
   /// - ``deleteMessageBus(request:options:)``
+  /// - ``deleteMessageBusPollingUntilDone(name:etag:)``
+  /// - ``deleteMessageBusPollingUntilDone(request:)``
   public func deleteMessageBusPollingUntilDone(
     request: DeleteMessageBusRequest, options: GoogleGax.RequestOptions
   ) async throws -> MessageBus {
@@ -801,8 +801,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEnrollment(request:)``
   /// - ``getEnrollment(name:)``
+  /// - ``getEnrollment(request:)``
   public func getEnrollment(
     request: GetEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Enrollment {
@@ -816,9 +816,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEnrollments(request:)``
+  /// - ``listEnrollmentsByItems(parent:)``
   /// - ``listEnrollmentsByItems(request:)``
   /// - ``listEnrollmentsByItems(request:options:)``
-  /// - ``listEnrollmentsByItems(parent:)``
   public func listEnrollments(
     request: ListEnrollmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListEnrollmentsResponse {
@@ -832,9 +832,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createEnrollment(request:)``
+  /// - ``createEnrollmentPollingUntilDone(parent:enrollment:enrollmentId:)``
   /// - ``createEnrollmentPollingUntilDone(request:)``
   /// - ``createEnrollmentPollingUntilDone(request:options:)``
-  /// - ``createEnrollmentPollingUntilDone(parent:enrollment:enrollmentId:)``
   public func createEnrollment(
     request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -847,10 +847,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEnrollmentPollingUntilDone(request:)``
-  /// - ``createEnrollmentPollingUntilDone(parent:enrollment:enrollmentId:)``
   /// - ``createEnrollment(request:)``
   /// - ``createEnrollment(request:options:)``
+  /// - ``createEnrollmentPollingUntilDone(parent:enrollment:enrollmentId:)``
+  /// - ``createEnrollmentPollingUntilDone(request:)``
   public func createEnrollmentPollingUntilDone(
     request: CreateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Enrollment {
@@ -882,9 +882,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateEnrollment(request:)``
+  /// - ``updateEnrollmentPollingUntilDone(enrollment:updateMask:)``
   /// - ``updateEnrollmentPollingUntilDone(request:)``
   /// - ``updateEnrollmentPollingUntilDone(request:options:)``
-  /// - ``updateEnrollmentPollingUntilDone(enrollment:updateMask:)``
   public func updateEnrollment(
     request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -897,10 +897,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEnrollmentPollingUntilDone(request:)``
-  /// - ``updateEnrollmentPollingUntilDone(enrollment:updateMask:)``
   /// - ``updateEnrollment(request:)``
   /// - ``updateEnrollment(request:options:)``
+  /// - ``updateEnrollmentPollingUntilDone(enrollment:updateMask:)``
+  /// - ``updateEnrollmentPollingUntilDone(request:)``
   public func updateEnrollmentPollingUntilDone(
     request: UpdateEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Enrollment {
@@ -932,9 +932,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteEnrollment(request:)``
+  /// - ``deleteEnrollmentPollingUntilDone(name:etag:)``
   /// - ``deleteEnrollmentPollingUntilDone(request:)``
   /// - ``deleteEnrollmentPollingUntilDone(request:options:)``
-  /// - ``deleteEnrollmentPollingUntilDone(name:etag:)``
   public func deleteEnrollment(
     request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -947,10 +947,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEnrollmentPollingUntilDone(request:)``
-  /// - ``deleteEnrollmentPollingUntilDone(name:etag:)``
   /// - ``deleteEnrollment(request:)``
   /// - ``deleteEnrollment(request:options:)``
+  /// - ``deleteEnrollmentPollingUntilDone(name:etag:)``
+  /// - ``deleteEnrollmentPollingUntilDone(request:)``
   public func deleteEnrollmentPollingUntilDone(
     request: DeleteEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Enrollment {
@@ -981,8 +981,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPipeline(request:)``
   /// - ``getPipeline(name:)``
+  /// - ``getPipeline(request:)``
   public func getPipeline(
     request: GetPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.Pipeline {
@@ -996,9 +996,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPipelines(request:)``
+  /// - ``listPipelinesByItems(parent:)``
   /// - ``listPipelinesByItems(request:)``
   /// - ``listPipelinesByItems(request:options:)``
-  /// - ``listPipelinesByItems(parent:)``
   public func listPipelines(
     request: ListPipelinesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListPipelinesResponse {
@@ -1012,9 +1012,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPipeline(request:)``
+  /// - ``createPipelinePollingUntilDone(parent:pipeline:pipelineId:)``
   /// - ``createPipelinePollingUntilDone(request:)``
   /// - ``createPipelinePollingUntilDone(request:options:)``
-  /// - ``createPipelinePollingUntilDone(parent:pipeline:pipelineId:)``
   public func createPipeline(
     request: CreatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1027,10 +1027,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPipelinePollingUntilDone(request:)``
-  /// - ``createPipelinePollingUntilDone(parent:pipeline:pipelineId:)``
   /// - ``createPipeline(request:)``
   /// - ``createPipeline(request:options:)``
+  /// - ``createPipelinePollingUntilDone(parent:pipeline:pipelineId:)``
+  /// - ``createPipelinePollingUntilDone(request:)``
   public func createPipelinePollingUntilDone(
     request: CreatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pipeline {
@@ -1062,9 +1062,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updatePipeline(request:)``
+  /// - ``updatePipelinePollingUntilDone(pipeline:updateMask:)``
   /// - ``updatePipelinePollingUntilDone(request:)``
   /// - ``updatePipelinePollingUntilDone(request:options:)``
-  /// - ``updatePipelinePollingUntilDone(pipeline:updateMask:)``
   public func updatePipeline(
     request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1077,10 +1077,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePipelinePollingUntilDone(request:)``
-  /// - ``updatePipelinePollingUntilDone(pipeline:updateMask:)``
   /// - ``updatePipeline(request:)``
   /// - ``updatePipeline(request:options:)``
+  /// - ``updatePipelinePollingUntilDone(pipeline:updateMask:)``
+  /// - ``updatePipelinePollingUntilDone(request:)``
   public func updatePipelinePollingUntilDone(
     request: UpdatePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pipeline {
@@ -1112,9 +1112,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePipeline(request:)``
+  /// - ``deletePipelinePollingUntilDone(name:etag:)``
   /// - ``deletePipelinePollingUntilDone(request:)``
   /// - ``deletePipelinePollingUntilDone(request:options:)``
-  /// - ``deletePipelinePollingUntilDone(name:etag:)``
   public func deletePipeline(
     request: DeletePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1127,10 +1127,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePipelinePollingUntilDone(request:)``
-  /// - ``deletePipelinePollingUntilDone(name:etag:)``
   /// - ``deletePipeline(request:)``
   /// - ``deletePipeline(request:options:)``
+  /// - ``deletePipelinePollingUntilDone(name:etag:)``
+  /// - ``deletePipelinePollingUntilDone(request:)``
   public func deletePipelinePollingUntilDone(
     request: DeletePipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> Pipeline {
@@ -1161,8 +1161,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getGoogleApiSource(request:)``
   /// - ``getGoogleApiSource(name:)``
+  /// - ``getGoogleApiSource(request:)``
   public func getGoogleApiSource(
     request: GetGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.GoogleApiSource {
@@ -1176,9 +1176,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listGoogleApiSources(request:)``
+  /// - ``listGoogleApiSourcesByItems(parent:)``
   /// - ``listGoogleApiSourcesByItems(request:)``
   /// - ``listGoogleApiSourcesByItems(request:options:)``
-  /// - ``listGoogleApiSourcesByItems(parent:)``
   public func listGoogleApiSources(
     request: ListGoogleApiSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudEventarcV1.ListGoogleApiSourcesResponse {
@@ -1192,9 +1192,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createGoogleApiSource(request:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(parent:googleApiSource:googleApiSourceId:)``
   /// - ``createGoogleApiSourcePollingUntilDone(request:)``
   /// - ``createGoogleApiSourcePollingUntilDone(request:options:)``
-  /// - ``createGoogleApiSourcePollingUntilDone(parent:googleApiSource:googleApiSourceId:)``
   public func createGoogleApiSource(
     request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1207,10 +1207,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createGoogleApiSourcePollingUntilDone(request:)``
-  /// - ``createGoogleApiSourcePollingUntilDone(parent:googleApiSource:googleApiSourceId:)``
   /// - ``createGoogleApiSource(request:)``
   /// - ``createGoogleApiSource(request:options:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(parent:googleApiSource:googleApiSourceId:)``
+  /// - ``createGoogleApiSourcePollingUntilDone(request:)``
   public func createGoogleApiSourcePollingUntilDone(
     request: CreateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiSource {
@@ -1243,9 +1243,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateGoogleApiSource(request:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(googleApiSource:updateMask:)``
   /// - ``updateGoogleApiSourcePollingUntilDone(request:)``
   /// - ``updateGoogleApiSourcePollingUntilDone(request:options:)``
-  /// - ``updateGoogleApiSourcePollingUntilDone(googleApiSource:updateMask:)``
   public func updateGoogleApiSource(
     request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1258,10 +1258,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateGoogleApiSourcePollingUntilDone(request:)``
-  /// - ``updateGoogleApiSourcePollingUntilDone(googleApiSource:updateMask:)``
   /// - ``updateGoogleApiSource(request:)``
   /// - ``updateGoogleApiSource(request:options:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(googleApiSource:updateMask:)``
+  /// - ``updateGoogleApiSourcePollingUntilDone(request:)``
   public func updateGoogleApiSourcePollingUntilDone(
     request: UpdateGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiSource {
@@ -1294,9 +1294,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteGoogleApiSource(request:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(name:etag:)``
   /// - ``deleteGoogleApiSourcePollingUntilDone(request:)``
   /// - ``deleteGoogleApiSourcePollingUntilDone(request:options:)``
-  /// - ``deleteGoogleApiSourcePollingUntilDone(name:etag:)``
   public func deleteGoogleApiSource(
     request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1309,10 +1309,10 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteGoogleApiSourcePollingUntilDone(request:)``
-  /// - ``deleteGoogleApiSourcePollingUntilDone(name:etag:)``
   /// - ``deleteGoogleApiSource(request:)``
   /// - ``deleteGoogleApiSource(request:options:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(name:etag:)``
+  /// - ``deleteGoogleApiSourcePollingUntilDone(request:)``
   public func deleteGoogleApiSourcePollingUntilDone(
     request: DeleteGoogleApiSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiSource {
@@ -1425,9 +1425,9 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1453,8 +1453,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1469,8 +1469,8 @@ public final class EventarcClient: Clients.EventarcProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

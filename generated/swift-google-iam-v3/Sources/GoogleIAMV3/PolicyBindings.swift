@@ -56,9 +56,9 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createPolicyBinding(request:)``
+  /// - ``createPolicyBindingPollingUntilDone(parent:policyBinding:policyBindingId:)``
   /// - ``createPolicyBindingPollingUntilDone(request:)``
   /// - ``createPolicyBindingPollingUntilDone(request:options:)``
-  /// - ``createPolicyBindingPollingUntilDone(parent:policyBinding:policyBindingId:)``
   public func createPolicyBinding(
     request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,10 +73,10 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createPolicyBindingPollingUntilDone(request:)``
-  /// - ``createPolicyBindingPollingUntilDone(parent:policyBinding:policyBindingId:)``
   /// - ``createPolicyBinding(request:)``
   /// - ``createPolicyBinding(request:options:)``
+  /// - ``createPolicyBindingPollingUntilDone(parent:policyBinding:policyBindingId:)``
+  /// - ``createPolicyBindingPollingUntilDone(request:)``
   public func createPolicyBindingPollingUntilDone(
     request: CreatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> PolicyBinding {
@@ -108,8 +108,8 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getPolicyBinding(request:)``
   /// - ``getPolicyBinding(name:)``
+  /// - ``getPolicyBinding(request:)``
   public func getPolicyBinding(
     request: GetPolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.PolicyBinding {
@@ -125,9 +125,9 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``updatePolicyBinding(request:)``
+  /// - ``updatePolicyBindingPollingUntilDone(policyBinding:updateMask:)``
   /// - ``updatePolicyBindingPollingUntilDone(request:)``
   /// - ``updatePolicyBindingPollingUntilDone(request:options:)``
-  /// - ``updatePolicyBindingPollingUntilDone(policyBinding:updateMask:)``
   public func updatePolicyBinding(
     request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -142,10 +142,10 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updatePolicyBindingPollingUntilDone(request:)``
-  /// - ``updatePolicyBindingPollingUntilDone(policyBinding:updateMask:)``
   /// - ``updatePolicyBinding(request:)``
   /// - ``updatePolicyBinding(request:options:)``
+  /// - ``updatePolicyBindingPollingUntilDone(policyBinding:updateMask:)``
+  /// - ``updatePolicyBindingPollingUntilDone(request:)``
   public func updatePolicyBindingPollingUntilDone(
     request: UpdatePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> PolicyBinding {
@@ -180,9 +180,9 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deletePolicyBinding(request:)``
+  /// - ``deletePolicyBindingPollingUntilDone(name:)``
   /// - ``deletePolicyBindingPollingUntilDone(request:)``
   /// - ``deletePolicyBindingPollingUntilDone(request:options:)``
-  /// - ``deletePolicyBindingPollingUntilDone(name:)``
   public func deletePolicyBinding(
     request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -197,10 +197,10 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deletePolicyBindingPollingUntilDone(request:)``
-  /// - ``deletePolicyBindingPollingUntilDone(name:)``
   /// - ``deletePolicyBinding(request:)``
   /// - ``deletePolicyBinding(request:options:)``
+  /// - ``deletePolicyBindingPollingUntilDone(name:)``
+  /// - ``deletePolicyBindingPollingUntilDone(request:)``
   public func deletePolicyBindingPollingUntilDone(
     request: DeletePolicyBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -232,9 +232,9 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listPolicyBindings(request:)``
+  /// - ``listPolicyBindingsByItems(parent:)``
   /// - ``listPolicyBindingsByItems(request:)``
   /// - ``listPolicyBindingsByItems(request:options:)``
-  /// - ``listPolicyBindingsByItems(parent:)``
   public func listPolicyBindings(
     request: ListPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.ListPolicyBindingsResponse {
@@ -249,9 +249,9 @@ public final class PolicyBindingsClient: Clients.PolicyBindingsProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``searchTargetPolicyBindings(request:)``
+  /// - ``searchTargetPolicyBindingsByItems(parent:target:)``
   /// - ``searchTargetPolicyBindingsByItems(request:)``
   /// - ``searchTargetPolicyBindingsByItems(request:options:)``
-  /// - ``searchTargetPolicyBindingsByItems(parent:target:)``
   public func searchTargetPolicyBindings(
     request: SearchTargetPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.SearchTargetPolicyBindingsResponse {

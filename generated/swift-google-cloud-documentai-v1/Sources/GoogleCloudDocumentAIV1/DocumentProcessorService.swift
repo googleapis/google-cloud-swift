@@ -58,8 +58,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``processDocument(request:)``
   /// - ``processDocument(name:)``
+  /// - ``processDocument(request:)``
   public func processDocument(
     request: ProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ProcessResponse {
@@ -74,9 +74,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``batchProcessDocuments(request:)``
+  /// - ``batchProcessDocumentsPollingUntilDone(name:)``
   /// - ``batchProcessDocumentsPollingUntilDone(request:)``
   /// - ``batchProcessDocumentsPollingUntilDone(request:options:)``
-  /// - ``batchProcessDocumentsPollingUntilDone(name:)``
   public func batchProcessDocuments(
     request: BatchProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -90,10 +90,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``batchProcessDocumentsPollingUntilDone(request:)``
-  /// - ``batchProcessDocumentsPollingUntilDone(name:)``
   /// - ``batchProcessDocuments(request:)``
   /// - ``batchProcessDocuments(request:options:)``
+  /// - ``batchProcessDocumentsPollingUntilDone(name:)``
+  /// - ``batchProcessDocumentsPollingUntilDone(request:)``
   public func batchProcessDocumentsPollingUntilDone(
     request: BatchProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchProcessResponse {
@@ -129,8 +129,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``fetchProcessorTypes(request:)``
   /// - ``fetchProcessorTypes(parent:)``
+  /// - ``fetchProcessorTypes(request:)``
   public func fetchProcessorTypes(
     request: FetchProcessorTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.FetchProcessorTypesResponse {
@@ -144,9 +144,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``listProcessorTypes(request:)``
+  /// - ``listProcessorTypesByItems(parent:)``
   /// - ``listProcessorTypesByItems(request:)``
   /// - ``listProcessorTypesByItems(request:options:)``
-  /// - ``listProcessorTypesByItems(parent:)``
   public func listProcessorTypes(
     request: ListProcessorTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ListProcessorTypesResponse {
@@ -159,8 +159,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``getProcessorType(request:)``
   /// - ``getProcessorType(name:)``
+  /// - ``getProcessorType(request:)``
   public func getProcessorType(
     request: GetProcessorTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ProcessorType {
@@ -174,9 +174,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``listProcessors(request:)``
+  /// - ``listProcessorsByItems(parent:)``
   /// - ``listProcessorsByItems(request:)``
   /// - ``listProcessorsByItems(request:options:)``
-  /// - ``listProcessorsByItems(parent:)``
   public func listProcessors(
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ListProcessorsResponse {
@@ -189,8 +189,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``getProcessor(request:)``
   /// - ``getProcessor(name:)``
+  /// - ``getProcessor(request:)``
   public func getProcessor(
     request: GetProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.Processor {
@@ -208,9 +208,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``trainProcessorVersion(request:)``
+  /// - ``trainProcessorVersionPollingUntilDone(parent:processorVersion:)``
   /// - ``trainProcessorVersionPollingUntilDone(request:)``
   /// - ``trainProcessorVersionPollingUntilDone(request:options:)``
-  /// - ``trainProcessorVersionPollingUntilDone(parent:processorVersion:)``
   public func trainProcessorVersion(
     request: TrainProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -227,10 +227,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``trainProcessorVersionPollingUntilDone(request:)``
-  /// - ``trainProcessorVersionPollingUntilDone(parent:processorVersion:)``
   /// - ``trainProcessorVersion(request:)``
   /// - ``trainProcessorVersion(request:options:)``
+  /// - ``trainProcessorVersionPollingUntilDone(parent:processorVersion:)``
+  /// - ``trainProcessorVersionPollingUntilDone(request:)``
   public func trainProcessorVersionPollingUntilDone(
     request: TrainProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> TrainProcessorVersionResponse {
@@ -263,8 +263,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``getProcessorVersion(request:)``
   /// - ``getProcessorVersion(name:)``
+  /// - ``getProcessorVersion(request:)``
   public func getProcessorVersion(
     request: GetProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ProcessorVersion {
@@ -278,9 +278,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``listProcessorVersions(request:)``
+  /// - ``listProcessorVersionsByItems(parent:)``
   /// - ``listProcessorVersionsByItems(request:)``
   /// - ``listProcessorVersionsByItems(request:options:)``
-  /// - ``listProcessorVersionsByItems(parent:)``
   public func listProcessorVersions(
     request: ListProcessorVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ListProcessorVersionsResponse {
@@ -295,9 +295,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``deleteProcessorVersion(request:)``
+  /// - ``deleteProcessorVersionPollingUntilDone(name:)``
   /// - ``deleteProcessorVersionPollingUntilDone(request:)``
   /// - ``deleteProcessorVersionPollingUntilDone(request:options:)``
-  /// - ``deleteProcessorVersionPollingUntilDone(name:)``
   public func deleteProcessorVersion(
     request: DeleteProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -311,10 +311,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteProcessorVersionPollingUntilDone(request:)``
-  /// - ``deleteProcessorVersionPollingUntilDone(name:)``
   /// - ``deleteProcessorVersion(request:)``
   /// - ``deleteProcessorVersion(request:options:)``
+  /// - ``deleteProcessorVersionPollingUntilDone(name:)``
+  /// - ``deleteProcessorVersionPollingUntilDone(request:)``
   public func deleteProcessorVersionPollingUntilDone(
     request: DeleteProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -346,9 +346,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``deployProcessorVersion(request:)``
+  /// - ``deployProcessorVersionPollingUntilDone(name:)``
   /// - ``deployProcessorVersionPollingUntilDone(request:)``
   /// - ``deployProcessorVersionPollingUntilDone(request:options:)``
-  /// - ``deployProcessorVersionPollingUntilDone(name:)``
   public func deployProcessorVersion(
     request: DeployProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -361,10 +361,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``deployProcessorVersionPollingUntilDone(request:)``
-  /// - ``deployProcessorVersionPollingUntilDone(name:)``
   /// - ``deployProcessorVersion(request:)``
   /// - ``deployProcessorVersion(request:options:)``
+  /// - ``deployProcessorVersionPollingUntilDone(name:)``
+  /// - ``deployProcessorVersionPollingUntilDone(request:)``
   public func deployProcessorVersionPollingUntilDone(
     request: DeployProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployProcessorVersionResponse {
@@ -398,9 +398,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``undeployProcessorVersion(request:)``
+  /// - ``undeployProcessorVersionPollingUntilDone(name:)``
   /// - ``undeployProcessorVersionPollingUntilDone(request:)``
   /// - ``undeployProcessorVersionPollingUntilDone(request:options:)``
-  /// - ``undeployProcessorVersionPollingUntilDone(name:)``
   public func undeployProcessorVersion(
     request: UndeployProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -413,10 +413,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``undeployProcessorVersionPollingUntilDone(request:)``
-  /// - ``undeployProcessorVersionPollingUntilDone(name:)``
   /// - ``undeployProcessorVersion(request:)``
   /// - ``undeployProcessorVersion(request:options:)``
+  /// - ``undeployProcessorVersionPollingUntilDone(name:)``
+  /// - ``undeployProcessorVersionPollingUntilDone(request:)``
   public func undeployProcessorVersionPollingUntilDone(
     request: UndeployProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeployProcessorVersionResponse {
@@ -457,8 +457,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``createProcessor(request:)``
   /// - ``createProcessor(parent:processor:)``
+  /// - ``createProcessor(request:)``
   public func createProcessor(
     request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.Processor {
@@ -473,9 +473,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``deleteProcessor(request:)``
+  /// - ``deleteProcessorPollingUntilDone(name:)``
   /// - ``deleteProcessorPollingUntilDone(request:)``
   /// - ``deleteProcessorPollingUntilDone(request:options:)``
-  /// - ``deleteProcessorPollingUntilDone(name:)``
   public func deleteProcessor(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -489,10 +489,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteProcessorPollingUntilDone(request:)``
-  /// - ``deleteProcessorPollingUntilDone(name:)``
   /// - ``deleteProcessor(request:)``
   /// - ``deleteProcessor(request:options:)``
+  /// - ``deleteProcessorPollingUntilDone(name:)``
+  /// - ``deleteProcessorPollingUntilDone(request:)``
   public func deleteProcessorPollingUntilDone(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -538,9 +538,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``enableProcessorPollingUntilDone(request:)``
   /// - ``enableProcessor(request:)``
   /// - ``enableProcessor(request:options:)``
+  /// - ``enableProcessorPollingUntilDone(request:)``
   public func enableProcessorPollingUntilDone(
     request: EnableProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> EnableProcessorResponse {
@@ -588,9 +588,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``disableProcessorPollingUntilDone(request:)``
   /// - ``disableProcessor(request:)``
   /// - ``disableProcessor(request:options:)``
+  /// - ``disableProcessorPollingUntilDone(request:)``
   public func disableProcessorPollingUntilDone(
     request: DisableProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> DisableProcessorResponse {
@@ -654,9 +654,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``setDefaultProcessorVersionPollingUntilDone(request:)``
   /// - ``setDefaultProcessorVersion(request:)``
   /// - ``setDefaultProcessorVersion(request:options:)``
+  /// - ``setDefaultProcessorVersionPollingUntilDone(request:)``
   public func setDefaultProcessorVersionPollingUntilDone(
     request: SetDefaultProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> SetDefaultProcessorVersionResponse {
@@ -691,9 +691,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``reviewDocument(request:)``
+  /// - ``reviewDocumentPollingUntilDone(humanReviewConfig:)``
   /// - ``reviewDocumentPollingUntilDone(request:)``
   /// - ``reviewDocumentPollingUntilDone(request:options:)``
-  /// - ``reviewDocumentPollingUntilDone(humanReviewConfig:)``
   public func reviewDocument(
     request: ReviewDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -707,10 +707,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``reviewDocumentPollingUntilDone(request:)``
-  /// - ``reviewDocumentPollingUntilDone(humanReviewConfig:)``
   /// - ``reviewDocument(request:)``
   /// - ``reviewDocument(request:options:)``
+  /// - ``reviewDocumentPollingUntilDone(humanReviewConfig:)``
+  /// - ``reviewDocumentPollingUntilDone(request:)``
   public func reviewDocumentPollingUntilDone(
     request: ReviewDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> ReviewDocumentResponse {
@@ -744,9 +744,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``evaluateProcessorVersion(request:)``
+  /// - ``evaluateProcessorVersionPollingUntilDone(processorVersion:)``
   /// - ``evaluateProcessorVersionPollingUntilDone(request:)``
   /// - ``evaluateProcessorVersionPollingUntilDone(request:options:)``
-  /// - ``evaluateProcessorVersionPollingUntilDone(processorVersion:)``
   public func evaluateProcessorVersion(
     request: EvaluateProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -760,10 +760,10 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``evaluateProcessorVersionPollingUntilDone(request:)``
-  /// - ``evaluateProcessorVersionPollingUntilDone(processorVersion:)``
   /// - ``evaluateProcessorVersion(request:)``
   /// - ``evaluateProcessorVersion(request:options:)``
+  /// - ``evaluateProcessorVersionPollingUntilDone(processorVersion:)``
+  /// - ``evaluateProcessorVersionPollingUntilDone(request:)``
   public func evaluateProcessorVersionPollingUntilDone(
     request: EvaluateProcessorVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> EvaluateProcessorVersionResponse {
@@ -796,8 +796,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``getEvaluation(request:)``
   /// - ``getEvaluation(name:)``
+  /// - ``getEvaluation(request:)``
   public func getEvaluation(
     request: GetEvaluationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.Evaluation {
@@ -811,9 +811,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``listEvaluations(request:)``
+  /// - ``listEvaluationsByItems(parent:)``
   /// - ``listEvaluationsByItems(request:)``
   /// - ``listEvaluationsByItems(request:options:)``
-  /// - ``listEvaluationsByItems(parent:)``
   public func listEvaluations(
     request: ListEvaluationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDocumentAIV1.ListEvaluationsResponse {
@@ -857,9 +857,9 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -885,8 +885,8 @@ public final class DocumentProcessorServiceClient: Clients.DocumentProcessorServ
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

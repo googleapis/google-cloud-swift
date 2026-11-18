@@ -50,8 +50,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``delete(request:)``
     /// - ``delete(operation:)``
+    /// - ``delete(request:)``
     public func delete(
       request: GlobalOrganizationOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -65,8 +65,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(operation:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalOrganizationOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

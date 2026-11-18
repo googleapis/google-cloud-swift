@@ -54,9 +54,9 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTagValues(request:)``
+  /// - ``listTagValuesByItems(parent:)``
   /// - ``listTagValuesByItems(request:)``
   /// - ``listTagValuesByItems(request:options:)``
-  /// - ``listTagValuesByItems(parent:)``
   public func listTagValues(
     request: ListTagValuesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListTagValuesResponse {
@@ -70,8 +70,8 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTagValue(request:)``
   /// - ``getTagValue(name:)``
+  /// - ``getTagValue(request:)``
   public func getTagValue(
     request: GetTagValueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.TagValue {
@@ -86,8 +86,8 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getNamespacedTagValue(request:)``
   /// - ``getNamespacedTagValue(name:)``
+  /// - ``getNamespacedTagValue(request:)``
   public func getNamespacedTagValue(
     request: GetNamespacedTagValueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.TagValue {
@@ -122,10 +122,10 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTagValuePollingUntilDone(request:)``
-  /// - ``createTagValuePollingUntilDone(tagValue:)``
   /// - ``createTagValue(request:)``
   /// - ``createTagValue(request:options:)``
+  /// - ``createTagValuePollingUntilDone(request:)``
+  /// - ``createTagValuePollingUntilDone(tagValue:)``
   public func createTagValuePollingUntilDone(
     request: CreateTagValueRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagValue {
@@ -172,10 +172,10 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateTagValuePollingUntilDone(request:)``
-  /// - ``updateTagValuePollingUntilDone(tagValue:updateMask:)``
   /// - ``updateTagValue(request:)``
   /// - ``updateTagValue(request:options:)``
+  /// - ``updateTagValuePollingUntilDone(request:)``
+  /// - ``updateTagValuePollingUntilDone(tagValue:updateMask:)``
   public func updateTagValuePollingUntilDone(
     request: UpdateTagValueRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagValue {
@@ -208,9 +208,9 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTagValue(request:)``
+  /// - ``deleteTagValuePollingUntilDone(name:)``
   /// - ``deleteTagValuePollingUntilDone(request:)``
   /// - ``deleteTagValuePollingUntilDone(request:options:)``
-  /// - ``deleteTagValuePollingUntilDone(name:)``
   public func deleteTagValue(
     request: DeleteTagValueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -224,10 +224,10 @@ public final class TagValuesClient: Clients.TagValuesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTagValuePollingUntilDone(request:)``
-  /// - ``deleteTagValuePollingUntilDone(name:)``
   /// - ``deleteTagValue(request:)``
   /// - ``deleteTagValue(request:options:)``
+  /// - ``deleteTagValuePollingUntilDone(name:)``
+  /// - ``deleteTagValuePollingUntilDone(request:)``
   public func deleteTagValuePollingUntilDone(
     request: DeleteTagValueRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagValue {

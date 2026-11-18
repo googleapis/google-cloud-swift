@@ -46,8 +46,8 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(project:managedZone:body:)``
+  /// - ``create(request:)``
   public func create(
     request: ChangesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Change {
@@ -60,8 +60,8 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:managedZone:changeId:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ChangesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Change {
@@ -75,9 +75,9 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:managedZone:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:managedZone:)``
   public func list(
     request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChangesListResponse {

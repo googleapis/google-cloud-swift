@@ -54,8 +54,8 @@ public final class SourceUploadClient: Clients.SourceUploadProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``uploadSource(request:)``
   /// - ``uploadSource(parent:)``
+  /// - ``uploadSource(request:)``
   public func uploadSource(
     request: UploadSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.UploadSourceResponse {
@@ -71,9 +71,9 @@ public final class SourceUploadClient: Clients.SourceUploadProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -99,8 +99,8 @@ public final class SourceUploadClient: Clients.SourceUploadProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -50,8 +50,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createBlueGreenDeployment(request:)``
     /// - ``createBlueGreenDeployment(parent:blueGreenDeployment:blueGreenDeploymentId:)``
+    /// - ``createBlueGreenDeployment(request:)``
     public func createBlueGreenDeployment(
       request: CreateBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -65,8 +65,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getBlueGreenDeployment(request:)``
     /// - ``getBlueGreenDeployment(name:)``
+    /// - ``getBlueGreenDeployment(request:)``
     public func getBlueGreenDeployment(
       request: GetBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.BlueGreenDeployment {
@@ -79,8 +79,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``switchoverBlueGreenDeployment(request:)``
     /// - ``switchoverBlueGreenDeployment(name:)``
+    /// - ``switchoverBlueGreenDeployment(request:)``
     public func switchoverBlueGreenDeployment(
       request: SwitchoverBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -94,9 +94,9 @@
     /// ## See Also
     ///
     /// - ``listBlueGreenDeployments(request:)``
+    /// - ``listBlueGreenDeploymentsByItems(parent:)``
     /// - ``listBlueGreenDeploymentsByItems(request:)``
     /// - ``listBlueGreenDeploymentsByItems(request:options:)``
-    /// - ``listBlueGreenDeploymentsByItems(parent:)``
     public func listBlueGreenDeployments(
       request: ListBlueGreenDeploymentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.ListBlueGreenDeploymentsResponse {
@@ -109,8 +109,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteBlueGreenDeployment(request:)``
     /// - ``deleteBlueGreenDeployment(name:)``
+    /// - ``deleteBlueGreenDeployment(request:)``
     public func deleteBlueGreenDeployment(
       request: DeleteBlueGreenDeploymentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {

@@ -48,8 +48,8 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createTenant(request:)``
   /// - ``createTenant(parent:tenant:)``
+  /// - ``createTenant(request:)``
   public func createTenant(
     request: CreateTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -62,8 +62,8 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getTenant(request:)``
   /// - ``getTenant(name:)``
+  /// - ``getTenant(request:)``
   public func getTenant(
     request: GetTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Tenant {
@@ -90,8 +90,8 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteTenant(request:)``
   /// - ``deleteTenant(name:)``
+  /// - ``deleteTenant(request:)``
   public func deleteTenant(
     request: DeleteTenantRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -105,9 +105,9 @@ public final class TenantServiceClient: Clients.TenantServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listTenants(request:)``
+  /// - ``listTenantsByItems(parent:)``
   /// - ``listTenantsByItems(request:)``
   /// - ``listTenantsByItems(request:options:)``
-  /// - ``listTenantsByItems(parent:)``
   public func listTenants(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ListTenantsResponse {

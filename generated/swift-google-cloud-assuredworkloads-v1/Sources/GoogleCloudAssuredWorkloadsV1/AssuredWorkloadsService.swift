@@ -55,9 +55,9 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// ## See Also
   ///
   /// - ``createWorkload(request:)``
+  /// - ``createWorkloadPollingUntilDone(parent:workload:)``
   /// - ``createWorkloadPollingUntilDone(request:)``
   /// - ``createWorkloadPollingUntilDone(request:options:)``
-  /// - ``createWorkloadPollingUntilDone(parent:workload:)``
   public func createWorkload(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -70,10 +70,10 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   ///
   /// ## See Also
   ///
-  /// - ``createWorkloadPollingUntilDone(request:)``
-  /// - ``createWorkloadPollingUntilDone(parent:workload:)``
   /// - ``createWorkload(request:)``
   /// - ``createWorkload(request:options:)``
+  /// - ``createWorkloadPollingUntilDone(parent:workload:)``
+  /// - ``createWorkloadPollingUntilDone(request:)``
   public func createWorkloadPollingUntilDone(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workload {
@@ -141,8 +141,8 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkload(request:)``
   /// - ``deleteWorkload(name:)``
+  /// - ``deleteWorkload(request:)``
   public func deleteWorkload(
     request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -155,8 +155,8 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   ///
   /// ## See Also
   ///
-  /// - ``getWorkload(request:)``
   /// - ``getWorkload(name:)``
+  /// - ``getWorkload(request:)``
   public func getWorkload(
     request: GetWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
@@ -170,9 +170,9 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// ## See Also
   ///
   /// - ``listWorkloads(request:)``
+  /// - ``listWorkloadsByItems(parent:)``
   /// - ``listWorkloadsByItems(request:)``
   /// - ``listWorkloadsByItems(request:options:)``
-  /// - ``listWorkloadsByItems(parent:)``
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse {
@@ -188,9 +188,9 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

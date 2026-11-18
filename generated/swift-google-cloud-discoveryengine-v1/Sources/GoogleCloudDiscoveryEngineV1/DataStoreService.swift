@@ -68,9 +68,9 @@
     /// ## See Also
     ///
     /// - ``createDataStore(request:)``
+    /// - ``createDataStorePollingUntilDone(parent:dataStore:dataStoreId:)``
     /// - ``createDataStorePollingUntilDone(request:)``
     /// - ``createDataStorePollingUntilDone(request:options:)``
-    /// - ``createDataStorePollingUntilDone(parent:dataStore:dataStoreId:)``
     public func createDataStore(
       request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -93,10 +93,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDataStorePollingUntilDone(request:)``
-    /// - ``createDataStorePollingUntilDone(parent:dataStore:dataStoreId:)``
     /// - ``createDataStore(request:)``
     /// - ``createDataStore(request:options:)``
+    /// - ``createDataStorePollingUntilDone(parent:dataStore:dataStoreId:)``
+    /// - ``createDataStorePollingUntilDone(request:)``
     public func createDataStorePollingUntilDone(
       request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> DataStore {
@@ -129,8 +129,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDataStore(request:)``
     /// - ``getDataStore(name:)``
+    /// - ``getDataStore(request:)``
     public func getDataStore(
       request: GetDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -147,9 +147,9 @@
     /// ## See Also
     ///
     /// - ``listDataStores(request:)``
+    /// - ``listDataStoresByItems(parent:)``
     /// - ``listDataStoresByItems(request:)``
     /// - ``listDataStoresByItems(request:options:)``
-    /// - ``listDataStoresByItems(parent:)``
     public func listDataStores(
       request: ListDataStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse {
@@ -165,9 +165,9 @@
     /// ## See Also
     ///
     /// - ``deleteDataStore(request:)``
+    /// - ``deleteDataStorePollingUntilDone(name:)``
     /// - ``deleteDataStorePollingUntilDone(request:)``
     /// - ``deleteDataStorePollingUntilDone(request:options:)``
-    /// - ``deleteDataStorePollingUntilDone(name:)``
     public func deleteDataStore(
       request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -182,10 +182,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDataStorePollingUntilDone(request:)``
-    /// - ``deleteDataStorePollingUntilDone(name:)``
     /// - ``deleteDataStore(request:)``
     /// - ``deleteDataStore(request:options:)``
+    /// - ``deleteDataStorePollingUntilDone(name:)``
+    /// - ``deleteDataStorePollingUntilDone(request:)``
     public func deleteDataStorePollingUntilDone(
       request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -219,8 +219,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDataStore(request:)``
     /// - ``updateDataStore(dataStore:updateMask:)``
+    /// - ``updateDataStore(request:)``
     public func updateDataStore(
       request: UpdateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -283,9 +283,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -311,8 +311,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

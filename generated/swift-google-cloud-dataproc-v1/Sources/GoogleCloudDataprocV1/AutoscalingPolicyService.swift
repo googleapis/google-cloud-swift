@@ -52,8 +52,8 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   ///
   /// ## See Also
   ///
-  /// - ``createAutoscalingPolicy(request:)``
   /// - ``createAutoscalingPolicy(parent:policy:)``
+  /// - ``createAutoscalingPolicy(request:)``
   public func createAutoscalingPolicy(
     request: CreateAutoscalingPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.AutoscalingPolicy {
@@ -69,8 +69,8 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   ///
   /// ## See Also
   ///
-  /// - ``updateAutoscalingPolicy(request:)``
   /// - ``updateAutoscalingPolicy(policy:)``
+  /// - ``updateAutoscalingPolicy(request:)``
   public func updateAutoscalingPolicy(
     request: UpdateAutoscalingPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.AutoscalingPolicy {
@@ -83,8 +83,8 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   ///
   /// ## See Also
   ///
-  /// - ``getAutoscalingPolicy(request:)``
   /// - ``getAutoscalingPolicy(name:)``
+  /// - ``getAutoscalingPolicy(request:)``
   public func getAutoscalingPolicy(
     request: GetAutoscalingPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.AutoscalingPolicy {
@@ -98,9 +98,9 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   /// ## See Also
   ///
   /// - ``listAutoscalingPolicies(request:)``
+  /// - ``listAutoscalingPoliciesByItems(parent:)``
   /// - ``listAutoscalingPoliciesByItems(request:)``
   /// - ``listAutoscalingPoliciesByItems(request:options:)``
-  /// - ``listAutoscalingPoliciesByItems(parent:)``
   public func listAutoscalingPolicies(
     request: ListAutoscalingPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListAutoscalingPoliciesResponse {
@@ -114,8 +114,8 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteAutoscalingPolicy(request:)``
   /// - ``deleteAutoscalingPolicy(name:)``
+  /// - ``deleteAutoscalingPolicy(request:)``
   public func deleteAutoscalingPolicy(
     request: DeleteAutoscalingPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -181,9 +181,9 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -209,8 +209,8 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -225,8 +225,8 @@ public final class AutoscalingPolicyServiceClient: Clients.AutoscalingPolicyServ
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

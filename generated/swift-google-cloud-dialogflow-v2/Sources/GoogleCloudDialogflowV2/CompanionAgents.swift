@@ -50,8 +50,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createCompanionAgent(request:)``
     /// - ``createCompanionAgent(parent:companionAgent:companionAgentId:)``
+    /// - ``createCompanionAgent(request:)``
     public func createCompanionAgent(
       request: CreateCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -64,8 +64,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getCompanionAgent(request:)``
     /// - ``getCompanionAgent(name:)``
+    /// - ``getCompanionAgent(request:)``
     public func getCompanionAgent(
       request: GetCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -78,8 +78,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateCompanionAgent(request:)``
     /// - ``updateCompanionAgent(companionAgent:updateMask:)``
+    /// - ``updateCompanionAgent(request:)``
     public func updateCompanionAgent(
       request: UpdateCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.CompanionAgent {
@@ -92,8 +92,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteCompanionAgent(request:)``
     /// - ``deleteCompanionAgent(name:)``
+    /// - ``deleteCompanionAgent(request:)``
     public func deleteCompanionAgent(
       request: DeleteCompanionAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -107,9 +107,9 @@
     /// ## See Also
     ///
     /// - ``listCompanionAgents(request:)``
+    /// - ``listCompanionAgentsByItems(parent:)``
     /// - ``listCompanionAgentsByItems(request:)``
     /// - ``listCompanionAgentsByItems(request:options:)``
-    /// - ``listCompanionAgentsByItems(parent:)``
     public func listCompanionAgents(
       request: ListCompanionAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListCompanionAgentsResponse {
@@ -170,9 +170,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -198,8 +198,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

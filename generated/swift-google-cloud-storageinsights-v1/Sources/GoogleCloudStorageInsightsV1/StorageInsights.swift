@@ -54,9 +54,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listReportConfigs(request:)``
+  /// - ``listReportConfigsByItems(parent:)``
   /// - ``listReportConfigsByItems(request:)``
   /// - ``listReportConfigsByItems(request:options:)``
-  /// - ``listReportConfigsByItems(parent:)``
   public func listReportConfigs(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ListReportConfigsResponse {
@@ -69,8 +69,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getReportConfig(request:)``
   /// - ``getReportConfig(name:)``
+  /// - ``getReportConfig(request:)``
   public func getReportConfig(
     request: GetReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -83,8 +83,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createReportConfig(request:)``
   /// - ``createReportConfig(parent:reportConfig:)``
+  /// - ``createReportConfig(request:)``
   public func createReportConfig(
     request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -97,8 +97,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateReportConfig(request:)``
   /// - ``updateReportConfig(reportConfig:updateMask:)``
+  /// - ``updateReportConfig(request:)``
   public func updateReportConfig(
     request: UpdateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportConfig {
@@ -111,8 +111,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteReportConfig(request:)``
   /// - ``deleteReportConfig(name:)``
+  /// - ``deleteReportConfig(request:)``
   public func deleteReportConfig(
     request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -126,9 +126,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listReportDetails(request:)``
+  /// - ``listReportDetailsByItems(parent:)``
   /// - ``listReportDetailsByItems(request:)``
   /// - ``listReportDetailsByItems(request:options:)``
-  /// - ``listReportDetailsByItems(parent:)``
   public func listReportDetails(
     request: ListReportDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ListReportDetailsResponse {
@@ -141,8 +141,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getReportDetail(request:)``
   /// - ``getReportDetail(name:)``
+  /// - ``getReportDetail(request:)``
   public func getReportDetail(
     request: GetReportDetailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ReportDetail {
@@ -156,9 +156,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listDatasetConfigs(request:)``
+  /// - ``listDatasetConfigsByItems(parent:)``
   /// - ``listDatasetConfigsByItems(request:)``
   /// - ``listDatasetConfigsByItems(request:options:)``
-  /// - ``listDatasetConfigsByItems(parent:)``
   public func listDatasetConfigs(
     request: ListDatasetConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.ListDatasetConfigsResponse {
@@ -171,8 +171,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getDatasetConfig(request:)``
   /// - ``getDatasetConfig(name:)``
+  /// - ``getDatasetConfig(request:)``
   public func getDatasetConfig(
     request: GetDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageInsightsV1.DatasetConfig {
@@ -186,9 +186,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``createDatasetConfig(request:)``
+  /// - ``createDatasetConfigPollingUntilDone(parent:datasetConfig:datasetConfigId:)``
   /// - ``createDatasetConfigPollingUntilDone(request:)``
   /// - ``createDatasetConfigPollingUntilDone(request:options:)``
-  /// - ``createDatasetConfigPollingUntilDone(parent:datasetConfig:datasetConfigId:)``
   public func createDatasetConfig(
     request: CreateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createDatasetConfigPollingUntilDone(request:)``
-  /// - ``createDatasetConfigPollingUntilDone(parent:datasetConfig:datasetConfigId:)``
   /// - ``createDatasetConfig(request:)``
   /// - ``createDatasetConfig(request:options:)``
+  /// - ``createDatasetConfigPollingUntilDone(parent:datasetConfig:datasetConfigId:)``
+  /// - ``createDatasetConfigPollingUntilDone(request:)``
   public func createDatasetConfigPollingUntilDone(
     request: CreateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> DatasetConfig {
@@ -237,9 +237,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``updateDatasetConfig(request:)``
+  /// - ``updateDatasetConfigPollingUntilDone(datasetConfig:updateMask:)``
   /// - ``updateDatasetConfigPollingUntilDone(request:)``
   /// - ``updateDatasetConfigPollingUntilDone(request:options:)``
-  /// - ``updateDatasetConfigPollingUntilDone(datasetConfig:updateMask:)``
   public func updateDatasetConfig(
     request: UpdateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -252,10 +252,10 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateDatasetConfigPollingUntilDone(request:)``
-  /// - ``updateDatasetConfigPollingUntilDone(datasetConfig:updateMask:)``
   /// - ``updateDatasetConfig(request:)``
   /// - ``updateDatasetConfig(request:options:)``
+  /// - ``updateDatasetConfigPollingUntilDone(datasetConfig:updateMask:)``
+  /// - ``updateDatasetConfigPollingUntilDone(request:)``
   public func updateDatasetConfigPollingUntilDone(
     request: UpdateDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> DatasetConfig {
@@ -288,9 +288,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``deleteDatasetConfig(request:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(name:)``
   /// - ``deleteDatasetConfigPollingUntilDone(request:)``
   /// - ``deleteDatasetConfigPollingUntilDone(request:options:)``
-  /// - ``deleteDatasetConfigPollingUntilDone(name:)``
   public func deleteDatasetConfig(
     request: DeleteDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -303,10 +303,10 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteDatasetConfigPollingUntilDone(request:)``
-  /// - ``deleteDatasetConfigPollingUntilDone(name:)``
   /// - ``deleteDatasetConfig(request:)``
   /// - ``deleteDatasetConfig(request:options:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(name:)``
+  /// - ``deleteDatasetConfigPollingUntilDone(request:)``
   public func deleteDatasetConfigPollingUntilDone(
     request: DeleteDatasetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -338,9 +338,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``linkDataset(request:)``
+  /// - ``linkDatasetPollingUntilDone(name:)``
   /// - ``linkDatasetPollingUntilDone(request:)``
   /// - ``linkDatasetPollingUntilDone(request:options:)``
-  /// - ``linkDatasetPollingUntilDone(name:)``
   public func linkDataset(
     request: LinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -353,10 +353,10 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``linkDatasetPollingUntilDone(request:)``
-  /// - ``linkDatasetPollingUntilDone(name:)``
   /// - ``linkDataset(request:)``
   /// - ``linkDataset(request:options:)``
+  /// - ``linkDatasetPollingUntilDone(name:)``
+  /// - ``linkDatasetPollingUntilDone(request:)``
   public func linkDatasetPollingUntilDone(
     request: LinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> LinkDatasetResponse {
@@ -390,9 +390,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``unlinkDataset(request:)``
+  /// - ``unlinkDatasetPollingUntilDone(name:)``
   /// - ``unlinkDatasetPollingUntilDone(request:)``
   /// - ``unlinkDatasetPollingUntilDone(request:options:)``
-  /// - ``unlinkDatasetPollingUntilDone(name:)``
   public func unlinkDataset(
     request: UnlinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -406,10 +406,10 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``unlinkDatasetPollingUntilDone(request:)``
-  /// - ``unlinkDatasetPollingUntilDone(name:)``
   /// - ``unlinkDataset(request:)``
   /// - ``unlinkDataset(request:options:)``
+  /// - ``unlinkDatasetPollingUntilDone(name:)``
+  /// - ``unlinkDatasetPollingUntilDone(request:)``
   public func unlinkDatasetPollingUntilDone(
     request: UnlinkDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -471,9 +471,9 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -499,8 +499,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -515,8 +515,8 @@ public final class StorageInsightsClient: Clients.StorageInsightsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

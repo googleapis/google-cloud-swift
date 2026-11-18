@@ -48,9 +48,9 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listEvents(request:)``
+  /// - ``listEventsByItems(parent:)``
   /// - ``listEventsByItems(request:)``
   /// - ``listEventsByItems(request:options:)``
-  /// - ``listEventsByItems(parent:)``
   public func listEvents(
     request: ListEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.ListEventsResponse {
@@ -63,8 +63,8 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getEvent(request:)``
   /// - ``getEvent(name:)``
+  /// - ``getEvent(request:)``
   public func getEvent(
     request: GetEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.Event {
@@ -78,9 +78,9 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOrganizationEvents(request:)``
+  /// - ``listOrganizationEventsByItems(parent:)``
   /// - ``listOrganizationEventsByItems(request:)``
   /// - ``listOrganizationEventsByItems(request:options:)``
-  /// - ``listOrganizationEventsByItems(parent:)``
   public func listOrganizationEvents(
     request: ListOrganizationEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationEventsResponse {
@@ -94,8 +94,8 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getOrganizationEvent(request:)``
   /// - ``getOrganizationEvent(name:)``
+  /// - ``getOrganizationEvent(request:)``
   public func getOrganizationEvent(
     request: GetOrganizationEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.OrganizationEvent {
@@ -110,9 +110,9 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOrganizationImpacts(request:)``
+  /// - ``listOrganizationImpactsByItems(parent:)``
   /// - ``listOrganizationImpactsByItems(request:)``
   /// - ``listOrganizationImpactsByItems(request:options:)``
-  /// - ``listOrganizationImpactsByItems(parent:)``
   public func listOrganizationImpacts(
     request: ListOrganizationImpactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.ListOrganizationImpactsResponse {
@@ -126,8 +126,8 @@ public final class ServiceHealthClient: Clients.ServiceHealthProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getOrganizationImpact(request:)``
   /// - ``getOrganizationImpact(name:)``
+  /// - ``getOrganizationImpact(request:)``
   public func getOrganizationImpact(
     request: GetOrganizationImpactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceHealthV1.OrganizationImpact {

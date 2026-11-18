@@ -55,9 +55,9 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``createConnector(request:)``
+  /// - ``createConnectorPollingUntilDone(parent:connectorId:connector:)``
   /// - ``createConnectorPollingUntilDone(request:)``
   /// - ``createConnectorPollingUntilDone(request:options:)``
-  /// - ``createConnectorPollingUntilDone(parent:connectorId:connector:)``
   public func createConnector(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -70,10 +70,10 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``createConnectorPollingUntilDone(request:)``
-  /// - ``createConnectorPollingUntilDone(parent:connectorId:connector:)``
   /// - ``createConnector(request:)``
   /// - ``createConnector(request:options:)``
+  /// - ``createConnectorPollingUntilDone(parent:connectorId:connector:)``
+  /// - ``createConnectorPollingUntilDone(request:)``
   public func createConnectorPollingUntilDone(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connector {
@@ -105,8 +105,8 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``getConnector(request:)``
   /// - ``getConnector(name:)``
+  /// - ``getConnector(request:)``
   public func getConnector(
     request: GetConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVPCAccessV1.Connector {
@@ -120,9 +120,9 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listConnectors(request:)``
+  /// - ``listConnectorsByItems(parent:)``
   /// - ``listConnectorsByItems(request:)``
   /// - ``listConnectorsByItems(request:options:)``
-  /// - ``listConnectorsByItems(parent:)``
   public func listConnectors(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse {
@@ -137,9 +137,9 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``deleteConnector(request:)``
+  /// - ``deleteConnectorPollingUntilDone(name:)``
   /// - ``deleteConnectorPollingUntilDone(request:)``
   /// - ``deleteConnectorPollingUntilDone(request:options:)``
-  /// - ``deleteConnectorPollingUntilDone(name:)``
   public func deleteConnector(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnectorPollingUntilDone(request:)``
-  /// - ``deleteConnectorPollingUntilDone(name:)``
   /// - ``deleteConnector(request:)``
   /// - ``deleteConnector(request:options:)``
+  /// - ``deleteConnectorPollingUntilDone(name:)``
+  /// - ``deleteConnectorPollingUntilDone(request:)``
   public func deleteConnectorPollingUntilDone(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -205,9 +205,9 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

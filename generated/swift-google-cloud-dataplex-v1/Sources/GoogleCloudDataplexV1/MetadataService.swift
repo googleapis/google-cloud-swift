@@ -50,8 +50,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createEntity(request:)``
   /// - ``createEntity(parent:entity:)``
+  /// - ``createEntity(request:)``
   public func createEntity(
     request: CreateEntityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entity {
@@ -77,8 +77,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteEntity(request:)``
   /// - ``deleteEntity(name:)``
+  /// - ``deleteEntity(request:)``
   public func deleteEntity(
     request: DeleteEntityRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -91,8 +91,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getEntity(request:)``
   /// - ``getEntity(name:)``
+  /// - ``getEntity(request:)``
   public func getEntity(
     request: GetEntityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Entity {
@@ -106,9 +106,9 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listEntities(request:)``
+  /// - ``listEntitiesByItems(parent:)``
   /// - ``listEntitiesByItems(request:)``
   /// - ``listEntitiesByItems(request:options:)``
-  /// - ``listEntitiesByItems(parent:)``
   public func listEntities(
     request: ListEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListEntitiesResponse {
@@ -121,8 +121,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createPartition(request:)``
   /// - ``createPartition(parent:partition:)``
+  /// - ``createPartition(request:)``
   public func createPartition(
     request: CreatePartitionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Partition {
@@ -135,8 +135,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deletePartition(request:)``
   /// - ``deletePartition(name:)``
+  /// - ``deletePartition(request:)``
   public func deletePartition(
     request: DeletePartitionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -149,8 +149,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getPartition(request:)``
   /// - ``getPartition(name:)``
+  /// - ``getPartition(request:)``
   public func getPartition(
     request: GetPartitionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Partition {
@@ -164,9 +164,9 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listPartitions(request:)``
+  /// - ``listPartitionsByItems(parent:)``
   /// - ``listPartitionsByItems(request:)``
   /// - ``listPartitionsByItems(request:options:)``
-  /// - ``listPartitionsByItems(parent:)``
   public func listPartitions(
     request: ListPartitionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListPartitionsResponse {
@@ -277,9 +277,9 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -305,8 +305,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -321,8 +321,8 @@ public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

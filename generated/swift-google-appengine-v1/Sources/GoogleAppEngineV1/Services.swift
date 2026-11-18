@@ -94,9 +94,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateServicePollingUntilDone(request:)``
   /// - ``updateService(request:)``
   /// - ``updateService(request:options:)``
+  /// - ``updateServicePollingUntilDone(request:)``
   public func updateServicePollingUntilDone(
     request: UpdateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Service {
@@ -142,9 +142,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServicePollingUntilDone(request:)``
   /// - ``deleteService(request:)``
   /// - ``deleteService(request:options:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -178,9 +178,9 @@ public final class ServicesClient: Clients.ServicesProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

@@ -51,8 +51,8 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createSshPublicKey(request:)``
   /// - ``createSshPublicKey(parent:sshPublicKey:)``
+  /// - ``createSshPublicKey(request:)``
   public func createSshPublicKey(
     request: CreateSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -65,8 +65,8 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deletePosixAccount(request:)``
   /// - ``deletePosixAccount(name:)``
+  /// - ``deletePosixAccount(request:)``
   public func deletePosixAccount(
     request: DeletePosixAccountRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -79,8 +79,8 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteSshPublicKey(request:)``
   /// - ``deleteSshPublicKey(name:)``
+  /// - ``deleteSshPublicKey(request:)``
   public func deleteSshPublicKey(
     request: DeleteSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -94,8 +94,8 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getLoginProfile(request:)``
   /// - ``getLoginProfile(name:)``
+  /// - ``getLoginProfile(request:)``
   public func getLoginProfile(
     request: GetLoginProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginV1.LoginProfile {
@@ -108,8 +108,8 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getSshPublicKey(request:)``
   /// - ``getSshPublicKey(name:)``
+  /// - ``getSshPublicKey(request:)``
   public func getSshPublicKey(
     request: GetSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {
@@ -124,9 +124,9 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``importSshPublicKey(request:)``
   /// - ``importSshPublicKey(parent:sshPublicKey:)``
   /// - ``importSshPublicKey(parent:sshPublicKey:projectId:)``
+  /// - ``importSshPublicKey(request:)``
   public func importSshPublicKey(
     request: ImportSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginV1.ImportSshPublicKeyResponse {
@@ -140,9 +140,9 @@ public final class OsLoginServiceClient: Clients.OsLoginServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateSshPublicKey(request:)``
   /// - ``updateSshPublicKey(name:sshPublicKey:)``
   /// - ``updateSshPublicKey(name:sshPublicKey:updateMask:)``
+  /// - ``updateSshPublicKey(request:)``
   public func updateSshPublicKey(
     request: UpdateSshPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSLoginCommon.SshPublicKey {

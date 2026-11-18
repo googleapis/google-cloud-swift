@@ -58,9 +58,9 @@
     /// ## See Also
     ///
     /// - ``cancel(request:)``
+    /// - ``cancelPollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
     /// - ``cancelPollingUntilDone(request:)``
     /// - ``cancelPollingUntilDone(request:options:)``
-    /// - ``cancelPollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
     public func cancel(
       request: RegionInstanceGroupManagerResizeRequestsClient.CancelRequest,
       options: GoogleGax.RequestOptions
@@ -82,10 +82,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelPollingUntilDone(request:)``
-    /// - ``cancelPollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
     /// - ``cancel(request:)``
     /// - ``cancel(request:options:)``
+    /// - ``cancelPollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
+    /// - ``cancelPollingUntilDone(request:)``
     public func cancelPollingUntilDone(
       request: RegionInstanceGroupManagerResizeRequestsClient.CancelRequest,
       options: GoogleGax.RequestOptions
@@ -135,9 +135,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
     public func delete(
       request: RegionInstanceGroupManagerResizeRequestsClient.DeleteRequest,
       options: GoogleGax.RequestOptions
@@ -158,10 +158,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:resizeRequest:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagerResizeRequestsClient.DeleteRequest,
       options: GoogleGax.RequestOptions
@@ -208,8 +208,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:instanceGroupManager:resizeRequest:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionInstanceGroupManagerResizeRequestsClient.GetRequest,
       options: GoogleGax.RequestOptions
@@ -225,9 +225,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:instanceGroupManager:body:)``
     public func insert(
       request: RegionInstanceGroupManagerResizeRequestsClient.InsertRequest,
       options: GoogleGax.RequestOptions
@@ -247,10 +247,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:instanceGroupManager:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagerResizeRequestsClient.InsertRequest,
       options: GoogleGax.RequestOptions
@@ -299,9 +299,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:instanceGroupManager:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:instanceGroupManager:)``
     public func list(
       request: RegionInstanceGroupManagerResizeRequestsClient.ListRequest,
       options: GoogleGax.RequestOptions

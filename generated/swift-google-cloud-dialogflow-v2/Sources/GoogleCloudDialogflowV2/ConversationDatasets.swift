@@ -70,9 +70,9 @@
     /// ## See Also
     ///
     /// - ``createConversationDataset(request:)``
+    /// - ``createConversationDatasetPollingUntilDone(parent:conversationDataset:)``
     /// - ``createConversationDatasetPollingUntilDone(request:)``
     /// - ``createConversationDatasetPollingUntilDone(request:options:)``
-    /// - ``createConversationDatasetPollingUntilDone(parent:conversationDataset:)``
     public func createConversationDataset(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -97,10 +97,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createConversationDatasetPollingUntilDone(request:)``
-    /// - ``createConversationDatasetPollingUntilDone(parent:conversationDataset:)``
     /// - ``createConversationDataset(request:)``
     /// - ``createConversationDataset(request:options:)``
+    /// - ``createConversationDatasetPollingUntilDone(parent:conversationDataset:)``
+    /// - ``createConversationDatasetPollingUntilDone(request:)``
     public func createConversationDatasetPollingUntilDone(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationDataset {
@@ -132,8 +132,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getConversationDataset(request:)``
     /// - ``getConversationDataset(name:)``
+    /// - ``getConversationDataset(request:)``
     public func getConversationDataset(
       request: GetConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationDataset {
@@ -148,9 +148,9 @@
     /// ## See Also
     ///
     /// - ``listConversationDatasets(request:)``
+    /// - ``listConversationDatasetsByItems(parent:)``
     /// - ``listConversationDatasetsByItems(request:)``
     /// - ``listConversationDatasetsByItems(request:options:)``
-    /// - ``listConversationDatasetsByItems(parent:)``
     public func listConversationDatasets(
       request: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse {
@@ -175,9 +175,9 @@
     /// ## See Also
     ///
     /// - ``deleteConversationDataset(request:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(name:)``
     /// - ``deleteConversationDatasetPollingUntilDone(request:)``
     /// - ``deleteConversationDatasetPollingUntilDone(request:options:)``
-    /// - ``deleteConversationDatasetPollingUntilDone(name:)``
     public func deleteConversationDataset(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteConversationDatasetPollingUntilDone(request:)``
-    /// - ``deleteConversationDatasetPollingUntilDone(name:)``
     /// - ``deleteConversationDataset(request:)``
     /// - ``deleteConversationDataset(request:options:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(name:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(request:)``
     public func deleteConversationDatasetPollingUntilDone(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -279,9 +279,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importConversationDataPollingUntilDone(request:)``
     /// - ``importConversationData(request:)``
     /// - ``importConversationData(request:options:)``
+    /// - ``importConversationDataPollingUntilDone(request:)``
     public func importConversationDataPollingUntilDone(
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportConversationDataOperationResponse {
@@ -362,9 +362,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -390,8 +390,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

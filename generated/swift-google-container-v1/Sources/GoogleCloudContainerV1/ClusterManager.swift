@@ -47,9 +47,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``listClusters(request:)``
-  /// - ``listClusters(projectId:zone:)``
   /// - ``listClusters(parent:)``
+  /// - ``listClusters(projectId:zone:)``
+  /// - ``listClusters(request:)``
   public func listClusters(
     request: ListClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListClustersResponse {
@@ -62,9 +62,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getCluster(request:)``
-  /// - ``getCluster(projectId:zone:clusterId:)``
   /// - ``getCluster(name:)``
+  /// - ``getCluster(projectId:zone:clusterId:)``
+  /// - ``getCluster(request:)``
   public func getCluster(
     request: GetClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Cluster {
@@ -90,9 +90,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createCluster(request:)``
-  /// - ``createCluster(projectId:zone:cluster:)``
   /// - ``createCluster(parent:cluster:)``
+  /// - ``createCluster(projectId:zone:cluster:)``
+  /// - ``createCluster(request:)``
   public func createCluster(
     request: CreateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -105,9 +105,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateCluster(request:)``
-  /// - ``updateCluster(projectId:zone:clusterId:update:)``
   /// - ``updateCluster(name:update:)``
+  /// - ``updateCluster(projectId:zone:clusterId:update:)``
+  /// - ``updateCluster(request:)``
   public func updateCluster(
     request: UpdateClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -146,9 +146,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setLoggingService(request:)``
-  /// - ``setLoggingService(projectId:zone:clusterId:loggingService:)``
   /// - ``setLoggingService(name:loggingService:)``
+  /// - ``setLoggingService(projectId:zone:clusterId:loggingService:)``
+  /// - ``setLoggingService(request:)``
   public func setLoggingService(
     request: SetLoggingServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -161,9 +161,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setMonitoringService(request:)``
-  /// - ``setMonitoringService(projectId:zone:clusterId:monitoringService:)``
   /// - ``setMonitoringService(name:monitoringService:)``
+  /// - ``setMonitoringService(projectId:zone:clusterId:monitoringService:)``
+  /// - ``setMonitoringService(request:)``
   public func setMonitoringService(
     request: SetMonitoringServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -176,9 +176,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setAddonsConfig(request:)``
-  /// - ``setAddonsConfig(projectId:zone:clusterId:addonsConfig:)``
   /// - ``setAddonsConfig(name:addonsConfig:)``
+  /// - ``setAddonsConfig(projectId:zone:clusterId:addonsConfig:)``
+  /// - ``setAddonsConfig(request:)``
   public func setAddonsConfig(
     request: SetAddonsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -194,9 +194,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setLocations(request:)``
-  /// - ``setLocations(projectId:zone:clusterId:locations:)``
   /// - ``setLocations(name:locations:)``
+  /// - ``setLocations(projectId:zone:clusterId:locations:)``
+  /// - ``setLocations(request:)``
   @available(*, deprecated)
   public func setLocations(
     request: SetLocationsRequest, options: GoogleGax.RequestOptions
@@ -210,9 +210,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateMaster(request:)``
-  /// - ``updateMaster(projectId:zone:clusterId:masterVersion:)``
   /// - ``updateMaster(name:masterVersion:)``
+  /// - ``updateMaster(projectId:zone:clusterId:masterVersion:)``
+  /// - ``updateMaster(request:)``
   public func updateMaster(
     request: UpdateMasterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -248,9 +248,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteCluster(request:)``
-  /// - ``deleteCluster(projectId:zone:clusterId:)``
   /// - ``deleteCluster(name:)``
+  /// - ``deleteCluster(projectId:zone:clusterId:)``
+  /// - ``deleteCluster(request:)``
   public func deleteCluster(
     request: DeleteClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -263,9 +263,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``listOperations(request:)``
-  /// - ``listOperations(projectId:zone:)``
   /// - ``listOperations(parent:)``
+  /// - ``listOperations(projectId:zone:)``
+  /// - ``listOperations(request:)``
   public func listOperations(
     request: ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListOperationsResponse {
@@ -278,9 +278,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getOperation(request:)``
-  /// - ``getOperation(projectId:zone:operationId:)``
   /// - ``getOperation(name:)``
+  /// - ``getOperation(projectId:zone:operationId:)``
+  /// - ``getOperation(request:)``
   public func getOperation(
     request: GetOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -293,9 +293,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
-  /// - ``cancelOperation(projectId:zone:operationId:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(projectId:zone:operationId:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -308,9 +308,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getServerConfig(request:)``
-  /// - ``getServerConfig(projectId:zone:)``
   /// - ``getServerConfig(name:)``
+  /// - ``getServerConfig(projectId:zone:)``
+  /// - ``getServerConfig(request:)``
   public func getServerConfig(
     request: GetServerConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ServerConfig {
@@ -337,9 +337,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``listNodePools(request:)``
-  /// - ``listNodePools(projectId:zone:clusterId:)``
   /// - ``listNodePools(parent:)``
+  /// - ``listNodePools(projectId:zone:clusterId:)``
+  /// - ``listNodePools(request:)``
   public func listNodePools(
     request: ListNodePoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ListNodePoolsResponse {
@@ -352,9 +352,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getNodePool(request:)``
-  /// - ``getNodePool(projectId:zone:clusterId:nodePoolId:)``
   /// - ``getNodePool(name:)``
+  /// - ``getNodePool(projectId:zone:clusterId:nodePoolId:)``
+  /// - ``getNodePool(request:)``
   public func getNodePool(
     request: GetNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.NodePool {
@@ -367,9 +367,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createNodePool(request:)``
-  /// - ``createNodePool(projectId:zone:clusterId:nodePool:)``
   /// - ``createNodePool(parent:nodePool:)``
+  /// - ``createNodePool(projectId:zone:clusterId:nodePool:)``
+  /// - ``createNodePool(request:)``
   public func createNodePool(
     request: CreateNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -382,9 +382,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteNodePool(request:)``
-  /// - ``deleteNodePool(projectId:zone:clusterId:nodePoolId:)``
   /// - ``deleteNodePool(name:)``
+  /// - ``deleteNodePool(projectId:zone:clusterId:nodePoolId:)``
+  /// - ``deleteNodePool(request:)``
   public func deleteNodePool(
     request: DeleteNodePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -412,9 +412,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``rollbackNodePoolUpgrade(request:)``
-  /// - ``rollbackNodePoolUpgrade(projectId:zone:clusterId:nodePoolId:)``
   /// - ``rollbackNodePoolUpgrade(name:)``
+  /// - ``rollbackNodePoolUpgrade(projectId:zone:clusterId:nodePoolId:)``
+  /// - ``rollbackNodePoolUpgrade(request:)``
   public func rollbackNodePoolUpgrade(
     request: RollbackNodePoolUpgradeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -453,9 +453,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setLegacyAbac(request:)``
-  /// - ``setLegacyAbac(projectId:zone:clusterId:enabled:)``
   /// - ``setLegacyAbac(name:enabled:)``
+  /// - ``setLegacyAbac(projectId:zone:clusterId:enabled:)``
+  /// - ``setLegacyAbac(request:)``
   public func setLegacyAbac(
     request: SetLegacyAbacRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -468,9 +468,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``startIprotation(request:)``
-  /// - ``startIprotation(projectId:zone:clusterId:)``
   /// - ``startIprotation(name:)``
+  /// - ``startIprotation(projectId:zone:clusterId:)``
+  /// - ``startIprotation(request:)``
   public func startIprotation(
     request: StartIPRotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -483,9 +483,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``completeIprotation(request:)``
-  /// - ``completeIprotation(projectId:zone:clusterId:)``
   /// - ``completeIprotation(name:)``
+  /// - ``completeIprotation(projectId:zone:clusterId:)``
+  /// - ``completeIprotation(request:)``
   public func completeIprotation(
     request: CompleteIPRotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -515,9 +515,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setNetworkPolicy(request:)``
-  /// - ``setNetworkPolicy(projectId:zone:clusterId:networkPolicy:)``
   /// - ``setNetworkPolicy(name:networkPolicy:)``
+  /// - ``setNetworkPolicy(projectId:zone:clusterId:networkPolicy:)``
+  /// - ``setNetworkPolicy(request:)``
   public func setNetworkPolicy(
     request: SetNetworkPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -530,9 +530,9 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``setMaintenancePolicy(request:)``
-  /// - ``setMaintenancePolicy(projectId:zone:clusterId:maintenancePolicy:)``
   /// - ``setMaintenancePolicy(name:maintenancePolicy:)``
+  /// - ``setMaintenancePolicy(projectId:zone:clusterId:maintenancePolicy:)``
+  /// - ``setMaintenancePolicy(request:)``
   public func setMaintenancePolicy(
     request: SetMaintenancePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.Operation {
@@ -574,8 +574,8 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``fetchClusterUpgradeInfo(request:)``
   /// - ``fetchClusterUpgradeInfo(name:)``
+  /// - ``fetchClusterUpgradeInfo(request:)``
   public func fetchClusterUpgradeInfo(
     request: FetchClusterUpgradeInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.ClusterUpgradeInfo {
@@ -588,8 +588,8 @@ public final class ClusterManagerClient: Clients.ClusterManagerProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``fetchNodePoolUpgradeInfo(request:)``
   /// - ``fetchNodePoolUpgradeInfo(name:)``
+  /// - ``fetchNodePoolUpgradeInfo(request:)``
   public func fetchNodePoolUpgradeInfo(
     request: FetchNodePoolUpgradeInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerV1.NodePoolUpgradeInfo {

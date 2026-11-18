@@ -51,8 +51,8 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createRuntimeProjectAttachment(request:)``
   /// - ``createRuntimeProjectAttachment(parent:runtimeProjectAttachment:runtimeProjectAttachmentId:)``
+  /// - ``createRuntimeProjectAttachment(request:)``
   public func createRuntimeProjectAttachment(
     request: CreateRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment {
@@ -65,8 +65,8 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getRuntimeProjectAttachment(request:)``
   /// - ``getRuntimeProjectAttachment(name:)``
+  /// - ``getRuntimeProjectAttachment(request:)``
   public func getRuntimeProjectAttachment(
     request: GetRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.RuntimeProjectAttachment {
@@ -80,9 +80,9 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listRuntimeProjectAttachments(request:)``
+  /// - ``listRuntimeProjectAttachmentsByItems(parent:)``
   /// - ``listRuntimeProjectAttachmentsByItems(request:)``
   /// - ``listRuntimeProjectAttachmentsByItems(request:options:)``
-  /// - ``listRuntimeProjectAttachmentsByItems(parent:)``
   public func listRuntimeProjectAttachments(
     request: ListRuntimeProjectAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListRuntimeProjectAttachmentsResponse {
@@ -96,8 +96,8 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteRuntimeProjectAttachment(request:)``
   /// - ``deleteRuntimeProjectAttachment(name:)``
+  /// - ``deleteRuntimeProjectAttachment(request:)``
   public func deleteRuntimeProjectAttachment(
     request: DeleteRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -111,8 +111,8 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``lookupRuntimeProjectAttachment(request:)``
   /// - ``lookupRuntimeProjectAttachment(name:)``
+  /// - ``lookupRuntimeProjectAttachment(request:)``
   public func lookupRuntimeProjectAttachment(
     request: LookupRuntimeProjectAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.LookupRuntimeProjectAttachmentResponse {
@@ -156,9 +156,9 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -184,8 +184,8 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -200,8 +200,8 @@ public final class RuntimeProjectAttachmentServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

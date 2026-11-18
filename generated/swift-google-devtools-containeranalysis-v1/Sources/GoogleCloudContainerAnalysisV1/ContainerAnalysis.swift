@@ -121,8 +121,8 @@ public final class ContainerAnalysisClient: Clients.ContainerAnalysisProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getVulnerabilityOccurrencesSummary(request:)``
   /// - ``getVulnerabilityOccurrencesSummary(parent:filter:)``
+  /// - ``getVulnerabilityOccurrencesSummary(request:)``
   public func getVulnerabilityOccurrencesSummary(
     request: GetVulnerabilityOccurrencesSummaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContainerAnalysisV1.VulnerabilityOccurrencesSummary {

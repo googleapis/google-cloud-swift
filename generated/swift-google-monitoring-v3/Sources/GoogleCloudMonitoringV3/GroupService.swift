@@ -59,9 +59,9 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listGroups(request:)``
+  /// - ``listGroupsByItems(name:)``
   /// - ``listGroupsByItems(request:)``
   /// - ``listGroupsByItems(request:options:)``
-  /// - ``listGroupsByItems(name:)``
   public func listGroups(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse {
@@ -74,8 +74,8 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getGroup(request:)``
   /// - ``getGroup(name:)``
+  /// - ``getGroup(request:)``
   public func getGroup(
     request: GetGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -88,8 +88,8 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createGroup(request:)``
   /// - ``createGroup(name:group:)``
+  /// - ``createGroup(request:)``
   public func createGroup(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -103,8 +103,8 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateGroup(request:)``
   /// - ``updateGroup(group:)``
+  /// - ``updateGroup(request:)``
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -117,8 +117,8 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteGroup(request:)``
   /// - ``deleteGroup(name:)``
+  /// - ``deleteGroup(request:)``
   public func deleteGroup(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -132,9 +132,9 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listGroupMembers(request:)``
+  /// - ``listGroupMembersByItems(name:)``
   /// - ``listGroupMembersByItems(request:)``
   /// - ``listGroupMembersByItems(request:options:)``
-  /// - ``listGroupMembersByItems(name:)``
   public func listGroupMembers(
     request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse {

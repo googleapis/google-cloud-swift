@@ -98,8 +98,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getSchemaRegistry(request:)``
   /// - ``getSchemaRegistry(name:)``
+  /// - ``getSchemaRegistry(request:)``
   public func getSchemaRegistry(
     request: GetSchemaRegistryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -112,8 +112,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listSchemaRegistries(request:)``
   /// - ``listSchemaRegistries(parent:)``
+  /// - ``listSchemaRegistries(request:)``
   public func listSchemaRegistries(
     request: ListSchemaRegistriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.ListSchemaRegistriesResponse {
@@ -126,8 +126,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``createSchemaRegistry(request:)``
   /// - ``createSchemaRegistry(parent:schemaRegistry:)``
+  /// - ``createSchemaRegistry(request:)``
   public func createSchemaRegistry(
     request: CreateSchemaRegistryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaRegistry {
@@ -140,8 +140,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSchemaRegistry(request:)``
   /// - ``deleteSchemaRegistry(name:)``
+  /// - ``deleteSchemaRegistry(request:)``
   public func deleteSchemaRegistry(
     request: DeleteSchemaRegistryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -154,8 +154,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getContext(request:)``
   /// - ``getContext(name:)``
+  /// - ``getContext(request:)``
   public func getContext(
     request: GetContextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Context {
@@ -168,8 +168,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listContexts(request:)``
   /// - ``listContexts(parent:)``
+  /// - ``listContexts(request:)``
   public func listContexts(
     request: ListContextsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -182,8 +182,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getSchema(request:)``
   /// - ``getSchema(name:)``
+  /// - ``getSchema(request:)``
   public func getSchema(
     request: GetSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.Schema {
@@ -197,8 +197,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getRawSchema(request:)``
   /// - ``getRawSchema(name:)``
+  /// - ``getRawSchema(request:)``
   public func getRawSchema(
     request: GetSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -213,8 +213,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listSchemaVersions(request:)``
   /// - ``listSchemaVersions(parent:)``
+  /// - ``listSchemaVersions(request:)``
   public func listSchemaVersions(
     request: ListSchemaVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -228,8 +228,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listSchemaTypes(request:)``
   /// - ``listSchemaTypes(parent:)``
+  /// - ``listSchemaTypes(request:)``
   public func listSchemaTypes(
     request: ListSchemaTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -243,8 +243,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listSubjects(request:)``
   /// - ``listSubjects(parent:subjectPrefix:deleted:)``
+  /// - ``listSubjects(request:)``
   public func listSubjects(
     request: ListSubjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -258,8 +258,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listSubjectsBySchemaId(request:)``
   /// - ``listSubjectsBySchemaId(parent:subject:deleted:)``
+  /// - ``listSubjectsBySchemaId(request:)``
   public func listSubjectsBySchemaId(
     request: ListSubjectsBySchemaIdRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -273,8 +273,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSubject(request:)``
   /// - ``deleteSubject(name:)``
+  /// - ``deleteSubject(request:)``
   public func deleteSubject(
     request: DeleteSubjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -287,8 +287,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``lookupVersion(request:)``
   /// - ``lookupVersion(parent:schema:)``
+  /// - ``lookupVersion(request:)``
   public func lookupVersion(
     request: LookupVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -301,8 +301,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getVersion(request:)``
   /// - ``getVersion(name:)``
+  /// - ``getVersion(request:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaVersion {
@@ -316,8 +316,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getRawSchemaVersion(request:)``
   /// - ``getRawSchemaVersion(name:)``
+  /// - ``getRawSchemaVersion(request:)``
   public func getRawSchemaVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -331,8 +331,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listVersions(request:)``
   /// - ``listVersions(parent:)``
+  /// - ``listVersions(request:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -345,8 +345,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``createVersion(request:)``
   /// - ``createVersion(parent:version:id:schemaType:schema:references:normalize:)``
+  /// - ``createVersion(request:)``
   public func createVersion(
     request: CreateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CreateVersionResponse {
@@ -360,8 +360,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteVersion(request:)``
   /// - ``deleteVersion(name:)``
+  /// - ``deleteVersion(request:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -375,8 +375,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``listReferencedSchemas(request:)``
   /// - ``listReferencedSchemas(parent:)``
+  /// - ``listReferencedSchemas(request:)``
   public func listReferencedSchemas(
     request: ListReferencedSchemasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.HttpBody {
@@ -390,8 +390,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``checkCompatibility(request:)``
   /// - ``checkCompatibility(name:schema:)``
+  /// - ``checkCompatibility(request:)``
   public func checkCompatibility(
     request: CheckCompatibilityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.CheckCompatibilityResponse {
@@ -404,8 +404,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getSchemaConfig(request:)``
   /// - ``getSchemaConfig(name:)``
+  /// - ``getSchemaConfig(request:)``
   public func getSchemaConfig(
     request: GetSchemaConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -419,8 +419,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``updateSchemaConfig(request:)``
   /// - ``updateSchemaConfig(name:compatibility:)``
+  /// - ``updateSchemaConfig(request:)``
   public func updateSchemaConfig(
     request: UpdateSchemaConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -433,8 +433,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSchemaConfig(request:)``
   /// - ``deleteSchemaConfig(name:)``
+  /// - ``deleteSchemaConfig(request:)``
   public func deleteSchemaConfig(
     request: DeleteSchemaConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaConfig {
@@ -447,8 +447,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``getSchemaMode(request:)``
   /// - ``getSchemaMode(name:)``
+  /// - ``getSchemaMode(request:)``
   public func getSchemaMode(
     request: GetSchemaModeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -461,8 +461,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``updateSchemaMode(request:)``
   /// - ``updateSchemaMode(name:mode:)``
+  /// - ``updateSchemaMode(request:)``
   public func updateSchemaMode(
     request: UpdateSchemaModeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -475,8 +475,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteSchemaMode(request:)``
   /// - ``deleteSchemaMode(name:)``
+  /// - ``deleteSchemaMode(request:)``
   public func deleteSchemaMode(
     request: DeleteSchemaModeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaSchemaRegistryV1.SchemaMode {
@@ -520,9 +520,9 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -548,8 +548,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -564,8 +564,8 @@ public final class ManagedSchemaRegistryClient: Clients.ManagedSchemaRegistryPro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -57,9 +57,9 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
   /// - ``listJobsByItems(request:)``
   /// - ``listJobsByItems(request:options:)``
-  /// - ``listJobsByItems(parent:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageBatchOperationsV1.ListJobsResponse {
@@ -72,8 +72,8 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageBatchOperationsV1.Job {
@@ -87,9 +87,9 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// ## See Also
   ///
   /// - ``createJob(request:)``
+  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
   /// - ``createJobPollingUntilDone(request:)``
   /// - ``createJobPollingUntilDone(request:options:)``
-  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,10 +102,10 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``createJobPollingUntilDone(request:)``
-  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
   /// - ``createJob(request:)``
   /// - ``createJob(request:options:)``
+  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
+  /// - ``createJobPollingUntilDone(request:)``
   public func createJobPollingUntilDone(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -136,8 +136,8 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``deleteJob(request:)``
   /// - ``deleteJob(name:)``
+  /// - ``deleteJob(request:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -150,8 +150,8 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``cancelJob(request:)``
   /// - ``cancelJob(name:)``
+  /// - ``cancelJob(request:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageBatchOperationsV1.CancelJobResponse {
@@ -165,9 +165,9 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// ## See Also
   ///
   /// - ``listBucketOperations(request:)``
+  /// - ``listBucketOperationsByItems(parent:)``
   /// - ``listBucketOperationsByItems(request:)``
   /// - ``listBucketOperationsByItems(request:options:)``
-  /// - ``listBucketOperationsByItems(parent:)``
   public func listBucketOperations(
     request: ListBucketOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageBatchOperationsV1.ListBucketOperationsResponse {
@@ -180,8 +180,8 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``getBucketOperation(request:)``
   /// - ``getBucketOperation(name:)``
+  /// - ``getBucketOperation(request:)``
   public func getBucketOperation(
     request: GetBucketOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudStorageBatchOperationsV1.BucketOperation {
@@ -225,9 +225,9 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -253,8 +253,8 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -269,8 +269,8 @@ public final class StorageBatchOperationsClient: Clients.StorageBatchOperationsP
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

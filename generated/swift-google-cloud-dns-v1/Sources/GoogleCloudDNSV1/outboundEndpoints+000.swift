@@ -46,8 +46,8 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``create(request:)``
   /// - ``create(parent:body:)``
+  /// - ``create(request:)``
   public func create(
     request: OutboundEndpointsClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {
@@ -60,8 +60,8 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``delete(request:)``
   /// - ``delete(name:)``
+  /// - ``delete(request:)``
   public func delete(
     request: OutboundEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {
@@ -74,8 +74,8 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(name:)``
+  /// - ``get(request:)``
   public func `get`(
     request: OutboundEndpointsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> OutboundEndpoint {
@@ -89,9 +89,9 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(parent:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(parent:)``
   public func list(
     request: OutboundEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListOutboundEndpointsResponse {
@@ -104,8 +104,8 @@ public final class OutboundEndpointsClient: Clients.OutboundEndpointsProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``patch(request:)``
   /// - ``patch(name:body:)``
+  /// - ``patch(request:)``
   public func patch(
     request: OutboundEndpointsClient.PatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongrunningOperation {

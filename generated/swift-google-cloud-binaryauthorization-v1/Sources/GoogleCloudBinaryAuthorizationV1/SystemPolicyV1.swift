@@ -47,8 +47,8 @@ public final class SystemPolicyV1Client: Clients.SystemPolicyV1Protocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getSystemPolicy(request:)``
   /// - ``getSystemPolicy(name:)``
+  /// - ``getSystemPolicy(request:)``
   public func getSystemPolicy(
     request: GetSystemPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {

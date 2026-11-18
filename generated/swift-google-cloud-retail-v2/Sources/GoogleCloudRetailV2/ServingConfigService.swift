@@ -56,8 +56,8 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createServingConfig(request:)``
   /// - ``createServingConfig(parent:servingConfig:servingConfigId:)``
+  /// - ``createServingConfig(request:)``
   public func createServingConfig(
     request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -72,8 +72,8 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteServingConfig(request:)``
   /// - ``deleteServingConfig(name:)``
+  /// - ``deleteServingConfig(request:)``
   public func deleteServingConfig(
     request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -102,8 +102,8 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getServingConfig(request:)``
   /// - ``getServingConfig(name:)``
+  /// - ``getServingConfig(request:)``
   public func getServingConfig(
     request: GetServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -117,9 +117,9 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// ## See Also
   ///
   /// - ``listServingConfigs(request:)``
+  /// - ``listServingConfigsByItems(parent:)``
   /// - ``listServingConfigsByItems(request:)``
   /// - ``listServingConfigsByItems(request:options:)``
-  /// - ``listServingConfigsByItems(parent:)``
   public func listServingConfigs(
     request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse {
@@ -172,9 +172,9 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

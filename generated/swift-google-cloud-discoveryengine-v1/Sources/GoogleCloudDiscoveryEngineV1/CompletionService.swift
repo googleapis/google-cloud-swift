@@ -101,9 +101,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importSuggestionDenyListEntriesPollingUntilDone(request:)``
     /// - ``importSuggestionDenyListEntries(request:)``
     /// - ``importSuggestionDenyListEntries(request:options:)``
+    /// - ``importSuggestionDenyListEntriesPollingUntilDone(request:)``
     public func importSuggestionDenyListEntriesPollingUntilDone(
       request: ImportSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportSuggestionDenyListEntriesResponse {
@@ -159,9 +159,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeSuggestionDenyListEntriesPollingUntilDone(request:)``
     /// - ``purgeSuggestionDenyListEntries(request:)``
     /// - ``purgeSuggestionDenyListEntries(request:options:)``
+    /// - ``purgeSuggestionDenyListEntriesPollingUntilDone(request:)``
     public func purgeSuggestionDenyListEntriesPollingUntilDone(
       request: PurgeSuggestionDenyListEntriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeSuggestionDenyListEntriesResponse {
@@ -217,9 +217,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importCompletionSuggestionsPollingUntilDone(request:)``
     /// - ``importCompletionSuggestions(request:)``
     /// - ``importCompletionSuggestions(request:options:)``
+    /// - ``importCompletionSuggestionsPollingUntilDone(request:)``
     public func importCompletionSuggestionsPollingUntilDone(
       request: ImportCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportCompletionSuggestionsResponse {
@@ -275,9 +275,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeCompletionSuggestionsPollingUntilDone(request:)``
     /// - ``purgeCompletionSuggestions(request:)``
     /// - ``purgeCompletionSuggestions(request:options:)``
+    /// - ``purgeCompletionSuggestionsPollingUntilDone(request:)``
     public func purgeCompletionSuggestionsPollingUntilDone(
       request: PurgeCompletionSuggestionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeCompletionSuggestionsResponse {
@@ -313,9 +313,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -341,8 +341,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

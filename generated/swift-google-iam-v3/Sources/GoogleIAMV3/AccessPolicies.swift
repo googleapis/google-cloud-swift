@@ -52,9 +52,9 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``createAccessPolicy(request:)``
+  /// - ``createAccessPolicyPollingUntilDone(parent:accessPolicy:accessPolicyId:)``
   /// - ``createAccessPolicyPollingUntilDone(request:)``
   /// - ``createAccessPolicyPollingUntilDone(request:options:)``
-  /// - ``createAccessPolicyPollingUntilDone(parent:accessPolicy:accessPolicyId:)``
   public func createAccessPolicy(
     request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -67,10 +67,10 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createAccessPolicyPollingUntilDone(request:)``
-  /// - ``createAccessPolicyPollingUntilDone(parent:accessPolicy:accessPolicyId:)``
   /// - ``createAccessPolicy(request:)``
   /// - ``createAccessPolicy(request:options:)``
+  /// - ``createAccessPolicyPollingUntilDone(parent:accessPolicy:accessPolicyId:)``
+  /// - ``createAccessPolicyPollingUntilDone(request:)``
   public func createAccessPolicyPollingUntilDone(
     request: CreateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessPolicy {
@@ -102,8 +102,8 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getAccessPolicy(request:)``
   /// - ``getAccessPolicy(name:)``
+  /// - ``getAccessPolicy(request:)``
   public func getAccessPolicy(
     request: GetAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.AccessPolicy {
@@ -131,9 +131,9 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateAccessPolicyPollingUntilDone(request:)``
   /// - ``updateAccessPolicy(request:)``
   /// - ``updateAccessPolicy(request:options:)``
+  /// - ``updateAccessPolicyPollingUntilDone(request:)``
   public func updateAccessPolicyPollingUntilDone(
     request: UpdateAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AccessPolicy {
@@ -166,9 +166,9 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``deleteAccessPolicy(request:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
   /// - ``deleteAccessPolicyPollingUntilDone(request:)``
   /// - ``deleteAccessPolicyPollingUntilDone(request:options:)``
-  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
   public func deleteAccessPolicy(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -181,10 +181,10 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteAccessPolicyPollingUntilDone(request:)``
-  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
   /// - ``deleteAccessPolicy(request:)``
   /// - ``deleteAccessPolicy(request:options:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(name:)``
+  /// - ``deleteAccessPolicyPollingUntilDone(request:)``
   public func deleteAccessPolicyPollingUntilDone(
     request: DeleteAccessPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -216,9 +216,9 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listAccessPolicies(request:)``
+  /// - ``listAccessPoliciesByItems(parent:)``
   /// - ``listAccessPoliciesByItems(request:)``
   /// - ``listAccessPoliciesByItems(request:options:)``
-  /// - ``listAccessPoliciesByItems(parent:)``
   public func listAccessPolicies(
     request: ListAccessPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.ListAccessPoliciesResponse {
@@ -233,9 +233,9 @@ public final class AccessPoliciesClient: Clients.AccessPoliciesProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``searchAccessPolicyBindings(request:)``
+  /// - ``searchAccessPolicyBindingsByItems(name:)``
   /// - ``searchAccessPolicyBindingsByItems(request:)``
   /// - ``searchAccessPolicyBindingsByItems(request:options:)``
-  /// - ``searchAccessPolicyBindingsByItems(name:)``
   public func searchAccessPolicyBindings(
     request: SearchAccessPolicyBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV3.SearchAccessPolicyBindingsResponse {

@@ -49,8 +49,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getDataSource(request:)``
   /// - ``getDataSource(name:)``
+  /// - ``getDataSource(request:)``
   public func getDataSource(
     request: GetDataSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.DataSource {
@@ -64,9 +64,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listDataSources(request:)``
+  /// - ``listDataSourcesByItems(parent:)``
   /// - ``listDataSourcesByItems(request:)``
   /// - ``listDataSourcesByItems(request:options:)``
-  /// - ``listDataSourcesByItems(parent:)``
   public func listDataSources(
     request: ListDataSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.ListDataSourcesResponse {
@@ -79,8 +79,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``createTransferConfig(request:)``
   /// - ``createTransferConfig(parent:transferConfig:)``
+  /// - ``createTransferConfig(request:)``
   public func createTransferConfig(
     request: CreateTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
@@ -109,8 +109,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteTransferConfig(request:)``
   /// - ``deleteTransferConfig(name:)``
+  /// - ``deleteTransferConfig(request:)``
   public func deleteTransferConfig(
     request: DeleteTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -123,8 +123,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getTransferConfig(request:)``
   /// - ``getTransferConfig(name:)``
+  /// - ``getTransferConfig(request:)``
   public func getTransferConfig(
     request: GetTransferConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.TransferConfig {
@@ -139,9 +139,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listTransferConfigs(request:)``
+  /// - ``listTransferConfigsByItems(parent:)``
   /// - ``listTransferConfigsByItems(request:)``
   /// - ``listTransferConfigsByItems(request:options:)``
-  /// - ``listTransferConfigsByItems(parent:)``
   public func listTransferConfigs(
     request: ListTransferConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.ListTransferConfigsResponse {
@@ -158,8 +158,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``scheduleTransferRuns(request:)``
   /// - ``scheduleTransferRuns(parent:startTime:endTime:)``
+  /// - ``scheduleTransferRuns(request:)``
   @available(*, deprecated)
   public func scheduleTransferRuns(
     request: ScheduleTransferRunsRequest, options: GoogleGax.RequestOptions
@@ -189,8 +189,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``getTransferRun(request:)``
   /// - ``getTransferRun(name:)``
+  /// - ``getTransferRun(request:)``
   public func getTransferRun(
     request: GetTransferRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.TransferRun {
@@ -203,8 +203,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``deleteTransferRun(request:)``
   /// - ``deleteTransferRun(name:)``
+  /// - ``deleteTransferRun(request:)``
   public func deleteTransferRun(
     request: DeleteTransferRunRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -218,9 +218,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listTransferRuns(request:)``
+  /// - ``listTransferRunsByItems(parent:)``
   /// - ``listTransferRunsByItems(request:)``
   /// - ``listTransferRunsByItems(request:options:)``
-  /// - ``listTransferRunsByItems(parent:)``
   public func listTransferRuns(
     request: ListTransferRunsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.ListTransferRunsResponse {
@@ -234,9 +234,9 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   /// ## See Also
   ///
   /// - ``listTransferLogs(request:)``
+  /// - ``listTransferLogsByItems(parent:)``
   /// - ``listTransferLogsByItems(request:)``
   /// - ``listTransferLogsByItems(request:options:)``
-  /// - ``listTransferLogsByItems(parent:)``
   public func listTransferLogs(
     request: ListTransferLogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.ListTransferLogsResponse {
@@ -250,8 +250,8 @@ public final class DataTransferServiceClient: Clients.DataTransferServiceProtoco
   ///
   /// ## See Also
   ///
-  /// - ``checkValidCreds(request:)``
   /// - ``checkValidCreds(name:)``
+  /// - ``checkValidCreds(request:)``
   public func checkValidCreds(
     request: CheckValidCredsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataTransferV1.CheckValidCredsResponse {

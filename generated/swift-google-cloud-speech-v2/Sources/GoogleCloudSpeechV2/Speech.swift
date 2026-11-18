@@ -56,9 +56,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createRecognizer(request:)``
+  /// - ``createRecognizerPollingUntilDone(parent:recognizer:recognizerId:)``
   /// - ``createRecognizerPollingUntilDone(request:)``
   /// - ``createRecognizerPollingUntilDone(request:options:)``
-  /// - ``createRecognizerPollingUntilDone(parent:recognizer:recognizerId:)``
   public func createRecognizer(
     request: CreateRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,10 +73,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRecognizerPollingUntilDone(request:)``
-  /// - ``createRecognizerPollingUntilDone(parent:recognizer:recognizerId:)``
   /// - ``createRecognizer(request:)``
   /// - ``createRecognizer(request:options:)``
+  /// - ``createRecognizerPollingUntilDone(parent:recognizer:recognizerId:)``
+  /// - ``createRecognizerPollingUntilDone(request:)``
   public func createRecognizerPollingUntilDone(
     request: CreateRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Recognizer {
@@ -108,9 +108,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRecognizers(request:)``
+  /// - ``listRecognizersByItems(parent:)``
   /// - ``listRecognizersByItems(request:)``
   /// - ``listRecognizersByItems(request:options:)``
-  /// - ``listRecognizersByItems(parent:)``
   public func listRecognizers(
     request: ListRecognizersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.ListRecognizersResponse {
@@ -128,8 +128,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRecognizer(request:)``
   /// - ``getRecognizer(name:)``
+  /// - ``getRecognizer(request:)``
   public func getRecognizer(
     request: GetRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.Recognizer {
@@ -145,9 +145,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateRecognizer(request:)``
+  /// - ``updateRecognizerPollingUntilDone(recognizer:updateMask:)``
   /// - ``updateRecognizerPollingUntilDone(request:)``
   /// - ``updateRecognizerPollingUntilDone(request:options:)``
-  /// - ``updateRecognizerPollingUntilDone(recognizer:updateMask:)``
   public func updateRecognizer(
     request: UpdateRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -162,10 +162,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateRecognizerPollingUntilDone(request:)``
-  /// - ``updateRecognizerPollingUntilDone(recognizer:updateMask:)``
   /// - ``updateRecognizer(request:)``
   /// - ``updateRecognizer(request:options:)``
+  /// - ``updateRecognizerPollingUntilDone(recognizer:updateMask:)``
+  /// - ``updateRecognizerPollingUntilDone(request:)``
   public func updateRecognizerPollingUntilDone(
     request: UpdateRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Recognizer {
@@ -199,9 +199,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteRecognizer(request:)``
+  /// - ``deleteRecognizerPollingUntilDone(name:)``
   /// - ``deleteRecognizerPollingUntilDone(request:)``
   /// - ``deleteRecognizerPollingUntilDone(request:options:)``
-  /// - ``deleteRecognizerPollingUntilDone(name:)``
   public func deleteRecognizer(
     request: DeleteRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -216,10 +216,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteRecognizerPollingUntilDone(request:)``
-  /// - ``deleteRecognizerPollingUntilDone(name:)``
   /// - ``deleteRecognizer(request:)``
   /// - ``deleteRecognizer(request:options:)``
+  /// - ``deleteRecognizerPollingUntilDone(name:)``
+  /// - ``deleteRecognizerPollingUntilDone(request:)``
   public func deleteRecognizerPollingUntilDone(
     request: DeleteRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Recognizer {
@@ -253,9 +253,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeleteRecognizer(request:)``
+  /// - ``undeleteRecognizerPollingUntilDone(name:)``
   /// - ``undeleteRecognizerPollingUntilDone(request:)``
   /// - ``undeleteRecognizerPollingUntilDone(request:options:)``
-  /// - ``undeleteRecognizerPollingUntilDone(name:)``
   public func undeleteRecognizer(
     request: UndeleteRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -270,10 +270,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeleteRecognizerPollingUntilDone(request:)``
-  /// - ``undeleteRecognizerPollingUntilDone(name:)``
   /// - ``undeleteRecognizer(request:)``
   /// - ``undeleteRecognizer(request:options:)``
+  /// - ``undeleteRecognizerPollingUntilDone(name:)``
+  /// - ``undeleteRecognizerPollingUntilDone(request:)``
   public func undeleteRecognizerPollingUntilDone(
     request: UndeleteRecognizerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Recognizer {
@@ -305,9 +305,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``recognize(request:)``
   /// - ``recognize(recognizer:config:configMask:content:)``
   /// - ``recognize(recognizer:config:configMask:uri:)``
+  /// - ``recognize(request:)``
   public func recognize(
     request: RecognizeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.RecognizeResponse {
@@ -323,9 +323,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchRecognize(request:)``
+  /// - ``batchRecognizePollingUntilDone(recognizer:config:configMask:files:)``
   /// - ``batchRecognizePollingUntilDone(request:)``
   /// - ``batchRecognizePollingUntilDone(request:options:)``
-  /// - ``batchRecognizePollingUntilDone(recognizer:config:configMask:files:)``
   public func batchRecognize(
     request: BatchRecognizeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -340,10 +340,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchRecognizePollingUntilDone(request:)``
-  /// - ``batchRecognizePollingUntilDone(recognizer:config:configMask:files:)``
   /// - ``batchRecognize(request:)``
   /// - ``batchRecognize(request:options:)``
+  /// - ``batchRecognizePollingUntilDone(recognizer:config:configMask:files:)``
+  /// - ``batchRecognizePollingUntilDone(request:)``
   public func batchRecognizePollingUntilDone(
     request: BatchRecognizeRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchRecognizeResponse {
@@ -377,8 +377,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConfig(request:)``
   /// - ``getConfig(name:)``
+  /// - ``getConfig(request:)``
   public func getConfig(
     request: GetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.Config {
@@ -393,8 +393,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateConfig(request:)``
   /// - ``updateConfig(config:updateMask:)``
+  /// - ``updateConfig(request:)``
   public func updateConfig(
     request: UpdateConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.Config {
@@ -410,9 +410,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createCustomClass(request:)``
+  /// - ``createCustomClassPollingUntilDone(parent:customClass:customClassId:)``
   /// - ``createCustomClassPollingUntilDone(request:)``
   /// - ``createCustomClassPollingUntilDone(request:options:)``
-  /// - ``createCustomClassPollingUntilDone(parent:customClass:customClassId:)``
   public func createCustomClass(
     request: CreateCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -427,10 +427,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createCustomClassPollingUntilDone(request:)``
-  /// - ``createCustomClassPollingUntilDone(parent:customClass:customClassId:)``
   /// - ``createCustomClass(request:)``
   /// - ``createCustomClass(request:options:)``
+  /// - ``createCustomClassPollingUntilDone(parent:customClass:customClassId:)``
+  /// - ``createCustomClassPollingUntilDone(request:)``
   public func createCustomClassPollingUntilDone(
     request: CreateCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> CustomClass {
@@ -462,9 +462,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCustomClasses(request:)``
+  /// - ``listCustomClassesByItems(parent:)``
   /// - ``listCustomClassesByItems(request:)``
   /// - ``listCustomClassesByItems(request:options:)``
-  /// - ``listCustomClassesByItems(parent:)``
   public func listCustomClasses(
     request: ListCustomClassesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.ListCustomClassesResponse {
@@ -480,8 +480,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCustomClass(request:)``
   /// - ``getCustomClass(name:)``
+  /// - ``getCustomClass(request:)``
   public func getCustomClass(
     request: GetCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.CustomClass {
@@ -497,9 +497,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateCustomClass(request:)``
+  /// - ``updateCustomClassPollingUntilDone(customClass:updateMask:)``
   /// - ``updateCustomClassPollingUntilDone(request:)``
   /// - ``updateCustomClassPollingUntilDone(request:options:)``
-  /// - ``updateCustomClassPollingUntilDone(customClass:updateMask:)``
   public func updateCustomClass(
     request: UpdateCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -514,10 +514,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateCustomClassPollingUntilDone(request:)``
-  /// - ``updateCustomClassPollingUntilDone(customClass:updateMask:)``
   /// - ``updateCustomClass(request:)``
   /// - ``updateCustomClass(request:options:)``
+  /// - ``updateCustomClassPollingUntilDone(customClass:updateMask:)``
+  /// - ``updateCustomClassPollingUntilDone(request:)``
   public func updateCustomClassPollingUntilDone(
     request: UpdateCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> CustomClass {
@@ -551,9 +551,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteCustomClass(request:)``
+  /// - ``deleteCustomClassPollingUntilDone(name:)``
   /// - ``deleteCustomClassPollingUntilDone(request:)``
   /// - ``deleteCustomClassPollingUntilDone(request:options:)``
-  /// - ``deleteCustomClassPollingUntilDone(name:)``
   public func deleteCustomClass(
     request: DeleteCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -568,10 +568,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteCustomClassPollingUntilDone(request:)``
-  /// - ``deleteCustomClassPollingUntilDone(name:)``
   /// - ``deleteCustomClass(request:)``
   /// - ``deleteCustomClass(request:options:)``
+  /// - ``deleteCustomClassPollingUntilDone(name:)``
+  /// - ``deleteCustomClassPollingUntilDone(request:)``
   public func deleteCustomClassPollingUntilDone(
     request: DeleteCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> CustomClass {
@@ -605,9 +605,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeleteCustomClass(request:)``
+  /// - ``undeleteCustomClassPollingUntilDone(name:)``
   /// - ``undeleteCustomClassPollingUntilDone(request:)``
   /// - ``undeleteCustomClassPollingUntilDone(request:options:)``
-  /// - ``undeleteCustomClassPollingUntilDone(name:)``
   public func undeleteCustomClass(
     request: UndeleteCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -622,10 +622,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeleteCustomClassPollingUntilDone(request:)``
-  /// - ``undeleteCustomClassPollingUntilDone(name:)``
   /// - ``undeleteCustomClass(request:)``
   /// - ``undeleteCustomClass(request:options:)``
+  /// - ``undeleteCustomClassPollingUntilDone(name:)``
+  /// - ``undeleteCustomClassPollingUntilDone(request:)``
   public func undeleteCustomClassPollingUntilDone(
     request: UndeleteCustomClassRequest, options: GoogleGax.RequestOptions
   ) async throws -> CustomClass {
@@ -659,9 +659,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPhraseSet(request:)``
+  /// - ``createPhraseSetPollingUntilDone(parent:phraseSet:phraseSetId:)``
   /// - ``createPhraseSetPollingUntilDone(request:)``
   /// - ``createPhraseSetPollingUntilDone(request:options:)``
-  /// - ``createPhraseSetPollingUntilDone(parent:phraseSet:phraseSetId:)``
   public func createPhraseSet(
     request: CreatePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -676,10 +676,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPhraseSetPollingUntilDone(request:)``
-  /// - ``createPhraseSetPollingUntilDone(parent:phraseSet:phraseSetId:)``
   /// - ``createPhraseSet(request:)``
   /// - ``createPhraseSet(request:options:)``
+  /// - ``createPhraseSetPollingUntilDone(parent:phraseSet:phraseSetId:)``
+  /// - ``createPhraseSetPollingUntilDone(request:)``
   public func createPhraseSetPollingUntilDone(
     request: CreatePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PhraseSet {
@@ -711,9 +711,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPhraseSets(request:)``
+  /// - ``listPhraseSetsByItems(parent:)``
   /// - ``listPhraseSetsByItems(request:)``
   /// - ``listPhraseSetsByItems(request:options:)``
-  /// - ``listPhraseSetsByItems(parent:)``
   public func listPhraseSets(
     request: ListPhraseSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.ListPhraseSetsResponse {
@@ -729,8 +729,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPhraseSet(request:)``
   /// - ``getPhraseSet(name:)``
+  /// - ``getPhraseSet(request:)``
   public func getPhraseSet(
     request: GetPhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSpeechV2.PhraseSet {
@@ -746,9 +746,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updatePhraseSet(request:)``
+  /// - ``updatePhraseSetPollingUntilDone(phraseSet:updateMask:)``
   /// - ``updatePhraseSetPollingUntilDone(request:)``
   /// - ``updatePhraseSetPollingUntilDone(request:options:)``
-  /// - ``updatePhraseSetPollingUntilDone(phraseSet:updateMask:)``
   public func updatePhraseSet(
     request: UpdatePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -763,10 +763,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePhraseSetPollingUntilDone(request:)``
-  /// - ``updatePhraseSetPollingUntilDone(phraseSet:updateMask:)``
   /// - ``updatePhraseSet(request:)``
   /// - ``updatePhraseSet(request:options:)``
+  /// - ``updatePhraseSetPollingUntilDone(phraseSet:updateMask:)``
+  /// - ``updatePhraseSetPollingUntilDone(request:)``
   public func updatePhraseSetPollingUntilDone(
     request: UpdatePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PhraseSet {
@@ -800,9 +800,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePhraseSet(request:)``
+  /// - ``deletePhraseSetPollingUntilDone(name:)``
   /// - ``deletePhraseSetPollingUntilDone(request:)``
   /// - ``deletePhraseSetPollingUntilDone(request:options:)``
-  /// - ``deletePhraseSetPollingUntilDone(name:)``
   public func deletePhraseSet(
     request: DeletePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -817,10 +817,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePhraseSetPollingUntilDone(request:)``
-  /// - ``deletePhraseSetPollingUntilDone(name:)``
   /// - ``deletePhraseSet(request:)``
   /// - ``deletePhraseSet(request:options:)``
+  /// - ``deletePhraseSetPollingUntilDone(name:)``
+  /// - ``deletePhraseSetPollingUntilDone(request:)``
   public func deletePhraseSetPollingUntilDone(
     request: DeletePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PhraseSet {
@@ -854,9 +854,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeletePhraseSet(request:)``
+  /// - ``undeletePhraseSetPollingUntilDone(name:)``
   /// - ``undeletePhraseSetPollingUntilDone(request:)``
   /// - ``undeletePhraseSetPollingUntilDone(request:options:)``
-  /// - ``undeletePhraseSetPollingUntilDone(name:)``
   public func undeletePhraseSet(
     request: UndeletePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -871,10 +871,10 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeletePhraseSetPollingUntilDone(request:)``
-  /// - ``undeletePhraseSetPollingUntilDone(name:)``
   /// - ``undeletePhraseSet(request:)``
   /// - ``undeletePhraseSet(request:options:)``
+  /// - ``undeletePhraseSetPollingUntilDone(name:)``
+  /// - ``undeletePhraseSetPollingUntilDone(request:)``
   public func undeletePhraseSetPollingUntilDone(
     request: UndeletePhraseSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PhraseSet {
@@ -943,9 +943,9 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -971,8 +971,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -987,8 +987,8 @@ public final class SpeechClient: Clients.SpeechProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

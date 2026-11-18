@@ -105,9 +105,9 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``exportEntities(request:)``
+  /// - ``exportEntitiesPollingUntilDone(projectId:labels:entityFilter:outputUrlPrefix:)``
   /// - ``exportEntitiesPollingUntilDone(request:)``
   /// - ``exportEntitiesPollingUntilDone(request:options:)``
-  /// - ``exportEntitiesPollingUntilDone(projectId:labels:entityFilter:outputUrlPrefix:)``
   public func exportEntities(
     request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,10 +127,10 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``exportEntitiesPollingUntilDone(request:)``
-  /// - ``exportEntitiesPollingUntilDone(projectId:labels:entityFilter:outputUrlPrefix:)``
   /// - ``exportEntities(request:)``
   /// - ``exportEntities(request:options:)``
+  /// - ``exportEntitiesPollingUntilDone(projectId:labels:entityFilter:outputUrlPrefix:)``
+  /// - ``exportEntitiesPollingUntilDone(request:)``
   public func exportEntitiesPollingUntilDone(
     request: ExportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportEntitiesResponse {
@@ -167,9 +167,9 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``importEntities(request:)``
+  /// - ``importEntitiesPollingUntilDone(projectId:labels:inputUrl:entityFilter:)``
   /// - ``importEntitiesPollingUntilDone(request:)``
   /// - ``importEntitiesPollingUntilDone(request:options:)``
-  /// - ``importEntitiesPollingUntilDone(projectId:labels:inputUrl:entityFilter:)``
   public func importEntities(
     request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -186,10 +186,10 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``importEntitiesPollingUntilDone(request:)``
-  /// - ``importEntitiesPollingUntilDone(projectId:labels:inputUrl:entityFilter:)``
   /// - ``importEntities(request:)``
   /// - ``importEntities(request:options:)``
+  /// - ``importEntitiesPollingUntilDone(projectId:labels:inputUrl:entityFilter:)``
+  /// - ``importEntitiesPollingUntilDone(request:)``
   public func importEntitiesPollingUntilDone(
     request: ImportEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -267,9 +267,9 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createIndexPollingUntilDone(request:)``
   /// - ``createIndex(request:)``
   /// - ``createIndex(request:options:)``
+  /// - ``createIndexPollingUntilDone(request:)``
   public func createIndexPollingUntilDone(
     request: CreateIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -343,9 +343,9 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteIndexPollingUntilDone(request:)``
   /// - ``deleteIndex(request:)``
   /// - ``deleteIndex(request:options:)``
+  /// - ``deleteIndexPollingUntilDone(request:)``
   public func deleteIndexPollingUntilDone(
     request: DeleteIndexRequest, options: GoogleGax.RequestOptions
   ) async throws -> Index {
@@ -409,9 +409,9 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -437,8 +437,8 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -453,8 +453,8 @@ public final class DatastoreAdminClient: Clients.DatastoreAdminProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

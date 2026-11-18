@@ -49,8 +49,8 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getReferenceList(request:)``
   /// - ``getReferenceList(name:)``
+  /// - ``getReferenceList(request:)``
   public func getReferenceList(
     request: GetReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -64,9 +64,9 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// ## See Also
   ///
   /// - ``listReferenceLists(request:)``
+  /// - ``listReferenceListsByItems(parent:)``
   /// - ``listReferenceListsByItems(request:)``
   /// - ``listReferenceListsByItems(request:options:)``
-  /// - ``listReferenceListsByItems(parent:)``
   public func listReferenceLists(
     request: ListReferenceListsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListReferenceListsResponse {
@@ -79,8 +79,8 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createReferenceList(request:)``
   /// - ``createReferenceList(parent:referenceList:referenceListId:)``
+  /// - ``createReferenceList(request:)``
   public func createReferenceList(
     request: CreateReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -93,8 +93,8 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``updateReferenceList(request:)``
   /// - ``updateReferenceList(referenceList:updateMask:)``
+  /// - ``updateReferenceList(request:)``
   public func updateReferenceList(
     request: UpdateReferenceListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ReferenceList {
@@ -123,9 +123,9 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -151,8 +151,8 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -167,8 +167,8 @@ public final class ReferenceListServiceClient: Clients.ReferenceListServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

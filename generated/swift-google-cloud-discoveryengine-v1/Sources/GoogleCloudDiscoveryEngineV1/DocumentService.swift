@@ -58,8 +58,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getDocument(request:)``
     /// - ``getDocument(name:)``
+    /// - ``getDocument(request:)``
     public func getDocument(
       request: GetDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -75,9 +75,9 @@
     /// ## See Also
     ///
     /// - ``listDocuments(request:)``
+    /// - ``listDocumentsByItems(parent:)``
     /// - ``listDocumentsByItems(request:)``
     /// - ``listDocumentsByItems(request:options:)``
-    /// - ``listDocumentsByItems(parent:)``
     public func listDocuments(
       request: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListDocumentsResponse {
@@ -92,8 +92,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createDocument(request:)``
     /// - ``createDocument(parent:document:documentId:)``
+    /// - ``createDocument(request:)``
     public func createDocument(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -108,8 +108,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateDocument(request:)``
     /// - ``updateDocument(document:updateMask:)``
+    /// - ``updateDocument(request:)``
     public func updateDocument(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Document {
@@ -124,8 +124,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteDocument(request:)``
     /// - ``deleteDocument(name:)``
+    /// - ``deleteDocument(request:)``
     public func deleteDocument(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -169,9 +169,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importDocumentsPollingUntilDone(request:)``
     /// - ``importDocuments(request:)``
     /// - ``importDocuments(request:options:)``
+    /// - ``importDocumentsPollingUntilDone(request:)``
     public func importDocumentsPollingUntilDone(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportDocumentsResponse {
@@ -259,9 +259,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeDocumentsPollingUntilDone(request:)``
     /// - ``purgeDocuments(request:)``
     /// - ``purgeDocuments(request:options:)``
+    /// - ``purgeDocumentsPollingUntilDone(request:)``
     public func purgeDocumentsPollingUntilDone(
       request: PurgeDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeDocumentsResponse {
@@ -298,8 +298,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchGetDocumentsMetadata(request:)``
     /// - ``batchGetDocumentsMetadata(parent:)``
+    /// - ``batchGetDocumentsMetadata(request:)``
     public func batchGetDocumentsMetadata(
       request: BatchGetDocumentsMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.BatchGetDocumentsMetadataResponse {
@@ -315,9 +315,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -343,8 +343,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

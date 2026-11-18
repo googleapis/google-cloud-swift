@@ -57,9 +57,9 @@
     /// ## See Also
     ///
     /// - ``createTensorboard(request:)``
+    /// - ``createTensorboardPollingUntilDone(parent:tensorboard:)``
     /// - ``createTensorboardPollingUntilDone(request:)``
     /// - ``createTensorboardPollingUntilDone(request:options:)``
-    /// - ``createTensorboardPollingUntilDone(parent:tensorboard:)``
     public func createTensorboard(
       request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTensorboardPollingUntilDone(request:)``
-    /// - ``createTensorboardPollingUntilDone(parent:tensorboard:)``
     /// - ``createTensorboard(request:)``
     /// - ``createTensorboard(request:options:)``
+    /// - ``createTensorboardPollingUntilDone(parent:tensorboard:)``
+    /// - ``createTensorboardPollingUntilDone(request:)``
     public func createTensorboardPollingUntilDone(
       request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> Tensorboard {
@@ -107,8 +107,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTensorboard(request:)``
     /// - ``getTensorboard(name:)``
+    /// - ``getTensorboard(request:)``
     public func getTensorboard(
       request: GetTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Tensorboard {
@@ -137,10 +137,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateTensorboardPollingUntilDone(request:)``
-    /// - ``updateTensorboardPollingUntilDone(tensorboard:updateMask:)``
     /// - ``updateTensorboard(request:)``
     /// - ``updateTensorboard(request:options:)``
+    /// - ``updateTensorboardPollingUntilDone(request:)``
+    /// - ``updateTensorboardPollingUntilDone(tensorboard:updateMask:)``
     public func updateTensorboardPollingUntilDone(
       request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> Tensorboard {
@@ -173,9 +173,9 @@
     /// ## See Also
     ///
     /// - ``listTensorboards(request:)``
+    /// - ``listTensorboardsByItems(parent:)``
     /// - ``listTensorboardsByItems(request:)``
     /// - ``listTensorboardsByItems(request:options:)``
-    /// - ``listTensorboardsByItems(parent:)``
     public func listTensorboards(
       request: ListTensorboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse {
@@ -189,9 +189,9 @@
     /// ## See Also
     ///
     /// - ``deleteTensorboard(request:)``
+    /// - ``deleteTensorboardPollingUntilDone(name:)``
     /// - ``deleteTensorboardPollingUntilDone(request:)``
     /// - ``deleteTensorboardPollingUntilDone(request:options:)``
-    /// - ``deleteTensorboardPollingUntilDone(name:)``
     public func deleteTensorboard(
       request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -204,10 +204,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTensorboardPollingUntilDone(request:)``
-    /// - ``deleteTensorboardPollingUntilDone(name:)``
     /// - ``deleteTensorboard(request:)``
     /// - ``deleteTensorboard(request:options:)``
+    /// - ``deleteTensorboardPollingUntilDone(name:)``
+    /// - ``deleteTensorboardPollingUntilDone(request:)``
     public func deleteTensorboardPollingUntilDone(
       request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -267,8 +267,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTensorboardExperiment(request:)``
     /// - ``createTensorboardExperiment(parent:tensorboardExperiment:tensorboardExperimentId:)``
+    /// - ``createTensorboardExperiment(request:)``
     public func createTensorboardExperiment(
       request: CreateTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -281,8 +281,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTensorboardExperiment(request:)``
     /// - ``getTensorboardExperiment(name:)``
+    /// - ``getTensorboardExperiment(request:)``
     public func getTensorboardExperiment(
       request: GetTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -310,9 +310,9 @@
     /// ## See Also
     ///
     /// - ``listTensorboardExperiments(request:)``
+    /// - ``listTensorboardExperimentsByItems(parent:)``
     /// - ``listTensorboardExperimentsByItems(request:)``
     /// - ``listTensorboardExperimentsByItems(request:options:)``
-    /// - ``listTensorboardExperimentsByItems(parent:)``
     public func listTensorboardExperiments(
       request: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse {
@@ -326,9 +326,9 @@
     /// ## See Also
     ///
     /// - ``deleteTensorboardExperiment(request:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(name:)``
     /// - ``deleteTensorboardExperimentPollingUntilDone(request:)``
     /// - ``deleteTensorboardExperimentPollingUntilDone(request:options:)``
-    /// - ``deleteTensorboardExperimentPollingUntilDone(name:)``
     public func deleteTensorboardExperiment(
       request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -341,10 +341,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTensorboardExperimentPollingUntilDone(request:)``
-    /// - ``deleteTensorboardExperimentPollingUntilDone(name:)``
     /// - ``deleteTensorboardExperiment(request:)``
     /// - ``deleteTensorboardExperiment(request:options:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(name:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(request:)``
     public func deleteTensorboardExperimentPollingUntilDone(
       request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -376,8 +376,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTensorboardRun(request:)``
     /// - ``createTensorboardRun(parent:tensorboardRun:tensorboardRunId:)``
+    /// - ``createTensorboardRun(request:)``
     public func createTensorboardRun(
       request: CreateTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -390,8 +390,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchCreateTensorboardRuns(request:)``
     /// - ``batchCreateTensorboardRuns(parent:requests:)``
+    /// - ``batchCreateTensorboardRuns(request:)``
     public func batchCreateTensorboardRuns(
       request: BatchCreateTensorboardRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardRunsResponse {
@@ -404,8 +404,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTensorboardRun(request:)``
     /// - ``getTensorboardRun(name:)``
+    /// - ``getTensorboardRun(request:)``
     public func getTensorboardRun(
       request: GetTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -433,9 +433,9 @@
     /// ## See Also
     ///
     /// - ``listTensorboardRuns(request:)``
+    /// - ``listTensorboardRunsByItems(parent:)``
     /// - ``listTensorboardRunsByItems(request:)``
     /// - ``listTensorboardRunsByItems(request:options:)``
-    /// - ``listTensorboardRunsByItems(parent:)``
     public func listTensorboardRuns(
       request: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse {
@@ -449,9 +449,9 @@
     /// ## See Also
     ///
     /// - ``deleteTensorboardRun(request:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(name:)``
     /// - ``deleteTensorboardRunPollingUntilDone(request:)``
     /// - ``deleteTensorboardRunPollingUntilDone(request:options:)``
-    /// - ``deleteTensorboardRunPollingUntilDone(name:)``
     public func deleteTensorboardRun(
       request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -464,10 +464,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTensorboardRunPollingUntilDone(request:)``
-    /// - ``deleteTensorboardRunPollingUntilDone(name:)``
     /// - ``deleteTensorboardRun(request:)``
     /// - ``deleteTensorboardRun(request:options:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(name:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(request:)``
     public func deleteTensorboardRunPollingUntilDone(
       request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -499,8 +499,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchCreateTensorboardTimeSeries(request:)``
     /// - ``batchCreateTensorboardTimeSeries(parent:requests:)``
+    /// - ``batchCreateTensorboardTimeSeries(request:)``
     public func batchCreateTensorboardTimeSeries(
       request: BatchCreateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardTimeSeriesResponse {
@@ -513,8 +513,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTensorboardTimeSeries(request:)``
     /// - ``createTensorboardTimeSeries(parent:tensorboardTimeSeries:)``
+    /// - ``createTensorboardTimeSeries(request:)``
     public func createTensorboardTimeSeries(
       request: CreateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -527,8 +527,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTensorboardTimeSeries(request:)``
     /// - ``getTensorboardTimeSeries(name:)``
+    /// - ``getTensorboardTimeSeries(request:)``
     public func getTensorboardTimeSeries(
       request: GetTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -556,9 +556,9 @@
     /// ## See Also
     ///
     /// - ``listTensorboardTimeSeries(request:)``
+    /// - ``listTensorboardTimeSeriesByItems(parent:)``
     /// - ``listTensorboardTimeSeriesByItems(request:)``
     /// - ``listTensorboardTimeSeriesByItems(request:options:)``
-    /// - ``listTensorboardTimeSeriesByItems(parent:)``
     public func listTensorboardTimeSeries(
       request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse {
@@ -572,9 +572,9 @@
     /// ## See Also
     ///
     /// - ``deleteTensorboardTimeSeries(request:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(name:)``
     /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:)``
     /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:options:)``
-    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(name:)``
     public func deleteTensorboardTimeSeries(
       request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -587,10 +587,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:)``
-    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(name:)``
     /// - ``deleteTensorboardTimeSeries(request:)``
     /// - ``deleteTensorboardTimeSeries(request:options:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(name:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:)``
     public func deleteTensorboardTimeSeriesPollingUntilDone(
       request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -786,9 +786,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -814,8 +814,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -830,8 +830,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -52,8 +52,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createParticipant(request:)``
     /// - ``createParticipant(parent:participant:)``
+    /// - ``createParticipant(request:)``
     public func createParticipant(
       request: CreateParticipantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -66,8 +66,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getParticipant(request:)``
     /// - ``getParticipant(name:)``
+    /// - ``getParticipant(request:)``
     public func getParticipant(
       request: GetParticipantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -81,9 +81,9 @@
     /// ## See Also
     ///
     /// - ``listParticipants(request:)``
+    /// - ``listParticipantsByItems(parent:)``
     /// - ``listParticipantsByItems(request:)``
     /// - ``listParticipantsByItems(request:options:)``
-    /// - ``listParticipantsByItems(parent:)``
     public func listParticipants(
       request: ListParticipantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListParticipantsResponse {
@@ -96,8 +96,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateParticipant(request:)``
     /// - ``updateParticipant(participant:updateMask:)``
+    /// - ``updateParticipant(request:)``
     public func updateParticipant(
       request: UpdateParticipantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -115,10 +115,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``analyzeContent(request:)``
-    /// - ``analyzeContent(participant:textInput:)``
-    /// - ``analyzeContent(participant:eventInput:)``
     /// - ``analyzeContent(participant:audioInput:)``
+    /// - ``analyzeContent(participant:eventInput:)``
+    /// - ``analyzeContent(participant:textInput:)``
+    /// - ``analyzeContent(request:)``
     public func analyzeContent(
       request: AnalyzeContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
@@ -132,8 +132,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``suggestArticles(request:)``
     /// - ``suggestArticles(parent:)``
+    /// - ``suggestArticles(request:)``
     public func suggestArticles(
       request: SuggestArticlesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestArticlesResponse {
@@ -147,8 +147,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``suggestFaqAnswers(request:)``
     /// - ``suggestFaqAnswers(parent:)``
+    /// - ``suggestFaqAnswers(request:)``
     public func suggestFaqAnswers(
       request: SuggestFaqAnswersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestFaqAnswersResponse {
@@ -162,8 +162,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``suggestSmartReplies(request:)``
     /// - ``suggestSmartReplies(parent:)``
+    /// - ``suggestSmartReplies(request:)``
     public func suggestSmartReplies(
       request: SuggestSmartRepliesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestSmartRepliesResponse {
@@ -237,9 +237,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -265,8 +265,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

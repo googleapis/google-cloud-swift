@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``createFeatureGroup(request:)``
+    /// - ``createFeatureGroupPollingUntilDone(parent:featureGroup:featureGroupId:)``
     /// - ``createFeatureGroupPollingUntilDone(request:)``
     /// - ``createFeatureGroupPollingUntilDone(request:options:)``
-    /// - ``createFeatureGroupPollingUntilDone(parent:featureGroup:featureGroupId:)``
     public func createFeatureGroup(
       request: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createFeatureGroupPollingUntilDone(request:)``
-    /// - ``createFeatureGroupPollingUntilDone(parent:featureGroup:featureGroupId:)``
     /// - ``createFeatureGroup(request:)``
     /// - ``createFeatureGroup(request:options:)``
+    /// - ``createFeatureGroupPollingUntilDone(parent:featureGroup:featureGroupId:)``
+    /// - ``createFeatureGroupPollingUntilDone(request:)``
     public func createFeatureGroupPollingUntilDone(
       request: CreateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FeatureGroup {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getFeatureGroup(request:)``
     /// - ``getFeatureGroup(name:)``
+    /// - ``getFeatureGroup(request:)``
     public func getFeatureGroup(
       request: GetFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FeatureGroup {
@@ -125,9 +125,9 @@
     /// ## See Also
     ///
     /// - ``listFeatureGroups(request:)``
+    /// - ``listFeatureGroupsByItems(parent:)``
     /// - ``listFeatureGroupsByItems(request:)``
     /// - ``listFeatureGroupsByItems(request:options:)``
-    /// - ``listFeatureGroupsByItems(parent:)``
     public func listFeatureGroups(
       request: ListFeatureGroupsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListFeatureGroupsResponse {
@@ -141,9 +141,9 @@
     /// ## See Also
     ///
     /// - ``updateFeatureGroup(request:)``
+    /// - ``updateFeatureGroupPollingUntilDone(featureGroup:updateMask:)``
     /// - ``updateFeatureGroupPollingUntilDone(request:)``
     /// - ``updateFeatureGroupPollingUntilDone(request:options:)``
-    /// - ``updateFeatureGroupPollingUntilDone(featureGroup:updateMask:)``
     public func updateFeatureGroup(
       request: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -156,10 +156,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateFeatureGroupPollingUntilDone(request:)``
-    /// - ``updateFeatureGroupPollingUntilDone(featureGroup:updateMask:)``
     /// - ``updateFeatureGroup(request:)``
     /// - ``updateFeatureGroup(request:options:)``
+    /// - ``updateFeatureGroupPollingUntilDone(featureGroup:updateMask:)``
+    /// - ``updateFeatureGroupPollingUntilDone(request:)``
     public func updateFeatureGroupPollingUntilDone(
       request: UpdateFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FeatureGroup {
@@ -193,9 +193,9 @@
     /// ## See Also
     ///
     /// - ``deleteFeatureGroup(request:)``
+    /// - ``deleteFeatureGroupPollingUntilDone(name:force:)``
     /// - ``deleteFeatureGroupPollingUntilDone(request:)``
     /// - ``deleteFeatureGroupPollingUntilDone(request:options:)``
-    /// - ``deleteFeatureGroupPollingUntilDone(name:force:)``
     public func deleteFeatureGroup(
       request: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -208,10 +208,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteFeatureGroupPollingUntilDone(request:)``
-    /// - ``deleteFeatureGroupPollingUntilDone(name:force:)``
     /// - ``deleteFeatureGroup(request:)``
     /// - ``deleteFeatureGroup(request:options:)``
+    /// - ``deleteFeatureGroupPollingUntilDone(name:force:)``
+    /// - ``deleteFeatureGroupPollingUntilDone(request:)``
     public func deleteFeatureGroupPollingUntilDone(
       request: DeleteFeatureGroupRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -244,9 +244,9 @@
     /// ## See Also
     ///
     /// - ``createFeature(request:)``
+    /// - ``createFeaturePollingUntilDone(parent:feature:featureId:)``
     /// - ``createFeaturePollingUntilDone(request:)``
     /// - ``createFeaturePollingUntilDone(request:options:)``
-    /// - ``createFeaturePollingUntilDone(parent:feature:featureId:)``
     public func createFeature(
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -259,10 +259,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createFeaturePollingUntilDone(request:)``
-    /// - ``createFeaturePollingUntilDone(parent:feature:featureId:)``
     /// - ``createFeature(request:)``
     /// - ``createFeature(request:options:)``
+    /// - ``createFeaturePollingUntilDone(parent:feature:featureId:)``
+    /// - ``createFeaturePollingUntilDone(request:)``
     public func createFeaturePollingUntilDone(
       request: CreateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Feature {
@@ -296,9 +296,9 @@
     /// ## See Also
     ///
     /// - ``batchCreateFeatures(request:)``
+    /// - ``batchCreateFeaturesPollingUntilDone(parent:requests:)``
     /// - ``batchCreateFeaturesPollingUntilDone(request:)``
     /// - ``batchCreateFeaturesPollingUntilDone(request:options:)``
-    /// - ``batchCreateFeaturesPollingUntilDone(parent:requests:)``
     public func batchCreateFeatures(
       request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -311,10 +311,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``batchCreateFeaturesPollingUntilDone(request:)``
-    /// - ``batchCreateFeaturesPollingUntilDone(parent:requests:)``
     /// - ``batchCreateFeatures(request:)``
     /// - ``batchCreateFeatures(request:options:)``
+    /// - ``batchCreateFeaturesPollingUntilDone(parent:requests:)``
+    /// - ``batchCreateFeaturesPollingUntilDone(request:)``
     public func batchCreateFeaturesPollingUntilDone(
       request: BatchCreateFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchCreateFeaturesResponse {
@@ -347,8 +347,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getFeature(request:)``
     /// - ``getFeature(name:)``
+    /// - ``getFeature(request:)``
     public func getFeature(
       request: GetFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Feature {
@@ -362,9 +362,9 @@
     /// ## See Also
     ///
     /// - ``listFeatures(request:)``
+    /// - ``listFeaturesByItems(parent:)``
     /// - ``listFeaturesByItems(request:)``
     /// - ``listFeaturesByItems(request:options:)``
-    /// - ``listFeaturesByItems(parent:)``
     public func listFeatures(
       request: ListFeaturesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListFeaturesResponse {
@@ -378,9 +378,9 @@
     /// ## See Also
     ///
     /// - ``updateFeature(request:)``
+    /// - ``updateFeaturePollingUntilDone(feature:updateMask:)``
     /// - ``updateFeaturePollingUntilDone(request:)``
     /// - ``updateFeaturePollingUntilDone(request:options:)``
-    /// - ``updateFeaturePollingUntilDone(feature:updateMask:)``
     public func updateFeature(
       request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -393,10 +393,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateFeaturePollingUntilDone(request:)``
-    /// - ``updateFeaturePollingUntilDone(feature:updateMask:)``
     /// - ``updateFeature(request:)``
     /// - ``updateFeature(request:options:)``
+    /// - ``updateFeaturePollingUntilDone(feature:updateMask:)``
+    /// - ``updateFeaturePollingUntilDone(request:)``
     public func updateFeaturePollingUntilDone(
       request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Feature {
@@ -430,9 +430,9 @@
     /// ## See Also
     ///
     /// - ``deleteFeature(request:)``
+    /// - ``deleteFeaturePollingUntilDone(name:)``
     /// - ``deleteFeaturePollingUntilDone(request:)``
     /// - ``deleteFeaturePollingUntilDone(request:options:)``
-    /// - ``deleteFeaturePollingUntilDone(name:)``
     public func deleteFeature(
       request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -445,10 +445,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteFeaturePollingUntilDone(request:)``
-    /// - ``deleteFeaturePollingUntilDone(name:)``
     /// - ``deleteFeature(request:)``
     /// - ``deleteFeature(request:options:)``
+    /// - ``deleteFeaturePollingUntilDone(name:)``
+    /// - ``deleteFeaturePollingUntilDone(request:)``
     public func deleteFeaturePollingUntilDone(
       request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -561,9 +561,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -589,8 +589,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -605,8 +605,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

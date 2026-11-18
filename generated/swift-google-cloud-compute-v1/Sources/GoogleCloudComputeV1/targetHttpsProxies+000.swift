@@ -57,9 +57,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: TargetHttpsProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetHttpsProxyAggregatedList {
@@ -73,9 +73,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:targetHttpsProxy:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:targetHttpsProxy:)``
     public func delete(
       request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -93,10 +93,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:targetHttpsProxy:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:targetHttpsProxy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: TargetHttpsProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -141,8 +141,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:targetHttpsProxy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: TargetHttpsProxiesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetHttpsProxy {
@@ -157,9 +157,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     public func insert(
       request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -178,10 +178,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: TargetHttpsProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -228,9 +228,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:)``
     public func list(
       request: TargetHttpsProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetHttpsProxyList {
@@ -247,9 +247,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:targetHttpsProxy:body:)``
     public func patch(
       request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -270,10 +270,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:targetHttpsProxy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: TargetHttpsProxiesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -319,9 +319,9 @@
     /// ## See Also
     ///
     /// - ``setCertificateMap(request:)``
+    /// - ``setCertificateMapPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setCertificateMapPollingUntilDone(request:)``
     /// - ``setCertificateMapPollingUntilDone(request:options:)``
-    /// - ``setCertificateMapPollingUntilDone(project:targetHttpsProxy:body:)``
     public func setCertificateMap(
       request: TargetHttpsProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -339,10 +339,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setCertificateMapPollingUntilDone(request:)``
-    /// - ``setCertificateMapPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setCertificateMap(request:)``
     /// - ``setCertificateMap(request:options:)``
+    /// - ``setCertificateMapPollingUntilDone(project:targetHttpsProxy:body:)``
+    /// - ``setCertificateMapPollingUntilDone(request:)``
     public func setCertificateMapPollingUntilDone(
       request: TargetHttpsProxiesClient.SetCertificateMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -388,9 +388,9 @@
     /// ## See Also
     ///
     /// - ``setQuicOverride(request:)``
+    /// - ``setQuicOverridePollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setQuicOverridePollingUntilDone(request:)``
     /// - ``setQuicOverridePollingUntilDone(request:options:)``
-    /// - ``setQuicOverridePollingUntilDone(project:targetHttpsProxy:body:)``
     public func setQuicOverride(
       request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -408,10 +408,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setQuicOverridePollingUntilDone(request:)``
-    /// - ``setQuicOverridePollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setQuicOverride(request:)``
     /// - ``setQuicOverride(request:options:)``
+    /// - ``setQuicOverridePollingUntilDone(project:targetHttpsProxy:body:)``
+    /// - ``setQuicOverridePollingUntilDone(request:)``
     public func setQuicOverridePollingUntilDone(
       request: TargetHttpsProxiesClient.SetQuicOverrideRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -457,9 +457,9 @@
     /// ## See Also
     ///
     /// - ``setSslCertificates(request:)``
+    /// - ``setSslCertificatesPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setSslCertificatesPollingUntilDone(request:)``
     /// - ``setSslCertificatesPollingUntilDone(request:options:)``
-    /// - ``setSslCertificatesPollingUntilDone(project:targetHttpsProxy:body:)``
     public func setSslCertificates(
       request: TargetHttpsProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -477,10 +477,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setSslCertificatesPollingUntilDone(request:)``
-    /// - ``setSslCertificatesPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setSslCertificates(request:)``
     /// - ``setSslCertificates(request:options:)``
+    /// - ``setSslCertificatesPollingUntilDone(project:targetHttpsProxy:body:)``
+    /// - ``setSslCertificatesPollingUntilDone(request:)``
     public func setSslCertificatesPollingUntilDone(
       request: TargetHttpsProxiesClient.SetSslCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -529,9 +529,9 @@
     /// ## See Also
     ///
     /// - ``setSslPolicy(request:)``
+    /// - ``setSslPolicyPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setSslPolicyPollingUntilDone(request:)``
     /// - ``setSslPolicyPollingUntilDone(request:options:)``
-    /// - ``setSslPolicyPollingUntilDone(project:targetHttpsProxy:body:)``
     public func setSslPolicy(
       request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -552,10 +552,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setSslPolicyPollingUntilDone(request:)``
-    /// - ``setSslPolicyPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setSslPolicy(request:)``
     /// - ``setSslPolicy(request:options:)``
+    /// - ``setSslPolicyPollingUntilDone(project:targetHttpsProxy:body:)``
+    /// - ``setSslPolicyPollingUntilDone(request:)``
     public func setSslPolicyPollingUntilDone(
       request: TargetHttpsProxiesClient.SetSslPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -601,9 +601,9 @@
     /// ## See Also
     ///
     /// - ``setUrlMap(request:)``
+    /// - ``setUrlMapPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setUrlMapPollingUntilDone(request:)``
     /// - ``setUrlMapPollingUntilDone(request:options:)``
-    /// - ``setUrlMapPollingUntilDone(project:targetHttpsProxy:body:)``
     public func setUrlMap(
       request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -621,10 +621,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setUrlMapPollingUntilDone(request:)``
-    /// - ``setUrlMapPollingUntilDone(project:targetHttpsProxy:body:)``
     /// - ``setUrlMap(request:)``
     /// - ``setUrlMap(request:options:)``
+    /// - ``setUrlMapPollingUntilDone(project:targetHttpsProxy:body:)``
+    /// - ``setUrlMapPollingUntilDone(request:)``
     public func setUrlMapPollingUntilDone(
       request: TargetHttpsProxiesClient.SetUrlMapRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

@@ -52,8 +52,8 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createDependency(request:)``
   /// - ``createDependency(parent:dependency:dependencyId:)``
+  /// - ``createDependency(request:)``
   public func createDependency(
     request: CreateDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -66,8 +66,8 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getDependency(request:)``
   /// - ``getDependency(name:)``
+  /// - ``getDependency(request:)``
   public func getDependency(
     request: GetDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -90,8 +90,8 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateDependency(request:)``
   /// - ``updateDependency(dependency:updateMask:)``
+  /// - ``updateDependency(request:)``
   public func updateDependency(
     request: UpdateDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Dependency {
@@ -104,8 +104,8 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteDependency(request:)``
   /// - ``deleteDependency(name:)``
+  /// - ``deleteDependency(request:)``
   public func deleteDependency(
     request: DeleteDependencyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -119,9 +119,9 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// ## See Also
   ///
   /// - ``listDependencies(request:)``
+  /// - ``listDependenciesByItems(parent:)``
   /// - ``listDependenciesByItems(request:)``
   /// - ``listDependenciesByItems(request:options:)``
-  /// - ``listDependenciesByItems(parent:)``
   public func listDependencies(
     request: ListDependenciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListDependenciesResponse {
@@ -165,9 +165,9 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -193,8 +193,8 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -209,8 +209,8 @@ public final class ApiHubDependenciesClient: Clients.ApiHubDependenciesProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

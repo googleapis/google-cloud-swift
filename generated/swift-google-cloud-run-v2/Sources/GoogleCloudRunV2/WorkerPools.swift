@@ -54,9 +54,9 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkerPool(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   /// - ``createWorkerPoolPollingUntilDone(request:)``
   /// - ``createWorkerPoolPollingUntilDone(request:options:)``
-  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   public func createWorkerPool(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -69,10 +69,10 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkerPoolPollingUntilDone(request:)``
-  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
   /// - ``createWorkerPool(request:)``
   /// - ``createWorkerPool(request:options:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:)``
   public func createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -103,8 +103,8 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkerPool(request:)``
   /// - ``getWorkerPool(name:)``
+  /// - ``getWorkerPool(request:)``
   public func getWorkerPool(
     request: GetWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.WorkerPool {
@@ -118,9 +118,9 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkerPools(request:)``
+  /// - ``listWorkerPoolsByItems(parent:)``
   /// - ``listWorkerPoolsByItems(request:)``
   /// - ``listWorkerPoolsByItems(request:options:)``
-  /// - ``listWorkerPoolsByItems(parent:)``
   public func listWorkerPools(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse {
@@ -150,11 +150,11 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   ///
   /// ## See Also
   ///
+  /// - ``updateWorkerPool(request:)``
+  /// - ``updateWorkerPool(request:options:)``
   /// - ``updateWorkerPoolPollingUntilDone(request:)``
   /// - ``updateWorkerPoolPollingUntilDone(workerPool:)``
   /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
-  /// - ``updateWorkerPool(request:)``
-  /// - ``updateWorkerPool(request:options:)``
   public func updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -186,9 +186,9 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkerPool(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   /// - ``deleteWorkerPoolPollingUntilDone(request:)``
   /// - ``deleteWorkerPoolPollingUntilDone(request:options:)``
-  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   public func deleteWorkerPool(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
-  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
   /// - ``deleteWorkerPool(request:)``
   /// - ``deleteWorkerPool(request:options:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
   public func deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -281,9 +281,9 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -309,8 +309,8 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -98,9 +98,9 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``createDomainMappingPollingUntilDone(request:)``
   /// - ``createDomainMapping(request:)``
   /// - ``createDomainMapping(request:options:)``
+  /// - ``createDomainMappingPollingUntilDone(request:)``
   public func createDomainMappingPollingUntilDone(
     request: CreateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> DomainMapping {
@@ -153,9 +153,9 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``updateDomainMappingPollingUntilDone(request:)``
   /// - ``updateDomainMapping(request:)``
   /// - ``updateDomainMapping(request:options:)``
+  /// - ``updateDomainMappingPollingUntilDone(request:)``
   public func updateDomainMappingPollingUntilDone(
     request: UpdateDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws -> DomainMapping {
@@ -206,9 +206,9 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteDomainMappingPollingUntilDone(request:)``
   /// - ``deleteDomainMapping(request:)``
   /// - ``deleteDomainMapping(request:options:)``
+  /// - ``deleteDomainMappingPollingUntilDone(request:)``
   public func deleteDomainMappingPollingUntilDone(
     request: DeleteDomainMappingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -242,9 +242,9 @@ public final class DomainMappingsClient: Clients.DomainMappingsProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

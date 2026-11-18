@@ -59,9 +59,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(parent:)``
   /// - ``listDeploymentsByItems(request:)``
   /// - ``listDeploymentsByItems(request:options:)``
-  /// - ``listDeploymentsByItems(parent:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListDeploymentsResponse {
@@ -76,8 +76,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeployment(request:)``
   /// - ``getDeployment(name:)``
+  /// - ``getDeployment(request:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.Deployment {
@@ -93,9 +93,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createDeployment(request:)``
+  /// - ``createDeploymentPollingUntilDone(parent:deployment:deploymentId:)``
   /// - ``createDeploymentPollingUntilDone(request:)``
   /// - ``createDeploymentPollingUntilDone(request:options:)``
-  /// - ``createDeploymentPollingUntilDone(parent:deployment:deploymentId:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,10 +110,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDeploymentPollingUntilDone(request:)``
-  /// - ``createDeploymentPollingUntilDone(parent:deployment:deploymentId:)``
   /// - ``createDeployment(request:)``
   /// - ``createDeployment(request:options:)``
+  /// - ``createDeploymentPollingUntilDone(parent:deployment:deploymentId:)``
+  /// - ``createDeploymentPollingUntilDone(request:)``
   public func createDeploymentPollingUntilDone(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Deployment {
@@ -147,9 +147,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateDeployment(request:)``
+  /// - ``updateDeploymentPollingUntilDone(deployment:updateMask:)``
   /// - ``updateDeploymentPollingUntilDone(request:)``
   /// - ``updateDeploymentPollingUntilDone(request:options:)``
-  /// - ``updateDeploymentPollingUntilDone(deployment:updateMask:)``
   public func updateDeployment(
     request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,10 +164,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDeploymentPollingUntilDone(request:)``
-  /// - ``updateDeploymentPollingUntilDone(deployment:updateMask:)``
   /// - ``updateDeployment(request:)``
   /// - ``updateDeployment(request:options:)``
+  /// - ``updateDeploymentPollingUntilDone(deployment:updateMask:)``
+  /// - ``updateDeploymentPollingUntilDone(request:)``
   public func updateDeploymentPollingUntilDone(
     request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Deployment {
@@ -201,9 +201,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteDeployment(request:)``
+  /// - ``deleteDeploymentPollingUntilDone(name:)``
   /// - ``deleteDeploymentPollingUntilDone(request:)``
   /// - ``deleteDeploymentPollingUntilDone(request:options:)``
-  /// - ``deleteDeploymentPollingUntilDone(name:)``
   public func deleteDeployment(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,10 +218,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDeploymentPollingUntilDone(request:)``
-  /// - ``deleteDeploymentPollingUntilDone(name:)``
   /// - ``deleteDeployment(request:)``
   /// - ``deleteDeployment(request:options:)``
+  /// - ``deleteDeploymentPollingUntilDone(name:)``
+  /// - ``deleteDeploymentPollingUntilDone(request:)``
   public func deleteDeploymentPollingUntilDone(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Deployment {
@@ -255,9 +255,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRevisions(request:)``
+  /// - ``listRevisionsByItems(parent:)``
   /// - ``listRevisionsByItems(request:)``
   /// - ``listRevisionsByItems(request:options:)``
-  /// - ``listRevisionsByItems(parent:)``
   public func listRevisions(
     request: ListRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListRevisionsResponse {
@@ -272,8 +272,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRevision(request:)``
   /// - ``getRevision(name:)``
+  /// - ``getRevision(request:)``
   public func getRevision(
     request: GetRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.Revision {
@@ -289,8 +289,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getResource(request:)``
   /// - ``getResource(name:)``
+  /// - ``getResource(request:)``
   public func getResource(
     request: GetResourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.Resource {
@@ -306,9 +306,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listResources(request:)``
+  /// - ``listResourcesByItems(parent:)``
   /// - ``listResourcesByItems(request:)``
   /// - ``listResourcesByItems(request:options:)``
-  /// - ``listResourcesByItems(parent:)``
   public func listResources(
     request: ListResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListResourcesResponse {
@@ -348,8 +348,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importStatefile(request:)``
   /// - ``importStatefile(parent:lockId:)``
+  /// - ``importStatefile(request:)``
   public func importStatefile(
     request: ImportStatefileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.Statefile {
@@ -362,8 +362,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteStatefile(request:)``
   /// - ``deleteStatefile(name:)``
+  /// - ``deleteStatefile(request:)``
   public func deleteStatefile(
     request: DeleteStatefileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -377,9 +377,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``lockDeployment(request:)``
+  /// - ``lockDeploymentPollingUntilDone(name:)``
   /// - ``lockDeploymentPollingUntilDone(request:)``
   /// - ``lockDeploymentPollingUntilDone(request:options:)``
-  /// - ``lockDeploymentPollingUntilDone(name:)``
   public func lockDeployment(
     request: LockDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -392,10 +392,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``lockDeploymentPollingUntilDone(request:)``
-  /// - ``lockDeploymentPollingUntilDone(name:)``
   /// - ``lockDeployment(request:)``
   /// - ``lockDeployment(request:options:)``
+  /// - ``lockDeploymentPollingUntilDone(name:)``
+  /// - ``lockDeploymentPollingUntilDone(request:)``
   public func lockDeploymentPollingUntilDone(
     request: LockDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Deployment {
@@ -427,9 +427,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``unlockDeployment(request:)``
+  /// - ``unlockDeploymentPollingUntilDone(name:lockId:)``
   /// - ``unlockDeploymentPollingUntilDone(request:)``
   /// - ``unlockDeploymentPollingUntilDone(request:options:)``
-  /// - ``unlockDeploymentPollingUntilDone(name:lockId:)``
   public func unlockDeployment(
     request: UnlockDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -442,10 +442,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``unlockDeploymentPollingUntilDone(request:)``
-  /// - ``unlockDeploymentPollingUntilDone(name:lockId:)``
   /// - ``unlockDeployment(request:)``
   /// - ``unlockDeployment(request:options:)``
+  /// - ``unlockDeploymentPollingUntilDone(name:lockId:)``
+  /// - ``unlockDeploymentPollingUntilDone(request:)``
   public func unlockDeploymentPollingUntilDone(
     request: UnlockDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Deployment {
@@ -476,8 +476,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportLockInfo(request:)``
   /// - ``exportLockInfo(name:)``
+  /// - ``exportLockInfo(request:)``
   public func exportLockInfo(
     request: ExportLockInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.LockInfo {
@@ -493,9 +493,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPreview(request:)``
+  /// - ``createPreviewPollingUntilDone(parent:preview:)``
   /// - ``createPreviewPollingUntilDone(request:)``
   /// - ``createPreviewPollingUntilDone(request:options:)``
-  /// - ``createPreviewPollingUntilDone(parent:preview:)``
   public func createPreview(
     request: CreatePreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -510,10 +510,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPreviewPollingUntilDone(request:)``
-  /// - ``createPreviewPollingUntilDone(parent:preview:)``
   /// - ``createPreview(request:)``
   /// - ``createPreview(request:options:)``
+  /// - ``createPreviewPollingUntilDone(parent:preview:)``
+  /// - ``createPreviewPollingUntilDone(request:)``
   public func createPreviewPollingUntilDone(
     request: CreatePreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> Preview {
@@ -546,8 +546,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPreview(request:)``
   /// - ``getPreview(name:)``
+  /// - ``getPreview(request:)``
   public func getPreview(
     request: GetPreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.Preview {
@@ -564,9 +564,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPreviews(request:)``
+  /// - ``listPreviewsByItems(parent:)``
   /// - ``listPreviewsByItems(request:)``
   /// - ``listPreviewsByItems(request:options:)``
-  /// - ``listPreviewsByItems(parent:)``
   public func listPreviews(
     request: ListPreviewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListPreviewsResponse {
@@ -582,9 +582,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePreview(request:)``
+  /// - ``deletePreviewPollingUntilDone(name:)``
   /// - ``deletePreviewPollingUntilDone(request:)``
   /// - ``deletePreviewPollingUntilDone(request:options:)``
-  /// - ``deletePreviewPollingUntilDone(name:)``
   public func deletePreview(
     request: DeletePreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -599,10 +599,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePreviewPollingUntilDone(request:)``
-  /// - ``deletePreviewPollingUntilDone(name:)``
   /// - ``deletePreview(request:)``
   /// - ``deletePreview(request:options:)``
+  /// - ``deletePreviewPollingUntilDone(name:)``
+  /// - ``deletePreviewPollingUntilDone(request:)``
   public func deletePreviewPollingUntilDone(
     request: DeletePreviewRequest, options: GoogleGax.RequestOptions
   ) async throws -> Preview {
@@ -652,9 +652,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTerraformVersions(request:)``
+  /// - ``listTerraformVersionsByItems(parent:)``
   /// - ``listTerraformVersionsByItems(request:)``
   /// - ``listTerraformVersionsByItems(request:options:)``
-  /// - ``listTerraformVersionsByItems(parent:)``
   public func listTerraformVersions(
     request: ListTerraformVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListTerraformVersionsResponse {
@@ -670,8 +670,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTerraformVersion(request:)``
   /// - ``getTerraformVersion(name:)``
+  /// - ``getTerraformVersion(request:)``
   public func getTerraformVersion(
     request: GetTerraformVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.TerraformVersion {
@@ -685,9 +685,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listResourceChanges(request:)``
+  /// - ``listResourceChangesByItems(parent:)``
   /// - ``listResourceChangesByItems(request:)``
   /// - ``listResourceChangesByItems(request:options:)``
-  /// - ``listResourceChangesByItems(parent:)``
   public func listResourceChanges(
     request: ListResourceChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListResourceChangesResponse {
@@ -700,8 +700,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getResourceChange(request:)``
   /// - ``getResourceChange(name:)``
+  /// - ``getResourceChange(request:)``
   public func getResourceChange(
     request: GetResourceChangeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ResourceChange {
@@ -715,9 +715,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listResourceDrifts(request:)``
+  /// - ``listResourceDriftsByItems(parent:)``
   /// - ``listResourceDriftsByItems(request:)``
   /// - ``listResourceDriftsByItems(request:options:)``
-  /// - ``listResourceDriftsByItems(parent:)``
   public func listResourceDrifts(
     request: ListResourceDriftsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListResourceDriftsResponse {
@@ -730,8 +730,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getResourceDrift(request:)``
   /// - ``getResourceDrift(name:)``
+  /// - ``getResourceDrift(request:)``
   public func getResourceDrift(
     request: GetResourceDriftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ResourceDrift {
@@ -744,8 +744,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAutoMigrationConfig(request:)``
   /// - ``getAutoMigrationConfig(name:)``
+  /// - ``getAutoMigrationConfig(request:)``
   public func getAutoMigrationConfig(
     request: GetAutoMigrationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.AutoMigrationConfig {
@@ -759,9 +759,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateAutoMigrationConfig(request:)``
+  /// - ``updateAutoMigrationConfigPollingUntilDone(autoMigrationConfig:updateMask:)``
   /// - ``updateAutoMigrationConfigPollingUntilDone(request:)``
   /// - ``updateAutoMigrationConfigPollingUntilDone(request:options:)``
-  /// - ``updateAutoMigrationConfigPollingUntilDone(autoMigrationConfig:updateMask:)``
   public func updateAutoMigrationConfig(
     request: UpdateAutoMigrationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -774,10 +774,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAutoMigrationConfigPollingUntilDone(request:)``
-  /// - ``updateAutoMigrationConfigPollingUntilDone(autoMigrationConfig:updateMask:)``
   /// - ``updateAutoMigrationConfig(request:)``
   /// - ``updateAutoMigrationConfig(request:options:)``
+  /// - ``updateAutoMigrationConfigPollingUntilDone(autoMigrationConfig:updateMask:)``
+  /// - ``updateAutoMigrationConfigPollingUntilDone(request:)``
   public func updateAutoMigrationConfigPollingUntilDone(
     request: UpdateAutoMigrationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> AutoMigrationConfig {
@@ -809,8 +809,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeploymentGroup(request:)``
   /// - ``getDeploymentGroup(name:)``
+  /// - ``getDeploymentGroup(request:)``
   public func getDeploymentGroup(
     request: GetDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.DeploymentGroup {
@@ -828,9 +828,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createDeploymentGroup(request:)``
+  /// - ``createDeploymentGroupPollingUntilDone(parent:deploymentGroup:deploymentGroupId:)``
   /// - ``createDeploymentGroupPollingUntilDone(request:)``
   /// - ``createDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``createDeploymentGroupPollingUntilDone(parent:deploymentGroup:deploymentGroupId:)``
   public func createDeploymentGroup(
     request: CreateDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -847,10 +847,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDeploymentGroupPollingUntilDone(request:)``
-  /// - ``createDeploymentGroupPollingUntilDone(parent:deploymentGroup:deploymentGroupId:)``
   /// - ``createDeploymentGroup(request:)``
   /// - ``createDeploymentGroup(request:options:)``
+  /// - ``createDeploymentGroupPollingUntilDone(parent:deploymentGroup:deploymentGroupId:)``
+  /// - ``createDeploymentGroupPollingUntilDone(request:)``
   public func createDeploymentGroupPollingUntilDone(
     request: CreateDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeploymentGroup {
@@ -885,9 +885,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateDeploymentGroup(request:)``
+  /// - ``updateDeploymentGroupPollingUntilDone(deploymentGroup:updateMask:)``
   /// - ``updateDeploymentGroupPollingUntilDone(request:)``
   /// - ``updateDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``updateDeploymentGroupPollingUntilDone(deploymentGroup:updateMask:)``
   public func updateDeploymentGroup(
     request: UpdateDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -902,10 +902,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDeploymentGroupPollingUntilDone(request:)``
-  /// - ``updateDeploymentGroupPollingUntilDone(deploymentGroup:updateMask:)``
   /// - ``updateDeploymentGroup(request:)``
   /// - ``updateDeploymentGroup(request:options:)``
+  /// - ``updateDeploymentGroupPollingUntilDone(deploymentGroup:updateMask:)``
+  /// - ``updateDeploymentGroupPollingUntilDone(request:)``
   public func updateDeploymentGroupPollingUntilDone(
     request: UpdateDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeploymentGroup {
@@ -940,9 +940,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteDeploymentGroup(request:)``
+  /// - ``deleteDeploymentGroupPollingUntilDone(name:)``
   /// - ``deleteDeploymentGroupPollingUntilDone(request:)``
   /// - ``deleteDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``deleteDeploymentGroupPollingUntilDone(name:)``
   public func deleteDeploymentGroup(
     request: DeleteDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -957,10 +957,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDeploymentGroupPollingUntilDone(request:)``
-  /// - ``deleteDeploymentGroupPollingUntilDone(name:)``
   /// - ``deleteDeploymentGroup(request:)``
   /// - ``deleteDeploymentGroup(request:options:)``
+  /// - ``deleteDeploymentGroupPollingUntilDone(name:)``
+  /// - ``deleteDeploymentGroupPollingUntilDone(request:)``
   public func deleteDeploymentGroupPollingUntilDone(
     request: DeleteDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeploymentGroup {
@@ -993,9 +993,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeploymentGroups(request:)``
+  /// - ``listDeploymentGroupsByItems(parent:)``
   /// - ``listDeploymentGroupsByItems(request:)``
   /// - ``listDeploymentGroupsByItems(request:options:)``
-  /// - ``listDeploymentGroupsByItems(parent:)``
   public func listDeploymentGroups(
     request: ListDeploymentGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListDeploymentGroupsResponse {
@@ -1021,9 +1021,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``provisionDeploymentGroup(request:)``
+  /// - ``provisionDeploymentGroupPollingUntilDone(name:)``
   /// - ``provisionDeploymentGroupPollingUntilDone(request:)``
   /// - ``provisionDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``provisionDeploymentGroupPollingUntilDone(name:)``
   public func provisionDeploymentGroup(
     request: ProvisionDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1048,10 +1048,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``provisionDeploymentGroupPollingUntilDone(request:)``
-  /// - ``provisionDeploymentGroupPollingUntilDone(name:)``
   /// - ``provisionDeploymentGroup(request:)``
   /// - ``provisionDeploymentGroup(request:options:)``
+  /// - ``provisionDeploymentGroupPollingUntilDone(name:)``
+  /// - ``provisionDeploymentGroupPollingUntilDone(request:)``
   public func provisionDeploymentGroupPollingUntilDone(
     request: ProvisionDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeploymentGroup {
@@ -1096,9 +1096,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deprovisionDeploymentGroup(request:)``
+  /// - ``deprovisionDeploymentGroupPollingUntilDone(name:)``
   /// - ``deprovisionDeploymentGroupPollingUntilDone(request:)``
   /// - ``deprovisionDeploymentGroupPollingUntilDone(request:options:)``
-  /// - ``deprovisionDeploymentGroupPollingUntilDone(name:)``
   public func deprovisionDeploymentGroup(
     request: DeprovisionDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1123,10 +1123,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deprovisionDeploymentGroupPollingUntilDone(request:)``
-  /// - ``deprovisionDeploymentGroupPollingUntilDone(name:)``
   /// - ``deprovisionDeploymentGroup(request:)``
   /// - ``deprovisionDeploymentGroup(request:options:)``
+  /// - ``deprovisionDeploymentGroupPollingUntilDone(name:)``
+  /// - ``deprovisionDeploymentGroupPollingUntilDone(request:)``
   public func deprovisionDeploymentGroupPollingUntilDone(
     request: DeprovisionDeploymentGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeploymentGroup {
@@ -1161,8 +1161,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeploymentGroupRevision(request:)``
   /// - ``getDeploymentGroupRevision(name:)``
+  /// - ``getDeploymentGroupRevision(request:)``
   public func getDeploymentGroupRevision(
     request: GetDeploymentGroupRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.DeploymentGroupRevision {
@@ -1181,9 +1181,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeploymentGroupRevisions(request:)``
+  /// - ``listDeploymentGroupRevisionsByItems(parent:)``
   /// - ``listDeploymentGroupRevisionsByItems(request:)``
   /// - ``listDeploymentGroupRevisionsByItems(request:options:)``
-  /// - ``listDeploymentGroupRevisionsByItems(parent:)``
   public func listDeploymentGroupRevisions(
     request: ListDeploymentGroupRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfigV1.ListDeploymentGroupRevisionsResponse {
@@ -1294,9 +1294,9 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1322,8 +1322,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1338,8 +1338,8 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

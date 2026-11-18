@@ -55,9 +55,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listLbTrafficExtensions(request:)``
+  /// - ``listLbTrafficExtensionsByItems(parent:)``
   /// - ``listLbTrafficExtensionsByItems(request:)``
   /// - ``listLbTrafficExtensionsByItems(request:options:)``
-  /// - ``listLbTrafficExtensionsByItems(parent:)``
   public func listLbTrafficExtensions(
     request: ListLbTrafficExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse {
@@ -70,8 +70,8 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getLbTrafficExtension(request:)``
   /// - ``getLbTrafficExtension(name:)``
+  /// - ``getLbTrafficExtension(request:)``
   public func getLbTrafficExtension(
     request: GetLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.LbTrafficExtension {
@@ -86,9 +86,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createLbTrafficExtension(request:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(parent:lbTrafficExtension:lbTrafficExtensionId:)``
   /// - ``createLbTrafficExtensionPollingUntilDone(request:)``
   /// - ``createLbTrafficExtensionPollingUntilDone(request:options:)``
-  /// - ``createLbTrafficExtensionPollingUntilDone(parent:lbTrafficExtension:lbTrafficExtensionId:)``
   public func createLbTrafficExtension(
     request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,10 +102,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createLbTrafficExtensionPollingUntilDone(request:)``
-  /// - ``createLbTrafficExtensionPollingUntilDone(parent:lbTrafficExtension:lbTrafficExtensionId:)``
   /// - ``createLbTrafficExtension(request:)``
   /// - ``createLbTrafficExtension(request:options:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(parent:lbTrafficExtension:lbTrafficExtensionId:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(request:)``
   public func createLbTrafficExtensionPollingUntilDone(
     request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbTrafficExtension {
@@ -138,9 +138,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateLbTrafficExtension(request:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(lbTrafficExtension:updateMask:)``
   /// - ``updateLbTrafficExtensionPollingUntilDone(request:)``
   /// - ``updateLbTrafficExtensionPollingUntilDone(request:options:)``
-  /// - ``updateLbTrafficExtensionPollingUntilDone(lbTrafficExtension:updateMask:)``
   public func updateLbTrafficExtension(
     request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateLbTrafficExtensionPollingUntilDone(request:)``
-  /// - ``updateLbTrafficExtensionPollingUntilDone(lbTrafficExtension:updateMask:)``
   /// - ``updateLbTrafficExtension(request:)``
   /// - ``updateLbTrafficExtension(request:options:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(lbTrafficExtension:updateMask:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(request:)``
   public func updateLbTrafficExtensionPollingUntilDone(
     request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbTrafficExtension {
@@ -189,9 +189,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteLbTrafficExtension(request:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(name:)``
   /// - ``deleteLbTrafficExtensionPollingUntilDone(request:)``
   /// - ``deleteLbTrafficExtensionPollingUntilDone(request:options:)``
-  /// - ``deleteLbTrafficExtensionPollingUntilDone(name:)``
   public func deleteLbTrafficExtension(
     request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -204,10 +204,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteLbTrafficExtensionPollingUntilDone(request:)``
-  /// - ``deleteLbTrafficExtensionPollingUntilDone(name:)``
   /// - ``deleteLbTrafficExtension(request:)``
   /// - ``deleteLbTrafficExtension(request:options:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(request:)``
   public func deleteLbTrafficExtensionPollingUntilDone(
     request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -239,9 +239,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listLbRouteExtensions(request:)``
+  /// - ``listLbRouteExtensionsByItems(parent:)``
   /// - ``listLbRouteExtensionsByItems(request:)``
   /// - ``listLbRouteExtensionsByItems(request:options:)``
-  /// - ``listLbRouteExtensionsByItems(parent:)``
   public func listLbRouteExtensions(
     request: ListLbRouteExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListLbRouteExtensionsResponse {
@@ -254,8 +254,8 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getLbRouteExtension(request:)``
   /// - ``getLbRouteExtension(name:)``
+  /// - ``getLbRouteExtension(request:)``
   public func getLbRouteExtension(
     request: GetLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.LbRouteExtension {
@@ -269,9 +269,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createLbRouteExtension(request:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(parent:lbRouteExtension:lbRouteExtensionId:)``
   /// - ``createLbRouteExtensionPollingUntilDone(request:)``
   /// - ``createLbRouteExtensionPollingUntilDone(request:options:)``
-  /// - ``createLbRouteExtensionPollingUntilDone(parent:lbRouteExtension:lbRouteExtensionId:)``
   public func createLbRouteExtension(
     request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -284,10 +284,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createLbRouteExtensionPollingUntilDone(request:)``
-  /// - ``createLbRouteExtensionPollingUntilDone(parent:lbRouteExtension:lbRouteExtensionId:)``
   /// - ``createLbRouteExtension(request:)``
   /// - ``createLbRouteExtension(request:options:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(parent:lbRouteExtension:lbRouteExtensionId:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(request:)``
   public func createLbRouteExtensionPollingUntilDone(
     request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbRouteExtension {
@@ -320,9 +320,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateLbRouteExtension(request:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(lbRouteExtension:updateMask:)``
   /// - ``updateLbRouteExtensionPollingUntilDone(request:)``
   /// - ``updateLbRouteExtensionPollingUntilDone(request:options:)``
-  /// - ``updateLbRouteExtensionPollingUntilDone(lbRouteExtension:updateMask:)``
   public func updateLbRouteExtension(
     request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -335,10 +335,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateLbRouteExtensionPollingUntilDone(request:)``
-  /// - ``updateLbRouteExtensionPollingUntilDone(lbRouteExtension:updateMask:)``
   /// - ``updateLbRouteExtension(request:)``
   /// - ``updateLbRouteExtension(request:options:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(lbRouteExtension:updateMask:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(request:)``
   public func updateLbRouteExtensionPollingUntilDone(
     request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbRouteExtension {
@@ -371,9 +371,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteLbRouteExtension(request:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(name:)``
   /// - ``deleteLbRouteExtensionPollingUntilDone(request:)``
   /// - ``deleteLbRouteExtensionPollingUntilDone(request:options:)``
-  /// - ``deleteLbRouteExtensionPollingUntilDone(name:)``
   public func deleteLbRouteExtension(
     request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -386,10 +386,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteLbRouteExtensionPollingUntilDone(request:)``
-  /// - ``deleteLbRouteExtensionPollingUntilDone(name:)``
   /// - ``deleteLbRouteExtension(request:)``
   /// - ``deleteLbRouteExtension(request:options:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(request:)``
   public func deleteLbRouteExtensionPollingUntilDone(
     request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -421,9 +421,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listLbEdgeExtensions(request:)``
+  /// - ``listLbEdgeExtensionsByItems(parent:)``
   /// - ``listLbEdgeExtensionsByItems(request:)``
   /// - ``listLbEdgeExtensionsByItems(request:options:)``
-  /// - ``listLbEdgeExtensionsByItems(parent:)``
   public func listLbEdgeExtensions(
     request: ListLbEdgeExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListLbEdgeExtensionsResponse {
@@ -436,8 +436,8 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getLbEdgeExtension(request:)``
   /// - ``getLbEdgeExtension(name:)``
+  /// - ``getLbEdgeExtension(request:)``
   public func getLbEdgeExtension(
     request: GetLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.LbEdgeExtension {
@@ -451,9 +451,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createLbEdgeExtension(request:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(parent:lbEdgeExtension:lbEdgeExtensionId:)``
   /// - ``createLbEdgeExtensionPollingUntilDone(request:)``
   /// - ``createLbEdgeExtensionPollingUntilDone(request:options:)``
-  /// - ``createLbEdgeExtensionPollingUntilDone(parent:lbEdgeExtension:lbEdgeExtensionId:)``
   public func createLbEdgeExtension(
     request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -466,10 +466,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createLbEdgeExtensionPollingUntilDone(request:)``
-  /// - ``createLbEdgeExtensionPollingUntilDone(parent:lbEdgeExtension:lbEdgeExtensionId:)``
   /// - ``createLbEdgeExtension(request:)``
   /// - ``createLbEdgeExtension(request:options:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(parent:lbEdgeExtension:lbEdgeExtensionId:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(request:)``
   public func createLbEdgeExtensionPollingUntilDone(
     request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbEdgeExtension {
@@ -502,9 +502,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateLbEdgeExtension(request:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(lbEdgeExtension:updateMask:)``
   /// - ``updateLbEdgeExtensionPollingUntilDone(request:)``
   /// - ``updateLbEdgeExtensionPollingUntilDone(request:options:)``
-  /// - ``updateLbEdgeExtensionPollingUntilDone(lbEdgeExtension:updateMask:)``
   public func updateLbEdgeExtension(
     request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -517,10 +517,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateLbEdgeExtensionPollingUntilDone(request:)``
-  /// - ``updateLbEdgeExtensionPollingUntilDone(lbEdgeExtension:updateMask:)``
   /// - ``updateLbEdgeExtension(request:)``
   /// - ``updateLbEdgeExtension(request:options:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(lbEdgeExtension:updateMask:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(request:)``
   public func updateLbEdgeExtensionPollingUntilDone(
     request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbEdgeExtension {
@@ -553,9 +553,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteLbEdgeExtension(request:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(name:)``
   /// - ``deleteLbEdgeExtensionPollingUntilDone(request:)``
   /// - ``deleteLbEdgeExtensionPollingUntilDone(request:options:)``
-  /// - ``deleteLbEdgeExtensionPollingUntilDone(name:)``
   public func deleteLbEdgeExtension(
     request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -568,10 +568,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteLbEdgeExtensionPollingUntilDone(request:)``
-  /// - ``deleteLbEdgeExtensionPollingUntilDone(name:)``
   /// - ``deleteLbEdgeExtension(request:)``
   /// - ``deleteLbEdgeExtension(request:options:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(request:)``
   public func deleteLbEdgeExtensionPollingUntilDone(
     request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -603,9 +603,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAuthzExtensions(request:)``
+  /// - ``listAuthzExtensionsByItems(parent:)``
   /// - ``listAuthzExtensionsByItems(request:)``
   /// - ``listAuthzExtensionsByItems(request:options:)``
-  /// - ``listAuthzExtensionsByItems(parent:)``
   public func listAuthzExtensions(
     request: ListAuthzExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListAuthzExtensionsResponse {
@@ -618,8 +618,8 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAuthzExtension(request:)``
   /// - ``getAuthzExtension(name:)``
+  /// - ``getAuthzExtension(request:)``
   public func getAuthzExtension(
     request: GetAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.AuthzExtension {
@@ -634,9 +634,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createAuthzExtension(request:)``
+  /// - ``createAuthzExtensionPollingUntilDone(parent:authzExtension:authzExtensionId:)``
   /// - ``createAuthzExtensionPollingUntilDone(request:)``
   /// - ``createAuthzExtensionPollingUntilDone(request:options:)``
-  /// - ``createAuthzExtensionPollingUntilDone(parent:authzExtension:authzExtensionId:)``
   public func createAuthzExtension(
     request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -650,10 +650,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAuthzExtensionPollingUntilDone(request:)``
-  /// - ``createAuthzExtensionPollingUntilDone(parent:authzExtension:authzExtensionId:)``
   /// - ``createAuthzExtension(request:)``
   /// - ``createAuthzExtension(request:options:)``
+  /// - ``createAuthzExtensionPollingUntilDone(parent:authzExtension:authzExtensionId:)``
+  /// - ``createAuthzExtensionPollingUntilDone(request:)``
   public func createAuthzExtensionPollingUntilDone(
     request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthzExtension {
@@ -687,9 +687,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateAuthzExtension(request:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(authzExtension:updateMask:)``
   /// - ``updateAuthzExtensionPollingUntilDone(request:)``
   /// - ``updateAuthzExtensionPollingUntilDone(request:options:)``
-  /// - ``updateAuthzExtensionPollingUntilDone(authzExtension:updateMask:)``
   public func updateAuthzExtension(
     request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -703,10 +703,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAuthzExtensionPollingUntilDone(request:)``
-  /// - ``updateAuthzExtensionPollingUntilDone(authzExtension:updateMask:)``
   /// - ``updateAuthzExtension(request:)``
   /// - ``updateAuthzExtension(request:options:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(authzExtension:updateMask:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(request:)``
   public func updateAuthzExtensionPollingUntilDone(
     request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthzExtension {
@@ -739,9 +739,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteAuthzExtension(request:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(name:)``
   /// - ``deleteAuthzExtensionPollingUntilDone(request:)``
   /// - ``deleteAuthzExtensionPollingUntilDone(request:options:)``
-  /// - ``deleteAuthzExtensionPollingUntilDone(name:)``
   public func deleteAuthzExtension(
     request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -754,10 +754,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAuthzExtensionPollingUntilDone(request:)``
-  /// - ``deleteAuthzExtensionPollingUntilDone(name:)``
   /// - ``deleteAuthzExtension(request:)``
   /// - ``deleteAuthzExtension(request:options:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(name:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(request:)``
   public func deleteAuthzExtensionPollingUntilDone(
     request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -869,9 +869,9 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -897,8 +897,8 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -913,8 +913,8 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

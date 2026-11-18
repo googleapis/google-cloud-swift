@@ -52,9 +52,9 @@
     /// ## See Also
     ///
     /// - ``disableXpnHost(request:)``
+    /// - ``disableXpnHostPollingUntilDone(project:)``
     /// - ``disableXpnHostPollingUntilDone(request:)``
     /// - ``disableXpnHostPollingUntilDone(request:options:)``
-    /// - ``disableXpnHostPollingUntilDone(project:)``
     public func disableXpnHost(
       request: ProjectsClient.DisableXpnHostRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,10 +72,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``disableXpnHostPollingUntilDone(request:)``
-    /// - ``disableXpnHostPollingUntilDone(project:)``
     /// - ``disableXpnHost(request:)``
     /// - ``disableXpnHost(request:options:)``
+    /// - ``disableXpnHostPollingUntilDone(project:)``
+    /// - ``disableXpnHostPollingUntilDone(request:)``
     public func disableXpnHostPollingUntilDone(
       request: ProjectsClient.DisableXpnHostRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -122,9 +122,9 @@
     /// ## See Also
     ///
     /// - ``disableXpnResource(request:)``
+    /// - ``disableXpnResourcePollingUntilDone(project:body:)``
     /// - ``disableXpnResourcePollingUntilDone(request:)``
     /// - ``disableXpnResourcePollingUntilDone(request:options:)``
-    /// - ``disableXpnResourcePollingUntilDone(project:body:)``
     public func disableXpnResource(
       request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -143,10 +143,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``disableXpnResourcePollingUntilDone(request:)``
-    /// - ``disableXpnResourcePollingUntilDone(project:body:)``
     /// - ``disableXpnResource(request:)``
     /// - ``disableXpnResource(request:options:)``
+    /// - ``disableXpnResourcePollingUntilDone(project:body:)``
+    /// - ``disableXpnResourcePollingUntilDone(request:)``
     public func disableXpnResourcePollingUntilDone(
       request: ProjectsClient.DisableXpnResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -192,9 +192,9 @@
     /// ## See Also
     ///
     /// - ``enableXpnHost(request:)``
+    /// - ``enableXpnHostPollingUntilDone(project:)``
     /// - ``enableXpnHostPollingUntilDone(request:)``
     /// - ``enableXpnHostPollingUntilDone(request:options:)``
-    /// - ``enableXpnHostPollingUntilDone(project:)``
     public func enableXpnHost(
       request: ProjectsClient.EnableXpnHostRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -212,10 +212,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``enableXpnHostPollingUntilDone(request:)``
-    /// - ``enableXpnHostPollingUntilDone(project:)``
     /// - ``enableXpnHost(request:)``
     /// - ``enableXpnHost(request:options:)``
+    /// - ``enableXpnHostPollingUntilDone(project:)``
+    /// - ``enableXpnHostPollingUntilDone(request:)``
     public func enableXpnHostPollingUntilDone(
       request: ProjectsClient.EnableXpnHostRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -263,9 +263,9 @@
     /// ## See Also
     ///
     /// - ``enableXpnResource(request:)``
+    /// - ``enableXpnResourcePollingUntilDone(project:body:)``
     /// - ``enableXpnResourcePollingUntilDone(request:)``
     /// - ``enableXpnResourcePollingUntilDone(request:options:)``
-    /// - ``enableXpnResourcePollingUntilDone(project:body:)``
     public func enableXpnResource(
       request: ProjectsClient.EnableXpnResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -285,10 +285,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``enableXpnResourcePollingUntilDone(request:)``
-    /// - ``enableXpnResourcePollingUntilDone(project:body:)``
     /// - ``enableXpnResource(request:)``
     /// - ``enableXpnResource(request:options:)``
+    /// - ``enableXpnResourcePollingUntilDone(project:body:)``
+    /// - ``enableXpnResourcePollingUntilDone(request:)``
     public func enableXpnResourcePollingUntilDone(
       request: ProjectsClient.EnableXpnResourceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -341,8 +341,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ProjectsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Project {
@@ -356,8 +356,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getXpnHost(request:)``
     /// - ``getXpnHost(project:)``
+    /// - ``getXpnHost(request:)``
     public func getXpnHost(
       request: ProjectsClient.GetXpnHostRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Project {
@@ -372,9 +372,9 @@
     /// ## See Also
     ///
     /// - ``getXpnResources(request:)``
+    /// - ``getXpnResourcesByItems(project:)``
     /// - ``getXpnResourcesByItems(request:)``
     /// - ``getXpnResourcesByItems(request:options:)``
-    /// - ``getXpnResourcesByItems(project:)``
     public func getXpnResources(
       request: ProjectsClient.GetXpnResourcesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ProjectsGetXpnResources {
@@ -388,9 +388,9 @@
     /// ## See Also
     ///
     /// - ``listXpnHosts(request:)``
+    /// - ``listXpnHostsByItems(project:body:)``
     /// - ``listXpnHostsByItems(request:)``
     /// - ``listXpnHostsByItems(request:options:)``
-    /// - ``listXpnHostsByItems(project:body:)``
     public func listXpnHosts(
       request: ProjectsClient.ListXpnHostsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.XpnHostList {
@@ -417,9 +417,9 @@
     /// ## See Also
     ///
     /// - ``moveDisk(request:)``
+    /// - ``moveDiskPollingUntilDone(project:body:)``
     /// - ``moveDiskPollingUntilDone(request:)``
     /// - ``moveDiskPollingUntilDone(request:options:)``
-    /// - ``moveDiskPollingUntilDone(project:body:)``
     @available(*, deprecated)
     public func moveDisk(
       request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
@@ -451,10 +451,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``moveDiskPollingUntilDone(request:)``
-    /// - ``moveDiskPollingUntilDone(project:body:)``
     /// - ``moveDisk(request:)``
     /// - ``moveDisk(request:options:)``
+    /// - ``moveDiskPollingUntilDone(project:body:)``
+    /// - ``moveDiskPollingUntilDone(request:)``
     @available(*, deprecated)
     public func moveDiskPollingUntilDone(
       request: ProjectsClient.MoveDiskRequest, options: GoogleGax.RequestOptions
@@ -507,9 +507,9 @@
     /// ## See Also
     ///
     /// - ``moveInstance(request:)``
+    /// - ``moveInstancePollingUntilDone(project:body:)``
     /// - ``moveInstancePollingUntilDone(request:)``
     /// - ``moveInstancePollingUntilDone(request:options:)``
-    /// - ``moveInstancePollingUntilDone(project:body:)``
     @available(*, deprecated)
     public func moveInstance(
       request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
@@ -534,10 +534,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``moveInstancePollingUntilDone(request:)``
-    /// - ``moveInstancePollingUntilDone(project:body:)``
     /// - ``moveInstance(request:)``
     /// - ``moveInstance(request:options:)``
+    /// - ``moveInstancePollingUntilDone(project:body:)``
+    /// - ``moveInstancePollingUntilDone(request:)``
     @available(*, deprecated)
     public func moveInstancePollingUntilDone(
       request: ProjectsClient.MoveInstanceRequest, options: GoogleGax.RequestOptions
@@ -587,9 +587,9 @@
     /// ## See Also
     ///
     /// - ``setCloudArmorTier(request:)``
+    /// - ``setCloudArmorTierPollingUntilDone(project:body:)``
     /// - ``setCloudArmorTierPollingUntilDone(request:)``
     /// - ``setCloudArmorTierPollingUntilDone(request:options:)``
-    /// - ``setCloudArmorTierPollingUntilDone(project:body:)``
     public func setCloudArmorTier(
       request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -610,10 +610,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setCloudArmorTierPollingUntilDone(request:)``
-    /// - ``setCloudArmorTierPollingUntilDone(project:body:)``
     /// - ``setCloudArmorTier(request:)``
     /// - ``setCloudArmorTier(request:options:)``
+    /// - ``setCloudArmorTierPollingUntilDone(project:body:)``
+    /// - ``setCloudArmorTierPollingUntilDone(request:)``
     public func setCloudArmorTierPollingUntilDone(
       request: ProjectsClient.SetCloudArmorTierRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -660,9 +660,9 @@
     /// ## See Also
     ///
     /// - ``setCommonInstanceMetadata(request:)``
+    /// - ``setCommonInstanceMetadataPollingUntilDone(project:body:)``
     /// - ``setCommonInstanceMetadataPollingUntilDone(request:)``
     /// - ``setCommonInstanceMetadataPollingUntilDone(request:options:)``
-    /// - ``setCommonInstanceMetadataPollingUntilDone(project:body:)``
     public func setCommonInstanceMetadata(
       request: ProjectsClient.SetCommonInstanceMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -681,10 +681,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setCommonInstanceMetadataPollingUntilDone(request:)``
-    /// - ``setCommonInstanceMetadataPollingUntilDone(project:body:)``
     /// - ``setCommonInstanceMetadata(request:)``
     /// - ``setCommonInstanceMetadata(request:options:)``
+    /// - ``setCommonInstanceMetadataPollingUntilDone(project:body:)``
+    /// - ``setCommonInstanceMetadataPollingUntilDone(request:)``
     public func setCommonInstanceMetadataPollingUntilDone(
       request: ProjectsClient.SetCommonInstanceMetadataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -732,9 +732,9 @@
     /// ## See Also
     ///
     /// - ``setDefaultNetworkTier(request:)``
+    /// - ``setDefaultNetworkTierPollingUntilDone(project:body:)``
     /// - ``setDefaultNetworkTierPollingUntilDone(request:)``
     /// - ``setDefaultNetworkTierPollingUntilDone(request:options:)``
-    /// - ``setDefaultNetworkTierPollingUntilDone(project:body:)``
     public func setDefaultNetworkTier(
       request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -754,10 +754,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setDefaultNetworkTierPollingUntilDone(request:)``
-    /// - ``setDefaultNetworkTierPollingUntilDone(project:body:)``
     /// - ``setDefaultNetworkTier(request:)``
     /// - ``setDefaultNetworkTier(request:options:)``
+    /// - ``setDefaultNetworkTierPollingUntilDone(project:body:)``
+    /// - ``setDefaultNetworkTierPollingUntilDone(request:)``
     public func setDefaultNetworkTierPollingUntilDone(
       request: ProjectsClient.SetDefaultNetworkTierRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -805,9 +805,9 @@
     /// ## See Also
     ///
     /// - ``setUsageExportBucket(request:)``
+    /// - ``setUsageExportBucketPollingUntilDone(project:body:)``
     /// - ``setUsageExportBucketPollingUntilDone(request:)``
     /// - ``setUsageExportBucketPollingUntilDone(request:options:)``
-    /// - ``setUsageExportBucketPollingUntilDone(project:body:)``
     public func setUsageExportBucket(
       request: ProjectsClient.SetUsageExportBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -827,10 +827,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``setUsageExportBucketPollingUntilDone(request:)``
-    /// - ``setUsageExportBucketPollingUntilDone(project:body:)``
     /// - ``setUsageExportBucket(request:)``
     /// - ``setUsageExportBucket(request:options:)``
+    /// - ``setUsageExportBucketPollingUntilDone(project:body:)``
+    /// - ``setUsageExportBucketPollingUntilDone(request:)``
     public func setUsageExportBucketPollingUntilDone(
       request: ProjectsClient.SetUsageExportBucketRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

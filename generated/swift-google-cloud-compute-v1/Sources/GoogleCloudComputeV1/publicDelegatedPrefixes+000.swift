@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
     /// - ``aggregatedListByItems(request:)``
     /// - ``aggregatedListByItems(request:options:)``
-    /// - ``aggregatedListByItems(project:)``
     public func aggregatedList(
       request: PublicDelegatedPrefixesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -76,9 +76,9 @@
     /// ## See Also
     ///
     /// - ``announce(request:)``
+    /// - ``announcePollingUntilDone(project:region:publicDelegatedPrefix:)``
     /// - ``announcePollingUntilDone(request:)``
     /// - ``announcePollingUntilDone(request:options:)``
-    /// - ``announcePollingUntilDone(project:region:publicDelegatedPrefix:)``
     public func announce(
       request: PublicDelegatedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -96,10 +96,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``announcePollingUntilDone(request:)``
-    /// - ``announcePollingUntilDone(project:region:publicDelegatedPrefix:)``
     /// - ``announce(request:)``
     /// - ``announce(request:options:)``
+    /// - ``announcePollingUntilDone(project:region:publicDelegatedPrefix:)``
+    /// - ``announcePollingUntilDone(request:)``
     public func announcePollingUntilDone(
       request: PublicDelegatedPrefixesClient.AnnounceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -146,9 +146,9 @@
     /// ## See Also
     ///
     /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:publicDelegatedPrefix:)``
     /// - ``deletePollingUntilDone(request:)``
     /// - ``deletePollingUntilDone(request:options:)``
-    /// - ``deletePollingUntilDone(project:region:publicDelegatedPrefix:)``
     public func delete(
       request: PublicDelegatedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,10 +166,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deletePollingUntilDone(request:)``
-    /// - ``deletePollingUntilDone(project:region:publicDelegatedPrefix:)``
     /// - ``delete(request:)``
     /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:publicDelegatedPrefix:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: PublicDelegatedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -215,8 +215,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:publicDelegatedPrefix:)``
+    /// - ``get(request:)``
     public func `get`(
       request: PublicDelegatedPrefixesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefix {
@@ -231,9 +231,9 @@
     /// ## See Also
     ///
     /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insertPollingUntilDone(request:)``
     /// - ``insertPollingUntilDone(request:options:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     public func insert(
       request: PublicDelegatedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -252,10 +252,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``insertPollingUntilDone(request:)``
-    /// - ``insertPollingUntilDone(project:region:body:)``
     /// - ``insert(request:)``
     /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: PublicDelegatedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -302,9 +302,9 @@
     /// ## See Also
     ///
     /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
     /// - ``listByItems(request:)``
     /// - ``listByItems(request:options:)``
-    /// - ``listByItems(project:region:)``
     public func list(
       request: PublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList {
@@ -321,9 +321,9 @@
     /// ## See Also
     ///
     /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:publicDelegatedPrefix:body:)``
     /// - ``patchPollingUntilDone(request:)``
     /// - ``patchPollingUntilDone(request:options:)``
-    /// - ``patchPollingUntilDone(project:region:publicDelegatedPrefix:body:)``
     public func patch(
       request: PublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -344,10 +344,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``patchPollingUntilDone(request:)``
-    /// - ``patchPollingUntilDone(project:region:publicDelegatedPrefix:body:)``
     /// - ``patch(request:)``
     /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:publicDelegatedPrefix:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: PublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -394,9 +394,9 @@
     /// ## See Also
     ///
     /// - ``withdraw(request:)``
+    /// - ``withdrawPollingUntilDone(project:region:publicDelegatedPrefix:)``
     /// - ``withdrawPollingUntilDone(request:)``
     /// - ``withdrawPollingUntilDone(request:options:)``
-    /// - ``withdrawPollingUntilDone(project:region:publicDelegatedPrefix:)``
     public func withdraw(
       request: PublicDelegatedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -414,10 +414,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``withdrawPollingUntilDone(request:)``
-    /// - ``withdrawPollingUntilDone(project:region:publicDelegatedPrefix:)``
     /// - ``withdraw(request:)``
     /// - ``withdraw(request:options:)``
+    /// - ``withdrawPollingUntilDone(project:region:publicDelegatedPrefix:)``
+    /// - ``withdrawPollingUntilDone(request:)``
     public func withdrawPollingUntilDone(
       request: PublicDelegatedPrefixesClient.WithdrawRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {

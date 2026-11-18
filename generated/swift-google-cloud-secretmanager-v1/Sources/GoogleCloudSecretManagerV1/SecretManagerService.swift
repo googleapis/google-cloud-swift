@@ -62,9 +62,9 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   /// ## See Also
   ///
   /// - ``listSecrets(request:)``
+  /// - ``listSecretsByItems(parent:)``
   /// - ``listSecretsByItems(request:)``
   /// - ``listSecretsByItems(request:options:)``
-  /// - ``listSecretsByItems(parent:)``
   public func listSecrets(
     request: ListSecretsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.ListSecretsResponse {
@@ -81,8 +81,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``createSecret(request:)``
   /// - ``createSecret(parent:secretId:secret:)``
+  /// - ``createSecret(request:)``
   public func createSecret(
     request: CreateSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.Secret {
@@ -100,8 +100,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``addSecretVersion(request:)``
   /// - ``addSecretVersion(parent:payload:)``
+  /// - ``addSecretVersion(request:)``
   public func addSecretVersion(
     request: AddSecretVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -116,8 +116,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getSecret(request:)``
   /// - ``getSecret(name:)``
+  /// - ``getSecret(request:)``
   public func getSecret(
     request: GetSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.Secret {
@@ -149,8 +149,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``deleteSecret(request:)``
   /// - ``deleteSecret(name:)``
+  /// - ``deleteSecret(request:)``
   public func deleteSecret(
     request: DeleteSecretRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -167,9 +167,9 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   /// ## See Also
   ///
   /// - ``listSecretVersions(request:)``
+  /// - ``listSecretVersionsByItems(parent:)``
   /// - ``listSecretVersionsByItems(request:)``
   /// - ``listSecretVersionsByItems(request:options:)``
-  /// - ``listSecretVersionsByItems(parent:)``
   public func listSecretVersions(
     request: ListSecretVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.ListSecretVersionsResponse {
@@ -188,8 +188,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``getSecretVersion(request:)``
   /// - ``getSecretVersion(name:)``
+  /// - ``getSecretVersion(request:)``
   public func getSecretVersion(
     request: GetSecretVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -208,8 +208,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``accessSecretVersion(request:)``
   /// - ``accessSecretVersion(name:)``
+  /// - ``accessSecretVersion(request:)``
   public func accessSecretVersion(
     request: AccessSecretVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.AccessSecretVersionResponse {
@@ -230,8 +230,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``disableSecretVersion(request:)``
   /// - ``disableSecretVersion(name:)``
+  /// - ``disableSecretVersion(request:)``
   public func disableSecretVersion(
     request: DisableSecretVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -252,8 +252,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``enableSecretVersion(request:)``
   /// - ``enableSecretVersion(name:)``
+  /// - ``enableSecretVersion(request:)``
   public func enableSecretVersion(
     request: EnableSecretVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -275,8 +275,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``destroySecretVersion(request:)``
   /// - ``destroySecretVersion(name:)``
+  /// - ``destroySecretVersion(request:)``
   public func destroySecretVersion(
     request: DestroySecretVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -350,8 +350,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``enableManagedRotation(request:)``
   /// - ``enableManagedRotation(parent:cloudSqlSingleUserCredentials:)``
+  /// - ``enableManagedRotation(request:)``
   public func enableManagedRotation(
     request: EnableManagedRotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {
@@ -368,8 +368,8 @@ public final class SecretManagerServiceClient: Clients.SecretManagerServiceProto
   ///
   /// ## See Also
   ///
-  /// - ``rotateSecret(request:)``
   /// - ``rotateSecret(parent:)``
+  /// - ``rotateSecret(request:)``
   public func rotateSecret(
     request: RotateSecretRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecretManagerV1.SecretVersion {

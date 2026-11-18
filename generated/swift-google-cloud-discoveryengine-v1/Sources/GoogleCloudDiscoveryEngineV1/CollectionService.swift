@@ -59,9 +59,9 @@
     /// ## See Also
     ///
     /// - ``deleteCollection(request:)``
+    /// - ``deleteCollectionPollingUntilDone(name:)``
     /// - ``deleteCollectionPollingUntilDone(request:)``
     /// - ``deleteCollectionPollingUntilDone(request:options:)``
-    /// - ``deleteCollectionPollingUntilDone(name:)``
     public func deleteCollection(
       request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -76,10 +76,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteCollectionPollingUntilDone(request:)``
-    /// - ``deleteCollectionPollingUntilDone(name:)``
     /// - ``deleteCollection(request:)``
     /// - ``deleteCollection(request:options:)``
+    /// - ``deleteCollectionPollingUntilDone(name:)``
+    /// - ``deleteCollectionPollingUntilDone(request:)``
     public func deleteCollectionPollingUntilDone(
       request: DeleteCollectionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -161,9 +161,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -189,8 +189,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

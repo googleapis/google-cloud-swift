@@ -55,9 +55,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApps(request:)``
+  /// - ``listAppsByItems(parent:)``
   /// - ``listAppsByItems(request:)``
   /// - ``listAppsByItems(request:options:)``
-  /// - ``listAppsByItems(parent:)``
   public func listApps(
     request: ListAppsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListAppsResponse {
@@ -70,8 +70,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApp(request:)``
   /// - ``getApp(name:)``
+  /// - ``getApp(request:)``
   public func getApp(
     request: GetAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.App {
@@ -85,10 +85,10 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createApp(request:)``
+  /// - ``createAppPollingUntilDone(parent:app:)``
+  /// - ``createAppPollingUntilDone(parent:app:appId:)``
   /// - ``createAppPollingUntilDone(request:)``
   /// - ``createAppPollingUntilDone(request:options:)``
-  /// - ``createAppPollingUntilDone(parent:app:appId:)``
-  /// - ``createAppPollingUntilDone(parent:app:)``
   public func createApp(
     request: CreateAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -101,11 +101,11 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAppPollingUntilDone(request:)``
-  /// - ``createAppPollingUntilDone(parent:app:appId:)``
-  /// - ``createAppPollingUntilDone(parent:app:)``
   /// - ``createApp(request:)``
   /// - ``createApp(request:options:)``
+  /// - ``createAppPollingUntilDone(parent:app:)``
+  /// - ``createAppPollingUntilDone(parent:app:appId:)``
+  /// - ``createAppPollingUntilDone(request:)``
   public func createAppPollingUntilDone(
     request: CreateAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> App {
@@ -136,8 +136,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApp(request:)``
   /// - ``updateApp(app:updateMask:)``
+  /// - ``updateApp(request:)``
   public func updateApp(
     request: UpdateAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.App {
@@ -151,9 +151,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteApp(request:)``
+  /// - ``deleteAppPollingUntilDone(name:)``
   /// - ``deleteAppPollingUntilDone(request:)``
   /// - ``deleteAppPollingUntilDone(request:options:)``
-  /// - ``deleteAppPollingUntilDone(name:)``
   public func deleteApp(
     request: DeleteAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -166,10 +166,10 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAppPollingUntilDone(request:)``
-  /// - ``deleteAppPollingUntilDone(name:)``
   /// - ``deleteApp(request:)``
   /// - ``deleteApp(request:options:)``
+  /// - ``deleteAppPollingUntilDone(name:)``
+  /// - ``deleteAppPollingUntilDone(request:)``
   public func deleteAppPollingUntilDone(
     request: DeleteAppRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -201,9 +201,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportApp(request:)``
+  /// - ``exportAppPollingUntilDone(name:)``
   /// - ``exportAppPollingUntilDone(request:)``
   /// - ``exportAppPollingUntilDone(request:options:)``
-  /// - ``exportAppPollingUntilDone(name:)``
   public func exportApp(
     request: ExportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -216,10 +216,10 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportAppPollingUntilDone(request:)``
-  /// - ``exportAppPollingUntilDone(name:)``
   /// - ``exportApp(request:)``
   /// - ``exportApp(request:options:)``
+  /// - ``exportAppPollingUntilDone(name:)``
+  /// - ``exportAppPollingUntilDone(request:)``
   public func exportAppPollingUntilDone(
     request: ExportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportAppResponse {
@@ -252,9 +252,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``importApp(request:)``
+  /// - ``importAppPollingUntilDone(parent:displayName:appId:)``
   /// - ``importAppPollingUntilDone(request:)``
   /// - ``importAppPollingUntilDone(request:options:)``
-  /// - ``importAppPollingUntilDone(parent:displayName:appId:)``
   public func importApp(
     request: ImportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -267,10 +267,10 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importAppPollingUntilDone(request:)``
-  /// - ``importAppPollingUntilDone(parent:displayName:appId:)``
   /// - ``importApp(request:)``
   /// - ``importApp(request:options:)``
+  /// - ``importAppPollingUntilDone(parent:displayName:appId:)``
+  /// - ``importAppPollingUntilDone(request:)``
   public func importAppPollingUntilDone(
     request: ImportAppRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportAppResponse {
@@ -303,9 +303,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAgents(request:)``
+  /// - ``listAgentsByItems(parent:)``
   /// - ``listAgentsByItems(request:)``
   /// - ``listAgentsByItems(request:options:)``
-  /// - ``listAgentsByItems(parent:)``
   public func listAgents(
     request: ListAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListAgentsResponse {
@@ -318,8 +318,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAgent(request:)``
   /// - ``getAgent(name:)``
+  /// - ``getAgent(request:)``
   public func getAgent(
     request: GetAgentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Agent {
@@ -332,9 +332,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAgent(request:)``
-  /// - ``createAgent(parent:agent:agentId:)``
   /// - ``createAgent(parent:agent:)``
+  /// - ``createAgent(parent:agent:agentId:)``
+  /// - ``createAgent(request:)``
   public func createAgent(
     request: CreateAgentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Agent {
@@ -347,8 +347,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAgent(request:)``
   /// - ``updateAgent(agent:updateMask:)``
+  /// - ``updateAgent(request:)``
   public func updateAgent(
     request: UpdateAgentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Agent {
@@ -361,8 +361,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAgent(request:)``
   /// - ``deleteAgent(name:)``
+  /// - ``deleteAgent(request:)``
   public func deleteAgent(
     request: DeleteAgentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -376,9 +376,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExamples(request:)``
+  /// - ``listExamplesByItems(parent:)``
   /// - ``listExamplesByItems(request:)``
   /// - ``listExamplesByItems(request:options:)``
-  /// - ``listExamplesByItems(parent:)``
   public func listExamples(
     request: ListExamplesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListExamplesResponse {
@@ -391,8 +391,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExample(request:)``
   /// - ``getExample(name:)``
+  /// - ``getExample(request:)``
   public func getExample(
     request: GetExampleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Example {
@@ -405,9 +405,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createExample(request:)``
-  /// - ``createExample(parent:example:exampleId:)``
   /// - ``createExample(parent:example:)``
+  /// - ``createExample(parent:example:exampleId:)``
+  /// - ``createExample(request:)``
   public func createExample(
     request: CreateExampleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Example {
@@ -420,8 +420,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateExample(request:)``
   /// - ``updateExample(example:updateMask:)``
+  /// - ``updateExample(request:)``
   public func updateExample(
     request: UpdateExampleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Example {
@@ -434,8 +434,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteExample(request:)``
   /// - ``deleteExample(name:)``
+  /// - ``deleteExample(request:)``
   public func deleteExample(
     request: DeleteExampleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -449,9 +449,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTools(request:)``
+  /// - ``listToolsByItems(parent:)``
   /// - ``listToolsByItems(request:)``
   /// - ``listToolsByItems(request:options:)``
-  /// - ``listToolsByItems(parent:)``
   public func listTools(
     request: ListToolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListToolsResponse {
@@ -464,8 +464,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTool(request:)``
   /// - ``getTool(name:)``
+  /// - ``getTool(request:)``
   public func getTool(
     request: GetToolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Tool {
@@ -479,9 +479,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listConversations(request:)``
+  /// - ``listConversationsByItems(parent:)``
   /// - ``listConversationsByItems(request:)``
   /// - ``listConversationsByItems(request:options:)``
-  /// - ``listConversationsByItems(parent:)``
   public func listConversations(
     request: ListConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListConversationsResponse {
@@ -494,8 +494,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getConversation(request:)``
   /// - ``getConversation(name:)``
+  /// - ``getConversation(request:)``
   public func getConversation(
     request: GetConversationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Conversation {
@@ -508,8 +508,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteConversation(request:)``
   /// - ``deleteConversation(name:)``
+  /// - ``deleteConversation(request:)``
   public func deleteConversation(
     request: DeleteConversationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -523,9 +523,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``batchDeleteConversations(request:)``
+  /// - ``batchDeleteConversationsPollingUntilDone(parent:)``
   /// - ``batchDeleteConversationsPollingUntilDone(request:)``
   /// - ``batchDeleteConversationsPollingUntilDone(request:options:)``
-  /// - ``batchDeleteConversationsPollingUntilDone(parent:)``
   public func batchDeleteConversations(
     request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -538,10 +538,10 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchDeleteConversationsPollingUntilDone(request:)``
-  /// - ``batchDeleteConversationsPollingUntilDone(parent:)``
   /// - ``batchDeleteConversations(request:)``
   /// - ``batchDeleteConversations(request:options:)``
+  /// - ``batchDeleteConversationsPollingUntilDone(parent:)``
+  /// - ``batchDeleteConversationsPollingUntilDone(request:)``
   public func batchDeleteConversationsPollingUntilDone(
     request: BatchDeleteConversationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchDeleteConversationsResponse {
@@ -574,9 +574,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTool(request:)``
-  /// - ``createTool(parent:tool:toolId:)``
   /// - ``createTool(parent:tool:)``
+  /// - ``createTool(parent:tool:toolId:)``
+  /// - ``createTool(request:)``
   public func createTool(
     request: CreateToolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Tool {
@@ -603,8 +603,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTool(request:)``
   /// - ``deleteTool(name:)``
+  /// - ``deleteTool(request:)``
   public func deleteTool(
     request: DeleteToolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -618,9 +618,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listGuardrails(request:)``
+  /// - ``listGuardrailsByItems(parent:)``
   /// - ``listGuardrailsByItems(request:)``
   /// - ``listGuardrailsByItems(request:options:)``
-  /// - ``listGuardrailsByItems(parent:)``
   public func listGuardrails(
     request: ListGuardrailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListGuardrailsResponse {
@@ -633,8 +633,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getGuardrail(request:)``
   /// - ``getGuardrail(name:)``
+  /// - ``getGuardrail(request:)``
   public func getGuardrail(
     request: GetGuardrailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Guardrail {
@@ -647,9 +647,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createGuardrail(request:)``
-  /// - ``createGuardrail(parent:guardrail:guardrailId:)``
   /// - ``createGuardrail(parent:guardrail:)``
+  /// - ``createGuardrail(parent:guardrail:guardrailId:)``
+  /// - ``createGuardrail(request:)``
   public func createGuardrail(
     request: CreateGuardrailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Guardrail {
@@ -662,8 +662,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateGuardrail(request:)``
   /// - ``updateGuardrail(guardrail:updateMask:)``
+  /// - ``updateGuardrail(request:)``
   public func updateGuardrail(
     request: UpdateGuardrailRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Guardrail {
@@ -676,8 +676,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteGuardrail(request:)``
   /// - ``deleteGuardrail(name:)``
+  /// - ``deleteGuardrail(request:)``
   public func deleteGuardrail(
     request: DeleteGuardrailRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -691,9 +691,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(parent:)``
   /// - ``listDeploymentsByItems(request:)``
   /// - ``listDeploymentsByItems(request:options:)``
-  /// - ``listDeploymentsByItems(parent:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListDeploymentsResponse {
@@ -706,8 +706,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDeployment(request:)``
   /// - ``getDeployment(name:)``
+  /// - ``getDeployment(request:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Deployment {
@@ -720,9 +720,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDeployment(request:)``
-  /// - ``createDeployment(parent:deployment:deploymentId:)``
   /// - ``createDeployment(parent:deployment:)``
+  /// - ``createDeployment(parent:deployment:deploymentId:)``
+  /// - ``createDeployment(request:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Deployment {
@@ -735,8 +735,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDeployment(request:)``
   /// - ``updateDeployment(deployment:updateMask:)``
+  /// - ``updateDeployment(request:)``
   public func updateDeployment(
     request: UpdateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Deployment {
@@ -749,8 +749,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDeployment(request:)``
   /// - ``deleteDeployment(name:)``
+  /// - ``deleteDeployment(request:)``
   public func deleteDeployment(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -764,9 +764,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listToolsets(request:)``
+  /// - ``listToolsetsByItems(parent:)``
   /// - ``listToolsetsByItems(request:)``
   /// - ``listToolsetsByItems(request:options:)``
-  /// - ``listToolsetsByItems(parent:)``
   public func listToolsets(
     request: ListToolsetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListToolsetsResponse {
@@ -779,8 +779,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getToolset(request:)``
   /// - ``getToolset(name:)``
+  /// - ``getToolset(request:)``
   public func getToolset(
     request: GetToolsetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Toolset {
@@ -793,9 +793,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createToolset(request:)``
-  /// - ``createToolset(parent:toolset:toolsetId:)``
   /// - ``createToolset(parent:toolset:)``
+  /// - ``createToolset(parent:toolset:toolsetId:)``
+  /// - ``createToolset(request:)``
   public func createToolset(
     request: CreateToolsetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Toolset {
@@ -822,8 +822,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteToolset(request:)``
   /// - ``deleteToolset(name:)``
+  /// - ``deleteToolset(request:)``
   public func deleteToolset(
     request: DeleteToolsetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -837,9 +837,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listAppVersions(request:)``
+  /// - ``listAppVersionsByItems(parent:)``
   /// - ``listAppVersionsByItems(request:)``
   /// - ``listAppVersionsByItems(request:options:)``
-  /// - ``listAppVersionsByItems(parent:)``
   public func listAppVersions(
     request: ListAppVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListAppVersionsResponse {
@@ -852,8 +852,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getAppVersion(request:)``
   /// - ``getAppVersion(name:)``
+  /// - ``getAppVersion(request:)``
   public func getAppVersion(
     request: GetAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.AppVersion {
@@ -866,9 +866,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAppVersion(request:)``
-  /// - ``createAppVersion(parent:appVersion:appVersionId:)``
   /// - ``createAppVersion(parent:appVersion:)``
+  /// - ``createAppVersion(parent:appVersion:appVersionId:)``
+  /// - ``createAppVersion(request:)``
   public func createAppVersion(
     request: CreateAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.AppVersion {
@@ -881,8 +881,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteAppVersion(request:)``
   /// - ``deleteAppVersion(name:)``
+  /// - ``deleteAppVersion(request:)``
   public func deleteAppVersion(
     request: DeleteAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -898,9 +898,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``restoreAppVersion(request:)``
+  /// - ``restoreAppVersionPollingUntilDone(name:)``
   /// - ``restoreAppVersionPollingUntilDone(request:)``
   /// - ``restoreAppVersionPollingUntilDone(request:options:)``
-  /// - ``restoreAppVersionPollingUntilDone(name:)``
   public func restoreAppVersion(
     request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -915,10 +915,10 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``restoreAppVersionPollingUntilDone(request:)``
-  /// - ``restoreAppVersionPollingUntilDone(name:)``
   /// - ``restoreAppVersion(request:)``
   /// - ``restoreAppVersion(request:options:)``
+  /// - ``restoreAppVersionPollingUntilDone(name:)``
+  /// - ``restoreAppVersionPollingUntilDone(request:)``
   public func restoreAppVersionPollingUntilDone(
     request: RestoreAppVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> RestoreAppVersionResponse {
@@ -952,9 +952,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listChangelogs(request:)``
+  /// - ``listChangelogsByItems(parent:)``
   /// - ``listChangelogsByItems(request:)``
   /// - ``listChangelogsByItems(request:options:)``
-  /// - ``listChangelogsByItems(parent:)``
   public func listChangelogs(
     request: ListChangelogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.ListChangelogsResponse {
@@ -967,8 +967,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getChangelog(request:)``
   /// - ``getChangelog(name:)``
+  /// - ``getChangelog(request:)``
   public func getChangelog(
     request: GetChangelogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCESV1.Changelog {
@@ -1029,9 +1029,9 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1057,8 +1057,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1073,8 +1073,8 @@ public final class AgentServiceClient: Clients.AgentServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

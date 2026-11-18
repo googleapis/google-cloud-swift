@@ -59,8 +59,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createStudy(request:)``
     /// - ``createStudy(parent:study:)``
+    /// - ``createStudy(request:)``
     public func createStudy(
       request: CreateStudyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -73,8 +73,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getStudy(request:)``
     /// - ``getStudy(name:)``
+    /// - ``getStudy(request:)``
     public func getStudy(
       request: GetStudyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -88,9 +88,9 @@
     /// ## See Also
     ///
     /// - ``listStudies(request:)``
+    /// - ``listStudiesByItems(parent:)``
     /// - ``listStudiesByItems(request:)``
     /// - ``listStudiesByItems(request:options:)``
-    /// - ``listStudiesByItems(parent:)``
     public func listStudies(
       request: ListStudiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse {
@@ -103,8 +103,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteStudy(request:)``
     /// - ``deleteStudy(name:)``
+    /// - ``deleteStudy(request:)``
     public func deleteStudy(
       request: DeleteStudyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -118,8 +118,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``lookupStudy(request:)``
     /// - ``lookupStudy(parent:)``
+    /// - ``lookupStudy(request:)``
     public func lookupStudy(
       request: LookupStudyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -161,9 +161,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``suggestTrialsPollingUntilDone(request:)``
     /// - ``suggestTrials(request:)``
     /// - ``suggestTrials(request:options:)``
+    /// - ``suggestTrialsPollingUntilDone(request:)``
     public func suggestTrialsPollingUntilDone(
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> SuggestTrialsResponse {
@@ -196,8 +196,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createTrial(request:)``
     /// - ``createTrial(parent:trial:)``
+    /// - ``createTrial(request:)``
     public func createTrial(
       request: CreateTrialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -210,8 +210,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getTrial(request:)``
     /// - ``getTrial(name:)``
+    /// - ``getTrial(request:)``
     public func getTrial(
       request: GetTrialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -225,9 +225,9 @@
     /// ## See Also
     ///
     /// - ``listTrials(request:)``
+    /// - ``listTrialsByItems(parent:)``
     /// - ``listTrialsByItems(request:)``
     /// - ``listTrialsByItems(request:options:)``
-    /// - ``listTrialsByItems(parent:)``
     public func listTrials(
       request: ListTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse {
@@ -267,8 +267,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteTrial(request:)``
     /// - ``deleteTrial(name:)``
+    /// - ``deleteTrial(request:)``
     public func deleteTrial(
       request: DeleteTrialRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -306,9 +306,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``checkTrialEarlyStoppingStatePollingUntilDone(request:)``
     /// - ``checkTrialEarlyStoppingState(request:)``
     /// - ``checkTrialEarlyStoppingState(request:options:)``
+    /// - ``checkTrialEarlyStoppingStatePollingUntilDone(request:)``
     public func checkTrialEarlyStoppingStatePollingUntilDone(
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> CheckTrialEarlyStoppingStateResponse {
@@ -357,8 +357,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``listOptimalTrials(request:)``
     /// - ``listOptimalTrials(parent:)``
+    /// - ``listOptimalTrials(request:)``
     public func listOptimalTrials(
       request: ListOptimalTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListOptimalTrialsResponse {
@@ -452,9 +452,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -480,8 +480,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -496,8 +496,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

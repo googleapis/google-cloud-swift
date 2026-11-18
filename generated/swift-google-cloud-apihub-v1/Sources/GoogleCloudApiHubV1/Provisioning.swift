@@ -53,9 +53,9 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createApiHubInstance(request:)``
+  /// - ``createApiHubInstancePollingUntilDone(parent:apiHubInstance:apiHubInstanceId:)``
   /// - ``createApiHubInstancePollingUntilDone(request:)``
   /// - ``createApiHubInstancePollingUntilDone(request:options:)``
-  /// - ``createApiHubInstancePollingUntilDone(parent:apiHubInstance:apiHubInstanceId:)``
   public func createApiHubInstance(
     request: CreateApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -68,10 +68,10 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApiHubInstancePollingUntilDone(request:)``
-  /// - ``createApiHubInstancePollingUntilDone(parent:apiHubInstance:apiHubInstanceId:)``
   /// - ``createApiHubInstance(request:)``
   /// - ``createApiHubInstance(request:options:)``
+  /// - ``createApiHubInstancePollingUntilDone(parent:apiHubInstance:apiHubInstanceId:)``
+  /// - ``createApiHubInstancePollingUntilDone(request:)``
   public func createApiHubInstancePollingUntilDone(
     request: CreateApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ApiHubInstance {
@@ -104,9 +104,9 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteApiHubInstance(request:)``
+  /// - ``deleteApiHubInstancePollingUntilDone(name:)``
   /// - ``deleteApiHubInstancePollingUntilDone(request:)``
   /// - ``deleteApiHubInstancePollingUntilDone(request:options:)``
-  /// - ``deleteApiHubInstancePollingUntilDone(name:)``
   public func deleteApiHubInstance(
     request: DeleteApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -119,10 +119,10 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApiHubInstancePollingUntilDone(request:)``
-  /// - ``deleteApiHubInstancePollingUntilDone(name:)``
   /// - ``deleteApiHubInstance(request:)``
   /// - ``deleteApiHubInstance(request:options:)``
+  /// - ``deleteApiHubInstancePollingUntilDone(name:)``
+  /// - ``deleteApiHubInstancePollingUntilDone(request:)``
   public func deleteApiHubInstancePollingUntilDone(
     request: DeleteApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -153,8 +153,8 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApiHubInstance(request:)``
   /// - ``getApiHubInstance(name:)``
+  /// - ``getApiHubInstance(request:)``
   public func getApiHubInstance(
     request: GetApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ApiHubInstance {
@@ -168,8 +168,8 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``lookupApiHubInstance(request:)``
   /// - ``lookupApiHubInstance(parent:)``
+  /// - ``lookupApiHubInstance(request:)``
   public func lookupApiHubInstance(
     request: LookupApiHubInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.LookupApiHubInstanceResponse {
@@ -213,9 +213,9 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -241,8 +241,8 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -257,8 +257,8 @@ public final class ProvisioningClient: Clients.ProvisioningProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

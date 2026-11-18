@@ -54,9 +54,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listApplications(request:)``
+  /// - ``listApplicationsByItems(parent:)``
   /// - ``listApplicationsByItems(request:)``
   /// - ``listApplicationsByItems(request:options:)``
-  /// - ``listApplicationsByItems(parent:)``
   public func listApplications(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListApplicationsResponse {
@@ -69,8 +69,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getApplication(request:)``
   /// - ``getApplication(name:)``
+  /// - ``getApplication(request:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Application {
@@ -84,9 +84,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createApplication(request:)``
+  /// - ``createApplicationPollingUntilDone(parent:application:)``
   /// - ``createApplicationPollingUntilDone(request:)``
   /// - ``createApplicationPollingUntilDone(request:options:)``
-  /// - ``createApplicationPollingUntilDone(parent:application:)``
   public func createApplication(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApplicationPollingUntilDone(request:)``
-  /// - ``createApplicationPollingUntilDone(parent:application:)``
   /// - ``createApplication(request:)``
   /// - ``createApplication(request:options:)``
+  /// - ``createApplicationPollingUntilDone(parent:application:)``
+  /// - ``createApplicationPollingUntilDone(request:)``
   public func createApplicationPollingUntilDone(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -134,9 +134,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateApplication(request:)``
+  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   /// - ``updateApplicationPollingUntilDone(request:)``
   /// - ``updateApplicationPollingUntilDone(request:options:)``
-  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   public func updateApplication(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,10 +149,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplicationPollingUntilDone(request:)``
-  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
   /// - ``updateApplication(request:)``
   /// - ``updateApplication(request:options:)``
+  /// - ``updateApplicationPollingUntilDone(application:updateMask:)``
+  /// - ``updateApplicationPollingUntilDone(request:)``
   public func updateApplicationPollingUntilDone(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Application {
@@ -184,9 +184,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteApplication(request:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
   /// - ``deleteApplicationPollingUntilDone(request:)``
   /// - ``deleteApplicationPollingUntilDone(request:options:)``
-  /// - ``deleteApplicationPollingUntilDone(name:)``
   public func deleteApplication(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,10 +199,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApplicationPollingUntilDone(request:)``
-  /// - ``deleteApplicationPollingUntilDone(name:)``
   /// - ``deleteApplication(request:)``
   /// - ``deleteApplication(request:options:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
+  /// - ``deleteApplicationPollingUntilDone(request:)``
   public func deleteApplicationPollingUntilDone(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -234,9 +234,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deployApplication(request:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
   /// - ``deployApplicationPollingUntilDone(request:)``
   /// - ``deployApplicationPollingUntilDone(request:options:)``
-  /// - ``deployApplicationPollingUntilDone(name:)``
   public func deployApplication(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -249,10 +249,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deployApplicationPollingUntilDone(request:)``
-  /// - ``deployApplicationPollingUntilDone(name:)``
   /// - ``deployApplication(request:)``
   /// - ``deployApplication(request:options:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
+  /// - ``deployApplicationPollingUntilDone(request:)``
   public func deployApplicationPollingUntilDone(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployApplicationResponse {
@@ -286,9 +286,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``undeployApplication(request:)``
+  /// - ``undeployApplicationPollingUntilDone(name:)``
   /// - ``undeployApplicationPollingUntilDone(request:)``
   /// - ``undeployApplicationPollingUntilDone(request:options:)``
-  /// - ``undeployApplicationPollingUntilDone(name:)``
   public func undeployApplication(
     request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -301,10 +301,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``undeployApplicationPollingUntilDone(request:)``
-  /// - ``undeployApplicationPollingUntilDone(name:)``
   /// - ``undeployApplication(request:)``
   /// - ``undeployApplication(request:options:)``
+  /// - ``undeployApplicationPollingUntilDone(name:)``
+  /// - ``undeployApplicationPollingUntilDone(request:)``
   public func undeployApplicationPollingUntilDone(
     request: UndeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeployApplicationResponse {
@@ -341,9 +341,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``addApplicationStreamInput(request:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(name:)``
   /// - ``addApplicationStreamInputPollingUntilDone(request:)``
   /// - ``addApplicationStreamInputPollingUntilDone(request:options:)``
-  /// - ``addApplicationStreamInputPollingUntilDone(name:)``
   public func addApplicationStreamInput(
     request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -359,10 +359,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``addApplicationStreamInputPollingUntilDone(request:)``
-  /// - ``addApplicationStreamInputPollingUntilDone(name:)``
   /// - ``addApplicationStreamInput(request:)``
   /// - ``addApplicationStreamInput(request:options:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(name:)``
+  /// - ``addApplicationStreamInputPollingUntilDone(request:)``
   public func addApplicationStreamInputPollingUntilDone(
     request: AddApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddApplicationStreamInputResponse {
@@ -398,9 +398,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``removeApplicationStreamInput(request:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(name:)``
   /// - ``removeApplicationStreamInputPollingUntilDone(request:)``
   /// - ``removeApplicationStreamInputPollingUntilDone(request:options:)``
-  /// - ``removeApplicationStreamInputPollingUntilDone(name:)``
   public func removeApplicationStreamInput(
     request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -415,10 +415,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``removeApplicationStreamInputPollingUntilDone(request:)``
-  /// - ``removeApplicationStreamInputPollingUntilDone(name:)``
   /// - ``removeApplicationStreamInput(request:)``
   /// - ``removeApplicationStreamInput(request:options:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(name:)``
+  /// - ``removeApplicationStreamInputPollingUntilDone(request:)``
   public func removeApplicationStreamInputPollingUntilDone(
     request: RemoveApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemoveApplicationStreamInputResponse {
@@ -454,9 +454,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateApplicationStreamInput(request:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(name:)``
   /// - ``updateApplicationStreamInputPollingUntilDone(request:)``
   /// - ``updateApplicationStreamInputPollingUntilDone(request:options:)``
-  /// - ``updateApplicationStreamInputPollingUntilDone(name:)``
   public func updateApplicationStreamInput(
     request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -471,10 +471,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplicationStreamInputPollingUntilDone(request:)``
-  /// - ``updateApplicationStreamInputPollingUntilDone(name:)``
   /// - ``updateApplicationStreamInput(request:)``
   /// - ``updateApplicationStreamInput(request:options:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(name:)``
+  /// - ``updateApplicationStreamInputPollingUntilDone(request:)``
   public func updateApplicationStreamInputPollingUntilDone(
     request: UpdateApplicationStreamInputRequest, options: GoogleGax.RequestOptions
   ) async throws -> UpdateApplicationStreamInputResponse {
@@ -508,9 +508,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListInstancesResponse {
@@ -523,8 +523,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Instance {
@@ -541,9 +541,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createApplicationInstances(request:)``
+  /// - ``createApplicationInstancesPollingUntilDone(name:)``
   /// - ``createApplicationInstancesPollingUntilDone(request:)``
   /// - ``createApplicationInstancesPollingUntilDone(request:options:)``
-  /// - ``createApplicationInstancesPollingUntilDone(name:)``
   public func createApplicationInstances(
     request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -559,10 +559,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createApplicationInstancesPollingUntilDone(request:)``
-  /// - ``createApplicationInstancesPollingUntilDone(name:)``
   /// - ``createApplicationInstances(request:)``
   /// - ``createApplicationInstances(request:options:)``
+  /// - ``createApplicationInstancesPollingUntilDone(name:)``
+  /// - ``createApplicationInstancesPollingUntilDone(request:)``
   public func createApplicationInstancesPollingUntilDone(
     request: CreateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> CreateApplicationInstancesResponse {
@@ -598,9 +598,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteApplicationInstances(request:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(name:)``
   /// - ``deleteApplicationInstancesPollingUntilDone(request:)``
   /// - ``deleteApplicationInstancesPollingUntilDone(request:options:)``
-  /// - ``deleteApplicationInstancesPollingUntilDone(name:)``
   public func deleteApplicationInstances(
     request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -615,10 +615,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteApplicationInstancesPollingUntilDone(request:)``
-  /// - ``deleteApplicationInstancesPollingUntilDone(name:)``
   /// - ``deleteApplicationInstances(request:)``
   /// - ``deleteApplicationInstances(request:options:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(name:)``
+  /// - ``deleteApplicationInstancesPollingUntilDone(request:)``
   public func deleteApplicationInstancesPollingUntilDone(
     request: DeleteApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -653,9 +653,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateApplicationInstances(request:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(name:applicationInstances:)``
   /// - ``updateApplicationInstancesPollingUntilDone(request:)``
   /// - ``updateApplicationInstancesPollingUntilDone(request:options:)``
-  /// - ``updateApplicationInstancesPollingUntilDone(name:applicationInstances:)``
   public func updateApplicationInstances(
     request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -671,10 +671,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateApplicationInstancesPollingUntilDone(request:)``
-  /// - ``updateApplicationInstancesPollingUntilDone(name:applicationInstances:)``
   /// - ``updateApplicationInstances(request:)``
   /// - ``updateApplicationInstances(request:options:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(name:applicationInstances:)``
+  /// - ``updateApplicationInstancesPollingUntilDone(request:)``
   public func updateApplicationInstancesPollingUntilDone(
     request: UpdateApplicationInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> UpdateApplicationInstancesResponse {
@@ -708,9 +708,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDrafts(request:)``
+  /// - ``listDraftsByItems(parent:)``
   /// - ``listDraftsByItems(request:)``
   /// - ``listDraftsByItems(request:options:)``
-  /// - ``listDraftsByItems(parent:)``
   public func listDrafts(
     request: ListDraftsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListDraftsResponse {
@@ -723,8 +723,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDraft(request:)``
   /// - ``getDraft(name:)``
+  /// - ``getDraft(request:)``
   public func getDraft(
     request: GetDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Draft {
@@ -738,9 +738,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createDraft(request:)``
+  /// - ``createDraftPollingUntilDone(parent:draft:draftId:)``
   /// - ``createDraftPollingUntilDone(request:)``
   /// - ``createDraftPollingUntilDone(request:options:)``
-  /// - ``createDraftPollingUntilDone(parent:draft:draftId:)``
   public func createDraft(
     request: CreateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -753,10 +753,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDraftPollingUntilDone(request:)``
-  /// - ``createDraftPollingUntilDone(parent:draft:draftId:)``
   /// - ``createDraft(request:)``
   /// - ``createDraft(request:options:)``
+  /// - ``createDraftPollingUntilDone(parent:draft:draftId:)``
+  /// - ``createDraftPollingUntilDone(request:)``
   public func createDraftPollingUntilDone(
     request: CreateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> Draft {
@@ -788,9 +788,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateDraft(request:)``
+  /// - ``updateDraftPollingUntilDone(draft:updateMask:)``
   /// - ``updateDraftPollingUntilDone(request:)``
   /// - ``updateDraftPollingUntilDone(request:options:)``
-  /// - ``updateDraftPollingUntilDone(draft:updateMask:)``
   public func updateDraft(
     request: UpdateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -803,10 +803,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDraftPollingUntilDone(request:)``
-  /// - ``updateDraftPollingUntilDone(draft:updateMask:)``
   /// - ``updateDraft(request:)``
   /// - ``updateDraft(request:options:)``
+  /// - ``updateDraftPollingUntilDone(draft:updateMask:)``
+  /// - ``updateDraftPollingUntilDone(request:)``
   public func updateDraftPollingUntilDone(
     request: UpdateDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> Draft {
@@ -838,9 +838,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteDraft(request:)``
+  /// - ``deleteDraftPollingUntilDone(name:)``
   /// - ``deleteDraftPollingUntilDone(request:)``
   /// - ``deleteDraftPollingUntilDone(request:options:)``
-  /// - ``deleteDraftPollingUntilDone(name:)``
   public func deleteDraft(
     request: DeleteDraftRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -853,10 +853,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDraftPollingUntilDone(request:)``
-  /// - ``deleteDraftPollingUntilDone(name:)``
   /// - ``deleteDraft(request:)``
   /// - ``deleteDraft(request:options:)``
+  /// - ``deleteDraftPollingUntilDone(name:)``
+  /// - ``deleteDraftPollingUntilDone(request:)``
   public func deleteDraftPollingUntilDone(
     request: DeleteDraftRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -888,9 +888,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProcessors(request:)``
+  /// - ``listProcessorsByItems(parent:)``
   /// - ``listProcessorsByItems(request:)``
   /// - ``listProcessorsByItems(request:options:)``
-  /// - ``listProcessorsByItems(parent:)``
   public func listProcessors(
     request: ListProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListProcessorsResponse {
@@ -904,8 +904,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``listPrebuiltProcessors(request:)``
   /// - ``listPrebuiltProcessors(parent:)``
+  /// - ``listPrebuiltProcessors(request:)``
   public func listPrebuiltProcessors(
     request: ListPrebuiltProcessorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListPrebuiltProcessorsResponse {
@@ -918,8 +918,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProcessor(request:)``
   /// - ``getProcessor(name:)``
+  /// - ``getProcessor(request:)``
   public func getProcessor(
     request: GetProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Processor {
@@ -933,9 +933,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createProcessor(request:)``
+  /// - ``createProcessorPollingUntilDone(parent:processor:processorId:)``
   /// - ``createProcessorPollingUntilDone(request:)``
   /// - ``createProcessorPollingUntilDone(request:options:)``
-  /// - ``createProcessorPollingUntilDone(parent:processor:processorId:)``
   public func createProcessor(
     request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -948,10 +948,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createProcessorPollingUntilDone(request:)``
-  /// - ``createProcessorPollingUntilDone(parent:processor:processorId:)``
   /// - ``createProcessor(request:)``
   /// - ``createProcessor(request:options:)``
+  /// - ``createProcessorPollingUntilDone(parent:processor:processorId:)``
+  /// - ``createProcessorPollingUntilDone(request:)``
   public func createProcessorPollingUntilDone(
     request: CreateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Processor {
@@ -983,9 +983,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateProcessor(request:)``
+  /// - ``updateProcessorPollingUntilDone(processor:updateMask:)``
   /// - ``updateProcessorPollingUntilDone(request:)``
   /// - ``updateProcessorPollingUntilDone(request:options:)``
-  /// - ``updateProcessorPollingUntilDone(processor:updateMask:)``
   public func updateProcessor(
     request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -998,10 +998,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateProcessorPollingUntilDone(request:)``
-  /// - ``updateProcessorPollingUntilDone(processor:updateMask:)``
   /// - ``updateProcessor(request:)``
   /// - ``updateProcessor(request:options:)``
+  /// - ``updateProcessorPollingUntilDone(processor:updateMask:)``
+  /// - ``updateProcessorPollingUntilDone(request:)``
   public func updateProcessorPollingUntilDone(
     request: UpdateProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Processor {
@@ -1033,9 +1033,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteProcessor(request:)``
+  /// - ``deleteProcessorPollingUntilDone(name:)``
   /// - ``deleteProcessorPollingUntilDone(request:)``
   /// - ``deleteProcessorPollingUntilDone(request:options:)``
-  /// - ``deleteProcessorPollingUntilDone(name:)``
   public func deleteProcessor(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1048,10 +1048,10 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteProcessorPollingUntilDone(request:)``
-  /// - ``deleteProcessorPollingUntilDone(name:)``
   /// - ``deleteProcessor(request:)``
   /// - ``deleteProcessor(request:options:)``
+  /// - ``deleteProcessorPollingUntilDone(name:)``
+  /// - ``deleteProcessorPollingUntilDone(request:)``
   public func deleteProcessorPollingUntilDone(
     request: DeleteProcessorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1113,9 +1113,9 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1141,8 +1141,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1157,8 +1157,8 @@ public final class AppPlatformClient: Clients.AppPlatformProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

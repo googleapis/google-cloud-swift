@@ -47,8 +47,8 @@ public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsPro
   ///
   /// ## See Also
   ///
-  /// - ``get(request:)``
   /// - ``get(project:managedZone:operation:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -62,9 +62,9 @@ public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsPro
   /// ## See Also
   ///
   /// - ``list(request:)``
+  /// - ``listByItems(project:managedZone:)``
   /// - ``listByItems(request:)``
   /// - ``listByItems(request:options:)``
-  /// - ``listByItems(project:managedZone:)``
   public func list(
     request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZoneOperationsListResponse {

@@ -53,8 +53,8 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkstationCluster(request:)``
   /// - ``getWorkstationCluster(name:)``
+  /// - ``getWorkstationCluster(request:)``
   public func getWorkstationCluster(
     request: GetWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.WorkstationCluster {
@@ -68,9 +68,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkstationClusters(request:)``
+  /// - ``listWorkstationClustersByItems(parent:)``
   /// - ``listWorkstationClustersByItems(request:)``
   /// - ``listWorkstationClustersByItems(request:options:)``
-  /// - ``listWorkstationClustersByItems(parent:)``
   public func listWorkstationClusters(
     request: ListWorkstationClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.ListWorkstationClustersResponse {
@@ -84,9 +84,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkstationCluster(request:)``
+  /// - ``createWorkstationClusterPollingUntilDone(parent:workstationCluster:workstationClusterId:)``
   /// - ``createWorkstationClusterPollingUntilDone(request:)``
   /// - ``createWorkstationClusterPollingUntilDone(request:options:)``
-  /// - ``createWorkstationClusterPollingUntilDone(parent:workstationCluster:workstationClusterId:)``
   public func createWorkstationCluster(
     request: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkstationClusterPollingUntilDone(request:)``
-  /// - ``createWorkstationClusterPollingUntilDone(parent:workstationCluster:workstationClusterId:)``
   /// - ``createWorkstationCluster(request:)``
   /// - ``createWorkstationCluster(request:options:)``
+  /// - ``createWorkstationClusterPollingUntilDone(parent:workstationCluster:workstationClusterId:)``
+  /// - ``createWorkstationClusterPollingUntilDone(request:)``
   public func createWorkstationClusterPollingUntilDone(
     request: CreateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkstationCluster {
@@ -150,10 +150,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateWorkstationClusterPollingUntilDone(request:)``
-  /// - ``updateWorkstationClusterPollingUntilDone(workstationCluster:updateMask:)``
   /// - ``updateWorkstationCluster(request:)``
   /// - ``updateWorkstationCluster(request:options:)``
+  /// - ``updateWorkstationClusterPollingUntilDone(request:)``
+  /// - ``updateWorkstationClusterPollingUntilDone(workstationCluster:updateMask:)``
   public func updateWorkstationClusterPollingUntilDone(
     request: UpdateWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkstationCluster {
@@ -186,9 +186,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkstationCluster(request:)``
+  /// - ``deleteWorkstationClusterPollingUntilDone(name:)``
   /// - ``deleteWorkstationClusterPollingUntilDone(request:)``
   /// - ``deleteWorkstationClusterPollingUntilDone(request:options:)``
-  /// - ``deleteWorkstationClusterPollingUntilDone(name:)``
   public func deleteWorkstationCluster(
     request: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,10 +201,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkstationClusterPollingUntilDone(request:)``
-  /// - ``deleteWorkstationClusterPollingUntilDone(name:)``
   /// - ``deleteWorkstationCluster(request:)``
   /// - ``deleteWorkstationCluster(request:options:)``
+  /// - ``deleteWorkstationClusterPollingUntilDone(name:)``
+  /// - ``deleteWorkstationClusterPollingUntilDone(request:)``
   public func deleteWorkstationClusterPollingUntilDone(
     request: DeleteWorkstationClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkstationCluster {
@@ -236,8 +236,8 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkstationConfig(request:)``
   /// - ``getWorkstationConfig(name:)``
+  /// - ``getWorkstationConfig(request:)``
   public func getWorkstationConfig(
     request: GetWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.WorkstationConfig {
@@ -251,9 +251,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkstationConfigs(request:)``
+  /// - ``listWorkstationConfigsByItems(parent:)``
   /// - ``listWorkstationConfigsByItems(request:)``
   /// - ``listWorkstationConfigsByItems(request:options:)``
-  /// - ``listWorkstationConfigsByItems(parent:)``
   public func listWorkstationConfigs(
     request: ListWorkstationConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.ListWorkstationConfigsResponse {
@@ -268,9 +268,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listUsableWorkstationConfigs(request:)``
+  /// - ``listUsableWorkstationConfigsByItems(parent:)``
   /// - ``listUsableWorkstationConfigsByItems(request:)``
   /// - ``listUsableWorkstationConfigsByItems(request:options:)``
-  /// - ``listUsableWorkstationConfigsByItems(parent:)``
   public func listUsableWorkstationConfigs(
     request: ListUsableWorkstationConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.ListUsableWorkstationConfigsResponse {
@@ -284,9 +284,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkstationConfig(request:)``
+  /// - ``createWorkstationConfigPollingUntilDone(parent:workstationConfig:workstationConfigId:)``
   /// - ``createWorkstationConfigPollingUntilDone(request:)``
   /// - ``createWorkstationConfigPollingUntilDone(request:options:)``
-  /// - ``createWorkstationConfigPollingUntilDone(parent:workstationConfig:workstationConfigId:)``
   public func createWorkstationConfig(
     request: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -299,10 +299,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkstationConfigPollingUntilDone(request:)``
-  /// - ``createWorkstationConfigPollingUntilDone(parent:workstationConfig:workstationConfigId:)``
   /// - ``createWorkstationConfig(request:)``
   /// - ``createWorkstationConfig(request:options:)``
+  /// - ``createWorkstationConfigPollingUntilDone(parent:workstationConfig:workstationConfigId:)``
+  /// - ``createWorkstationConfigPollingUntilDone(request:)``
   public func createWorkstationConfigPollingUntilDone(
     request: CreateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkstationConfig {
@@ -350,10 +350,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateWorkstationConfigPollingUntilDone(request:)``
-  /// - ``updateWorkstationConfigPollingUntilDone(workstationConfig:updateMask:)``
   /// - ``updateWorkstationConfig(request:)``
   /// - ``updateWorkstationConfig(request:options:)``
+  /// - ``updateWorkstationConfigPollingUntilDone(request:)``
+  /// - ``updateWorkstationConfigPollingUntilDone(workstationConfig:updateMask:)``
   public func updateWorkstationConfigPollingUntilDone(
     request: UpdateWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkstationConfig {
@@ -386,9 +386,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkstationConfig(request:)``
+  /// - ``deleteWorkstationConfigPollingUntilDone(name:)``
   /// - ``deleteWorkstationConfigPollingUntilDone(request:)``
   /// - ``deleteWorkstationConfigPollingUntilDone(request:options:)``
-  /// - ``deleteWorkstationConfigPollingUntilDone(name:)``
   public func deleteWorkstationConfig(
     request: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -401,10 +401,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkstationConfigPollingUntilDone(request:)``
-  /// - ``deleteWorkstationConfigPollingUntilDone(name:)``
   /// - ``deleteWorkstationConfig(request:)``
   /// - ``deleteWorkstationConfig(request:options:)``
+  /// - ``deleteWorkstationConfigPollingUntilDone(name:)``
+  /// - ``deleteWorkstationConfigPollingUntilDone(request:)``
   public func deleteWorkstationConfigPollingUntilDone(
     request: DeleteWorkstationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkstationConfig {
@@ -436,8 +436,8 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getWorkstation(request:)``
   /// - ``getWorkstation(name:)``
+  /// - ``getWorkstation(request:)``
   public func getWorkstation(
     request: GetWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.Workstation {
@@ -451,9 +451,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listWorkstations(request:)``
+  /// - ``listWorkstationsByItems(parent:)``
   /// - ``listWorkstationsByItems(request:)``
   /// - ``listWorkstationsByItems(request:options:)``
-  /// - ``listWorkstationsByItems(parent:)``
   public func listWorkstations(
     request: ListWorkstationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.ListWorkstationsResponse {
@@ -468,9 +468,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listUsableWorkstations(request:)``
+  /// - ``listUsableWorkstationsByItems(parent:)``
   /// - ``listUsableWorkstationsByItems(request:)``
   /// - ``listUsableWorkstationsByItems(request:options:)``
-  /// - ``listUsableWorkstationsByItems(parent:)``
   public func listUsableWorkstations(
     request: ListUsableWorkstationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkstationsV1.ListUsableWorkstationsResponse {
@@ -484,9 +484,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createWorkstation(request:)``
+  /// - ``createWorkstationPollingUntilDone(parent:workstation:workstationId:)``
   /// - ``createWorkstationPollingUntilDone(request:)``
   /// - ``createWorkstationPollingUntilDone(request:options:)``
-  /// - ``createWorkstationPollingUntilDone(parent:workstation:workstationId:)``
   public func createWorkstation(
     request: CreateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -499,10 +499,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createWorkstationPollingUntilDone(request:)``
-  /// - ``createWorkstationPollingUntilDone(parent:workstation:workstationId:)``
   /// - ``createWorkstation(request:)``
   /// - ``createWorkstation(request:options:)``
+  /// - ``createWorkstationPollingUntilDone(parent:workstation:workstationId:)``
+  /// - ``createWorkstationPollingUntilDone(request:)``
   public func createWorkstationPollingUntilDone(
     request: CreateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workstation {
@@ -549,10 +549,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateWorkstationPollingUntilDone(request:)``
-  /// - ``updateWorkstationPollingUntilDone(workstation:updateMask:)``
   /// - ``updateWorkstation(request:)``
   /// - ``updateWorkstation(request:options:)``
+  /// - ``updateWorkstationPollingUntilDone(request:)``
+  /// - ``updateWorkstationPollingUntilDone(workstation:updateMask:)``
   public func updateWorkstationPollingUntilDone(
     request: UpdateWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workstation {
@@ -584,9 +584,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteWorkstation(request:)``
+  /// - ``deleteWorkstationPollingUntilDone(name:)``
   /// - ``deleteWorkstationPollingUntilDone(request:)``
   /// - ``deleteWorkstationPollingUntilDone(request:options:)``
-  /// - ``deleteWorkstationPollingUntilDone(name:)``
   public func deleteWorkstation(
     request: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -599,10 +599,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteWorkstationPollingUntilDone(request:)``
-  /// - ``deleteWorkstationPollingUntilDone(name:)``
   /// - ``deleteWorkstation(request:)``
   /// - ``deleteWorkstation(request:options:)``
+  /// - ``deleteWorkstationPollingUntilDone(name:)``
+  /// - ``deleteWorkstationPollingUntilDone(request:)``
   public func deleteWorkstationPollingUntilDone(
     request: DeleteWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workstation {
@@ -634,9 +634,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``startWorkstation(request:)``
+  /// - ``startWorkstationPollingUntilDone(name:)``
   /// - ``startWorkstationPollingUntilDone(request:)``
   /// - ``startWorkstationPollingUntilDone(request:options:)``
-  /// - ``startWorkstationPollingUntilDone(name:)``
   public func startWorkstation(
     request: StartWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -649,10 +649,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``startWorkstationPollingUntilDone(request:)``
-  /// - ``startWorkstationPollingUntilDone(name:)``
   /// - ``startWorkstation(request:)``
   /// - ``startWorkstation(request:options:)``
+  /// - ``startWorkstationPollingUntilDone(name:)``
+  /// - ``startWorkstationPollingUntilDone(request:)``
   public func startWorkstationPollingUntilDone(
     request: StartWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workstation {
@@ -684,9 +684,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``stopWorkstation(request:)``
+  /// - ``stopWorkstationPollingUntilDone(name:)``
   /// - ``stopWorkstationPollingUntilDone(request:)``
   /// - ``stopWorkstationPollingUntilDone(request:options:)``
-  /// - ``stopWorkstationPollingUntilDone(name:)``
   public func stopWorkstation(
     request: StopWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -699,10 +699,10 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``stopWorkstationPollingUntilDone(request:)``
-  /// - ``stopWorkstationPollingUntilDone(name:)``
   /// - ``stopWorkstation(request:)``
   /// - ``stopWorkstation(request:options:)``
+  /// - ``stopWorkstationPollingUntilDone(name:)``
+  /// - ``stopWorkstationPollingUntilDone(request:)``
   public func stopWorkstationPollingUntilDone(
     request: StopWorkstationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workstation {
@@ -803,9 +803,9 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -831,8 +831,8 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -847,8 +847,8 @@ public final class WorkstationsClient: Clients.WorkstationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

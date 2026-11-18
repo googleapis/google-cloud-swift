@@ -49,8 +49,8 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getStyleGuide(request:)``
   /// - ``getStyleGuide(name:)``
+  /// - ``getStyleGuide(request:)``
   public func getStyleGuide(
     request: GetStyleGuideRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.StyleGuide {
@@ -77,8 +77,8 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``getStyleGuideContents(request:)``
   /// - ``getStyleGuideContents(name:)``
+  /// - ``getStyleGuideContents(request:)``
   public func getStyleGuideContents(
     request: GetStyleGuideContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.StyleGuideContents {
@@ -137,9 +137,9 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -165,8 +165,8 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -181,8 +181,8 @@ public final class LintingServiceClient: Clients.LintingServiceProtocol, Sendabl
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

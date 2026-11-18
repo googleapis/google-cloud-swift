@@ -55,8 +55,8 @@ public final class HostProjectRegistrationServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createHostProjectRegistration(request:)``
   /// - ``createHostProjectRegistration(parent:hostProjectRegistration:hostProjectRegistrationId:)``
+  /// - ``createHostProjectRegistration(request:)``
   public func createHostProjectRegistration(
     request: CreateHostProjectRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.HostProjectRegistration {
@@ -69,8 +69,8 @@ public final class HostProjectRegistrationServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getHostProjectRegistration(request:)``
   /// - ``getHostProjectRegistration(name:)``
+  /// - ``getHostProjectRegistration(request:)``
   public func getHostProjectRegistration(
     request: GetHostProjectRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.HostProjectRegistration {
@@ -84,9 +84,9 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listHostProjectRegistrations(request:)``
+  /// - ``listHostProjectRegistrationsByItems(parent:)``
   /// - ``listHostProjectRegistrationsByItems(request:)``
   /// - ``listHostProjectRegistrationsByItems(request:options:)``
-  /// - ``listHostProjectRegistrationsByItems(parent:)``
   public func listHostProjectRegistrations(
     request: ListHostProjectRegistrationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListHostProjectRegistrationsResponse {
@@ -130,9 +130,9 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -158,8 +158,8 @@ public final class HostProjectRegistrationServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -174,8 +174,8 @@ public final class HostProjectRegistrationServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

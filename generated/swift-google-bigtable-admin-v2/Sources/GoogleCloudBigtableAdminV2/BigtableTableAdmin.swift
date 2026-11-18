@@ -59,8 +59,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createTable(request:)``
   /// - ``createTable(parent:tableId:table:)``
+  /// - ``createTable(request:)``
   public func createTable(
     request: CreateTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -81,9 +81,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``createTableFromSnapshot(request:)``
+  /// - ``createTableFromSnapshotPollingUntilDone(parent:tableId:sourceSnapshot:)``
   /// - ``createTableFromSnapshotPollingUntilDone(request:)``
   /// - ``createTableFromSnapshotPollingUntilDone(request:options:)``
-  /// - ``createTableFromSnapshotPollingUntilDone(parent:tableId:sourceSnapshot:)``
   public func createTableFromSnapshot(
     request: CreateTableFromSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -103,10 +103,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createTableFromSnapshotPollingUntilDone(request:)``
-  /// - ``createTableFromSnapshotPollingUntilDone(parent:tableId:sourceSnapshot:)``
   /// - ``createTableFromSnapshot(request:)``
   /// - ``createTableFromSnapshot(request:options:)``
+  /// - ``createTableFromSnapshotPollingUntilDone(parent:tableId:sourceSnapshot:)``
+  /// - ``createTableFromSnapshotPollingUntilDone(request:)``
   public func createTableFromSnapshotPollingUntilDone(
     request: CreateTableFromSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Table {
@@ -138,9 +138,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``listTables(request:)``
+  /// - ``listTablesByItems(parent:)``
   /// - ``listTablesByItems(request:)``
   /// - ``listTablesByItems(request:options:)``
-  /// - ``listTablesByItems(parent:)``
   public func listTables(
     request: ListTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListTablesResponse {
@@ -153,8 +153,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getTable(request:)``
   /// - ``getTable(name:)``
+  /// - ``getTable(request:)``
   public func getTable(
     request: GetTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -183,10 +183,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateTablePollingUntilDone(request:)``
-  /// - ``updateTablePollingUntilDone(table:updateMask:)``
   /// - ``updateTable(request:)``
   /// - ``updateTable(request:options:)``
+  /// - ``updateTablePollingUntilDone(request:)``
+  /// - ``updateTablePollingUntilDone(table:updateMask:)``
   public func updateTablePollingUntilDone(
     request: UpdateTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> Table {
@@ -217,8 +217,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteTable(request:)``
   /// - ``deleteTable(name:)``
+  /// - ``deleteTable(request:)``
   public func deleteTable(
     request: DeleteTableRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -232,9 +232,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``undeleteTable(request:)``
+  /// - ``undeleteTablePollingUntilDone(name:)``
   /// - ``undeleteTablePollingUntilDone(request:)``
   /// - ``undeleteTablePollingUntilDone(request:options:)``
-  /// - ``undeleteTablePollingUntilDone(name:)``
   public func undeleteTable(
     request: UndeleteTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -247,10 +247,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``undeleteTablePollingUntilDone(request:)``
-  /// - ``undeleteTablePollingUntilDone(name:)``
   /// - ``undeleteTable(request:)``
   /// - ``undeleteTable(request:options:)``
+  /// - ``undeleteTablePollingUntilDone(name:)``
+  /// - ``undeleteTablePollingUntilDone(request:)``
   public func undeleteTablePollingUntilDone(
     request: UndeleteTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> Table {
@@ -282,9 +282,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``createAuthorizedView(request:)``
+  /// - ``createAuthorizedViewPollingUntilDone(parent:authorizedView:authorizedViewId:)``
   /// - ``createAuthorizedViewPollingUntilDone(request:)``
   /// - ``createAuthorizedViewPollingUntilDone(request:options:)``
-  /// - ``createAuthorizedViewPollingUntilDone(parent:authorizedView:authorizedViewId:)``
   public func createAuthorizedView(
     request: CreateAuthorizedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -297,10 +297,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createAuthorizedViewPollingUntilDone(request:)``
-  /// - ``createAuthorizedViewPollingUntilDone(parent:authorizedView:authorizedViewId:)``
   /// - ``createAuthorizedView(request:)``
   /// - ``createAuthorizedView(request:options:)``
+  /// - ``createAuthorizedViewPollingUntilDone(parent:authorizedView:authorizedViewId:)``
+  /// - ``createAuthorizedViewPollingUntilDone(request:)``
   public func createAuthorizedViewPollingUntilDone(
     request: CreateAuthorizedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthorizedView {
@@ -333,9 +333,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``listAuthorizedViews(request:)``
+  /// - ``listAuthorizedViewsByItems(parent:)``
   /// - ``listAuthorizedViewsByItems(request:)``
   /// - ``listAuthorizedViewsByItems(request:options:)``
-  /// - ``listAuthorizedViewsByItems(parent:)``
   public func listAuthorizedViews(
     request: ListAuthorizedViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListAuthorizedViewsResponse {
@@ -348,8 +348,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getAuthorizedView(request:)``
   /// - ``getAuthorizedView(name:)``
+  /// - ``getAuthorizedView(request:)``
   public func getAuthorizedView(
     request: GetAuthorizedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.AuthorizedView {
@@ -363,9 +363,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``updateAuthorizedView(request:)``
+  /// - ``updateAuthorizedViewPollingUntilDone(authorizedView:updateMask:)``
   /// - ``updateAuthorizedViewPollingUntilDone(request:)``
   /// - ``updateAuthorizedViewPollingUntilDone(request:options:)``
-  /// - ``updateAuthorizedViewPollingUntilDone(authorizedView:updateMask:)``
   public func updateAuthorizedView(
     request: UpdateAuthorizedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -378,10 +378,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateAuthorizedViewPollingUntilDone(request:)``
-  /// - ``updateAuthorizedViewPollingUntilDone(authorizedView:updateMask:)``
   /// - ``updateAuthorizedView(request:)``
   /// - ``updateAuthorizedView(request:options:)``
+  /// - ``updateAuthorizedViewPollingUntilDone(authorizedView:updateMask:)``
+  /// - ``updateAuthorizedViewPollingUntilDone(request:)``
   public func updateAuthorizedViewPollingUntilDone(
     request: UpdateAuthorizedViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthorizedView {
@@ -413,8 +413,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteAuthorizedView(request:)``
   /// - ``deleteAuthorizedView(name:)``
+  /// - ``deleteAuthorizedView(request:)``
   public func deleteAuthorizedView(
     request: DeleteAuthorizedViewRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -430,8 +430,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``modifyColumnFamilies(request:)``
   /// - ``modifyColumnFamilies(name:modifications:)``
+  /// - ``modifyColumnFamilies(request:)``
   public func modifyColumnFamilies(
     request: ModifyColumnFamiliesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Table {
@@ -462,8 +462,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``generateConsistencyToken(request:)``
   /// - ``generateConsistencyToken(name:)``
+  /// - ``generateConsistencyToken(request:)``
   public func generateConsistencyToken(
     request: GenerateConsistencyTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.GenerateConsistencyTokenResponse {
@@ -478,8 +478,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``checkConsistency(request:)``
   /// - ``checkConsistency(name:consistencyToken:)``
+  /// - ``checkConsistency(request:)``
   public func checkConsistency(
     request: CheckConsistencyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.CheckConsistencyResponse {
@@ -500,9 +500,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``snapshotTable(request:)``
+  /// - ``snapshotTablePollingUntilDone(name:cluster:snapshotId:description:)``
   /// - ``snapshotTablePollingUntilDone(request:)``
   /// - ``snapshotTablePollingUntilDone(request:options:)``
-  /// - ``snapshotTablePollingUntilDone(name:cluster:snapshotId:description:)``
   public func snapshotTable(
     request: SnapshotTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -522,10 +522,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``snapshotTablePollingUntilDone(request:)``
-  /// - ``snapshotTablePollingUntilDone(name:cluster:snapshotId:description:)``
   /// - ``snapshotTable(request:)``
   /// - ``snapshotTable(request:options:)``
+  /// - ``snapshotTablePollingUntilDone(name:cluster:snapshotId:description:)``
+  /// - ``snapshotTablePollingUntilDone(request:)``
   public func snapshotTablePollingUntilDone(
     request: SnapshotTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -562,8 +562,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getSnapshot(request:)``
   /// - ``getSnapshot(name:)``
+  /// - ``getSnapshot(request:)``
   public func getSnapshot(
     request: GetSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Snapshot {
@@ -583,9 +583,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``listSnapshots(request:)``
+  /// - ``listSnapshotsByItems(parent:)``
   /// - ``listSnapshotsByItems(request:)``
   /// - ``listSnapshotsByItems(request:options:)``
-  /// - ``listSnapshotsByItems(parent:)``
   public func listSnapshots(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListSnapshotsResponse {
@@ -604,8 +604,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteSnapshot(request:)``
   /// - ``deleteSnapshot(name:)``
+  /// - ``deleteSnapshot(request:)``
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -632,9 +632,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``createBackup(request:)``
+  /// - ``createBackupPollingUntilDone(parent:backupId:backup:)``
   /// - ``createBackupPollingUntilDone(request:)``
   /// - ``createBackupPollingUntilDone(request:options:)``
-  /// - ``createBackupPollingUntilDone(parent:backupId:backup:)``
   public func createBackup(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -660,10 +660,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createBackupPollingUntilDone(request:)``
-  /// - ``createBackupPollingUntilDone(parent:backupId:backup:)``
   /// - ``createBackup(request:)``
   /// - ``createBackup(request:options:)``
+  /// - ``createBackupPollingUntilDone(parent:backupId:backup:)``
+  /// - ``createBackupPollingUntilDone(request:)``
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -694,8 +694,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getBackup(request:)``
   /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Backup {
@@ -708,8 +708,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateBackup(request:)``
   /// - ``updateBackup(backup:updateMask:)``
+  /// - ``updateBackup(request:)``
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.Backup {
@@ -722,8 +722,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteBackup(request:)``
   /// - ``deleteBackup(name:)``
+  /// - ``deleteBackup(request:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -738,9 +738,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
   /// - ``listBackupsByItems(request:)``
   /// - ``listBackupsByItems(request:options:)``
-  /// - ``listBackupsByItems(parent:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListBackupsResponse {
@@ -792,9 +792,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``restoreTablePollingUntilDone(request:)``
   /// - ``restoreTable(request:)``
   /// - ``restoreTable(request:options:)``
+  /// - ``restoreTablePollingUntilDone(request:)``
   public func restoreTablePollingUntilDone(
     request: RestoreTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> Table {
@@ -827,9 +827,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``copyBackup(request:)``
+  /// - ``copyBackupPollingUntilDone(parent:backupId:sourceBackup:expireTime:)``
   /// - ``copyBackupPollingUntilDone(request:)``
   /// - ``copyBackupPollingUntilDone(request:options:)``
-  /// - ``copyBackupPollingUntilDone(parent:backupId:sourceBackup:expireTime:)``
   public func copyBackup(
     request: CopyBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -843,10 +843,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``copyBackupPollingUntilDone(request:)``
-  /// - ``copyBackupPollingUntilDone(parent:backupId:sourceBackup:expireTime:)``
   /// - ``copyBackup(request:)``
   /// - ``copyBackup(request:options:)``
+  /// - ``copyBackupPollingUntilDone(parent:backupId:sourceBackup:expireTime:)``
+  /// - ``copyBackupPollingUntilDone(request:)``
   public func copyBackupPollingUntilDone(
     request: CopyBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -924,9 +924,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``createSchemaBundle(request:)``
+  /// - ``createSchemaBundlePollingUntilDone(parent:schemaBundleId:schemaBundle:)``
   /// - ``createSchemaBundlePollingUntilDone(request:)``
   /// - ``createSchemaBundlePollingUntilDone(request:options:)``
-  /// - ``createSchemaBundlePollingUntilDone(parent:schemaBundleId:schemaBundle:)``
   public func createSchemaBundle(
     request: CreateSchemaBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -939,10 +939,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createSchemaBundlePollingUntilDone(request:)``
-  /// - ``createSchemaBundlePollingUntilDone(parent:schemaBundleId:schemaBundle:)``
   /// - ``createSchemaBundle(request:)``
   /// - ``createSchemaBundle(request:options:)``
+  /// - ``createSchemaBundlePollingUntilDone(parent:schemaBundleId:schemaBundle:)``
+  /// - ``createSchemaBundlePollingUntilDone(request:)``
   public func createSchemaBundlePollingUntilDone(
     request: CreateSchemaBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> SchemaBundle {
@@ -990,10 +990,10 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``updateSchemaBundlePollingUntilDone(request:)``
-  /// - ``updateSchemaBundlePollingUntilDone(schemaBundle:updateMask:)``
   /// - ``updateSchemaBundle(request:)``
   /// - ``updateSchemaBundle(request:options:)``
+  /// - ``updateSchemaBundlePollingUntilDone(request:)``
+  /// - ``updateSchemaBundlePollingUntilDone(schemaBundle:updateMask:)``
   public func updateSchemaBundlePollingUntilDone(
     request: UpdateSchemaBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> SchemaBundle {
@@ -1025,8 +1025,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getSchemaBundle(request:)``
   /// - ``getSchemaBundle(name:)``
+  /// - ``getSchemaBundle(request:)``
   public func getSchemaBundle(
     request: GetSchemaBundleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.SchemaBundle {
@@ -1040,9 +1040,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``listSchemaBundles(request:)``
+  /// - ``listSchemaBundlesByItems(parent:)``
   /// - ``listSchemaBundlesByItems(request:)``
   /// - ``listSchemaBundlesByItems(request:options:)``
-  /// - ``listSchemaBundlesByItems(parent:)``
   public func listSchemaBundles(
     request: ListSchemaBundlesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBigtableAdminV2.ListSchemaBundlesResponse {
@@ -1055,8 +1055,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteSchemaBundle(request:)``
   /// - ``deleteSchemaBundle(name:)``
+  /// - ``deleteSchemaBundle(request:)``
   public func deleteSchemaBundle(
     request: DeleteSchemaBundleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1072,9 +1072,9 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1100,8 +1100,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1116,8 +1116,8 @@ public final class BigtableTableAdminClient: Clients.BigtableTableAdminProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -49,9 +49,9 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listSaas(request:)``
+  /// - ``listSaasByItems(parent:)``
   /// - ``listSaasByItems(request:)``
   /// - ``listSaasByItems(request:options:)``
-  /// - ``listSaasByItems(parent:)``
   public func listSaas(
     request: ListSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListSaasResponse {
@@ -64,8 +64,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSaas(request:)``
   /// - ``getSaas(name:)``
+  /// - ``getSaas(request:)``
   public func getSaas(
     request: GetSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas {
@@ -78,8 +78,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createSaas(request:)``
   /// - ``createSaas(parent:saas:saasId:)``
+  /// - ``createSaas(request:)``
   public func createSaas(
     request: CreateSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas {
@@ -106,8 +106,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteSaas(request:)``
   /// - ``deleteSaas(name:)``
+  /// - ``deleteSaas(request:)``
   public func deleteSaas(
     request: DeleteSaasRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,9 +121,9 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listTenants(request:)``
+  /// - ``listTenantsByItems(parent:)``
   /// - ``listTenantsByItems(request:)``
   /// - ``listTenantsByItems(request:options:)``
-  /// - ``listTenantsByItems(parent:)``
   public func listTenants(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListTenantsResponse {
@@ -136,8 +136,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getTenant(request:)``
   /// - ``getTenant(name:)``
+  /// - ``getTenant(request:)``
   public func getTenant(
     request: GetTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant {
@@ -150,8 +150,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createTenant(request:)``
   /// - ``createTenant(parent:tenant:tenantId:)``
+  /// - ``createTenant(request:)``
   public func createTenant(
     request: CreateTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant {
@@ -178,8 +178,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteTenant(request:)``
   /// - ``deleteTenant(name:)``
+  /// - ``deleteTenant(request:)``
   public func deleteTenant(
     request: DeleteTenantRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -193,9 +193,9 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listUnitKinds(request:)``
+  /// - ``listUnitKindsByItems(parent:)``
   /// - ``listUnitKindsByItems(request:)``
   /// - ``listUnitKindsByItems(request:options:)``
-  /// - ``listUnitKindsByItems(parent:)``
   public func listUnitKinds(
     request: ListUnitKindsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitKindsResponse {
@@ -208,8 +208,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getUnitKind(request:)``
   /// - ``getUnitKind(name:)``
+  /// - ``getUnitKind(request:)``
   public func getUnitKind(
     request: GetUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind {
@@ -222,8 +222,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createUnitKind(request:)``
   /// - ``createUnitKind(parent:unitKind:unitKindId:)``
+  /// - ``createUnitKind(request:)``
   public func createUnitKind(
     request: CreateUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind {
@@ -250,8 +250,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteUnitKind(request:)``
   /// - ``deleteUnitKind(name:)``
+  /// - ``deleteUnitKind(request:)``
   public func deleteUnitKind(
     request: DeleteUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -265,9 +265,9 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listUnits(request:)``
+  /// - ``listUnitsByItems(parent:)``
   /// - ``listUnitsByItems(request:)``
   /// - ``listUnitsByItems(request:options:)``
-  /// - ``listUnitsByItems(parent:)``
   public func listUnits(
     request: ListUnitsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitsResponse {
@@ -280,8 +280,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getUnit(request:)``
   /// - ``getUnit(name:)``
+  /// - ``getUnit(request:)``
   public func getUnit(
     request: GetUnitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit {
@@ -294,8 +294,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createUnit(request:)``
   /// - ``createUnit(parent:unit:unitId:)``
+  /// - ``createUnit(request:)``
   public func createUnit(
     request: CreateUnitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit {
@@ -322,8 +322,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteUnit(request:)``
   /// - ``deleteUnit(name:)``
+  /// - ``deleteUnit(request:)``
   public func deleteUnit(
     request: DeleteUnitRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -337,9 +337,9 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listUnitOperations(request:)``
+  /// - ``listUnitOperationsByItems(parent:)``
   /// - ``listUnitOperationsByItems(request:)``
   /// - ``listUnitOperationsByItems(request:options:)``
-  /// - ``listUnitOperationsByItems(parent:)``
   public func listUnitOperations(
     request: ListUnitOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitOperationsResponse {
@@ -352,8 +352,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getUnitOperation(request:)``
   /// - ``getUnitOperation(name:)``
+  /// - ``getUnitOperation(request:)``
   public func getUnitOperation(
     request: GetUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation {
@@ -366,8 +366,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createUnitOperation(request:)``
   /// - ``createUnitOperation(parent:unitOperation:unitOperationId:)``
+  /// - ``createUnitOperation(request:)``
   public func createUnitOperation(
     request: CreateUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation {
@@ -394,8 +394,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteUnitOperation(request:)``
   /// - ``deleteUnitOperation(name:)``
+  /// - ``deleteUnitOperation(request:)``
   public func deleteUnitOperation(
     request: DeleteUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -409,9 +409,9 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// ## See Also
   ///
   /// - ``listReleases(request:)``
+  /// - ``listReleasesByItems(parent:)``
   /// - ``listReleasesByItems(request:)``
   /// - ``listReleasesByItems(request:options:)``
-  /// - ``listReleasesByItems(parent:)``
   public func listReleases(
     request: ListReleasesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListReleasesResponse {
@@ -424,8 +424,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getRelease(request:)``
   /// - ``getRelease(name:)``
+  /// - ``getRelease(request:)``
   public func getRelease(
     request: GetReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -438,8 +438,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createRelease(request:)``
   /// - ``createRelease(parent:release:releaseId:)``
+  /// - ``createRelease(request:)``
   public func createRelease(
     request: CreateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -452,8 +452,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateRelease(request:)``
   /// - ``updateRelease(release:updateMask:)``
+  /// - ``updateRelease(request:)``
   public func updateRelease(
     request: UpdateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -466,8 +466,8 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteRelease(request:)``
   /// - ``deleteRelease(name:)``
+  /// - ``deleteRelease(request:)``
   public func deleteRelease(
     request: DeleteReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws {

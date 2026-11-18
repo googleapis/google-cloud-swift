@@ -47,8 +47,8 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getTask(request:)``
   /// - ``getTask(name:)``
+  /// - ``getTask(request:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Task {
@@ -62,9 +62,9 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(parent:)``
   /// - ``listTasksByItems(request:)``
   /// - ``listTasksByItems(request:options:)``
-  /// - ``listTasksByItems(parent:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListTasksResponse {
@@ -80,9 +80,9 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -108,8 +108,8 @@ public final class TasksClient: Clients.TasksProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

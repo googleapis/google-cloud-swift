@@ -57,9 +57,9 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createFrameworkDeployment(request:)``
+  /// - ``createFrameworkDeploymentPollingUntilDone(parent:frameworkDeployment:frameworkDeploymentId:)``
   /// - ``createFrameworkDeploymentPollingUntilDone(request:)``
   /// - ``createFrameworkDeploymentPollingUntilDone(request:options:)``
-  /// - ``createFrameworkDeploymentPollingUntilDone(parent:frameworkDeployment:frameworkDeploymentId:)``
   public func createFrameworkDeployment(
     request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,10 +75,10 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createFrameworkDeploymentPollingUntilDone(request:)``
-  /// - ``createFrameworkDeploymentPollingUntilDone(parent:frameworkDeployment:frameworkDeploymentId:)``
   /// - ``createFrameworkDeployment(request:)``
   /// - ``createFrameworkDeployment(request:options:)``
+  /// - ``createFrameworkDeploymentPollingUntilDone(parent:frameworkDeployment:frameworkDeploymentId:)``
+  /// - ``createFrameworkDeploymentPollingUntilDone(request:)``
   public func createFrameworkDeploymentPollingUntilDone(
     request: CreateFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> FrameworkDeployment {
@@ -111,9 +111,9 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteFrameworkDeployment(request:)``
+  /// - ``deleteFrameworkDeploymentPollingUntilDone(name:)``
   /// - ``deleteFrameworkDeploymentPollingUntilDone(request:)``
   /// - ``deleteFrameworkDeploymentPollingUntilDone(request:options:)``
-  /// - ``deleteFrameworkDeploymentPollingUntilDone(name:)``
   public func deleteFrameworkDeployment(
     request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -126,10 +126,10 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFrameworkDeploymentPollingUntilDone(request:)``
-  /// - ``deleteFrameworkDeploymentPollingUntilDone(name:)``
   /// - ``deleteFrameworkDeployment(request:)``
   /// - ``deleteFrameworkDeployment(request:options:)``
+  /// - ``deleteFrameworkDeploymentPollingUntilDone(name:)``
+  /// - ``deleteFrameworkDeploymentPollingUntilDone(request:)``
   public func deleteFrameworkDeploymentPollingUntilDone(
     request: DeleteFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -160,8 +160,8 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getFrameworkDeployment(request:)``
   /// - ``getFrameworkDeployment(name:)``
+  /// - ``getFrameworkDeployment(request:)``
   public func getFrameworkDeployment(
     request: GetFrameworkDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.FrameworkDeployment {
@@ -175,9 +175,9 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listFrameworkDeployments(request:)``
+  /// - ``listFrameworkDeploymentsByItems(parent:)``
   /// - ``listFrameworkDeploymentsByItems(request:)``
   /// - ``listFrameworkDeploymentsByItems(request:options:)``
-  /// - ``listFrameworkDeploymentsByItems(parent:)``
   public func listFrameworkDeployments(
     request: ListFrameworkDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworkDeploymentsResponse {
@@ -190,8 +190,8 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getCloudControlDeployment(request:)``
   /// - ``getCloudControlDeployment(name:)``
+  /// - ``getCloudControlDeployment(request:)``
   public func getCloudControlDeployment(
     request: GetCloudControlDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControlDeployment {
@@ -205,9 +205,9 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listCloudControlDeployments(request:)``
+  /// - ``listCloudControlDeploymentsByItems(parent:)``
   /// - ``listCloudControlDeploymentsByItems(request:)``
   /// - ``listCloudControlDeploymentsByItems(request:options:)``
-  /// - ``listCloudControlDeploymentsByItems(parent:)``
   public func listCloudControlDeployments(
     request: ListCloudControlDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListCloudControlDeploymentsResponse {
@@ -268,9 +268,9 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -296,8 +296,8 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,8 +312,8 @@ public final class DeploymentClient: Clients.DeploymentProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

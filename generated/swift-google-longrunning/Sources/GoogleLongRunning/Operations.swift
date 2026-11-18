@@ -58,9 +58,9 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -75,8 +75,8 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getOperation(request:)``
   /// - ``getOperation(name:)``
+  /// - ``getOperation(request:)``
   public func getOperation(
     request: GetOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -92,8 +92,8 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -120,8 +120,8 @@ public final class OperationsClient: Clients.OperationsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

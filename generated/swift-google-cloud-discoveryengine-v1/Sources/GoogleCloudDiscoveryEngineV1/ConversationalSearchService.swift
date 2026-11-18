@@ -52,8 +52,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``converseConversation(request:)``
     /// - ``converseConversation(name:query:)``
+    /// - ``converseConversation(request:)``
     public func converseConversation(
       request: ConverseConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ConverseConversationResponse {
@@ -71,8 +71,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createConversation(request:)``
     /// - ``createConversation(parent:conversation:)``
+    /// - ``createConversation(request:)``
     public func createConversation(
       request: CreateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -90,8 +90,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteConversation(request:)``
     /// - ``deleteConversation(name:)``
+    /// - ``deleteConversation(request:)``
     public func deleteConversation(
       request: DeleteConversationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -111,8 +111,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateConversation(request:)``
     /// - ``updateConversation(conversation:updateMask:)``
+    /// - ``updateConversation(request:)``
     public func updateConversation(
       request: UpdateConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -125,8 +125,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getConversation(request:)``
     /// - ``getConversation(name:)``
+    /// - ``getConversation(request:)``
     public func getConversation(
       request: GetConversationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Conversation {
@@ -143,9 +143,9 @@
     /// ## See Also
     ///
     /// - ``listConversations(request:)``
+    /// - ``listConversationsByItems(parent:)``
     /// - ``listConversationsByItems(request:)``
     /// - ``listConversationsByItems(request:options:)``
-    /// - ``listConversationsByItems(parent:)``
     public func listConversations(
       request: ListConversationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListConversationsResponse {
@@ -171,8 +171,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getAnswer(request:)``
     /// - ``getAnswer(name:)``
+    /// - ``getAnswer(request:)``
     public func getAnswer(
       request: GetAnswerRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Answer {
@@ -190,8 +190,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createSession(request:)``
     /// - ``createSession(parent:session:)``
+    /// - ``createSession(request:)``
     public func createSession(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -209,8 +209,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteSession(request:)``
     /// - ``deleteSession(name:)``
+    /// - ``deleteSession(request:)``
     public func deleteSession(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -243,8 +243,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getSession(request:)``
     /// - ``getSession(name:)``
+    /// - ``getSession(request:)``
     public func getSession(
       request: GetSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -261,9 +261,9 @@
     /// ## See Also
     ///
     /// - ``listSessions(request:)``
+    /// - ``listSessionsByItems(parent:)``
     /// - ``listSessionsByItems(request:)``
     /// - ``listSessionsByItems(request:options:)``
-    /// - ``listSessionsByItems(parent:)``
     public func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse {
@@ -279,9 +279,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -307,8 +307,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

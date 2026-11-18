@@ -62,9 +62,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``createGlossary(request:)``
+  /// - ``createGlossaryPollingUntilDone(parent:glossary:glossaryId:)``
   /// - ``createGlossaryPollingUntilDone(request:)``
   /// - ``createGlossaryPollingUntilDone(request:options:)``
-  /// - ``createGlossaryPollingUntilDone(parent:glossary:glossaryId:)``
   public func createGlossary(
     request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -77,10 +77,10 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``createGlossaryPollingUntilDone(request:)``
-  /// - ``createGlossaryPollingUntilDone(parent:glossary:glossaryId:)``
   /// - ``createGlossary(request:)``
   /// - ``createGlossary(request:options:)``
+  /// - ``createGlossaryPollingUntilDone(parent:glossary:glossaryId:)``
+  /// - ``createGlossaryPollingUntilDone(request:)``
   public func createGlossaryPollingUntilDone(
     request: CreateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Glossary {
@@ -112,9 +112,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``updateGlossary(request:)``
+  /// - ``updateGlossaryPollingUntilDone(glossary:updateMask:)``
   /// - ``updateGlossaryPollingUntilDone(request:)``
   /// - ``updateGlossaryPollingUntilDone(request:options:)``
-  /// - ``updateGlossaryPollingUntilDone(glossary:updateMask:)``
   public func updateGlossary(
     request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,10 +127,10 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``updateGlossaryPollingUntilDone(request:)``
-  /// - ``updateGlossaryPollingUntilDone(glossary:updateMask:)``
   /// - ``updateGlossary(request:)``
   /// - ``updateGlossary(request:options:)``
+  /// - ``updateGlossaryPollingUntilDone(glossary:updateMask:)``
+  /// - ``updateGlossaryPollingUntilDone(request:)``
   public func updateGlossaryPollingUntilDone(
     request: UpdateGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Glossary {
@@ -163,9 +163,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``deleteGlossary(request:)``
+  /// - ``deleteGlossaryPollingUntilDone(name:)``
   /// - ``deleteGlossaryPollingUntilDone(request:)``
   /// - ``deleteGlossaryPollingUntilDone(request:options:)``
-  /// - ``deleteGlossaryPollingUntilDone(name:)``
   public func deleteGlossary(
     request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -179,10 +179,10 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteGlossaryPollingUntilDone(request:)``
-  /// - ``deleteGlossaryPollingUntilDone(name:)``
   /// - ``deleteGlossary(request:)``
   /// - ``deleteGlossary(request:options:)``
+  /// - ``deleteGlossaryPollingUntilDone(name:)``
+  /// - ``deleteGlossaryPollingUntilDone(request:)``
   public func deleteGlossaryPollingUntilDone(
     request: DeleteGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -213,8 +213,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``getGlossary(request:)``
   /// - ``getGlossary(name:)``
+  /// - ``getGlossary(request:)``
   public func getGlossary(
     request: GetGlossaryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.Glossary {
@@ -228,9 +228,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``listGlossaries(request:)``
+  /// - ``listGlossariesByItems(parent:)``
   /// - ``listGlossariesByItems(request:)``
   /// - ``listGlossariesByItems(request:options:)``
-  /// - ``listGlossariesByItems(parent:)``
   public func listGlossaries(
     request: ListGlossariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListGlossariesResponse {
@@ -243,8 +243,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``createGlossaryCategory(request:)``
   /// - ``createGlossaryCategory(parent:category:categoryId:)``
+  /// - ``createGlossaryCategory(request:)``
   public func createGlossaryCategory(
     request: CreateGlossaryCategoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
@@ -257,8 +257,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``updateGlossaryCategory(request:)``
   /// - ``updateGlossaryCategory(category:updateMask:)``
+  /// - ``updateGlossaryCategory(request:)``
   public func updateGlossaryCategory(
     request: UpdateGlossaryCategoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
@@ -273,8 +273,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteGlossaryCategory(request:)``
   /// - ``deleteGlossaryCategory(name:)``
+  /// - ``deleteGlossaryCategory(request:)``
   public func deleteGlossaryCategory(
     request: DeleteGlossaryCategoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -287,8 +287,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``getGlossaryCategory(request:)``
   /// - ``getGlossaryCategory(name:)``
+  /// - ``getGlossaryCategory(request:)``
   public func getGlossaryCategory(
     request: GetGlossaryCategoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GlossaryCategory {
@@ -302,9 +302,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``listGlossaryCategories(request:)``
+  /// - ``listGlossaryCategoriesByItems(parent:)``
   /// - ``listGlossaryCategoriesByItems(request:)``
   /// - ``listGlossaryCategoriesByItems(request:options:)``
-  /// - ``listGlossaryCategoriesByItems(parent:)``
   public func listGlossaryCategories(
     request: ListGlossaryCategoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListGlossaryCategoriesResponse {
@@ -317,8 +317,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``createGlossaryTerm(request:)``
   /// - ``createGlossaryTerm(parent:term:termId:)``
+  /// - ``createGlossaryTerm(request:)``
   public func createGlossaryTerm(
     request: CreateGlossaryTermRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
@@ -345,8 +345,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteGlossaryTerm(request:)``
   /// - ``deleteGlossaryTerm(name:)``
+  /// - ``deleteGlossaryTerm(request:)``
   public func deleteGlossaryTerm(
     request: DeleteGlossaryTermRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -359,8 +359,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``getGlossaryTerm(request:)``
   /// - ``getGlossaryTerm(name:)``
+  /// - ``getGlossaryTerm(request:)``
   public func getGlossaryTerm(
     request: GetGlossaryTermRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.GlossaryTerm {
@@ -374,9 +374,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``listGlossaryTerms(request:)``
+  /// - ``listGlossaryTermsByItems(parent:)``
   /// - ``listGlossaryTermsByItems(request:)``
   /// - ``listGlossaryTermsByItems(request:options:)``
-  /// - ``listGlossaryTermsByItems(parent:)``
   public func listGlossaryTerms(
     request: ListGlossaryTermsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataplexV1.ListGlossaryTermsResponse {
@@ -487,9 +487,9 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -515,8 +515,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -531,8 +531,8 @@ public final class BusinessGlossaryServiceClient: Clients.BusinessGlossaryServic
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

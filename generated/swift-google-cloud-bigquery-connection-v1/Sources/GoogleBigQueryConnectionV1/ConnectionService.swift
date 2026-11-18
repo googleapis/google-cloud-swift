@@ -48,8 +48,8 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createConnection(request:)``
   /// - ``createConnection(parent:connection:connectionId:)``
+  /// - ``createConnection(request:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -62,8 +62,8 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getConnection(request:)``
   /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -77,9 +77,9 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
   /// - ``listConnectionsByItems(request:)``
   /// - ``listConnectionsByItems(request:options:)``
-  /// - ``listConnectionsByItems(parent:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.ListConnectionsResponse {
@@ -93,8 +93,8 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateConnection(request:)``
   /// - ``updateConnection(name:connection:updateMask:)``
+  /// - ``updateConnection(request:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryConnectionV1.Connection {
@@ -107,8 +107,8 @@ public final class ConnectionServiceClient: Clients.ConnectionServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteConnection(request:)``
   /// - ``deleteConnection(name:)``
+  /// - ``deleteConnection(request:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {

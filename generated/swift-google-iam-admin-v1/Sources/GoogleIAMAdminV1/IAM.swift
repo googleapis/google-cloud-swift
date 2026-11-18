@@ -78,9 +78,9 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listServiceAccounts(request:)``
+  /// - ``listServiceAccountsByItems(name:)``
   /// - ``listServiceAccountsByItems(request:)``
   /// - ``listServiceAccountsByItems(request:options:)``
-  /// - ``listServiceAccountsByItems(name:)``
   public func listServiceAccounts(
     request: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
@@ -95,8 +95,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getServiceAccount(request:)``
   /// - ``getServiceAccount(name:)``
+  /// - ``getServiceAccount(request:)``
   public func getServiceAccount(
     request: GetServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -111,8 +111,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createServiceAccount(request:)``
   /// - ``createServiceAccount(name:accountId:serviceAccount:)``
+  /// - ``createServiceAccount(request:)``
   public func createServiceAccount(
     request: CreateServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -178,8 +178,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServiceAccount(request:)``
   /// - ``deleteServiceAccount(name:)``
+  /// - ``deleteServiceAccount(request:)``
   public func deleteServiceAccount(
     request: DeleteServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -271,8 +271,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``listServiceAccountKeys(request:)``
   /// - ``listServiceAccountKeys(name:keyTypes:)``
+  /// - ``listServiceAccountKeys(request:)``
   public func listServiceAccountKeys(
     request: ListServiceAccountKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
@@ -287,8 +287,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getServiceAccountKey(request:)``
   /// - ``getServiceAccountKey(name:publicKeyType:)``
+  /// - ``getServiceAccountKey(request:)``
   public func getServiceAccountKey(
     request: GetServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -303,8 +303,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createServiceAccountKey(request:)``
   /// - ``createServiceAccountKey(name:privateKeyType:keyAlgorithm:)``
+  /// - ``createServiceAccountKey(request:)``
   public func createServiceAccountKey(
     request: CreateServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -340,8 +340,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteServiceAccountKey(request:)``
   /// - ``deleteServiceAccountKey(name:)``
+  /// - ``deleteServiceAccountKey(request:)``
   public func deleteServiceAccountKey(
     request: DeleteServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -358,8 +358,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``disableServiceAccountKey(request:)``
   /// - ``disableServiceAccountKey(name:)``
+  /// - ``disableServiceAccountKey(request:)``
   public func disableServiceAccountKey(
     request: DisableServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -374,8 +374,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``enableServiceAccountKey(request:)``
   /// - ``enableServiceAccountKey(name:)``
+  /// - ``enableServiceAccountKey(request:)``
   public func enableServiceAccountKey(
     request: EnableServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -397,8 +397,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``signBlob(request:)``
   /// - ``signBlob(name:bytesToSign:)``
+  /// - ``signBlob(request:)``
   @available(*, deprecated)
   public func signBlob(
     request: SignBlobRequest, options: GoogleGax.RequestOptions
@@ -422,8 +422,8 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``signJwt(request:)``
   /// - ``signJwt(name:payload:)``
+  /// - ``signJwt(request:)``
   @available(*, deprecated)
   public func signJwt(
     request: SignJwtRequest, options: GoogleGax.RequestOptions
@@ -516,9 +516,9 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``queryGrantableRoles(request:)``
+  /// - ``queryGrantableRolesByItems(fullResourceName:)``
   /// - ``queryGrantableRolesByItems(request:)``
   /// - ``queryGrantableRolesByItems(request:options:)``
-  /// - ``queryGrantableRolesByItems(fullResourceName:)``
   public func queryGrantableRoles(
     request: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {

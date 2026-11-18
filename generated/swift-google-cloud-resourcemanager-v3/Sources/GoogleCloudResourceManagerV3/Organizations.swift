@@ -48,8 +48,8 @@ public final class OrganizationsClient: Clients.OrganizationsProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getOrganization(request:)``
   /// - ``getOrganization(name:)``
+  /// - ``getOrganization(request:)``
   public func getOrganization(
     request: GetOrganizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.Organization {
@@ -69,9 +69,9 @@ public final class OrganizationsClient: Clients.OrganizationsProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``searchOrganizations(request:)``
+  /// - ``searchOrganizationsByItems(query:)``
   /// - ``searchOrganizationsByItems(request:)``
   /// - ``searchOrganizationsByItems(request:options:)``
-  /// - ``searchOrganizationsByItems(query:)``
   public func searchOrganizations(
     request: SearchOrganizationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.SearchOrganizationsResponse {

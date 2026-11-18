@@ -57,9 +57,9 @@
     /// ## See Also
     ///
     /// - ``listAgents(request:)``
+    /// - ``listAgentsByItems(parent:)``
     /// - ``listAgentsByItems(request:)``
     /// - ``listAgentsByItems(request:options:)``
-    /// - ``listAgentsByItems(parent:)``
     public func listAgents(
       request: ListAgentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListAgentsResponse {
@@ -72,8 +72,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getAgent(request:)``
     /// - ``getAgent(name:)``
+    /// - ``getAgent(request:)``
     public func getAgent(
       request: GetAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Agent {
@@ -90,8 +90,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createAgent(request:)``
     /// - ``createAgent(parent:agent:)``
+    /// - ``createAgent(request:)``
     public func createAgent(
       request: CreateAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Agent {
@@ -108,8 +108,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateAgent(request:)``
     /// - ``updateAgent(agent:updateMask:)``
+    /// - ``updateAgent(request:)``
     public func updateAgent(
       request: UpdateAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Agent {
@@ -122,8 +122,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteAgent(request:)``
     /// - ``deleteAgent(name:)``
+    /// - ``deleteAgent(request:)``
     public func deleteAgent(
       request: DeleteAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -173,9 +173,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportAgentPollingUntilDone(request:)``
     /// - ``exportAgent(request:)``
     /// - ``exportAgent(request:options:)``
+    /// - ``exportAgentPollingUntilDone(request:)``
     public func exportAgentPollingUntilDone(
       request: ExportAgentRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportAgentResponse {
@@ -254,9 +254,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``restoreAgentPollingUntilDone(request:)``
     /// - ``restoreAgent(request:)``
     /// - ``restoreAgent(request:options:)``
+    /// - ``restoreAgentPollingUntilDone(request:)``
     public func restoreAgentPollingUntilDone(
       request: RestoreAgentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -304,8 +304,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getAgentValidationResult(request:)``
     /// - ``getAgentValidationResult(name:)``
+    /// - ``getAgentValidationResult(request:)``
     public func getAgentValidationResult(
       request: GetAgentValidationResultRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.AgentValidationResult {
@@ -318,8 +318,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getGenerativeSettings(request:)``
     /// - ``getGenerativeSettings(name:languageCode:)``
+    /// - ``getGenerativeSettings(request:)``
     public func getGenerativeSettings(
       request: GetGenerativeSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings {
@@ -332,8 +332,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateGenerativeSettings(request:)``
     /// - ``updateGenerativeSettings(generativeSettings:updateMask:)``
+    /// - ``updateGenerativeSettings(request:)``
     public func updateGenerativeSettings(
       request: UpdateGenerativeSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.GenerativeSettings {
@@ -394,9 +394,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -422,8 +422,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

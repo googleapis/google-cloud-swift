@@ -67,9 +67,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createAzureClient(request:)``
+  /// - ``createAzureClientPollingUntilDone(parent:azureClient:azureClientId:)``
   /// - ``createAzureClientPollingUntilDone(request:)``
   /// - ``createAzureClientPollingUntilDone(request:options:)``
-  /// - ``createAzureClientPollingUntilDone(parent:azureClient:azureClientId:)``
   @available(*, deprecated)
   public func createAzureClient(
     request: CreateAzureClientRequest, options: GoogleGax.RequestOptions
@@ -95,10 +95,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createAzureClientPollingUntilDone(request:)``
-  /// - ``createAzureClientPollingUntilDone(parent:azureClient:azureClientId:)``
   /// - ``createAzureClient(request:)``
   /// - ``createAzureClient(request:options:)``
+  /// - ``createAzureClientPollingUntilDone(parent:azureClient:azureClientId:)``
+  /// - ``createAzureClientPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAzureClientPollingUntilDone(
     request: CreateAzureClientRequest, options: GoogleGax.RequestOptions
@@ -133,8 +133,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getAzureClient(request:)``
   /// - ``getAzureClient(name:)``
+  /// - ``getAzureClient(request:)``
   @available(*, deprecated)
   public func getAzureClient(
     request: GetAzureClientRequest, options: GoogleGax.RequestOptions
@@ -152,9 +152,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listAzureClients(request:)``
+  /// - ``listAzureClientsByItems(parent:)``
   /// - ``listAzureClientsByItems(request:)``
   /// - ``listAzureClientsByItems(request:options:)``
-  /// - ``listAzureClientsByItems(parent:)``
   @available(*, deprecated)
   public func listAzureClients(
     request: ListAzureClientsRequest, options: GoogleGax.RequestOptions
@@ -180,9 +180,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteAzureClient(request:)``
+  /// - ``deleteAzureClientPollingUntilDone(name:)``
   /// - ``deleteAzureClientPollingUntilDone(request:)``
   /// - ``deleteAzureClientPollingUntilDone(request:options:)``
-  /// - ``deleteAzureClientPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAzureClient(
     request: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
@@ -207,10 +207,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteAzureClientPollingUntilDone(request:)``
-  /// - ``deleteAzureClientPollingUntilDone(name:)``
   /// - ``deleteAzureClient(request:)``
   /// - ``deleteAzureClient(request:options:)``
+  /// - ``deleteAzureClientPollingUntilDone(name:)``
+  /// - ``deleteAzureClientPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAzureClientPollingUntilDone(
     request: DeleteAzureClientRequest, options: GoogleGax.RequestOptions
@@ -251,9 +251,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createAzureCluster(request:)``
+  /// - ``createAzureClusterPollingUntilDone(parent:azureCluster:azureClusterId:)``
   /// - ``createAzureClusterPollingUntilDone(request:)``
   /// - ``createAzureClusterPollingUntilDone(request:options:)``
-  /// - ``createAzureClusterPollingUntilDone(parent:azureCluster:azureClusterId:)``
   @available(*, deprecated)
   public func createAzureCluster(
     request: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -275,10 +275,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createAzureClusterPollingUntilDone(request:)``
-  /// - ``createAzureClusterPollingUntilDone(parent:azureCluster:azureClusterId:)``
   /// - ``createAzureCluster(request:)``
   /// - ``createAzureCluster(request:options:)``
+  /// - ``createAzureClusterPollingUntilDone(parent:azureCluster:azureClusterId:)``
+  /// - ``createAzureClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAzureClusterPollingUntilDone(
     request: CreateAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -314,9 +314,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``updateAzureCluster(request:)``
+  /// - ``updateAzureClusterPollingUntilDone(azureCluster:updateMask:)``
   /// - ``updateAzureClusterPollingUntilDone(request:)``
   /// - ``updateAzureClusterPollingUntilDone(request:options:)``
-  /// - ``updateAzureClusterPollingUntilDone(azureCluster:updateMask:)``
   @available(*, deprecated)
   public func updateAzureCluster(
     request: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -332,10 +332,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateAzureClusterPollingUntilDone(request:)``
-  /// - ``updateAzureClusterPollingUntilDone(azureCluster:updateMask:)``
   /// - ``updateAzureCluster(request:)``
   /// - ``updateAzureCluster(request:options:)``
+  /// - ``updateAzureClusterPollingUntilDone(azureCluster:updateMask:)``
+  /// - ``updateAzureClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAzureClusterPollingUntilDone(
     request: UpdateAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -371,8 +371,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getAzureCluster(request:)``
   /// - ``getAzureCluster(name:)``
+  /// - ``getAzureCluster(request:)``
   @available(*, deprecated)
   public func getAzureCluster(
     request: GetAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -390,9 +390,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listAzureClusters(request:)``
+  /// - ``listAzureClustersByItems(parent:)``
   /// - ``listAzureClustersByItems(request:)``
   /// - ``listAzureClustersByItems(request:options:)``
-  /// - ``listAzureClustersByItems(parent:)``
   @available(*, deprecated)
   public func listAzureClusters(
     request: ListAzureClustersRequest, options: GoogleGax.RequestOptions
@@ -419,9 +419,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteAzureCluster(request:)``
+  /// - ``deleteAzureClusterPollingUntilDone(name:)``
   /// - ``deleteAzureClusterPollingUntilDone(request:)``
   /// - ``deleteAzureClusterPollingUntilDone(request:options:)``
-  /// - ``deleteAzureClusterPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAzureCluster(
     request: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -447,10 +447,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteAzureClusterPollingUntilDone(request:)``
-  /// - ``deleteAzureClusterPollingUntilDone(name:)``
   /// - ``deleteAzureCluster(request:)``
   /// - ``deleteAzureCluster(request:options:)``
+  /// - ``deleteAzureClusterPollingUntilDone(name:)``
+  /// - ``deleteAzureClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAzureClusterPollingUntilDone(
     request: DeleteAzureClusterRequest, options: GoogleGax.RequestOptions
@@ -524,9 +524,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createAzureNodePool(request:)``
+  /// - ``createAzureNodePoolPollingUntilDone(parent:azureNodePool:azureNodePoolId:)``
   /// - ``createAzureNodePoolPollingUntilDone(request:)``
   /// - ``createAzureNodePoolPollingUntilDone(request:options:)``
-  /// - ``createAzureNodePoolPollingUntilDone(parent:azureNodePool:azureNodePoolId:)``
   @available(*, deprecated)
   public func createAzureNodePool(
     request: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -550,10 +550,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createAzureNodePoolPollingUntilDone(request:)``
-  /// - ``createAzureNodePoolPollingUntilDone(parent:azureNodePool:azureNodePoolId:)``
   /// - ``createAzureNodePool(request:)``
   /// - ``createAzureNodePool(request:options:)``
+  /// - ``createAzureNodePoolPollingUntilDone(parent:azureNodePool:azureNodePoolId:)``
+  /// - ``createAzureNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAzureNodePoolPollingUntilDone(
     request: CreateAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -589,9 +589,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``updateAzureNodePool(request:)``
+  /// - ``updateAzureNodePoolPollingUntilDone(azureNodePool:updateMask:)``
   /// - ``updateAzureNodePoolPollingUntilDone(request:)``
   /// - ``updateAzureNodePoolPollingUntilDone(request:options:)``
-  /// - ``updateAzureNodePoolPollingUntilDone(azureNodePool:updateMask:)``
   @available(*, deprecated)
   public func updateAzureNodePool(
     request: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -607,10 +607,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``updateAzureNodePoolPollingUntilDone(request:)``
-  /// - ``updateAzureNodePoolPollingUntilDone(azureNodePool:updateMask:)``
   /// - ``updateAzureNodePool(request:)``
   /// - ``updateAzureNodePool(request:options:)``
+  /// - ``updateAzureNodePoolPollingUntilDone(azureNodePool:updateMask:)``
+  /// - ``updateAzureNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAzureNodePoolPollingUntilDone(
     request: UpdateAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -646,8 +646,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getAzureNodePool(request:)``
   /// - ``getAzureNodePool(name:)``
+  /// - ``getAzureNodePool(request:)``
   @available(*, deprecated)
   public func getAzureNodePool(
     request: GetAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -667,9 +667,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listAzureNodePools(request:)``
+  /// - ``listAzureNodePoolsByItems(parent:)``
   /// - ``listAzureNodePoolsByItems(request:)``
   /// - ``listAzureNodePoolsByItems(request:options:)``
-  /// - ``listAzureNodePoolsByItems(parent:)``
   @available(*, deprecated)
   public func listAzureNodePools(
     request: ListAzureNodePoolsRequest, options: GoogleGax.RequestOptions
@@ -692,9 +692,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``deleteAzureNodePool(request:)``
+  /// - ``deleteAzureNodePoolPollingUntilDone(name:)``
   /// - ``deleteAzureNodePoolPollingUntilDone(request:)``
   /// - ``deleteAzureNodePoolPollingUntilDone(request:options:)``
-  /// - ``deleteAzureNodePoolPollingUntilDone(name:)``
   @available(*, deprecated)
   public func deleteAzureNodePool(
     request: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -716,10 +716,10 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteAzureNodePoolPollingUntilDone(request:)``
-  /// - ``deleteAzureNodePoolPollingUntilDone(name:)``
   /// - ``deleteAzureNodePool(request:)``
   /// - ``deleteAzureNodePool(request:options:)``
+  /// - ``deleteAzureNodePoolPollingUntilDone(name:)``
+  /// - ``deleteAzureNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAzureNodePoolPollingUntilDone(
     request: DeleteAzureNodePoolRequest, options: GoogleGax.RequestOptions
@@ -755,8 +755,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getAzureOpenIdConfig(request:)``
   /// - ``getAzureOpenIdConfig(azureCluster:)``
+  /// - ``getAzureOpenIdConfig(request:)``
   @available(*, deprecated)
   public func getAzureOpenIdConfig(
     request: GetAzureOpenIdConfigRequest, options: GoogleGax.RequestOptions
@@ -771,8 +771,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getAzureJsonWebKeys(request:)``
   /// - ``getAzureJsonWebKeys(azureCluster:)``
+  /// - ``getAzureJsonWebKeys(request:)``
   @available(*, deprecated)
   public func getAzureJsonWebKeys(
     request: GetAzureJsonWebKeysRequest, options: GoogleGax.RequestOptions
@@ -787,8 +787,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getAzureServerConfig(request:)``
   /// - ``getAzureServerConfig(name:)``
+  /// - ``getAzureServerConfig(request:)``
   @available(*, deprecated)
   public func getAzureServerConfig(
     request: GetAzureServerConfigRequest, options: GoogleGax.RequestOptions
@@ -805,9 +805,9 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -833,8 +833,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -849,8 +849,8 @@ public final class AzureClustersClient: Clients.AzureClustersProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

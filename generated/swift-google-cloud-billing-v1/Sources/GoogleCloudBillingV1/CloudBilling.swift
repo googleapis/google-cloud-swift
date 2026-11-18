@@ -50,8 +50,8 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBillingAccount(request:)``
   /// - ``getBillingAccount(name:)``
+  /// - ``getBillingAccount(request:)``
   public func getBillingAccount(
     request: GetBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -67,9 +67,9 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBillingAccounts(request:)``
+  /// - ``listBillingAccountsByItems(parent:)``
   /// - ``listBillingAccountsByItems(request:)``
   /// - ``listBillingAccountsByItems(request:options:)``
-  /// - ``listBillingAccountsByItems(parent:)``
   public func listBillingAccounts(
     request: ListBillingAccountsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListBillingAccountsResponse {
@@ -87,8 +87,8 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBillingAccount(request:)``
   /// - ``updateBillingAccount(name:account:)``
+  /// - ``updateBillingAccount(request:)``
   public func updateBillingAccount(
     request: UpdateBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -115,9 +115,9 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBillingAccount(request:)``
   /// - ``createBillingAccount(billingAccount:)``
   /// - ``createBillingAccount(billingAccount:parent:)``
+  /// - ``createBillingAccount(request:)``
   public func createBillingAccount(
     request: CreateBillingAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.BillingAccount {
@@ -134,9 +134,9 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listProjectBillingInfo(request:)``
+  /// - ``listProjectBillingInfoByItems(name:)``
   /// - ``listProjectBillingInfoByItems(request:)``
   /// - ``listProjectBillingInfoByItems(request:options:)``
-  /// - ``listProjectBillingInfoByItems(name:)``
   public func listProjectBillingInfo(
     request: ListProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListProjectBillingInfoResponse {
@@ -153,8 +153,8 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getProjectBillingInfo(request:)``
   /// - ``getProjectBillingInfo(name:)``
+  /// - ``getProjectBillingInfo(request:)``
   public func getProjectBillingInfo(
     request: GetProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {
@@ -198,8 +198,8 @@ public final class CloudBillingClient: Clients.CloudBillingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateProjectBillingInfo(request:)``
   /// - ``updateProjectBillingInfo(name:projectBillingInfo:)``
+  /// - ``updateProjectBillingInfo(request:)``
   public func updateProjectBillingInfo(
     request: UpdateProjectBillingInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ProjectBillingInfo {

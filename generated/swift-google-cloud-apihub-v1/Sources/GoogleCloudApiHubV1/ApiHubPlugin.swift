@@ -53,8 +53,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPlugin(request:)``
   /// - ``getPlugin(name:)``
+  /// - ``getPlugin(request:)``
   public func getPlugin(
     request: GetPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Plugin {
@@ -68,8 +68,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``enablePlugin(request:)``
   /// - ``enablePlugin(name:)``
+  /// - ``enablePlugin(request:)``
   public func enablePlugin(
     request: EnablePluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Plugin {
@@ -83,8 +83,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``disablePlugin(request:)``
   /// - ``disablePlugin(name:)``
+  /// - ``disablePlugin(request:)``
   public func disablePlugin(
     request: DisablePluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Plugin {
@@ -98,8 +98,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPlugin(request:)``
   /// - ``createPlugin(parent:plugin:pluginId:)``
+  /// - ``createPlugin(request:)``
   public func createPlugin(
     request: CreatePluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.Plugin {
@@ -113,9 +113,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPlugins(request:)``
+  /// - ``listPluginsByItems(parent:)``
   /// - ``listPluginsByItems(request:)``
   /// - ``listPluginsByItems(request:options:)``
-  /// - ``listPluginsByItems(parent:)``
   public func listPlugins(
     request: ListPluginsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListPluginsResponse {
@@ -130,9 +130,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePlugin(request:)``
+  /// - ``deletePluginPollingUntilDone(name:)``
   /// - ``deletePluginPollingUntilDone(request:)``
   /// - ``deletePluginPollingUntilDone(request:options:)``
-  /// - ``deletePluginPollingUntilDone(name:)``
   public func deletePlugin(
     request: DeletePluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -146,10 +146,10 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePluginPollingUntilDone(request:)``
-  /// - ``deletePluginPollingUntilDone(name:)``
   /// - ``deletePlugin(request:)``
   /// - ``deletePlugin(request:options:)``
+  /// - ``deletePluginPollingUntilDone(name:)``
+  /// - ``deletePluginPollingUntilDone(request:)``
   public func deletePluginPollingUntilDone(
     request: DeletePluginRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -181,9 +181,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPluginInstance(request:)``
+  /// - ``createPluginInstancePollingUntilDone(parent:pluginInstance:pluginInstanceId:)``
   /// - ``createPluginInstancePollingUntilDone(request:)``
   /// - ``createPluginInstancePollingUntilDone(request:options:)``
-  /// - ``createPluginInstancePollingUntilDone(parent:pluginInstance:pluginInstanceId:)``
   public func createPluginInstance(
     request: CreatePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -196,10 +196,10 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPluginInstancePollingUntilDone(request:)``
-  /// - ``createPluginInstancePollingUntilDone(parent:pluginInstance:pluginInstanceId:)``
   /// - ``createPluginInstance(request:)``
   /// - ``createPluginInstance(request:options:)``
+  /// - ``createPluginInstancePollingUntilDone(parent:pluginInstance:pluginInstanceId:)``
+  /// - ``createPluginInstancePollingUntilDone(request:)``
   public func createPluginInstancePollingUntilDone(
     request: CreatePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> PluginInstance {
@@ -232,9 +232,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``executePluginInstanceAction(request:)``
+  /// - ``executePluginInstanceActionPollingUntilDone(name:actionExecutionDetail:)``
   /// - ``executePluginInstanceActionPollingUntilDone(request:)``
   /// - ``executePluginInstanceActionPollingUntilDone(request:options:)``
-  /// - ``executePluginInstanceActionPollingUntilDone(name:actionExecutionDetail:)``
   public func executePluginInstanceAction(
     request: ExecutePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -247,10 +247,10 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``executePluginInstanceActionPollingUntilDone(request:)``
-  /// - ``executePluginInstanceActionPollingUntilDone(name:actionExecutionDetail:)``
   /// - ``executePluginInstanceAction(request:)``
   /// - ``executePluginInstanceAction(request:options:)``
+  /// - ``executePluginInstanceActionPollingUntilDone(name:actionExecutionDetail:)``
+  /// - ``executePluginInstanceActionPollingUntilDone(request:)``
   public func executePluginInstanceActionPollingUntilDone(
     request: ExecutePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExecutePluginInstanceActionResponse {
@@ -283,8 +283,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPluginInstance(request:)``
   /// - ``getPluginInstance(name:)``
+  /// - ``getPluginInstance(request:)``
   public func getPluginInstance(
     request: GetPluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.PluginInstance {
@@ -299,9 +299,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPluginInstances(request:)``
+  /// - ``listPluginInstancesByItems(parent:)``
   /// - ``listPluginInstancesByItems(request:)``
   /// - ``listPluginInstancesByItems(request:options:)``
-  /// - ``listPluginInstancesByItems(parent:)``
   public func listPluginInstances(
     request: ListPluginInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListPluginInstancesResponse {
@@ -315,9 +315,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``enablePluginInstanceAction(request:)``
+  /// - ``enablePluginInstanceActionPollingUntilDone(name:actionId:)``
   /// - ``enablePluginInstanceActionPollingUntilDone(request:)``
   /// - ``enablePluginInstanceActionPollingUntilDone(request:options:)``
-  /// - ``enablePluginInstanceActionPollingUntilDone(name:actionId:)``
   public func enablePluginInstanceAction(
     request: EnablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -330,10 +330,10 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``enablePluginInstanceActionPollingUntilDone(request:)``
-  /// - ``enablePluginInstanceActionPollingUntilDone(name:actionId:)``
   /// - ``enablePluginInstanceAction(request:)``
   /// - ``enablePluginInstanceAction(request:options:)``
+  /// - ``enablePluginInstanceActionPollingUntilDone(name:actionId:)``
+  /// - ``enablePluginInstanceActionPollingUntilDone(request:)``
   public func enablePluginInstanceActionPollingUntilDone(
     request: EnablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> EnablePluginInstanceActionResponse {
@@ -367,9 +367,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``disablePluginInstanceAction(request:)``
+  /// - ``disablePluginInstanceActionPollingUntilDone(name:actionId:)``
   /// - ``disablePluginInstanceActionPollingUntilDone(request:)``
   /// - ``disablePluginInstanceActionPollingUntilDone(request:options:)``
-  /// - ``disablePluginInstanceActionPollingUntilDone(name:actionId:)``
   public func disablePluginInstanceAction(
     request: DisablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -382,10 +382,10 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``disablePluginInstanceActionPollingUntilDone(request:)``
-  /// - ``disablePluginInstanceActionPollingUntilDone(name:actionId:)``
   /// - ``disablePluginInstanceAction(request:)``
   /// - ``disablePluginInstanceAction(request:options:)``
+  /// - ``disablePluginInstanceActionPollingUntilDone(name:actionId:)``
+  /// - ``disablePluginInstanceActionPollingUntilDone(request:)``
   public func disablePluginInstanceActionPollingUntilDone(
     request: DisablePluginInstanceActionRequest, options: GoogleGax.RequestOptions
   ) async throws -> DisablePluginInstanceActionResponse {
@@ -441,8 +441,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePluginInstance(request:)``
   /// - ``updatePluginInstance(pluginInstance:updateMask:)``
+  /// - ``updatePluginInstance(request:)``
   public func updatePluginInstance(
     request: UpdatePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.PluginInstance {
@@ -456,9 +456,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePluginInstance(request:)``
+  /// - ``deletePluginInstancePollingUntilDone(name:)``
   /// - ``deletePluginInstancePollingUntilDone(request:)``
   /// - ``deletePluginInstancePollingUntilDone(request:options:)``
-  /// - ``deletePluginInstancePollingUntilDone(name:)``
   public func deletePluginInstance(
     request: DeletePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -471,10 +471,10 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePluginInstancePollingUntilDone(request:)``
-  /// - ``deletePluginInstancePollingUntilDone(name:)``
   /// - ``deletePluginInstance(request:)``
   /// - ``deletePluginInstance(request:options:)``
+  /// - ``deletePluginInstancePollingUntilDone(name:)``
+  /// - ``deletePluginInstancePollingUntilDone(request:)``
   public func deletePluginInstancePollingUntilDone(
     request: DeletePluginInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -536,9 +536,9 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -564,8 +564,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -580,8 +580,8 @@ public final class ApiHubPluginClient: Clients.ApiHubPluginProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

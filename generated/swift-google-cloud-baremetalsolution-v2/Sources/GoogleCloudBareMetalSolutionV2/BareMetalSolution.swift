@@ -61,9 +61,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListInstancesResponse {
@@ -76,8 +76,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Instance {
@@ -91,9 +91,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -106,10 +106,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -141,8 +141,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``renameInstance(request:)``
   /// - ``renameInstance(name:newInstanceId:)``
+  /// - ``renameInstance(request:)``
   public func renameInstance(
     request: RenameInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Instance {
@@ -157,9 +157,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``resetInstance(request:)``
+  /// - ``resetInstancePollingUntilDone(name:)``
   /// - ``resetInstancePollingUntilDone(request:)``
   /// - ``resetInstancePollingUntilDone(request:options:)``
-  /// - ``resetInstancePollingUntilDone(name:)``
   public func resetInstance(
     request: ResetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -173,10 +173,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``resetInstancePollingUntilDone(request:)``
-  /// - ``resetInstancePollingUntilDone(name:)``
   /// - ``resetInstance(request:)``
   /// - ``resetInstance(request:options:)``
+  /// - ``resetInstancePollingUntilDone(name:)``
+  /// - ``resetInstancePollingUntilDone(request:)``
   public func resetInstancePollingUntilDone(
     request: ResetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResetInstanceResponse {
@@ -209,9 +209,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``startInstance(request:)``
+  /// - ``startInstancePollingUntilDone(name:)``
   /// - ``startInstancePollingUntilDone(request:)``
   /// - ``startInstancePollingUntilDone(request:options:)``
-  /// - ``startInstancePollingUntilDone(name:)``
   public func startInstance(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -224,10 +224,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``startInstancePollingUntilDone(request:)``
-  /// - ``startInstancePollingUntilDone(name:)``
   /// - ``startInstance(request:)``
   /// - ``startInstance(request:options:)``
+  /// - ``startInstancePollingUntilDone(name:)``
+  /// - ``startInstancePollingUntilDone(request:)``
   public func startInstancePollingUntilDone(
     request: StartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> StartInstanceResponse {
@@ -260,9 +260,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``stopInstance(request:)``
+  /// - ``stopInstancePollingUntilDone(name:)``
   /// - ``stopInstancePollingUntilDone(request:)``
   /// - ``stopInstancePollingUntilDone(request:options:)``
-  /// - ``stopInstancePollingUntilDone(name:)``
   public func stopInstance(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -275,10 +275,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``stopInstancePollingUntilDone(request:)``
-  /// - ``stopInstancePollingUntilDone(name:)``
   /// - ``stopInstance(request:)``
   /// - ``stopInstance(request:options:)``
+  /// - ``stopInstancePollingUntilDone(name:)``
+  /// - ``stopInstancePollingUntilDone(request:)``
   public func stopInstancePollingUntilDone(
     request: StopInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> StopInstanceResponse {
@@ -311,9 +311,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``enableInteractiveSerialConsole(request:)``
+  /// - ``enableInteractiveSerialConsolePollingUntilDone(name:)``
   /// - ``enableInteractiveSerialConsolePollingUntilDone(request:)``
   /// - ``enableInteractiveSerialConsolePollingUntilDone(request:options:)``
-  /// - ``enableInteractiveSerialConsolePollingUntilDone(name:)``
   public func enableInteractiveSerialConsole(
     request: EnableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -326,10 +326,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``enableInteractiveSerialConsolePollingUntilDone(request:)``
-  /// - ``enableInteractiveSerialConsolePollingUntilDone(name:)``
   /// - ``enableInteractiveSerialConsole(request:)``
   /// - ``enableInteractiveSerialConsole(request:options:)``
+  /// - ``enableInteractiveSerialConsolePollingUntilDone(name:)``
+  /// - ``enableInteractiveSerialConsolePollingUntilDone(request:)``
   public func enableInteractiveSerialConsolePollingUntilDone(
     request: EnableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> EnableInteractiveSerialConsoleResponse {
@@ -363,9 +363,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``disableInteractiveSerialConsole(request:)``
+  /// - ``disableInteractiveSerialConsolePollingUntilDone(name:)``
   /// - ``disableInteractiveSerialConsolePollingUntilDone(request:)``
   /// - ``disableInteractiveSerialConsolePollingUntilDone(request:options:)``
-  /// - ``disableInteractiveSerialConsolePollingUntilDone(name:)``
   public func disableInteractiveSerialConsole(
     request: DisableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -378,10 +378,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``disableInteractiveSerialConsolePollingUntilDone(request:)``
-  /// - ``disableInteractiveSerialConsolePollingUntilDone(name:)``
   /// - ``disableInteractiveSerialConsole(request:)``
   /// - ``disableInteractiveSerialConsole(request:options:)``
+  /// - ``disableInteractiveSerialConsolePollingUntilDone(name:)``
+  /// - ``disableInteractiveSerialConsolePollingUntilDone(request:)``
   public func disableInteractiveSerialConsolePollingUntilDone(
     request: DisableInteractiveSerialConsoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> DisableInteractiveSerialConsoleResponse {
@@ -415,9 +415,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``detachLun(request:)``
+  /// - ``detachLunPollingUntilDone(instance:lun:)``
   /// - ``detachLunPollingUntilDone(request:)``
   /// - ``detachLunPollingUntilDone(request:options:)``
-  /// - ``detachLunPollingUntilDone(instance:lun:)``
   public func detachLun(
     request: DetachLunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -430,10 +430,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``detachLunPollingUntilDone(request:)``
-  /// - ``detachLunPollingUntilDone(instance:lun:)``
   /// - ``detachLun(request:)``
   /// - ``detachLun(request:options:)``
+  /// - ``detachLunPollingUntilDone(instance:lun:)``
+  /// - ``detachLunPollingUntilDone(request:)``
   public func detachLunPollingUntilDone(
     request: DetachLunRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -466,9 +466,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listSshkeys(request:)``
+  /// - ``listSshkeysByItems(parent:)``
   /// - ``listSshkeysByItems(request:)``
   /// - ``listSshkeysByItems(request:options:)``
-  /// - ``listSshkeysByItems(parent:)``
   public func listSshkeys(
     request: ListSSHKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListSSHKeysResponse {
@@ -482,8 +482,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createSshkey(request:)``
   /// - ``createSshkey(parent:sshKey:sshKeyId:)``
+  /// - ``createSshkey(request:)``
   public func createSshkey(
     request: CreateSSHKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.SSHKey {
@@ -496,8 +496,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteSshkey(request:)``
   /// - ``deleteSshkey(name:)``
+  /// - ``deleteSshkey(request:)``
   public func deleteSshkey(
     request: DeleteSSHKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -511,9 +511,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listVolumes(request:)``
+  /// - ``listVolumesByItems(parent:)``
   /// - ``listVolumesByItems(request:)``
   /// - ``listVolumesByItems(request:options:)``
-  /// - ``listVolumesByItems(parent:)``
   public func listVolumes(
     request: ListVolumesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListVolumesResponse {
@@ -526,8 +526,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getVolume(request:)``
   /// - ``getVolume(name:)``
+  /// - ``getVolume(request:)``
   public func getVolume(
     request: GetVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Volume {
@@ -556,10 +556,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateVolumePollingUntilDone(request:)``
-  /// - ``updateVolumePollingUntilDone(volume:updateMask:)``
   /// - ``updateVolume(request:)``
   /// - ``updateVolume(request:options:)``
+  /// - ``updateVolumePollingUntilDone(request:)``
+  /// - ``updateVolumePollingUntilDone(volume:updateMask:)``
   public func updateVolumePollingUntilDone(
     request: UpdateVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -591,8 +591,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``renameVolume(request:)``
   /// - ``renameVolume(name:newVolumeId:)``
+  /// - ``renameVolume(request:)``
   public func renameVolume(
     request: RenameVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Volume {
@@ -607,9 +607,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``evictVolume(request:)``
+  /// - ``evictVolumePollingUntilDone(name:)``
   /// - ``evictVolumePollingUntilDone(request:)``
   /// - ``evictVolumePollingUntilDone(request:options:)``
-  /// - ``evictVolumePollingUntilDone(name:)``
   public func evictVolume(
     request: EvictVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -623,10 +623,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``evictVolumePollingUntilDone(request:)``
-  /// - ``evictVolumePollingUntilDone(name:)``
   /// - ``evictVolume(request:)``
   /// - ``evictVolume(request:options:)``
+  /// - ``evictVolumePollingUntilDone(name:)``
+  /// - ``evictVolumePollingUntilDone(request:)``
   public func evictVolumePollingUntilDone(
     request: EvictVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -673,10 +673,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``resizeVolumePollingUntilDone(request:)``
-  /// - ``resizeVolumePollingUntilDone(volume:sizeGib:)``
   /// - ``resizeVolume(request:)``
   /// - ``resizeVolume(request:options:)``
+  /// - ``resizeVolumePollingUntilDone(request:)``
+  /// - ``resizeVolumePollingUntilDone(volume:sizeGib:)``
   public func resizeVolumePollingUntilDone(
     request: ResizeVolumeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Volume {
@@ -708,9 +708,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listNetworks(request:)``
+  /// - ``listNetworksByItems(parent:)``
   /// - ``listNetworksByItems(request:)``
   /// - ``listNetworksByItems(request:options:)``
-  /// - ``listNetworksByItems(parent:)``
   public func listNetworks(
     request: ListNetworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListNetworksResponse {
@@ -724,8 +724,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``listNetworkUsage(request:)``
   /// - ``listNetworkUsage(location:)``
+  /// - ``listNetworkUsage(request:)``
   public func listNetworkUsage(
     request: ListNetworkUsageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListNetworkUsageResponse {
@@ -738,8 +738,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getNetwork(request:)``
   /// - ``getNetwork(name:)``
+  /// - ``getNetwork(request:)``
   public func getNetwork(
     request: GetNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Network {
@@ -753,9 +753,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``updateNetwork(request:)``
+  /// - ``updateNetworkPollingUntilDone(network:updateMask:)``
   /// - ``updateNetworkPollingUntilDone(request:)``
   /// - ``updateNetworkPollingUntilDone(request:options:)``
-  /// - ``updateNetworkPollingUntilDone(network:updateMask:)``
   public func updateNetwork(
     request: UpdateNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -768,10 +768,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateNetworkPollingUntilDone(request:)``
-  /// - ``updateNetworkPollingUntilDone(network:updateMask:)``
   /// - ``updateNetwork(request:)``
   /// - ``updateNetwork(request:options:)``
+  /// - ``updateNetworkPollingUntilDone(network:updateMask:)``
+  /// - ``updateNetworkPollingUntilDone(request:)``
   public func updateNetworkPollingUntilDone(
     request: UpdateNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> Network {
@@ -803,8 +803,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createVolumeSnapshot(request:)``
   /// - ``createVolumeSnapshot(parent:volumeSnapshot:)``
+  /// - ``createVolumeSnapshot(request:)``
   public func createVolumeSnapshot(
     request: CreateVolumeSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.VolumeSnapshot {
@@ -835,10 +835,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``restoreVolumeSnapshotPollingUntilDone(request:)``
-  /// - ``restoreVolumeSnapshotPollingUntilDone(volumeSnapshot:)``
   /// - ``restoreVolumeSnapshot(request:)``
   /// - ``restoreVolumeSnapshot(request:options:)``
+  /// - ``restoreVolumeSnapshotPollingUntilDone(request:)``
+  /// - ``restoreVolumeSnapshotPollingUntilDone(volumeSnapshot:)``
   public func restoreVolumeSnapshotPollingUntilDone(
     request: RestoreVolumeSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> VolumeSnapshot {
@@ -871,8 +871,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteVolumeSnapshot(request:)``
   /// - ``deleteVolumeSnapshot(name:)``
+  /// - ``deleteVolumeSnapshot(request:)``
   public func deleteVolumeSnapshot(
     request: DeleteVolumeSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -886,8 +886,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getVolumeSnapshot(request:)``
   /// - ``getVolumeSnapshot(name:)``
+  /// - ``getVolumeSnapshot(request:)``
   public func getVolumeSnapshot(
     request: GetVolumeSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.VolumeSnapshot {
@@ -903,9 +903,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listVolumeSnapshots(request:)``
+  /// - ``listVolumeSnapshotsByItems(parent:)``
   /// - ``listVolumeSnapshotsByItems(request:)``
   /// - ``listVolumeSnapshotsByItems(request:options:)``
-  /// - ``listVolumeSnapshotsByItems(parent:)``
   public func listVolumeSnapshots(
     request: ListVolumeSnapshotsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListVolumeSnapshotsResponse {
@@ -918,8 +918,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getLun(request:)``
   /// - ``getLun(name:)``
+  /// - ``getLun(request:)``
   public func getLun(
     request: GetLunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Lun {
@@ -933,9 +933,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listLuns(request:)``
+  /// - ``listLunsByItems(parent:)``
   /// - ``listLunsByItems(request:)``
   /// - ``listLunsByItems(request:options:)``
-  /// - ``listLunsByItems(parent:)``
   public func listLuns(
     request: ListLunsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListLunsResponse {
@@ -950,9 +950,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``evictLun(request:)``
+  /// - ``evictLunPollingUntilDone(name:)``
   /// - ``evictLunPollingUntilDone(request:)``
   /// - ``evictLunPollingUntilDone(request:options:)``
-  /// - ``evictLunPollingUntilDone(name:)``
   public func evictLun(
     request: EvictLunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -966,10 +966,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``evictLunPollingUntilDone(request:)``
-  /// - ``evictLunPollingUntilDone(name:)``
   /// - ``evictLun(request:)``
   /// - ``evictLun(request:options:)``
+  /// - ``evictLunPollingUntilDone(name:)``
+  /// - ``evictLunPollingUntilDone(request:)``
   public func evictLunPollingUntilDone(
     request: EvictLunRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1000,8 +1000,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getNfsShare(request:)``
   /// - ``getNfsShare(name:)``
+  /// - ``getNfsShare(request:)``
   public func getNfsShare(
     request: GetNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.NfsShare {
@@ -1015,9 +1015,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listNfsShares(request:)``
+  /// - ``listNfsSharesByItems(parent:)``
   /// - ``listNfsSharesByItems(request:)``
   /// - ``listNfsSharesByItems(request:options:)``
-  /// - ``listNfsSharesByItems(parent:)``
   public func listNfsShares(
     request: ListNfsSharesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListNfsSharesResponse {
@@ -1031,9 +1031,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``updateNfsShare(request:)``
+  /// - ``updateNfsSharePollingUntilDone(nfsShare:updateMask:)``
   /// - ``updateNfsSharePollingUntilDone(request:)``
   /// - ``updateNfsSharePollingUntilDone(request:options:)``
-  /// - ``updateNfsSharePollingUntilDone(nfsShare:updateMask:)``
   public func updateNfsShare(
     request: UpdateNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1046,10 +1046,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateNfsSharePollingUntilDone(request:)``
-  /// - ``updateNfsSharePollingUntilDone(nfsShare:updateMask:)``
   /// - ``updateNfsShare(request:)``
   /// - ``updateNfsShare(request:options:)``
+  /// - ``updateNfsSharePollingUntilDone(nfsShare:updateMask:)``
+  /// - ``updateNfsSharePollingUntilDone(request:)``
   public func updateNfsSharePollingUntilDone(
     request: UpdateNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> NfsShare {
@@ -1081,9 +1081,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``createNfsShare(request:)``
+  /// - ``createNfsSharePollingUntilDone(parent:nfsShare:)``
   /// - ``createNfsSharePollingUntilDone(request:)``
   /// - ``createNfsSharePollingUntilDone(request:options:)``
-  /// - ``createNfsSharePollingUntilDone(parent:nfsShare:)``
   public func createNfsShare(
     request: CreateNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1096,10 +1096,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createNfsSharePollingUntilDone(request:)``
-  /// - ``createNfsSharePollingUntilDone(parent:nfsShare:)``
   /// - ``createNfsShare(request:)``
   /// - ``createNfsShare(request:options:)``
+  /// - ``createNfsSharePollingUntilDone(parent:nfsShare:)``
+  /// - ``createNfsSharePollingUntilDone(request:)``
   public func createNfsSharePollingUntilDone(
     request: CreateNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> NfsShare {
@@ -1131,8 +1131,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``renameNfsShare(request:)``
   /// - ``renameNfsShare(name:newNfsshareId:)``
+  /// - ``renameNfsShare(request:)``
   public func renameNfsShare(
     request: RenameNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.NfsShare {
@@ -1146,9 +1146,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``deleteNfsShare(request:)``
+  /// - ``deleteNfsSharePollingUntilDone(name:)``
   /// - ``deleteNfsSharePollingUntilDone(request:)``
   /// - ``deleteNfsSharePollingUntilDone(request:options:)``
-  /// - ``deleteNfsSharePollingUntilDone(name:)``
   public func deleteNfsShare(
     request: DeleteNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1161,10 +1161,10 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteNfsSharePollingUntilDone(request:)``
-  /// - ``deleteNfsSharePollingUntilDone(name:)``
   /// - ``deleteNfsShare(request:)``
   /// - ``deleteNfsShare(request:options:)``
+  /// - ``deleteNfsSharePollingUntilDone(name:)``
+  /// - ``deleteNfsSharePollingUntilDone(request:)``
   public func deleteNfsSharePollingUntilDone(
     request: DeleteNfsShareRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1196,9 +1196,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listProvisioningQuotas(request:)``
+  /// - ``listProvisioningQuotasByItems(parent:)``
   /// - ``listProvisioningQuotasByItems(request:)``
   /// - ``listProvisioningQuotasByItems(request:options:)``
-  /// - ``listProvisioningQuotasByItems(parent:)``
   public func listProvisioningQuotas(
     request: ListProvisioningQuotasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListProvisioningQuotasResponse {
@@ -1211,8 +1211,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``submitProvisioningConfig(request:)``
   /// - ``submitProvisioningConfig(parent:provisioningConfig:)``
+  /// - ``submitProvisioningConfig(request:)``
   public func submitProvisioningConfig(
     request: SubmitProvisioningConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.SubmitProvisioningConfigResponse {
@@ -1225,8 +1225,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getProvisioningConfig(request:)``
   /// - ``getProvisioningConfig(name:)``
+  /// - ``getProvisioningConfig(request:)``
   public func getProvisioningConfig(
     request: GetProvisioningConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
@@ -1239,8 +1239,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createProvisioningConfig(request:)``
   /// - ``createProvisioningConfig(parent:provisioningConfig:)``
+  /// - ``createProvisioningConfig(request:)``
   public func createProvisioningConfig(
     request: CreateProvisioningConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
@@ -1253,8 +1253,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``updateProvisioningConfig(request:)``
   /// - ``updateProvisioningConfig(provisioningConfig:updateMask:)``
+  /// - ``updateProvisioningConfig(request:)``
   public func updateProvisioningConfig(
     request: UpdateProvisioningConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ProvisioningConfig {
@@ -1268,8 +1268,8 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``renameNetwork(request:)``
   /// - ``renameNetwork(name:newNetworkId:)``
+  /// - ``renameNetwork(request:)``
   public func renameNetwork(
     request: RenameNetworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.Network {
@@ -1283,9 +1283,9 @@ public final class BareMetalSolutionClient: Clients.BareMetalSolutionProtocol, S
   /// ## See Also
   ///
   /// - ``listOsimages(request:)``
+  /// - ``listOsimagesByItems(parent:)``
   /// - ``listOsimagesByItems(request:)``
   /// - ``listOsimagesByItems(request:options:)``
-  /// - ``listOsimagesByItems(parent:)``
   public func listOsimages(
     request: ListOSImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBareMetalSolutionV2.ListOSImagesResponse {

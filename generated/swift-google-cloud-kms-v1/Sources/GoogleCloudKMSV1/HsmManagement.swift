@@ -66,9 +66,9 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listSingleTenantHsmInstances(request:)``
+  /// - ``listSingleTenantHsmInstancesByItems(parent:)``
   /// - ``listSingleTenantHsmInstancesByItems(request:)``
   /// - ``listSingleTenantHsmInstancesByItems(request:options:)``
-  /// - ``listSingleTenantHsmInstancesByItems(parent:)``
   public func listSingleTenantHsmInstances(
     request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse {
@@ -84,8 +84,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getSingleTenantHsmInstance(request:)``
   /// - ``getSingleTenantHsmInstance(name:)``
+  /// - ``getSingleTenantHsmInstance(request:)``
   public func getSingleTenantHsmInstance(
     request: GetSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstance {
@@ -105,9 +105,9 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createSingleTenantHsmInstance(request:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(parent:singleTenantHsmInstance:singleTenantHsmInstanceId:)``
   /// - ``createSingleTenantHsmInstancePollingUntilDone(request:)``
   /// - ``createSingleTenantHsmInstancePollingUntilDone(request:options:)``
-  /// - ``createSingleTenantHsmInstancePollingUntilDone(parent:singleTenantHsmInstance:singleTenantHsmInstanceId:)``
   public func createSingleTenantHsmInstance(
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -126,10 +126,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createSingleTenantHsmInstancePollingUntilDone(request:)``
-  /// - ``createSingleTenantHsmInstancePollingUntilDone(parent:singleTenantHsmInstance:singleTenantHsmInstanceId:)``
   /// - ``createSingleTenantHsmInstance(request:)``
   /// - ``createSingleTenantHsmInstance(request:options:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(parent:singleTenantHsmInstance:singleTenantHsmInstanceId:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(request:)``
   public func createSingleTenantHsmInstancePollingUntilDone(
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> SingleTenantHsmInstance {
@@ -169,9 +169,9 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``createSingleTenantHsmInstanceProposal(request:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(parent:singleTenantHsmInstanceProposal:singleTenantHsmInstanceProposalId:)``
   /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
   /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
-  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(parent:singleTenantHsmInstanceProposal:singleTenantHsmInstanceProposalId:)``
   public func createSingleTenantHsmInstanceProposal(
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -190,10 +190,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
-  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(parent:singleTenantHsmInstanceProposal:singleTenantHsmInstanceProposalId:)``
   /// - ``createSingleTenantHsmInstanceProposal(request:)``
   /// - ``createSingleTenantHsmInstanceProposal(request:options:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(parent:singleTenantHsmInstanceProposal:singleTenantHsmInstanceProposalId:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
   public func createSingleTenantHsmInstanceProposalPollingUntilDone(
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> SingleTenantHsmInstanceProposal {
@@ -237,8 +237,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``approveSingleTenantHsmInstanceProposal(request:)``
   /// - ``approveSingleTenantHsmInstanceProposal(name:quorumReply:)``
+  /// - ``approveSingleTenantHsmInstanceProposal(request:)``
   public func approveSingleTenantHsmInstanceProposal(
     request: ApproveSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse {
@@ -262,9 +262,9 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``executeSingleTenantHsmInstanceProposal(request:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(name:)``
   /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
   /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
-  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(name:)``
   public func executeSingleTenantHsmInstanceProposal(
     request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -287,10 +287,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
-  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(name:)``
   /// - ``executeSingleTenantHsmInstanceProposal(request:)``
   /// - ``executeSingleTenantHsmInstanceProposal(request:options:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(name:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
   public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
     request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExecuteSingleTenantHsmInstanceProposalResponse {
@@ -327,8 +327,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getSingleTenantHsmInstanceProposal(request:)``
   /// - ``getSingleTenantHsmInstanceProposal(name:)``
+  /// - ``getSingleTenantHsmInstanceProposal(request:)``
   public func getSingleTenantHsmInstanceProposal(
     request: GetSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal {
@@ -345,9 +345,9 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listSingleTenantHsmInstanceProposals(request:)``
+  /// - ``listSingleTenantHsmInstanceProposalsByItems(parent:)``
   /// - ``listSingleTenantHsmInstanceProposalsByItems(request:)``
   /// - ``listSingleTenantHsmInstanceProposalsByItems(request:options:)``
-  /// - ``listSingleTenantHsmInstanceProposalsByItems(parent:)``
   public func listSingleTenantHsmInstanceProposals(
     request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse {
@@ -363,8 +363,8 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteSingleTenantHsmInstanceProposal(request:)``
   /// - ``deleteSingleTenantHsmInstanceProposal(name:)``
+  /// - ``deleteSingleTenantHsmInstanceProposal(request:)``
   public func deleteSingleTenantHsmInstanceProposal(
     request: DeleteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws {

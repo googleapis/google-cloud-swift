@@ -52,8 +52,8 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``submitJob(request:)``
   /// - ``submitJob(projectId:region:job:)``
+  /// - ``submitJob(request:)``
   public func submitJob(
     request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -67,9 +67,9 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``submitJobAsOperation(request:)``
+  /// - ``submitJobAsOperationPollingUntilDone(projectId:region:job:)``
   /// - ``submitJobAsOperationPollingUntilDone(request:)``
   /// - ``submitJobAsOperationPollingUntilDone(request:options:)``
-  /// - ``submitJobAsOperationPollingUntilDone(projectId:region:job:)``
   public func submitJobAsOperation(
     request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -82,10 +82,10 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``submitJobAsOperationPollingUntilDone(request:)``
-  /// - ``submitJobAsOperationPollingUntilDone(projectId:region:job:)``
   /// - ``submitJobAsOperation(request:)``
   /// - ``submitJobAsOperation(request:options:)``
+  /// - ``submitJobAsOperationPollingUntilDone(projectId:region:job:)``
+  /// - ``submitJobAsOperationPollingUntilDone(request:)``
   public func submitJobAsOperationPollingUntilDone(
     request: SubmitJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -116,8 +116,8 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``getJob(request:)``
   /// - ``getJob(projectId:region:jobId:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -131,10 +131,10 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listJobs(request:)``
-  /// - ``listJobsByItems(request:)``
-  /// - ``listJobsByItems(request:options:)``
   /// - ``listJobsByItems(projectId:region:)``
   /// - ``listJobsByItems(projectId:region:filter:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListJobsResponse {
@@ -164,8 +164,8 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelJob(request:)``
   /// - ``cancelJob(projectId:region:jobId:)``
+  /// - ``cancelJob(request:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Job {
@@ -179,8 +179,8 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteJob(request:)``
   /// - ``deleteJob(projectId:region:jobId:)``
+  /// - ``deleteJob(request:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -246,9 +246,9 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -274,8 +274,8 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -290,8 +290,8 @@ public final class JobControllerClient: Clients.JobControllerProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

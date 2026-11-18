@@ -50,8 +50,8 @@ public final class SupportEventSubscriptionServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``createSupportEventSubscription(request:)``
   /// - ``createSupportEventSubscription(parent:supportEventSubscription:)``
+  /// - ``createSupportEventSubscription(request:)``
   public func createSupportEventSubscription(
     request: CreateSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -64,8 +64,8 @@ public final class SupportEventSubscriptionServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``getSupportEventSubscription(request:)``
   /// - ``getSupportEventSubscription(name:)``
+  /// - ``getSupportEventSubscription(request:)``
   public func getSupportEventSubscription(
     request: GetSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -79,9 +79,9 @@ public final class SupportEventSubscriptionServiceClient: Clients
   /// ## See Also
   ///
   /// - ``listSupportEventSubscriptions(request:)``
+  /// - ``listSupportEventSubscriptionsByItems(parent:)``
   /// - ``listSupportEventSubscriptionsByItems(request:)``
   /// - ``listSupportEventSubscriptionsByItems(request:options:)``
-  /// - ``listSupportEventSubscriptionsByItems(parent:)``
   public func listSupportEventSubscriptions(
     request: ListSupportEventSubscriptionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListSupportEventSubscriptionsResponse {
@@ -108,8 +108,8 @@ public final class SupportEventSubscriptionServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``deleteSupportEventSubscription(request:)``
   /// - ``deleteSupportEventSubscription(name:)``
+  /// - ``deleteSupportEventSubscription(request:)``
   public func deleteSupportEventSubscription(
     request: DeleteSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.SupportEventSubscription {
@@ -165,8 +165,8 @@ public final class SupportEventSubscriptionServiceClient: Clients
   ///
   /// ## See Also
   ///
-  /// - ``expungeSupportEventSubscription(request:)``
   /// - ``expungeSupportEventSubscription(name:)``
+  /// - ``expungeSupportEventSubscription(request:)``
   public func expungeSupportEventSubscription(
     request: ExpungeSupportEventSubscriptionRequest, options: GoogleGax.RequestOptions
   ) async throws {

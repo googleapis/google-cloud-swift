@@ -101,9 +101,9 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``importCompletionDataPollingUntilDone(request:)``
   /// - ``importCompletionData(request:)``
   /// - ``importCompletionData(request:options:)``
+  /// - ``importCompletionDataPollingUntilDone(request:)``
   public func importCompletionDataPollingUntilDone(
     request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportCompletionDataResponse {
@@ -139,9 +139,9 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {

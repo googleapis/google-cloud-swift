@@ -57,9 +57,9 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listTagBindings(request:)``
+  /// - ``listTagBindingsByItems(parent:)``
   /// - ``listTagBindingsByItems(request:)``
   /// - ``listTagBindingsByItems(request:options:)``
-  /// - ``listTagBindingsByItems(parent:)``
   public func listTagBindings(
     request: ListTagBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListTagBindingsResponse {
@@ -88,10 +88,10 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createTagBindingPollingUntilDone(request:)``
-  /// - ``createTagBindingPollingUntilDone(tagBinding:)``
   /// - ``createTagBinding(request:)``
   /// - ``createTagBinding(request:options:)``
+  /// - ``createTagBindingPollingUntilDone(request:)``
+  /// - ``createTagBindingPollingUntilDone(tagBinding:)``
   public func createTagBindingPollingUntilDone(
     request: CreateTagBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> TagBinding {
@@ -123,9 +123,9 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteTagBinding(request:)``
+  /// - ``deleteTagBindingPollingUntilDone(name:)``
   /// - ``deleteTagBindingPollingUntilDone(request:)``
   /// - ``deleteTagBindingPollingUntilDone(request:options:)``
-  /// - ``deleteTagBindingPollingUntilDone(name:)``
   public func deleteTagBinding(
     request: DeleteTagBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -138,10 +138,10 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteTagBindingPollingUntilDone(request:)``
-  /// - ``deleteTagBindingPollingUntilDone(name:)``
   /// - ``deleteTagBinding(request:)``
   /// - ``deleteTagBinding(request:options:)``
+  /// - ``deleteTagBindingPollingUntilDone(name:)``
+  /// - ``deleteTagBindingPollingUntilDone(request:)``
   public func deleteTagBindingPollingUntilDone(
     request: DeleteTagBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -174,9 +174,9 @@ public final class TagBindingsClient: Clients.TagBindingsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEffectiveTags(request:)``
+  /// - ``listEffectiveTagsByItems(parent:)``
   /// - ``listEffectiveTagsByItems(request:)``
   /// - ``listEffectiveTagsByItems(request:options:)``
-  /// - ``listEffectiveTagsByItems(parent:)``
   public func listEffectiveTags(
     request: ListEffectiveTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudResourceManagerV3.ListEffectiveTagsResponse {

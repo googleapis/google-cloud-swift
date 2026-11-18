@@ -104,9 +104,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeUserEventsPollingUntilDone(request:)``
     /// - ``purgeUserEvents(request:)``
     /// - ``purgeUserEvents(request:options:)``
+    /// - ``purgeUserEventsPollingUntilDone(request:)``
     public func purgeUserEventsPollingUntilDone(
       request: PurgeUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeUserEventsResponse {
@@ -166,9 +166,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importUserEventsPollingUntilDone(request:)``
     /// - ``importUserEvents(request:)``
     /// - ``importUserEvents(request:options:)``
+    /// - ``importUserEventsPollingUntilDone(request:)``
     public func importUserEventsPollingUntilDone(
       request: ImportUserEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportUserEventsResponse {
@@ -204,9 +204,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -232,8 +232,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

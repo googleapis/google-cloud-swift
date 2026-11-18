@@ -53,9 +53,9 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``search(request:)``
+  /// - ``searchPollingUntilDone(parent:query:timeRange:)``
   /// - ``searchPollingUntilDone(request:)``
   /// - ``searchPollingUntilDone(request:options:)``
-  /// - ``searchPollingUntilDone(parent:query:timeRange:)``
   public func search(
     request: SearchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -68,10 +68,10 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``searchPollingUntilDone(request:)``
-  /// - ``searchPollingUntilDone(parent:query:timeRange:)``
   /// - ``search(request:)``
   /// - ``search(request:options:)``
+  /// - ``searchPollingUntilDone(parent:query:timeRange:)``
+  /// - ``searchPollingUntilDone(request:)``
   public func searchPollingUntilDone(
     request: SearchRequest, options: GoogleGax.RequestOptions
   ) async throws -> SearchSession {
@@ -104,9 +104,9 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listSearchedResults(request:)``
+  /// - ``listSearchedResultsByItems(parent:)``
   /// - ``listSearchedResultsByItems(request:)``
   /// - ``listSearchedResultsByItems(request:options:)``
-  /// - ``listSearchedResultsByItems(parent:)``
   public func listSearchedResults(
     request: ListSearchedResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListSearchedResultsResponse {
@@ -122,9 +122,9 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -150,8 +150,8 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -166,8 +166,8 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

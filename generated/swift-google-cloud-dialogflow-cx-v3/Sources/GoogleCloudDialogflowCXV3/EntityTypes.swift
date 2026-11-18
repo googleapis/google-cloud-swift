@@ -56,8 +56,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getEntityType(request:)``
     /// - ``getEntityType(name:)``
+    /// - ``getEntityType(request:)``
     public func getEntityType(
       request: GetEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.EntityType {
@@ -74,8 +74,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createEntityType(request:)``
     /// - ``createEntityType(parent:entityType:)``
+    /// - ``createEntityType(request:)``
     public func createEntityType(
       request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.EntityType {
@@ -92,8 +92,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateEntityType(request:)``
     /// - ``updateEntityType(entityType:updateMask:)``
+    /// - ``updateEntityType(request:)``
     public func updateEntityType(
       request: UpdateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.EntityType {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteEntityType(request:)``
     /// - ``deleteEntityType(name:)``
+    /// - ``deleteEntityType(request:)``
     public func deleteEntityType(
       request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -125,9 +125,9 @@
     /// ## See Also
     ///
     /// - ``listEntityTypes(request:)``
+    /// - ``listEntityTypesByItems(parent:)``
     /// - ``listEntityTypesByItems(request:)``
     /// - ``listEntityTypesByItems(request:options:)``
-    /// - ``listEntityTypesByItems(parent:)``
     public func listEntityTypes(
       request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListEntityTypesResponse {
@@ -155,9 +155,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``exportEntityTypesPollingUntilDone(request:)``
     /// - ``exportEntityTypes(request:)``
     /// - ``exportEntityTypes(request:options:)``
+    /// - ``exportEntityTypesPollingUntilDone(request:)``
     public func exportEntityTypesPollingUntilDone(
       request: ExportEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportEntityTypesResponse {
@@ -205,9 +205,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importEntityTypesPollingUntilDone(request:)``
     /// - ``importEntityTypes(request:)``
     /// - ``importEntityTypes(request:options:)``
+    /// - ``importEntityTypesPollingUntilDone(request:)``
     public func importEntityTypesPollingUntilDone(
       request: ImportEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportEntityTypesResponse {
@@ -288,9 +288,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -316,8 +316,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

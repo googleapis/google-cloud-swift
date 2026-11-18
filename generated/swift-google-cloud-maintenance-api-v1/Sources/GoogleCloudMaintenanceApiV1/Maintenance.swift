@@ -48,9 +48,9 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``summarizeMaintenances(request:)``
+  /// - ``summarizeMaintenancesByItems(parent:)``
   /// - ``summarizeMaintenancesByItems(request:)``
   /// - ``summarizeMaintenancesByItems(request:options:)``
-  /// - ``summarizeMaintenancesByItems(parent:)``
   public func summarizeMaintenances(
     request: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse {
@@ -64,9 +64,9 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listResourceMaintenances(request:)``
+  /// - ``listResourceMaintenancesByItems(parent:)``
   /// - ``listResourceMaintenancesByItems(request:)``
   /// - ``listResourceMaintenancesByItems(request:options:)``
-  /// - ``listResourceMaintenancesByItems(parent:)``
   public func listResourceMaintenances(
     request: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMaintenanceApiV1.ListResourceMaintenancesResponse {
@@ -79,8 +79,8 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getResourceMaintenance(request:)``
   /// - ``getResourceMaintenance(name:)``
+  /// - ``getResourceMaintenance(request:)``
   public func getResourceMaintenance(
     request: GetResourceMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMaintenanceApiV1.ResourceMaintenance {

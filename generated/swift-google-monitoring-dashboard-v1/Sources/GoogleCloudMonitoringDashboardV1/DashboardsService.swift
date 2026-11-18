@@ -52,8 +52,8 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``createDashboard(request:)``
   /// - ``createDashboard(parent:dashboard:)``
+  /// - ``createDashboard(request:)``
   public func createDashboard(
     request: CreateDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -71,9 +71,9 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// ## See Also
   ///
   /// - ``listDashboards(request:)``
+  /// - ``listDashboardsByItems(parent:)``
   /// - ``listDashboardsByItems(request:)``
   /// - ``listDashboardsByItems(request:options:)``
-  /// - ``listDashboardsByItems(parent:)``
   public func listDashboards(
     request: ListDashboardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse {
@@ -90,8 +90,8 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``getDashboard(request:)``
   /// - ``getDashboard(name:)``
+  /// - ``getDashboard(request:)``
   public func getDashboard(
     request: GetDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -108,8 +108,8 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   ///
   /// ## See Also
   ///
-  /// - ``deleteDashboard(request:)``
   /// - ``deleteDashboard(name:)``
+  /// - ``deleteDashboard(request:)``
   public func deleteDashboard(
     request: DeleteDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws {

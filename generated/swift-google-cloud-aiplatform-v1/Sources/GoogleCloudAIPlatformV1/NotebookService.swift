@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``createNotebookRuntimeTemplate(request:)``
+    /// - ``createNotebookRuntimeTemplatePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntimeTemplateId:)``
     /// - ``createNotebookRuntimeTemplatePollingUntilDone(request:)``
     /// - ``createNotebookRuntimeTemplatePollingUntilDone(request:options:)``
-    /// - ``createNotebookRuntimeTemplatePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntimeTemplateId:)``
     public func createNotebookRuntimeTemplate(
       request: CreateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -71,10 +71,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createNotebookRuntimeTemplatePollingUntilDone(request:)``
-    /// - ``createNotebookRuntimeTemplatePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntimeTemplateId:)``
     /// - ``createNotebookRuntimeTemplate(request:)``
     /// - ``createNotebookRuntimeTemplate(request:options:)``
+    /// - ``createNotebookRuntimeTemplatePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntimeTemplateId:)``
+    /// - ``createNotebookRuntimeTemplatePollingUntilDone(request:)``
     public func createNotebookRuntimeTemplatePollingUntilDone(
       request: CreateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> NotebookRuntimeTemplate {
@@ -107,8 +107,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNotebookRuntimeTemplate(request:)``
     /// - ``getNotebookRuntimeTemplate(name:)``
+    /// - ``getNotebookRuntimeTemplate(request:)``
     public func getNotebookRuntimeTemplate(
       request: GetNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate {
@@ -122,9 +122,9 @@
     /// ## See Also
     ///
     /// - ``listNotebookRuntimeTemplates(request:)``
+    /// - ``listNotebookRuntimeTemplatesByItems(parent:)``
     /// - ``listNotebookRuntimeTemplatesByItems(request:)``
     /// - ``listNotebookRuntimeTemplatesByItems(request:options:)``
-    /// - ``listNotebookRuntimeTemplatesByItems(parent:)``
     public func listNotebookRuntimeTemplates(
       request: ListNotebookRuntimeTemplatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimeTemplatesResponse {
@@ -138,9 +138,9 @@
     /// ## See Also
     ///
     /// - ``deleteNotebookRuntimeTemplate(request:)``
+    /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(name:)``
     /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(request:)``
     /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(request:options:)``
-    /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(name:)``
     public func deleteNotebookRuntimeTemplate(
       request: DeleteNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -153,10 +153,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(request:)``
-    /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(name:)``
     /// - ``deleteNotebookRuntimeTemplate(request:)``
     /// - ``deleteNotebookRuntimeTemplate(request:options:)``
+    /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(name:)``
+    /// - ``deleteNotebookRuntimeTemplatePollingUntilDone(request:)``
     public func deleteNotebookRuntimeTemplatePollingUntilDone(
       request: DeleteNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -188,8 +188,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateNotebookRuntimeTemplate(request:)``
     /// - ``updateNotebookRuntimeTemplate(notebookRuntimeTemplate:updateMask:)``
+    /// - ``updateNotebookRuntimeTemplate(request:)``
     public func updateNotebookRuntimeTemplate(
       request: UpdateNotebookRuntimeTemplateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntimeTemplate {
@@ -204,9 +204,9 @@
     /// ## See Also
     ///
     /// - ``assignNotebookRuntime(request:)``
+    /// - ``assignNotebookRuntimePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntime:notebookRuntimeId:)``
     /// - ``assignNotebookRuntimePollingUntilDone(request:)``
     /// - ``assignNotebookRuntimePollingUntilDone(request:options:)``
-    /// - ``assignNotebookRuntimePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntime:notebookRuntimeId:)``
     public func assignNotebookRuntime(
       request: AssignNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -220,10 +220,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``assignNotebookRuntimePollingUntilDone(request:)``
-    /// - ``assignNotebookRuntimePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntime:notebookRuntimeId:)``
     /// - ``assignNotebookRuntime(request:)``
     /// - ``assignNotebookRuntime(request:options:)``
+    /// - ``assignNotebookRuntimePollingUntilDone(parent:notebookRuntimeTemplate:notebookRuntime:notebookRuntimeId:)``
+    /// - ``assignNotebookRuntimePollingUntilDone(request:)``
     public func assignNotebookRuntimePollingUntilDone(
       request: AssignNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> NotebookRuntime {
@@ -255,8 +255,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNotebookRuntime(request:)``
     /// - ``getNotebookRuntime(name:)``
+    /// - ``getNotebookRuntime(request:)``
     public func getNotebookRuntime(
       request: GetNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NotebookRuntime {
@@ -270,9 +270,9 @@
     /// ## See Also
     ///
     /// - ``listNotebookRuntimes(request:)``
+    /// - ``listNotebookRuntimesByItems(parent:)``
     /// - ``listNotebookRuntimesByItems(request:)``
     /// - ``listNotebookRuntimesByItems(request:options:)``
-    /// - ``listNotebookRuntimesByItems(parent:)``
     public func listNotebookRuntimes(
       request: ListNotebookRuntimesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListNotebookRuntimesResponse {
@@ -286,9 +286,9 @@
     /// ## See Also
     ///
     /// - ``deleteNotebookRuntime(request:)``
+    /// - ``deleteNotebookRuntimePollingUntilDone(name:)``
     /// - ``deleteNotebookRuntimePollingUntilDone(request:)``
     /// - ``deleteNotebookRuntimePollingUntilDone(request:options:)``
-    /// - ``deleteNotebookRuntimePollingUntilDone(name:)``
     public func deleteNotebookRuntime(
       request: DeleteNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -301,10 +301,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNotebookRuntimePollingUntilDone(request:)``
-    /// - ``deleteNotebookRuntimePollingUntilDone(name:)``
     /// - ``deleteNotebookRuntime(request:)``
     /// - ``deleteNotebookRuntime(request:options:)``
+    /// - ``deleteNotebookRuntimePollingUntilDone(name:)``
+    /// - ``deleteNotebookRuntimePollingUntilDone(request:)``
     public func deleteNotebookRuntimePollingUntilDone(
       request: DeleteNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -337,9 +337,9 @@
     /// ## See Also
     ///
     /// - ``upgradeNotebookRuntime(request:)``
+    /// - ``upgradeNotebookRuntimePollingUntilDone(name:)``
     /// - ``upgradeNotebookRuntimePollingUntilDone(request:)``
     /// - ``upgradeNotebookRuntimePollingUntilDone(request:options:)``
-    /// - ``upgradeNotebookRuntimePollingUntilDone(name:)``
     public func upgradeNotebookRuntime(
       request: UpgradeNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -352,10 +352,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``upgradeNotebookRuntimePollingUntilDone(request:)``
-    /// - ``upgradeNotebookRuntimePollingUntilDone(name:)``
     /// - ``upgradeNotebookRuntime(request:)``
     /// - ``upgradeNotebookRuntime(request:options:)``
+    /// - ``upgradeNotebookRuntimePollingUntilDone(name:)``
+    /// - ``upgradeNotebookRuntimePollingUntilDone(request:)``
     public func upgradeNotebookRuntimePollingUntilDone(
       request: UpgradeNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> UpgradeNotebookRuntimeResponse {
@@ -389,9 +389,9 @@
     /// ## See Also
     ///
     /// - ``startNotebookRuntime(request:)``
+    /// - ``startNotebookRuntimePollingUntilDone(name:)``
     /// - ``startNotebookRuntimePollingUntilDone(request:)``
     /// - ``startNotebookRuntimePollingUntilDone(request:options:)``
-    /// - ``startNotebookRuntimePollingUntilDone(name:)``
     public func startNotebookRuntime(
       request: StartNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -404,10 +404,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``startNotebookRuntimePollingUntilDone(request:)``
-    /// - ``startNotebookRuntimePollingUntilDone(name:)``
     /// - ``startNotebookRuntime(request:)``
     /// - ``startNotebookRuntime(request:options:)``
+    /// - ``startNotebookRuntimePollingUntilDone(name:)``
+    /// - ``startNotebookRuntimePollingUntilDone(request:)``
     public func startNotebookRuntimePollingUntilDone(
       request: StartNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> StartNotebookRuntimeResponse {
@@ -441,9 +441,9 @@
     /// ## See Also
     ///
     /// - ``stopNotebookRuntime(request:)``
+    /// - ``stopNotebookRuntimePollingUntilDone(name:)``
     /// - ``stopNotebookRuntimePollingUntilDone(request:)``
     /// - ``stopNotebookRuntimePollingUntilDone(request:options:)``
-    /// - ``stopNotebookRuntimePollingUntilDone(name:)``
     public func stopNotebookRuntime(
       request: StopNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -456,10 +456,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``stopNotebookRuntimePollingUntilDone(request:)``
-    /// - ``stopNotebookRuntimePollingUntilDone(name:)``
     /// - ``stopNotebookRuntime(request:)``
     /// - ``stopNotebookRuntime(request:options:)``
+    /// - ``stopNotebookRuntimePollingUntilDone(name:)``
+    /// - ``stopNotebookRuntimePollingUntilDone(request:)``
     public func stopNotebookRuntimePollingUntilDone(
       request: StopNotebookRuntimeRequest, options: GoogleGax.RequestOptions
     ) async throws -> StopNotebookRuntimeResponse {
@@ -493,9 +493,9 @@
     /// ## See Also
     ///
     /// - ``createNotebookExecutionJob(request:)``
+    /// - ``createNotebookExecutionJobPollingUntilDone(parent:notebookExecutionJob:notebookExecutionJobId:)``
     /// - ``createNotebookExecutionJobPollingUntilDone(request:)``
     /// - ``createNotebookExecutionJobPollingUntilDone(request:options:)``
-    /// - ``createNotebookExecutionJobPollingUntilDone(parent:notebookExecutionJob:notebookExecutionJobId:)``
     public func createNotebookExecutionJob(
       request: CreateNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -508,10 +508,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createNotebookExecutionJobPollingUntilDone(request:)``
-    /// - ``createNotebookExecutionJobPollingUntilDone(parent:notebookExecutionJob:notebookExecutionJobId:)``
     /// - ``createNotebookExecutionJob(request:)``
     /// - ``createNotebookExecutionJob(request:options:)``
+    /// - ``createNotebookExecutionJobPollingUntilDone(parent:notebookExecutionJob:notebookExecutionJobId:)``
+    /// - ``createNotebookExecutionJobPollingUntilDone(request:)``
     public func createNotebookExecutionJobPollingUntilDone(
       request: CreateNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> NotebookExecutionJob {
@@ -543,8 +543,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getNotebookExecutionJob(request:)``
     /// - ``getNotebookExecutionJob(name:)``
+    /// - ``getNotebookExecutionJob(request:)``
     public func getNotebookExecutionJob(
       request: GetNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.NotebookExecutionJob {
@@ -558,9 +558,9 @@
     /// ## See Also
     ///
     /// - ``listNotebookExecutionJobs(request:)``
+    /// - ``listNotebookExecutionJobsByItems(parent:)``
     /// - ``listNotebookExecutionJobsByItems(request:)``
     /// - ``listNotebookExecutionJobsByItems(request:options:)``
-    /// - ``listNotebookExecutionJobsByItems(parent:)``
     public func listNotebookExecutionJobs(
       request: ListNotebookExecutionJobsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListNotebookExecutionJobsResponse {
@@ -574,9 +574,9 @@
     /// ## See Also
     ///
     /// - ``deleteNotebookExecutionJob(request:)``
+    /// - ``deleteNotebookExecutionJobPollingUntilDone(name:)``
     /// - ``deleteNotebookExecutionJobPollingUntilDone(request:)``
     /// - ``deleteNotebookExecutionJobPollingUntilDone(request:options:)``
-    /// - ``deleteNotebookExecutionJobPollingUntilDone(name:)``
     public func deleteNotebookExecutionJob(
       request: DeleteNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -589,10 +589,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteNotebookExecutionJobPollingUntilDone(request:)``
-    /// - ``deleteNotebookExecutionJobPollingUntilDone(name:)``
     /// - ``deleteNotebookExecutionJob(request:)``
     /// - ``deleteNotebookExecutionJob(request:options:)``
+    /// - ``deleteNotebookExecutionJobPollingUntilDone(name:)``
+    /// - ``deleteNotebookExecutionJobPollingUntilDone(request:)``
     public func deleteNotebookExecutionJobPollingUntilDone(
       request: DeleteNotebookExecutionJobRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -705,9 +705,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -733,8 +733,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -749,8 +749,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

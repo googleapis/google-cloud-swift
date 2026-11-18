@@ -54,8 +54,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``get(request:)``
     /// - ``get(project:region:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ProjectViewsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ProjectView {

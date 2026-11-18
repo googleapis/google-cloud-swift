@@ -58,9 +58,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listEffectiveSecurityHealthAnalyticsCustomModules(request:)``
+  /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(parent:)``
   /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(request:)``
   /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(request:options:)``
-  /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(parent:)``
   public func listEffectiveSecurityHealthAnalyticsCustomModules(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -81,8 +81,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``getEffectiveSecurityHealthAnalyticsCustomModule(request:)``
   /// - ``getEffectiveSecurityHealthAnalyticsCustomModule(name:)``
+  /// - ``getEffectiveSecurityHealthAnalyticsCustomModule(request:)``
   public func getEffectiveSecurityHealthAnalyticsCustomModule(
     request: GetEffectiveSecurityHealthAnalyticsCustomModuleRequest,
     options: GoogleGax.RequestOptions
@@ -106,9 +106,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listSecurityHealthAnalyticsCustomModules(request:)``
+  /// - ``listSecurityHealthAnalyticsCustomModulesByItems(parent:)``
   /// - ``listSecurityHealthAnalyticsCustomModulesByItems(request:)``
   /// - ``listSecurityHealthAnalyticsCustomModulesByItems(request:options:)``
-  /// - ``listSecurityHealthAnalyticsCustomModulesByItems(parent:)``
   public func listSecurityHealthAnalyticsCustomModules(
     request: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -130,9 +130,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listDescendantSecurityHealthAnalyticsCustomModules(request:)``
+  /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(parent:)``
   /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(request:)``
   /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(request:options:)``
-  /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(parent:)``
   public func listDescendantSecurityHealthAnalyticsCustomModules(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -153,8 +153,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``getSecurityHealthAnalyticsCustomModule(request:)``
   /// - ``getSecurityHealthAnalyticsCustomModule(name:)``
+  /// - ``getSecurityHealthAnalyticsCustomModule(request:)``
   public func getSecurityHealthAnalyticsCustomModule(
     request: GetSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -174,8 +174,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``createSecurityHealthAnalyticsCustomModule(request:)``
   /// - ``createSecurityHealthAnalyticsCustomModule(parent:securityHealthAnalyticsCustomModule:)``
+  /// - ``createSecurityHealthAnalyticsCustomModule(request:)``
   public func createSecurityHealthAnalyticsCustomModule(
     request: CreateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -217,8 +217,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``deleteSecurityHealthAnalyticsCustomModule(request:)``
   /// - ``deleteSecurityHealthAnalyticsCustomModule(name:)``
+  /// - ``deleteSecurityHealthAnalyticsCustomModule(request:)``
   public func deleteSecurityHealthAnalyticsCustomModule(
     request: DeleteSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -236,8 +236,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``simulateSecurityHealthAnalyticsCustomModule(request:)``
   /// - ``simulateSecurityHealthAnalyticsCustomModule(parent:customConfig:resource:)``
+  /// - ``simulateSecurityHealthAnalyticsCustomModule(request:)``
   public func simulateSecurityHealthAnalyticsCustomModule(
     request: SimulateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -256,9 +256,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listEffectiveEventThreatDetectionCustomModules(request:)``
+  /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(parent:)``
   /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(request:)``
   /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(request:options:)``
-  /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(parent:)``
   public func listEffectiveEventThreatDetectionCustomModules(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -289,8 +289,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``getEffectiveEventThreatDetectionCustomModule(request:)``
   /// - ``getEffectiveEventThreatDetectionCustomModule(name:)``
+  /// - ``getEffectiveEventThreatDetectionCustomModule(request:)``
   public func getEffectiveEventThreatDetectionCustomModule(
     request: GetEffectiveEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
@@ -308,9 +308,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listEventThreatDetectionCustomModules(request:)``
+  /// - ``listEventThreatDetectionCustomModulesByItems(parent:)``
   /// - ``listEventThreatDetectionCustomModulesByItems(request:)``
   /// - ``listEventThreatDetectionCustomModulesByItems(request:options:)``
-  /// - ``listEventThreatDetectionCustomModulesByItems(parent:)``
   public func listEventThreatDetectionCustomModules(
     request: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -327,9 +327,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listDescendantEventThreatDetectionCustomModules(request:)``
+  /// - ``listDescendantEventThreatDetectionCustomModulesByItems(parent:)``
   /// - ``listDescendantEventThreatDetectionCustomModulesByItems(request:)``
   /// - ``listDescendantEventThreatDetectionCustomModulesByItems(request:options:)``
-  /// - ``listDescendantEventThreatDetectionCustomModulesByItems(parent:)``
   public func listDescendantEventThreatDetectionCustomModules(
     request: ListDescendantEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -346,8 +346,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``getEventThreatDetectionCustomModule(request:)``
   /// - ``getEventThreatDetectionCustomModule(name:)``
+  /// - ``getEventThreatDetectionCustomModule(request:)``
   public func getEventThreatDetectionCustomModule(
     request: GetEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -363,8 +363,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``createEventThreatDetectionCustomModule(request:)``
   /// - ``createEventThreatDetectionCustomModule(parent:eventThreatDetectionCustomModule:)``
+  /// - ``createEventThreatDetectionCustomModule(request:)``
   public func createEventThreatDetectionCustomModule(
     request: CreateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -382,8 +382,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``updateEventThreatDetectionCustomModule(request:)``
   /// - ``updateEventThreatDetectionCustomModule(eventThreatDetectionCustomModule:updateMask:)``
+  /// - ``updateEventThreatDetectionCustomModule(request:)``
   public func updateEventThreatDetectionCustomModule(
     request: UpdateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -398,8 +398,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``deleteEventThreatDetectionCustomModule(request:)``
   /// - ``deleteEventThreatDetectionCustomModule(name:)``
+  /// - ``deleteEventThreatDetectionCustomModule(request:)``
   public func deleteEventThreatDetectionCustomModule(
     request: DeleteEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -428,8 +428,8 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   ///
   /// ## See Also
   ///
-  /// - ``getSecurityCenterService(request:)``
   /// - ``getSecurityCenterService(name:)``
+  /// - ``getSecurityCenterService(request:)``
   public func getSecurityCenterService(
     request: GetSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
@@ -444,9 +444,9 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// ## See Also
   ///
   /// - ``listSecurityCenterServices(request:)``
+  /// - ``listSecurityCenterServicesByItems(parent:)``
   /// - ``listSecurityCenterServicesByItems(request:)``
   /// - ``listSecurityCenterServicesByItems(request:options:)``
-  /// - ``listSecurityCenterServicesByItems(parent:)``
   public func listSecurityCenterServices(
     request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse {

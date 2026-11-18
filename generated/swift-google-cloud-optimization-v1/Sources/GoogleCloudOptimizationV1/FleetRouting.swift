@@ -126,9 +126,9 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchOptimizeToursPollingUntilDone(request:)``
   /// - ``batchOptimizeTours(request:)``
   /// - ``batchOptimizeTours(request:options:)``
+  /// - ``batchOptimizeToursPollingUntilDone(request:)``
   public func batchOptimizeToursPollingUntilDone(
     request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchOptimizeToursResponse {

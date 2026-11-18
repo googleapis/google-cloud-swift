@@ -51,9 +51,9 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listExecutions(request:)``
+  /// - ``listExecutionsByItems(parent:)``
   /// - ``listExecutionsByItems(request:)``
   /// - ``listExecutionsByItems(request:options:)``
-  /// - ``listExecutionsByItems(parent:)``
   public func listExecutions(
     request: ListExecutionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.ListExecutionsResponse {
@@ -66,8 +66,8 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createExecution(request:)``
   /// - ``createExecution(parent:execution:)``
+  /// - ``createExecution(request:)``
   public func createExecution(
     request: CreateExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {
@@ -80,8 +80,8 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getExecution(request:)``
   /// - ``getExecution(name:)``
+  /// - ``getExecution(request:)``
   public func getExecution(
     request: GetExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {
@@ -94,8 +94,8 @@ public final class ExecutionsClient: Clients.ExecutionsProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelExecution(request:)``
   /// - ``cancelExecution(name:)``
+  /// - ``cancelExecution(request:)``
   public func cancelExecution(
     request: CancelExecutionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsExecutionsV1.Execution {

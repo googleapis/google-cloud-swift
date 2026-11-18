@@ -55,9 +55,9 @@ public final class UptimeCheckServiceClient: Clients.UptimeCheckServiceProtocol,
   /// ## See Also
   ///
   /// - ``listUptimeCheckConfigs(request:)``
+  /// - ``listUptimeCheckConfigsByItems(parent:)``
   /// - ``listUptimeCheckConfigsByItems(request:)``
   /// - ``listUptimeCheckConfigsByItems(request:options:)``
-  /// - ``listUptimeCheckConfigsByItems(parent:)``
   public func listUptimeCheckConfigs(
     request: ListUptimeCheckConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListUptimeCheckConfigsResponse {
@@ -70,8 +70,8 @@ public final class UptimeCheckServiceClient: Clients.UptimeCheckServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``getUptimeCheckConfig(request:)``
   /// - ``getUptimeCheckConfig(name:)``
+  /// - ``getUptimeCheckConfig(request:)``
   public func getUptimeCheckConfig(
     request: GetUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
@@ -84,8 +84,8 @@ public final class UptimeCheckServiceClient: Clients.UptimeCheckServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``createUptimeCheckConfig(request:)``
   /// - ``createUptimeCheckConfig(parent:uptimeCheckConfig:)``
+  /// - ``createUptimeCheckConfig(request:)``
   public func createUptimeCheckConfig(
     request: CreateUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.UptimeCheckConfig {
@@ -117,8 +117,8 @@ public final class UptimeCheckServiceClient: Clients.UptimeCheckServiceProtocol,
   ///
   /// ## See Also
   ///
-  /// - ``deleteUptimeCheckConfig(request:)``
   /// - ``deleteUptimeCheckConfig(name:)``
+  /// - ``deleteUptimeCheckConfig(request:)``
   public func deleteUptimeCheckConfig(
     request: DeleteUptimeCheckConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {

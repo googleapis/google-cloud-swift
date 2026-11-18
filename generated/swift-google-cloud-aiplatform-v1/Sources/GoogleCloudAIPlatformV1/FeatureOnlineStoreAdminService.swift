@@ -60,9 +60,9 @@
     /// ## See Also
     ///
     /// - ``createFeatureOnlineStore(request:)``
+    /// - ``createFeatureOnlineStorePollingUntilDone(parent:featureOnlineStore:featureOnlineStoreId:)``
     /// - ``createFeatureOnlineStorePollingUntilDone(request:)``
     /// - ``createFeatureOnlineStorePollingUntilDone(request:options:)``
-    /// - ``createFeatureOnlineStorePollingUntilDone(parent:featureOnlineStore:featureOnlineStoreId:)``
     public func createFeatureOnlineStore(
       request: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -75,10 +75,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createFeatureOnlineStorePollingUntilDone(request:)``
-    /// - ``createFeatureOnlineStorePollingUntilDone(parent:featureOnlineStore:featureOnlineStoreId:)``
     /// - ``createFeatureOnlineStore(request:)``
     /// - ``createFeatureOnlineStore(request:options:)``
+    /// - ``createFeatureOnlineStorePollingUntilDone(parent:featureOnlineStore:featureOnlineStoreId:)``
+    /// - ``createFeatureOnlineStorePollingUntilDone(request:)``
     public func createFeatureOnlineStorePollingUntilDone(
       request: CreateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> FeatureOnlineStore {
@@ -110,8 +110,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getFeatureOnlineStore(request:)``
     /// - ``getFeatureOnlineStore(name:)``
+    /// - ``getFeatureOnlineStore(request:)``
     public func getFeatureOnlineStore(
       request: GetFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FeatureOnlineStore {
@@ -125,9 +125,9 @@
     /// ## See Also
     ///
     /// - ``listFeatureOnlineStores(request:)``
+    /// - ``listFeatureOnlineStoresByItems(parent:)``
     /// - ``listFeatureOnlineStoresByItems(request:)``
     /// - ``listFeatureOnlineStoresByItems(request:options:)``
-    /// - ``listFeatureOnlineStoresByItems(parent:)``
     public func listFeatureOnlineStores(
       request: ListFeatureOnlineStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListFeatureOnlineStoresResponse {
@@ -141,9 +141,9 @@
     /// ## See Also
     ///
     /// - ``updateFeatureOnlineStore(request:)``
+    /// - ``updateFeatureOnlineStorePollingUntilDone(featureOnlineStore:updateMask:)``
     /// - ``updateFeatureOnlineStorePollingUntilDone(request:)``
     /// - ``updateFeatureOnlineStorePollingUntilDone(request:options:)``
-    /// - ``updateFeatureOnlineStorePollingUntilDone(featureOnlineStore:updateMask:)``
     public func updateFeatureOnlineStore(
       request: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -156,10 +156,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateFeatureOnlineStorePollingUntilDone(request:)``
-    /// - ``updateFeatureOnlineStorePollingUntilDone(featureOnlineStore:updateMask:)``
     /// - ``updateFeatureOnlineStore(request:)``
     /// - ``updateFeatureOnlineStore(request:options:)``
+    /// - ``updateFeatureOnlineStorePollingUntilDone(featureOnlineStore:updateMask:)``
+    /// - ``updateFeatureOnlineStorePollingUntilDone(request:)``
     public func updateFeatureOnlineStorePollingUntilDone(
       request: UpdateFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> FeatureOnlineStore {
@@ -193,9 +193,9 @@
     /// ## See Also
     ///
     /// - ``deleteFeatureOnlineStore(request:)``
+    /// - ``deleteFeatureOnlineStorePollingUntilDone(name:force:)``
     /// - ``deleteFeatureOnlineStorePollingUntilDone(request:)``
     /// - ``deleteFeatureOnlineStorePollingUntilDone(request:options:)``
-    /// - ``deleteFeatureOnlineStorePollingUntilDone(name:force:)``
     public func deleteFeatureOnlineStore(
       request: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -209,10 +209,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteFeatureOnlineStorePollingUntilDone(request:)``
-    /// - ``deleteFeatureOnlineStorePollingUntilDone(name:force:)``
     /// - ``deleteFeatureOnlineStore(request:)``
     /// - ``deleteFeatureOnlineStore(request:options:)``
+    /// - ``deleteFeatureOnlineStorePollingUntilDone(name:force:)``
+    /// - ``deleteFeatureOnlineStorePollingUntilDone(request:)``
     public func deleteFeatureOnlineStorePollingUntilDone(
       request: DeleteFeatureOnlineStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -245,9 +245,9 @@
     /// ## See Also
     ///
     /// - ``createFeatureView(request:)``
+    /// - ``createFeatureViewPollingUntilDone(parent:featureView:featureViewId:)``
     /// - ``createFeatureViewPollingUntilDone(request:)``
     /// - ``createFeatureViewPollingUntilDone(request:options:)``
-    /// - ``createFeatureViewPollingUntilDone(parent:featureView:featureViewId:)``
     public func createFeatureView(
       request: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -260,10 +260,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createFeatureViewPollingUntilDone(request:)``
-    /// - ``createFeatureViewPollingUntilDone(parent:featureView:featureViewId:)``
     /// - ``createFeatureView(request:)``
     /// - ``createFeatureView(request:options:)``
+    /// - ``createFeatureViewPollingUntilDone(parent:featureView:featureViewId:)``
+    /// - ``createFeatureViewPollingUntilDone(request:)``
     public func createFeatureViewPollingUntilDone(
       request: CreateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> FeatureView {
@@ -295,8 +295,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getFeatureView(request:)``
     /// - ``getFeatureView(name:)``
+    /// - ``getFeatureView(request:)``
     public func getFeatureView(
       request: GetFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FeatureView {
@@ -310,9 +310,9 @@
     /// ## See Also
     ///
     /// - ``listFeatureViews(request:)``
+    /// - ``listFeatureViewsByItems(parent:)``
     /// - ``listFeatureViewsByItems(request:)``
     /// - ``listFeatureViewsByItems(request:options:)``
-    /// - ``listFeatureViewsByItems(parent:)``
     public func listFeatureViews(
       request: ListFeatureViewsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListFeatureViewsResponse {
@@ -326,9 +326,9 @@
     /// ## See Also
     ///
     /// - ``updateFeatureView(request:)``
+    /// - ``updateFeatureViewPollingUntilDone(featureView:updateMask:)``
     /// - ``updateFeatureViewPollingUntilDone(request:)``
     /// - ``updateFeatureViewPollingUntilDone(request:options:)``
-    /// - ``updateFeatureViewPollingUntilDone(featureView:updateMask:)``
     public func updateFeatureView(
       request: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -341,10 +341,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateFeatureViewPollingUntilDone(request:)``
-    /// - ``updateFeatureViewPollingUntilDone(featureView:updateMask:)``
     /// - ``updateFeatureView(request:)``
     /// - ``updateFeatureView(request:options:)``
+    /// - ``updateFeatureViewPollingUntilDone(featureView:updateMask:)``
+    /// - ``updateFeatureViewPollingUntilDone(request:)``
     public func updateFeatureViewPollingUntilDone(
       request: UpdateFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> FeatureView {
@@ -377,9 +377,9 @@
     /// ## See Also
     ///
     /// - ``deleteFeatureView(request:)``
+    /// - ``deleteFeatureViewPollingUntilDone(name:)``
     /// - ``deleteFeatureViewPollingUntilDone(request:)``
     /// - ``deleteFeatureViewPollingUntilDone(request:options:)``
-    /// - ``deleteFeatureViewPollingUntilDone(name:)``
     public func deleteFeatureView(
       request: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -392,10 +392,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteFeatureViewPollingUntilDone(request:)``
-    /// - ``deleteFeatureViewPollingUntilDone(name:)``
     /// - ``deleteFeatureView(request:)``
     /// - ``deleteFeatureView(request:options:)``
+    /// - ``deleteFeatureViewPollingUntilDone(name:)``
+    /// - ``deleteFeatureViewPollingUntilDone(request:)``
     public func deleteFeatureViewPollingUntilDone(
       request: DeleteFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -427,8 +427,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``syncFeatureView(request:)``
     /// - ``syncFeatureView(featureView:)``
+    /// - ``syncFeatureView(request:)``
     public func syncFeatureView(
       request: SyncFeatureViewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.SyncFeatureViewResponse {
@@ -441,8 +441,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getFeatureViewSync(request:)``
     /// - ``getFeatureViewSync(name:)``
+    /// - ``getFeatureViewSync(request:)``
     public func getFeatureViewSync(
       request: GetFeatureViewSyncRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FeatureViewSync {
@@ -456,9 +456,9 @@
     /// ## See Also
     ///
     /// - ``listFeatureViewSyncs(request:)``
+    /// - ``listFeatureViewSyncsByItems(parent:)``
     /// - ``listFeatureViewSyncsByItems(request:)``
     /// - ``listFeatureViewSyncsByItems(request:options:)``
-    /// - ``listFeatureViewSyncsByItems(parent:)``
     public func listFeatureViewSyncs(
       request: ListFeatureViewSyncsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListFeatureViewSyncsResponse {
@@ -552,9 +552,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -580,8 +580,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteOperation(request:)``
     /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -596,8 +596,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

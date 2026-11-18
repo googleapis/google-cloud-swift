@@ -62,9 +62,9 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// ## See Also
   ///
   /// - ``listInsightsConfigs(request:)``
+  /// - ``listInsightsConfigsByItems(parent:)``
   /// - ``listInsightsConfigsByItems(request:)``
   /// - ``listInsightsConfigsByItems(request:options:)``
-  /// - ``listInsightsConfigsByItems(parent:)``
   public func listInsightsConfigs(
     request: ListInsightsConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListInsightsConfigsResponse {
@@ -78,9 +78,9 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// ## See Also
   ///
   /// - ``createInsightsConfig(request:)``
+  /// - ``createInsightsConfigPollingUntilDone(parent:insightsConfig:insightsConfigId:)``
   /// - ``createInsightsConfigPollingUntilDone(request:)``
   /// - ``createInsightsConfigPollingUntilDone(request:options:)``
-  /// - ``createInsightsConfigPollingUntilDone(parent:insightsConfig:insightsConfigId:)``
   public func createInsightsConfig(
     request: CreateInsightsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -93,10 +93,10 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createInsightsConfigPollingUntilDone(request:)``
-  /// - ``createInsightsConfigPollingUntilDone(parent:insightsConfig:insightsConfigId:)``
   /// - ``createInsightsConfig(request:)``
   /// - ``createInsightsConfig(request:options:)``
+  /// - ``createInsightsConfigPollingUntilDone(parent:insightsConfig:insightsConfigId:)``
+  /// - ``createInsightsConfigPollingUntilDone(request:)``
   public func createInsightsConfigPollingUntilDone(
     request: CreateInsightsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> InsightsConfig {
@@ -128,8 +128,8 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getInsightsConfig(request:)``
   /// - ``getInsightsConfig(name:)``
+  /// - ``getInsightsConfig(request:)``
   public func getInsightsConfig(
     request: GetInsightsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.InsightsConfig {
@@ -157,9 +157,9 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``updateInsightsConfigPollingUntilDone(request:)``
   /// - ``updateInsightsConfig(request:)``
   /// - ``updateInsightsConfig(request:options:)``
+  /// - ``updateInsightsConfigPollingUntilDone(request:)``
   public func updateInsightsConfigPollingUntilDone(
     request: UpdateInsightsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> InsightsConfig {
@@ -192,9 +192,9 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// ## See Also
   ///
   /// - ``deleteInsightsConfig(request:)``
+  /// - ``deleteInsightsConfigPollingUntilDone(name:)``
   /// - ``deleteInsightsConfigPollingUntilDone(request:)``
   /// - ``deleteInsightsConfigPollingUntilDone(request:options:)``
-  /// - ``deleteInsightsConfigPollingUntilDone(name:)``
   public func deleteInsightsConfig(
     request: DeleteInsightsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -207,10 +207,10 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteInsightsConfigPollingUntilDone(request:)``
-  /// - ``deleteInsightsConfigPollingUntilDone(name:)``
   /// - ``deleteInsightsConfig(request:)``
   /// - ``deleteInsightsConfig(request:options:)``
+  /// - ``deleteInsightsConfigPollingUntilDone(name:)``
+  /// - ``deleteInsightsConfigPollingUntilDone(request:)``
   public func deleteInsightsConfigPollingUntilDone(
     request: DeleteInsightsConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -241,8 +241,8 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getDeploymentEvent(request:)``
   /// - ``getDeploymentEvent(name:)``
+  /// - ``getDeploymentEvent(request:)``
   public func getDeploymentEvent(
     request: GetDeploymentEventRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.DeploymentEvent {
@@ -256,9 +256,9 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// ## See Also
   ///
   /// - ``listDeploymentEvents(request:)``
+  /// - ``listDeploymentEventsByItems(parent:)``
   /// - ``listDeploymentEventsByItems(request:)``
   /// - ``listDeploymentEventsByItems(request:options:)``
-  /// - ``listDeploymentEventsByItems(parent:)``
   public func listDeploymentEvents(
     request: ListDeploymentEventsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDeveloperConnectV1.ListDeploymentEventsResponse {
@@ -309,9 +309,9 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -337,8 +337,8 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -353,8 +353,8 @@ public final class InsightsConfigServiceClient: Clients.InsightsConfigServicePro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

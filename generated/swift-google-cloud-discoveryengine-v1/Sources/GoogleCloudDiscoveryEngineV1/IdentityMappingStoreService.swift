@@ -55,8 +55,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createIdentityMappingStore(request:)``
     /// - ``createIdentityMappingStore(parent:identityMappingStore:identityMappingStoreId:)``
+    /// - ``createIdentityMappingStore(request:)``
     public func createIdentityMappingStore(
       request: CreateIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -69,8 +69,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getIdentityMappingStore(request:)``
     /// - ``getIdentityMappingStore(name:)``
+    /// - ``getIdentityMappingStore(request:)``
     public func getIdentityMappingStore(
       request: GetIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.IdentityMappingStore {
@@ -84,9 +84,9 @@
     /// ## See Also
     ///
     /// - ``deleteIdentityMappingStore(request:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(name:)``
     /// - ``deleteIdentityMappingStorePollingUntilDone(request:)``
     /// - ``deleteIdentityMappingStorePollingUntilDone(request:options:)``
-    /// - ``deleteIdentityMappingStorePollingUntilDone(name:)``
     public func deleteIdentityMappingStore(
       request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -99,10 +99,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteIdentityMappingStorePollingUntilDone(request:)``
-    /// - ``deleteIdentityMappingStorePollingUntilDone(name:)``
     /// - ``deleteIdentityMappingStore(request:)``
     /// - ``deleteIdentityMappingStore(request:options:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(name:)``
+    /// - ``deleteIdentityMappingStorePollingUntilDone(request:)``
     public func deleteIdentityMappingStorePollingUntilDone(
       request: DeleteIdentityMappingStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -149,9 +149,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``importIdentityMappingsPollingUntilDone(request:)``
     /// - ``importIdentityMappings(request:)``
     /// - ``importIdentityMappings(request:options:)``
+    /// - ``importIdentityMappingsPollingUntilDone(request:)``
     public func importIdentityMappingsPollingUntilDone(
       request: ImportIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportIdentityMappingsResponse {
@@ -201,9 +201,9 @@
     ///
     /// ## See Also
     ///
-    /// - ``purgeIdentityMappingsPollingUntilDone(request:)``
     /// - ``purgeIdentityMappings(request:)``
     /// - ``purgeIdentityMappings(request:options:)``
+    /// - ``purgeIdentityMappingsPollingUntilDone(request:)``
     public func purgeIdentityMappingsPollingUntilDone(
       request: PurgeIdentityMappingsRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -251,9 +251,9 @@
     /// ## See Also
     ///
     /// - ``listIdentityMappingStores(request:)``
+    /// - ``listIdentityMappingStoresByItems(parent:)``
     /// - ``listIdentityMappingStoresByItems(request:)``
     /// - ``listIdentityMappingStoresByItems(request:options:)``
-    /// - ``listIdentityMappingStoresByItems(parent:)``
     public func listIdentityMappingStores(
       request: ListIdentityMappingStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListIdentityMappingStoresResponse {
@@ -269,9 +269,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -297,8 +297,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

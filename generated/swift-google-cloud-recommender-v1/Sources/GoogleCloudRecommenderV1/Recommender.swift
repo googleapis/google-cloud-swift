@@ -52,9 +52,9 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInsights(request:)``
+  /// - ``listInsightsByItems(parent:)``
   /// - ``listInsightsByItems(request:)``
   /// - ``listInsightsByItems(request:options:)``
-  /// - ``listInsightsByItems(parent:)``
   public func listInsights(
     request: ListInsightsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse {
@@ -68,8 +68,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInsight(request:)``
   /// - ``getInsight(name:)``
+  /// - ``getInsight(request:)``
   public func getInsight(
     request: GetInsightRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -87,8 +87,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``markInsightAccepted(request:)``
   /// - ``markInsightAccepted(name:stateMetadata:etag:)``
+  /// - ``markInsightAccepted(request:)``
   public func markInsightAccepted(
     request: MarkInsightAcceptedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -103,10 +103,10 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listRecommendations(request:)``
-  /// - ``listRecommendationsByItems(request:)``
-  /// - ``listRecommendationsByItems(request:options:)``
   /// - ``listRecommendationsByItems(parent:)``
   /// - ``listRecommendationsByItems(parent:filter:)``
+  /// - ``listRecommendationsByItems(request:)``
+  /// - ``listRecommendationsByItems(request:options:)``
   public func listRecommendations(
     request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse {
@@ -120,8 +120,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRecommendation(request:)``
   /// - ``getRecommendation(name:)``
+  /// - ``getRecommendation(request:)``
   public func getRecommendation(
     request: GetRecommendationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -164,8 +164,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``markRecommendationClaimed(request:)``
   /// - ``markRecommendationClaimed(name:stateMetadata:etag:)``
+  /// - ``markRecommendationClaimed(request:)``
   public func markRecommendationClaimed(
     request: MarkRecommendationClaimedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -188,8 +188,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``markRecommendationSucceeded(request:)``
   /// - ``markRecommendationSucceeded(name:stateMetadata:etag:)``
+  /// - ``markRecommendationSucceeded(request:)``
   public func markRecommendationSucceeded(
     request: MarkRecommendationSucceededRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -212,8 +212,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``markRecommendationFailed(request:)``
   /// - ``markRecommendationFailed(name:stateMetadata:etag:)``
+  /// - ``markRecommendationFailed(request:)``
   public func markRecommendationFailed(
     request: MarkRecommendationFailedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -227,8 +227,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getRecommenderConfig(request:)``
   /// - ``getRecommenderConfig(name:)``
+  /// - ``getRecommenderConfig(request:)``
   public func getRecommenderConfig(
     request: GetRecommenderConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -242,8 +242,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateRecommenderConfig(request:)``
   /// - ``updateRecommenderConfig(recommenderConfig:updateMask:)``
+  /// - ``updateRecommenderConfig(request:)``
   public func updateRecommenderConfig(
     request: UpdateRecommenderConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -257,8 +257,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInsightTypeConfig(request:)``
   /// - ``getInsightTypeConfig(name:)``
+  /// - ``getInsightTypeConfig(request:)``
   public func getInsightTypeConfig(
     request: GetInsightTypeConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
@@ -272,8 +272,8 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInsightTypeConfig(request:)``
   /// - ``updateInsightTypeConfig(insightTypeConfig:updateMask:)``
+  /// - ``updateInsightTypeConfig(request:)``
   public func updateInsightTypeConfig(
     request: UpdateInsightTypeConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {

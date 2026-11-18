@@ -60,9 +60,9 @@
     /// ## See Also
     ///
     /// - ``listVersions(request:)``
+    /// - ``listVersionsByItems(parent:)``
     /// - ``listVersionsByItems(request:)``
     /// - ``listVersionsByItems(request:options:)``
-    /// - ``listVersionsByItems(parent:)``
     public func listVersions(
       request: ListVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListVersionsResponse {
@@ -77,8 +77,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getVersion(request:)``
     /// - ``getVersion(name:)``
+    /// - ``getVersion(request:)``
     public func getVersion(
       request: GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Version {
@@ -105,9 +105,9 @@
     /// ## See Also
     ///
     /// - ``createVersion(request:)``
+    /// - ``createVersionPollingUntilDone(parent:version:)``
     /// - ``createVersionPollingUntilDone(request:)``
     /// - ``createVersionPollingUntilDone(request:options:)``
-    /// - ``createVersionPollingUntilDone(parent:version:)``
     public func createVersion(
       request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -133,10 +133,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``createVersionPollingUntilDone(request:)``
-    /// - ``createVersionPollingUntilDone(parent:version:)``
     /// - ``createVersion(request:)``
     /// - ``createVersion(request:options:)``
+    /// - ``createVersionPollingUntilDone(parent:version:)``
+    /// - ``createVersionPollingUntilDone(request:)``
     public func createVersionPollingUntilDone(
       request: CreateVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> Version {
@@ -185,8 +185,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteVersion(request:)``
     /// - ``deleteVersion(name:)``
+    /// - ``deleteVersion(request:)``
     public func deleteVersion(
       request: DeleteVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -209,9 +209,9 @@
     /// ## See Also
     ///
     /// - ``loadVersion(request:)``
+    /// - ``loadVersionPollingUntilDone(name:)``
     /// - ``loadVersionPollingUntilDone(request:)``
     /// - ``loadVersionPollingUntilDone(request:options:)``
-    /// - ``loadVersionPollingUntilDone(name:)``
     public func loadVersion(
       request: LoadVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -233,10 +233,10 @@
     ///
     /// ## See Also
     ///
-    /// - ``loadVersionPollingUntilDone(request:)``
-    /// - ``loadVersionPollingUntilDone(name:)``
     /// - ``loadVersion(request:)``
     /// - ``loadVersion(request:options:)``
+    /// - ``loadVersionPollingUntilDone(name:)``
+    /// - ``loadVersionPollingUntilDone(request:)``
     public func loadVersionPollingUntilDone(
       request: LoadVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -268,8 +268,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``compareVersions(request:)``
     /// - ``compareVersions(baseVersion:)``
+    /// - ``compareVersions(request:)``
     public func compareVersions(
       request: CompareVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.CompareVersionsResponse {
@@ -330,9 +330,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -358,8 +358,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -56,9 +56,9 @@
     /// ## See Also
     ///
     /// - ``listExperiments(request:)``
+    /// - ``listExperimentsByItems(parent:)``
     /// - ``listExperimentsByItems(request:)``
     /// - ``listExperimentsByItems(request:options:)``
-    /// - ``listExperimentsByItems(parent:)``
     public func listExperiments(
       request: ListExperimentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListExperimentsResponse {
@@ -74,8 +74,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``getExperiment(request:)``
     /// - ``getExperiment(name:)``
+    /// - ``getExperiment(request:)``
     public func getExperiment(
       request: GetExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -92,8 +92,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``createExperiment(request:)``
     /// - ``createExperiment(parent:experiment:)``
+    /// - ``createExperiment(request:)``
     public func createExperiment(
       request: CreateExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -109,8 +109,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``updateExperiment(request:)``
     /// - ``updateExperiment(experiment:updateMask:)``
+    /// - ``updateExperiment(request:)``
     public func updateExperiment(
       request: UpdateExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -126,8 +126,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``deleteExperiment(request:)``
     /// - ``deleteExperiment(name:)``
+    /// - ``deleteExperiment(request:)``
     public func deleteExperiment(
       request: DeleteExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -144,8 +144,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``startExperiment(request:)``
     /// - ``startExperiment(name:)``
+    /// - ``startExperiment(request:)``
     public func startExperiment(
       request: StartExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -161,8 +161,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``stopExperiment(request:)``
     /// - ``stopExperiment(name:)``
+    /// - ``stopExperiment(request:)``
     public func stopExperiment(
       request: StopExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -223,9 +223,9 @@
     /// ## See Also
     ///
     /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
     /// - ``listOperationsByItems(request:)``
     /// - ``listOperationsByItems(request:options:)``
-    /// - ``listOperationsByItems(name:filter:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -251,8 +251,8 @@
     ///
     /// ## See Also
     ///
-    /// - ``cancelOperation(request:)``
     /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {

@@ -50,8 +50,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``getWorkload(request:)``
   /// - ``getWorkload(name:)``
+  /// - ``getWorkload(request:)``
   public func getWorkload(
     request: GetWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Workload {
@@ -65,9 +65,9 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   /// ## See Also
   ///
   /// - ``listWorkloads(request:)``
+  /// - ``listWorkloadsByItems(parent:)``
   /// - ``listWorkloadsByItems(request:)``
   /// - ``listWorkloadsByItems(request:options:)``
-  /// - ``listWorkloadsByItems(parent:)``
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.ListWorkloadsResponse {
@@ -80,8 +80,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``getCustomer(request:)``
   /// - ``getCustomer(name:)``
+  /// - ``getCustomer(request:)``
   public func getCustomer(
     request: GetCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Customer {
@@ -95,9 +95,9 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   /// ## See Also
   ///
   /// - ``listCustomers(request:)``
+  /// - ``listCustomersByItems(parent:)``
   /// - ``listCustomersByItems(request:)``
   /// - ``listCustomersByItems(request:options:)``
-  /// - ``listCustomersByItems(parent:)``
   public func listCustomers(
     request: ListCustomersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.ListCustomersResponse {
@@ -110,8 +110,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``getEkmConnections(request:)``
   /// - ``getEkmConnections(name:)``
+  /// - ``getEkmConnections(request:)``
   public func getEkmConnections(
     request: GetEkmConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.EkmConnections {
@@ -124,8 +124,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``getPartnerPermissions(request:)``
   /// - ``getPartnerPermissions(name:)``
+  /// - ``getPartnerPermissions(request:)``
   public func getPartnerPermissions(
     request: GetPartnerPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.PartnerPermissions {
@@ -140,9 +140,9 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   /// ## See Also
   ///
   /// - ``listAccessApprovalRequests(request:)``
+  /// - ``listAccessApprovalRequestsByItems(parent:)``
   /// - ``listAccessApprovalRequestsByItems(request:)``
   /// - ``listAccessApprovalRequestsByItems(request:options:)``
-  /// - ``listAccessApprovalRequestsByItems(parent:)``
   @available(*, deprecated)
   public func listAccessApprovalRequests(
     request: ListAccessApprovalRequestsRequest, options: GoogleGax.RequestOptions
@@ -156,8 +156,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``getPartner(request:)``
   /// - ``getPartner(name:)``
+  /// - ``getPartner(request:)``
   public func getPartner(
     request: GetPartnerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Partner {
@@ -170,8 +170,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``createCustomer(request:)``
   /// - ``createCustomer(parent:customer:customerId:)``
+  /// - ``createCustomer(request:)``
   public func createCustomer(
     request: CreateCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Customer {
@@ -184,8 +184,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``updateCustomer(request:)``
   /// - ``updateCustomer(customer:updateMask:)``
+  /// - ``updateCustomer(request:)``
   public func updateCustomer(
     request: UpdateCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Customer {
@@ -198,8 +198,8 @@ public final class CloudControlsPartnerCoreClient: Clients.CloudControlsPartnerC
   ///
   /// ## See Also
   ///
-  /// - ``deleteCustomer(request:)``
   /// - ``deleteCustomer(name:)``
+  /// - ``deleteCustomer(request:)``
   public func deleteCustomer(
     request: DeleteCustomerRequest, options: GoogleGax.RequestOptions
   ) async throws {

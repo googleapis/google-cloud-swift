@@ -507,9 +507,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``renameFolderPollingUntilDone(request:)``
   /// - ``renameFolder(request:)``
   /// - ``renameFolder(request:options:)``
+  /// - ``renameFolderPollingUntilDone(request:)``
   public func renameFolderPollingUntilDone(
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -557,9 +557,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteFolderRecursivePollingUntilDone(request:)``
   /// - ``deleteFolderRecursive(request:)``
   /// - ``deleteFolderRecursive(request:options:)``
+  /// - ``deleteFolderRecursivePollingUntilDone(request:)``
   public func deleteFolderRecursivePollingUntilDone(
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -698,9 +698,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createAnywhereCachePollingUntilDone(request:)``
   /// - ``createAnywhereCache(request:)``
   /// - ``createAnywhereCache(request:options:)``
+  /// - ``createAnywhereCachePollingUntilDone(request:)``
   public func createAnywhereCachePollingUntilDone(
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -749,9 +749,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateAnywhereCachePollingUntilDone(request:)``
   /// - ``updateAnywhereCache(request:)``
   /// - ``updateAnywhereCache(request:options:)``
+  /// - ``updateAnywhereCachePollingUntilDone(request:)``
   public func updateAnywhereCachePollingUntilDone(
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -878,9 +878,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createRapidCachePollingUntilDone(request:)``
   /// - ``createRapidCache(request:)``
   /// - ``createRapidCache(request:options:)``
+  /// - ``createRapidCachePollingUntilDone(request:)``
   public func createRapidCachePollingUntilDone(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
@@ -926,9 +926,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateRapidCachePollingUntilDone(request:)``
   /// - ``updateRapidCache(request:)``
   /// - ``updateRapidCache(request:options:)``
+  /// - ``updateRapidCachePollingUntilDone(request:)``
   public func updateRapidCachePollingUntilDone(
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
@@ -974,9 +974,9 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``disableRapidCachePollingUntilDone(request:)``
   /// - ``disableRapidCache(request:)``
   /// - ``disableRapidCache(request:options:)``
+  /// - ``disableRapidCachePollingUntilDone(request:)``
   public func disableRapidCachePollingUntilDone(
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {

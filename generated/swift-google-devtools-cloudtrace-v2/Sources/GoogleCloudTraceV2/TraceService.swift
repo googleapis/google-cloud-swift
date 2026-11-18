@@ -53,8 +53,8 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``batchWriteSpans(request:)``
   /// - ``batchWriteSpans(name:spans:)``
+  /// - ``batchWriteSpans(request:)``
   public func batchWriteSpans(
     request: BatchWriteSpansRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -55,9 +55,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
   /// - ``listInstancesByItems(request:)``
   /// - ``listInstancesByItems(request:options:)``
-  /// - ``listInstancesByItems(parent:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListInstancesResponse {
@@ -70,8 +70,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getInstance(request:)``
   /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.Instance {
@@ -85,9 +85,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstancePollingUntilDone(request:)``
   /// - ``createInstancePollingUntilDone(request:options:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,10 +100,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createInstancePollingUntilDone(request:)``
-  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
   /// - ``createInstance(request:)``
   /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -135,9 +135,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstancePollingUntilDone(request:)``
   /// - ``updateInstancePollingUntilDone(request:options:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,10 +150,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateInstancePollingUntilDone(request:)``
-  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
   /// - ``updateInstance(request:)``
   /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -185,9 +185,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstancePollingUntilDone(request:)``
   /// - ``deleteInstancePollingUntilDone(request:options:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,10 +200,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteInstancePollingUntilDone(request:)``
-  /// - ``deleteInstancePollingUntilDone(name:)``
   /// - ``deleteInstance(request:)``
   /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -238,9 +238,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``importRegisteredParties(request:)``
+  /// - ``importRegisteredPartiesPollingUntilDone(name:mode:lineOfBusiness:partyTables:)``
   /// - ``importRegisteredPartiesPollingUntilDone(request:)``
   /// - ``importRegisteredPartiesPollingUntilDone(request:options:)``
-  /// - ``importRegisteredPartiesPollingUntilDone(name:mode:lineOfBusiness:partyTables:)``
   public func importRegisteredParties(
     request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -256,10 +256,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``importRegisteredPartiesPollingUntilDone(request:)``
-  /// - ``importRegisteredPartiesPollingUntilDone(name:mode:lineOfBusiness:partyTables:)``
   /// - ``importRegisteredParties(request:)``
   /// - ``importRegisteredParties(request:options:)``
+  /// - ``importRegisteredPartiesPollingUntilDone(name:mode:lineOfBusiness:partyTables:)``
+  /// - ``importRegisteredPartiesPollingUntilDone(request:)``
   public func importRegisteredPartiesPollingUntilDone(
     request: ImportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportRegisteredPartiesResponse {
@@ -296,9 +296,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportRegisteredParties(request:)``
+  /// - ``exportRegisteredPartiesPollingUntilDone(name:dataset:lineOfBusiness:)``
   /// - ``exportRegisteredPartiesPollingUntilDone(request:)``
   /// - ``exportRegisteredPartiesPollingUntilDone(request:options:)``
-  /// - ``exportRegisteredPartiesPollingUntilDone(name:dataset:lineOfBusiness:)``
   public func exportRegisteredParties(
     request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -314,10 +314,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportRegisteredPartiesPollingUntilDone(request:)``
-  /// - ``exportRegisteredPartiesPollingUntilDone(name:dataset:lineOfBusiness:)``
   /// - ``exportRegisteredParties(request:)``
   /// - ``exportRegisteredParties(request:options:)``
+  /// - ``exportRegisteredPartiesPollingUntilDone(name:dataset:lineOfBusiness:)``
+  /// - ``exportRegisteredPartiesPollingUntilDone(request:)``
   public func exportRegisteredPartiesPollingUntilDone(
     request: ExportRegisteredPartiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportRegisteredPartiesResponse {
@@ -351,9 +351,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listDatasets(request:)``
+  /// - ``listDatasetsByItems(parent:)``
   /// - ``listDatasetsByItems(request:)``
   /// - ``listDatasetsByItems(request:options:)``
-  /// - ``listDatasetsByItems(parent:)``
   public func listDatasets(
     request: ListDatasetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListDatasetsResponse {
@@ -366,8 +366,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getDataset(request:)``
   /// - ``getDataset(name:)``
+  /// - ``getDataset(request:)``
   public func getDataset(
     request: GetDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.Dataset {
@@ -381,9 +381,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createDataset(request:)``
+  /// - ``createDatasetPollingUntilDone(parent:dataset:datasetId:)``
   /// - ``createDatasetPollingUntilDone(request:)``
   /// - ``createDatasetPollingUntilDone(request:options:)``
-  /// - ``createDatasetPollingUntilDone(parent:dataset:datasetId:)``
   public func createDataset(
     request: CreateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -396,10 +396,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createDatasetPollingUntilDone(request:)``
-  /// - ``createDatasetPollingUntilDone(parent:dataset:datasetId:)``
   /// - ``createDataset(request:)``
   /// - ``createDataset(request:options:)``
+  /// - ``createDatasetPollingUntilDone(parent:dataset:datasetId:)``
+  /// - ``createDatasetPollingUntilDone(request:)``
   public func createDatasetPollingUntilDone(
     request: CreateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Dataset {
@@ -431,9 +431,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateDataset(request:)``
+  /// - ``updateDatasetPollingUntilDone(dataset:updateMask:)``
   /// - ``updateDatasetPollingUntilDone(request:)``
   /// - ``updateDatasetPollingUntilDone(request:options:)``
-  /// - ``updateDatasetPollingUntilDone(dataset:updateMask:)``
   public func updateDataset(
     request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -446,10 +446,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateDatasetPollingUntilDone(request:)``
-  /// - ``updateDatasetPollingUntilDone(dataset:updateMask:)``
   /// - ``updateDataset(request:)``
   /// - ``updateDataset(request:options:)``
+  /// - ``updateDatasetPollingUntilDone(dataset:updateMask:)``
+  /// - ``updateDatasetPollingUntilDone(request:)``
   public func updateDatasetPollingUntilDone(
     request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Dataset {
@@ -481,9 +481,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteDataset(request:)``
+  /// - ``deleteDatasetPollingUntilDone(name:)``
   /// - ``deleteDatasetPollingUntilDone(request:)``
   /// - ``deleteDatasetPollingUntilDone(request:options:)``
-  /// - ``deleteDatasetPollingUntilDone(name:)``
   public func deleteDataset(
     request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -496,10 +496,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteDatasetPollingUntilDone(request:)``
-  /// - ``deleteDatasetPollingUntilDone(name:)``
   /// - ``deleteDataset(request:)``
   /// - ``deleteDataset(request:options:)``
+  /// - ``deleteDatasetPollingUntilDone(name:)``
+  /// - ``deleteDatasetPollingUntilDone(request:)``
   public func deleteDatasetPollingUntilDone(
     request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -531,9 +531,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listModels(request:)``
+  /// - ``listModelsByItems(parent:)``
   /// - ``listModelsByItems(request:)``
   /// - ``listModelsByItems(request:options:)``
-  /// - ``listModelsByItems(parent:)``
   public func listModels(
     request: ListModelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListModelsResponse {
@@ -546,8 +546,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getModel(request:)``
   /// - ``getModel(name:)``
+  /// - ``getModel(request:)``
   public func getModel(
     request: GetModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.Model {
@@ -561,9 +561,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createModel(request:)``
+  /// - ``createModelPollingUntilDone(parent:model:modelId:)``
   /// - ``createModelPollingUntilDone(request:)``
   /// - ``createModelPollingUntilDone(request:options:)``
-  /// - ``createModelPollingUntilDone(parent:model:modelId:)``
   public func createModel(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -576,10 +576,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createModelPollingUntilDone(request:)``
-  /// - ``createModelPollingUntilDone(parent:model:modelId:)``
   /// - ``createModel(request:)``
   /// - ``createModel(request:options:)``
+  /// - ``createModelPollingUntilDone(parent:model:modelId:)``
+  /// - ``createModelPollingUntilDone(request:)``
   public func createModelPollingUntilDone(
     request: CreateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Model {
@@ -611,9 +611,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateModel(request:)``
+  /// - ``updateModelPollingUntilDone(model:updateMask:)``
   /// - ``updateModelPollingUntilDone(request:)``
   /// - ``updateModelPollingUntilDone(request:options:)``
-  /// - ``updateModelPollingUntilDone(model:updateMask:)``
   public func updateModel(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -626,10 +626,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateModelPollingUntilDone(request:)``
-  /// - ``updateModelPollingUntilDone(model:updateMask:)``
   /// - ``updateModel(request:)``
   /// - ``updateModel(request:options:)``
+  /// - ``updateModelPollingUntilDone(model:updateMask:)``
+  /// - ``updateModelPollingUntilDone(request:)``
   public func updateModelPollingUntilDone(
     request: UpdateModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> Model {
@@ -664,9 +664,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportModelMetadata(request:)``
+  /// - ``exportModelMetadataPollingUntilDone(model:structuredMetadataDestination:)``
   /// - ``exportModelMetadataPollingUntilDone(request:)``
   /// - ``exportModelMetadataPollingUntilDone(request:options:)``
-  /// - ``exportModelMetadataPollingUntilDone(model:structuredMetadataDestination:)``
   public func exportModelMetadata(
     request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -682,10 +682,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportModelMetadataPollingUntilDone(request:)``
-  /// - ``exportModelMetadataPollingUntilDone(model:structuredMetadataDestination:)``
   /// - ``exportModelMetadata(request:)``
   /// - ``exportModelMetadata(request:options:)``
+  /// - ``exportModelMetadataPollingUntilDone(model:structuredMetadataDestination:)``
+  /// - ``exportModelMetadataPollingUntilDone(request:)``
   public func exportModelMetadataPollingUntilDone(
     request: ExportModelMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportModelMetadataResponse {
@@ -719,9 +719,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteModel(request:)``
+  /// - ``deleteModelPollingUntilDone(name:)``
   /// - ``deleteModelPollingUntilDone(request:)``
   /// - ``deleteModelPollingUntilDone(request:options:)``
-  /// - ``deleteModelPollingUntilDone(name:)``
   public func deleteModel(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -734,10 +734,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteModelPollingUntilDone(request:)``
-  /// - ``deleteModelPollingUntilDone(name:)``
   /// - ``deleteModel(request:)``
   /// - ``deleteModel(request:options:)``
+  /// - ``deleteModelPollingUntilDone(name:)``
+  /// - ``deleteModelPollingUntilDone(request:)``
   public func deleteModelPollingUntilDone(
     request: DeleteModelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -769,9 +769,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEngineConfigs(request:)``
+  /// - ``listEngineConfigsByItems(parent:)``
   /// - ``listEngineConfigsByItems(request:)``
   /// - ``listEngineConfigsByItems(request:options:)``
-  /// - ``listEngineConfigsByItems(parent:)``
   public func listEngineConfigs(
     request: ListEngineConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListEngineConfigsResponse {
@@ -784,8 +784,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEngineConfig(request:)``
   /// - ``getEngineConfig(name:)``
+  /// - ``getEngineConfig(request:)``
   public func getEngineConfig(
     request: GetEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.EngineConfig {
@@ -799,9 +799,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createEngineConfig(request:)``
+  /// - ``createEngineConfigPollingUntilDone(parent:engineConfig:engineConfigId:)``
   /// - ``createEngineConfigPollingUntilDone(request:)``
   /// - ``createEngineConfigPollingUntilDone(request:options:)``
-  /// - ``createEngineConfigPollingUntilDone(parent:engineConfig:engineConfigId:)``
   public func createEngineConfig(
     request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -814,10 +814,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createEngineConfigPollingUntilDone(request:)``
-  /// - ``createEngineConfigPollingUntilDone(parent:engineConfig:engineConfigId:)``
   /// - ``createEngineConfig(request:)``
   /// - ``createEngineConfig(request:options:)``
+  /// - ``createEngineConfigPollingUntilDone(parent:engineConfig:engineConfigId:)``
+  /// - ``createEngineConfigPollingUntilDone(request:)``
   public func createEngineConfigPollingUntilDone(
     request: CreateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> EngineConfig {
@@ -850,9 +850,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateEngineConfig(request:)``
+  /// - ``updateEngineConfigPollingUntilDone(engineConfig:updateMask:)``
   /// - ``updateEngineConfigPollingUntilDone(request:)``
   /// - ``updateEngineConfigPollingUntilDone(request:options:)``
-  /// - ``updateEngineConfigPollingUntilDone(engineConfig:updateMask:)``
   public func updateEngineConfig(
     request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -865,10 +865,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateEngineConfigPollingUntilDone(request:)``
-  /// - ``updateEngineConfigPollingUntilDone(engineConfig:updateMask:)``
   /// - ``updateEngineConfig(request:)``
   /// - ``updateEngineConfig(request:options:)``
+  /// - ``updateEngineConfigPollingUntilDone(engineConfig:updateMask:)``
+  /// - ``updateEngineConfigPollingUntilDone(request:)``
   public func updateEngineConfigPollingUntilDone(
     request: UpdateEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> EngineConfig {
@@ -904,9 +904,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportEngineConfigMetadata(request:)``
+  /// - ``exportEngineConfigMetadataPollingUntilDone(engineConfig:structuredMetadataDestination:)``
   /// - ``exportEngineConfigMetadataPollingUntilDone(request:)``
   /// - ``exportEngineConfigMetadataPollingUntilDone(request:options:)``
-  /// - ``exportEngineConfigMetadataPollingUntilDone(engineConfig:structuredMetadataDestination:)``
   public func exportEngineConfigMetadata(
     request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -922,10 +922,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportEngineConfigMetadataPollingUntilDone(request:)``
-  /// - ``exportEngineConfigMetadataPollingUntilDone(engineConfig:structuredMetadataDestination:)``
   /// - ``exportEngineConfigMetadata(request:)``
   /// - ``exportEngineConfigMetadata(request:options:)``
+  /// - ``exportEngineConfigMetadataPollingUntilDone(engineConfig:structuredMetadataDestination:)``
+  /// - ``exportEngineConfigMetadataPollingUntilDone(request:)``
   public func exportEngineConfigMetadataPollingUntilDone(
     request: ExportEngineConfigMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportEngineConfigMetadataResponse {
@@ -959,9 +959,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteEngineConfig(request:)``
+  /// - ``deleteEngineConfigPollingUntilDone(name:)``
   /// - ``deleteEngineConfigPollingUntilDone(request:)``
   /// - ``deleteEngineConfigPollingUntilDone(request:options:)``
-  /// - ``deleteEngineConfigPollingUntilDone(name:)``
   public func deleteEngineConfig(
     request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -974,10 +974,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteEngineConfigPollingUntilDone(request:)``
-  /// - ``deleteEngineConfigPollingUntilDone(name:)``
   /// - ``deleteEngineConfig(request:)``
   /// - ``deleteEngineConfig(request:options:)``
+  /// - ``deleteEngineConfigPollingUntilDone(name:)``
+  /// - ``deleteEngineConfigPollingUntilDone(request:)``
   public func deleteEngineConfigPollingUntilDone(
     request: DeleteEngineConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1008,8 +1008,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getEngineVersion(request:)``
   /// - ``getEngineVersion(name:)``
+  /// - ``getEngineVersion(request:)``
   public func getEngineVersion(
     request: GetEngineVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.EngineVersion {
@@ -1023,9 +1023,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listEngineVersions(request:)``
+  /// - ``listEngineVersionsByItems(parent:)``
   /// - ``listEngineVersionsByItems(request:)``
   /// - ``listEngineVersionsByItems(request:options:)``
-  /// - ``listEngineVersionsByItems(parent:)``
   public func listEngineVersions(
     request: ListEngineVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListEngineVersionsResponse {
@@ -1039,9 +1039,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listPredictionResults(request:)``
+  /// - ``listPredictionResultsByItems(parent:)``
   /// - ``listPredictionResultsByItems(request:)``
   /// - ``listPredictionResultsByItems(request:options:)``
-  /// - ``listPredictionResultsByItems(parent:)``
   public func listPredictionResults(
     request: ListPredictionResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListPredictionResultsResponse {
@@ -1054,8 +1054,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getPredictionResult(request:)``
   /// - ``getPredictionResult(name:)``
+  /// - ``getPredictionResult(request:)``
   public func getPredictionResult(
     request: GetPredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.PredictionResult {
@@ -1069,9 +1069,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createPredictionResult(request:)``
+  /// - ``createPredictionResultPollingUntilDone(parent:predictionResult:predictionResultId:)``
   /// - ``createPredictionResultPollingUntilDone(request:)``
   /// - ``createPredictionResultPollingUntilDone(request:options:)``
-  /// - ``createPredictionResultPollingUntilDone(parent:predictionResult:predictionResultId:)``
   public func createPredictionResult(
     request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1084,10 +1084,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createPredictionResultPollingUntilDone(request:)``
-  /// - ``createPredictionResultPollingUntilDone(parent:predictionResult:predictionResultId:)``
   /// - ``createPredictionResult(request:)``
   /// - ``createPredictionResult(request:options:)``
+  /// - ``createPredictionResultPollingUntilDone(parent:predictionResult:predictionResultId:)``
+  /// - ``createPredictionResultPollingUntilDone(request:)``
   public func createPredictionResultPollingUntilDone(
     request: CreatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> PredictionResult {
@@ -1120,9 +1120,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updatePredictionResult(request:)``
+  /// - ``updatePredictionResultPollingUntilDone(predictionResult:updateMask:)``
   /// - ``updatePredictionResultPollingUntilDone(request:)``
   /// - ``updatePredictionResultPollingUntilDone(request:options:)``
-  /// - ``updatePredictionResultPollingUntilDone(predictionResult:updateMask:)``
   public func updatePredictionResult(
     request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1135,10 +1135,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updatePredictionResultPollingUntilDone(request:)``
-  /// - ``updatePredictionResultPollingUntilDone(predictionResult:updateMask:)``
   /// - ``updatePredictionResult(request:)``
   /// - ``updatePredictionResult(request:options:)``
+  /// - ``updatePredictionResultPollingUntilDone(predictionResult:updateMask:)``
+  /// - ``updatePredictionResultPollingUntilDone(request:)``
   public func updatePredictionResultPollingUntilDone(
     request: UpdatePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> PredictionResult {
@@ -1174,9 +1174,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportPredictionResultMetadata(request:)``
+  /// - ``exportPredictionResultMetadataPollingUntilDone(predictionResult:structuredMetadataDestination:)``
   /// - ``exportPredictionResultMetadataPollingUntilDone(request:)``
   /// - ``exportPredictionResultMetadataPollingUntilDone(request:options:)``
-  /// - ``exportPredictionResultMetadataPollingUntilDone(predictionResult:structuredMetadataDestination:)``
   public func exportPredictionResultMetadata(
     request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1192,10 +1192,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportPredictionResultMetadataPollingUntilDone(request:)``
-  /// - ``exportPredictionResultMetadataPollingUntilDone(predictionResult:structuredMetadataDestination:)``
   /// - ``exportPredictionResultMetadata(request:)``
   /// - ``exportPredictionResultMetadata(request:options:)``
+  /// - ``exportPredictionResultMetadataPollingUntilDone(predictionResult:structuredMetadataDestination:)``
+  /// - ``exportPredictionResultMetadataPollingUntilDone(request:)``
   public func exportPredictionResultMetadataPollingUntilDone(
     request: ExportPredictionResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportPredictionResultMetadataResponse {
@@ -1229,9 +1229,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deletePredictionResult(request:)``
+  /// - ``deletePredictionResultPollingUntilDone(name:)``
   /// - ``deletePredictionResultPollingUntilDone(request:)``
   /// - ``deletePredictionResultPollingUntilDone(request:options:)``
-  /// - ``deletePredictionResultPollingUntilDone(name:)``
   public func deletePredictionResult(
     request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1244,10 +1244,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deletePredictionResultPollingUntilDone(request:)``
-  /// - ``deletePredictionResultPollingUntilDone(name:)``
   /// - ``deletePredictionResult(request:)``
   /// - ``deletePredictionResult(request:options:)``
+  /// - ``deletePredictionResultPollingUntilDone(name:)``
+  /// - ``deletePredictionResultPollingUntilDone(request:)``
   public func deletePredictionResultPollingUntilDone(
     request: DeletePredictionResultRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1279,9 +1279,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listBacktestResults(request:)``
+  /// - ``listBacktestResultsByItems(parent:)``
   /// - ``listBacktestResultsByItems(request:)``
   /// - ``listBacktestResultsByItems(request:options:)``
-  /// - ``listBacktestResultsByItems(parent:)``
   public func listBacktestResults(
     request: ListBacktestResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.ListBacktestResultsResponse {
@@ -1294,8 +1294,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``getBacktestResult(request:)``
   /// - ``getBacktestResult(name:)``
+  /// - ``getBacktestResult(request:)``
   public func getBacktestResult(
     request: GetBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFinancialServicesV1.BacktestResult {
@@ -1309,9 +1309,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``createBacktestResult(request:)``
+  /// - ``createBacktestResultPollingUntilDone(parent:backtestResult:backtestResultId:)``
   /// - ``createBacktestResultPollingUntilDone(request:)``
   /// - ``createBacktestResultPollingUntilDone(request:options:)``
-  /// - ``createBacktestResultPollingUntilDone(parent:backtestResult:backtestResultId:)``
   public func createBacktestResult(
     request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1324,10 +1324,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``createBacktestResultPollingUntilDone(request:)``
-  /// - ``createBacktestResultPollingUntilDone(parent:backtestResult:backtestResultId:)``
   /// - ``createBacktestResult(request:)``
   /// - ``createBacktestResult(request:options:)``
+  /// - ``createBacktestResultPollingUntilDone(parent:backtestResult:backtestResultId:)``
+  /// - ``createBacktestResultPollingUntilDone(request:)``
   public func createBacktestResultPollingUntilDone(
     request: CreateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BacktestResult {
@@ -1360,9 +1360,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``updateBacktestResult(request:)``
+  /// - ``updateBacktestResultPollingUntilDone(backtestResult:updateMask:)``
   /// - ``updateBacktestResultPollingUntilDone(request:)``
   /// - ``updateBacktestResultPollingUntilDone(request:options:)``
-  /// - ``updateBacktestResultPollingUntilDone(backtestResult:updateMask:)``
   public func updateBacktestResult(
     request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1375,10 +1375,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``updateBacktestResultPollingUntilDone(request:)``
-  /// - ``updateBacktestResultPollingUntilDone(backtestResult:updateMask:)``
   /// - ``updateBacktestResult(request:)``
   /// - ``updateBacktestResult(request:options:)``
+  /// - ``updateBacktestResultPollingUntilDone(backtestResult:updateMask:)``
+  /// - ``updateBacktestResultPollingUntilDone(request:)``
   public func updateBacktestResultPollingUntilDone(
     request: UpdateBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> BacktestResult {
@@ -1414,9 +1414,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``exportBacktestResultMetadata(request:)``
+  /// - ``exportBacktestResultMetadataPollingUntilDone(backtestResult:structuredMetadataDestination:)``
   /// - ``exportBacktestResultMetadataPollingUntilDone(request:)``
   /// - ``exportBacktestResultMetadataPollingUntilDone(request:options:)``
-  /// - ``exportBacktestResultMetadataPollingUntilDone(backtestResult:structuredMetadataDestination:)``
   public func exportBacktestResultMetadata(
     request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1432,10 +1432,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``exportBacktestResultMetadataPollingUntilDone(request:)``
-  /// - ``exportBacktestResultMetadataPollingUntilDone(backtestResult:structuredMetadataDestination:)``
   /// - ``exportBacktestResultMetadata(request:)``
   /// - ``exportBacktestResultMetadata(request:options:)``
+  /// - ``exportBacktestResultMetadataPollingUntilDone(backtestResult:structuredMetadataDestination:)``
+  /// - ``exportBacktestResultMetadataPollingUntilDone(request:)``
   public func exportBacktestResultMetadataPollingUntilDone(
     request: ExportBacktestResultMetadataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportBacktestResultMetadataResponse {
@@ -1469,9 +1469,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``deleteBacktestResult(request:)``
+  /// - ``deleteBacktestResultPollingUntilDone(name:)``
   /// - ``deleteBacktestResultPollingUntilDone(request:)``
   /// - ``deleteBacktestResultPollingUntilDone(request:options:)``
-  /// - ``deleteBacktestResultPollingUntilDone(name:)``
   public func deleteBacktestResult(
     request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1484,10 +1484,10 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteBacktestResultPollingUntilDone(request:)``
-  /// - ``deleteBacktestResultPollingUntilDone(name:)``
   /// - ``deleteBacktestResult(request:)``
   /// - ``deleteBacktestResult(request:options:)``
+  /// - ``deleteBacktestResultPollingUntilDone(name:)``
+  /// - ``deleteBacktestResultPollingUntilDone(request:)``
   public func deleteBacktestResultPollingUntilDone(
     request: DeleteBacktestResultRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1549,9 +1549,9 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1577,8 +1577,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1593,8 +1593,8 @@ public final class AMLClient: Clients.AMLProtocol, Sendable {
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

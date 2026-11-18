@@ -53,9 +53,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``listBuckets(request:)``
+  /// - ``listBucketsByItems(parent:)``
   /// - ``listBucketsByItems(request:)``
   /// - ``listBucketsByItems(request:options:)``
-  /// - ``listBucketsByItems(parent:)``
   public func listBuckets(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListBucketsResponse {
@@ -100,9 +100,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createBucketAsyncPollingUntilDone(request:)``
   /// - ``createBucketAsync(request:)``
   /// - ``createBucketAsync(request:options:)``
+  /// - ``createBucketAsyncPollingUntilDone(request:)``
   public func createBucketAsyncPollingUntilDone(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> LogBucket {
@@ -158,9 +158,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateBucketAsyncPollingUntilDone(request:)``
   /// - ``updateBucketAsync(request:)``
   /// - ``updateBucketAsync(request:options:)``
+  /// - ``updateBucketAsyncPollingUntilDone(request:)``
   public func updateBucketAsyncPollingUntilDone(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> LogBucket {
@@ -255,9 +255,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``listViews(request:)``
+  /// - ``listViewsByItems(parent:)``
   /// - ``listViewsByItems(request:)``
   /// - ``listViewsByItems(request:options:)``
-  /// - ``listViewsByItems(parent:)``
   public func listViews(
     request: ListViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListViewsResponse {
@@ -331,9 +331,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``listSinks(request:)``
+  /// - ``listSinksByItems(parent:)``
   /// - ``listSinksByItems(request:)``
   /// - ``listSinksByItems(request:options:)``
-  /// - ``listSinksByItems(parent:)``
   public func listSinks(
     request: ListSinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListSinksResponse {
@@ -363,8 +363,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createSink(request:)``
   /// - ``createSink(parent:sink:)``
+  /// - ``createSink(request:)``
   public func createSink(
     request: CreateSinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -382,8 +382,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``updateSink(request:)``
-  /// - ``updateSink(sinkName:sink:updateMask:)``
   /// - ``updateSink(sinkName:sink:)``
+  /// - ``updateSink(sinkName:sink:updateMask:)``
   public func updateSink(
     request: UpdateSinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -414,9 +414,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``createLink(request:)``
+  /// - ``createLinkPollingUntilDone(parent:link:linkId:)``
   /// - ``createLinkPollingUntilDone(request:)``
   /// - ``createLinkPollingUntilDone(request:options:)``
-  /// - ``createLinkPollingUntilDone(parent:link:linkId:)``
   public func createLink(
     request: CreateLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -431,10 +431,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createLinkPollingUntilDone(request:)``
-  /// - ``createLinkPollingUntilDone(parent:link:linkId:)``
   /// - ``createLink(request:)``
   /// - ``createLink(request:options:)``
+  /// - ``createLinkPollingUntilDone(parent:link:linkId:)``
+  /// - ``createLinkPollingUntilDone(request:)``
   public func createLinkPollingUntilDone(
     request: CreateLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> Link {
@@ -467,9 +467,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``deleteLink(request:)``
+  /// - ``deleteLinkPollingUntilDone(name:)``
   /// - ``deleteLinkPollingUntilDone(request:)``
   /// - ``deleteLinkPollingUntilDone(request:options:)``
-  /// - ``deleteLinkPollingUntilDone(name:)``
   public func deleteLink(
     request: DeleteLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -483,10 +483,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteLinkPollingUntilDone(request:)``
-  /// - ``deleteLinkPollingUntilDone(name:)``
   /// - ``deleteLink(request:)``
   /// - ``deleteLink(request:options:)``
+  /// - ``deleteLinkPollingUntilDone(name:)``
+  /// - ``deleteLinkPollingUntilDone(request:)``
   public func deleteLinkPollingUntilDone(
     request: DeleteLinkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -518,9 +518,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``listLinks(request:)``
+  /// - ``listLinksByItems(parent:)``
   /// - ``listLinksByItems(request:)``
   /// - ``listLinksByItems(request:options:)``
-  /// - ``listLinksByItems(parent:)``
   public func listLinks(
     request: ListLinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListLinksResponse {
@@ -533,8 +533,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getLink(request:)``
   /// - ``getLink(name:)``
+  /// - ``getLink(request:)``
   public func getLink(
     request: GetLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.Link {
@@ -548,9 +548,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``listExclusions(request:)``
+  /// - ``listExclusionsByItems(parent:)``
   /// - ``listExclusionsByItems(request:)``
   /// - ``listExclusionsByItems(request:options:)``
-  /// - ``listExclusionsByItems(parent:)``
   public func listExclusions(
     request: ListExclusionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse {
@@ -563,8 +563,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getExclusion(request:)``
   /// - ``getExclusion(name:)``
+  /// - ``getExclusion(request:)``
   public func getExclusion(
     request: GetExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -579,8 +579,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``createExclusion(request:)``
   /// - ``createExclusion(parent:exclusion:)``
+  /// - ``createExclusion(request:)``
   public func createExclusion(
     request: CreateExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -594,8 +594,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``updateExclusion(request:)``
   /// - ``updateExclusion(name:exclusion:updateMask:)``
+  /// - ``updateExclusion(request:)``
   public func updateExclusion(
     request: UpdateExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -608,8 +608,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``deleteExclusion(request:)``
   /// - ``deleteExclusion(name:)``
+  /// - ``deleteExclusion(request:)``
   public func deleteExclusion(
     request: DeleteExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -682,8 +682,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``getSettings(request:)``
   /// - ``getSettings(name:)``
+  /// - ``getSettings(request:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.Settings {
@@ -742,9 +742,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``copyLogEntriesPollingUntilDone(request:)``
   /// - ``copyLogEntries(request:)``
   /// - ``copyLogEntries(request:options:)``
+  /// - ``copyLogEntriesPollingUntilDone(request:)``
   public func copyLogEntriesPollingUntilDone(
     request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> CopyLogEntriesResponse {
@@ -779,9 +779,9 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -807,8 +807,8 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -58,9 +58,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``createCollector(request:)``
+  /// - ``createCollectorPollingUntilDone(parent:collector:collectorId:)``
   /// - ``createCollectorPollingUntilDone(request:)``
   /// - ``createCollectorPollingUntilDone(request:options:)``
-  /// - ``createCollectorPollingUntilDone(parent:collector:collectorId:)``
   public func createCollector(
     request: CreateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,10 +74,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``createCollectorPollingUntilDone(request:)``
-  /// - ``createCollectorPollingUntilDone(parent:collector:collectorId:)``
   /// - ``createCollector(request:)``
   /// - ``createCollector(request:options:)``
+  /// - ``createCollectorPollingUntilDone(parent:collector:collectorId:)``
+  /// - ``createCollectorPollingUntilDone(request:)``
   public func createCollectorPollingUntilDone(
     request: CreateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collector {
@@ -109,9 +109,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``createAnnotation(request:)``
+  /// - ``createAnnotationPollingUntilDone(parent:annotation:)``
   /// - ``createAnnotationPollingUntilDone(request:)``
   /// - ``createAnnotationPollingUntilDone(request:options:)``
-  /// - ``createAnnotationPollingUntilDone(parent:annotation:)``
   public func createAnnotation(
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -124,10 +124,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``createAnnotationPollingUntilDone(request:)``
-  /// - ``createAnnotationPollingUntilDone(parent:annotation:)``
   /// - ``createAnnotation(request:)``
   /// - ``createAnnotation(request:options:)``
+  /// - ``createAnnotationPollingUntilDone(parent:annotation:)``
+  /// - ``createAnnotationPollingUntilDone(request:)``
   public func createAnnotationPollingUntilDone(
     request: CreateAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation {
@@ -162,8 +162,8 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``getAnnotation(request:)``
   /// - ``getAnnotation(name:)``
+  /// - ``getAnnotation(request:)``
   public func getAnnotation(
     request: GetAnnotationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Annotation {
@@ -177,9 +177,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``listCollectors(request:)``
+  /// - ``listCollectorsByItems(parent:)``
   /// - ``listCollectorsByItems(request:)``
   /// - ``listCollectorsByItems(request:options:)``
-  /// - ``listCollectorsByItems(parent:)``
   public func listCollectors(
     request: ListCollectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRapidMigrationAssessmentV1.ListCollectorsResponse {
@@ -192,8 +192,8 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``getCollector(request:)``
   /// - ``getCollector(name:)``
+  /// - ``getCollector(request:)``
   public func getCollector(
     request: GetCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRapidMigrationAssessmentV1.Collector {
@@ -207,9 +207,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``updateCollector(request:)``
+  /// - ``updateCollectorPollingUntilDone(collector:updateMask:)``
   /// - ``updateCollectorPollingUntilDone(request:)``
   /// - ``updateCollectorPollingUntilDone(request:options:)``
-  /// - ``updateCollectorPollingUntilDone(collector:updateMask:)``
   public func updateCollector(
     request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -222,10 +222,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``updateCollectorPollingUntilDone(request:)``
-  /// - ``updateCollectorPollingUntilDone(collector:updateMask:)``
   /// - ``updateCollector(request:)``
   /// - ``updateCollector(request:options:)``
+  /// - ``updateCollectorPollingUntilDone(collector:updateMask:)``
+  /// - ``updateCollectorPollingUntilDone(request:)``
   public func updateCollectorPollingUntilDone(
     request: UpdateCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collector {
@@ -258,9 +258,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``deleteCollector(request:)``
+  /// - ``deleteCollectorPollingUntilDone(name:)``
   /// - ``deleteCollectorPollingUntilDone(request:)``
   /// - ``deleteCollectorPollingUntilDone(request:options:)``
-  /// - ``deleteCollectorPollingUntilDone(name:)``
   public func deleteCollector(
     request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -274,10 +274,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``deleteCollectorPollingUntilDone(request:)``
-  /// - ``deleteCollectorPollingUntilDone(name:)``
   /// - ``deleteCollector(request:)``
   /// - ``deleteCollector(request:options:)``
+  /// - ``deleteCollectorPollingUntilDone(name:)``
+  /// - ``deleteCollectorPollingUntilDone(request:)``
   public func deleteCollectorPollingUntilDone(
     request: DeleteCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collector {
@@ -309,9 +309,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``resumeCollector(request:)``
+  /// - ``resumeCollectorPollingUntilDone(name:)``
   /// - ``resumeCollectorPollingUntilDone(request:)``
   /// - ``resumeCollectorPollingUntilDone(request:options:)``
-  /// - ``resumeCollectorPollingUntilDone(name:)``
   public func resumeCollector(
     request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -324,10 +324,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``resumeCollectorPollingUntilDone(request:)``
-  /// - ``resumeCollectorPollingUntilDone(name:)``
   /// - ``resumeCollector(request:)``
   /// - ``resumeCollector(request:options:)``
+  /// - ``resumeCollectorPollingUntilDone(name:)``
+  /// - ``resumeCollectorPollingUntilDone(request:)``
   public func resumeCollectorPollingUntilDone(
     request: ResumeCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collector {
@@ -359,9 +359,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``registerCollector(request:)``
+  /// - ``registerCollectorPollingUntilDone(name:)``
   /// - ``registerCollectorPollingUntilDone(request:)``
   /// - ``registerCollectorPollingUntilDone(request:options:)``
-  /// - ``registerCollectorPollingUntilDone(name:)``
   public func registerCollector(
     request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -374,10 +374,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``registerCollectorPollingUntilDone(request:)``
-  /// - ``registerCollectorPollingUntilDone(name:)``
   /// - ``registerCollector(request:)``
   /// - ``registerCollector(request:options:)``
+  /// - ``registerCollectorPollingUntilDone(name:)``
+  /// - ``registerCollectorPollingUntilDone(request:)``
   public func registerCollectorPollingUntilDone(
     request: RegisterCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collector {
@@ -409,9 +409,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``pauseCollector(request:)``
+  /// - ``pauseCollectorPollingUntilDone(name:)``
   /// - ``pauseCollectorPollingUntilDone(request:)``
   /// - ``pauseCollectorPollingUntilDone(request:options:)``
-  /// - ``pauseCollectorPollingUntilDone(name:)``
   public func pauseCollector(
     request: PauseCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -424,10 +424,10 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``pauseCollectorPollingUntilDone(request:)``
-  /// - ``pauseCollectorPollingUntilDone(name:)``
   /// - ``pauseCollector(request:)``
   /// - ``pauseCollector(request:options:)``
+  /// - ``pauseCollectorPollingUntilDone(name:)``
+  /// - ``pauseCollectorPollingUntilDone(request:)``
   public func pauseCollectorPollingUntilDone(
     request: PauseCollectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Collector {
@@ -489,9 +489,9 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -517,8 +517,8 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -533,8 +533,8 @@ public final class RapidMigrationAssessmentClient: Clients.RapidMigrationAssessm
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {

@@ -65,9 +65,9 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// ## See Also
   ///
   /// - ``listClientGateways(request:)``
+  /// - ``listClientGatewaysByItems(parent:)``
   /// - ``listClientGatewaysByItems(request:)``
   /// - ``listClientGatewaysByItems(request:options:)``
-  /// - ``listClientGatewaysByItems(parent:)``
   public func listClientGateways(
     request: ListClientGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpClientGatewaysV1.ListClientGatewaysResponse {
@@ -80,8 +80,8 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   ///
   /// ## See Also
   ///
-  /// - ``getClientGateway(request:)``
   /// - ``getClientGateway(name:)``
+  /// - ``getClientGateway(request:)``
   public func getClientGateway(
     request: GetClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBeyondCorpClientGatewaysV1.ClientGateway {
@@ -95,9 +95,9 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// ## See Also
   ///
   /// - ``createClientGateway(request:)``
+  /// - ``createClientGatewayPollingUntilDone(parent:clientGateway:clientGatewayId:)``
   /// - ``createClientGatewayPollingUntilDone(request:)``
   /// - ``createClientGatewayPollingUntilDone(request:options:)``
-  /// - ``createClientGatewayPollingUntilDone(parent:clientGateway:clientGatewayId:)``
   public func createClientGateway(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,10 +110,10 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   ///
   /// ## See Also
   ///
-  /// - ``createClientGatewayPollingUntilDone(request:)``
-  /// - ``createClientGatewayPollingUntilDone(parent:clientGateway:clientGatewayId:)``
   /// - ``createClientGateway(request:)``
   /// - ``createClientGateway(request:options:)``
+  /// - ``createClientGatewayPollingUntilDone(parent:clientGateway:clientGatewayId:)``
+  /// - ``createClientGatewayPollingUntilDone(request:)``
   public func createClientGatewayPollingUntilDone(
     request: CreateClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> ClientGateway {
@@ -146,9 +146,9 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// ## See Also
   ///
   /// - ``deleteClientGateway(request:)``
+  /// - ``deleteClientGatewayPollingUntilDone(name:)``
   /// - ``deleteClientGatewayPollingUntilDone(request:)``
   /// - ``deleteClientGatewayPollingUntilDone(request:options:)``
-  /// - ``deleteClientGatewayPollingUntilDone(name:)``
   public func deleteClientGateway(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -161,10 +161,10 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteClientGatewayPollingUntilDone(request:)``
-  /// - ``deleteClientGatewayPollingUntilDone(name:)``
   /// - ``deleteClientGateway(request:)``
   /// - ``deleteClientGateway(request:options:)``
+  /// - ``deleteClientGatewayPollingUntilDone(name:)``
+  /// - ``deleteClientGatewayPollingUntilDone(request:)``
   public func deleteClientGatewayPollingUntilDone(
     request: DeleteClientGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -276,9 +276,9 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   /// ## See Also
   ///
   /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
   /// - ``listOperationsByItems(request:)``
   /// - ``listOperationsByItems(request:options:)``
-  /// - ``listOperationsByItems(name:filter:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -304,8 +304,8 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   ///
   /// ## See Also
   ///
-  /// - ``deleteOperation(request:)``
   /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -320,8 +320,8 @@ public final class ClientGatewaysServiceClient: Clients.ClientGatewaysServicePro
   ///
   /// ## See Also
   ///
-  /// - ``cancelOperation(request:)``
   /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
