@@ -75,9 +75,11 @@ public struct AccessToken: Sendable, Hashable, CustomStringConvertible, CustomDe
 ///
 /// ``Credentials`` invokes ``accessToken()`` directly whenever ``Credentials/headers()`` or
 /// ``AnyAccessTokenProvider/accessToken()`` is called, without additional caching or retry logic.
-/// Google Cloud client libraries treat ``CredentialsError`` failures from authentication providers
-/// as non-retryable, so implementations that fetch tokens over the network or perform expensive
-/// operations are responsible for caching, refreshing, and retrying transient errors internally.
+/// Google Cloud client libraries treat errors thrown by custom ``AccessTokenProvider``
+/// implementations as non-retryable (unless rethrowing a transient ``CredentialsError`` from a
+/// built-in ``Credentials/accessTokenProvider``), so implementations that fetch tokens over the
+/// network or perform expensive operations are responsible for caching, refreshing, and retrying
+/// transient errors internally.
 ///
 /// Conforming types must be `Sendable` and provide a thread-safe implementation of ``accessToken()``
 /// (for example, an `actor` or a value type backed by synchronized state).

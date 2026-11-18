@@ -12,8 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
 import Testing
-import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct CredentialsErrorTest {
   @Test func notSupported() {
@@ -77,5 +78,97 @@ import GoogleAuth
         == "CredentialsError.credentialsNotFound(\"-- details here --\"): Credentials not found: -- details here --"
     )
     #expect(String(reflecting: anyError) == got.debugDescription)
+  }
+
+  private struct CustomFailure: Error {}
+
+  @Test(arguments: [
+    (CredentialsError.notSupported("unsupported"), false),
+    (CredentialsError.parseError("invalid"), false),
+    (
+      CredentialsError.cannotLoadFile(
+        message: "missing", underlyingError: URLError(.fileDoesNotExist)
+      ),
+      false
+    ),
+    (CredentialsError.credentialsNotFound("none"), false),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "custom error", underlyingError: CustomFailure()
+      ),
+      false
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "url error from custom provider", underlyingError: URLError(.timedOut)
+      ),
+      false
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "inner parse error", underlyingError: CredentialsError.parseError("mismatch")
+      ),
+      false
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "transient token failure",
+        underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
+      ),
+      true
+    ),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "impersonation source failed",
+        underlyingError: CredentialsError.cannotFetchToken(
+          message: "transient token failure",
+          underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
+        )
+      ),
+      true
+    ),
+  ])
+  func isRetryableStaticCases(error: CredentialsError, expected: Bool) {
+    #expect(error._isRetryable == expected)
+  }
+
+  @Test func expiredStaticAccessTokenIsNotRetryable() async throws {
+    let expiredCreds = try Credentials(
+      configuration: .accessToken(
+        AccessTokenConfig(token: "mock-token.expired", expirationDate: .distantPast)
+      )
+    )
+    let expiredError = await #expect(throws: CredentialsError.self) {
+      _ = try await expiredCreds.headers()
+    }
+    #expect(expiredError?._isRetryable == false)
+  }
+
+  @Test(arguments: [
+    (URLError(.timedOut) as any Error, false),
+    (
+      CredentialsError.cannotFetchToken(
+        message: "transient token failure",
+        underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
+      ) as any Error,
+      true
+    ),
+  ])
+  func customAccessTokenProviderRetryability(thrownError: any Error, expected: Bool) async throws {
+    struct FailingProvider: AccessTokenProvider {
+      let error: any Error
+      func accessToken() async throws -> AccessToken {
+        throw error
+      }
+    }
+    let creds = try Credentials(
+      configuration: .accessToken(
+        AccessTokenConfig(provider: FailingProvider(error: thrownError))
+      )
+    )
+    let caughtError = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(caughtError?._isRetryable == expected)
   }
 }
