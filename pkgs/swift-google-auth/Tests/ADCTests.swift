@@ -258,6 +258,89 @@ import Testing
     #expect(provider is UserCredentials)
   }
 
+  @Test func resolvesUserCredentialsQuotaProjectPrecedence() throws {
+    let jsonWithQuota = """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "quota_project_id": "json-quota-project"
+      }
+      """
+    let tempFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(jsonWithQuota.utf8).write(to: tempFile)
+    defer { try? FileManager.default.removeItem(at: tempFile) }
+
+    let fromJSON = try #require(
+      try ADC.resolve(
+        environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+      ) as? UserCredentials)
+    #expect(fromJSON.quotaProjectID == "json-quota-project")
+
+    let fromParameter = try #require(
+      try ADC.resolve(
+        quotaProjectID: "config-quota-project",
+        environment: ["GOOGLE_APPLICATION_CREDENTIALS": tempFile.path]
+      ) as? UserCredentials)
+    #expect(fromParameter.quotaProjectID == "config-quota-project")
+
+    let fromEnv = try #require(
+      try ADC.resolve(
+        quotaProjectID: "config-quota-project",
+        environment: [
+          "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+          "GOOGLE_CLOUD_QUOTA_PROJECT": "env-quota-project",
+        ]
+      ) as? UserCredentials)
+    #expect(fromEnv.quotaProjectID == "env-quota-project")
+
+    let fromEmptyEnvWithParameter = try #require(
+      try ADC.resolve(
+        quotaProjectID: "config-quota-project",
+        environment: [
+          "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+          "GOOGLE_CLOUD_QUOTA_PROJECT": "",
+        ]
+      ) as? UserCredentials)
+    #expect(fromEmptyEnvWithParameter.quotaProjectID == "config-quota-project")
+
+    let fromEmptyEnvAndEmptyParameter = try #require(
+      try ADC.resolve(
+        quotaProjectID: "",
+        environment: [
+          "GOOGLE_APPLICATION_CREDENTIALS": tempFile.path,
+          "GOOGLE_CLOUD_QUOTA_PROJECT": "",
+        ]
+      ) as? UserCredentials)
+    #expect(fromEmptyEnvAndEmptyParameter.quotaProjectID == "json-quota-project")
+
+    let jsonWithEmptyQuota = """
+      {
+        "type": "authorized_user",
+        "client_id": "test-client-id",
+        "client_secret": "test-client-secret",
+        "refresh_token": "test-refresh-token",
+        "quota_project_id": ""
+      }
+      """
+    let emptyQuotaFile = FileManager.default.temporaryDirectory.appendingPathComponent(
+      UUID().uuidString + ".json")
+    try Data(jsonWithEmptyQuota.utf8).write(to: emptyQuotaFile)
+    defer { try? FileManager.default.removeItem(at: emptyQuotaFile) }
+
+    let fromAllEmpty = try #require(
+      try ADC.resolve(
+        quotaProjectID: "",
+        environment: [
+          "GOOGLE_APPLICATION_CREDENTIALS": emptyQuotaFile.path,
+          "GOOGLE_CLOUD_QUOTA_PROJECT": "",
+        ]
+      ) as? UserCredentials)
+    #expect(fromAllEmpty.quotaProjectID == nil)
+  }
+
   @Test func throwsParseErrorOnMissingType() throws {
     let json = """
       {
@@ -408,7 +491,8 @@ import Testing
           "type": "authorized_user",
           "client_id": "test-client-id",
           "client_secret": "test-client-secret",
-          "refresh_token": "test-refresh-token"
+          "refresh_token": "test-refresh-token",
+          "quota_project_id": ""
         }
       }
       """
@@ -427,6 +511,8 @@ import Testing
       return
     }
     #expect(impersonated.quotaProjectID == nil)
+    let sourceUser = try #require(impersonated.provider.sourceCredentials as? UserCredentials)
+    #expect(sourceUser.quotaProjectID == nil)
     #expect(try await impersonated.universeDomain() == "googleapis.com")
   }
 

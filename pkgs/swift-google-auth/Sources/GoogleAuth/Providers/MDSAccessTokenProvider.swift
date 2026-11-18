@@ -131,7 +131,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     environment: [String: String] = ProcessInfo.processInfo.environment
   ) {
     self.endpoint = endpoint
-    self.quotaProjectID = quotaProjectID
+    self.quotaProjectID = nonEmpty(quotaProjectID)
     self.scopes = scopes
     self.retryConfiguration = retryConfiguration
     self.client = client
