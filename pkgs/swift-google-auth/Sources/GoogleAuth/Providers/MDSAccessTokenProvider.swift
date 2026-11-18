@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import Synchronization
 
 /// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
 ///
@@ -24,6 +25,23 @@ import Foundation
 ///
 /// - SeeAlso: [AIP-4115: Metadata Server](https://google.aip.dev/auth/4115)
 struct MDSAccessTokenProvider: TokenProvider, Sendable {
+  /// Tracks whether the metadata server has been confirmed reachable in the current runtime.
+  ///
+  /// Shared by reference across copies of `MDSAccessTokenProvider` so `MDSCredentials`,
+  /// `TokenCache`, and `MDSUniverseDomainCache` all observe confirmation once an initial ADC
+  /// fallback probe reaches a real metadata server.
+  private final class ProbeState: Sendable {
+    private let confirmed = Mutex(false)
+
+    var isConfirmed: Bool {
+      confirmed.withLock { $0 }
+    }
+
+    func confirm() {
+      confirmed.withLock { $0 = true }
+    }
+  }
+
   /// The base URL of the metadata server endpoint, or `nil` to resolve via environment/default.
   let endpoint: URL?
 
@@ -45,8 +63,24 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   /// The system environment variables dictionary, inspected for `GCE_METADATA_HOST`.
   let environment: [String: String]
 
+  /// Shared probe state tracking whether a real metadata server has responded.
+  private let probeState = ProbeState()
+
   /// The canonical base endpoint URL for the Google Cloud Compute Engine metadata server.
   static let defaultEndpoint = "http://metadata.google.internal"
+
+  /// Whether this provider targets the default metadata server via implicit ADC fallback
+  /// (no custom `endpoint` and no non-empty `GCE_METADATA_HOST` override).
+  private var isImplicitADCFallback: Bool {
+    let hostEnv = self.environment["GCE_METADATA_HOST"]
+    return self.fromADC && self.endpoint == nil && (hostEnv?.isEmpty ?? true)
+  }
+
+  /// Whether this provider reached the default metadata server via implicit ADC fallback and has
+  /// not yet observed a confirmed metadata server response.
+  private var isUnconfirmedADCFallback: Bool {
+    self.isImplicitADCFallback && !self.probeState.isConfirmed
+  }
 
   /// Initializes a new instance of `MDSAccessTokenProvider`.
   ///
@@ -151,6 +185,33 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       """
   }
 
+  /// Evaluates whether an error from `fetchToken()` or `fetchUniverseDomain()` is transient and
+  /// eligible for retry.
+  ///
+  /// While an implicit ADC fallback probe has not yet confirmed that a metadata server is present,
+  /// failures are treated as permanent so `RetryEngine`, `TokenCache`, `MDSUniverseDomainCache`,
+  /// and outer client retry/resume policies do not loop outside Google Cloud. Once MDS reachability
+  /// is confirmed, standard `AuthHTTPError.isRetryable(_:)` semantics apply.
+  func isRetryable(_ error: any Error) -> Bool {
+    if self.isUnconfirmedADCFallback {
+      return false
+    }
+    return AuthHTTPError.isRetryable(error)
+  }
+
+  /// Returns `true` when `error` is an HTTP response carrying a single `Metadata-Flavor: Google`
+  /// header, confirming that a Google Cloud metadata server responded (for example with a
+  /// transient 503 during VM or pod startup).
+  private static func hasMetadataFlavorGoogle(_ error: any Error) -> Bool {
+    guard let values = (error as? AuthHTTPError)?.headerValues(named: "Metadata-Flavor"),
+      values.count == 1
+    else {
+      return false
+    }
+    return values[0].trimmingCharacters(in: .whitespaces)
+      .caseInsensitiveCompare("Google") == .orderedSame
+  }
+
   /// Fetches a fresh OAuth 2.0 access token from the metadata server.
   ///
   /// Resolves the base URL using `endpoint`, `GCE_METADATA_HOST`, or `defaultEndpoint`, Appends the token path
@@ -162,8 +223,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   func fetchToken() async throws -> AccessToken {
     let hostEnv = self.environment["GCE_METADATA_HOST"]
     let baseEndpoint = try self.resolveBaseEndpoint(hostEnv: hostEnv)
-    let isADCFallback =
-      self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
 
     guard
       var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false),
@@ -171,7 +230,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       !host.isEmpty
     else {
       throw CredentialsError.cannotFetchToken(
-        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback, endpoint: baseEndpoint),
         underlyingError: CredentialsError.parseError(
           "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
       )
@@ -186,7 +246,8 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
 
     guard let url = urlComponents.url else {
       throw CredentialsError.cannotFetchToken(
-        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
+        message: Self.errorMessage(
+          isADCFallback: self.isUnconfirmedADCFallback, endpoint: baseEndpoint),
         underlyingError: CredentialsError.parseError(
           "Invalid metadata server endpoint URL: '\(baseEndpoint.absoluteString)'")
       )
@@ -201,35 +262,41 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     }
 
     let fetchOperation: @Sendable () async throws -> AccessToken = {
-      let response: TokenResponse = try await self.client.get(url: url, headers: headers)
-      let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
-      return AccessToken(
-        token: response.accessToken,
-        tokenType: response.tokenType,
-        expirationDate: expiration
-      )
+      do {
+        let response: TokenResponse = try await self.client.get(url: url, headers: headers)
+        self.probeState.confirm()
+        let expiration = Date().addingTimeInterval(TimeInterval(response.expiresIn))
+        return AccessToken(
+          token: response.accessToken,
+          tokenType: response.tokenType,
+          expirationDate: expiration
+        )
+      } catch {
+        if Self.hasMetadataFlavorGoogle(error) {
+          self.probeState.confirm()
+        }
+        throw error
+      }
     }
 
     // ADC falls back to the metadata server when it finds no other credentials. Outside Google
-    // Cloud that fallback cannot succeed, so fail fast instead of retrying.
+    // Cloud that unconfirmed probe fails fast via `self.isRetryable` returning `false`; once MDS
+    // reachability is confirmed, subsequent refreshes use standard retry behavior.
     do {
-      if isADCFallback {
-        return try await fetchOperation()
-      } else {
-        return try await RetryEngine.retry(
-          configuration: self.retryConfiguration ?? .defaultConfiguration,
-          isRetryable: AuthHTTPError.isRetryable,
-          operation: fetchOperation
-        )
-      }
+      return try await RetryEngine.retry(
+        configuration: self.retryConfiguration ?? .defaultConfiguration,
+        isRetryable: self.isRetryable,
+        operation: fetchOperation
+      )
     } catch is CancellationError {
       throw CancellationError()
     } catch let AuthHTTPError.unknown(inner) where inner is CancellationError {
       throw CancellationError()
     } catch {
+      let unconfirmed = self.isUnconfirmedADCFallback
       throw CredentialsError.cannotFetchToken(
-        message: Self.errorMessage(isADCFallback: isADCFallback, endpoint: baseEndpoint),
-        underlyingError: isADCFallback ? NonRetryableTokenError(underlying: error) : error
+        message: Self.errorMessage(isADCFallback: unconfirmed, endpoint: baseEndpoint),
+        underlyingError: unconfirmed ? NonRetryableTokenError(underlying: error) : error
       )
     }
   }
@@ -249,8 +316,6 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       hostEnv: hostEnv,
       resource: "the universe domain"
     )
-    let isADCFallback =
-      self.fromADC && self.endpoint == nil && (hostEnv == nil || hostEnv?.isEmpty == true)
 
     guard
       var urlComponents = URLComponents(url: baseEndpoint, resolvingAgainstBaseURL: false),
@@ -259,7 +324,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     else {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(
-          isADCFallback: isADCFallback,
+          isADCFallback: self.isUnconfirmedADCFallback,
           endpoint: baseEndpoint,
           resource: "the universe domain"
         ),
@@ -272,7 +337,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     guard let url = urlComponents.url else {
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(
-          isADCFallback: isADCFallback,
+          isADCFallback: self.isUnconfirmedADCFallback,
           endpoint: baseEndpoint,
           resource: "the universe domain"
         ),
@@ -286,38 +351,44 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
     let fetchOperation: @Sendable () async throws -> String = {
       do {
         let response = try await self.client.getString(url: url, headers: headers)
+        self.probeState.confirm()
         let trimmed = response.trimmingCharacters(in: .whitespacesAndNewlines)
         if trimmed.isEmpty {
           return defaultUniverseDomain
         }
         return trimmed
       } catch let error as AuthHTTPError where error.statusCode == 404 {
+        if Self.hasMetadataFlavorGoogle(error) {
+          self.probeState.confirm()
+        }
         return defaultUniverseDomain
+      } catch {
+        if Self.hasMetadataFlavorGoogle(error) {
+          self.probeState.confirm()
+        }
+        throw error
       }
     }
 
     do {
-      if isADCFallback {
-        return try await fetchOperation()
-      } else {
-        return try await RetryEngine.retry(
-          configuration: self.retryConfiguration ?? .defaultConfiguration,
-          isRetryable: AuthHTTPError.isRetryable,
-          operation: fetchOperation
-        )
-      }
+      return try await RetryEngine.retry(
+        configuration: self.retryConfiguration ?? .defaultConfiguration,
+        isRetryable: self.isRetryable,
+        operation: fetchOperation
+      )
     } catch is CancellationError {
       throw CancellationError()
     } catch let AuthHTTPError.unknown(inner) where inner is CancellationError {
       throw CancellationError()
     } catch {
+      let unconfirmed = self.isUnconfirmedADCFallback
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(
-          isADCFallback: isADCFallback,
+          isADCFallback: unconfirmed,
           endpoint: baseEndpoint,
           resource: "the universe domain"
         ),
-        underlyingError: isADCFallback ? NonRetryableTokenError(underlying: error) : error
+        underlyingError: unconfirmed ? NonRetryableTokenError(underlying: error) : error
       )
     }
   }

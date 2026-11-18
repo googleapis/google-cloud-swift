@@ -1050,6 +1050,175 @@ import Testing
     #expect(universeAttempts.getCount() == 1)
   }
 
+  @Test func adcFallbackConfirmedByMetadataFlavorRetriesColdStartAndDoesNotPoisonCache()
+    async throws
+  {
+    struct MockTokenPayload: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let tokenData = try encoder.encode(
+      MockTokenPayload(
+        accessToken: "cold-start-recovered-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let attempts = CallCounter()
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        attempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: tokenData))
+        )
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 2, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    // First call hits 503 with Metadata-Flavor: Google, confirming MDS and retrying up to maxAttempts (2).
+    let firstError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    let unwrapped = try #require(firstError)
+    #expect(unwrapped._isRetryable == true)
+    #expect(!unwrapped.description.contains("gcloud auth application-default login"))
+    #expect(attempts.getCount() == 2)
+
+    // Because MDS was confirmed, TokenCache did not latch permanentError; next call succeeds.
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer cold-start-recovered-token")
+    #expect(attempts.getCount() == 3)
+  }
+
+  @Test func adcFallbackConfirmedOnStartupSurvivesTransientRefreshFailure() async throws {
+    struct MockTokenPayload: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    // `expiresIn: 0` forces immediate expiration so subsequent `headers()` calls trigger a fresh fetch.
+    let initialData = try encoder.encode(
+      MockTokenPayload(accessToken: "initial-mds-token", expiresIn: 0, tokenType: "Bearer")
+    )
+    let refreshedData = try encoder.encode(
+      MockTokenPayload(accessToken: "refreshed-mds-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: initialData))
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        throw URLError(.timedOut)
+      },
+      { request in
+        Self.checkRequest(request)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: refreshedData))
+        )
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 1, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:],
+      jitter: nil
+    )
+
+    let firstHeaders = try await provider.headers()
+    #expect(firstHeaders["Authorization"] == "Bearer initial-mds-token")
+
+    // Transient refresh failure after confirmation must remain retryable and must not poison TokenCache.
+    let refreshError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(refreshError?._isRetryable == true)
+
+    let recoveredHeaders = try await provider.headers()
+    #expect(recoveredHeaders["Authorization"] == "Bearer refreshed-mds-token")
+  }
+
+  @Test func adcFallbackGeneric404OnUniverseDomainDoesNotConfirmMDS() async throws {
+    let tokenAttempts = CallCounter()
+    let mock = MockHTTPClient([
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        // Generic 404 without Metadata-Flavor: Google header.
+        return HTTPClientResponse(version: .http2, status: .notFound)
+      },
+      { request in
+        Self.checkRequest(request)
+        tokenAttempts.increment()
+        throw URLError(.cannotConnectToHost)
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:]
+    )
+
+    #expect(try await provider.universeDomain() == "googleapis.com")
+
+    let tokenError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(tokenError?._isRetryable == false)
+    #expect(tokenAttempts.getCount() == 1)
+  }
+
   @Test func explicitMDSMarksTransientErrorsRetryableAndPermanentErrorsNonRetryable() async throws {
     let retryConfig = RetryConfiguration(
       maxAttempts: 1, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
