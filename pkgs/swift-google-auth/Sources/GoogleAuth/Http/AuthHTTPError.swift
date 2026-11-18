@@ -102,11 +102,31 @@ extension AuthHTTPError {
     }
   }
 
+  /// Returns `true` when `error` represents a transient TCP, DNS, or connectivity failure.
+  ///
+  /// Configuration, file-system, authentication, cancellation, and TLS certificate `URLError`
+  /// codes (such as `.badURL`, `.fileDoesNotExist`, `.userAuthenticationRequired`,
+  /// `.serverCertificateUntrusted`, and `.cancelled`) return `false`.
+  static func isTransientNetworkError(_ error: URLError) -> Bool {
+    switch error.code {
+    case .timedOut,
+      .networkConnectionLost,
+      .cannotConnectToHost,
+      .notConnectedToInternet,
+      .dnsLookupFailed,
+      .cannotFindHost:
+      return true
+    default:
+      return false
+    }
+  }
+
   /// Indicates whether this HTTP error is transient and eligible for retry.
   ///
   /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
-  /// transport errors, and unknown errors are considered transient and retryable. Client errors
-  /// (other 4xx statuses) and payload decoding errors are considered permanent.
+  /// transient network `URLError`s (`Self.isTransientNetworkError(_:)`), and non-cancellation
+  /// unknown errors are considered transient and retryable. Client errors (other 4xx statuses),
+  /// non-transient `URLError`s, and payload decoding errors are considered permanent.
   var isRetryable: Bool {
     switch self {
     case .unsuccessfulResponse(let response, _):
@@ -114,8 +134,8 @@ extension AuthHTTPError {
       return status >= 500 || status == 429 || status == 408
     case .decodingError, .invalidUTF8Response:
       return false
-    case .transportError:
-      return true
+    case .transportError(let error):
+      return Self.isTransientNetworkError(error)
     case .unknown(let error):
       return !(error is CancellationError)
     }
@@ -124,26 +144,59 @@ extension AuthHTTPError {
   /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
   ///
   /// Unwraps `CredentialsError.cannotFetchToken` to evaluate the underlying error when invoked by `TokenCache`,
-  /// and treats other `CredentialsError` cases as permanent.
+  /// treats transient network `URLError`s as retryable, and treats other `CredentialsError` cases and
+  /// unrecognized error types as non-retryable.
   ///
   /// - Parameter error: The error to evaluate.
-  /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
+  /// - Returns: `true` if the error is transient and should be retried; `false` otherwise.
   static func isRetryable(_ error: any Error) -> Bool {
     if error is CancellationError {
       return false
     }
     if let credentialsError = error as? CredentialsError {
-      switch credentialsError {
-      case .cannotFetchToken(_, let underlyingError):
-        return isRetryable(underlyingError)
-      case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
-        return false
-      }
+      return credentialsError._isRetryable
     }
     if let authError = error as? AuthHTTPError {
       return authError.isRetryable
     }
-    return true
+    if let urlError = error as? URLError {
+      return Self.isTransientNetworkError(urlError)
+    }
+    return false
+  }
+
+  /// Evaluates whether a non-retryable error is definitively permanent and safe to latch in
+  /// `TokenCache.permanentError` or `MDSUniverseDomainCache.permanentError` for the lifetime of
+  /// the credentials instance.
+  ///
+  /// Returns `true` only for known-permanent `GoogleAuth` errors (configuration/parse/discovery
+  /// errors, non-retryable `AuthHTTPError` responses other than `.cancelled`, and expired static
+  /// tokens). Returns `false` for `CancellationError` and opaque errors thrown by user-supplied
+  /// `SubjectTokenProvider` or `AccessTokenProvider` implementations (such as `HTTPClientError` or
+  /// `NIOConnectionError` on Linux), preventing transient supplier failures from permanently
+  /// disabling the credentials.
+  static func shouldCachePermanentError(_ error: any Error) -> Bool {
+    if error is CancellationError {
+      return false
+    }
+    if let credentialsError = error as? CredentialsError {
+      switch credentialsError {
+      case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
+        return true
+      case .cannotFetchToken(_, let underlyingError):
+        return Self.shouldCachePermanentError(underlyingError)
+      }
+    }
+    if let authError = error as? AuthHTTPError {
+      if case .transportError(let urlError) = authError, urlError.code == .cancelled {
+        return false
+      }
+      return !authError.isRetryable
+    }
+    if error is StaticAccessTokenProvider.ExpiredTokenError {
+      return true
+    }
+    return false
   }
 }
 

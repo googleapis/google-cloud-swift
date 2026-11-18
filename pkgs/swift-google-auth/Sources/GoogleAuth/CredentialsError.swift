@@ -135,3 +135,30 @@ extension CredentialsError: CustomStringConvertible {
     }
   }
 }
+
+@_spi(GoogleCloudInternal)
+extension CredentialsError {
+  /// Indicates whether this credentials error represents a transient token-fetch failure that is
+  /// eligible for transport-level retry or stream resumption.
+  ///
+  /// Returns `true` only when `.cannotFetchToken` wraps a transient `AuthHTTPError` (such as
+  /// HTTP 408, 429, 5xx, or a network transport error) or recursively wraps a retryable
+  /// `CredentialsError`. Configuration, file-loading, discovery, universe-domain mismatch, HTTP
+  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, non-network
+  /// `SubjectTokenProvider`, and unconfirmed implicit ADC metadata server fallback failures
+  /// return `false`.
+  public var _isRetryable: Bool {
+    switch self {
+    case .cannotFetchToken(_, let underlyingError):
+      if let inner = underlyingError as? CredentialsError {
+        return inner._isRetryable
+      }
+      if let authError = underlyingError as? AuthHTTPError {
+        return authError.isRetryable
+      }
+      return false
+    case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
+      return false
+    }
+  }
+}

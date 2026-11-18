@@ -18,7 +18,7 @@ import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
 import Testing
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 private struct MockSubjectTokenProvider: SubjectTokenProvider {
   let token: String
@@ -31,11 +31,16 @@ private struct MockSubjectTokenProvider: SubjectTokenProvider {
 private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
   struct ProviderError: Error {}
 
+  let error: any Error
   var callCount = 0
+
+  init(error: any Error = URLError(.networkConnectionLost)) {
+    self.error = error
+  }
 
   func subjectToken() async throws -> String {
     callCount = callCount + 1
-    throw ProviderError()
+    throw error
   }
 }
 
@@ -411,9 +416,9 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(attempts.getCount() == 1)
   }
 
-  @Test("Programmatic credentials retry on custom provider errors")
+  @Test("Programmatic credentials retry on transient network provider errors")
   func programmaticCredentialsRetriesOnProviderErrors() async throws {
-    let provider = MockFailingSubjectTokenProvider()
+    let provider = MockFailingSubjectTokenProvider(error: URLError(.networkConnectionLost))
     let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
     let mock = MockHTTPClient([])
     let httpClient = AuthHTTPClient(mock: mock)
@@ -425,15 +430,17 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       httpClient: httpClient
     )
 
-    // First attempt should throw the provider error wrapped in CredentialsError.cannotFetchToken
+    // First attempt wraps URLError in AuthHTTPError.transportError inside CredentialsError.cannotFetchToken
     let error1 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
-    guard case let .cannotFetchToken(_, underlyingError1) = error1 else {
+    let unwrapped1 = try #require(error1)
+    #expect(unwrapped1._isRetryable == true)
+    guard case let .cannotFetchToken(_, underlyingError1) = unwrapped1 else {
       Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
       return
     }
-    #expect(underlyingError1 is MockFailingSubjectTokenProvider.ProviderError)
+    #expect((underlyingError1 as? AuthHTTPError)?.urlError?.code == .networkConnectionLost)
 
     // Depending on how the TokenCache background task is scheduled, this count may be 1 or 2.
     let count1 = await provider.callCount
@@ -443,14 +450,155 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     let error2 = await #expect(throws: CredentialsError.self) {
       _ = try await creds.headers()
     }
-    guard case let .cannotFetchToken(_, underlyingError2) = error2 else {
-      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error2))")
-      return
-    }
-    #expect(underlyingError2 is MockFailingSubjectTokenProvider.ProviderError)
+    let unwrapped2 = try #require(error2)
+    #expect(unwrapped2._isRetryable == true)
 
     let count2 = await provider.callCount
     #expect(count2 > count1)
+  }
+
+  @Test(
+    "Programmatic credentials fail fast on custom provider errors without poisoning TokenCache"
+  )
+  func programmaticCredentialsCustomProviderErrorFailsFastAndRecovers() async throws {
+    actor RecoverableSubjectTokenProvider: SubjectTokenProvider {
+      var callCount = 0
+      var shouldFail = true
+
+      func setShouldFail(_ value: Bool) {
+        shouldFail = value
+      }
+
+      func subjectToken() async throws -> String {
+        callCount += 1
+        if shouldFail {
+          throw HTTPClientError.remoteConnectionClosed
+        }
+        return "recovered-subject-token"
+      }
+    }
+
+    let provider = RecoverableSubjectTokenProvider()
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let expectedResponse = TokenResponse(
+      accessToken: "mock-token.sts-recovered",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { _ in
+        HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+
+    let error1 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    let unwrapped1 = try #require(error1)
+    #expect(unwrapped1._isRetryable == false)
+    guard case let .cannotFetchToken(_, underlyingError1) = unwrapped1 else {
+      Issue.record("Expected CredentialsError.cannotFetchToken, got \(String(describing: error1))")
+      return
+    }
+    #expect(underlyingError1 is HTTPClientError)
+    #expect(await provider.callCount == 1)
+
+    // Once the custom supplier recovers (e.g. after a Linux HTTPClientError blip), TokenCache
+    // has not permanently latched the error and the next call succeeds.
+    await provider.setShouldFail(false)
+    let headers = try await creds.headers()
+    #expect(headers["Authorization"] == "Bearer mock-token.sts-recovered")
+    #expect(await provider.callCount == 2)
+  }
+
+  @Test(
+    "Programmatic credentials classify SubjectTokenProvider URLErrors via transient network allowlist",
+    arguments: [
+      (code: URLError.Code.timedOut, expectedRetryable: true),
+      (code: .networkConnectionLost, expectedRetryable: true),
+      (code: .cannotConnectToHost, expectedRetryable: true),
+      (code: .notConnectedToInternet, expectedRetryable: true),
+      (code: .dnsLookupFailed, expectedRetryable: true),
+      (code: .cannotFindHost, expectedRetryable: true),
+      (code: .cancelled, expectedRetryable: false),
+      (code: .badURL, expectedRetryable: false),
+      (code: .unsupportedURL, expectedRetryable: false),
+      (code: .fileDoesNotExist, expectedRetryable: false),
+      (code: .noPermissionsToReadFile, expectedRetryable: false),
+      (code: .userAuthenticationRequired, expectedRetryable: false),
+      (code: .serverCertificateUntrusted, expectedRetryable: false),
+    ]
+  )
+  func programmaticCredentialsClassifiesSubjectTokenURLErrors(
+    code: URLError.Code,
+    expectedRetryable: Bool
+  ) async throws {
+    let provider = MockFailingSubjectTokenProvider(error: URLError(code))
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    let unwrapped = try #require(error)
+    #expect(unwrapped._isRetryable == expectedRetryable)
+  }
+
+  @Test("Programmatic credentials cache permanent STS HTTP 4xx errors in TokenCache")
+  func programmaticCredentialsCachesPermanentSTSError() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let stsAttempts = CallCounter()
+    let mock = MockHTTPClient([
+      { _ in
+        stsAttempts.increment()
+        return HTTPClientResponse(version: .http2, status: .badRequest)
+      }
+    ])
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+
+    let error1 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(error1?._isRetryable == false)
+    #expect(stsAttempts.getCount() == 1)
+
+    // Permanent STS 400 response is cached in TokenCache without re-contacting STS.
+    let error2 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(error2?._isRetryable == false)
+    #expect(stsAttempts.getCount() == 1)
   }
 
   @Test(
