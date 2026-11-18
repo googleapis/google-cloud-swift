@@ -43,6 +43,7 @@
     ///
     /// [google.cloud.dialogflow.cx.v3.QueryResult.data_store_connection_signals]: <doc:QueryResult/dataStoreConnectionSignals>
     /// [google.cloud.dialogflow.cx.v3.QueryResult.diagnostic_info]: <doc:QueryResult/diagnosticInfo>
+    /// [google.cloud.dialogflow.cx.v3.QueryResult.trace_blocks]: <doc:QueryResult/traceBlocks>
     case basic
     /// Default response view omits the following fields:
     /// -
