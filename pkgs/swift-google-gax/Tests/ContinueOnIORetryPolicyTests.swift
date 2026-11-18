@@ -12,13 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 import GoogleGax
 import Testing
 
 @Suite struct ContinueIOTests {
-  @Test func retryIO() {
+  @Test func retryIO() async throws {
     let p = NeverRetry().retryOnIO()
 
     let ioError = mockIOError()
@@ -47,12 +46,7 @@ import Testing
         == .permanent(permanentFetchError)
     )
 
-    let transientCredentialsError = RequestError.io(
-      CredentialsError._transientCannotFetchToken(
-        message: "MDS 503",
-        underlyingError: URLError(.timedOut)
-      )
-    )
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
     #expect(
       p.onError(state: idempotentState(), error: transientCredentialsError)
         == .retry(transientCredentialsError)
@@ -82,7 +76,7 @@ import Testing
     #expect(p.remainingTime(state: nonIdempotentState()) == nil)
   }
 
-  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysRetry() {
+  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysRetry() async throws {
     let p = AlwaysRetry.unbounded().retryOnIO()
 
     let ioError = mockIOError()
@@ -108,12 +102,7 @@ import Testing
         == .permanent(permanentFetchError)
     )
 
-    let transientCredentialsError = RequestError.io(
-      CredentialsError._transientCannotFetchToken(
-        message: "MDS 503",
-        underlyingError: URLError(.timedOut)
-      )
-    )
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
     #expect(
       p.onError(state: idempotentState(), error: transientCredentialsError)
         == .retry(transientCredentialsError)

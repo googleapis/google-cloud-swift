@@ -144,8 +144,9 @@ extension CredentialsError {
   /// Returns `true` only when `.cannotFetchToken` wraps a transient `AuthHTTPError` (such as
   /// HTTP 408, 429, 5xx, or a network transport error) or recursively wraps a retryable
   /// `CredentialsError`. Configuration, file-loading, discovery, universe-domain mismatch, HTTP
-  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, and implicit ADC
-  /// metadata server fallback failures return `false`.
+  /// 4xx, payload-decoding, expired static token, custom `AccessTokenProvider`, non-network
+  /// `SubjectTokenProvider`, and unconfirmed implicit ADC metadata server fallback failures
+  /// return `false`.
   public var _isRetryable: Bool {
     switch self {
     case .cannotFetchToken(_, let underlyingError):
@@ -159,16 +160,5 @@ extension CredentialsError {
     case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
       return false
     }
-  }
-
-  /// Constructs a transient `.cannotFetchToken` error for cross-package retry and resume tests.
-  public static func _transientCannotFetchToken(
-    message: String,
-    underlyingError: any Error & Sendable
-  ) -> CredentialsError {
-    .cannotFetchToken(
-      message: message,
-      underlyingError: AuthHTTPError.unknown(underlyingError)
-    )
   }
 }

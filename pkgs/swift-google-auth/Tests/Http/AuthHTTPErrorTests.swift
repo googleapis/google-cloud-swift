@@ -194,9 +194,16 @@ import Testing
     #expect(AuthHTTPError.isRetryable(CredentialsError.notSupported("unsupported")) == false)
     #expect(AuthHTTPError.isRetryable(CredentialsError.credentialsNotFound("missing")) == false)
 
-    // Non-AuthHTTPError errors default to retryable inside internal `AuthHTTPError.isRetryable`
-    // (used by `TokenCache` for custom `SubjectTokenProvider` retries).
+    // Bare URLError is retryable, while unrecognized non-network error types are permanent.
+    struct UnrecognizedError: Error {}
     #expect(AuthHTTPError.isRetryable(URLError(.cannotConnectToHost)) == true)
+    #expect(AuthHTTPError.isRetryable(UnrecognizedError()) == false)
+    #expect(
+      AuthHTTPError.isRetryable(
+        CredentialsError.cannotFetchToken(
+          message: "custom provider failure", underlyingError: UnrecognizedError())
+      ) == false
+    )
   }
 
   // MARK: - String Formatting

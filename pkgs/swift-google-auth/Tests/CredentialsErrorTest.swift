@@ -14,7 +14,7 @@
 
 import Foundation
 import Testing
-@_spi(GoogleCloudInternal) import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 @Suite struct CredentialsErrorTest {
   @Test func notSupported() {
@@ -110,9 +110,9 @@ import Testing
     )
 
     // Transient auth HTTP errors and nested transient CredentialsError values are retryable.
-    let transient = CredentialsError._transientCannotFetchToken(
+    let transient = CredentialsError.cannotFetchToken(
       message: "transient token failure",
-      underlyingError: URLError(.networkConnectionLost)
+      underlyingError: AuthHTTPError.transportError(URLError(.networkConnectionLost))
     )
     #expect(transient._isRetryable == true)
     let nestedTransient = CredentialsError.cannotFetchToken(

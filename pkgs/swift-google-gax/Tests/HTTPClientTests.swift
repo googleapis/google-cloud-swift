@@ -17,7 +17,7 @@ import Synchronization
 import Testing
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleGax
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 import GoogleRpc
 import struct GoogleWKT.WKTEmpty
 import AsyncHTTPClient
@@ -1351,10 +1351,7 @@ import NIOHTTP1
           return count
         }
         if current == 1 {
-          throw CredentialsError._transientCannotFetchToken(
-            message: "temporary MDS universe query failure",
-            underlyingError: URLError(.timedOut)
-          )
+          throw try await makeTransientCredentialsError()
         }
         return "googleapis.com"
       }
@@ -1517,10 +1514,7 @@ import NIOHTTP1
           return count
         }
         if current == 1 {
-          throw CredentialsError._transientCannotFetchToken(
-            message: "temporary MDS 503",
-            underlyingError: URLError(.timedOut)
-          )
+          throw try await makeTransientCredentialsError()
         }
         return [("authorization", "Bearer recovered-token")]
       }

@@ -14,6 +14,7 @@
 
 import Foundation
 import AsyncHTTPClient
+import GoogleAuth
 import NIOCore
 import NIOFoundationCompat
 import NIOHTTP1
@@ -29,6 +30,28 @@ enum MockResponse: Sendable {
 }
 
 struct MockNetworkError: Error, Sendable, Equatable {}
+
+func makeTransientCredentialsError() async throws -> CredentialsError {
+  struct TransientSubjectProvider: SubjectTokenProvider {
+    func subjectToken() async throws -> String {
+      throw URLError(.networkConnectionLost)
+    }
+  }
+  let config = ExternalAccountConfig(
+    credentialSource: .programmatic(subjectTokenProvider: TransientSubjectProvider()),
+    audience:
+      "//iam.googleapis.com/projects/1/locations/global/workloadIdentityPools/p/providers/pr",
+    subjectTokenType: .idToken,
+    tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+  )
+  let credentials = try Credentials(configuration: .externalAccount(config))
+  do {
+    _ = try await credentials.headers()
+    preconditionFailure("Expected transient CredentialsError")
+  } catch let error as CredentialsError {
+    return error
+  }
+}
 
 /// Recorded HTTP request during testing
 struct RecordedRequest: Sendable {

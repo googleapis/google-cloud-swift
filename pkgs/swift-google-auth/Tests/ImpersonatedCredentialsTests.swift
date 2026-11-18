@@ -20,7 +20,7 @@ import NIOFoundationCompat
 import NIOHTTP1
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 private struct StaticSourceCredentials: CredentialsProvider {
   let authHeaders: AuthHeaders
@@ -677,5 +677,39 @@ private struct FailingSourceCredentials: CredentialsProvider {
     )
     let headers = try await creds.headers()
     #expect(headers["Authorization"] == "Bearer mock-anon-impersonated-token")
+  }
+
+  @Test func customAccessTokenProviderSourceCachesPermanentFailureInTokenCache() async throws {
+    struct CustomSourceError: Error {}
+    actor CountingFailingAccessTokenProvider: AccessTokenProvider {
+      var callCount = 0
+      func accessToken() async throws -> AccessToken {
+        callCount += 1
+        throw CustomSourceError()
+      }
+    }
+
+    let customProvider = CountingFailingAccessTokenProvider()
+    let sourceCreds = try Credentials(
+      configuration: .accessToken(AccessTokenConfig(provider: customProvider))
+    )
+    let creds = try ImpersonatedCredentials(
+      sourceCredentials: sourceCreds.credentialsProvider,
+      targetPrincipal: "target@project.iam.gserviceaccount.com",
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+
+    let error1 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(error1?._isRetryable == false)
+    #expect(await customProvider.callCount == 1)
+
+    // Subsequent calls must fail immediately from TokenCache's permanentError without re-polling.
+    let error2 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(error2?._isRetryable == false)
+    #expect(await customProvider.callCount == 1)
   }
 }

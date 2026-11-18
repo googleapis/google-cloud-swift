@@ -163,17 +163,12 @@ extension AuthHTTPError {
       return false
     }
     if let credentialsError = error as? CredentialsError {
-      switch credentialsError {
-      case .cannotFetchToken(_, let underlyingError):
-        return isRetryable(underlyingError)
-      case .parseError, .notSupported, .cannotLoadFile, .credentialsNotFound:
-        return false
-      }
+      return credentialsError._isRetryable
     }
     if let authError = error as? AuthHTTPError {
       return authError.isRetryable
     }
-    return true
+    return error is URLError
   }
 }
 

@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import Synchronization
@@ -787,14 +787,10 @@ import Testing
       for: resumeUrl
     )
 
+    let transientCredError = try await makeTransientCredentialsError()
     let provider = SequencedAccessTokenProvider([
       .success(AccessToken(token: "token-1")),
-      .failure(
-        CredentialsError._transientCannotFetchToken(
-          message: "temporary MDS 503",
-          underlyingError: URLError(.timedOut)
-        )
-      ),
+      .failure(transientCredError),
       .success(AccessToken(token: "token-2")),
     ])
     let clientOptions = try StorageClientOptions().with {
@@ -888,14 +884,10 @@ import Testing
       for: sessionUrl
     )
 
+    let transientCredError = try await makeTransientCredentialsError()
     let transProvider = SequencedAccessTokenProvider([
       .success(AccessToken(token: "session-token")),
-      .failure(
-        CredentialsError._transientCannotFetchToken(
-          message: "temporary OAuth 503",
-          underlyingError: URLError(.timedOut)
-        )
-      ),
+      .failure(transientCredError),
       .success(AccessToken(token: "refreshed-token")),
     ])
     let transClientOptions = try StorageClientOptions().with {

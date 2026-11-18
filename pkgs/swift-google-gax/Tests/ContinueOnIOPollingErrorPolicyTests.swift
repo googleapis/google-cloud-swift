@@ -12,14 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Foundation
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 import GoogleGax
 import Synchronization
 import Testing
 
 @Suite struct ContinueOnIOPollingErrorPolicyTests {
-  @Test func continueIOOnError() {
+  @Test func continueIOOnError() async throws {
     let mock = MockPollingPolicy(onError: { _, e in .permanent(e) })
     let policy = mock.continueOnIO()
 
@@ -32,12 +31,7 @@ import Testing
         == .permanent(credentialsError)
     )
 
-    let transientCredentialsError = RequestError.io(
-      CredentialsError._transientCannotFetchToken(
-        message: "MDS 503",
-        underlyingError: URLError(.timedOut)
-      )
-    )
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
     #expect(
       policy.onError(state: PollingState(), error: transientCredentialsError)
         == .retry(transientCredentialsError)
@@ -53,7 +47,7 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 
-  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysPoll() {
+  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysPoll() async throws {
     let policy = AlwaysPoll.unbounded().continueOnIO()
 
     let ioError = mockIOError()
@@ -65,12 +59,7 @@ import Testing
         == .permanent(credentialsError)
     )
 
-    let transientCredentialsError = RequestError.io(
-      CredentialsError._transientCannotFetchToken(
-        message: "MDS 503",
-        underlyingError: URLError(.timedOut)
-      )
-    )
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
     #expect(
       policy.onError(state: PollingState(), error: transientCredentialsError)
         == .retry(transientCredentialsError)

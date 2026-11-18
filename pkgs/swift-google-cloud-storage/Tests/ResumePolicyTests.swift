@@ -13,7 +13,7 @@
 // limitations under the License.
 
 import Foundation
-@_spi(GoogleCloudInternal) import GoogleAuth
+import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
 import GoogleRpc
@@ -113,7 +113,7 @@ import Testing
     #expect(state.consecutiveErrorCount == 0)
   }
 
-  @Test func storageResumePolicy() {
+  @Test func storageResumePolicy() async throws {
     let policy = StorageResumePolicy<Void>.unbounded()
     let state = ResumeState()
 
@@ -193,9 +193,7 @@ import Testing
     #expect(isPermanent(policy.onError(state: state, error: ioPermanentFetch)))
 
     // Transient CredentialsError is resumable
-    let ioTransientFetch = RequestError.io(
-      CredentialsError._transientCannotFetchToken(
-        message: "MDS 503", underlyingError: URLError(.timedOut)))
+    let ioTransientFetch = RequestError.io(try await makeTransientCredentialsError())
     #expect(isResume(policy.onError(state: state, error: ioTransientFetch)))
   }
 
