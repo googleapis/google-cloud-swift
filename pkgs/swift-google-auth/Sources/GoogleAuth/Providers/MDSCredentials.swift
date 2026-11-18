@@ -51,7 +51,10 @@ actor MDSUniverseDomainCache {
     } catch {
       if self.activeTask == task {
         self.activeTask = nil
-        if !(error is CancellationError) && !AuthHTTPError.isRetryable(error) {
+        if !(error is CancellationError)
+          && !UnconfirmedADCFallbackError.wraps(error)
+          && !AuthHTTPError.isRetryable(error)
+        {
           self.permanentError = error
         }
       }

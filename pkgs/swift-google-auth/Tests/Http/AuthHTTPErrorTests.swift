@@ -169,16 +169,24 @@ import Testing
     #expect(AuthHTTPError.isRetryable(wrappedUnknown) == true)
     #expect(wrappedUnknown._isRetryable == true)
 
-    // NonRetryableTokenError marks an otherwise-retryable AuthHTTPError as permanent while
-    // preserving both `description` and `debugDescription`.
-    let nonRetryableTransport = NonRetryableTokenError(underlying: transportError)
-    #expect(AuthHTTPError.isRetryable(nonRetryableTransport) == false)
-    #expect(nonRetryableTransport.description == transportError.description)
-    #expect(nonRetryableTransport.debugDescription == transportError.debugDescription)
-    let wrappedNonRetryable = CredentialsError.cannotFetchToken(
-      message: "adc fallback", underlyingError: nonRetryableTransport)
-    #expect(AuthHTTPError.isRetryable(wrappedNonRetryable) == false)
-    #expect(wrappedNonRetryable._isRetryable == false)
+    // UnconfirmedADCFallbackError marks an otherwise-retryable AuthHTTPError as non-retryable for
+    // outer retry/resume policies while preserving `description`, `debugDescription`, and recursive
+    // `wraps(_:)` detection across nested `CredentialsError.cannotFetchToken` layers.
+    let unconfirmedTransport = UnconfirmedADCFallbackError(underlying: transportError)
+    #expect(AuthHTTPError.isRetryable(unconfirmedTransport) == false)
+    #expect(unconfirmedTransport.description == transportError.description)
+    #expect(unconfirmedTransport.debugDescription == transportError.debugDescription)
+    #expect(UnconfirmedADCFallbackError.wraps(unconfirmedTransport) == true)
+    #expect(UnconfirmedADCFallbackError.wraps(transportError) == false)
+    let wrappedUnconfirmed = CredentialsError.cannotFetchToken(
+      message: "adc fallback", underlyingError: unconfirmedTransport)
+    #expect(AuthHTTPError.isRetryable(wrappedUnconfirmed) == false)
+    #expect(wrappedUnconfirmed._isRetryable == false)
+    #expect(UnconfirmedADCFallbackError.wraps(wrappedUnconfirmed) == true)
+    let doublyWrappedUnconfirmed = CredentialsError.cannotFetchToken(
+      message: "impersonation source failed", underlyingError: wrappedUnconfirmed)
+    #expect(doublyWrappedUnconfirmed._isRetryable == false)
+    #expect(UnconfirmedADCFallbackError.wraps(doublyWrappedUnconfirmed) == true)
 
     // Expired static token errors are non-retryable in both `AuthHTTPError.isRetryable` and `_isRetryable`.
     let expiredProvider = StaticAccessTokenProvider(

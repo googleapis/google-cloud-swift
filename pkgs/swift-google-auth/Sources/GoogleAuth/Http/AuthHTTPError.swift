@@ -16,22 +16,6 @@ import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
 import NIOHTTP1
 
-/// Wraps an underlying error (such as an unconfirmed implicit ADC metadata server fallback failure)
-/// to mark it as permanently non-retryable while preserving its formatted descriptions.
-struct NonRetryableTokenError: Error, Sendable, CustomStringConvertible,
-  CustomDebugStringConvertible
-{
-  let underlying: any Error
-
-  var description: String {
-    String(describing: underlying)
-  }
-
-  var debugDescription: String {
-    String(reflecting: underlying)
-  }
-}
-
 /// Represents errors occurring during an HTTP request to an authentication or token endpoint.
 ///
 /// Captures HTTP status failures, transport and network errors, payload decoding errors, and invalid UTF-8 data

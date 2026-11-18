@@ -15,6 +15,35 @@
 import Foundation
 import Synchronization
 
+/// Wraps an error from an unconfirmed implicit ADC metadata server fallback probe so outer retry
+/// and resume policies fail fast (`CredentialsError._isRetryable == false`) without permanently
+/// poisoning `TokenCache` or `MDSUniverseDomainCache` before MDS reachability is confirmed.
+struct UnconfirmedADCFallbackError: Error, Sendable, CustomStringConvertible,
+  CustomDebugStringConvertible
+{
+  let underlying: any Error
+
+  var description: String {
+    String(describing: underlying)
+  }
+
+  var debugDescription: String {
+    String(reflecting: underlying)
+  }
+
+  /// Returns `true` when `error` is an `UnconfirmedADCFallbackError` or a
+  /// `CredentialsError.cannotFetchToken` wrapping one.
+  static func wraps(_ error: any Error) -> Bool {
+    if error is UnconfirmedADCFallbackError {
+      return true
+    }
+    if case .cannotFetchToken(_, let underlying) = error as? CredentialsError {
+      return Self.wraps(underlying)
+    }
+    return false
+  }
+}
+
 /// A `TokenProvider` that fetches short-lived OAuth 2.0 access tokens from the Google Cloud Metadata Service.
 ///
 /// The metadata service is available on Compute Engine VMs, GKE pods, Cloud Run instances, and other
@@ -186,12 +215,14 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
   }
 
   /// Evaluates whether an error from `fetchToken()` or `fetchUniverseDomain()` is transient and
-  /// eligible for retry.
+  /// eligible for retry within `RetryEngine`.
   ///
   /// While an implicit ADC fallback probe has not yet confirmed that a metadata server is present,
-  /// failures are treated as permanent so `RetryEngine`, `TokenCache`, `MDSUniverseDomainCache`,
-  /// and outer client retry/resume policies do not loop outside Google Cloud. Once MDS reachability
-  /// is confirmed, standard `AuthHTTPError.isRetryable(_:)` semantics apply.
+  /// failures return `false` here (skipping `RetryEngine` retries) and are wrapped in
+  /// `UnconfirmedADCFallbackError` so outer client retry/resume policies fail fast and `TokenCache`
+  /// does not spawn a background polling loop, without latching `permanentError` in `TokenCache` or
+  /// `MDSUniverseDomainCache` if MDS is still starting up. Once MDS reachability is confirmed,
+  /// standard `AuthHTTPError.isRetryable(_:)` semantics apply.
   func isRetryable(_ error: any Error) -> Bool {
     if self.isUnconfirmedADCFallback {
       return false
@@ -296,7 +327,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
       let unconfirmed = self.isUnconfirmedADCFallback
       throw CredentialsError.cannotFetchToken(
         message: Self.errorMessage(isADCFallback: unconfirmed, endpoint: baseEndpoint),
-        underlyingError: unconfirmed ? NonRetryableTokenError(underlying: error) : error
+        underlyingError: unconfirmed ? UnconfirmedADCFallbackError(underlying: error) : error
       )
     }
   }
@@ -388,7 +419,7 @@ struct MDSAccessTokenProvider: TokenProvider, Sendable {
           endpoint: baseEndpoint,
           resource: "the universe domain"
         ),
-        underlyingError: unconfirmed ? NonRetryableTokenError(underlying: error) : error
+        underlyingError: unconfirmed ? UnconfirmedADCFallbackError(underlying: error) : error
       )
     }
   }

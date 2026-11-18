@@ -193,9 +193,10 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       // does not clear a newer `activeRefreshTask` started after the first waiter resumed.
       if self.activeRefreshTask == task {
         self.clearActiveTask()
-        // Exclude `CancellationError` before checking `isRetryable` so providers with
-        // `isRetryable: { _ in false }` do not permanently poison `permanentError` on cancellation.
-        if !(error is CancellationError) {
+        // Exclude `CancellationError` and unconfirmed ADC metadata server probe failures before
+        // checking `isRetryable` so neither permanently poisons `permanentError` nor spawns a
+        // background polling loop outside Google Cloud.
+        if !(error is CancellationError) && !UnconfirmedADCFallbackError.wraps(error) {
           if !self.isRetryable(error) {
             self.permanentError = error
           } else {
@@ -357,7 +358,7 @@ actor TokenCache<C: Clock> where C.Instant.Duration == Duration {
       if self.activeRefreshTask == task {
         self.clearActiveTask()
       }
-      if error is CancellationError {
+      if error is CancellationError || UnconfirmedADCFallbackError.wraps(error) {
         return .terminate
       }
 

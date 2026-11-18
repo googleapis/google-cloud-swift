@@ -15,7 +15,7 @@
 import Foundation
 import Testing
 
-@testable import GoogleAuth
+@_spi(GoogleCloudInternal) @testable import GoogleAuth
 
 // MARK: - Mock Concurrency-Safe Token Provider Actor
 
@@ -857,6 +857,45 @@ private actor DelayedFailedTokenProvider: TokenProvider {
 
     let token = try await cache.token()
     #expect(token.token == "valid-after-cancel")
+    #expect(await provider.count == 2)
+  }
+
+  /// Verifies that an `UnconfirmedADCFallbackError` (or `CredentialsError.cannotFetchToken`
+  /// wrapping one) neither poisons `permanentError` nor spawns a background refresh loop, so
+  /// workloads outside GCP do not poll in the background while GCP workloads whose first probe
+  /// races metadata server startup can recover on subsequent calls.
+  @Test func unconfirmedADCFallbackErrorDoesNotPoisonPermanentErrorOrStartBackgroundRefresh()
+    async throws
+  {
+    let provider = MockTokenProvider()
+    let clock = TestClock()
+    let unconfirmedError = CredentialsError.cannotFetchToken(
+      message: "unconfirmed ADC fallback",
+      underlyingError: UnconfirmedADCFallbackError(
+        underlying: AuthHTTPError.transportError(URLError(.cannotConnectToHost)))
+    )
+    await provider.configure(token: nil, error: unconfirmedError)
+
+    let cache = TokenCache(
+      provider: provider,
+      clock: clock,
+      isRetryable: AuthHTTPError.isRetryable
+    )
+
+    let caught = await #expect(throws: CredentialsError.self) {
+      _ = try await cache.token()
+    }
+    #expect(caught?._isRetryable == false)
+    #expect(await provider.count == 1)
+    #expect(!clock.hasSleepers)
+
+    // Subsequent on-demand call re-probes and succeeds once MDS becomes reachable.
+    let validToken = AccessToken(
+      token: "valid-after-mds-startup", expirationDate: Date().addingTimeInterval(1000))
+    await provider.configure(token: validToken, error: nil)
+
+    let token = try await cache.token()
+    #expect(token.token == "valid-after-mds-startup")
     #expect(await provider.count == 2)
   }
 

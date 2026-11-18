@@ -999,27 +999,79 @@ import Testing
     #expect(try await provider.universeDomain() == "queried.universe.com")
   }
 
-  @Test func adcFallbackMarksErrorsNonRetryableAndCachesPermanentFailure() async throws {
+  @Test func adcFallbackUnconfirmedProbeFailsFastAndRecoversOnceMDSReachable() async throws {
+    struct MockTokenPayload: Encodable {
+      let accessToken: String
+      let expiresIn: Int
+      let tokenType: String
+    }
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let tokenData = try encoder.encode(
+      MockTokenPayload(accessToken: "recovered-mds-token", expiresIn: 3600, tokenType: "Bearer")
+    )
+
     let tokenAttempts = CallCounter()
     let universeAttempts = CallCounter()
     let mock = MockHTTPClient([
+      // 1. Initial unconfirmed token probe fails with connection refused (1 attempt, no RetryEngine loop).
       { request in
         Self.checkRequest(request)
         tokenAttempts.increment()
         throw URLError(.cannotConnectToHost)
       },
+      // 2. Initial unconfirmed universe-domain probe fails with timeout (1 attempt, no RetryEngine loop).
       { request in
         let url = URL(string: request.url)!
         #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
         universeAttempts.increment()
         throw URLError(.timedOut)
       },
+      // 3. MDS becomes reachable: universe-domain probe succeeds, caches domain, and confirms ProbeState.
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        universeAttempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Metadata-Flavor", "Google")]),
+          body: .bytes(.init(data: Data("googleapis.com\n".utf8)))
+        )
+      },
+      // 4. Subsequent token call hits a transient 503 and now retries in RetryEngine because MDS is confirmed.
+      { request in
+        Self.checkRequest(request)
+        tokenAttempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .serviceUnavailable,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        Self.checkRequest(request)
+        tokenAttempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([
+            ("Content-Type", "application/json"),
+            ("Metadata-Flavor", "Google"),
+          ]),
+          body: .bytes(.init(data: tokenData))
+        )
+      },
     ])
 
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
     let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
       client: AuthHTTPClient(mock: mock),
       fromADC: true,
-      environment: [:]
+      environment: [:],
+      jitter: nil
     )
 
     let tokenError = await #expect(throws: CredentialsError.self) {
@@ -1028,13 +1080,8 @@ import Testing
     let unwrappedTokenError = try #require(tokenError)
     #expect(unwrappedTokenError._isRetryable == false)
     #expect(unwrappedTokenError.description.contains("Transport error:"))
+    #expect(unwrappedTokenError.description.contains("gcloud auth application-default login"))
     #expect(unwrappedTokenError.debugDescription.contains("AuthHTTPError.transportError("))
-    #expect(tokenAttempts.getCount() == 1)
-
-    // TokenCache must cache the permanent failure without re-probing MDS.
-    _ = await #expect(throws: CredentialsError.self) {
-      _ = try await provider.headers()
-    }
     #expect(tokenAttempts.getCount() == 1)
 
     let universeError = await #expect(throws: CredentialsError.self) {
@@ -1044,7 +1091,70 @@ import Testing
     #expect(unwrappedUniverseError._isRetryable == false)
     #expect(universeAttempts.getCount() == 1)
 
-    // MDSUniverseDomainCache must cache the permanent failure without re-probing MDS.
+    // Neither cache latched permanentError on the unconfirmed probe: once MDS starts up, both recover.
+    #expect(try await provider.universeDomain() == "googleapis.com")
+    #expect(try await provider.universeDomain() == "googleapis.com")
+    #expect(universeAttempts.getCount() == 2)
+
+    let headers = try await provider.headers()
+    #expect(headers["Authorization"] == "Bearer recovered-mds-token")
+    #expect(tokenAttempts.getCount() == 3)
+  }
+
+  @Test func adcFallbackConfirmedPermanentErrorCachesPermanentFailure() async throws {
+    let tokenAttempts = CallCounter()
+    let universeAttempts = CallCounter()
+    let mock = MockHTTPClient([
+      { request in
+        Self.checkRequest(request)
+        tokenAttempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .forbidden,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+      { request in
+        let url = URL(string: request.url)!
+        #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
+        universeAttempts.increment()
+        return HTTPClientResponse(
+          version: .http2,
+          status: .forbidden,
+          headers: .init([("Metadata-Flavor", "Google")])
+        )
+      },
+    ])
+
+    let retryConfig = RetryConfiguration(
+      maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
+    let provider = MDSCredentials(
+      retryConfiguration: retryConfig,
+      client: AuthHTTPClient(mock: mock),
+      fromADC: true,
+      environment: [:],
+      jitter: nil
+    )
+
+    let tokenError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(tokenError?._isRetryable == false)
+    #expect(tokenAttempts.getCount() == 1)
+
+    // Confirmed 403 permanent failure is cached in TokenCache without re-querying MDS.
+    _ = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.headers()
+    }
+    #expect(tokenAttempts.getCount() == 1)
+
+    let universeError = await #expect(throws: CredentialsError.self) {
+      _ = try await provider.universeDomain()
+    }
+    #expect(universeError?._isRetryable == false)
+    #expect(universeAttempts.getCount() == 1)
+
+    // Confirmed 403 permanent failure is cached in MDSUniverseDomainCache without re-querying MDS.
     _ = await #expect(throws: CredentialsError.self) {
       _ = try await provider.universeDomain()
     }
