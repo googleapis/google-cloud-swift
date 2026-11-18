@@ -70,8 +70,7 @@ struct ExternalAccountIntegrationTests {
         subjectTokenProvider: StaticSubjectTokenProvider(token: idToken)
       ),
       audience: audience,
-      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token"
     )
     let credentials = try Credentials(configuration: .externalAccount(config))
 
@@ -95,8 +94,7 @@ struct ExternalAccountIntegrationTests {
         subjectTokenProvider: StaticSubjectTokenProvider(token: idToken)
       ),
       audience: audience,
-      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token"
     )
     let credentials = try Credentials(configuration: .externalAccount(config))
 

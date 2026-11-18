@@ -1000,4 +1000,208 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
       publicWorkloadCreds.credentialsProvider as? ExternalAccountCredentials)
     #expect(resolvedWorkloadProvider.workforcePoolUserProject == nil)
   }
+
+  enum TokenURLOverrideStyle: CaseIterable, Sendable {
+    case initializer
+    case withBuilder
+    case propertyMutation
+  }
+
+  @Test("ExternalAccountConfig defaults tokenURL to nil and sends STS request to default universe")
+  func configDefaultsTokenURLAndSendsRequest() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience:
+        "//iam.googleapis.com/projects/123/locations/global/workloadIdentityPools/p/providers/pr",
+      subjectTokenType: .idToken
+    )
+    #expect(config.tokenURL == nil)
+
+    let expectedResponse = TokenResponse(
+      accessToken: "mock-default-url-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == "https://sts.googleapis.com/v1/token")
+        #expect(request.method == .POST)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+
+    let credentials = try Credentials(
+      externalAccount: config,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    #expect(try await credentials.universeDomain() == "googleapis.com")
+    let headers = try await credentials.headers()
+    #expect(headers["Authorization"] == "Bearer mock-default-url-token")
+  }
+
+  @Test("ExternalAccountConfig derives STS endpoint from universeDomain when tokenURL is nil")
+  func configDerivesTokenURLFromUniverseDomain() async throws {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience:
+        "//iam.apis-tpclp.goog/projects/123/locations/global/workloadIdentityPools/p/providers/pr",
+      subjectTokenType: .idToken
+    ).with {
+      $0.universeDomain = "apis-tpclp.goog"
+    }
+    #expect(config.tokenURL == nil)
+
+    let expectedResponse = TokenResponse(
+      accessToken: "mock-universe-url-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == "https://sts.apis-tpclp.goog/v1/token")
+        #expect(request.method == .POST)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+
+    let credentials = try Credentials(
+      externalAccount: config,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    #expect(try await credentials.universeDomain() == "apis-tpclp.goog")
+    let headers = try await credentials.headers()
+    #expect(headers["Authorization"] == "Bearer mock-universe-url-token")
+  }
+
+  @Test(
+    "ExternalAccountConfig rejects malformed universeDomain when deriving STS endpoint",
+    arguments: [
+      "evil.com:8443",
+      "evil.com/extra",
+      "user@evil.com",
+      "evil.com?x=1",
+      "evil.com#frag",
+      "bad domain",
+    ]
+  )
+  func configRejectsMalformedUniverseDomainWhenDerivingTokenURL(malformedUniverse: String) {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let config = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: .idToken
+    ).with {
+      $0.universeDomain = malformedUniverse
+    }
+
+    #expect {
+      _ = try Credentials(configuration: .externalAccount(config))
+    } throws: { error in
+      guard case let CredentialsError.parseError(message) = error else {
+        return false
+      }
+      return message.contains("universe_domain")
+    }
+  }
+
+  @Test(
+    "ExternalAccountConfig tokenURL override sends STS request to configured endpoint",
+    arguments: TokenURLOverrideStyle.allCases
+  )
+  func configTokenURLOverrideSendsRequestToCustomEndpoint(style: TokenURLOverrideStyle) async throws
+  {
+    let provider = MockSubjectTokenProvider(token: "mock-provider-token")
+    let audience =
+      "//iam.apis-tpclp.goog/projects/123/locations/global/workloadIdentityPools/p/providers/pr"
+    let customURL = try #require(URL(string: "https://sts-psc.apis-tpclp.goog/v1/token"))
+
+    let config: ExternalAccountConfig
+    switch style {
+    case .initializer:
+      config = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: audience,
+        subjectTokenType: .idToken,
+        tokenURL: customURL
+      ).with {
+        $0.universeDomain = "apis-tpclp.goog"
+      }
+    case .withBuilder:
+      config = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: audience,
+        subjectTokenType: .idToken
+      ).with {
+        $0.tokenURL = customURL
+        $0.universeDomain = "apis-tpclp.goog"
+      }
+    case .propertyMutation:
+      var mutableConfig = ExternalAccountConfig(
+        credentialSource: .programmatic(subjectTokenProvider: provider),
+        audience: audience,
+        subjectTokenType: .idToken
+      )
+      mutableConfig.tokenURL = customURL
+      mutableConfig.universeDomain = "apis-tpclp.goog"
+      config = mutableConfig
+    }
+
+    #expect(config.tokenURL == customURL)
+
+    let expectedResponse = TokenResponse(
+      accessToken: "mock-custom-url-token",
+      tokenType: "Bearer",
+      expiresIn: 3600,
+      issuedTokenType: "urn:ietf:params:oauth:token-type:access_token",
+      refreshBy: nil
+    )
+    let encoder = JSONEncoder()
+    encoder.keyEncodingStrategy = .convertToSnakeCase
+    let responseData = try encoder.encode(expectedResponse)
+
+    let mock = MockHTTPClient([
+      { request in
+        #expect(request.url == customURL.absoluteString)
+        #expect(request.method == .POST)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .ok,
+          headers: .init([("Content-Type", "application/json")]),
+          body: .bytes(.init(data: responseData))
+        )
+      }
+    ])
+
+    let credentials = try Credentials(
+      externalAccount: config,
+      httpClient: AuthHTTPClient(mock: mock)
+    )
+    #expect(try await credentials.universeDomain() == "apis-tpclp.goog")
+    let headers = try await credentials.headers()
+    #expect(headers["Authorization"] == "Bearer mock-custom-url-token")
+  }
 }
