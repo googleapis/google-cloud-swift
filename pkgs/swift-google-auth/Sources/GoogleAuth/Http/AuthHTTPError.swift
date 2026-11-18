@@ -16,13 +16,10 @@ import Foundation
 import struct AsyncHTTPClient.HTTPClientResponse
 import NIOHTTP1
 
-/// Internal marker protocol for underlying token-fetch errors that are known to be permanent.
-protocol NonRetryableCredentialsUnderlyingError: Error {}
-
-/// Wraps an underlying error (such as an implicit ADC metadata server fallback failure) to mark
-/// it as permanently non-retryable while preserving its formatted descriptions.
-struct NonRetryableTokenError: NonRetryableCredentialsUnderlyingError, Sendable,
-  CustomStringConvertible, CustomDebugStringConvertible
+/// Wraps an underlying error (such as an unconfirmed implicit ADC metadata server fallback failure)
+/// to mark it as permanently non-retryable while preserving its formatted descriptions.
+struct NonRetryableTokenError: Error, Sendable, CustomStringConvertible,
+  CustomDebugStringConvertible
 {
   let underlying: any Error
 
@@ -159,7 +156,7 @@ extension AuthHTTPError {
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` if the error is transient and should be retried; `false` if it is permanent.
   static func isRetryable(_ error: any Error) -> Bool {
-    if error is CancellationError || error is any NonRetryableCredentialsUnderlyingError {
+    if error is CancellationError {
       return false
     }
     if let credentialsError = error as? CredentialsError {
@@ -168,7 +165,10 @@ extension AuthHTTPError {
     if let authError = error as? AuthHTTPError {
       return authError.isRetryable
     }
-    return error is URLError
+    if let urlError = error as? URLError {
+      return urlError.code != .cancelled
+    }
+    return false
   }
 }
 

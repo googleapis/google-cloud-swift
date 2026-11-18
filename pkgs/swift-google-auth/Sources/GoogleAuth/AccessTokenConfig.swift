@@ -102,8 +102,8 @@ struct StaticAccessTokenProvider: AccessTokenProvider, CustomStringConvertible,
   CustomDebugStringConvertible
 {
   /// Error thrown as the underlying error when a static access token has expired.
-  private struct ExpiredTokenError: NonRetryableCredentialsUnderlyingError, Sendable,
-    CustomStringConvertible, CustomDebugStringConvertible
+  private struct ExpiredTokenError: Error, Sendable, CustomStringConvertible,
+    CustomDebugStringConvertible
   {
     let expirationDate: Date
 

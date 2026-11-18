@@ -490,6 +490,26 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     #expect(await provider.callCount == 1)
   }
 
+  @Test("Programmatic credentials do not treat URLError.cancelled as a retryable transport error")
+  func programmaticCredentialsDoesNotRetryCancelledURLError() async throws {
+    let provider = MockFailingSubjectTokenProvider(error: URLError(.cancelled))
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+
+    let error = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    let unwrapped = try #require(error)
+    #expect(unwrapped._isRetryable == false)
+    #expect(await provider.callCount == 1)
+  }
+
   @Test(
     "Successfully signs tokens and performs service account impersonation",
     .disabled("TODO(https://github.com/googleapis/google-cloud-swift/issues/86) - implement test"))

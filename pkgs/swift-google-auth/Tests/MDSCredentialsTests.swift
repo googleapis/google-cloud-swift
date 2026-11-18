@@ -1103,7 +1103,8 @@ import Testing
       retryConfiguration: retryConfig,
       client: AuthHTTPClient(mock: mock),
       fromADC: true,
-      environment: [:]
+      environment: [:],
+      jitter: nil
     )
 
     // First call hits 503 with Metadata-Flavor: Google, confirming MDS and retrying up to maxAttempts (2).
@@ -1185,21 +1186,32 @@ import Testing
     #expect(recoveredHeaders["Authorization"] == "Bearer refreshed-mds-token")
   }
 
-  @Test func adcFallbackGeneric404OnUniverseDomainDoesNotConfirmMDS() async throws {
+  @Test(arguments: [
+    (hasMetadataFlavor: false, expectedAttempts: 1, expectedRetryable: false),
+    (hasMetadataFlavor: true, expectedAttempts: 3, expectedRetryable: true),
+  ])
+  func adcFallback404OnUniverseDomainConfirmation(
+    hasMetadataFlavor: Bool,
+    expectedAttempts: Int,
+    expectedRetryable: Bool
+  ) async throws {
     let tokenAttempts = CallCounter()
-    let mock = MockHTTPClient([
+    let failTokenRequest: MockHTTPClient.Closure = { request in
+      Self.checkRequest(request)
+      tokenAttempts.increment()
+      throw URLError(.cannotConnectToHost)
+    }
+    var handlers: [MockHTTPClient.Closure] = [
       { request in
         let url = URL(string: request.url)!
         #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
-        // Generic 404 without Metadata-Flavor: Google header.
-        return HTTPClientResponse(version: .http2, status: .notFound)
-      },
-      { request in
-        Self.checkRequest(request)
-        tokenAttempts.increment()
-        throw URLError(.cannotConnectToHost)
-      },
-    ])
+        let headers: HTTPHeaders =
+          hasMetadataFlavor ? .init([("Metadata-Flavor", "Google")]) : .init()
+        return HTTPClientResponse(version: .http2, status: .notFound, headers: headers)
+      }
+    ]
+    handlers.append(contentsOf: Array(repeating: failTokenRequest, count: expectedAttempts))
+    let mock = MockHTTPClient(handlers)
 
     let retryConfig = RetryConfiguration(
       maxAttempts: 3, initialDelay: .milliseconds(1), multiplier: 1.0, maxDelay: .milliseconds(1))
@@ -1207,7 +1219,8 @@ import Testing
       retryConfiguration: retryConfig,
       client: AuthHTTPClient(mock: mock),
       fromADC: true,
-      environment: [:]
+      environment: [:],
+      jitter: nil
     )
 
     #expect(try await provider.universeDomain() == "googleapis.com")
@@ -1215,8 +1228,8 @@ import Testing
     let tokenError = await #expect(throws: CredentialsError.self) {
       _ = try await provider.headers()
     }
-    #expect(tokenError?._isRetryable == false)
-    #expect(tokenAttempts.getCount() == 1)
+    #expect(tokenError?._isRetryable == expectedRetryable)
+    #expect(tokenAttempts.getCount() == expectedAttempts)
   }
 
   @Test func explicitMDSMarksTransientErrorsRetryableAndPermanentErrorsNonRetryable() async throws {
@@ -1237,7 +1250,8 @@ import Testing
       retryConfiguration: retryConfig,
       client: AuthHTTPClient(mock: mock),
       fromADC: false,
-      environment: [:]
+      environment: [:],
+      jitter: nil
     )
 
     let transientError = await #expect(throws: CredentialsError.self) {
