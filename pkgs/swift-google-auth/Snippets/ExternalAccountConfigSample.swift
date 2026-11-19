@@ -41,14 +41,16 @@ func configureExternalAccountCredentials(
   )
   _ = try Credentials(configuration: .externalAccount(defaultConfig))
 
-  // In a custom universe, leaving tokenURL nil derives https://sts.<universeDomain>/v1/token:
+  // In a custom universe, audience is sent verbatim to match the provider's expected `aud` claim,
+  // while leaving tokenURL nil derives https://sts.<universeDomain>/v1/token:
+  let customUniverse = "my-universe-domain.com"
   let customUniverseConfig = ExternalAccountConfig(
     credentialSource: .programmatic(subjectTokenProvider: provider),
     audience:
-      "//iam.apis-tpclp.goog/projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider",
+      "//iam.\(customUniverse)/projects/123456789/locations/global/workloadIdentityPools/my-pool/providers/my-provider",
     subjectTokenType: .idToken
   ).with {
-    $0.universeDomain = "apis-tpclp.goog"
+    $0.universeDomain = customUniverse
   }
   _ = try Credentials(configuration: .externalAccount(customUniverseConfig))
 

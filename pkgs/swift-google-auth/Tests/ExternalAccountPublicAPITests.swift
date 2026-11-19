@@ -65,12 +65,22 @@ import Testing
 
     let clearedConfig = config.with {
       $0.tokenURL = nil
-      $0.universeDomain = "apis-tpclp.goog"
     }
     #expect(clearedConfig.tokenURL == nil)
 
-    let credentials = try Credentials(configuration: .externalAccount(clearedConfig))
+    let customUniverse = "my-universe-domain.com"
+    let customUniverseConfig = ExternalAccountConfig(
+      credentialSource: .programmatic(subjectTokenProvider: decorator),
+      audience:
+        "//iam.\(customUniverse)/projects/123/locations/global/workloadIdentityPools/pool/providers/prov",
+      subjectTokenType: .idToken
+    ).with {
+      $0.universeDomain = customUniverse
+    }
+    #expect(customUniverseConfig.tokenURL == nil)
+
+    let credentials = try Credentials(configuration: .externalAccount(customUniverseConfig))
     #expect(credentials.accessTokenProvider != nil)
-    #expect(try await credentials.universeDomain() == "apis-tpclp.goog")
+    #expect(try await credentials.universeDomain() == customUniverse)
   }
 }
