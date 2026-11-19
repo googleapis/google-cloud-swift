@@ -24,6 +24,10 @@
   /// Service for the `storagePools` resource.
   ///
   /// @Snippet(path: "storagePoolsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/StoragePoolsProtocol``
   public final class StoragePoolsClient: Clients.StoragePoolsProtocol, Sendable {
     let inner: any Clients.StoragePoolsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "storagePools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolAggregatedList {
@@ -60,6 +71,13 @@
     /// snapshots.
     ///
     /// @Snippet(path: "storagePools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:storagePool:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -78,6 +96,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "storagePools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:storagePool:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -121,6 +146,11 @@
     /// storage pools by making a list() request.
     ///
     /// @Snippet(path: "storagePools_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:zone:storagePool:)``
+    /// - ``get(request:)``
     public func `get`(
       request: StoragePoolsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePool {
@@ -131,6 +161,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "storagePools_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:zone:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: StoragePoolsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -141,6 +176,13 @@
     /// in the request.
     ///
     /// @Snippet(path: "storagePools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -156,6 +198,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "storagePools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: StoragePoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -199,6 +248,13 @@
     /// the specified zone.
     ///
     /// @Snippet(path: "storagePools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolList {
@@ -208,6 +264,13 @@
     /// Lists the disks in a specified storage pool.
     ///
     /// @Snippet(path: "storagePools_listDisks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDisks(request:)``
+    /// - ``listDisksByItems(project:zone:storagePool:)``
+    /// - ``listDisksByItems(request:)``
+    /// - ``listDisksByItems(request:options:)``
     public func listDisks(
       request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.StoragePoolListDisks {
@@ -218,6 +281,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "storagePools_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:zone:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: StoragePoolsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -227,6 +295,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "storagePools_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: StoragePoolsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -240,6 +313,13 @@
     /// pool_provisioned_throughput.
     ///
     /// @Snippet(path: "storagePools_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:zone:storagePool:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -258,6 +338,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "storagePools_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:storagePool:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -398,6 +485,16 @@
 
   // Default implementations
   extension Clients.StoragePoolsProtocol {
+    /// Retrieves an aggregated list of storage pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "storagePools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: StoragePoolsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.StoragePoolAggregatedList
     {
@@ -410,6 +507,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of storage pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "storagePools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: StoragePoolsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), any Swift.Error> & Sendable {
@@ -422,6 +529,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "storagePools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: StoragePoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), any Swift.Error> & Sendable {
@@ -436,6 +547,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of storage pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "storagePools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, StoragePoolsScopedList), any Swift.Error> & Sendable {
@@ -445,6 +566,17 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified storage pool. Deleting a storagePool
+    /// removes its data permanently and is irreversible. However, deleting a
+    /// storagePool does not delete any snapshots previously
+    /// made from the storagePool. You must separately delete
+    /// snapshots.
+    ///
+    /// @Snippet(path: "storagePools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/delete(request:options:)``
     public func delete(request: StoragePoolsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -457,6 +589,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified storage pool. Deleting a storagePool
+    /// removes its data permanently and is irreversible. However, deleting a
+    /// storagePool does not delete any snapshots previously
+    /// made from the storagePool. You must separately delete
+    /// snapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "storagePools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: StoragePoolsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -469,6 +617,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified storage pool. Deleting a storagePool
+    /// removes its data permanently and is irreversible. However, deleting a
+    /// storagePool does not delete any snapshots previously
+    /// made from the storagePool. You must separately delete
+    /// snapshots.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "storagePools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -482,6 +646,14 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns a specified storage pool. Gets a list of available
+    /// storage pools by making a list() request.
+    ///
+    /// @Snippet(path: "storagePools_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/get(request:options:)``
     public func `get`(request: StoragePoolsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.StoragePool
     {
@@ -494,6 +666,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns a specified storage pool. Gets a list of available
+    /// storage pools by making a list() request.
+    ///
+    /// @Snippet(path: "storagePools_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -507,6 +687,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "storagePools_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: StoragePoolsClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -519,6 +707,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "storagePools_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -532,6 +728,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a storage pool in the specified project using the data
+    /// in the request.
+    ///
+    /// @Snippet(path: "storagePools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/insert(request:options:)``
     public func insert(request: StoragePoolsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -544,6 +748,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a storage pool in the specified project using the data
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "storagePools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: StoragePoolsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -556,6 +773,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a storage pool in the specified project using the data
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "storagePools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -569,6 +799,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of storage pools contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "storagePools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/list(request:options:)``
     public func list(request: StoragePoolsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.StoragePoolList
     {
@@ -581,6 +819,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of storage pools contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "storagePools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/list(request:options:)``
     public func listByItems(
       request: StoragePoolsClient.ListRequest
     ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
@@ -591,6 +837,10 @@
     /// the specified zone.
     ///
     /// @Snippet(path: "storagePools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/list(request:options:)``
     public func listByItems(
       request: StoragePoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<StoragePool, any Swift.Error> & Sendable {
@@ -604,6 +854,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of storage pools contained within
+    /// the specified zone.
+    ///
+    /// @Snippet(path: "storagePools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -615,6 +873,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Lists the disks in a specified storage pool.
+    ///
+    /// @Snippet(path: "storagePools_listDisks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/listDisks(request:options:)``
     public func listDisks(request: StoragePoolsClient.ListDisksRequest) async throws
       -> GoogleCloudComputeV1.StoragePoolListDisks
     {
@@ -627,6 +892,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the disks in a specified storage pool.
+    ///
+    /// @Snippet(path: "storagePools_listDisks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/listDisks(request:options:)``
     public func listDisksByItems(
       request: StoragePoolsClient.ListDisksRequest
     ) -> some AsyncSequence<StoragePoolDisk, any Swift.Error> & Sendable {
@@ -636,6 +908,10 @@
     /// Lists the disks in a specified storage pool.
     ///
     /// @Snippet(path: "storagePools_listDisks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/listDisks(request:options:)``
     public func listDisksByItems(
       request: StoragePoolsClient.ListDisksRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<StoragePoolDisk, any Swift.Error> & Sendable {
@@ -649,6 +925,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the disks in a specified storage pool.
+    ///
+    /// @Snippet(path: "storagePools_listDisks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/listDisks(request:options:)``
     public func listDisksByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -662,6 +945,14 @@
       return self.listDisksByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "storagePools_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: StoragePoolsClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -674,6 +965,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "storagePools_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       zone: Swift.String,
@@ -689,6 +988,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "storagePools_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: StoragePoolsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -701,6 +1007,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "storagePools_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -716,6 +1029,17 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates the specified storagePool with the data included in the request.
+    /// The update is performed only on selected fields included as part
+    /// of update-mask. Only the following fields can be modified:
+    /// pool_provisioned_capacity_gb, pool_provisioned_iops and
+    /// pool_provisioned_throughput.
+    ///
+    /// @Snippet(path: "storagePools_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/update(request:options:)``
     public func update(request: StoragePoolsClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -728,6 +1052,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified storagePool with the data included in the request.
+    /// The update is performed only on selected fields included as part
+    /// of update-mask. Only the following fields can be modified:
+    /// pool_provisioned_capacity_gb, pool_provisioned_iops and
+    /// pool_provisioned_throughput.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "storagePools_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: StoragePoolsClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -740,6 +1080,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified storagePool with the data included in the request.
+    /// The update is performed only on selected fields included as part
+    /// of update-mask. Only the following fields can be modified:
+    /// pool_provisioned_capacity_gb, pool_provisioned_iops and
+    /// pool_provisioned_throughput.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "storagePools_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``StoragePoolsClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -755,6 +1111,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

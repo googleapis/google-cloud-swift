@@ -25,6 +25,10 @@ import Foundation
 /// This service lets you manage document.
 ///
 /// @Snippet(path: "DocumentServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DocumentServiceProtocol``
 public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Sendable {
   let inner: any Clients.DocumentServiceStub
 
@@ -41,6 +45,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// Creates a document.
   ///
   /// @Snippet(path: "DocumentService_CreateDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDocument(parent:document:)``
+  /// - ``createDocument(request:)``
   public func createDocument(
     request: CreateDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.CreateDocumentResponse {
@@ -50,6 +59,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// Gets a document. Returns NOT_FOUND if the document does not exist.
   ///
   /// @Snippet(path: "DocumentService_GetDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDocument(name:)``
+  /// - ``getDocument(request:)``
   public func getDocument(
     request: GetDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.Document {
@@ -60,6 +74,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// is non-empty and does not equal the existing name.
   ///
   /// @Snippet(path: "DocumentService_UpdateDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDocument(name:document:)``
+  /// - ``updateDocument(request:)``
   public func updateDocument(
     request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.UpdateDocumentResponse {
@@ -69,6 +88,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// Deletes a document. Returns NOT_FOUND if the document does not exist.
   ///
   /// @Snippet(path: "DocumentService_DeleteDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDocument(name:)``
+  /// - ``deleteDocument(request:)``
   public func deleteDocument(
     request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -83,6 +107,13 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
   ///
   /// @Snippet(path: "DocumentService_SearchDocuments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchDocuments(request:)``
+  /// - ``searchDocumentsByItems(parent:)``
+  /// - ``searchDocumentsByItems(request:)``
+  /// - ``searchDocumentsByItems(request:options:)``
   public func searchDocuments(
     request: SearchDocumentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse {
@@ -92,6 +123,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// Lock the document so the document cannot be updated by other users.
   ///
   /// @Snippet(path: "DocumentService_LockDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lockDocument(name:)``
+  /// - ``lockDocument(request:)``
   public func lockDocument(
     request: LockDocumentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.Document {
@@ -103,6 +139,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// but does not have a policy set.
   ///
   /// @Snippet(path: "DocumentService_FetchAcl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchAcl(request:)``
+  /// - ``fetchAcl(resource:)``
   public func fetchAcl(
     request: FetchAclRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.FetchAclResponse {
@@ -113,6 +154,11 @@ public final class DocumentServiceClient: Clients.DocumentServiceProtocol, Senda
   /// policy.
   ///
   /// @Snippet(path: "DocumentService_SetAcl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setAcl(request:)``
+  /// - ``setAcl(resource:policy:)``
   public func setAcl(
     request: SetAclRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SetAclResponse {
@@ -182,6 +228,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DocumentServiceProtocol {
+  /// Creates a document.
+  ///
+  /// @Snippet(path: "DocumentService_CreateDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/createDocument(request:options:)``
   public func createDocument(request: CreateDocumentRequest) async throws
     -> GoogleCloudContentWarehouseV1.CreateDocumentResponse
   {
@@ -194,6 +247,13 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a document.
+  ///
+  /// @Snippet(path: "DocumentService_CreateDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/createDocument(request:options:)``
   public func createDocument(
     parent: Swift.String,
     document: GoogleCloudContentWarehouseV1.Document?,
@@ -205,6 +265,13 @@ extension Clients.DocumentServiceProtocol {
     return try await self.createDocument(request: request)
   }
 
+  /// Gets a document. Returns NOT_FOUND if the document does not exist.
+  ///
+  /// @Snippet(path: "DocumentService_GetDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/getDocument(request:options:)``
   public func getDocument(request: GetDocumentRequest) async throws
     -> GoogleCloudContentWarehouseV1.Document
   {
@@ -217,6 +284,13 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a document. Returns NOT_FOUND if the document does not exist.
+  ///
+  /// @Snippet(path: "DocumentService_GetDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/getDocument(request:options:)``
   public func getDocument(
     name: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.Document {
@@ -226,6 +300,14 @@ extension Clients.DocumentServiceProtocol {
     return try await self.getDocument(request: request)
   }
 
+  /// Updates a document. Returns INVALID_ARGUMENT if the name of the document
+  /// is non-empty and does not equal the existing name.
+  ///
+  /// @Snippet(path: "DocumentService_UpdateDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/updateDocument(request:options:)``
   public func updateDocument(request: UpdateDocumentRequest) async throws
     -> GoogleCloudContentWarehouseV1.UpdateDocumentResponse
   {
@@ -238,6 +320,14 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a document. Returns INVALID_ARGUMENT if the name of the document
+  /// is non-empty and does not equal the existing name.
+  ///
+  /// @Snippet(path: "DocumentService_UpdateDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/updateDocument(request:options:)``
   public func updateDocument(
     name: Swift.String,
     document: GoogleCloudContentWarehouseV1.Document?,
@@ -249,6 +339,13 @@ extension Clients.DocumentServiceProtocol {
     return try await self.updateDocument(request: request)
   }
 
+  /// Deletes a document. Returns NOT_FOUND if the document does not exist.
+  ///
+  /// @Snippet(path: "DocumentService_DeleteDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/deleteDocument(request:options:)``
   public func deleteDocument(request: DeleteDocumentRequest) async throws {
     try await self.deleteDocument(request: request, options: .init())
   }
@@ -259,6 +356,13 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a document. Returns NOT_FOUND if the document does not exist.
+  ///
+  /// @Snippet(path: "DocumentService_DeleteDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/deleteDocument(request:options:)``
   public func deleteDocument(
     name: Swift.String,
   ) async throws {
@@ -268,6 +372,18 @@ extension Clients.DocumentServiceProtocol {
     try await self.deleteDocument(request: request)
   }
 
+  /// Searches for documents using provided
+  /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
+  /// This call only returns documents that the caller has permission to search
+  /// against.
+  ///
+  /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
+  ///
+  /// @Snippet(path: "DocumentService_SearchDocuments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/searchDocuments(request:options:)``
   public func searchDocuments(request: SearchDocumentsRequest) async throws
     -> GoogleCloudContentWarehouseV1.SearchDocumentsResponse
   {
@@ -280,6 +396,18 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches for documents using provided
+  /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
+  /// This call only returns documents that the caller has permission to search
+  /// against.
+  ///
+  /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
+  ///
+  /// @Snippet(path: "DocumentService_SearchDocuments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/searchDocuments(request:options:)``
   public func searchDocumentsByItems(
     request: SearchDocumentsRequest
   ) -> some AsyncSequence<SearchDocumentsResponse.MatchingDocument, any Swift.Error> & Sendable {
@@ -294,6 +422,10 @@ extension Clients.DocumentServiceProtocol {
   /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
   ///
   /// @Snippet(path: "DocumentService_SearchDocuments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/searchDocuments(request:options:)``
   public func searchDocumentsByItems(
     request: SearchDocumentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SearchDocumentsResponse.MatchingDocument, any Swift.Error> & Sendable {
@@ -308,6 +440,18 @@ extension Clients.DocumentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches for documents using provided
+  /// [SearchDocumentsRequest][google.cloud.contentwarehouse.v1.SearchDocumentsRequest].
+  /// This call only returns documents that the caller has permission to search
+  /// against.
+  ///
+  /// [google.cloud.contentwarehouse.v1.SearchDocumentsRequest]: <doc:SearchDocumentsRequest>
+  ///
+  /// @Snippet(path: "DocumentService_SearchDocuments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/searchDocuments(request:options:)``
   public func searchDocumentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SearchDocumentsResponse.MatchingDocument, any Swift.Error> & Sendable {
@@ -317,6 +461,13 @@ extension Clients.DocumentServiceProtocol {
     return self.searchDocumentsByItems(request: request)
   }
 
+  /// Lock the document so the document cannot be updated by other users.
+  ///
+  /// @Snippet(path: "DocumentService_LockDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/lockDocument(request:options:)``
   public func lockDocument(request: LockDocumentRequest) async throws
     -> GoogleCloudContentWarehouseV1.Document
   {
@@ -329,6 +480,13 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lock the document so the document cannot be updated by other users.
+  ///
+  /// @Snippet(path: "DocumentService_LockDocument")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/lockDocument(request:options:)``
   public func lockDocument(
     name: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.Document {
@@ -338,6 +496,15 @@ extension Clients.DocumentServiceProtocol {
     return try await self.lockDocument(request: request)
   }
 
+  /// Gets the access control policy for a resource. Returns NOT_FOUND error if
+  /// the resource does not exist. Returns an empty policy if the resource exists
+  /// but does not have a policy set.
+  ///
+  /// @Snippet(path: "DocumentService_FetchAcl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/fetchAcl(request:options:)``
   public func fetchAcl(request: FetchAclRequest) async throws
     -> GoogleCloudContentWarehouseV1.FetchAclResponse
   {
@@ -350,6 +517,15 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns NOT_FOUND error if
+  /// the resource does not exist. Returns an empty policy if the resource exists
+  /// but does not have a policy set.
+  ///
+  /// @Snippet(path: "DocumentService_FetchAcl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/fetchAcl(request:options:)``
   public func fetchAcl(
     resource: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.FetchAclResponse {
@@ -359,6 +535,14 @@ extension Clients.DocumentServiceProtocol {
     return try await self.fetchAcl(request: request)
   }
 
+  /// Sets the access control policy for a resource. Replaces any existing
+  /// policy.
+  ///
+  /// @Snippet(path: "DocumentService_SetAcl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/setAcl(request:options:)``
   public func setAcl(request: SetAclRequest) async throws
     -> GoogleCloudContentWarehouseV1.SetAclResponse
   {
@@ -371,6 +555,14 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy for a resource. Replaces any existing
+  /// policy.
+  ///
+  /// @Snippet(path: "DocumentService_SetAcl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentServiceClient/setAcl(request:options:)``
   public func setAcl(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -382,6 +574,9 @@ extension Clients.DocumentServiceProtocol {
     return try await self.setAcl(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -394,6 +589,9 @@ extension Clients.DocumentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

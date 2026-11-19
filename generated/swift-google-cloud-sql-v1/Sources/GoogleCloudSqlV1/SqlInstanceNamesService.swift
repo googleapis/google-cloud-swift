@@ -24,6 +24,10 @@
   /// Cloud SQL instance names service.
   ///
   /// @Snippet(path: "SqlInstanceNamesServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlInstanceNamesServiceProtocol``
   public final class SqlInstanceNamesServiceClient: Clients.SqlInstanceNamesServiceProtocol,
     Sendable
   {

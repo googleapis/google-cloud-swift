@@ -28,6 +28,10 @@
   /// [google.cloud.dialogflow.v2.EntityType]: <doc:EntityType>
   ///
   /// @Snippet(path: "EntityTypesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/EntityTypesProtocol``
   public final class EntityTypesClient: Clients.EntityTypesProtocol, Sendable {
     let inner: any Clients.EntityTypesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,14 @@
     /// Returns the list of all entity types in the specified agent.
     ///
     /// @Snippet(path: "EntityTypes_ListEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listEntityTypes(request:)``
+    /// - ``listEntityTypesByItems(parent:)``
+    /// - ``listEntityTypesByItems(parent:languageCode:)``
+    /// - ``listEntityTypesByItems(request:)``
+    /// - ``listEntityTypesByItems(request:options:)``
     public func listEntityTypes(
       request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListEntityTypesResponse {
@@ -57,6 +69,12 @@
     /// Retrieves the specified entity type.
     ///
     /// @Snippet(path: "EntityTypes_GetEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getEntityType(name:)``
+    /// - ``getEntityType(name:languageCode:)``
+    /// - ``getEntityType(request:)``
     public func getEntityType(
       request: GetEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -70,6 +88,12 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_CreateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createEntityType(parent:entityType:)``
+    /// - ``createEntityType(parent:entityType:languageCode:)``
+    /// - ``createEntityType(request:)``
     public func createEntityType(
       request: CreateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -83,6 +107,12 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_UpdateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateEntityType(entityType:)``
+    /// - ``updateEntityType(entityType:languageCode:)``
+    /// - ``updateEntityType(request:)``
     public func updateEntityType(
       request: UpdateEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -96,6 +126,11 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_DeleteEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteEntityType(name:)``
+    /// - ``deleteEntityType(request:)``
     public func deleteEntityType(
       request: DeleteEntityTypeRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -120,6 +155,12 @@
     /// [google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]: <doc:BatchUpdateEntityTypesResponse>
     ///
     /// @Snippet(path: "EntityTypes_BatchUpdateEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchUpdateEntityTypes(request:)``
+    /// - ``batchUpdateEntityTypesPollingUntilDone(request:)``
+    /// - ``batchUpdateEntityTypesPollingUntilDone(request:options:)``
     public func batchUpdateEntityTypes(
       request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -144,6 +185,12 @@
     /// [google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]: <doc:BatchUpdateEntityTypesResponse>
     ///
     /// @Snippet(path: "EntityTypes_BatchUpdateEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchUpdateEntityTypes(request:)``
+    /// - ``batchUpdateEntityTypes(request:options:)``
+    /// - ``batchUpdateEntityTypesPollingUntilDone(request:)``
     public func batchUpdateEntityTypesPollingUntilDone(
       request: BatchUpdateEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchUpdateEntityTypesResponse {
@@ -186,6 +233,13 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchDeleteEntityTypes(request:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(parent:entityTypeNames:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(request:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(request:options:)``
     public func batchDeleteEntityTypes(
       request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -208,6 +262,13 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchDeleteEntityTypes(request:)``
+    /// - ``batchDeleteEntityTypes(request:options:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(parent:entityTypeNames:)``
+    /// - ``batchDeleteEntityTypesPollingUntilDone(request:)``
     public func batchDeleteEntityTypesPollingUntilDone(
       request: BatchDeleteEntityTypesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -249,6 +310,14 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_BatchCreateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCreateEntities(request:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(request:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(request:options:)``
     public func batchCreateEntities(
       request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -271,6 +340,14 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_BatchCreateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCreateEntities(request:)``
+    /// - ``batchCreateEntities(request:options:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchCreateEntitiesPollingUntilDone(request:)``
     public func batchCreateEntitiesPollingUntilDone(
       request: BatchCreateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -315,6 +392,14 @@
     ///
     ///
     /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchUpdateEntities(request:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(request:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(request:options:)``
     public func batchUpdateEntities(
       request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -340,6 +425,14 @@
     ///
     ///
     /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchUpdateEntities(request:)``
+    /// - ``batchUpdateEntities(request:options:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(parent:entities:languageCode:)``
+    /// - ``batchUpdateEntitiesPollingUntilDone(request:)``
     public func batchUpdateEntitiesPollingUntilDone(
       request: BatchUpdateEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -381,6 +474,14 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchDeleteEntities(request:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:languageCode:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(request:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(request:options:)``
     public func batchDeleteEntities(
       request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -403,6 +504,14 @@
     /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
     ///
     /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchDeleteEntities(request:)``
+    /// - ``batchDeleteEntities(request:options:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(parent:entityValues:languageCode:)``
+    /// - ``batchDeleteEntitiesPollingUntilDone(request:)``
     public func batchDeleteEntitiesPollingUntilDone(
       request: BatchDeleteEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -448,6 +557,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "EntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -457,6 +572,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "EntityTypes_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -468,6 +587,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -490,6 +616,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EntityTypes_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -603,6 +734,13 @@
 
   // Default implementations
   extension Clients.EntityTypesProtocol {
+    /// Returns the list of all entity types in the specified agent.
+    ///
+    /// @Snippet(path: "EntityTypes_ListEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listEntityTypes(request:options:)``
     public func listEntityTypes(request: ListEntityTypesRequest) async throws
       -> GoogleCloudDialogflowV2.ListEntityTypesResponse
     {
@@ -615,6 +753,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all entity types in the specified agent.
+    ///
+    /// @Snippet(path: "EntityTypes_ListEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listEntityTypes(request:options:)``
     public func listEntityTypesByItems(
       request: ListEntityTypesRequest
     ) -> some AsyncSequence<EntityType, any Swift.Error> & Sendable {
@@ -624,6 +769,10 @@
     /// Returns the list of all entity types in the specified agent.
     ///
     /// @Snippet(path: "EntityTypes_ListEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listEntityTypes(request:options:)``
     public func listEntityTypesByItems(
       request: ListEntityTypesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<EntityType, any Swift.Error> & Sendable {
@@ -638,6 +787,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all entity types in the specified agent.
+    ///
+    /// @Snippet(path: "EntityTypes_ListEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listEntityTypes(request:options:)``
     public func listEntityTypesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<EntityType, any Swift.Error> & Sendable {
@@ -647,6 +803,13 @@
       return self.listEntityTypesByItems(request: request)
     }
 
+    /// Returns the list of all entity types in the specified agent.
+    ///
+    /// @Snippet(path: "EntityTypes_ListEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listEntityTypes(request:options:)``
     public func listEntityTypesByItems(
       parent: Swift.String,
       languageCode: Swift.String,
@@ -658,6 +821,13 @@
       return self.listEntityTypesByItems(request: request)
     }
 
+    /// Retrieves the specified entity type.
+    ///
+    /// @Snippet(path: "EntityTypes_GetEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/getEntityType(request:options:)``
     public func getEntityType(request: GetEntityTypeRequest) async throws
       -> GoogleCloudDialogflowV2.EntityType
     {
@@ -670,6 +840,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified entity type.
+    ///
+    /// @Snippet(path: "EntityTypes_GetEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/getEntityType(request:options:)``
     public func getEntityType(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -679,6 +856,13 @@
       return try await self.getEntityType(request: request)
     }
 
+    /// Retrieves the specified entity type.
+    ///
+    /// @Snippet(path: "EntityTypes_GetEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/getEntityType(request:options:)``
     public func getEntityType(
       name: Swift.String,
       languageCode: Swift.String,
@@ -690,6 +874,17 @@
       return try await self.getEntityType(request: request)
     }
 
+    /// Creates an entity type in the specified agent.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_CreateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/createEntityType(request:options:)``
     public func createEntityType(request: CreateEntityTypeRequest) async throws
       -> GoogleCloudDialogflowV2.EntityType
     {
@@ -702,6 +897,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an entity type in the specified agent.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_CreateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/createEntityType(request:options:)``
     public func createEntityType(
       parent: Swift.String,
       entityType: EntityType?,
@@ -713,6 +919,17 @@
       return try await self.createEntityType(request: request)
     }
 
+    /// Creates an entity type in the specified agent.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_CreateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/createEntityType(request:options:)``
     public func createEntityType(
       parent: Swift.String,
       entityType: EntityType?,
@@ -726,6 +943,17 @@
       return try await self.createEntityType(request: request)
     }
 
+    /// Updates the specified entity type.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_UpdateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/updateEntityType(request:options:)``
     public func updateEntityType(request: UpdateEntityTypeRequest) async throws
       -> GoogleCloudDialogflowV2.EntityType
     {
@@ -738,6 +966,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified entity type.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_UpdateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/updateEntityType(request:options:)``
     public func updateEntityType(
       entityType: EntityType?,
     ) async throws -> GoogleCloudDialogflowV2.EntityType {
@@ -747,6 +986,17 @@
       return try await self.updateEntityType(request: request)
     }
 
+    /// Updates the specified entity type.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_UpdateEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/updateEntityType(request:options:)``
     public func updateEntityType(
       entityType: EntityType?,
       languageCode: Swift.String,
@@ -758,6 +1008,17 @@
       return try await self.updateEntityType(request: request)
     }
 
+    /// Deletes the specified entity type.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_DeleteEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/deleteEntityType(request:options:)``
     public func deleteEntityType(request: DeleteEntityTypeRequest) async throws {
       try await self.deleteEntityType(request: request, options: .init())
     }
@@ -768,6 +1029,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified entity type.
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_DeleteEntityType")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/deleteEntityType(request:options:)``
     public func deleteEntityType(
       name: Swift.String,
     ) async throws {
@@ -777,6 +1049,28 @@
       try await self.deleteEntityType(request: request)
     }
 
+    /// Updates/Creates multiple entity types in the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// [google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]: <doc:BatchUpdateEntityTypesResponse>
+    ///
+    /// @Snippet(path: "EntityTypes_BatchUpdateEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchUpdateEntityTypes(request:options:)``
     public func batchUpdateEntityTypes(request: BatchUpdateEntityTypesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -789,6 +1083,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates/Creates multiple entity types in the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`:
+    /// [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// [google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse]: <doc:BatchUpdateEntityTypesResponse>
+    ///
+    /// @Snippet(path: "EntityTypes_BatchUpdateEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchUpdateEntityTypesPollingUntilDone(request:options:)``
     public func batchUpdateEntityTypesPollingUntilDone(request: BatchUpdateEntityTypesRequest)
       async throws -> BatchUpdateEntityTypesResponse
     {
@@ -802,6 +1118,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes entity types in the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntityTypes(request:options:)``
     public func batchDeleteEntityTypes(request: BatchDeleteEntityTypesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -814,6 +1150,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes entity types in the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntityTypesPollingUntilDone(request:options:)``
     public func batchDeleteEntityTypesPollingUntilDone(request: BatchDeleteEntityTypesRequest)
       async throws
     {
@@ -826,6 +1182,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes entity types in the specified agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntityTypes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntityTypesPollingUntilDone(request:options:)``
     public func batchDeleteEntityTypesPollingUntilDone(
       parent: Swift.String,
       entityTypeNames: [Swift.String],
@@ -837,6 +1213,26 @@
       try await self.batchDeleteEntityTypesPollingUntilDone(request: request)
     }
 
+    /// Creates multiple new entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchCreateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchCreateEntities(request:options:)``
     public func batchCreateEntities(request: BatchCreateEntitiesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -849,6 +1245,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates multiple new entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchCreateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchCreateEntitiesPollingUntilDone(request:options:)``
     public func batchCreateEntitiesPollingUntilDone(request: BatchCreateEntitiesRequest)
       async throws
     {
@@ -861,6 +1277,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates multiple new entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchCreateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchCreateEntitiesPollingUntilDone(request:options:)``
     public func batchCreateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
@@ -872,6 +1308,26 @@
       try await self.batchCreateEntitiesPollingUntilDone(request: request)
     }
 
+    /// Creates multiple new entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchCreateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchCreateEntitiesPollingUntilDone(request:options:)``
     public func batchCreateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
@@ -885,6 +1341,29 @@
       try await self.batchCreateEntitiesPollingUntilDone(request: request)
     }
 
+    /// Updates or creates multiple entities in the specified entity type. This
+    /// method does not affect entities in the entity type that aren't explicitly
+    /// specified in the request.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    ///
+    /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchUpdateEntities(request:options:)``
     public func batchUpdateEntities(request: BatchUpdateEntitiesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -897,6 +1376,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates or creates multiple entities in the specified entity type. This
+    /// method does not affect entities in the entity type that aren't explicitly
+    /// specified in the request.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    ///
+    /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchUpdateEntitiesPollingUntilDone(request:options:)``
     public func batchUpdateEntitiesPollingUntilDone(request: BatchUpdateEntitiesRequest)
       async throws
     {
@@ -909,6 +1411,29 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates or creates multiple entities in the specified entity type. This
+    /// method does not affect entities in the entity type that aren't explicitly
+    /// specified in the request.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    ///
+    /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchUpdateEntitiesPollingUntilDone(request:options:)``
     public func batchUpdateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
@@ -920,6 +1445,29 @@
       try await self.batchUpdateEntitiesPollingUntilDone(request: request)
     }
 
+    /// Updates or creates multiple entities in the specified entity type. This
+    /// method does not affect entities in the entity type that aren't explicitly
+    /// specified in the request.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    ///
+    /// @Snippet(path: "EntityTypes_BatchUpdateEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchUpdateEntitiesPollingUntilDone(request:options:)``
     public func batchUpdateEntitiesPollingUntilDone(
       parent: Swift.String,
       entities: [EntityType.Entity],
@@ -933,6 +1481,26 @@
       try await self.batchUpdateEntitiesPollingUntilDone(request: request)
     }
 
+    /// Deletes entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntities(request:options:)``
     public func batchDeleteEntities(request: BatchDeleteEntitiesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -945,6 +1513,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntitiesPollingUntilDone(request:options:)``
     public func batchDeleteEntitiesPollingUntilDone(request: BatchDeleteEntitiesRequest)
       async throws
     {
@@ -957,6 +1545,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntitiesPollingUntilDone(request:options:)``
     public func batchDeleteEntitiesPollingUntilDone(
       parent: Swift.String,
       entityValues: [Swift.String],
@@ -968,6 +1576,26 @@
       try await self.batchDeleteEntitiesPollingUntilDone(request: request)
     }
 
+    /// Deletes entities in the specified entity type.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`: An empty [Struct
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#struct)
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// Note: You should always train an agent prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/es/docs/training).
+    ///
+    /// @Snippet(path: "EntityTypes_BatchDeleteEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/batchDeleteEntitiesPollingUntilDone(request:options:)``
     public func batchDeleteEntitiesPollingUntilDone(
       parent: Swift.String,
       entityValues: [Swift.String],
@@ -981,6 +1609,30 @@
       try await self.batchDeleteEntitiesPollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "EntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -993,6 +1645,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "EntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1019,6 +1695,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "EntityTypes_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1032,6 +1712,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "EntityTypes_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -1044,6 +1731,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1056,6 +1752,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1067,6 +1772,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1080,6 +1789,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EntityTypes_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1091,6 +1809,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1103,6 +1824,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1112,6 +1836,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EntityTypes_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1122,6 +1855,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EntityTypes_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EntityTypesClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

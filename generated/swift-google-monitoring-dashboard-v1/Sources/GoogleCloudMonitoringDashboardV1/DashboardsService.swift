@@ -24,6 +24,10 @@ import Foundation
 /// widgets in a specific layout.
 ///
 /// @Snippet(path: "DashboardsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DashboardsServiceProtocol``
 public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, Sendable {
   let inner: any Clients.DashboardsServiceStub
 
@@ -45,6 +49,11 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_CreateDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDashboard(parent:dashboard:)``
+  /// - ``createDashboard(request:)``
   public func createDashboard(
     request: CreateDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -58,6 +67,13 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_ListDashboards")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDashboards(request:)``
+  /// - ``listDashboardsByItems(parent:)``
+  /// - ``listDashboardsByItems(request:)``
+  /// - ``listDashboardsByItems(request:options:)``
   public func listDashboards(
     request: ListDashboardsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse {
@@ -71,6 +87,11 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_GetDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDashboard(name:)``
+  /// - ``getDashboard(request:)``
   public func getDashboard(
     request: GetDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -84,6 +105,11 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_DeleteDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDashboard(name:)``
+  /// - ``deleteDashboard(request:)``
   public func deleteDashboard(
     request: DeleteDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -97,6 +123,10 @@ public final class DashboardsServiceClient: Clients.DashboardsServiceProtocol, S
   /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_UpdateDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDashboard(request:)``
   public func updateDashboard(
     request: UpdateDashboardRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -140,6 +170,18 @@ extension Clients {
 
 // Default implementations
 extension Clients.DashboardsServiceProtocol {
+  /// Creates a new custom dashboard. For examples on how you can use this API to
+  /// create dashboards, see [Managing dashboards by
+  /// API](https://cloud.google.com/monitoring/dashboards/api-dashboard). This
+  /// method requires the `monitoring.dashboards.create` permission on the
+  /// specified project. For more information about permissions, see [Cloud
+  /// Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_CreateDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/createDashboard(request:options:)``
   public func createDashboard(request: CreateDashboardRequest) async throws
     -> GoogleCloudMonitoringDashboardV1.Dashboard
   {
@@ -152,6 +194,18 @@ extension Clients.DashboardsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new custom dashboard. For examples on how you can use this API to
+  /// create dashboards, see [Managing dashboards by
+  /// API](https://cloud.google.com/monitoring/dashboards/api-dashboard). This
+  /// method requires the `monitoring.dashboards.create` permission on the
+  /// specified project. For more information about permissions, see [Cloud
+  /// Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_CreateDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/createDashboard(request:options:)``
   public func createDashboard(
     parent: Swift.String,
     dashboard: Dashboard?,
@@ -163,6 +217,17 @@ extension Clients.DashboardsServiceProtocol {
     return try await self.createDashboard(request: request)
   }
 
+  /// Lists the existing dashboards.
+  ///
+  /// This method requires the `monitoring.dashboards.list` permission
+  /// on the specified project. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_ListDashboards")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/listDashboards(request:options:)``
   public func listDashboards(request: ListDashboardsRequest) async throws
     -> GoogleCloudMonitoringDashboardV1.ListDashboardsResponse
   {
@@ -175,6 +240,17 @@ extension Clients.DashboardsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the existing dashboards.
+  ///
+  /// This method requires the `monitoring.dashboards.list` permission
+  /// on the specified project. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_ListDashboards")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/listDashboards(request:options:)``
   public func listDashboardsByItems(
     request: ListDashboardsRequest
   ) -> some AsyncSequence<Dashboard, any Swift.Error> & Sendable {
@@ -188,6 +264,10 @@ extension Clients.DashboardsServiceProtocol {
   /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
   ///
   /// @Snippet(path: "DashboardsService_ListDashboards")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/listDashboards(request:options:)``
   public func listDashboardsByItems(
     request: ListDashboardsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Dashboard, any Swift.Error> & Sendable {
@@ -202,6 +282,17 @@ extension Clients.DashboardsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the existing dashboards.
+  ///
+  /// This method requires the `monitoring.dashboards.list` permission
+  /// on the specified project. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_ListDashboards")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/listDashboards(request:options:)``
   public func listDashboardsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Dashboard, any Swift.Error> & Sendable {
@@ -211,6 +302,17 @@ extension Clients.DashboardsServiceProtocol {
     return self.listDashboardsByItems(request: request)
   }
 
+  /// Fetches a specific dashboard.
+  ///
+  /// This method requires the `monitoring.dashboards.get` permission
+  /// on the specified dashboard. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_GetDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/getDashboard(request:options:)``
   public func getDashboard(request: GetDashboardRequest) async throws
     -> GoogleCloudMonitoringDashboardV1.Dashboard
   {
@@ -223,6 +325,17 @@ extension Clients.DashboardsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a specific dashboard.
+  ///
+  /// This method requires the `monitoring.dashboards.get` permission
+  /// on the specified dashboard. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_GetDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/getDashboard(request:options:)``
   public func getDashboard(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringDashboardV1.Dashboard {
@@ -232,6 +345,17 @@ extension Clients.DashboardsServiceProtocol {
     return try await self.getDashboard(request: request)
   }
 
+  /// Deletes an existing custom dashboard.
+  ///
+  /// This method requires the `monitoring.dashboards.delete` permission
+  /// on the specified dashboard. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_DeleteDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/deleteDashboard(request:options:)``
   public func deleteDashboard(request: DeleteDashboardRequest) async throws {
     try await self.deleteDashboard(request: request, options: .init())
   }
@@ -242,6 +366,17 @@ extension Clients.DashboardsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing custom dashboard.
+  ///
+  /// This method requires the `monitoring.dashboards.delete` permission
+  /// on the specified dashboard. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_DeleteDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/deleteDashboard(request:options:)``
   public func deleteDashboard(
     name: Swift.String,
   ) async throws {
@@ -251,6 +386,17 @@ extension Clients.DashboardsServiceProtocol {
     try await self.deleteDashboard(request: request)
   }
 
+  /// Replaces an existing custom dashboard with a new definition.
+  ///
+  /// This method requires the `monitoring.dashboards.update` permission
+  /// on the specified dashboard. For more information, see
+  /// [Cloud Identity and Access Management](https://cloud.google.com/iam).
+  ///
+  /// @Snippet(path: "DashboardsService_UpdateDashboard")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardsServiceClient/updateDashboard(request:options:)``
   public func updateDashboard(request: UpdateDashboardRequest) async throws
     -> GoogleCloudMonitoringDashboardV1.Dashboard
   {

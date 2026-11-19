@@ -26,6 +26,10 @@
   /// Service for managing Sessions and Session-related resources.
   ///
   /// @Snippet(path: "SessionServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SessionServiceProtocol``
   public final class SessionServiceClient: Clients.SessionServiceProtocol, Sendable {
     let inner: any Clients.SessionServiceStub
 
@@ -47,6 +51,11 @@
     /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "SessionService_CreateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createSession(parent:session:)``
+    /// - ``createSession(request:)``
     public func createSession(
       request: CreateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -61,6 +70,11 @@
     /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "SessionService_DeleteSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSession(name:)``
+    /// - ``deleteSession(request:)``
     public func deleteSession(
       request: DeleteSessionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -76,6 +90,11 @@
     /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
     ///
     /// @Snippet(path: "SessionService_UpdateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateSession(request:)``
+    /// - ``updateSession(session:updateMask:)``
     public func updateSession(
       request: UpdateSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -85,6 +104,11 @@
     /// Gets a Session.
     ///
     /// @Snippet(path: "SessionService_GetSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getSession(name:)``
+    /// - ``getSession(request:)``
     public func getSession(
       request: GetSessionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -97,6 +121,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "SessionService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listSessions(request:)``
+    /// - ``listSessionsByItems(parent:)``
+    /// - ``listSessionsByItems(request:)``
+    /// - ``listSessionsByItems(request:options:)``
     public func listSessions(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse {
@@ -108,6 +139,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SessionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -130,6 +168,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SessionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -183,6 +226,18 @@
 
   // Default implementations
   extension Clients.SessionServiceProtocol {
+    /// Creates a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to create already
+    /// exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "SessionService_CreateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/createSession(request:options:)``
     public func createSession(request: CreateSessionRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Session
     {
@@ -195,6 +250,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to create already
+    /// exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "SessionService_CreateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/createSession(request:options:)``
     public func createSession(
       parent: Swift.String,
       session: Session?,
@@ -206,6 +273,18 @@
       return try await self.createSession(request: request)
     }
 
+    /// Deletes a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to delete does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "SessionService_DeleteSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/deleteSession(request:options:)``
     public func deleteSession(request: DeleteSessionRequest) async throws {
       try await self.deleteSession(request: request, options: .init())
     }
@@ -216,6 +295,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Session.
+    ///
+    /// If the [Session][google.cloud.discoveryengine.v1.Session] to delete does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "SessionService_DeleteSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/deleteSession(request:options:)``
     public func deleteSession(
       name: Swift.String,
     ) async throws {
@@ -225,6 +316,19 @@
       try await self.deleteSession(request: request)
     }
 
+    /// Updates a Session.
+    ///
+    /// [Session][google.cloud.discoveryengine.v1.Session] action type cannot be
+    /// changed. If the [Session][google.cloud.discoveryengine.v1.Session] to
+    /// update does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "SessionService_UpdateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/updateSession(request:options:)``
     public func updateSession(request: UpdateSessionRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Session
     {
@@ -237,6 +341,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Session.
+    ///
+    /// [Session][google.cloud.discoveryengine.v1.Session] action type cannot be
+    /// changed. If the [Session][google.cloud.discoveryengine.v1.Session] to
+    /// update does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Session]: <doc:Session>
+    ///
+    /// @Snippet(path: "SessionService_UpdateSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/updateSession(request:options:)``
     public func updateSession(
       session: Session?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -248,6 +365,13 @@
       return try await self.updateSession(request: request)
     }
 
+    /// Gets a Session.
+    ///
+    /// @Snippet(path: "SessionService_GetSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/getSession(request:options:)``
     public func getSession(request: GetSessionRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Session
     {
@@ -260,6 +384,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Session.
+    ///
+    /// @Snippet(path: "SessionService_GetSession")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/getSession(request:options:)``
     public func getSession(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Session {
@@ -269,6 +400,16 @@
       return try await self.getSession(request: request)
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "SessionService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listSessions(request:options:)``
     public func listSessions(request: ListSessionsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListSessionsResponse
     {
@@ -281,6 +422,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "SessionService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listSessions(request:options:)``
     public func listSessionsByItems(
       request: ListSessionsRequest
     ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -293,6 +444,10 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "SessionService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listSessions(request:options:)``
     public func listSessionsByItems(
       request: ListSessionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -307,6 +462,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all Sessions by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "SessionService_ListSessions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listSessions(request:options:)``
     public func listSessionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -316,6 +481,15 @@
       return self.listSessionsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -328,6 +502,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -339,6 +522,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SessionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -352,6 +539,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -363,6 +559,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -375,6 +574,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -384,6 +586,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -394,6 +605,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SessionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SessionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

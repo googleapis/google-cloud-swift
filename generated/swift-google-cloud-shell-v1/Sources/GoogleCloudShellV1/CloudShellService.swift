@@ -30,6 +30,10 @@ import Foundation
 /// client.
 ///
 /// @Snippet(path: "CloudShellServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudShellServiceProtocol``
 public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, Sendable {
   let inner: any Clients.CloudShellServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,11 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// Gets an environment. Returns NOT_FOUND if the environment does not exist.
   ///
   /// @Snippet(path: "CloudShellService_GetEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEnvironment(name:)``
+  /// - ``getEnvironment(request:)``
   public func getEnvironment(
     request: GetEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudShellV1.Environment {
@@ -64,6 +73,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// StartEnvironmentResponse in its response field.
   ///
   /// @Snippet(path: "CloudShellService_StartEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startEnvironment(request:)``
+  /// - ``startEnvironmentPollingUntilDone(request:)``
+  /// - ``startEnvironmentPollingUntilDone(request:options:)``
   public func startEnvironment(
     request: StartEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -78,6 +93,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// StartEnvironmentResponse in its response field.
   ///
   /// @Snippet(path: "CloudShellService_StartEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startEnvironment(request:)``
+  /// - ``startEnvironment(request:options:)``
+  /// - ``startEnvironmentPollingUntilDone(request:)``
   public func startEnvironmentPollingUntilDone(
     request: StartEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> StartEnvironmentResponse {
@@ -110,6 +131,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// authenticate.
   ///
   /// @Snippet(path: "CloudShellService_AuthorizeEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``authorizeEnvironment(request:)``
+  /// - ``authorizeEnvironmentPollingUntilDone(request:)``
+  /// - ``authorizeEnvironmentPollingUntilDone(request:options:)``
   public func authorizeEnvironment(
     request: AuthorizeEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -122,6 +149,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// authenticate.
   ///
   /// @Snippet(path: "CloudShellService_AuthorizeEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``authorizeEnvironment(request:)``
+  /// - ``authorizeEnvironment(request:options:)``
+  /// - ``authorizeEnvironmentPollingUntilDone(request:)``
   public func authorizeEnvironmentPollingUntilDone(
     request: AuthorizeEnvironmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthorizeEnvironmentResponse {
@@ -153,6 +186,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// with the same content already exists, this will error with ALREADY_EXISTS.
   ///
   /// @Snippet(path: "CloudShellService_AddPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addPublicKey(request:)``
+  /// - ``addPublicKeyPollingUntilDone(request:)``
+  /// - ``addPublicKeyPollingUntilDone(request:options:)``
   public func addPublicKey(
     request: AddPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,6 +203,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// with the same content already exists, this will error with ALREADY_EXISTS.
   ///
   /// @Snippet(path: "CloudShellService_AddPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addPublicKey(request:)``
+  /// - ``addPublicKey(request:options:)``
+  /// - ``addPublicKeyPollingUntilDone(request:)``
   public func addPublicKeyPollingUntilDone(
     request: AddPublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddPublicKeyResponse {
@@ -195,6 +240,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// NOT_FOUND.
   ///
   /// @Snippet(path: "CloudShellService_RemovePublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removePublicKey(request:)``
+  /// - ``removePublicKeyPollingUntilDone(request:)``
+  /// - ``removePublicKeyPollingUntilDone(request:options:)``
   public func removePublicKey(
     request: RemovePublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -207,6 +258,12 @@ public final class CloudShellServiceClient: Clients.CloudShellServiceProtocol, S
   /// NOT_FOUND.
   ///
   /// @Snippet(path: "CloudShellService_RemovePublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removePublicKey(request:)``
+  /// - ``removePublicKey(request:options:)``
+  /// - ``removePublicKeyPollingUntilDone(request:)``
   public func removePublicKeyPollingUntilDone(
     request: RemovePublicKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> RemovePublicKeyResponse {
@@ -301,6 +358,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudShellServiceProtocol {
+  /// Gets an environment. Returns NOT_FOUND if the environment does not exist.
+  ///
+  /// @Snippet(path: "CloudShellService_GetEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/getEnvironment(request:options:)``
   public func getEnvironment(request: GetEnvironmentRequest) async throws
     -> GoogleCloudShellV1.Environment
   {
@@ -313,6 +377,13 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an environment. Returns NOT_FOUND if the environment does not exist.
+  ///
+  /// @Snippet(path: "CloudShellService_GetEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/getEnvironment(request:options:)``
   public func getEnvironment(
     name: Swift.String,
   ) async throws -> GoogleCloudShellV1.Environment {
@@ -322,6 +393,18 @@ extension Clients.CloudShellServiceProtocol {
     return try await self.getEnvironment(request: request)
   }
 
+  /// Starts an existing environment, allowing clients to connect to it. The
+  /// returned operation will contain an instance of StartEnvironmentMetadata in
+  /// its metadata field. Users can wait for the environment to start by polling
+  /// this operation via GetOperation. Once the environment has finished starting
+  /// and is ready to accept connections, the operation will contain a
+  /// StartEnvironmentResponse in its response field.
+  ///
+  /// @Snippet(path: "CloudShellService_StartEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/startEnvironment(request:options:)``
   public func startEnvironment(request: StartEnvironmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -334,6 +417,18 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts an existing environment, allowing clients to connect to it. The
+  /// returned operation will contain an instance of StartEnvironmentMetadata in
+  /// its metadata field. Users can wait for the environment to start by polling
+  /// this operation via GetOperation. Once the environment has finished starting
+  /// and is ready to accept connections, the operation will contain a
+  /// StartEnvironmentResponse in its response field.
+  ///
+  /// @Snippet(path: "CloudShellService_StartEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/startEnvironmentPollingUntilDone(request:options:)``
   public func startEnvironmentPollingUntilDone(request: StartEnvironmentRequest) async throws
     -> StartEnvironmentResponse
   {
@@ -346,6 +441,16 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sends OAuth credentials to a running environment on behalf of a user. When
+  /// this completes, the environment will be authorized to run various Google
+  /// Cloud command line tools without requiring the user to manually
+  /// authenticate.
+  ///
+  /// @Snippet(path: "CloudShellService_AuthorizeEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/authorizeEnvironment(request:options:)``
   public func authorizeEnvironment(request: AuthorizeEnvironmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -358,6 +463,16 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sends OAuth credentials to a running environment on behalf of a user. When
+  /// this completes, the environment will be authorized to run various Google
+  /// Cloud command line tools without requiring the user to manually
+  /// authenticate.
+  ///
+  /// @Snippet(path: "CloudShellService_AuthorizeEnvironment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/authorizeEnvironmentPollingUntilDone(request:options:)``
   public func authorizeEnvironmentPollingUntilDone(request: AuthorizeEnvironmentRequest)
     async throws -> AuthorizeEnvironmentResponse
   {
@@ -370,6 +485,15 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a public SSH key to an environment, allowing clients with the
+  /// corresponding private key to connect to that environment via SSH. If a key
+  /// with the same content already exists, this will error with ALREADY_EXISTS.
+  ///
+  /// @Snippet(path: "CloudShellService_AddPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/addPublicKey(request:options:)``
   public func addPublicKey(request: AddPublicKeyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.addPublicKey(request: request, options: .init())
@@ -381,6 +505,15 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a public SSH key to an environment, allowing clients with the
+  /// corresponding private key to connect to that environment via SSH. If a key
+  /// with the same content already exists, this will error with ALREADY_EXISTS.
+  ///
+  /// @Snippet(path: "CloudShellService_AddPublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/addPublicKeyPollingUntilDone(request:options:)``
   public func addPublicKeyPollingUntilDone(request: AddPublicKeyRequest) async throws
     -> AddPublicKeyResponse
   {
@@ -393,6 +526,16 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a public SSH key from an environment. Clients will no longer be
+  /// able to connect to the environment using the corresponding private key.
+  /// If a key with the same content is not present, this will error with
+  /// NOT_FOUND.
+  ///
+  /// @Snippet(path: "CloudShellService_RemovePublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/removePublicKey(request:options:)``
   public func removePublicKey(request: RemovePublicKeyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -405,6 +548,16 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a public SSH key from an environment. Clients will no longer be
+  /// able to connect to the environment using the corresponding private key.
+  /// If a key with the same content is not present, this will error with
+  /// NOT_FOUND.
+  ///
+  /// @Snippet(path: "CloudShellService_RemovePublicKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudShellServiceClient/removePublicKeyPollingUntilDone(request:options:)``
   public func removePublicKeyPollingUntilDone(request: RemovePublicKeyRequest) async throws
     -> RemovePublicKeyResponse
   {
@@ -417,6 +570,9 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -429,6 +585,9 @@ extension Clients.CloudShellServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

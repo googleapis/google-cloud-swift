@@ -27,6 +27,10 @@ import Foundation
 /// Virtual Private Cloud networks.
 ///
 /// @Snippet(path: "VpcAccessServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/VpcAccessServiceProtocol``
 public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sendable {
   let inner: any Clients.VpcAccessServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// Creates a Serverless VPC Access connector, returns an operation.
   ///
   /// @Snippet(path: "VpcAccessService_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnector(request:)``
+  /// - ``createConnectorPollingUntilDone(parent:connectorId:connector:)``
+  /// - ``createConnectorPollingUntilDone(request:)``
+  /// - ``createConnectorPollingUntilDone(request:options:)``
   public func createConnector(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -56,6 +67,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// Creates a Serverless VPC Access connector, returns an operation.
   ///
   /// @Snippet(path: "VpcAccessService_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnector(request:)``
+  /// - ``createConnector(request:options:)``
+  /// - ``createConnectorPollingUntilDone(parent:connectorId:connector:)``
+  /// - ``createConnectorPollingUntilDone(request:)``
   public func createConnectorPollingUntilDone(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Connector {
@@ -84,6 +102,11 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// does not exist.
   ///
   /// @Snippet(path: "VpcAccessService_GetConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnector(name:)``
+  /// - ``getConnector(request:)``
   public func getConnector(
     request: GetConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVPCAccessV1.Connector {
@@ -93,6 +116,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// Lists Serverless VPC Access connectors.
   ///
   /// @Snippet(path: "VpcAccessService_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnectors(request:)``
+  /// - ``listConnectorsByItems(parent:)``
+  /// - ``listConnectorsByItems(request:)``
+  /// - ``listConnectorsByItems(request:options:)``
   public func listConnectors(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVPCAccessV1.ListConnectorsResponse {
@@ -103,6 +133,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// resource does not exist.
   ///
   /// @Snippet(path: "VpcAccessService_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnector(request:)``
+  /// - ``deleteConnectorPollingUntilDone(name:)``
+  /// - ``deleteConnectorPollingUntilDone(request:)``
+  /// - ``deleteConnectorPollingUntilDone(request:options:)``
   public func deleteConnector(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,6 +150,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// resource does not exist.
   ///
   /// @Snippet(path: "VpcAccessService_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnector(request:)``
+  /// - ``deleteConnector(request:options:)``
+  /// - ``deleteConnectorPollingUntilDone(name:)``
+  /// - ``deleteConnectorPollingUntilDone(request:)``
   public func deleteConnectorPollingUntilDone(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -140,6 +184,12 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "VpcAccessService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -151,6 +201,13 @@ public final class VpcAccessServiceClient: Clients.VpcAccessServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VpcAccessService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -220,6 +277,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.VpcAccessServiceProtocol {
+  /// Creates a Serverless VPC Access connector, returns an operation.
+  ///
+  /// @Snippet(path: "VpcAccessService_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/createConnector(request:options:)``
   public func createConnector(request: CreateConnectorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -232,6 +296,13 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Serverless VPC Access connector, returns an operation.
+  ///
+  /// @Snippet(path: "VpcAccessService_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/createConnectorPollingUntilDone(request:options:)``
   public func createConnectorPollingUntilDone(request: CreateConnectorRequest) async throws
     -> Connector
   {
@@ -244,6 +315,13 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Serverless VPC Access connector, returns an operation.
+  ///
+  /// @Snippet(path: "VpcAccessService_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/createConnectorPollingUntilDone(request:options:)``
   public func createConnectorPollingUntilDone(
     parent: Swift.String,
     connectorId: Swift.String,
@@ -257,6 +335,14 @@ extension Clients.VpcAccessServiceProtocol {
     return try await self.createConnectorPollingUntilDone(request: request)
   }
 
+  /// Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource
+  /// does not exist.
+  ///
+  /// @Snippet(path: "VpcAccessService_GetConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/getConnector(request:options:)``
   public func getConnector(request: GetConnectorRequest) async throws
     -> GoogleCloudVPCAccessV1.Connector
   {
@@ -269,6 +355,14 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a Serverless VPC Access connector. Returns NOT_FOUND if the resource
+  /// does not exist.
+  ///
+  /// @Snippet(path: "VpcAccessService_GetConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/getConnector(request:options:)``
   public func getConnector(
     name: Swift.String,
   ) async throws -> GoogleCloudVPCAccessV1.Connector {
@@ -278,6 +372,13 @@ extension Clients.VpcAccessServiceProtocol {
     return try await self.getConnector(request: request)
   }
 
+  /// Lists Serverless VPC Access connectors.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listConnectors(request:options:)``
   public func listConnectors(request: ListConnectorsRequest) async throws
     -> GoogleCloudVPCAccessV1.ListConnectorsResponse
   {
@@ -290,6 +391,13 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Serverless VPC Access connectors.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listConnectors(request:options:)``
   public func listConnectorsByItems(
     request: ListConnectorsRequest
   ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
@@ -299,6 +407,10 @@ extension Clients.VpcAccessServiceProtocol {
   /// Lists Serverless VPC Access connectors.
   ///
   /// @Snippet(path: "VpcAccessService_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listConnectors(request:options:)``
   public func listConnectorsByItems(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
@@ -313,6 +425,13 @@ extension Clients.VpcAccessServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Serverless VPC Access connectors.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listConnectors(request:options:)``
   public func listConnectorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
@@ -322,6 +441,14 @@ extension Clients.VpcAccessServiceProtocol {
     return self.listConnectorsByItems(request: request)
   }
 
+  /// Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the
+  /// resource does not exist.
+  ///
+  /// @Snippet(path: "VpcAccessService_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/deleteConnector(request:options:)``
   public func deleteConnector(request: DeleteConnectorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -334,6 +461,14 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the
+  /// resource does not exist.
+  ///
+  /// @Snippet(path: "VpcAccessService_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/deleteConnectorPollingUntilDone(request:options:)``
   public func deleteConnectorPollingUntilDone(request: DeleteConnectorRequest) async throws {
     try await self.deleteConnectorPollingUntilDone(request: request, options: .init())
   }
@@ -344,6 +479,14 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Serverless VPC Access connector. Returns NOT_FOUND if the
+  /// resource does not exist.
+  ///
+  /// @Snippet(path: "VpcAccessService_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/deleteConnectorPollingUntilDone(request:options:)``
   public func deleteConnectorPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -353,6 +496,13 @@ extension Clients.VpcAccessServiceProtocol {
     try await self.deleteConnectorPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -365,6 +515,13 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "VpcAccessService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -374,6 +531,10 @@ extension Clients.VpcAccessServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "VpcAccessService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -387,6 +548,15 @@ extension Clients.VpcAccessServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VpcAccessService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -399,6 +569,15 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VpcAccessService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -410,6 +589,10 @@ extension Clients.VpcAccessServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "VpcAccessService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -423,6 +606,15 @@ extension Clients.VpcAccessServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "VpcAccessService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``VpcAccessServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -434,6 +626,9 @@ extension Clients.VpcAccessServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -446,6 +641,9 @@ extension Clients.VpcAccessServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

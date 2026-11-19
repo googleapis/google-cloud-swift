@@ -27,6 +27,10 @@ import Foundation
 /// clusters and connectors.
 ///
 /// @Snippet(path: "ManagedKafkaConnectQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ManagedKafkaConnectProtocol``
 public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtocol, Sendable {
   let inner: any Clients.ManagedKafkaConnectStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Lists the Kafka Connect clusters in a given project and location.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListConnectClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnectClusters(request:)``
+  /// - ``listConnectClustersByItems(parent:)``
+  /// - ``listConnectClustersByItems(request:)``
+  /// - ``listConnectClustersByItems(request:options:)``
   public func listConnectClusters(
     request: ListConnectClustersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListConnectClustersResponse {
@@ -57,6 +68,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Returns the properties of a single Kafka Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_GetConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnectCluster(name:)``
+  /// - ``getConnectCluster(request:)``
   public func getConnectCluster(
     request: GetConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ConnectCluster {
@@ -66,6 +82,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Creates a new Kafka Connect cluster in a given project and location.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_CreateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnectCluster(request:)``
+  /// - ``createConnectClusterPollingUntilDone(parent:connectCluster:connectClusterId:)``
+  /// - ``createConnectClusterPollingUntilDone(request:)``
+  /// - ``createConnectClusterPollingUntilDone(request:options:)``
   public func createConnectCluster(
     request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +98,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Creates a new Kafka Connect cluster in a given project and location.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_CreateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnectCluster(request:)``
+  /// - ``createConnectCluster(request:options:)``
+  /// - ``createConnectClusterPollingUntilDone(parent:connectCluster:connectClusterId:)``
+  /// - ``createConnectClusterPollingUntilDone(request:)``
   public func createConnectClusterPollingUntilDone(
     request: CreateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectCluster {
@@ -103,6 +133,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Updates the properties of a single Kafka Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_UpdateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnectCluster(request:)``
+  /// - ``updateConnectClusterPollingUntilDone(connectCluster:updateMask:)``
+  /// - ``updateConnectClusterPollingUntilDone(request:)``
+  /// - ``updateConnectClusterPollingUntilDone(request:options:)``
   public func updateConnectCluster(
     request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -112,6 +149,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Updates the properties of a single Kafka Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_UpdateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnectCluster(request:)``
+  /// - ``updateConnectCluster(request:options:)``
+  /// - ``updateConnectClusterPollingUntilDone(connectCluster:updateMask:)``
+  /// - ``updateConnectClusterPollingUntilDone(request:)``
   public func updateConnectClusterPollingUntilDone(
     request: UpdateConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> ConnectCluster {
@@ -140,6 +184,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Deletes a single Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_DeleteConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnectCluster(request:)``
+  /// - ``deleteConnectClusterPollingUntilDone(name:)``
+  /// - ``deleteConnectClusterPollingUntilDone(request:)``
+  /// - ``deleteConnectClusterPollingUntilDone(request:options:)``
   public func deleteConnectCluster(
     request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -149,6 +200,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Deletes a single Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_DeleteConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnectCluster(request:)``
+  /// - ``deleteConnectCluster(request:options:)``
+  /// - ``deleteConnectClusterPollingUntilDone(name:)``
+  /// - ``deleteConnectClusterPollingUntilDone(request:)``
   public func deleteConnectClusterPollingUntilDone(
     request: DeleteConnectClusterRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,6 +234,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Lists the connectors in a given Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnectors(request:)``
+  /// - ``listConnectorsByItems(parent:)``
+  /// - ``listConnectorsByItems(request:)``
+  /// - ``listConnectorsByItems(request:options:)``
   public func listConnectors(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ListConnectorsResponse {
@@ -185,6 +250,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Returns the properties of a single connector.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_GetConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnector(name:)``
+  /// - ``getConnector(request:)``
   public func getConnector(
     request: GetConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -194,6 +264,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Creates a new connector in a given Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnector(parent:connector:connectorId:)``
+  /// - ``createConnector(request:)``
   public func createConnector(
     request: CreateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -203,6 +278,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Updates the properties of a connector.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_UpdateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnector(connector:updateMask:)``
+  /// - ``updateConnector(request:)``
   public func updateConnector(
     request: UpdateConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -212,6 +292,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Deletes a connector.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnector(name:)``
+  /// - ``deleteConnector(request:)``
   public func deleteConnector(
     request: DeleteConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -221,6 +306,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Pauses the connector and its tasks.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_PauseConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pauseConnector(name:)``
+  /// - ``pauseConnector(request:)``
   public func pauseConnector(
     request: PauseConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.PauseConnectorResponse {
@@ -230,6 +320,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Resumes the connector and its tasks.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ResumeConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeConnector(name:)``
+  /// - ``resumeConnector(request:)``
   public func resumeConnector(
     request: ResumeConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.ResumeConnectorResponse {
@@ -239,6 +334,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Restarts the connector.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_RestartConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restartConnector(name:)``
+  /// - ``restartConnector(request:)``
   public func restartConnector(
     request: RestartConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.RestartConnectorResponse {
@@ -248,6 +348,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Stops the connector.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_StopConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopConnector(name:)``
+  /// - ``stopConnector(request:)``
   public func stopConnector(
     request: StopConnectorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudManagedKafkaV1.StopConnectorResponse {
@@ -257,6 +362,12 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -266,6 +377,10 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -277,6 +392,13 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -299,6 +421,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedKafkaConnect_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -310,6 +437,11 @@ public final class ManagedKafkaConnectClient: Clients.ManagedKafkaConnectProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedKafkaConnect_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -438,6 +570,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ManagedKafkaConnectProtocol {
+  /// Lists the Kafka Connect clusters in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListConnectClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectClusters(request:options:)``
   public func listConnectClusters(request: ListConnectClustersRequest) async throws
     -> GoogleCloudManagedKafkaV1.ListConnectClustersResponse
   {
@@ -450,6 +589,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Kafka Connect clusters in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListConnectClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectClusters(request:options:)``
   public func listConnectClustersByItems(
     request: ListConnectClustersRequest
   ) -> some AsyncSequence<ConnectCluster, any Swift.Error> & Sendable {
@@ -459,6 +605,10 @@ extension Clients.ManagedKafkaConnectProtocol {
   /// Lists the Kafka Connect clusters in a given project and location.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListConnectClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectClusters(request:options:)``
   public func listConnectClustersByItems(
     request: ListConnectClustersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ConnectCluster, any Swift.Error> & Sendable {
@@ -473,6 +623,13 @@ extension Clients.ManagedKafkaConnectProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the Kafka Connect clusters in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListConnectClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectClusters(request:options:)``
   public func listConnectClustersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ConnectCluster, any Swift.Error> & Sendable {
@@ -482,6 +639,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return self.listConnectClustersByItems(request: request)
   }
 
+  /// Returns the properties of a single Kafka Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_GetConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/getConnectCluster(request:options:)``
   public func getConnectCluster(request: GetConnectClusterRequest) async throws
     -> GoogleCloudManagedKafkaV1.ConnectCluster
   {
@@ -494,6 +658,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the properties of a single Kafka Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_GetConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/getConnectCluster(request:options:)``
   public func getConnectCluster(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaV1.ConnectCluster {
@@ -503,6 +674,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.getConnectCluster(request: request)
   }
 
+  /// Creates a new Kafka Connect cluster in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CreateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/createConnectCluster(request:options:)``
   public func createConnectCluster(request: CreateConnectClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -515,6 +693,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Kafka Connect cluster in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CreateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/createConnectClusterPollingUntilDone(request:options:)``
   public func createConnectClusterPollingUntilDone(request: CreateConnectClusterRequest)
     async throws -> ConnectCluster
   {
@@ -527,6 +712,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Kafka Connect cluster in a given project and location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CreateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/createConnectClusterPollingUntilDone(request:options:)``
   public func createConnectClusterPollingUntilDone(
     parent: Swift.String,
     connectCluster: ConnectCluster?,
@@ -540,6 +732,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.createConnectClusterPollingUntilDone(request: request)
   }
 
+  /// Updates the properties of a single Kafka Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_UpdateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/updateConnectCluster(request:options:)``
   public func updateConnectCluster(request: UpdateConnectClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -552,6 +751,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the properties of a single Kafka Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_UpdateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/updateConnectClusterPollingUntilDone(request:options:)``
   public func updateConnectClusterPollingUntilDone(request: UpdateConnectClusterRequest)
     async throws -> ConnectCluster
   {
@@ -564,6 +770,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the properties of a single Kafka Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_UpdateConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/updateConnectClusterPollingUntilDone(request:options:)``
   public func updateConnectClusterPollingUntilDone(
     connectCluster: ConnectCluster?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -575,6 +788,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.updateConnectClusterPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteConnectCluster(request:options:)``
   public func deleteConnectCluster(request: DeleteConnectClusterRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -587,6 +807,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteConnectClusterPollingUntilDone(request:options:)``
   public func deleteConnectClusterPollingUntilDone(request: DeleteConnectClusterRequest)
     async throws
   {
@@ -599,6 +826,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteConnectCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteConnectClusterPollingUntilDone(request:options:)``
   public func deleteConnectClusterPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -608,6 +842,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     try await self.deleteConnectClusterPollingUntilDone(request: request)
   }
 
+  /// Lists the connectors in a given Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectors(request:options:)``
   public func listConnectors(request: ListConnectorsRequest) async throws
     -> GoogleCloudManagedKafkaV1.ListConnectorsResponse
   {
@@ -620,6 +861,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the connectors in a given Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectors(request:options:)``
   public func listConnectorsByItems(
     request: ListConnectorsRequest
   ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
@@ -629,6 +877,10 @@ extension Clients.ManagedKafkaConnectProtocol {
   /// Lists the connectors in a given Connect cluster.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectors(request:options:)``
   public func listConnectorsByItems(
     request: ListConnectorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
@@ -643,6 +895,13 @@ extension Clients.ManagedKafkaConnectProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the connectors in a given Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListConnectors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listConnectors(request:options:)``
   public func listConnectorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connector, any Swift.Error> & Sendable {
@@ -652,6 +911,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return self.listConnectorsByItems(request: request)
   }
 
+  /// Returns the properties of a single connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_GetConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/getConnector(request:options:)``
   public func getConnector(request: GetConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.Connector
   {
@@ -664,6 +930,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the properties of a single connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_GetConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/getConnector(request:options:)``
   public func getConnector(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaV1.Connector {
@@ -673,6 +946,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.getConnector(request: request)
   }
 
+  /// Creates a new connector in a given Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/createConnector(request:options:)``
   public func createConnector(request: CreateConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.Connector
   {
@@ -685,6 +965,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new connector in a given Connect cluster.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CreateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/createConnector(request:options:)``
   public func createConnector(
     parent: Swift.String,
     connector: Connector?,
@@ -698,6 +985,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.createConnector(request: request)
   }
 
+  /// Updates the properties of a connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_UpdateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/updateConnector(request:options:)``
   public func updateConnector(request: UpdateConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.Connector
   {
@@ -710,6 +1004,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the properties of a connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_UpdateConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/updateConnector(request:options:)``
   public func updateConnector(
     connector: Connector?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -721,6 +1022,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.updateConnector(request: request)
   }
 
+  /// Deletes a connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteConnector(request:options:)``
   public func deleteConnector(request: DeleteConnectorRequest) async throws {
     try await self.deleteConnector(request: request, options: .init())
   }
@@ -731,6 +1039,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteConnector(request:options:)``
   public func deleteConnector(
     name: Swift.String,
   ) async throws {
@@ -740,6 +1055,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     try await self.deleteConnector(request: request)
   }
 
+  /// Pauses the connector and its tasks.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_PauseConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/pauseConnector(request:options:)``
   public func pauseConnector(request: PauseConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.PauseConnectorResponse
   {
@@ -752,6 +1074,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pauses the connector and its tasks.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_PauseConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/pauseConnector(request:options:)``
   public func pauseConnector(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaV1.PauseConnectorResponse {
@@ -761,6 +1090,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.pauseConnector(request: request)
   }
 
+  /// Resumes the connector and its tasks.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ResumeConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/resumeConnector(request:options:)``
   public func resumeConnector(request: ResumeConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.ResumeConnectorResponse
   {
@@ -773,6 +1109,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resumes the connector and its tasks.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ResumeConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/resumeConnector(request:options:)``
   public func resumeConnector(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaV1.ResumeConnectorResponse {
@@ -782,6 +1125,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.resumeConnector(request: request)
   }
 
+  /// Restarts the connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_RestartConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/restartConnector(request:options:)``
   public func restartConnector(request: RestartConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.RestartConnectorResponse
   {
@@ -794,6 +1144,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restarts the connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_RestartConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/restartConnector(request:options:)``
   public func restartConnector(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaV1.RestartConnectorResponse {
@@ -803,6 +1160,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.restartConnector(request: request)
   }
 
+  /// Stops the connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_StopConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/stopConnector(request:options:)``
   public func stopConnector(request: StopConnectorRequest) async throws
     -> GoogleCloudManagedKafkaV1.StopConnectorResponse
   {
@@ -815,6 +1179,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops the connector.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_StopConnector")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/stopConnector(request:options:)``
   public func stopConnector(
     name: Swift.String,
   ) async throws -> GoogleCloudManagedKafkaV1.StopConnectorResponse {
@@ -824,6 +1195,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.stopConnector(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -836,6 +1214,13 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -845,6 +1230,10 @@ extension Clients.ManagedKafkaConnectProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -858,6 +1247,13 @@ extension Clients.ManagedKafkaConnectProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -870,6 +1266,15 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -882,6 +1287,15 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -893,6 +1307,10 @@ extension Clients.ManagedKafkaConnectProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ManagedKafkaConnect_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -906,6 +1324,15 @@ extension Clients.ManagedKafkaConnectProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -917,6 +1344,9 @@ extension Clients.ManagedKafkaConnectProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -929,6 +1359,9 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -938,6 +1371,15 @@ extension Clients.ManagedKafkaConnectProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -948,6 +1390,15 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -957,6 +1408,15 @@ extension Clients.ManagedKafkaConnectProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -967,6 +1427,15 @@ extension Clients.ManagedKafkaConnectProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ManagedKafkaConnect_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedKafkaConnectClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

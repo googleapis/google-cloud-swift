@@ -25,6 +25,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "MonitoringQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MonitoringProtocol``
 public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   let inner: any Clients.MonitoringStub
 
@@ -41,6 +45,13 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Lists the framework compliance summary for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFrameworkComplianceSummaries(request:)``
+  /// - ``listFrameworkComplianceSummariesByItems(parent:)``
+  /// - ``listFrameworkComplianceSummariesByItems(request:)``
+  /// - ``listFrameworkComplianceSummariesByItems(request:options:)``
   public func listFrameworkComplianceSummaries(
     request: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse {
@@ -50,6 +61,13 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Lists the finding summary by category for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListFindingSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFindingSummaries(request:)``
+  /// - ``listFindingSummariesByItems(parent:)``
+  /// - ``listFindingSummariesByItems(request:)``
+  /// - ``listFindingSummariesByItems(request:options:)``
   public func listFindingSummaries(
     request: ListFindingSummariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFindingSummariesResponse {
@@ -59,6 +77,11 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Fetches the framework compliance report for a given scope.
   ///
   /// @Snippet(path: "Monitoring_FetchFrameworkComplianceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchFrameworkComplianceReport(name:)``
+  /// - ``fetchFrameworkComplianceReport(request:)``
   public func fetchFrameworkComplianceReport(
     request: FetchFrameworkComplianceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.FrameworkComplianceReport {
@@ -68,6 +91,13 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Lists the control compliance summary for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListControlComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listControlComplianceSummaries(request:)``
+  /// - ``listControlComplianceSummariesByItems(parent:)``
+  /// - ``listControlComplianceSummariesByItems(request:)``
+  /// - ``listControlComplianceSummariesByItems(request:options:)``
   public func listControlComplianceSummaries(
     request: ListControlComplianceSummariesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListControlComplianceSummariesResponse {
@@ -77,6 +107,11 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Gets the aggregated compliance report over time for a given scope.
   ///
   /// @Snippet(path: "Monitoring_AggregateFrameworkComplianceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``aggregateFrameworkComplianceReport(name:)``
+  /// - ``aggregateFrameworkComplianceReport(request:)``
   public func aggregateFrameworkComplianceReport(
     request: AggregateFrameworkComplianceReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.AggregateFrameworkComplianceReportResponse {
@@ -103,6 +138,12 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Monitoring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -112,6 +153,10 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Monitoring_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -123,6 +168,13 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Monitoring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -145,6 +197,11 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Monitoring_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -156,6 +213,11 @@ public final class MonitoringClient: Clients.MonitoringProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Monitoring_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -224,6 +286,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MonitoringProtocol {
+  /// Lists the framework compliance summary for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFrameworkComplianceSummaries(request:options:)``
   public func listFrameworkComplianceSummaries(request: ListFrameworkComplianceSummariesRequest)
     async throws -> GoogleCloudSecurityComplianceV1.ListFrameworkComplianceSummariesResponse
   {
@@ -236,6 +305,13 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the framework compliance summary for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFrameworkComplianceSummaries(request:options:)``
   public func listFrameworkComplianceSummariesByItems(
     request: ListFrameworkComplianceSummariesRequest
   ) -> some AsyncSequence<FrameworkComplianceSummary, any Swift.Error> & Sendable {
@@ -245,6 +321,10 @@ extension Clients.MonitoringProtocol {
   /// Lists the framework compliance summary for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFrameworkComplianceSummaries(request:options:)``
   public func listFrameworkComplianceSummariesByItems(
     request: ListFrameworkComplianceSummariesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FrameworkComplianceSummary, any Swift.Error> & Sendable {
@@ -259,6 +339,13 @@ extension Clients.MonitoringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the framework compliance summary for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListFrameworkComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFrameworkComplianceSummaries(request:options:)``
   public func listFrameworkComplianceSummariesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<FrameworkComplianceSummary, any Swift.Error> & Sendable {
@@ -268,6 +355,13 @@ extension Clients.MonitoringProtocol {
     return self.listFrameworkComplianceSummariesByItems(request: request)
   }
 
+  /// Lists the finding summary by category for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListFindingSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFindingSummaries(request:options:)``
   public func listFindingSummaries(request: ListFindingSummariesRequest) async throws
     -> GoogleCloudSecurityComplianceV1.ListFindingSummariesResponse
   {
@@ -280,6 +374,13 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the finding summary by category for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListFindingSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFindingSummaries(request:options:)``
   public func listFindingSummariesByItems(
     request: ListFindingSummariesRequest
   ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
@@ -289,6 +390,10 @@ extension Clients.MonitoringProtocol {
   /// Lists the finding summary by category for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListFindingSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFindingSummaries(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -306,6 +411,13 @@ extension Clients.MonitoringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the finding summary by category for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListFindingSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listFindingSummaries(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -318,6 +430,13 @@ extension Clients.MonitoringProtocol {
     return self.listFindingSummariesByItems(request: request)
   }
 
+  /// Fetches the framework compliance report for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_FetchFrameworkComplianceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/fetchFrameworkComplianceReport(request:options:)``
   public func fetchFrameworkComplianceReport(request: FetchFrameworkComplianceReportRequest)
     async throws -> GoogleCloudSecurityComplianceV1.FrameworkComplianceReport
   {
@@ -330,6 +449,13 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the framework compliance report for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_FetchFrameworkComplianceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/fetchFrameworkComplianceReport(request:options:)``
   public func fetchFrameworkComplianceReport(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityComplianceV1.FrameworkComplianceReport {
@@ -339,6 +465,13 @@ extension Clients.MonitoringProtocol {
     return try await self.fetchFrameworkComplianceReport(request: request)
   }
 
+  /// Lists the control compliance summary for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListControlComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listControlComplianceSummaries(request:options:)``
   public func listControlComplianceSummaries(request: ListControlComplianceSummariesRequest)
     async throws -> GoogleCloudSecurityComplianceV1.ListControlComplianceSummariesResponse
   {
@@ -351,6 +484,13 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the control compliance summary for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListControlComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listControlComplianceSummaries(request:options:)``
   public func listControlComplianceSummariesByItems(
     request: ListControlComplianceSummariesRequest
   ) -> some AsyncSequence<ControlComplianceSummary, any Swift.Error> & Sendable {
@@ -360,6 +500,10 @@ extension Clients.MonitoringProtocol {
   /// Lists the control compliance summary for a given scope.
   ///
   /// @Snippet(path: "Monitoring_ListControlComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listControlComplianceSummaries(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -377,6 +521,13 @@ extension Clients.MonitoringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the control compliance summary for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_ListControlComplianceSummaries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listControlComplianceSummaries(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -389,6 +540,13 @@ extension Clients.MonitoringProtocol {
     return self.listControlComplianceSummariesByItems(request: request)
   }
 
+  /// Gets the aggregated compliance report over time for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_AggregateFrameworkComplianceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/aggregateFrameworkComplianceReport(request:options:)``
   public func aggregateFrameworkComplianceReport(request: AggregateFrameworkComplianceReportRequest)
     async throws -> GoogleCloudSecurityComplianceV1.AggregateFrameworkComplianceReportResponse
   {
@@ -401,6 +559,13 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the aggregated compliance report over time for a given scope.
+  ///
+  /// @Snippet(path: "Monitoring_AggregateFrameworkComplianceReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/aggregateFrameworkComplianceReport(request:options:)``
   public func aggregateFrameworkComplianceReport(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityComplianceV1.AggregateFrameworkComplianceReportResponse {
@@ -410,6 +575,30 @@ extension Clients.MonitoringProtocol {
     return try await self.aggregateFrameworkComplianceReport(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Monitoring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -422,6 +611,30 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Monitoring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -448,6 +661,10 @@ extension Clients.MonitoringProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Monitoring_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -461,6 +678,13 @@ extension Clients.MonitoringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Monitoring_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -473,6 +697,15 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -485,6 +718,15 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -496,6 +738,10 @@ extension Clients.MonitoringProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Monitoring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -509,6 +755,15 @@ extension Clients.MonitoringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -520,6 +775,9 @@ extension Clients.MonitoringProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -532,6 +790,9 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -541,6 +802,15 @@ extension Clients.MonitoringProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -551,6 +821,15 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -560,6 +839,15 @@ extension Clients.MonitoringProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -570,6 +858,15 @@ extension Clients.MonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Monitoring_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MonitoringClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -25,6 +25,10 @@
   /// Service for search tuning.
   ///
   /// @Snippet(path: "SearchTuningServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SearchTuningServiceProtocol``
   public final class SearchTuningServiceClient: Clients.SearchTuningServiceProtocol, Sendable {
     let inner: any Clients.SearchTuningServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,12 @@
     /// Trains a custom model.
     ///
     /// @Snippet(path: "SearchTuningService_TrainCustomModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``trainCustomModel(request:)``
+    /// - ``trainCustomModelPollingUntilDone(request:)``
+    /// - ``trainCustomModelPollingUntilDone(request:options:)``
     public func trainCustomModel(
       request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -55,6 +65,12 @@
     /// Trains a custom model.
     ///
     /// @Snippet(path: "SearchTuningService_TrainCustomModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``trainCustomModel(request:)``
+    /// - ``trainCustomModel(request:options:)``
+    /// - ``trainCustomModelPollingUntilDone(request:)``
     public func trainCustomModelPollingUntilDone(
       request: TrainCustomModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> TrainCustomModelResponse {
@@ -84,6 +100,10 @@
     /// Gets a list of all the custom models.
     ///
     /// @Snippet(path: "SearchTuningService_ListCustomModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listCustomModels(request:)``
     public func listCustomModels(
       request: ListCustomModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListCustomModelsResponse {
@@ -95,6 +115,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchTuningService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -117,6 +144,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchTuningService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -160,6 +192,13 @@
 
   // Default implementations
   extension Clients.SearchTuningServiceProtocol {
+    /// Trains a custom model.
+    ///
+    /// @Snippet(path: "SearchTuningService_TrainCustomModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/trainCustomModel(request:options:)``
     public func trainCustomModel(request: TrainCustomModelRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -172,6 +211,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Trains a custom model.
+    ///
+    /// @Snippet(path: "SearchTuningService_TrainCustomModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/trainCustomModelPollingUntilDone(request:options:)``
     public func trainCustomModelPollingUntilDone(request: TrainCustomModelRequest) async throws
       -> TrainCustomModelResponse
     {
@@ -184,6 +230,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a list of all the custom models.
+    ///
+    /// @Snippet(path: "SearchTuningService_ListCustomModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/listCustomModels(request:options:)``
     public func listCustomModels(request: ListCustomModelsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListCustomModelsResponse
     {
@@ -196,6 +249,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchTuningService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -208,6 +270,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchTuningService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -219,6 +290,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "SearchTuningService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -232,6 +307,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchTuningService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -243,6 +327,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -255,6 +342,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -264,6 +354,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchTuningService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -274,6 +373,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "SearchTuningService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SearchTuningServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

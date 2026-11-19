@@ -28,6 +28,10 @@ import Foundation
 /// tables in BigQuery.
 ///
 /// @Snippet(path: "DataformQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataformProtocol``
 public final class DataformClient: Clients.DataformProtocol, Sendable {
   let inner: any Clients.DataformStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single TeamFolder.
   ///
   /// @Snippet(path: "Dataform_GetTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTeamFolder(name:)``
+  /// - ``getTeamFolder(request:)``
   public func getTeamFolder(
     request: GetTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -57,6 +66,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new TeamFolder in a given project and location.
   ///
   /// @Snippet(path: "Dataform_CreateTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTeamFolder(parent:teamFolder:)``
+  /// - ``createTeamFolder(request:)``
   public func createTeamFolder(
     request: CreateTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -66,6 +80,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Updates a single TeamFolder.
   ///
   /// @Snippet(path: "Dataform_UpdateTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTeamFolder(request:)``
+  /// - ``updateTeamFolder(teamFolder:updateMask:)``
   public func updateTeamFolder(
     request: UpdateTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -75,6 +94,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single TeamFolder.
   ///
   /// @Snippet(path: "Dataform_DeleteTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTeamFolder(name:)``
+  /// - ``deleteTeamFolder(request:)``
   public func deleteTeamFolder(
     request: DeleteTeamFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -85,6 +109,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ReleaseConfigs, and WorkflowConfigs).
   ///
   /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTeamFolderTree(request:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(name:force:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(request:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(request:options:)``
   public func deleteTeamFolderTree(
     request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -95,6 +126,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ReleaseConfigs, and WorkflowConfigs).
   ///
   /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTeamFolderTree(request:)``
+  /// - ``deleteTeamFolderTree(request:options:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(name:force:)``
+  /// - ``deleteTeamFolderTreePollingUntilDone(request:)``
   public func deleteTeamFolderTreePollingUntilDone(
     request: DeleteTeamFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +160,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Returns the contents of a given TeamFolder.
   ///
   /// @Snippet(path: "Dataform_QueryTeamFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryTeamFolderContents(request:)``
+  /// - ``queryTeamFolderContentsByItems(request:)``
+  /// - ``queryTeamFolderContentsByItems(request:options:)``
+  /// - ``queryTeamFolderContentsByItems(teamFolder:)``
   public func queryTeamFolderContents(
     request: QueryTeamFolderContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryTeamFolderContentsResponse {
@@ -132,6 +177,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// and match the provided filter.
   ///
   /// @Snippet(path: "Dataform_SearchTeamFolders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchTeamFolders(request:)``
+  /// - ``searchTeamFoldersByItems(request:)``
+  /// - ``searchTeamFoldersByItems(request:options:)``
   public func searchTeamFolders(
     request: SearchTeamFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.SearchTeamFoldersResponse {
@@ -141,6 +192,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single Folder.
   ///
   /// @Snippet(path: "Dataform_GetFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFolder(name:)``
+  /// - ``getFolder(request:)``
   public func getFolder(
     request: GetFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -150,6 +206,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new Folder in a given project and location.
   ///
   /// @Snippet(path: "Dataform_CreateFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFolder(parent:folder:)``
+  /// - ``createFolder(request:)``
   public func createFolder(
     request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -159,6 +220,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Updates a single Folder.
   ///
   /// @Snippet(path: "Dataform_UpdateFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFolder(folder:updateMask:)``
+  /// - ``updateFolder(request:)``
   public func updateFolder(
     request: UpdateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -168,6 +234,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single Folder.
   ///
   /// @Snippet(path: "Dataform_DeleteFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFolder(name:)``
+  /// - ``deleteFolder(request:)``
   public func deleteFolder(
     request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -178,6 +249,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ReleaseConfigs, and WorkflowConfigs).
   ///
   /// @Snippet(path: "Dataform_DeleteFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFolderTree(request:)``
+  /// - ``deleteFolderTreePollingUntilDone(name:force:)``
+  /// - ``deleteFolderTreePollingUntilDone(request:)``
+  /// - ``deleteFolderTreePollingUntilDone(request:options:)``
   public func deleteFolderTree(
     request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -188,6 +266,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// ReleaseConfigs, and WorkflowConfigs).
   ///
   /// @Snippet(path: "Dataform_DeleteFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFolderTree(request:)``
+  /// - ``deleteFolderTree(request:options:)``
+  /// - ``deleteFolderTreePollingUntilDone(name:force:)``
+  /// - ``deleteFolderTreePollingUntilDone(request:)``
   public func deleteFolderTreePollingUntilDone(
     request: DeleteFolderTreeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -215,6 +300,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Returns the contents of a given Folder.
   ///
   /// @Snippet(path: "Dataform_QueryFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryFolderContents(request:)``
+  /// - ``queryFolderContentsByItems(folder:)``
+  /// - ``queryFolderContentsByItems(request:)``
+  /// - ``queryFolderContentsByItems(request:options:)``
   public func queryFolderContents(
     request: QueryFolderContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryFolderContentsResponse {
@@ -226,6 +318,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// contained in any other folder.
   ///
   /// @Snippet(path: "Dataform_QueryUserRootContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryUserRootContents(request:)``
+  /// - ``queryUserRootContentsByItems(location:)``
+  /// - ``queryUserRootContentsByItems(request:)``
+  /// - ``queryUserRootContentsByItems(request:options:)``
   public func queryUserRootContents(
     request: QueryUserRootContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryUserRootContentsResponse {
@@ -235,6 +334,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a Folder to a new Folder, TeamFolder, or the root location.
   ///
   /// @Snippet(path: "Dataform_MoveFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveFolder(request:)``
+  /// - ``moveFolderPollingUntilDone(name:destinationContainingFolder:)``
+  /// - ``moveFolderPollingUntilDone(request:)``
+  /// - ``moveFolderPollingUntilDone(request:options:)``
   public func moveFolder(
     request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -244,6 +350,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a Folder to a new Folder, TeamFolder, or the root location.
   ///
   /// @Snippet(path: "Dataform_MoveFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveFolder(request:)``
+  /// - ``moveFolder(request:options:)``
+  /// - ``moveFolderPollingUntilDone(name:destinationContainingFolder:)``
+  /// - ``moveFolderPollingUntilDone(request:)``
   public func moveFolderPollingUntilDone(
     request: MoveFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -274,6 +387,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// UI](https://console.cloud.google.com/bigquery/dataform)*.
   ///
   /// @Snippet(path: "Dataform_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRepositories(request:)``
+  /// - ``listRepositoriesByItems(parent:)``
+  /// - ``listRepositoriesByItems(request:)``
+  /// - ``listRepositoriesByItems(request:options:)``
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListRepositoriesResponse {
@@ -283,6 +403,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single Repository.
   ///
   /// @Snippet(path: "Dataform_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRepository(name:)``
+  /// - ``getRepository(request:)``
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -292,6 +417,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new Repository in a given project and location.
   ///
   /// @Snippet(path: "Dataform_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRepository(parent:repository:repositoryId:)``
+  /// - ``createRepository(request:)``
   public func createRepository(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -306,6 +436,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// treated as a full update on all modifiable fields.*
   ///
   /// @Snippet(path: "Dataform_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRepository(repository:updateMask:)``
+  /// - ``updateRepository(request:)``
   public func updateRepository(
     request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -315,6 +450,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single Repository.
   ///
   /// @Snippet(path: "Dataform_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRepository(name:)``
+  /// - ``deleteRepository(request:)``
   public func deleteRepository(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -324,6 +464,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a Repository to a new location.
   ///
   /// @Snippet(path: "Dataform_MoveRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveRepository(request:)``
+  /// - ``moveRepositoryPollingUntilDone(name:destinationContainingFolder:)``
+  /// - ``moveRepositoryPollingUntilDone(request:)``
+  /// - ``moveRepositoryPollingUntilDone(request:options:)``
   public func moveRepository(
     request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -333,6 +480,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a Repository to a new location.
   ///
   /// @Snippet(path: "Dataform_MoveRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveRepository(request:)``
+  /// - ``moveRepository(request:options:)``
+  /// - ``moveRepositoryPollingUntilDone(name:destinationContainingFolder:)``
+  /// - ``moveRepositoryPollingUntilDone(request:)``
   public func moveRepositoryPollingUntilDone(
     request: MoveRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -361,6 +515,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// for `git_remote_settings.url`.
   ///
   /// @Snippet(path: "Dataform_CommitRepositoryChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitRepositoryChanges(request:)``
   public func commitRepositoryChanges(
     request: CommitRepositoryChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CommitRepositoryChangesResponse {
@@ -371,6 +529,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// must not have a value for `git_remote_settings.url`.
   ///
   /// @Snippet(path: "Dataform_ReadRepositoryFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``readRepositoryFile(request:)``
   public func readRepositoryFile(
     request: ReadRepositoryFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReadRepositoryFileResponse {
@@ -381,6 +543,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// not have a value for `git_remote_settings.url`.
   ///
   /// @Snippet(path: "Dataform_QueryRepositoryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryRepositoryDirectoryContents(request:)``
+  /// - ``queryRepositoryDirectoryContentsByItems(request:)``
+  /// - ``queryRepositoryDirectoryContentsByItems(request:options:)``
   public func queryRepositoryDirectoryContents(
     request: QueryRepositoryDirectoryContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryRepositoryDirectoryContentsResponse {
@@ -391,6 +559,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// value for `git_remote_settings.url`.
   ///
   /// @Snippet(path: "Dataform_FetchRepositoryHistory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchRepositoryHistory(request:)``
+  /// - ``fetchRepositoryHistoryByItems(request:)``
+  /// - ``fetchRepositoryHistoryByItems(request:options:)``
   public func fetchRepositoryHistory(
     request: FetchRepositoryHistoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.FetchRepositoryHistoryResponse {
@@ -400,6 +574,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Computes a Repository's Git access token status.
   ///
   /// @Snippet(path: "Dataform_ComputeRepositoryAccessTokenStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``computeRepositoryAccessTokenStatus(request:)``
   public func computeRepositoryAccessTokenStatus(
     request: ComputeRepositoryAccessTokenStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ComputeRepositoryAccessTokenStatusResponse {
@@ -409,6 +587,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a Repository's remote branches.
   ///
   /// @Snippet(path: "Dataform_FetchRemoteBranches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchRemoteBranches(request:)``
   public func fetchRemoteBranches(
     request: FetchRemoteBranchesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.FetchRemoteBranchesResponse {
@@ -418,6 +600,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Lists Workspaces in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkspaces(request:)``
+  /// - ``listWorkspacesByItems(parent:)``
+  /// - ``listWorkspacesByItems(request:)``
+  /// - ``listWorkspacesByItems(request:options:)``
   public func listWorkspaces(
     request: ListWorkspacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListWorkspacesResponse {
@@ -427,6 +616,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single Workspace.
   ///
   /// @Snippet(path: "Dataform_GetWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkspace(name:)``
+  /// - ``getWorkspace(request:)``
   public func getWorkspace(
     request: GetWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -436,6 +630,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new Workspace in a given Repository.
   ///
   /// @Snippet(path: "Dataform_CreateWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkspace(parent:workspace:workspaceId:)``
+  /// - ``createWorkspace(request:)``
   public func createWorkspace(
     request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -445,6 +644,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new Workspace in a given Repository asynchronously.
   ///
   /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkspaceLongRunning(request:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(parent:workspace:workspaceId:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(request:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(request:options:)``
   public func createWorkspaceLongRunning(
     request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -454,6 +660,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new Workspace in a given Repository asynchronously.
   ///
   /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkspaceLongRunning(request:)``
+  /// - ``createWorkspaceLongRunning(request:options:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(parent:workspace:workspaceId:)``
+  /// - ``createWorkspaceLongRunningPollingUntilDone(request:)``
   public func createWorkspaceLongRunningPollingUntilDone(
     request: CreateWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workspace {
@@ -481,6 +694,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single Workspace.
   ///
   /// @Snippet(path: "Dataform_DeleteWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkspace(name:)``
+  /// - ``deleteWorkspace(request:)``
   public func deleteWorkspace(
     request: DeleteWorkspaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -490,6 +708,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Installs dependency NPM packages (inside a Workspace).
   ///
   /// @Snippet(path: "Dataform_InstallNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``installNpmPackages(request:)``
   public func installNpmPackages(
     request: InstallNpmPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.InstallNpmPackagesResponse {
@@ -499,6 +721,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Pulls Git commits from the Repository's remote into a Workspace.
   ///
   /// @Snippet(path: "Dataform_PullGitCommits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pullGitCommits(request:)``
   public func pullGitCommits(
     request: PullGitCommitsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.PullGitCommitsResponse {
@@ -508,6 +734,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Pushes Git commits from a Workspace to the Repository's remote.
   ///
   /// @Snippet(path: "Dataform_PushGitCommits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pushGitCommits(request:)``
   public func pushGitCommits(
     request: PushGitCommitsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.PushGitCommitsResponse {
@@ -517,6 +747,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches Git statuses for the files in a Workspace.
   ///
   /// @Snippet(path: "Dataform_FetchFileGitStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchFileGitStatuses(request:)``
   public func fetchFileGitStatuses(
     request: FetchFileGitStatusesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.FetchFileGitStatusesResponse {
@@ -526,6 +760,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches Git ahead/behind against a remote branch.
   ///
   /// @Snippet(path: "Dataform_FetchGitAheadBehind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchGitAheadBehind(request:)``
   public func fetchGitAheadBehind(
     request: FetchGitAheadBehindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.FetchGitAheadBehindResponse {
@@ -535,6 +773,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Applies a Git commit for uncommitted files in a Workspace.
   ///
   /// @Snippet(path: "Dataform_CommitWorkspaceChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitWorkspaceChanges(request:)``
   public func commitWorkspaceChanges(
     request: CommitWorkspaceChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CommitWorkspaceChangesResponse {
@@ -544,6 +786,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Performs a Git reset for uncommitted files in a Workspace.
   ///
   /// @Snippet(path: "Dataform_ResetWorkspaceChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resetWorkspaceChanges(request:)``
   public func resetWorkspaceChanges(
     request: ResetWorkspaceChangesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ResetWorkspaceChangesResponse {
@@ -553,6 +799,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches Git diff for an uncommitted file in a Workspace.
   ///
   /// @Snippet(path: "Dataform_FetchFileDiff")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchFileDiff(request:)``
   public func fetchFileDiff(
     request: FetchFileDiffRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.FetchFileDiffResponse {
@@ -562,6 +812,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Returns the contents of a given Workspace directory.
   ///
   /// @Snippet(path: "Dataform_QueryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryDirectoryContents(request:)``
+  /// - ``queryDirectoryContentsByItems(request:)``
+  /// - ``queryDirectoryContentsByItems(request:options:)``
   public func queryDirectoryContents(
     request: QueryDirectoryContentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryDirectoryContentsResponse {
@@ -571,6 +827,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Finds the contents of a given Workspace directory by filter.
   ///
   /// @Snippet(path: "Dataform_SearchFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchFiles(request:)``
+  /// - ``searchFilesByItems(request:)``
+  /// - ``searchFilesByItems(request:options:)``
   public func searchFiles(
     request: SearchFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.SearchFilesResponse {
@@ -580,6 +842,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a directory inside a Workspace.
   ///
   /// @Snippet(path: "Dataform_MakeDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``makeDirectory(request:)``
   public func makeDirectory(
     request: MakeDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.MakeDirectoryResponse {
@@ -589,6 +855,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a directory (inside a Workspace) and all of its contents.
   ///
   /// @Snippet(path: "Dataform_RemoveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeDirectory(request:)``
   public func removeDirectory(
     request: RemoveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.RemoveDirectoryResponse {
@@ -599,6 +869,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "Dataform_MoveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveDirectory(request:)``
   public func moveDirectory(
     request: MoveDirectoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.MoveDirectoryResponse {
@@ -608,6 +882,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Returns the contents of a file (inside a Workspace).
   ///
   /// @Snippet(path: "Dataform_ReadFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``readFile(request:)``
   public func readFile(
     request: ReadFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReadFileResponse {
@@ -617,6 +895,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a file (inside a Workspace).
   ///
   /// @Snippet(path: "Dataform_RemoveFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeFile(request:)``
   public func removeFile(
     request: RemoveFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.RemoveFileResponse {
@@ -626,6 +908,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Moves a file (inside a Workspace) to a new location.
   ///
   /// @Snippet(path: "Dataform_MoveFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveFile(request:)``
   public func moveFile(
     request: MoveFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.MoveFileResponse {
@@ -635,6 +921,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Writes to a file (inside a Workspace).
   ///
   /// @Snippet(path: "Dataform_WriteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``writeFile(request:)``
   public func writeFile(
     request: WriteFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WriteFileResponse {
@@ -644,6 +934,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Lists ReleaseConfigs in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListReleaseConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReleaseConfigs(request:)``
+  /// - ``listReleaseConfigsByItems(parent:)``
+  /// - ``listReleaseConfigsByItems(request:)``
+  /// - ``listReleaseConfigsByItems(request:options:)``
   public func listReleaseConfigs(
     request: ListReleaseConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListReleaseConfigsResponse {
@@ -653,6 +950,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single ReleaseConfig.
   ///
   /// @Snippet(path: "Dataform_GetReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReleaseConfig(name:)``
+  /// - ``getReleaseConfig(request:)``
   public func getReleaseConfig(
     request: GetReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -662,6 +964,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new ReleaseConfig in a given Repository.
   ///
   /// @Snippet(path: "Dataform_CreateReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReleaseConfig(parent:releaseConfig:releaseConfigId:)``
+  /// - ``createReleaseConfig(request:)``
   public func createReleaseConfig(
     request: CreateReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -676,6 +983,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// treated as a full update on all modifiable fields.*
   ///
   /// @Snippet(path: "Dataform_UpdateReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReleaseConfig(releaseConfig:updateMask:)``
+  /// - ``updateReleaseConfig(request:)``
   public func updateReleaseConfig(
     request: UpdateReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -685,6 +997,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single ReleaseConfig.
   ///
   /// @Snippet(path: "Dataform_DeleteReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReleaseConfig(name:)``
+  /// - ``deleteReleaseConfig(request:)``
   public func deleteReleaseConfig(
     request: DeleteReleaseConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -694,6 +1011,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Lists CompilationResults in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListCompilationResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCompilationResults(request:)``
+  /// - ``listCompilationResultsByItems(parent:)``
+  /// - ``listCompilationResultsByItems(request:)``
+  /// - ``listCompilationResultsByItems(request:options:)``
   public func listCompilationResults(
     request: ListCompilationResultsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListCompilationResultsResponse {
@@ -703,6 +1027,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single CompilationResult.
   ///
   /// @Snippet(path: "Dataform_GetCompilationResult")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCompilationResult(name:)``
+  /// - ``getCompilationResult(request:)``
   public func getCompilationResult(
     request: GetCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -712,6 +1041,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new CompilationResult in a given project and location.
   ///
   /// @Snippet(path: "Dataform_CreateCompilationResult")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCompilationResult(parent:compilationResult:)``
+  /// - ``createCompilationResult(request:)``
   public func createCompilationResult(
     request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -722,6 +1056,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// asynchronously.
   ///
   /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCompilationResultLongRunning(request:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(parent:compilationResult:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(request:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(request:options:)``
   public func createCompilationResultLongRunning(
     request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -732,6 +1073,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// asynchronously.
   ///
   /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCompilationResultLongRunning(request:)``
+  /// - ``createCompilationResultLongRunning(request:options:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(parent:compilationResult:)``
+  /// - ``createCompilationResultLongRunningPollingUntilDone(request:)``
   public func createCompilationResultLongRunningPollingUntilDone(
     request: CreateCompilationResultRequest, options: GoogleGax.RequestOptions
   ) async throws -> CompilationResult {
@@ -761,6 +1109,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Returns CompilationResultActions in a given CompilationResult.
   ///
   /// @Snippet(path: "Dataform_QueryCompilationResultActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryCompilationResultActions(request:)``
+  /// - ``queryCompilationResultActionsByItems(request:)``
+  /// - ``queryCompilationResultActionsByItems(request:options:)``
   public func queryCompilationResultActions(
     request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryCompilationResultActionsResponse {
@@ -770,6 +1124,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Lists WorkflowConfigs in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListWorkflowConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkflowConfigs(request:)``
+  /// - ``listWorkflowConfigsByItems(parent:)``
+  /// - ``listWorkflowConfigsByItems(request:)``
+  /// - ``listWorkflowConfigsByItems(request:options:)``
   public func listWorkflowConfigs(
     request: ListWorkflowConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListWorkflowConfigsResponse {
@@ -779,6 +1140,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single WorkflowConfig.
   ///
   /// @Snippet(path: "Dataform_GetWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkflowConfig(name:)``
+  /// - ``getWorkflowConfig(request:)``
   public func getWorkflowConfig(
     request: GetWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -788,6 +1154,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new WorkflowConfig in a given Repository.
   ///
   /// @Snippet(path: "Dataform_CreateWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkflowConfig(parent:workflowConfig:workflowConfigId:)``
+  /// - ``createWorkflowConfig(request:)``
   public func createWorkflowConfig(
     request: CreateWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -802,6 +1173,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// treated as a full update on all modifiable fields.*
   ///
   /// @Snippet(path: "Dataform_UpdateWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkflowConfig(request:)``
+  /// - ``updateWorkflowConfig(workflowConfig:updateMask:)``
   public func updateWorkflowConfig(
     request: UpdateWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -811,6 +1187,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single WorkflowConfig.
   ///
   /// @Snippet(path: "Dataform_DeleteWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkflowConfig(name:)``
+  /// - ``deleteWorkflowConfig(request:)``
   public func deleteWorkflowConfig(
     request: DeleteWorkflowConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -820,6 +1201,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Lists WorkflowInvocations in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListWorkflowInvocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkflowInvocations(request:)``
+  /// - ``listWorkflowInvocationsByItems(parent:)``
+  /// - ``listWorkflowInvocationsByItems(request:)``
+  /// - ``listWorkflowInvocationsByItems(request:options:)``
   public func listWorkflowInvocations(
     request: ListWorkflowInvocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.ListWorkflowInvocationsResponse {
@@ -829,6 +1217,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Fetches a single WorkflowInvocation.
   ///
   /// @Snippet(path: "Dataform_GetWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkflowInvocation(name:)``
+  /// - ``getWorkflowInvocation(request:)``
   public func getWorkflowInvocation(
     request: GetWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -838,6 +1231,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Creates a new WorkflowInvocation in a given Repository.
   ///
   /// @Snippet(path: "Dataform_CreateWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkflowInvocation(parent:workflowInvocation:)``
+  /// - ``createWorkflowInvocation(request:)``
   public func createWorkflowInvocation(
     request: CreateWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -847,6 +1245,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Deletes a single WorkflowInvocation.
   ///
   /// @Snippet(path: "Dataform_DeleteWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkflowInvocation(name:)``
+  /// - ``deleteWorkflowInvocation(request:)``
   public func deleteWorkflowInvocation(
     request: DeleteWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -856,6 +1259,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Requests cancellation of a running WorkflowInvocation.
   ///
   /// @Snippet(path: "Dataform_CancelWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelWorkflowInvocation(request:)``
   public func cancelWorkflowInvocation(
     request: CancelWorkflowInvocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.CancelWorkflowInvocationResponse {
@@ -865,6 +1272,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Returns WorkflowInvocationActions in a given WorkflowInvocation.
   ///
   /// @Snippet(path: "Dataform_QueryWorkflowInvocationActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryWorkflowInvocationActions(request:)``
+  /// - ``queryWorkflowInvocationActionsByItems(request:)``
+  /// - ``queryWorkflowInvocationActionsByItems(request:options:)``
   public func queryWorkflowInvocationActions(
     request: QueryWorkflowInvocationActionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.QueryWorkflowInvocationActionsResponse {
@@ -874,6 +1287,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Get default config for a given project and location.
   ///
   /// @Snippet(path: "Dataform_GetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConfig(name:)``
+  /// - ``getConfig(request:)``
   public func getConfig(
     request: GetConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Config {
@@ -888,6 +1306,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// treated as a full update on all modifiable fields.*
   ///
   /// @Snippet(path: "Dataform_UpdateConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConfig(config:updateMask:)``
+  /// - ``updateConfig(request:)``
   public func updateConfig(
     request: UpdateConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFormV1.Config {
@@ -899,6 +1322,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// set.
   ///
   /// @Snippet(path: "Dataform_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -911,6 +1339,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
   ///
   /// @Snippet(path: "Dataform_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -926,6 +1358,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// may "fail open" without warning.
   ///
   /// @Snippet(path: "Dataform_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -952,6 +1388,12 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Dataform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -961,6 +1403,10 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Dataform_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -972,6 +1418,13 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Dataform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -994,6 +1447,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Dataform_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1005,6 +1463,11 @@ public final class DataformClient: Clients.DataformProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Dataform_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1453,6 +1916,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataformProtocol {
+  /// Fetches a single TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_GetTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getTeamFolder(request:options:)``
   public func getTeamFolder(request: GetTeamFolderRequest) async throws
     -> GoogleCloudDataFormV1.TeamFolder
   {
@@ -1465,6 +1935,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_GetTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getTeamFolder(request:options:)``
   public func getTeamFolder(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.TeamFolder {
@@ -1474,6 +1951,13 @@ extension Clients.DataformProtocol {
     return try await self.getTeamFolder(request: request)
   }
 
+  /// Creates a new TeamFolder in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createTeamFolder(request:options:)``
   public func createTeamFolder(request: CreateTeamFolderRequest) async throws
     -> GoogleCloudDataFormV1.TeamFolder
   {
@@ -1486,6 +1970,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TeamFolder in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createTeamFolder(request:options:)``
   public func createTeamFolder(
     parent: Swift.String,
     teamFolder: TeamFolder?,
@@ -1497,6 +1988,13 @@ extension Clients.DataformProtocol {
     return try await self.createTeamFolder(request: request)
   }
 
+  /// Updates a single TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_UpdateTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateTeamFolder(request:options:)``
   public func updateTeamFolder(request: UpdateTeamFolderRequest) async throws
     -> GoogleCloudDataFormV1.TeamFolder
   {
@@ -1509,6 +2007,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_UpdateTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateTeamFolder(request:options:)``
   public func updateTeamFolder(
     teamFolder: TeamFolder?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1520,6 +2025,13 @@ extension Clients.DataformProtocol {
     return try await self.updateTeamFolder(request: request)
   }
 
+  /// Deletes a single TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_DeleteTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteTeamFolder(request:options:)``
   public func deleteTeamFolder(request: DeleteTeamFolderRequest) async throws {
     try await self.deleteTeamFolder(request: request, options: .init())
   }
@@ -1530,6 +2042,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_DeleteTeamFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteTeamFolder(request:options:)``
   public func deleteTeamFolder(
     name: Swift.String,
   ) async throws {
@@ -1539,6 +2058,14 @@ extension Clients.DataformProtocol {
     try await self.deleteTeamFolder(request: request)
   }
 
+  /// Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+  /// ReleaseConfigs, and WorkflowConfigs).
+  ///
+  /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteTeamFolderTree(request:options:)``
   public func deleteTeamFolderTree(request: DeleteTeamFolderTreeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1551,6 +2078,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+  /// ReleaseConfigs, and WorkflowConfigs).
+  ///
+  /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteTeamFolderTreePollingUntilDone(request:options:)``
   public func deleteTeamFolderTreePollingUntilDone(request: DeleteTeamFolderTreeRequest)
     async throws
   {
@@ -1563,6 +2098,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a TeamFolder with its contents (Folders, Repositories, Workspaces,
+  /// ReleaseConfigs, and WorkflowConfigs).
+  ///
+  /// @Snippet(path: "Dataform_DeleteTeamFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteTeamFolderTreePollingUntilDone(request:options:)``
   public func deleteTeamFolderTreePollingUntilDone(
     name: Swift.String,
     force: Swift.Bool,
@@ -1574,6 +2117,13 @@ extension Clients.DataformProtocol {
     try await self.deleteTeamFolderTreePollingUntilDone(request: request)
   }
 
+  /// Returns the contents of a given TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_QueryTeamFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryTeamFolderContents(request:options:)``
   public func queryTeamFolderContents(request: QueryTeamFolderContentsRequest) async throws
     -> GoogleCloudDataFormV1.QueryTeamFolderContentsResponse
   {
@@ -1586,6 +2136,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a given TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_QueryTeamFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryTeamFolderContents(request:options:)``
   public func queryTeamFolderContentsByItems(
     request: QueryTeamFolderContentsRequest
   ) -> some AsyncSequence<QueryTeamFolderContentsResponse.TeamFolderContentsEntry, any Swift.Error>
@@ -1597,6 +2154,10 @@ extension Clients.DataformProtocol {
   /// Returns the contents of a given TeamFolder.
   ///
   /// @Snippet(path: "Dataform_QueryTeamFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryTeamFolderContents(request:options:)``
   public func queryTeamFolderContentsByItems(
     request: QueryTeamFolderContentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QueryTeamFolderContentsResponse.TeamFolderContentsEntry, any Swift.Error>
@@ -1613,6 +2174,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the contents of a given TeamFolder.
+  ///
+  /// @Snippet(path: "Dataform_QueryTeamFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryTeamFolderContents(request:options:)``
   public func queryTeamFolderContentsByItems(
     teamFolder: Swift.String,
   ) -> some AsyncSequence<QueryTeamFolderContentsResponse.TeamFolderContentsEntry, any Swift.Error>
@@ -1624,6 +2192,14 @@ extension Clients.DataformProtocol {
     return self.queryTeamFolderContentsByItems(request: request)
   }
 
+  /// Returns all TeamFolders in a given location that the caller has access to
+  /// and match the provided filter.
+  ///
+  /// @Snippet(path: "Dataform_SearchTeamFolders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/searchTeamFolders(request:options:)``
   public func searchTeamFolders(request: SearchTeamFoldersRequest) async throws
     -> GoogleCloudDataFormV1.SearchTeamFoldersResponse
   {
@@ -1636,6 +2212,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns all TeamFolders in a given location that the caller has access to
+  /// and match the provided filter.
+  ///
+  /// @Snippet(path: "Dataform_SearchTeamFolders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/searchTeamFolders(request:options:)``
   public func searchTeamFoldersByItems(
     request: SearchTeamFoldersRequest
   ) -> some AsyncSequence<SearchTeamFoldersResponse.TeamFolderSearchResult, any Swift.Error>
@@ -1648,6 +2232,10 @@ extension Clients.DataformProtocol {
   /// and match the provided filter.
   ///
   /// @Snippet(path: "Dataform_SearchTeamFolders")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/searchTeamFolders(request:options:)``
   public func searchTeamFoldersByItems(
     request: SearchTeamFoldersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SearchTeamFoldersResponse.TeamFolderSearchResult, any Swift.Error>
@@ -1664,6 +2252,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Fetches a single Folder.
+  ///
+  /// @Snippet(path: "Dataform_GetFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getFolder(request:options:)``
   public func getFolder(request: GetFolderRequest) async throws -> GoogleCloudDataFormV1.Folder {
     try await self.getFolder(request: request, options: .init())
   }
@@ -1674,6 +2269,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single Folder.
+  ///
+  /// @Snippet(path: "Dataform_GetFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getFolder(request:options:)``
   public func getFolder(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.Folder {
@@ -1683,6 +2285,13 @@ extension Clients.DataformProtocol {
     return try await self.getFolder(request: request)
   }
 
+  /// Creates a new Folder in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createFolder(request:options:)``
   public func createFolder(request: CreateFolderRequest) async throws
     -> GoogleCloudDataFormV1.Folder
   {
@@ -1695,6 +2304,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Folder in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createFolder(request:options:)``
   public func createFolder(
     parent: Swift.String,
     folder: Folder?,
@@ -1706,6 +2322,13 @@ extension Clients.DataformProtocol {
     return try await self.createFolder(request: request)
   }
 
+  /// Updates a single Folder.
+  ///
+  /// @Snippet(path: "Dataform_UpdateFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateFolder(request:options:)``
   public func updateFolder(request: UpdateFolderRequest) async throws
     -> GoogleCloudDataFormV1.Folder
   {
@@ -1718,6 +2341,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single Folder.
+  ///
+  /// @Snippet(path: "Dataform_UpdateFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateFolder(request:options:)``
   public func updateFolder(
     folder: Folder?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1729,6 +2359,13 @@ extension Clients.DataformProtocol {
     return try await self.updateFolder(request: request)
   }
 
+  /// Deletes a single Folder.
+  ///
+  /// @Snippet(path: "Dataform_DeleteFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteFolder(request:options:)``
   public func deleteFolder(request: DeleteFolderRequest) async throws {
     try await self.deleteFolder(request: request, options: .init())
   }
@@ -1739,6 +2376,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Folder.
+  ///
+  /// @Snippet(path: "Dataform_DeleteFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteFolder(request:options:)``
   public func deleteFolder(
     name: Swift.String,
   ) async throws {
@@ -1748,6 +2392,14 @@ extension Clients.DataformProtocol {
     try await self.deleteFolder(request: request)
   }
 
+  /// Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+  /// ReleaseConfigs, and WorkflowConfigs).
+  ///
+  /// @Snippet(path: "Dataform_DeleteFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteFolderTree(request:options:)``
   public func deleteFolderTree(request: DeleteFolderTreeRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1760,6 +2412,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+  /// ReleaseConfigs, and WorkflowConfigs).
+  ///
+  /// @Snippet(path: "Dataform_DeleteFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteFolderTreePollingUntilDone(request:options:)``
   public func deleteFolderTreePollingUntilDone(request: DeleteFolderTreeRequest) async throws {
     try await self.deleteFolderTreePollingUntilDone(request: request, options: .init())
   }
@@ -1770,6 +2430,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Folder with its contents (Folders, Repositories, Workspaces,
+  /// ReleaseConfigs, and WorkflowConfigs).
+  ///
+  /// @Snippet(path: "Dataform_DeleteFolderTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteFolderTreePollingUntilDone(request:options:)``
   public func deleteFolderTreePollingUntilDone(
     name: Swift.String,
     force: Swift.Bool,
@@ -1781,6 +2449,13 @@ extension Clients.DataformProtocol {
     try await self.deleteFolderTreePollingUntilDone(request: request)
   }
 
+  /// Returns the contents of a given Folder.
+  ///
+  /// @Snippet(path: "Dataform_QueryFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryFolderContents(request:options:)``
   public func queryFolderContents(request: QueryFolderContentsRequest) async throws
     -> GoogleCloudDataFormV1.QueryFolderContentsResponse
   {
@@ -1793,6 +2468,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a given Folder.
+  ///
+  /// @Snippet(path: "Dataform_QueryFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryFolderContents(request:options:)``
   public func queryFolderContentsByItems(
     request: QueryFolderContentsRequest
   ) -> some AsyncSequence<QueryFolderContentsResponse.FolderContentsEntry, any Swift.Error>
@@ -1804,6 +2486,10 @@ extension Clients.DataformProtocol {
   /// Returns the contents of a given Folder.
   ///
   /// @Snippet(path: "Dataform_QueryFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryFolderContents(request:options:)``
   public func queryFolderContentsByItems(
     request: QueryFolderContentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QueryFolderContentsResponse.FolderContentsEntry, any Swift.Error>
@@ -1820,6 +2506,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the contents of a given Folder.
+  ///
+  /// @Snippet(path: "Dataform_QueryFolderContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryFolderContents(request:options:)``
   public func queryFolderContentsByItems(
     folder: Swift.String,
   ) -> some AsyncSequence<QueryFolderContentsResponse.FolderContentsEntry, any Swift.Error>
@@ -1831,6 +2524,15 @@ extension Clients.DataformProtocol {
     return self.queryFolderContentsByItems(request: request)
   }
 
+  /// Returns the contents of a caller's root folder in a given location.
+  /// The root folder contains all resources that are created by the user and not
+  /// contained in any other folder.
+  ///
+  /// @Snippet(path: "Dataform_QueryUserRootContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryUserRootContents(request:options:)``
   public func queryUserRootContents(request: QueryUserRootContentsRequest) async throws
     -> GoogleCloudDataFormV1.QueryUserRootContentsResponse
   {
@@ -1843,6 +2545,15 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a caller's root folder in a given location.
+  /// The root folder contains all resources that are created by the user and not
+  /// contained in any other folder.
+  ///
+  /// @Snippet(path: "Dataform_QueryUserRootContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryUserRootContents(request:options:)``
   public func queryUserRootContentsByItems(
     request: QueryUserRootContentsRequest
   ) -> some AsyncSequence<QueryUserRootContentsResponse.RootContentsEntry, any Swift.Error>
@@ -1856,6 +2567,10 @@ extension Clients.DataformProtocol {
   /// contained in any other folder.
   ///
   /// @Snippet(path: "Dataform_QueryUserRootContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryUserRootContents(request:options:)``
   public func queryUserRootContentsByItems(
     request: QueryUserRootContentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<QueryUserRootContentsResponse.RootContentsEntry, any Swift.Error>
@@ -1872,6 +2587,15 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the contents of a caller's root folder in a given location.
+  /// The root folder contains all resources that are created by the user and not
+  /// contained in any other folder.
+  ///
+  /// @Snippet(path: "Dataform_QueryUserRootContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryUserRootContents(request:options:)``
   public func queryUserRootContentsByItems(
     location: Swift.String,
   ) -> some AsyncSequence<QueryUserRootContentsResponse.RootContentsEntry, any Swift.Error>
@@ -1883,6 +2607,13 @@ extension Clients.DataformProtocol {
     return self.queryUserRootContentsByItems(request: request)
   }
 
+  /// Moves a Folder to a new Folder, TeamFolder, or the root location.
+  ///
+  /// @Snippet(path: "Dataform_MoveFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveFolder(request:options:)``
   public func moveFolder(request: MoveFolderRequest) async throws -> GoogleLongRunning.Operation {
     try await self.moveFolder(request: request, options: .init())
   }
@@ -1893,6 +2624,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves a Folder to a new Folder, TeamFolder, or the root location.
+  ///
+  /// @Snippet(path: "Dataform_MoveFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveFolderPollingUntilDone(request:options:)``
   public func moveFolderPollingUntilDone(request: MoveFolderRequest) async throws {
     try await self.moveFolderPollingUntilDone(request: request, options: .init())
   }
@@ -1903,6 +2641,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves a Folder to a new Folder, TeamFolder, or the root location.
+  ///
+  /// @Snippet(path: "Dataform_MoveFolder")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveFolderPollingUntilDone(request:options:)``
   public func moveFolderPollingUntilDone(
     name: Swift.String,
     destinationContainingFolder: Swift.String?,
@@ -1914,6 +2659,16 @@ extension Clients.DataformProtocol {
     try await self.moveFolderPollingUntilDone(request: request)
   }
 
+  /// Lists Repositories in a given project and location.
+  ///
+  /// **Note:** *This method can return repositories not shown in the [Dataform
+  /// UI](https://console.cloud.google.com/bigquery/dataform)*.
+  ///
+  /// @Snippet(path: "Dataform_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listRepositories(request:options:)``
   public func listRepositories(request: ListRepositoriesRequest) async throws
     -> GoogleCloudDataFormV1.ListRepositoriesResponse
   {
@@ -1926,6 +2681,16 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Repositories in a given project and location.
+  ///
+  /// **Note:** *This method can return repositories not shown in the [Dataform
+  /// UI](https://console.cloud.google.com/bigquery/dataform)*.
+  ///
+  /// @Snippet(path: "Dataform_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -1938,6 +2703,10 @@ extension Clients.DataformProtocol {
   /// UI](https://console.cloud.google.com/bigquery/dataform)*.
   ///
   /// @Snippet(path: "Dataform_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -1952,6 +2721,16 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Repositories in a given project and location.
+  ///
+  /// **Note:** *This method can return repositories not shown in the [Dataform
+  /// UI](https://console.cloud.google.com/bigquery/dataform)*.
+  ///
+  /// @Snippet(path: "Dataform_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -1961,6 +2740,13 @@ extension Clients.DataformProtocol {
     return self.listRepositoriesByItems(request: request)
   }
 
+  /// Fetches a single Repository.
+  ///
+  /// @Snippet(path: "Dataform_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getRepository(request:options:)``
   public func getRepository(request: GetRepositoryRequest) async throws
     -> GoogleCloudDataFormV1.Repository
   {
@@ -1973,6 +2759,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single Repository.
+  ///
+  /// @Snippet(path: "Dataform_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getRepository(request:options:)``
   public func getRepository(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.Repository {
@@ -1982,6 +2775,13 @@ extension Clients.DataformProtocol {
     return try await self.getRepository(request: request)
   }
 
+  /// Creates a new Repository in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createRepository(request:options:)``
   public func createRepository(request: CreateRepositoryRequest) async throws
     -> GoogleCloudDataFormV1.Repository
   {
@@ -1994,6 +2794,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Repository in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createRepository(request:options:)``
   public func createRepository(
     parent: Swift.String,
     repository: Repository?,
@@ -2007,6 +2814,18 @@ extension Clients.DataformProtocol {
     return try await self.createRepository(request: request)
   }
 
+  /// Updates a single Repository.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateRepository(request:options:)``
   public func updateRepository(request: UpdateRepositoryRequest) async throws
     -> GoogleCloudDataFormV1.Repository
   {
@@ -2019,6 +2838,18 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single Repository.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateRepository(request:options:)``
   public func updateRepository(
     repository: Repository?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2030,6 +2861,13 @@ extension Clients.DataformProtocol {
     return try await self.updateRepository(request: request)
   }
 
+  /// Deletes a single Repository.
+  ///
+  /// @Snippet(path: "Dataform_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteRepository(request:options:)``
   public func deleteRepository(request: DeleteRepositoryRequest) async throws {
     try await self.deleteRepository(request: request, options: .init())
   }
@@ -2040,6 +2878,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Repository.
+  ///
+  /// @Snippet(path: "Dataform_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteRepository(request:options:)``
   public func deleteRepository(
     name: Swift.String,
   ) async throws {
@@ -2049,6 +2894,13 @@ extension Clients.DataformProtocol {
     try await self.deleteRepository(request: request)
   }
 
+  /// Moves a Repository to a new location.
+  ///
+  /// @Snippet(path: "Dataform_MoveRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveRepository(request:options:)``
   public func moveRepository(request: MoveRepositoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2061,6 +2913,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves a Repository to a new location.
+  ///
+  /// @Snippet(path: "Dataform_MoveRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveRepositoryPollingUntilDone(request:options:)``
   public func moveRepositoryPollingUntilDone(request: MoveRepositoryRequest) async throws {
     try await self.moveRepositoryPollingUntilDone(request: request, options: .init())
   }
@@ -2071,6 +2930,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves a Repository to a new location.
+  ///
+  /// @Snippet(path: "Dataform_MoveRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveRepositoryPollingUntilDone(request:options:)``
   public func moveRepositoryPollingUntilDone(
     name: Swift.String,
     destinationContainingFolder: Swift.String?,
@@ -2082,6 +2948,14 @@ extension Clients.DataformProtocol {
     try await self.moveRepositoryPollingUntilDone(request: request)
   }
 
+  /// Applies a Git commit to a Repository. The Repository must not have a value
+  /// for `git_remote_settings.url`.
+  ///
+  /// @Snippet(path: "Dataform_CommitRepositoryChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/commitRepositoryChanges(request:options:)``
   public func commitRepositoryChanges(request: CommitRepositoryChangesRequest) async throws
     -> GoogleCloudDataFormV1.CommitRepositoryChangesResponse
   {
@@ -2094,6 +2968,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a file (inside a Repository). The Repository
+  /// must not have a value for `git_remote_settings.url`.
+  ///
+  /// @Snippet(path: "Dataform_ReadRepositoryFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/readRepositoryFile(request:options:)``
   public func readRepositoryFile(request: ReadRepositoryFileRequest) async throws
     -> GoogleCloudDataFormV1.ReadRepositoryFileResponse
   {
@@ -2106,6 +2988,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a given Repository directory. The Repository must
+  /// not have a value for `git_remote_settings.url`.
+  ///
+  /// @Snippet(path: "Dataform_QueryRepositoryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryRepositoryDirectoryContents(request:options:)``
   public func queryRepositoryDirectoryContents(request: QueryRepositoryDirectoryContentsRequest)
     async throws -> GoogleCloudDataFormV1.QueryRepositoryDirectoryContentsResponse
   {
@@ -2118,6 +3008,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a given Repository directory. The Repository must
+  /// not have a value for `git_remote_settings.url`.
+  ///
+  /// @Snippet(path: "Dataform_QueryRepositoryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryRepositoryDirectoryContents(request:options:)``
   public func queryRepositoryDirectoryContentsByItems(
     request: QueryRepositoryDirectoryContentsRequest
   ) -> some AsyncSequence<DirectoryEntry, any Swift.Error> & Sendable {
@@ -2128,6 +3026,10 @@ extension Clients.DataformProtocol {
   /// not have a value for `git_remote_settings.url`.
   ///
   /// @Snippet(path: "Dataform_QueryRepositoryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryRepositoryDirectoryContents(request:options:)``
   public func queryRepositoryDirectoryContentsByItems(
     request: QueryRepositoryDirectoryContentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DirectoryEntry, any Swift.Error> & Sendable {
@@ -2142,6 +3044,14 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Fetches a Repository's history of commits.  The Repository must not have a
+  /// value for `git_remote_settings.url`.
+  ///
+  /// @Snippet(path: "Dataform_FetchRepositoryHistory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchRepositoryHistory(request:options:)``
   public func fetchRepositoryHistory(request: FetchRepositoryHistoryRequest) async throws
     -> GoogleCloudDataFormV1.FetchRepositoryHistoryResponse
   {
@@ -2154,6 +3064,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a Repository's history of commits.  The Repository must not have a
+  /// value for `git_remote_settings.url`.
+  ///
+  /// @Snippet(path: "Dataform_FetchRepositoryHistory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchRepositoryHistory(request:options:)``
   public func fetchRepositoryHistoryByItems(
     request: FetchRepositoryHistoryRequest
   ) -> some AsyncSequence<CommitLogEntry, any Swift.Error> & Sendable {
@@ -2164,6 +3082,10 @@ extension Clients.DataformProtocol {
   /// value for `git_remote_settings.url`.
   ///
   /// @Snippet(path: "Dataform_FetchRepositoryHistory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchRepositoryHistory(request:options:)``
   public func fetchRepositoryHistoryByItems(
     request: FetchRepositoryHistoryRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CommitLogEntry, any Swift.Error> & Sendable {
@@ -2178,6 +3100,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Computes a Repository's Git access token status.
+  ///
+  /// @Snippet(path: "Dataform_ComputeRepositoryAccessTokenStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/computeRepositoryAccessTokenStatus(request:options:)``
   public func computeRepositoryAccessTokenStatus(request: ComputeRepositoryAccessTokenStatusRequest)
     async throws -> GoogleCloudDataFormV1.ComputeRepositoryAccessTokenStatusResponse
   {
@@ -2190,6 +3119,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a Repository's remote branches.
+  ///
+  /// @Snippet(path: "Dataform_FetchRemoteBranches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchRemoteBranches(request:options:)``
   public func fetchRemoteBranches(request: FetchRemoteBranchesRequest) async throws
     -> GoogleCloudDataFormV1.FetchRemoteBranchesResponse
   {
@@ -2202,6 +3138,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Workspaces in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkspaces(request:options:)``
   public func listWorkspaces(request: ListWorkspacesRequest) async throws
     -> GoogleCloudDataFormV1.ListWorkspacesResponse
   {
@@ -2214,6 +3157,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Workspaces in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkspaces(request:options:)``
   public func listWorkspacesByItems(
     request: ListWorkspacesRequest
   ) -> some AsyncSequence<Workspace, any Swift.Error> & Sendable {
@@ -2223,6 +3173,10 @@ extension Clients.DataformProtocol {
   /// Lists Workspaces in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkspaces(request:options:)``
   public func listWorkspacesByItems(
     request: ListWorkspacesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Workspace, any Swift.Error> & Sendable {
@@ -2237,6 +3191,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Workspaces in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkspaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkspaces(request:options:)``
   public func listWorkspacesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Workspace, any Swift.Error> & Sendable {
@@ -2246,6 +3207,13 @@ extension Clients.DataformProtocol {
     return self.listWorkspacesByItems(request: request)
   }
 
+  /// Fetches a single Workspace.
+  ///
+  /// @Snippet(path: "Dataform_GetWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getWorkspace(request:options:)``
   public func getWorkspace(request: GetWorkspaceRequest) async throws
     -> GoogleCloudDataFormV1.Workspace
   {
@@ -2258,6 +3226,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single Workspace.
+  ///
+  /// @Snippet(path: "Dataform_GetWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getWorkspace(request:options:)``
   public func getWorkspace(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.Workspace {
@@ -2267,6 +3242,13 @@ extension Clients.DataformProtocol {
     return try await self.getWorkspace(request: request)
   }
 
+  /// Creates a new Workspace in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkspace(request:options:)``
   public func createWorkspace(request: CreateWorkspaceRequest) async throws
     -> GoogleCloudDataFormV1.Workspace
   {
@@ -2279,6 +3261,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Workspace in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkspace(request:options:)``
   public func createWorkspace(
     parent: Swift.String,
     workspace: Workspace?,
@@ -2292,6 +3281,13 @@ extension Clients.DataformProtocol {
     return try await self.createWorkspace(request: request)
   }
 
+  /// Creates a new Workspace in a given Repository asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkspaceLongRunning(request:options:)``
   public func createWorkspaceLongRunning(request: CreateWorkspaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2304,6 +3300,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Workspace in a given Repository asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkspaceLongRunningPollingUntilDone(request:options:)``
   public func createWorkspaceLongRunningPollingUntilDone(request: CreateWorkspaceRequest)
     async throws -> Workspace
   {
@@ -2317,6 +3320,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Workspace in a given Repository asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkspaceLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkspaceLongRunningPollingUntilDone(request:options:)``
   public func createWorkspaceLongRunningPollingUntilDone(
     parent: Swift.String,
     workspace: Workspace?,
@@ -2330,6 +3340,13 @@ extension Clients.DataformProtocol {
     return try await self.createWorkspaceLongRunningPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Workspace.
+  ///
+  /// @Snippet(path: "Dataform_DeleteWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteWorkspace(request:options:)``
   public func deleteWorkspace(request: DeleteWorkspaceRequest) async throws {
     try await self.deleteWorkspace(request: request, options: .init())
   }
@@ -2340,6 +3357,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Workspace.
+  ///
+  /// @Snippet(path: "Dataform_DeleteWorkspace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteWorkspace(request:options:)``
   public func deleteWorkspace(
     name: Swift.String,
   ) async throws {
@@ -2349,6 +3373,13 @@ extension Clients.DataformProtocol {
     try await self.deleteWorkspace(request: request)
   }
 
+  /// Installs dependency NPM packages (inside a Workspace).
+  ///
+  /// @Snippet(path: "Dataform_InstallNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/installNpmPackages(request:options:)``
   public func installNpmPackages(request: InstallNpmPackagesRequest) async throws
     -> GoogleCloudDataFormV1.InstallNpmPackagesResponse
   {
@@ -2361,6 +3392,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pulls Git commits from the Repository's remote into a Workspace.
+  ///
+  /// @Snippet(path: "Dataform_PullGitCommits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/pullGitCommits(request:options:)``
   public func pullGitCommits(request: PullGitCommitsRequest) async throws
     -> GoogleCloudDataFormV1.PullGitCommitsResponse
   {
@@ -2373,6 +3411,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pushes Git commits from a Workspace to the Repository's remote.
+  ///
+  /// @Snippet(path: "Dataform_PushGitCommits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/pushGitCommits(request:options:)``
   public func pushGitCommits(request: PushGitCommitsRequest) async throws
     -> GoogleCloudDataFormV1.PushGitCommitsResponse
   {
@@ -2385,6 +3430,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches Git statuses for the files in a Workspace.
+  ///
+  /// @Snippet(path: "Dataform_FetchFileGitStatuses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchFileGitStatuses(request:options:)``
   public func fetchFileGitStatuses(request: FetchFileGitStatusesRequest) async throws
     -> GoogleCloudDataFormV1.FetchFileGitStatusesResponse
   {
@@ -2397,6 +3449,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches Git ahead/behind against a remote branch.
+  ///
+  /// @Snippet(path: "Dataform_FetchGitAheadBehind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchGitAheadBehind(request:options:)``
   public func fetchGitAheadBehind(request: FetchGitAheadBehindRequest) async throws
     -> GoogleCloudDataFormV1.FetchGitAheadBehindResponse
   {
@@ -2409,6 +3468,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Applies a Git commit for uncommitted files in a Workspace.
+  ///
+  /// @Snippet(path: "Dataform_CommitWorkspaceChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/commitWorkspaceChanges(request:options:)``
   public func commitWorkspaceChanges(request: CommitWorkspaceChangesRequest) async throws
     -> GoogleCloudDataFormV1.CommitWorkspaceChangesResponse
   {
@@ -2421,6 +3487,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Performs a Git reset for uncommitted files in a Workspace.
+  ///
+  /// @Snippet(path: "Dataform_ResetWorkspaceChanges")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/resetWorkspaceChanges(request:options:)``
   public func resetWorkspaceChanges(request: ResetWorkspaceChangesRequest) async throws
     -> GoogleCloudDataFormV1.ResetWorkspaceChangesResponse
   {
@@ -2433,6 +3506,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches Git diff for an uncommitted file in a Workspace.
+  ///
+  /// @Snippet(path: "Dataform_FetchFileDiff")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/fetchFileDiff(request:options:)``
   public func fetchFileDiff(request: FetchFileDiffRequest) async throws
     -> GoogleCloudDataFormV1.FetchFileDiffResponse
   {
@@ -2445,6 +3525,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a given Workspace directory.
+  ///
+  /// @Snippet(path: "Dataform_QueryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryDirectoryContents(request:options:)``
   public func queryDirectoryContents(request: QueryDirectoryContentsRequest) async throws
     -> GoogleCloudDataFormV1.QueryDirectoryContentsResponse
   {
@@ -2457,6 +3544,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a given Workspace directory.
+  ///
+  /// @Snippet(path: "Dataform_QueryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryDirectoryContents(request:options:)``
   public func queryDirectoryContentsByItems(
     request: QueryDirectoryContentsRequest
   ) -> some AsyncSequence<DirectoryEntry, any Swift.Error> & Sendable {
@@ -2466,6 +3560,10 @@ extension Clients.DataformProtocol {
   /// Returns the contents of a given Workspace directory.
   ///
   /// @Snippet(path: "Dataform_QueryDirectoryContents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryDirectoryContents(request:options:)``
   public func queryDirectoryContentsByItems(
     request: QueryDirectoryContentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DirectoryEntry, any Swift.Error> & Sendable {
@@ -2480,6 +3578,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Finds the contents of a given Workspace directory by filter.
+  ///
+  /// @Snippet(path: "Dataform_SearchFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/searchFiles(request:options:)``
   public func searchFiles(request: SearchFilesRequest) async throws
     -> GoogleCloudDataFormV1.SearchFilesResponse
   {
@@ -2492,6 +3597,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Finds the contents of a given Workspace directory by filter.
+  ///
+  /// @Snippet(path: "Dataform_SearchFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/searchFiles(request:options:)``
   public func searchFilesByItems(
     request: SearchFilesRequest
   ) -> some AsyncSequence<SearchResult, any Swift.Error> & Sendable {
@@ -2501,6 +3613,10 @@ extension Clients.DataformProtocol {
   /// Finds the contents of a given Workspace directory by filter.
   ///
   /// @Snippet(path: "Dataform_SearchFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/searchFiles(request:options:)``
   public func searchFilesByItems(
     request: SearchFilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SearchResult, any Swift.Error> & Sendable {
@@ -2514,6 +3630,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Creates a directory inside a Workspace.
+  ///
+  /// @Snippet(path: "Dataform_MakeDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/makeDirectory(request:options:)``
   public func makeDirectory(request: MakeDirectoryRequest) async throws
     -> GoogleCloudDataFormV1.MakeDirectoryResponse
   {
@@ -2526,6 +3649,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a directory (inside a Workspace) and all of its contents.
+  ///
+  /// @Snippet(path: "Dataform_RemoveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/removeDirectory(request:options:)``
   public func removeDirectory(request: RemoveDirectoryRequest) async throws
     -> GoogleCloudDataFormV1.RemoveDirectoryResponse
   {
@@ -2538,6 +3668,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves a directory (inside a Workspace), and all of its contents, to a new
+  /// location.
+  ///
+  /// @Snippet(path: "Dataform_MoveDirectory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveDirectory(request:options:)``
   public func moveDirectory(request: MoveDirectoryRequest) async throws
     -> GoogleCloudDataFormV1.MoveDirectoryResponse
   {
@@ -2550,6 +3688,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the contents of a file (inside a Workspace).
+  ///
+  /// @Snippet(path: "Dataform_ReadFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/readFile(request:options:)``
   public func readFile(request: ReadFileRequest) async throws
     -> GoogleCloudDataFormV1.ReadFileResponse
   {
@@ -2562,6 +3707,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a file (inside a Workspace).
+  ///
+  /// @Snippet(path: "Dataform_RemoveFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/removeFile(request:options:)``
   public func removeFile(request: RemoveFileRequest) async throws
     -> GoogleCloudDataFormV1.RemoveFileResponse
   {
@@ -2574,6 +3726,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves a file (inside a Workspace) to a new location.
+  ///
+  /// @Snippet(path: "Dataform_MoveFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/moveFile(request:options:)``
   public func moveFile(request: MoveFileRequest) async throws
     -> GoogleCloudDataFormV1.MoveFileResponse
   {
@@ -2586,6 +3745,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Writes to a file (inside a Workspace).
+  ///
+  /// @Snippet(path: "Dataform_WriteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/writeFile(request:options:)``
   public func writeFile(request: WriteFileRequest) async throws
     -> GoogleCloudDataFormV1.WriteFileResponse
   {
@@ -2598,6 +3764,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ReleaseConfigs in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListReleaseConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listReleaseConfigs(request:options:)``
   public func listReleaseConfigs(request: ListReleaseConfigsRequest) async throws
     -> GoogleCloudDataFormV1.ListReleaseConfigsResponse
   {
@@ -2610,6 +3783,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ReleaseConfigs in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListReleaseConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listReleaseConfigs(request:options:)``
   public func listReleaseConfigsByItems(
     request: ListReleaseConfigsRequest
   ) -> some AsyncSequence<ReleaseConfig, any Swift.Error> & Sendable {
@@ -2619,6 +3799,10 @@ extension Clients.DataformProtocol {
   /// Lists ReleaseConfigs in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListReleaseConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listReleaseConfigs(request:options:)``
   public func listReleaseConfigsByItems(
     request: ListReleaseConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReleaseConfig, any Swift.Error> & Sendable {
@@ -2633,6 +3817,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ReleaseConfigs in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListReleaseConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listReleaseConfigs(request:options:)``
   public func listReleaseConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReleaseConfig, any Swift.Error> & Sendable {
@@ -2642,6 +3833,13 @@ extension Clients.DataformProtocol {
     return self.listReleaseConfigsByItems(request: request)
   }
 
+  /// Fetches a single ReleaseConfig.
+  ///
+  /// @Snippet(path: "Dataform_GetReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getReleaseConfig(request:options:)``
   public func getReleaseConfig(request: GetReleaseConfigRequest) async throws
     -> GoogleCloudDataFormV1.ReleaseConfig
   {
@@ -2654,6 +3852,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single ReleaseConfig.
+  ///
+  /// @Snippet(path: "Dataform_GetReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getReleaseConfig(request:options:)``
   public func getReleaseConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.ReleaseConfig {
@@ -2663,6 +3868,13 @@ extension Clients.DataformProtocol {
     return try await self.getReleaseConfig(request: request)
   }
 
+  /// Creates a new ReleaseConfig in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createReleaseConfig(request:options:)``
   public func createReleaseConfig(request: CreateReleaseConfigRequest) async throws
     -> GoogleCloudDataFormV1.ReleaseConfig
   {
@@ -2675,6 +3887,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ReleaseConfig in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createReleaseConfig(request:options:)``
   public func createReleaseConfig(
     parent: Swift.String,
     releaseConfig: ReleaseConfig?,
@@ -2688,6 +3907,18 @@ extension Clients.DataformProtocol {
     return try await self.createReleaseConfig(request: request)
   }
 
+  /// Updates a single ReleaseConfig.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateReleaseConfig(request:options:)``
   public func updateReleaseConfig(request: UpdateReleaseConfigRequest) async throws
     -> GoogleCloudDataFormV1.ReleaseConfig
   {
@@ -2700,6 +3931,18 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single ReleaseConfig.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateReleaseConfig(request:options:)``
   public func updateReleaseConfig(
     releaseConfig: ReleaseConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2711,6 +3954,13 @@ extension Clients.DataformProtocol {
     return try await self.updateReleaseConfig(request: request)
   }
 
+  /// Deletes a single ReleaseConfig.
+  ///
+  /// @Snippet(path: "Dataform_DeleteReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteReleaseConfig(request:options:)``
   public func deleteReleaseConfig(request: DeleteReleaseConfigRequest) async throws {
     try await self.deleteReleaseConfig(request: request, options: .init())
   }
@@ -2721,6 +3971,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ReleaseConfig.
+  ///
+  /// @Snippet(path: "Dataform_DeleteReleaseConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteReleaseConfig(request:options:)``
   public func deleteReleaseConfig(
     name: Swift.String,
   ) async throws {
@@ -2730,6 +3987,13 @@ extension Clients.DataformProtocol {
     try await self.deleteReleaseConfig(request: request)
   }
 
+  /// Lists CompilationResults in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListCompilationResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listCompilationResults(request:options:)``
   public func listCompilationResults(request: ListCompilationResultsRequest) async throws
     -> GoogleCloudDataFormV1.ListCompilationResultsResponse
   {
@@ -2742,6 +4006,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists CompilationResults in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListCompilationResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listCompilationResults(request:options:)``
   public func listCompilationResultsByItems(
     request: ListCompilationResultsRequest
   ) -> some AsyncSequence<CompilationResult, any Swift.Error> & Sendable {
@@ -2751,6 +4022,10 @@ extension Clients.DataformProtocol {
   /// Lists CompilationResults in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListCompilationResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listCompilationResults(request:options:)``
   public func listCompilationResultsByItems(
     request: ListCompilationResultsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CompilationResult, any Swift.Error> & Sendable {
@@ -2765,6 +4040,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists CompilationResults in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListCompilationResults")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listCompilationResults(request:options:)``
   public func listCompilationResultsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CompilationResult, any Swift.Error> & Sendable {
@@ -2774,6 +4056,13 @@ extension Clients.DataformProtocol {
     return self.listCompilationResultsByItems(request: request)
   }
 
+  /// Fetches a single CompilationResult.
+  ///
+  /// @Snippet(path: "Dataform_GetCompilationResult")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getCompilationResult(request:options:)``
   public func getCompilationResult(request: GetCompilationResultRequest) async throws
     -> GoogleCloudDataFormV1.CompilationResult
   {
@@ -2786,6 +4075,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single CompilationResult.
+  ///
+  /// @Snippet(path: "Dataform_GetCompilationResult")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getCompilationResult(request:options:)``
   public func getCompilationResult(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.CompilationResult {
@@ -2795,6 +4091,13 @@ extension Clients.DataformProtocol {
     return try await self.getCompilationResult(request: request)
   }
 
+  /// Creates a new CompilationResult in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResult")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createCompilationResult(request:options:)``
   public func createCompilationResult(request: CreateCompilationResultRequest) async throws
     -> GoogleCloudDataFormV1.CompilationResult
   {
@@ -2807,6 +4110,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new CompilationResult in a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResult")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createCompilationResult(request:options:)``
   public func createCompilationResult(
     parent: Swift.String,
     compilationResult: CompilationResult?,
@@ -2818,6 +4128,14 @@ extension Clients.DataformProtocol {
     return try await self.createCompilationResult(request: request)
   }
 
+  /// Creates a new CompilationResult in a given project and location
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createCompilationResultLongRunning(request:options:)``
   public func createCompilationResultLongRunning(request: CreateCompilationResultRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2830,6 +4148,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new CompilationResult in a given project and location
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createCompilationResultLongRunningPollingUntilDone(request:options:)``
   public func createCompilationResultLongRunningPollingUntilDone(
     request: CreateCompilationResultRequest
   ) async throws -> CompilationResult {
@@ -2843,6 +4169,14 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new CompilationResult in a given project and location
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "Dataform_CreateCompilationResultLongRunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createCompilationResultLongRunningPollingUntilDone(request:options:)``
   public func createCompilationResultLongRunningPollingUntilDone(
     parent: Swift.String,
     compilationResult: CompilationResult?,
@@ -2854,6 +4188,13 @@ extension Clients.DataformProtocol {
     return try await self.createCompilationResultLongRunningPollingUntilDone(request: request)
   }
 
+  /// Returns CompilationResultActions in a given CompilationResult.
+  ///
+  /// @Snippet(path: "Dataform_QueryCompilationResultActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryCompilationResultActions(request:options:)``
   public func queryCompilationResultActions(request: QueryCompilationResultActionsRequest)
     async throws -> GoogleCloudDataFormV1.QueryCompilationResultActionsResponse
   {
@@ -2866,6 +4207,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns CompilationResultActions in a given CompilationResult.
+  ///
+  /// @Snippet(path: "Dataform_QueryCompilationResultActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryCompilationResultActions(request:options:)``
   public func queryCompilationResultActionsByItems(
     request: QueryCompilationResultActionsRequest
   ) -> some AsyncSequence<CompilationResultAction, any Swift.Error> & Sendable {
@@ -2875,6 +4223,10 @@ extension Clients.DataformProtocol {
   /// Returns CompilationResultActions in a given CompilationResult.
   ///
   /// @Snippet(path: "Dataform_QueryCompilationResultActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryCompilationResultActions(request:options:)``
   public func queryCompilationResultActionsByItems(
     request: QueryCompilationResultActionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CompilationResultAction, any Swift.Error> & Sendable {
@@ -2889,6 +4241,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists WorkflowConfigs in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkflowConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowConfigs(request:options:)``
   public func listWorkflowConfigs(request: ListWorkflowConfigsRequest) async throws
     -> GoogleCloudDataFormV1.ListWorkflowConfigsResponse
   {
@@ -2901,6 +4260,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists WorkflowConfigs in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkflowConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowConfigs(request:options:)``
   public func listWorkflowConfigsByItems(
     request: ListWorkflowConfigsRequest
   ) -> some AsyncSequence<WorkflowConfig, any Swift.Error> & Sendable {
@@ -2910,6 +4276,10 @@ extension Clients.DataformProtocol {
   /// Lists WorkflowConfigs in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListWorkflowConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowConfigs(request:options:)``
   public func listWorkflowConfigsByItems(
     request: ListWorkflowConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WorkflowConfig, any Swift.Error> & Sendable {
@@ -2924,6 +4294,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists WorkflowConfigs in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkflowConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowConfigs(request:options:)``
   public func listWorkflowConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WorkflowConfig, any Swift.Error> & Sendable {
@@ -2933,6 +4310,13 @@ extension Clients.DataformProtocol {
     return self.listWorkflowConfigsByItems(request: request)
   }
 
+  /// Fetches a single WorkflowConfig.
+  ///
+  /// @Snippet(path: "Dataform_GetWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getWorkflowConfig(request:options:)``
   public func getWorkflowConfig(request: GetWorkflowConfigRequest) async throws
     -> GoogleCloudDataFormV1.WorkflowConfig
   {
@@ -2945,6 +4329,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single WorkflowConfig.
+  ///
+  /// @Snippet(path: "Dataform_GetWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getWorkflowConfig(request:options:)``
   public func getWorkflowConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.WorkflowConfig {
@@ -2954,6 +4345,13 @@ extension Clients.DataformProtocol {
     return try await self.getWorkflowConfig(request: request)
   }
 
+  /// Creates a new WorkflowConfig in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkflowConfig(request:options:)``
   public func createWorkflowConfig(request: CreateWorkflowConfigRequest) async throws
     -> GoogleCloudDataFormV1.WorkflowConfig
   {
@@ -2966,6 +4364,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new WorkflowConfig in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkflowConfig(request:options:)``
   public func createWorkflowConfig(
     parent: Swift.String,
     workflowConfig: WorkflowConfig?,
@@ -2979,6 +4384,18 @@ extension Clients.DataformProtocol {
     return try await self.createWorkflowConfig(request: request)
   }
 
+  /// Updates a single WorkflowConfig.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateWorkflowConfig(request:options:)``
   public func updateWorkflowConfig(request: UpdateWorkflowConfigRequest) async throws
     -> GoogleCloudDataFormV1.WorkflowConfig
   {
@@ -2991,6 +4408,18 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single WorkflowConfig.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateWorkflowConfig(request:options:)``
   public func updateWorkflowConfig(
     workflowConfig: WorkflowConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3002,6 +4431,13 @@ extension Clients.DataformProtocol {
     return try await self.updateWorkflowConfig(request: request)
   }
 
+  /// Deletes a single WorkflowConfig.
+  ///
+  /// @Snippet(path: "Dataform_DeleteWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteWorkflowConfig(request:options:)``
   public func deleteWorkflowConfig(request: DeleteWorkflowConfigRequest) async throws {
     try await self.deleteWorkflowConfig(request: request, options: .init())
   }
@@ -3012,6 +4448,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single WorkflowConfig.
+  ///
+  /// @Snippet(path: "Dataform_DeleteWorkflowConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteWorkflowConfig(request:options:)``
   public func deleteWorkflowConfig(
     name: Swift.String,
   ) async throws {
@@ -3021,6 +4464,13 @@ extension Clients.DataformProtocol {
     try await self.deleteWorkflowConfig(request: request)
   }
 
+  /// Lists WorkflowInvocations in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkflowInvocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowInvocations(request:options:)``
   public func listWorkflowInvocations(request: ListWorkflowInvocationsRequest) async throws
     -> GoogleCloudDataFormV1.ListWorkflowInvocationsResponse
   {
@@ -3033,6 +4483,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists WorkflowInvocations in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkflowInvocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowInvocations(request:options:)``
   public func listWorkflowInvocationsByItems(
     request: ListWorkflowInvocationsRequest
   ) -> some AsyncSequence<WorkflowInvocation, any Swift.Error> & Sendable {
@@ -3042,6 +4499,10 @@ extension Clients.DataformProtocol {
   /// Lists WorkflowInvocations in a given Repository.
   ///
   /// @Snippet(path: "Dataform_ListWorkflowInvocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowInvocations(request:options:)``
   public func listWorkflowInvocationsByItems(
     request: ListWorkflowInvocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WorkflowInvocation, any Swift.Error> & Sendable {
@@ -3056,6 +4517,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists WorkflowInvocations in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_ListWorkflowInvocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listWorkflowInvocations(request:options:)``
   public func listWorkflowInvocationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WorkflowInvocation, any Swift.Error> & Sendable {
@@ -3065,6 +4533,13 @@ extension Clients.DataformProtocol {
     return self.listWorkflowInvocationsByItems(request: request)
   }
 
+  /// Fetches a single WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_GetWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getWorkflowInvocation(request:options:)``
   public func getWorkflowInvocation(request: GetWorkflowInvocationRequest) async throws
     -> GoogleCloudDataFormV1.WorkflowInvocation
   {
@@ -3077,6 +4552,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a single WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_GetWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getWorkflowInvocation(request:options:)``
   public func getWorkflowInvocation(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.WorkflowInvocation {
@@ -3086,6 +4568,13 @@ extension Clients.DataformProtocol {
     return try await self.getWorkflowInvocation(request: request)
   }
 
+  /// Creates a new WorkflowInvocation in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkflowInvocation(request:options:)``
   public func createWorkflowInvocation(request: CreateWorkflowInvocationRequest) async throws
     -> GoogleCloudDataFormV1.WorkflowInvocation
   {
@@ -3098,6 +4587,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new WorkflowInvocation in a given Repository.
+  ///
+  /// @Snippet(path: "Dataform_CreateWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/createWorkflowInvocation(request:options:)``
   public func createWorkflowInvocation(
     parent: Swift.String,
     workflowInvocation: WorkflowInvocation?,
@@ -3109,6 +4605,13 @@ extension Clients.DataformProtocol {
     return try await self.createWorkflowInvocation(request: request)
   }
 
+  /// Deletes a single WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_DeleteWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteWorkflowInvocation(request:options:)``
   public func deleteWorkflowInvocation(request: DeleteWorkflowInvocationRequest) async throws {
     try await self.deleteWorkflowInvocation(request: request, options: .init())
   }
@@ -3119,6 +4622,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_DeleteWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteWorkflowInvocation(request:options:)``
   public func deleteWorkflowInvocation(
     name: Swift.String,
   ) async throws {
@@ -3128,6 +4638,13 @@ extension Clients.DataformProtocol {
     try await self.deleteWorkflowInvocation(request: request)
   }
 
+  /// Requests cancellation of a running WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_CancelWorkflowInvocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/cancelWorkflowInvocation(request:options:)``
   public func cancelWorkflowInvocation(request: CancelWorkflowInvocationRequest) async throws
     -> GoogleCloudDataFormV1.CancelWorkflowInvocationResponse
   {
@@ -3140,6 +4657,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns WorkflowInvocationActions in a given WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_QueryWorkflowInvocationActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryWorkflowInvocationActions(request:options:)``
   public func queryWorkflowInvocationActions(request: QueryWorkflowInvocationActionsRequest)
     async throws -> GoogleCloudDataFormV1.QueryWorkflowInvocationActionsResponse
   {
@@ -3152,6 +4676,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns WorkflowInvocationActions in a given WorkflowInvocation.
+  ///
+  /// @Snippet(path: "Dataform_QueryWorkflowInvocationActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryWorkflowInvocationActions(request:options:)``
   public func queryWorkflowInvocationActionsByItems(
     request: QueryWorkflowInvocationActionsRequest
   ) -> some AsyncSequence<WorkflowInvocationAction, any Swift.Error> & Sendable {
@@ -3161,6 +4692,10 @@ extension Clients.DataformProtocol {
   /// Returns WorkflowInvocationActions in a given WorkflowInvocation.
   ///
   /// @Snippet(path: "Dataform_QueryWorkflowInvocationActions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/queryWorkflowInvocationActions(request:options:)``
   public func queryWorkflowInvocationActionsByItems(
     request: QueryWorkflowInvocationActionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WorkflowInvocationAction, any Swift.Error> & Sendable {
@@ -3175,6 +4710,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Get default config for a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_GetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getConfig(request:options:)``
   public func getConfig(request: GetConfigRequest) async throws -> GoogleCloudDataFormV1.Config {
     try await self.getConfig(request: request, options: .init())
   }
@@ -3185,6 +4727,13 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get default config for a given project and location.
+  ///
+  /// @Snippet(path: "Dataform_GetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getConfig(request:options:)``
   public func getConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudDataFormV1.Config {
@@ -3194,6 +4743,18 @@ extension Clients.DataformProtocol {
     return try await self.getConfig(request: request)
   }
 
+  /// Update default config for a given project and location.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateConfig(request:options:)``
   public func updateConfig(request: UpdateConfigRequest) async throws
     -> GoogleCloudDataFormV1.Config
   {
@@ -3206,6 +4767,18 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update default config for a given project and location.
+  ///
+  /// **Note:** *This method does not fully implement
+  /// [AIP/134](https://google.aip.dev/134). The wildcard entry (\*) is treated
+  /// as a bad request, and when the `field_mask` is omitted, the request is
+  /// treated as a full update on all modifiable fields.*
+  ///
+  /// @Snippet(path: "Dataform_UpdateConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/updateConfig(request:options:)``
   public func updateConfig(
     config: Config?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3217,6 +4790,15 @@ extension Clients.DataformProtocol {
     return try await self.updateConfig(request: request)
   }
 
+  /// Gets the access control policy for a resource.
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// @Snippet(path: "Dataform_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -3229,6 +4811,15 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource.
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// @Snippet(path: "Dataform_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -3238,6 +4829,16 @@ extension Clients.DataformProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces any
+  /// existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+  ///
+  /// @Snippet(path: "Dataform_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -3250,6 +4851,19 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource.
+  /// If the resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building permission-aware
+  /// UIs and command-line tools, not for authorization checking. This operation
+  /// may "fail open" without warning.
+  ///
+  /// @Snippet(path: "Dataform_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -3262,6 +4876,30 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Dataform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -3274,6 +4912,30 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Dataform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3300,6 +4962,10 @@ extension Clients.DataformProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Dataform_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3313,6 +4979,13 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Dataform_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -3325,6 +4998,15 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -3337,6 +5019,15 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3348,6 +5039,10 @@ extension Clients.DataformProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Dataform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3361,6 +5056,15 @@ extension Clients.DataformProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -3372,6 +5076,9 @@ extension Clients.DataformProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3384,6 +5091,9 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -3393,6 +5103,15 @@ extension Clients.DataformProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -3403,6 +5122,15 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -3412,6 +5140,15 @@ extension Clients.DataformProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -3422,6 +5159,15 @@ extension Clients.DataformProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Dataform_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataformClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

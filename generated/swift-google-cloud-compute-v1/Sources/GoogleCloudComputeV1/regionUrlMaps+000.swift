@@ -24,6 +24,10 @@
   /// Service for the `regionUrlMaps` resource.
   ///
   /// @Snippet(path: "regionUrlMapsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionUrlMapsProtocol``
   public final class RegionUrlMapsClient: Clients.RegionUrlMapsProtocol, Sendable {
     let inner: any Clients.RegionUrlMapsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified UrlMap resource.
     ///
     /// @Snippet(path: "regionUrlMaps_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:urlMap:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionUrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionUrlMaps_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:urlMap:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionUrlMapsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -100,6 +118,11 @@
     /// Returns the specified UrlMap resource.
     ///
     /// @Snippet(path: "regionUrlMaps_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:urlMap:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionUrlMapsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.UrlMap {
@@ -110,6 +133,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "regionUrlMaps_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionUrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -125,6 +155,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionUrlMaps_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionUrlMapsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +205,13 @@
     /// project in the specified region.
     ///
     /// @Snippet(path: "regionUrlMaps_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.UrlMapList {
@@ -180,6 +224,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "regionUrlMaps_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:urlMap:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RegionUrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -197,6 +248,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionUrlMaps_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:urlMap:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionUrlMapsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -240,6 +298,13 @@
     /// request.
     ///
     /// @Snippet(path: "regionUrlMaps_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:region:urlMap:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: RegionUrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -255,6 +320,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionUrlMaps_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:region:urlMap:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: RegionUrlMapsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -299,6 +371,11 @@
     /// UrlMap.
     ///
     /// @Snippet(path: "regionUrlMaps_validate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``validate(project:region:urlMap:body:)``
+    /// - ``validate(request:)``
     public func validate(
       request: RegionUrlMapsClient.ValidateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.UrlMapsValidateResponse {
@@ -401,6 +478,13 @@
 
   // Default implementations
   extension Clients.RegionUrlMapsProtocol {
+    /// Deletes the specified UrlMap resource.
+    ///
+    /// @Snippet(path: "regionUrlMaps_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/delete(request:options:)``
     public func delete(request: RegionUrlMapsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -413,6 +497,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified UrlMap resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionUrlMapsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -425,6 +521,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified UrlMap resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -438,6 +546,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified UrlMap resource.
+    ///
+    /// @Snippet(path: "regionUrlMaps_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/get(request:options:)``
     public func `get`(request: RegionUrlMapsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.UrlMap
     {
@@ -450,6 +565,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified UrlMap resource.
+    ///
+    /// @Snippet(path: "regionUrlMaps_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -463,6 +585,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a UrlMap resource in the specified project using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "regionUrlMaps_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/insert(request:options:)``
     public func insert(request: RegionUrlMapsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -475,6 +605,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a UrlMap resource in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionUrlMapsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -487,6 +630,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a UrlMap resource in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -500,6 +656,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of UrlMap resources available to the specified
+    /// project in the specified region.
+    ///
+    /// @Snippet(path: "regionUrlMaps_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/list(request:options:)``
     public func list(request: RegionUrlMapsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.UrlMapList
     {
@@ -512,6 +676,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of UrlMap resources available to the specified
+    /// project in the specified region.
+    ///
+    /// @Snippet(path: "regionUrlMaps_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/list(request:options:)``
     public func listByItems(
       request: RegionUrlMapsClient.ListRequest
     ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
@@ -522,6 +694,10 @@
     /// project in the specified region.
     ///
     /// @Snippet(path: "regionUrlMaps_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/list(request:options:)``
     public func listByItems(
       request: RegionUrlMapsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<UrlMap, any Swift.Error> & Sendable {
@@ -535,6 +711,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of UrlMap resources available to the specified
+    /// project in the specified region.
+    ///
+    /// @Snippet(path: "regionUrlMaps_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -546,6 +730,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified UrlMap resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "regionUrlMaps_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/patch(request:options:)``
     public func patch(request: RegionUrlMapsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -558,6 +752,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified UrlMap resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionUrlMapsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -570,6 +779,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified UrlMap resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -585,6 +809,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Updates the specified UrlMap resource with the data included in the
+    /// request.
+    ///
+    /// @Snippet(path: "regionUrlMaps_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/update(request:options:)``
     public func update(request: RegionUrlMapsClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -597,6 +829,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified UrlMap resource with the data included in the
+    /// request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: RegionUrlMapsClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -609,6 +854,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified UrlMap resource with the data included in the
+    /// request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionUrlMaps_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -624,6 +882,15 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Runs static validation for the UrlMap. In particular, the tests of the
+    /// provided UrlMap will be run. Calling this method does NOT create the
+    /// UrlMap.
+    ///
+    /// @Snippet(path: "regionUrlMaps_validate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/validate(request:options:)``
     public func validate(request: RegionUrlMapsClient.ValidateRequest) async throws
       -> GoogleCloudComputeV1.UrlMapsValidateResponse
     {
@@ -636,6 +903,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Runs static validation for the UrlMap. In particular, the tests of the
+    /// provided UrlMap will be run. Calling this method does NOT create the
+    /// UrlMap.
+    ///
+    /// @Snippet(path: "regionUrlMaps_validate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionUrlMapsClient/validate(request:options:)``
     public func validate(
       project: Swift.String,
       region: Swift.String,
@@ -651,6 +927,7 @@
       return try await self.validate(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

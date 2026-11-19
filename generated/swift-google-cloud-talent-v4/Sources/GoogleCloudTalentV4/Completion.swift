@@ -24,6 +24,10 @@ import Foundation
 /// A service handles auto completion.
 ///
 /// @Snippet(path: "CompletionQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CompletionProtocol``
 public final class CompletionClient: Clients.CompletionProtocol, Sendable {
   let inner: any Clients.CompletionStub
 
@@ -41,6 +45,10 @@ public final class CompletionClient: Clients.CompletionProtocol, Sendable {
   /// Intended for use by a job search auto-complete search box.
   ///
   /// @Snippet(path: "Completion_CompleteQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``completeQuery(request:)``
   public func completeQuery(
     request: CompleteQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.CompleteQueryResponse {
@@ -75,6 +83,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.CompletionProtocol {
+  /// Completes the specified prefix with keyword suggestions.
+  /// Intended for use by a job search auto-complete search box.
+  ///
+  /// @Snippet(path: "Completion_CompleteQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionClient/completeQuery(request:options:)``
   public func completeQuery(request: CompleteQueryRequest) async throws
     -> GoogleCloudTalentV4.CompleteQueryResponse
   {
@@ -87,6 +103,9 @@ extension Clients.CompletionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -99,6 +118,9 @@ extension Clients.CompletionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

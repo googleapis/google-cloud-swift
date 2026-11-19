@@ -33,6 +33,10 @@ import Foundation
 /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
 ///
 /// @Snippet(path: "BinauthzManagementServiceV1Quickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BinauthzManagementServiceV1Protocol``
 public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagementServiceV1Protocol,
   Sendable
 {
@@ -64,6 +68,11 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -80,6 +89,11 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicy(policy:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -96,6 +110,11 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_CreateAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAttestor(parent:attestorId:attestor:)``
+  /// - ``createAttestor(request:)``
   public func createAttestor(
     request: CreateAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -109,6 +128,11 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_GetAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAttestor(name:)``
+  /// - ``getAttestor(request:)``
   public func getAttestor(
     request: GetAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -122,6 +146,11 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_UpdateAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAttestor(attestor:)``
+  /// - ``updateAttestor(request:)``
   public func updateAttestor(
     request: UpdateAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -134,6 +163,13 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAttestors(request:)``
+  /// - ``listAttestorsByItems(parent:)``
+  /// - ``listAttestorsByItems(request:)``
+  /// - ``listAttestorsByItems(request:options:)``
   public func listAttestors(
     request: ListAttestorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse {
@@ -147,6 +183,11 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_DeleteAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAttestor(name:)``
+  /// - ``deleteAttestor(request:)``
   public func deleteAttestor(
     request: DeleteAttestorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -160,6 +201,10 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// errors.
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -170,6 +215,10 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -185,6 +234,10 @@ public final class BinauthzManagementServiceV1Client: Clients.BinauthzManagement
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -253,6 +306,25 @@ extension Clients {
 
 // Default implementations
 extension Clients.BinauthzManagementServiceV1Protocol {
+  /// A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the
+  /// [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest
+  /// to a container image, before the project is allowed to deploy that image.
+  /// There is at most one policy per project. All image admission requests are
+  /// permitted if a project has no policy.
+  ///
+  /// Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this
+  /// project. Returns a default
+  /// [policy][google.cloud.binaryauthorization.v1.Policy] if the project does
+  /// not have one.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/getPolicy(request:options:)``
   public func getPolicy(request: GetPolicyRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.Policy
   {
@@ -265,6 +337,25 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// A [policy][google.cloud.binaryauthorization.v1.Policy] specifies the
+  /// [attestors][google.cloud.binaryauthorization.v1.Attestor] that must attest
+  /// to a container image, before the project is allowed to deploy that image.
+  /// There is at most one policy per project. All image admission requests are
+  /// permitted if a project has no policy.
+  ///
+  /// Gets the [policy][google.cloud.binaryauthorization.v1.Policy] for this
+  /// project. Returns a default
+  /// [policy][google.cloud.binaryauthorization.v1.Policy] if the project does
+  /// not have one.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/getPolicy(request:options:)``
   public func getPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -274,6 +365,20 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     return try await self.getPolicy(request: request)
   }
 
+  /// Creates or updates a project's
+  /// [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of
+  /// the new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is
+  /// always updated as a whole, to avoid race conditions with concurrent policy
+  /// enforcement (or management!) requests. Returns `NOT_FOUND` if the project
+  /// does not exist, `INVALID_ARGUMENT` if the request is malformed.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/updatePolicy(request:options:)``
   public func updatePolicy(request: UpdatePolicyRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.Policy
   {
@@ -286,6 +391,20 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates or updates a project's
+  /// [policy][google.cloud.binaryauthorization.v1.Policy], and returns a copy of
+  /// the new [policy][google.cloud.binaryauthorization.v1.Policy]. A policy is
+  /// always updated as a whole, to avoid race conditions with concurrent policy
+  /// enforcement (or management!) requests. Returns `NOT_FOUND` if the project
+  /// does not exist, `INVALID_ARGUMENT` if the request is malformed.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Policy]: <doc:Policy>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/updatePolicy(request:options:)``
   public func updatePolicy(
     policy: GoogleCloudBinaryAuthorizationV1.Policy?,
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Policy {
@@ -295,6 +414,20 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     return try await self.updatePolicy(request: request)
   }
 
+  /// Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and
+  /// returns a copy of the new
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns
+  /// `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the
+  /// request is malformed, `ALREADY_EXISTS` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_CreateAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/createAttestor(request:options:)``
   public func createAttestor(request: CreateAttestorRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.Attestor
   {
@@ -307,6 +440,20 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an [attestor][google.cloud.binaryauthorization.v1.Attestor], and
+  /// returns a copy of the new
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor]. Returns
+  /// `NOT_FOUND` if the project does not exist, `INVALID_ARGUMENT` if the
+  /// request is malformed, `ALREADY_EXISTS` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] already exists.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_CreateAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/createAttestor(request:options:)``
   public func createAttestor(
     parent: Swift.String,
     attestorId: Swift.String,
@@ -320,6 +467,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     return try await self.createAttestor(request: request)
   }
 
+  /// Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `NOT_FOUND` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_GetAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/getAttestor(request:options:)``
   public func getAttestor(request: GetAttestorRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.Attestor
   {
@@ -332,6 +490,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `NOT_FOUND` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_GetAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/getAttestor(request:options:)``
   public func getAttestor(
     name: Swift.String,
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -341,6 +510,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     return try await self.getAttestor(request: request)
   }
 
+  /// Updates an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `NOT_FOUND` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_UpdateAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/updateAttestor(request:options:)``
   public func updateAttestor(request: UpdateAttestorRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.Attestor
   {
@@ -353,6 +533,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `NOT_FOUND` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_UpdateAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/updateAttestor(request:options:)``
   public func updateAttestor(
     attestor: Attestor?,
   ) async throws -> GoogleCloudBinaryAuthorizationV1.Attestor {
@@ -362,6 +553,16 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     return try await self.updateAttestor(request: request)
   }
 
+  /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `INVALID_ARGUMENT` if the project does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/listAttestors(request:options:)``
   public func listAttestors(request: ListAttestorsRequest) async throws
     -> GoogleCloudBinaryAuthorizationV1.ListAttestorsResponse
   {
@@ -374,6 +575,16 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `INVALID_ARGUMENT` if the project does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/listAttestors(request:options:)``
   public func listAttestorsByItems(
     request: ListAttestorsRequest
   ) -> some AsyncSequence<Attestor, any Swift.Error> & Sendable {
@@ -386,6 +597,10 @@ extension Clients.BinauthzManagementServiceV1Protocol {
   /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
   ///
   /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/listAttestors(request:options:)``
   public func listAttestorsByItems(
     request: ListAttestorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Attestor, any Swift.Error> & Sendable {
@@ -400,6 +615,16 @@ extension Clients.BinauthzManagementServiceV1Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists [attestors][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `INVALID_ARGUMENT` if the project does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_ListAttestors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/listAttestors(request:options:)``
   public func listAttestorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Attestor, any Swift.Error> & Sendable {
@@ -409,6 +634,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     return self.listAttestorsByItems(request: request)
   }
 
+  /// Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `NOT_FOUND` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_DeleteAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/deleteAttestor(request:options:)``
   public func deleteAttestor(request: DeleteAttestorRequest) async throws {
     try await self.deleteAttestor(request: request, options: .init())
   }
@@ -419,6 +655,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an [attestor][google.cloud.binaryauthorization.v1.Attestor].
+  /// Returns `NOT_FOUND` if the
+  /// [attestor][google.cloud.binaryauthorization.v1.Attestor] does not exist.
+  ///
+  /// [google.cloud.binaryauthorization.v1.Attestor]: <doc:Attestor>
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_DeleteAttestor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/deleteAttestor(request:options:)``
   public func deleteAttestor(
     name: Swift.String,
   ) async throws {
@@ -428,6 +675,17 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     try await self.deleteAttestor(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -440,6 +698,14 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -452,6 +718,19 @@ extension Clients.BinauthzManagementServiceV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "BinauthzManagementServiceV1_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BinauthzManagementServiceV1Client/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {

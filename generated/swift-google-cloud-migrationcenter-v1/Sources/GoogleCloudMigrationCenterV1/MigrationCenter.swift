@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "MigrationCenterQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MigrationCenterProtocol``
 public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Sendable {
   let inner: any Clients.MigrationCenterStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists all the assets in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
+  /// - ``listAssetsByItems(request:)``
+  /// - ``listAssetsByItems(request:options:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListAssetsResponse {
@@ -55,6 +66,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of an asset.
   ///
   /// @Snippet(path: "MigrationCenter_GetAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAsset(name:)``
+  /// - ``getAsset(request:)``
   public func getAsset(
     request: GetAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Asset {
@@ -64,6 +80,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of an asset.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAsset(asset:updateMask:)``
+  /// - ``updateAsset(request:)``
   public func updateAsset(
     request: UpdateAssetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Asset {
@@ -73,6 +94,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a list of assets.
   ///
   /// @Snippet(path: "MigrationCenter_BatchUpdateAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchUpdateAssets(parent:requests:)``
+  /// - ``batchUpdateAssets(request:)``
   public func batchUpdateAssets(
     request: BatchUpdateAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.BatchUpdateAssetsResponse {
@@ -82,6 +108,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes an asset.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAsset(name:)``
+  /// - ``deleteAsset(request:)``
   public func deleteAsset(
     request: DeleteAssetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -91,6 +122,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes list of Assets.
   ///
   /// @Snippet(path: "MigrationCenter_BatchDeleteAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteAssets(parent:names:)``
+  /// - ``batchDeleteAssets(request:)``
   public func batchDeleteAssets(
     request: BatchDeleteAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -100,6 +136,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Reports a set of frames.
   ///
   /// @Snippet(path: "MigrationCenter_ReportAssetFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reportAssetFrames(request:)``
   public func reportAssetFrames(
     request: ReportAssetFramesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ReportAssetFramesResponse {
@@ -109,6 +149,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Aggregates the requested fields based on provided function.
   ///
   /// @Snippet(path: "MigrationCenter_AggregateAssetsValues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``aggregateAssetsValues(request:)``
   public func aggregateAssetsValues(
     request: AggregateAssetsValuesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.AggregateAssetsValuesResponse {
@@ -118,6 +162,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates an import job.
   ///
   /// @Snippet(path: "MigrationCenter_CreateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createImportJob(request:)``
+  /// - ``createImportJobPollingUntilDone(parent:importJob:importJobId:)``
+  /// - ``createImportJobPollingUntilDone(request:)``
+  /// - ``createImportJobPollingUntilDone(request:options:)``
   public func createImportJob(
     request: CreateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,6 +178,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates an import job.
   ///
   /// @Snippet(path: "MigrationCenter_CreateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createImportJob(request:)``
+  /// - ``createImportJob(request:options:)``
+  /// - ``createImportJobPollingUntilDone(parent:importJob:importJobId:)``
+  /// - ``createImportJobPollingUntilDone(request:)``
   public func createImportJobPollingUntilDone(
     request: CreateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportJob {
@@ -154,6 +212,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists all import jobs.
   ///
   /// @Snippet(path: "MigrationCenter_ListImportJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listImportJobs(request:)``
+  /// - ``listImportJobsByItems(parent:)``
+  /// - ``listImportJobsByItems(request:)``
+  /// - ``listImportJobsByItems(request:options:)``
   public func listImportJobs(
     request: ListImportJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListImportJobsResponse {
@@ -163,6 +228,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of an import job.
   ///
   /// @Snippet(path: "MigrationCenter_GetImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getImportJob(name:)``
+  /// - ``getImportJob(request:)``
   public func getImportJob(
     request: GetImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ImportJob {
@@ -172,6 +242,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes an import job.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteImportJob(request:)``
+  /// - ``deleteImportJobPollingUntilDone(name:)``
+  /// - ``deleteImportJobPollingUntilDone(request:)``
+  /// - ``deleteImportJobPollingUntilDone(request:options:)``
   public func deleteImportJob(
     request: DeleteImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -181,6 +258,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes an import job.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteImportJob(request:)``
+  /// - ``deleteImportJob(request:options:)``
+  /// - ``deleteImportJobPollingUntilDone(name:)``
+  /// - ``deleteImportJobPollingUntilDone(request:)``
   public func deleteImportJobPollingUntilDone(
     request: DeleteImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -208,6 +292,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates an import job.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateImportJob(request:)``
+  /// - ``updateImportJobPollingUntilDone(importJob:updateMask:)``
+  /// - ``updateImportJobPollingUntilDone(request:)``
+  /// - ``updateImportJobPollingUntilDone(request:options:)``
   public func updateImportJob(
     request: UpdateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -217,6 +308,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates an import job.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateImportJob(request:)``
+  /// - ``updateImportJob(request:options:)``
+  /// - ``updateImportJobPollingUntilDone(importJob:updateMask:)``
+  /// - ``updateImportJobPollingUntilDone(request:)``
   public func updateImportJobPollingUntilDone(
     request: UpdateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportJob {
@@ -244,6 +342,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Validates an import job.
   ///
   /// @Snippet(path: "MigrationCenter_ValidateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateImportJob(request:)``
+  /// - ``validateImportJobPollingUntilDone(name:)``
+  /// - ``validateImportJobPollingUntilDone(request:)``
+  /// - ``validateImportJobPollingUntilDone(request:options:)``
   public func validateImportJob(
     request: ValidateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -253,6 +358,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Validates an import job.
   ///
   /// @Snippet(path: "MigrationCenter_ValidateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateImportJob(request:)``
+  /// - ``validateImportJob(request:options:)``
+  /// - ``validateImportJobPollingUntilDone(name:)``
+  /// - ``validateImportJobPollingUntilDone(request:)``
   public func validateImportJobPollingUntilDone(
     request: ValidateImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -280,6 +392,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Runs an import job.
   ///
   /// @Snippet(path: "MigrationCenter_RunImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runImportJob(request:)``
+  /// - ``runImportJobPollingUntilDone(name:)``
+  /// - ``runImportJobPollingUntilDone(request:)``
+  /// - ``runImportJobPollingUntilDone(request:options:)``
   public func runImportJob(
     request: RunImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -289,6 +408,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Runs an import job.
   ///
   /// @Snippet(path: "MigrationCenter_RunImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runImportJob(request:)``
+  /// - ``runImportJob(request:options:)``
+  /// - ``runImportJobPollingUntilDone(name:)``
+  /// - ``runImportJobPollingUntilDone(request:)``
   public func runImportJobPollingUntilDone(
     request: RunImportJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -316,6 +442,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets an import data file.
   ///
   /// @Snippet(path: "MigrationCenter_GetImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getImportDataFile(name:)``
+  /// - ``getImportDataFile(request:)``
   public func getImportDataFile(
     request: GetImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ImportDataFile {
@@ -325,6 +456,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// List import data files.
   ///
   /// @Snippet(path: "MigrationCenter_ListImportDataFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listImportDataFiles(request:)``
+  /// - ``listImportDataFilesByItems(parent:)``
+  /// - ``listImportDataFilesByItems(request:)``
+  /// - ``listImportDataFilesByItems(request:options:)``
   public func listImportDataFiles(
     request: ListImportDataFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListImportDataFilesResponse {
@@ -334,6 +472,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates an import data file.
   ///
   /// @Snippet(path: "MigrationCenter_CreateImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createImportDataFile(request:)``
+  /// - ``createImportDataFilePollingUntilDone(parent:importDataFile:importDataFileId:)``
+  /// - ``createImportDataFilePollingUntilDone(request:)``
+  /// - ``createImportDataFilePollingUntilDone(request:options:)``
   public func createImportDataFile(
     request: CreateImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -343,6 +488,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates an import data file.
   ///
   /// @Snippet(path: "MigrationCenter_CreateImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createImportDataFile(request:)``
+  /// - ``createImportDataFile(request:options:)``
+  /// - ``createImportDataFilePollingUntilDone(parent:importDataFile:importDataFileId:)``
+  /// - ``createImportDataFilePollingUntilDone(request:)``
   public func createImportDataFilePollingUntilDone(
     request: CreateImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportDataFile {
@@ -371,6 +523,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Delete an import data file.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteImportDataFile(request:)``
+  /// - ``deleteImportDataFilePollingUntilDone(name:)``
+  /// - ``deleteImportDataFilePollingUntilDone(request:)``
+  /// - ``deleteImportDataFilePollingUntilDone(request:options:)``
   public func deleteImportDataFile(
     request: DeleteImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -380,6 +539,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Delete an import data file.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteImportDataFile(request:)``
+  /// - ``deleteImportDataFile(request:options:)``
+  /// - ``deleteImportDataFilePollingUntilDone(name:)``
+  /// - ``deleteImportDataFilePollingUntilDone(request:)``
   public func deleteImportDataFilePollingUntilDone(
     request: DeleteImportDataFileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -407,6 +573,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists all groups in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGroups(request:)``
+  /// - ``listGroupsByItems(parent:)``
+  /// - ``listGroupsByItems(request:)``
+  /// - ``listGroupsByItems(request:options:)``
   public func listGroups(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListGroupsResponse {
@@ -416,6 +589,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of a group.
   ///
   /// @Snippet(path: "MigrationCenter_GetGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGroup(name:)``
+  /// - ``getGroup(request:)``
   public func getGroup(
     request: GetGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Group {
@@ -425,6 +603,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a new group in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGroup(request:)``
+  /// - ``createGroupPollingUntilDone(parent:group:groupId:)``
+  /// - ``createGroupPollingUntilDone(request:)``
+  /// - ``createGroupPollingUntilDone(request:options:)``
   public func createGroup(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -434,6 +619,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a new group in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGroup(request:)``
+  /// - ``createGroup(request:options:)``
+  /// - ``createGroupPollingUntilDone(parent:group:groupId:)``
+  /// - ``createGroupPollingUntilDone(request:)``
   public func createGroupPollingUntilDone(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -461,6 +653,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a group.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGroup(request:)``
+  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
+  /// - ``updateGroupPollingUntilDone(request:)``
+  /// - ``updateGroupPollingUntilDone(request:options:)``
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -470,6 +669,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a group.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGroup(request:)``
+  /// - ``updateGroup(request:options:)``
+  /// - ``updateGroupPollingUntilDone(group:updateMask:)``
+  /// - ``updateGroupPollingUntilDone(request:)``
   public func updateGroupPollingUntilDone(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -497,6 +703,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a group.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGroup(request:)``
+  /// - ``deleteGroupPollingUntilDone(name:)``
+  /// - ``deleteGroupPollingUntilDone(request:)``
+  /// - ``deleteGroupPollingUntilDone(request:options:)``
   public func deleteGroup(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -506,6 +719,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a group.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGroup(request:)``
+  /// - ``deleteGroup(request:options:)``
+  /// - ``deleteGroupPollingUntilDone(name:)``
+  /// - ``deleteGroupPollingUntilDone(request:)``
   public func deleteGroupPollingUntilDone(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -533,6 +753,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Adds assets to a group.
   ///
   /// @Snippet(path: "MigrationCenter_AddAssetsToGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAssetsToGroup(request:)``
+  /// - ``addAssetsToGroupPollingUntilDone(group:)``
+  /// - ``addAssetsToGroupPollingUntilDone(request:)``
+  /// - ``addAssetsToGroupPollingUntilDone(request:options:)``
   public func addAssetsToGroup(
     request: AddAssetsToGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -542,6 +769,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Adds assets to a group.
   ///
   /// @Snippet(path: "MigrationCenter_AddAssetsToGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAssetsToGroup(request:)``
+  /// - ``addAssetsToGroup(request:options:)``
+  /// - ``addAssetsToGroupPollingUntilDone(group:)``
+  /// - ``addAssetsToGroupPollingUntilDone(request:)``
   public func addAssetsToGroupPollingUntilDone(
     request: AddAssetsToGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -569,6 +803,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Removes assets from a group.
   ///
   /// @Snippet(path: "MigrationCenter_RemoveAssetsFromGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeAssetsFromGroup(request:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(group:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(request:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(request:options:)``
   public func removeAssetsFromGroup(
     request: RemoveAssetsFromGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -578,6 +819,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Removes assets from a group.
   ///
   /// @Snippet(path: "MigrationCenter_RemoveAssetsFromGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeAssetsFromGroup(request:)``
+  /// - ``removeAssetsFromGroup(request:options:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(group:)``
+  /// - ``removeAssetsFromGroupPollingUntilDone(request:)``
   public func removeAssetsFromGroupPollingUntilDone(
     request: RemoveAssetsFromGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Group {
@@ -605,6 +853,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists all error frames in a given source and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListErrorFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listErrorFrames(request:)``
+  /// - ``listErrorFramesByItems(parent:)``
+  /// - ``listErrorFramesByItems(request:)``
+  /// - ``listErrorFramesByItems(request:options:)``
   public func listErrorFrames(
     request: ListErrorFramesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListErrorFramesResponse {
@@ -614,6 +869,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of an error frame.
   ///
   /// @Snippet(path: "MigrationCenter_GetErrorFrame")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getErrorFrame(name:)``
+  /// - ``getErrorFrame(request:)``
   public func getErrorFrame(
     request: GetErrorFrameRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ErrorFrame {
@@ -623,6 +883,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists all the sources in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSources(request:)``
+  /// - ``listSourcesByItems(parent:)``
+  /// - ``listSourcesByItems(request:)``
+  /// - ``listSourcesByItems(request:options:)``
   public func listSources(
     request: ListSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListSourcesResponse {
@@ -632,6 +899,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of a source.
   ///
   /// @Snippet(path: "MigrationCenter_GetSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSource(name:)``
+  /// - ``getSource(request:)``
   public func getSource(
     request: GetSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Source {
@@ -641,6 +913,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a new source in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_CreateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSource(request:)``
+  /// - ``createSourcePollingUntilDone(parent:source:sourceId:)``
+  /// - ``createSourcePollingUntilDone(request:)``
+  /// - ``createSourcePollingUntilDone(request:options:)``
   public func createSource(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -650,6 +929,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a new source in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_CreateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSource(request:)``
+  /// - ``createSource(request:options:)``
+  /// - ``createSourcePollingUntilDone(parent:source:sourceId:)``
+  /// - ``createSourcePollingUntilDone(request:)``
   public func createSourcePollingUntilDone(
     request: CreateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Source {
@@ -677,6 +963,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a source.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSource(request:)``
+  /// - ``updateSourcePollingUntilDone(request:)``
+  /// - ``updateSourcePollingUntilDone(request:options:)``
+  /// - ``updateSourcePollingUntilDone(source:updateMask:)``
   public func updateSource(
     request: UpdateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -686,6 +979,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a source.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSource(request:)``
+  /// - ``updateSource(request:options:)``
+  /// - ``updateSourcePollingUntilDone(request:)``
+  /// - ``updateSourcePollingUntilDone(source:updateMask:)``
   public func updateSourcePollingUntilDone(
     request: UpdateSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Source {
@@ -713,6 +1013,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a source.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSource(request:)``
+  /// - ``deleteSourcePollingUntilDone(name:)``
+  /// - ``deleteSourcePollingUntilDone(request:)``
+  /// - ``deleteSourcePollingUntilDone(request:options:)``
   public func deleteSource(
     request: DeleteSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -722,6 +1029,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a source.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSource(request:)``
+  /// - ``deleteSource(request:options:)``
+  /// - ``deleteSourcePollingUntilDone(name:)``
+  /// - ``deleteSourcePollingUntilDone(request:)``
   public func deleteSourcePollingUntilDone(
     request: DeleteSourceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -749,6 +1063,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists all the preference sets in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListPreferenceSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPreferenceSets(request:)``
+  /// - ``listPreferenceSetsByItems(parent:)``
+  /// - ``listPreferenceSetsByItems(request:)``
+  /// - ``listPreferenceSetsByItems(request:options:)``
   public func listPreferenceSets(
     request: ListPreferenceSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListPreferenceSetsResponse {
@@ -758,6 +1079,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of a preference set.
   ///
   /// @Snippet(path: "MigrationCenter_GetPreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPreferenceSet(name:)``
+  /// - ``getPreferenceSet(request:)``
   public func getPreferenceSet(
     request: GetPreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.PreferenceSet {
@@ -767,6 +1093,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a new preference set in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_CreatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPreferenceSet(request:)``
+  /// - ``createPreferenceSetPollingUntilDone(parent:preferenceSet:preferenceSetId:)``
+  /// - ``createPreferenceSetPollingUntilDone(request:)``
+  /// - ``createPreferenceSetPollingUntilDone(request:options:)``
   public func createPreferenceSet(
     request: CreatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -776,6 +1109,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a new preference set in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_CreatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPreferenceSet(request:)``
+  /// - ``createPreferenceSet(request:options:)``
+  /// - ``createPreferenceSetPollingUntilDone(parent:preferenceSet:preferenceSetId:)``
+  /// - ``createPreferenceSetPollingUntilDone(request:)``
   public func createPreferenceSetPollingUntilDone(
     request: CreatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PreferenceSet {
@@ -804,6 +1144,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a preference set.
   ///
   /// @Snippet(path: "MigrationCenter_UpdatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePreferenceSet(request:)``
+  /// - ``updatePreferenceSetPollingUntilDone(preferenceSet:updateMask:)``
+  /// - ``updatePreferenceSetPollingUntilDone(request:)``
+  /// - ``updatePreferenceSetPollingUntilDone(request:options:)``
   public func updatePreferenceSet(
     request: UpdatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -813,6 +1160,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the parameters of a preference set.
   ///
   /// @Snippet(path: "MigrationCenter_UpdatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePreferenceSet(request:)``
+  /// - ``updatePreferenceSet(request:options:)``
+  /// - ``updatePreferenceSetPollingUntilDone(preferenceSet:updateMask:)``
+  /// - ``updatePreferenceSetPollingUntilDone(request:)``
   public func updatePreferenceSetPollingUntilDone(
     request: UpdatePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> PreferenceSet {
@@ -841,6 +1195,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a preference set.
   ///
   /// @Snippet(path: "MigrationCenter_DeletePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePreferenceSet(request:)``
+  /// - ``deletePreferenceSetPollingUntilDone(name:)``
+  /// - ``deletePreferenceSetPollingUntilDone(request:)``
+  /// - ``deletePreferenceSetPollingUntilDone(request:options:)``
   public func deletePreferenceSet(
     request: DeletePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -850,6 +1211,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a preference set.
   ///
   /// @Snippet(path: "MigrationCenter_DeletePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePreferenceSet(request:)``
+  /// - ``deletePreferenceSet(request:options:)``
+  /// - ``deletePreferenceSetPollingUntilDone(name:)``
+  /// - ``deletePreferenceSetPollingUntilDone(request:)``
   public func deletePreferenceSetPollingUntilDone(
     request: DeletePreferenceSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -877,6 +1245,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets the details of regional settings.
   ///
   /// @Snippet(path: "MigrationCenter_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSettings(name:)``
+  /// - ``getSettings(request:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Settings {
@@ -886,6 +1259,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the regional-level project settings.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSettings(request:)``
+  /// - ``updateSettingsPollingUntilDone(request:)``
+  /// - ``updateSettingsPollingUntilDone(request:options:)``
+  /// - ``updateSettingsPollingUntilDone(settings:updateMask:)``
   public func updateSettings(
     request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -895,6 +1275,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Updates the regional-level project settings.
   ///
   /// @Snippet(path: "MigrationCenter_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSettings(request:)``
+  /// - ``updateSettings(request:options:)``
+  /// - ``updateSettingsPollingUntilDone(request:)``
+  /// - ``updateSettingsPollingUntilDone(settings:updateMask:)``
   public func updateSettingsPollingUntilDone(
     request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Settings {
@@ -922,6 +1309,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a report configuration.
   ///
   /// @Snippet(path: "MigrationCenter_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReportConfig(request:)``
+  /// - ``createReportConfigPollingUntilDone(parent:reportConfig:reportConfigId:)``
+  /// - ``createReportConfigPollingUntilDone(request:)``
+  /// - ``createReportConfigPollingUntilDone(request:options:)``
   public func createReportConfig(
     request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -931,6 +1325,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a report configuration.
   ///
   /// @Snippet(path: "MigrationCenter_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReportConfig(request:)``
+  /// - ``createReportConfig(request:options:)``
+  /// - ``createReportConfigPollingUntilDone(parent:reportConfig:reportConfigId:)``
+  /// - ``createReportConfigPollingUntilDone(request:)``
   public func createReportConfigPollingUntilDone(
     request: CreateReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> ReportConfig {
@@ -959,6 +1360,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets details of a single ReportConfig.
   ///
   /// @Snippet(path: "MigrationCenter_GetReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReportConfig(name:)``
+  /// - ``getReportConfig(request:)``
   public func getReportConfig(
     request: GetReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ReportConfig {
@@ -968,6 +1374,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists ReportConfigs in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReportConfigs(request:)``
+  /// - ``listReportConfigsByItems(parent:)``
+  /// - ``listReportConfigsByItems(request:)``
+  /// - ``listReportConfigsByItems(request:options:)``
   public func listReportConfigs(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListReportConfigsResponse {
@@ -977,6 +1390,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a ReportConfig.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReportConfig(request:)``
+  /// - ``deleteReportConfigPollingUntilDone(name:)``
+  /// - ``deleteReportConfigPollingUntilDone(request:)``
+  /// - ``deleteReportConfigPollingUntilDone(request:options:)``
   public func deleteReportConfig(
     request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -986,6 +1406,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a ReportConfig.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReportConfig(request:)``
+  /// - ``deleteReportConfig(request:options:)``
+  /// - ``deleteReportConfigPollingUntilDone(name:)``
+  /// - ``deleteReportConfigPollingUntilDone(request:)``
   public func deleteReportConfigPollingUntilDone(
     request: DeleteReportConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1013,6 +1440,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a report.
   ///
   /// @Snippet(path: "MigrationCenter_CreateReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReport(request:)``
+  /// - ``createReportPollingUntilDone(parent:report:reportId:)``
+  /// - ``createReportPollingUntilDone(request:)``
+  /// - ``createReportPollingUntilDone(request:options:)``
   public func createReport(
     request: CreateReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1022,6 +1456,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Creates a report.
   ///
   /// @Snippet(path: "MigrationCenter_CreateReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReport(request:)``
+  /// - ``createReport(request:options:)``
+  /// - ``createReportPollingUntilDone(parent:report:reportId:)``
+  /// - ``createReportPollingUntilDone(request:)``
   public func createReportPollingUntilDone(
     request: CreateReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> Report {
@@ -1049,6 +1490,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets details of a single Report.
   ///
   /// @Snippet(path: "MigrationCenter_GetReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReport(name:)``
+  /// - ``getReport(request:)``
   public func getReport(
     request: GetReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.Report {
@@ -1058,6 +1504,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists Reports in a given ReportConfig.
   ///
   /// @Snippet(path: "MigrationCenter_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReports(request:)``
+  /// - ``listReportsByItems(parent:)``
+  /// - ``listReportsByItems(request:)``
+  /// - ``listReportsByItems(request:options:)``
   public func listReports(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMigrationCenterV1.ListReportsResponse {
@@ -1067,6 +1520,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a Report.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReport(request:)``
+  /// - ``deleteReportPollingUntilDone(name:)``
+  /// - ``deleteReportPollingUntilDone(request:)``
+  /// - ``deleteReportPollingUntilDone(request:options:)``
   public func deleteReport(
     request: DeleteReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1076,6 +1536,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Deletes a Report.
   ///
   /// @Snippet(path: "MigrationCenter_DeleteReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReport(request:)``
+  /// - ``deleteReport(request:options:)``
+  /// - ``deleteReportPollingUntilDone(name:)``
+  /// - ``deleteReportPollingUntilDone(request:)``
   public func deleteReportPollingUntilDone(
     request: DeleteReportRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1103,6 +1570,12 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "MigrationCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1112,6 +1585,10 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "MigrationCenter_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1123,6 +1600,13 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1145,6 +1629,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1156,6 +1645,11 @@ public final class MigrationCenterClient: Clients.MigrationCenterProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1554,6 +2048,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MigrationCenterProtocol {
+  /// Lists all the assets in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listAssets(request:options:)``
   public func listAssets(request: ListAssetsRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListAssetsResponse
   {
@@ -1566,6 +2067,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the assets in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listAssets(request:options:)``
   public func listAssetsByItems(
     request: ListAssetsRequest
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -1575,6 +2083,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists all the assets in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listAssets(request:options:)``
   public func listAssetsByItems(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -1589,6 +2101,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the assets in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listAssets(request:options:)``
   public func listAssetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -1598,6 +2117,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listAssetsByItems(request: request)
   }
 
+  /// Gets the details of an asset.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getAsset(request:options:)``
   public func getAsset(request: GetAssetRequest) async throws -> GoogleCloudMigrationCenterV1.Asset
   {
     try await self.getAsset(request: request, options: .init())
@@ -1609,6 +2135,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of an asset.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getAsset(request:options:)``
   public func getAsset(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.Asset {
@@ -1618,6 +2151,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getAsset(request: request)
   }
 
+  /// Updates the parameters of an asset.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateAsset(request:options:)``
   public func updateAsset(request: UpdateAssetRequest) async throws
     -> GoogleCloudMigrationCenterV1.Asset
   {
@@ -1630,6 +2170,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of an asset.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateAsset(request:options:)``
   public func updateAsset(
     asset: Asset?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1641,6 +2188,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.updateAsset(request: request)
   }
 
+  /// Updates the parameters of a list of assets.
+  ///
+  /// @Snippet(path: "MigrationCenter_BatchUpdateAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/batchUpdateAssets(request:options:)``
   public func batchUpdateAssets(request: BatchUpdateAssetsRequest) async throws
     -> GoogleCloudMigrationCenterV1.BatchUpdateAssetsResponse
   {
@@ -1653,6 +2207,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a list of assets.
+  ///
+  /// @Snippet(path: "MigrationCenter_BatchUpdateAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/batchUpdateAssets(request:options:)``
   public func batchUpdateAssets(
     parent: Swift.String,
     requests: [UpdateAssetRequest],
@@ -1664,6 +2225,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.batchUpdateAssets(request: request)
   }
 
+  /// Deletes an asset.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteAsset(request:options:)``
   public func deleteAsset(request: DeleteAssetRequest) async throws {
     try await self.deleteAsset(request: request, options: .init())
   }
@@ -1674,6 +2242,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an asset.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteAsset")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteAsset(request:options:)``
   public func deleteAsset(
     name: Swift.String,
   ) async throws {
@@ -1683,6 +2258,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteAsset(request: request)
   }
 
+  /// Deletes list of Assets.
+  ///
+  /// @Snippet(path: "MigrationCenter_BatchDeleteAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/batchDeleteAssets(request:options:)``
   public func batchDeleteAssets(request: BatchDeleteAssetsRequest) async throws {
     try await self.batchDeleteAssets(request: request, options: .init())
   }
@@ -1693,6 +2275,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes list of Assets.
+  ///
+  /// @Snippet(path: "MigrationCenter_BatchDeleteAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/batchDeleteAssets(request:options:)``
   public func batchDeleteAssets(
     parent: Swift.String,
     names: [Swift.String],
@@ -1704,6 +2293,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.batchDeleteAssets(request: request)
   }
 
+  /// Reports a set of frames.
+  ///
+  /// @Snippet(path: "MigrationCenter_ReportAssetFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/reportAssetFrames(request:options:)``
   public func reportAssetFrames(request: ReportAssetFramesRequest) async throws
     -> GoogleCloudMigrationCenterV1.ReportAssetFramesResponse
   {
@@ -1716,6 +2312,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Aggregates the requested fields based on provided function.
+  ///
+  /// @Snippet(path: "MigrationCenter_AggregateAssetsValues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/aggregateAssetsValues(request:options:)``
   public func aggregateAssetsValues(request: AggregateAssetsValuesRequest) async throws
     -> GoogleCloudMigrationCenterV1.AggregateAssetsValuesResponse
   {
@@ -1728,6 +2331,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createImportJob(request:options:)``
   public func createImportJob(request: CreateImportJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1740,6 +2350,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createImportJobPollingUntilDone(request:options:)``
   public func createImportJobPollingUntilDone(request: CreateImportJobRequest) async throws
     -> ImportJob
   {
@@ -1752,6 +2369,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createImportJobPollingUntilDone(request:options:)``
   public func createImportJobPollingUntilDone(
     parent: Swift.String,
     importJob: ImportJob?,
@@ -1765,6 +2389,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createImportJobPollingUntilDone(request: request)
   }
 
+  /// Lists all import jobs.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListImportJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportJobs(request:options:)``
   public func listImportJobs(request: ListImportJobsRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListImportJobsResponse
   {
@@ -1777,6 +2408,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all import jobs.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListImportJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportJobs(request:options:)``
   public func listImportJobsByItems(
     request: ListImportJobsRequest
   ) -> some AsyncSequence<ImportJob, any Swift.Error> & Sendable {
@@ -1786,6 +2424,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists all import jobs.
   ///
   /// @Snippet(path: "MigrationCenter_ListImportJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportJobs(request:options:)``
   public func listImportJobsByItems(
     request: ListImportJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ImportJob, any Swift.Error> & Sendable {
@@ -1800,6 +2442,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all import jobs.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListImportJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportJobs(request:options:)``
   public func listImportJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ImportJob, any Swift.Error> & Sendable {
@@ -1809,6 +2458,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listImportJobsByItems(request: request)
   }
 
+  /// Gets the details of an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getImportJob(request:options:)``
   public func getImportJob(request: GetImportJobRequest) async throws
     -> GoogleCloudMigrationCenterV1.ImportJob
   {
@@ -1821,6 +2477,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getImportJob(request:options:)``
   public func getImportJob(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.ImportJob {
@@ -1830,6 +2493,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getImportJob(request: request)
   }
 
+  /// Deletes an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteImportJob(request:options:)``
   public func deleteImportJob(request: DeleteImportJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1842,6 +2512,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteImportJobPollingUntilDone(request:options:)``
   public func deleteImportJobPollingUntilDone(request: DeleteImportJobRequest) async throws {
     try await self.deleteImportJobPollingUntilDone(request: request, options: .init())
   }
@@ -1852,6 +2529,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteImportJobPollingUntilDone(request:options:)``
   public func deleteImportJobPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1861,6 +2545,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteImportJobPollingUntilDone(request: request)
   }
 
+  /// Updates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateImportJob(request:options:)``
   public func updateImportJob(request: UpdateImportJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1873,6 +2564,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateImportJobPollingUntilDone(request:options:)``
   public func updateImportJobPollingUntilDone(request: UpdateImportJobRequest) async throws
     -> ImportJob
   {
@@ -1885,6 +2583,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateImportJobPollingUntilDone(request:options:)``
   public func updateImportJobPollingUntilDone(
     importJob: ImportJob?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1896,6 +2601,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.updateImportJobPollingUntilDone(request: request)
   }
 
+  /// Validates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_ValidateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/validateImportJob(request:options:)``
   public func validateImportJob(request: ValidateImportJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1908,6 +2620,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Validates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_ValidateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/validateImportJobPollingUntilDone(request:options:)``
   public func validateImportJobPollingUntilDone(request: ValidateImportJobRequest) async throws {
     try await self.validateImportJobPollingUntilDone(request: request, options: .init())
   }
@@ -1918,6 +2637,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Validates an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_ValidateImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/validateImportJobPollingUntilDone(request:options:)``
   public func validateImportJobPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1927,6 +2653,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.validateImportJobPollingUntilDone(request: request)
   }
 
+  /// Runs an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_RunImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/runImportJob(request:options:)``
   public func runImportJob(request: RunImportJobRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.runImportJob(request: request, options: .init())
@@ -1938,6 +2671,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_RunImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/runImportJobPollingUntilDone(request:options:)``
   public func runImportJobPollingUntilDone(request: RunImportJobRequest) async throws {
     try await self.runImportJobPollingUntilDone(request: request, options: .init())
   }
@@ -1948,6 +2688,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Runs an import job.
+  ///
+  /// @Snippet(path: "MigrationCenter_RunImportJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/runImportJobPollingUntilDone(request:options:)``
   public func runImportJobPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1957,6 +2704,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.runImportJobPollingUntilDone(request: request)
   }
 
+  /// Gets an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getImportDataFile(request:options:)``
   public func getImportDataFile(request: GetImportDataFileRequest) async throws
     -> GoogleCloudMigrationCenterV1.ImportDataFile
   {
@@ -1969,6 +2723,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getImportDataFile(request:options:)``
   public func getImportDataFile(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.ImportDataFile {
@@ -1978,6 +2739,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getImportDataFile(request: request)
   }
 
+  /// List import data files.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListImportDataFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportDataFiles(request:options:)``
   public func listImportDataFiles(request: ListImportDataFilesRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListImportDataFilesResponse
   {
@@ -1990,6 +2758,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List import data files.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListImportDataFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportDataFiles(request:options:)``
   public func listImportDataFilesByItems(
     request: ListImportDataFilesRequest
   ) -> some AsyncSequence<ImportDataFile, any Swift.Error> & Sendable {
@@ -1999,6 +2774,10 @@ extension Clients.MigrationCenterProtocol {
   /// List import data files.
   ///
   /// @Snippet(path: "MigrationCenter_ListImportDataFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportDataFiles(request:options:)``
   public func listImportDataFilesByItems(
     request: ListImportDataFilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ImportDataFile, any Swift.Error> & Sendable {
@@ -2013,6 +2792,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List import data files.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListImportDataFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listImportDataFiles(request:options:)``
   public func listImportDataFilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ImportDataFile, any Swift.Error> & Sendable {
@@ -2022,6 +2808,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listImportDataFilesByItems(request: request)
   }
 
+  /// Creates an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createImportDataFile(request:options:)``
   public func createImportDataFile(request: CreateImportDataFileRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2034,6 +2827,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createImportDataFilePollingUntilDone(request:options:)``
   public func createImportDataFilePollingUntilDone(request: CreateImportDataFileRequest)
     async throws -> ImportDataFile
   {
@@ -2046,6 +2846,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createImportDataFilePollingUntilDone(request:options:)``
   public func createImportDataFilePollingUntilDone(
     parent: Swift.String,
     importDataFile: ImportDataFile?,
@@ -2059,6 +2866,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createImportDataFilePollingUntilDone(request: request)
   }
 
+  /// Delete an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteImportDataFile(request:options:)``
   public func deleteImportDataFile(request: DeleteImportDataFileRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2071,6 +2885,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteImportDataFilePollingUntilDone(request:options:)``
   public func deleteImportDataFilePollingUntilDone(request: DeleteImportDataFileRequest)
     async throws
   {
@@ -2083,6 +2904,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an import data file.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteImportDataFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteImportDataFilePollingUntilDone(request:options:)``
   public func deleteImportDataFilePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2092,6 +2920,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteImportDataFilePollingUntilDone(request: request)
   }
 
+  /// Lists all groups in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listGroups(request:options:)``
   public func listGroups(request: ListGroupsRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListGroupsResponse
   {
@@ -2104,6 +2939,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all groups in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listGroups(request:options:)``
   public func listGroupsByItems(
     request: ListGroupsRequest
   ) -> some AsyncSequence<Group, any Swift.Error> & Sendable {
@@ -2113,6 +2955,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists all groups in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listGroups(request:options:)``
   public func listGroupsByItems(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Group, any Swift.Error> & Sendable {
@@ -2127,6 +2973,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all groups in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listGroups(request:options:)``
   public func listGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Group, any Swift.Error> & Sendable {
@@ -2136,6 +2989,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listGroupsByItems(request: request)
   }
 
+  /// Gets the details of a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getGroup(request:options:)``
   public func getGroup(request: GetGroupRequest) async throws -> GoogleCloudMigrationCenterV1.Group
   {
     try await self.getGroup(request: request, options: .init())
@@ -2147,6 +3007,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getGroup(request:options:)``
   public func getGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.Group {
@@ -2156,6 +3023,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getGroup(request: request)
   }
 
+  /// Creates a new group in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createGroup(request:options:)``
   public func createGroup(request: CreateGroupRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createGroup(request: request, options: .init())
   }
@@ -2166,6 +3040,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new group in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createGroupPollingUntilDone(request:options:)``
   public func createGroupPollingUntilDone(request: CreateGroupRequest) async throws -> Group {
     return try await self.createGroupPollingUntilDone(request: request, options: .init())
   }
@@ -2176,6 +3057,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new group in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createGroupPollingUntilDone(request:options:)``
   public func createGroupPollingUntilDone(
     parent: Swift.String,
     group: Group?,
@@ -2189,6 +3077,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createGroupPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateGroup(request:options:)``
   public func updateGroup(request: UpdateGroupRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateGroup(request: request, options: .init())
   }
@@ -2199,6 +3094,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateGroupPollingUntilDone(request:options:)``
   public func updateGroupPollingUntilDone(request: UpdateGroupRequest) async throws -> Group {
     return try await self.updateGroupPollingUntilDone(request: request, options: .init())
   }
@@ -2209,6 +3111,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateGroupPollingUntilDone(request:options:)``
   public func updateGroupPollingUntilDone(
     group: Group?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2220,6 +3129,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.updateGroupPollingUntilDone(request: request)
   }
 
+  /// Deletes a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteGroup(request:options:)``
   public func deleteGroup(request: DeleteGroupRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteGroup(request: request, options: .init())
   }
@@ -2230,6 +3146,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteGroupPollingUntilDone(request:options:)``
   public func deleteGroupPollingUntilDone(request: DeleteGroupRequest) async throws {
     try await self.deleteGroupPollingUntilDone(request: request, options: .init())
   }
@@ -2240,6 +3163,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteGroupPollingUntilDone(request:options:)``
   public func deleteGroupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2249,6 +3179,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteGroupPollingUntilDone(request: request)
   }
 
+  /// Adds assets to a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_AddAssetsToGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/addAssetsToGroup(request:options:)``
   public func addAssetsToGroup(request: AddAssetsToGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2261,6 +3198,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds assets to a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_AddAssetsToGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/addAssetsToGroupPollingUntilDone(request:options:)``
   public func addAssetsToGroupPollingUntilDone(request: AddAssetsToGroupRequest) async throws
     -> Group
   {
@@ -2273,6 +3217,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds assets to a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_AddAssetsToGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/addAssetsToGroupPollingUntilDone(request:options:)``
   public func addAssetsToGroupPollingUntilDone(
     group: Swift.String,
   ) async throws -> Group {
@@ -2282,6 +3233,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.addAssetsToGroupPollingUntilDone(request: request)
   }
 
+  /// Removes assets from a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_RemoveAssetsFromGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/removeAssetsFromGroup(request:options:)``
   public func removeAssetsFromGroup(request: RemoveAssetsFromGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2294,6 +3252,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes assets from a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_RemoveAssetsFromGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/removeAssetsFromGroupPollingUntilDone(request:options:)``
   public func removeAssetsFromGroupPollingUntilDone(request: RemoveAssetsFromGroupRequest)
     async throws -> Group
   {
@@ -2306,6 +3271,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes assets from a group.
+  ///
+  /// @Snippet(path: "MigrationCenter_RemoveAssetsFromGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/removeAssetsFromGroupPollingUntilDone(request:options:)``
   public func removeAssetsFromGroupPollingUntilDone(
     group: Swift.String,
   ) async throws -> Group {
@@ -2315,6 +3287,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.removeAssetsFromGroupPollingUntilDone(request: request)
   }
 
+  /// Lists all error frames in a given source and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListErrorFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listErrorFrames(request:options:)``
   public func listErrorFrames(request: ListErrorFramesRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListErrorFramesResponse
   {
@@ -2327,6 +3306,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all error frames in a given source and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListErrorFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listErrorFrames(request:options:)``
   public func listErrorFramesByItems(
     request: ListErrorFramesRequest
   ) -> some AsyncSequence<ErrorFrame, any Swift.Error> & Sendable {
@@ -2336,6 +3322,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists all error frames in a given source and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListErrorFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listErrorFrames(request:options:)``
   public func listErrorFramesByItems(
     request: ListErrorFramesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ErrorFrame, any Swift.Error> & Sendable {
@@ -2350,6 +3340,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all error frames in a given source and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListErrorFrames")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listErrorFrames(request:options:)``
   public func listErrorFramesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ErrorFrame, any Swift.Error> & Sendable {
@@ -2359,6 +3356,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listErrorFramesByItems(request: request)
   }
 
+  /// Gets the details of an error frame.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetErrorFrame")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getErrorFrame(request:options:)``
   public func getErrorFrame(request: GetErrorFrameRequest) async throws
     -> GoogleCloudMigrationCenterV1.ErrorFrame
   {
@@ -2371,6 +3375,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of an error frame.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetErrorFrame")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getErrorFrame(request:options:)``
   public func getErrorFrame(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.ErrorFrame {
@@ -2380,6 +3391,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getErrorFrame(request: request)
   }
 
+  /// Lists all the sources in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listSources(request:options:)``
   public func listSources(request: ListSourcesRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListSourcesResponse
   {
@@ -2392,6 +3410,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the sources in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listSources(request:options:)``
   public func listSourcesByItems(
     request: ListSourcesRequest
   ) -> some AsyncSequence<Source, any Swift.Error> & Sendable {
@@ -2401,6 +3426,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists all the sources in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listSources(request:options:)``
   public func listSourcesByItems(
     request: ListSourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Source, any Swift.Error> & Sendable {
@@ -2415,6 +3444,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the sources in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listSources(request:options:)``
   public func listSourcesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Source, any Swift.Error> & Sendable {
@@ -2424,6 +3460,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listSourcesByItems(request: request)
   }
 
+  /// Gets the details of a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getSource(request:options:)``
   public func getSource(request: GetSourceRequest) async throws
     -> GoogleCloudMigrationCenterV1.Source
   {
@@ -2436,6 +3479,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getSource(request:options:)``
   public func getSource(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.Source {
@@ -2445,6 +3495,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getSource(request: request)
   }
 
+  /// Creates a new source in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createSource(request:options:)``
   public func createSource(request: CreateSourceRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createSource(request: request, options: .init())
@@ -2456,6 +3513,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new source in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createSourcePollingUntilDone(request:options:)``
   public func createSourcePollingUntilDone(request: CreateSourceRequest) async throws -> Source {
     return try await self.createSourcePollingUntilDone(request: request, options: .init())
   }
@@ -2466,6 +3530,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new source in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createSourcePollingUntilDone(request:options:)``
   public func createSourcePollingUntilDone(
     parent: Swift.String,
     source: Source?,
@@ -2479,6 +3550,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createSourcePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateSource(request:options:)``
   public func updateSource(request: UpdateSourceRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateSource(request: request, options: .init())
@@ -2490,6 +3568,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateSourcePollingUntilDone(request:options:)``
   public func updateSourcePollingUntilDone(request: UpdateSourceRequest) async throws -> Source {
     return try await self.updateSourcePollingUntilDone(request: request, options: .init())
   }
@@ -2500,6 +3585,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateSourcePollingUntilDone(request:options:)``
   public func updateSourcePollingUntilDone(
     source: Source?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2511,6 +3603,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.updateSourcePollingUntilDone(request: request)
   }
 
+  /// Deletes a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteSource(request:options:)``
   public func deleteSource(request: DeleteSourceRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteSource(request: request, options: .init())
@@ -2522,6 +3621,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteSourcePollingUntilDone(request:options:)``
   public func deleteSourcePollingUntilDone(request: DeleteSourceRequest) async throws {
     try await self.deleteSourcePollingUntilDone(request: request, options: .init())
   }
@@ -2532,6 +3638,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a source.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteSourcePollingUntilDone(request:options:)``
   public func deleteSourcePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2541,6 +3654,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteSourcePollingUntilDone(request: request)
   }
 
+  /// Lists all the preference sets in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListPreferenceSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listPreferenceSets(request:options:)``
   public func listPreferenceSets(request: ListPreferenceSetsRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListPreferenceSetsResponse
   {
@@ -2553,6 +3673,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the preference sets in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListPreferenceSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listPreferenceSets(request:options:)``
   public func listPreferenceSetsByItems(
     request: ListPreferenceSetsRequest
   ) -> some AsyncSequence<PreferenceSet, any Swift.Error> & Sendable {
@@ -2562,6 +3689,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists all the preference sets in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListPreferenceSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listPreferenceSets(request:options:)``
   public func listPreferenceSetsByItems(
     request: ListPreferenceSetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PreferenceSet, any Swift.Error> & Sendable {
@@ -2576,6 +3707,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the preference sets in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListPreferenceSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listPreferenceSets(request:options:)``
   public func listPreferenceSetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PreferenceSet, any Swift.Error> & Sendable {
@@ -2585,6 +3723,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listPreferenceSetsByItems(request: request)
   }
 
+  /// Gets the details of a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetPreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getPreferenceSet(request:options:)``
   public func getPreferenceSet(request: GetPreferenceSetRequest) async throws
     -> GoogleCloudMigrationCenterV1.PreferenceSet
   {
@@ -2597,6 +3742,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetPreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getPreferenceSet(request:options:)``
   public func getPreferenceSet(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.PreferenceSet {
@@ -2606,6 +3758,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getPreferenceSet(request: request)
   }
 
+  /// Creates a new preference set in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createPreferenceSet(request:options:)``
   public func createPreferenceSet(request: CreatePreferenceSetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2618,6 +3777,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new preference set in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createPreferenceSetPollingUntilDone(request:options:)``
   public func createPreferenceSetPollingUntilDone(request: CreatePreferenceSetRequest) async throws
     -> PreferenceSet
   {
@@ -2630,6 +3796,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new preference set in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createPreferenceSetPollingUntilDone(request:options:)``
   public func createPreferenceSetPollingUntilDone(
     parent: Swift.String,
     preferenceSet: PreferenceSet?,
@@ -2643,6 +3816,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createPreferenceSetPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updatePreferenceSet(request:options:)``
   public func updatePreferenceSet(request: UpdatePreferenceSetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2655,6 +3835,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updatePreferenceSetPollingUntilDone(request:options:)``
   public func updatePreferenceSetPollingUntilDone(request: UpdatePreferenceSetRequest) async throws
     -> PreferenceSet
   {
@@ -2667,6 +3854,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdatePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updatePreferenceSetPollingUntilDone(request:options:)``
   public func updatePreferenceSetPollingUntilDone(
     preferenceSet: PreferenceSet?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2678,6 +3872,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.updatePreferenceSetPollingUntilDone(request: request)
   }
 
+  /// Deletes a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeletePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deletePreferenceSet(request:options:)``
   public func deletePreferenceSet(request: DeletePreferenceSetRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2690,6 +3891,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeletePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deletePreferenceSetPollingUntilDone(request:options:)``
   public func deletePreferenceSetPollingUntilDone(request: DeletePreferenceSetRequest) async throws
   {
     try await self.deletePreferenceSetPollingUntilDone(request: request, options: .init())
@@ -2701,6 +3909,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a preference set.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeletePreferenceSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deletePreferenceSetPollingUntilDone(request:options:)``
   public func deletePreferenceSetPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2710,6 +3925,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deletePreferenceSetPollingUntilDone(request: request)
   }
 
+  /// Gets the details of regional settings.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getSettings(request:options:)``
   public func getSettings(request: GetSettingsRequest) async throws
     -> GoogleCloudMigrationCenterV1.Settings
   {
@@ -2722,6 +3944,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of regional settings.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getSettings(request:options:)``
   public func getSettings(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.Settings {
@@ -2731,6 +3960,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getSettings(request: request)
   }
 
+  /// Updates the regional-level project settings.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateSettings(request:options:)``
   public func updateSettings(request: UpdateSettingsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2743,6 +3979,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the regional-level project settings.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateSettingsPollingUntilDone(request:options:)``
   public func updateSettingsPollingUntilDone(request: UpdateSettingsRequest) async throws
     -> Settings
   {
@@ -2755,6 +3998,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the regional-level project settings.
+  ///
+  /// @Snippet(path: "MigrationCenter_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/updateSettingsPollingUntilDone(request:options:)``
   public func updateSettingsPollingUntilDone(
     settings: Settings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2766,6 +4016,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.updateSettingsPollingUntilDone(request: request)
   }
 
+  /// Creates a report configuration.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createReportConfig(request:options:)``
   public func createReportConfig(request: CreateReportConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2778,6 +4035,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a report configuration.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createReportConfigPollingUntilDone(request:options:)``
   public func createReportConfigPollingUntilDone(request: CreateReportConfigRequest) async throws
     -> ReportConfig
   {
@@ -2790,6 +4054,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a report configuration.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createReportConfigPollingUntilDone(request:options:)``
   public func createReportConfigPollingUntilDone(
     parent: Swift.String,
     reportConfig: ReportConfig?,
@@ -2803,6 +4074,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createReportConfigPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getReportConfig(request:options:)``
   public func getReportConfig(request: GetReportConfigRequest) async throws
     -> GoogleCloudMigrationCenterV1.ReportConfig
   {
@@ -2815,6 +4093,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getReportConfig(request:options:)``
   public func getReportConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.ReportConfig {
@@ -2824,6 +4109,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getReportConfig(request: request)
   }
 
+  /// Lists ReportConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReportConfigs(request:options:)``
   public func listReportConfigs(request: ListReportConfigsRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListReportConfigsResponse
   {
@@ -2836,6 +4128,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ReportConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReportConfigs(request:options:)``
   public func listReportConfigsByItems(
     request: ListReportConfigsRequest
   ) -> some AsyncSequence<ReportConfig, any Swift.Error> & Sendable {
@@ -2845,6 +4144,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists ReportConfigs in a given project and location.
   ///
   /// @Snippet(path: "MigrationCenter_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReportConfigs(request:options:)``
   public func listReportConfigsByItems(
     request: ListReportConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReportConfig, any Swift.Error> & Sendable {
@@ -2859,6 +4162,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ReportConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListReportConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReportConfigs(request:options:)``
   public func listReportConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReportConfig, any Swift.Error> & Sendable {
@@ -2868,6 +4178,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listReportConfigsByItems(request: request)
   }
 
+  /// Deletes a ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteReportConfig(request:options:)``
   public func deleteReportConfig(request: DeleteReportConfigRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2880,6 +4197,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteReportConfigPollingUntilDone(request:options:)``
   public func deleteReportConfigPollingUntilDone(request: DeleteReportConfigRequest) async throws {
     try await self.deleteReportConfigPollingUntilDone(request: request, options: .init())
   }
@@ -2890,6 +4214,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteReportConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteReportConfigPollingUntilDone(request:options:)``
   public func deleteReportConfigPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2899,6 +4230,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteReportConfigPollingUntilDone(request: request)
   }
 
+  /// Creates a report.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createReport(request:options:)``
   public func createReport(request: CreateReportRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createReport(request: request, options: .init())
@@ -2910,6 +4248,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a report.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createReportPollingUntilDone(request:options:)``
   public func createReportPollingUntilDone(request: CreateReportRequest) async throws -> Report {
     return try await self.createReportPollingUntilDone(request: request, options: .init())
   }
@@ -2920,6 +4265,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a report.
+  ///
+  /// @Snippet(path: "MigrationCenter_CreateReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/createReportPollingUntilDone(request:options:)``
   public func createReportPollingUntilDone(
     parent: Swift.String,
     report: Report?,
@@ -2933,6 +4285,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.createReportPollingUntilDone(request: request)
   }
 
+  /// Gets details of a single Report.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getReport(request:options:)``
   public func getReport(request: GetReportRequest) async throws
     -> GoogleCloudMigrationCenterV1.Report
   {
@@ -2945,6 +4304,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Report.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getReport(request:options:)``
   public func getReport(
     name: Swift.String,
   ) async throws -> GoogleCloudMigrationCenterV1.Report {
@@ -2954,6 +4320,13 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getReport(request: request)
   }
 
+  /// Lists Reports in a given ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReports(request:options:)``
   public func listReports(request: ListReportsRequest) async throws
     -> GoogleCloudMigrationCenterV1.ListReportsResponse
   {
@@ -2966,6 +4339,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Reports in a given ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReports(request:options:)``
   public func listReportsByItems(
     request: ListReportsRequest
   ) -> some AsyncSequence<Report, any Swift.Error> & Sendable {
@@ -2975,6 +4355,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists Reports in a given ReportConfig.
   ///
   /// @Snippet(path: "MigrationCenter_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReports(request:options:)``
   public func listReportsByItems(
     request: ListReportsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Report, any Swift.Error> & Sendable {
@@ -2989,6 +4373,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Reports in a given ReportConfig.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listReports(request:options:)``
   public func listReportsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Report, any Swift.Error> & Sendable {
@@ -2998,6 +4389,13 @@ extension Clients.MigrationCenterProtocol {
     return self.listReportsByItems(request: request)
   }
 
+  /// Deletes a Report.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteReport(request:options:)``
   public func deleteReport(request: DeleteReportRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteReport(request: request, options: .init())
@@ -3009,6 +4407,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Report.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteReportPollingUntilDone(request:options:)``
   public func deleteReportPollingUntilDone(request: DeleteReportRequest) async throws {
     try await self.deleteReportPollingUntilDone(request: request, options: .init())
   }
@@ -3019,6 +4424,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Report.
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteReportPollingUntilDone(request:options:)``
   public func deleteReportPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3028,6 +4440,13 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteReportPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -3040,6 +4459,13 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "MigrationCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3049,6 +4475,10 @@ extension Clients.MigrationCenterProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "MigrationCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3062,6 +4492,13 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "MigrationCenter_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -3074,6 +4511,15 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -3086,6 +4532,15 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3097,6 +4552,10 @@ extension Clients.MigrationCenterProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "MigrationCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3110,6 +4569,15 @@ extension Clients.MigrationCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -3121,6 +4589,9 @@ extension Clients.MigrationCenterProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3133,6 +4604,9 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -3142,6 +4616,15 @@ extension Clients.MigrationCenterProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -3152,6 +4635,15 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -3161,6 +4653,15 @@ extension Clients.MigrationCenterProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -3171,6 +4672,15 @@ extension Clients.MigrationCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "MigrationCenter_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationCenterClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

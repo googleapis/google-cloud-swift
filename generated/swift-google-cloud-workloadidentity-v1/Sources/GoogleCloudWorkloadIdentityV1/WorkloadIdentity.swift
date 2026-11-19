@@ -25,6 +25,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "WorkloadIdentityQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/WorkloadIdentityProtocol``
 public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sendable {
   let inner: any Clients.WorkloadIdentityStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// producer.
   ///
   /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateServiceAgents(request:)``
+  /// - ``generateServiceAgentsPollingUntilDone(parent:)``
+  /// - ``generateServiceAgentsPollingUntilDone(request:)``
+  /// - ``generateServiceAgentsPollingUntilDone(request:options:)``
   public func generateServiceAgents(
     request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -56,6 +67,13 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// producer.
   ///
   /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateServiceAgents(request:)``
+  /// - ``generateServiceAgents(request:options:)``
+  /// - ``generateServiceAgentsPollingUntilDone(parent:)``
+  /// - ``generateServiceAgentsPollingUntilDone(request:)``
   public func generateServiceAgentsPollingUntilDone(
     request: GenerateServiceAgentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateServiceAgentsResponse {
@@ -102,6 +120,12 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "WorkloadIdentity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -111,6 +135,10 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// Gets information about a location.
   ///
   /// @Snippet(path: "WorkloadIdentity_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -122,6 +150,13 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkloadIdentity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -144,6 +179,11 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkloadIdentity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -155,6 +195,11 @@ public final class WorkloadIdentityClient: Clients.WorkloadIdentityProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkloadIdentity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -208,6 +253,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.WorkloadIdentityProtocol {
+  /// Creates all service agents for a given resource, location and service
+  /// producer.
+  ///
+  /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/generateServiceAgents(request:options:)``
   public func generateServiceAgents(request: GenerateServiceAgentsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -220,6 +273,14 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates all service agents for a given resource, location and service
+  /// producer.
+  ///
+  /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/generateServiceAgentsPollingUntilDone(request:options:)``
   public func generateServiceAgentsPollingUntilDone(request: GenerateServiceAgentsRequest)
     async throws -> GenerateServiceAgentsResponse
   {
@@ -232,6 +293,14 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates all service agents for a given resource, location and service
+  /// producer.
+  ///
+  /// @Snippet(path: "WorkloadIdentity_GenerateServiceAgents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/generateServiceAgentsPollingUntilDone(request:options:)``
   public func generateServiceAgentsPollingUntilDone(
     parent: Swift.String,
   ) async throws -> GenerateServiceAgentsResponse {
@@ -241,6 +310,30 @@ extension Clients.WorkloadIdentityProtocol {
     return try await self.generateServiceAgentsPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "WorkloadIdentity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -253,6 +346,30 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "WorkloadIdentity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -279,6 +396,10 @@ extension Clients.WorkloadIdentityProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "WorkloadIdentity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -292,6 +413,13 @@ extension Clients.WorkloadIdentityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "WorkloadIdentity_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -304,6 +432,15 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -316,6 +453,15 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -327,6 +473,10 @@ extension Clients.WorkloadIdentityProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkloadIdentity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -340,6 +490,15 @@ extension Clients.WorkloadIdentityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -351,6 +510,9 @@ extension Clients.WorkloadIdentityProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -363,6 +525,9 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -372,6 +537,15 @@ extension Clients.WorkloadIdentityProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -382,6 +556,15 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -391,6 +574,15 @@ extension Clients.WorkloadIdentityProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -401,6 +593,15 @@ extension Clients.WorkloadIdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkloadIdentity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkloadIdentityClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

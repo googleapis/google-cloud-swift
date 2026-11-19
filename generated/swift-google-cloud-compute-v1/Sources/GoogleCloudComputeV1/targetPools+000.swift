@@ -24,6 +24,10 @@
   /// Service for the `targetPools` resource.
   ///
   /// @Snippet(path: "targetPoolsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/TargetPoolsProtocol``
   public final class TargetPoolsClient: Clients.TargetPoolsProtocol, Sendable {
     let inner: any Clients.TargetPoolsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Adds health check URLs to a target pool.
     ///
     /// @Snippet(path: "targetPools_addHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addHealthCheck(request:)``
+    /// - ``addHealthCheckPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``addHealthCheckPollingUntilDone(request:)``
+    /// - ``addHealthCheckPollingUntilDone(request:options:)``
     public func addHealthCheck(
       request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_addHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addHealthCheck(request:)``
+    /// - ``addHealthCheck(request:options:)``
+    /// - ``addHealthCheckPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``addHealthCheckPollingUntilDone(request:)``
     public func addHealthCheckPollingUntilDone(
       request: TargetPoolsClient.AddHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -100,6 +118,13 @@
     /// Adds an instance to a target pool.
     ///
     /// @Snippet(path: "targetPools_addInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addInstance(request:)``
+    /// - ``addInstancePollingUntilDone(project:region:targetPool:body:)``
+    /// - ``addInstancePollingUntilDone(request:)``
+    /// - ``addInstancePollingUntilDone(request:options:)``
     public func addInstance(
       request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +139,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_addInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addInstance(request:)``
+    /// - ``addInstance(request:options:)``
+    /// - ``addInstancePollingUntilDone(project:region:targetPool:body:)``
+    /// - ``addInstancePollingUntilDone(request:)``
     public func addInstancePollingUntilDone(
       request: TargetPoolsClient.AddInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -159,6 +191,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetPools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPoolAggregatedList {
@@ -168,6 +207,13 @@
     /// Deletes the specified target pool.
     ///
     /// @Snippet(path: "targetPools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:targetPool:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -182,6 +228,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:targetPool:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: TargetPoolsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -224,6 +277,11 @@
     /// Returns the specified target pool.
     ///
     /// @Snippet(path: "targetPools_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:targetPool:)``
+    /// - ``get(request:)``
     public func `get`(
       request: TargetPoolsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPool {
@@ -234,6 +292,11 @@
     /// instance that is referenced by the given target pool.
     ///
     /// @Snippet(path: "targetPools_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getHealth(project:region:targetPool:body:)``
+    /// - ``getHealth(request:)``
     public func getHealth(
       request: TargetPoolsClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPoolInstanceHealth {
@@ -244,6 +307,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "targetPools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -259,6 +329,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: TargetPoolsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -302,6 +379,13 @@
     /// project and region.
     ///
     /// @Snippet(path: "targetPools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetPoolList {
@@ -311,6 +395,13 @@
     /// Removes health check URL from a target pool.
     ///
     /// @Snippet(path: "targetPools_removeHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeHealthCheck(request:)``
+    /// - ``removeHealthCheckPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``removeHealthCheckPollingUntilDone(request:)``
+    /// - ``removeHealthCheckPollingUntilDone(request:options:)``
     public func removeHealthCheck(
       request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -325,6 +416,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_removeHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeHealthCheck(request:)``
+    /// - ``removeHealthCheck(request:options:)``
+    /// - ``removeHealthCheckPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``removeHealthCheckPollingUntilDone(request:)``
     public func removeHealthCheckPollingUntilDone(
       request: TargetPoolsClient.RemoveHealthCheckRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -367,6 +465,13 @@
     /// Removes instance URL from a target pool.
     ///
     /// @Snippet(path: "targetPools_removeInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeInstance(request:)``
+    /// - ``removeInstancePollingUntilDone(project:region:targetPool:body:)``
+    /// - ``removeInstancePollingUntilDone(request:)``
+    /// - ``removeInstancePollingUntilDone(request:options:)``
     public func removeInstance(
       request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -381,6 +486,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_removeInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeInstance(request:)``
+    /// - ``removeInstance(request:options:)``
+    /// - ``removeInstancePollingUntilDone(project:region:targetPool:body:)``
+    /// - ``removeInstancePollingUntilDone(request:)``
     public func removeInstancePollingUntilDone(
       request: TargetPoolsClient.RemoveInstanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -423,6 +535,13 @@
     /// Changes a backup target pool's configurations.
     ///
     /// @Snippet(path: "targetPools_setBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setBackup(request:)``
+    /// - ``setBackupPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``setBackupPollingUntilDone(request:)``
+    /// - ``setBackupPollingUntilDone(request:options:)``
     public func setBackup(
       request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -437,6 +556,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_setBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setBackup(request:)``
+    /// - ``setBackup(request:options:)``
+    /// - ``setBackupPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``setBackupPollingUntilDone(request:)``
     public func setBackupPollingUntilDone(
       request: TargetPoolsClient.SetBackupRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -481,6 +607,13 @@
     /// Cloud Armor Overview
     ///
     /// @Snippet(path: "targetPools_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicy(
       request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -497,6 +630,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetPools_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicy(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:region:targetPool:body:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
     public func setSecurityPolicyPollingUntilDone(
       request: TargetPoolsClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -539,6 +679,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "targetPools_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: TargetPoolsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -711,6 +856,13 @@
 
   // Default implementations
   extension Clients.TargetPoolsProtocol {
+    /// Adds health check URLs to a target pool.
+    ///
+    /// @Snippet(path: "targetPools_addHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/addHealthCheck(request:options:)``
     public func addHealthCheck(request: TargetPoolsClient.AddHealthCheckRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -723,6 +875,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds health check URLs to a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_addHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/addHealthCheckPollingUntilDone(request:options:)``
     public func addHealthCheckPollingUntilDone(
       request: TargetPoolsClient.AddHealthCheckRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -735,6 +899,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds health check URLs to a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_addHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/addHealthCheckPollingUntilDone(request:options:)``
     public func addHealthCheckPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -750,6 +926,13 @@
       return try await self.addHealthCheckPollingUntilDone(request: request)
     }
 
+    /// Adds an instance to a target pool.
+    ///
+    /// @Snippet(path: "targetPools_addInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/addInstance(request:options:)``
     public func addInstance(request: TargetPoolsClient.AddInstanceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -762,6 +945,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds an instance to a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_addInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/addInstancePollingUntilDone(request:options:)``
     public func addInstancePollingUntilDone(
       request: TargetPoolsClient.AddInstanceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -774,6 +969,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds an instance to a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_addInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/addInstancePollingUntilDone(request:options:)``
     public func addInstancePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -789,6 +996,16 @@
       return try await self.addInstancePollingUntilDone(request: request)
     }
 
+    /// Retrieves an aggregated list of target pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetPools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: TargetPoolsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.TargetPoolAggregatedList
     {
@@ -801,6 +1018,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of target pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetPools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: TargetPoolsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), any Swift.Error> & Sendable {
@@ -813,6 +1040,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetPools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: TargetPoolsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), any Swift.Error> & Sendable {
@@ -827,6 +1058,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of target pools.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetPools_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, TargetPoolsScopedList), any Swift.Error> & Sendable {
@@ -836,6 +1077,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified target pool.
+    ///
+    /// @Snippet(path: "targetPools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/delete(request:options:)``
     public func delete(request: TargetPoolsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -848,6 +1096,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: TargetPoolsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -860,6 +1120,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -873,6 +1145,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified target pool.
+    ///
+    /// @Snippet(path: "targetPools_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/get(request:options:)``
     public func `get`(request: TargetPoolsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.TargetPool
     {
@@ -885,6 +1164,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified target pool.
+    ///
+    /// @Snippet(path: "targetPools_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -898,6 +1184,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the most recent health check results for each IP for the
+    /// instance that is referenced by the given target pool.
+    ///
+    /// @Snippet(path: "targetPools_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/getHealth(request:options:)``
     public func getHealth(request: TargetPoolsClient.GetHealthRequest) async throws
       -> GoogleCloudComputeV1.TargetPoolInstanceHealth
     {
@@ -910,6 +1204,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the most recent health check results for each IP for the
+    /// instance that is referenced by the given target pool.
+    ///
+    /// @Snippet(path: "targetPools_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/getHealth(request:options:)``
     public func getHealth(
       project: Swift.String,
       region: Swift.String,
@@ -925,6 +1227,14 @@
       return try await self.getHealth(request: request)
     }
 
+    /// Creates a target pool in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "targetPools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/insert(request:options:)``
     public func insert(request: TargetPoolsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -937,6 +1247,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a target pool in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: TargetPoolsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -949,6 +1272,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a target pool in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -962,6 +1298,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of target pools available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "targetPools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/list(request:options:)``
     public func list(request: TargetPoolsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.TargetPoolList
     {
@@ -974,6 +1318,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of target pools available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "targetPools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/list(request:options:)``
     public func listByItems(
       request: TargetPoolsClient.ListRequest
     ) -> some AsyncSequence<TargetPool, any Swift.Error> & Sendable {
@@ -984,6 +1336,10 @@
     /// project and region.
     ///
     /// @Snippet(path: "targetPools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/list(request:options:)``
     public func listByItems(
       request: TargetPoolsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetPool, any Swift.Error> & Sendable {
@@ -997,6 +1353,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of target pools available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "targetPools_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1008,6 +1372,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Removes health check URL from a target pool.
+    ///
+    /// @Snippet(path: "targetPools_removeHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/removeHealthCheck(request:options:)``
     public func removeHealthCheck(request: TargetPoolsClient.RemoveHealthCheckRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1020,6 +1391,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes health check URL from a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_removeHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/removeHealthCheckPollingUntilDone(request:options:)``
     public func removeHealthCheckPollingUntilDone(
       request: TargetPoolsClient.RemoveHealthCheckRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1032,6 +1415,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes health check URL from a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_removeHealthCheck")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/removeHealthCheckPollingUntilDone(request:options:)``
     public func removeHealthCheckPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1047,6 +1442,13 @@
       return try await self.removeHealthCheckPollingUntilDone(request: request)
     }
 
+    /// Removes instance URL from a target pool.
+    ///
+    /// @Snippet(path: "targetPools_removeInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/removeInstance(request:options:)``
     public func removeInstance(request: TargetPoolsClient.RemoveInstanceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1059,6 +1461,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes instance URL from a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_removeInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/removeInstancePollingUntilDone(request:options:)``
     public func removeInstancePollingUntilDone(
       request: TargetPoolsClient.RemoveInstanceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1071,6 +1485,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes instance URL from a target pool.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_removeInstance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/removeInstancePollingUntilDone(request:options:)``
     public func removeInstancePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1086,6 +1512,13 @@
       return try await self.removeInstancePollingUntilDone(request: request)
     }
 
+    /// Changes a backup target pool's configurations.
+    ///
+    /// @Snippet(path: "targetPools_setBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/setBackup(request:options:)``
     public func setBackup(request: TargetPoolsClient.SetBackupRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1098,6 +1531,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes a backup target pool's configurations.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_setBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/setBackupPollingUntilDone(request:options:)``
     public func setBackupPollingUntilDone(
       request: TargetPoolsClient.SetBackupRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1110,6 +1555,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes a backup target pool's configurations.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_setBackup")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/setBackupPollingUntilDone(request:options:)``
     public func setBackupPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1125,6 +1582,15 @@
       return try await self.setBackupPollingUntilDone(request: request)
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified target pool.
+    /// For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// @Snippet(path: "targetPools_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/setSecurityPolicy(request:options:)``
     public func setSecurityPolicy(request: TargetPoolsClient.SetSecurityPolicyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1137,6 +1603,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified target pool.
+    /// For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: TargetPoolsClient.SetSecurityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1149,6 +1629,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified target pool.
+    /// For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetPools_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1164,6 +1658,13 @@
       return try await self.setSecurityPolicyPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "targetPools_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: TargetPoolsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -1176,6 +1677,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "targetPools_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetPoolsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -1191,6 +1699,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

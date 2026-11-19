@@ -24,6 +24,10 @@
   /// Service for the `regionInstanceGroupManagers` resource.
   ///
   /// @Snippet(path: "regionInstanceGroupManagersQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionInstanceGroupManagersProtocol``
   public final class RegionInstanceGroupManagersClient: Clients.RegionInstanceGroupManagersProtocol,
     Sendable
   {
@@ -61,6 +65,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_abandonInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``abandonInstances(request:)``
+    /// - ``abandonInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``abandonInstancesPollingUntilDone(request:)``
+    /// - ``abandonInstancesPollingUntilDone(request:options:)``
     public func abandonInstances(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -90,6 +101,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_abandonInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``abandonInstances(request:)``
+    /// - ``abandonInstances(request:options:)``
+    /// - ``abandonInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``abandonInstancesPollingUntilDone(request:)``
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -133,6 +151,13 @@
     /// Apply updates to selected instances the managed instance group.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_applyUpdatesToInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``applyUpdatesToInstances(request:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(request:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(request:options:)``
     public func applyUpdatesToInstances(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -148,6 +173,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_applyUpdatesToInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``applyUpdatesToInstances(request:)``
+    /// - ``applyUpdatesToInstances(request:options:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``applyUpdatesToInstancesPollingUntilDone(request:)``
     public func applyUpdatesToInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -196,6 +228,13 @@
     /// method.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_createInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createInstances(request:)``
+    /// - ``createInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``createInstancesPollingUntilDone(request:)``
+    /// - ``createInstancesPollingUntilDone(request:options:)``
     public func createInstances(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -216,6 +255,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_createInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createInstances(request:)``
+    /// - ``createInstances(request:options:)``
+    /// - ``createInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``createInstancesPollingUntilDone(request:)``
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -260,6 +306,13 @@
     /// in that group.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -275,6 +328,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:instanceGroupManager:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -331,6 +391,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_deleteInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteInstances(request:)``
+    /// - ``deleteInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``deleteInstancesPollingUntilDone(request:)``
+    /// - ``deleteInstancesPollingUntilDone(request:options:)``
     public func deleteInstances(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -360,6 +427,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_deleteInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteInstances(request:)``
+    /// - ``deleteInstances(request:options:)``
+    /// - ``deleteInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``deleteInstancesPollingUntilDone(request:)``
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -404,6 +478,13 @@
     /// group.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_deletePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePerInstanceConfigs(request:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(request:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(request:options:)``
     public func deletePerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -420,6 +501,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_deletePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePerInstanceConfigs(request:)``
+    /// - ``deletePerInstanceConfigs(request:options:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``deletePerInstanceConfigsPollingUntilDone(request:)``
     public func deletePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -463,6 +551,11 @@
     /// Returns all of the details about the specified managed instance group.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:instanceGroupManager:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionInstanceGroupManagersClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroupManager {
@@ -480,6 +573,13 @@
     /// A regional managed instance group can contain up to 2000 instances.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -502,6 +602,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -545,6 +652,13 @@
     /// within the specified region.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagerList {
@@ -555,6 +669,13 @@
     /// managed instance group. The filter andorderBy query parameters are not supported.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listErrors(request:)``
+    /// - ``listErrorsByItems(project:region:instanceGroupManager:)``
+    /// - ``listErrorsByItems(request:)``
+    /// - ``listErrorsByItems(request:options:)``
     public func listErrors(
       request: RegionInstanceGroupManagersClient.ListErrorsRequest,
       options: GoogleGax.RequestOptions
@@ -570,6 +691,13 @@
     /// to `PAGINATED`.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listManagedInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listManagedInstances(request:)``
+    /// - ``listManagedInstancesByItems(project:region:instanceGroupManager:)``
+    /// - ``listManagedInstancesByItems(request:)``
+    /// - ``listManagedInstancesByItems(request:options:)``
     public func listManagedInstances(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -581,6 +709,13 @@
     /// instance group. The orderBy query parameter is not supported.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listPerInstanceConfigs(request:)``
+    /// - ``listPerInstanceConfigsByItems(project:region:instanceGroupManager:)``
+    /// - ``listPerInstanceConfigsByItems(request:)``
+    /// - ``listPerInstanceConfigsByItems(request:options:)``
     public func listPerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -605,6 +740,13 @@
     /// a MIG.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -633,6 +775,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -677,6 +826,13 @@
     /// distinguish whether to perform insert or patch.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_patchPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPerInstanceConfigs(request:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(request:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(request:options:)``
     public func patchPerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -694,6 +850,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_patchPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchPerInstanceConfigs(request:)``
+    /// - ``patchPerInstanceConfigs(request:options:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``patchPerInstanceConfigsPollingUntilDone(request:)``
     public func patchPerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -749,6 +912,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_recreateInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``recreateInstances(request:)``
+    /// - ``recreateInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``recreateInstancesPollingUntilDone(request:)``
+    /// - ``recreateInstancesPollingUntilDone(request:options:)``
     public func recreateInstances(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -776,6 +946,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_recreateInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``recreateInstances(request:)``
+    /// - ``recreateInstances(request:options:)``
+    /// - ``recreateInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``recreateInstancesPollingUntilDone(request:)``
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -831,6 +1008,13 @@
     /// draining duration has elapsed before the VM instance is removed or deleted.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_resize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resize(request:)``
+    /// - ``resizePollingUntilDone(project:region:instanceGroupManager:size:)``
+    /// - ``resizePollingUntilDone(request:)``
+    /// - ``resizePollingUntilDone(request:options:)``
     public func resize(
       request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -857,6 +1041,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_resize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resize(request:)``
+    /// - ``resize(request:options:)``
+    /// - ``resizePollingUntilDone(project:region:instanceGroupManager:size:)``
+    /// - ``resizePollingUntilDone(request:)``
     public func resizePollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -914,6 +1105,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_resumeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resumeInstances(request:)``
+    /// - ``resumeInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``resumeInstancesPollingUntilDone(request:)``
+    /// - ``resumeInstancesPollingUntilDone(request:options:)``
     public func resumeInstances(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -944,6 +1142,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_resumeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resumeInstances(request:)``
+    /// - ``resumeInstances(request:options:)``
+    /// - ``resumeInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``resumeInstancesPollingUntilDone(request:)``
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -988,6 +1193,13 @@
     /// instances in this group. Existing instances are not affected.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_setInstanceTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setInstanceTemplate(request:)``
+    /// - ``setInstanceTemplatePollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``setInstanceTemplatePollingUntilDone(request:)``
+    /// - ``setInstanceTemplatePollingUntilDone(request:options:)``
     public func setInstanceTemplate(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
       options: GoogleGax.RequestOptions
@@ -1004,6 +1216,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_setInstanceTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setInstanceTemplate(request:)``
+    /// - ``setInstanceTemplate(request:options:)``
+    /// - ``setInstanceTemplatePollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``setInstanceTemplatePollingUntilDone(request:)``
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest,
       options: GoogleGax.RequestOptions
@@ -1048,6 +1267,13 @@
     /// assigned. Existing instances in the group are not affected.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_setTargetPools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setTargetPools(request:)``
+    /// - ``setTargetPoolsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``setTargetPoolsPollingUntilDone(request:)``
+    /// - ``setTargetPoolsPollingUntilDone(request:options:)``
     public func setTargetPools(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
       options: GoogleGax.RequestOptions
@@ -1064,6 +1290,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_setTargetPools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setTargetPools(request:)``
+    /// - ``setTargetPools(request:options:)``
+    /// - ``setTargetPoolsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``setTargetPoolsPollingUntilDone(request:)``
     public func setTargetPoolsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest,
       options: GoogleGax.RequestOptions
@@ -1122,6 +1355,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_startInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startInstances(request:)``
+    /// - ``startInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``startInstancesPollingUntilDone(request:)``
+    /// - ``startInstancesPollingUntilDone(request:options:)``
     public func startInstances(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1152,6 +1392,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_startInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startInstances(request:)``
+    /// - ``startInstances(request:options:)``
+    /// - ``startInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``startInstancesPollingUntilDone(request:)``
     public func startInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1219,6 +1466,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_stopInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopInstances(request:)``
+    /// - ``stopInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``stopInstancesPollingUntilDone(request:)``
+    /// - ``stopInstancesPollingUntilDone(request:options:)``
     public func stopInstances(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1258,6 +1512,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_stopInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopInstances(request:)``
+    /// - ``stopInstances(request:options:)``
+    /// - ``stopInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``stopInstancesPollingUntilDone(request:)``
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1325,6 +1586,13 @@
     /// You can specify a maximum of 1000 instances with this method per request.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_suspendInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suspendInstances(request:)``
+    /// - ``suspendInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``suspendInstancesPollingUntilDone(request:)``
+    /// - ``suspendInstancesPollingUntilDone(request:options:)``
     public func suspendInstances(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1364,6 +1632,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_suspendInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suspendInstances(request:)``
+    /// - ``suspendInstances(request:options:)``
+    /// - ``suspendInstancesPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``suspendInstancesPollingUntilDone(request:)``
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -1409,6 +1684,13 @@
     /// distinguish whether to perform insert or patch.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_updatePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePerInstanceConfigs(request:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(request:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(request:options:)``
     public func updatePerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -1426,6 +1708,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_updatePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePerInstanceConfigs(request:)``
+    /// - ``updatePerInstanceConfigs(request:options:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(project:region:instanceGroupManager:body:)``
+    /// - ``updatePerInstanceConfigsPollingUntilDone(request:)``
     public func updatePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -1813,6 +2102,27 @@
 
   // Default implementations
   extension Clients.RegionInstanceGroupManagersProtocol {
+    /// Flags the specified instances to be immediately removed from the managed
+    /// instance group. Abandoning an instance does not delete the
+    /// instance, but it does remove the instance from any target pools that are
+    /// applied by the managed instance group. This method reduces thetargetSize of the managed instance group by the
+    /// number of instances that you abandon. This operation is marked asDONE when the action is scheduled even if the instances have
+    /// not yet been removed from the group. You must separately verify the
+    /// status of the abandoning action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_abandonInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/abandonInstances(request:options:)``
     public func abandonInstances(request: RegionInstanceGroupManagersClient.AbandonInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1826,6 +2136,32 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances to be immediately removed from the managed
+    /// instance group. Abandoning an instance does not delete the
+    /// instance, but it does remove the instance from any target pools that are
+    /// applied by the managed instance group. This method reduces thetargetSize of the managed instance group by the
+    /// number of instances that you abandon. This operation is marked asDONE when the action is scheduled even if the instances have
+    /// not yet been removed from the group. You must separately verify the
+    /// status of the abandoning action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_abandonInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/abandonInstancesPollingUntilDone(request:options:)``
     public func abandonInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.AbandonInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1839,6 +2175,32 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances to be immediately removed from the managed
+    /// instance group. Abandoning an instance does not delete the
+    /// instance, but it does remove the instance from any target pools that are
+    /// applied by the managed instance group. This method reduces thetargetSize of the managed instance group by the
+    /// number of instances that you abandon. This operation is marked asDONE when the action is scheduled even if the instances have
+    /// not yet been removed from the group. You must separately verify the
+    /// status of the abandoning action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_abandonInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/abandonInstancesPollingUntilDone(request:options:)``
     public func abandonInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1854,6 +2216,13 @@
       return try await self.abandonInstancesPollingUntilDone(request: request)
     }
 
+    /// Apply updates to selected instances the managed instance group.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_applyUpdatesToInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/applyUpdatesToInstances(request:options:)``
     public func applyUpdatesToInstances(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1867,6 +2236,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Apply updates to selected instances the managed instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_applyUpdatesToInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/applyUpdatesToInstancesPollingUntilDone(request:options:)``
     public func applyUpdatesToInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ApplyUpdatesToInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1881,6 +2262,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Apply updates to selected instances the managed instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_applyUpdatesToInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/applyUpdatesToInstancesPollingUntilDone(request:options:)``
     public func applyUpdatesToInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1896,6 +2289,18 @@
       return try await self.applyUpdatesToInstancesPollingUntilDone(request: request)
     }
 
+    /// Creates instances with per-instance configurations in this regional managed
+    /// instance group. Instances are created using the current instance template.
+    /// The create instances operation is marked DONE if
+    /// the createInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
+    /// method.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_createInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/createInstances(request:options:)``
     public func createInstances(request: RegionInstanceGroupManagersClient.CreateInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1909,6 +2314,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates instances with per-instance configurations in this regional managed
+    /// instance group. Instances are created using the current instance template.
+    /// The create instances operation is marked DONE if
+    /// the createInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
+    /// method.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_createInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/createInstancesPollingUntilDone(request:options:)``
     public func createInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.CreateInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1922,6 +2344,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates instances with per-instance configurations in this regional managed
+    /// instance group. Instances are created using the current instance template.
+    /// The create instances operation is marked DONE if
+    /// the createInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of thecreating or actions with the listmanagedinstances
+    /// method.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_createInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/createInstancesPollingUntilDone(request:options:)``
     public func createInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1937,6 +2376,14 @@
       return try await self.createInstancesPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified managed instance group and all of the instances
+    /// in that group.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/delete(request:options:)``
     public func delete(request: RegionInstanceGroupManagersClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1949,6 +2396,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified managed instance group and all of the instances
+    /// in that group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1961,6 +2421,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified managed instance group and all of the instances
+    /// in that group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1974,6 +2447,27 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately deleted. The instances are also removed from any target
+    /// pools of which they were a member. This method reduces thetargetSize of the managed instance group by the number of
+    /// instances that you delete.
+    /// The deleteInstances operation is marked DONE if
+    /// the deleteInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of thedeleting action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_deleteInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deleteInstances(request:options:)``
     public func deleteInstances(request: RegionInstanceGroupManagersClient.DeleteInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1987,6 +2481,32 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately deleted. The instances are also removed from any target
+    /// pools of which they were a member. This method reduces thetargetSize of the managed instance group by the number of
+    /// instances that you delete.
+    /// The deleteInstances operation is marked DONE if
+    /// the deleteInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of thedeleting action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_deleteInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deleteInstancesPollingUntilDone(request:options:)``
     public func deleteInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeleteInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2000,6 +2520,32 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately deleted. The instances are also removed from any target
+    /// pools of which they were a member. This method reduces thetargetSize of the managed instance group by the number of
+    /// instances that you delete.
+    /// The deleteInstances operation is marked DONE if
+    /// the deleteInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of thedeleting action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_deleteInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deleteInstancesPollingUntilDone(request:options:)``
     public func deleteInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2015,6 +2561,14 @@
       return try await self.deleteInstancesPollingUntilDone(request: request)
     }
 
+    /// Deletes selected per-instance configurations for the managed instance
+    /// group.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_deletePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deletePerInstanceConfigs(request:options:)``
     public func deletePerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2028,6 +2582,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes selected per-instance configurations for the managed instance
+    /// group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_deletePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deletePerInstanceConfigsPollingUntilDone(request:options:)``
     public func deletePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.DeletePerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2042,6 +2609,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes selected per-instance configurations for the managed instance
+    /// group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_deletePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/deletePerInstanceConfigsPollingUntilDone(request:options:)``
     public func deletePerInstanceConfigsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2057,6 +2637,13 @@
       return try await self.deletePerInstanceConfigsPollingUntilDone(request: request)
     }
 
+    /// Returns all of the details about the specified managed instance group.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/get(request:options:)``
     public func `get`(request: RegionInstanceGroupManagersClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroupManager
     {
@@ -2069,6 +2656,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns all of the details about the specified managed instance group.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -2082,6 +2676,21 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a managed instance group using the information that you specify
+    /// in the request. After the group is created, instances in the group are
+    /// created using the specified instance template.
+    /// This operation is marked as DONE when the group is created
+    /// even if the instances in the group have not yet been created. You must
+    /// separately verify the status of the individual instances with thelistmanagedinstances
+    /// method.
+    ///
+    /// A regional managed instance group can contain up to 2000 instances.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/insert(request:options:)``
     public func insert(request: RegionInstanceGroupManagersClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -2094,6 +2703,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a managed instance group using the information that you specify
+    /// in the request. After the group is created, instances in the group are
+    /// created using the specified instance template.
+    /// This operation is marked as DONE when the group is created
+    /// even if the instances in the group have not yet been created. You must
+    /// separately verify the status of the individual instances with thelistmanagedinstances
+    /// method.
+    ///
+    /// A regional managed instance group can contain up to 2000 instances.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionInstanceGroupManagersClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2106,6 +2735,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a managed instance group using the information that you specify
+    /// in the request. After the group is created, instances in the group are
+    /// created using the specified instance template.
+    /// This operation is marked as DONE when the group is created
+    /// even if the instances in the group have not yet been created. You must
+    /// separately verify the status of the individual instances with thelistmanagedinstances
+    /// method.
+    ///
+    /// A regional managed instance group can contain up to 2000 instances.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2119,6 +2768,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of managed instance groups that are contained
+    /// within the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/list(request:options:)``
     public func list(request: RegionInstanceGroupManagersClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RegionInstanceGroupManagerList
     {
@@ -2131,6 +2788,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of managed instance groups that are contained
+    /// within the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/list(request:options:)``
     public func listByItems(
       request: RegionInstanceGroupManagersClient.ListRequest
     ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
@@ -2141,6 +2806,10 @@
     /// within the specified region.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/list(request:options:)``
     public func listByItems(
       request: RegionInstanceGroupManagersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceGroupManager, any Swift.Error> & Sendable {
@@ -2155,6 +2824,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of managed instance groups that are contained
+    /// within the specified region.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -2166,6 +2843,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Lists all errors thrown by actions on instances for a given regional
+    /// managed instance group. The filter andorderBy query parameters are not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listErrors(request:options:)``
     public func listErrors(request: RegionInstanceGroupManagersClient.ListErrorsRequest)
       async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagersListErrorsResponse
     {
@@ -2179,6 +2864,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all errors thrown by actions on instances for a given regional
+    /// managed instance group. The filter andorderBy query parameters are not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listErrors(request:options:)``
     public func listErrorsByItems(
       request: RegionInstanceGroupManagersClient.ListErrorsRequest
     ) -> some AsyncSequence<InstanceManagedByIgmError, any Swift.Error> & Sendable {
@@ -2189,6 +2882,10 @@
     /// managed instance group. The filter andorderBy query parameters are not supported.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listErrors(request:options:)``
     public func listErrorsByItems(
       request: RegionInstanceGroupManagersClient.ListErrorsRequest,
       options: GoogleGax.RequestOptions
@@ -2204,6 +2901,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all errors thrown by actions on instances for a given regional
+    /// managed instance group. The filter andorderBy query parameters are not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listErrors")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listErrors(request:options:)``
     public func listErrorsByItems(
       project: Swift.String,
       region: Swift.String,
@@ -2217,6 +2922,18 @@
       return self.listErrorsByItems(request: request)
     }
 
+    /// Lists the instances in the managed instance group and instances that are
+    /// scheduled to be created. The list includes any current actions
+    /// that the group has scheduled for its instances. The orderBy
+    /// query parameter is not supported.   The `pageToken` query parameter is
+    /// supported only if the group's `listManagedInstancesResults` field is set
+    /// to `PAGINATED`.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listManagedInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listManagedInstances(request:options:)``
     public func listManagedInstances(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstancesResponse {
@@ -2230,6 +2947,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the instances in the managed instance group and instances that are
+    /// scheduled to be created. The list includes any current actions
+    /// that the group has scheduled for its instances. The orderBy
+    /// query parameter is not supported.   The `pageToken` query parameter is
+    /// supported only if the group's `listManagedInstancesResults` field is set
+    /// to `PAGINATED`.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listManagedInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listManagedInstances(request:options:)``
     public func listManagedInstancesByItems(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest
     ) -> some AsyncSequence<ManagedInstance, any Swift.Error> & Sendable {
@@ -2244,6 +2973,10 @@
     /// to `PAGINATED`.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listManagedInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listManagedInstances(request:options:)``
     public func listManagedInstancesByItems(
       request: RegionInstanceGroupManagersClient.ListManagedInstancesRequest,
       options: GoogleGax.RequestOptions
@@ -2259,6 +2992,18 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the instances in the managed instance group and instances that are
+    /// scheduled to be created. The list includes any current actions
+    /// that the group has scheduled for its instances. The orderBy
+    /// query parameter is not supported.   The `pageToken` query parameter is
+    /// supported only if the group's `listManagedInstancesResults` field is set
+    /// to `PAGINATED`.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listManagedInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listManagedInstances(request:options:)``
     public func listManagedInstancesByItems(
       project: Swift.String,
       region: Swift.String,
@@ -2272,6 +3017,14 @@
       return self.listManagedInstancesByItems(request: request)
     }
 
+    /// Lists all of the per-instance configurations defined for the managed
+    /// instance group. The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listPerInstanceConfigs(request:options:)``
     public func listPerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.RegionInstanceGroupManagersListInstanceConfigsResp {
@@ -2285,6 +3038,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all of the per-instance configurations defined for the managed
+    /// instance group. The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listPerInstanceConfigs(request:options:)``
     public func listPerInstanceConfigsByItems(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest
     ) -> some AsyncSequence<PerInstanceConfig, any Swift.Error> & Sendable {
@@ -2295,6 +3056,10 @@
     /// instance group. The orderBy query parameter is not supported.
     ///
     /// @Snippet(path: "regionInstanceGroupManagers_listPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listPerInstanceConfigs(request:options:)``
     public func listPerInstanceConfigsByItems(
       request: RegionInstanceGroupManagersClient.ListPerInstanceConfigsRequest,
       options: GoogleGax.RequestOptions
@@ -2310,6 +3075,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all of the per-instance configurations defined for the managed
+    /// instance group. The orderBy query parameter is not supported.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_listPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/listPerInstanceConfigs(request:options:)``
     public func listPerInstanceConfigsByItems(
       project: Swift.String,
       region: Swift.String,
@@ -2323,6 +3096,27 @@
       return self.listPerInstanceConfigsByItems(request: request)
     }
 
+    /// Updates a managed instance group using the information that you specify
+    /// in the request.
+    /// This operation is marked as DONE when the group is patched
+    /// even if the instances in the group are still in the process of being
+    /// patched. You must separately verify the status of the individual instances
+    /// with the listmanagedinstances
+    /// method. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// If you update your group to specify a new template or instance
+    /// configuration, it's possible that your intended specification for each VM
+    /// in the group is different from the current state of that VM. To learn how
+    /// to apply an updated configuration to the VMs in a MIG, seeUpdating instances in
+    /// a MIG.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/patch(request:options:)``
     public func patch(request: RegionInstanceGroupManagersClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -2335,6 +3129,32 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a managed instance group using the information that you specify
+    /// in the request.
+    /// This operation is marked as DONE when the group is patched
+    /// even if the instances in the group are still in the process of being
+    /// patched. You must separately verify the status of the individual instances
+    /// with the listmanagedinstances
+    /// method. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// If you update your group to specify a new template or instance
+    /// configuration, it's possible that your intended specification for each VM
+    /// in the group is different from the current state of that VM. To learn how
+    /// to apply an updated configuration to the VMs in a MIG, seeUpdating instances in
+    /// a MIG.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2347,6 +3167,32 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a managed instance group using the information that you specify
+    /// in the request.
+    /// This operation is marked as DONE when the group is patched
+    /// even if the instances in the group are still in the process of being
+    /// patched. You must separately verify the status of the individual instances
+    /// with the listmanagedinstances
+    /// method. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// If you update your group to specify a new template or instance
+    /// configuration, it's possible that your intended specification for each VM
+    /// in the group is different from the current state of that VM. To learn how
+    /// to apply an updated configuration to the VMs in a MIG, seeUpdating instances in
+    /// a MIG.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2362,6 +3208,15 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Inserts or patches per-instance configurations for the managed instance
+    /// group. perInstanceConfig.name serves as a key used to
+    /// distinguish whether to perform insert or patch.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_patchPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/patchPerInstanceConfigs(request:options:)``
     public func patchPerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2375,6 +3230,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts or patches per-instance configurations for the managed instance
+    /// group. perInstanceConfig.name serves as a key used to
+    /// distinguish whether to perform insert or patch.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_patchPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/patchPerInstanceConfigsPollingUntilDone(request:options:)``
     public func patchPerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.PatchPerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2389,6 +3258,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts or patches per-instance configurations for the managed instance
+    /// group. perInstanceConfig.name serves as a key used to
+    /// distinguish whether to perform insert or patch.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_patchPerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/patchPerInstanceConfigsPollingUntilDone(request:options:)``
     public func patchPerInstanceConfigsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2404,6 +3287,25 @@
       return try await self.patchPerInstanceConfigsPollingUntilDone(request: request)
     }
 
+    /// Flags the specified VM instances in the managed instance group to be
+    /// immediately recreated. Each instance is recreated using the group's current
+    /// configuration. This operation is marked as DONE when the flag
+    /// is set even if the instances have not yet been recreated. You must
+    /// separately verify the status of each instance by checking itscurrentAction field; for more information, see Checking
+    /// the status of managed instances.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_recreateInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/recreateInstances(request:options:)``
     public func recreateInstances(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2417,6 +3319,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified VM instances in the managed instance group to be
+    /// immediately recreated. Each instance is recreated using the group's current
+    /// configuration. This operation is marked as DONE when the flag
+    /// is set even if the instances have not yet been recreated. You must
+    /// separately verify the status of each instance by checking itscurrentAction field; for more information, see Checking
+    /// the status of managed instances.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_recreateInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/recreateInstancesPollingUntilDone(request:options:)``
     public func recreateInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.RecreateInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2430,6 +3356,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified VM instances in the managed instance group to be
+    /// immediately recreated. Each instance is recreated using the group's current
+    /// configuration. This operation is marked as DONE when the flag
+    /// is set even if the instances have not yet been recreated. You must
+    /// separately verify the status of each instance by checking itscurrentAction field; for more information, see Checking
+    /// the status of managed instances.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_recreateInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/recreateInstancesPollingUntilDone(request:options:)``
     public func recreateInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2445,6 +3395,25 @@
       return try await self.recreateInstancesPollingUntilDone(request: request)
     }
 
+    /// Changes the intended size of the managed instance group. If you increase
+    /// the size, the group creates new instances using the current instance
+    /// template. If you decrease the size, the group deletes one or more
+    /// instances.
+    ///
+    /// The resize operation is marked DONE if theresize request is successful. The underlying actions take
+    /// additional time. You must separately verify the status of thecreating or deleting actions with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_resize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/resize(request:options:)``
     public func resize(request: RegionInstanceGroupManagersClient.ResizeRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -2457,6 +3426,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the intended size of the managed instance group. If you increase
+    /// the size, the group creates new instances using the current instance
+    /// template. If you decrease the size, the group deletes one or more
+    /// instances.
+    ///
+    /// The resize operation is marked DONE if theresize request is successful. The underlying actions take
+    /// additional time. You must separately verify the status of thecreating or deleting actions with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_resize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/resizePollingUntilDone(request:options:)``
     public func resizePollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResizeRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2469,6 +3462,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the intended size of the managed instance group. If you increase
+    /// the size, the group creates new instances using the current instance
+    /// template. If you decrease the size, the group deletes one or more
+    /// instances.
+    ///
+    /// The resize operation is marked DONE if theresize request is successful. The underlying actions take
+    /// additional time. You must separately verify the status of thecreating or deleting actions with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is removed or deleted.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_resize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/resizePollingUntilDone(request:options:)``
     public func resizePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2484,6 +3501,28 @@
       return try await self.resizePollingUntilDone(request: request)
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// resumed. This method increases thetargetSize and decreases the targetSuspendedSize
+    /// of the managed instance group by the number of instances that you resume.
+    /// The resumeInstances operation is marked DONE if
+    /// the resumeInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theRESUMING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// In this request, you can only specify instances that are suspended. For
+    /// example, if an instance was previously suspended using the suspendInstances
+    /// method, it can be resumed using the resumeInstances method.
+    ///
+    /// If a health check is attached to the managed instance group, the specified
+    /// instances will be verified as healthy after they are resumed.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_resumeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/resumeInstances(request:options:)``
     public func resumeInstances(request: RegionInstanceGroupManagersClient.ResumeInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -2497,6 +3536,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// resumed. This method increases thetargetSize and decreases the targetSuspendedSize
+    /// of the managed instance group by the number of instances that you resume.
+    /// The resumeInstances operation is marked DONE if
+    /// the resumeInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theRESUMING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// In this request, you can only specify instances that are suspended. For
+    /// example, if an instance was previously suspended using the suspendInstances
+    /// method, it can be resumed using the resumeInstances method.
+    ///
+    /// If a health check is attached to the managed instance group, the specified
+    /// instances will be verified as healthy after they are resumed.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_resumeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/resumeInstancesPollingUntilDone(request:options:)``
     public func resumeInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.ResumeInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2510,6 +3576,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// resumed. This method increases thetargetSize and decreases the targetSuspendedSize
+    /// of the managed instance group by the number of instances that you resume.
+    /// The resumeInstances operation is marked DONE if
+    /// the resumeInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theRESUMING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// In this request, you can only specify instances that are suspended. For
+    /// example, if an instance was previously suspended using the suspendInstances
+    /// method, it can be resumed using the resumeInstances method.
+    ///
+    /// If a health check is attached to the managed instance group, the specified
+    /// instances will be verified as healthy after they are resumed.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_resumeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/resumeInstancesPollingUntilDone(request:options:)``
     public func resumeInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2525,6 +3618,14 @@
       return try await self.resumeInstancesPollingUntilDone(request: request)
     }
 
+    /// Sets the instance template to use when creating new instances or recreating
+    /// instances in this group. Existing instances are not affected.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_setInstanceTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/setInstanceTemplate(request:options:)``
     public func setInstanceTemplate(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2538,6 +3639,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the instance template to use when creating new instances or recreating
+    /// instances in this group. Existing instances are not affected.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_setInstanceTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/setInstanceTemplatePollingUntilDone(request:options:)``
     public func setInstanceTemplatePollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetInstanceTemplateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2551,6 +3665,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the instance template to use when creating new instances or recreating
+    /// instances in this group. Existing instances are not affected.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_setInstanceTemplate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/setInstanceTemplatePollingUntilDone(request:options:)``
     public func setInstanceTemplatePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2566,6 +3693,14 @@
       return try await self.setInstanceTemplatePollingUntilDone(request: request)
     }
 
+    /// Modifies the target pools to which all new instances in this group are
+    /// assigned. Existing instances in the group are not affected.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_setTargetPools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/setTargetPools(request:options:)``
     public func setTargetPools(request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -2579,6 +3714,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Modifies the target pools to which all new instances in this group are
+    /// assigned. Existing instances in the group are not affected.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_setTargetPools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/setTargetPoolsPollingUntilDone(request:options:)``
     public func setTargetPoolsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SetTargetPoolsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2592,6 +3740,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Modifies the target pools to which all new instances in this group are
+    /// assigned. Existing instances in the group are not affected.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_setTargetPools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/setTargetPoolsPollingUntilDone(request:options:)``
     public func setTargetPoolsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2607,6 +3768,28 @@
       return try await self.setTargetPoolsPollingUntilDone(request: request)
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// started. This method increases thetargetSize and decreases the targetStoppedSize
+    /// of the managed instance group by the number of instances that you start.
+    /// The startInstances operation is marked DONE if
+    /// the startInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSTARTING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// In this request, you can only specify instances that are stopped. For
+    /// example, if an instance was previously stopped using the stopInstances
+    /// method, it can be started using the startInstances method.
+    ///
+    /// If a health check is attached to the managed instance group, the specified
+    /// instances will be verified as healthy after they are started.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_startInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/startInstances(request:options:)``
     public func startInstances(request: RegionInstanceGroupManagersClient.StartInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -2620,6 +3803,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// started. This method increases thetargetSize and decreases the targetStoppedSize
+    /// of the managed instance group by the number of instances that you start.
+    /// The startInstances operation is marked DONE if
+    /// the startInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSTARTING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// In this request, you can only specify instances that are stopped. For
+    /// example, if an instance was previously stopped using the stopInstances
+    /// method, it can be started using the startInstances method.
+    ///
+    /// If a health check is attached to the managed instance group, the specified
+    /// instances will be verified as healthy after they are started.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_startInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/startInstancesPollingUntilDone(request:options:)``
     public func startInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StartInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2633,6 +3843,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// started. This method increases thetargetSize and decreases the targetStoppedSize
+    /// of the managed instance group by the number of instances that you start.
+    /// The startInstances operation is marked DONE if
+    /// the startInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSTARTING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// In this request, you can only specify instances that are stopped. For
+    /// example, if an instance was previously stopped using the stopInstances
+    /// method, it can be started using the startInstances method.
+    ///
+    /// If a health check is attached to the managed instance group, the specified
+    /// instances will be verified as healthy after they are started.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_startInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/startInstancesPollingUntilDone(request:options:)``
     public func startInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2648,6 +3885,37 @@
       return try await self.startInstancesPollingUntilDone(request: request)
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately stopped. You can only specify instances that are running in
+    /// this request. This method reduces thetargetSize and increases the targetStoppedSize
+    /// of the managed instance group by the number of instances that you stop.
+    /// The stopInstances operation is marked DONE if
+    /// the stopInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSTOPPING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the standbyPolicy.initialDelaySec field is set, the group
+    /// delays stopping the instances until initialDelaySec have
+    /// passed from instance.creationTimestamp (that is, when the
+    /// instance was created). This delay gives your application time to
+    /// set itself up and initialize on the instance. If more thaninitialDelaySec seconds have passed sinceinstance.creationTimestamp when this method is called, there
+    /// will be zero delay.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is stopped.
+    ///
+    /// Stopped instances can be started using the startInstances
+    /// method.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_stopInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/stopInstances(request:options:)``
     public func stopInstances(request: RegionInstanceGroupManagersClient.StopInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -2661,6 +3929,42 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately stopped. You can only specify instances that are running in
+    /// this request. This method reduces thetargetSize and increases the targetStoppedSize
+    /// of the managed instance group by the number of instances that you stop.
+    /// The stopInstances operation is marked DONE if
+    /// the stopInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSTOPPING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the standbyPolicy.initialDelaySec field is set, the group
+    /// delays stopping the instances until initialDelaySec have
+    /// passed from instance.creationTimestamp (that is, when the
+    /// instance was created). This delay gives your application time to
+    /// set itself up and initialize on the instance. If more thaninitialDelaySec seconds have passed sinceinstance.creationTimestamp when this method is called, there
+    /// will be zero delay.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is stopped.
+    ///
+    /// Stopped instances can be started using the startInstances
+    /// method.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_stopInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/stopInstancesPollingUntilDone(request:options:)``
     public func stopInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.StopInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2674,6 +3978,42 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately stopped. You can only specify instances that are running in
+    /// this request. This method reduces thetargetSize and increases the targetStoppedSize
+    /// of the managed instance group by the number of instances that you stop.
+    /// The stopInstances operation is marked DONE if
+    /// the stopInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSTOPPING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the standbyPolicy.initialDelaySec field is set, the group
+    /// delays stopping the instances until initialDelaySec have
+    /// passed from instance.creationTimestamp (that is, when the
+    /// instance was created). This delay gives your application time to
+    /// set itself up and initialize on the instance. If more thaninitialDelaySec seconds have passed sinceinstance.creationTimestamp when this method is called, there
+    /// will be zero delay.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is stopped.
+    ///
+    /// Stopped instances can be started using the startInstances
+    /// method.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_stopInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/stopInstancesPollingUntilDone(request:options:)``
     public func stopInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2689,6 +4029,37 @@
       return try await self.stopInstancesPollingUntilDone(request: request)
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately suspended. You can only specify instances that are running in
+    /// this request. This method reduces thetargetSize and increases the targetSuspendedSize
+    /// of the managed instance group by the number of instances that you suspend.
+    /// The suspendInstances operation is marked DONE if
+    /// the suspendInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSUSPENDING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the standbyPolicy.initialDelaySec field is set, the group
+    /// delays suspension of the instances until initialDelaySec have
+    /// passed from instance.creationTimestamp (that is, when the
+    /// instance was created). This delay gives your application time to
+    /// set itself up and initialize on the instance. If more thaninitialDelaySec seconds have passed sinceinstance.creationTimestamp when this method is called, there
+    /// will be zero delay.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is suspended.
+    ///
+    /// Suspended instances can be resumed using the resumeInstances
+    /// method.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_suspendInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/suspendInstances(request:options:)``
     public func suspendInstances(request: RegionInstanceGroupManagersClient.SuspendInstancesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -2702,6 +4073,42 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately suspended. You can only specify instances that are running in
+    /// this request. This method reduces thetargetSize and increases the targetSuspendedSize
+    /// of the managed instance group by the number of instances that you suspend.
+    /// The suspendInstances operation is marked DONE if
+    /// the suspendInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSUSPENDING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the standbyPolicy.initialDelaySec field is set, the group
+    /// delays suspension of the instances until initialDelaySec have
+    /// passed from instance.creationTimestamp (that is, when the
+    /// instance was created). This delay gives your application time to
+    /// set itself up and initialize on the instance. If more thaninitialDelaySec seconds have passed sinceinstance.creationTimestamp when this method is called, there
+    /// will be zero delay.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is suspended.
+    ///
+    /// Suspended instances can be resumed using the resumeInstances
+    /// method.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_suspendInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/suspendInstancesPollingUntilDone(request:options:)``
     public func suspendInstancesPollingUntilDone(
       request: RegionInstanceGroupManagersClient.SuspendInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2715,6 +4122,42 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Flags the specified instances in the managed instance group to be
+    /// immediately suspended. You can only specify instances that are running in
+    /// this request. This method reduces thetargetSize and increases the targetSuspendedSize
+    /// of the managed instance group by the number of instances that you suspend.
+    /// The suspendInstances operation is marked DONE if
+    /// the suspendInstances request is successful. The underlying
+    /// actions take additional time. You must separately verify the status of theSUSPENDING action with thelistmanagedinstances
+    /// method.
+    ///
+    /// If the standbyPolicy.initialDelaySec field is set, the group
+    /// delays suspension of the instances until initialDelaySec have
+    /// passed from instance.creationTimestamp (that is, when the
+    /// instance was created). This delay gives your application time to
+    /// set itself up and initialize on the instance. If more thaninitialDelaySec seconds have passed sinceinstance.creationTimestamp when this method is called, there
+    /// will be zero delay.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration has elapsed before the VM instance is suspended.
+    ///
+    /// Suspended instances can be resumed using the resumeInstances
+    /// method.
+    ///
+    /// You can specify a maximum of 1000 instances with this method per request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_suspendInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/suspendInstancesPollingUntilDone(request:options:)``
     public func suspendInstancesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2730,6 +4173,15 @@
       return try await self.suspendInstancesPollingUntilDone(request: request)
     }
 
+    /// Inserts or updates per-instance configurations for the managed instance
+    /// group. perInstanceConfig.name serves as a key used to
+    /// distinguish whether to perform insert or patch.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_updatePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/updatePerInstanceConfigs(request:options:)``
     public func updatePerInstanceConfigs(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2743,6 +4195,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts or updates per-instance configurations for the managed instance
+    /// group. perInstanceConfig.name serves as a key used to
+    /// distinguish whether to perform insert or patch.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_updatePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/updatePerInstanceConfigsPollingUntilDone(request:options:)``
     public func updatePerInstanceConfigsPollingUntilDone(
       request: RegionInstanceGroupManagersClient.UpdatePerInstanceConfigsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -2757,6 +4223,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts or updates per-instance configurations for the managed instance
+    /// group. perInstanceConfig.name serves as a key used to
+    /// distinguish whether to perform insert or patch.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceGroupManagers_updatePerInstanceConfigs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceGroupManagersClient/updatePerInstanceConfigsPollingUntilDone(request:options:)``
     public func updatePerInstanceConfigsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -2772,6 +4252,7 @@
       return try await self.updatePerInstanceConfigsPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

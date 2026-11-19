@@ -24,6 +24,10 @@ import Foundation
 /// Readonly service to query available ImageVersions.
 ///
 /// @Snippet(path: "ImageVersionsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ImageVersionsProtocol``
 public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable {
   let inner: any Clients.ImageVersionsStub
 
@@ -40,6 +44,13 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
   /// List ImageVersions for provided location.
   ///
   /// @Snippet(path: "ImageVersions_ListImageVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listImageVersions(request:)``
+  /// - ``listImageVersionsByItems(parent:)``
+  /// - ``listImageVersionsByItems(request:)``
+  /// - ``listImageVersionsByItems(request:options:)``
   public func listImageVersions(
     request: ListImageVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse {
@@ -51,6 +62,13 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ImageVersions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -73,6 +91,11 @@ public final class ImageVersionsClient: Clients.ImageVersionsProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ImageVersions_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -106,6 +129,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ImageVersionsProtocol {
+  /// List ImageVersions for provided location.
+  ///
+  /// @Snippet(path: "ImageVersions_ListImageVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listImageVersions(request:options:)``
   public func listImageVersions(request: ListImageVersionsRequest) async throws
     -> GoogleCloudOrchestrationAirflowServiceV1.ListImageVersionsResponse
   {
@@ -118,6 +148,13 @@ extension Clients.ImageVersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List ImageVersions for provided location.
+  ///
+  /// @Snippet(path: "ImageVersions_ListImageVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listImageVersions(request:options:)``
   public func listImageVersionsByItems(
     request: ListImageVersionsRequest
   ) -> some AsyncSequence<ImageVersion, any Swift.Error> & Sendable {
@@ -127,6 +164,10 @@ extension Clients.ImageVersionsProtocol {
   /// List ImageVersions for provided location.
   ///
   /// @Snippet(path: "ImageVersions_ListImageVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listImageVersions(request:options:)``
   public func listImageVersionsByItems(
     request: ListImageVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ImageVersion, any Swift.Error> & Sendable {
@@ -141,6 +182,13 @@ extension Clients.ImageVersionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List ImageVersions for provided location.
+  ///
+  /// @Snippet(path: "ImageVersions_ListImageVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listImageVersions(request:options:)``
   public func listImageVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ImageVersion, any Swift.Error> & Sendable {
@@ -150,6 +198,15 @@ extension Clients.ImageVersionsProtocol {
     return self.listImageVersionsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ImageVersions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -162,6 +219,15 @@ extension Clients.ImageVersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ImageVersions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -173,6 +239,10 @@ extension Clients.ImageVersionsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ImageVersions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -186,6 +256,15 @@ extension Clients.ImageVersionsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ImageVersions_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -197,6 +276,9 @@ extension Clients.ImageVersionsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -209,6 +291,9 @@ extension Clients.ImageVersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,6 +303,15 @@ extension Clients.ImageVersionsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ImageVersions_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -228,6 +322,15 @@ extension Clients.ImageVersionsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ImageVersions_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ImageVersionsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {

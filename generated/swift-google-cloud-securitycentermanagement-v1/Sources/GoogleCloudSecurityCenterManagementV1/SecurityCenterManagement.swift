@@ -25,6 +25,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "SecurityCenterManagementQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SecurityCenterManagementProtocol``
 public final class SecurityCenterManagementClient: Clients.SecurityCenterManagementProtocol,
   Sendable
 {
@@ -50,6 +54,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEffectiveSecurityHealthAnalyticsCustomModules(request:)``
+  /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(parent:)``
+  /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(request:)``
+  /// - ``listEffectiveSecurityHealthAnalyticsCustomModulesByItems(request:options:)``
   public func listEffectiveSecurityHealthAnalyticsCustomModules(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -67,6 +78,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetEffectiveSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEffectiveSecurityHealthAnalyticsCustomModule(name:)``
+  /// - ``getEffectiveSecurityHealthAnalyticsCustomModule(request:)``
   public func getEffectiveSecurityHealthAnalyticsCustomModule(
     request: GetEffectiveSecurityHealthAnalyticsCustomModuleRequest,
     options: GoogleGax.RequestOptions
@@ -86,6 +102,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSecurityHealthAnalyticsCustomModules(request:)``
+  /// - ``listSecurityHealthAnalyticsCustomModulesByItems(parent:)``
+  /// - ``listSecurityHealthAnalyticsCustomModulesByItems(request:)``
+  /// - ``listSecurityHealthAnalyticsCustomModulesByItems(request:options:)``
   public func listSecurityHealthAnalyticsCustomModules(
     request: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -103,6 +126,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDescendantSecurityHealthAnalyticsCustomModules(request:)``
+  /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(parent:)``
+  /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(request:)``
+  /// - ``listDescendantSecurityHealthAnalyticsCustomModulesByItems(request:options:)``
   public func listDescendantSecurityHealthAnalyticsCustomModules(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -120,6 +150,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSecurityHealthAnalyticsCustomModule(name:)``
+  /// - ``getSecurityHealthAnalyticsCustomModule(request:)``
   public func getSecurityHealthAnalyticsCustomModule(
     request: GetSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -136,6 +171,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_CreateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSecurityHealthAnalyticsCustomModule(parent:securityHealthAnalyticsCustomModule:)``
+  /// - ``createSecurityHealthAnalyticsCustomModule(request:)``
   public func createSecurityHealthAnalyticsCustomModule(
     request: CreateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -154,6 +194,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSecurityHealthAnalyticsCustomModule(request:)``
+  /// - ``updateSecurityHealthAnalyticsCustomModule(securityHealthAnalyticsCustomModule:updateMask:)``
   public func updateSecurityHealthAnalyticsCustomModule(
     request: UpdateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -169,6 +214,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_DeleteSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSecurityHealthAnalyticsCustomModule(name:)``
+  /// - ``deleteSecurityHealthAnalyticsCustomModule(request:)``
   public func deleteSecurityHealthAnalyticsCustomModule(
     request: DeleteSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -183,6 +233,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_SimulateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``simulateSecurityHealthAnalyticsCustomModule(parent:customConfig:resource:)``
+  /// - ``simulateSecurityHealthAnalyticsCustomModule(request:)``
   public func simulateSecurityHealthAnalyticsCustomModule(
     request: SimulateSecurityHealthAnalyticsCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -197,6 +252,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// parent along with modules inherited from its ancestors.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEffectiveEventThreatDetectionCustomModules(request:)``
+  /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(parent:)``
+  /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(request:)``
+  /// - ``listEffectiveEventThreatDetectionCustomModulesByItems(request:options:)``
   public func listEffectiveEventThreatDetectionCustomModules(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -224,6 +286,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// [google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]: <doc:EventThreatDetectionCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetEffectiveEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEffectiveEventThreatDetectionCustomModule(name:)``
+  /// - ``getEffectiveEventThreatDetectionCustomModule(request:)``
   public func getEffectiveEventThreatDetectionCustomModule(
     request: GetEffectiveEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
@@ -237,6 +304,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// the parent along with modules inherited from ancestors.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEventThreatDetectionCustomModules(request:)``
+  /// - ``listEventThreatDetectionCustomModulesByItems(parent:)``
+  /// - ``listEventThreatDetectionCustomModulesByItems(request:)``
+  /// - ``listEventThreatDetectionCustomModulesByItems(request:options:)``
   public func listEventThreatDetectionCustomModules(
     request: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -249,6 +323,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// organization, folder, or project and its descendants.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDescendantEventThreatDetectionCustomModules(request:)``
+  /// - ``listDescendantEventThreatDetectionCustomModulesByItems(parent:)``
+  /// - ``listDescendantEventThreatDetectionCustomModulesByItems(request:)``
+  /// - ``listDescendantEventThreatDetectionCustomModulesByItems(request:options:)``
   public func listDescendantEventThreatDetectionCustomModules(
     request: ListDescendantEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -262,6 +343,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// Gets an Event Threat Detection custom module.
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEventThreatDetectionCustomModule(name:)``
+  /// - ``getEventThreatDetectionCustomModule(request:)``
   public func getEventThreatDetectionCustomModule(
     request: GetEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -274,6 +360,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// by default.
   ///
   /// @Snippet(path: "SecurityCenterManagement_CreateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEventThreatDetectionCustomModule(parent:eventThreatDetectionCustomModule:)``
+  /// - ``createEventThreatDetectionCustomModule(request:)``
   public func createEventThreatDetectionCustomModule(
     request: CreateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -288,6 +379,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// of a module cannot be changed.
   ///
   /// @Snippet(path: "SecurityCenterManagement_UpdateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEventThreatDetectionCustomModule(eventThreatDetectionCustomModule:updateMask:)``
+  /// - ``updateEventThreatDetectionCustomModule(request:)``
   public func updateEventThreatDetectionCustomModule(
     request: UpdateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -299,6 +395,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// resident custom modules.
   ///
   /// @Snippet(path: "SecurityCenterManagement_DeleteEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEventThreatDetectionCustomModule(name:)``
+  /// - ``deleteEventThreatDetectionCustomModule(request:)``
   public func deleteEventThreatDetectionCustomModule(
     request: DeleteEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -308,6 +409,10 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// Validates the given Event Threat Detection custom module.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ValidateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateEventThreatDetectionCustomModule(request:)``
   public func validateEventThreatDetectionCustomModule(
     request: ValidateEventThreatDetectionCustomModuleRequest, options: GoogleGax.RequestOptions
   ) async throws
@@ -320,6 +425,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// Gets service settings for the specified Security Command Center service.
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetSecurityCenterService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSecurityCenterService(name:)``
+  /// - ``getSecurityCenterService(request:)``
   public func getSecurityCenterService(
     request: GetSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
@@ -330,6 +440,13 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// parent.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSecurityCenterServices(request:)``
+  /// - ``listSecurityCenterServicesByItems(parent:)``
+  /// - ``listSecurityCenterServicesByItems(request:)``
+  /// - ``listSecurityCenterServicesByItems(request:options:)``
   public func listSecurityCenterServices(
     request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse {
@@ -339,6 +456,11 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// Updates a Security Command Center service using the given update mask.
   ///
   /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityCenterService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSecurityCenterService(request:)``
+  /// - ``updateSecurityCenterService(securityCenterService:updateMask:)``
   public func updateSecurityCenterService(
     request: UpdateSecurityCenterServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
@@ -348,6 +470,12 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -357,6 +485,10 @@ public final class SecurityCenterManagementClient: Clients.SecurityCenterManagem
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SecurityCenterManagement_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -510,6 +642,19 @@ extension Clients {
 
 // Default implementations
 extension Clients.SecurityCenterManagementProtocol {
+  /// Returns a list of all
+  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listEffectiveSecurityHealthAnalyticsCustomModules(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
   ) async throws
@@ -530,6 +675,19 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of all
+  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest
   ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable
@@ -547,6 +705,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     request: ListEffectiveSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -565,6 +727,19 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of all
+  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listEffectiveSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EffectiveSecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable
@@ -575,6 +750,16 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listEffectiveSecurityHealthAnalyticsCustomModulesByItems(request: request)
   }
 
+  /// Gets details of a single
+  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule].
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetEffectiveSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getEffectiveSecurityHealthAnalyticsCustomModule(request:options:)``
   public func getEffectiveSecurityHealthAnalyticsCustomModule(
     request: GetEffectiveSecurityHealthAnalyticsCustomModuleRequest
   ) async throws
@@ -593,6 +778,16 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single
+  /// [EffectiveSecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule].
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveSecurityHealthAnalyticsCustomModule]: <doc:EffectiveSecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetEffectiveSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getEffectiveSecurityHealthAnalyticsCustomModule(request:options:)``
   public func getEffectiveSecurityHealthAnalyticsCustomModule(
     name: Swift.String,
   ) async throws
@@ -604,6 +799,19 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.getEffectiveSecurityHealthAnalyticsCustomModule(request: request)
   }
 
+  /// Returns a list of all
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listSecurityHealthAnalyticsCustomModules(
     request: ListSecurityHealthAnalyticsCustomModulesRequest
   ) async throws
@@ -620,6 +828,19 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of all
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listSecurityHealthAnalyticsCustomModulesByItems(
     request: ListSecurityHealthAnalyticsCustomModulesRequest
   ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
@@ -635,6 +856,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listSecurityHealthAnalyticsCustomModulesByItems(
     request: ListSecurityHealthAnalyticsCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
@@ -650,6 +875,19 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of all
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources for the given parent. This includes resident modules defined at
+  /// the scope of the parent, and inherited modules, inherited from ancestor
+  /// organizations, folders, and projects (no descendants).
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
@@ -659,6 +897,18 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listSecurityHealthAnalyticsCustomModulesByItems(request: request)
   }
 
+  /// Returns a list of all resident
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources under the given organization, folder, or project and all of its
+  /// descendants.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listDescendantSecurityHealthAnalyticsCustomModules(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
   ) async throws
@@ -679,6 +929,18 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of all resident
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources under the given organization, folder, or project and all of its
+  /// descendants.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest
   ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
@@ -694,6 +956,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     request: ListDescendantSecurityHealthAnalyticsCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -711,6 +977,18 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of all resident
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// resources under the given organization, folder, or project and all of its
+  /// descendants.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantSecurityHealthAnalyticsCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantSecurityHealthAnalyticsCustomModules(request:options:)``
   public func listDescendantSecurityHealthAnalyticsCustomModulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SecurityHealthAnalyticsCustomModule, any Swift.Error> & Sendable {
@@ -720,6 +998,16 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listDescendantSecurityHealthAnalyticsCustomModulesByItems(request: request)
   }
 
+  /// Retrieves a
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule].
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getSecurityHealthAnalyticsCustomModule(request:options:)``
   public func getSecurityHealthAnalyticsCustomModule(
     request: GetSecurityHealthAnalyticsCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -732,6 +1020,16 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule].
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getSecurityHealthAnalyticsCustomModule(request:options:)``
   public func getSecurityHealthAnalyticsCustomModule(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -741,6 +1039,20 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.getSecurityHealthAnalyticsCustomModule(request: request)
   }
 
+  /// Creates a resident
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// at the scope of the given organization, folder, or project, and also
+  /// creates inherited `SecurityHealthAnalyticsCustomModule` resources for all
+  /// folders and projects that are descendants of the given parent. These
+  /// modules are enabled by default.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_CreateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/createSecurityHealthAnalyticsCustomModule(request:options:)``
   public func createSecurityHealthAnalyticsCustomModule(
     request: CreateSecurityHealthAnalyticsCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -753,6 +1065,20 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a resident
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// at the scope of the given organization, folder, or project, and also
+  /// creates inherited `SecurityHealthAnalyticsCustomModule` resources for all
+  /// folders and projects that are descendants of the given parent. These
+  /// modules are enabled by default.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_CreateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/createSecurityHealthAnalyticsCustomModule(request:options:)``
   public func createSecurityHealthAnalyticsCustomModule(
     parent: Swift.String,
     securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
@@ -764,6 +1090,21 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.createSecurityHealthAnalyticsCustomModule(request: request)
   }
 
+  /// Updates the
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// under the given name based on the given update mask. Updating the
+  /// enablement state is supported on both resident and inherited modules
+  /// (though resident modules cannot have an enablement state of "inherited").
+  /// Updating the display name and custom configuration of a module is supported
+  /// on resident modules only.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/updateSecurityHealthAnalyticsCustomModule(request:options:)``
   public func updateSecurityHealthAnalyticsCustomModule(
     request: UpdateSecurityHealthAnalyticsCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityHealthAnalyticsCustomModule {
@@ -776,6 +1117,21 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// under the given name based on the given update mask. Updating the
+  /// enablement state is supported on both resident and inherited modules
+  /// (though resident modules cannot have an enablement state of "inherited").
+  /// Updating the display name and custom configuration of a module is supported
+  /// on resident modules only.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/updateSecurityHealthAnalyticsCustomModule(request:options:)``
   public func updateSecurityHealthAnalyticsCustomModule(
     securityHealthAnalyticsCustomModule: SecurityHealthAnalyticsCustomModule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -787,6 +1143,18 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.updateSecurityHealthAnalyticsCustomModule(request: request)
   }
 
+  /// Deletes the specified
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// and all of its descendants in the resource hierarchy. This method is only
+  /// supported for resident custom modules.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_DeleteSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/deleteSecurityHealthAnalyticsCustomModule(request:options:)``
   public func deleteSecurityHealthAnalyticsCustomModule(
     request: DeleteSecurityHealthAnalyticsCustomModuleRequest
   ) async throws {
@@ -799,6 +1167,18 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// and all of its descendants in the resource hierarchy. This method is only
+  /// supported for resident custom modules.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_DeleteSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/deleteSecurityHealthAnalyticsCustomModule(request:options:)``
   public func deleteSecurityHealthAnalyticsCustomModule(
     name: Swift.String,
   ) async throws {
@@ -808,6 +1188,17 @@ extension Clients.SecurityCenterManagementProtocol {
     try await self.deleteSecurityHealthAnalyticsCustomModule(request: request)
   }
 
+  /// Simulates the result of using a
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// to check a resource.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_SimulateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:options:)``
   public func simulateSecurityHealthAnalyticsCustomModule(
     request: SimulateSecurityHealthAnalyticsCustomModuleRequest
   ) async throws
@@ -824,6 +1215,17 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Simulates the result of using a
+  /// [SecurityHealthAnalyticsCustomModule][google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]
+  /// to check a resource.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.SecurityHealthAnalyticsCustomModule]: <doc:SecurityHealthAnalyticsCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_SimulateSecurityHealthAnalyticsCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/simulateSecurityHealthAnalyticsCustomModule(request:options:)``
   public func simulateSecurityHealthAnalyticsCustomModule(
     parent: Swift.String,
     customConfig: CustomConfig?,
@@ -839,6 +1241,15 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.simulateSecurityHealthAnalyticsCustomModule(request: request)
   }
 
+  /// Lists all effective Event Threat Detection custom modules for the
+  /// given parent. This includes resident modules defined at the scope of the
+  /// parent along with modules inherited from its ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveEventThreatDetectionCustomModules(request:options:)``
   public func listEffectiveEventThreatDetectionCustomModules(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest
   ) async throws
@@ -857,6 +1268,15 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all effective Event Threat Detection custom modules for the
+  /// given parent. This includes resident modules defined at the scope of the
+  /// parent along with modules inherited from its ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveEventThreatDetectionCustomModules(request:options:)``
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest
   ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -868,6 +1288,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// parent along with modules inherited from its ancestors.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveEventThreatDetectionCustomModules(request:options:)``
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
     request: ListEffectiveEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -885,6 +1309,15 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all effective Event Threat Detection custom modules for the
+  /// given parent. This includes resident modules defined at the scope of the
+  /// parent along with modules inherited from its ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEffectiveEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEffectiveEventThreatDetectionCustomModules(request:options:)``
   public func listEffectiveEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EffectiveEventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -894,6 +1327,27 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listEffectiveEventThreatDetectionCustomModulesByItems(request: request)
   }
 
+  /// Gets the effective Event Threat Detection custom module at the given level.
+  ///
+  /// The difference between an
+  /// [EffectiveEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule]
+  /// and an
+  /// [EventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]
+  /// is that the fields for an `EffectiveEventThreatDetectionCustomModule` are
+  /// computed from ancestors if needed. For example, the enablement state for an
+  /// `EventThreatDetectionCustomModule` can be `ENABLED`, `DISABLED`, or
+  /// `INHERITED`. In contrast, the enablement state for an
+  /// `EffectiveEventThreatDetectionCustomModule` is always computed as `ENABLED`
+  /// or `DISABLED`.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule]: <doc:EffectiveEventThreatDetectionCustomModule>
+  /// [google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]: <doc:EventThreatDetectionCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetEffectiveEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getEffectiveEventThreatDetectionCustomModule(request:options:)``
   public func getEffectiveEventThreatDetectionCustomModule(
     request: GetEffectiveEventThreatDetectionCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
@@ -908,6 +1362,27 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the effective Event Threat Detection custom module at the given level.
+  ///
+  /// The difference between an
+  /// [EffectiveEventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule]
+  /// and an
+  /// [EventThreatDetectionCustomModule][google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]
+  /// is that the fields for an `EffectiveEventThreatDetectionCustomModule` are
+  /// computed from ancestors if needed. For example, the enablement state for an
+  /// `EventThreatDetectionCustomModule` can be `ENABLED`, `DISABLED`, or
+  /// `INHERITED`. In contrast, the enablement state for an
+  /// `EffectiveEventThreatDetectionCustomModule` is always computed as `ENABLED`
+  /// or `DISABLED`.
+  ///
+  /// [google.cloud.securitycentermanagement.v1.EffectiveEventThreatDetectionCustomModule]: <doc:EffectiveEventThreatDetectionCustomModule>
+  /// [google.cloud.securitycentermanagement.v1.EventThreatDetectionCustomModule]: <doc:EventThreatDetectionCustomModule>
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetEffectiveEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getEffectiveEventThreatDetectionCustomModule(request:options:)``
   public func getEffectiveEventThreatDetectionCustomModule(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EffectiveEventThreatDetectionCustomModule
@@ -918,6 +1393,15 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.getEffectiveEventThreatDetectionCustomModule(request: request)
   }
 
+  /// Lists all Event Threat Detection custom modules for the given organization,
+  /// folder, or project. This includes resident modules defined at the scope of
+  /// the parent along with modules inherited from ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:options:)``
   public func listEventThreatDetectionCustomModules(
     request: ListEventThreatDetectionCustomModulesRequest
   ) async throws
@@ -934,6 +1418,15 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all Event Threat Detection custom modules for the given organization,
+  /// folder, or project. This includes resident modules defined at the scope of
+  /// the parent along with modules inherited from ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:options:)``
   public func listEventThreatDetectionCustomModulesByItems(
     request: ListEventThreatDetectionCustomModulesRequest
   ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -945,6 +1438,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// the parent along with modules inherited from ancestors.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:options:)``
   public func listEventThreatDetectionCustomModulesByItems(
     request: ListEventThreatDetectionCustomModulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -960,6 +1457,15 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all Event Threat Detection custom modules for the given organization,
+  /// folder, or project. This includes resident modules defined at the scope of
+  /// the parent along with modules inherited from ancestors.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listEventThreatDetectionCustomModules(request:options:)``
   public func listEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -969,6 +1475,14 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listEventThreatDetectionCustomModulesByItems(request: request)
   }
 
+  /// Lists all resident Event Threat Detection custom modules for the given
+  /// organization, folder, or project and its descendants.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantEventThreatDetectionCustomModules(request:options:)``
   public func listDescendantEventThreatDetectionCustomModules(
     request: ListDescendantEventThreatDetectionCustomModulesRequest
   ) async throws
@@ -987,6 +1501,14 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all resident Event Threat Detection custom modules for the given
+  /// organization, folder, or project and its descendants.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantEventThreatDetectionCustomModules(request:options:)``
   public func listDescendantEventThreatDetectionCustomModulesByItems(
     request: ListDescendantEventThreatDetectionCustomModulesRequest
   ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -997,6 +1519,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// organization, folder, or project and its descendants.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantEventThreatDetectionCustomModules(request:options:)``
   public func listDescendantEventThreatDetectionCustomModulesByItems(
     request: ListDescendantEventThreatDetectionCustomModulesRequest,
     options: GoogleGax.RequestOptions
@@ -1014,6 +1540,14 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all resident Event Threat Detection custom modules for the given
+  /// organization, folder, or project and its descendants.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListDescendantEventThreatDetectionCustomModules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listDescendantEventThreatDetectionCustomModules(request:options:)``
   public func listDescendantEventThreatDetectionCustomModulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EventThreatDetectionCustomModule, any Swift.Error> & Sendable {
@@ -1023,6 +1557,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listDescendantEventThreatDetectionCustomModulesByItems(request: request)
   }
 
+  /// Gets an Event Threat Detection custom module.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getEventThreatDetectionCustomModule(request:options:)``
   public func getEventThreatDetectionCustomModule(
     request: GetEventThreatDetectionCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -1035,6 +1576,13 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an Event Threat Detection custom module.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getEventThreatDetectionCustomModule(request:options:)``
   public func getEventThreatDetectionCustomModule(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -1044,6 +1592,16 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.getEventThreatDetectionCustomModule(request: request)
   }
 
+  /// Creates a resident Event Threat Detection custom module at the scope of the
+  /// given organization, folder, or project, and creates inherited custom
+  /// modules for all descendants of the given parent. These modules are enabled
+  /// by default.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_CreateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/createEventThreatDetectionCustomModule(request:options:)``
   public func createEventThreatDetectionCustomModule(
     request: CreateEventThreatDetectionCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -1056,6 +1614,16 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a resident Event Threat Detection custom module at the scope of the
+  /// given organization, folder, or project, and creates inherited custom
+  /// modules for all descendants of the given parent. These modules are enabled
+  /// by default.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_CreateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/createEventThreatDetectionCustomModule(request:options:)``
   public func createEventThreatDetectionCustomModule(
     parent: Swift.String,
     eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
@@ -1067,6 +1635,18 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.createEventThreatDetectionCustomModule(request: request)
   }
 
+  /// Updates the Event Threat Detection custom module with the given name based
+  /// on the given update mask. Updating the enablement state is supported for
+  /// both resident and inherited modules (though resident modules cannot have an
+  /// enablement state of "inherited"). Updating the display name or
+  /// configuration of a module is supported for resident modules only. The type
+  /// of a module cannot be changed.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_UpdateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/updateEventThreatDetectionCustomModule(request:options:)``
   public func updateEventThreatDetectionCustomModule(
     request: UpdateEventThreatDetectionCustomModuleRequest
   ) async throws -> GoogleCloudSecurityCenterManagementV1.EventThreatDetectionCustomModule {
@@ -1079,6 +1659,18 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Event Threat Detection custom module with the given name based
+  /// on the given update mask. Updating the enablement state is supported for
+  /// both resident and inherited modules (though resident modules cannot have an
+  /// enablement state of "inherited"). Updating the display name or
+  /// configuration of a module is supported for resident modules only. The type
+  /// of a module cannot be changed.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_UpdateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/updateEventThreatDetectionCustomModule(request:options:)``
   public func updateEventThreatDetectionCustomModule(
     eventThreatDetectionCustomModule: EventThreatDetectionCustomModule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1090,6 +1682,15 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.updateEventThreatDetectionCustomModule(request: request)
   }
 
+  /// Deletes the specified Event Threat Detection custom module and all of its
+  /// descendants in the resource hierarchy. This method is only supported for
+  /// resident custom modules.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_DeleteEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/deleteEventThreatDetectionCustomModule(request:options:)``
   public func deleteEventThreatDetectionCustomModule(
     request: DeleteEventThreatDetectionCustomModuleRequest
   ) async throws {
@@ -1102,6 +1703,15 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified Event Threat Detection custom module and all of its
+  /// descendants in the resource hierarchy. This method is only supported for
+  /// resident custom modules.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_DeleteEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/deleteEventThreatDetectionCustomModule(request:options:)``
   public func deleteEventThreatDetectionCustomModule(
     name: Swift.String,
   ) async throws {
@@ -1111,6 +1721,13 @@ extension Clients.SecurityCenterManagementProtocol {
     try await self.deleteEventThreatDetectionCustomModule(request: request)
   }
 
+  /// Validates the given Event Threat Detection custom module.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ValidateEventThreatDetectionCustomModule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/validateEventThreatDetectionCustomModule(request:options:)``
   public func validateEventThreatDetectionCustomModule(
     request: ValidateEventThreatDetectionCustomModuleRequest
   ) async throws
@@ -1127,6 +1744,13 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets service settings for the specified Security Command Center service.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetSecurityCenterService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getSecurityCenterService(request:options:)``
   public func getSecurityCenterService(request: GetSecurityCenterServiceRequest) async throws
     -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
   {
@@ -1139,6 +1763,13 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets service settings for the specified Security Command Center service.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetSecurityCenterService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getSecurityCenterService(request:options:)``
   public func getSecurityCenterService(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService {
@@ -1148,6 +1779,14 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.getSecurityCenterService(request: request)
   }
 
+  /// Returns a list of all Security Command Center services for the given
+  /// parent.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityCenterServices(request:options:)``
   public func listSecurityCenterServices(request: ListSecurityCenterServicesRequest) async throws
     -> GoogleCloudSecurityCenterManagementV1.ListSecurityCenterServicesResponse
   {
@@ -1160,6 +1799,14 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of all Security Command Center services for the given
+  /// parent.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityCenterServices(request:options:)``
   public func listSecurityCenterServicesByItems(
     request: ListSecurityCenterServicesRequest
   ) -> some AsyncSequence<SecurityCenterService, any Swift.Error> & Sendable {
@@ -1170,6 +1817,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// parent.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityCenterServices(request:options:)``
   public func listSecurityCenterServicesByItems(
     request: ListSecurityCenterServicesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SecurityCenterService, any Swift.Error> & Sendable {
@@ -1184,6 +1835,14 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of all Security Command Center services for the given
+  /// parent.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListSecurityCenterServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listSecurityCenterServices(request:options:)``
   public func listSecurityCenterServicesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SecurityCenterService, any Swift.Error> & Sendable {
@@ -1193,6 +1852,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return self.listSecurityCenterServicesByItems(request: request)
   }
 
+  /// Updates a Security Command Center service using the given update mask.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityCenterService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/updateSecurityCenterService(request:options:)``
   public func updateSecurityCenterService(request: UpdateSecurityCenterServiceRequest) async throws
     -> GoogleCloudSecurityCenterManagementV1.SecurityCenterService
   {
@@ -1205,6 +1871,13 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Security Command Center service using the given update mask.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_UpdateSecurityCenterService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/updateSecurityCenterService(request:options:)``
   public func updateSecurityCenterService(
     securityCenterService: SecurityCenterService?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1216,6 +1889,13 @@ extension Clients.SecurityCenterManagementProtocol {
     return try await self.updateSecurityCenterService(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1228,6 +1908,13 @@ extension Clients.SecurityCenterManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1237,6 +1924,10 @@ extension Clients.SecurityCenterManagementProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "SecurityCenterManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1250,6 +1941,13 @@ extension Clients.SecurityCenterManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "SecurityCenterManagement_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityCenterManagementClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

@@ -24,6 +24,10 @@
   /// Service for the `vpnGateways` resource.
   ///
   /// @Snippet(path: "vpnGatewaysQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/VpnGatewaysProtocol``
   public final class VpnGatewaysClient: Clients.VpnGatewaysProtocol, Sendable {
     let inner: any Clients.VpnGatewaysStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "vpnGateways_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnGatewayAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified VPN gateway.
     ///
     /// @Snippet(path: "vpnGateways_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:vpnGateway:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: VpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnGateways_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:vpnGateway:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: VpnGatewaysClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified VPN gateway.
     ///
     /// @Snippet(path: "vpnGateways_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:vpnGateway:)``
+    /// - ``get(request:)``
     public func `get`(
       request: VpnGatewaysClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnGateway {
@@ -121,6 +151,11 @@
     /// Returns the status for the specified VPN gateway.
     ///
     /// @Snippet(path: "vpnGateways_getStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getStatus(project:region:vpnGateway:)``
+    /// - ``getStatus(request:)``
     public func getStatus(
       request: VpnGatewaysClient.GetStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnGatewaysGetStatusResponse {
@@ -131,6 +166,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "vpnGateways_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: VpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -146,6 +188,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnGateways_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: VpnGatewaysClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -189,6 +238,13 @@
     /// project and region.
     ///
     /// @Snippet(path: "vpnGateways_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnGatewayList {
@@ -199,6 +255,13 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "vpnGateways_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
     public func setLabels(
       request: VpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -214,6 +277,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnGateways_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: VpnGatewaysClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -256,6 +326,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "vpnGateways_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: VpnGatewaysClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -353,6 +428,16 @@
 
   // Default implementations
   extension Clients.VpnGatewaysProtocol {
+    /// Retrieves an aggregated list of VPN gateways.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnGateways_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/aggregatedList(request:options:)``
     public func aggregatedList(request: VpnGatewaysClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.VpnGatewayAggregatedList
     {
@@ -365,6 +450,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of VPN gateways.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnGateways_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: VpnGatewaysClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, VpnGatewaysScopedList), any Swift.Error> & Sendable {
@@ -377,6 +472,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "vpnGateways_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: VpnGatewaysClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, VpnGatewaysScopedList), any Swift.Error> & Sendable {
@@ -391,6 +490,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of VPN gateways.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnGateways_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, VpnGatewaysScopedList), any Swift.Error> & Sendable {
@@ -400,6 +509,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified VPN gateway.
+    ///
+    /// @Snippet(path: "vpnGateways_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/delete(request:options:)``
     public func delete(request: VpnGatewaysClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -412,6 +528,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified VPN gateway.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnGateways_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: VpnGatewaysClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -424,6 +552,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified VPN gateway.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnGateways_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -437,6 +577,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified VPN gateway.
+    ///
+    /// @Snippet(path: "vpnGateways_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/get(request:options:)``
     public func `get`(request: VpnGatewaysClient.GetRequest) async throws
       -> GoogleCloudComputeV1.VpnGateway
     {
@@ -449,6 +596,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified VPN gateway.
+    ///
+    /// @Snippet(path: "vpnGateways_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -462,6 +616,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Returns the status for the specified VPN gateway.
+    ///
+    /// @Snippet(path: "vpnGateways_getStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/getStatus(request:options:)``
     public func getStatus(request: VpnGatewaysClient.GetStatusRequest) async throws
       -> GoogleCloudComputeV1.VpnGatewaysGetStatusResponse
     {
@@ -474,6 +635,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the status for the specified VPN gateway.
+    ///
+    /// @Snippet(path: "vpnGateways_getStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/getStatus(request:options:)``
     public func getStatus(
       project: Swift.String,
       region: Swift.String,
@@ -487,6 +655,14 @@
       return try await self.getStatus(request: request)
     }
 
+    /// Creates a VPN gateway in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "vpnGateways_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/insert(request:options:)``
     public func insert(request: VpnGatewaysClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -499,6 +675,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a VPN gateway in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnGateways_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: VpnGatewaysClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -511,6 +700,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a VPN gateway in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnGateways_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -524,6 +726,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of VPN gateways available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnGateways_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/list(request:options:)``
     public func list(request: VpnGatewaysClient.ListRequest) async throws
       -> GoogleCloudComputeV1.VpnGatewayList
     {
@@ -536,6 +746,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of VPN gateways available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnGateways_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/list(request:options:)``
     public func listByItems(
       request: VpnGatewaysClient.ListRequest
     ) -> some AsyncSequence<VpnGateway, any Swift.Error> & Sendable {
@@ -546,6 +764,10 @@
     /// project and region.
     ///
     /// @Snippet(path: "vpnGateways_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/list(request:options:)``
     public func listByItems(
       request: VpnGatewaysClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<VpnGateway, any Swift.Error> & Sendable {
@@ -559,6 +781,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of VPN gateways available to the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnGateways_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -570,6 +800,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the labels on a VpnGateway. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// @Snippet(path: "vpnGateways_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/setLabels(request:options:)``
     public func setLabels(request: VpnGatewaysClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -582,6 +820,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a VpnGateway. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnGateways_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: VpnGatewaysClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -594,6 +845,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a VpnGateway. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnGateways_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -609,6 +873,13 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "vpnGateways_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: VpnGatewaysClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -621,6 +892,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "vpnGateways_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnGatewaysClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -636,6 +914,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

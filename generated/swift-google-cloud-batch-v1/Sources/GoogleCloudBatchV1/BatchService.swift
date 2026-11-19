@@ -27,6 +27,10 @@ import Foundation
 /// Engine VM instances to run the jobs.
 ///
 /// @Snippet(path: "BatchServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BatchServiceProtocol``
 public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   let inner: any Clients.BatchServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,11 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Create a Job.
   ///
   /// @Snippet(path: "BatchService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJob(parent:job:jobId:)``
+  /// - ``createJob(request:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.Job {
@@ -56,6 +65,11 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Get a Job specified by its resource name.
   ///
   /// @Snippet(path: "BatchService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.Job {
@@ -65,6 +79,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Delete a Job.
   ///
   /// @Snippet(path: "BatchService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
+  /// - ``deleteJobPollingUntilDone(request:)``
+  /// - ``deleteJobPollingUntilDone(request:options:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +95,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Delete a Job.
   ///
   /// @Snippet(path: "BatchService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJob(request:options:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
+  /// - ``deleteJobPollingUntilDone(request:)``
   public func deleteJobPollingUntilDone(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -101,6 +129,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Cancel a Job.
   ///
   /// @Snippet(path: "BatchService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelJob(request:)``
+  /// - ``cancelJobPollingUntilDone(name:)``
+  /// - ``cancelJobPollingUntilDone(request:)``
+  /// - ``cancelJobPollingUntilDone(request:options:)``
   public func cancelJob(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,6 +145,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Cancel a Job.
   ///
   /// @Snippet(path: "BatchService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelJob(request:)``
+  /// - ``cancelJob(request:options:)``
+  /// - ``cancelJobPollingUntilDone(name:)``
+  /// - ``cancelJobPollingUntilDone(request:)``
   public func cancelJobPollingUntilDone(
     request: CancelJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> CancelJobResponse {
@@ -138,6 +180,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// List all Jobs for a project within a region.
   ///
   /// @Snippet(path: "BatchService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.ListJobsResponse {
@@ -147,6 +196,11 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Return a single Task.
   ///
   /// @Snippet(path: "BatchService_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTask(name:)``
+  /// - ``getTask(request:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.Task {
@@ -156,6 +210,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// List Tasks associated with a job.
   ///
   /// @Snippet(path: "BatchService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(parent:)``
+  /// - ``listTasksByItems(request:)``
+  /// - ``listTasksByItems(request:options:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBatchV1.ListTasksResponse {
@@ -182,6 +243,12 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "BatchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -191,6 +258,10 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "BatchService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -202,6 +273,13 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -224,6 +302,11 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -235,6 +318,11 @@ public final class BatchServiceClient: Clients.BatchServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -323,6 +411,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BatchServiceProtocol {
+  /// Create a Job.
+  ///
+  /// @Snippet(path: "BatchService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/createJob(request:options:)``
   public func createJob(request: CreateJobRequest) async throws -> GoogleCloudBatchV1.Job {
     try await self.createJob(request: request, options: .init())
   }
@@ -333,6 +428,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a Job.
+  ///
+  /// @Snippet(path: "BatchService_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/createJob(request:options:)``
   public func createJob(
     parent: Swift.String,
     job: Job?,
@@ -346,6 +448,13 @@ extension Clients.BatchServiceProtocol {
     return try await self.createJob(request: request)
   }
 
+  /// Get a Job specified by its resource name.
+  ///
+  /// @Snippet(path: "BatchService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudBatchV1.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -356,6 +465,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a Job specified by its resource name.
+  ///
+  /// @Snippet(path: "BatchService_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/getJob(request:options:)``
   public func getJob(
     name: Swift.String,
   ) async throws -> GoogleCloudBatchV1.Job {
@@ -365,6 +481,13 @@ extension Clients.BatchServiceProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Delete a Job.
+  ///
+  /// @Snippet(path: "BatchService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/deleteJob(request:options:)``
   public func deleteJob(request: DeleteJobRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteJob(request: request, options: .init())
   }
@@ -375,6 +498,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a Job.
+  ///
+  /// @Snippet(path: "BatchService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/deleteJobPollingUntilDone(request:options:)``
   public func deleteJobPollingUntilDone(request: DeleteJobRequest) async throws {
     try await self.deleteJobPollingUntilDone(request: request, options: .init())
   }
@@ -385,6 +515,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a Job.
+  ///
+  /// @Snippet(path: "BatchService_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/deleteJobPollingUntilDone(request:options:)``
   public func deleteJobPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -394,6 +531,13 @@ extension Clients.BatchServiceProtocol {
     try await self.deleteJobPollingUntilDone(request: request)
   }
 
+  /// Cancel a Job.
+  ///
+  /// @Snippet(path: "BatchService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/cancelJob(request:options:)``
   public func cancelJob(request: CancelJobRequest) async throws -> GoogleLongRunning.Operation {
     try await self.cancelJob(request: request, options: .init())
   }
@@ -404,6 +548,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancel a Job.
+  ///
+  /// @Snippet(path: "BatchService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/cancelJobPollingUntilDone(request:options:)``
   public func cancelJobPollingUntilDone(request: CancelJobRequest) async throws -> CancelJobResponse
   {
     return try await self.cancelJobPollingUntilDone(request: request, options: .init())
@@ -415,6 +566,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancel a Job.
+  ///
+  /// @Snippet(path: "BatchService_CancelJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/cancelJobPollingUntilDone(request:options:)``
   public func cancelJobPollingUntilDone(
     name: Swift.String,
   ) async throws -> CancelJobResponse {
@@ -424,6 +582,13 @@ extension Clients.BatchServiceProtocol {
     return try await self.cancelJobPollingUntilDone(request: request)
   }
 
+  /// List all Jobs for a project within a region.
+  ///
+  /// @Snippet(path: "BatchService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws -> GoogleCloudBatchV1.ListJobsResponse
   {
     try await self.listJobs(request: request, options: .init())
@@ -435,6 +600,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all Jobs for a project within a region.
+  ///
+  /// @Snippet(path: "BatchService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -444,6 +616,10 @@ extension Clients.BatchServiceProtocol {
   /// List all Jobs for a project within a region.
   ///
   /// @Snippet(path: "BatchService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -457,6 +633,13 @@ extension Clients.BatchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all Jobs for a project within a region.
+  ///
+  /// @Snippet(path: "BatchService_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listJobs(request:options:)``
   public func listJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -466,6 +649,13 @@ extension Clients.BatchServiceProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Return a single Task.
+  ///
+  /// @Snippet(path: "BatchService_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/getTask(request:options:)``
   public func getTask(request: GetTaskRequest) async throws -> GoogleCloudBatchV1.Task {
     try await self.getTask(request: request, options: .init())
   }
@@ -476,6 +666,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Return a single Task.
+  ///
+  /// @Snippet(path: "BatchService_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/getTask(request:options:)``
   public func getTask(
     name: Swift.String,
   ) async throws -> GoogleCloudBatchV1.Task {
@@ -485,6 +682,13 @@ extension Clients.BatchServiceProtocol {
     return try await self.getTask(request: request)
   }
 
+  /// List Tasks associated with a job.
+  ///
+  /// @Snippet(path: "BatchService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listTasks(request:options:)``
   public func listTasks(request: ListTasksRequest) async throws
     -> GoogleCloudBatchV1.ListTasksResponse
   {
@@ -497,6 +701,13 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List Tasks associated with a job.
+  ///
+  /// @Snippet(path: "BatchService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -506,6 +717,10 @@ extension Clients.BatchServiceProtocol {
   /// List Tasks associated with a job.
   ///
   /// @Snippet(path: "BatchService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -519,6 +734,13 @@ extension Clients.BatchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List Tasks associated with a job.
+  ///
+  /// @Snippet(path: "BatchService_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listTasks(request:options:)``
   public func listTasksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -528,6 +750,30 @@ extension Clients.BatchServiceProtocol {
     return self.listTasksByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "BatchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -540,6 +786,30 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "BatchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -566,6 +836,10 @@ extension Clients.BatchServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "BatchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -579,6 +853,13 @@ extension Clients.BatchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "BatchService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -591,6 +872,15 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -603,6 +893,15 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -614,6 +913,10 @@ extension Clients.BatchServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -627,6 +930,15 @@ extension Clients.BatchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -638,6 +950,9 @@ extension Clients.BatchServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -650,6 +965,9 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -659,6 +977,15 @@ extension Clients.BatchServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -669,6 +996,15 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -678,6 +1014,15 @@ extension Clients.BatchServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -688,6 +1033,15 @@ extension Clients.BatchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -26,6 +26,10 @@ import Foundation
 /// The Cloud Domains API enables management and configuration of domain names.
 ///
 /// @Snippet(path: "DomainsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DomainsProtocol``
 public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   let inner: any Clients.DomainsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,11 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// availability.
   ///
   /// @Snippet(path: "Domains_SearchDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchDomains(location:query:)``
+  /// - ``searchDomains(request:)``
   public func searchDomains(
     request: SearchDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.SearchDomainsResponse {
@@ -60,6 +69,11 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// up-to-date availability. Use the returned values to call `RegisterDomain`.
   ///
   /// @Snippet(path: "Domains_RetrieveRegisterParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retrieveRegisterParameters(location:domainName:)``
+  /// - ``retrieveRegisterParameters(request:)``
   public func retrieveRegisterParameters(
     request: RetrieveRegisterParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse {
@@ -81,6 +95,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// resource and retry registration.
   ///
   /// @Snippet(path: "Domains_RegisterDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``registerDomain(request:)``
+  /// - ``registerDomainPollingUntilDone(parent:registration:yearlyPrice:)``
+  /// - ``registerDomainPollingUntilDone(request:)``
+  /// - ``registerDomainPollingUntilDone(request:options:)``
   public func registerDomain(
     request: RegisterDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -102,6 +123,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// resource and retry registration.
   ///
   /// @Snippet(path: "Domains_RegisterDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``registerDomain(request:)``
+  /// - ``registerDomain(request:options:)``
+  /// - ``registerDomainPollingUntilDone(parent:registration:yearlyPrice:)``
+  /// - ``registerDomainPollingUntilDone(request:)``
   public func registerDomainPollingUntilDone(
     request: RegisterDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -135,6 +163,11 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Use the returned values to call `TransferDomain`.
   ///
   /// @Snippet(path: "Domains_RetrieveTransferParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retrieveTransferParameters(location:domainName:)``
+  /// - ``retrieveTransferParameters(request:)``
   public func retrieveTransferParameters(
     request: RetrieveTransferParametersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse {
@@ -164,6 +197,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// the resource and retry the transfer.
   ///
   /// @Snippet(path: "Domains_TransferDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``transferDomain(request:)``
+  /// - ``transferDomainPollingUntilDone(parent:registration:yearlyPrice:authorizationCode:)``
+  /// - ``transferDomainPollingUntilDone(request:)``
+  /// - ``transferDomainPollingUntilDone(request:options:)``
   public func transferDomain(
     request: TransferDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +233,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// the resource and retry the transfer.
   ///
   /// @Snippet(path: "Domains_TransferDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``transferDomain(request:)``
+  /// - ``transferDomain(request:options:)``
+  /// - ``transferDomainPollingUntilDone(parent:registration:yearlyPrice:authorizationCode:)``
+  /// - ``transferDomainPollingUntilDone(request:)``
   public func transferDomainPollingUntilDone(
     request: TransferDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -221,6 +268,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Lists the `Registration` resources in a project.
   ///
   /// @Snippet(path: "Domains_ListRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRegistrations(request:)``
+  /// - ``listRegistrationsByItems(parent:)``
+  /// - ``listRegistrationsByItems(request:)``
+  /// - ``listRegistrationsByItems(request:options:)``
   public func listRegistrations(
     request: ListRegistrationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.ListRegistrationsResponse {
@@ -230,6 +284,11 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Gets the details of a `Registration` resource.
   ///
   /// @Snippet(path: "Domains_GetRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRegistration(name:)``
+  /// - ``getRegistration(request:)``
   public func getRegistration(
     request: GetRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.Registration {
@@ -244,6 +303,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// * To update contact information, see `ConfigureContactSettings`
   ///
   /// @Snippet(path: "Domains_UpdateRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRegistration(request:)``
+  /// - ``updateRegistrationPollingUntilDone(registration:updateMask:)``
+  /// - ``updateRegistrationPollingUntilDone(request:)``
+  /// - ``updateRegistrationPollingUntilDone(request:options:)``
   public func updateRegistration(
     request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -258,6 +324,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// * To update contact information, see `ConfigureContactSettings`
   ///
   /// @Snippet(path: "Domains_UpdateRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRegistration(request:)``
+  /// - ``updateRegistration(request:options:)``
+  /// - ``updateRegistrationPollingUntilDone(registration:updateMask:)``
+  /// - ``updateRegistrationPollingUntilDone(request:)``
   public func updateRegistrationPollingUntilDone(
     request: UpdateRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -286,6 +359,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Updates a `Registration`'s management settings.
   ///
   /// @Snippet(path: "Domains_ConfigureManagementSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``configureManagementSettings(request:)``
+  /// - ``configureManagementSettingsPollingUntilDone(registration:managementSettings:updateMask:)``
+  /// - ``configureManagementSettingsPollingUntilDone(request:)``
+  /// - ``configureManagementSettingsPollingUntilDone(request:options:)``
   public func configureManagementSettings(
     request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -295,6 +375,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Updates a `Registration`'s management settings.
   ///
   /// @Snippet(path: "Domains_ConfigureManagementSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``configureManagementSettings(request:)``
+  /// - ``configureManagementSettings(request:options:)``
+  /// - ``configureManagementSettingsPollingUntilDone(registration:managementSettings:updateMask:)``
+  /// - ``configureManagementSettingsPollingUntilDone(request:)``
   public func configureManagementSettingsPollingUntilDone(
     request: ConfigureManagementSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -323,6 +410,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Updates a `Registration`'s DNS settings.
   ///
   /// @Snippet(path: "Domains_ConfigureDnsSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``configureDnsSettings(request:)``
+  /// - ``configureDnsSettingsPollingUntilDone(registration:dnsSettings:updateMask:)``
+  /// - ``configureDnsSettingsPollingUntilDone(request:)``
+  /// - ``configureDnsSettingsPollingUntilDone(request:options:)``
   public func configureDnsSettings(
     request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -332,6 +426,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Updates a `Registration`'s DNS settings.
   ///
   /// @Snippet(path: "Domains_ConfigureDnsSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``configureDnsSettings(request:)``
+  /// - ``configureDnsSettings(request:options:)``
+  /// - ``configureDnsSettingsPollingUntilDone(registration:dnsSettings:updateMask:)``
+  /// - ``configureDnsSettingsPollingUntilDone(request:)``
   public func configureDnsSettingsPollingUntilDone(
     request: ConfigureDnsSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -361,6 +462,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// confirmation by the domain's registrant contact .
   ///
   /// @Snippet(path: "Domains_ConfigureContactSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``configureContactSettings(request:)``
+  /// - ``configureContactSettingsPollingUntilDone(registration:contactSettings:updateMask:)``
+  /// - ``configureContactSettingsPollingUntilDone(request:)``
+  /// - ``configureContactSettingsPollingUntilDone(request:options:)``
   public func configureContactSettings(
     request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -371,6 +479,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// confirmation by the domain's registrant contact .
   ///
   /// @Snippet(path: "Domains_ConfigureContactSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``configureContactSettings(request:)``
+  /// - ``configureContactSettings(request:options:)``
+  /// - ``configureContactSettingsPollingUntilDone(registration:contactSettings:updateMask:)``
+  /// - ``configureContactSettingsPollingUntilDone(request:)``
   public func configureContactSettingsPollingUntilDone(
     request: ConfigureContactSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -407,6 +522,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Domains.
   ///
   /// @Snippet(path: "Domains_ExportRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportRegistration(request:)``
+  /// - ``exportRegistrationPollingUntilDone(name:)``
+  /// - ``exportRegistrationPollingUntilDone(request:)``
+  /// - ``exportRegistrationPollingUntilDone(request:options:)``
   public func exportRegistration(
     request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -424,6 +546,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Domains.
   ///
   /// @Snippet(path: "Domains_ExportRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportRegistration(request:)``
+  /// - ``exportRegistration(request:options:)``
+  /// - ``exportRegistrationPollingUntilDone(name:)``
+  /// - ``exportRegistrationPollingUntilDone(request:)``
   public func exportRegistrationPollingUntilDone(
     request: ExportRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Registration {
@@ -470,6 +599,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Google Domains.
   ///
   /// @Snippet(path: "Domains_DeleteRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRegistration(request:)``
+  /// - ``deleteRegistrationPollingUntilDone(name:)``
+  /// - ``deleteRegistrationPollingUntilDone(request:)``
+  /// - ``deleteRegistrationPollingUntilDone(request:options:)``
   public func deleteRegistration(
     request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -497,6 +633,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// Google Domains.
   ///
   /// @Snippet(path: "Domains_DeleteRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRegistration(request:)``
+  /// - ``deleteRegistration(request:options:)``
+  /// - ``deleteRegistrationPollingUntilDone(name:)``
+  /// - ``deleteRegistrationPollingUntilDone(request:)``
   public func deleteRegistrationPollingUntilDone(
     request: DeleteRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -528,6 +671,11 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// domain registration.
   ///
   /// @Snippet(path: "Domains_RetrieveAuthorizationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retrieveAuthorizationCode(registration:)``
+  /// - ``retrieveAuthorizationCode(request:)``
   public func retrieveAuthorizationCode(
     request: RetrieveAuthorizationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -540,6 +688,11 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// domain registration.
   ///
   /// @Snippet(path: "Domains_ResetAuthorizationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resetAuthorizationCode(registration:)``
+  /// - ``resetAuthorizationCode(request:)``
   public func resetAuthorizationCode(
     request: ResetAuthorizationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -551,6 +704,13 @@ public final class DomainsClient: Clients.DomainsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Domains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -700,6 +860,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.DomainsProtocol {
+  /// Searches for available domain names similar to the provided query.
+  ///
+  /// Availability results from this method are approximate; call
+  /// `RetrieveRegisterParameters` on a domain before registering to confirm
+  /// availability.
+  ///
+  /// @Snippet(path: "Domains_SearchDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/searchDomains(request:options:)``
   public func searchDomains(request: SearchDomainsRequest) async throws
     -> GoogleCloudDomainsV1.SearchDomainsResponse
   {
@@ -712,6 +883,17 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches for available domain names similar to the provided query.
+  ///
+  /// Availability results from this method are approximate; call
+  /// `RetrieveRegisterParameters` on a domain before registering to confirm
+  /// availability.
+  ///
+  /// @Snippet(path: "Domains_SearchDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/searchDomains(request:options:)``
   public func searchDomains(
     location: Swift.String,
     query: Swift.String,
@@ -723,6 +905,14 @@ extension Clients.DomainsProtocol {
     return try await self.searchDomains(request: request)
   }
 
+  /// Gets parameters needed to register a new domain name, including price and
+  /// up-to-date availability. Use the returned values to call `RegisterDomain`.
+  ///
+  /// @Snippet(path: "Domains_RetrieveRegisterParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/retrieveRegisterParameters(request:options:)``
   public func retrieveRegisterParameters(request: RetrieveRegisterParametersRequest) async throws
     -> GoogleCloudDomainsV1.RetrieveRegisterParametersResponse
   {
@@ -735,6 +925,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets parameters needed to register a new domain name, including price and
+  /// up-to-date availability. Use the returned values to call `RegisterDomain`.
+  ///
+  /// @Snippet(path: "Domains_RetrieveRegisterParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/retrieveRegisterParameters(request:options:)``
   public func retrieveRegisterParameters(
     location: Swift.String,
     domainName: Swift.String,
@@ -746,6 +944,25 @@ extension Clients.DomainsProtocol {
     return try await self.retrieveRegisterParameters(request: request)
   }
 
+  /// Registers a new domain name and creates a corresponding `Registration`
+  /// resource.
+  ///
+  /// Call `RetrieveRegisterParameters` first to check availability of the domain
+  /// name and determine parameters like price that are needed to build a call to
+  /// this method.
+  ///
+  /// A successful call creates a `Registration` resource in state
+  /// `REGISTRATION_PENDING`, which resolves to `ACTIVE` within 1-2
+  /// minutes, indicating that the domain was successfully registered. If the
+  /// resource ends up in state `REGISTRATION_FAILED`, it indicates that the
+  /// domain was not registered successfully, and you can safely delete the
+  /// resource and retry registration.
+  ///
+  /// @Snippet(path: "Domains_RegisterDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/registerDomain(request:options:)``
   public func registerDomain(request: RegisterDomainRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -758,6 +975,25 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers a new domain name and creates a corresponding `Registration`
+  /// resource.
+  ///
+  /// Call `RetrieveRegisterParameters` first to check availability of the domain
+  /// name and determine parameters like price that are needed to build a call to
+  /// this method.
+  ///
+  /// A successful call creates a `Registration` resource in state
+  /// `REGISTRATION_PENDING`, which resolves to `ACTIVE` within 1-2
+  /// minutes, indicating that the domain was successfully registered. If the
+  /// resource ends up in state `REGISTRATION_FAILED`, it indicates that the
+  /// domain was not registered successfully, and you can safely delete the
+  /// resource and retry registration.
+  ///
+  /// @Snippet(path: "Domains_RegisterDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/registerDomainPollingUntilDone(request:options:)``
   public func registerDomainPollingUntilDone(request: RegisterDomainRequest) async throws
     -> Registration
   {
@@ -770,6 +1006,25 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Registers a new domain name and creates a corresponding `Registration`
+  /// resource.
+  ///
+  /// Call `RetrieveRegisterParameters` first to check availability of the domain
+  /// name and determine parameters like price that are needed to build a call to
+  /// this method.
+  ///
+  /// A successful call creates a `Registration` resource in state
+  /// `REGISTRATION_PENDING`, which resolves to `ACTIVE` within 1-2
+  /// minutes, indicating that the domain was successfully registered. If the
+  /// resource ends up in state `REGISTRATION_FAILED`, it indicates that the
+  /// domain was not registered successfully, and you can safely delete the
+  /// resource and retry registration.
+  ///
+  /// @Snippet(path: "Domains_RegisterDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/registerDomainPollingUntilDone(request:options:)``
   public func registerDomainPollingUntilDone(
     parent: Swift.String,
     registration: Registration?,
@@ -783,6 +1038,18 @@ extension Clients.DomainsProtocol {
     return try await self.registerDomainPollingUntilDone(request: request)
   }
 
+  /// Gets parameters needed to transfer a domain name from another registrar to
+  /// Cloud Domains. For domains managed by Google Domains, transferring to Cloud
+  /// Domains is not supported.
+  ///
+  ///
+  /// Use the returned values to call `TransferDomain`.
+  ///
+  /// @Snippet(path: "Domains_RetrieveTransferParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/retrieveTransferParameters(request:options:)``
   public func retrieveTransferParameters(request: RetrieveTransferParametersRequest) async throws
     -> GoogleCloudDomainsV1.RetrieveTransferParametersResponse
   {
@@ -795,6 +1062,18 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets parameters needed to transfer a domain name from another registrar to
+  /// Cloud Domains. For domains managed by Google Domains, transferring to Cloud
+  /// Domains is not supported.
+  ///
+  ///
+  /// Use the returned values to call `TransferDomain`.
+  ///
+  /// @Snippet(path: "Domains_RetrieveTransferParameters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/retrieveTransferParameters(request:options:)``
   public func retrieveTransferParameters(
     location: Swift.String,
     domainName: Swift.String,
@@ -806,6 +1085,33 @@ extension Clients.DomainsProtocol {
     return try await self.retrieveTransferParameters(request: request)
   }
 
+  /// Transfers a domain name from another registrar to Cloud Domains.  For
+  /// domains managed by Google Domains, transferring to Cloud Domains is not
+  /// supported.
+  ///
+  ///
+  /// Before calling this method, go to the domain's current registrar to unlock
+  /// the domain for transfer and retrieve the domain's transfer authorization
+  /// code. Then call `RetrieveTransferParameters` to confirm that the domain is
+  /// unlocked and to get values needed to build a call to this method.
+  ///
+  /// A successful call creates a `Registration` resource in state
+  /// `TRANSFER_PENDING`. It can take several days to complete the transfer
+  /// process. The registrant can often speed up this process by approving the
+  /// transfer through the current registrar, either by clicking a link in an
+  /// email from the registrar or by visiting the registrar's website.
+  ///
+  /// A few minutes after transfer approval, the resource transitions to state
+  /// `ACTIVE`, indicating that the transfer was successful. If the transfer is
+  /// rejected or the request expires without being approved, the resource can
+  /// end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
+  /// the resource and retry the transfer.
+  ///
+  /// @Snippet(path: "Domains_TransferDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/transferDomain(request:options:)``
   public func transferDomain(request: TransferDomainRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -818,6 +1124,33 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Transfers a domain name from another registrar to Cloud Domains.  For
+  /// domains managed by Google Domains, transferring to Cloud Domains is not
+  /// supported.
+  ///
+  ///
+  /// Before calling this method, go to the domain's current registrar to unlock
+  /// the domain for transfer and retrieve the domain's transfer authorization
+  /// code. Then call `RetrieveTransferParameters` to confirm that the domain is
+  /// unlocked and to get values needed to build a call to this method.
+  ///
+  /// A successful call creates a `Registration` resource in state
+  /// `TRANSFER_PENDING`. It can take several days to complete the transfer
+  /// process. The registrant can often speed up this process by approving the
+  /// transfer through the current registrar, either by clicking a link in an
+  /// email from the registrar or by visiting the registrar's website.
+  ///
+  /// A few minutes after transfer approval, the resource transitions to state
+  /// `ACTIVE`, indicating that the transfer was successful. If the transfer is
+  /// rejected or the request expires without being approved, the resource can
+  /// end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
+  /// the resource and retry the transfer.
+  ///
+  /// @Snippet(path: "Domains_TransferDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/transferDomainPollingUntilDone(request:options:)``
   public func transferDomainPollingUntilDone(request: TransferDomainRequest) async throws
     -> Registration
   {
@@ -830,6 +1163,33 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Transfers a domain name from another registrar to Cloud Domains.  For
+  /// domains managed by Google Domains, transferring to Cloud Domains is not
+  /// supported.
+  ///
+  ///
+  /// Before calling this method, go to the domain's current registrar to unlock
+  /// the domain for transfer and retrieve the domain's transfer authorization
+  /// code. Then call `RetrieveTransferParameters` to confirm that the domain is
+  /// unlocked and to get values needed to build a call to this method.
+  ///
+  /// A successful call creates a `Registration` resource in state
+  /// `TRANSFER_PENDING`. It can take several days to complete the transfer
+  /// process. The registrant can often speed up this process by approving the
+  /// transfer through the current registrar, either by clicking a link in an
+  /// email from the registrar or by visiting the registrar's website.
+  ///
+  /// A few minutes after transfer approval, the resource transitions to state
+  /// `ACTIVE`, indicating that the transfer was successful. If the transfer is
+  /// rejected or the request expires without being approved, the resource can
+  /// end up in state `TRANSFER_FAILED`. If transfer fails, you can safely delete
+  /// the resource and retry the transfer.
+  ///
+  /// @Snippet(path: "Domains_TransferDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/transferDomainPollingUntilDone(request:options:)``
   public func transferDomainPollingUntilDone(
     parent: Swift.String,
     registration: Registration?,
@@ -845,6 +1205,13 @@ extension Clients.DomainsProtocol {
     return try await self.transferDomainPollingUntilDone(request: request)
   }
 
+  /// Lists the `Registration` resources in a project.
+  ///
+  /// @Snippet(path: "Domains_ListRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listRegistrations(request:options:)``
   public func listRegistrations(request: ListRegistrationsRequest) async throws
     -> GoogleCloudDomainsV1.ListRegistrationsResponse
   {
@@ -857,6 +1224,13 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the `Registration` resources in a project.
+  ///
+  /// @Snippet(path: "Domains_ListRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listRegistrations(request:options:)``
   public func listRegistrationsByItems(
     request: ListRegistrationsRequest
   ) -> some AsyncSequence<Registration, any Swift.Error> & Sendable {
@@ -866,6 +1240,10 @@ extension Clients.DomainsProtocol {
   /// Lists the `Registration` resources in a project.
   ///
   /// @Snippet(path: "Domains_ListRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listRegistrations(request:options:)``
   public func listRegistrationsByItems(
     request: ListRegistrationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Registration, any Swift.Error> & Sendable {
@@ -880,6 +1258,13 @@ extension Clients.DomainsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the `Registration` resources in a project.
+  ///
+  /// @Snippet(path: "Domains_ListRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listRegistrations(request:options:)``
   public func listRegistrationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Registration, any Swift.Error> & Sendable {
@@ -889,6 +1274,13 @@ extension Clients.DomainsProtocol {
     return self.listRegistrationsByItems(request: request)
   }
 
+  /// Gets the details of a `Registration` resource.
+  ///
+  /// @Snippet(path: "Domains_GetRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/getRegistration(request:options:)``
   public func getRegistration(request: GetRegistrationRequest) async throws
     -> GoogleCloudDomainsV1.Registration
   {
@@ -901,6 +1293,13 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a `Registration` resource.
+  ///
+  /// @Snippet(path: "Domains_GetRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/getRegistration(request:options:)``
   public func getRegistration(
     name: Swift.String,
   ) async throws -> GoogleCloudDomainsV1.Registration {
@@ -910,6 +1309,18 @@ extension Clients.DomainsProtocol {
     return try await self.getRegistration(request: request)
   }
 
+  /// Updates select fields of a `Registration` resource, notably `labels`. To
+  /// update other fields, use the appropriate custom update method:
+  ///
+  /// * To update management settings, see `ConfigureManagementSettings`
+  /// * To update DNS configuration, see `ConfigureDnsSettings`
+  /// * To update contact information, see `ConfigureContactSettings`
+  ///
+  /// @Snippet(path: "Domains_UpdateRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/updateRegistration(request:options:)``
   public func updateRegistration(request: UpdateRegistrationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -922,6 +1333,18 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates select fields of a `Registration` resource, notably `labels`. To
+  /// update other fields, use the appropriate custom update method:
+  ///
+  /// * To update management settings, see `ConfigureManagementSettings`
+  /// * To update DNS configuration, see `ConfigureDnsSettings`
+  /// * To update contact information, see `ConfigureContactSettings`
+  ///
+  /// @Snippet(path: "Domains_UpdateRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/updateRegistrationPollingUntilDone(request:options:)``
   public func updateRegistrationPollingUntilDone(request: UpdateRegistrationRequest) async throws
     -> Registration
   {
@@ -934,6 +1357,18 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates select fields of a `Registration` resource, notably `labels`. To
+  /// update other fields, use the appropriate custom update method:
+  ///
+  /// * To update management settings, see `ConfigureManagementSettings`
+  /// * To update DNS configuration, see `ConfigureDnsSettings`
+  /// * To update contact information, see `ConfigureContactSettings`
+  ///
+  /// @Snippet(path: "Domains_UpdateRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/updateRegistrationPollingUntilDone(request:options:)``
   public func updateRegistrationPollingUntilDone(
     registration: Registration?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -945,6 +1380,13 @@ extension Clients.DomainsProtocol {
     return try await self.updateRegistrationPollingUntilDone(request: request)
   }
 
+  /// Updates a `Registration`'s management settings.
+  ///
+  /// @Snippet(path: "Domains_ConfigureManagementSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureManagementSettings(request:options:)``
   public func configureManagementSettings(request: ConfigureManagementSettingsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -957,6 +1399,13 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Registration`'s management settings.
+  ///
+  /// @Snippet(path: "Domains_ConfigureManagementSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureManagementSettingsPollingUntilDone(request:options:)``
   public func configureManagementSettingsPollingUntilDone(
     request: ConfigureManagementSettingsRequest
   ) async throws -> Registration {
@@ -970,6 +1419,13 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Registration`'s management settings.
+  ///
+  /// @Snippet(path: "Domains_ConfigureManagementSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureManagementSettingsPollingUntilDone(request:options:)``
   public func configureManagementSettingsPollingUntilDone(
     registration: Swift.String,
     managementSettings: ManagementSettings?,
@@ -983,6 +1439,13 @@ extension Clients.DomainsProtocol {
     return try await self.configureManagementSettingsPollingUntilDone(request: request)
   }
 
+  /// Updates a `Registration`'s DNS settings.
+  ///
+  /// @Snippet(path: "Domains_ConfigureDnsSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureDnsSettings(request:options:)``
   public func configureDnsSettings(request: ConfigureDnsSettingsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -995,6 +1458,13 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Registration`'s DNS settings.
+  ///
+  /// @Snippet(path: "Domains_ConfigureDnsSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureDnsSettingsPollingUntilDone(request:options:)``
   public func configureDnsSettingsPollingUntilDone(request: ConfigureDnsSettingsRequest)
     async throws -> Registration
   {
@@ -1007,6 +1477,13 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Registration`'s DNS settings.
+  ///
+  /// @Snippet(path: "Domains_ConfigureDnsSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureDnsSettingsPollingUntilDone(request:options:)``
   public func configureDnsSettingsPollingUntilDone(
     registration: Swift.String,
     dnsSettings: DnsSettings?,
@@ -1020,6 +1497,14 @@ extension Clients.DomainsProtocol {
     return try await self.configureDnsSettingsPollingUntilDone(request: request)
   }
 
+  /// Updates a `Registration`'s contact settings. Some changes require
+  /// confirmation by the domain's registrant contact .
+  ///
+  /// @Snippet(path: "Domains_ConfigureContactSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureContactSettings(request:options:)``
   public func configureContactSettings(request: ConfigureContactSettingsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1032,6 +1517,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Registration`'s contact settings. Some changes require
+  /// confirmation by the domain's registrant contact .
+  ///
+  /// @Snippet(path: "Domains_ConfigureContactSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureContactSettingsPollingUntilDone(request:options:)``
   public func configureContactSettingsPollingUntilDone(request: ConfigureContactSettingsRequest)
     async throws -> Registration
   {
@@ -1045,6 +1538,14 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a `Registration`'s contact settings. Some changes require
+  /// confirmation by the domain's registrant contact .
+  ///
+  /// @Snippet(path: "Domains_ConfigureContactSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/configureContactSettingsPollingUntilDone(request:options:)``
   public func configureContactSettingsPollingUntilDone(
     registration: Swift.String,
     contactSettings: ContactSettings?,
@@ -1058,6 +1559,21 @@ extension Clients.DomainsProtocol {
     return try await self.configureContactSettingsPollingUntilDone(request: request)
   }
 
+  /// Exports a `Registration` resource, such that it is no longer managed by
+  /// Cloud Domains.
+  ///
+  /// When an active domain is successfully exported, you can continue to use the
+  /// domain in [Google Domains](https://domains.google/) until it expires. The
+  /// calling user becomes the domain's sole owner in Google Domains, and
+  /// permissions for the domain are subsequently managed there. The domain does
+  /// not renew automatically unless the new owner sets up billing in Google
+  /// Domains.
+  ///
+  /// @Snippet(path: "Domains_ExportRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/exportRegistration(request:options:)``
   public func exportRegistration(request: ExportRegistrationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1070,6 +1586,21 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports a `Registration` resource, such that it is no longer managed by
+  /// Cloud Domains.
+  ///
+  /// When an active domain is successfully exported, you can continue to use the
+  /// domain in [Google Domains](https://domains.google/) until it expires. The
+  /// calling user becomes the domain's sole owner in Google Domains, and
+  /// permissions for the domain are subsequently managed there. The domain does
+  /// not renew automatically unless the new owner sets up billing in Google
+  /// Domains.
+  ///
+  /// @Snippet(path: "Domains_ExportRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/exportRegistrationPollingUntilDone(request:options:)``
   public func exportRegistrationPollingUntilDone(request: ExportRegistrationRequest) async throws
     -> Registration
   {
@@ -1082,6 +1613,21 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports a `Registration` resource, such that it is no longer managed by
+  /// Cloud Domains.
+  ///
+  /// When an active domain is successfully exported, you can continue to use the
+  /// domain in [Google Domains](https://domains.google/) until it expires. The
+  /// calling user becomes the domain's sole owner in Google Domains, and
+  /// permissions for the domain are subsequently managed there. The domain does
+  /// not renew automatically unless the new owner sets up billing in Google
+  /// Domains.
+  ///
+  /// @Snippet(path: "Domains_ExportRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/exportRegistrationPollingUntilDone(request:options:)``
   public func exportRegistrationPollingUntilDone(
     name: Swift.String,
   ) async throws -> Registration {
@@ -1091,6 +1637,31 @@ extension Clients.DomainsProtocol {
     return try await self.exportRegistrationPollingUntilDone(request: request)
   }
 
+  /// Deletes a `Registration` resource.
+  ///
+  /// This method works on any `Registration` resource using [Subscription or
+  /// Commitment billing](/domains/pricing#billing-models), provided that the
+  /// resource was created at least 1 day in the past.
+  ///
+  /// For `Registration` resources using
+  /// [Monthly billing](/domains/pricing#billing-models), this method works if:
+  ///
+  /// * `state` is `EXPORTED` with `expire_time` in the past
+  /// * `state` is `REGISTRATION_FAILED`
+  /// * `state` is `TRANSFER_FAILED`
+  ///
+  /// When an active registration is successfully deleted, you can continue to
+  /// use the domain in [Google Domains](https://domains.google/) until it
+  /// expires. The calling user becomes the domain's sole owner in Google
+  /// Domains, and permissions for the domain are subsequently managed there. The
+  /// domain does not renew automatically unless the new owner sets up billing in
+  /// Google Domains.
+  ///
+  /// @Snippet(path: "Domains_DeleteRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/deleteRegistration(request:options:)``
   public func deleteRegistration(request: DeleteRegistrationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1103,6 +1674,31 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `Registration` resource.
+  ///
+  /// This method works on any `Registration` resource using [Subscription or
+  /// Commitment billing](/domains/pricing#billing-models), provided that the
+  /// resource was created at least 1 day in the past.
+  ///
+  /// For `Registration` resources using
+  /// [Monthly billing](/domains/pricing#billing-models), this method works if:
+  ///
+  /// * `state` is `EXPORTED` with `expire_time` in the past
+  /// * `state` is `REGISTRATION_FAILED`
+  /// * `state` is `TRANSFER_FAILED`
+  ///
+  /// When an active registration is successfully deleted, you can continue to
+  /// use the domain in [Google Domains](https://domains.google/) until it
+  /// expires. The calling user becomes the domain's sole owner in Google
+  /// Domains, and permissions for the domain are subsequently managed there. The
+  /// domain does not renew automatically unless the new owner sets up billing in
+  /// Google Domains.
+  ///
+  /// @Snippet(path: "Domains_DeleteRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/deleteRegistrationPollingUntilDone(request:options:)``
   public func deleteRegistrationPollingUntilDone(request: DeleteRegistrationRequest) async throws {
     try await self.deleteRegistrationPollingUntilDone(request: request, options: .init())
   }
@@ -1113,6 +1709,31 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `Registration` resource.
+  ///
+  /// This method works on any `Registration` resource using [Subscription or
+  /// Commitment billing](/domains/pricing#billing-models), provided that the
+  /// resource was created at least 1 day in the past.
+  ///
+  /// For `Registration` resources using
+  /// [Monthly billing](/domains/pricing#billing-models), this method works if:
+  ///
+  /// * `state` is `EXPORTED` with `expire_time` in the past
+  /// * `state` is `REGISTRATION_FAILED`
+  /// * `state` is `TRANSFER_FAILED`
+  ///
+  /// When an active registration is successfully deleted, you can continue to
+  /// use the domain in [Google Domains](https://domains.google/) until it
+  /// expires. The calling user becomes the domain's sole owner in Google
+  /// Domains, and permissions for the domain are subsequently managed there. The
+  /// domain does not renew automatically unless the new owner sets up billing in
+  /// Google Domains.
+  ///
+  /// @Snippet(path: "Domains_DeleteRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/deleteRegistrationPollingUntilDone(request:options:)``
   public func deleteRegistrationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1122,6 +1743,17 @@ extension Clients.DomainsProtocol {
     try await self.deleteRegistrationPollingUntilDone(request: request)
   }
 
+  /// Gets the authorization code of the `Registration` for the purpose of
+  /// transferring the domain to another registrar.
+  ///
+  /// You can call this method only after 60 days have elapsed since the initial
+  /// domain registration.
+  ///
+  /// @Snippet(path: "Domains_RetrieveAuthorizationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/retrieveAuthorizationCode(request:options:)``
   public func retrieveAuthorizationCode(request: RetrieveAuthorizationCodeRequest) async throws
     -> GoogleCloudDomainsV1.AuthorizationCode
   {
@@ -1134,6 +1766,17 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the authorization code of the `Registration` for the purpose of
+  /// transferring the domain to another registrar.
+  ///
+  /// You can call this method only after 60 days have elapsed since the initial
+  /// domain registration.
+  ///
+  /// @Snippet(path: "Domains_RetrieveAuthorizationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/retrieveAuthorizationCode(request:options:)``
   public func retrieveAuthorizationCode(
     registration: Swift.String,
   ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -1143,6 +1786,16 @@ extension Clients.DomainsProtocol {
     return try await self.retrieveAuthorizationCode(request: request)
   }
 
+  /// Resets the authorization code of the `Registration` to a new random string.
+  ///
+  /// You can call this method only after 60 days have elapsed since the initial
+  /// domain registration.
+  ///
+  /// @Snippet(path: "Domains_ResetAuthorizationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/resetAuthorizationCode(request:options:)``
   public func resetAuthorizationCode(request: ResetAuthorizationCodeRequest) async throws
     -> GoogleCloudDomainsV1.AuthorizationCode
   {
@@ -1155,6 +1808,16 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resets the authorization code of the `Registration` to a new random string.
+  ///
+  /// You can call this method only after 60 days have elapsed since the initial
+  /// domain registration.
+  ///
+  /// @Snippet(path: "Domains_ResetAuthorizationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/resetAuthorizationCode(request:options:)``
   public func resetAuthorizationCode(
     registration: Swift.String,
   ) async throws -> GoogleCloudDomainsV1.AuthorizationCode {
@@ -1164,6 +1827,15 @@ extension Clients.DomainsProtocol {
     return try await self.resetAuthorizationCode(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Domains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1176,6 +1848,15 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Domains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1187,6 +1868,10 @@ extension Clients.DomainsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Domains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1200,6 +1885,15 @@ extension Clients.DomainsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Domains_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DomainsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1211,6 +1905,9 @@ extension Clients.DomainsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1223,6 +1920,9 @@ extension Clients.DomainsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

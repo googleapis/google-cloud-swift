@@ -52,6 +52,10 @@ public import Foundation
 /// received.
 ///
 /// @Snippet(path: "IAMQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IAMProtocol``
 public final class IAMClient: Clients.IAMProtocol, Sendable {
   let inner: any Clients.IAMStub
 
@@ -70,6 +74,13 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_ListServiceAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServiceAccounts(request:)``
+  /// - ``listServiceAccountsByItems(name:)``
+  /// - ``listServiceAccountsByItems(request:)``
+  /// - ``listServiceAccountsByItems(request:options:)``
   public func listServiceAccounts(
     request: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ListServiceAccountsResponse {
@@ -81,6 +92,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_GetServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServiceAccount(name:)``
+  /// - ``getServiceAccount(request:)``
   public func getServiceAccount(
     request: GetServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -92,6 +108,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_CreateServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceAccount(name:accountId:serviceAccount:)``
+  /// - ``createServiceAccount(request:)``
   public func createServiceAccount(
     request: CreateServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -109,6 +130,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_UpdateServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServiceAccount(request:)``
   public func updateServiceAccount(
     request: ServiceAccount, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -120,6 +145,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_PatchServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``patchServiceAccount(request:)``
   public func patchServiceAccount(
     request: PatchServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -146,6 +175,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_DeleteServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServiceAccount(name:)``
+  /// - ``deleteServiceAccount(request:)``
   public func deleteServiceAccount(
     request: DeleteServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -164,6 +198,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_UndeleteServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteServiceAccount(request:)``
   public func undeleteServiceAccount(
     request: UndeleteServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.UndeleteServiceAccountResponse {
@@ -183,6 +221,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_EnableServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableServiceAccount(request:)``
   public func enableServiceAccount(
     request: EnableServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,6 +253,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_DisableServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableServiceAccount(request:)``
   public func disableServiceAccount(
     request: DisableServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -222,6 +268,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_ListServiceAccountKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServiceAccountKeys(name:keyTypes:)``
+  /// - ``listServiceAccountKeys(request:)``
   public func listServiceAccountKeys(
     request: ListServiceAccountKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ListServiceAccountKeysResponse {
@@ -233,6 +284,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_GetServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServiceAccountKey(name:publicKeyType:)``
+  /// - ``getServiceAccountKey(request:)``
   public func getServiceAccountKey(
     request: GetServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -244,6 +300,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_CreateServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceAccountKey(name:privateKeyType:keyAlgorithm:)``
+  /// - ``createServiceAccountKey(request:)``
   public func createServiceAccountKey(
     request: CreateServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -259,6 +320,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_UploadServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``uploadServiceAccountKey(request:)``
   public func uploadServiceAccountKey(
     request: UploadServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ServiceAccountKey {
@@ -272,6 +337,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_DeleteServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServiceAccountKey(name:)``
+  /// - ``deleteServiceAccountKey(request:)``
   public func deleteServiceAccountKey(
     request: DeleteServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -285,6 +355,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_DisableServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableServiceAccountKey(name:)``
+  /// - ``disableServiceAccountKey(request:)``
   public func disableServiceAccountKey(
     request: DisableServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -296,6 +371,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
   ///
   /// @Snippet(path: "IAM_EnableServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableServiceAccountKey(name:)``
+  /// - ``enableServiceAccountKey(request:)``
   public func enableServiceAccountKey(
     request: EnableServiceAccountKeyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -314,6 +394,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_SignBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``signBlob(name:bytesToSign:)``
+  /// - ``signBlob(request:)``
   @available(*, deprecated)
   public func signBlob(
     request: SignBlobRequest, options: GoogleGax.RequestOptions
@@ -334,6 +419,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_SignJwt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``signJwt(name:payload:)``
+  /// - ``signJwt(request:)``
   @available(*, deprecated)
   public func signJwt(
     request: SignJwtRequest, options: GoogleGax.RequestOptions
@@ -355,6 +445,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -384,6 +479,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -396,6 +496,11 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
+  /// - ``testIamPermissions(resource:permissions:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -407,6 +512,13 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// role.
   ///
   /// @Snippet(path: "IAM_QueryGrantableRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryGrantableRoles(request:)``
+  /// - ``queryGrantableRolesByItems(fullResourceName:)``
+  /// - ``queryGrantableRolesByItems(request:)``
+  /// - ``queryGrantableRolesByItems(request:options:)``
   public func queryGrantableRoles(
     request: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.QueryGrantableRolesResponse {
@@ -419,6 +531,12 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_ListRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRoles(request:)``
+  /// - ``listRolesByItems(request:)``
+  /// - ``listRolesByItems(request:options:)``
   public func listRoles(
     request: ListRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.ListRolesResponse {
@@ -430,6 +548,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_GetRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRole(request:)``
   public func getRole(
     request: GetRoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.Role {
@@ -441,6 +563,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_CreateRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRole(request:)``
   public func createRole(
     request: CreateRoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.Role {
@@ -452,6 +578,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_UpdateRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRole(request:)``
   public func updateRole(
     request: UpdateRoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.Role {
@@ -481,6 +611,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.v1.Policy]: https://www.google.com/search?q=Swift+google.iam.v1+GoogleIAMV1.Policy
   ///
   /// @Snippet(path: "IAM_DeleteRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRole(request:)``
   public func deleteRole(
     request: DeleteRoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.Role {
@@ -492,6 +626,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_UndeleteRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteRole(request:)``
   public func undeleteRole(
     request: UndeleteRoleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.Role {
@@ -503,6 +641,12 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// resource.
   ///
   /// @Snippet(path: "IAM_QueryTestablePermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryTestablePermissions(request:)``
+  /// - ``queryTestablePermissionsByItems(request:)``
+  /// - ``queryTestablePermissionsByItems(request:options:)``
   public func queryTestablePermissions(
     request: QueryTestablePermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.QueryTestablePermissionsResponse {
@@ -516,6 +660,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// documentation](https://cloud.google.com/logging/docs/audit).
   ///
   /// @Snippet(path: "IAM_QueryAuditableServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryAuditableServices(request:)``
   public func queryAuditableServices(
     request: QueryAuditableServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.QueryAuditableServicesResponse {
@@ -532,6 +680,10 @@ public final class IAMClient: Clients.IAMProtocol, Sendable {
   /// [google.iam.v1.Binding.condition]: https://www.google.com/search?q=Swift+google.iam.v1+GoogleIAMV1.Binding/condition
   ///
   /// @Snippet(path: "IAM_LintPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lintPolicy(request:)``
   public func lintPolicy(
     request: LintPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMAdminV1.LintPolicyResponse {
@@ -707,6 +859,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.IAMProtocol {
+  /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_ListServiceAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listServiceAccounts(request:options:)``
   public func listServiceAccounts(request: ListServiceAccountsRequest) async throws
     -> GoogleIAMAdminV1.ListServiceAccountsResponse
   {
@@ -719,6 +880,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_ListServiceAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listServiceAccounts(request:options:)``
   public func listServiceAccountsByItems(
     request: ListServiceAccountsRequest
   ) -> some AsyncSequence<ServiceAccount, any Swift.Error> & Sendable {
@@ -730,6 +900,10 @@ extension Clients.IAMProtocol {
   /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
   ///
   /// @Snippet(path: "IAM_ListServiceAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listServiceAccounts(request:options:)``
   public func listServiceAccountsByItems(
     request: ListServiceAccountsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ServiceAccount, any Swift.Error> & Sendable {
@@ -744,6 +918,15 @@ extension Clients.IAMProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists every [ServiceAccount][google.iam.admin.v1.ServiceAccount] that belongs to a specific project.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_ListServiceAccounts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listServiceAccounts(request:options:)``
   public func listServiceAccountsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<ServiceAccount, any Swift.Error> & Sendable {
@@ -753,6 +936,15 @@ extension Clients.IAMProtocol {
     return self.listServiceAccountsByItems(request: request)
   }
 
+  /// Gets a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_GetServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getServiceAccount(request:options:)``
   public func getServiceAccount(request: GetServiceAccountRequest) async throws
     -> GoogleIAMAdminV1.ServiceAccount
   {
@@ -765,6 +957,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_GetServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getServiceAccount(request:options:)``
   public func getServiceAccount(
     name: Swift.String,
   ) async throws -> GoogleIAMAdminV1.ServiceAccount {
@@ -774,6 +975,15 @@ extension Clients.IAMProtocol {
     return try await self.getServiceAccount(request: request)
   }
 
+  /// Creates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_CreateServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/createServiceAccount(request:options:)``
   public func createServiceAccount(request: CreateServiceAccountRequest) async throws
     -> GoogleIAMAdminV1.ServiceAccount
   {
@@ -786,6 +996,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_CreateServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/createServiceAccount(request:options:)``
   public func createServiceAccount(
     name: Swift.String,
     accountId: Swift.String,
@@ -799,6 +1018,21 @@ extension Clients.IAMProtocol {
     return try await self.createServiceAccount(request: request)
   }
 
+  /// **Note:** We are in the process of deprecating this method. Use
+  /// [PatchServiceAccount][google.iam.admin.v1.IAM.PatchServiceAccount] instead.
+  ///
+  /// Updates a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// You can update only the `display_name` field.
+  ///
+  /// [google.iam.admin.v1.IAM.PatchServiceAccount]: <doc:IAMClient/patchServiceAccount(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_UpdateServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/updateServiceAccount(request:options:)``
   public func updateServiceAccount(request: ServiceAccount) async throws
     -> GoogleIAMAdminV1.ServiceAccount
   {
@@ -811,6 +1045,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Patches a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_PatchServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/patchServiceAccount(request:options:)``
   public func patchServiceAccount(request: PatchServiceAccountRequest) async throws
     -> GoogleIAMAdminV1.ServiceAccount
   {
@@ -823,6 +1066,30 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// **Warning:** After you delete a service account, you might not be able to
+  /// undelete it. If you know that you need to re-enable the service account in
+  /// the future, use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] instead.
+  ///
+  /// If you delete a service account, IAM permanently removes the service
+  /// account 30 days later. Google Cloud cannot recover the service account
+  /// after it is permanently removed, even if you file a support request.
+  ///
+  /// To help avoid unplanned outages, we recommend that you disable the service
+  /// account before you delete it. Use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] to disable the
+  /// service account, then wait at least 24 hours and watch for unintended
+  /// consequences. If there are no unintended consequences, you can delete the
+  /// service account.
+  ///
+  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAMClient/disableServiceAccount(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_DeleteServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/deleteServiceAccount(request:options:)``
   public func deleteServiceAccount(request: DeleteServiceAccountRequest) async throws {
     try await self.deleteServiceAccount(request: request, options: .init())
   }
@@ -833,6 +1100,30 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// **Warning:** After you delete a service account, you might not be able to
+  /// undelete it. If you know that you need to re-enable the service account in
+  /// the future, use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] instead.
+  ///
+  /// If you delete a service account, IAM permanently removes the service
+  /// account 30 days later. Google Cloud cannot recover the service account
+  /// after it is permanently removed, even if you file a support request.
+  ///
+  /// To help avoid unplanned outages, we recommend that you disable the service
+  /// account before you delete it. Use [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount] to disable the
+  /// service account, then wait at least 24 hours and watch for unintended
+  /// consequences. If there are no unintended consequences, you can delete the
+  /// service account.
+  ///
+  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAMClient/disableServiceAccount(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_DeleteServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/deleteServiceAccount(request:options:)``
   public func deleteServiceAccount(
     name: Swift.String,
   ) async throws {
@@ -842,6 +1133,22 @@ extension Clients.IAMProtocol {
     try await self.deleteServiceAccount(request: request)
   }
 
+  /// Restores a deleted [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// **Important:** It is not always possible to restore a deleted service
+  /// account. Use this method only as a last resort.
+  ///
+  /// After you delete a service account, IAM permanently removes the service
+  /// account 30 days later. There is no way to restore a deleted service account
+  /// that has been permanently removed.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_UndeleteServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/undeleteServiceAccount(request:options:)``
   public func undeleteServiceAccount(request: UndeleteServiceAccountRequest) async throws
     -> GoogleIAMAdminV1.UndeleteServiceAccountResponse
   {
@@ -854,6 +1161,23 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] that was disabled by
+  /// [DisableServiceAccount][google.iam.admin.v1.IAM.DisableServiceAccount].
+  ///
+  /// If the service account is already enabled, then this method has no effect.
+  ///
+  /// If the service account was disabled by other means—for example, if Google
+  /// disabled the service account because it was compromised—you cannot use this
+  /// method to enable the service account.
+  ///
+  /// [google.iam.admin.v1.IAM.DisableServiceAccount]: <doc:IAMClient/disableServiceAccount(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_EnableServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/enableServiceAccount(request:options:)``
   public func enableServiceAccount(request: EnableServiceAccountRequest) async throws {
     try await self.enableServiceAccount(request: request, options: .init())
   }
@@ -864,6 +1188,32 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disables a [ServiceAccount][google.iam.admin.v1.ServiceAccount] immediately.
+  ///
+  /// If an application uses the service account to authenticate, that
+  /// application can no longer call Google APIs or access Google Cloud
+  /// resources. Existing access tokens for the service account are rejected, and
+  /// requests for new access tokens will fail.
+  ///
+  /// To re-enable the service account, use [EnableServiceAccount][google.iam.admin.v1.IAM.EnableServiceAccount]. After you
+  /// re-enable the service account, its existing access tokens will be accepted,
+  /// and you can request new access tokens.
+  ///
+  /// To help avoid unplanned outages, we recommend that you disable the service
+  /// account before you delete it. Use this method to disable the service
+  /// account, then wait at least 24 hours and watch for unintended consequences.
+  /// If there are no unintended consequences, you can delete the service account
+  /// with [DeleteServiceAccount][google.iam.admin.v1.IAM.DeleteServiceAccount].
+  ///
+  /// [google.iam.admin.v1.IAM.DeleteServiceAccount]: <doc:IAMClient/deleteServiceAccount(request:options:)>
+  /// [google.iam.admin.v1.IAM.EnableServiceAccount]: <doc:IAMClient/enableServiceAccount(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_DisableServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/disableServiceAccount(request:options:)``
   public func disableServiceAccount(request: DisableServiceAccountRequest) async throws {
     try await self.disableServiceAccount(request: request, options: .init())
   }
@@ -874,6 +1224,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists every [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey] for a service account.
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_ListServiceAccountKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listServiceAccountKeys(request:options:)``
   public func listServiceAccountKeys(request: ListServiceAccountKeysRequest) async throws
     -> GoogleIAMAdminV1.ListServiceAccountKeysResponse
   {
@@ -886,6 +1245,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists every [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey] for a service account.
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_ListServiceAccountKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listServiceAccountKeys(request:options:)``
   public func listServiceAccountKeys(
     name: Swift.String,
     keyTypes: [ListServiceAccountKeysRequest.KeyType],
@@ -897,6 +1265,15 @@ extension Clients.IAMProtocol {
     return try await self.listServiceAccountKeys(request: request)
   }
 
+  /// Gets a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_GetServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getServiceAccountKey(request:options:)``
   public func getServiceAccountKey(request: GetServiceAccountKeyRequest) async throws
     -> GoogleIAMAdminV1.ServiceAccountKey
   {
@@ -909,6 +1286,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_GetServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getServiceAccountKey(request:options:)``
   public func getServiceAccountKey(
     name: Swift.String,
     publicKeyType: ServiceAccountPublicKeyType,
@@ -920,6 +1306,15 @@ extension Clients.IAMProtocol {
     return try await self.getServiceAccountKey(request: request)
   }
 
+  /// Creates a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_CreateServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/createServiceAccountKey(request:options:)``
   public func createServiceAccountKey(request: CreateServiceAccountKeyRequest) async throws
     -> GoogleIAMAdminV1.ServiceAccountKey
   {
@@ -932,6 +1327,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_CreateServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/createServiceAccountKey(request:options:)``
   public func createServiceAccountKey(
     name: Swift.String,
     privateKeyType: ServiceAccountPrivateKeyType,
@@ -945,6 +1349,19 @@ extension Clients.IAMProtocol {
     return try await self.createServiceAccountKey(request: request)
   }
 
+  /// Uploads the public key portion of a key pair that you manage, and
+  /// associates the public key with a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// After you upload the public key, you can use the private key from the key
+  /// pair as a service account key.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_UploadServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/uploadServiceAccountKey(request:options:)``
   public func uploadServiceAccountKey(request: UploadServiceAccountKeyRequest) async throws
     -> GoogleIAMAdminV1.ServiceAccountKey
   {
@@ -957,6 +1374,17 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. Deleting a service account key does not
+  /// revoke short-lived credentials that have been issued based on the service
+  /// account key.
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_DeleteServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/deleteServiceAccountKey(request:options:)``
   public func deleteServiceAccountKey(request: DeleteServiceAccountKeyRequest) async throws {
     try await self.deleteServiceAccountKey(request: request, options: .init())
   }
@@ -967,6 +1395,17 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. Deleting a service account key does not
+  /// revoke short-lived credentials that have been issued based on the service
+  /// account key.
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_DeleteServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/deleteServiceAccountKey(request:options:)``
   public func deleteServiceAccountKey(
     name: Swift.String,
   ) async throws {
@@ -976,6 +1415,17 @@ extension Clients.IAMProtocol {
     try await self.deleteServiceAccountKey(request: request)
   }
 
+  /// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
+  /// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.IAM.EnableServiceAccountKey]: <doc:IAMClient/enableServiceAccountKey(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_DisableServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/disableServiceAccountKey(request:options:)``
   public func disableServiceAccountKey(request: DisableServiceAccountKeyRequest) async throws {
     try await self.disableServiceAccountKey(request: request, options: .init())
   }
@@ -986,6 +1436,17 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey]. A disabled service account key can be
+  /// re-enabled with [EnableServiceAccountKey][google.iam.admin.v1.IAM.EnableServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.IAM.EnableServiceAccountKey]: <doc:IAMClient/enableServiceAccountKey(request:options:)>
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_DisableServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/disableServiceAccountKey(request:options:)``
   public func disableServiceAccountKey(
     name: Swift.String,
   ) async throws {
@@ -995,6 +1456,15 @@ extension Clients.IAMProtocol {
     try await self.disableServiceAccountKey(request: request)
   }
 
+  /// Enable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_EnableServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/enableServiceAccountKey(request:options:)``
   public func enableServiceAccountKey(request: EnableServiceAccountKeyRequest) async throws {
     try await self.enableServiceAccountKey(request: request, options: .init())
   }
@@ -1005,6 +1475,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enable a [ServiceAccountKey][google.iam.admin.v1.ServiceAccountKey].
+  ///
+  /// [google.iam.admin.v1.ServiceAccountKey]: <doc:ServiceAccountKey>
+  ///
+  /// @Snippet(path: "IAM_EnableServiceAccountKey")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/enableServiceAccountKey(request:options:)``
   public func enableServiceAccountKey(
     name: Swift.String,
   ) async throws {
@@ -1014,6 +1493,22 @@ extension Clients.IAMProtocol {
     try await self.enableServiceAccountKey(request: request)
   }
 
+  /// **Note:** This method is deprecated. Use the
+  /// [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob)
+  /// method in the IAM Service Account Credentials API instead. If you currently
+  /// use this method, see the [migration
+  /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
+  /// instructions.
+  ///
+  /// Signs a blob using the system-managed private key for a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_SignBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/signBlob(request:options:)``
   @available(*, deprecated)
   public func signBlob(request: SignBlobRequest) async throws -> GoogleIAMAdminV1.SignBlobResponse {
     try await self.signBlob(request: request, options: .init())
@@ -1026,6 +1521,22 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// **Note:** This method is deprecated. Use the
+  /// [`signBlob`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signBlob)
+  /// method in the IAM Service Account Credentials API instead. If you currently
+  /// use this method, see the [migration
+  /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
+  /// instructions.
+  ///
+  /// Signs a blob using the system-managed private key for a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_SignBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/signBlob(request:options:)``
   @available(*, deprecated)
   public func signBlob(
     name: Swift.String,
@@ -1038,6 +1549,23 @@ extension Clients.IAMProtocol {
     return try await self.signBlob(request: request)
   }
 
+  /// **Note:** This method is deprecated. Use the
+  /// [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt)
+  /// method in the IAM Service Account Credentials API instead. If you currently
+  /// use this method, see the [migration
+  /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
+  /// instructions.
+  ///
+  /// Signs a JSON Web Token (JWT) using the system-managed private key for a
+  /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_SignJwt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/signJwt(request:options:)``
   @available(*, deprecated)
   public func signJwt(request: SignJwtRequest) async throws -> GoogleIAMAdminV1.SignJwtResponse {
     try await self.signJwt(request: request, options: .init())
@@ -1050,6 +1578,23 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// **Note:** This method is deprecated. Use the
+  /// [`signJwt`](https://cloud.google.com/iam/help/rest-credentials/v1/projects.serviceAccounts/signJwt)
+  /// method in the IAM Service Account Credentials API instead. If you currently
+  /// use this method, see the [migration
+  /// guide](https://cloud.google.com/iam/help/credentials/migrate-api) for
+  /// instructions.
+  ///
+  /// Signs a JSON Web Token (JWT) using the system-managed private key for a
+  /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_SignJwt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/signJwt(request:options:)``
   @available(*, deprecated)
   public func signJwt(
     name: Swift.String,
@@ -1062,6 +1607,24 @@ extension Clients.IAMProtocol {
     return try await self.signJwt(request: request)
   }
 
+  /// Gets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount]. This IAM
+  /// policy specifies which principals have access to the service account.
+  ///
+  /// This method does not tell you whether the service account has been granted
+  /// any roles on other resources. To check whether a service account has role
+  /// grants on a resource, use the `getIamPolicy` method for that resource. For
+  /// example, to view the role grants for a project, call the Resource Manager
+  /// API's
+  /// [`projects.getIamPolicy`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/getIamPolicy)
+  /// method.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1074,6 +1637,24 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount]. This IAM
+  /// policy specifies which principals have access to the service account.
+  ///
+  /// This method does not tell you whether the service account has been granted
+  /// any roles on other resources. To check whether a service account has role
+  /// grants on a resource, use the `getIamPolicy` method for that resource. For
+  /// example, to view the role grants for a project, call the Resource Manager
+  /// API's
+  /// [`projects.getIamPolicy`](https://cloud.google.com/resource-manager/reference/rest/v1/projects/getIamPolicy)
+  /// method.
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -1083,6 +1664,33 @@ extension Clients.IAMProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Sets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// Use this method to grant or revoke access to the service account. For
+  /// example, you could grant a principal the ability to impersonate the service
+  /// account.
+  ///
+  /// This method does not enable the service account to access other resources.
+  /// To grant roles to a service account on a resource, follow these steps:
+  ///
+  /// 1. Call the resource's `getIamPolicy` method to get its current IAM policy.
+  /// 2. Edit the policy so that it binds the service account to an IAM role for
+  /// the resource.
+  /// 3. Call the resource's `setIamPolicy` method to update its IAM policy.
+  ///
+  /// For detailed instructions, see
+  /// [Manage access to project, folders, and
+  /// organizations](https://cloud.google.com/iam/help/service-accounts/granting-access-to-service-accounts)
+  /// or [Manage access to other
+  /// resources](https://cloud.google.com/iam/help/access/manage-other-resources).
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1095,6 +1703,33 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the IAM policy that is attached to a [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// Use this method to grant or revoke access to the service account. For
+  /// example, you could grant a principal the ability to impersonate the service
+  /// account.
+  ///
+  /// This method does not enable the service account to access other resources.
+  /// To grant roles to a service account on a resource, follow these steps:
+  ///
+  /// 1. Call the resource's `getIamPolicy` method to get its current IAM policy.
+  /// 2. Edit the policy so that it binds the service account to an IAM role for
+  /// the resource.
+  /// 3. Call the resource's `setIamPolicy` method to update its IAM policy.
+  ///
+  /// For detailed instructions, see
+  /// [Manage access to project, folders, and
+  /// organizations](https://cloud.google.com/iam/help/service-accounts/granting-access-to-service-accounts)
+  /// or [Manage access to other
+  /// resources](https://cloud.google.com/iam/help/access/manage-other-resources).
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -1106,6 +1741,16 @@ extension Clients.IAMProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Tests whether the caller has the specified permissions on a
+  /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1118,6 +1763,16 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Tests whether the caller has the specified permissions on a
+  /// [ServiceAccount][google.iam.admin.v1.ServiceAccount].
+  ///
+  /// [google.iam.admin.v1.ServiceAccount]: <doc:ServiceAccount>
+  ///
+  /// @Snippet(path: "IAM_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/testIamPermissions(request:options:)``
   public func testIamPermissions(
     resource: Swift.String,
     permissions: [Swift.String],
@@ -1129,6 +1784,15 @@ extension Clients.IAMProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
+  /// Lists roles that can be granted on a Google Cloud resource. A role is
+  /// grantable if the IAM policy for the resource can contain bindings to the
+  /// role.
+  ///
+  /// @Snippet(path: "IAM_QueryGrantableRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryGrantableRoles(request:options:)``
   public func queryGrantableRoles(request: QueryGrantableRolesRequest) async throws
     -> GoogleIAMAdminV1.QueryGrantableRolesResponse
   {
@@ -1141,6 +1805,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists roles that can be granted on a Google Cloud resource. A role is
+  /// grantable if the IAM policy for the resource can contain bindings to the
+  /// role.
+  ///
+  /// @Snippet(path: "IAM_QueryGrantableRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryGrantableRoles(request:options:)``
   public func queryGrantableRolesByItems(
     request: QueryGrantableRolesRequest
   ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
@@ -1152,6 +1825,10 @@ extension Clients.IAMProtocol {
   /// role.
   ///
   /// @Snippet(path: "IAM_QueryGrantableRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryGrantableRoles(request:options:)``
   public func queryGrantableRolesByItems(
     request: QueryGrantableRolesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
@@ -1166,6 +1843,15 @@ extension Clients.IAMProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists roles that can be granted on a Google Cloud resource. A role is
+  /// grantable if the IAM policy for the resource can contain bindings to the
+  /// role.
+  ///
+  /// @Snippet(path: "IAM_QueryGrantableRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryGrantableRoles(request:options:)``
   public func queryGrantableRolesByItems(
     fullResourceName: Swift.String,
   ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
@@ -1175,6 +1861,16 @@ extension Clients.IAMProtocol {
     return self.queryGrantableRolesByItems(request: request)
   }
 
+  /// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
+  /// that is defined for an organization or project.
+  ///
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  ///
+  /// @Snippet(path: "IAM_ListRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listRoles(request:options:)``
   public func listRoles(request: ListRolesRequest) async throws
     -> GoogleIAMAdminV1.ListRolesResponse
   {
@@ -1187,6 +1883,16 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists every predefined [Role][google.iam.admin.v1.Role] that IAM supports, or every custom role
+  /// that is defined for an organization or project.
+  ///
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  ///
+  /// @Snippet(path: "IAM_ListRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listRoles(request:options:)``
   public func listRolesByItems(
     request: ListRolesRequest
   ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
@@ -1199,6 +1905,10 @@ extension Clients.IAMProtocol {
   /// [google.iam.admin.v1.Role]: <doc:Role>
   ///
   /// @Snippet(path: "IAM_ListRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/listRoles(request:options:)``
   public func listRolesByItems(
     request: ListRolesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Role, any Swift.Error> & Sendable {
@@ -1212,6 +1922,15 @@ extension Clients.IAMProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets the definition of a [Role][google.iam.admin.v1.Role].
+  ///
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  ///
+  /// @Snippet(path: "IAM_GetRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/getRole(request:options:)``
   public func getRole(request: GetRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.getRole(request: request, options: .init())
   }
@@ -1222,6 +1941,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new custom [Role][google.iam.admin.v1.Role].
+  ///
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  ///
+  /// @Snippet(path: "IAM_CreateRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/createRole(request:options:)``
   public func createRole(request: CreateRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.createRole(request: request, options: .init())
   }
@@ -1232,6 +1960,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the definition of a custom [Role][google.iam.admin.v1.Role].
+  ///
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  ///
+  /// @Snippet(path: "IAM_UpdateRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/updateRole(request:options:)``
   public func updateRole(request: UpdateRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.updateRole(request: request, options: .init())
   }
@@ -1242,6 +1979,33 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a custom [Role][google.iam.admin.v1.Role].
+  ///
+  /// When you delete a custom role, the following changes occur immediately:
+  ///
+  /// * You cannot bind a principal to the custom role in an IAM
+  /// [Policy][google.iam.v1.Policy].
+  /// * Existing bindings to the custom role are not changed, but they have no
+  /// effect.
+  /// * By default, the response from [ListRoles][google.iam.admin.v1.IAM.ListRoles] does not include the custom
+  /// role.
+  ///
+  /// You have 7 days to undelete the custom role. After 7 days, the following
+  /// changes occur:
+  ///
+  /// * The custom role is permanently deleted and cannot be recovered.
+  /// * If an IAM policy contains a binding to the custom role, the binding is
+  /// permanently removed.
+  ///
+  /// [google.iam.admin.v1.IAM.ListRoles]: <doc:IAMClient/listRoles(request:options:)>
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  /// [google.iam.v1.Policy]: https://www.google.com/search?q=Swift+google.iam.v1+GoogleIAMV1.Policy
+  ///
+  /// @Snippet(path: "IAM_DeleteRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/deleteRole(request:options:)``
   public func deleteRole(request: DeleteRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.deleteRole(request: request, options: .init())
   }
@@ -1252,6 +2016,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undeletes a custom [Role][google.iam.admin.v1.Role].
+  ///
+  /// [google.iam.admin.v1.Role]: <doc:Role>
+  ///
+  /// @Snippet(path: "IAM_UndeleteRole")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/undeleteRole(request:options:)``
   public func undeleteRole(request: UndeleteRoleRequest) async throws -> GoogleIAMAdminV1.Role {
     try await self.undeleteRole(request: request, options: .init())
   }
@@ -1262,6 +2035,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists every permission that you can test on a resource. A permission is
+  /// testable if you can check whether a principal has that permission on the
+  /// resource.
+  ///
+  /// @Snippet(path: "IAM_QueryTestablePermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryTestablePermissions(request:options:)``
   public func queryTestablePermissions(request: QueryTestablePermissionsRequest) async throws
     -> GoogleIAMAdminV1.QueryTestablePermissionsResponse
   {
@@ -1274,6 +2056,15 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists every permission that you can test on a resource. A permission is
+  /// testable if you can check whether a principal has that permission on the
+  /// resource.
+  ///
+  /// @Snippet(path: "IAM_QueryTestablePermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryTestablePermissions(request:options:)``
   public func queryTestablePermissionsByItems(
     request: QueryTestablePermissionsRequest
   ) -> some AsyncSequence<Permission, any Swift.Error> & Sendable {
@@ -1285,6 +2076,10 @@ extension Clients.IAMProtocol {
   /// resource.
   ///
   /// @Snippet(path: "IAM_QueryTestablePermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryTestablePermissions(request:options:)``
   public func queryTestablePermissionsByItems(
     request: QueryTestablePermissionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Permission, any Swift.Error> & Sendable {
@@ -1299,6 +2094,17 @@ extension Clients.IAMProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of services that allow you to opt into audit logs that are
+  /// not generated by default.
+  ///
+  /// To learn more about audit logs, see the [Logging
+  /// documentation](https://cloud.google.com/logging/docs/audit).
+  ///
+  /// @Snippet(path: "IAM_QueryAuditableServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/queryAuditableServices(request:options:)``
   public func queryAuditableServices(request: QueryAuditableServicesRequest) async throws
     -> GoogleIAMAdminV1.QueryAuditableServicesResponse
   {
@@ -1311,6 +2117,20 @@ extension Clients.IAMProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lints, or validates, an IAM policy. Currently checks the
+  /// [google.iam.v1.Binding.condition][google.iam.v1.Binding.condition] field, which contains a condition
+  /// expression for a role binding.
+  ///
+  /// Successful calls to this method always return an HTTP `200 OK` status code,
+  /// even if the linter detects an issue in the IAM policy.
+  ///
+  /// [google.iam.v1.Binding.condition]: https://www.google.com/search?q=Swift+google.iam.v1+GoogleIAMV1.Binding/condition
+  ///
+  /// @Snippet(path: "IAM_LintPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMClient/lintPolicy(request:options:)``
   public func lintPolicy(request: LintPolicyRequest) async throws
     -> GoogleIAMAdminV1.LintPolicyResponse
   {

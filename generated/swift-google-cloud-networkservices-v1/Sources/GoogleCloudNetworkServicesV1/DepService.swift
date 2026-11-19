@@ -27,6 +27,10 @@ import Foundation
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "DepServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DepServiceProtocol``
 public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   let inner: any Clients.DepServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Lists `LbTrafficExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListLbTrafficExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLbTrafficExtensions(request:)``
+  /// - ``listLbTrafficExtensionsByItems(parent:)``
+  /// - ``listLbTrafficExtensionsByItems(request:)``
+  /// - ``listLbTrafficExtensionsByItems(request:options:)``
   public func listLbTrafficExtensions(
     request: ListLbTrafficExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse {
@@ -56,6 +67,11 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Gets details of the specified `LbTrafficExtension` resource.
   ///
   /// @Snippet(path: "DepService_GetLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLbTrafficExtension(name:)``
+  /// - ``getLbTrafficExtension(request:)``
   public func getLbTrafficExtension(
     request: GetLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.LbTrafficExtension {
@@ -66,6 +82,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "DepService_CreateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLbTrafficExtension(request:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(parent:lbTrafficExtension:lbTrafficExtensionId:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(request:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(request:options:)``
   public func createLbTrafficExtension(
     request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -76,6 +99,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "DepService_CreateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLbTrafficExtension(request:)``
+  /// - ``createLbTrafficExtension(request:options:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(parent:lbTrafficExtension:lbTrafficExtensionId:)``
+  /// - ``createLbTrafficExtensionPollingUntilDone(request:)``
   public func createLbTrafficExtensionPollingUntilDone(
     request: CreateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbTrafficExtension {
@@ -104,6 +134,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Updates the parameters of the specified `LbTrafficExtension` resource.
   ///
   /// @Snippet(path: "DepService_UpdateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLbTrafficExtension(request:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(lbTrafficExtension:updateMask:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(request:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(request:options:)``
   public func updateLbTrafficExtension(
     request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,6 +150,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Updates the parameters of the specified `LbTrafficExtension` resource.
   ///
   /// @Snippet(path: "DepService_UpdateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLbTrafficExtension(request:)``
+  /// - ``updateLbTrafficExtension(request:options:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(lbTrafficExtension:updateMask:)``
+  /// - ``updateLbTrafficExtensionPollingUntilDone(request:)``
   public func updateLbTrafficExtensionPollingUntilDone(
     request: UpdateLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbTrafficExtension {
@@ -141,6 +185,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `LbTrafficExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLbTrafficExtension(request:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(request:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(request:options:)``
   public func deleteLbTrafficExtension(
     request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +201,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `LbTrafficExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLbTrafficExtension(request:)``
+  /// - ``deleteLbTrafficExtension(request:options:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbTrafficExtensionPollingUntilDone(request:)``
   public func deleteLbTrafficExtensionPollingUntilDone(
     request: DeleteLbTrafficExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,6 +235,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Lists `LbRouteExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListLbRouteExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLbRouteExtensions(request:)``
+  /// - ``listLbRouteExtensionsByItems(parent:)``
+  /// - ``listLbRouteExtensionsByItems(request:)``
+  /// - ``listLbRouteExtensionsByItems(request:options:)``
   public func listLbRouteExtensions(
     request: ListLbRouteExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListLbRouteExtensionsResponse {
@@ -186,6 +251,11 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Gets details of the specified `LbRouteExtension` resource.
   ///
   /// @Snippet(path: "DepService_GetLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLbRouteExtension(name:)``
+  /// - ``getLbRouteExtension(request:)``
   public func getLbRouteExtension(
     request: GetLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.LbRouteExtension {
@@ -195,6 +265,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Creates a new `LbRouteExtension` resource in a given project and location.
   ///
   /// @Snippet(path: "DepService_CreateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLbRouteExtension(request:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(parent:lbRouteExtension:lbRouteExtensionId:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(request:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(request:options:)``
   public func createLbRouteExtension(
     request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -204,6 +281,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Creates a new `LbRouteExtension` resource in a given project and location.
   ///
   /// @Snippet(path: "DepService_CreateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLbRouteExtension(request:)``
+  /// - ``createLbRouteExtension(request:options:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(parent:lbRouteExtension:lbRouteExtensionId:)``
+  /// - ``createLbRouteExtensionPollingUntilDone(request:)``
   public func createLbRouteExtensionPollingUntilDone(
     request: CreateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbRouteExtension {
@@ -232,6 +316,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Updates the parameters of the specified `LbRouteExtension` resource.
   ///
   /// @Snippet(path: "DepService_UpdateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLbRouteExtension(request:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(lbRouteExtension:updateMask:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(request:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(request:options:)``
   public func updateLbRouteExtension(
     request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -241,6 +332,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Updates the parameters of the specified `LbRouteExtension` resource.
   ///
   /// @Snippet(path: "DepService_UpdateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLbRouteExtension(request:)``
+  /// - ``updateLbRouteExtension(request:options:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(lbRouteExtension:updateMask:)``
+  /// - ``updateLbRouteExtensionPollingUntilDone(request:)``
   public func updateLbRouteExtensionPollingUntilDone(
     request: UpdateLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbRouteExtension {
@@ -269,6 +367,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `LbRouteExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLbRouteExtension(request:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(request:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(request:options:)``
   public func deleteLbRouteExtension(
     request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -278,6 +383,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `LbRouteExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLbRouteExtension(request:)``
+  /// - ``deleteLbRouteExtension(request:options:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbRouteExtensionPollingUntilDone(request:)``
   public func deleteLbRouteExtensionPollingUntilDone(
     request: DeleteLbRouteExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -305,6 +417,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Lists `LbEdgeExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListLbEdgeExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLbEdgeExtensions(request:)``
+  /// - ``listLbEdgeExtensionsByItems(parent:)``
+  /// - ``listLbEdgeExtensionsByItems(request:)``
+  /// - ``listLbEdgeExtensionsByItems(request:options:)``
   public func listLbEdgeExtensions(
     request: ListLbEdgeExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListLbEdgeExtensionsResponse {
@@ -314,6 +433,11 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Gets details of the specified `LbEdgeExtension` resource.
   ///
   /// @Snippet(path: "DepService_GetLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLbEdgeExtension(name:)``
+  /// - ``getLbEdgeExtension(request:)``
   public func getLbEdgeExtension(
     request: GetLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.LbEdgeExtension {
@@ -323,6 +447,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Creates a new `LbEdgeExtension` resource in a given project and location.
   ///
   /// @Snippet(path: "DepService_CreateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLbEdgeExtension(request:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(parent:lbEdgeExtension:lbEdgeExtensionId:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(request:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(request:options:)``
   public func createLbEdgeExtension(
     request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -332,6 +463,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Creates a new `LbEdgeExtension` resource in a given project and location.
   ///
   /// @Snippet(path: "DepService_CreateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLbEdgeExtension(request:)``
+  /// - ``createLbEdgeExtension(request:options:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(parent:lbEdgeExtension:lbEdgeExtensionId:)``
+  /// - ``createLbEdgeExtensionPollingUntilDone(request:)``
   public func createLbEdgeExtensionPollingUntilDone(
     request: CreateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbEdgeExtension {
@@ -360,6 +498,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Updates the parameters of the specified `LbEdgeExtension` resource.
   ///
   /// @Snippet(path: "DepService_UpdateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLbEdgeExtension(request:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(lbEdgeExtension:updateMask:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(request:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(request:options:)``
   public func updateLbEdgeExtension(
     request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -369,6 +514,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Updates the parameters of the specified `LbEdgeExtension` resource.
   ///
   /// @Snippet(path: "DepService_UpdateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLbEdgeExtension(request:)``
+  /// - ``updateLbEdgeExtension(request:options:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(lbEdgeExtension:updateMask:)``
+  /// - ``updateLbEdgeExtensionPollingUntilDone(request:)``
   public func updateLbEdgeExtensionPollingUntilDone(
     request: UpdateLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> LbEdgeExtension {
@@ -397,6 +549,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `LbEdgeExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLbEdgeExtension(request:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(request:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(request:options:)``
   public func deleteLbEdgeExtension(
     request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -406,6 +565,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `LbEdgeExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLbEdgeExtension(request:)``
+  /// - ``deleteLbEdgeExtension(request:options:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(name:)``
+  /// - ``deleteLbEdgeExtensionPollingUntilDone(request:)``
   public func deleteLbEdgeExtensionPollingUntilDone(
     request: DeleteLbEdgeExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -433,6 +599,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Lists `AuthzExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListAuthzExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthzExtensions(request:)``
+  /// - ``listAuthzExtensionsByItems(parent:)``
+  /// - ``listAuthzExtensionsByItems(request:)``
+  /// - ``listAuthzExtensionsByItems(request:options:)``
   public func listAuthzExtensions(
     request: ListAuthzExtensionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListAuthzExtensionsResponse {
@@ -442,6 +615,11 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Gets details of the specified `AuthzExtension` resource.
   ///
   /// @Snippet(path: "DepService_GetAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthzExtension(name:)``
+  /// - ``getAuthzExtension(request:)``
   public func getAuthzExtension(
     request: GetAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.AuthzExtension {
@@ -452,6 +630,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// and location.
   ///
   /// @Snippet(path: "DepService_CreateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthzExtension(request:)``
+  /// - ``createAuthzExtensionPollingUntilDone(parent:authzExtension:authzExtensionId:)``
+  /// - ``createAuthzExtensionPollingUntilDone(request:)``
+  /// - ``createAuthzExtensionPollingUntilDone(request:options:)``
   public func createAuthzExtension(
     request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -462,6 +647,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// and location.
   ///
   /// @Snippet(path: "DepService_CreateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthzExtension(request:)``
+  /// - ``createAuthzExtension(request:options:)``
+  /// - ``createAuthzExtensionPollingUntilDone(parent:authzExtension:authzExtensionId:)``
+  /// - ``createAuthzExtensionPollingUntilDone(request:)``
   public func createAuthzExtensionPollingUntilDone(
     request: CreateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthzExtension {
@@ -491,6 +683,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// resource.
   ///
   /// @Snippet(path: "DepService_UpdateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthzExtension(request:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(authzExtension:updateMask:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(request:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(request:options:)``
   public func updateAuthzExtension(
     request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -501,6 +700,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// resource.
   ///
   /// @Snippet(path: "DepService_UpdateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthzExtension(request:)``
+  /// - ``updateAuthzExtension(request:options:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(authzExtension:updateMask:)``
+  /// - ``updateAuthzExtensionPollingUntilDone(request:)``
   public func updateAuthzExtensionPollingUntilDone(
     request: UpdateAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthzExtension {
@@ -529,6 +735,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `AuthzExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthzExtension(request:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(name:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(request:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(request:options:)``
   public func deleteAuthzExtension(
     request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -538,6 +751,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Deletes the specified `AuthzExtension` resource.
   ///
   /// @Snippet(path: "DepService_DeleteAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthzExtension(request:)``
+  /// - ``deleteAuthzExtension(request:options:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(name:)``
+  /// - ``deleteAuthzExtensionPollingUntilDone(request:)``
   public func deleteAuthzExtensionPollingUntilDone(
     request: DeleteAuthzExtensionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -565,6 +785,12 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DepService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -574,6 +800,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DepService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -587,6 +817,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "DepService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -597,6 +831,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DepService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -612,6 +850,10 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DepService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -623,6 +865,13 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DepService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -645,6 +894,11 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DepService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -656,6 +910,11 @@ public final class DepServiceClient: Clients.DepServiceProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DepService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -874,6 +1133,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DepServiceProtocol {
+  /// Lists `LbTrafficExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbTrafficExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbTrafficExtensions(request:options:)``
   public func listLbTrafficExtensions(request: ListLbTrafficExtensionsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListLbTrafficExtensionsResponse
   {
@@ -886,6 +1152,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `LbTrafficExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbTrafficExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbTrafficExtensions(request:options:)``
   public func listLbTrafficExtensionsByItems(
     request: ListLbTrafficExtensionsRequest
   ) -> some AsyncSequence<LbTrafficExtension, any Swift.Error> & Sendable {
@@ -895,6 +1168,10 @@ extension Clients.DepServiceProtocol {
   /// Lists `LbTrafficExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListLbTrafficExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbTrafficExtensions(request:options:)``
   public func listLbTrafficExtensionsByItems(
     request: ListLbTrafficExtensionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LbTrafficExtension, any Swift.Error> & Sendable {
@@ -909,6 +1186,13 @@ extension Clients.DepServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `LbTrafficExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbTrafficExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbTrafficExtensions(request:options:)``
   public func listLbTrafficExtensionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LbTrafficExtension, any Swift.Error> & Sendable {
@@ -918,6 +1202,13 @@ extension Clients.DepServiceProtocol {
     return self.listLbTrafficExtensionsByItems(request: request)
   }
 
+  /// Gets details of the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLbTrafficExtension(request:options:)``
   public func getLbTrafficExtension(request: GetLbTrafficExtensionRequest) async throws
     -> GoogleCloudNetworkServicesV1.LbTrafficExtension
   {
@@ -930,6 +1221,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLbTrafficExtension(request:options:)``
   public func getLbTrafficExtension(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.LbTrafficExtension {
@@ -939,6 +1237,14 @@ extension Clients.DepServiceProtocol {
     return try await self.getLbTrafficExtension(request: request)
   }
 
+  /// Creates a new `LbTrafficExtension` resource in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbTrafficExtension(request:options:)``
   public func createLbTrafficExtension(request: CreateLbTrafficExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -951,6 +1257,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `LbTrafficExtension` resource in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbTrafficExtensionPollingUntilDone(request:options:)``
   public func createLbTrafficExtensionPollingUntilDone(request: CreateLbTrafficExtensionRequest)
     async throws -> LbTrafficExtension
   {
@@ -964,6 +1278,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `LbTrafficExtension` resource in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbTrafficExtensionPollingUntilDone(request:options:)``
   public func createLbTrafficExtensionPollingUntilDone(
     parent: Swift.String,
     lbTrafficExtension: LbTrafficExtension?,
@@ -977,6 +1299,13 @@ extension Clients.DepServiceProtocol {
     return try await self.createLbTrafficExtensionPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbTrafficExtension(request:options:)``
   public func updateLbTrafficExtension(request: UpdateLbTrafficExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -989,6 +1318,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbTrafficExtensionPollingUntilDone(request:options:)``
   public func updateLbTrafficExtensionPollingUntilDone(request: UpdateLbTrafficExtensionRequest)
     async throws -> LbTrafficExtension
   {
@@ -1002,6 +1338,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbTrafficExtensionPollingUntilDone(request:options:)``
   public func updateLbTrafficExtensionPollingUntilDone(
     lbTrafficExtension: LbTrafficExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1013,6 +1356,13 @@ extension Clients.DepServiceProtocol {
     return try await self.updateLbTrafficExtensionPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbTrafficExtension(request:options:)``
   public func deleteLbTrafficExtension(request: DeleteLbTrafficExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1025,6 +1375,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbTrafficExtensionPollingUntilDone(request:options:)``
   public func deleteLbTrafficExtensionPollingUntilDone(request: DeleteLbTrafficExtensionRequest)
     async throws
   {
@@ -1037,6 +1394,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `LbTrafficExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbTrafficExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbTrafficExtensionPollingUntilDone(request:options:)``
   public func deleteLbTrafficExtensionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1046,6 +1410,13 @@ extension Clients.DepServiceProtocol {
     try await self.deleteLbTrafficExtensionPollingUntilDone(request: request)
   }
 
+  /// Lists `LbRouteExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbRouteExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbRouteExtensions(request:options:)``
   public func listLbRouteExtensions(request: ListLbRouteExtensionsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListLbRouteExtensionsResponse
   {
@@ -1058,6 +1429,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `LbRouteExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbRouteExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbRouteExtensions(request:options:)``
   public func listLbRouteExtensionsByItems(
     request: ListLbRouteExtensionsRequest
   ) -> some AsyncSequence<LbRouteExtension, any Swift.Error> & Sendable {
@@ -1067,6 +1445,10 @@ extension Clients.DepServiceProtocol {
   /// Lists `LbRouteExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListLbRouteExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbRouteExtensions(request:options:)``
   public func listLbRouteExtensionsByItems(
     request: ListLbRouteExtensionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LbRouteExtension, any Swift.Error> & Sendable {
@@ -1081,6 +1463,13 @@ extension Clients.DepServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `LbRouteExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbRouteExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbRouteExtensions(request:options:)``
   public func listLbRouteExtensionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LbRouteExtension, any Swift.Error> & Sendable {
@@ -1090,6 +1479,13 @@ extension Clients.DepServiceProtocol {
     return self.listLbRouteExtensionsByItems(request: request)
   }
 
+  /// Gets details of the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLbRouteExtension(request:options:)``
   public func getLbRouteExtension(request: GetLbRouteExtensionRequest) async throws
     -> GoogleCloudNetworkServicesV1.LbRouteExtension
   {
@@ -1102,6 +1498,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLbRouteExtension(request:options:)``
   public func getLbRouteExtension(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.LbRouteExtension {
@@ -1111,6 +1514,13 @@ extension Clients.DepServiceProtocol {
     return try await self.getLbRouteExtension(request: request)
   }
 
+  /// Creates a new `LbRouteExtension` resource in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbRouteExtension(request:options:)``
   public func createLbRouteExtension(request: CreateLbRouteExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1123,6 +1533,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `LbRouteExtension` resource in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbRouteExtensionPollingUntilDone(request:options:)``
   public func createLbRouteExtensionPollingUntilDone(request: CreateLbRouteExtensionRequest)
     async throws -> LbRouteExtension
   {
@@ -1135,6 +1552,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `LbRouteExtension` resource in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbRouteExtensionPollingUntilDone(request:options:)``
   public func createLbRouteExtensionPollingUntilDone(
     parent: Swift.String,
     lbRouteExtension: LbRouteExtension?,
@@ -1148,6 +1572,13 @@ extension Clients.DepServiceProtocol {
     return try await self.createLbRouteExtensionPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbRouteExtension(request:options:)``
   public func updateLbRouteExtension(request: UpdateLbRouteExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1160,6 +1591,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbRouteExtensionPollingUntilDone(request:options:)``
   public func updateLbRouteExtensionPollingUntilDone(request: UpdateLbRouteExtensionRequest)
     async throws -> LbRouteExtension
   {
@@ -1172,6 +1610,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbRouteExtensionPollingUntilDone(request:options:)``
   public func updateLbRouteExtensionPollingUntilDone(
     lbRouteExtension: LbRouteExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1183,6 +1628,13 @@ extension Clients.DepServiceProtocol {
     return try await self.updateLbRouteExtensionPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbRouteExtension(request:options:)``
   public func deleteLbRouteExtension(request: DeleteLbRouteExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1195,6 +1647,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbRouteExtensionPollingUntilDone(request:options:)``
   public func deleteLbRouteExtensionPollingUntilDone(request: DeleteLbRouteExtensionRequest)
     async throws
   {
@@ -1207,6 +1666,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `LbRouteExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbRouteExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbRouteExtensionPollingUntilDone(request:options:)``
   public func deleteLbRouteExtensionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1216,6 +1682,13 @@ extension Clients.DepServiceProtocol {
     try await self.deleteLbRouteExtensionPollingUntilDone(request: request)
   }
 
+  /// Lists `LbEdgeExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbEdgeExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbEdgeExtensions(request:options:)``
   public func listLbEdgeExtensions(request: ListLbEdgeExtensionsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListLbEdgeExtensionsResponse
   {
@@ -1228,6 +1701,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `LbEdgeExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbEdgeExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbEdgeExtensions(request:options:)``
   public func listLbEdgeExtensionsByItems(
     request: ListLbEdgeExtensionsRequest
   ) -> some AsyncSequence<LbEdgeExtension, any Swift.Error> & Sendable {
@@ -1237,6 +1717,10 @@ extension Clients.DepServiceProtocol {
   /// Lists `LbEdgeExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListLbEdgeExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbEdgeExtensions(request:options:)``
   public func listLbEdgeExtensionsByItems(
     request: ListLbEdgeExtensionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LbEdgeExtension, any Swift.Error> & Sendable {
@@ -1251,6 +1735,13 @@ extension Clients.DepServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `LbEdgeExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListLbEdgeExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLbEdgeExtensions(request:options:)``
   public func listLbEdgeExtensionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LbEdgeExtension, any Swift.Error> & Sendable {
@@ -1260,6 +1751,13 @@ extension Clients.DepServiceProtocol {
     return self.listLbEdgeExtensionsByItems(request: request)
   }
 
+  /// Gets details of the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLbEdgeExtension(request:options:)``
   public func getLbEdgeExtension(request: GetLbEdgeExtensionRequest) async throws
     -> GoogleCloudNetworkServicesV1.LbEdgeExtension
   {
@@ -1272,6 +1770,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLbEdgeExtension(request:options:)``
   public func getLbEdgeExtension(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.LbEdgeExtension {
@@ -1281,6 +1786,13 @@ extension Clients.DepServiceProtocol {
     return try await self.getLbEdgeExtension(request: request)
   }
 
+  /// Creates a new `LbEdgeExtension` resource in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbEdgeExtension(request:options:)``
   public func createLbEdgeExtension(request: CreateLbEdgeExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1293,6 +1805,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `LbEdgeExtension` resource in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbEdgeExtensionPollingUntilDone(request:options:)``
   public func createLbEdgeExtensionPollingUntilDone(request: CreateLbEdgeExtensionRequest)
     async throws -> LbEdgeExtension
   {
@@ -1305,6 +1824,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `LbEdgeExtension` resource in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_CreateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createLbEdgeExtensionPollingUntilDone(request:options:)``
   public func createLbEdgeExtensionPollingUntilDone(
     parent: Swift.String,
     lbEdgeExtension: LbEdgeExtension?,
@@ -1318,6 +1844,13 @@ extension Clients.DepServiceProtocol {
     return try await self.createLbEdgeExtensionPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbEdgeExtension(request:options:)``
   public func updateLbEdgeExtension(request: UpdateLbEdgeExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1330,6 +1863,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbEdgeExtensionPollingUntilDone(request:options:)``
   public func updateLbEdgeExtensionPollingUntilDone(request: UpdateLbEdgeExtensionRequest)
     async throws -> LbEdgeExtension
   {
@@ -1342,6 +1882,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateLbEdgeExtensionPollingUntilDone(request:options:)``
   public func updateLbEdgeExtensionPollingUntilDone(
     lbEdgeExtension: LbEdgeExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1353,6 +1900,13 @@ extension Clients.DepServiceProtocol {
     return try await self.updateLbEdgeExtensionPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbEdgeExtension(request:options:)``
   public func deleteLbEdgeExtension(request: DeleteLbEdgeExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1365,6 +1919,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbEdgeExtensionPollingUntilDone(request:options:)``
   public func deleteLbEdgeExtensionPollingUntilDone(request: DeleteLbEdgeExtensionRequest)
     async throws
   {
@@ -1377,6 +1938,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `LbEdgeExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteLbEdgeExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteLbEdgeExtensionPollingUntilDone(request:options:)``
   public func deleteLbEdgeExtensionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1386,6 +1954,13 @@ extension Clients.DepServiceProtocol {
     try await self.deleteLbEdgeExtensionPollingUntilDone(request: request)
   }
 
+  /// Lists `AuthzExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListAuthzExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listAuthzExtensions(request:options:)``
   public func listAuthzExtensions(request: ListAuthzExtensionsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListAuthzExtensionsResponse
   {
@@ -1398,6 +1973,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `AuthzExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListAuthzExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listAuthzExtensions(request:options:)``
   public func listAuthzExtensionsByItems(
     request: ListAuthzExtensionsRequest
   ) -> some AsyncSequence<AuthzExtension, any Swift.Error> & Sendable {
@@ -1407,6 +1989,10 @@ extension Clients.DepServiceProtocol {
   /// Lists `AuthzExtension` resources in a given project and location.
   ///
   /// @Snippet(path: "DepService_ListAuthzExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listAuthzExtensions(request:options:)``
   public func listAuthzExtensionsByItems(
     request: ListAuthzExtensionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthzExtension, any Swift.Error> & Sendable {
@@ -1421,6 +2007,13 @@ extension Clients.DepServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `AuthzExtension` resources in a given project and location.
+  ///
+  /// @Snippet(path: "DepService_ListAuthzExtensions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listAuthzExtensions(request:options:)``
   public func listAuthzExtensionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuthzExtension, any Swift.Error> & Sendable {
@@ -1430,6 +2023,13 @@ extension Clients.DepServiceProtocol {
     return self.listAuthzExtensionsByItems(request: request)
   }
 
+  /// Gets details of the specified `AuthzExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getAuthzExtension(request:options:)``
   public func getAuthzExtension(request: GetAuthzExtensionRequest) async throws
     -> GoogleCloudNetworkServicesV1.AuthzExtension
   {
@@ -1442,6 +2042,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of the specified `AuthzExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_GetAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getAuthzExtension(request:options:)``
   public func getAuthzExtension(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.AuthzExtension {
@@ -1451,6 +2058,14 @@ extension Clients.DepServiceProtocol {
     return try await self.getAuthzExtension(request: request)
   }
 
+  /// Creates a new `AuthzExtension` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "DepService_CreateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createAuthzExtension(request:options:)``
   public func createAuthzExtension(request: CreateAuthzExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1463,6 +2078,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `AuthzExtension` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "DepService_CreateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createAuthzExtensionPollingUntilDone(request:options:)``
   public func createAuthzExtensionPollingUntilDone(request: CreateAuthzExtensionRequest)
     async throws -> AuthzExtension
   {
@@ -1475,6 +2098,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `AuthzExtension` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "DepService_CreateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/createAuthzExtensionPollingUntilDone(request:options:)``
   public func createAuthzExtensionPollingUntilDone(
     parent: Swift.String,
     authzExtension: AuthzExtension?,
@@ -1488,6 +2119,14 @@ extension Clients.DepServiceProtocol {
     return try await self.createAuthzExtensionPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of the specified `AuthzExtension`
+  /// resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateAuthzExtension(request:options:)``
   public func updateAuthzExtension(request: UpdateAuthzExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1500,6 +2139,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `AuthzExtension`
+  /// resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateAuthzExtensionPollingUntilDone(request:options:)``
   public func updateAuthzExtensionPollingUntilDone(request: UpdateAuthzExtensionRequest)
     async throws -> AuthzExtension
   {
@@ -1512,6 +2159,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `AuthzExtension`
+  /// resource.
+  ///
+  /// @Snippet(path: "DepService_UpdateAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/updateAuthzExtensionPollingUntilDone(request:options:)``
   public func updateAuthzExtensionPollingUntilDone(
     authzExtension: AuthzExtension?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1523,6 +2178,13 @@ extension Clients.DepServiceProtocol {
     return try await self.updateAuthzExtensionPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified `AuthzExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteAuthzExtension(request:options:)``
   public func deleteAuthzExtension(request: DeleteAuthzExtensionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1535,6 +2197,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `AuthzExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteAuthzExtensionPollingUntilDone(request:options:)``
   public func deleteAuthzExtensionPollingUntilDone(request: DeleteAuthzExtensionRequest)
     async throws
   {
@@ -1547,6 +2216,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `AuthzExtension` resource.
+  ///
+  /// @Snippet(path: "DepService_DeleteAuthzExtension")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteAuthzExtensionPollingUntilDone(request:options:)``
   public func deleteAuthzExtensionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1556,6 +2232,13 @@ extension Clients.DepServiceProtocol {
     try await self.deleteAuthzExtensionPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "DepService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1568,6 +2251,13 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "DepService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1577,6 +2267,10 @@ extension Clients.DepServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "DepService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1590,6 +2284,13 @@ extension Clients.DepServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DepService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1602,6 +2303,17 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DepService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1614,6 +2326,14 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DepService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1626,6 +2346,19 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DepService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1638,6 +2371,15 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1650,6 +2392,15 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1661,6 +2412,10 @@ extension Clients.DepServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DepService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1674,6 +2429,15 @@ extension Clients.DepServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1685,6 +2449,9 @@ extension Clients.DepServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1697,6 +2464,9 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1706,6 +2476,15 @@ extension Clients.DepServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1716,6 +2495,15 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1725,6 +2513,15 @@ extension Clients.DepServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1735,6 +2532,15 @@ extension Clients.DepServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DepService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DepServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

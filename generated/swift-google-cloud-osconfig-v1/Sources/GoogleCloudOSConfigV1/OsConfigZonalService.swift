@@ -28,6 +28,10 @@ import Foundation
 /// manage package installations and patch jobs for Compute Engine VM instances.
 ///
 /// @Snippet(path: "OsConfigZonalServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/OsConfigZonalServiceProtocol``
 public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProtocol, Sendable {
   let inner: any Clients.OsConfigZonalServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -57,6 +61,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createOspolicyAssignment(request:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(parent:osPolicyAssignment:osPolicyAssignmentId:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(request:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(request:options:)``
   public func createOspolicyAssignment(
     request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +85,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createOspolicyAssignment(request:)``
+  /// - ``createOspolicyAssignment(request:options:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(parent:osPolicyAssignment:osPolicyAssignmentId:)``
+  /// - ``createOspolicyAssignmentPollingUntilDone(request:)``
   public func createOspolicyAssignmentPollingUntilDone(
     request: CreateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> OSPolicyAssignment {
@@ -110,6 +128,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateOspolicyAssignment(request:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(osPolicyAssignment:updateMask:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(request:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(request:options:)``
   public func updateOspolicyAssignment(
     request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,6 +152,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateOspolicyAssignment(request:)``
+  /// - ``updateOspolicyAssignment(request:options:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(osPolicyAssignment:updateMask:)``
+  /// - ``updateOspolicyAssignmentPollingUntilDone(request:)``
   public func updateOspolicyAssignmentPollingUntilDone(
     request: UpdateOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> OSPolicyAssignment {
@@ -159,6 +191,11 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// `name` parameter.
   ///
   /// @Snippet(path: "OsConfigZonalService_GetOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getOspolicyAssignment(name:)``
+  /// - ``getOspolicyAssignment(request:)``
   public func getOspolicyAssignment(
     request: GetOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignment {
@@ -170,6 +207,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// For each OS policy assignment, the latest revision is returned.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOspolicyAssignments(request:)``
+  /// - ``listOspolicyAssignmentsByItems(parent:)``
+  /// - ``listOspolicyAssignmentsByItems(request:)``
+  /// - ``listOspolicyAssignmentsByItems(request:options:)``
   public func listOspolicyAssignments(
     request: ListOSPolicyAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentsResponse {
@@ -179,6 +223,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// List the OS policy assignment revisions for a given OS policy assignment.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOspolicyAssignmentRevisions(request:)``
+  /// - ``listOspolicyAssignmentRevisionsByItems(name:)``
+  /// - ``listOspolicyAssignmentRevisionsByItems(request:)``
+  /// - ``listOspolicyAssignmentRevisionsByItems(request:options:)``
   public func listOspolicyAssignmentRevisions(
     request: ListOSPolicyAssignmentRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentRevisionsResponse {
@@ -199,6 +250,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOspolicyAssignment(request:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(name:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(request:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(request:options:)``
   public func deleteOspolicyAssignment(
     request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -219,6 +277,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
   ///
   /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOspolicyAssignment(request:)``
+  /// - ``deleteOspolicyAssignment(request:options:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(name:)``
+  /// - ``deleteOspolicyAssignmentPollingUntilDone(request:)``
   public func deleteOspolicyAssignmentPollingUntilDone(
     request: DeleteOSPolicyAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -247,6 +312,11 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// instance.
   ///
   /// @Snippet(path: "OsConfigZonalService_GetOSPolicyAssignmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getOspolicyAssignmentReport(name:)``
+  /// - ``getOspolicyAssignmentReport(request:)``
   public func getOspolicyAssignmentReport(
     request: GetOSPolicyAssignmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignmentReport {
@@ -257,6 +327,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// the specified zone.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOspolicyAssignmentReports(request:)``
+  /// - ``listOspolicyAssignmentReportsByItems(parent:)``
+  /// - ``listOspolicyAssignmentReportsByItems(request:)``
+  /// - ``listOspolicyAssignmentReportsByItems(request:options:)``
   public func listOspolicyAssignmentReports(
     request: ListOSPolicyAssignmentReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentReportsResponse {
@@ -267,6 +344,11 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// associated inventory, the message `NOT_FOUND` is returned.
   ///
   /// @Snippet(path: "OsConfigZonalService_GetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInventory(name:)``
+  /// - ``getInventory(request:)``
   public func getInventory(
     request: GetInventoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.Inventory {
@@ -276,6 +358,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// List inventory data for all VM instances in the specified zone.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInventories(request:)``
+  /// - ``listInventoriesByItems(parent:)``
+  /// - ``listInventoriesByItems(request:)``
+  /// - ``listInventoriesByItems(request:options:)``
   public func listInventories(
     request: ListInventoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListInventoriesResponse {
@@ -286,6 +375,11 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// inventory data have vulnerability reports associated with them.
   ///
   /// @Snippet(path: "OsConfigZonalService_GetVulnerabilityReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVulnerabilityReport(name:)``
+  /// - ``getVulnerabilityReport(request:)``
   public func getVulnerabilityReport(
     request: GetVulnerabilityReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.VulnerabilityReport {
@@ -295,6 +389,13 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// List vulnerability reports for all VM instances in the specified zone.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListVulnerabilityReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVulnerabilityReports(request:)``
+  /// - ``listVulnerabilityReportsByItems(parent:)``
+  /// - ``listVulnerabilityReportsByItems(request:)``
+  /// - ``listVulnerabilityReportsByItems(request:options:)``
   public func listVulnerabilityReports(
     request: ListVulnerabilityReportsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListVulnerabilityReportsResponse {
@@ -317,6 +418,11 @@ public final class OsConfigZonalServiceClient: Clients.OsConfigZonalServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "OsConfigZonalService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -415,6 +521,21 @@ extension Clients {
 
 // Default implementations
 extension Clients.OsConfigZonalServiceProtocol {
+  /// Create an OS policy assignment.
+  ///
+  /// This method also creates the first revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/createOspolicyAssignment(request:options:)``
   public func createOspolicyAssignment(request: CreateOSPolicyAssignmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -427,6 +548,21 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an OS policy assignment.
+  ///
+  /// This method also creates the first revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/createOspolicyAssignmentPollingUntilDone(request:options:)``
   public func createOspolicyAssignmentPollingUntilDone(request: CreateOSPolicyAssignmentRequest)
     async throws -> OSPolicyAssignment
   {
@@ -440,6 +576,21 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an OS policy assignment.
+  ///
+  /// This method also creates the first revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_CreateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/createOspolicyAssignmentPollingUntilDone(request:options:)``
   public func createOspolicyAssignmentPollingUntilDone(
     parent: Swift.String,
     osPolicyAssignment: OSPolicyAssignment?,
@@ -453,6 +604,21 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.createOspolicyAssignmentPollingUntilDone(request: request)
   }
 
+  /// Update an existing OS policy assignment.
+  ///
+  /// This method creates a new revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/updateOspolicyAssignment(request:options:)``
   public func updateOspolicyAssignment(request: UpdateOSPolicyAssignmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -465,6 +631,21 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update an existing OS policy assignment.
+  ///
+  /// This method creates a new revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/updateOspolicyAssignmentPollingUntilDone(request:options:)``
   public func updateOspolicyAssignmentPollingUntilDone(request: UpdateOSPolicyAssignmentRequest)
     async throws -> OSPolicyAssignment
   {
@@ -478,6 +659,21 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update an existing OS policy assignment.
+  ///
+  /// This method creates a new revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_UpdateOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/updateOspolicyAssignmentPollingUntilDone(request:options:)``
   public func updateOspolicyAssignmentPollingUntilDone(
     osPolicyAssignment: OSPolicyAssignment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -489,6 +685,17 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.updateOspolicyAssignmentPollingUntilDone(request: request)
   }
 
+  /// Retrieve an existing OS policy assignment.
+  ///
+  /// This method always returns the latest revision. In order to retrieve a
+  /// previous revision of the assignment, also provide the revision ID in the
+  /// `name` parameter.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getOspolicyAssignment(request:options:)``
   public func getOspolicyAssignment(request: GetOSPolicyAssignmentRequest) async throws
     -> GoogleCloudOSConfigV1.OSPolicyAssignment
   {
@@ -501,6 +708,17 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve an existing OS policy assignment.
+  ///
+  /// This method always returns the latest revision. In order to retrieve a
+  /// previous revision of the assignment, also provide the revision ID in the
+  /// `name` parameter.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getOspolicyAssignment(request:options:)``
   public func getOspolicyAssignment(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignment {
@@ -510,6 +728,15 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.getOspolicyAssignment(request: request)
   }
 
+  /// List the OS policy assignments under the parent resource.
+  ///
+  /// For each OS policy assignment, the latest revision is returned.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignments(request:options:)``
   public func listOspolicyAssignments(request: ListOSPolicyAssignmentsRequest) async throws
     -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentsResponse
   {
@@ -522,6 +749,15 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List the OS policy assignments under the parent resource.
+  ///
+  /// For each OS policy assignment, the latest revision is returned.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignments(request:options:)``
   public func listOspolicyAssignmentsByItems(
     request: ListOSPolicyAssignmentsRequest
   ) -> some AsyncSequence<OSPolicyAssignment, any Swift.Error> & Sendable {
@@ -533,6 +769,10 @@ extension Clients.OsConfigZonalServiceProtocol {
   /// For each OS policy assignment, the latest revision is returned.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignments(request:options:)``
   public func listOspolicyAssignmentsByItems(
     request: ListOSPolicyAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<OSPolicyAssignment, any Swift.Error> & Sendable {
@@ -547,6 +787,15 @@ extension Clients.OsConfigZonalServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List the OS policy assignments under the parent resource.
+  ///
+  /// For each OS policy assignment, the latest revision is returned.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignments(request:options:)``
   public func listOspolicyAssignmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<OSPolicyAssignment, any Swift.Error> & Sendable {
@@ -556,6 +805,13 @@ extension Clients.OsConfigZonalServiceProtocol {
     return self.listOspolicyAssignmentsByItems(request: request)
   }
 
+  /// List the OS policy assignment revisions for a given OS policy assignment.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentRevisions(request:options:)``
   public func listOspolicyAssignmentRevisions(request: ListOSPolicyAssignmentRevisionsRequest)
     async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentRevisionsResponse
   {
@@ -568,6 +824,13 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List the OS policy assignment revisions for a given OS policy assignment.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentRevisions(request:options:)``
   public func listOspolicyAssignmentRevisionsByItems(
     request: ListOSPolicyAssignmentRevisionsRequest
   ) -> some AsyncSequence<OSPolicyAssignment, any Swift.Error> & Sendable {
@@ -577,6 +840,10 @@ extension Clients.OsConfigZonalServiceProtocol {
   /// List the OS policy assignment revisions for a given OS policy assignment.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentRevisions(request:options:)``
   public func listOspolicyAssignmentRevisionsByItems(
     request: ListOSPolicyAssignmentRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<OSPolicyAssignment, any Swift.Error> & Sendable {
@@ -591,6 +858,13 @@ extension Clients.OsConfigZonalServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List the OS policy assignment revisions for a given OS policy assignment.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentRevisions(request:options:)``
   public func listOspolicyAssignmentRevisionsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<OSPolicyAssignment, any Swift.Error> & Sendable {
@@ -600,6 +874,24 @@ extension Clients.OsConfigZonalServiceProtocol {
     return self.listOspolicyAssignmentRevisionsByItems(request: request)
   }
 
+  /// Delete the OS policy assignment.
+  ///
+  /// This method creates a new revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// If the LRO completes and is not cancelled, all revisions associated with
+  /// the OS policy assignment are deleted.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/deleteOspolicyAssignment(request:options:)``
   public func deleteOspolicyAssignment(request: DeleteOSPolicyAssignmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -612,6 +904,24 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the OS policy assignment.
+  ///
+  /// This method creates a new revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// If the LRO completes and is not cancelled, all revisions associated with
+  /// the OS policy assignment are deleted.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/deleteOspolicyAssignmentPollingUntilDone(request:options:)``
   public func deleteOspolicyAssignmentPollingUntilDone(request: DeleteOSPolicyAssignmentRequest)
     async throws
   {
@@ -624,6 +934,24 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete the OS policy assignment.
+  ///
+  /// This method creates a new revision of the OS policy assignment.
+  ///
+  /// This method returns a long running operation (LRO) that contains the
+  /// rollout details. The rollout can be cancelled by cancelling the LRO.
+  ///
+  /// If the LRO completes and is not cancelled, all revisions associated with
+  /// the OS policy assignment are deleted.
+  ///
+  /// For more information, see [Method:
+  /// projects.locations.osPolicyAssignments.operations.cancel](https://cloud.google.com/compute/docs/osconfig/rest/v1/projects.locations.osPolicyAssignments.operations/cancel).
+  ///
+  /// @Snippet(path: "OsConfigZonalService_DeleteOSPolicyAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/deleteOspolicyAssignmentPollingUntilDone(request:options:)``
   public func deleteOspolicyAssignmentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -633,6 +961,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     try await self.deleteOspolicyAssignmentPollingUntilDone(request: request)
   }
 
+  /// Get the OS policy asssignment report for the specified Compute Engine VM
+  /// instance.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetOSPolicyAssignmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getOspolicyAssignmentReport(request:options:)``
   public func getOspolicyAssignmentReport(request: GetOSPolicyAssignmentReportRequest) async throws
     -> GoogleCloudOSConfigV1.OSPolicyAssignmentReport
   {
@@ -645,6 +981,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the OS policy asssignment report for the specified Compute Engine VM
+  /// instance.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetOSPolicyAssignmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getOspolicyAssignmentReport(request:options:)``
   public func getOspolicyAssignmentReport(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.OSPolicyAssignmentReport {
@@ -654,6 +998,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.getOspolicyAssignmentReport(request: request)
   }
 
+  /// List OS policy asssignment reports for all Compute Engine VM instances in
+  /// the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentReports(request:options:)``
   public func listOspolicyAssignmentReports(request: ListOSPolicyAssignmentReportsRequest)
     async throws -> GoogleCloudOSConfigV1.ListOSPolicyAssignmentReportsResponse
   {
@@ -666,6 +1018,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List OS policy asssignment reports for all Compute Engine VM instances in
+  /// the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentReports(request:options:)``
   public func listOspolicyAssignmentReportsByItems(
     request: ListOSPolicyAssignmentReportsRequest
   ) -> some AsyncSequence<OSPolicyAssignmentReport, any Swift.Error> & Sendable {
@@ -676,6 +1036,10 @@ extension Clients.OsConfigZonalServiceProtocol {
   /// the specified zone.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentReports(request:options:)``
   public func listOspolicyAssignmentReportsByItems(
     request: ListOSPolicyAssignmentReportsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<OSPolicyAssignmentReport, any Swift.Error> & Sendable {
@@ -690,6 +1054,14 @@ extension Clients.OsConfigZonalServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List OS policy asssignment reports for all Compute Engine VM instances in
+  /// the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListOSPolicyAssignmentReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listOspolicyAssignmentReports(request:options:)``
   public func listOspolicyAssignmentReportsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<OSPolicyAssignmentReport, any Swift.Error> & Sendable {
@@ -699,6 +1071,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     return self.listOspolicyAssignmentReportsByItems(request: request)
   }
 
+  /// Get inventory data for the specified VM instance. If the VM has no
+  /// associated inventory, the message `NOT_FOUND` is returned.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getInventory(request:options:)``
   public func getInventory(request: GetInventoryRequest) async throws
     -> GoogleCloudOSConfigV1.Inventory
   {
@@ -711,6 +1091,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get inventory data for the specified VM instance. If the VM has no
+  /// associated inventory, the message `NOT_FOUND` is returned.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetInventory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getInventory(request:options:)``
   public func getInventory(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.Inventory {
@@ -720,6 +1108,13 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.getInventory(request: request)
   }
 
+  /// List inventory data for all VM instances in the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listInventories(request:options:)``
   public func listInventories(request: ListInventoriesRequest) async throws
     -> GoogleCloudOSConfigV1.ListInventoriesResponse
   {
@@ -732,6 +1127,13 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List inventory data for all VM instances in the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listInventories(request:options:)``
   public func listInventoriesByItems(
     request: ListInventoriesRequest
   ) -> some AsyncSequence<GoogleCloudOSConfigV1.Inventory, any Swift.Error> & Sendable {
@@ -741,6 +1143,10 @@ extension Clients.OsConfigZonalServiceProtocol {
   /// List inventory data for all VM instances in the specified zone.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listInventories(request:options:)``
   public func listInventoriesByItems(
     request: ListInventoriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudOSConfigV1.Inventory, any Swift.Error> & Sendable {
@@ -755,6 +1161,13 @@ extension Clients.OsConfigZonalServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List inventory data for all VM instances in the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListInventories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listInventories(request:options:)``
   public func listInventoriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudOSConfigV1.Inventory, any Swift.Error> & Sendable {
@@ -764,6 +1177,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     return self.listInventoriesByItems(request: request)
   }
 
+  /// Gets the vulnerability report for the specified VM instance. Only VMs with
+  /// inventory data have vulnerability reports associated with them.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetVulnerabilityReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getVulnerabilityReport(request:options:)``
   public func getVulnerabilityReport(request: GetVulnerabilityReportRequest) async throws
     -> GoogleCloudOSConfigV1.VulnerabilityReport
   {
@@ -776,6 +1197,14 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the vulnerability report for the specified VM instance. Only VMs with
+  /// inventory data have vulnerability reports associated with them.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_GetVulnerabilityReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/getVulnerabilityReport(request:options:)``
   public func getVulnerabilityReport(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.VulnerabilityReport {
@@ -785,6 +1214,13 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.getVulnerabilityReport(request: request)
   }
 
+  /// List vulnerability reports for all VM instances in the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListVulnerabilityReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listVulnerabilityReports(request:options:)``
   public func listVulnerabilityReports(request: ListVulnerabilityReportsRequest) async throws
     -> GoogleCloudOSConfigV1.ListVulnerabilityReportsResponse
   {
@@ -797,6 +1233,13 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List vulnerability reports for all VM instances in the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListVulnerabilityReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listVulnerabilityReports(request:options:)``
   public func listVulnerabilityReportsByItems(
     request: ListVulnerabilityReportsRequest
   ) -> some AsyncSequence<VulnerabilityReport, any Swift.Error> & Sendable {
@@ -806,6 +1249,10 @@ extension Clients.OsConfigZonalServiceProtocol {
   /// List vulnerability reports for all VM instances in the specified zone.
   ///
   /// @Snippet(path: "OsConfigZonalService_ListVulnerabilityReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listVulnerabilityReports(request:options:)``
   public func listVulnerabilityReportsByItems(
     request: ListVulnerabilityReportsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<VulnerabilityReport, any Swift.Error> & Sendable {
@@ -820,6 +1267,13 @@ extension Clients.OsConfigZonalServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List vulnerability reports for all VM instances in the specified zone.
+  ///
+  /// @Snippet(path: "OsConfigZonalService_ListVulnerabilityReports")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/listVulnerabilityReports(request:options:)``
   public func listVulnerabilityReportsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<VulnerabilityReport, any Swift.Error> & Sendable {
@@ -829,6 +1283,9 @@ extension Clients.OsConfigZonalServiceProtocol {
     return self.listVulnerabilityReportsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -841,6 +1298,9 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -850,6 +1310,15 @@ extension Clients.OsConfigZonalServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "OsConfigZonalService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -860,6 +1329,15 @@ extension Clients.OsConfigZonalServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "OsConfigZonalService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigZonalServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

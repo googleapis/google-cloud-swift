@@ -24,6 +24,10 @@
   /// Cloud SQL connect service.
   ///
   /// @Snippet(path: "SqlConnectServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlConnectServiceProtocol``
   public final class SqlConnectServiceClient: Clients.SqlConnectServiceProtocol, Sendable {
     let inner: any Clients.SqlConnectServiceStub
 
@@ -40,6 +44,10 @@
     /// Retrieves connect settings about a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlConnectService_GetConnectSettings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getConnectSettings(request:)``
     public func getConnectSettings(
       request: GetConnectSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.ConnectSettings {
@@ -50,6 +58,10 @@
     /// DNS name.
     ///
     /// @Snippet(path: "SqlConnectService_ResolveConnectSettings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resolveConnectSettings(request:)``
     public func resolveConnectSettings(
       request: ResolveConnectSettingsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.ConnectSettings {
@@ -62,6 +74,10 @@
     /// database.
     ///
     /// @Snippet(path: "SqlConnectService_GenerateEphemeralCert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``generateEphemeralCert(request:)``
     public func generateEphemeralCert(
       request: GenerateEphemeralCertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.GenerateEphemeralCertResponse {
@@ -95,6 +111,13 @@
 
   // Default implementations
   extension Clients.SqlConnectServiceProtocol {
+    /// Retrieves connect settings about a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlConnectService_GetConnectSettings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlConnectServiceClient/getConnectSettings(request:options:)``
     public func getConnectSettings(request: GetConnectSettingsRequest) async throws
       -> GoogleCloudSqlV1.ConnectSettings
     {
@@ -107,6 +130,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves connect settings about a Cloud SQL instance using the instance
+    /// DNS name.
+    ///
+    /// @Snippet(path: "SqlConnectService_ResolveConnectSettings")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlConnectServiceClient/resolveConnectSettings(request:options:)``
     public func resolveConnectSettings(request: ResolveConnectSettingsRequest) async throws
       -> GoogleCloudSqlV1.ConnectSettings
     {
@@ -119,6 +150,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Generates a short-lived X509 certificate containing the provided public key
+    /// and signed by a private key specific to the target instance. Users may use
+    /// the certificate to authenticate as themselves when connecting to the
+    /// database.
+    ///
+    /// @Snippet(path: "SqlConnectService_GenerateEphemeralCert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlConnectServiceClient/generateEphemeralCert(request:options:)``
     public func generateEphemeralCert(request: GenerateEphemeralCertRequest) async throws
       -> GoogleCloudSqlV1.GenerateEphemeralCertResponse
     {

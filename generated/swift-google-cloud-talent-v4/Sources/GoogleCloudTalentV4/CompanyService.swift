@@ -25,6 +25,10 @@ import Foundation
 /// A service that handles company management, including CRUD and enumeration.
 ///
 /// @Snippet(path: "CompanyServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CompanyServiceProtocol``
 public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendable {
   let inner: any Clients.CompanyServiceStub
 
@@ -41,6 +45,11 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// Creates a new company entity.
   ///
   /// @Snippet(path: "CompanyService_CreateCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCompany(parent:company:)``
+  /// - ``createCompany(request:)``
   public func createCompany(
     request: CreateCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -50,6 +59,11 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// Retrieves specified company.
   ///
   /// @Snippet(path: "CompanyService_GetCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCompany(name:)``
+  /// - ``getCompany(request:)``
   public func getCompany(
     request: GetCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -59,6 +73,11 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// Updates specified company.
   ///
   /// @Snippet(path: "CompanyService_UpdateCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCompany(company:updateMask:)``
+  /// - ``updateCompany(request:)``
   public func updateCompany(
     request: UpdateCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -69,6 +88,11 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// Prerequisite: The company has no jobs associated with it.
   ///
   /// @Snippet(path: "CompanyService_DeleteCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCompany(name:)``
+  /// - ``deleteCompany(request:)``
   public func deleteCompany(
     request: DeleteCompanyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -78,6 +102,13 @@ public final class CompanyServiceClient: Clients.CompanyServiceProtocol, Sendabl
   /// Lists all companies associated with the project.
   ///
   /// @Snippet(path: "CompanyService_ListCompanies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCompanies(request:)``
+  /// - ``listCompaniesByItems(parent:)``
+  /// - ``listCompaniesByItems(request:)``
+  /// - ``listCompaniesByItems(request:options:)``
   public func listCompanies(
     request: ListCompaniesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTalentV4.ListCompaniesResponse {
@@ -132,6 +163,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CompanyServiceProtocol {
+  /// Creates a new company entity.
+  ///
+  /// @Snippet(path: "CompanyService_CreateCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/createCompany(request:options:)``
   public func createCompany(request: CreateCompanyRequest) async throws
     -> GoogleCloudTalentV4.Company
   {
@@ -144,6 +182,13 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new company entity.
+  ///
+  /// @Snippet(path: "CompanyService_CreateCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/createCompany(request:options:)``
   public func createCompany(
     parent: Swift.String,
     company: Company?,
@@ -155,6 +200,13 @@ extension Clients.CompanyServiceProtocol {
     return try await self.createCompany(request: request)
   }
 
+  /// Retrieves specified company.
+  ///
+  /// @Snippet(path: "CompanyService_GetCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/getCompany(request:options:)``
   public func getCompany(request: GetCompanyRequest) async throws -> GoogleCloudTalentV4.Company {
     try await self.getCompany(request: request, options: .init())
   }
@@ -165,6 +217,13 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves specified company.
+  ///
+  /// @Snippet(path: "CompanyService_GetCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/getCompany(request:options:)``
   public func getCompany(
     name: Swift.String,
   ) async throws -> GoogleCloudTalentV4.Company {
@@ -174,6 +233,13 @@ extension Clients.CompanyServiceProtocol {
     return try await self.getCompany(request: request)
   }
 
+  /// Updates specified company.
+  ///
+  /// @Snippet(path: "CompanyService_UpdateCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/updateCompany(request:options:)``
   public func updateCompany(request: UpdateCompanyRequest) async throws
     -> GoogleCloudTalentV4.Company
   {
@@ -186,6 +252,13 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates specified company.
+  ///
+  /// @Snippet(path: "CompanyService_UpdateCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/updateCompany(request:options:)``
   public func updateCompany(
     company: Company?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -197,6 +270,14 @@ extension Clients.CompanyServiceProtocol {
     return try await self.updateCompany(request: request)
   }
 
+  /// Deletes specified company.
+  /// Prerequisite: The company has no jobs associated with it.
+  ///
+  /// @Snippet(path: "CompanyService_DeleteCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/deleteCompany(request:options:)``
   public func deleteCompany(request: DeleteCompanyRequest) async throws {
     try await self.deleteCompany(request: request, options: .init())
   }
@@ -207,6 +288,14 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes specified company.
+  /// Prerequisite: The company has no jobs associated with it.
+  ///
+  /// @Snippet(path: "CompanyService_DeleteCompany")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/deleteCompany(request:options:)``
   public func deleteCompany(
     name: Swift.String,
   ) async throws {
@@ -216,6 +305,13 @@ extension Clients.CompanyServiceProtocol {
     try await self.deleteCompany(request: request)
   }
 
+  /// Lists all companies associated with the project.
+  ///
+  /// @Snippet(path: "CompanyService_ListCompanies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/listCompanies(request:options:)``
   public func listCompanies(request: ListCompaniesRequest) async throws
     -> GoogleCloudTalentV4.ListCompaniesResponse
   {
@@ -228,6 +324,13 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all companies associated with the project.
+  ///
+  /// @Snippet(path: "CompanyService_ListCompanies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/listCompanies(request:options:)``
   public func listCompaniesByItems(
     request: ListCompaniesRequest
   ) -> some AsyncSequence<Company, any Swift.Error> & Sendable {
@@ -237,6 +340,10 @@ extension Clients.CompanyServiceProtocol {
   /// Lists all companies associated with the project.
   ///
   /// @Snippet(path: "CompanyService_ListCompanies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/listCompanies(request:options:)``
   public func listCompaniesByItems(
     request: ListCompaniesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Company, any Swift.Error> & Sendable {
@@ -250,6 +357,13 @@ extension Clients.CompanyServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all companies associated with the project.
+  ///
+  /// @Snippet(path: "CompanyService_ListCompanies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompanyServiceClient/listCompanies(request:options:)``
   public func listCompaniesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Company, any Swift.Error> & Sendable {
@@ -259,6 +373,9 @@ extension Clients.CompanyServiceProtocol {
     return self.listCompaniesByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -271,6 +388,9 @@ extension Clients.CompanyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

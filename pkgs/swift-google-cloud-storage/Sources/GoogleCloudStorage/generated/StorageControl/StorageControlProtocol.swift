@@ -554,6 +554,34 @@ public protocol StorageControlProtocol: Sendable {
 }
 
 extension StorageControlProtocol {
+  /// Permanently deletes an empty bucket.
+  /// The request fails if there are any live or
+  /// noncurrent objects in the bucket, but the request succeeds if the
+  /// bucket only contains soft-deleted objects or incomplete uploads, such
+  /// as ongoing XML API multipart uploads. Does not permanently delete
+  /// soft-deleted objects.
+  ///
+  /// When this API is used to delete a bucket containing an object that has a
+  /// soft delete policy
+  /// enabled, the object becomes soft deleted, and the
+  /// `softDeleteTime` and `hardDeleteTime` properties are set on the
+  /// object.
+  ///
+  /// Objects and multipart uploads that were in the bucket at the time of
+  /// deletion are also retained for the specified retention duration. When
+  /// a soft-deleted bucket reaches the end of its retention duration, it
+  /// is permanently deleted. The `hardDeleteTime` of the bucket always
+  /// equals
+  /// or exceeds the expiration time of the last soft-deleted object in the
+  /// bucket.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.delete` IAM permission on the bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/deleteBucket(request:options:)``
   public func deleteBucket(request: DeleteBucketRequest) async throws {
     try await self.deleteBucket(request: request, options: .init())
   }
@@ -564,6 +592,21 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns metadata for the specified bucket.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.get`
+  /// IAM permission on
+  /// the bucket. Additionally, to return specific bucket metadata, the
+  /// authenticated user must have the following permissions:
+  ///
+  /// - To return the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To return the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getBucket(request:options:)``
   public func getBucket(request: GetBucketRequest) async throws -> Bucket {
     try await self.getBucket(request: request, options: .init())
   }
@@ -574,6 +617,21 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new bucket.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.create` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated user
+  /// must have the following permissions:
+  ///
+  /// - To enable object retention using the `enableObjectRetention` query
+  /// parameter: `storage.buckets.enableObjectRetention`
+  /// - To set the bucket IP filtering rules: `storage.buckets.setIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createBucket(request:options:)``
   public func createBucket(request: CreateBucketRequest) async throws -> Bucket {
     try await self.createBucket(request: request, options: .init())
   }
@@ -584,6 +642,21 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of buckets for a given project, ordered
+  /// lexicographically by name.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.list` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated
+  /// user must have the following permissions:
+  ///
+  /// - To list the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listBuckets(request:options:)``
   public func listBuckets(request: ListBucketsRequest) async throws -> ListBucketsResponse {
     try await self.listBuckets(request: request, options: .init())
   }
@@ -594,12 +667,42 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of buckets for a given project, ordered
+  /// lexicographically by name.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.list` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated
+  /// user must have the following permissions:
+  ///
+  /// - To list the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listBuckets(request:options:)``
   public func listBucketsByItems(
     request: ListBucketsRequest
   ) -> some AsyncSequence<Bucket, any Swift.Error> & Sendable {
     self.listBucketsByItems(request: request, options: .init())
   }
 
+  /// Retrieves a list of buckets for a given project, ordered
+  /// lexicographically by name.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.list` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated
+  /// user must have the following permissions:
+  ///
+  /// - To list the IAM policies: `storage.buckets.getIamPolicy`
+  /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listBuckets(request:options:)``
   public func listBucketsByItems(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Bucket, any Swift.Error> & Sendable {
@@ -612,6 +715,29 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Permanently locks the retention
+  /// policy that is
+  /// currently applied to the specified bucket.
+  ///
+  /// Caution: Locking a bucket is an
+  /// irreversible action. Once you lock a bucket:
+  ///
+  /// - You cannot remove the retention policy from the bucket.
+  /// - You cannot decrease the retention period for the policy.
+  ///
+  /// Once locked, you must delete the entire bucket in order to remove the
+  /// bucket's retention policy. However, before you can delete the bucket, you
+  /// must delete all the objects in the bucket, which is only
+  /// possible if all the objects have reached the retention period set by the
+  /// retention policy.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.update` IAM permission on the bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/lockBucketRetentionPolicy(request:options:)``
   public func lockBucketRetentionPolicy(request: LockBucketRetentionPolicyRequest) async throws
     -> Bucket
   {
@@ -624,6 +750,23 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a bucket. Changes to the bucket are readable immediately after
+  /// writing, but configuration changes might take time to propagate. This
+  /// method supports `patch` semantics.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.buckets.update` IAM permission on the bucket.
+  /// Additionally, to enable specific bucket features, the authenticated user
+  /// must have the following permissions:
+  ///
+  /// - To set bucket IP filtering rules: `storage.buckets.setIpFilter`
+  /// - To update public access prevention policies or access control lists
+  /// (ACLs): `storage.buckets.setIamPolicy`
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateBucket(request:options:)``
   public func updateBucket(request: UpdateBucketRequest) async throws -> Bucket {
     try await self.updateBucket(request: request, options: .init())
   }
@@ -634,6 +777,21 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Concatenates a list of existing objects into a new object in the same
+  /// bucket. The existing source objects are unaffected by this operation.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires the `storage.objects.create` and `storage.objects.get` IAM
+  /// permissions to use this method. If the new composite object
+  /// overwrites an existing object, the authenticated user must also have
+  /// the `storage.objects.delete` permission. If the request body includes
+  /// the retention property, the authenticated user must also have the
+  /// `storage.objects.setRetention` IAM permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/composeObject(request:options:)``
   public func composeObject(request: ComposeObjectRequest) async throws -> Object {
     try await self.composeObject(request: request, options: .init())
   }
@@ -644,6 +802,30 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an object and its metadata. Deletions are permanent if versioning
+  /// is not enabled for the bucket, or if the generation parameter is used, or
+  /// if soft delete is not
+  /// enabled for the bucket.
+  /// When this API is used to delete an object from a bucket that has soft
+  /// delete policy enabled, the object becomes soft deleted, and the
+  /// `softDeleteTime` and `hardDeleteTime` properties are set on the object.
+  /// This API cannot be used to permanently delete soft-deleted objects.
+  /// Soft-deleted objects are permanently deleted according to their
+  /// `hardDeleteTime`.
+  ///
+  /// You can use the [`RestoreObject`][google.storage.v2.Storage.RestoreObject]
+  /// API to restore soft-deleted objects until the soft delete retention period
+  /// has passed.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.objects.delete` IAM permission on the bucket.
+  ///
+  /// [google.storage.v2.Storage.RestoreObject]: <doc:StorageControlClient/restoreObject(request:options:)>
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/deleteObject(request:options:)``
   public func deleteObject(request: DeleteObjectRequest) async throws {
     try await self.deleteObject(request: request, options: .init())
   }
@@ -654,6 +836,47 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores a
+  /// soft-deleted object.
+  /// When a soft-deleted object is restored, a new copy of that object is
+  /// created in the same bucket and inherits the same metadata as the
+  /// soft-deleted object. The inherited metadata is the metadata that existed
+  /// when the original object became soft deleted, with the following
+  /// exceptions:
+  ///
+  ///   - The `createTime` of the new object is set to the time at which the
+  ///   soft-deleted object was restored.
+  ///   - The `softDeleteTime` and `hardDeleteTime` values are cleared.
+  ///   - A new generation is assigned and the metageneration is reset to 1.
+  ///   - If the soft-deleted object was in a bucket that had Autoclass enabled,
+  ///   the new object is
+  ///     restored to Standard storage.
+  ///   - The restored object inherits the bucket's default object ACL, unless
+  ///   `copySourceAcl` is `true`.
+  ///
+  /// If a live object using the same name already exists in the bucket and
+  /// becomes overwritten, the live object becomes a noncurrent object if Object
+  /// Versioning is enabled on the bucket. If Object Versioning is not enabled,
+  /// the live object becomes soft deleted.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires the following IAM permissions to use this method:
+  ///
+  ///   - `storage.objects.restore`
+  ///   - `storage.objects.create`
+  ///   - `storage.objects.delete` (only required if overwriting an existing
+  ///   object)
+  ///   - `storage.objects.getIamPolicy` (only required if `projection` is `full`
+  ///   and the relevant bucket
+  ///     has uniform bucket-level access disabled)
+  ///   - `storage.objects.setIamPolicy` (only required if `copySourceAcl` is
+  ///   `true` and the relevant
+  ///     bucket has uniform bucket-level access disabled)
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/restoreObject(request:options:)``
   public func restoreObject(request: RestoreObjectRequest) async throws -> Object {
     try await self.restoreObject(request: request, options: .init())
   }
@@ -664,6 +887,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves object metadata.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.objects.get` IAM permission on the bucket.
+  /// To return object ACLs, the authenticated user must also have
+  /// the `storage.objects.getIamPolicy` permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getObject(request:options:)``
   public func getObject(request: GetObjectRequest) async throws -> Object {
     try await self.getObject(request: request, options: .init())
   }
@@ -674,6 +908,16 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an object's metadata.
+  /// Equivalent to JSON API's `storage.objects.patch` method.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires `storage.objects.update` IAM permission on the bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateObject(request:options:)``
   public func updateObject(request: UpdateObjectRequest) async throws -> Object {
     try await self.updateObject(request: request, options: .init())
   }
@@ -684,6 +928,18 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of objects matching the criteria.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// The authenticated user requires `storage.objects.list`
+  /// IAM permission to use this method. To return object ACLs, the
+  /// authenticated user must also
+  /// have the `storage.objects.getIamPolicy` permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listObjects(request:options:)``
   public func listObjects(request: ListObjectsRequest) async throws -> ListObjectsResponse {
     try await self.listObjects(request: request, options: .init())
   }
@@ -694,12 +950,36 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of objects matching the criteria.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// The authenticated user requires `storage.objects.list`
+  /// IAM permission to use this method. To return object ACLs, the
+  /// authenticated user must also
+  /// have the `storage.objects.getIamPolicy` permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listObjects(request:options:)``
   public func listObjectsByItems(
     request: ListObjectsRequest
   ) -> some AsyncSequence<Object, any Swift.Error> & Sendable {
     self.listObjectsByItems(request: request, options: .init())
   }
 
+  /// Retrieves a list of objects matching the criteria.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// The authenticated user requires `storage.objects.list`
+  /// IAM permission to use this method. To return object ACLs, the
+  /// authenticated user must also
+  /// have the `storage.objects.getIamPolicy` permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listObjects(request:options:)``
   public func listObjectsByItems(
     request: ListObjectsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Object, any Swift.Error> & Sendable {
@@ -712,6 +992,12 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Rewrites a source object to a destination object. Optionally overrides
+  /// metadata.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/rewriteObject(request:options:)``
   public func rewriteObject(request: RewriteObjectRequest) async throws -> RewriteResponse {
     try await self.rewriteObject(request: request, options: .init())
   }
@@ -722,6 +1008,24 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves the source object to the destination object in the same bucket.
+  /// This operation moves a source object to a destination object in the
+  /// same bucket by renaming the object. The move itself is an atomic
+  /// transaction, ensuring all steps either complete successfully or no
+  /// changes are made.
+  ///
+  /// **IAM Permissions**:
+  ///
+  /// Requires the following IAM permissions to use this method:
+  ///
+  ///   - `storage.objects.move`
+  ///   - `storage.objects.create`
+  ///   - `storage.objects.delete` (only required if overwriting an existing
+  ///   object)
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/moveObject(request:options:)``
   public func moveObject(request: MoveObjectRequest) async throws -> Object {
     try await self.moveObject(request: request, options: .init())
   }
@@ -732,6 +1036,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new folder. This operation is only applicable to a hierarchical
+  /// namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createFolder(request:options:)``
   public func createFolder(request: CreateFolderRequest) async throws -> Folder {
     try await self.createFolder(request: request, options: .init())
   }
@@ -742,6 +1052,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Permanently deletes an empty folder. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/deleteFolder(request:options:)``
   public func deleteFolder(request: DeleteFolderRequest) async throws {
     try await self.deleteFolder(request: request, options: .init())
   }
@@ -752,6 +1068,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns metadata for the specified folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getFolder(request:options:)``
   public func getFolder(request: GetFolderRequest) async throws -> Folder {
     try await self.getFolder(request: request, options: .init())
   }
@@ -762,6 +1084,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listFolders(request:options:)``
   public func listFolders(request: ListFoldersRequest) async throws -> ListFoldersResponse {
     try await self.listFolders(request: request, options: .init())
   }
@@ -772,12 +1100,24 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listFolders(request:options:)``
   public func listFoldersByItems(
     request: ListFoldersRequest
   ) -> some AsyncSequence<Folder, any Swift.Error> & Sendable {
     self.listFoldersByItems(request: request, options: .init())
   }
 
+  /// Retrieves a list of folders. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listFolders(request:options:)``
   public func listFoldersByItems(
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Folder, any Swift.Error> & Sendable {
@@ -790,6 +1130,14 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Renames a source folder to a destination folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
+  /// source and destination folders are locked until the long running operation
+  /// completes.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/renameFolder(request:options:)``
   public func renameFolder(request: RenameFolderRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.renameFolder(request: request, options: .init())
@@ -801,6 +1149,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Renames a source folder to a destination folder. This operation is only
+  /// applicable to a hierarchical namespace enabled bucket. During a rename, the
+  /// source and destination folders are locked until the long running operation
+  /// completes.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/renameFolderPollingUntilDone(request:options:)``
   public func renameFolderPollingUntilDone(request: RenameFolderRequest) async throws -> Folder {
     return try await self.renameFolderPollingUntilDone(request: request, options: .init())
   }
@@ -811,6 +1167,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a folder recursively. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/deleteFolderRecursive(request:options:)``
   public func deleteFolderRecursive(request: DeleteFolderRecursiveRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -823,6 +1185,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a folder recursively. This operation is only applicable to a
+  /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/deleteFolderRecursivePollingUntilDone(request:options:)``
   public func deleteFolderRecursivePollingUntilDone(request: DeleteFolderRecursiveRequest)
     async throws
   {
@@ -835,6 +1203,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the storage layout configuration for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getStorageLayout(request:options:)``
   public func getStorageLayout(request: GetStorageLayoutRequest) async throws -> StorageLayout {
     try await self.getStorageLayout(request: request, options: .init())
   }
@@ -845,6 +1218,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createManagedFolder(request:options:)``
   public func createManagedFolder(request: CreateManagedFolderRequest) async throws -> ManagedFolder
   {
     try await self.createManagedFolder(request: request, options: .init())
@@ -856,6 +1234,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Permanently deletes an empty managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/deleteManagedFolder(request:options:)``
   public func deleteManagedFolder(request: DeleteManagedFolderRequest) async throws {
     try await self.deleteManagedFolder(request: request, options: .init())
   }
@@ -866,6 +1249,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns metadata for the specified managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getManagedFolder(request:options:)``
   public func getManagedFolder(request: GetManagedFolderRequest) async throws -> ManagedFolder {
     try await self.getManagedFolder(request: request, options: .init())
   }
@@ -876,6 +1264,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of managed folders for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listManagedFolders(request:options:)``
   public func listManagedFolders(request: ListManagedFoldersRequest) async throws
     -> ListManagedFoldersResponse
   {
@@ -888,12 +1281,22 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a list of managed folders for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listManagedFolders(request:options:)``
   public func listManagedFoldersByItems(
     request: ListManagedFoldersRequest
   ) -> some AsyncSequence<ManagedFolder, any Swift.Error> & Sendable {
     self.listManagedFoldersByItems(request: request, options: .init())
   }
 
+  /// Retrieves a list of managed folders for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listManagedFolders(request:options:)``
   public func listManagedFoldersByItems(
     request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ManagedFolder, any Swift.Error> & Sendable {
@@ -906,6 +1309,12 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Updates a managed folder. Currently, this RPC only supports updating the
+  /// `rapid_cache_config` field.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateManagedFolder(request:options:)``
   public func updateManagedFolder(request: UpdateManagedFolderRequest) async throws -> ManagedFolder
   {
     try await self.updateManagedFolder(request: request, options: .init())
@@ -917,6 +1326,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createAnywhereCache(request:options:)``
   public func createAnywhereCache(request: CreateAnywhereCacheRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -929,6 +1343,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createAnywhereCachePollingUntilDone(request:options:)``
   public func createAnywhereCachePollingUntilDone(request: CreateAnywhereCacheRequest) async throws
     -> AnywhereCache
   {
@@ -941,6 +1360,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
+  /// `admission_policy`.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateAnywhereCache(request:options:)``
   public func updateAnywhereCache(request: UpdateAnywhereCacheRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -953,6 +1378,12 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
+  /// `admission_policy`.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateAnywhereCachePollingUntilDone(request:options:)``
   public func updateAnywhereCachePollingUntilDone(request: UpdateAnywhereCacheRequest) async throws
     -> AnywhereCache
   {
@@ -965,6 +1396,14 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disables an Anywhere Cache instance. A disabled instance is read-only. The
+  /// disablement could be revoked by calling ResumeAnywhereCache. The cache
+  /// instance will be deleted automatically if it remains in the disabled state
+  /// for at least one hour.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/disableAnywhereCache(request:options:)``
   public func disableAnywhereCache(request: DisableAnywhereCacheRequest) async throws
     -> AnywhereCache
   {
@@ -977,6 +1416,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pauses an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/pauseAnywhereCache(request:options:)``
   public func pauseAnywhereCache(request: PauseAnywhereCacheRequest) async throws -> AnywhereCache {
     try await self.pauseAnywhereCache(request: request, options: .init())
   }
@@ -987,6 +1431,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resumes a disabled or paused Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/resumeAnywhereCache(request:options:)``
   public func resumeAnywhereCache(request: ResumeAnywhereCacheRequest) async throws -> AnywhereCache
   {
     try await self.resumeAnywhereCache(request: request, options: .init())
@@ -998,6 +1447,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getAnywhereCache(request:options:)``
   public func getAnywhereCache(request: GetAnywhereCacheRequest) async throws -> AnywhereCache {
     try await self.getAnywhereCache(request: request, options: .init())
   }
@@ -1008,6 +1462,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Anywhere Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listAnywhereCaches(request:options:)``
   public func listAnywhereCaches(request: ListAnywhereCachesRequest) async throws
     -> ListAnywhereCachesResponse
   {
@@ -1020,12 +1479,22 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Anywhere Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listAnywhereCaches(request:options:)``
   public func listAnywhereCachesByItems(
     request: ListAnywhereCachesRequest
   ) -> some AsyncSequence<AnywhereCache, any Swift.Error> & Sendable {
     self.listAnywhereCachesByItems(request: request, options: .init())
   }
 
+  /// Lists Anywhere Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listAnywhereCaches(request:options:)``
   public func listAnywhereCachesByItems(
     request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AnywhereCache, any Swift.Error> & Sendable {
@@ -1038,6 +1507,11 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Creates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createRapidCache(request:options:)``
   public func createRapidCache(request: CreateRapidCacheRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1050,6 +1524,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/createRapidCachePollingUntilDone(request:options:)``
   public func createRapidCachePollingUntilDone(request: CreateRapidCacheRequest) async throws
     -> RapidCache
   {
@@ -1062,6 +1541,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateRapidCache(request:options:)``
   public func updateRapidCache(request: UpdateRapidCacheRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1074,6 +1558,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateRapidCachePollingUntilDone(request:options:)``
   public func updateRapidCachePollingUntilDone(request: UpdateRapidCacheRequest) async throws
     -> RapidCache
   {
@@ -1086,6 +1575,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disables a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/disableRapidCache(request:options:)``
   public func disableRapidCache(request: DisableRapidCacheRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1098,6 +1592,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disables a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/disableRapidCachePollingUntilDone(request:options:)``
   public func disableRapidCachePollingUntilDone(request: DisableRapidCacheRequest) async throws
     -> RapidCache
   {
@@ -1110,6 +1609,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getRapidCache(request:options:)``
   public func getRapidCache(request: GetRapidCacheRequest) async throws -> RapidCache {
     try await self.getRapidCache(request: request, options: .init())
   }
@@ -1120,6 +1624,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Rapid Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listRapidCaches(request:options:)``
   public func listRapidCaches(request: ListRapidCachesRequest) async throws
     -> ListRapidCachesResponse
   {
@@ -1132,12 +1641,22 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Rapid Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listRapidCaches(request:options:)``
   public func listRapidCachesByItems(
     request: ListRapidCachesRequest
   ) -> some AsyncSequence<RapidCache, any Swift.Error> & Sendable {
     self.listRapidCachesByItems(request: request, options: .init())
   }
 
+  /// Lists Rapid Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listRapidCaches(request:options:)``
   public func listRapidCachesByItems(
     request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RapidCache, any Swift.Error> & Sendable {
@@ -1150,6 +1669,11 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns the Project scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getProjectIntelligenceConfig(request:options:)``
   public func getProjectIntelligenceConfig(request: GetProjectIntelligenceConfigRequest)
     async throws -> IntelligenceConfig
   {
@@ -1162,6 +1686,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Project scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateProjectIntelligenceConfig(request:options:)``
   public func updateProjectIntelligenceConfig(request: UpdateProjectIntelligenceConfigRequest)
     async throws -> IntelligenceConfig
   {
@@ -1174,6 +1703,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the Folder scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getFolderIntelligenceConfig(request:options:)``
   public func getFolderIntelligenceConfig(request: GetFolderIntelligenceConfigRequest) async throws
     -> IntelligenceConfig
   {
@@ -1186,6 +1720,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Folder scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateFolderIntelligenceConfig(request:options:)``
   public func updateFolderIntelligenceConfig(request: UpdateFolderIntelligenceConfigRequest)
     async throws -> IntelligenceConfig
   {
@@ -1198,6 +1737,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the Organization scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getOrganizationIntelligenceConfig(request:options:)``
   public func getOrganizationIntelligenceConfig(request: GetOrganizationIntelligenceConfigRequest)
     async throws -> IntelligenceConfig
   {
@@ -1210,6 +1754,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Organization scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/updateOrganizationIntelligenceConfig(request:options:)``
   public func updateOrganizationIntelligenceConfig(
     request: UpdateOrganizationIntelligenceConfigRequest
   ) async throws -> IntelligenceConfig {
@@ -1222,6 +1771,15 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the IAM policy for a specified bucket.
+  /// The `resource` field in the request should be
+  /// `projects/_/buckets/{bucket}` for a bucket, or
+  /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+  /// for a managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1234,6 +1792,15 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an IAM policy for the specified bucket.
+  /// The `resource` field in the request should be
+  /// `projects/_/buckets/{bucket}` for a bucket, or
+  /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+  /// for a managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1246,6 +1813,17 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Tests a set of permissions on the given bucket, object, or managed folder
+  /// to see which, if any, are held by the caller.
+  /// The `resource` field in the request should be
+  /// `projects/_/buckets/{bucket}` for a bucket,
+  /// `projects/_/buckets/{bucket}/objects/{object}` for an object, or
+  /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
+  /// for a managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1258,6 +1836,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the `IntelligenceFinding` for a project.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getIntelligenceFinding(request:options:)``
   public func getIntelligenceFinding(request: GetIntelligenceFindingRequest) async throws
     -> IntelligenceFinding
   {
@@ -1270,6 +1853,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listIntelligenceFindings(request:options:)``
   public func listIntelligenceFindings(request: ListIntelligenceFindingsRequest) async throws
     -> ListIntelligenceFindingsResponse
   {
@@ -1282,12 +1870,22 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listIntelligenceFindings(request:options:)``
   public func listIntelligenceFindingsByItems(
     request: ListIntelligenceFindingsRequest
   ) -> some AsyncSequence<IntelligenceFinding, any Swift.Error> & Sendable {
     self.listIntelligenceFindingsByItems(request: request, options: .init())
   }
 
+  /// Lists the `IntelligenceFinding` resources for the specified the project.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listIntelligenceFindings(request:options:)``
   public func listIntelligenceFindingsByItems(
     request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<IntelligenceFinding, any Swift.Error> & Sendable {
@@ -1301,6 +1899,12 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/summarizeIntelligenceFindings(request:options:)``
   public func summarizeIntelligenceFindings(request: SummarizeIntelligenceFindingsRequest)
     async throws -> SummarizeIntelligenceFindingsResponse
   {
@@ -1313,12 +1917,24 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/summarizeIntelligenceFindings(request:options:)``
   public func summarizeIntelligenceFindingsByItems(
     request: SummarizeIntelligenceFindingsRequest
   ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
     self.summarizeIntelligenceFindingsByItems(request: request, options: .init())
   }
 
+  /// Summarizes the intelligence findings for the specified scope (organization,
+  /// folder or project).
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/summarizeIntelligenceFindings(request:options:)``
   public func summarizeIntelligenceFindingsByItems(
     request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FindingSummary, any Swift.Error> & Sendable {
@@ -1332,6 +1948,11 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets the `IntelligenceFindingRevision` resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getIntelligenceFindingRevision(request:options:)``
   public func getIntelligenceFindingRevision(request: GetIntelligenceFindingRevisionRequest)
     async throws -> IntelligenceFindingRevision
   {
@@ -1344,6 +1965,11 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the revisions of an `IntelligenceFinding` resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listIntelligenceFindingRevisions(request:options:)``
   public func listIntelligenceFindingRevisions(request: ListIntelligenceFindingRevisionsRequest)
     async throws -> ListIntelligenceFindingRevisionsResponse
   {
@@ -1356,12 +1982,22 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the revisions of an `IntelligenceFinding` resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listIntelligenceFindingRevisions(request:options:)``
   public func listIntelligenceFindingRevisionsByItems(
     request: ListIntelligenceFindingRevisionsRequest
   ) -> some AsyncSequence<IntelligenceFindingRevision, any Swift.Error> & Sendable {
     self.listIntelligenceFindingRevisionsByItems(request: request, options: .init())
   }
 
+  /// Lists all the revisions of an `IntelligenceFinding` resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/listIntelligenceFindingRevisions(request:options:)``
   public func listIntelligenceFindingRevisionsByItems(
     request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<IntelligenceFindingRevision, any Swift.Error> & Sendable {
@@ -1375,6 +2011,21 @@ extension StorageControlProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves the full content of an object context, including its key, value,
+  /// and any associated extended data for a given context key.
+  ///
+  /// Object contexts can optionally contain extended data. If an object context
+  /// contains extended data, the metadata payload structure will contain only
+  /// its type URL. To retrieve the full extended data, call this method.
+  ///
+  /// Returns the complete representation of the context as an
+  /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
+  ///
+  /// [google.storage.control.v2.ObjectFullContext]: <doc:ObjectFullContext>
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/viewObjectFullContext(request:options:)``
   public func viewObjectFullContext(request: ViewObjectFullContextRequest) async throws
     -> ObjectFullContext
   {
@@ -1387,6 +2038,13 @@ extension StorageControlProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageControlClient/getOperation(request:options:)``
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

@@ -25,6 +25,10 @@
   /// Service for managing User Licenses.
   ///
   /// @Snippet(path: "UserLicenseServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/UserLicenseServiceProtocol``
   public final class UserLicenseServiceClient: Clients.UserLicenseServiceProtocol, Sendable {
     let inner: any Clients.UserLicenseServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@
     /// Lists the User Licenses.
     ///
     /// @Snippet(path: "UserLicenseService_ListUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listUserLicenses(request:)``
+    /// - ``listUserLicensesByItems(parent:)``
+    /// - ``listUserLicensesByItems(request:)``
+    /// - ``listUserLicensesByItems(request:options:)``
     public func listUserLicenses(
       request: ListUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse {
@@ -59,6 +70,11 @@
     /// [google.cloud.discoveryengine.v1.LicenseConfigUsageStats]: <doc:LicenseConfigUsageStats>
     ///
     /// @Snippet(path: "UserLicenseService_ListLicenseConfigsUsageStats")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLicenseConfigsUsageStats(parent:)``
+    /// - ``listLicenseConfigsUsageStats(request:)``
     public func listLicenseConfigsUsageStats(
       request: ListLicenseConfigsUsageStatsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
@@ -69,6 +85,12 @@
     /// This method is used for batch assign/unassign licenses to users.
     ///
     /// @Snippet(path: "UserLicenseService_BatchUpdateUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchUpdateUserLicenses(request:)``
+    /// - ``batchUpdateUserLicensesPollingUntilDone(request:)``
+    /// - ``batchUpdateUserLicensesPollingUntilDone(request:options:)``
     public func batchUpdateUserLicenses(
       request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -79,6 +101,12 @@
     /// This method is used for batch assign/unassign licenses to users.
     ///
     /// @Snippet(path: "UserLicenseService_BatchUpdateUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchUpdateUserLicenses(request:)``
+    /// - ``batchUpdateUserLicenses(request:options:)``
+    /// - ``batchUpdateUserLicensesPollingUntilDone(request:)``
     public func batchUpdateUserLicensesPollingUntilDone(
       request: BatchUpdateUserLicensesRequest, options: GoogleGax.RequestOptions
     ) async throws -> BatchUpdateUserLicensesResponse {
@@ -110,6 +138,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserLicenseService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -132,6 +167,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserLicenseService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -180,6 +220,13 @@
 
   // Default implementations
   extension Clients.UserLicenseServiceProtocol {
+    /// Lists the User Licenses.
+    ///
+    /// @Snippet(path: "UserLicenseService_ListUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listUserLicenses(request:options:)``
     public func listUserLicenses(request: ListUserLicensesRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListUserLicensesResponse
     {
@@ -192,6 +239,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the User Licenses.
+    ///
+    /// @Snippet(path: "UserLicenseService_ListUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listUserLicenses(request:options:)``
     public func listUserLicensesByItems(
       request: ListUserLicensesRequest
     ) -> some AsyncSequence<UserLicense, any Swift.Error> & Sendable {
@@ -201,6 +255,10 @@
     /// Lists the User Licenses.
     ///
     /// @Snippet(path: "UserLicenseService_ListUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listUserLicenses(request:options:)``
     public func listUserLicensesByItems(
       request: ListUserLicensesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<UserLicense, any Swift.Error> & Sendable {
@@ -215,6 +273,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the User Licenses.
+    ///
+    /// @Snippet(path: "UserLicenseService_ListUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listUserLicenses(request:options:)``
     public func listUserLicensesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<UserLicense, any Swift.Error> & Sendable {
@@ -224,6 +289,17 @@
       return self.listUserLicensesByItems(request: request)
     }
 
+    /// Lists all the
+    /// [LicenseConfigUsageStats][google.cloud.discoveryengine.v1.LicenseConfigUsageStats]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfigUsageStats]: <doc:LicenseConfigUsageStats>
+    ///
+    /// @Snippet(path: "UserLicenseService_ListLicenseConfigsUsageStats")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listLicenseConfigsUsageStats(request:options:)``
     public func listLicenseConfigsUsageStats(request: ListLicenseConfigsUsageStatsRequest)
       async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse
     {
@@ -236,6 +312,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the
+    /// [LicenseConfigUsageStats][google.cloud.discoveryengine.v1.LicenseConfigUsageStats]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.LicenseConfigUsageStats]: <doc:LicenseConfigUsageStats>
+    ///
+    /// @Snippet(path: "UserLicenseService_ListLicenseConfigsUsageStats")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listLicenseConfigsUsageStats(request:options:)``
     public func listLicenseConfigsUsageStats(
       parent: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListLicenseConfigsUsageStatsResponse {
@@ -245,6 +332,14 @@
       return try await self.listLicenseConfigsUsageStats(request: request)
     }
 
+    /// Updates the User License.
+    /// This method is used for batch assign/unassign licenses to users.
+    ///
+    /// @Snippet(path: "UserLicenseService_BatchUpdateUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/batchUpdateUserLicenses(request:options:)``
     public func batchUpdateUserLicenses(request: BatchUpdateUserLicensesRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -257,6 +352,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the User License.
+    /// This method is used for batch assign/unassign licenses to users.
+    ///
+    /// @Snippet(path: "UserLicenseService_BatchUpdateUserLicenses")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/batchUpdateUserLicensesPollingUntilDone(request:options:)``
     public func batchUpdateUserLicensesPollingUntilDone(request: BatchUpdateUserLicensesRequest)
       async throws -> BatchUpdateUserLicensesResponse
     {
@@ -270,6 +373,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserLicenseService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -282,6 +394,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserLicenseService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -293,6 +414,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "UserLicenseService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -306,6 +431,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserLicenseService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -317,6 +451,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -329,6 +466,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -338,6 +478,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserLicenseService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -348,6 +497,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "UserLicenseService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``UserLicenseServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

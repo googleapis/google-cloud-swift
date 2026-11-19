@@ -25,6 +25,10 @@ import Foundation
 /// Service to manage AssuredWorkloads.
 ///
 /// @Snippet(path: "AssuredWorkloadsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AssuredWorkloadsServiceProtocol``
 public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServiceProtocol, Sendable
 {
   let inner: any Clients.AssuredWorkloadsServiceStub
@@ -47,6 +51,13 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// Creates Assured Workload.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_CreateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkload(request:)``
+  /// - ``createWorkloadPollingUntilDone(parent:workload:)``
+  /// - ``createWorkloadPollingUntilDone(request:)``
+  /// - ``createWorkloadPollingUntilDone(request:options:)``
   public func createWorkload(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -56,6 +67,13 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// Creates Assured Workload.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_CreateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkload(request:)``
+  /// - ``createWorkload(request:options:)``
+  /// - ``createWorkloadPollingUntilDone(parent:workload:)``
+  /// - ``createWorkloadPollingUntilDone(request:)``
   public func createWorkloadPollingUntilDone(
     request: CreateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workload {
@@ -86,6 +104,11 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// Only one update operation per workload can be in progress.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_UpdateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkload(request:)``
+  /// - ``updateWorkload(workload:updateMask:)``
   public func updateWorkload(
     request: UpdateWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
@@ -100,6 +123,10 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// to use this functionality.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_RestrictAllowedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restrictAllowedResources(request:)``
   public func restrictAllowedResources(
     request: RestrictAllowedResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssuredWorkloadsV1.RestrictAllowedResourcesResponse {
@@ -111,6 +138,11 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// FAILED_PRECONDITION error.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_DeleteWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkload(name:)``
+  /// - ``deleteWorkload(request:)``
   public func deleteWorkload(
     request: DeleteWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -120,6 +152,11 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// Gets Assured Workload associated with a CRM Node
   ///
   /// @Snippet(path: "AssuredWorkloadsService_GetWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkload(name:)``
+  /// - ``getWorkload(request:)``
   public func getWorkload(
     request: GetWorkloadRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
@@ -129,6 +166,13 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// Lists Assured Workloads under a CRM Node.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkloads(request:)``
+  /// - ``listWorkloadsByItems(parent:)``
+  /// - ``listWorkloadsByItems(request:)``
+  /// - ``listWorkloadsByItems(request:options:)``
   public func listWorkloads(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse {
@@ -140,6 +184,13 @@ public final class AssuredWorkloadsServiceClient: Clients.AssuredWorkloadsServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -209,6 +260,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AssuredWorkloadsServiceProtocol {
+  /// Creates Assured Workload.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_CreateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/createWorkload(request:options:)``
   public func createWorkload(request: CreateWorkloadRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -221,6 +279,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates Assured Workload.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_CreateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/createWorkloadPollingUntilDone(request:options:)``
   public func createWorkloadPollingUntilDone(request: CreateWorkloadRequest) async throws
     -> Workload
   {
@@ -233,6 +298,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates Assured Workload.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_CreateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/createWorkloadPollingUntilDone(request:options:)``
   public func createWorkloadPollingUntilDone(
     parent: Swift.String,
     workload: Workload?,
@@ -244,6 +316,16 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     return try await self.createWorkloadPollingUntilDone(request: request)
   }
 
+  /// Updates an existing workload.
+  /// Currently allows updating of workload display_name and labels.
+  /// For force updates don't set etag field in the Workload.
+  /// Only one update operation per workload can be in progress.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_UpdateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/updateWorkload(request:options:)``
   public func updateWorkload(request: UpdateWorkloadRequest) async throws
     -> GoogleCloudAssuredWorkloadsV1.Workload
   {
@@ -256,6 +338,16 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing workload.
+  /// Currently allows updating of workload display_name and labels.
+  /// For force updates don't set etag field in the Workload.
+  /// Only one update operation per workload can be in progress.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_UpdateWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/updateWorkload(request:options:)``
   public func updateWorkload(
     workload: Workload?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -267,6 +359,18 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     return try await self.updateWorkload(request: request)
   }
 
+  /// Restrict the list of resources allowed in the Workload environment.
+  /// The current list of allowed products can be found at
+  /// https://cloud.google.com/assured-workloads/docs/supported-products
+  /// In addition to assuredworkloads.workload.update permission, the user should
+  /// also have orgpolicy.policy.set permission on the folder resource
+  /// to use this functionality.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_RestrictAllowedResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/restrictAllowedResources(request:options:)``
   public func restrictAllowedResources(request: RestrictAllowedResourcesRequest) async throws
     -> GoogleCloudAssuredWorkloadsV1.RestrictAllowedResourcesResponse
   {
@@ -279,6 +383,15 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the workload. Make sure that workload's direct children are already
+  /// in a deleted state, otherwise the request will fail with a
+  /// FAILED_PRECONDITION error.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_DeleteWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/deleteWorkload(request:options:)``
   public func deleteWorkload(request: DeleteWorkloadRequest) async throws {
     try await self.deleteWorkload(request: request, options: .init())
   }
@@ -289,6 +402,15 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the workload. Make sure that workload's direct children are already
+  /// in a deleted state, otherwise the request will fail with a
+  /// FAILED_PRECONDITION error.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_DeleteWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/deleteWorkload(request:options:)``
   public func deleteWorkload(
     name: Swift.String,
   ) async throws {
@@ -298,6 +420,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     try await self.deleteWorkload(request: request)
   }
 
+  /// Gets Assured Workload associated with a CRM Node
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_GetWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/getWorkload(request:options:)``
   public func getWorkload(request: GetWorkloadRequest) async throws
     -> GoogleCloudAssuredWorkloadsV1.Workload
   {
@@ -310,6 +439,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets Assured Workload associated with a CRM Node
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_GetWorkload")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/getWorkload(request:options:)``
   public func getWorkload(
     name: Swift.String,
   ) async throws -> GoogleCloudAssuredWorkloadsV1.Workload {
@@ -319,6 +455,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     return try await self.getWorkload(request: request)
   }
 
+  /// Lists Assured Workloads under a CRM Node.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listWorkloads(request:options:)``
   public func listWorkloads(request: ListWorkloadsRequest) async throws
     -> GoogleCloudAssuredWorkloadsV1.ListWorkloadsResponse
   {
@@ -331,6 +474,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Assured Workloads under a CRM Node.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listWorkloads(request:options:)``
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest
   ) -> some AsyncSequence<Workload, any Swift.Error> & Sendable {
@@ -340,6 +490,10 @@ extension Clients.AssuredWorkloadsServiceProtocol {
   /// Lists Assured Workloads under a CRM Node.
   ///
   /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listWorkloads(request:options:)``
   public func listWorkloadsByItems(
     request: ListWorkloadsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Workload, any Swift.Error> & Sendable {
@@ -354,6 +508,13 @@ extension Clients.AssuredWorkloadsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Assured Workloads under a CRM Node.
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListWorkloads")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listWorkloads(request:options:)``
   public func listWorkloadsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Workload, any Swift.Error> & Sendable {
@@ -363,6 +524,15 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     return self.listWorkloadsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -375,6 +545,15 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -386,6 +565,10 @@ extension Clients.AssuredWorkloadsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -399,6 +582,15 @@ extension Clients.AssuredWorkloadsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AssuredWorkloadsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssuredWorkloadsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -410,6 +602,9 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -422,6 +617,9 @@ extension Clients.AssuredWorkloadsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

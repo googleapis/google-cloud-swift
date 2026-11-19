@@ -29,6 +29,10 @@ import Foundation
 /// your data.
 ///
 /// @Snippet(path: "DataCatalogQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataCatalogProtocol``
 @available(*, deprecated)
 public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   let inner: any Clients.DataCatalogStub
@@ -64,6 +68,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
   ///
   /// @Snippet(path: "DataCatalog_SearchCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchCatalog(request:)``
+  /// - ``searchCatalogByItems(request:)``
+  /// - ``searchCatalogByItems(request:options:)``
+  /// - ``searchCatalogByItems(scope:query:)``
   @available(*, deprecated)
   public func searchCatalog(
     request: SearchCatalogRequest, options: GoogleGax.RequestOptions
@@ -100,6 +111,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntryGroup(parent:entryGroupId:entryGroup:)``
+  /// - ``createEntryGroup(request:)``
   @available(*, deprecated)
   public func createEntryGroup(
     request: CreateEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -110,6 +126,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Gets an entry group.
   ///
   /// @Snippet(path: "DataCatalog_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntryGroup(name:)``
+  /// - ``getEntryGroup(name:readMask:)``
+  /// - ``getEntryGroup(request:)``
   @available(*, deprecated)
   public func getEntryGroup(
     request: GetEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -125,6 +147,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntryGroup(entryGroup:)``
+  /// - ``updateEntryGroup(entryGroup:updateMask:)``
+  /// - ``updateEntryGroup(request:)``
   @available(*, deprecated)
   public func updateEntryGroup(
     request: UpdateEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -140,6 +168,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntryGroup(name:)``
+  /// - ``deleteEntryGroup(request:)``
   @available(*, deprecated)
   public func deleteEntryGroup(
     request: DeleteEntryGroupRequest, options: GoogleGax.RequestOptions
@@ -150,6 +183,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Lists entry groups.
   ///
   /// @Snippet(path: "DataCatalog_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntryGroups(request:)``
+  /// - ``listEntryGroupsByItems(parent:)``
+  /// - ``listEntryGroupsByItems(request:)``
+  /// - ``listEntryGroupsByItems(request:options:)``
   @available(*, deprecated)
   public func listEntryGroups(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
@@ -170,6 +210,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// An entry group can have a maximum of 100,000 entries.
   ///
   /// @Snippet(path: "DataCatalog_CreateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEntry(parent:entryId:entry:)``
+  /// - ``createEntry(request:)``
   @available(*, deprecated)
   public func createEntry(
     request: CreateEntryRequest, options: GoogleGax.RequestOptions
@@ -185,6 +230,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEntry(entry:)``
+  /// - ``updateEntry(entry:updateMask:)``
+  /// - ``updateEntry(request:)``
   @available(*, deprecated)
   public func updateEntry(
     request: UpdateEntryRequest, options: GoogleGax.RequestOptions
@@ -206,6 +257,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalogClient/createEntry(request:options:)>
   ///
   /// @Snippet(path: "DataCatalog_DeleteEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEntry(name:)``
+  /// - ``deleteEntry(request:)``
   @available(*, deprecated)
   public func deleteEntry(
     request: DeleteEntryRequest, options: GoogleGax.RequestOptions
@@ -216,6 +272,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Gets an entry.
   ///
   /// @Snippet(path: "DataCatalog_GetEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEntry(name:)``
+  /// - ``getEntry(request:)``
   @available(*, deprecated)
   public func getEntry(
     request: GetEntryRequest, options: GoogleGax.RequestOptions
@@ -228,6 +289,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// The resource name comes from the source Google Cloud Platform service.
   ///
   /// @Snippet(path: "DataCatalog_LookupEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``lookupEntry(request:)``
   @available(*, deprecated)
   public func lookupEntry(
     request: LookupEntryRequest, options: GoogleGax.RequestOptions
@@ -244,6 +309,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
   ///
   /// @Snippet(path: "DataCatalog_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEntries(request:)``
+  /// - ``listEntriesByItems(parent:)``
+  /// - ``listEntriesByItems(request:)``
+  /// - ``listEntriesByItems(request:options:)``
   @available(*, deprecated)
   public func listEntries(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
@@ -260,6 +332,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
   ///
   /// @Snippet(path: "DataCatalog_ModifyEntryOverview")
+  ///
+  /// ## See Also
+  ///
+  /// - ``modifyEntryOverview(request:)``
   @available(*, deprecated)
   public func modifyEntryOverview(
     request: ModifyEntryOverviewRequest, options: GoogleGax.RequestOptions
@@ -276,6 +352,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
   ///
   /// @Snippet(path: "DataCatalog_ModifyEntryContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``modifyEntryContacts(request:)``
   @available(*, deprecated)
   public func modifyEntryContacts(
     request: ModifyEntryContactsRequest, options: GoogleGax.RequestOptions
@@ -291,6 +371,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_CreateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTagTemplate(parent:tagTemplateId:tagTemplate:)``
+  /// - ``createTagTemplate(request:)``
   @available(*, deprecated)
   public func createTagTemplate(
     request: CreateTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -301,6 +386,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Gets a tag template.
   ///
   /// @Snippet(path: "DataCatalog_GetTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTagTemplate(name:)``
+  /// - ``getTagTemplate(request:)``
   @available(*, deprecated)
   public func getTagTemplate(
     request: GetTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -319,6 +409,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_UpdateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTagTemplate(request:)``
+  /// - ``updateTagTemplate(tagTemplate:)``
+  /// - ``updateTagTemplate(tagTemplate:updateMask:)``
   @available(*, deprecated)
   public func updateTagTemplate(
     request: UpdateTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -333,6 +429,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_DeleteTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTagTemplate(name:force:)``
+  /// - ``deleteTagTemplate(request:)``
   @available(*, deprecated)
   public func deleteTagTemplate(
     request: DeleteTagTemplateRequest, options: GoogleGax.RequestOptions
@@ -347,6 +448,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_CreateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTagTemplateField(parent:tagTemplateFieldId:tagTemplateField:)``
+  /// - ``createTagTemplateField(request:)``
   @available(*, deprecated)
   public func createTagTemplateField(
     request: CreateTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -364,6 +470,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_UpdateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTagTemplateField(name:tagTemplateField:)``
+  /// - ``updateTagTemplateField(name:tagTemplateField:updateMask:)``
+  /// - ``updateTagTemplateField(request:)``
   @available(*, deprecated)
   public func updateTagTemplateField(
     request: UpdateTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -378,6 +490,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_RenameTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``renameTagTemplateField(name:newTagTemplateFieldId:)``
+  /// - ``renameTagTemplateField(request:)``
   @available(*, deprecated)
   public func renameTagTemplateField(
     request: RenameTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -390,6 +507,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Within a single enum field, enum values must be unique.
   ///
   /// @Snippet(path: "DataCatalog_RenameTagTemplateFieldEnumValue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``renameTagTemplateFieldEnumValue(name:newEnumValueDisplayName:)``
+  /// - ``renameTagTemplateFieldEnumValue(request:)``
   @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(
     request: RenameTagTemplateFieldEnumValueRequest, options: GoogleGax.RequestOptions
@@ -405,6 +527,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
   ///
   /// @Snippet(path: "DataCatalog_DeleteTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTagTemplateField(name:force:)``
+  /// - ``deleteTagTemplateField(request:)``
   @available(*, deprecated)
   public func deleteTagTemplateField(
     request: DeleteTagTemplateFieldRequest, options: GoogleGax.RequestOptions
@@ -429,6 +556,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.EntryGroup]: <doc:EntryGroup>
   ///
   /// @Snippet(path: "DataCatalog_CreateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTag(parent:tag:)``
+  /// - ``createTag(request:)``
   @available(*, deprecated)
   public func createTag(
     request: CreateTagRequest, options: GoogleGax.RequestOptions
@@ -439,6 +571,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Updates an existing tag.
   ///
   /// @Snippet(path: "DataCatalog_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTag(request:)``
+  /// - ``updateTag(tag:)``
+  /// - ``updateTag(tag:updateMask:)``
   @available(*, deprecated)
   public func updateTag(
     request: UpdateTagRequest, options: GoogleGax.RequestOptions
@@ -449,6 +587,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// Deletes a tag.
   ///
   /// @Snippet(path: "DataCatalog_DeleteTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTag(name:)``
+  /// - ``deleteTag(request:)``
   @available(*, deprecated)
   public func deleteTag(
     request: DeleteTagRequest, options: GoogleGax.RequestOptions
@@ -464,6 +607,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
   ///
   /// @Snippet(path: "DataCatalog_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTags(request:)``
+  /// - ``listTagsByItems(parent:)``
+  /// - ``listTagsByItems(request:)``
+  /// - ``listTagsByItems(request:options:)``
   @available(*, deprecated)
   public func listTags(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
@@ -488,6 +638,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]: <doc:ReconcileTagsRequest/forceDeleteMissing>
   ///
   /// @Snippet(path: "DataCatalog_ReconcileTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reconcileTags(request:)``
+  /// - ``reconcileTagsPollingUntilDone(request:)``
+  /// - ``reconcileTagsPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func reconcileTags(
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
@@ -512,6 +668,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]: <doc:ReconcileTagsRequest/forceDeleteMissing>
   ///
   /// @Snippet(path: "DataCatalog_ReconcileTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reconcileTags(request:)``
+  /// - ``reconcileTags(request:options:)``
+  /// - ``reconcileTagsPollingUntilDone(request:)``
   @available(*, deprecated)
   public func reconcileTagsPollingUntilDone(
     request: ReconcileTagsRequest, options: GoogleGax.RequestOptions
@@ -544,6 +706,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
   ///
   /// @Snippet(path: "DataCatalog_StarEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``starEntry(name:)``
+  /// - ``starEntry(request:)``
   @available(*, deprecated)
   public func starEntry(
     request: StarEntryRequest, options: GoogleGax.RequestOptions
@@ -557,6 +724,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
   ///
   /// @Snippet(path: "DataCatalog_UnstarEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unstarEntry(name:)``
+  /// - ``unstarEntry(request:)``
   @available(*, deprecated)
   public func unstarEntry(
     request: UnstarEntryRequest, options: GoogleGax.RequestOptions
@@ -583,6 +755,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
   ///
   /// @Snippet(path: "DataCatalog_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   @available(*, deprecated)
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
@@ -613,6 +790,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
   ///
   /// @Snippet(path: "DataCatalog_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   @available(*, deprecated)
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
@@ -636,6 +818,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// No Google IAM permissions are required to call this method.
   ///
   /// @Snippet(path: "DataCatalog_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   @available(*, deprecated)
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
@@ -667,6 +853,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.ImportEntriesResponse]: <doc:ImportEntriesResponse>
   ///
   /// @Snippet(path: "DataCatalog_ImportEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importEntries(request:)``
+  /// - ``importEntriesPollingUntilDone(request:)``
+  /// - ``importEntriesPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func importEntries(
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
@@ -698,6 +890,12 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.cloud.datacatalog.v1.ImportEntriesResponse]: <doc:ImportEntriesResponse>
   ///
   /// @Snippet(path: "DataCatalog_ImportEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importEntries(request:)``
+  /// - ``importEntries(request:options:)``
+  /// - ``importEntriesPollingUntilDone(request:)``
   @available(*, deprecated)
   public func importEntriesPollingUntilDone(
     request: ImportEntriesRequest, options: GoogleGax.RequestOptions
@@ -728,6 +926,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// organization or project.
   ///
   /// @Snippet(path: "DataCatalog_SetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setConfig(request:)``
   @available(*, deprecated)
   public func setConfig(
     request: SetConfigRequest, options: GoogleGax.RequestOptions
@@ -740,6 +942,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// which have a separate configuration set.
   ///
   /// @Snippet(path: "DataCatalog_RetrieveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retrieveConfig(request:)``
   @available(*, deprecated)
   public func retrieveConfig(
     request: RetrieveConfigRequest, options: GoogleGax.RequestOptions
@@ -754,6 +960,10 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// resource itself.
   ///
   /// @Snippet(path: "DataCatalog_RetrieveEffectiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``retrieveEffectiveConfig(request:)``
   @available(*, deprecated)
   public func retrieveEffectiveConfig(
     request: RetrieveEffectiveConfigRequest, options: GoogleGax.RequestOptions
@@ -766,6 +976,13 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -788,6 +1005,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -799,6 +1021,11 @@ public final class DataCatalogClient: Clients.DataCatalogProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1068,6 +1295,27 @@ extension Clients {
 // Default implementations
 @available(*, deprecated)
 extension Clients.DataCatalogProtocol {
+  /// Searches Data Catalog for multiple resources like entries and tags that
+  /// match a query.
+  ///
+  /// This is a [Custom Method]
+  /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
+  /// all information on a resource, only its ID and high level fields. To get
+  /// more information, you can subsequently call specific get methods.
+  ///
+  /// Note: Data Catalog search queries don't guarantee full recall. Results
+  /// that match your query might not be returned, even in subsequent
+  /// result pages. Additionally, returned (and not returned) results can vary
+  /// if you repeat search queries.
+  ///
+  /// For more information, see [Data Catalog search syntax]
+  /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
+  ///
+  /// @Snippet(path: "DataCatalog_SearchCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/searchCatalog(request:options:)``
   @available(*, deprecated)
   public func searchCatalog(request: SearchCatalogRequest) async throws
     -> GoogleCloudDataCatalogV1.SearchCatalogResponse
@@ -1082,6 +1330,27 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches Data Catalog for multiple resources like entries and tags that
+  /// match a query.
+  ///
+  /// This is a [Custom Method]
+  /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
+  /// all information on a resource, only its ID and high level fields. To get
+  /// more information, you can subsequently call specific get methods.
+  ///
+  /// Note: Data Catalog search queries don't guarantee full recall. Results
+  /// that match your query might not be returned, even in subsequent
+  /// result pages. Additionally, returned (and not returned) results can vary
+  /// if you repeat search queries.
+  ///
+  /// For more information, see [Data Catalog search syntax]
+  /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
+  ///
+  /// @Snippet(path: "DataCatalog_SearchCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/searchCatalog(request:options:)``
   @available(*, deprecated)
   public func searchCatalogByItems(
     request: SearchCatalogRequest
@@ -1106,6 +1375,10 @@ extension Clients.DataCatalogProtocol {
   /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
   ///
   /// @Snippet(path: "DataCatalog_SearchCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/searchCatalog(request:options:)``
   @available(*, deprecated)
   public func searchCatalogByItems(
     request: SearchCatalogRequest, options: GoogleGax.RequestOptions
@@ -1121,6 +1394,27 @@ extension Clients.DataCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches Data Catalog for multiple resources like entries and tags that
+  /// match a query.
+  ///
+  /// This is a [Custom Method]
+  /// (https://cloud.google.com/apis/design/custom_methods) that doesn't return
+  /// all information on a resource, only its ID and high level fields. To get
+  /// more information, you can subsequently call specific get methods.
+  ///
+  /// Note: Data Catalog search queries don't guarantee full recall. Results
+  /// that match your query might not be returned, even in subsequent
+  /// result pages. Additionally, returned (and not returned) results can vary
+  /// if you repeat search queries.
+  ///
+  /// For more information, see [Data Catalog search syntax]
+  /// (https://cloud.google.com/data-catalog/docs/how-to/search-reference).
+  ///
+  /// @Snippet(path: "DataCatalog_SearchCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/searchCatalog(request:options:)``
   @available(*, deprecated)
   public func searchCatalogByItems(
     scope: SearchCatalogRequest.Scope?,
@@ -1133,6 +1427,39 @@ extension Clients.DataCatalogProtocol {
     return self.searchCatalogByItems(request: request)
   }
 
+  /// Creates an entry group.
+  ///
+  /// An entry group contains logically related entries together with [Cloud
+  /// Identity and Access Management](/data-catalog/docs/concepts/iam) policies.
+  /// These policies specify users who can create, edit, and view entries
+  /// within entry groups.
+  ///
+  /// Data Catalog automatically creates entry groups with names that start with
+  /// the `@` symbol for the following resources:
+  ///
+  /// * BigQuery entries (`@bigquery`)
+  /// * Pub/Sub topics (`@pubsub`)
+  /// * Dataproc Metastore services (`@dataproc_metastore_{SERVICE_NAME_HASH}`)
+  ///
+  /// You can create your own entry groups for Cloud Storage fileset entries
+  /// and custom entries together with the corresponding IAM policies.
+  /// User-created entry groups can't contain the `@` symbol, it is reserved
+  /// for automatically created groups.
+  ///
+  /// Entry groups, like entries, can be searched.
+  ///
+  /// A maximum of 10,000 entry groups may be created per organization across all
+  /// locations.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `parent` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createEntryGroup(request:options:)``
   @available(*, deprecated)
   public func createEntryGroup(request: CreateEntryGroupRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryGroup
@@ -1147,6 +1474,39 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an entry group.
+  ///
+  /// An entry group contains logically related entries together with [Cloud
+  /// Identity and Access Management](/data-catalog/docs/concepts/iam) policies.
+  /// These policies specify users who can create, edit, and view entries
+  /// within entry groups.
+  ///
+  /// Data Catalog automatically creates entry groups with names that start with
+  /// the `@` symbol for the following resources:
+  ///
+  /// * BigQuery entries (`@bigquery`)
+  /// * Pub/Sub topics (`@pubsub`)
+  /// * Dataproc Metastore services (`@dataproc_metastore_{SERVICE_NAME_HASH}`)
+  ///
+  /// You can create your own entry groups for Cloud Storage fileset entries
+  /// and custom entries together with the corresponding IAM policies.
+  /// User-created entry groups can't contain the `@` symbol, it is reserved
+  /// for automatically created groups.
+  ///
+  /// Entry groups, like entries, can be searched.
+  ///
+  /// A maximum of 10,000 entry groups may be created per organization across all
+  /// locations.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `parent` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_CreateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createEntryGroup(request:options:)``
   @available(*, deprecated)
   public func createEntryGroup(
     parent: Swift.String,
@@ -1161,6 +1521,13 @@ extension Clients.DataCatalogProtocol {
     return try await self.createEntryGroup(request: request)
   }
 
+  /// Gets an entry group.
+  ///
+  /// @Snippet(path: "DataCatalog_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getEntryGroup(request:options:)``
   @available(*, deprecated)
   public func getEntryGroup(request: GetEntryGroupRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryGroup
@@ -1175,6 +1542,13 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an entry group.
+  ///
+  /// @Snippet(path: "DataCatalog_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getEntryGroup(request:options:)``
   @available(*, deprecated)
   public func getEntryGroup(
     name: Swift.String,
@@ -1185,6 +1559,13 @@ extension Clients.DataCatalogProtocol {
     return try await self.getEntryGroup(request: request)
   }
 
+  /// Gets an entry group.
+  ///
+  /// @Snippet(path: "DataCatalog_GetEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getEntryGroup(request:options:)``
   @available(*, deprecated)
   public func getEntryGroup(
     name: Swift.String,
@@ -1197,6 +1578,18 @@ extension Clients.DataCatalogProtocol {
     return try await self.getEntryGroup(request: request)
   }
 
+  /// Updates an entry group.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `entry_group.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateEntryGroup(request:options:)``
   @available(*, deprecated)
   public func updateEntryGroup(request: UpdateEntryGroupRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryGroup
@@ -1211,6 +1604,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an entry group.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `entry_group.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateEntryGroup(request:options:)``
   @available(*, deprecated)
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
@@ -1221,6 +1626,18 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntryGroup(request: request)
   }
 
+  /// Updates an entry group.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `entry_group.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateEntryGroup(request:options:)``
   @available(*, deprecated)
   public func updateEntryGroup(
     entryGroup: EntryGroup?,
@@ -1233,6 +1650,18 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntryGroup(request: request)
   }
 
+  /// Deletes an entry group.
+  ///
+  /// You must enable the Data Catalog API in the project
+  /// identified by the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteEntryGroup(request:options:)``
   @available(*, deprecated)
   public func deleteEntryGroup(request: DeleteEntryGroupRequest) async throws {
     try await self.deleteEntryGroup(request: request, options: .init())
@@ -1245,6 +1674,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an entry group.
+  ///
+  /// You must enable the Data Catalog API in the project
+  /// identified by the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteEntryGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteEntryGroup(request:options:)``
   @available(*, deprecated)
   public func deleteEntryGroup(
     name: Swift.String,
@@ -1255,6 +1696,13 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteEntryGroup(request: request)
   }
 
+  /// Lists entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntryGroups(request:options:)``
   @available(*, deprecated)
   public func listEntryGroups(request: ListEntryGroupsRequest) async throws
     -> GoogleCloudDataCatalogV1.ListEntryGroupsResponse
@@ -1269,6 +1717,13 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntryGroups(request:options:)``
   @available(*, deprecated)
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest
@@ -1279,6 +1734,10 @@ extension Clients.DataCatalogProtocol {
   /// Lists entry groups.
   ///
   /// @Snippet(path: "DataCatalog_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntryGroups(request:options:)``
   @available(*, deprecated)
   public func listEntryGroupsByItems(
     request: ListEntryGroupsRequest, options: GoogleGax.RequestOptions
@@ -1294,6 +1753,13 @@ extension Clients.DataCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntryGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntryGroups(request:options:)``
   @available(*, deprecated)
   public func listEntryGroupsByItems(
     parent: Swift.String,
@@ -1304,6 +1770,23 @@ extension Clients.DataCatalogProtocol {
     return self.listEntryGroupsByItems(request: request)
   }
 
+  /// Creates an entry.
+  ///
+  /// You can create entries only with 'FILESET', 'CLUSTER', 'DATA_STREAM',
+  /// or custom types. Data Catalog automatically creates entries with other
+  /// types during metadata ingestion from integrated systems.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `parent` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// An entry group can have a maximum of 100,000 entries.
+  ///
+  /// @Snippet(path: "DataCatalog_CreateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createEntry(request:options:)``
   @available(*, deprecated)
   public func createEntry(request: CreateEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.Entry
@@ -1318,6 +1801,23 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an entry.
+  ///
+  /// You can create entries only with 'FILESET', 'CLUSTER', 'DATA_STREAM',
+  /// or custom types. Data Catalog automatically creates entries with other
+  /// types during metadata ingestion from integrated systems.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `parent` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// An entry group can have a maximum of 100,000 entries.
+  ///
+  /// @Snippet(path: "DataCatalog_CreateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createEntry(request:options:)``
   @available(*, deprecated)
   public func createEntry(
     parent: Swift.String,
@@ -1332,6 +1832,18 @@ extension Clients.DataCatalogProtocol {
     return try await self.createEntry(request: request)
   }
 
+  /// Updates an existing entry.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `entry.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateEntry(request:options:)``
   @available(*, deprecated)
   public func updateEntry(request: UpdateEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.Entry
@@ -1346,6 +1858,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing entry.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `entry.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateEntry(request:options:)``
   @available(*, deprecated)
   public func updateEntry(
     entry: Entry?,
@@ -1356,6 +1880,18 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntry(request: request)
   }
 
+  /// Updates an existing entry.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `entry.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateEntry(request:options:)``
   @available(*, deprecated)
   public func updateEntry(
     entry: Entry?,
@@ -1368,6 +1904,24 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateEntry(request: request)
   }
 
+  /// Deletes an existing entry.
+  ///
+  /// You can delete only the entries created by the
+  /// [CreateEntry][google.cloud.datacatalog.v1.DataCatalog.CreateEntry]
+  /// method.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalogClient/createEntry(request:options:)>
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteEntry(request:options:)``
   @available(*, deprecated)
   public func deleteEntry(request: DeleteEntryRequest) async throws {
     try await self.deleteEntry(request: request, options: .init())
@@ -1380,6 +1934,24 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing entry.
+  ///
+  /// You can delete only the entries created by the
+  /// [CreateEntry][google.cloud.datacatalog.v1.DataCatalog.CreateEntry]
+  /// method.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// [google.cloud.datacatalog.v1.DataCatalog.CreateEntry]: <doc:DataCatalogClient/createEntry(request:options:)>
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteEntry(request:options:)``
   @available(*, deprecated)
   public func deleteEntry(
     name: Swift.String,
@@ -1390,6 +1962,13 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteEntry(request: request)
   }
 
+  /// Gets an entry.
+  ///
+  /// @Snippet(path: "DataCatalog_GetEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getEntry(request:options:)``
   @available(*, deprecated)
   public func getEntry(request: GetEntryRequest) async throws -> GoogleCloudDataCatalogV1.Entry {
     try await self.getEntry(request: request, options: .init())
@@ -1402,6 +1981,13 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an entry.
+  ///
+  /// @Snippet(path: "DataCatalog_GetEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getEntry(request:options:)``
   @available(*, deprecated)
   public func getEntry(
     name: Swift.String,
@@ -1412,6 +1998,15 @@ extension Clients.DataCatalogProtocol {
     return try await self.getEntry(request: request)
   }
 
+  /// Gets an entry by its target resource name.
+  ///
+  /// The resource name comes from the source Google Cloud Platform service.
+  ///
+  /// @Snippet(path: "DataCatalog_LookupEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/lookupEntry(request:options:)``
   @available(*, deprecated)
   public func lookupEntry(request: LookupEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.Entry
@@ -1426,6 +2021,19 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists entries.
+  ///
+  /// Note: Currently, this method can list only custom entries.
+  /// To get a list of both custom and automatically created entries, use
+  /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
+  ///
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntries(request:options:)``
   @available(*, deprecated)
   public func listEntries(request: ListEntriesRequest) async throws
     -> GoogleCloudDataCatalogV1.ListEntriesResponse
@@ -1440,6 +2048,19 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists entries.
+  ///
+  /// Note: Currently, this method can list only custom entries.
+  /// To get a list of both custom and automatically created entries, use
+  /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
+  ///
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntries(request:options:)``
   @available(*, deprecated)
   public func listEntriesByItems(
     request: ListEntriesRequest
@@ -1456,6 +2077,10 @@ extension Clients.DataCatalogProtocol {
   /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
   ///
   /// @Snippet(path: "DataCatalog_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntries(request:options:)``
   @available(*, deprecated)
   public func listEntriesByItems(
     request: ListEntriesRequest, options: GoogleGax.RequestOptions
@@ -1471,6 +2096,19 @@ extension Clients.DataCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists entries.
+  ///
+  /// Note: Currently, this method can list only custom entries.
+  /// To get a list of both custom and automatically created entries, use
+  /// [SearchCatalog][google.cloud.datacatalog.v1.DataCatalog.SearchCatalog].
+  ///
+  /// [google.cloud.datacatalog.v1.DataCatalog.SearchCatalog]: <doc:DataCatalogClient/searchCatalog(request:options:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listEntries(request:options:)``
   @available(*, deprecated)
   public func listEntriesByItems(
     parent: Swift.String,
@@ -1481,6 +2119,19 @@ extension Clients.DataCatalogProtocol {
     return self.listEntriesByItems(request: request)
   }
 
+  /// Modifies entry overview, part of the business context of an
+  /// [Entry][google.cloud.datacatalog.v1.Entry].
+  ///
+  /// To call this method, you must have the `datacatalog.entries.updateOverview`
+  /// IAM permission on the corresponding project.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  ///
+  /// @Snippet(path: "DataCatalog_ModifyEntryOverview")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/modifyEntryOverview(request:options:)``
   @available(*, deprecated)
   public func modifyEntryOverview(request: ModifyEntryOverviewRequest) async throws
     -> GoogleCloudDataCatalogV1.EntryOverview
@@ -1495,6 +2146,19 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Modifies contacts, part of the business context of an
+  /// [Entry][google.cloud.datacatalog.v1.Entry].
+  ///
+  /// To call this method, you must have the `datacatalog.entries.updateContacts`
+  /// IAM permission on the corresponding project.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  ///
+  /// @Snippet(path: "DataCatalog_ModifyEntryContacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/modifyEntryContacts(request:options:)``
   @available(*, deprecated)
   public func modifyEntryContacts(request: ModifyEntryContactsRequest) async throws
     -> GoogleCloudDataCatalogV1.Contacts
@@ -1509,6 +2173,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a tag template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by the
+  /// `parent` parameter.
+  /// For more information, see [Data Catalog resource project]
+  /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_CreateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createTagTemplate(request:options:)``
   @available(*, deprecated)
   public func createTagTemplate(request: CreateTagTemplateRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplate
@@ -1523,6 +2199,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a tag template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by the
+  /// `parent` parameter.
+  /// For more information, see [Data Catalog resource project]
+  /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_CreateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createTagTemplate(request:options:)``
   @available(*, deprecated)
   public func createTagTemplate(
     parent: Swift.String,
@@ -1537,6 +2225,13 @@ extension Clients.DataCatalogProtocol {
     return try await self.createTagTemplate(request: request)
   }
 
+  /// Gets a tag template.
+  ///
+  /// @Snippet(path: "DataCatalog_GetTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getTagTemplate(request:options:)``
   @available(*, deprecated)
   public func getTagTemplate(request: GetTagTemplateRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplate
@@ -1551,6 +2246,13 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a tag template.
+  ///
+  /// @Snippet(path: "DataCatalog_GetTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getTagTemplate(request:options:)``
   @available(*, deprecated)
   public func getTagTemplate(
     name: Swift.String,
@@ -1561,6 +2263,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.getTagTemplate(request: request)
   }
 
+  /// Updates a tag template.
+  ///
+  /// You can't update template fields with this method. These fields are
+  /// separate resources with their own create, update, and delete methods.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `tag_template.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTagTemplate(request:options:)``
   @available(*, deprecated)
   public func updateTagTemplate(request: UpdateTagTemplateRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplate
@@ -1575,6 +2292,21 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a tag template.
+  ///
+  /// You can't update template fields with this method. These fields are
+  /// separate resources with their own create, update, and delete methods.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `tag_template.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTagTemplate(request:options:)``
   @available(*, deprecated)
   public func updateTagTemplate(
     tagTemplate: TagTemplate?,
@@ -1585,6 +2317,21 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplate(request: request)
   }
 
+  /// Updates a tag template.
+  ///
+  /// You can't update template fields with this method. These fields are
+  /// separate resources with their own create, update, and delete methods.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `tag_template.name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTagTemplate(request:options:)``
   @available(*, deprecated)
   public func updateTagTemplate(
     tagTemplate: TagTemplate?,
@@ -1597,6 +2344,17 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplate(request: request)
   }
 
+  /// Deletes a tag template and all tags that use it.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `name` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteTagTemplate(request:options:)``
   @available(*, deprecated)
   public func deleteTagTemplate(request: DeleteTagTemplateRequest) async throws {
     try await self.deleteTagTemplate(request: request, options: .init())
@@ -1609,6 +2367,17 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a tag template and all tags that use it.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `name` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteTagTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteTagTemplate(request:options:)``
   @available(*, deprecated)
   public func deleteTagTemplate(
     name: Swift.String,
@@ -1621,6 +2390,17 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteTagTemplate(request: request)
   }
 
+  /// Creates a field in a tag template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `parent` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_CreateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func createTagTemplateField(request: CreateTagTemplateFieldRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplateField
@@ -1635,6 +2415,17 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a field in a tag template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `parent` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_CreateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func createTagTemplateField(
     parent: Swift.String,
@@ -1649,6 +2440,20 @@ extension Clients.DataCatalogProtocol {
     return try await self.createTagTemplateField(request: request)
   }
 
+  /// Updates a field in a tag template.
+  ///
+  /// You can't update the field type with this method.
+  ///
+  /// You must enable the Data Catalog API in the project
+  /// identified by the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func updateTagTemplateField(request: UpdateTagTemplateFieldRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplateField
@@ -1663,6 +2468,20 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a field in a tag template.
+  ///
+  /// You can't update the field type with this method.
+  ///
+  /// You must enable the Data Catalog API in the project
+  /// identified by the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func updateTagTemplateField(
     name: Swift.String,
@@ -1675,6 +2494,20 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplateField(request: request)
   }
 
+  /// Updates a field in a tag template.
+  ///
+  /// You can't update the field type with this method.
+  ///
+  /// You must enable the Data Catalog API in the project
+  /// identified by the `name` parameter. For more information, see [Data Catalog
+  /// resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func updateTagTemplateField(
     name: Swift.String,
@@ -1689,6 +2522,17 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTagTemplateField(request: request)
   }
 
+  /// Renames a field in a tag template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by the
+  /// `name` parameter. For more information, see [Data Catalog resource project]
+  /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_RenameTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/renameTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func renameTagTemplateField(request: RenameTagTemplateFieldRequest) async throws
     -> GoogleCloudDataCatalogV1.TagTemplateField
@@ -1703,6 +2547,17 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Renames a field in a tag template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by the
+  /// `name` parameter. For more information, see [Data Catalog resource project]
+  /// (https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_RenameTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/renameTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func renameTagTemplateField(
     name: Swift.String,
@@ -1715,6 +2570,15 @@ extension Clients.DataCatalogProtocol {
     return try await self.renameTagTemplateField(request: request)
   }
 
+  /// Renames an enum value in a tag template.
+  ///
+  /// Within a single enum field, enum values must be unique.
+  ///
+  /// @Snippet(path: "DataCatalog_RenameTagTemplateFieldEnumValue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/renameTagTemplateFieldEnumValue(request:options:)``
   @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(request: RenameTagTemplateFieldEnumValueRequest)
     async throws -> GoogleCloudDataCatalogV1.TagTemplateField
@@ -1729,6 +2593,15 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Renames an enum value in a tag template.
+  ///
+  /// Within a single enum field, enum values must be unique.
+  ///
+  /// @Snippet(path: "DataCatalog_RenameTagTemplateFieldEnumValue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/renameTagTemplateFieldEnumValue(request:options:)``
   @available(*, deprecated)
   public func renameTagTemplateFieldEnumValue(
     name: Swift.String,
@@ -1741,6 +2614,18 @@ extension Clients.DataCatalogProtocol {
     return try await self.renameTagTemplateFieldEnumValue(request: request)
   }
 
+  /// Deletes a field in a tag template and all uses of this field from the tags
+  /// based on this template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `name` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func deleteTagTemplateField(request: DeleteTagTemplateFieldRequest) async throws {
     try await self.deleteTagTemplateField(request: request, options: .init())
@@ -1753,6 +2638,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a field in a tag template and all uses of this field from the tags
+  /// based on this template.
+  ///
+  /// You must enable the Data Catalog API in the project identified by
+  /// the `name` parameter. For more information, see [Data Catalog resource
+  /// project](https://cloud.google.com/data-catalog/docs/concepts/resource-project).
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteTagTemplateField")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteTagTemplateField(request:options:)``
   @available(*, deprecated)
   public func deleteTagTemplateField(
     name: Swift.String,
@@ -1765,6 +2662,27 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteTagTemplateField(request: request)
   }
 
+  /// Creates a tag and assigns it to:
+  ///
+  /// * An [Entry][google.cloud.datacatalog.v1.Entry] if the method name is
+  ///   `projects.locations.entryGroups.entries.tags.create`.
+  /// * Or [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]if the method
+  ///   name is `projects.locations.entryGroups.tags.create`.
+  ///
+  /// Note: The project identified by the `parent` parameter for the [tag]
+  /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters)
+  /// and the [tag template]
+  /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
+  /// used to create the tag must be in the same organization.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  /// [google.cloud.datacatalog.v1.EntryGroup]: <doc:EntryGroup>
+  ///
+  /// @Snippet(path: "DataCatalog_CreateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createTag(request:options:)``
   @available(*, deprecated)
   public func createTag(request: CreateTagRequest) async throws -> GoogleCloudDataCatalogV1.Tag {
     try await self.createTag(request: request, options: .init())
@@ -1777,6 +2695,27 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a tag and assigns it to:
+  ///
+  /// * An [Entry][google.cloud.datacatalog.v1.Entry] if the method name is
+  ///   `projects.locations.entryGroups.entries.tags.create`.
+  /// * Or [EntryGroup][google.cloud.datacatalog.v1.EntryGroup]if the method
+  ///   name is `projects.locations.entryGroups.tags.create`.
+  ///
+  /// Note: The project identified by the `parent` parameter for the [tag]
+  /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.entryGroups.entries.tags/create#path-parameters)
+  /// and the [tag template]
+  /// (https://cloud.google.com/data-catalog/docs/reference/rest/v1/projects.locations.tagTemplates/create#path-parameters)
+  /// used to create the tag must be in the same organization.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  /// [google.cloud.datacatalog.v1.EntryGroup]: <doc:EntryGroup>
+  ///
+  /// @Snippet(path: "DataCatalog_CreateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/createTag(request:options:)``
   @available(*, deprecated)
   public func createTag(
     parent: Swift.String,
@@ -1789,6 +2728,13 @@ extension Clients.DataCatalogProtocol {
     return try await self.createTag(request: request)
   }
 
+  /// Updates an existing tag.
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTag(request:options:)``
   @available(*, deprecated)
   public func updateTag(request: UpdateTagRequest) async throws -> GoogleCloudDataCatalogV1.Tag {
     try await self.updateTag(request: request, options: .init())
@@ -1801,6 +2747,13 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing tag.
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTag(request:options:)``
   @available(*, deprecated)
   public func updateTag(
     tag: Tag?,
@@ -1811,6 +2764,13 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTag(request: request)
   }
 
+  /// Updates an existing tag.
+  ///
+  /// @Snippet(path: "DataCatalog_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/updateTag(request:options:)``
   @available(*, deprecated)
   public func updateTag(
     tag: Tag?,
@@ -1823,6 +2783,13 @@ extension Clients.DataCatalogProtocol {
     return try await self.updateTag(request: request)
   }
 
+  /// Deletes a tag.
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteTag(request:options:)``
   @available(*, deprecated)
   public func deleteTag(request: DeleteTagRequest) async throws {
     try await self.deleteTag(request: request, options: .init())
@@ -1835,6 +2802,13 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a tag.
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteTag(request:options:)``
   @available(*, deprecated)
   public func deleteTag(
     name: Swift.String,
@@ -1845,6 +2819,18 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteTag(request: request)
   }
 
+  /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+  /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+  /// lowercased.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listTags(request:options:)``
   @available(*, deprecated)
   public func listTags(request: ListTagsRequest) async throws
     -> GoogleCloudDataCatalogV1.ListTagsResponse
@@ -1859,6 +2845,18 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+  /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+  /// lowercased.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listTags(request:options:)``
   @available(*, deprecated)
   public func listTagsByItems(
     request: ListTagsRequest
@@ -1874,6 +2872,10 @@ extension Clients.DataCatalogProtocol {
   /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
   ///
   /// @Snippet(path: "DataCatalog_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listTags(request:options:)``
   @available(*, deprecated)
   public func listTagsByItems(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
@@ -1888,6 +2890,18 @@ extension Clients.DataCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists tags assigned to an [Entry][google.cloud.datacatalog.v1.Entry].
+  /// The [columns][google.cloud.datacatalog.v1.Tag.column] in the response are
+  /// lowercased.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  /// [google.cloud.datacatalog.v1.Tag.column]: <doc:Tag/ScopeOneOf/column(_:)>
+  ///
+  /// @Snippet(path: "DataCatalog_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listTags(request:options:)``
   @available(*, deprecated)
   public func listTagsByItems(
     parent: Swift.String,
@@ -1898,6 +2912,27 @@ extension Clients.DataCatalogProtocol {
     return self.listTagsByItems(request: request)
   }
 
+  /// `ReconcileTags` creates or updates a list of tags on the entry.
+  /// If the
+  /// [ReconcileTagsRequest.force_delete_missing][google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]
+  /// parameter is set, the operation deletes tags not included in the input tag
+  /// list.
+  ///
+  /// `ReconcileTags` returns a [long-running operation]
+  /// [google.longrunning.Operation] resource that can be queried with
+  /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+  /// to return [ReconcileTagsMetadata]
+  /// [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
+  /// a [ReconcileTagsResponse]
+  /// [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
+  ///
+  /// [google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]: <doc:ReconcileTagsRequest/forceDeleteMissing>
+  ///
+  /// @Snippet(path: "DataCatalog_ReconcileTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/reconcileTags(request:options:)``
   @available(*, deprecated)
   public func reconcileTags(request: ReconcileTagsRequest) async throws
     -> GoogleLongRunning.Operation
@@ -1912,6 +2947,27 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// `ReconcileTags` creates or updates a list of tags on the entry.
+  /// If the
+  /// [ReconcileTagsRequest.force_delete_missing][google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]
+  /// parameter is set, the operation deletes tags not included in the input tag
+  /// list.
+  ///
+  /// `ReconcileTags` returns a [long-running operation]
+  /// [google.longrunning.Operation] resource that can be queried with
+  /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+  /// to return [ReconcileTagsMetadata]
+  /// [google.cloud.datacatalog.v1.ReconcileTagsMetadata] and
+  /// a [ReconcileTagsResponse]
+  /// [google.cloud.datacatalog.v1.ReconcileTagsResponse] message.
+  ///
+  /// [google.cloud.datacatalog.v1.ReconcileTagsRequest.force_delete_missing]: <doc:ReconcileTagsRequest/forceDeleteMissing>
+  ///
+  /// @Snippet(path: "DataCatalog_ReconcileTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/reconcileTagsPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func reconcileTagsPollingUntilDone(request: ReconcileTagsRequest) async throws
     -> ReconcileTagsResponse
@@ -1926,6 +2982,16 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
+  /// the current user. Starring information is private to each user.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  ///
+  /// @Snippet(path: "DataCatalog_StarEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/starEntry(request:options:)``
   @available(*, deprecated)
   public func starEntry(request: StarEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.StarEntryResponse
@@ -1940,6 +3006,16 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as starred by
+  /// the current user. Starring information is private to each user.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  ///
+  /// @Snippet(path: "DataCatalog_StarEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/starEntry(request:options:)``
   @available(*, deprecated)
   public func starEntry(
     name: Swift.String,
@@ -1950,6 +3026,16 @@ extension Clients.DataCatalogProtocol {
     return try await self.starEntry(request: request)
   }
 
+  /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
+  /// the current user. Starring information is private to each user.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  ///
+  /// @Snippet(path: "DataCatalog_UnstarEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/unstarEntry(request:options:)``
   @available(*, deprecated)
   public func unstarEntry(request: UnstarEntryRequest) async throws
     -> GoogleCloudDataCatalogV1.UnstarEntryResponse
@@ -1964,6 +3050,16 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks an [Entry][google.cloud.datacatalog.v1.Entry] as NOT starred by
+  /// the current user. Starring information is private to each user.
+  ///
+  /// [google.cloud.datacatalog.v1.Entry]: <doc:Entry>
+  ///
+  /// @Snippet(path: "DataCatalog_UnstarEntry")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/unstarEntry(request:options:)``
   @available(*, deprecated)
   public func unstarEntry(
     name: Swift.String,
@@ -1974,6 +3070,29 @@ extension Clients.DataCatalogProtocol {
     return try await self.unstarEntry(request: request)
   }
 
+  /// Sets an access control policy for a resource. Replaces any existing
+  /// policy.
+  ///
+  /// Supported resources are:
+  ///
+  /// - Tag templates
+  /// - Entry groups
+  ///
+  /// Note: This method sets policies only within Data Catalog and can't be
+  /// used to manage policies in BigQuery, Pub/Sub, Dataproc Metastore, and any
+  /// external Google Cloud Platform resources synced with the Data Catalog.
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
+  ///   templates.
+  /// - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/setIamPolicy(request:options:)``
   @available(*, deprecated)
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
@@ -1988,6 +3107,29 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets an access control policy for a resource. Replaces any existing
+  /// policy.
+  ///
+  /// Supported resources are:
+  ///
+  /// - Tag templates
+  /// - Entry groups
+  ///
+  /// Note: This method sets policies only within Data Catalog and can't be
+  /// used to manage policies in BigQuery, Pub/Sub, Dataproc Metastore, and any
+  /// external Google Cloud Platform resources synced with the Data Catalog.
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `datacatalog.tagTemplates.setIamPolicy` to set policies on tag
+  ///   templates.
+  /// - `datacatalog.entryGroups.setIamPolicy` to set policies on entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/setIamPolicy(request:options:)``
   @available(*, deprecated)
   public func setIamPolicy(
     resource: Swift.String,
@@ -2000,6 +3142,33 @@ extension Clients.DataCatalogProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Gets the access control policy for a resource.
+  ///
+  /// May return:
+  ///
+  /// * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
+  ///   permission to view it.
+  /// * An empty policy if the resource exists but doesn't have a set policy.
+  ///
+  /// Supported resources are:
+  ///
+  /// - Tag templates
+  /// - Entry groups
+  ///
+  /// Note: This method doesn't get policies from Google Cloud Platform
+  /// resources ingested into Data Catalog.
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
+  ///   templates.
+  /// - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getIamPolicy(request:options:)``
   @available(*, deprecated)
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
@@ -2014,6 +3183,33 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource.
+  ///
+  /// May return:
+  ///
+  /// * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
+  ///   permission to view it.
+  /// * An empty policy if the resource exists but doesn't have a set policy.
+  ///
+  /// Supported resources are:
+  ///
+  /// - Tag templates
+  /// - Entry groups
+  ///
+  /// Note: This method doesn't get policies from Google Cloud Platform
+  /// resources ingested into Data Catalog.
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `datacatalog.tagTemplates.getIamPolicy` to get policies on tag
+  ///   templates.
+  /// - `datacatalog.entryGroups.getIamPolicy` to get policies on entry groups.
+  ///
+  /// @Snippet(path: "DataCatalog_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/getIamPolicy(request:options:)``
   @available(*, deprecated)
   public func getIamPolicy(
     resource: Swift.String,
@@ -2024,6 +3220,26 @@ extension Clients.DataCatalogProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Gets your permissions on a resource.
+  ///
+  /// Returns an empty set of permissions if the resource doesn't exist.
+  ///
+  /// Supported resources are:
+  ///
+  /// - Tag templates
+  /// - Entry groups
+  ///
+  /// Note: This method gets policies only within Data Catalog and can't be
+  /// used to get policies from BigQuery, Pub/Sub, Dataproc Metastore, and any
+  /// external Google Cloud Platform resources ingested into Data Catalog.
+  ///
+  /// No Google IAM permissions are required to call this method.
+  ///
+  /// @Snippet(path: "DataCatalog_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/testIamPermissions(request:options:)``
   @available(*, deprecated)
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
@@ -2038,6 +3254,34 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports entries from a source, such as data previously dumped into a
+  /// Cloud Storage bucket, into Data Catalog. Import of entries
+  /// is a sync operation that reconciles the state of the third-party system
+  /// with the Data Catalog.
+  ///
+  /// `ImportEntries` accepts source data snapshots of a third-party system.
+  /// Snapshot should be delivered as a .wire or base65-encoded .txt file
+  /// containing a sequence of Protocol Buffer messages of
+  /// [DumpItem][google.cloud.datacatalog.v1.DumpItem] type.
+  ///
+  /// `ImportEntries` returns a [long-running operation]
+  /// [google.longrunning.Operation] resource that can be queried with
+  /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+  /// to return
+  /// [ImportEntriesMetadata][google.cloud.datacatalog.v1.ImportEntriesMetadata]
+  /// and an
+  /// [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
+  /// message.
+  ///
+  /// [google.cloud.datacatalog.v1.DumpItem]: <doc:DumpItem>
+  /// [google.cloud.datacatalog.v1.ImportEntriesMetadata]: <doc:ImportEntriesMetadata>
+  /// [google.cloud.datacatalog.v1.ImportEntriesResponse]: <doc:ImportEntriesResponse>
+  ///
+  /// @Snippet(path: "DataCatalog_ImportEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/importEntries(request:options:)``
   @available(*, deprecated)
   public func importEntries(request: ImportEntriesRequest) async throws
     -> GoogleLongRunning.Operation
@@ -2052,6 +3296,34 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports entries from a source, such as data previously dumped into a
+  /// Cloud Storage bucket, into Data Catalog. Import of entries
+  /// is a sync operation that reconciles the state of the third-party system
+  /// with the Data Catalog.
+  ///
+  /// `ImportEntries` accepts source data snapshots of a third-party system.
+  /// Snapshot should be delivered as a .wire or base65-encoded .txt file
+  /// containing a sequence of Protocol Buffer messages of
+  /// [DumpItem][google.cloud.datacatalog.v1.DumpItem] type.
+  ///
+  /// `ImportEntries` returns a [long-running operation]
+  /// [google.longrunning.Operation] resource that can be queried with
+  /// [Operations.GetOperation][google.longrunning.Operations.GetOperation]
+  /// to return
+  /// [ImportEntriesMetadata][google.cloud.datacatalog.v1.ImportEntriesMetadata]
+  /// and an
+  /// [ImportEntriesResponse][google.cloud.datacatalog.v1.ImportEntriesResponse]
+  /// message.
+  ///
+  /// [google.cloud.datacatalog.v1.DumpItem]: <doc:DumpItem>
+  /// [google.cloud.datacatalog.v1.ImportEntriesMetadata]: <doc:ImportEntriesMetadata>
+  /// [google.cloud.datacatalog.v1.ImportEntriesResponse]: <doc:ImportEntriesResponse>
+  ///
+  /// @Snippet(path: "DataCatalog_ImportEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/importEntriesPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func importEntriesPollingUntilDone(request: ImportEntriesRequest) async throws
     -> ImportEntriesResponse
@@ -2066,6 +3338,14 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the configuration related to the migration to Dataplex for an
+  /// organization or project.
+  ///
+  /// @Snippet(path: "DataCatalog_SetConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/setConfig(request:options:)``
   @available(*, deprecated)
   public func setConfig(request: SetConfigRequest) async throws
     -> GoogleCloudDataCatalogV1.MigrationConfig
@@ -2080,6 +3360,15 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the configuration related to the migration from Data Catalog to
+  /// Dataplex for a specific organization, including all the projects under it
+  /// which have a separate configuration set.
+  ///
+  /// @Snippet(path: "DataCatalog_RetrieveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/retrieveConfig(request:options:)``
   @available(*, deprecated)
   public func retrieveConfig(request: RetrieveConfigRequest) async throws
     -> GoogleCloudDataCatalogV1.OrganizationConfig
@@ -2094,6 +3383,17 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the effective configuration related to the migration from Data
+  /// Catalog to Dataplex for a specific organization or project. If there is no
+  /// specific configuration set for the resource, the setting is checked
+  /// hierarchicahlly through the ancestors of the resource, starting from the
+  /// resource itself.
+  ///
+  /// @Snippet(path: "DataCatalog_RetrieveEffectiveConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/retrieveEffectiveConfig(request:options:)``
   @available(*, deprecated)
   public func retrieveEffectiveConfig(request: RetrieveEffectiveConfigRequest) async throws
     -> GoogleCloudDataCatalogV1.MigrationConfig
@@ -2108,6 +3408,15 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2120,6 +3429,15 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2131,6 +3449,10 @@ extension Clients.DataCatalogProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataCatalog_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2144,6 +3466,15 @@ extension Clients.DataCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2155,6 +3486,9 @@ extension Clients.DataCatalogProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2167,6 +3501,9 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2176,6 +3513,15 @@ extension Clients.DataCatalogProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2186,6 +3532,15 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2195,6 +3550,15 @@ extension Clients.DataCatalogProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2205,6 +3569,15 @@ extension Clients.DataCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataCatalog_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataCatalogClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@ import Foundation
 /// Service that implements Google Cloud Text-to-Speech API.
 ///
 /// @Snippet(path: "TextToSpeechLongAudioSynthesizeQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TextToSpeechLongAudioSynthesizeProtocol``
 public final class TextToSpeechLongAudioSynthesizeClient: Clients
     .TextToSpeechLongAudioSynthesizeProtocol, Sendable
 {
@@ -47,6 +51,12 @@ public final class TextToSpeechLongAudioSynthesizeClient: Clients
   /// Synthesizes long form text asynchronously.
   ///
   /// @Snippet(path: "TextToSpeechLongAudioSynthesize_SynthesizeLongAudio")
+  ///
+  /// ## See Also
+  ///
+  /// - ``synthesizeLongAudio(request:)``
+  /// - ``synthesizeLongAudioPollingUntilDone(request:)``
+  /// - ``synthesizeLongAudioPollingUntilDone(request:options:)``
   public func synthesizeLongAudio(
     request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -56,6 +66,12 @@ public final class TextToSpeechLongAudioSynthesizeClient: Clients
   /// Synthesizes long form text asynchronously.
   ///
   /// @Snippet(path: "TextToSpeechLongAudioSynthesize_SynthesizeLongAudio")
+  ///
+  /// ## See Also
+  ///
+  /// - ``synthesizeLongAudio(request:)``
+  /// - ``synthesizeLongAudio(request:options:)``
+  /// - ``synthesizeLongAudioPollingUntilDone(request:)``
   public func synthesizeLongAudioPollingUntilDone(
     request: SynthesizeLongAudioRequest, options: GoogleGax.RequestOptions
   ) async throws -> SynthesizeLongAudioResponse {
@@ -87,6 +103,13 @@ public final class TextToSpeechLongAudioSynthesizeClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "TextToSpeechLongAudioSynthesize_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -131,6 +154,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
+  /// Synthesizes long form text asynchronously.
+  ///
+  /// @Snippet(path: "TextToSpeechLongAudioSynthesize_SynthesizeLongAudio")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechLongAudioSynthesizeClient/synthesizeLongAudio(request:options:)``
   public func synthesizeLongAudio(request: SynthesizeLongAudioRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -143,6 +173,13 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Synthesizes long form text asynchronously.
+  ///
+  /// @Snippet(path: "TextToSpeechLongAudioSynthesize_SynthesizeLongAudio")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechLongAudioSynthesizeClient/synthesizeLongAudioPollingUntilDone(request:options:)``
   public func synthesizeLongAudioPollingUntilDone(request: SynthesizeLongAudioRequest) async throws
     -> SynthesizeLongAudioResponse
   {
@@ -155,6 +192,15 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TextToSpeechLongAudioSynthesize_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechLongAudioSynthesizeClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -167,6 +213,15 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TextToSpeechLongAudioSynthesize_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechLongAudioSynthesizeClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -178,6 +233,10 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "TextToSpeechLongAudioSynthesize_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechLongAudioSynthesizeClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -191,6 +250,15 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TextToSpeechLongAudioSynthesize_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechLongAudioSynthesizeClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -202,6 +270,9 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -214,6 +285,9 @@ extension Clients.TextToSpeechLongAudioSynthesizeProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

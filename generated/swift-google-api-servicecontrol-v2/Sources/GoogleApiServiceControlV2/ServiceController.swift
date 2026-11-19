@@ -28,6 +28,10 @@ import Foundation
 /// Infrastructure](https://cloud.google.com/service-infrastructure).
 ///
 /// @Snippet(path: "ServiceControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ServiceControllerProtocol``
 public final class ServiceControllerClient: Clients.ServiceControllerProtocol, Sendable {
   let inner: any Clients.ServiceControllerStub
 
@@ -63,6 +67,10 @@ public final class ServiceControllerClient: Clients.ServiceControllerProtocol, S
   /// Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
   ///
   /// @Snippet(path: "ServiceController_Check")
+  ///
+  /// ## See Also
+  ///
+  /// - ``check(request:)``
   public func check(
     request: CheckRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceControlV2.CheckResponse {
@@ -86,6 +94,10 @@ public final class ServiceControllerClient: Clients.ServiceControllerProtocol, S
   /// Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
   ///
   /// @Snippet(path: "ServiceController_Report")
+  ///
+  /// ## See Also
+  ///
+  /// - ``report(request:)``
   public func report(
     request: ReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceControlV2.ReportResponse {
@@ -114,6 +126,32 @@ extension Clients {
 
 // Default implementations
 extension Clients.ServiceControllerProtocol {
+  /// This method provides admission control for services that are integrated
+  /// with [Service
+  /// Infrastructure](https://cloud.google.com/service-infrastructure). It checks
+  /// whether an operation should be allowed based on the service configuration
+  /// and relevant policies. It must be called before the operation is executed.
+  /// For more information, see
+  /// [Admission
+  /// Control](https://cloud.google.com/service-infrastructure/docs/admission-control).
+  ///
+  /// NOTE: The admission control has an expected policy propagation delay of
+  /// 60s. The caller **must** not depend on the most recent policy changes.
+  ///
+  /// NOTE: The admission control has a hard limit of 1 referenced resources
+  /// per call. If an operation refers to more than 1 resources, the caller
+  /// must call the Check method multiple times.
+  ///
+  /// This method requires the `servicemanagement.services.check` permission
+  /// on the specified service. For more information, see
+  /// [Service Control API Access
+  /// Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
+  ///
+  /// @Snippet(path: "ServiceController_Check")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceControllerClient/check(request:options:)``
   public func check(request: CheckRequest) async throws -> GoogleApiServiceControlV2.CheckResponse {
     try await self.check(request: request, options: .init())
   }
@@ -124,6 +162,27 @@ extension Clients.ServiceControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method provides telemetry reporting for services that are integrated
+  /// with [Service
+  /// Infrastructure](https://cloud.google.com/service-infrastructure). It
+  /// reports a list of operations that have occurred on a service. It must be
+  /// called after the operations have been executed. For more information, see
+  /// [Telemetry
+  /// Reporting](https://cloud.google.com/service-infrastructure/docs/telemetry-reporting).
+  ///
+  /// NOTE: The telemetry reporting has a hard limit of 100 operations and 1MB
+  /// per Report call.
+  ///
+  /// This method requires the `servicemanagement.services.report` permission
+  /// on the specified service. For more information, see
+  /// [Service Control API Access
+  /// Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).
+  ///
+  /// @Snippet(path: "ServiceController_Report")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceControllerClient/report(request:options:)``
   public func report(request: ReportRequest) async throws
     -> GoogleApiServiceControlV2.ReportResponse
   {

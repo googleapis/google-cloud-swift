@@ -25,6 +25,10 @@ import Foundation
 /// budget plan and rules to execute as we track spend against that plan.
 ///
 /// @Snippet(path: "BudgetServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BudgetServiceProtocol``
 public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable {
   let inner: any Clients.BudgetServiceStub
 
@@ -43,6 +47,11 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// for more information on the limits of the number of budgets you can create.
   ///
   /// @Snippet(path: "BudgetService_CreateBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBudget(parent:budget:)``
+  /// - ``createBudget(request:)``
   public func createBudget(
     request: CreateBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -56,6 +65,11 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// this API will not be changed by this method.
   ///
   /// @Snippet(path: "BudgetService_UpdateBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBudget(budget:updateMask:)``
+  /// - ``updateBudget(request:)``
   public func updateBudget(
     request: UpdateBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -70,6 +84,11 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// in the Cloud Console.
   ///
   /// @Snippet(path: "BudgetService_GetBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBudget(name:)``
+  /// - ``getBudget(request:)``
   public func getBudget(
     request: GetBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -84,6 +103,13 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// in the Cloud Console.
   ///
   /// @Snippet(path: "BudgetService_ListBudgets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBudgets(request:)``
+  /// - ``listBudgetsByItems(parent:)``
+  /// - ``listBudgetsByItems(request:)``
+  /// - ``listBudgetsByItems(request:options:)``
   public func listBudgets(
     request: ListBudgetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse {
@@ -93,6 +119,11 @@ public final class BudgetServiceClient: Clients.BudgetServiceProtocol, Sendable 
   /// Deletes a budget. Returns successfully if already deleted.
   ///
   /// @Snippet(path: "BudgetService_DeleteBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBudget(name:)``
+  /// - ``deleteBudget(request:)``
   public func deleteBudget(
     request: DeleteBudgetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -136,6 +167,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.BudgetServiceProtocol {
+  /// Creates a new budget. See
+  /// [Quotas and limits](https://cloud.google.com/billing/quotas)
+  /// for more information on the limits of the number of budgets you can create.
+  ///
+  /// @Snippet(path: "BudgetService_CreateBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/createBudget(request:options:)``
   public func createBudget(request: CreateBudgetRequest) async throws
     -> GoogleCloudBillingBudgetsV1.Budget
   {
@@ -148,6 +188,15 @@ extension Clients.BudgetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new budget. See
+  /// [Quotas and limits](https://cloud.google.com/billing/quotas)
+  /// for more information on the limits of the number of budgets you can create.
+  ///
+  /// @Snippet(path: "BudgetService_CreateBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/createBudget(request:options:)``
   public func createBudget(
     parent: Swift.String,
     budget: Budget?,
@@ -159,6 +208,17 @@ extension Clients.BudgetServiceProtocol {
     return try await self.createBudget(request: request)
   }
 
+  /// Updates a budget and returns the updated budget.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. Budget fields that are not exposed in
+  /// this API will not be changed by this method.
+  ///
+  /// @Snippet(path: "BudgetService_UpdateBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/updateBudget(request:options:)``
   public func updateBudget(request: UpdateBudgetRequest) async throws
     -> GoogleCloudBillingBudgetsV1.Budget
   {
@@ -171,6 +231,17 @@ extension Clients.BudgetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a budget and returns the updated budget.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. Budget fields that are not exposed in
+  /// this API will not be changed by this method.
+  ///
+  /// @Snippet(path: "BudgetService_UpdateBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/updateBudget(request:options:)``
   public func updateBudget(
     budget: Budget?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -182,6 +253,18 @@ extension Clients.BudgetServiceProtocol {
     return try await self.updateBudget(request: request)
   }
 
+  /// Returns a budget.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. When reading from the API, you will not
+  /// see these fields in the return value, though they may have been set
+  /// in the Cloud Console.
+  ///
+  /// @Snippet(path: "BudgetService_GetBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/getBudget(request:options:)``
   public func getBudget(request: GetBudgetRequest) async throws
     -> GoogleCloudBillingBudgetsV1.Budget
   {
@@ -194,6 +277,18 @@ extension Clients.BudgetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a budget.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. When reading from the API, you will not
+  /// see these fields in the return value, though they may have been set
+  /// in the Cloud Console.
+  ///
+  /// @Snippet(path: "BudgetService_GetBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/getBudget(request:options:)``
   public func getBudget(
     name: Swift.String,
   ) async throws -> GoogleCloudBillingBudgetsV1.Budget {
@@ -203,6 +298,18 @@ extension Clients.BudgetServiceProtocol {
     return try await self.getBudget(request: request)
   }
 
+  /// Returns a list of budgets for a billing account.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. When reading from the API, you will not
+  /// see these fields in the return value, though they may have been set
+  /// in the Cloud Console.
+  ///
+  /// @Snippet(path: "BudgetService_ListBudgets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/listBudgets(request:options:)``
   public func listBudgets(request: ListBudgetsRequest) async throws
     -> GoogleCloudBillingBudgetsV1.ListBudgetsResponse
   {
@@ -215,6 +322,18 @@ extension Clients.BudgetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of budgets for a billing account.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. When reading from the API, you will not
+  /// see these fields in the return value, though they may have been set
+  /// in the Cloud Console.
+  ///
+  /// @Snippet(path: "BudgetService_ListBudgets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/listBudgets(request:options:)``
   public func listBudgetsByItems(
     request: ListBudgetsRequest
   ) -> some AsyncSequence<Budget, any Swift.Error> & Sendable {
@@ -229,6 +348,10 @@ extension Clients.BudgetServiceProtocol {
   /// in the Cloud Console.
   ///
   /// @Snippet(path: "BudgetService_ListBudgets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/listBudgets(request:options:)``
   public func listBudgetsByItems(
     request: ListBudgetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Budget, any Swift.Error> & Sendable {
@@ -243,6 +366,18 @@ extension Clients.BudgetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns a list of budgets for a billing account.
+  ///
+  /// WARNING: There are some fields exposed on the Google Cloud Console that
+  /// aren't available on this API. When reading from the API, you will not
+  /// see these fields in the return value, though they may have been set
+  /// in the Cloud Console.
+  ///
+  /// @Snippet(path: "BudgetService_ListBudgets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/listBudgets(request:options:)``
   public func listBudgetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Budget, any Swift.Error> & Sendable {
@@ -252,6 +387,13 @@ extension Clients.BudgetServiceProtocol {
     return self.listBudgetsByItems(request: request)
   }
 
+  /// Deletes a budget. Returns successfully if already deleted.
+  ///
+  /// @Snippet(path: "BudgetService_DeleteBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/deleteBudget(request:options:)``
   public func deleteBudget(request: DeleteBudgetRequest) async throws {
     try await self.deleteBudget(request: request, options: .init())
   }
@@ -262,6 +404,13 @@ extension Clients.BudgetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a budget. Returns successfully if already deleted.
+  ///
+  /// @Snippet(path: "BudgetService_DeleteBudget")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BudgetServiceClient/deleteBudget(request:options:)``
   public func deleteBudget(
     name: Swift.String,
   ) async throws {

@@ -30,6 +30,10 @@
   /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
   ///
   /// @Snippet(path: "DataStoreServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/DataStoreServiceProtocol``
   public final class DataStoreServiceClient: Clients.DataStoreServiceProtocol, Sendable {
     let inner: any Clients.DataStoreServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -60,6 +64,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "DataStoreService_CreateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDataStore(request:)``
+    /// - ``createDataStorePollingUntilDone(parent:dataStore:dataStoreId:)``
+    /// - ``createDataStorePollingUntilDone(request:)``
+    /// - ``createDataStorePollingUntilDone(request:options:)``
     public func createDataStore(
       request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -79,6 +90,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "DataStoreService_CreateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDataStore(request:)``
+    /// - ``createDataStore(request:options:)``
+    /// - ``createDataStorePollingUntilDone(parent:dataStore:dataStoreId:)``
+    /// - ``createDataStorePollingUntilDone(request:)``
     public func createDataStorePollingUntilDone(
       request: CreateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> DataStore {
@@ -108,6 +126,11 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_GetDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDataStore(name:)``
+    /// - ``getDataStore(request:)``
     public func getDataStore(
       request: GetDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -120,6 +143,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_ListDataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDataStores(request:)``
+    /// - ``listDataStoresByItems(parent:)``
+    /// - ``listDataStoresByItems(request:)``
+    /// - ``listDataStoresByItems(request:options:)``
     public func listDataStores(
       request: ListDataStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse {
@@ -131,6 +161,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_DeleteDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDataStore(request:)``
+    /// - ``deleteDataStorePollingUntilDone(name:)``
+    /// - ``deleteDataStorePollingUntilDone(request:)``
+    /// - ``deleteDataStorePollingUntilDone(request:options:)``
     public func deleteDataStore(
       request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -142,6 +179,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_DeleteDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDataStore(request:)``
+    /// - ``deleteDataStore(request:options:)``
+    /// - ``deleteDataStorePollingUntilDone(name:)``
+    /// - ``deleteDataStorePollingUntilDone(request:)``
     public func deleteDataStorePollingUntilDone(
       request: DeleteDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -172,6 +216,11 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_UpdateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDataStore(dataStore:updateMask:)``
+    /// - ``updateDataStore(request:)``
     public func updateDataStore(
       request: UpdateDataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -186,6 +235,11 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(resource:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -209,6 +263,11 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(resource:policy:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -220,6 +279,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -242,6 +308,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -315,6 +386,23 @@
 
   // Default implementations
   extension Clients.DataStoreServiceProtocol {
+    /// Creates a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// DataStore is for storing
+    /// [Documents][google.cloud.discoveryengine.v1.Document]. To serve these
+    /// documents for Search, or Recommendation use case, an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine] needs to be created
+    /// separately.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "DataStoreService_CreateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/createDataStore(request:options:)``
     public func createDataStore(request: CreateDataStoreRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -327,6 +415,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// DataStore is for storing
+    /// [Documents][google.cloud.discoveryengine.v1.Document]. To serve these
+    /// documents for Search, or Recommendation use case, an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine] needs to be created
+    /// separately.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "DataStoreService_CreateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/createDataStorePollingUntilDone(request:options:)``
     public func createDataStorePollingUntilDone(request: CreateDataStoreRequest) async throws
       -> DataStore
     {
@@ -339,6 +444,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// DataStore is for storing
+    /// [Documents][google.cloud.discoveryengine.v1.Document]. To serve these
+    /// documents for Search, or Recommendation use case, an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine] needs to be created
+    /// separately.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    /// [google.cloud.discoveryengine.v1.Document]: <doc:Document>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "DataStoreService_CreateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/createDataStorePollingUntilDone(request:options:)``
     public func createDataStorePollingUntilDone(
       parent: Swift.String,
       dataStore: DataStore?,
@@ -352,6 +474,15 @@
       return try await self.createDataStorePollingUntilDone(request: request)
     }
 
+    /// Gets a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_GetDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/getDataStore(request:options:)``
     public func getDataStore(request: GetDataStoreRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.DataStore
     {
@@ -364,6 +495,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_GetDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/getDataStore(request:options:)``
     public func getDataStore(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.DataStore {
@@ -373,6 +513,16 @@
       return try await self.getDataStore(request: request)
     }
 
+    /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_ListDataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listDataStores(request:options:)``
     public func listDataStores(request: ListDataStoresRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListDataStoresResponse
     {
@@ -385,6 +535,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_ListDataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listDataStores(request:options:)``
     public func listDataStoresByItems(
       request: ListDataStoresRequest
     ) -> some AsyncSequence<DataStore, any Swift.Error> & Sendable {
@@ -397,6 +557,10 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "DataStoreService_ListDataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listDataStores(request:options:)``
     public func listDataStoresByItems(
       request: ListDataStoresRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<DataStore, any Swift.Error> & Sendable {
@@ -411,6 +575,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all the [DataStore][google.cloud.discoveryengine.v1.DataStore]s
+    /// associated with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_ListDataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listDataStores(request:options:)``
     public func listDataStoresByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<DataStore, any Swift.Error> & Sendable {
@@ -420,6 +594,15 @@
       return self.listDataStoresByItems(request: request)
     }
 
+    /// Deletes a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_DeleteDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/deleteDataStore(request:options:)``
     public func deleteDataStore(request: DeleteDataStoreRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -432,6 +615,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_DeleteDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/deleteDataStorePollingUntilDone(request:options:)``
     public func deleteDataStorePollingUntilDone(request: DeleteDataStoreRequest) async throws {
       try await self.deleteDataStorePollingUntilDone(request: request, options: .init())
     }
@@ -442,6 +634,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_DeleteDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/deleteDataStorePollingUntilDone(request:options:)``
     public func deleteDataStorePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -451,6 +652,15 @@
       try await self.deleteDataStorePollingUntilDone(request: request)
     }
 
+    /// Updates a [DataStore][google.cloud.discoveryengine.v1.DataStore]
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_UpdateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/updateDataStore(request:options:)``
     public func updateDataStore(request: UpdateDataStoreRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.DataStore
     {
@@ -463,6 +673,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a [DataStore][google.cloud.discoveryengine.v1.DataStore]
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_UpdateDataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/updateDataStore(request:options:)``
     public func updateDataStore(
       dataStore: DataStore?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -474,6 +693,18 @@
       return try await self.updateDataStore(request: request)
     }
 
+    /// Gets the IAM access control policy for a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+    /// is returned if the resource does not exist. An empty policy is returned if
+    /// the resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -486,6 +717,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the IAM access control policy for a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+    /// is returned if the resource does not exist. An empty policy is returned if
+    /// the resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       resource: Swift.String,
     ) async throws -> GoogleIAMV1.Policy {
@@ -495,6 +738,27 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Sets the IAM access control policy for a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+    /// is returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on a DataStore resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`
+    /// `roles/discoveryengine.agentspaceAdmin`
+    /// `roles/discoveryengine.viewer`
+    /// `roles/discoveryengine.agentspaceViewer`
+    /// `roles/discoveryengine.user`
+    /// `roles/discoveryengine.agentspaceUser`
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -507,6 +771,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the IAM access control policy for a
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore]. A `NOT_FOUND` error
+    /// is returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on a DataStore resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`
+    /// `roles/discoveryengine.agentspaceAdmin`
+    /// `roles/discoveryengine.viewer`
+    /// `roles/discoveryengine.agentspaceViewer`
+    /// `roles/discoveryengine.user`
+    /// `roles/discoveryengine.agentspaceUser`
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "DataStoreService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       resource: Swift.String,
       policy: GoogleIAMV1.Policy?,
@@ -518,6 +803,15 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -530,6 +824,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -541,6 +844,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DataStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -554,6 +861,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -565,6 +881,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -577,6 +896,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -586,6 +908,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -596,6 +927,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DataStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DataStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

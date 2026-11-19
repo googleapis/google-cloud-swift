@@ -28,6 +28,10 @@ import Foundation
 /// https://docs.cloud.google.com/sensitive-data-protection/docs/.
 ///
 /// @Snippet(path: "DlpServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DlpServiceProtocol``
 public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   let inner: any Clients.DlpServiceStub
 
@@ -54,6 +58,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text,
   ///
   /// @Snippet(path: "DlpService_InspectContent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``inspectContent(request:)``
   public func inspectContent(
     request: InspectContentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectContentResponse {
@@ -74,6 +82,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// other frames are omitted in the response.
   ///
   /// @Snippet(path: "DlpService_RedactImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``redactImage(request:)``
   public func redactImage(
     request: RedactImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.RedactImageResponse {
@@ -91,6 +103,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// be all types, but may change over time as detectors are updated.
   ///
   /// @Snippet(path: "DlpService_DeidentifyContent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deidentifyContent(request:)``
   public func deidentifyContent(
     request: DeidentifyContentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyContentResponse {
@@ -103,6 +119,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ReidentifyContent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reidentifyContent(request:)``
   public func reidentifyContent(
     request: ReidentifyContentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ReidentifyContentResponse {
@@ -115,6 +135,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInfoTypes(parent:)``
+  /// - ``listInfoTypes(request:)``
   public func listInfoTypes(
     request: ListInfoTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListInfoTypesResponse {
@@ -128,6 +153,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInspectTemplate(parent:inspectTemplate:)``
+  /// - ``createInspectTemplate(request:)``
   public func createInspectTemplate(
     request: CreateInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -140,6 +170,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInspectTemplate(name:inspectTemplate:updateMask:)``
+  /// - ``updateInspectTemplate(request:)``
   public func updateInspectTemplate(
     request: UpdateInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -152,6 +187,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInspectTemplate(name:)``
+  /// - ``getInspectTemplate(request:)``
   public func getInspectTemplate(
     request: GetInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -164,6 +204,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInspectTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInspectTemplates(request:)``
+  /// - ``listInspectTemplatesByItems(parent:)``
+  /// - ``listInspectTemplatesByItems(request:)``
+  /// - ``listInspectTemplatesByItems(request:options:)``
   public func listInspectTemplates(
     request: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListInspectTemplatesResponse {
@@ -176,6 +223,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInspectTemplate(name:)``
+  /// - ``deleteInspectTemplate(request:)``
   public func deleteInspectTemplate(
     request: DeleteInspectTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -189,6 +241,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDeidentifyTemplate(parent:deidentifyTemplate:)``
+  /// - ``createDeidentifyTemplate(request:)``
   public func createDeidentifyTemplate(
     request: CreateDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -201,6 +258,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDeidentifyTemplate(name:deidentifyTemplate:updateMask:)``
+  /// - ``updateDeidentifyTemplate(request:)``
   public func updateDeidentifyTemplate(
     request: UpdateDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -213,6 +275,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDeidentifyTemplate(name:)``
+  /// - ``getDeidentifyTemplate(request:)``
   public func getDeidentifyTemplate(
     request: GetDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -225,6 +292,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDeidentifyTemplates(request:)``
+  /// - ``listDeidentifyTemplatesByItems(parent:)``
+  /// - ``listDeidentifyTemplatesByItems(request:)``
+  /// - ``listDeidentifyTemplatesByItems(request:options:)``
   public func listDeidentifyTemplates(
     request: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListDeidentifyTemplatesResponse {
@@ -237,6 +311,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDeidentifyTemplate(name:)``
+  /// - ``deleteDeidentifyTemplate(request:)``
   public func deleteDeidentifyTemplate(
     request: DeleteDeidentifyTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -250,6 +329,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJobTrigger(parent:jobTrigger:)``
+  /// - ``createJobTrigger(request:)``
   public func createJobTrigger(
     request: CreateJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -262,6 +346,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateJobTrigger(name:jobTrigger:updateMask:)``
+  /// - ``updateJobTrigger(request:)``
   public func updateJobTrigger(
     request: UpdateJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -273,6 +362,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// jobs within the trigger.
   ///
   /// @Snippet(path: "DlpService_HybridInspectJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``hybridInspectJobTrigger(name:)``
+  /// - ``hybridInspectJobTrigger(request:)``
   public func hybridInspectJobTrigger(
     request: HybridInspectJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -285,6 +379,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJobTrigger(name:)``
+  /// - ``getJobTrigger(request:)``
   public func getJobTrigger(
     request: GetJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -297,6 +396,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListJobTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobTriggers(request:)``
+  /// - ``listJobTriggersByItems(parent:)``
+  /// - ``listJobTriggersByItems(request:)``
+  /// - ``listJobTriggersByItems(request:options:)``
   public func listJobTriggers(
     request: ListJobTriggersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListJobTriggersResponse {
@@ -309,6 +415,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJobTrigger(name:)``
+  /// - ``deleteJobTrigger(request:)``
   public func deleteJobTrigger(
     request: DeleteJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -319,6 +430,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// instead of waiting on the trigger event to occur.
   ///
   /// @Snippet(path: "DlpService_ActivateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``activateJobTrigger(request:)``
   public func activateJobTrigger(
     request: ActivateJobTriggerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -328,6 +443,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Creates a config for discovery to scan and profile storage.
   ///
   /// @Snippet(path: "DlpService_CreateDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDiscoveryConfig(parent:discoveryConfig:)``
+  /// - ``createDiscoveryConfig(request:)``
   public func createDiscoveryConfig(
     request: CreateDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -337,6 +457,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Updates a discovery configuration.
   ///
   /// @Snippet(path: "DlpService_UpdateDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDiscoveryConfig(name:discoveryConfig:updateMask:)``
+  /// - ``updateDiscoveryConfig(request:)``
   public func updateDiscoveryConfig(
     request: UpdateDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -346,6 +471,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Gets a discovery configuration.
   ///
   /// @Snippet(path: "DlpService_GetDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDiscoveryConfig(name:)``
+  /// - ``getDiscoveryConfig(request:)``
   public func getDiscoveryConfig(
     request: GetDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -355,6 +485,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Lists discovery configurations.
   ///
   /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDiscoveryConfigs(request:)``
+  /// - ``listDiscoveryConfigsByItems(parent:)``
+  /// - ``listDiscoveryConfigsByItems(request:)``
+  /// - ``listDiscoveryConfigsByItems(request:options:)``
   public func listDiscoveryConfigs(
     request: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListDiscoveryConfigsResponse {
@@ -364,6 +501,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Deletes a discovery configuration.
   ///
   /// @Snippet(path: "DlpService_DeleteDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDiscoveryConfig(name:)``
+  /// - ``deleteDiscoveryConfig(request:)``
   public func deleteDiscoveryConfig(
     request: DeleteDiscoveryConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -382,6 +524,12 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// be all types, but may change over time as detectors are updated.
   ///
   /// @Snippet(path: "DlpService_CreateDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDlpJob(parent:inspectJob:)``
+  /// - ``createDlpJob(parent:riskJob:)``
+  /// - ``createDlpJob(request:)``
   public func createDlpJob(
     request: CreateDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -396,6 +544,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDlpJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDlpJobs(request:)``
+  /// - ``listDlpJobsByItems(parent:)``
+  /// - ``listDlpJobsByItems(request:)``
+  /// - ``listDlpJobsByItems(request:options:)``
   public func listDlpJobs(
     request: ListDlpJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListDlpJobsResponse {
@@ -410,6 +565,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDlpJob(name:)``
+  /// - ``getDlpJob(request:)``
   public func getDlpJob(
     request: GetDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -426,6 +586,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDlpJob(name:)``
+  /// - ``deleteDlpJob(request:)``
   public func deleteDlpJob(
     request: DeleteDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -442,6 +607,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CancelDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelDlpJob(request:)``
   public func cancelDlpJob(
     request: CancelDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -454,6 +623,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_CreateStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createStoredInfoType(parent:config:)``
+  /// - ``createStoredInfoType(request:)``
   public func createStoredInfoType(
     request: CreateStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -467,6 +641,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_UpdateStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateStoredInfoType(name:config:updateMask:)``
+  /// - ``updateStoredInfoType(request:)``
   public func updateStoredInfoType(
     request: UpdateStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -479,6 +658,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_GetStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStoredInfoType(name:)``
+  /// - ``getStoredInfoType(request:)``
   public func getStoredInfoType(
     request: GetStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -491,6 +675,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListStoredInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listStoredInfoTypes(request:)``
+  /// - ``listStoredInfoTypesByItems(parent:)``
+  /// - ``listStoredInfoTypesByItems(request:)``
+  /// - ``listStoredInfoTypesByItems(request:options:)``
   public func listStoredInfoTypes(
     request: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListStoredInfoTypesResponse {
@@ -503,6 +694,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_DeleteStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteStoredInfoType(name:)``
+  /// - ``deleteStoredInfoType(request:)``
   public func deleteStoredInfoType(
     request: DeleteStoredInfoTypeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -512,6 +708,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Lists project data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListProjectDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProjectDataProfiles(request:)``
+  /// - ``listProjectDataProfilesByItems(parent:)``
+  /// - ``listProjectDataProfilesByItems(request:)``
+  /// - ``listProjectDataProfilesByItems(request:options:)``
   public func listProjectDataProfiles(
     request: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListProjectDataProfilesResponse {
@@ -521,6 +724,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Lists table data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListTableDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTableDataProfiles(request:)``
+  /// - ``listTableDataProfilesByItems(parent:)``
+  /// - ``listTableDataProfilesByItems(request:)``
+  /// - ``listTableDataProfilesByItems(request:options:)``
   public func listTableDataProfiles(
     request: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListTableDataProfilesResponse {
@@ -530,6 +740,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Lists column data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListColumnDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listColumnDataProfiles(request:)``
+  /// - ``listColumnDataProfilesByItems(parent:)``
+  /// - ``listColumnDataProfilesByItems(request:)``
+  /// - ``listColumnDataProfilesByItems(request:options:)``
   public func listColumnDataProfiles(
     request: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListColumnDataProfilesResponse {
@@ -539,6 +756,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Gets a project data profile.
   ///
   /// @Snippet(path: "DlpService_GetProjectDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProjectDataProfile(name:)``
+  /// - ``getProjectDataProfile(request:)``
   public func getProjectDataProfile(
     request: GetProjectDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ProjectDataProfile {
@@ -548,6 +770,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Lists file store data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFileStoreDataProfiles(request:)``
+  /// - ``listFileStoreDataProfilesByItems(parent:)``
+  /// - ``listFileStoreDataProfilesByItems(request:)``
+  /// - ``listFileStoreDataProfilesByItems(request:options:)``
   public func listFileStoreDataProfiles(
     request: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListFileStoreDataProfilesResponse {
@@ -557,6 +786,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Gets a file store data profile.
   ///
   /// @Snippet(path: "DlpService_GetFileStoreDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFileStoreDataProfile(name:)``
+  /// - ``getFileStoreDataProfile(request:)``
   public func getFileStoreDataProfile(
     request: GetFileStoreDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.FileStoreDataProfile {
@@ -567,6 +801,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// regenerated if the resource is still included in a discovery configuration.
   ///
   /// @Snippet(path: "DlpService_DeleteFileStoreDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFileStoreDataProfile(name:)``
+  /// - ``deleteFileStoreDataProfile(request:)``
   public func deleteFileStoreDataProfile(
     request: DeleteFileStoreDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -576,6 +815,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Gets a table data profile.
   ///
   /// @Snippet(path: "DlpService_GetTableDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTableDataProfile(name:)``
+  /// - ``getTableDataProfile(request:)``
   public func getTableDataProfile(
     request: GetTableDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.TableDataProfile {
@@ -585,6 +829,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Gets a column data profile.
   ///
   /// @Snippet(path: "DlpService_GetColumnDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getColumnDataProfile(name:)``
+  /// - ``getColumnDataProfile(request:)``
   public func getColumnDataProfile(
     request: GetColumnDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ColumnDataProfile {
@@ -595,6 +844,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// regenerated if the table is still included in a discovery configuration.
   ///
   /// @Snippet(path: "DlpService_DeleteTableDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTableDataProfile(name:)``
+  /// - ``deleteTableDataProfile(request:)``
   public func deleteTableDataProfile(
     request: DeleteTableDataProfileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -606,6 +860,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// asynchronously.
   ///
   /// @Snippet(path: "DlpService_HybridInspectDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``hybridInspectDlpJob(name:)``
+  /// - ``hybridInspectDlpJob(request:)``
   public func hybridInspectDlpJob(
     request: HybridInspectDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -616,6 +875,10 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// of any enabled actions that have not yet run.
   ///
   /// @Snippet(path: "DlpService_FinishDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``finishDlpJob(request:)``
   public func finishDlpJob(
     request: FinishDlpJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -625,6 +888,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Create a Connection to an external data source.
   ///
   /// @Snippet(path: "DlpService_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnection(parent:connection:)``
+  /// - ``createConnection(request:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -634,6 +902,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Get a Connection by name.
   ///
   /// @Snippet(path: "DlpService_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -644,6 +917,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// within an organization.
   ///
   /// @Snippet(path: "DlpService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
+  /// - ``listConnectionsByItems(request:)``
+  /// - ``listConnectionsByItems(request:options:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListConnectionsResponse {
@@ -653,6 +933,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Searches for Connections in a parent.
   ///
   /// @Snippet(path: "DlpService_SearchConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchConnections(request:)``
+  /// - ``searchConnectionsByItems(parent:)``
+  /// - ``searchConnectionsByItems(request:)``
+  /// - ``searchConnectionsByItems(request:options:)``
   public func searchConnections(
     request: SearchConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.SearchConnectionsResponse {
@@ -662,6 +949,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Delete a Connection.
   ///
   /// @Snippet(path: "DlpService_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnection(name:)``
+  /// - ``deleteConnection(request:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -671,6 +963,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Update a Connection.
   ///
   /// @Snippet(path: "DlpService_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnection(name:)``
+  /// - ``updateConnection(request:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -680,6 +977,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Create a ContentPolicy.
   ///
   /// @Snippet(path: "DlpService_CreateContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createContentPolicy(parent:contentPolicy:)``
+  /// - ``createContentPolicy(request:)``
   public func createContentPolicy(
     request: CreateContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -689,6 +991,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Update a ContentPolicy.
   ///
   /// @Snippet(path: "DlpService_UpdateContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateContentPolicy(name:contentPolicy:updateMask:)``
+  /// - ``updateContentPolicy(request:)``
   public func updateContentPolicy(
     request: UpdateContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -698,6 +1005,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Get a ContentPolicy.
   ///
   /// @Snippet(path: "DlpService_GetContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getContentPolicy(name:)``
+  /// - ``getContentPolicy(request:)``
   public func getContentPolicy(
     request: GetContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -707,6 +1019,13 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Lists ContentPolicies in a parent.
   ///
   /// @Snippet(path: "DlpService_ListContentPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listContentPolicies(request:)``
+  /// - ``listContentPoliciesByItems(parent:)``
+  /// - ``listContentPoliciesByItems(request:)``
+  /// - ``listContentPoliciesByItems(request:options:)``
   public func listContentPolicies(
     request: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDLPV2.ListContentPoliciesResponse {
@@ -716,6 +1035,11 @@ public final class DlpServiceClient: Clients.DlpServiceProtocol, Sendable {
   /// Delete a ContentPolicy.
   ///
   /// @Snippet(path: "DlpService_DeleteContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteContentPolicy(name:)``
+  /// - ``deleteContentPolicy(request:)``
   public func deleteContentPolicy(
     request: DeleteContentPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1034,6 +1358,23 @@ extension Clients {
 
 // Default implementations
 extension Clients.DlpServiceProtocol {
+  /// Finds potentially sensitive info in content.
+  /// This method has limits on input size, processing time, and output size.
+  ///
+  /// When no InfoTypes or CustomInfoTypes are specified in this request, the
+  /// system will automatically choose what detectors to run. By default this may
+  /// be all types, but may change over time as detectors are updated.
+  ///
+  /// For how to guides, see
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-images
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-text,
+  ///
+  /// @Snippet(path: "DlpService_InspectContent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/inspectContent(request:options:)``
   public func inspectContent(request: InspectContentRequest) async throws
     -> GoogleCloudDLPV2.InspectContentResponse
   {
@@ -1046,6 +1387,24 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Redacts potentially sensitive info from an image.
+  /// This method has limits on input size, processing time, and output size.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/redacting-sensitive-data-images
+  /// to learn more.
+  ///
+  /// When no InfoTypes or CustomInfoTypes are specified in this request, the
+  /// system will automatically choose what detectors to run. By default this may
+  /// be all types, but may change over time as detectors are updated.
+  ///
+  /// Only the first frame of each multiframe image is redacted. Metadata and
+  /// other frames are omitted in the response.
+  ///
+  /// @Snippet(path: "DlpService_RedactImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/redactImage(request:options:)``
   public func redactImage(request: RedactImageRequest) async throws
     -> GoogleCloudDLPV2.RedactImageResponse
   {
@@ -1058,6 +1417,21 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// De-identifies potentially sensitive info from a ContentItem.
+  /// This method has limits on input size and output size.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/deidentify-sensitive-data
+  /// to learn more.
+  ///
+  /// When no InfoTypes or CustomInfoTypes are specified in this request, the
+  /// system will automatically choose what detectors to run. By default this may
+  /// be all types, but may change over time as detectors are updated.
+  ///
+  /// @Snippet(path: "DlpService_DeidentifyContent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deidentifyContent(request:options:)``
   public func deidentifyContent(request: DeidentifyContentRequest) async throws
     -> GoogleCloudDLPV2.DeidentifyContentResponse
   {
@@ -1070,6 +1444,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Re-identifies content that has been de-identified.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/pseudonymization#re-identification_in_free_text_code_example
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ReidentifyContent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/reidentifyContent(request:options:)``
   public func reidentifyContent(request: ReidentifyContentRequest) async throws
     -> GoogleCloudDLPV2.ReidentifyContentResponse
   {
@@ -1082,6 +1466,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of the sensitive information types that the DLP API
+  /// supports. See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listInfoTypes(request:options:)``
   public func listInfoTypes(request: ListInfoTypesRequest) async throws
     -> GoogleCloudDLPV2.ListInfoTypesResponse
   {
@@ -1094,6 +1488,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of the sensitive information types that the DLP API
+  /// supports. See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/infotypes-reference
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listInfoTypes(request:options:)``
   public func listInfoTypes(
     parent: Swift.String,
   ) async throws -> GoogleCloudDLPV2.ListInfoTypesResponse {
@@ -1103,6 +1507,17 @@ extension Clients.DlpServiceProtocol {
     return try await self.listInfoTypes(request: request)
   }
 
+  /// Creates an InspectTemplate for reusing frequently used configuration
+  /// for inspecting content, images, and storage.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createInspectTemplate(request:options:)``
   public func createInspectTemplate(request: CreateInspectTemplateRequest) async throws
     -> GoogleCloudDLPV2.InspectTemplate
   {
@@ -1115,6 +1530,17 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an InspectTemplate for reusing frequently used configuration
+  /// for inspecting content, images, and storage.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createInspectTemplate(request:options:)``
   public func createInspectTemplate(
     parent: Swift.String,
     inspectTemplate: InspectTemplate?,
@@ -1126,6 +1552,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.createInspectTemplate(request: request)
   }
 
+  /// Updates the InspectTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateInspectTemplate(request:options:)``
   public func updateInspectTemplate(request: UpdateInspectTemplateRequest) async throws
     -> GoogleCloudDLPV2.InspectTemplate
   {
@@ -1138,6 +1574,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the InspectTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateInspectTemplate(request:options:)``
   public func updateInspectTemplate(
     name: Swift.String,
     inspectTemplate: InspectTemplate?,
@@ -1151,6 +1597,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateInspectTemplate(request: request)
   }
 
+  /// Gets an InspectTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getInspectTemplate(request:options:)``
   public func getInspectTemplate(request: GetInspectTemplateRequest) async throws
     -> GoogleCloudDLPV2.InspectTemplate
   {
@@ -1163,6 +1619,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an InspectTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getInspectTemplate(request:options:)``
   public func getInspectTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.InspectTemplate {
@@ -1172,6 +1638,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.getInspectTemplate(request: request)
   }
 
+  /// Lists InspectTemplates.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListInspectTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listInspectTemplates(request:options:)``
   public func listInspectTemplates(request: ListInspectTemplatesRequest) async throws
     -> GoogleCloudDLPV2.ListInspectTemplatesResponse
   {
@@ -1184,6 +1660,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists InspectTemplates.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListInspectTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listInspectTemplates(request:options:)``
   public func listInspectTemplatesByItems(
     request: ListInspectTemplatesRequest
   ) -> some AsyncSequence<InspectTemplate, any Swift.Error> & Sendable {
@@ -1196,6 +1682,10 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListInspectTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listInspectTemplates(request:options:)``
   public func listInspectTemplatesByItems(
     request: ListInspectTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<InspectTemplate, any Swift.Error> & Sendable {
@@ -1210,6 +1700,16 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists InspectTemplates.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListInspectTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listInspectTemplates(request:options:)``
   public func listInspectTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<InspectTemplate, any Swift.Error> & Sendable {
@@ -1219,6 +1719,16 @@ extension Clients.DlpServiceProtocol {
     return self.listInspectTemplatesByItems(request: request)
   }
 
+  /// Deletes an InspectTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteInspectTemplate(request:options:)``
   public func deleteInspectTemplate(request: DeleteInspectTemplateRequest) async throws {
     try await self.deleteInspectTemplate(request: request, options: .init())
   }
@@ -1229,6 +1739,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an InspectTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteInspectTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteInspectTemplate(request:options:)``
   public func deleteInspectTemplate(
     name: Swift.String,
   ) async throws {
@@ -1238,6 +1758,17 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteInspectTemplate(request: request)
   }
 
+  /// Creates a DeidentifyTemplate for reusing frequently used configuration
+  /// for de-identifying content, images, and storage.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDeidentifyTemplate(request:options:)``
   public func createDeidentifyTemplate(request: CreateDeidentifyTemplateRequest) async throws
     -> GoogleCloudDLPV2.DeidentifyTemplate
   {
@@ -1250,6 +1781,17 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a DeidentifyTemplate for reusing frequently used configuration
+  /// for de-identifying content, images, and storage.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDeidentifyTemplate(request:options:)``
   public func createDeidentifyTemplate(
     parent: Swift.String,
     deidentifyTemplate: DeidentifyTemplate?,
@@ -1261,6 +1803,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.createDeidentifyTemplate(request: request)
   }
 
+  /// Updates the DeidentifyTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateDeidentifyTemplate(request:options:)``
   public func updateDeidentifyTemplate(request: UpdateDeidentifyTemplateRequest) async throws
     -> GoogleCloudDLPV2.DeidentifyTemplate
   {
@@ -1273,6 +1825,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the DeidentifyTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateDeidentifyTemplate(request:options:)``
   public func updateDeidentifyTemplate(
     name: Swift.String,
     deidentifyTemplate: DeidentifyTemplate?,
@@ -1286,6 +1848,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateDeidentifyTemplate(request: request)
   }
 
+  /// Gets a DeidentifyTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getDeidentifyTemplate(request:options:)``
   public func getDeidentifyTemplate(request: GetDeidentifyTemplateRequest) async throws
     -> GoogleCloudDLPV2.DeidentifyTemplate
   {
@@ -1298,6 +1870,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a DeidentifyTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getDeidentifyTemplate(request:options:)``
   public func getDeidentifyTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.DeidentifyTemplate {
@@ -1307,6 +1889,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.getDeidentifyTemplate(request: request)
   }
 
+  /// Lists DeidentifyTemplates.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDeidentifyTemplates(request:options:)``
   public func listDeidentifyTemplates(request: ListDeidentifyTemplatesRequest) async throws
     -> GoogleCloudDLPV2.ListDeidentifyTemplatesResponse
   {
@@ -1319,6 +1911,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DeidentifyTemplates.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDeidentifyTemplates(request:options:)``
   public func listDeidentifyTemplatesByItems(
     request: ListDeidentifyTemplatesRequest
   ) -> some AsyncSequence<DeidentifyTemplate, any Swift.Error> & Sendable {
@@ -1331,6 +1933,10 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDeidentifyTemplates(request:options:)``
   public func listDeidentifyTemplatesByItems(
     request: ListDeidentifyTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DeidentifyTemplate, any Swift.Error> & Sendable {
@@ -1345,6 +1951,16 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DeidentifyTemplates.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListDeidentifyTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDeidentifyTemplates(request:options:)``
   public func listDeidentifyTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DeidentifyTemplate, any Swift.Error> & Sendable {
@@ -1354,6 +1970,16 @@ extension Clients.DlpServiceProtocol {
     return self.listDeidentifyTemplatesByItems(request: request)
   }
 
+  /// Deletes a DeidentifyTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteDeidentifyTemplate(request:options:)``
   public func deleteDeidentifyTemplate(request: DeleteDeidentifyTemplateRequest) async throws {
     try await self.deleteDeidentifyTemplate(request: request, options: .init())
   }
@@ -1364,6 +1990,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a DeidentifyTemplate.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-templates-deid
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteDeidentifyTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteDeidentifyTemplate(request:options:)``
   public func deleteDeidentifyTemplate(
     name: Swift.String,
   ) async throws {
@@ -1373,6 +2009,17 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteDeidentifyTemplate(request: request)
   }
 
+  /// Creates a job trigger to run DLP actions such as scanning storage for
+  /// sensitive information on a set schedule.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createJobTrigger(request:options:)``
   public func createJobTrigger(request: CreateJobTriggerRequest) async throws
     -> GoogleCloudDLPV2.JobTrigger
   {
@@ -1385,6 +2032,17 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a job trigger to run DLP actions such as scanning storage for
+  /// sensitive information on a set schedule.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createJobTrigger(request:options:)``
   public func createJobTrigger(
     parent: Swift.String,
     jobTrigger: JobTrigger?,
@@ -1396,6 +2054,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.createJobTrigger(request: request)
   }
 
+  /// Updates a job trigger.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateJobTrigger(request:options:)``
   public func updateJobTrigger(request: UpdateJobTriggerRequest) async throws
     -> GoogleCloudDLPV2.JobTrigger
   {
@@ -1408,6 +2076,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a job trigger.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateJobTrigger(request:options:)``
   public func updateJobTrigger(
     name: Swift.String,
     jobTrigger: JobTrigger?,
@@ -1421,6 +2099,15 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateJobTrigger(request: request)
   }
 
+  /// Inspect hybrid content and store findings to a trigger. The inspection
+  /// will be processed asynchronously. To review the findings monitor the
+  /// jobs within the trigger.
+  ///
+  /// @Snippet(path: "DlpService_HybridInspectJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/hybridInspectJobTrigger(request:options:)``
   public func hybridInspectJobTrigger(request: HybridInspectJobTriggerRequest) async throws
     -> GoogleCloudDLPV2.HybridInspectResponse
   {
@@ -1433,6 +2120,15 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Inspect hybrid content and store findings to a trigger. The inspection
+  /// will be processed asynchronously. To review the findings monitor the
+  /// jobs within the trigger.
+  ///
+  /// @Snippet(path: "DlpService_HybridInspectJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/hybridInspectJobTrigger(request:options:)``
   public func hybridInspectJobTrigger(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -1442,6 +2138,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.hybridInspectJobTrigger(request: request)
   }
 
+  /// Gets a job trigger.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getJobTrigger(request:options:)``
   public func getJobTrigger(request: GetJobTriggerRequest) async throws
     -> GoogleCloudDLPV2.JobTrigger
   {
@@ -1454,6 +2160,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a job trigger.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getJobTrigger(request:options:)``
   public func getJobTrigger(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.JobTrigger {
@@ -1463,6 +2179,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.getJobTrigger(request: request)
   }
 
+  /// Lists job triggers.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListJobTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listJobTriggers(request:options:)``
   public func listJobTriggers(request: ListJobTriggersRequest) async throws
     -> GoogleCloudDLPV2.ListJobTriggersResponse
   {
@@ -1475,6 +2201,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists job triggers.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListJobTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listJobTriggers(request:options:)``
   public func listJobTriggersByItems(
     request: ListJobTriggersRequest
   ) -> some AsyncSequence<JobTrigger, any Swift.Error> & Sendable {
@@ -1487,6 +2223,10 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListJobTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listJobTriggers(request:options:)``
   public func listJobTriggersByItems(
     request: ListJobTriggersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<JobTrigger, any Swift.Error> & Sendable {
@@ -1500,6 +2240,16 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists job triggers.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListJobTriggers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listJobTriggers(request:options:)``
   public func listJobTriggersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<JobTrigger, any Swift.Error> & Sendable {
@@ -1509,6 +2259,16 @@ extension Clients.DlpServiceProtocol {
     return self.listJobTriggersByItems(request: request)
   }
 
+  /// Deletes a job trigger.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteJobTrigger(request:options:)``
   public func deleteJobTrigger(request: DeleteJobTriggerRequest) async throws {
     try await self.deleteJobTrigger(request: request, options: .init())
   }
@@ -1519,6 +2279,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a job trigger.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-job-triggers
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteJobTrigger(request:options:)``
   public func deleteJobTrigger(
     name: Swift.String,
   ) async throws {
@@ -1528,6 +2298,14 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteJobTrigger(request: request)
   }
 
+  /// Activate a job trigger. Causes the immediate execute of a trigger
+  /// instead of waiting on the trigger event to occur.
+  ///
+  /// @Snippet(path: "DlpService_ActivateJobTrigger")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/activateJobTrigger(request:options:)``
   public func activateJobTrigger(request: ActivateJobTriggerRequest) async throws
     -> GoogleCloudDLPV2.DlpJob
   {
@@ -1540,6 +2318,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a config for discovery to scan and profile storage.
+  ///
+  /// @Snippet(path: "DlpService_CreateDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDiscoveryConfig(request:options:)``
   public func createDiscoveryConfig(request: CreateDiscoveryConfigRequest) async throws
     -> GoogleCloudDLPV2.DiscoveryConfig
   {
@@ -1552,6 +2337,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a config for discovery to scan and profile storage.
+  ///
+  /// @Snippet(path: "DlpService_CreateDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDiscoveryConfig(request:options:)``
   public func createDiscoveryConfig(
     parent: Swift.String,
     discoveryConfig: DiscoveryConfig?,
@@ -1563,6 +2355,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.createDiscoveryConfig(request: request)
   }
 
+  /// Updates a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_UpdateDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateDiscoveryConfig(request:options:)``
   public func updateDiscoveryConfig(request: UpdateDiscoveryConfigRequest) async throws
     -> GoogleCloudDLPV2.DiscoveryConfig
   {
@@ -1575,6 +2374,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_UpdateDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateDiscoveryConfig(request:options:)``
   public func updateDiscoveryConfig(
     name: Swift.String,
     discoveryConfig: DiscoveryConfig?,
@@ -1588,6 +2394,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateDiscoveryConfig(request: request)
   }
 
+  /// Gets a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_GetDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getDiscoveryConfig(request:options:)``
   public func getDiscoveryConfig(request: GetDiscoveryConfigRequest) async throws
     -> GoogleCloudDLPV2.DiscoveryConfig
   {
@@ -1600,6 +2413,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_GetDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getDiscoveryConfig(request:options:)``
   public func getDiscoveryConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.DiscoveryConfig {
@@ -1609,6 +2429,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.getDiscoveryConfig(request: request)
   }
 
+  /// Lists discovery configurations.
+  ///
+  /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDiscoveryConfigs(request:options:)``
   public func listDiscoveryConfigs(request: ListDiscoveryConfigsRequest) async throws
     -> GoogleCloudDLPV2.ListDiscoveryConfigsResponse
   {
@@ -1621,6 +2448,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists discovery configurations.
+  ///
+  /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDiscoveryConfigs(request:options:)``
   public func listDiscoveryConfigsByItems(
     request: ListDiscoveryConfigsRequest
   ) -> some AsyncSequence<DiscoveryConfig, any Swift.Error> & Sendable {
@@ -1630,6 +2464,10 @@ extension Clients.DlpServiceProtocol {
   /// Lists discovery configurations.
   ///
   /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDiscoveryConfigs(request:options:)``
   public func listDiscoveryConfigsByItems(
     request: ListDiscoveryConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DiscoveryConfig, any Swift.Error> & Sendable {
@@ -1644,6 +2482,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists discovery configurations.
+  ///
+  /// @Snippet(path: "DlpService_ListDiscoveryConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDiscoveryConfigs(request:options:)``
   public func listDiscoveryConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DiscoveryConfig, any Swift.Error> & Sendable {
@@ -1653,6 +2498,13 @@ extension Clients.DlpServiceProtocol {
     return self.listDiscoveryConfigsByItems(request: request)
   }
 
+  /// Deletes a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_DeleteDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteDiscoveryConfig(request:options:)``
   public func deleteDiscoveryConfig(request: DeleteDiscoveryConfigRequest) async throws {
     try await self.deleteDiscoveryConfig(request: request, options: .init())
   }
@@ -1663,6 +2515,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_DeleteDiscoveryConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteDiscoveryConfig(request:options:)``
   public func deleteDiscoveryConfig(
     name: Swift.String,
   ) async throws {
@@ -1672,6 +2531,22 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteDiscoveryConfig(request: request)
   }
 
+  /// Creates a new job to inspect storage or calculate risk metrics.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+  /// system will automatically choose what detectors to run. By default this may
+  /// be all types, but may change over time as detectors are updated.
+  ///
+  /// @Snippet(path: "DlpService_CreateDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDlpJob(request:options:)``
   public func createDlpJob(request: CreateDlpJobRequest) async throws -> GoogleCloudDLPV2.DlpJob {
     try await self.createDlpJob(request: request, options: .init())
   }
@@ -1682,6 +2557,22 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new job to inspect storage or calculate risk metrics.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+  /// system will automatically choose what detectors to run. By default this may
+  /// be all types, but may change over time as detectors are updated.
+  ///
+  /// @Snippet(path: "DlpService_CreateDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDlpJob(request:options:)``
   public func createDlpJob(
     parent: Swift.String,
     inspectJob: InspectJobConfig,
@@ -1693,6 +2584,22 @@ extension Clients.DlpServiceProtocol {
     return try await self.createDlpJob(request: request)
   }
 
+  /// Creates a new job to inspect storage or calculate risk metrics.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// When no InfoTypes or CustomInfoTypes are specified in inspect jobs, the
+  /// system will automatically choose what detectors to run. By default this may
+  /// be all types, but may change over time as detectors are updated.
+  ///
+  /// @Snippet(path: "DlpService_CreateDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createDlpJob(request:options:)``
   public func createDlpJob(
     parent: Swift.String,
     riskJob: RiskAnalysisJobConfig,
@@ -1704,6 +2611,18 @@ extension Clients.DlpServiceProtocol {
     return try await self.createDlpJob(request: request)
   }
 
+  /// Lists DlpJobs that match the specified filter in the request.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListDlpJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDlpJobs(request:options:)``
   public func listDlpJobs(request: ListDlpJobsRequest) async throws
     -> GoogleCloudDLPV2.ListDlpJobsResponse
   {
@@ -1716,6 +2635,18 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists DlpJobs that match the specified filter in the request.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListDlpJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDlpJobs(request:options:)``
   public func listDlpJobsByItems(
     request: ListDlpJobsRequest
   ) -> some AsyncSequence<DlpJob, any Swift.Error> & Sendable {
@@ -1730,6 +2661,10 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListDlpJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDlpJobs(request:options:)``
   public func listDlpJobsByItems(
     request: ListDlpJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DlpJob, any Swift.Error> & Sendable {
@@ -1743,6 +2678,18 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists DlpJobs that match the specified filter in the request.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListDlpJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listDlpJobs(request:options:)``
   public func listDlpJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DlpJob, any Swift.Error> & Sendable {
@@ -1752,6 +2699,18 @@ extension Clients.DlpServiceProtocol {
     return self.listDlpJobsByItems(request: request)
   }
 
+  /// Gets the latest state of a long-running DlpJob.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getDlpJob(request:options:)``
   public func getDlpJob(request: GetDlpJobRequest) async throws -> GoogleCloudDLPV2.DlpJob {
     try await self.getDlpJob(request: request, options: .init())
   }
@@ -1762,6 +2721,18 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the latest state of a long-running DlpJob.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getDlpJob(request:options:)``
   public func getDlpJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.DlpJob {
@@ -1771,6 +2742,20 @@ extension Clients.DlpServiceProtocol {
     return try await self.getDlpJob(request: request)
   }
 
+  /// Deletes a long-running DlpJob. This method indicates that the client is
+  /// no longer interested in the DlpJob result. The job will be canceled if
+  /// possible.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteDlpJob(request:options:)``
   public func deleteDlpJob(request: DeleteDlpJobRequest) async throws {
     try await self.deleteDlpJob(request: request, options: .init())
   }
@@ -1781,6 +2766,20 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a long-running DlpJob. This method indicates that the client is
+  /// no longer interested in the DlpJob result. The job will be canceled if
+  /// possible.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteDlpJob(request:options:)``
   public func deleteDlpJob(
     name: Swift.String,
   ) async throws {
@@ -1790,6 +2789,20 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteDlpJob(request: request)
   }
 
+  /// Starts asynchronous cancellation on a long-running DlpJob. The server
+  /// makes a best effort to cancel the DlpJob, but success is not
+  /// guaranteed.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/inspecting-storage
+  /// and
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/compute-risk-analysis
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CancelDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/cancelDlpJob(request:options:)``
   public func cancelDlpJob(request: CancelDlpJobRequest) async throws {
     try await self.cancelDlpJob(request: request, options: .init())
   }
@@ -1800,6 +2813,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a pre-built stored infoType to be used for inspection.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createStoredInfoType(request:options:)``
   public func createStoredInfoType(request: CreateStoredInfoTypeRequest) async throws
     -> GoogleCloudDLPV2.StoredInfoType
   {
@@ -1812,6 +2835,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a pre-built stored infoType to be used for inspection.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_CreateStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createStoredInfoType(request:options:)``
   public func createStoredInfoType(
     parent: Swift.String,
     config: StoredInfoTypeConfig?,
@@ -1823,6 +2856,17 @@ extension Clients.DlpServiceProtocol {
     return try await self.createStoredInfoType(request: request)
   }
 
+  /// Updates the stored infoType by creating a new version. The existing version
+  /// will continue to be used until the new version is ready.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateStoredInfoType(request:options:)``
   public func updateStoredInfoType(request: UpdateStoredInfoTypeRequest) async throws
     -> GoogleCloudDLPV2.StoredInfoType
   {
@@ -1835,6 +2879,17 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the stored infoType by creating a new version. The existing version
+  /// will continue to be used until the new version is ready.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_UpdateStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateStoredInfoType(request:options:)``
   public func updateStoredInfoType(
     name: Swift.String,
     config: StoredInfoTypeConfig?,
@@ -1848,6 +2903,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateStoredInfoType(request: request)
   }
 
+  /// Gets a stored infoType.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getStoredInfoType(request:options:)``
   public func getStoredInfoType(request: GetStoredInfoTypeRequest) async throws
     -> GoogleCloudDLPV2.StoredInfoType
   {
@@ -1860,6 +2925,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a stored infoType.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_GetStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getStoredInfoType(request:options:)``
   public func getStoredInfoType(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.StoredInfoType {
@@ -1869,6 +2944,16 @@ extension Clients.DlpServiceProtocol {
     return try await self.getStoredInfoType(request: request)
   }
 
+  /// Lists stored infoTypes.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListStoredInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listStoredInfoTypes(request:options:)``
   public func listStoredInfoTypes(request: ListStoredInfoTypesRequest) async throws
     -> GoogleCloudDLPV2.ListStoredInfoTypesResponse
   {
@@ -1881,6 +2966,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists stored infoTypes.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListStoredInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listStoredInfoTypes(request:options:)``
   public func listStoredInfoTypesByItems(
     request: ListStoredInfoTypesRequest
   ) -> some AsyncSequence<StoredInfoType, any Swift.Error> & Sendable {
@@ -1893,6 +2988,10 @@ extension Clients.DlpServiceProtocol {
   /// to learn more.
   ///
   /// @Snippet(path: "DlpService_ListStoredInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listStoredInfoTypes(request:options:)``
   public func listStoredInfoTypesByItems(
     request: ListStoredInfoTypesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<StoredInfoType, any Swift.Error> & Sendable {
@@ -1907,6 +3006,16 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists stored infoTypes.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_ListStoredInfoTypes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listStoredInfoTypes(request:options:)``
   public func listStoredInfoTypesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<StoredInfoType, any Swift.Error> & Sendable {
@@ -1916,6 +3025,16 @@ extension Clients.DlpServiceProtocol {
     return self.listStoredInfoTypesByItems(request: request)
   }
 
+  /// Deletes a stored infoType.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteStoredInfoType(request:options:)``
   public func deleteStoredInfoType(request: DeleteStoredInfoTypeRequest) async throws {
     try await self.deleteStoredInfoType(request: request, options: .init())
   }
@@ -1926,6 +3045,16 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a stored infoType.
+  /// See
+  /// https://docs.cloud.google.com/sensitive-data-protection/docs/creating-stored-infotypes
+  /// to learn more.
+  ///
+  /// @Snippet(path: "DlpService_DeleteStoredInfoType")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteStoredInfoType(request:options:)``
   public func deleteStoredInfoType(
     name: Swift.String,
   ) async throws {
@@ -1935,6 +3064,13 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteStoredInfoType(request: request)
   }
 
+  /// Lists project data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListProjectDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listProjectDataProfiles(request:options:)``
   public func listProjectDataProfiles(request: ListProjectDataProfilesRequest) async throws
     -> GoogleCloudDLPV2.ListProjectDataProfilesResponse
   {
@@ -1947,6 +3083,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists project data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListProjectDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listProjectDataProfiles(request:options:)``
   public func listProjectDataProfilesByItems(
     request: ListProjectDataProfilesRequest
   ) -> some AsyncSequence<ProjectDataProfile, any Swift.Error> & Sendable {
@@ -1956,6 +3099,10 @@ extension Clients.DlpServiceProtocol {
   /// Lists project data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListProjectDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listProjectDataProfiles(request:options:)``
   public func listProjectDataProfilesByItems(
     request: ListProjectDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ProjectDataProfile, any Swift.Error> & Sendable {
@@ -1970,6 +3117,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists project data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListProjectDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listProjectDataProfiles(request:options:)``
   public func listProjectDataProfilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ProjectDataProfile, any Swift.Error> & Sendable {
@@ -1979,6 +3133,13 @@ extension Clients.DlpServiceProtocol {
     return self.listProjectDataProfilesByItems(request: request)
   }
 
+  /// Lists table data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListTableDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listTableDataProfiles(request:options:)``
   public func listTableDataProfiles(request: ListTableDataProfilesRequest) async throws
     -> GoogleCloudDLPV2.ListTableDataProfilesResponse
   {
@@ -1991,6 +3152,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists table data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListTableDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listTableDataProfiles(request:options:)``
   public func listTableDataProfilesByItems(
     request: ListTableDataProfilesRequest
   ) -> some AsyncSequence<TableDataProfile, any Swift.Error> & Sendable {
@@ -2000,6 +3168,10 @@ extension Clients.DlpServiceProtocol {
   /// Lists table data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListTableDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listTableDataProfiles(request:options:)``
   public func listTableDataProfilesByItems(
     request: ListTableDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TableDataProfile, any Swift.Error> & Sendable {
@@ -2014,6 +3186,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists table data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListTableDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listTableDataProfiles(request:options:)``
   public func listTableDataProfilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TableDataProfile, any Swift.Error> & Sendable {
@@ -2023,6 +3202,13 @@ extension Clients.DlpServiceProtocol {
     return self.listTableDataProfilesByItems(request: request)
   }
 
+  /// Lists column data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListColumnDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listColumnDataProfiles(request:options:)``
   public func listColumnDataProfiles(request: ListColumnDataProfilesRequest) async throws
     -> GoogleCloudDLPV2.ListColumnDataProfilesResponse
   {
@@ -2035,6 +3221,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists column data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListColumnDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listColumnDataProfiles(request:options:)``
   public func listColumnDataProfilesByItems(
     request: ListColumnDataProfilesRequest
   ) -> some AsyncSequence<ColumnDataProfile, any Swift.Error> & Sendable {
@@ -2044,6 +3237,10 @@ extension Clients.DlpServiceProtocol {
   /// Lists column data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListColumnDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listColumnDataProfiles(request:options:)``
   public func listColumnDataProfilesByItems(
     request: ListColumnDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ColumnDataProfile, any Swift.Error> & Sendable {
@@ -2058,6 +3255,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists column data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListColumnDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listColumnDataProfiles(request:options:)``
   public func listColumnDataProfilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ColumnDataProfile, any Swift.Error> & Sendable {
@@ -2067,6 +3271,13 @@ extension Clients.DlpServiceProtocol {
     return self.listColumnDataProfilesByItems(request: request)
   }
 
+  /// Gets a project data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetProjectDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getProjectDataProfile(request:options:)``
   public func getProjectDataProfile(request: GetProjectDataProfileRequest) async throws
     -> GoogleCloudDLPV2.ProjectDataProfile
   {
@@ -2079,6 +3290,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a project data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetProjectDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getProjectDataProfile(request:options:)``
   public func getProjectDataProfile(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.ProjectDataProfile {
@@ -2088,6 +3306,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.getProjectDataProfile(request: request)
   }
 
+  /// Lists file store data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listFileStoreDataProfiles(request:options:)``
   public func listFileStoreDataProfiles(request: ListFileStoreDataProfilesRequest) async throws
     -> GoogleCloudDLPV2.ListFileStoreDataProfilesResponse
   {
@@ -2100,6 +3325,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists file store data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listFileStoreDataProfiles(request:options:)``
   public func listFileStoreDataProfilesByItems(
     request: ListFileStoreDataProfilesRequest
   ) -> some AsyncSequence<FileStoreDataProfile, any Swift.Error> & Sendable {
@@ -2109,6 +3341,10 @@ extension Clients.DlpServiceProtocol {
   /// Lists file store data profiles for an organization.
   ///
   /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listFileStoreDataProfiles(request:options:)``
   public func listFileStoreDataProfilesByItems(
     request: ListFileStoreDataProfilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FileStoreDataProfile, any Swift.Error> & Sendable {
@@ -2123,6 +3359,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists file store data profiles for an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListFileStoreDataProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listFileStoreDataProfiles(request:options:)``
   public func listFileStoreDataProfilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<FileStoreDataProfile, any Swift.Error> & Sendable {
@@ -2132,6 +3375,13 @@ extension Clients.DlpServiceProtocol {
     return self.listFileStoreDataProfilesByItems(request: request)
   }
 
+  /// Gets a file store data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetFileStoreDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getFileStoreDataProfile(request:options:)``
   public func getFileStoreDataProfile(request: GetFileStoreDataProfileRequest) async throws
     -> GoogleCloudDLPV2.FileStoreDataProfile
   {
@@ -2144,6 +3394,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a file store data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetFileStoreDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getFileStoreDataProfile(request:options:)``
   public func getFileStoreDataProfile(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.FileStoreDataProfile {
@@ -2153,6 +3410,14 @@ extension Clients.DlpServiceProtocol {
     return try await self.getFileStoreDataProfile(request: request)
   }
 
+  /// Delete a FileStoreDataProfile. Will not prevent the profile from being
+  /// regenerated if the resource is still included in a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_DeleteFileStoreDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteFileStoreDataProfile(request:options:)``
   public func deleteFileStoreDataProfile(request: DeleteFileStoreDataProfileRequest) async throws {
     try await self.deleteFileStoreDataProfile(request: request, options: .init())
   }
@@ -2163,6 +3428,14 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a FileStoreDataProfile. Will not prevent the profile from being
+  /// regenerated if the resource is still included in a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_DeleteFileStoreDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteFileStoreDataProfile(request:options:)``
   public func deleteFileStoreDataProfile(
     name: Swift.String,
   ) async throws {
@@ -2172,6 +3445,13 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteFileStoreDataProfile(request: request)
   }
 
+  /// Gets a table data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetTableDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getTableDataProfile(request:options:)``
   public func getTableDataProfile(request: GetTableDataProfileRequest) async throws
     -> GoogleCloudDLPV2.TableDataProfile
   {
@@ -2184,6 +3464,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a table data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetTableDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getTableDataProfile(request:options:)``
   public func getTableDataProfile(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.TableDataProfile {
@@ -2193,6 +3480,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.getTableDataProfile(request: request)
   }
 
+  /// Gets a column data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetColumnDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getColumnDataProfile(request:options:)``
   public func getColumnDataProfile(request: GetColumnDataProfileRequest) async throws
     -> GoogleCloudDLPV2.ColumnDataProfile
   {
@@ -2205,6 +3499,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a column data profile.
+  ///
+  /// @Snippet(path: "DlpService_GetColumnDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getColumnDataProfile(request:options:)``
   public func getColumnDataProfile(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.ColumnDataProfile {
@@ -2214,6 +3515,14 @@ extension Clients.DlpServiceProtocol {
     return try await self.getColumnDataProfile(request: request)
   }
 
+  /// Delete a TableDataProfile. Will not prevent the profile from being
+  /// regenerated if the table is still included in a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_DeleteTableDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteTableDataProfile(request:options:)``
   public func deleteTableDataProfile(request: DeleteTableDataProfileRequest) async throws {
     try await self.deleteTableDataProfile(request: request, options: .init())
   }
@@ -2224,6 +3533,14 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a TableDataProfile. Will not prevent the profile from being
+  /// regenerated if the table is still included in a discovery configuration.
+  ///
+  /// @Snippet(path: "DlpService_DeleteTableDataProfile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteTableDataProfile(request:options:)``
   public func deleteTableDataProfile(
     name: Swift.String,
   ) async throws {
@@ -2233,6 +3550,15 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteTableDataProfile(request: request)
   }
 
+  /// Inspect hybrid content and store findings to a job.
+  /// To review the findings, inspect the job. Inspection will occur
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "DlpService_HybridInspectDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/hybridInspectDlpJob(request:options:)``
   public func hybridInspectDlpJob(request: HybridInspectDlpJobRequest) async throws
     -> GoogleCloudDLPV2.HybridInspectResponse
   {
@@ -2245,6 +3571,15 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Inspect hybrid content and store findings to a job.
+  /// To review the findings, inspect the job. Inspection will occur
+  /// asynchronously.
+  ///
+  /// @Snippet(path: "DlpService_HybridInspectDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/hybridInspectDlpJob(request:options:)``
   public func hybridInspectDlpJob(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.HybridInspectResponse {
@@ -2254,6 +3589,14 @@ extension Clients.DlpServiceProtocol {
     return try await self.hybridInspectDlpJob(request: request)
   }
 
+  /// Finish a running hybrid DlpJob. Triggers the finalization steps and running
+  /// of any enabled actions that have not yet run.
+  ///
+  /// @Snippet(path: "DlpService_FinishDlpJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/finishDlpJob(request:options:)``
   public func finishDlpJob(request: FinishDlpJobRequest) async throws {
     try await self.finishDlpJob(request: request, options: .init())
   }
@@ -2264,6 +3607,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a Connection to an external data source.
+  ///
+  /// @Snippet(path: "DlpService_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createConnection(request:options:)``
   public func createConnection(request: CreateConnectionRequest) async throws
     -> GoogleCloudDLPV2.Connection
   {
@@ -2276,6 +3626,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a Connection to an external data source.
+  ///
+  /// @Snippet(path: "DlpService_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createConnection(request:options:)``
   public func createConnection(
     parent: Swift.String,
     connection: Connection?,
@@ -2287,6 +3644,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.createConnection(request: request)
   }
 
+  /// Get a Connection by name.
+  ///
+  /// @Snippet(path: "DlpService_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getConnection(request:options:)``
   public func getConnection(request: GetConnectionRequest) async throws
     -> GoogleCloudDLPV2.Connection
   {
@@ -2299,6 +3663,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a Connection by name.
+  ///
+  /// @Snippet(path: "DlpService_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getConnection(request:options:)``
   public func getConnection(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -2308,6 +3679,14 @@ extension Clients.DlpServiceProtocol {
     return try await self.getConnection(request: request)
   }
 
+  /// Lists Connections in a parent. Use SearchConnections to see all connections
+  /// within an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listConnections(request:options:)``
   public func listConnections(request: ListConnectionsRequest) async throws
     -> GoogleCloudDLPV2.ListConnectionsResponse
   {
@@ -2320,6 +3699,14 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Connections in a parent. Use SearchConnections to see all connections
+  /// within an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2330,6 +3717,10 @@ extension Clients.DlpServiceProtocol {
   /// within an organization.
   ///
   /// @Snippet(path: "DlpService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2343,6 +3734,14 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Connections in a parent. Use SearchConnections to see all connections
+  /// within an organization.
+  ///
+  /// @Snippet(path: "DlpService_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2352,6 +3751,13 @@ extension Clients.DlpServiceProtocol {
     return self.listConnectionsByItems(request: request)
   }
 
+  /// Searches for Connections in a parent.
+  ///
+  /// @Snippet(path: "DlpService_SearchConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/searchConnections(request:options:)``
   public func searchConnections(request: SearchConnectionsRequest) async throws
     -> GoogleCloudDLPV2.SearchConnectionsResponse
   {
@@ -2364,6 +3770,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches for Connections in a parent.
+  ///
+  /// @Snippet(path: "DlpService_SearchConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/searchConnections(request:options:)``
   public func searchConnectionsByItems(
     request: SearchConnectionsRequest
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2373,6 +3786,10 @@ extension Clients.DlpServiceProtocol {
   /// Searches for Connections in a parent.
   ///
   /// @Snippet(path: "DlpService_SearchConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/searchConnections(request:options:)``
   public func searchConnectionsByItems(
     request: SearchConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2386,6 +3803,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches for Connections in a parent.
+  ///
+  /// @Snippet(path: "DlpService_SearchConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/searchConnections(request:options:)``
   public func searchConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2395,6 +3819,13 @@ extension Clients.DlpServiceProtocol {
     return self.searchConnectionsByItems(request: request)
   }
 
+  /// Delete a Connection.
+  ///
+  /// @Snippet(path: "DlpService_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteConnection(request:options:)``
   public func deleteConnection(request: DeleteConnectionRequest) async throws {
     try await self.deleteConnection(request: request, options: .init())
   }
@@ -2405,6 +3836,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a Connection.
+  ///
+  /// @Snippet(path: "DlpService_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteConnection(request:options:)``
   public func deleteConnection(
     name: Swift.String,
   ) async throws {
@@ -2414,6 +3852,13 @@ extension Clients.DlpServiceProtocol {
     try await self.deleteConnection(request: request)
   }
 
+  /// Update a Connection.
+  ///
+  /// @Snippet(path: "DlpService_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateConnection(request:options:)``
   public func updateConnection(request: UpdateConnectionRequest) async throws
     -> GoogleCloudDLPV2.Connection
   {
@@ -2426,6 +3871,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a Connection.
+  ///
+  /// @Snippet(path: "DlpService_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateConnection(request:options:)``
   public func updateConnection(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.Connection {
@@ -2435,6 +3887,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateConnection(request: request)
   }
 
+  /// Create a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_CreateContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createContentPolicy(request:options:)``
   public func createContentPolicy(request: CreateContentPolicyRequest) async throws
     -> GoogleCloudDLPV2.ContentPolicy
   {
@@ -2447,6 +3906,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_CreateContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/createContentPolicy(request:options:)``
   public func createContentPolicy(
     parent: Swift.String,
     contentPolicy: ContentPolicy?,
@@ -2458,6 +3924,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.createContentPolicy(request: request)
   }
 
+  /// Update a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_UpdateContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateContentPolicy(request:options:)``
   public func updateContentPolicy(request: UpdateContentPolicyRequest) async throws
     -> GoogleCloudDLPV2.ContentPolicy
   {
@@ -2470,6 +3943,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_UpdateContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/updateContentPolicy(request:options:)``
   public func updateContentPolicy(
     name: Swift.String,
     contentPolicy: ContentPolicy?,
@@ -2483,6 +3963,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.updateContentPolicy(request: request)
   }
 
+  /// Get a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_GetContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getContentPolicy(request:options:)``
   public func getContentPolicy(request: GetContentPolicyRequest) async throws
     -> GoogleCloudDLPV2.ContentPolicy
   {
@@ -2495,6 +3982,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_GetContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/getContentPolicy(request:options:)``
   public func getContentPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudDLPV2.ContentPolicy {
@@ -2504,6 +3998,13 @@ extension Clients.DlpServiceProtocol {
     return try await self.getContentPolicy(request: request)
   }
 
+  /// Lists ContentPolicies in a parent.
+  ///
+  /// @Snippet(path: "DlpService_ListContentPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listContentPolicies(request:options:)``
   public func listContentPolicies(request: ListContentPoliciesRequest) async throws
     -> GoogleCloudDLPV2.ListContentPoliciesResponse
   {
@@ -2516,6 +4017,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ContentPolicies in a parent.
+  ///
+  /// @Snippet(path: "DlpService_ListContentPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listContentPolicies(request:options:)``
   public func listContentPoliciesByItems(
     request: ListContentPoliciesRequest
   ) -> some AsyncSequence<ContentPolicy, any Swift.Error> & Sendable {
@@ -2525,6 +4033,10 @@ extension Clients.DlpServiceProtocol {
   /// Lists ContentPolicies in a parent.
   ///
   /// @Snippet(path: "DlpService_ListContentPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listContentPolicies(request:options:)``
   public func listContentPoliciesByItems(
     request: ListContentPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ContentPolicy, any Swift.Error> & Sendable {
@@ -2539,6 +4051,13 @@ extension Clients.DlpServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ContentPolicies in a parent.
+  ///
+  /// @Snippet(path: "DlpService_ListContentPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/listContentPolicies(request:options:)``
   public func listContentPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ContentPolicy, any Swift.Error> & Sendable {
@@ -2548,6 +4067,13 @@ extension Clients.DlpServiceProtocol {
     return self.listContentPoliciesByItems(request: request)
   }
 
+  /// Delete a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_DeleteContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteContentPolicy(request:options:)``
   public func deleteContentPolicy(request: DeleteContentPolicyRequest) async throws {
     try await self.deleteContentPolicy(request: request, options: .init())
   }
@@ -2558,6 +4084,13 @@ extension Clients.DlpServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a ContentPolicy.
+  ///
+  /// @Snippet(path: "DlpService_DeleteContentPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DlpServiceClient/deleteContentPolicy(request:options:)``
   public func deleteContentPolicy(
     name: Swift.String,
   ) async throws {

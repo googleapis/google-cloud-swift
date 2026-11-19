@@ -27,6 +27,10 @@ import Foundation
 /// pipelines via a point-and-click UI.
 ///
 /// @Snippet(path: "DataFusionQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataFusionProtocol``
 public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   let inner: any Clients.DataFusionStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// and location.
   ///
   /// @Snippet(path: "DataFusion_ListAvailableVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAvailableVersions(request:)``
+  /// - ``listAvailableVersionsByItems(parent:)``
+  /// - ``listAvailableVersionsByItems(request:)``
+  /// - ``listAvailableVersionsByItems(request:options:)``
   public func listAvailableVersions(
     request: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFusionV1.ListAvailableVersionsResponse {
@@ -57,6 +68,12 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Lists Data Fusion instances in the specified project and location.
   ///
   /// @Snippet(path: "DataFusion_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFusionV1.ListInstancesResponse {
@@ -66,6 +83,10 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Gets details of a single Data Fusion instance.
   ///
   /// @Snippet(path: "DataFusion_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataFusionV1.Instance {
@@ -75,6 +96,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Creates a new Data Fusion instance in the specified project and location.
   ///
   /// @Snippet(path: "DataFusion_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(request:options:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -84,6 +112,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Creates a new Data Fusion instance in the specified project and location.
   ///
   /// @Snippet(path: "DataFusion_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -111,6 +146,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Deletes a single Date Fusion instance.
   ///
   /// @Snippet(path: "DataFusion_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -120,6 +162,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Deletes a single Date Fusion instance.
   ///
   /// @Snippet(path: "DataFusion_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -147,6 +196,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Updates a single Data Fusion instance.
   ///
   /// @Snippet(path: "DataFusion_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(request:options:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -156,6 +212,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// Updates a single Data Fusion instance.
   ///
   /// @Snippet(path: "DataFusion_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -184,6 +247,12 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// At the end of an operation instance is fully restarted.
   ///
   /// @Snippet(path: "DataFusion_RestartInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restartInstance(request:)``
+  /// - ``restartInstancePollingUntilDone(request:)``
+  /// - ``restartInstancePollingUntilDone(request:options:)``
   public func restartInstance(
     request: RestartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -194,6 +263,12 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// At the end of an operation instance is fully restarted.
   ///
   /// @Snippet(path: "DataFusion_RestartInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restartInstance(request:)``
+  /// - ``restartInstance(request:options:)``
+  /// - ``restartInstancePollingUntilDone(request:)``
   public func restartInstancePollingUntilDone(
     request: RestartInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -223,6 +298,13 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataFusion_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -245,6 +327,11 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataFusion_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -256,6 +343,11 @@ public final class DataFusionClient: Clients.DataFusionProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataFusion_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -344,6 +436,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataFusionProtocol {
+  /// Lists possible versions for Data Fusion instances in the specified project
+  /// and location.
+  ///
+  /// @Snippet(path: "DataFusion_ListAvailableVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listAvailableVersions(request:options:)``
   public func listAvailableVersions(request: ListAvailableVersionsRequest) async throws
     -> GoogleCloudDataFusionV1.ListAvailableVersionsResponse
   {
@@ -356,6 +456,14 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists possible versions for Data Fusion instances in the specified project
+  /// and location.
+  ///
+  /// @Snippet(path: "DataFusion_ListAvailableVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listAvailableVersions(request:options:)``
   public func listAvailableVersionsByItems(
     request: ListAvailableVersionsRequest
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -366,6 +474,10 @@ extension Clients.DataFusionProtocol {
   /// and location.
   ///
   /// @Snippet(path: "DataFusion_ListAvailableVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listAvailableVersions(request:options:)``
   public func listAvailableVersionsByItems(
     request: ListAvailableVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -380,6 +492,14 @@ extension Clients.DataFusionProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists possible versions for Data Fusion instances in the specified project
+  /// and location.
+  ///
+  /// @Snippet(path: "DataFusion_ListAvailableVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listAvailableVersions(request:options:)``
   public func listAvailableVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -389,6 +509,13 @@ extension Clients.DataFusionProtocol {
     return self.listAvailableVersionsByItems(request: request)
   }
 
+  /// Lists Data Fusion instances in the specified project and location.
+  ///
+  /// @Snippet(path: "DataFusion_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudDataFusionV1.ListInstancesResponse
   {
@@ -401,6 +528,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Data Fusion instances in the specified project and location.
+  ///
+  /// @Snippet(path: "DataFusion_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -410,6 +544,10 @@ extension Clients.DataFusionProtocol {
   /// Lists Data Fusion instances in the specified project and location.
   ///
   /// @Snippet(path: "DataFusion_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -424,6 +562,13 @@ extension Clients.DataFusionProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets details of a single Data Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudDataFusionV1.Instance
   {
@@ -436,6 +581,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Data Fusion instance in the specified project and location.
+  ///
+  /// @Snippet(path: "DataFusion_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/createInstance(request:options:)``
   public func createInstance(request: CreateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -448,6 +600,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Data Fusion instance in the specified project and location.
+  ///
+  /// @Snippet(path: "DataFusion_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
     -> Instance
   {
@@ -460,6 +619,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Data Fusion instance in the specified project and location.
+  ///
+  /// @Snippet(path: "DataFusion_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
@@ -473,6 +639,13 @@ extension Clients.DataFusionProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  /// Deletes a single Date Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -485,6 +658,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Date Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -495,6 +675,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Date Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -504,6 +691,13 @@ extension Clients.DataFusionProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  /// Updates a single Data Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/updateInstance(request:options:)``
   public func updateInstance(request: UpdateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -516,6 +710,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single Data Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
     -> Instance
   {
@@ -528,6 +729,13 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a single Data Fusion instance.
+  ///
+  /// @Snippet(path: "DataFusion_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -539,6 +747,14 @@ extension Clients.DataFusionProtocol {
     return try await self.updateInstancePollingUntilDone(request: request)
   }
 
+  /// Restart a single Data Fusion instance.
+  /// At the end of an operation instance is fully restarted.
+  ///
+  /// @Snippet(path: "DataFusion_RestartInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/restartInstance(request:options:)``
   public func restartInstance(request: RestartInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -551,6 +767,14 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restart a single Data Fusion instance.
+  /// At the end of an operation instance is fully restarted.
+  ///
+  /// @Snippet(path: "DataFusion_RestartInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/restartInstancePollingUntilDone(request:options:)``
   public func restartInstancePollingUntilDone(request: RestartInstanceRequest) async throws
     -> Instance
   {
@@ -563,6 +787,15 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -575,6 +808,15 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -586,6 +828,10 @@ extension Clients.DataFusionProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataFusion_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -599,6 +845,15 @@ extension Clients.DataFusionProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -610,6 +865,9 @@ extension Clients.DataFusionProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -622,6 +880,9 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -631,6 +892,15 @@ extension Clients.DataFusionProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -641,6 +911,15 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -650,6 +929,15 @@ extension Clients.DataFusionProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -660,6 +948,15 @@ extension Clients.DataFusionProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataFusion_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataFusionClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

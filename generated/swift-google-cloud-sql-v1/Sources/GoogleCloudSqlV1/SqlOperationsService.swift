@@ -24,6 +24,10 @@
   /// Service to fetch operations for database instances.
   ///
   /// @Snippet(path: "SqlOperationsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlOperationsServiceProtocol``
   public final class SqlOperationsServiceClient: Clients.SqlOperationsServiceProtocol, Sendable {
     let inner: any Clients.SqlOperationsServiceStub
 
@@ -41,6 +45,10 @@
     /// Retrieves an instance operation that has been performed on an instance.
     ///
     /// @Snippet(path: "SqlOperationsService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
     public func `get`(
       request: SqlOperationsGetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -51,6 +59,12 @@
     /// SQL instance in the reverse chronological order of the start time.
     ///
     /// @Snippet(path: "SqlOperationsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.OperationsListResponse {
@@ -60,6 +74,10 @@
     /// Cancels an instance operation that has been performed on an instance.
     ///
     /// @Snippet(path: "SqlOperationsService_Cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancel(request:)``
     public func cancel(
       request: SqlOperationsCancelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -93,6 +111,13 @@
 
   // Default implementations
   extension Clients.SqlOperationsServiceProtocol {
+    /// Retrieves an instance operation that has been performed on an instance.
+    ///
+    /// @Snippet(path: "SqlOperationsService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlOperationsServiceClient/get(request:options:)``
     public func `get`(request: SqlOperationsGetRequest) async throws -> GoogleCloudSqlV1.Operation {
       try await self.`get`(request: request, options: .init())
     }
@@ -103,6 +128,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all instance operations that have been performed on the given Cloud
+    /// SQL instance in the reverse chronological order of the start time.
+    ///
+    /// @Snippet(path: "SqlOperationsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlOperationsServiceClient/list(request:options:)``
     public func list(request: SqlOperationsListRequest) async throws
       -> GoogleCloudSqlV1.OperationsListResponse
     {
@@ -115,6 +148,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all instance operations that have been performed on the given Cloud
+    /// SQL instance in the reverse chronological order of the start time.
+    ///
+    /// @Snippet(path: "SqlOperationsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlOperationsServiceClient/list(request:options:)``
     public func listByItems(
       request: SqlOperationsListRequest
     ) -> some AsyncSequence<GoogleCloudSqlV1.Operation, any Swift.Error> & Sendable {
@@ -125,6 +166,10 @@
     /// SQL instance in the reverse chronological order of the start time.
     ///
     /// @Snippet(path: "SqlOperationsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlOperationsServiceClient/list(request:options:)``
     public func listByItems(
       request: SqlOperationsListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudSqlV1.Operation, any Swift.Error> & Sendable {
@@ -138,6 +183,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Cancels an instance operation that has been performed on an instance.
+    ///
+    /// @Snippet(path: "SqlOperationsService_Cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlOperationsServiceClient/cancel(request:options:)``
     public func cancel(request: SqlOperationsCancelRequest) async throws {
       try await self.cancel(request: request, options: .init())
     }

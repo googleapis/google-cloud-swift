@@ -29,6 +29,10 @@ import Foundation
 /// all the IP or Domain Names from the Address Group.
 ///
 /// @Snippet(path: "AddressGroupServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AddressGroupServiceProtocol``
 public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtocol, Sendable {
   let inner: any Clients.AddressGroupServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Lists address groups in a given project and location.
   ///
   /// @Snippet(path: "AddressGroupService_ListAddressGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAddressGroups(request:)``
+  /// - ``listAddressGroupsByItems(parent:)``
+  /// - ``listAddressGroupsByItems(request:)``
+  /// - ``listAddressGroupsByItems(request:options:)``
   public func listAddressGroups(
     request: ListAddressGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListAddressGroupsResponse {
@@ -59,6 +70,11 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Gets details of a single address group.
   ///
   /// @Snippet(path: "AddressGroupService_GetAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAddressGroup(name:)``
+  /// - ``getAddressGroup(request:)``
   public func getAddressGroup(
     request: GetAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.AddressGroup {
@@ -68,6 +84,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Creates a new address group in a given project and location.
   ///
   /// @Snippet(path: "AddressGroupService_CreateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAddressGroup(request:)``
+  /// - ``createAddressGroupPollingUntilDone(parent:addressGroup:addressGroupId:)``
+  /// - ``createAddressGroupPollingUntilDone(request:)``
+  /// - ``createAddressGroupPollingUntilDone(request:options:)``
   public func createAddressGroup(
     request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -77,6 +100,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Creates a new address group in a given project and location.
   ///
   /// @Snippet(path: "AddressGroupService_CreateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAddressGroup(request:)``
+  /// - ``createAddressGroup(request:options:)``
+  /// - ``createAddressGroupPollingUntilDone(parent:addressGroup:addressGroupId:)``
+  /// - ``createAddressGroupPollingUntilDone(request:)``
   public func createAddressGroupPollingUntilDone(
     request: CreateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -105,6 +135,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Updates the parameters of a single address group.
   ///
   /// @Snippet(path: "AddressGroupService_UpdateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAddressGroup(request:)``
+  /// - ``updateAddressGroupPollingUntilDone(addressGroup:updateMask:)``
+  /// - ``updateAddressGroupPollingUntilDone(request:)``
+  /// - ``updateAddressGroupPollingUntilDone(request:options:)``
   public func updateAddressGroup(
     request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -114,6 +151,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Updates the parameters of a single address group.
   ///
   /// @Snippet(path: "AddressGroupService_UpdateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAddressGroup(request:)``
+  /// - ``updateAddressGroup(request:options:)``
+  /// - ``updateAddressGroupPollingUntilDone(addressGroup:updateMask:)``
+  /// - ``updateAddressGroupPollingUntilDone(request:)``
   public func updateAddressGroupPollingUntilDone(
     request: UpdateAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -142,6 +186,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Adds items to an address group.
   ///
   /// @Snippet(path: "AddressGroupService_AddAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAddressGroupItems(request:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(addressGroup:items:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(request:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(request:options:)``
   public func addAddressGroupItems(
     request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -151,6 +202,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Adds items to an address group.
   ///
   /// @Snippet(path: "AddressGroupService_AddAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAddressGroupItems(request:)``
+  /// - ``addAddressGroupItems(request:options:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(addressGroup:items:)``
+  /// - ``addAddressGroupItemsPollingUntilDone(request:)``
   public func addAddressGroupItemsPollingUntilDone(
     request: AddAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -179,6 +237,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Removes items from an address group.
   ///
   /// @Snippet(path: "AddressGroupService_RemoveAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeAddressGroupItems(request:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(addressGroup:items:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(request:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(request:options:)``
   public func removeAddressGroupItems(
     request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -188,6 +253,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Removes items from an address group.
   ///
   /// @Snippet(path: "AddressGroupService_RemoveAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeAddressGroupItems(request:)``
+  /// - ``removeAddressGroupItems(request:options:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(addressGroup:items:)``
+  /// - ``removeAddressGroupItemsPollingUntilDone(request:)``
   public func removeAddressGroupItemsPollingUntilDone(
     request: RemoveAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -216,6 +288,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Clones items from one address group to another.
   ///
   /// @Snippet(path: "AddressGroupService_CloneAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cloneAddressGroupItems(request:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(addressGroup:sourceAddressGroup:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(request:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(request:options:)``
   public func cloneAddressGroupItems(
     request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -225,6 +304,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Clones items from one address group to another.
   ///
   /// @Snippet(path: "AddressGroupService_CloneAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cloneAddressGroupItems(request:)``
+  /// - ``cloneAddressGroupItems(request:options:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(addressGroup:sourceAddressGroup:)``
+  /// - ``cloneAddressGroupItemsPollingUntilDone(request:)``
   public func cloneAddressGroupItemsPollingUntilDone(
     request: CloneAddressGroupItemsRequest, options: GoogleGax.RequestOptions
   ) async throws -> AddressGroup {
@@ -253,6 +339,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Deletes a single address group.
   ///
   /// @Snippet(path: "AddressGroupService_DeleteAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAddressGroup(request:)``
+  /// - ``deleteAddressGroupPollingUntilDone(name:)``
+  /// - ``deleteAddressGroupPollingUntilDone(request:)``
+  /// - ``deleteAddressGroupPollingUntilDone(request:options:)``
   public func deleteAddressGroup(
     request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -262,6 +355,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Deletes a single address group.
   ///
   /// @Snippet(path: "AddressGroupService_DeleteAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAddressGroup(request:)``
+  /// - ``deleteAddressGroup(request:options:)``
+  /// - ``deleteAddressGroupPollingUntilDone(name:)``
+  /// - ``deleteAddressGroupPollingUntilDone(request:)``
   public func deleteAddressGroupPollingUntilDone(
     request: DeleteAddressGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -289,6 +389,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Lists references of an address group.
   ///
   /// @Snippet(path: "AddressGroupService_ListAddressGroupReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAddressGroupReferences(request:)``
+  /// - ``listAddressGroupReferencesByItems(addressGroup:)``
+  /// - ``listAddressGroupReferencesByItems(request:)``
+  /// - ``listAddressGroupReferencesByItems(request:options:)``
   public func listAddressGroupReferences(
     request: ListAddressGroupReferencesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListAddressGroupReferencesResponse {
@@ -315,6 +422,12 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AddressGroupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -324,6 +437,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AddressGroupService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -337,6 +454,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// errors.
   ///
   /// @Snippet(path: "AddressGroupService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -347,6 +468,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "AddressGroupService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -362,6 +487,10 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "AddressGroupService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -373,6 +502,13 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AddressGroupService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -395,6 +531,11 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AddressGroupService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -406,6 +547,11 @@ public final class AddressGroupServiceClient: Clients.AddressGroupServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AddressGroupService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -539,6 +685,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AddressGroupServiceProtocol {
+  /// Lists address groups in a given project and location.
+  ///
+  /// @Snippet(path: "AddressGroupService_ListAddressGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroups(request:options:)``
   public func listAddressGroups(request: ListAddressGroupsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListAddressGroupsResponse
   {
@@ -551,6 +704,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists address groups in a given project and location.
+  ///
+  /// @Snippet(path: "AddressGroupService_ListAddressGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroups(request:options:)``
   public func listAddressGroupsByItems(
     request: ListAddressGroupsRequest
   ) -> some AsyncSequence<AddressGroup, any Swift.Error> & Sendable {
@@ -560,6 +720,10 @@ extension Clients.AddressGroupServiceProtocol {
   /// Lists address groups in a given project and location.
   ///
   /// @Snippet(path: "AddressGroupService_ListAddressGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroups(request:options:)``
   public func listAddressGroupsByItems(
     request: ListAddressGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AddressGroup, any Swift.Error> & Sendable {
@@ -574,6 +738,13 @@ extension Clients.AddressGroupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists address groups in a given project and location.
+  ///
+  /// @Snippet(path: "AddressGroupService_ListAddressGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroups(request:options:)``
   public func listAddressGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AddressGroup, any Swift.Error> & Sendable {
@@ -583,6 +754,13 @@ extension Clients.AddressGroupServiceProtocol {
     return self.listAddressGroupsByItems(request: request)
   }
 
+  /// Gets details of a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_GetAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/getAddressGroup(request:options:)``
   public func getAddressGroup(request: GetAddressGroupRequest) async throws
     -> GoogleCloudNetworkSecurityV1.AddressGroup
   {
@@ -595,6 +773,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_GetAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/getAddressGroup(request:options:)``
   public func getAddressGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.AddressGroup {
@@ -604,6 +789,13 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.getAddressGroup(request: request)
   }
 
+  /// Creates a new address group in a given project and location.
+  ///
+  /// @Snippet(path: "AddressGroupService_CreateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/createAddressGroup(request:options:)``
   public func createAddressGroup(request: CreateAddressGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -616,6 +808,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new address group in a given project and location.
+  ///
+  /// @Snippet(path: "AddressGroupService_CreateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/createAddressGroupPollingUntilDone(request:options:)``
   public func createAddressGroupPollingUntilDone(request: CreateAddressGroupRequest) async throws
     -> AddressGroup
   {
@@ -628,6 +827,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new address group in a given project and location.
+  ///
+  /// @Snippet(path: "AddressGroupService_CreateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/createAddressGroupPollingUntilDone(request:options:)``
   public func createAddressGroupPollingUntilDone(
     parent: Swift.String,
     addressGroup: AddressGroup?,
@@ -641,6 +847,13 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.createAddressGroupPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_UpdateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/updateAddressGroup(request:options:)``
   public func updateAddressGroup(request: UpdateAddressGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -653,6 +866,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_UpdateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/updateAddressGroupPollingUntilDone(request:options:)``
   public func updateAddressGroupPollingUntilDone(request: UpdateAddressGroupRequest) async throws
     -> AddressGroup
   {
@@ -665,6 +885,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_UpdateAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/updateAddressGroupPollingUntilDone(request:options:)``
   public func updateAddressGroupPollingUntilDone(
     addressGroup: AddressGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -676,6 +903,13 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.updateAddressGroupPollingUntilDone(request: request)
   }
 
+  /// Adds items to an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_AddAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/addAddressGroupItems(request:options:)``
   public func addAddressGroupItems(request: AddAddressGroupItemsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -688,6 +922,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds items to an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_AddAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/addAddressGroupItemsPollingUntilDone(request:options:)``
   public func addAddressGroupItemsPollingUntilDone(request: AddAddressGroupItemsRequest)
     async throws -> AddressGroup
   {
@@ -700,6 +941,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds items to an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_AddAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/addAddressGroupItemsPollingUntilDone(request:options:)``
   public func addAddressGroupItemsPollingUntilDone(
     addressGroup: Swift.String,
     items: [Swift.String],
@@ -711,6 +959,13 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.addAddressGroupItemsPollingUntilDone(request: request)
   }
 
+  /// Removes items from an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_RemoveAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/removeAddressGroupItems(request:options:)``
   public func removeAddressGroupItems(request: RemoveAddressGroupItemsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -723,6 +978,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes items from an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_RemoveAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/removeAddressGroupItemsPollingUntilDone(request:options:)``
   public func removeAddressGroupItemsPollingUntilDone(request: RemoveAddressGroupItemsRequest)
     async throws -> AddressGroup
   {
@@ -736,6 +998,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes items from an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_RemoveAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/removeAddressGroupItemsPollingUntilDone(request:options:)``
   public func removeAddressGroupItemsPollingUntilDone(
     addressGroup: Swift.String,
     items: [Swift.String],
@@ -747,6 +1016,13 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.removeAddressGroupItemsPollingUntilDone(request: request)
   }
 
+  /// Clones items from one address group to another.
+  ///
+  /// @Snippet(path: "AddressGroupService_CloneAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/cloneAddressGroupItems(request:options:)``
   public func cloneAddressGroupItems(request: CloneAddressGroupItemsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -759,6 +1035,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Clones items from one address group to another.
+  ///
+  /// @Snippet(path: "AddressGroupService_CloneAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/cloneAddressGroupItemsPollingUntilDone(request:options:)``
   public func cloneAddressGroupItemsPollingUntilDone(request: CloneAddressGroupItemsRequest)
     async throws -> AddressGroup
   {
@@ -771,6 +1054,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Clones items from one address group to another.
+  ///
+  /// @Snippet(path: "AddressGroupService_CloneAddressGroupItems")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/cloneAddressGroupItemsPollingUntilDone(request:options:)``
   public func cloneAddressGroupItemsPollingUntilDone(
     addressGroup: Swift.String,
     sourceAddressGroup: Swift.String,
@@ -782,6 +1072,13 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.cloneAddressGroupItemsPollingUntilDone(request: request)
   }
 
+  /// Deletes a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_DeleteAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/deleteAddressGroup(request:options:)``
   public func deleteAddressGroup(request: DeleteAddressGroupRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -794,6 +1091,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_DeleteAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/deleteAddressGroupPollingUntilDone(request:options:)``
   public func deleteAddressGroupPollingUntilDone(request: DeleteAddressGroupRequest) async throws {
     try await self.deleteAddressGroupPollingUntilDone(request: request, options: .init())
   }
@@ -804,6 +1108,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_DeleteAddressGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/deleteAddressGroupPollingUntilDone(request:options:)``
   public func deleteAddressGroupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -813,6 +1124,13 @@ extension Clients.AddressGroupServiceProtocol {
     try await self.deleteAddressGroupPollingUntilDone(request: request)
   }
 
+  /// Lists references of an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_ListAddressGroupReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroupReferences(request:options:)``
   public func listAddressGroupReferences(request: ListAddressGroupReferencesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListAddressGroupReferencesResponse
   {
@@ -825,6 +1143,13 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists references of an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_ListAddressGroupReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroupReferences(request:options:)``
   public func listAddressGroupReferencesByItems(
     request: ListAddressGroupReferencesRequest
   ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, any Swift.Error>
@@ -836,6 +1161,10 @@ extension Clients.AddressGroupServiceProtocol {
   /// Lists references of an address group.
   ///
   /// @Snippet(path: "AddressGroupService_ListAddressGroupReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroupReferences(request:options:)``
   public func listAddressGroupReferencesByItems(
     request: ListAddressGroupReferencesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, any Swift.Error>
@@ -852,6 +1181,13 @@ extension Clients.AddressGroupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists references of an address group.
+  ///
+  /// @Snippet(path: "AddressGroupService_ListAddressGroupReferences")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listAddressGroupReferences(request:options:)``
   public func listAddressGroupReferencesByItems(
     addressGroup: Swift.String,
   ) -> some AsyncSequence<ListAddressGroupReferencesResponse.AddressGroupReference, any Swift.Error>
@@ -863,6 +1199,30 @@ extension Clients.AddressGroupServiceProtocol {
     return self.listAddressGroupReferencesByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AddressGroupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -875,6 +1235,30 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AddressGroupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -901,6 +1285,10 @@ extension Clients.AddressGroupServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AddressGroupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -914,6 +1302,13 @@ extension Clients.AddressGroupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AddressGroupService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -926,6 +1321,17 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "AddressGroupService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -938,6 +1344,14 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "AddressGroupService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -950,6 +1364,19 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "AddressGroupService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -962,6 +1389,15 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -974,6 +1410,15 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -985,6 +1430,10 @@ extension Clients.AddressGroupServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AddressGroupService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -998,6 +1447,15 @@ extension Clients.AddressGroupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1009,6 +1467,9 @@ extension Clients.AddressGroupServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1021,6 +1482,9 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1030,6 +1494,15 @@ extension Clients.AddressGroupServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1040,6 +1513,15 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1049,6 +1531,15 @@ extension Clients.AddressGroupServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1059,6 +1550,15 @@ extension Clients.AddressGroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AddressGroupService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AddressGroupServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

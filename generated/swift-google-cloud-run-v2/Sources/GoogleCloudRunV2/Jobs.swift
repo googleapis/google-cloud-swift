@@ -25,6 +25,10 @@ import Foundation
 /// Cloud Run Job Control Plane API.
 ///
 /// @Snippet(path: "JobsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/JobsProtocol``
 public final class JobsClient: Clients.JobsProtocol, Sendable {
   let inner: any Clients.JobsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Creates a Job.
   ///
   /// @Snippet(path: "Jobs_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJob(request:)``
+  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
+  /// - ``createJobPollingUntilDone(request:)``
+  /// - ``createJobPollingUntilDone(request:options:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -54,6 +65,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Creates a Job.
   ///
   /// @Snippet(path: "Jobs_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJob(request:)``
+  /// - ``createJob(request:options:)``
+  /// - ``createJobPollingUntilDone(parent:job:jobId:)``
+  /// - ``createJobPollingUntilDone(request:)``
   public func createJobPollingUntilDone(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -81,6 +99,11 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Gets information about a Job.
   ///
   /// @Snippet(path: "Jobs_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.Job {
@@ -90,6 +113,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Lists Jobs. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "Jobs_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListJobsResponse {
@@ -99,6 +129,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Updates a Job.
   ///
   /// @Snippet(path: "Jobs_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateJob(request:)``
+  /// - ``updateJobPollingUntilDone(job:)``
+  /// - ``updateJobPollingUntilDone(request:)``
+  /// - ``updateJobPollingUntilDone(request:options:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -108,6 +145,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Updates a Job.
   ///
   /// @Snippet(path: "Jobs_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateJob(request:)``
+  /// - ``updateJob(request:options:)``
+  /// - ``updateJobPollingUntilDone(job:)``
+  /// - ``updateJobPollingUntilDone(request:)``
   public func updateJobPollingUntilDone(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -135,6 +179,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Deletes a Job.
   ///
   /// @Snippet(path: "Jobs_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
+  /// - ``deleteJobPollingUntilDone(request:)``
+  /// - ``deleteJobPollingUntilDone(request:options:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -144,6 +195,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Deletes a Job.
   ///
   /// @Snippet(path: "Jobs_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(request:)``
+  /// - ``deleteJob(request:options:)``
+  /// - ``deleteJobPollingUntilDone(name:)``
+  /// - ``deleteJobPollingUntilDone(request:)``
   public func deleteJobPollingUntilDone(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Job {
@@ -171,6 +229,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Triggers creation of a new Execution of this Job.
   ///
   /// @Snippet(path: "Jobs_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runJob(request:)``
+  /// - ``runJobPollingUntilDone(name:)``
+  /// - ``runJobPollingUntilDone(request:)``
+  /// - ``runJobPollingUntilDone(request:options:)``
   public func runJob(
     request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -180,6 +245,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// Triggers creation of a new Execution of this Job.
   ///
   /// @Snippet(path: "Jobs_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runJob(request:)``
+  /// - ``runJob(request:options:)``
+  /// - ``runJobPollingUntilDone(name:)``
+  /// - ``runJobPollingUntilDone(request:)``
   public func runJobPollingUntilDone(
     request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> Execution {
@@ -208,6 +280,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// This result does not include any inherited policies.
   ///
   /// @Snippet(path: "Jobs_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -218,6 +294,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// any existing policy.
   ///
   /// @Snippet(path: "Jobs_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -229,6 +309,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// There are no permissions required for making this API call.
   ///
   /// @Snippet(path: "Jobs_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -240,6 +324,13 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Jobs_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -262,6 +353,11 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Jobs_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -273,6 +369,10 @@ public final class JobsClient: Clients.JobsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Jobs_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``waitOperation(request:)``
   public func waitOperation(
     request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -371,6 +471,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.JobsProtocol {
+  /// Creates a Job.
+  ///
+  /// @Snippet(path: "Jobs_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/createJob(request:options:)``
   public func createJob(request: CreateJobRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createJob(request: request, options: .init())
   }
@@ -381,6 +488,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Job.
+  ///
+  /// @Snippet(path: "Jobs_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/createJobPollingUntilDone(request:options:)``
   public func createJobPollingUntilDone(request: CreateJobRequest) async throws -> Job {
     return try await self.createJobPollingUntilDone(request: request, options: .init())
   }
@@ -391,6 +505,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Job.
+  ///
+  /// @Snippet(path: "Jobs_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/createJobPollingUntilDone(request:options:)``
   public func createJobPollingUntilDone(
     parent: Swift.String,
     job: Job?,
@@ -404,6 +525,13 @@ extension Clients.JobsProtocol {
     return try await self.createJobPollingUntilDone(request: request)
   }
 
+  /// Gets information about a Job.
+  ///
+  /// @Snippet(path: "Jobs_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudRunV2.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -414,6 +542,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a Job.
+  ///
+  /// @Snippet(path: "Jobs_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/getJob(request:options:)``
   public func getJob(
     name: Swift.String,
   ) async throws -> GoogleCloudRunV2.Job {
@@ -423,6 +558,13 @@ extension Clients.JobsProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Lists Jobs. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Jobs_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws -> GoogleCloudRunV2.ListJobsResponse {
     try await self.listJobs(request: request, options: .init())
   }
@@ -433,6 +575,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Jobs. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Jobs_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -442,6 +591,10 @@ extension Clients.JobsProtocol {
   /// Lists Jobs. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "Jobs_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -455,6 +608,13 @@ extension Clients.JobsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Jobs. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "Jobs_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listJobs(request:options:)``
   public func listJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -464,6 +624,13 @@ extension Clients.JobsProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Updates a Job.
+  ///
+  /// @Snippet(path: "Jobs_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/updateJob(request:options:)``
   public func updateJob(request: UpdateJobRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateJob(request: request, options: .init())
   }
@@ -474,6 +641,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Job.
+  ///
+  /// @Snippet(path: "Jobs_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/updateJobPollingUntilDone(request:options:)``
   public func updateJobPollingUntilDone(request: UpdateJobRequest) async throws -> Job {
     return try await self.updateJobPollingUntilDone(request: request, options: .init())
   }
@@ -484,6 +658,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Job.
+  ///
+  /// @Snippet(path: "Jobs_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/updateJobPollingUntilDone(request:options:)``
   public func updateJobPollingUntilDone(
     job: Job?,
   ) async throws -> Job {
@@ -493,6 +674,13 @@ extension Clients.JobsProtocol {
     return try await self.updateJobPollingUntilDone(request: request)
   }
 
+  /// Deletes a Job.
+  ///
+  /// @Snippet(path: "Jobs_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/deleteJob(request:options:)``
   public func deleteJob(request: DeleteJobRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteJob(request: request, options: .init())
   }
@@ -503,6 +691,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Job.
+  ///
+  /// @Snippet(path: "Jobs_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/deleteJobPollingUntilDone(request:options:)``
   public func deleteJobPollingUntilDone(request: DeleteJobRequest) async throws -> Job {
     return try await self.deleteJobPollingUntilDone(request: request, options: .init())
   }
@@ -513,6 +708,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Job.
+  ///
+  /// @Snippet(path: "Jobs_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/deleteJobPollingUntilDone(request:options:)``
   public func deleteJobPollingUntilDone(
     name: Swift.String,
   ) async throws -> Job {
@@ -522,6 +724,13 @@ extension Clients.JobsProtocol {
     return try await self.deleteJobPollingUntilDone(request: request)
   }
 
+  /// Triggers creation of a new Execution of this Job.
+  ///
+  /// @Snippet(path: "Jobs_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/runJob(request:options:)``
   public func runJob(request: RunJobRequest) async throws -> GoogleLongRunning.Operation {
     try await self.runJob(request: request, options: .init())
   }
@@ -532,6 +741,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers creation of a new Execution of this Job.
+  ///
+  /// @Snippet(path: "Jobs_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/runJobPollingUntilDone(request:options:)``
   public func runJobPollingUntilDone(request: RunJobRequest) async throws -> Execution {
     return try await self.runJobPollingUntilDone(request: request, options: .init())
   }
@@ -542,6 +758,13 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Triggers creation of a new Execution of this Job.
+  ///
+  /// @Snippet(path: "Jobs_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/runJobPollingUntilDone(request:options:)``
   public func runJobPollingUntilDone(
     name: Swift.String,
   ) async throws -> Execution {
@@ -551,6 +774,14 @@ extension Clients.JobsProtocol {
     return try await self.runJobPollingUntilDone(request: request)
   }
 
+  /// Gets the IAM Access Control policy currently in effect for the given Job.
+  /// This result does not include any inherited policies.
+  ///
+  /// @Snippet(path: "Jobs_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -563,6 +794,14 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the IAM Access control policy for the specified Job. Overwrites
+  /// any existing policy.
+  ///
+  /// @Snippet(path: "Jobs_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -575,6 +814,15 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified Project.
+  ///
+  /// There are no permissions required for making this API call.
+  ///
+  /// @Snippet(path: "Jobs_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -587,6 +835,15 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Jobs_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -599,6 +856,15 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Jobs_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -610,6 +876,10 @@ extension Clients.JobsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Jobs_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -623,6 +893,15 @@ extension Clients.JobsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Jobs_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -634,6 +913,9 @@ extension Clients.JobsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -646,6 +928,9 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -655,6 +940,15 @@ extension Clients.JobsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Jobs_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -665,6 +959,15 @@ extension Clients.JobsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Jobs_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -674,6 +977,15 @@ extension Clients.JobsProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Jobs_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``JobsClient/waitOperation(request:options:)``
   public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

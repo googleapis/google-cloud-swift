@@ -30,6 +30,10 @@
   /// [google.cloud.dialogflow.v2.KnowledgeBase]: <doc:KnowledgeBase>
   ///
   /// @Snippet(path: "KnowledgeBasesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/KnowledgeBasesProtocol``
   public final class KnowledgeBasesClient: Clients.KnowledgeBasesProtocol, Sendable {
     let inner: any Clients.KnowledgeBasesStub
 
@@ -46,6 +50,13 @@
     /// Returns the list of all knowledge bases of the specified agent.
     ///
     /// @Snippet(path: "KnowledgeBases_ListKnowledgeBases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listKnowledgeBases(request:)``
+    /// - ``listKnowledgeBasesByItems(parent:)``
+    /// - ``listKnowledgeBasesByItems(request:)``
+    /// - ``listKnowledgeBasesByItems(request:options:)``
     public func listKnowledgeBases(
       request: ListKnowledgeBasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListKnowledgeBasesResponse {
@@ -55,6 +66,11 @@
     /// Retrieves the specified knowledge base.
     ///
     /// @Snippet(path: "KnowledgeBases_GetKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getKnowledgeBase(name:)``
+    /// - ``getKnowledgeBase(request:)``
     public func getKnowledgeBase(
       request: GetKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -64,6 +80,11 @@
     /// Creates a knowledge base.
     ///
     /// @Snippet(path: "KnowledgeBases_CreateKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createKnowledgeBase(parent:knowledgeBase:)``
+    /// - ``createKnowledgeBase(request:)``
     public func createKnowledgeBase(
       request: CreateKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -73,6 +94,11 @@
     /// Deletes the specified knowledge base.
     ///
     /// @Snippet(path: "KnowledgeBases_DeleteKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteKnowledgeBase(name:)``
+    /// - ``deleteKnowledgeBase(request:)``
     public func deleteKnowledgeBase(
       request: DeleteKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -82,6 +108,11 @@
     /// Updates the specified knowledge base.
     ///
     /// @Snippet(path: "KnowledgeBases_UpdateKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateKnowledgeBase(knowledgeBase:updateMask:)``
+    /// - ``updateKnowledgeBase(request:)``
     public func updateKnowledgeBase(
       request: UpdateKnowledgeBaseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -108,6 +139,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "KnowledgeBases_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -117,6 +154,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "KnowledgeBases_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -128,6 +169,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "KnowledgeBases_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -150,6 +198,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "KnowledgeBases_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -213,6 +266,13 @@
 
   // Default implementations
   extension Clients.KnowledgeBasesProtocol {
+    /// Returns the list of all knowledge bases of the specified agent.
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListKnowledgeBases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listKnowledgeBases(request:options:)``
     public func listKnowledgeBases(request: ListKnowledgeBasesRequest) async throws
       -> GoogleCloudDialogflowV2.ListKnowledgeBasesResponse
     {
@@ -225,6 +285,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all knowledge bases of the specified agent.
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListKnowledgeBases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listKnowledgeBases(request:options:)``
     public func listKnowledgeBasesByItems(
       request: ListKnowledgeBasesRequest
     ) -> some AsyncSequence<KnowledgeBase, any Swift.Error> & Sendable {
@@ -234,6 +301,10 @@
     /// Returns the list of all knowledge bases of the specified agent.
     ///
     /// @Snippet(path: "KnowledgeBases_ListKnowledgeBases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listKnowledgeBases(request:options:)``
     public func listKnowledgeBasesByItems(
       request: ListKnowledgeBasesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<KnowledgeBase, any Swift.Error> & Sendable {
@@ -248,6 +319,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all knowledge bases of the specified agent.
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListKnowledgeBases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listKnowledgeBases(request:options:)``
     public func listKnowledgeBasesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<KnowledgeBase, any Swift.Error> & Sendable {
@@ -257,6 +335,13 @@
       return self.listKnowledgeBasesByItems(request: request)
     }
 
+    /// Retrieves the specified knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_GetKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/getKnowledgeBase(request:options:)``
     public func getKnowledgeBase(request: GetKnowledgeBaseRequest) async throws
       -> GoogleCloudDialogflowV2.KnowledgeBase
     {
@@ -269,6 +354,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_GetKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/getKnowledgeBase(request:options:)``
     public func getKnowledgeBase(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.KnowledgeBase {
@@ -278,6 +370,13 @@
       return try await self.getKnowledgeBase(request: request)
     }
 
+    /// Creates a knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_CreateKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/createKnowledgeBase(request:options:)``
     public func createKnowledgeBase(request: CreateKnowledgeBaseRequest) async throws
       -> GoogleCloudDialogflowV2.KnowledgeBase
     {
@@ -290,6 +389,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_CreateKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/createKnowledgeBase(request:options:)``
     public func createKnowledgeBase(
       parent: Swift.String,
       knowledgeBase: KnowledgeBase?,
@@ -301,6 +407,13 @@
       return try await self.createKnowledgeBase(request: request)
     }
 
+    /// Deletes the specified knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_DeleteKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/deleteKnowledgeBase(request:options:)``
     public func deleteKnowledgeBase(request: DeleteKnowledgeBaseRequest) async throws {
       try await self.deleteKnowledgeBase(request: request, options: .init())
     }
@@ -311,6 +424,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_DeleteKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/deleteKnowledgeBase(request:options:)``
     public func deleteKnowledgeBase(
       name: Swift.String,
     ) async throws {
@@ -320,6 +440,13 @@
       try await self.deleteKnowledgeBase(request: request)
     }
 
+    /// Updates the specified knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_UpdateKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/updateKnowledgeBase(request:options:)``
     public func updateKnowledgeBase(request: UpdateKnowledgeBaseRequest) async throws
       -> GoogleCloudDialogflowV2.KnowledgeBase
     {
@@ -332,6 +459,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified knowledge base.
+    ///
+    /// @Snippet(path: "KnowledgeBases_UpdateKnowledgeBase")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/updateKnowledgeBase(request:options:)``
     public func updateKnowledgeBase(
       knowledgeBase: KnowledgeBase?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -343,6 +477,30 @@
       return try await self.updateKnowledgeBase(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -355,6 +513,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -381,6 +563,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "KnowledgeBases_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -394,6 +580,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "KnowledgeBases_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -406,6 +599,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -418,6 +620,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -429,6 +640,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "KnowledgeBases_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -442,6 +657,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "KnowledgeBases_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -453,6 +677,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -465,6 +692,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -474,6 +704,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "KnowledgeBases_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -484,6 +723,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "KnowledgeBases_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``KnowledgeBasesClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

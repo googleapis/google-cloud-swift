@@ -25,6 +25,10 @@ import Foundation
 /// This service helps you troubleshoot access issues for Google Cloud resources.
 ///
 /// @Snippet(path: "IamCheckerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IamCheckerProtocol``
 public final class IamCheckerClient: Clients.IamCheckerProtocol, Sendable {
   let inner: any Clients.IamCheckerStub
 
@@ -43,6 +47,10 @@ public final class IamCheckerClient: Clients.IamCheckerProtocol, Sendable {
   /// permission.
   ///
   /// @Snippet(path: "IamChecker_TroubleshootIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``troubleshootIamPolicy(request:)``
   public func troubleshootIamPolicy(
     request: TroubleshootIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse {
@@ -66,6 +74,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.IamCheckerProtocol {
+  /// Checks whether a principal has a specific permission for a specific
+  /// resource, and explains why the principal does or does not have that
+  /// permission.
+  ///
+  /// @Snippet(path: "IamChecker_TroubleshootIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IamCheckerClient/troubleshootIamPolicy(request:options:)``
   public func troubleshootIamPolicy(request: TroubleshootIamPolicyRequest) async throws
     -> GoogleCloudPolicyTroubleshooterV1.TroubleshootIamPolicyResponse
   {

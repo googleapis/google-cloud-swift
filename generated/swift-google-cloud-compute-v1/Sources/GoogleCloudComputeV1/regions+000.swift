@@ -24,6 +24,10 @@
   /// Service for the `regions` resource.
   ///
   /// @Snippet(path: "regionsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionsProtocol``
   public final class RegionsClient: Clients.RegionsProtocol, Sendable {
     let inner: any Clients.RegionsStub
 
@@ -57,6 +61,11 @@
     /// behaviour for this method.
     ///
     /// @Snippet(path: "regions_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Region {
@@ -84,6 +93,13 @@
     /// behaviour for this method.
     ///
     /// @Snippet(path: "regions_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionList {
@@ -112,6 +128,30 @@
 
   // Default implementations
   extension Clients.RegionsProtocol {
+    /// Returns the specified Region resource.
+    ///
+    /// To decrease latency for this method, you can optionally omit any unneeded
+    /// information from the response by using a field mask. This practice is
+    /// especially recommended for unused quota information (the `quotas` field).
+    /// To exclude one or more fields, set your request's `fields` query parameter
+    /// to only include the fields you need. For example, to only include the `id`
+    /// and `selfLink` fields, add the query parameter `?fields=id,selfLink` to
+    /// your request.
+    ///
+    /// This method fails if the quota information is unavailable for the region
+    /// and if the organization policy constraint
+    /// compute.requireBasicQuotaInResponse is enforced. This
+    /// constraint, when enforced, disables the fail-open behaviour when quota
+    /// information (the `items.quotas` field) is unavailable for the region.
+    /// It is recommended to use the default setting
+    /// for the constraint unless your application requires the fail-closed
+    /// behaviour for this method.
+    ///
+    /// @Snippet(path: "regions_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionsClient/get(request:options:)``
     public func `get`(request: RegionsClient.GetRequest) async throws -> GoogleCloudComputeV1.Region
     {
       try await self.`get`(request: request, options: .init())
@@ -123,6 +163,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified Region resource.
+    ///
+    /// To decrease latency for this method, you can optionally omit any unneeded
+    /// information from the response by using a field mask. This practice is
+    /// especially recommended for unused quota information (the `quotas` field).
+    /// To exclude one or more fields, set your request's `fields` query parameter
+    /// to only include the fields you need. For example, to only include the `id`
+    /// and `selfLink` fields, add the query parameter `?fields=id,selfLink` to
+    /// your request.
+    ///
+    /// This method fails if the quota information is unavailable for the region
+    /// and if the organization policy constraint
+    /// compute.requireBasicQuotaInResponse is enforced. This
+    /// constraint, when enforced, disables the fail-open behaviour when quota
+    /// information (the `items.quotas` field) is unavailable for the region.
+    /// It is recommended to use the default setting
+    /// for the constraint unless your application requires the fail-closed
+    /// behaviour for this method.
+    ///
+    /// @Snippet(path: "regions_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -134,6 +198,31 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves the list of region resources available to the specified project.
+    ///
+    /// To decrease latency for this method, you can optionally omit any unneeded
+    /// information from the response by using a field mask. This practice is
+    /// especially recommended for unused quota information
+    /// (the `items.quotas` field).
+    /// To exclude one or more fields, set your request's `fields` query parameter
+    /// to only include the fields you need. For example, to only include the `id`
+    /// and `selfLink` fields, add the query parameter `?fields=id,selfLink` to
+    /// your request.
+    ///
+    /// This method fails if the quota information is unavailable for the region
+    /// and if the organization policy constraint
+    /// compute.requireBasicQuotaInResponse is enforced. This
+    /// constraint, when enforced, disables the fail-open behaviour when quota
+    /// information (the `items.quotas` field) is unavailable for the region.
+    /// It is recommended to use the default setting
+    /// for the constraint unless your application requires the fail-closed
+    /// behaviour for this method.
+    ///
+    /// @Snippet(path: "regions_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionsClient/list(request:options:)``
     public func list(request: RegionsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RegionList
     {
@@ -146,6 +235,31 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of region resources available to the specified project.
+    ///
+    /// To decrease latency for this method, you can optionally omit any unneeded
+    /// information from the response by using a field mask. This practice is
+    /// especially recommended for unused quota information
+    /// (the `items.quotas` field).
+    /// To exclude one or more fields, set your request's `fields` query parameter
+    /// to only include the fields you need. For example, to only include the `id`
+    /// and `selfLink` fields, add the query parameter `?fields=id,selfLink` to
+    /// your request.
+    ///
+    /// This method fails if the quota information is unavailable for the region
+    /// and if the organization policy constraint
+    /// compute.requireBasicQuotaInResponse is enforced. This
+    /// constraint, when enforced, disables the fail-open behaviour when quota
+    /// information (the `items.quotas` field) is unavailable for the region.
+    /// It is recommended to use the default setting
+    /// for the constraint unless your application requires the fail-closed
+    /// behaviour for this method.
+    ///
+    /// @Snippet(path: "regions_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionsClient/list(request:options:)``
     public func listByItems(
       request: RegionsClient.ListRequest
     ) -> some AsyncSequence<Region, any Swift.Error> & Sendable {
@@ -173,6 +287,10 @@
     /// behaviour for this method.
     ///
     /// @Snippet(path: "regions_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionsClient/list(request:options:)``
     public func listByItems(
       request: RegionsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Region, any Swift.Error> & Sendable {
@@ -186,6 +304,31 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of region resources available to the specified project.
+    ///
+    /// To decrease latency for this method, you can optionally omit any unneeded
+    /// information from the response by using a field mask. This practice is
+    /// especially recommended for unused quota information
+    /// (the `items.quotas` field).
+    /// To exclude one or more fields, set your request's `fields` query parameter
+    /// to only include the fields you need. For example, to only include the `id`
+    /// and `selfLink` fields, add the query parameter `?fields=id,selfLink` to
+    /// your request.
+    ///
+    /// This method fails if the quota information is unavailable for the region
+    /// and if the organization policy constraint
+    /// compute.requireBasicQuotaInResponse is enforced. This
+    /// constraint, when enforced, disables the fail-open behaviour when quota
+    /// information (the `items.quotas` field) is unavailable for the region.
+    /// It is recommended to use the default setting
+    /// for the constraint unless your application requires the fail-closed
+    /// behaviour for this method.
+    ///
+    /// @Snippet(path: "regions_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<Region, any Swift.Error> & Sendable {

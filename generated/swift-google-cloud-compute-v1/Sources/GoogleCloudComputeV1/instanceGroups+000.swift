@@ -24,6 +24,10 @@
   /// Service for the `instanceGroups` resource.
   ///
   /// @Snippet(path: "instanceGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/InstanceGroupsProtocol``
   public final class InstanceGroupsClient: Clients.InstanceGroupsProtocol, Sendable {
     let inner: any Clients.InstanceGroupsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// Adding instances for more information.
     ///
     /// @Snippet(path: "instanceGroups_addInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addInstances(request:)``
+    /// - ``addInstancesPollingUntilDone(project:zone:instanceGroup:body:)``
+    /// - ``addInstancesPollingUntilDone(request:)``
+    /// - ``addInstancesPollingUntilDone(request:options:)``
     public func addInstances(
       request: InstanceGroupsClient.AddInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -64,6 +75,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_addInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addInstances(request:)``
+    /// - ``addInstances(request:options:)``
+    /// - ``addInstancesPollingUntilDone(project:zone:instanceGroup:body:)``
+    /// - ``addInstancesPollingUntilDone(request:)``
     public func addInstancesPollingUntilDone(
       request: InstanceGroupsClient.AddInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -109,6 +127,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instanceGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroupAggregatedList {
@@ -121,6 +146,13 @@
     /// Deleting an instance group for more information.
     ///
     /// @Snippet(path: "instanceGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:instanceGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -138,6 +170,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:instanceGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: InstanceGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -185,6 +224,11 @@
     /// methods instead.
     ///
     /// @Snippet(path: "instanceGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:zone:instanceGroup:)``
+    /// - ``get(request:)``
     public func `get`(
       request: InstanceGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroup {
@@ -195,6 +239,13 @@
     /// parameters that are included in the request.
     ///
     /// @Snippet(path: "instanceGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: InstanceGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -210,6 +261,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: InstanceGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -257,6 +315,13 @@
     /// methods instead.
     ///
     /// @Snippet(path: "instanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroupList {
@@ -269,6 +334,13 @@
     /// expressions that use `eq` (equal) or `ne` (not equal) operators.
     ///
     /// @Snippet(path: "instanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listInstances(request:)``
+    /// - ``listInstancesByItems(project:zone:instanceGroup:body:)``
+    /// - ``listInstancesByItems(request:)``
+    /// - ``listInstancesByItems(request:options:)``
     public func listInstances(
       request: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceGroupsListInstances {
@@ -284,6 +356,13 @@
     /// draining duration before the VM instance is removed or deleted.
     ///
     /// @Snippet(path: "instanceGroups_removeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeInstances(request:)``
+    /// - ``removeInstancesPollingUntilDone(project:zone:instanceGroup:body:)``
+    /// - ``removeInstancesPollingUntilDone(request:)``
+    /// - ``removeInstancesPollingUntilDone(request:options:)``
     public func removeInstances(
       request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -304,6 +383,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_removeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeInstances(request:)``
+    /// - ``removeInstances(request:options:)``
+    /// - ``removeInstancesPollingUntilDone(project:zone:instanceGroup:body:)``
+    /// - ``removeInstancesPollingUntilDone(request:)``
     public func removeInstancesPollingUntilDone(
       request: InstanceGroupsClient.RemoveInstancesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -346,6 +432,13 @@
     /// Sets the named ports for the specified instance group.
     ///
     /// @Snippet(path: "instanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNamedPorts(request:)``
+    /// - ``setNamedPortsPollingUntilDone(project:zone:instanceGroup:body:)``
+    /// - ``setNamedPortsPollingUntilDone(request:)``
+    /// - ``setNamedPortsPollingUntilDone(request:options:)``
     public func setNamedPorts(
       request: InstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -360,6 +453,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setNamedPorts(request:)``
+    /// - ``setNamedPorts(request:options:)``
+    /// - ``setNamedPortsPollingUntilDone(project:zone:instanceGroup:body:)``
+    /// - ``setNamedPortsPollingUntilDone(request:)``
     public func setNamedPortsPollingUntilDone(
       request: InstanceGroupsClient.SetNamedPortsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -402,6 +502,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "instanceGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: InstanceGroupsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -529,6 +634,16 @@
 
   // Default implementations
   extension Clients.InstanceGroupsProtocol {
+    /// Adds a list of instances to the specified instance group.  All of the
+    /// instances in the instance group must be in the same network/subnetwork.
+    /// Read
+    /// Adding instances for more information.
+    ///
+    /// @Snippet(path: "instanceGroups_addInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/addInstances(request:options:)``
     public func addInstances(request: InstanceGroupsClient.AddInstancesRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -541,6 +656,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a list of instances to the specified instance group.  All of the
+    /// instances in the instance group must be in the same network/subnetwork.
+    /// Read
+    /// Adding instances for more information.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_addInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/addInstancesPollingUntilDone(request:options:)``
     public func addInstancesPollingUntilDone(
       request: InstanceGroupsClient.AddInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -553,6 +683,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a list of instances to the specified instance group.  All of the
+    /// instances in the instance group must be in the same network/subnetwork.
+    /// Read
+    /// Adding instances for more information.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_addInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/addInstancesPollingUntilDone(request:options:)``
     public func addInstancesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -568,6 +713,16 @@
       return try await self.addInstancesPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of instance groups and sorts them by zone.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: InstanceGroupsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroupAggregatedList
     {
@@ -580,6 +735,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of instance groups and sorts them by zone.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: InstanceGroupsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), any Swift.Error> & Sendable {
@@ -592,6 +757,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instanceGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: InstanceGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), any Swift.Error> & Sendable {
@@ -606,6 +775,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of instance groups and sorts them by zone.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, InstanceGroupsScopedList), any Swift.Error> & Sendable {
@@ -615,6 +794,16 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified instance group. The instances in the group are not
+    /// deleted. Note that instance group must not belong to a backend service.
+    /// Read
+    /// Deleting an instance group for more information.
+    ///
+    /// @Snippet(path: "instanceGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/delete(request:options:)``
     public func delete(request: InstanceGroupsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -627,6 +816,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified instance group. The instances in the group are not
+    /// deleted. Note that instance group must not belong to a backend service.
+    /// Read
+    /// Deleting an instance group for more information.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: InstanceGroupsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -639,6 +843,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified instance group. The instances in the group are not
+    /// deleted. Note that instance group must not belong to a backend service.
+    /// Read
+    /// Deleting an instance group for more information.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -652,6 +871,18 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified zonal instance group. Get a list of available zonal
+    /// instance groups by making a list() request.
+    ///
+    /// For managed instance groups, use theinstanceGroupManagers
+    /// or regionInstanceGroupManagers
+    /// methods instead.
+    ///
+    /// @Snippet(path: "instanceGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/get(request:options:)``
     public func `get`(request: InstanceGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroup
     {
@@ -664,6 +895,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified zonal instance group. Get a list of available zonal
+    /// instance groups by making a list() request.
+    ///
+    /// For managed instance groups, use theinstanceGroupManagers
+    /// or regionInstanceGroupManagers
+    /// methods instead.
+    ///
+    /// @Snippet(path: "instanceGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -677,6 +920,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates an instance group in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// @Snippet(path: "instanceGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/insert(request:options:)``
     public func insert(request: InstanceGroupsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -689,6 +940,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance group in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: InstanceGroupsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -701,6 +965,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance group in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -714,6 +991,18 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of zonal instance group resources contained within the
+    /// specified zone.
+    ///
+    /// For managed instance groups, use theinstanceGroupManagers
+    /// or regionInstanceGroupManagers
+    /// methods instead.
+    ///
+    /// @Snippet(path: "instanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/list(request:options:)``
     public func list(request: InstanceGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroupList
     {
@@ -726,6 +1015,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of zonal instance group resources contained within the
+    /// specified zone.
+    ///
+    /// For managed instance groups, use theinstanceGroupManagers
+    /// or regionInstanceGroupManagers
+    /// methods instead.
+    ///
+    /// @Snippet(path: "instanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/list(request:options:)``
     public func listByItems(
       request: InstanceGroupsClient.ListRequest
     ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
@@ -740,6 +1041,10 @@
     /// methods instead.
     ///
     /// @Snippet(path: "instanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/list(request:options:)``
     public func listByItems(
       request: InstanceGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceGroup, any Swift.Error> & Sendable {
@@ -753,6 +1058,18 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of zonal instance group resources contained within the
+    /// specified zone.
+    ///
+    /// For managed instance groups, use theinstanceGroupManagers
+    /// or regionInstanceGroupManagers
+    /// methods instead.
+    ///
+    /// @Snippet(path: "instanceGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -764,6 +1081,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Lists the instances in the specified instance group.
+    /// The orderBy query parameter is not supported.
+    /// The filter query parameter is supported, but only for
+    /// expressions that use `eq` (equal) or `ne` (not equal) operators.
+    ///
+    /// @Snippet(path: "instanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/listInstances(request:options:)``
     public func listInstances(request: InstanceGroupsClient.ListInstancesRequest) async throws
       -> GoogleCloudComputeV1.InstanceGroupsListInstances
     {
@@ -776,6 +1103,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the instances in the specified instance group.
+    /// The orderBy query parameter is not supported.
+    /// The filter query parameter is supported, but only for
+    /// expressions that use `eq` (equal) or `ne` (not equal) operators.
+    ///
+    /// @Snippet(path: "instanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/listInstances(request:options:)``
     public func listInstancesByItems(
       request: InstanceGroupsClient.ListInstancesRequest
     ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
@@ -788,6 +1125,10 @@
     /// expressions that use `eq` (equal) or `ne` (not equal) operators.
     ///
     /// @Snippet(path: "instanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/listInstances(request:options:)``
     public func listInstancesByItems(
       request: InstanceGroupsClient.ListInstancesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceWithNamedPorts, any Swift.Error> & Sendable {
@@ -802,6 +1143,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the instances in the specified instance group.
+    /// The orderBy query parameter is not supported.
+    /// The filter query parameter is supported, but only for
+    /// expressions that use `eq` (equal) or `ne` (not equal) operators.
+    ///
+    /// @Snippet(path: "instanceGroups_listInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/listInstances(request:options:)``
     public func listInstancesByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -817,6 +1168,19 @@
       return self.listInstancesByItems(request: request)
     }
 
+    /// Removes one or more instances from the specified instance group, but does
+    /// not delete those instances.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration before the VM instance is removed or deleted.
+    ///
+    /// @Snippet(path: "instanceGroups_removeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/removeInstances(request:options:)``
     public func removeInstances(request: InstanceGroupsClient.RemoveInstancesRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -829,6 +1193,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes one or more instances from the specified instance group, but does
+    /// not delete those instances.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration before the VM instance is removed or deleted.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_removeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/removeInstancesPollingUntilDone(request:options:)``
     public func removeInstancesPollingUntilDone(
       request: InstanceGroupsClient.RemoveInstancesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -841,6 +1223,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes one or more instances from the specified instance group, but does
+    /// not delete those instances.
+    ///
+    /// If the group is part of a backend
+    /// service that has enabled
+    /// connection draining, it can take up to 60 seconds after the connection
+    /// draining duration before the VM instance is removed or deleted.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_removeInstances")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/removeInstancesPollingUntilDone(request:options:)``
     public func removeInstancesPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -856,6 +1256,13 @@
       return try await self.removeInstancesPollingUntilDone(request: request)
     }
 
+    /// Sets the named ports for the specified instance group.
+    ///
+    /// @Snippet(path: "instanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/setNamedPorts(request:options:)``
     public func setNamedPorts(request: InstanceGroupsClient.SetNamedPortsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -868,6 +1275,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the named ports for the specified instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/setNamedPortsPollingUntilDone(request:options:)``
     public func setNamedPortsPollingUntilDone(
       request: InstanceGroupsClient.SetNamedPortsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -880,6 +1299,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the named ports for the specified instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceGroups_setNamedPorts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/setNamedPortsPollingUntilDone(request:options:)``
     public func setNamedPortsPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -895,6 +1326,13 @@
       return try await self.setNamedPortsPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "instanceGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: InstanceGroupsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -907,6 +1345,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "instanceGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -922,6 +1367,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

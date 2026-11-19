@@ -24,6 +24,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "ConfidentialComputingQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ConfidentialComputingProtocol``
 public final class ConfidentialComputingClient: Clients.ConfidentialComputingProtocol, Sendable {
   let inner: any Clients.ConfidentialComputingStub
 
@@ -41,6 +45,11 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   /// Creates a new Challenge in a given project and location.
   ///
   /// @Snippet(path: "ConfidentialComputing_CreateChallenge")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createChallenge(parent:challenge:)``
+  /// - ``createChallenge(request:)``
   public func createChallenge(
     request: CreateChallengeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfidentialComputingV1.Challenge {
@@ -51,6 +60,10 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   /// token.
   ///
   /// @Snippet(path: "ConfidentialComputing_VerifyAttestation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyAttestation(request:)``
   public func verifyAttestation(
     request: VerifyAttestationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfidentialComputingV1.VerifyAttestationResponse {
@@ -61,6 +74,10 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   /// attestation token if so.
   ///
   /// @Snippet(path: "ConfidentialComputing_VerifyConfidentialSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyConfidentialSpace(request:)``
   public func verifyConfidentialSpace(
     request: VerifyConfidentialSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfidentialComputingV1.VerifyConfidentialSpaceResponse {
@@ -71,6 +88,10 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   /// OIDC token.
   ///
   /// @Snippet(path: "ConfidentialComputing_VerifyConfidentialGke")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyConfidentialGke(request:)``
   public func verifyConfidentialGke(
     request: VerifyConfidentialGkeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudConfidentialComputingV1.VerifyConfidentialGkeResponse {
@@ -97,6 +118,12 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ConfidentialComputing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -106,6 +133,10 @@ public final class ConfidentialComputingClient: Clients.ConfidentialComputingPro
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ConfidentialComputing_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -154,6 +185,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConfidentialComputingProtocol {
+  /// Creates a new Challenge in a given project and location.
+  ///
+  /// @Snippet(path: "ConfidentialComputing_CreateChallenge")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/createChallenge(request:options:)``
   public func createChallenge(request: CreateChallengeRequest) async throws
     -> GoogleCloudConfidentialComputingV1.Challenge
   {
@@ -166,6 +204,13 @@ extension Clients.ConfidentialComputingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Challenge in a given project and location.
+  ///
+  /// @Snippet(path: "ConfidentialComputing_CreateChallenge")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/createChallenge(request:options:)``
   public func createChallenge(
     parent: Swift.String,
     challenge: Challenge?,
@@ -177,6 +222,14 @@ extension Clients.ConfidentialComputingProtocol {
     return try await self.createChallenge(request: request)
   }
 
+  /// Verifies the provided attestation info, returning a signed attestation
+  /// token.
+  ///
+  /// @Snippet(path: "ConfidentialComputing_VerifyAttestation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/verifyAttestation(request:options:)``
   public func verifyAttestation(request: VerifyAttestationRequest) async throws
     -> GoogleCloudConfidentialComputingV1.VerifyAttestationResponse
   {
@@ -189,6 +242,14 @@ extension Clients.ConfidentialComputingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Verifies whether the provided attestation info is valid, returning a signed
+  /// attestation token if so.
+  ///
+  /// @Snippet(path: "ConfidentialComputing_VerifyConfidentialSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/verifyConfidentialSpace(request:options:)``
   public func verifyConfidentialSpace(request: VerifyConfidentialSpaceRequest) async throws
     -> GoogleCloudConfidentialComputingV1.VerifyConfidentialSpaceResponse
   {
@@ -201,6 +262,14 @@ extension Clients.ConfidentialComputingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Verifies the provided Confidential GKE attestation info, returning a signed
+  /// OIDC token.
+  ///
+  /// @Snippet(path: "ConfidentialComputing_VerifyConfidentialGke")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/verifyConfidentialGke(request:options:)``
   public func verifyConfidentialGke(request: VerifyConfidentialGkeRequest) async throws
     -> GoogleCloudConfidentialComputingV1.VerifyConfidentialGkeResponse
   {
@@ -213,6 +282,30 @@ extension Clients.ConfidentialComputingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ConfidentialComputing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -225,6 +318,30 @@ extension Clients.ConfidentialComputingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "ConfidentialComputing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -251,6 +368,10 @@ extension Clients.ConfidentialComputingProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "ConfidentialComputing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -264,6 +385,13 @@ extension Clients.ConfidentialComputingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ConfidentialComputing_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfidentialComputingClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

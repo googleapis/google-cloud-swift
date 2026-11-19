@@ -25,6 +25,10 @@ import Foundation
 /// Service for managing licenses.
 ///
 /// @Snippet(path: "LicenseManagementServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LicenseManagementServiceProtocol``
 public final class LicenseManagementServiceClient: Clients.LicenseManagementServiceProtocol,
   Sendable
 {
@@ -44,6 +48,11 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// Gets the license pool.
   ///
   /// @Snippet(path: "LicenseManagementService_GetLicensePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLicensePool(name:)``
+  /// - ``getLicensePool(request:)``
   public func getLicensePool(
     request: GetLicensePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -53,6 +62,11 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// Updates the license pool if one exists for this Order.
   ///
   /// @Snippet(path: "LicenseManagementService_UpdateLicensePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateLicensePool(licensePool:updateMask:)``
+  /// - ``updateLicensePool(request:)``
   public func updateLicensePool(
     request: UpdateLicensePoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -62,6 +76,11 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// Assigns a license to a user.
   ///
   /// @Snippet(path: "LicenseManagementService_Assign")
+  ///
+  /// ## See Also
+  ///
+  /// - ``assign(parent:usernames:)``
+  /// - ``assign(request:)``
   public func assign(
     request: AssignRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.AssignResponse {
@@ -71,6 +90,11 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// Unassigns a license from a user.
   ///
   /// @Snippet(path: "LicenseManagementService_Unassign")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unassign(parent:usernames:)``
+  /// - ``unassign(request:)``
   public func unassign(
     request: UnassignRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.UnassignResponse {
@@ -80,6 +104,13 @@ public final class LicenseManagementServiceClient: Clients.LicenseManagementServ
   /// Enumerates all users assigned a license.
   ///
   /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enumerateLicensedUsers(request:)``
+  /// - ``enumerateLicensedUsersByItems(parent:)``
+  /// - ``enumerateLicensedUsersByItems(request:)``
+  /// - ``enumerateLicensedUsersByItems(request:options:)``
   public func enumerateLicensedUsers(
     request: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse {
@@ -134,6 +165,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LicenseManagementServiceProtocol {
+  /// Gets the license pool.
+  ///
+  /// @Snippet(path: "LicenseManagementService_GetLicensePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/getLicensePool(request:options:)``
   public func getLicensePool(request: GetLicensePoolRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
   {
@@ -146,6 +184,13 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the license pool.
+  ///
+  /// @Snippet(path: "LicenseManagementService_GetLicensePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/getLicensePool(request:options:)``
   public func getLicensePool(
     name: Swift.String,
   ) async throws -> GoogleCloudCommerceConsumerProcurementV1.LicensePool {
@@ -155,6 +200,13 @@ extension Clients.LicenseManagementServiceProtocol {
     return try await self.getLicensePool(request: request)
   }
 
+  /// Updates the license pool if one exists for this Order.
+  ///
+  /// @Snippet(path: "LicenseManagementService_UpdateLicensePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/updateLicensePool(request:options:)``
   public func updateLicensePool(request: UpdateLicensePoolRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.LicensePool
   {
@@ -167,6 +219,13 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the license pool if one exists for this Order.
+  ///
+  /// @Snippet(path: "LicenseManagementService_UpdateLicensePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/updateLicensePool(request:options:)``
   public func updateLicensePool(
     licensePool: LicensePool?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -178,6 +237,13 @@ extension Clients.LicenseManagementServiceProtocol {
     return try await self.updateLicensePool(request: request)
   }
 
+  /// Assigns a license to a user.
+  ///
+  /// @Snippet(path: "LicenseManagementService_Assign")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/assign(request:options:)``
   public func assign(request: AssignRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.AssignResponse
   {
@@ -190,6 +256,13 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Assigns a license to a user.
+  ///
+  /// @Snippet(path: "LicenseManagementService_Assign")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/assign(request:options:)``
   public func assign(
     parent: Swift.String,
     usernames: [Swift.String],
@@ -201,6 +274,13 @@ extension Clients.LicenseManagementServiceProtocol {
     return try await self.assign(request: request)
   }
 
+  /// Unassigns a license from a user.
+  ///
+  /// @Snippet(path: "LicenseManagementService_Unassign")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/unassign(request:options:)``
   public func unassign(request: UnassignRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.UnassignResponse
   {
@@ -213,6 +293,13 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Unassigns a license from a user.
+  ///
+  /// @Snippet(path: "LicenseManagementService_Unassign")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/unassign(request:options:)``
   public func unassign(
     parent: Swift.String,
     usernames: [Swift.String],
@@ -224,6 +311,13 @@ extension Clients.LicenseManagementServiceProtocol {
     return try await self.unassign(request: request)
   }
 
+  /// Enumerates all users assigned a license.
+  ///
+  /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/enumerateLicensedUsers(request:options:)``
   public func enumerateLicensedUsers(request: EnumerateLicensedUsersRequest) async throws
     -> GoogleCloudCommerceConsumerProcurementV1.EnumerateLicensedUsersResponse
   {
@@ -236,6 +330,13 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates all users assigned a license.
+  ///
+  /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/enumerateLicensedUsers(request:options:)``
   public func enumerateLicensedUsersByItems(
     request: EnumerateLicensedUsersRequest
   ) -> some AsyncSequence<LicensedUser, any Swift.Error> & Sendable {
@@ -245,6 +346,10 @@ extension Clients.LicenseManagementServiceProtocol {
   /// Enumerates all users assigned a license.
   ///
   /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/enumerateLicensedUsers(request:options:)``
   public func enumerateLicensedUsersByItems(
     request: EnumerateLicensedUsersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LicensedUser, any Swift.Error> & Sendable {
@@ -259,6 +364,13 @@ extension Clients.LicenseManagementServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates all users assigned a license.
+  ///
+  /// @Snippet(path: "LicenseManagementService_EnumerateLicensedUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LicenseManagementServiceClient/enumerateLicensedUsers(request:options:)``
   public func enumerateLicensedUsersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LicensedUser, any Swift.Error> & Sendable {
@@ -268,6 +380,9 @@ extension Clients.LicenseManagementServiceProtocol {
     return self.enumerateLicensedUsersByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -280,6 +395,9 @@ extension Clients.LicenseManagementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

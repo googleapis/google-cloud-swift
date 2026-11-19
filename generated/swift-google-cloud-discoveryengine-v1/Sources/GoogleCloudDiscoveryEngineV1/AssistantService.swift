@@ -26,6 +26,10 @@
   /// Service for managing Assistant configuration and assisting users.
   ///
   /// @Snippet(path: "AssistantServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/AssistantServiceProtocol``
   public final class AssistantServiceClient: Clients.AssistantServiceProtocol, Sendable {
     let inner: any Clients.AssistantServiceStub
 
@@ -44,6 +48,10 @@
     /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
     ///
     /// @Snippet(path: "AssistantService_CreateAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createAssistant(request:)``
     public func createAssistant(
       request: CreateAssistantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
@@ -55,6 +63,11 @@
     /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
     ///
     /// @Snippet(path: "AssistantService_DeleteAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteAssistant(name:)``
+    /// - ``deleteAssistant(request:)``
     public func deleteAssistant(
       request: DeleteAssistantRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -66,6 +79,11 @@
     /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
     ///
     /// @Snippet(path: "AssistantService_UpdateAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateAssistant(assistant:updateMask:)``
+    /// - ``updateAssistant(request:)``
     public func updateAssistant(
       request: UpdateAssistantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
@@ -77,6 +95,11 @@
     /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
     ///
     /// @Snippet(path: "AssistantService_GetAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAssistant(name:)``
+    /// - ``getAssistant(request:)``
     public func getAssistant(
       request: GetAssistantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
@@ -90,6 +113,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "AssistantService_ListAssistants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listAssistants(request:)``
+    /// - ``listAssistantsByItems(parent:)``
+    /// - ``listAssistantsByItems(request:)``
+    /// - ``listAssistantsByItems(request:options:)``
     public func listAssistants(
       request: ListAssistantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse {
@@ -101,6 +131,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "AssistantService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -123,6 +160,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "AssistantService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -176,6 +218,15 @@
 
   // Default implementations
   extension Clients.AssistantServiceProtocol {
+    /// Creates an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_CreateAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/createAssistant(request:options:)``
     public func createAssistant(request: CreateAssistantRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Assistant
     {
@@ -188,6 +239,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_DeleteAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/deleteAssistant(request:options:)``
     public func deleteAssistant(request: DeleteAssistantRequest) async throws {
       try await self.deleteAssistant(request: request, options: .init())
     }
@@ -198,6 +258,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_DeleteAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/deleteAssistant(request:options:)``
     public func deleteAssistant(
       name: Swift.String,
     ) async throws {
@@ -207,6 +276,15 @@
       try await self.deleteAssistant(request: request)
     }
 
+    /// Updates an [Assistant][google.cloud.discoveryengine.v1.Assistant]
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_UpdateAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/updateAssistant(request:options:)``
     public func updateAssistant(request: UpdateAssistantRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Assistant
     {
@@ -219,6 +297,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an [Assistant][google.cloud.discoveryengine.v1.Assistant]
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_UpdateAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/updateAssistant(request:options:)``
     public func updateAssistant(
       assistant: Assistant?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -230,6 +317,15 @@
       return try await self.updateAssistant(request: request)
     }
 
+    /// Gets an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_GetAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/getAssistant(request:options:)``
     public func getAssistant(request: GetAssistantRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Assistant
     {
@@ -242,6 +338,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an [Assistant][google.cloud.discoveryengine.v1.Assistant].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    ///
+    /// @Snippet(path: "AssistantService_GetAssistant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/getAssistant(request:options:)``
     public func getAssistant(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Assistant {
@@ -251,6 +356,17 @@
       return try await self.getAssistant(request: request)
     }
 
+    /// Lists all [Assistant][google.cloud.discoveryengine.v1.Assistant]s under an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "AssistantService_ListAssistants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listAssistants(request:options:)``
     public func listAssistants(request: ListAssistantsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListAssistantsResponse
     {
@@ -263,6 +379,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all [Assistant][google.cloud.discoveryengine.v1.Assistant]s under an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "AssistantService_ListAssistants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listAssistants(request:options:)``
     public func listAssistantsByItems(
       request: ListAssistantsRequest
     ) -> some AsyncSequence<Assistant, any Swift.Error> & Sendable {
@@ -276,6 +403,10 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "AssistantService_ListAssistants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listAssistants(request:options:)``
     public func listAssistantsByItems(
       request: ListAssistantsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Assistant, any Swift.Error> & Sendable {
@@ -290,6 +421,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all [Assistant][google.cloud.discoveryengine.v1.Assistant]s under an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Assistant]: <doc:Assistant>
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "AssistantService_ListAssistants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listAssistants(request:options:)``
     public func listAssistantsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Assistant, any Swift.Error> & Sendable {
@@ -299,6 +441,15 @@
       return self.listAssistantsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AssistantService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -311,6 +462,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AssistantService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -322,6 +482,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "AssistantService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -335,6 +499,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AssistantService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -346,6 +519,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -358,6 +534,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -367,6 +546,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AssistantService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -377,6 +565,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AssistantService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AssistantServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

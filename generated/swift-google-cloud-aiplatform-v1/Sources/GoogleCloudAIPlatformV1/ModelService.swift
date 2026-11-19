@@ -28,6 +28,10 @@
   /// A service for managing Vertex AI's machine learning Models.
   ///
   /// @Snippet(path: "ModelServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ModelServiceProtocol``
   public final class ModelServiceClient: Clients.ModelServiceProtocol, Sendable {
     let inner: any Clients.ModelServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@
     /// Uploads a Model artifact into Vertex AI.
     ///
     /// @Snippet(path: "ModelService_UploadModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``uploadModel(request:)``
+    /// - ``uploadModelPollingUntilDone(parent:model:)``
+    /// - ``uploadModelPollingUntilDone(request:)``
+    /// - ``uploadModelPollingUntilDone(request:options:)``
     public func uploadModel(
       request: UploadModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -57,6 +68,13 @@
     /// Uploads a Model artifact into Vertex AI.
     ///
     /// @Snippet(path: "ModelService_UploadModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``uploadModel(request:)``
+    /// - ``uploadModel(request:options:)``
+    /// - ``uploadModelPollingUntilDone(parent:model:)``
+    /// - ``uploadModelPollingUntilDone(request:)``
     public func uploadModelPollingUntilDone(
       request: UploadModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> UploadModelResponse {
@@ -85,6 +103,11 @@
     /// Gets a Model.
     ///
     /// @Snippet(path: "ModelService_GetModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getModel(name:)``
+    /// - ``getModel(request:)``
     public func getModel(
       request: GetModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -94,6 +117,13 @@
     /// Lists Models in a Location.
     ///
     /// @Snippet(path: "ModelService_ListModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listModels(request:)``
+    /// - ``listModelsByItems(parent:)``
+    /// - ``listModelsByItems(request:)``
+    /// - ``listModelsByItems(request:options:)``
     public func listModels(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelsResponse {
@@ -103,6 +133,13 @@
     /// Lists versions of the specified model.
     ///
     /// @Snippet(path: "ModelService_ListModelVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listModelVersions(request:)``
+    /// - ``listModelVersionsByItems(name:)``
+    /// - ``listModelVersionsByItems(request:)``
+    /// - ``listModelVersionsByItems(request:options:)``
     public func listModelVersions(
       request: ListModelVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelVersionsResponse {
@@ -112,6 +149,13 @@
     /// Lists checkpoints of the specified model version.
     ///
     /// @Snippet(path: "ModelService_ListModelVersionCheckpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listModelVersionCheckpoints(request:)``
+    /// - ``listModelVersionCheckpointsByItems(name:)``
+    /// - ``listModelVersionCheckpointsByItems(request:)``
+    /// - ``listModelVersionCheckpointsByItems(request:options:)``
     public func listModelVersionCheckpoints(
       request: ListModelVersionCheckpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelVersionCheckpointsResponse {
@@ -121,6 +165,11 @@
     /// Updates a Model.
     ///
     /// @Snippet(path: "ModelService_UpdateModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateModel(model:updateMask:)``
+    /// - ``updateModel(request:)``
     public func updateModel(
       request: UpdateModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -130,6 +179,13 @@
     /// Incrementally update the dataset used for an examples model.
     ///
     /// @Snippet(path: "ModelService_UpdateExplanationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateExplanationDataset(request:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(model:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(request:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(request:options:)``
     public func updateExplanationDataset(
       request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -139,6 +195,13 @@
     /// Incrementally update the dataset used for an examples model.
     ///
     /// @Snippet(path: "ModelService_UpdateExplanationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateExplanationDataset(request:)``
+    /// - ``updateExplanationDataset(request:options:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(model:)``
+    /// - ``updateExplanationDatasetPollingUntilDone(request:)``
     public func updateExplanationDatasetPollingUntilDone(
       request: UpdateExplanationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> UpdateExplanationDatasetResponse {
@@ -179,6 +242,13 @@
     /// [google.cloud.aiplatform.v1.Endpoint.deployed_models]: <doc:Endpoint/deployedModels>
     ///
     /// @Snippet(path: "ModelService_DeleteModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteModel(request:)``
+    /// - ``deleteModelPollingUntilDone(name:)``
+    /// - ``deleteModelPollingUntilDone(request:)``
+    /// - ``deleteModelPollingUntilDone(request:options:)``
     public func deleteModel(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -199,6 +269,13 @@
     /// [google.cloud.aiplatform.v1.Endpoint.deployed_models]: <doc:Endpoint/deployedModels>
     ///
     /// @Snippet(path: "ModelService_DeleteModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteModel(request:)``
+    /// - ``deleteModel(request:options:)``
+    /// - ``deleteModelPollingUntilDone(name:)``
+    /// - ``deleteModelPollingUntilDone(request:)``
     public func deleteModelPollingUntilDone(
       request: DeleteModelRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -236,6 +313,13 @@
     /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
     ///
     /// @Snippet(path: "ModelService_DeleteModelVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteModelVersion(request:)``
+    /// - ``deleteModelVersionPollingUntilDone(name:)``
+    /// - ``deleteModelVersionPollingUntilDone(request:)``
+    /// - ``deleteModelVersionPollingUntilDone(request:options:)``
     public func deleteModelVersion(
       request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -254,6 +338,13 @@
     /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
     ///
     /// @Snippet(path: "ModelService_DeleteModelVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteModelVersion(request:)``
+    /// - ``deleteModelVersion(request:options:)``
+    /// - ``deleteModelVersionPollingUntilDone(name:)``
+    /// - ``deleteModelVersionPollingUntilDone(request:)``
     public func deleteModelVersionPollingUntilDone(
       request: DeleteModelVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -282,6 +373,11 @@
     /// Merges a set of aliases for a Model version.
     ///
     /// @Snippet(path: "ModelService_MergeVersionAliases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``mergeVersionAliases(name:versionAliases:)``
+    /// - ``mergeVersionAliases(request:)``
     public func mergeVersionAliases(
       request: MergeVersionAliasesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -296,6 +392,13 @@
     /// [google.cloud.aiplatform.v1.Model.supported_export_formats]: <doc:Model/supportedExportFormats>
     ///
     /// @Snippet(path: "ModelService_ExportModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportModel(request:)``
+    /// - ``exportModelPollingUntilDone(name:outputConfig:)``
+    /// - ``exportModelPollingUntilDone(request:)``
+    /// - ``exportModelPollingUntilDone(request:options:)``
     public func exportModel(
       request: ExportModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -310,6 +413,13 @@
     /// [google.cloud.aiplatform.v1.Model.supported_export_formats]: <doc:Model/supportedExportFormats>
     ///
     /// @Snippet(path: "ModelService_ExportModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportModel(request:)``
+    /// - ``exportModel(request:options:)``
+    /// - ``exportModelPollingUntilDone(name:outputConfig:)``
+    /// - ``exportModelPollingUntilDone(request:)``
     public func exportModelPollingUntilDone(
       request: ExportModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportModelResponse {
@@ -345,6 +455,13 @@
     /// [google.cloud.aiplatform.v1.Model.metadata]: <doc:Model/metadata>
     ///
     /// @Snippet(path: "ModelService_CopyModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``copyModel(request:)``
+    /// - ``copyModelPollingUntilDone(parent:sourceModel:)``
+    /// - ``copyModelPollingUntilDone(request:)``
+    /// - ``copyModelPollingUntilDone(request:options:)``
     public func copyModel(
       request: CopyModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -361,6 +478,13 @@
     /// [google.cloud.aiplatform.v1.Model.metadata]: <doc:Model/metadata>
     ///
     /// @Snippet(path: "ModelService_CopyModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``copyModel(request:)``
+    /// - ``copyModel(request:options:)``
+    /// - ``copyModelPollingUntilDone(parent:sourceModel:)``
+    /// - ``copyModelPollingUntilDone(request:)``
     public func copyModelPollingUntilDone(
       request: CopyModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> CopyModelResponse {
@@ -389,6 +513,11 @@
     /// Imports an externally generated ModelEvaluation.
     ///
     /// @Snippet(path: "ModelService_ImportModelEvaluation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importModelEvaluation(parent:modelEvaluation:)``
+    /// - ``importModelEvaluation(request:)``
     public func importModelEvaluation(
       request: ImportModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
@@ -398,6 +527,11 @@
     /// Imports a list of externally generated ModelEvaluationSlice.
     ///
     /// @Snippet(path: "ModelService_BatchImportModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchImportModelEvaluationSlices(parent:modelEvaluationSlices:)``
+    /// - ``batchImportModelEvaluationSlices(request:)``
     public func batchImportModelEvaluationSlices(
       request: BatchImportModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchImportModelEvaluationSlicesResponse {
@@ -407,6 +541,11 @@
     /// Imports a list of externally generated EvaluatedAnnotations.
     ///
     /// @Snippet(path: "ModelService_BatchImportEvaluatedAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchImportEvaluatedAnnotations(parent:evaluatedAnnotations:)``
+    /// - ``batchImportEvaluatedAnnotations(request:)``
     public func batchImportEvaluatedAnnotations(
       request: BatchImportEvaluatedAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchImportEvaluatedAnnotationsResponse {
@@ -416,6 +555,11 @@
     /// Gets a ModelEvaluation.
     ///
     /// @Snippet(path: "ModelService_GetModelEvaluation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getModelEvaluation(name:)``
+    /// - ``getModelEvaluation(request:)``
     public func getModelEvaluation(
       request: GetModelEvaluationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
@@ -425,6 +569,13 @@
     /// Lists ModelEvaluations in a Model.
     ///
     /// @Snippet(path: "ModelService_ListModelEvaluations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listModelEvaluations(request:)``
+    /// - ``listModelEvaluationsByItems(parent:)``
+    /// - ``listModelEvaluationsByItems(request:)``
+    /// - ``listModelEvaluationsByItems(request:options:)``
     public func listModelEvaluations(
       request: ListModelEvaluationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelEvaluationsResponse {
@@ -434,6 +585,11 @@
     /// Gets a ModelEvaluationSlice.
     ///
     /// @Snippet(path: "ModelService_GetModelEvaluationSlice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getModelEvaluationSlice(name:)``
+    /// - ``getModelEvaluationSlice(request:)``
     public func getModelEvaluationSlice(
       request: GetModelEvaluationSliceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluationSlice {
@@ -443,6 +599,13 @@
     /// Lists ModelEvaluationSlices in a ModelEvaluation.
     ///
     /// @Snippet(path: "ModelService_ListModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listModelEvaluationSlices(request:)``
+    /// - ``listModelEvaluationSlicesByItems(parent:)``
+    /// - ``listModelEvaluationSlicesByItems(request:)``
+    /// - ``listModelEvaluationSlicesByItems(request:options:)``
     public func listModelEvaluationSlices(
       request: ListModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListModelEvaluationSlicesResponse {
@@ -452,6 +615,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "ModelService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -461,6 +630,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "ModelService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -474,6 +647,10 @@
     /// errors.
     ///
     /// @Snippet(path: "ModelService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -484,6 +661,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "ModelService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -499,6 +680,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "ModelService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -510,6 +695,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -532,6 +724,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -543,6 +740,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -554,6 +756,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -742,6 +948,13 @@
 
   // Default implementations
   extension Clients.ModelServiceProtocol {
+    /// Uploads a Model artifact into Vertex AI.
+    ///
+    /// @Snippet(path: "ModelService_UploadModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/uploadModel(request:options:)``
     public func uploadModel(request: UploadModelRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.uploadModel(request: request, options: .init())
@@ -753,6 +966,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Uploads a Model artifact into Vertex AI.
+    ///
+    /// @Snippet(path: "ModelService_UploadModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/uploadModelPollingUntilDone(request:options:)``
     public func uploadModelPollingUntilDone(request: UploadModelRequest) async throws
       -> UploadModelResponse
     {
@@ -765,6 +985,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Uploads a Model artifact into Vertex AI.
+    ///
+    /// @Snippet(path: "ModelService_UploadModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/uploadModelPollingUntilDone(request:options:)``
     public func uploadModelPollingUntilDone(
       parent: Swift.String,
       model: GoogleCloudAIPlatformV1.Model?,
@@ -776,6 +1003,13 @@
       return try await self.uploadModelPollingUntilDone(request: request)
     }
 
+    /// Gets a Model.
+    ///
+    /// @Snippet(path: "ModelService_GetModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getModel(request:options:)``
     public func getModel(request: GetModelRequest) async throws -> GoogleCloudAIPlatformV1.Model {
       try await self.getModel(request: request, options: .init())
     }
@@ -786,6 +1020,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Model.
+    ///
+    /// @Snippet(path: "ModelService_GetModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getModel(request:options:)``
     public func getModel(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Model {
@@ -795,6 +1036,13 @@
       return try await self.getModel(request: request)
     }
 
+    /// Lists Models in a Location.
+    ///
+    /// @Snippet(path: "ModelService_ListModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModels(request:options:)``
     public func listModels(request: ListModelsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListModelsResponse
     {
@@ -807,6 +1055,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Models in a Location.
+    ///
+    /// @Snippet(path: "ModelService_ListModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModels(request:options:)``
     public func listModelsByItems(
       request: ListModelsRequest
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Model, any Swift.Error> & Sendable {
@@ -816,6 +1071,10 @@
     /// Lists Models in a Location.
     ///
     /// @Snippet(path: "ModelService_ListModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModels(request:options:)``
     public func listModelsByItems(
       request: ListModelsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Model, any Swift.Error> & Sendable {
@@ -830,6 +1089,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Models in a Location.
+    ///
+    /// @Snippet(path: "ModelService_ListModels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModels(request:options:)``
     public func listModelsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Model, any Swift.Error> & Sendable {
@@ -839,6 +1105,13 @@
       return self.listModelsByItems(request: request)
     }
 
+    /// Lists versions of the specified model.
+    ///
+    /// @Snippet(path: "ModelService_ListModelVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersions(request:options:)``
     public func listModelVersions(request: ListModelVersionsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListModelVersionsResponse
     {
@@ -851,6 +1124,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists versions of the specified model.
+    ///
+    /// @Snippet(path: "ModelService_ListModelVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersions(request:options:)``
     public func listModelVersionsByItems(
       request: ListModelVersionsRequest
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Model, any Swift.Error> & Sendable {
@@ -860,6 +1140,10 @@
     /// Lists versions of the specified model.
     ///
     /// @Snippet(path: "ModelService_ListModelVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersions(request:options:)``
     public func listModelVersionsByItems(
       request: ListModelVersionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Model, any Swift.Error> & Sendable {
@@ -874,6 +1158,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists versions of the specified model.
+    ///
+    /// @Snippet(path: "ModelService_ListModelVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersions(request:options:)``
     public func listModelVersionsByItems(
       name: Swift.String,
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Model, any Swift.Error> & Sendable {
@@ -883,6 +1174,13 @@
       return self.listModelVersionsByItems(request: request)
     }
 
+    /// Lists checkpoints of the specified model version.
+    ///
+    /// @Snippet(path: "ModelService_ListModelVersionCheckpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersionCheckpoints(request:options:)``
     public func listModelVersionCheckpoints(request: ListModelVersionCheckpointsRequest)
       async throws -> GoogleCloudAIPlatformV1.ListModelVersionCheckpointsResponse
     {
@@ -895,6 +1193,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists checkpoints of the specified model version.
+    ///
+    /// @Snippet(path: "ModelService_ListModelVersionCheckpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersionCheckpoints(request:options:)``
     public func listModelVersionCheckpointsByItems(
       request: ListModelVersionCheckpointsRequest
     ) -> some AsyncSequence<ModelVersionCheckpoint, any Swift.Error> & Sendable {
@@ -904,6 +1209,10 @@
     /// Lists checkpoints of the specified model version.
     ///
     /// @Snippet(path: "ModelService_ListModelVersionCheckpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersionCheckpoints(request:options:)``
     public func listModelVersionCheckpointsByItems(
       request: ListModelVersionCheckpointsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ModelVersionCheckpoint, any Swift.Error> & Sendable {
@@ -918,6 +1227,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists checkpoints of the specified model version.
+    ///
+    /// @Snippet(path: "ModelService_ListModelVersionCheckpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelVersionCheckpoints(request:options:)``
     public func listModelVersionCheckpointsByItems(
       name: Swift.String,
     ) -> some AsyncSequence<ModelVersionCheckpoint, any Swift.Error> & Sendable {
@@ -927,6 +1243,13 @@
       return self.listModelVersionCheckpointsByItems(request: request)
     }
 
+    /// Updates a Model.
+    ///
+    /// @Snippet(path: "ModelService_UpdateModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/updateModel(request:options:)``
     public func updateModel(request: UpdateModelRequest) async throws
       -> GoogleCloudAIPlatformV1.Model
     {
@@ -939,6 +1262,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Model.
+    ///
+    /// @Snippet(path: "ModelService_UpdateModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/updateModel(request:options:)``
     public func updateModel(
       model: GoogleCloudAIPlatformV1.Model?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -950,6 +1280,13 @@
       return try await self.updateModel(request: request)
     }
 
+    /// Incrementally update the dataset used for an examples model.
+    ///
+    /// @Snippet(path: "ModelService_UpdateExplanationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/updateExplanationDataset(request:options:)``
     public func updateExplanationDataset(request: UpdateExplanationDatasetRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -962,6 +1299,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Incrementally update the dataset used for an examples model.
+    ///
+    /// @Snippet(path: "ModelService_UpdateExplanationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/updateExplanationDatasetPollingUntilDone(request:options:)``
     public func updateExplanationDatasetPollingUntilDone(request: UpdateExplanationDatasetRequest)
       async throws -> UpdateExplanationDatasetResponse
     {
@@ -975,6 +1319,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Incrementally update the dataset used for an examples model.
+    ///
+    /// @Snippet(path: "ModelService_UpdateExplanationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/updateExplanationDatasetPollingUntilDone(request:options:)``
     public func updateExplanationDatasetPollingUntilDone(
       model: Swift.String,
     ) async throws -> UpdateExplanationDatasetResponse {
@@ -984,6 +1335,24 @@
       return try await self.updateExplanationDatasetPollingUntilDone(request: request)
     }
 
+    /// Deletes a Model.
+    ///
+    /// A model cannot be deleted if any
+    /// [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+    /// [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+    /// model in its
+    /// [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+    /// field.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
+    /// [google.cloud.aiplatform.v1.Endpoint.deployed_models]: <doc:Endpoint/deployedModels>
+    ///
+    /// @Snippet(path: "ModelService_DeleteModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteModel(request:options:)``
     public func deleteModel(request: DeleteModelRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.deleteModel(request: request, options: .init())
@@ -995,6 +1364,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Model.
+    ///
+    /// A model cannot be deleted if any
+    /// [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+    /// [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+    /// model in its
+    /// [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+    /// field.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
+    /// [google.cloud.aiplatform.v1.Endpoint.deployed_models]: <doc:Endpoint/deployedModels>
+    ///
+    /// @Snippet(path: "ModelService_DeleteModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteModelPollingUntilDone(request:options:)``
     public func deleteModelPollingUntilDone(request: DeleteModelRequest) async throws {
       try await self.deleteModelPollingUntilDone(request: request, options: .init())
     }
@@ -1005,6 +1392,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Model.
+    ///
+    /// A model cannot be deleted if any
+    /// [Endpoint][google.cloud.aiplatform.v1.Endpoint] resource has a
+    /// [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] based on the
+    /// model in its
+    /// [deployed_models][google.cloud.aiplatform.v1.Endpoint.deployed_models]
+    /// field.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
+    /// [google.cloud.aiplatform.v1.Endpoint.deployed_models]: <doc:Endpoint/deployedModels>
+    ///
+    /// @Snippet(path: "ModelService_DeleteModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteModelPollingUntilDone(request:options:)``
     public func deleteModelPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1014,6 +1419,22 @@
       try await self.deleteModelPollingUntilDone(request: request)
     }
 
+    /// Deletes a Model version.
+    ///
+    /// Model version can only be deleted if there are no
+    /// [DeployedModels][google.cloud.aiplatform.v1.DeployedModel] created from it.
+    /// Deleting the only version in the Model is not allowed. Use
+    /// [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+    /// deleting the Model instead.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
+    ///
+    /// @Snippet(path: "ModelService_DeleteModelVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteModelVersion(request:options:)``
     public func deleteModelVersion(request: DeleteModelVersionRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1026,6 +1447,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Model version.
+    ///
+    /// Model version can only be deleted if there are no
+    /// [DeployedModels][google.cloud.aiplatform.v1.DeployedModel] created from it.
+    /// Deleting the only version in the Model is not allowed. Use
+    /// [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+    /// deleting the Model instead.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
+    ///
+    /// @Snippet(path: "ModelService_DeleteModelVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteModelVersionPollingUntilDone(request:options:)``
     public func deleteModelVersionPollingUntilDone(request: DeleteModelVersionRequest) async throws
     {
       try await self.deleteModelVersionPollingUntilDone(request: request, options: .init())
@@ -1037,6 +1474,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Model version.
+    ///
+    /// Model version can only be deleted if there are no
+    /// [DeployedModels][google.cloud.aiplatform.v1.DeployedModel] created from it.
+    /// Deleting the only version in the Model is not allowed. Use
+    /// [DeleteModel][google.cloud.aiplatform.v1.ModelService.DeleteModel] for
+    /// deleting the Model instead.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.ModelService.DeleteModel]: <doc:ModelServiceClient/deleteModel(request:options:)>
+    ///
+    /// @Snippet(path: "ModelService_DeleteModelVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteModelVersionPollingUntilDone(request:options:)``
     public func deleteModelVersionPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1046,6 +1499,13 @@
       try await self.deleteModelVersionPollingUntilDone(request: request)
     }
 
+    /// Merges a set of aliases for a Model version.
+    ///
+    /// @Snippet(path: "ModelService_MergeVersionAliases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/mergeVersionAliases(request:options:)``
     public func mergeVersionAliases(request: MergeVersionAliasesRequest) async throws
       -> GoogleCloudAIPlatformV1.Model
     {
@@ -1058,6 +1518,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Merges a set of aliases for a Model version.
+    ///
+    /// @Snippet(path: "ModelService_MergeVersionAliases")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/mergeVersionAliases(request:options:)``
     public func mergeVersionAliases(
       name: Swift.String,
       versionAliases: [Swift.String],
@@ -1069,6 +1536,18 @@
       return try await self.mergeVersionAliases(request: request)
     }
 
+    /// Exports a trained, exportable Model to a location specified by the
+    /// user. A Model is considered to be exportable if it has at least one
+    /// [supported export
+    /// format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+    ///
+    /// [google.cloud.aiplatform.v1.Model.supported_export_formats]: <doc:Model/supportedExportFormats>
+    ///
+    /// @Snippet(path: "ModelService_ExportModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/exportModel(request:options:)``
     public func exportModel(request: ExportModelRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.exportModel(request: request, options: .init())
@@ -1080,6 +1559,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports a trained, exportable Model to a location specified by the
+    /// user. A Model is considered to be exportable if it has at least one
+    /// [supported export
+    /// format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+    ///
+    /// [google.cloud.aiplatform.v1.Model.supported_export_formats]: <doc:Model/supportedExportFormats>
+    ///
+    /// @Snippet(path: "ModelService_ExportModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/exportModelPollingUntilDone(request:options:)``
     public func exportModelPollingUntilDone(request: ExportModelRequest) async throws
       -> ExportModelResponse
     {
@@ -1092,6 +1583,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports a trained, exportable Model to a location specified by the
+    /// user. A Model is considered to be exportable if it has at least one
+    /// [supported export
+    /// format][google.cloud.aiplatform.v1.Model.supported_export_formats].
+    ///
+    /// [google.cloud.aiplatform.v1.Model.supported_export_formats]: <doc:Model/supportedExportFormats>
+    ///
+    /// @Snippet(path: "ModelService_ExportModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/exportModelPollingUntilDone(request:options:)``
     public func exportModelPollingUntilDone(
       name: Swift.String,
       outputConfig: ExportModelRequest.OutputConfig?,
@@ -1103,6 +1606,20 @@
       return try await self.exportModelPollingUntilDone(request: request)
     }
 
+    /// Copies an already existing Vertex AI Model into the specified Location.
+    /// The source Model must exist in the same Project.
+    /// When copying custom Models, the users themselves are responsible for
+    /// [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+    /// region-agnostic, as well as making sure that any resources (e.g. files) it
+    /// depends on remain accessible.
+    ///
+    /// [google.cloud.aiplatform.v1.Model.metadata]: <doc:Model/metadata>
+    ///
+    /// @Snippet(path: "ModelService_CopyModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/copyModel(request:options:)``
     public func copyModel(request: CopyModelRequest) async throws -> GoogleLongRunning.Operation {
       try await self.copyModel(request: request, options: .init())
     }
@@ -1113,6 +1630,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies an already existing Vertex AI Model into the specified Location.
+    /// The source Model must exist in the same Project.
+    /// When copying custom Models, the users themselves are responsible for
+    /// [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+    /// region-agnostic, as well as making sure that any resources (e.g. files) it
+    /// depends on remain accessible.
+    ///
+    /// [google.cloud.aiplatform.v1.Model.metadata]: <doc:Model/metadata>
+    ///
+    /// @Snippet(path: "ModelService_CopyModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/copyModelPollingUntilDone(request:options:)``
     public func copyModelPollingUntilDone(request: CopyModelRequest) async throws
       -> CopyModelResponse
     {
@@ -1125,6 +1656,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies an already existing Vertex AI Model into the specified Location.
+    /// The source Model must exist in the same Project.
+    /// When copying custom Models, the users themselves are responsible for
+    /// [Model.metadata][google.cloud.aiplatform.v1.Model.metadata] content to be
+    /// region-agnostic, as well as making sure that any resources (e.g. files) it
+    /// depends on remain accessible.
+    ///
+    /// [google.cloud.aiplatform.v1.Model.metadata]: <doc:Model/metadata>
+    ///
+    /// @Snippet(path: "ModelService_CopyModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/copyModelPollingUntilDone(request:options:)``
     public func copyModelPollingUntilDone(
       parent: Swift.String,
       sourceModel: Swift.String,
@@ -1136,6 +1681,13 @@
       return try await self.copyModelPollingUntilDone(request: request)
     }
 
+    /// Imports an externally generated ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_ImportModelEvaluation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/importModelEvaluation(request:options:)``
     public func importModelEvaluation(request: ImportModelEvaluationRequest) async throws
       -> GoogleCloudAIPlatformV1.ModelEvaluation
     {
@@ -1148,6 +1700,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports an externally generated ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_ImportModelEvaluation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/importModelEvaluation(request:options:)``
     public func importModelEvaluation(
       parent: Swift.String,
       modelEvaluation: ModelEvaluation?,
@@ -1159,6 +1718,13 @@
       return try await self.importModelEvaluation(request: request)
     }
 
+    /// Imports a list of externally generated ModelEvaluationSlice.
+    ///
+    /// @Snippet(path: "ModelService_BatchImportModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/batchImportModelEvaluationSlices(request:options:)``
     public func batchImportModelEvaluationSlices(request: BatchImportModelEvaluationSlicesRequest)
       async throws -> GoogleCloudAIPlatformV1.BatchImportModelEvaluationSlicesResponse
     {
@@ -1171,6 +1737,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports a list of externally generated ModelEvaluationSlice.
+    ///
+    /// @Snippet(path: "ModelService_BatchImportModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/batchImportModelEvaluationSlices(request:options:)``
     public func batchImportModelEvaluationSlices(
       parent: Swift.String,
       modelEvaluationSlices: [ModelEvaluationSlice],
@@ -1182,6 +1755,13 @@
       return try await self.batchImportModelEvaluationSlices(request: request)
     }
 
+    /// Imports a list of externally generated EvaluatedAnnotations.
+    ///
+    /// @Snippet(path: "ModelService_BatchImportEvaluatedAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/batchImportEvaluatedAnnotations(request:options:)``
     public func batchImportEvaluatedAnnotations(request: BatchImportEvaluatedAnnotationsRequest)
       async throws -> GoogleCloudAIPlatformV1.BatchImportEvaluatedAnnotationsResponse
     {
@@ -1194,6 +1774,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports a list of externally generated EvaluatedAnnotations.
+    ///
+    /// @Snippet(path: "ModelService_BatchImportEvaluatedAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/batchImportEvaluatedAnnotations(request:options:)``
     public func batchImportEvaluatedAnnotations(
       parent: Swift.String,
       evaluatedAnnotations: [EvaluatedAnnotation],
@@ -1205,6 +1792,13 @@
       return try await self.batchImportEvaluatedAnnotations(request: request)
     }
 
+    /// Gets a ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_GetModelEvaluation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getModelEvaluation(request:options:)``
     public func getModelEvaluation(request: GetModelEvaluationRequest) async throws
       -> GoogleCloudAIPlatformV1.ModelEvaluation
     {
@@ -1217,6 +1811,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_GetModelEvaluation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getModelEvaluation(request:options:)``
     public func getModelEvaluation(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluation {
@@ -1226,6 +1827,13 @@
       return try await self.getModelEvaluation(request: request)
     }
 
+    /// Lists ModelEvaluations in a Model.
+    ///
+    /// @Snippet(path: "ModelService_ListModelEvaluations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluations(request:options:)``
     public func listModelEvaluations(request: ListModelEvaluationsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListModelEvaluationsResponse
     {
@@ -1238,6 +1846,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists ModelEvaluations in a Model.
+    ///
+    /// @Snippet(path: "ModelService_ListModelEvaluations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluations(request:options:)``
     public func listModelEvaluationsByItems(
       request: ListModelEvaluationsRequest
     ) -> some AsyncSequence<ModelEvaluation, any Swift.Error> & Sendable {
@@ -1247,6 +1862,10 @@
     /// Lists ModelEvaluations in a Model.
     ///
     /// @Snippet(path: "ModelService_ListModelEvaluations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluations(request:options:)``
     public func listModelEvaluationsByItems(
       request: ListModelEvaluationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ModelEvaluation, any Swift.Error> & Sendable {
@@ -1261,6 +1880,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists ModelEvaluations in a Model.
+    ///
+    /// @Snippet(path: "ModelService_ListModelEvaluations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluations(request:options:)``
     public func listModelEvaluationsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ModelEvaluation, any Swift.Error> & Sendable {
@@ -1270,6 +1896,13 @@
       return self.listModelEvaluationsByItems(request: request)
     }
 
+    /// Gets a ModelEvaluationSlice.
+    ///
+    /// @Snippet(path: "ModelService_GetModelEvaluationSlice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getModelEvaluationSlice(request:options:)``
     public func getModelEvaluationSlice(request: GetModelEvaluationSliceRequest) async throws
       -> GoogleCloudAIPlatformV1.ModelEvaluationSlice
     {
@@ -1282,6 +1915,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a ModelEvaluationSlice.
+    ///
+    /// @Snippet(path: "ModelService_GetModelEvaluationSlice")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getModelEvaluationSlice(request:options:)``
     public func getModelEvaluationSlice(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ModelEvaluationSlice {
@@ -1291,6 +1931,13 @@
       return try await self.getModelEvaluationSlice(request: request)
     }
 
+    /// Lists ModelEvaluationSlices in a ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_ListModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluationSlices(request:options:)``
     public func listModelEvaluationSlices(request: ListModelEvaluationSlicesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListModelEvaluationSlicesResponse
     {
@@ -1303,6 +1950,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists ModelEvaluationSlices in a ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_ListModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluationSlices(request:options:)``
     public func listModelEvaluationSlicesByItems(
       request: ListModelEvaluationSlicesRequest
     ) -> some AsyncSequence<ModelEvaluationSlice, any Swift.Error> & Sendable {
@@ -1312,6 +1966,10 @@
     /// Lists ModelEvaluationSlices in a ModelEvaluation.
     ///
     /// @Snippet(path: "ModelService_ListModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluationSlices(request:options:)``
     public func listModelEvaluationSlicesByItems(
       request: ListModelEvaluationSlicesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ModelEvaluationSlice, any Swift.Error> & Sendable {
@@ -1326,6 +1984,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists ModelEvaluationSlices in a ModelEvaluation.
+    ///
+    /// @Snippet(path: "ModelService_ListModelEvaluationSlices")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listModelEvaluationSlices(request:options:)``
     public func listModelEvaluationSlicesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ModelEvaluationSlice, any Swift.Error> & Sendable {
@@ -1335,6 +2000,13 @@
       return self.listModelEvaluationSlicesByItems(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "ModelService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -1347,6 +2019,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "ModelService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1356,6 +2035,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "ModelService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1369,6 +2052,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "ModelService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -1381,6 +2071,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "ModelService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1393,6 +2094,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "ModelService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1405,6 +2114,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "ModelService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -1417,6 +2139,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1429,6 +2160,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1440,6 +2180,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ModelService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1453,6 +2197,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1464,6 +2217,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1476,6 +2232,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1485,6 +2244,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -1495,6 +2263,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -1504,6 +2281,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1514,6 +2300,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -1523,6 +2318,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ModelService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ModelServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

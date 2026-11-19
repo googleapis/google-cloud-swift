@@ -23,6 +23,10 @@ import GoogleAuth
 
 /// A client for Google Cloud Storage control-plane and administrative operations that unifies bucket lifecycle,
 /// IAM access control, object metadata, and control-plane features (folders, caches, intelligence).
+///
+/// ## See Also
+///
+/// - ``StorageControlProtocol``
 public final class StorageControlClient: StorageControlProtocol, Sendable {
   private let storage: any Clients.StorageStub
   private let control: any Clients.StorageControlStub
@@ -96,6 +100,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// **IAM Permissions**:
   ///
   /// Requires `storage.buckets.delete` IAM permission on the bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBucket(request:)``
   public func deleteBucket(
     request: DeleteBucketRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -113,6 +121,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// - To return the IAM policies: `storage.buckets.getIamPolicy`
   /// - To return the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBucket(request:)``
   public func getBucket(
     request: GetBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> Bucket {
@@ -130,6 +142,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// - To enable object retention using the `enableObjectRetention` query
   /// parameter: `storage.buckets.enableObjectRetention`
   /// - To set the bucket IP filtering rules: `storage.buckets.setIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBucket(request:)``
   public func createBucket(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> Bucket {
@@ -147,6 +163,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///
   /// - To list the IAM policies: `storage.buckets.getIamPolicy`
   /// - To list the bucket IP filtering rules: `storage.buckets.getIpFilter`
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBuckets(request:)``
+  /// - ``listBucketsByItems(request:)``
+  /// - ``listBucketsByItems(request:options:)``
   public func listBuckets(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListBucketsResponse {
@@ -172,6 +194,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// **IAM Permissions**:
   ///
   /// Requires `storage.buckets.update` IAM permission on the bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``lockBucketRetentionPolicy(request:)``
   public func lockBucketRetentionPolicy(
     request: LockBucketRetentionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Bucket {
@@ -191,6 +217,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// - To set bucket IP filtering rules: `storage.buckets.setIpFilter`
   /// - To update public access prevention policies or access control lists
   /// (ACLs): `storage.buckets.setIamPolicy`
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBucket(request:)``
   public func updateBucket(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> Bucket {
@@ -208,6 +238,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// the `storage.objects.delete` permission. If the request body includes
   /// the retention property, the authenticated user must also have the
   /// `storage.objects.setRetention` IAM permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``composeObject(request:)``
   public func composeObject(
     request: ComposeObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Object {
@@ -234,6 +268,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Requires `storage.objects.delete` IAM permission on the bucket.
   ///
   /// [google.storage.v2.Storage.RestoreObject]: <doc:StorageControlClient/restoreObject(request:options:)>
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteObject(request:)``
   public func deleteObject(
     request: DeleteObjectRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -277,6 +315,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///   - `storage.objects.setIamPolicy` (only required if `copySourceAcl` is
   ///   `true` and the relevant
   ///     bucket has uniform bucket-level access disabled)
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreObject(request:)``
   public func restoreObject(
     request: RestoreObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Object {
@@ -290,6 +332,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// Requires `storage.objects.get` IAM permission on the bucket.
   /// To return object ACLs, the authenticated user must also have
   /// the `storage.objects.getIamPolicy` permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getObject(request:)``
   public func getObject(
     request: GetObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Object {
@@ -302,6 +348,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// **IAM Permissions**:
   ///
   /// Requires `storage.objects.update` IAM permission on the bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateObject(request:)``
   public func updateObject(
     request: UpdateObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Object {
@@ -316,6 +366,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// IAM permission to use this method. To return object ACLs, the
   /// authenticated user must also
   /// have the `storage.objects.getIamPolicy` permission.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listObjects(request:)``
+  /// - ``listObjectsByItems(request:)``
+  /// - ``listObjectsByItems(request:options:)``
   public func listObjects(
     request: ListObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListObjectsResponse {
@@ -324,6 +380,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Rewrites a source object to a destination object. Optionally overrides
   /// metadata.
+  ///
+  /// ## See Also
+  ///
+  /// - ``rewriteObject(request:)``
   public func rewriteObject(
     request: RewriteObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> RewriteResponse {
@@ -344,6 +404,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   ///   - `storage.objects.create`
   ///   - `storage.objects.delete` (only required if overwriting an existing
   ///   object)
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveObject(request:)``
   public func moveObject(
     request: MoveObjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> Object {
@@ -352,6 +416,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Creates a new folder. This operation is only applicable to a hierarchical
   /// namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFolder(request:)``
   public func createFolder(
     request: CreateFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -364,6 +432,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Permanently deletes an empty folder. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFolder(request:)``
   public func deleteFolder(
     request: DeleteFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -376,6 +448,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Returns metadata for the specified folder. This operation is only
   /// applicable to a hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFolder(request:)``
   public func getFolder(
     request: GetFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -388,6 +464,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Retrieves a list of folders. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFolders(request:)``
+  /// - ``listFoldersByItems(request:)``
+  /// - ``listFoldersByItems(request:options:)``
   public func listFolders(
     request: ListFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListFoldersResponse {
@@ -402,6 +484,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
   /// source and destination folders are locked until the long running operation
   /// completes.
+  ///
+  /// ## See Also
+  ///
+  /// - ``renameFolder(request:)``
+  /// - ``renameFolderPollingUntilDone(request:)``
+  /// - ``renameFolderPollingUntilDone(request:options:)``
   public func renameFolder(
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -416,6 +504,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// applicable to a hierarchical namespace enabled bucket. During a rename, the
   /// source and destination folders are locked until the long running operation
   /// completes.
+  ///
+  /// ## See Also
+  ///
+  /// - ``renameFolder(request:)``
+  /// - ``renameFolder(request:options:)``
+  /// - ``renameFolderPollingUntilDone(request:)``
   public func renameFolderPollingUntilDone(
     request: RenameFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> Folder {
@@ -442,6 +536,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFolderRecursive(request:)``
+  /// - ``deleteFolderRecursivePollingUntilDone(request:)``
+  /// - ``deleteFolderRecursivePollingUntilDone(request:options:)``
   public func deleteFolderRecursive(
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -454,6 +554,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Deletes a folder recursively. This operation is only applicable to a
   /// hierarchical namespace enabled bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFolderRecursive(request:)``
+  /// - ``deleteFolderRecursive(request:options:)``
+  /// - ``deleteFolderRecursivePollingUntilDone(request:)``
   public func deleteFolderRecursivePollingUntilDone(
     request: DeleteFolderRecursiveRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -479,6 +585,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Returns the storage layout configuration for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getStorageLayout(request:)``
   public func getStorageLayout(
     request: GetStorageLayoutRequest, options: GoogleGax.RequestOptions
   ) async throws -> StorageLayout {
@@ -490,6 +600,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Creates a new managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``createManagedFolder(request:)``
   public func createManagedFolder(
     request: CreateManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedFolder {
@@ -501,6 +615,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Permanently deletes an empty managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteManagedFolder(request:)``
   public func deleteManagedFolder(
     request: DeleteManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -512,6 +630,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Returns metadata for the specified managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getManagedFolder(request:)``
   public func getManagedFolder(
     request: GetManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedFolder {
@@ -523,6 +645,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Retrieves a list of managed folders for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listManagedFolders(request:)``
+  /// - ``listManagedFoldersByItems(request:)``
+  /// - ``listManagedFoldersByItems(request:options:)``
   public func listManagedFolders(
     request: ListManagedFoldersRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListManagedFoldersResponse {
@@ -535,6 +663,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Updates a managed folder. Currently, this RPC only supports updating the
   /// `rapid_cache_config` field.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateManagedFolder(request:)``
   public func updateManagedFolder(
     request: UpdateManagedFolderRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedFolder {
@@ -546,6 +678,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Creates an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAnywhereCache(request:)``
+  /// - ``createAnywhereCachePollingUntilDone(request:)``
+  /// - ``createAnywhereCachePollingUntilDone(request:options:)``
   public func createAnywhereCache(
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -557,6 +695,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Creates an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAnywhereCache(request:)``
+  /// - ``createAnywhereCache(request:options:)``
+  /// - ``createAnywhereCachePollingUntilDone(request:)``
   public func createAnywhereCachePollingUntilDone(
     request: CreateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -584,6 +728,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAnywhereCache(request:)``
+  /// - ``updateAnywhereCachePollingUntilDone(request:)``
+  /// - ``updateAnywhereCachePollingUntilDone(request:options:)``
   public func updateAnywhereCache(
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -596,6 +746,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Updates an Anywhere Cache instance. Mutable fields include `ttl` and
   /// `admission_policy`.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAnywhereCache(request:)``
+  /// - ``updateAnywhereCache(request:options:)``
+  /// - ``updateAnywhereCachePollingUntilDone(request:)``
   public func updateAnywhereCachePollingUntilDone(
     request: UpdateAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -625,6 +781,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// disablement could be revoked by calling ResumeAnywhereCache. The cache
   /// instance will be deleted automatically if it remains in the disabled state
   /// for at least one hour.
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableAnywhereCache(request:)``
   public func disableAnywhereCache(
     request: DisableAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -636,6 +796,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Pauses an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``pauseAnywhereCache(request:)``
   public func pauseAnywhereCache(
     request: PauseAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -647,6 +811,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Resumes a disabled or paused Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeAnywhereCache(request:)``
   public func resumeAnywhereCache(
     request: ResumeAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -658,6 +826,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Gets an Anywhere Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAnywhereCache(request:)``
   public func getAnywhereCache(
     request: GetAnywhereCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnywhereCache {
@@ -669,6 +841,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Lists Anywhere Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAnywhereCaches(request:)``
+  /// - ``listAnywhereCachesByItems(request:)``
+  /// - ``listAnywhereCachesByItems(request:options:)``
   public func listAnywhereCaches(
     request: ListAnywhereCachesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListAnywhereCachesResponse {
@@ -680,6 +858,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Creates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRapidCache(request:)``
+  /// - ``createRapidCachePollingUntilDone(request:)``
+  /// - ``createRapidCachePollingUntilDone(request:options:)``
   public func createRapidCache(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -691,6 +875,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Creates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRapidCache(request:)``
+  /// - ``createRapidCache(request:options:)``
+  /// - ``createRapidCachePollingUntilDone(request:)``
   public func createRapidCachePollingUntilDone(
     request: CreateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
@@ -716,6 +906,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Updates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRapidCache(request:)``
+  /// - ``updateRapidCachePollingUntilDone(request:)``
+  /// - ``updateRapidCachePollingUntilDone(request:options:)``
   public func updateRapidCache(
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -727,6 +923,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Updates a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRapidCache(request:)``
+  /// - ``updateRapidCache(request:options:)``
+  /// - ``updateRapidCachePollingUntilDone(request:)``
   public func updateRapidCachePollingUntilDone(
     request: UpdateRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
@@ -752,6 +954,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Disables a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableRapidCache(request:)``
+  /// - ``disableRapidCachePollingUntilDone(request:)``
+  /// - ``disableRapidCachePollingUntilDone(request:options:)``
   public func disableRapidCache(
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -763,6 +971,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Disables a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableRapidCache(request:)``
+  /// - ``disableRapidCache(request:options:)``
+  /// - ``disableRapidCachePollingUntilDone(request:)``
   public func disableRapidCachePollingUntilDone(
     request: DisableRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
@@ -788,6 +1002,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Gets a Rapid Cache instance.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRapidCache(request:)``
   public func getRapidCache(
     request: GetRapidCacheRequest, options: GoogleGax.RequestOptions
   ) async throws -> RapidCache {
@@ -799,6 +1017,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Lists Rapid Cache instances for a given bucket.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRapidCaches(request:)``
+  /// - ``listRapidCachesByItems(request:)``
+  /// - ``listRapidCachesByItems(request:options:)``
   public func listRapidCaches(
     request: ListRapidCachesRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListRapidCachesResponse {
@@ -810,6 +1034,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Returns the Project scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProjectIntelligenceConfig(request:)``
   public func getProjectIntelligenceConfig(
     request: GetProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
@@ -817,6 +1045,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Updates the Project scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProjectIntelligenceConfig(request:)``
   public func updateProjectIntelligenceConfig(
     request: UpdateProjectIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
@@ -829,6 +1061,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Returns the Folder scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFolderIntelligenceConfig(request:)``
   public func getFolderIntelligenceConfig(
     request: GetFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
@@ -836,6 +1072,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Updates the Folder scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFolderIntelligenceConfig(request:)``
   public func updateFolderIntelligenceConfig(
     request: UpdateFolderIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
@@ -847,6 +1087,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Returns the Organization scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getOrganizationIntelligenceConfig(request:)``
   public func getOrganizationIntelligenceConfig(
     request: GetOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
@@ -854,6 +1098,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Updates the Organization scoped singleton IntelligenceConfig resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateOrganizationIntelligenceConfig(request:)``
   public func updateOrganizationIntelligenceConfig(
     request: UpdateOrganizationIntelligenceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceConfig {
@@ -870,6 +1118,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// `projects/_/buckets/{bucket}` for a bucket, or
   /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
   /// for a managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -881,6 +1133,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// `projects/_/buckets/{bucket}` for a bucket, or
   /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
   /// for a managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -894,6 +1150,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// `projects/_/buckets/{bucket}/objects/{object}` for an object, or
   /// `projects/_/buckets/{bucket}/managedFolders/{managedFolder}`
   /// for a managed folder.
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -901,6 +1161,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Gets the `IntelligenceFinding` for a project.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIntelligenceFinding(request:)``
   public func getIntelligenceFinding(
     request: GetIntelligenceFindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceFinding {
@@ -908,6 +1172,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Lists the `IntelligenceFinding` resources for the specified the project.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIntelligenceFindings(request:)``
+  /// - ``listIntelligenceFindingsByItems(request:)``
+  /// - ``listIntelligenceFindingsByItems(request:options:)``
   public func listIntelligenceFindings(
     request: ListIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListIntelligenceFindingsResponse {
@@ -916,6 +1186,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
 
   /// Summarizes the intelligence findings for the specified scope (organization,
   /// folder or project).
+  ///
+  /// ## See Also
+  ///
+  /// - ``summarizeIntelligenceFindings(request:)``
+  /// - ``summarizeIntelligenceFindingsByItems(request:)``
+  /// - ``summarizeIntelligenceFindingsByItems(request:options:)``
   public func summarizeIntelligenceFindings(
     request: SummarizeIntelligenceFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> SummarizeIntelligenceFindingsResponse {
@@ -923,6 +1199,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Gets the `IntelligenceFindingRevision` resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIntelligenceFindingRevision(request:)``
   public func getIntelligenceFindingRevision(
     request: GetIntelligenceFindingRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> IntelligenceFindingRevision {
@@ -930,6 +1210,12 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   }
 
   /// Lists all the revisions of an `IntelligenceFinding` resource.
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIntelligenceFindingRevisions(request:)``
+  /// - ``listIntelligenceFindingRevisionsByItems(request:)``
+  /// - ``listIntelligenceFindingRevisionsByItems(request:options:)``
   public func listIntelligenceFindingRevisions(
     request: ListIntelligenceFindingRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ListIntelligenceFindingRevisionsResponse {
@@ -947,6 +1233,10 @@ public final class StorageControlClient: StorageControlProtocol, Sendable {
   /// [`ObjectFullContext`][google.storage.control.v2.ObjectFullContext].
   ///
   /// [google.storage.control.v2.ObjectFullContext]: <doc:ObjectFullContext>
+  ///
+  /// ## See Also
+  ///
+  /// - ``viewObjectFullContext(request:)``
   public func viewObjectFullContext(
     request: ViewObjectFullContextRequest, options: GoogleGax.RequestOptions
   ) async throws -> ObjectFullContext {

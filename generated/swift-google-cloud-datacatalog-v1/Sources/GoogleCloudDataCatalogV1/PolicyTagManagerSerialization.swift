@@ -27,6 +27,10 @@ import Foundation
 /// Taxonomy is a hierarchical group of policy tags.
 ///
 /// @Snippet(path: "PolicyTagManagerSerializationQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PolicyTagManagerSerializationProtocol``
 public final class PolicyTagManagerSerializationClient: Clients
     .PolicyTagManagerSerializationProtocol, Sendable
 {
@@ -58,6 +62,10 @@ public final class PolicyTagManagerSerializationClient: Clients
   /// - Updates policy tags with valid resources names accordingly.
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_ReplaceTaxonomy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceTaxonomy(request:)``
   public func replaceTaxonomy(
     request: ReplaceTaxonomyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.Taxonomy {
@@ -74,6 +82,10 @@ public final class PolicyTagManagerSerializationClient: Clients
   /// nested protocol buffer structures.
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_ImportTaxonomies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importTaxonomies(request:)``
   public func importTaxonomies(
     request: ImportTaxonomiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ImportTaxonomiesResponse {
@@ -88,6 +100,10 @@ public final class PolicyTagManagerSerializationClient: Clients
   /// policy tags that can be used as input for `ImportTaxonomies` calls.
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_ExportTaxonomies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportTaxonomies(request:)``
   public func exportTaxonomies(
     request: ExportTaxonomiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataCatalogV1.ExportTaxonomiesResponse {
@@ -99,6 +115,13 @@ public final class PolicyTagManagerSerializationClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -121,6 +144,11 @@ public final class PolicyTagManagerSerializationClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -132,6 +160,11 @@ public final class PolicyTagManagerSerializationClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -180,6 +213,25 @@ extension Clients {
 
 // Default implementations
 extension Clients.PolicyTagManagerSerializationProtocol {
+  /// Replaces (updates) a taxonomy and all its policy tags.
+  ///
+  /// The taxonomy and its entire hierarchy of policy tags must be
+  /// represented literally by `SerializedTaxonomy` and the nested
+  /// `SerializedPolicyTag` messages.
+  ///
+  /// This operation automatically does the following:
+  ///
+  /// - Deletes the existing policy tags that are missing from the
+  ///   `SerializedPolicyTag`.
+  /// - Creates policy tags that don't have resource names. They are considered
+  ///   new.
+  /// - Updates policy tags with valid resources names accordingly.
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_ReplaceTaxonomy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/replaceTaxonomy(request:options:)``
   public func replaceTaxonomy(request: ReplaceTaxonomyRequest) async throws
     -> GoogleCloudDataCatalogV1.Taxonomy
   {
@@ -192,6 +244,20 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates new taxonomies (including their policy tags) in a given project
+  /// by importing from inlined or cross-regional sources.
+  ///
+  /// For a cross-regional source, new taxonomies are created by copying
+  /// from a source in another region.
+  ///
+  /// For an inlined source, taxonomies and policy tags are created in bulk using
+  /// nested protocol buffer structures.
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_ImportTaxonomies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/importTaxonomies(request:options:)``
   public func importTaxonomies(request: ImportTaxonomiesRequest) async throws
     -> GoogleCloudDataCatalogV1.ImportTaxonomiesResponse
   {
@@ -204,6 +270,18 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports taxonomies in the requested type and returns them,
+  /// including their policy tags. The requested taxonomies must belong to the
+  /// same project.
+  ///
+  /// This method generates `SerializedTaxonomy` protocol buffers with nested
+  /// policy tags that can be used as input for `ImportTaxonomies` calls.
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_ExportTaxonomies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/exportTaxonomies(request:options:)``
   public func exportTaxonomies(request: ExportTaxonomiesRequest) async throws
     -> GoogleCloudDataCatalogV1.ExportTaxonomiesResponse
   {
@@ -216,6 +294,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -228,6 +315,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -239,6 +335,10 @@ extension Clients.PolicyTagManagerSerializationProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "PolicyTagManagerSerialization_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -252,6 +352,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -263,6 +372,9 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -275,6 +387,9 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -284,6 +399,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -294,6 +418,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -303,6 +436,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -313,6 +455,15 @@ extension Clients.PolicyTagManagerSerializationProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "PolicyTagManagerSerialization_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTagManagerSerializationClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

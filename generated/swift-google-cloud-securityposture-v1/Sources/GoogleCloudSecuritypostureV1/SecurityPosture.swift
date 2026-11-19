@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "SecurityPostureQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SecurityPostureProtocol``
 public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Sendable {
   let inner: any Clients.SecurityPostureStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -52,6 +56,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// as per UpdateTime will be returned.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPostures(request:)``
+  /// - ``listPosturesByItems(parent:)``
+  /// - ``listPosturesByItems(request:)``
+  /// - ``listPosturesByItems(request:options:)``
   public func listPostures(
     request: ListPosturesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPosturesResponse {
@@ -61,6 +72,12 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Lists revisions of a Posture in a given organization and location.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostureRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPostureRevisions(request:)``
+  /// - ``listPostureRevisionsByItems(request:)``
+  /// - ``listPostureRevisionsByItems(request:options:)``
   public func listPostureRevisions(
     request: ListPostureRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPostureRevisionsResponse {
@@ -75,6 +92,11 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// by UpdateTime is returned.
   ///
   /// @Snippet(path: "SecurityPosture_GetPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPosture(name:)``
+  /// - ``getPosture(request:)``
   public func getPosture(
     request: GetPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.Posture {
@@ -87,6 +109,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "SecurityPosture_CreatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPosture(request:)``
+  /// - ``createPosturePollingUntilDone(parent:posture:postureId:)``
+  /// - ``createPosturePollingUntilDone(request:)``
+  /// - ``createPosturePollingUntilDone(request:options:)``
   public func createPosture(
     request: CreatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,6 +128,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "SecurityPosture_CreatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPosture(request:)``
+  /// - ``createPosture(request:options:)``
+  /// - ``createPosturePollingUntilDone(parent:posture:postureId:)``
+  /// - ``createPosturePollingUntilDone(request:)``
   public func createPosturePollingUntilDone(
     request: CreatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Posture {
@@ -137,6 +173,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
   ///
   /// @Snippet(path: "SecurityPosture_UpdatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePosture(request:)``
+  /// - ``updatePosturePollingUntilDone(posture:updateMask:)``
+  /// - ``updatePosturePollingUntilDone(request:)``
+  /// - ``updatePosturePollingUntilDone(request:options:)``
   public func updatePosture(
     request: UpdatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -157,6 +200,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
   ///
   /// @Snippet(path: "SecurityPosture_UpdatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePosture(request:)``
+  /// - ``updatePosture(request:options:)``
+  /// - ``updatePosturePollingUntilDone(posture:updateMask:)``
+  /// - ``updatePosturePollingUntilDone(request:)``
   public func updatePosturePollingUntilDone(
     request: UpdatePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Posture {
@@ -186,6 +236,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// any workload.
   ///
   /// @Snippet(path: "SecurityPosture_DeletePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePosture(request:)``
+  /// - ``deletePosturePollingUntilDone(name:)``
+  /// - ``deletePosturePollingUntilDone(request:)``
+  /// - ``deletePosturePollingUntilDone(request:options:)``
   public func deletePosture(
     request: DeletePostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -197,6 +254,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// any workload.
   ///
   /// @Snippet(path: "SecurityPosture_DeletePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePosture(request:)``
+  /// - ``deletePosture(request:options:)``
+  /// - ``deletePosturePollingUntilDone(name:)``
+  /// - ``deletePosturePollingUntilDone(request:)``
   public func deletePosturePollingUntilDone(
     request: DeletePostureRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -226,6 +290,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "SecurityPosture_ExtractPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``extractPosture(request:)``
+  /// - ``extractPosturePollingUntilDone(parent:postureId:workload:)``
+  /// - ``extractPosturePollingUntilDone(request:)``
+  /// - ``extractPosturePollingUntilDone(request:options:)``
   public func extractPosture(
     request: ExtractPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -237,6 +308,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "SecurityPosture_ExtractPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``extractPosture(request:)``
+  /// - ``extractPosture(request:options:)``
+  /// - ``extractPosturePollingUntilDone(parent:postureId:workload:)``
+  /// - ``extractPosturePollingUntilDone(request:)``
   public func extractPosturePollingUntilDone(
     request: ExtractPostureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Posture {
@@ -265,6 +343,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Lists PostureDeployments in a given project and location.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostureDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPostureDeployments(request:)``
+  /// - ``listPostureDeploymentsByItems(parent:)``
+  /// - ``listPostureDeploymentsByItems(request:)``
+  /// - ``listPostureDeploymentsByItems(request:options:)``
   public func listPostureDeployments(
     request: ListPostureDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPostureDeploymentsResponse {
@@ -274,6 +359,11 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Gets details of a single PostureDeployment.
   ///
   /// @Snippet(path: "SecurityPosture_GetPostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPostureDeployment(name:)``
+  /// - ``getPostureDeployment(request:)``
   public func getPostureDeployment(
     request: GetPostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.PostureDeployment {
@@ -283,6 +373,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Creates a new PostureDeployment in a given project and location.
   ///
   /// @Snippet(path: "SecurityPosture_CreatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPostureDeployment(request:)``
+  /// - ``createPostureDeploymentPollingUntilDone(parent:postureDeployment:postureDeploymentId:)``
+  /// - ``createPostureDeploymentPollingUntilDone(request:)``
+  /// - ``createPostureDeploymentPollingUntilDone(request:options:)``
   public func createPostureDeployment(
     request: CreatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -292,6 +389,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Creates a new PostureDeployment in a given project and location.
   ///
   /// @Snippet(path: "SecurityPosture_CreatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPostureDeployment(request:)``
+  /// - ``createPostureDeployment(request:options:)``
+  /// - ``createPostureDeploymentPollingUntilDone(parent:postureDeployment:postureDeploymentId:)``
+  /// - ``createPostureDeploymentPollingUntilDone(request:)``
   public func createPostureDeploymentPollingUntilDone(
     request: CreatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> PostureDeployment {
@@ -320,6 +424,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Updates the parameters of a single PostureDeployment.
   ///
   /// @Snippet(path: "SecurityPosture_UpdatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePostureDeployment(request:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(postureDeployment:updateMask:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(request:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(request:options:)``
   public func updatePostureDeployment(
     request: UpdatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -329,6 +440,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Updates the parameters of a single PostureDeployment.
   ///
   /// @Snippet(path: "SecurityPosture_UpdatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePostureDeployment(request:)``
+  /// - ``updatePostureDeployment(request:options:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(postureDeployment:updateMask:)``
+  /// - ``updatePostureDeploymentPollingUntilDone(request:)``
   public func updatePostureDeploymentPollingUntilDone(
     request: UpdatePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> PostureDeployment {
@@ -357,6 +475,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Deletes a single PostureDeployment.
   ///
   /// @Snippet(path: "SecurityPosture_DeletePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePostureDeployment(request:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(name:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(request:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(request:options:)``
   public func deletePostureDeployment(
     request: DeletePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -366,6 +491,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Deletes a single PostureDeployment.
   ///
   /// @Snippet(path: "SecurityPosture_DeletePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePostureDeployment(request:)``
+  /// - ``deletePostureDeployment(request:options:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(name:)``
+  /// - ``deletePostureDeploymentPollingUntilDone(request:)``
   public func deletePostureDeploymentPollingUntilDone(
     request: DeletePostureDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -394,6 +526,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Lists all the PostureTemplates available to the user.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostureTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPostureTemplates(request:)``
+  /// - ``listPostureTemplatesByItems(parent:)``
+  /// - ``listPostureTemplatesByItems(request:)``
+  /// - ``listPostureTemplatesByItems(request:options:)``
   public func listPostureTemplates(
     request: ListPostureTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.ListPostureTemplatesResponse {
@@ -408,6 +547,11 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// PostureTemplate with latest revision_id is returned.
   ///
   /// @Snippet(path: "SecurityPosture_GetPostureTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPostureTemplate(name:)``
+  /// - ``getPostureTemplate(request:)``
   public func getPostureTemplate(
     request: GetPostureTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecuritypostureV1.PostureTemplate {
@@ -417,6 +561,12 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "SecurityPosture_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -426,6 +576,10 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SecurityPosture_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -437,6 +591,13 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecurityPosture_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -459,6 +620,11 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecurityPosture_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -470,6 +636,11 @@ public final class SecurityPostureClient: Clients.SecurityPostureProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecurityPosture_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -618,6 +789,19 @@ extension Clients {
 
 // Default implementations
 extension Clients.SecurityPostureProtocol {
+  /// (-- This option restricts the visibility of the API to only projects that
+  /// will
+  /// (-- be labeled as `PREVIEW` or `GOOGLE_INTERNAL` by the service.
+  /// (-- option (google.api.api_visibility).restriction =
+  /// "PREVIEW,GOOGLE_INTERNAL"; Postures Lists Postures in a given organization
+  /// and location. In case a posture has multiple revisions, the latest revision
+  /// as per UpdateTime will be returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostures(request:options:)``
   public func listPostures(request: ListPosturesRequest) async throws
     -> GoogleCloudSecuritypostureV1.ListPosturesResponse
   {
@@ -630,6 +814,19 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// (-- This option restricts the visibility of the API to only projects that
+  /// will
+  /// (-- be labeled as `PREVIEW` or `GOOGLE_INTERNAL` by the service.
+  /// (-- option (google.api.api_visibility).restriction =
+  /// "PREVIEW,GOOGLE_INTERNAL"; Postures Lists Postures in a given organization
+  /// and location. In case a posture has multiple revisions, the latest revision
+  /// as per UpdateTime will be returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostures(request:options:)``
   public func listPosturesByItems(
     request: ListPosturesRequest
   ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
@@ -645,6 +842,10 @@ extension Clients.SecurityPostureProtocol {
   /// as per UpdateTime will be returned.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostures(request:options:)``
   public func listPosturesByItems(
     request: ListPosturesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
@@ -659,6 +860,19 @@ extension Clients.SecurityPostureProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// (-- This option restricts the visibility of the API to only projects that
+  /// will
+  /// (-- be labeled as `PREVIEW` or `GOOGLE_INTERNAL` by the service.
+  /// (-- option (google.api.api_visibility).restriction =
+  /// "PREVIEW,GOOGLE_INTERNAL"; Postures Lists Postures in a given organization
+  /// and location. In case a posture has multiple revisions, the latest revision
+  /// as per UpdateTime will be returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostures(request:options:)``
   public func listPosturesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
@@ -668,6 +882,13 @@ extension Clients.SecurityPostureProtocol {
     return self.listPosturesByItems(request: request)
   }
 
+  /// Lists revisions of a Posture in a given organization and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureRevisions(request:options:)``
   public func listPostureRevisions(request: ListPostureRevisionsRequest) async throws
     -> GoogleCloudSecuritypostureV1.ListPostureRevisionsResponse
   {
@@ -680,6 +901,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists revisions of a Posture in a given organization and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureRevisions(request:options:)``
   public func listPostureRevisionsByItems(
     request: ListPostureRevisionsRequest
   ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
@@ -689,6 +917,10 @@ extension Clients.SecurityPostureProtocol {
   /// Lists revisions of a Posture in a given organization and location.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostureRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureRevisions(request:options:)``
   public func listPostureRevisionsByItems(
     request: ListPostureRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Posture, any Swift.Error> & Sendable {
@@ -703,6 +935,18 @@ extension Clients.SecurityPostureProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets a posture in a given organization and location.
+  /// User must provide revision_id to retrieve a specific revision of the
+  /// resource.
+  /// NOT_FOUND error is returned if the revision_id or the Posture name does not
+  /// exist. In case revision_id is not provided then the latest Posture revision
+  /// by UpdateTime is returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getPosture(request:options:)``
   public func getPosture(request: GetPostureRequest) async throws
     -> GoogleCloudSecuritypostureV1.Posture
   {
@@ -715,6 +959,18 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a posture in a given organization and location.
+  /// User must provide revision_id to retrieve a specific revision of the
+  /// resource.
+  /// NOT_FOUND error is returned if the revision_id or the Posture name does not
+  /// exist. In case revision_id is not provided then the latest Posture revision
+  /// by UpdateTime is returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getPosture(request:options:)``
   public func getPosture(
     name: Swift.String,
   ) async throws -> GoogleCloudSecuritypostureV1.Posture {
@@ -724,6 +980,16 @@ extension Clients.SecurityPostureProtocol {
     return try await self.getPosture(request: request)
   }
 
+  /// Creates a new Posture resource.
+  /// If a Posture with the specified name already exists in the specified
+  /// organization and location, the long running operation returns a
+  /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "SecurityPosture_CreatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/createPosture(request:options:)``
   public func createPosture(request: CreatePostureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -736,6 +1002,16 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Posture resource.
+  /// If a Posture with the specified name already exists in the specified
+  /// organization and location, the long running operation returns a
+  /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "SecurityPosture_CreatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/createPosturePollingUntilDone(request:options:)``
   public func createPosturePollingUntilDone(request: CreatePostureRequest) async throws -> Posture {
     return try await self.createPosturePollingUntilDone(request: request, options: .init())
   }
@@ -746,6 +1022,16 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Posture resource.
+  /// If a Posture with the specified name already exists in the specified
+  /// organization and location, the long running operation returns a
+  /// [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "SecurityPosture_CreatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/createPosturePollingUntilDone(request:options:)``
   public func createPosturePollingUntilDone(
     parent: Swift.String,
     posture: Posture?,
@@ -759,6 +1045,24 @@ extension Clients.SecurityPostureProtocol {
     return try await self.createPosturePollingUntilDone(request: request)
   }
 
+  /// Updates an existing Posture.
+  /// A new revision of the posture will be created if the revision to be
+  /// updated is currently deployed on a workload.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// Posture does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
+  /// supplied in the request does not match the persisted etag of the Posture.
+  /// Updatable fields are state, description and policy_sets.
+  /// State update operation cannot be clubbed with update of description and
+  /// policy_sets.
+  /// An ACTIVE posture can be updated to both DRAFT or DEPRECATED states.
+  /// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
+  ///
+  /// @Snippet(path: "SecurityPosture_UpdatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/updatePosture(request:options:)``
   public func updatePosture(request: UpdatePostureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -771,6 +1075,24 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Posture.
+  /// A new revision of the posture will be created if the revision to be
+  /// updated is currently deployed on a workload.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// Posture does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
+  /// supplied in the request does not match the persisted etag of the Posture.
+  /// Updatable fields are state, description and policy_sets.
+  /// State update operation cannot be clubbed with update of description and
+  /// policy_sets.
+  /// An ACTIVE posture can be updated to both DRAFT or DEPRECATED states.
+  /// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
+  ///
+  /// @Snippet(path: "SecurityPosture_UpdatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/updatePosturePollingUntilDone(request:options:)``
   public func updatePosturePollingUntilDone(request: UpdatePostureRequest) async throws -> Posture {
     return try await self.updatePosturePollingUntilDone(request: request, options: .init())
   }
@@ -781,6 +1103,24 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Posture.
+  /// A new revision of the posture will be created if the revision to be
+  /// updated is currently deployed on a workload.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// Posture does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
+  /// supplied in the request does not match the persisted etag of the Posture.
+  /// Updatable fields are state, description and policy_sets.
+  /// State update operation cannot be clubbed with update of description and
+  /// policy_sets.
+  /// An ACTIVE posture can be updated to both DRAFT or DEPRECATED states.
+  /// Postures in DRAFT or DEPRECATED states can only be updated to ACTIVE state.
+  ///
+  /// @Snippet(path: "SecurityPosture_UpdatePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/updatePosturePollingUntilDone(request:options:)``
   public func updatePosturePollingUntilDone(
     posture: Posture?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -792,6 +1132,15 @@ extension Clients.SecurityPostureProtocol {
     return try await self.updatePosturePollingUntilDone(request: request)
   }
 
+  /// Deletes all the revisions of a resource.
+  /// A posture can only be deleted when none of the revisions are deployed to
+  /// any workload.
+  ///
+  /// @Snippet(path: "SecurityPosture_DeletePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deletePosture(request:options:)``
   public func deletePosture(request: DeletePostureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -804,6 +1153,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes all the revisions of a resource.
+  /// A posture can only be deleted when none of the revisions are deployed to
+  /// any workload.
+  ///
+  /// @Snippet(path: "SecurityPosture_DeletePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deletePosturePollingUntilDone(request:options:)``
   public func deletePosturePollingUntilDone(request: DeletePostureRequest) async throws {
     try await self.deletePosturePollingUntilDone(request: request, options: .init())
   }
@@ -814,6 +1172,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes all the revisions of a resource.
+  /// A posture can only be deleted when none of the revisions are deployed to
+  /// any workload.
+  ///
+  /// @Snippet(path: "SecurityPosture_DeletePosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deletePosturePollingUntilDone(request:options:)``
   public func deletePosturePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -823,6 +1190,15 @@ extension Clients.SecurityPostureProtocol {
     try await self.deletePosturePollingUntilDone(request: request)
   }
 
+  /// Extracts existing policies on a workload as a posture.
+  /// If a Posture on the given workload already exists, the long running
+  /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "SecurityPosture_ExtractPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/extractPosture(request:options:)``
   public func extractPosture(request: ExtractPostureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -835,6 +1211,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Extracts existing policies on a workload as a posture.
+  /// If a Posture on the given workload already exists, the long running
+  /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "SecurityPosture_ExtractPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/extractPosturePollingUntilDone(request:options:)``
   public func extractPosturePollingUntilDone(request: ExtractPostureRequest) async throws -> Posture
   {
     return try await self.extractPosturePollingUntilDone(request: request, options: .init())
@@ -846,6 +1231,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Extracts existing policies on a workload as a posture.
+  /// If a Posture on the given workload already exists, the long running
+  /// operation returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "SecurityPosture_ExtractPosture")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/extractPosturePollingUntilDone(request:options:)``
   public func extractPosturePollingUntilDone(
     parent: Swift.String,
     postureId: Swift.String,
@@ -859,6 +1253,14 @@ extension Clients.SecurityPostureProtocol {
     return try await self.extractPosturePollingUntilDone(request: request)
   }
 
+  /// PostureDeployments
+  /// Lists PostureDeployments in a given project and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureDeployments(request:options:)``
   public func listPostureDeployments(request: ListPostureDeploymentsRequest) async throws
     -> GoogleCloudSecuritypostureV1.ListPostureDeploymentsResponse
   {
@@ -871,6 +1273,14 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// PostureDeployments
+  /// Lists PostureDeployments in a given project and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureDeployments(request:options:)``
   public func listPostureDeploymentsByItems(
     request: ListPostureDeploymentsRequest
   ) -> some AsyncSequence<PostureDeployment, any Swift.Error> & Sendable {
@@ -881,6 +1291,10 @@ extension Clients.SecurityPostureProtocol {
   /// Lists PostureDeployments in a given project and location.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostureDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureDeployments(request:options:)``
   public func listPostureDeploymentsByItems(
     request: ListPostureDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PostureDeployment, any Swift.Error> & Sendable {
@@ -895,6 +1309,14 @@ extension Clients.SecurityPostureProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// PostureDeployments
+  /// Lists PostureDeployments in a given project and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureDeployments(request:options:)``
   public func listPostureDeploymentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PostureDeployment, any Swift.Error> & Sendable {
@@ -904,6 +1326,13 @@ extension Clients.SecurityPostureProtocol {
     return self.listPostureDeploymentsByItems(request: request)
   }
 
+  /// Gets details of a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetPostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getPostureDeployment(request:options:)``
   public func getPostureDeployment(request: GetPostureDeploymentRequest) async throws
     -> GoogleCloudSecuritypostureV1.PostureDeployment
   {
@@ -916,6 +1345,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetPostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getPostureDeployment(request:options:)``
   public func getPostureDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudSecuritypostureV1.PostureDeployment {
@@ -925,6 +1361,13 @@ extension Clients.SecurityPostureProtocol {
     return try await self.getPostureDeployment(request: request)
   }
 
+  /// Creates a new PostureDeployment in a given project and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_CreatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/createPostureDeployment(request:options:)``
   public func createPostureDeployment(request: CreatePostureDeploymentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -937,6 +1380,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new PostureDeployment in a given project and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_CreatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/createPostureDeploymentPollingUntilDone(request:options:)``
   public func createPostureDeploymentPollingUntilDone(request: CreatePostureDeploymentRequest)
     async throws -> PostureDeployment
   {
@@ -950,6 +1400,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new PostureDeployment in a given project and location.
+  ///
+  /// @Snippet(path: "SecurityPosture_CreatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/createPostureDeploymentPollingUntilDone(request:options:)``
   public func createPostureDeploymentPollingUntilDone(
     parent: Swift.String,
     postureDeployment: PostureDeployment?,
@@ -963,6 +1420,13 @@ extension Clients.SecurityPostureProtocol {
     return try await self.createPostureDeploymentPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_UpdatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/updatePostureDeployment(request:options:)``
   public func updatePostureDeployment(request: UpdatePostureDeploymentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -975,6 +1439,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_UpdatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/updatePostureDeploymentPollingUntilDone(request:options:)``
   public func updatePostureDeploymentPollingUntilDone(request: UpdatePostureDeploymentRequest)
     async throws -> PostureDeployment
   {
@@ -988,6 +1459,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_UpdatePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/updatePostureDeploymentPollingUntilDone(request:options:)``
   public func updatePostureDeploymentPollingUntilDone(
     postureDeployment: PostureDeployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -999,6 +1477,13 @@ extension Clients.SecurityPostureProtocol {
     return try await self.updatePostureDeploymentPollingUntilDone(request: request)
   }
 
+  /// Deletes a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_DeletePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deletePostureDeployment(request:options:)``
   public func deletePostureDeployment(request: DeletePostureDeploymentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1011,6 +1496,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_DeletePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deletePostureDeploymentPollingUntilDone(request:options:)``
   public func deletePostureDeploymentPollingUntilDone(request: DeletePostureDeploymentRequest)
     async throws
   {
@@ -1023,6 +1515,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single PostureDeployment.
+  ///
+  /// @Snippet(path: "SecurityPosture_DeletePostureDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deletePostureDeploymentPollingUntilDone(request:options:)``
   public func deletePostureDeploymentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1032,6 +1531,14 @@ extension Clients.SecurityPostureProtocol {
     try await self.deletePostureDeploymentPollingUntilDone(request: request)
   }
 
+  /// PostureTemplates
+  /// Lists all the PostureTemplates available to the user.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureTemplates(request:options:)``
   public func listPostureTemplates(request: ListPostureTemplatesRequest) async throws
     -> GoogleCloudSecuritypostureV1.ListPostureTemplatesResponse
   {
@@ -1044,6 +1551,14 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// PostureTemplates
+  /// Lists all the PostureTemplates available to the user.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureTemplates(request:options:)``
   public func listPostureTemplatesByItems(
     request: ListPostureTemplatesRequest
   ) -> some AsyncSequence<PostureTemplate, any Swift.Error> & Sendable {
@@ -1054,6 +1569,10 @@ extension Clients.SecurityPostureProtocol {
   /// Lists all the PostureTemplates available to the user.
   ///
   /// @Snippet(path: "SecurityPosture_ListPostureTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureTemplates(request:options:)``
   public func listPostureTemplatesByItems(
     request: ListPostureTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PostureTemplate, any Swift.Error> & Sendable {
@@ -1068,6 +1587,14 @@ extension Clients.SecurityPostureProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// PostureTemplates
+  /// Lists all the PostureTemplates available to the user.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListPostureTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listPostureTemplates(request:options:)``
   public func listPostureTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PostureTemplate, any Swift.Error> & Sendable {
@@ -1077,6 +1604,18 @@ extension Clients.SecurityPostureProtocol {
     return self.listPostureTemplatesByItems(request: request)
   }
 
+  /// Gets a PostureTemplate.
+  /// User must provide revision_id to retrieve a specific revision of the
+  /// resource.
+  /// NOT_FOUND error is returned if the revision_id or the PostureTemplate name
+  /// does not exist. In case revision_id is not provided then the
+  /// PostureTemplate with latest revision_id is returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetPostureTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getPostureTemplate(request:options:)``
   public func getPostureTemplate(request: GetPostureTemplateRequest) async throws
     -> GoogleCloudSecuritypostureV1.PostureTemplate
   {
@@ -1089,6 +1628,18 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a PostureTemplate.
+  /// User must provide revision_id to retrieve a specific revision of the
+  /// resource.
+  /// NOT_FOUND error is returned if the revision_id or the PostureTemplate name
+  /// does not exist. In case revision_id is not provided then the
+  /// PostureTemplate with latest revision_id is returned.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetPostureTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getPostureTemplate(request:options:)``
   public func getPostureTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudSecuritypostureV1.PostureTemplate {
@@ -1098,6 +1649,13 @@ extension Clients.SecurityPostureProtocol {
     return try await self.getPostureTemplate(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1110,6 +1668,13 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "SecurityPosture_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1119,6 +1684,10 @@ extension Clients.SecurityPostureProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "SecurityPosture_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1132,6 +1701,13 @@ extension Clients.SecurityPostureProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "SecurityPosture_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1144,6 +1720,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1156,6 +1741,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1167,6 +1761,10 @@ extension Clients.SecurityPostureProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecurityPosture_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1180,6 +1778,15 @@ extension Clients.SecurityPostureProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1191,6 +1798,9 @@ extension Clients.SecurityPostureProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1203,6 +1813,9 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1212,6 +1825,15 @@ extension Clients.SecurityPostureProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1222,6 +1844,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1231,6 +1862,15 @@ extension Clients.SecurityPostureProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1241,6 +1881,15 @@ extension Clients.SecurityPostureProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecurityPosture_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecurityPostureClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

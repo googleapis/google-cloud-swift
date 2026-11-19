@@ -25,6 +25,10 @@ import Foundation
 /// Service for searching data objects.
 ///
 /// @Snippet(path: "DataObjectSearchServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataObjectSearchServiceProtocol``
 public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServiceProtocol, Sendable
 {
   let inner: any Clients.DataObjectSearchServiceStub
@@ -43,6 +47,12 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// Searches data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_SearchDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchDataObjects(request:)``
+  /// - ``searchDataObjectsByItems(request:)``
+  /// - ``searchDataObjectsByItems(request:options:)``
   public func searchDataObjects(
     request: SearchDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.SearchDataObjectsResponse {
@@ -52,6 +62,12 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// Queries data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_QueryDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryDataObjects(request:)``
+  /// - ``queryDataObjectsByItems(request:)``
+  /// - ``queryDataObjectsByItems(request:options:)``
   public func queryDataObjects(
     request: QueryDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.QueryDataObjectsResponse {
@@ -61,6 +77,10 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// Aggregates data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_AggregateDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``aggregateDataObjects(request:)``
   public func aggregateDataObjects(
     request: AggregateDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.AggregateDataObjectsResponse {
@@ -70,6 +90,10 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// Batch searches data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_BatchSearchDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchSearchDataObjects(request:)``
   public func batchSearchDataObjects(
     request: BatchSearchDataObjectsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVectorSearchV1.BatchSearchDataObjectsResponse {
@@ -96,6 +120,12 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataObjectSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -105,6 +135,10 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DataObjectSearchService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -116,6 +150,13 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataObjectSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -138,6 +179,11 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataObjectSearchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -149,6 +195,11 @@ public final class DataObjectSearchServiceClient: Clients.DataObjectSearchServic
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataObjectSearchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -212,6 +263,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataObjectSearchServiceProtocol {
+  /// Searches data objects.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_SearchDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/searchDataObjects(request:options:)``
   public func searchDataObjects(request: SearchDataObjectsRequest) async throws
     -> GoogleCloudVectorSearchV1.SearchDataObjectsResponse
   {
@@ -224,6 +282,13 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches data objects.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_SearchDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/searchDataObjects(request:options:)``
   public func searchDataObjectsByItems(
     request: SearchDataObjectsRequest
   ) -> some AsyncSequence<SearchResult, any Swift.Error> & Sendable {
@@ -233,6 +298,10 @@ extension Clients.DataObjectSearchServiceProtocol {
   /// Searches data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_SearchDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/searchDataObjects(request:options:)``
   public func searchDataObjectsByItems(
     request: SearchDataObjectsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SearchResult, any Swift.Error> & Sendable {
@@ -247,6 +316,13 @@ extension Clients.DataObjectSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Queries data objects.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_QueryDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/queryDataObjects(request:options:)``
   public func queryDataObjects(request: QueryDataObjectsRequest) async throws
     -> GoogleCloudVectorSearchV1.QueryDataObjectsResponse
   {
@@ -259,6 +335,13 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Queries data objects.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_QueryDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/queryDataObjects(request:options:)``
   public func queryDataObjectsByItems(
     request: QueryDataObjectsRequest
   ) -> some AsyncSequence<DataObject, any Swift.Error> & Sendable {
@@ -268,6 +351,10 @@ extension Clients.DataObjectSearchServiceProtocol {
   /// Queries data objects.
   ///
   /// @Snippet(path: "DataObjectSearchService_QueryDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/queryDataObjects(request:options:)``
   public func queryDataObjectsByItems(
     request: QueryDataObjectsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataObject, any Swift.Error> & Sendable {
@@ -282,6 +369,13 @@ extension Clients.DataObjectSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Aggregates data objects.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_AggregateDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/aggregateDataObjects(request:options:)``
   public func aggregateDataObjects(request: AggregateDataObjectsRequest) async throws
     -> GoogleCloudVectorSearchV1.AggregateDataObjectsResponse
   {
@@ -294,6 +388,13 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Batch searches data objects.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_BatchSearchDataObjects")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/batchSearchDataObjects(request:options:)``
   public func batchSearchDataObjects(request: BatchSearchDataObjectsRequest) async throws
     -> GoogleCloudVectorSearchV1.BatchSearchDataObjectsResponse
   {
@@ -306,6 +407,30 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataObjectSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -318,6 +443,30 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DataObjectSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -344,6 +493,10 @@ extension Clients.DataObjectSearchServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DataObjectSearchService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -357,6 +510,13 @@ extension Clients.DataObjectSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DataObjectSearchService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -369,6 +529,15 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -381,6 +550,15 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -392,6 +570,10 @@ extension Clients.DataObjectSearchServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataObjectSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -405,6 +587,15 @@ extension Clients.DataObjectSearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -416,6 +607,9 @@ extension Clients.DataObjectSearchServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -428,6 +622,9 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -437,6 +634,15 @@ extension Clients.DataObjectSearchServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -447,6 +653,15 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -456,6 +671,15 @@ extension Clients.DataObjectSearchServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -466,6 +690,15 @@ extension Clients.DataObjectSearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataObjectSearchService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataObjectSearchServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

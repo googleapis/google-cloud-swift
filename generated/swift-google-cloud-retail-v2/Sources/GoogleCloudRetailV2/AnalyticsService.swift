@@ -25,6 +25,10 @@ import Foundation
 /// Retail recommendation business metric is currently not available.
 ///
 /// @Snippet(path: "AnalyticsServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AnalyticsServiceProtocol``
 public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sendable {
   let inner: any Clients.AnalyticsServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,12 @@ public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sen
   /// `Operation.metadata` is of type `ExportMetadata`.
   ///
   /// @Snippet(path: "AnalyticsService_ExportAnalyticsMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportAnalyticsMetrics(request:)``
+  /// - ``exportAnalyticsMetricsPollingUntilDone(request:)``
+  /// - ``exportAnalyticsMetricsPollingUntilDone(request:options:)``
   public func exportAnalyticsMetrics(
     request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -60,6 +70,12 @@ public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sen
   /// `Operation.metadata` is of type `ExportMetadata`.
   ///
   /// @Snippet(path: "AnalyticsService_ExportAnalyticsMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportAnalyticsMetrics(request:)``
+  /// - ``exportAnalyticsMetrics(request:options:)``
+  /// - ``exportAnalyticsMetricsPollingUntilDone(request:)``
   public func exportAnalyticsMetricsPollingUntilDone(
     request: ExportAnalyticsMetricsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportAnalyticsMetricsResponse {
@@ -91,6 +107,13 @@ public final class AnalyticsServiceClient: Clients.AnalyticsServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AnalyticsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -135,6 +158,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.AnalyticsServiceProtocol {
+  /// Exports analytics metrics.
+  ///
+  /// `Operation.response` is of type `ExportAnalyticsMetricsResponse`.
+  /// `Operation.metadata` is of type `ExportMetadata`.
+  ///
+  /// @Snippet(path: "AnalyticsService_ExportAnalyticsMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AnalyticsServiceClient/exportAnalyticsMetrics(request:options:)``
   public func exportAnalyticsMetrics(request: ExportAnalyticsMetricsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -147,6 +180,16 @@ extension Clients.AnalyticsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports analytics metrics.
+  ///
+  /// `Operation.response` is of type `ExportAnalyticsMetricsResponse`.
+  /// `Operation.metadata` is of type `ExportMetadata`.
+  ///
+  /// @Snippet(path: "AnalyticsService_ExportAnalyticsMetrics")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AnalyticsServiceClient/exportAnalyticsMetricsPollingUntilDone(request:options:)``
   public func exportAnalyticsMetricsPollingUntilDone(request: ExportAnalyticsMetricsRequest)
     async throws -> ExportAnalyticsMetricsResponse
   {
@@ -159,6 +202,15 @@ extension Clients.AnalyticsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AnalyticsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AnalyticsServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -171,6 +223,15 @@ extension Clients.AnalyticsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AnalyticsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AnalyticsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -182,6 +243,10 @@ extension Clients.AnalyticsServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AnalyticsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AnalyticsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -195,6 +260,15 @@ extension Clients.AnalyticsServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AnalyticsService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AnalyticsServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -206,6 +280,9 @@ extension Clients.AnalyticsServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -218,6 +295,9 @@ extension Clients.AnalyticsServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

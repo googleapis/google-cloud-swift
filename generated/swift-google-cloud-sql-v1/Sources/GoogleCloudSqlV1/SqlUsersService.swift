@@ -24,6 +24,10 @@
   /// Cloud SQL users service.
   ///
   /// @Snippet(path: "SqlUsersServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlUsersServiceProtocol``
   public final class SqlUsersServiceClient: Clients.SqlUsersServiceProtocol, Sendable {
     let inner: any Clients.SqlUsersServiceStub
 
@@ -40,6 +44,10 @@
     /// Deletes a user from a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlUsersService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
     public func delete(
       request: SqlUsersDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -49,6 +57,10 @@
     /// Retrieves a resource containing information about a user.
     ///
     /// @Snippet(path: "SqlUsersService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
     public func `get`(
       request: SqlUsersGetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.User {
@@ -58,6 +70,10 @@
     /// Creates a new user in a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlUsersService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
     public func insert(
       request: SqlUsersInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -67,6 +83,10 @@
     /// Lists users in the specified Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlUsersService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
     public func list(
       request: SqlUsersListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.UsersListResponse {
@@ -76,6 +96,10 @@
     /// Updates an existing user in a Cloud SQL instance.
     ///
     /// @Snippet(path: "SqlUsersService_Update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
     public func update(
       request: SqlUsersUpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -119,6 +143,13 @@
 
   // Default implementations
   extension Clients.SqlUsersServiceProtocol {
+    /// Deletes a user from a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlUsersService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlUsersServiceClient/delete(request:options:)``
     public func delete(request: SqlUsersDeleteRequest) async throws -> GoogleCloudSqlV1.Operation {
       try await self.delete(request: request, options: .init())
     }
@@ -129,6 +160,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a resource containing information about a user.
+    ///
+    /// @Snippet(path: "SqlUsersService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlUsersServiceClient/get(request:options:)``
     public func `get`(request: SqlUsersGetRequest) async throws -> GoogleCloudSqlV1.User {
       try await self.`get`(request: request, options: .init())
     }
@@ -139,6 +177,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new user in a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlUsersService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlUsersServiceClient/insert(request:options:)``
     public func insert(request: SqlUsersInsertRequest) async throws -> GoogleCloudSqlV1.Operation {
       try await self.insert(request: request, options: .init())
     }
@@ -149,6 +194,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists users in the specified Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlUsersService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlUsersServiceClient/list(request:options:)``
     public func list(request: SqlUsersListRequest) async throws
       -> GoogleCloudSqlV1.UsersListResponse
     {
@@ -161,6 +213,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an existing user in a Cloud SQL instance.
+    ///
+    /// @Snippet(path: "SqlUsersService_Update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlUsersServiceClient/update(request:options:)``
     public func update(request: SqlUsersUpdateRequest) async throws -> GoogleCloudSqlV1.Operation {
       try await self.update(request: request, options: .init())
     }

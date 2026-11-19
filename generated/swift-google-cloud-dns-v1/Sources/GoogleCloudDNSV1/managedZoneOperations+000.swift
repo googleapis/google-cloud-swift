@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `managedZoneOperations` resource.
 ///
 /// @Snippet(path: "managedZoneOperationsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ManagedZoneOperationsProtocol``
 public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsProtocol, Sendable {
   let inner: any Clients.ManagedZoneOperationsStub
 
@@ -40,6 +44,11 @@ public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsPro
   /// Fetches the representation of an existing Operation.
   ///
   /// @Snippet(path: "managedZoneOperations_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(project:managedZone:operation:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ManagedZoneOperationsClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operation {
@@ -49,6 +58,13 @@ public final class ManagedZoneOperationsClient: Clients.ManagedZoneOperationsPro
   /// Enumerates Operations for the given ManagedZone.
   ///
   /// @Snippet(path: "managedZoneOperations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(project:managedZone:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
   public func list(
     request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedZoneOperationsListResponse {
@@ -77,6 +93,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ManagedZoneOperationsProtocol {
+  /// Fetches the representation of an existing Operation.
+  ///
+  /// @Snippet(path: "managedZoneOperations_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZoneOperationsClient/get(request:options:)``
   public func `get`(request: ManagedZoneOperationsClient.GetRequest) async throws -> Operation {
     try await self.`get`(request: request, options: .init())
   }
@@ -87,6 +110,13 @@ extension Clients.ManagedZoneOperationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing Operation.
+  ///
+  /// @Snippet(path: "managedZoneOperations_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZoneOperationsClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
     managedZone: Swift.String,
@@ -100,6 +130,13 @@ extension Clients.ManagedZoneOperationsProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Enumerates Operations for the given ManagedZone.
+  ///
+  /// @Snippet(path: "managedZoneOperations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZoneOperationsClient/list(request:options:)``
   public func list(request: ManagedZoneOperationsClient.ListRequest) async throws
     -> ManagedZoneOperationsListResponse
   {
@@ -112,6 +149,13 @@ extension Clients.ManagedZoneOperationsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates Operations for the given ManagedZone.
+  ///
+  /// @Snippet(path: "managedZoneOperations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZoneOperationsClient/list(request:options:)``
   public func listByItems(
     request: ManagedZoneOperationsClient.ListRequest
   ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
@@ -121,6 +165,10 @@ extension Clients.ManagedZoneOperationsProtocol {
   /// Enumerates Operations for the given ManagedZone.
   ///
   /// @Snippet(path: "managedZoneOperations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZoneOperationsClient/list(request:options:)``
   public func listByItems(
     request: ManagedZoneOperationsClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
@@ -134,6 +182,13 @@ extension Clients.ManagedZoneOperationsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates Operations for the given ManagedZone.
+  ///
+  /// @Snippet(path: "managedZoneOperations_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ManagedZoneOperationsClient/list(request:options:)``
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,

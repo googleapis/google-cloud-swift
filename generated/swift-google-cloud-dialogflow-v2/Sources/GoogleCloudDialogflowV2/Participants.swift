@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.v2.Participant]: <doc:Participant>
   ///
   /// @Snippet(path: "ParticipantsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ParticipantsProtocol``
   public final class ParticipantsClient: Clients.ParticipantsProtocol, Sendable {
     let inner: any Clients.ParticipantsStub
 
@@ -45,6 +49,11 @@
     /// Creates a new participant in a conversation.
     ///
     /// @Snippet(path: "Participants_CreateParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createParticipant(parent:participant:)``
+    /// - ``createParticipant(request:)``
     public func createParticipant(
       request: CreateParticipantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -54,6 +63,11 @@
     /// Retrieves a conversation participant.
     ///
     /// @Snippet(path: "Participants_GetParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getParticipant(name:)``
+    /// - ``getParticipant(request:)``
     public func getParticipant(
       request: GetParticipantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -63,6 +77,13 @@
     /// Returns the list of all participants in the specified conversation.
     ///
     /// @Snippet(path: "Participants_ListParticipants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listParticipants(request:)``
+    /// - ``listParticipantsByItems(parent:)``
+    /// - ``listParticipantsByItems(request:)``
+    /// - ``listParticipantsByItems(request:options:)``
     public func listParticipants(
       request: ListParticipantsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListParticipantsResponse {
@@ -72,6 +93,11 @@
     /// Updates the specified participant.
     ///
     /// @Snippet(path: "Participants_UpdateParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateParticipant(participant:updateMask:)``
+    /// - ``updateParticipant(request:)``
     public func updateParticipant(
       request: UpdateParticipantRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -86,6 +112,13 @@
     /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
     ///
     /// @Snippet(path: "Participants_AnalyzeContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``analyzeContent(participant:audioInput:)``
+    /// - ``analyzeContent(participant:eventInput:)``
+    /// - ``analyzeContent(participant:textInput:)``
+    /// - ``analyzeContent(request:)``
     public func analyzeContent(
       request: AnalyzeContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.AnalyzeContentResponse {
@@ -96,6 +129,11 @@
     /// messages.
     ///
     /// @Snippet(path: "Participants_SuggestArticles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suggestArticles(parent:)``
+    /// - ``suggestArticles(request:)``
     public func suggestArticles(
       request: SuggestArticlesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestArticlesResponse {
@@ -106,6 +144,11 @@
     /// messages.
     ///
     /// @Snippet(path: "Participants_SuggestFaqAnswers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suggestFaqAnswers(parent:)``
+    /// - ``suggestFaqAnswers(request:)``
     public func suggestFaqAnswers(
       request: SuggestFaqAnswersRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestFaqAnswersResponse {
@@ -116,6 +159,11 @@
     /// messages.
     ///
     /// @Snippet(path: "Participants_SuggestSmartReplies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suggestSmartReplies(parent:)``
+    /// - ``suggestSmartReplies(request:)``
     public func suggestSmartReplies(
       request: SuggestSmartRepliesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestSmartRepliesResponse {
@@ -125,6 +173,10 @@
     /// Gets knowledge assist suggestions based on historical messages.
     ///
     /// @Snippet(path: "Participants_SuggestKnowledgeAssist")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suggestKnowledgeAssist(request:)``
     public func suggestKnowledgeAssist(
       request: SuggestKnowledgeAssistRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.SuggestKnowledgeAssistResponse {
@@ -151,6 +203,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Participants_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -160,6 +218,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Participants_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -171,6 +233,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Participants_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -193,6 +262,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Participants_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -276,6 +350,13 @@
 
   // Default implementations
   extension Clients.ParticipantsProtocol {
+    /// Creates a new participant in a conversation.
+    ///
+    /// @Snippet(path: "Participants_CreateParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/createParticipant(request:options:)``
     public func createParticipant(request: CreateParticipantRequest) async throws
       -> GoogleCloudDialogflowV2.Participant
     {
@@ -288,6 +369,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new participant in a conversation.
+    ///
+    /// @Snippet(path: "Participants_CreateParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/createParticipant(request:options:)``
     public func createParticipant(
       parent: Swift.String,
       participant: Participant?,
@@ -299,6 +387,13 @@
       return try await self.createParticipant(request: request)
     }
 
+    /// Retrieves a conversation participant.
+    ///
+    /// @Snippet(path: "Participants_GetParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/getParticipant(request:options:)``
     public func getParticipant(request: GetParticipantRequest) async throws
       -> GoogleCloudDialogflowV2.Participant
     {
@@ -311,6 +406,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a conversation participant.
+    ///
+    /// @Snippet(path: "Participants_GetParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/getParticipant(request:options:)``
     public func getParticipant(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.Participant {
@@ -320,6 +422,13 @@
       return try await self.getParticipant(request: request)
     }
 
+    /// Returns the list of all participants in the specified conversation.
+    ///
+    /// @Snippet(path: "Participants_ListParticipants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listParticipants(request:options:)``
     public func listParticipants(request: ListParticipantsRequest) async throws
       -> GoogleCloudDialogflowV2.ListParticipantsResponse
     {
@@ -332,6 +441,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all participants in the specified conversation.
+    ///
+    /// @Snippet(path: "Participants_ListParticipants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listParticipants(request:options:)``
     public func listParticipantsByItems(
       request: ListParticipantsRequest
     ) -> some AsyncSequence<Participant, any Swift.Error> & Sendable {
@@ -341,6 +457,10 @@
     /// Returns the list of all participants in the specified conversation.
     ///
     /// @Snippet(path: "Participants_ListParticipants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listParticipants(request:options:)``
     public func listParticipantsByItems(
       request: ListParticipantsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Participant, any Swift.Error> & Sendable {
@@ -355,6 +475,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all participants in the specified conversation.
+    ///
+    /// @Snippet(path: "Participants_ListParticipants")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listParticipants(request:options:)``
     public func listParticipantsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Participant, any Swift.Error> & Sendable {
@@ -364,6 +491,13 @@
       return self.listParticipantsByItems(request: request)
     }
 
+    /// Updates the specified participant.
+    ///
+    /// @Snippet(path: "Participants_UpdateParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/updateParticipant(request:options:)``
     public func updateParticipant(request: UpdateParticipantRequest) async throws
       -> GoogleCloudDialogflowV2.Participant
     {
@@ -376,6 +510,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified participant.
+    ///
+    /// @Snippet(path: "Participants_UpdateParticipant")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/updateParticipant(request:options:)``
     public func updateParticipant(
       participant: Participant?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -387,6 +528,18 @@
       return try await self.updateParticipant(request: request)
     }
 
+    /// Adds a text (chat, for example), or audio (phone recording, for example)
+    /// message from a participant into the conversation.
+    ///
+    /// Note: Always use agent versions for production traffic
+    /// sent to virtual agents. See [Versions and
+    /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+    ///
+    /// @Snippet(path: "Participants_AnalyzeContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/analyzeContent(request:options:)``
     public func analyzeContent(request: AnalyzeContentRequest) async throws
       -> GoogleCloudDialogflowV2.AnalyzeContentResponse
     {
@@ -399,6 +552,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a text (chat, for example), or audio (phone recording, for example)
+    /// message from a participant into the conversation.
+    ///
+    /// Note: Always use agent versions for production traffic
+    /// sent to virtual agents. See [Versions and
+    /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+    ///
+    /// @Snippet(path: "Participants_AnalyzeContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/analyzeContent(request:options:)``
     public func analyzeContent(
       participant: Swift.String,
       textInput: TextInput,
@@ -410,6 +575,18 @@
       return try await self.analyzeContent(request: request)
     }
 
+    /// Adds a text (chat, for example), or audio (phone recording, for example)
+    /// message from a participant into the conversation.
+    ///
+    /// Note: Always use agent versions for production traffic
+    /// sent to virtual agents. See [Versions and
+    /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+    ///
+    /// @Snippet(path: "Participants_AnalyzeContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/analyzeContent(request:options:)``
     public func analyzeContent(
       participant: Swift.String,
       eventInput: EventInput,
@@ -421,6 +598,18 @@
       return try await self.analyzeContent(request: request)
     }
 
+    /// Adds a text (chat, for example), or audio (phone recording, for example)
+    /// message from a participant into the conversation.
+    ///
+    /// Note: Always use agent versions for production traffic
+    /// sent to virtual agents. See [Versions and
+    /// environments](https://cloud.google.com/dialogflow/es/docs/agents-versions).
+    ///
+    /// @Snippet(path: "Participants_AnalyzeContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/analyzeContent(request:options:)``
     public func analyzeContent(
       participant: Swift.String,
       audioInput: AudioInput,
@@ -432,6 +621,14 @@
       return try await self.analyzeContent(request: request)
     }
 
+    /// Gets suggested articles for a participant based on specific historical
+    /// messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestArticles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestArticles(request:options:)``
     public func suggestArticles(request: SuggestArticlesRequest) async throws
       -> GoogleCloudDialogflowV2.SuggestArticlesResponse
     {
@@ -444,6 +641,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets suggested articles for a participant based on specific historical
+    /// messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestArticles")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestArticles(request:options:)``
     public func suggestArticles(
       parent: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.SuggestArticlesResponse {
@@ -453,6 +658,14 @@
       return try await self.suggestArticles(request: request)
     }
 
+    /// Gets suggested faq answers for a participant based on specific historical
+    /// messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestFaqAnswers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestFaqAnswers(request:options:)``
     public func suggestFaqAnswers(request: SuggestFaqAnswersRequest) async throws
       -> GoogleCloudDialogflowV2.SuggestFaqAnswersResponse
     {
@@ -465,6 +678,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets suggested faq answers for a participant based on specific historical
+    /// messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestFaqAnswers")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestFaqAnswers(request:options:)``
     public func suggestFaqAnswers(
       parent: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.SuggestFaqAnswersResponse {
@@ -474,6 +695,14 @@
       return try await self.suggestFaqAnswers(request: request)
     }
 
+    /// Gets smart replies for a participant based on specific historical
+    /// messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestSmartReplies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestSmartReplies(request:options:)``
     public func suggestSmartReplies(request: SuggestSmartRepliesRequest) async throws
       -> GoogleCloudDialogflowV2.SuggestSmartRepliesResponse
     {
@@ -486,6 +715,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets smart replies for a participant based on specific historical
+    /// messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestSmartReplies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestSmartReplies(request:options:)``
     public func suggestSmartReplies(
       parent: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.SuggestSmartRepliesResponse {
@@ -495,6 +732,13 @@
       return try await self.suggestSmartReplies(request: request)
     }
 
+    /// Gets knowledge assist suggestions based on historical messages.
+    ///
+    /// @Snippet(path: "Participants_SuggestKnowledgeAssist")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/suggestKnowledgeAssist(request:options:)``
     public func suggestKnowledgeAssist(request: SuggestKnowledgeAssistRequest) async throws
       -> GoogleCloudDialogflowV2.SuggestKnowledgeAssistResponse
     {
@@ -507,6 +751,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Participants_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -519,6 +787,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Participants_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -545,6 +837,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Participants_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -558,6 +854,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Participants_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -570,6 +873,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Participants_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -582,6 +894,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Participants_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -593,6 +914,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Participants_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -606,6 +931,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Participants_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -617,6 +951,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -629,6 +966,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -638,6 +978,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Participants_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -648,6 +997,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Participants_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ParticipantsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

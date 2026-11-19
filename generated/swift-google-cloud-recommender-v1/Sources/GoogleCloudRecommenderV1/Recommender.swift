@@ -27,6 +27,10 @@ import Foundation
 /// based on analysis of user resources, configuration and monitoring metrics.
 ///
 /// @Snippet(path: "RecommenderQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/RecommenderProtocol``
 public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   let inner: any Clients.RecommenderStub
 
@@ -44,6 +48,13 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// recommender.*.list IAM permission for the specified insight type.
   ///
   /// @Snippet(path: "Recommender_ListInsights")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInsights(request:)``
+  /// - ``listInsightsByItems(parent:)``
+  /// - ``listInsightsByItems(request:)``
+  /// - ``listInsightsByItems(request:options:)``
   public func listInsights(
     request: ListInsightsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.ListInsightsResponse {
@@ -54,6 +65,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// for the specified insight type.
   ///
   /// @Snippet(path: "Recommender_GetInsight")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInsight(name:)``
+  /// - ``getInsight(request:)``
   public func getInsight(
     request: GetInsightRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -68,6 +84,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// the recommender.*.update IAM permission for the specified insight.
   ///
   /// @Snippet(path: "Recommender_MarkInsightAccepted")
+  ///
+  /// ## See Also
+  ///
+  /// - ``markInsightAccepted(name:stateMetadata:etag:)``
+  /// - ``markInsightAccepted(request:)``
   public func markInsightAccepted(
     request: MarkInsightAcceptedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -78,6 +99,14 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// recommender.*.list IAM permission for the specified recommender.
   ///
   /// @Snippet(path: "Recommender_ListRecommendations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRecommendations(request:)``
+  /// - ``listRecommendationsByItems(parent:)``
+  /// - ``listRecommendationsByItems(parent:filter:)``
+  /// - ``listRecommendationsByItems(request:)``
+  /// - ``listRecommendationsByItems(request:options:)``
   public func listRecommendations(
     request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.ListRecommendationsResponse {
@@ -88,6 +117,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// IAM permission for the specified recommender.
   ///
   /// @Snippet(path: "Recommender_GetRecommendation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRecommendation(name:)``
+  /// - ``getRecommendation(request:)``
   public func getRecommendation(
     request: GetRecommendationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -105,6 +139,10 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// recommender.
   ///
   /// @Snippet(path: "Recommender_MarkRecommendationDismissed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``markRecommendationDismissed(request:)``
   public func markRecommendationDismissed(
     request: MarkRecommendationDismissedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -123,6 +161,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// recommender.
   ///
   /// @Snippet(path: "Recommender_MarkRecommendationClaimed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``markRecommendationClaimed(name:stateMetadata:etag:)``
+  /// - ``markRecommendationClaimed(request:)``
   public func markRecommendationClaimed(
     request: MarkRecommendationClaimedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -142,6 +185,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// recommender.
   ///
   /// @Snippet(path: "Recommender_MarkRecommendationSucceeded")
+  ///
+  /// ## See Also
+  ///
+  /// - ``markRecommendationSucceeded(name:stateMetadata:etag:)``
+  /// - ``markRecommendationSucceeded(request:)``
   public func markRecommendationSucceeded(
     request: MarkRecommendationSucceededRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -161,6 +209,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// recommender.
   ///
   /// @Snippet(path: "Recommender_MarkRecommendationFailed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``markRecommendationFailed(name:stateMetadata:etag:)``
+  /// - ``markRecommendationFailed(request:)``
   public func markRecommendationFailed(
     request: MarkRecommendationFailedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -171,6 +224,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// config for each Recommender.
   ///
   /// @Snippet(path: "Recommender_GetRecommenderConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRecommenderConfig(name:)``
+  /// - ``getRecommenderConfig(request:)``
   public func getRecommenderConfig(
     request: GetRecommenderConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -181,6 +239,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// config.
   ///
   /// @Snippet(path: "Recommender_UpdateRecommenderConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRecommenderConfig(recommenderConfig:updateMask:)``
+  /// - ``updateRecommenderConfig(request:)``
   public func updateRecommenderConfig(
     request: UpdateRecommenderConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -191,6 +254,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// config for each InsightType.
   ///
   /// @Snippet(path: "Recommender_GetInsightTypeConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInsightTypeConfig(name:)``
+  /// - ``getInsightTypeConfig(request:)``
   public func getInsightTypeConfig(
     request: GetInsightTypeConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
@@ -201,6 +269,11 @@ public final class RecommenderClient: Clients.RecommenderProtocol, Sendable {
   /// config.
   ///
   /// @Snippet(path: "Recommender_UpdateInsightTypeConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInsightTypeConfig(insightTypeConfig:updateMask:)``
+  /// - ``updateInsightTypeConfig(request:)``
   public func updateInsightTypeConfig(
     request: UpdateInsightTypeConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
@@ -284,6 +357,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.RecommenderProtocol {
+  /// Lists insights for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified insight type.
+  ///
+  /// @Snippet(path: "Recommender_ListInsights")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listInsights(request:options:)``
   public func listInsights(request: ListInsightsRequest) async throws
     -> GoogleCloudRecommenderV1.ListInsightsResponse
   {
@@ -296,6 +377,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists insights for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified insight type.
+  ///
+  /// @Snippet(path: "Recommender_ListInsights")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listInsights(request:options:)``
   public func listInsightsByItems(
     request: ListInsightsRequest
   ) -> some AsyncSequence<Insight, any Swift.Error> & Sendable {
@@ -306,6 +395,10 @@ extension Clients.RecommenderProtocol {
   /// recommender.*.list IAM permission for the specified insight type.
   ///
   /// @Snippet(path: "Recommender_ListInsights")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listInsights(request:options:)``
   public func listInsightsByItems(
     request: ListInsightsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Insight, any Swift.Error> & Sendable {
@@ -320,6 +413,14 @@ extension Clients.RecommenderProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists insights for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified insight type.
+  ///
+  /// @Snippet(path: "Recommender_ListInsights")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listInsights(request:options:)``
   public func listInsightsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Insight, any Swift.Error> & Sendable {
@@ -329,6 +430,14 @@ extension Clients.RecommenderProtocol {
     return self.listInsightsByItems(request: request)
   }
 
+  /// Gets the requested insight. Requires the recommender.*.get IAM permission
+  /// for the specified insight type.
+  ///
+  /// @Snippet(path: "Recommender_GetInsight")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getInsight(request:options:)``
   public func getInsight(request: GetInsightRequest) async throws
     -> GoogleCloudRecommenderV1.Insight
   {
@@ -341,6 +450,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the requested insight. Requires the recommender.*.get IAM permission
+  /// for the specified insight type.
+  ///
+  /// @Snippet(path: "Recommender_GetInsight")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getInsight(request:options:)``
   public func getInsight(
     name: Swift.String,
   ) async throws -> GoogleCloudRecommenderV1.Insight {
@@ -350,6 +467,18 @@ extension Clients.RecommenderProtocol {
     return try await self.getInsight(request: request)
   }
 
+  /// Marks the Insight State as Accepted. Users can use this method to
+  /// indicate to the Recommender API that they have applied some action based
+  /// on the insight. This stops the insight content from being updated.
+  ///
+  /// MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
+  /// the recommender.*.update IAM permission for the specified insight.
+  ///
+  /// @Snippet(path: "Recommender_MarkInsightAccepted")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markInsightAccepted(request:options:)``
   public func markInsightAccepted(request: MarkInsightAcceptedRequest) async throws
     -> GoogleCloudRecommenderV1.Insight
   {
@@ -362,6 +491,18 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks the Insight State as Accepted. Users can use this method to
+  /// indicate to the Recommender API that they have applied some action based
+  /// on the insight. This stops the insight content from being updated.
+  ///
+  /// MarkInsightAccepted can be applied to insights in ACTIVE state. Requires
+  /// the recommender.*.update IAM permission for the specified insight.
+  ///
+  /// @Snippet(path: "Recommender_MarkInsightAccepted")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markInsightAccepted(request:options:)``
   public func markInsightAccepted(
     name: Swift.String,
     stateMetadata: [Swift.String: Swift.String],
@@ -375,6 +516,14 @@ extension Clients.RecommenderProtocol {
     return try await self.markInsightAccepted(request: request)
   }
 
+  /// Lists recommendations for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified recommender.
+  ///
+  /// @Snippet(path: "Recommender_ListRecommendations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listRecommendations(request:options:)``
   public func listRecommendations(request: ListRecommendationsRequest) async throws
     -> GoogleCloudRecommenderV1.ListRecommendationsResponse
   {
@@ -387,6 +536,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists recommendations for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified recommender.
+  ///
+  /// @Snippet(path: "Recommender_ListRecommendations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listRecommendations(request:options:)``
   public func listRecommendationsByItems(
     request: ListRecommendationsRequest
   ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
@@ -397,6 +554,10 @@ extension Clients.RecommenderProtocol {
   /// recommender.*.list IAM permission for the specified recommender.
   ///
   /// @Snippet(path: "Recommender_ListRecommendations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listRecommendations(request:options:)``
   public func listRecommendationsByItems(
     request: ListRecommendationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
@@ -411,6 +572,14 @@ extension Clients.RecommenderProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists recommendations for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified recommender.
+  ///
+  /// @Snippet(path: "Recommender_ListRecommendations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listRecommendations(request:options:)``
   public func listRecommendationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Recommendation, any Swift.Error> & Sendable {
@@ -420,6 +589,14 @@ extension Clients.RecommenderProtocol {
     return self.listRecommendationsByItems(request: request)
   }
 
+  /// Lists recommendations for the specified Cloud Resource. Requires the
+  /// recommender.*.list IAM permission for the specified recommender.
+  ///
+  /// @Snippet(path: "Recommender_ListRecommendations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/listRecommendations(request:options:)``
   public func listRecommendationsByItems(
     parent: Swift.String,
     filter: Swift.String,
@@ -431,6 +608,14 @@ extension Clients.RecommenderProtocol {
     return self.listRecommendationsByItems(request: request)
   }
 
+  /// Gets the requested recommendation. Requires the recommender.*.get
+  /// IAM permission for the specified recommender.
+  ///
+  /// @Snippet(path: "Recommender_GetRecommendation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getRecommendation(request:options:)``
   public func getRecommendation(request: GetRecommendationRequest) async throws
     -> GoogleCloudRecommenderV1.Recommendation
   {
@@ -443,6 +628,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the requested recommendation. Requires the recommender.*.get
+  /// IAM permission for the specified recommender.
+  ///
+  /// @Snippet(path: "Recommender_GetRecommendation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getRecommendation(request:options:)``
   public func getRecommendation(
     name: Swift.String,
   ) async throws -> GoogleCloudRecommenderV1.Recommendation {
@@ -452,6 +645,21 @@ extension Clients.RecommenderProtocol {
     return try await self.getRecommendation(request: request)
   }
 
+  /// Mark the Recommendation State as Dismissed. Users can use this method to
+  /// indicate to the Recommender API that an ACTIVE recommendation has to
+  /// be marked back as DISMISSED.
+  ///
+  /// MarkRecommendationDismissed can be applied to recommendations in ACTIVE
+  /// state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationDismissed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationDismissed(request:options:)``
   public func markRecommendationDismissed(request: MarkRecommendationDismissedRequest) async throws
     -> GoogleCloudRecommenderV1.Recommendation
   {
@@ -464,6 +672,22 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks the Recommendation State as Claimed. Users can use this method to
+  /// indicate to the Recommender API that they are starting to apply the
+  /// recommendation themselves. This stops the recommendation content from being
+  /// updated. Associated insights are frozen and placed in the ACCEPTED state.
+  ///
+  /// MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
+  /// SUCCEEDED, FAILED, or ACTIVE state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationClaimed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationClaimed(request:options:)``
   public func markRecommendationClaimed(request: MarkRecommendationClaimedRequest) async throws
     -> GoogleCloudRecommenderV1.Recommendation
   {
@@ -476,6 +700,22 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks the Recommendation State as Claimed. Users can use this method to
+  /// indicate to the Recommender API that they are starting to apply the
+  /// recommendation themselves. This stops the recommendation content from being
+  /// updated. Associated insights are frozen and placed in the ACCEPTED state.
+  ///
+  /// MarkRecommendationClaimed can be applied to recommendations in CLAIMED,
+  /// SUCCEEDED, FAILED, or ACTIVE state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationClaimed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationClaimed(request:options:)``
   public func markRecommendationClaimed(
     name: Swift.String,
     stateMetadata: [Swift.String: Swift.String],
@@ -489,6 +729,23 @@ extension Clients.RecommenderProtocol {
     return try await self.markRecommendationClaimed(request: request)
   }
 
+  /// Marks the Recommendation State as Succeeded. Users can use this method to
+  /// indicate to the Recommender API that they have applied the recommendation
+  /// themselves, and the operation was successful. This stops the recommendation
+  /// content from being updated. Associated insights are frozen and placed in
+  /// the ACCEPTED state.
+  ///
+  /// MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
+  /// CLAIMED, SUCCEEDED, or FAILED state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationSucceeded")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationSucceeded(request:options:)``
   public func markRecommendationSucceeded(request: MarkRecommendationSucceededRequest) async throws
     -> GoogleCloudRecommenderV1.Recommendation
   {
@@ -501,6 +758,23 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks the Recommendation State as Succeeded. Users can use this method to
+  /// indicate to the Recommender API that they have applied the recommendation
+  /// themselves, and the operation was successful. This stops the recommendation
+  /// content from being updated. Associated insights are frozen and placed in
+  /// the ACCEPTED state.
+  ///
+  /// MarkRecommendationSucceeded can be applied to recommendations in ACTIVE,
+  /// CLAIMED, SUCCEEDED, or FAILED state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationSucceeded")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationSucceeded(request:options:)``
   public func markRecommendationSucceeded(
     name: Swift.String,
     stateMetadata: [Swift.String: Swift.String],
@@ -514,6 +788,23 @@ extension Clients.RecommenderProtocol {
     return try await self.markRecommendationSucceeded(request: request)
   }
 
+  /// Marks the Recommendation State as Failed. Users can use this method to
+  /// indicate to the Recommender API that they have applied the recommendation
+  /// themselves, and the operation failed. This stops the recommendation content
+  /// from being updated. Associated insights are frozen and placed in the
+  /// ACCEPTED state.
+  ///
+  /// MarkRecommendationFailed can be applied to recommendations in ACTIVE,
+  /// CLAIMED, SUCCEEDED, or FAILED state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationFailed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationFailed(request:options:)``
   public func markRecommendationFailed(request: MarkRecommendationFailedRequest) async throws
     -> GoogleCloudRecommenderV1.Recommendation
   {
@@ -526,6 +817,23 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Marks the Recommendation State as Failed. Users can use this method to
+  /// indicate to the Recommender API that they have applied the recommendation
+  /// themselves, and the operation failed. This stops the recommendation content
+  /// from being updated. Associated insights are frozen and placed in the
+  /// ACCEPTED state.
+  ///
+  /// MarkRecommendationFailed can be applied to recommendations in ACTIVE,
+  /// CLAIMED, SUCCEEDED, or FAILED state.
+  ///
+  /// Requires the recommender.*.update IAM permission for the specified
+  /// recommender.
+  ///
+  /// @Snippet(path: "Recommender_MarkRecommendationFailed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/markRecommendationFailed(request:options:)``
   public func markRecommendationFailed(
     name: Swift.String,
     stateMetadata: [Swift.String: Swift.String],
@@ -539,6 +847,14 @@ extension Clients.RecommenderProtocol {
     return try await self.markRecommendationFailed(request: request)
   }
 
+  /// Gets the requested Recommender Config. There is only one instance of the
+  /// config for each Recommender.
+  ///
+  /// @Snippet(path: "Recommender_GetRecommenderConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getRecommenderConfig(request:options:)``
   public func getRecommenderConfig(request: GetRecommenderConfigRequest) async throws
     -> GoogleCloudRecommenderV1.RecommenderConfig
   {
@@ -551,6 +867,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the requested Recommender Config. There is only one instance of the
+  /// config for each Recommender.
+  ///
+  /// @Snippet(path: "Recommender_GetRecommenderConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getRecommenderConfig(request:options:)``
   public func getRecommenderConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudRecommenderV1.RecommenderConfig {
@@ -560,6 +884,14 @@ extension Clients.RecommenderProtocol {
     return try await self.getRecommenderConfig(request: request)
   }
 
+  /// Updates a Recommender Config. This will create a new revision of the
+  /// config.
+  ///
+  /// @Snippet(path: "Recommender_UpdateRecommenderConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/updateRecommenderConfig(request:options:)``
   public func updateRecommenderConfig(request: UpdateRecommenderConfigRequest) async throws
     -> GoogleCloudRecommenderV1.RecommenderConfig
   {
@@ -572,6 +904,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Recommender Config. This will create a new revision of the
+  /// config.
+  ///
+  /// @Snippet(path: "Recommender_UpdateRecommenderConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/updateRecommenderConfig(request:options:)``
   public func updateRecommenderConfig(
     recommenderConfig: RecommenderConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -583,6 +923,14 @@ extension Clients.RecommenderProtocol {
     return try await self.updateRecommenderConfig(request: request)
   }
 
+  /// Gets the requested InsightTypeConfig. There is only one instance of the
+  /// config for each InsightType.
+  ///
+  /// @Snippet(path: "Recommender_GetInsightTypeConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getInsightTypeConfig(request:options:)``
   public func getInsightTypeConfig(request: GetInsightTypeConfigRequest) async throws
     -> GoogleCloudRecommenderV1.InsightTypeConfig
   {
@@ -595,6 +943,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the requested InsightTypeConfig. There is only one instance of the
+  /// config for each InsightType.
+  ///
+  /// @Snippet(path: "Recommender_GetInsightTypeConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/getInsightTypeConfig(request:options:)``
   public func getInsightTypeConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudRecommenderV1.InsightTypeConfig {
@@ -604,6 +960,14 @@ extension Clients.RecommenderProtocol {
     return try await self.getInsightTypeConfig(request: request)
   }
 
+  /// Updates an InsightTypeConfig change. This will create a new revision of the
+  /// config.
+  ///
+  /// @Snippet(path: "Recommender_UpdateInsightTypeConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/updateInsightTypeConfig(request:options:)``
   public func updateInsightTypeConfig(request: UpdateInsightTypeConfigRequest) async throws
     -> GoogleCloudRecommenderV1.InsightTypeConfig
   {
@@ -616,6 +980,14 @@ extension Clients.RecommenderProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an InsightTypeConfig change. This will create a new revision of the
+  /// config.
+  ///
+  /// @Snippet(path: "Recommender_UpdateInsightTypeConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RecommenderClient/updateInsightTypeConfig(request:options:)``
   public func updateInsightTypeConfig(
     insightTypeConfig: InsightTypeConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,

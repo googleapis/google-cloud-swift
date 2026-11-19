@@ -25,6 +25,10 @@ import Foundation
 /// projects and AWS accounts.
 ///
 /// @Snippet(path: "MetricsScopesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MetricsScopesProtocol``
 public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable {
   let inner: any Clients.MetricsScopesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,11 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// Returns a specific `Metrics Scope`.
   ///
   /// @Snippet(path: "MetricsScopes_GetMetricsScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMetricsScope(name:)``
+  /// - ``getMetricsScope(request:)``
   public func getMetricsScope(
     request: GetMetricsScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope {
@@ -56,6 +65,10 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// project will always be the first entry in the response.
   ///
   /// @Snippet(path: "MetricsScopes_ListMetricsScopesByMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMetricsScopesByMonitoredProject(request:)``
   public func listMetricsScopesByMonitoredProject(
     request: ListMetricsScopesByMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringMetricsScopeV1.ListMetricsScopesByMonitoredProjectResponse
@@ -67,6 +80,13 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// to the specified `Metrics Scope`.
   ///
   /// @Snippet(path: "MetricsScopes_CreateMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMonitoredProject(request:)``
+  /// - ``createMonitoredProjectPollingUntilDone(parent:monitoredProject:)``
+  /// - ``createMonitoredProjectPollingUntilDone(request:)``
+  /// - ``createMonitoredProjectPollingUntilDone(request:options:)``
   public func createMonitoredProject(
     request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -77,6 +97,13 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// to the specified `Metrics Scope`.
   ///
   /// @Snippet(path: "MetricsScopes_CreateMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMonitoredProject(request:)``
+  /// - ``createMonitoredProject(request:options:)``
+  /// - ``createMonitoredProjectPollingUntilDone(parent:monitoredProject:)``
+  /// - ``createMonitoredProjectPollingUntilDone(request:)``
   public func createMonitoredProjectPollingUntilDone(
     request: CreateMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> MonitoredProject {
@@ -105,6 +132,13 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
   ///
   /// @Snippet(path: "MetricsScopes_DeleteMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMonitoredProject(request:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(name:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(request:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(request:options:)``
   public func deleteMonitoredProject(
     request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -114,6 +148,13 @@ public final class MetricsScopesClient: Clients.MetricsScopesProtocol, Sendable 
   /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
   ///
   /// @Snippet(path: "MetricsScopes_DeleteMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMonitoredProject(request:)``
+  /// - ``deleteMonitoredProject(request:options:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(name:)``
+  /// - ``deleteMonitoredProjectPollingUntilDone(request:)``
   public func deleteMonitoredProjectPollingUntilDone(
     request: DeleteMonitoredProjectRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -192,6 +233,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MetricsScopesProtocol {
+  /// Returns a specific `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_GetMetricsScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/getMetricsScope(request:options:)``
   public func getMetricsScope(request: GetMetricsScopeRequest) async throws
     -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope
   {
@@ -204,6 +252,13 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a specific `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_GetMetricsScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/getMetricsScope(request:options:)``
   public func getMetricsScope(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringMetricsScopeV1.MetricsScope {
@@ -213,6 +268,15 @@ extension Clients.MetricsScopesProtocol {
     return try await self.getMetricsScope(request: request)
   }
 
+  /// Returns a list of every `Metrics Scope` that a specific `MonitoredProject`
+  /// has been added to. The metrics scope representing the specified monitored
+  /// project will always be the first entry in the response.
+  ///
+  /// @Snippet(path: "MetricsScopes_ListMetricsScopesByMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/listMetricsScopesByMonitoredProject(request:options:)``
   public func listMetricsScopesByMonitoredProject(
     request: ListMetricsScopesByMonitoredProjectRequest
   ) async throws -> GoogleCloudMonitoringMetricsScopeV1.ListMetricsScopesByMonitoredProjectResponse
@@ -227,6 +291,14 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a `MonitoredProject` with the given project ID
+  /// to the specified `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_CreateMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/createMonitoredProject(request:options:)``
   public func createMonitoredProject(request: CreateMonitoredProjectRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -239,6 +311,14 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a `MonitoredProject` with the given project ID
+  /// to the specified `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_CreateMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/createMonitoredProjectPollingUntilDone(request:options:)``
   public func createMonitoredProjectPollingUntilDone(request: CreateMonitoredProjectRequest)
     async throws -> MonitoredProject
   {
@@ -251,6 +331,14 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a `MonitoredProject` with the given project ID
+  /// to the specified `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_CreateMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/createMonitoredProjectPollingUntilDone(request:options:)``
   public func createMonitoredProjectPollingUntilDone(
     parent: Swift.String,
     monitoredProject: MonitoredProject?,
@@ -262,6 +350,13 @@ extension Clients.MetricsScopesProtocol {
     return try await self.createMonitoredProjectPollingUntilDone(request: request)
   }
 
+  /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_DeleteMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/deleteMonitoredProject(request:options:)``
   public func deleteMonitoredProject(request: DeleteMonitoredProjectRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -274,6 +369,13 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_DeleteMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/deleteMonitoredProjectPollingUntilDone(request:options:)``
   public func deleteMonitoredProjectPollingUntilDone(request: DeleteMonitoredProjectRequest)
     async throws
   {
@@ -286,6 +388,13 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a `MonitoredProject` from the specified `Metrics Scope`.
+  ///
+  /// @Snippet(path: "MetricsScopes_DeleteMonitoredProject")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricsScopesClient/deleteMonitoredProjectPollingUntilDone(request:options:)``
   public func deleteMonitoredProjectPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -295,6 +404,9 @@ extension Clients.MetricsScopesProtocol {
     try await self.deleteMonitoredProjectPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -307,6 +419,9 @@ extension Clients.MetricsScopesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

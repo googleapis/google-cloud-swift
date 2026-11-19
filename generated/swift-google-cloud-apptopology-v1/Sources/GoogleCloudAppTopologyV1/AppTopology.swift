@@ -25,6 +25,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "AppTopologyQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AppTopologyProtocol``
 public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   let inner: any Clients.AppTopologyStub
 
@@ -45,6 +49,11 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// the topology is generated for all resources in the boundary.
   ///
   /// @Snippet(path: "AppTopology_GenerateDiscoveredResourcesTopology")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateDiscoveredResourcesTopology(name:topologyDomains:)``
+  /// - ``generateDiscoveredResourcesTopology(request:)``
   public func generateDiscoveredResourcesTopology(
     request: GenerateDiscoveredResourcesTopologyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.GenerateDiscoveredResourcesTopologyResponse {
@@ -57,6 +66,11 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// domain.
   ///
   /// @Snippet(path: "AppTopology_GetSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSchema(name:)``
+  /// - ``getSchema(request:)``
   public func getSchema(
     request: GetSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.Schema {
@@ -67,6 +81,13 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// up to a specified hop depth.
   ///
   /// @Snippet(path: "AppTopology_ExploreSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exploreSchema(request:)``
+  /// - ``exploreSchemaByItems(name:)``
+  /// - ``exploreSchemaByItems(request:)``
+  /// - ``exploreSchemaByItems(request:options:)``
   public func exploreSchema(
     request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.ExploreSchemaResponse {
@@ -76,6 +97,11 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// Retrieves the specified topology domain.
   ///
   /// @Snippet(path: "AppTopology_GetDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDomain(name:)``
+  /// - ``getDomain(request:)``
   public func getDomain(
     request: GetDomainRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.Domain {
@@ -86,6 +112,13 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// Only `global` location is supported.
   ///
   /// @Snippet(path: "AppTopology_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDomains(request:)``
+  /// - ``listDomainsByItems(parent:)``
+  /// - ``listDomainsByItems(request:)``
+  /// - ``listDomainsByItems(request:options:)``
   public func listDomains(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAppTopologyV1.ListDomainsResponse {
@@ -112,6 +145,12 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppTopology_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -121,6 +160,10 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppTopology_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -132,6 +175,13 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppTopology_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -154,6 +204,11 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppTopology_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -165,6 +220,11 @@ public final class AppTopologyClient: Clients.AppTopologyProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppTopology_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -233,6 +293,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.AppTopologyProtocol {
+  /// Generate the topology for all resources in the given project. If the
+  /// project represents an
+  /// [app
+  /// boundary](https://cloud.google.com/app-hub/docs/reference/rest/v1/Boundary),
+  /// the topology is generated for all resources in the boundary.
+  ///
+  /// @Snippet(path: "AppTopology_GenerateDiscoveredResourcesTopology")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/generateDiscoveredResourcesTopology(request:options:)``
   public func generateDiscoveredResourcesTopology(
     request: GenerateDiscoveredResourcesTopologyRequest
   ) async throws -> GoogleCloudAppTopologyV1.GenerateDiscoveredResourcesTopologyResponse {
@@ -245,6 +316,17 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate the topology for all resources in the given project. If the
+  /// project represents an
+  /// [app
+  /// boundary](https://cloud.google.com/app-hub/docs/reference/rest/v1/Boundary),
+  /// the topology is generated for all resources in the boundary.
+  ///
+  /// @Snippet(path: "AppTopology_GenerateDiscoveredResourcesTopology")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/generateDiscoveredResourcesTopology(request:options:)``
   public func generateDiscoveredResourcesTopology(
     name: Swift.String,
     topologyDomains: [Swift.String],
@@ -256,6 +338,16 @@ extension Clients.AppTopologyProtocol {
     return try await self.generateDiscoveredResourcesTopology(request: request)
   }
 
+  /// Retrieves the schema for the specified topology domain. The schema
+  /// defines the NodeTypes and EdgeTypes that are supported in
+  /// GenerateDiscoveredResourcesTopology requests and responses for a given
+  /// domain.
+  ///
+  /// @Snippet(path: "AppTopology_GetSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/getSchema(request:options:)``
   public func getSchema(request: GetSchemaRequest) async throws -> GoogleCloudAppTopologyV1.Schema {
     try await self.getSchema(request: request, options: .init())
   }
@@ -266,6 +358,16 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the schema for the specified topology domain. The schema
+  /// defines the NodeTypes and EdgeTypes that are supported in
+  /// GenerateDiscoveredResourcesTopology requests and responses for a given
+  /// domain.
+  ///
+  /// @Snippet(path: "AppTopology_GetSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/getSchema(request:options:)``
   public func getSchema(
     name: Swift.String,
   ) async throws -> GoogleCloudAppTopologyV1.Schema {
@@ -275,6 +377,14 @@ extension Clients.AppTopologyProtocol {
     return try await self.getSchema(request: request)
   }
 
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/exploreSchema(request:options:)``
   public func exploreSchema(request: ExploreSchemaRequest) async throws
     -> GoogleCloudAppTopologyV1.ExploreSchemaResponse
   {
@@ -287,6 +397,14 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/exploreSchema(request:options:)``
   public func exploreSchemaByItems(
     request: ExploreSchemaRequest
   ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
@@ -297,6 +415,10 @@ extension Clients.AppTopologyProtocol {
   /// up to a specified hop depth.
   ///
   /// @Snippet(path: "AppTopology_ExploreSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/exploreSchema(request:options:)``
   public func exploreSchemaByItems(
     request: ExploreSchemaRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
@@ -311,6 +433,14 @@ extension Clients.AppTopologyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Explores the topology schema starting from given node types or label names
+  /// up to a specified hop depth.
+  ///
+  /// @Snippet(path: "AppTopology_ExploreSchema")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/exploreSchema(request:options:)``
   public func exploreSchemaByItems(
     name: Swift.String,
   ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
@@ -320,6 +450,13 @@ extension Clients.AppTopologyProtocol {
     return self.exploreSchemaByItems(request: request)
   }
 
+  /// Retrieves the specified topology domain.
+  ///
+  /// @Snippet(path: "AppTopology_GetDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/getDomain(request:options:)``
   public func getDomain(request: GetDomainRequest) async throws -> GoogleCloudAppTopologyV1.Domain {
     try await self.getDomain(request: request, options: .init())
   }
@@ -330,6 +467,13 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the specified topology domain.
+  ///
+  /// @Snippet(path: "AppTopology_GetDomain")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/getDomain(request:options:)``
   public func getDomain(
     name: Swift.String,
   ) async throws -> GoogleCloudAppTopologyV1.Domain {
@@ -339,6 +483,14 @@ extension Clients.AppTopologyProtocol {
     return try await self.getDomain(request: request)
   }
 
+  /// Lists the topology domains available in a specific location.
+  /// Only `global` location is supported.
+  ///
+  /// @Snippet(path: "AppTopology_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listDomains(request:options:)``
   public func listDomains(request: ListDomainsRequest) async throws
     -> GoogleCloudAppTopologyV1.ListDomainsResponse
   {
@@ -351,6 +503,14 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the topology domains available in a specific location.
+  /// Only `global` location is supported.
+  ///
+  /// @Snippet(path: "AppTopology_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listDomains(request:options:)``
   public func listDomainsByItems(
     request: ListDomainsRequest
   ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
@@ -361,6 +521,10 @@ extension Clients.AppTopologyProtocol {
   /// Only `global` location is supported.
   ///
   /// @Snippet(path: "AppTopology_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listDomains(request:options:)``
   public func listDomainsByItems(
     request: ListDomainsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
@@ -375,6 +539,14 @@ extension Clients.AppTopologyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the topology domains available in a specific location.
+  /// Only `global` location is supported.
+  ///
+  /// @Snippet(path: "AppTopology_ListDomains")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listDomains(request:options:)``
   public func listDomainsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Domain, any Swift.Error> & Sendable {
@@ -384,6 +556,30 @@ extension Clients.AppTopologyProtocol {
     return self.listDomainsByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AppTopology_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -396,6 +592,30 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AppTopology_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -422,6 +642,10 @@ extension Clients.AppTopologyProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppTopology_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -435,6 +659,13 @@ extension Clients.AppTopologyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AppTopology_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -447,6 +678,15 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -459,6 +699,15 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -470,6 +719,10 @@ extension Clients.AppTopologyProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppTopology_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -483,6 +736,15 @@ extension Clients.AppTopologyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -494,6 +756,9 @@ extension Clients.AppTopologyProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -506,6 +771,9 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -515,6 +783,15 @@ extension Clients.AppTopologyProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -525,6 +802,15 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -534,6 +820,15 @@ extension Clients.AppTopologyProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -544,6 +839,15 @@ extension Clients.AppTopologyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppTopology_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppTopologyClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

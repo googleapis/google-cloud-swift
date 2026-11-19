@@ -25,6 +25,10 @@ import Foundation
 /// Service for interactions with CloudSQL.
 ///
 /// @Snippet(path: "AlloyDBCSQLAdminQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AlloyDBCSQLAdminProtocol``
 public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sendable {
   let inner: any Clients.AlloyDBCSQLAdminStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// Restores an AlloyDB cluster from a CloudSQL resource.
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_RestoreFromCloudSQL")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreFromCloudSql(request:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(parent:clusterId:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(request:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(request:options:)``
   public func restoreFromCloudSql(
     request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -54,6 +65,13 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// Restores an AlloyDB cluster from a CloudSQL resource.
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_RestoreFromCloudSQL")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreFromCloudSql(request:)``
+  /// - ``restoreFromCloudSql(request:options:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(parent:clusterId:)``
+  /// - ``restoreFromCloudSqlPollingUntilDone(request:)``
   public func restoreFromCloudSqlPollingUntilDone(
     request: RestoreFromCloudSQLRequest, options: GoogleGax.RequestOptions
   ) async throws -> Cluster {
@@ -81,6 +99,12 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -90,6 +114,10 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -101,6 +129,13 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -123,6 +158,11 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -134,6 +174,11 @@ public final class AlloyDBCSQLAdminClient: Clients.AlloyDBCSQLAdminProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -187,6 +232,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.AlloyDBCSQLAdminProtocol {
+  /// Restores an AlloyDB cluster from a CloudSQL resource.
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_RestoreFromCloudSQL")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/restoreFromCloudSql(request:options:)``
   public func restoreFromCloudSql(request: RestoreFromCloudSQLRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -199,6 +251,13 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores an AlloyDB cluster from a CloudSQL resource.
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_RestoreFromCloudSQL")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/restoreFromCloudSqlPollingUntilDone(request:options:)``
   public func restoreFromCloudSqlPollingUntilDone(request: RestoreFromCloudSQLRequest) async throws
     -> Cluster
   {
@@ -211,6 +270,13 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores an AlloyDB cluster from a CloudSQL resource.
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_RestoreFromCloudSQL")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/restoreFromCloudSqlPollingUntilDone(request:options:)``
   public func restoreFromCloudSqlPollingUntilDone(
     parent: Swift.String,
     clusterId: Swift.String,
@@ -222,6 +288,13 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     return try await self.restoreFromCloudSqlPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -234,6 +307,13 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -243,6 +323,10 @@ extension Clients.AlloyDBCSQLAdminProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -256,6 +340,13 @@ extension Clients.AlloyDBCSQLAdminProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -268,6 +359,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -280,6 +380,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -291,6 +400,10 @@ extension Clients.AlloyDBCSQLAdminProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -304,6 +417,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -315,6 +437,9 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -327,6 +452,9 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -336,6 +464,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -346,6 +483,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -355,6 +501,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -365,6 +520,15 @@ extension Clients.AlloyDBCSQLAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AlloyDBCSQLAdmin_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AlloyDBCSQLAdminClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

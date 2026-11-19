@@ -24,6 +24,10 @@
   /// Service for the `targetInstances` resource.
   ///
   /// @Snippet(path: "targetInstancesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/TargetInstancesProtocol``
   public final class TargetInstancesClient: Clients.TargetInstancesProtocol, Sendable {
     let inner: any Clients.TargetInstancesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetInstances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: TargetInstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetInstanceAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified TargetInstance resource.
     ///
     /// @Snippet(path: "targetInstances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:targetInstance:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: TargetInstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetInstances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:targetInstance:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: TargetInstancesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified TargetInstance resource.
     ///
     /// @Snippet(path: "targetInstances_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:zone:targetInstance:)``
+    /// - ``get(request:)``
     public func `get`(
       request: TargetInstancesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetInstance {
@@ -122,6 +152,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "targetInstances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: TargetInstancesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -137,6 +174,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetInstances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: TargetInstancesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -180,6 +224,13 @@
     /// project and zone.
     ///
     /// @Snippet(path: "targetInstances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetInstanceList {
@@ -191,6 +242,13 @@
     /// Cloud Armor Overview
     ///
     /// @Snippet(path: "targetInstances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:zone:targetInstance:body:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicy(
       request: TargetInstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -207,6 +265,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetInstances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setSecurityPolicy(request:)``
+    /// - ``setSecurityPolicy(request:options:)``
+    /// - ``setSecurityPolicyPollingUntilDone(project:zone:targetInstance:body:)``
+    /// - ``setSecurityPolicyPollingUntilDone(request:)``
     public func setSecurityPolicyPollingUntilDone(
       request: TargetInstancesClient.SetSecurityPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -249,6 +314,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "targetInstances_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: TargetInstancesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -341,6 +411,16 @@
 
   // Default implementations
   extension Clients.TargetInstancesProtocol {
+    /// Retrieves an aggregated list of target instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetInstances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: TargetInstancesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.TargetInstanceAggregatedList
     {
@@ -353,6 +433,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of target instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetInstances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: TargetInstancesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), any Swift.Error> & Sendable {
@@ -365,6 +455,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetInstances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: TargetInstancesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), any Swift.Error> & Sendable {
@@ -379,6 +473,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of target instances.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetInstances_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, TargetInstancesScopedList), any Swift.Error> & Sendable {
@@ -388,6 +492,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified TargetInstance resource.
+    ///
+    /// @Snippet(path: "targetInstances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/delete(request:options:)``
     public func delete(request: TargetInstancesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -400,6 +511,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetInstance resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetInstances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: TargetInstancesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -412,6 +535,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetInstance resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetInstances_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -425,6 +560,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified TargetInstance resource.
+    ///
+    /// @Snippet(path: "targetInstances_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/get(request:options:)``
     public func `get`(request: TargetInstancesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.TargetInstance
     {
@@ -437,6 +579,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified TargetInstance resource.
+    ///
+    /// @Snippet(path: "targetInstances_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -450,6 +599,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a TargetInstance resource in the specified project and zone using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "targetInstances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/insert(request:options:)``
     public func insert(request: TargetInstancesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -462,6 +619,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetInstance resource in the specified project and zone using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetInstances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: TargetInstancesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -474,6 +644,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetInstance resource in the specified project and zone using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetInstances_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -487,6 +670,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of TargetInstance resources available to the specified
+    /// project and zone.
+    ///
+    /// @Snippet(path: "targetInstances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/list(request:options:)``
     public func list(request: TargetInstancesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.TargetInstanceList
     {
@@ -499,6 +690,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of TargetInstance resources available to the specified
+    /// project and zone.
+    ///
+    /// @Snippet(path: "targetInstances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/list(request:options:)``
     public func listByItems(
       request: TargetInstancesClient.ListRequest
     ) -> some AsyncSequence<TargetInstance, any Swift.Error> & Sendable {
@@ -509,6 +708,10 @@
     /// project and zone.
     ///
     /// @Snippet(path: "targetInstances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/list(request:options:)``
     public func listByItems(
       request: TargetInstancesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetInstance, any Swift.Error> & Sendable {
@@ -522,6 +725,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of TargetInstance resources available to the specified
+    /// project and zone.
+    ///
+    /// @Snippet(path: "targetInstances_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -533,6 +744,15 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified target
+    /// instance. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// @Snippet(path: "targetInstances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/setSecurityPolicy(request:options:)``
     public func setSecurityPolicy(request: TargetInstancesClient.SetSecurityPolicyRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -545,6 +765,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified target
+    /// instance. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetInstances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       request: TargetInstancesClient.SetSecurityPolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -557,6 +791,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the Google Cloud Armor security policy for the specified target
+    /// instance. For more information, seeGoogle
+    /// Cloud Armor Overview
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetInstances_setSecurityPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/setSecurityPolicyPollingUntilDone(request:options:)``
     public func setSecurityPolicyPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -572,6 +820,13 @@
       return try await self.setSecurityPolicyPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "targetInstances_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: TargetInstancesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -584,6 +839,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "targetInstances_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetInstancesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -599,6 +861,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

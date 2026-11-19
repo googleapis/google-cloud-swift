@@ -24,6 +24,10 @@
   /// Service for the `serviceAttachments` resource.
   ///
   /// @Snippet(path: "serviceAttachmentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ServiceAttachmentsProtocol``
   public final class ServiceAttachmentsClient: Clients.ServiceAttachmentsProtocol, Sendable {
     let inner: any Clients.ServiceAttachmentsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "serviceAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: ServiceAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ServiceAttachmentAggregatedList {
@@ -58,6 +69,13 @@
     /// Deletes the specified ServiceAttachment in the given scope
     ///
     /// @Snippet(path: "serviceAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:serviceAttachment:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,6 +90,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "serviceAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:serviceAttachment:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: ServiceAttachmentsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +139,11 @@
     /// Returns the specified ServiceAttachment resource in the given scope.
     ///
     /// @Snippet(path: "serviceAttachments_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:serviceAttachment:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ServiceAttachmentsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ServiceAttachment {
@@ -124,6 +154,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "serviceAttachments_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:region:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: ServiceAttachmentsClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -134,6 +169,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "serviceAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,6 +191,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "serviceAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: ServiceAttachmentsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -191,6 +240,13 @@
     /// Lists the ServiceAttachments for a project in the given scope.
     ///
     /// @Snippet(path: "serviceAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: ServiceAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ServiceAttachmentList {
@@ -203,6 +259,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "serviceAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:serviceAttachment:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: ServiceAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -220,6 +283,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "serviceAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:serviceAttachment:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: ServiceAttachmentsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -263,6 +333,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "serviceAttachments_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:region:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: ServiceAttachmentsClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -272,6 +347,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "serviceAttachments_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: ServiceAttachmentsClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -375,6 +455,17 @@
 
   // Default implementations
   extension Clients.ServiceAttachmentsProtocol {
+    /// Retrieves the list of all ServiceAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "serviceAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: ServiceAttachmentsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.ServiceAttachmentAggregatedList
     {
@@ -387,6 +478,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all ServiceAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "serviceAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: ServiceAttachmentsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, ServiceAttachmentsScopedList), any Swift.Error>
@@ -402,6 +504,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "serviceAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: ServiceAttachmentsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, ServiceAttachmentsScopedList), any Swift.Error>
@@ -418,6 +524,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all ServiceAttachment resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "serviceAttachments_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, ServiceAttachmentsScopedList), any Swift.Error>
@@ -429,6 +546,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified ServiceAttachment in the given scope
+    ///
+    /// @Snippet(path: "serviceAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/delete(request:options:)``
     public func delete(request: ServiceAttachmentsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -441,6 +565,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified ServiceAttachment in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "serviceAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: ServiceAttachmentsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -453,6 +589,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified ServiceAttachment in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "serviceAttachments_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -466,6 +614,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified ServiceAttachment resource in the given scope.
+    ///
+    /// @Snippet(path: "serviceAttachments_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/get(request:options:)``
     public func `get`(request: ServiceAttachmentsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ServiceAttachment
     {
@@ -478,6 +633,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified ServiceAttachment resource in the given scope.
+    ///
+    /// @Snippet(path: "serviceAttachments_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -491,6 +653,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "serviceAttachments_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: ServiceAttachmentsClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -503,6 +673,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "serviceAttachments_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -516,6 +694,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a ServiceAttachment in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "serviceAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/insert(request:options:)``
     public func insert(request: ServiceAttachmentsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -528,6 +714,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a ServiceAttachment in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "serviceAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: ServiceAttachmentsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -540,6 +739,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a ServiceAttachment in the specified project in the given scope
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "serviceAttachments_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -553,6 +765,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the ServiceAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "serviceAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/list(request:options:)``
     public func list(request: ServiceAttachmentsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ServiceAttachmentList
     {
@@ -565,6 +784,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the ServiceAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "serviceAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/list(request:options:)``
     public func listByItems(
       request: ServiceAttachmentsClient.ListRequest
     ) -> some AsyncSequence<ServiceAttachment, any Swift.Error> & Sendable {
@@ -574,6 +800,10 @@
     /// Lists the ServiceAttachments for a project in the given scope.
     ///
     /// @Snippet(path: "serviceAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/list(request:options:)``
     public func listByItems(
       request: ServiceAttachmentsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ServiceAttachment, any Swift.Error> & Sendable {
@@ -588,6 +818,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the ServiceAttachments for a project in the given scope.
+    ///
+    /// @Snippet(path: "serviceAttachments_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -599,6 +836,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified ServiceAttachment resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "serviceAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/patch(request:options:)``
     public func patch(request: ServiceAttachmentsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -611,6 +858,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified ServiceAttachment resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "serviceAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: ServiceAttachmentsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -623,6 +885,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified ServiceAttachment resource with the data included in
+    /// the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "serviceAttachments_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -638,6 +915,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "serviceAttachments_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: ServiceAttachmentsClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -650,6 +935,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "serviceAttachments_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -665,6 +958,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "serviceAttachments_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: ServiceAttachmentsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -677,6 +977,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "serviceAttachments_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ServiceAttachmentsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -692,6 +999,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

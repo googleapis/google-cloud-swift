@@ -24,6 +24,10 @@ import Foundation
 /// This service lets you manage pipelines.
 ///
 /// @Snippet(path: "PipelineServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PipelineServiceProtocol``
 public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Sendable {
   let inner: any Clients.PipelineServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
   /// Run a predefined pipeline.
   ///
   /// @Snippet(path: "PipelineService_RunPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runPipeline(request:)``
+  /// - ``runPipelinePollingUntilDone(name:)``
+  /// - ``runPipelinePollingUntilDone(request:)``
+  /// - ``runPipelinePollingUntilDone(request:options:)``
   public func runPipeline(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -53,6 +64,13 @@ public final class PipelineServiceClient: Clients.PipelineServiceProtocol, Senda
   /// Run a predefined pipeline.
   ///
   /// @Snippet(path: "PipelineService_RunPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runPipeline(request:)``
+  /// - ``runPipeline(request:options:)``
+  /// - ``runPipelinePollingUntilDone(name:)``
+  /// - ``runPipelinePollingUntilDone(request:)``
   public func runPipelinePollingUntilDone(
     request: RunPipelineRequest, options: GoogleGax.RequestOptions
   ) async throws -> RunPipelineResponse {
@@ -111,6 +129,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.PipelineServiceProtocol {
+  /// Run a predefined pipeline.
+  ///
+  /// @Snippet(path: "PipelineService_RunPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PipelineServiceClient/runPipeline(request:options:)``
   public func runPipeline(request: RunPipelineRequest) async throws -> GoogleLongRunning.Operation {
     try await self.runPipeline(request: request, options: .init())
   }
@@ -121,6 +146,13 @@ extension Clients.PipelineServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run a predefined pipeline.
+  ///
+  /// @Snippet(path: "PipelineService_RunPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PipelineServiceClient/runPipelinePollingUntilDone(request:options:)``
   public func runPipelinePollingUntilDone(request: RunPipelineRequest) async throws
     -> RunPipelineResponse
   {
@@ -133,6 +165,13 @@ extension Clients.PipelineServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run a predefined pipeline.
+  ///
+  /// @Snippet(path: "PipelineService_RunPipeline")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PipelineServiceClient/runPipelinePollingUntilDone(request:options:)``
   public func runPipelinePollingUntilDone(
     name: Swift.String,
   ) async throws -> RunPipelineResponse {
@@ -142,6 +181,9 @@ extension Clients.PipelineServiceProtocol {
     return try await self.runPipelinePollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -154,6 +196,9 @@ extension Clients.PipelineServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

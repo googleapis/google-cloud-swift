@@ -29,6 +29,10 @@
   /// [google.cloud.discoveryengine.v1.WidgetConfig]: <doc:WidgetConfig>
   ///
   /// @Snippet(path: "WidgetConfigServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/WidgetConfigServiceProtocol``
   public final class WidgetConfigServiceClient: Clients.WidgetConfigServiceProtocol, Sendable {
     let inner: any Clients.WidgetConfigServiceStub
 
@@ -48,6 +52,11 @@
     /// [google.cloud.discoveryengine.v1.WidgetConfig]: <doc:WidgetConfig>
     ///
     /// @Snippet(path: "WidgetConfigService_GetWidgetConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getWidgetConfig(name:)``
+    /// - ``getWidgetConfig(request:)``
     public func getWidgetConfig(
       request: GetWidgetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.WidgetConfig {
@@ -57,6 +66,11 @@
     /// Update a WidgetConfig.
     ///
     /// @Snippet(path: "WidgetConfigService_UpdateWidgetConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateWidgetConfig(request:)``
+    /// - ``updateWidgetConfig(widgetConfig:updateMask:)``
     public func updateWidgetConfig(
       request: UpdateWidgetConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.WidgetConfig {
@@ -68,6 +82,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "WidgetConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -90,6 +111,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "WidgetConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -128,6 +154,15 @@
 
   // Default implementations
   extension Clients.WidgetConfigServiceProtocol {
+    /// Gets a [WidgetConfig][google.cloud.discoveryengine.v1.WidgetConfig].
+    ///
+    /// [google.cloud.discoveryengine.v1.WidgetConfig]: <doc:WidgetConfig>
+    ///
+    /// @Snippet(path: "WidgetConfigService_GetWidgetConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/getWidgetConfig(request:options:)``
     public func getWidgetConfig(request: GetWidgetConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.WidgetConfig
     {
@@ -140,6 +175,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a [WidgetConfig][google.cloud.discoveryengine.v1.WidgetConfig].
+    ///
+    /// [google.cloud.discoveryengine.v1.WidgetConfig]: <doc:WidgetConfig>
+    ///
+    /// @Snippet(path: "WidgetConfigService_GetWidgetConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/getWidgetConfig(request:options:)``
     public func getWidgetConfig(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.WidgetConfig {
@@ -149,6 +193,13 @@
       return try await self.getWidgetConfig(request: request)
     }
 
+    /// Update a WidgetConfig.
+    ///
+    /// @Snippet(path: "WidgetConfigService_UpdateWidgetConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/updateWidgetConfig(request:options:)``
     public func updateWidgetConfig(request: UpdateWidgetConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.WidgetConfig
     {
@@ -161,6 +212,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update a WidgetConfig.
+    ///
+    /// @Snippet(path: "WidgetConfigService_UpdateWidgetConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/updateWidgetConfig(request:options:)``
     public func updateWidgetConfig(
       widgetConfig: WidgetConfig?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -172,6 +230,15 @@
       return try await self.updateWidgetConfig(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "WidgetConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -184,6 +251,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "WidgetConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -195,6 +271,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "WidgetConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -208,6 +288,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "WidgetConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -219,6 +308,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -231,6 +323,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -240,6 +335,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "WidgetConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -250,6 +354,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "WidgetConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``WidgetConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

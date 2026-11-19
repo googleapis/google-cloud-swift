@@ -30,6 +30,10 @@ import Foundation
 /// 2) [Nonsense][]: `pokemon/*/psychic/*`
 ///
 /// @Snippet(path: "TestingQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TestingProtocol``
 public final class TestingClient: Clients.TestingProtocol, Sendable {
   let inner: any Clients.TestingStub
 
@@ -49,6 +53,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// 2) [Nonsense][]: `pokemon/*/psychic/*`
   ///
   /// @Snippet(path: "Testing_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSession(request:)``
   public func createSession(
     request: CreateSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.Session {
@@ -58,6 +66,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// Gets a testing session.
   ///
   /// @Snippet(path: "Testing_GetSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSession(request:)``
   public func getSession(
     request: GetSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.Session {
@@ -67,6 +79,12 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// Lists the current test sessions.
   ///
   /// @Snippet(path: "Testing_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSessions(request:)``
+  /// - ``listSessionsByItems(request:)``
+  /// - ``listSessionsByItems(request:options:)``
   public func listSessions(
     request: ListSessionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.ListSessionsResponse {
@@ -76,6 +94,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// Delete a test session.
   ///
   /// @Snippet(path: "Testing_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSession(request:)``
   public func deleteSession(
     request: DeleteSessionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -87,6 +109,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// and an overall rollup.
   ///
   /// @Snippet(path: "Testing_ReportSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``reportSession(request:)``
   public func reportSession(
     request: ReportSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.ReportSessionResponse {
@@ -96,6 +122,12 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// List the tests of a sessesion.
   ///
   /// @Snippet(path: "Testing_ListTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTests(request:)``
+  /// - ``listTestsByItems(request:)``
+  /// - ``listTestsByItems(request:options:)``
   public func listTests(
     request: ListTestsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.ListTestsResponse {
@@ -110,6 +142,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// This method will error if attempting to delete a required test.
   ///
   /// @Snippet(path: "Testing_DeleteTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTest(request:)``
   public func deleteTest(
     request: DeleteTestRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +158,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// end of the test, this method provides the means to do so.
   ///
   /// @Snippet(path: "Testing_VerifyTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyTest(request:)``
   public func verifyTest(
     request: VerifyTestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.VerifyTestResponse {
@@ -133,6 +173,12 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Testing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -144,6 +190,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Testing_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -155,6 +205,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Testing_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -166,6 +220,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Testing_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -177,6 +235,10 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Testing_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -188,6 +250,13 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Testing_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -210,6 +279,11 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Testing_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -221,6 +295,11 @@ public final class TestingClient: Clients.TestingProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Testing_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -319,6 +398,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.TestingProtocol {
+  /// Creates a new testing session.
+  /// Adding this comment with special characters for comment formatting tests:
+  /// 1. (abra->kadabra->alakazam)
+  /// 2) [Nonsense][]: `pokemon/*/psychic/*`
+  ///
+  /// @Snippet(path: "Testing_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/createSession(request:options:)``
   public func createSession(request: CreateSessionRequest) async throws
     -> GoogleShowcaseV1Beta1.Session
   {
@@ -331,6 +420,13 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a testing session.
+  ///
+  /// @Snippet(path: "Testing_GetSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/getSession(request:options:)``
   public func getSession(request: GetSessionRequest) async throws -> GoogleShowcaseV1Beta1.Session {
     try await self.getSession(request: request, options: .init())
   }
@@ -341,6 +437,13 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the current test sessions.
+  ///
+  /// @Snippet(path: "Testing_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listSessions(request:options:)``
   public func listSessions(request: ListSessionsRequest) async throws
     -> GoogleShowcaseV1Beta1.ListSessionsResponse
   {
@@ -353,6 +456,13 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the current test sessions.
+  ///
+  /// @Snippet(path: "Testing_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listSessions(request:options:)``
   public func listSessionsByItems(
     request: ListSessionsRequest
   ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -362,6 +472,10 @@ extension Clients.TestingProtocol {
   /// Lists the current test sessions.
   ///
   /// @Snippet(path: "Testing_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listSessions(request:options:)``
   public func listSessionsByItems(
     request: ListSessionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -375,6 +489,13 @@ extension Clients.TestingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Delete a test session.
+  ///
+  /// @Snippet(path: "Testing_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/deleteSession(request:options:)``
   public func deleteSession(request: DeleteSessionRequest) async throws {
     try await self.deleteSession(request: request, options: .init())
   }
@@ -385,6 +506,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Report on the status of a session.
+  /// This generates a report detailing which tests have been completed,
+  /// and an overall rollup.
+  ///
+  /// @Snippet(path: "Testing_ReportSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/reportSession(request:options:)``
   public func reportSession(request: ReportSessionRequest) async throws
     -> GoogleShowcaseV1Beta1.ReportSessionResponse
   {
@@ -397,6 +527,13 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List the tests of a sessesion.
+  ///
+  /// @Snippet(path: "Testing_ListTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listTests(request:options:)``
   public func listTests(request: ListTestsRequest) async throws
     -> GoogleShowcaseV1Beta1.ListTestsResponse
   {
@@ -409,6 +546,13 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List the tests of a sessesion.
+  ///
+  /// @Snippet(path: "Testing_ListTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listTests(request:options:)``
   public func listTestsByItems(
     request: ListTestsRequest
   ) -> some AsyncSequence<Test, any Swift.Error> & Sendable {
@@ -418,6 +562,10 @@ extension Clients.TestingProtocol {
   /// List the tests of a sessesion.
   ///
   /// @Snippet(path: "Testing_ListTests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listTests(request:options:)``
   public func listTestsByItems(
     request: ListTestsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Test, any Swift.Error> & Sendable {
@@ -431,6 +579,18 @@ extension Clients.TestingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Explicitly decline to implement a test.
+  ///
+  /// This removes the test from subsequent `ListTests` calls, and
+  /// attempting to do the test will error.
+  ///
+  /// This method will error if attempting to delete a required test.
+  ///
+  /// @Snippet(path: "Testing_DeleteTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/deleteTest(request:options:)``
   public func deleteTest(request: DeleteTestRequest) async throws {
     try await self.deleteTest(request: request, options: .init())
   }
@@ -441,6 +601,16 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Register a response to a test.
+  ///
+  /// In cases where a test involves registering a final answer at the
+  /// end of the test, this method provides the means to do so.
+  ///
+  /// @Snippet(path: "Testing_VerifyTest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/verifyTest(request:options:)``
   public func verifyTest(request: VerifyTestRequest) async throws
     -> GoogleShowcaseV1Beta1.VerifyTestResponse
   {
@@ -453,6 +623,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Testing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -465,6 +644,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Testing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -476,6 +664,10 @@ extension Clients.TestingProtocol {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Testing_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -489,6 +681,15 @@ extension Clients.TestingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Testing_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -501,6 +702,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Testing_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -513,6 +723,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Testing_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -525,6 +744,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Testing_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -537,6 +765,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -549,6 +786,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -560,6 +806,10 @@ extension Clients.TestingProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Testing_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -573,6 +823,15 @@ extension Clients.TestingProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -584,6 +843,9 @@ extension Clients.TestingProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -596,6 +858,9 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -605,6 +870,15 @@ extension Clients.TestingProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -615,6 +889,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -624,6 +907,15 @@ extension Clients.TestingProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -634,6 +926,15 @@ extension Clients.TestingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Testing_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TestingClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

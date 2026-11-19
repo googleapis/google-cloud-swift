@@ -24,6 +24,10 @@
   /// Service for the `organizationSecurityPolicies` resource.
   ///
   /// @Snippet(path: "organizationSecurityPoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/OrganizationSecurityPoliciesProtocol``
   public final class OrganizationSecurityPoliciesClient: Clients
       .OrganizationSecurityPoliciesProtocol, Sendable
   {
@@ -56,6 +60,13 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAssociation(request:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
+    /// - ``addAssociationPollingUntilDone(request:options:)``
+    /// - ``addAssociationPollingUntilDone(securityPolicy:body:)``
     public func addAssociation(
       request: OrganizationSecurityPoliciesClient.AddAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -80,6 +91,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAssociation(request:)``
+    /// - ``addAssociation(request:options:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
+    /// - ``addAssociationPollingUntilDone(securityPolicy:body:)``
     public func addAssociationPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.AddAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -125,6 +143,13 @@
     /// now disabled for most organizations. Use firewallPolicies.addRule instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRulePollingUntilDone(request:)``
+    /// - ``addRulePollingUntilDone(request:options:)``
+    /// - ``addRulePollingUntilDone(securityPolicy:body:)``
     public func addRule(
       request: OrganizationSecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -143,6 +168,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRule(request:options:)``
+    /// - ``addRulePollingUntilDone(request:)``
+    /// - ``addRulePollingUntilDone(securityPolicy:body:)``
     public func addRulePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -188,6 +220,13 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_copyRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``copyRules(request:)``
+    /// - ``copyRulesPollingUntilDone(request:)``
+    /// - ``copyRulesPollingUntilDone(request:options:)``
+    /// - ``copyRulesPollingUntilDone(securityPolicy:)``
     public func copyRules(
       request: OrganizationSecurityPoliciesClient.CopyRulesRequest,
       options: GoogleGax.RequestOptions
@@ -208,6 +247,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_copyRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``copyRules(request:)``
+    /// - ``copyRules(request:options:)``
+    /// - ``copyRulesPollingUntilDone(request:)``
+    /// - ``copyRulesPollingUntilDone(securityPolicy:)``
     public func copyRulesPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.CopyRulesRequest,
       options: GoogleGax.RequestOptions
@@ -253,6 +299,13 @@
     /// now disabled for most organizations. Use firewallPolicies.delete instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
+    /// - ``deletePollingUntilDone(securityPolicy:)``
     public func delete(
       request: OrganizationSecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -271,6 +324,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(securityPolicy:)``
     public func deletePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -315,6 +375,11 @@
     /// disabled for most organizations. Use firewallPolicies.get instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
+    /// - ``get(securityPolicy:)``
     public func `get`(
       request: OrganizationSecurityPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicy {
@@ -329,6 +394,11 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAssociation(request:)``
+    /// - ``getAssociation(securityPolicy:)``
     public func getAssociation(
       request: OrganizationSecurityPoliciesClient.GetAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -343,6 +413,11 @@
     /// disabled for most organizations. Use firewallPolicies.getRule instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getRule(request:)``
+    /// - ``getRule(securityPolicy:)``
     public func getRule(
       request: OrganizationSecurityPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule {
@@ -357,6 +432,12 @@
     /// disabled for most organizations. Use firewallPolicies.insert instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: OrganizationSecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -376,6 +457,12 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -421,6 +508,12 @@
     /// disabled for most organizations. Use firewallPolicies.list instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyList {
@@ -435,6 +528,10 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_listAssociations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listAssociations(request:)``
     public func listAssociations(
       request: OrganizationSecurityPoliciesClient.ListAssociationsRequest,
       options: GoogleGax.RequestOptions
@@ -446,6 +543,10 @@
     /// expressions.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_listPreconfiguredExpressionSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listPreconfiguredExpressionSets(request:)``
     public func listPreconfiguredExpressionSets(
       request: OrganizationSecurityPoliciesClient.ListPreconfiguredExpressionSetsRequest,
       options: GoogleGax.RequestOptions
@@ -460,6 +561,13 @@
     /// now disabled for most organizations. Use firewallPolicies.move instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``move(request:)``
+    /// - ``movePollingUntilDone(request:)``
+    /// - ``movePollingUntilDone(request:options:)``
+    /// - ``movePollingUntilDone(securityPolicy:)``
     public func move(
       request: OrganizationSecurityPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -478,6 +586,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``move(request:)``
+    /// - ``move(request:options:)``
+    /// - ``movePollingUntilDone(request:)``
+    /// - ``movePollingUntilDone(securityPolicy:)``
     public func movePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -522,6 +637,13 @@
     /// now disabled for most organizations. Use firewallPolicies.patch instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
+    /// - ``patchPollingUntilDone(securityPolicy:body:)``
     public func patch(
       request: OrganizationSecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -540,6 +662,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(securityPolicy:body:)``
     public func patchPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -585,6 +714,13 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRulePollingUntilDone(request:)``
+    /// - ``patchRulePollingUntilDone(request:options:)``
+    /// - ``patchRulePollingUntilDone(securityPolicy:body:)``
     public func patchRule(
       request: OrganizationSecurityPoliciesClient.PatchRuleRequest,
       options: GoogleGax.RequestOptions
@@ -605,6 +741,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRule(request:options:)``
+    /// - ``patchRulePollingUntilDone(request:)``
+    /// - ``patchRulePollingUntilDone(securityPolicy:body:)``
     public func patchRulePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.PatchRuleRequest,
       options: GoogleGax.RequestOptions
@@ -651,6 +794,13 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeAssociation(request:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
+    /// - ``removeAssociationPollingUntilDone(request:options:)``
+    /// - ``removeAssociationPollingUntilDone(securityPolicy:)``
     public func removeAssociation(
       request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -671,6 +821,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeAssociation(request:)``
+    /// - ``removeAssociation(request:options:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
+    /// - ``removeAssociationPollingUntilDone(securityPolicy:)``
     public func removeAssociationPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -717,6 +874,13 @@
     /// instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRulePollingUntilDone(request:)``
+    /// - ``removeRulePollingUntilDone(request:options:)``
+    /// - ``removeRulePollingUntilDone(securityPolicy:)``
     public func removeRule(
       request: OrganizationSecurityPoliciesClient.RemoveRuleRequest,
       options: GoogleGax.RequestOptions
@@ -737,6 +901,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRule(request:options:)``
+    /// - ``removeRulePollingUntilDone(request:)``
+    /// - ``removeRulePollingUntilDone(securityPolicy:)``
     public func removeRulePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.RemoveRuleRequest,
       options: GoogleGax.RequestOptions
@@ -993,6 +1164,22 @@
 
   // Default implementations
   extension Clients.OrganizationSecurityPoliciesProtocol {
+    /// Inserts an association for the specified security policy.
+    ///
+    /// This has billing implications.  Projects in the hierarchy with effective
+    /// hierarchical security policies will be automatically enrolled into Cloud
+    /// Armor Enterprise if not already enrolled.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.addAssociation
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/addAssociation(request:options:)``
     public func addAssociation(request: OrganizationSecurityPoliciesClient.AddAssociationRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1006,6 +1193,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts an association for the specified security policy.
+    ///
+    /// This has billing implications.  Projects in the hierarchy with effective
+    /// hierarchical security policies will be automatically enrolled into Cloud
+    /// Armor Enterprise if not already enrolled.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.addAssociation
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/addAssociationPollingUntilDone(request:options:)``
     public func addAssociationPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.AddAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1019,6 +1227,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts an association for the specified security policy.
+    ///
+    /// This has billing implications.  Projects in the hierarchy with effective
+    /// hierarchical security policies will be automatically enrolled into Cloud
+    /// Armor Enterprise if not already enrolled.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.addAssociation
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/addAssociationPollingUntilDone(request:options:)``
     public func addAssociationPollingUntilDone(
       securityPolicy: Swift.String,
       body: SecurityPolicyAssociation?,
@@ -1030,6 +1259,17 @@
       return try await self.addAssociationPollingUntilDone(request: request)
     }
 
+    /// Inserts a rule into a security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.addRule instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/addRule(request:options:)``
     public func addRule(request: OrganizationSecurityPoliciesClient.AddRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1042,6 +1282,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.addRule instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.AddRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1054,6 +1310,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.addRule instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       securityPolicy: Swift.String,
       body: SecurityPolicyRule?,
@@ -1065,6 +1337,18 @@
       return try await self.addRulePollingUntilDone(request: request)
     }
 
+    /// Copies rules to the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.cloneRules
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_copyRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/copyRules(request:options:)``
     public func copyRules(request: OrganizationSecurityPoliciesClient.CopyRulesRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1078,6 +1362,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies rules to the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.cloneRules
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_copyRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/copyRulesPollingUntilDone(request:options:)``
     public func copyRulesPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.CopyRulesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1091,6 +1392,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies rules to the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.cloneRules
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_copyRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/copyRulesPollingUntilDone(request:options:)``
     public func copyRulesPollingUntilDone(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1100,6 +1418,17 @@
       return try await self.copyRulesPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// Use this API to remove Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to remove firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.delete instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/delete(request:options:)``
     public func delete(request: OrganizationSecurityPoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1112,6 +1441,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// Use this API to remove Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to remove firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.delete instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1124,6 +1469,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// Use this API to remove Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to remove firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.delete instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1133,6 +1494,17 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// List all of the ordered rules present in a single specified policy.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.get instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/get(request:options:)``
     public func `get`(request: OrganizationSecurityPoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.SecurityPolicy
     {
@@ -1145,6 +1517,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List all of the ordered rules present in a single specified policy.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.get instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/get(request:options:)``
     public func `get`(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.SecurityPolicy {
@@ -1154,6 +1537,18 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets an association with the specified name.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.getAssociation
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/getAssociation(request:options:)``
     public func getAssociation(request: OrganizationSecurityPoliciesClient.GetAssociationRequest)
       async throws -> GoogleCloudComputeV1.SecurityPolicyAssociation
     {
@@ -1167,6 +1562,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an association with the specified name.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.getAssociation
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/getAssociation(request:options:)``
     public func getAssociation(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyAssociation {
@@ -1176,6 +1583,17 @@
       return try await self.getAssociation(request: request)
     }
 
+    /// Gets a rule at the specified priority.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.getRule instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/getRule(request:options:)``
     public func getRule(request: OrganizationSecurityPoliciesClient.GetRuleRequest) async throws
       -> GoogleCloudComputeV1.SecurityPolicyRule
     {
@@ -1188,6 +1606,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a rule at the specified priority.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.getRule instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/getRule(request:options:)``
     public func getRule(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.SecurityPolicyRule {
@@ -1197,6 +1626,18 @@
       return try await self.getRule(request: request)
     }
 
+    /// Creates a new policy in the specified organization using the data included
+    /// in the request.
+    ///
+    /// Use this API to add Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to add firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.insert instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/insert(request:options:)``
     public func insert(request: OrganizationSecurityPoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1209,6 +1650,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new policy in the specified organization using the data included
+    /// in the request.
+    ///
+    /// Use this API to add Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to add firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.insert instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1221,6 +1679,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List all the policies that have been configured for the specified
+    /// organization.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.list instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/list(request:options:)``
     public func list(request: OrganizationSecurityPoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.SecurityPolicyList
     {
@@ -1233,6 +1703,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List all the policies that have been configured for the specified
+    /// organization.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is now
+    /// disabled for most organizations. Use firewallPolicies.list instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/list(request:options:)``
     public func listByItems(
       request: OrganizationSecurityPoliciesClient.ListRequest
     ) -> some AsyncSequence<SecurityPolicy, any Swift.Error> & Sendable {
@@ -1247,6 +1729,10 @@
     /// disabled for most organizations. Use firewallPolicies.list instead.
     ///
     /// @Snippet(path: "organizationSecurityPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/list(request:options:)``
     public func listByItems(
       request: OrganizationSecurityPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SecurityPolicy, any Swift.Error> & Sendable {
@@ -1260,6 +1746,18 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists associations of a specified target, i.e., organization or folder.
+    ///
+    /// Use this API to read Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to read firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.listAssociations
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_listAssociations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/listAssociations(request:options:)``
     public func listAssociations(
       request: OrganizationSecurityPoliciesClient.ListAssociationsRequest
     ) async throws -> GoogleCloudComputeV1.OrganizationSecurityPoliciesListAssociationsResponse {
@@ -1273,6 +1771,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the current list of preconfigured Web Application Firewall (WAF)
+    /// expressions.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_listPreconfiguredExpressionSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/listPreconfiguredExpressionSets(request:options:)``
     public func listPreconfiguredExpressionSets(
       request: OrganizationSecurityPoliciesClient.ListPreconfiguredExpressionSetsRequest
     ) async throws -> GoogleCloudComputeV1.SecurityPoliciesListPreconfiguredExpressionSetsResponse {
@@ -1286,6 +1792,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Moves the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.move instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/move(request:options:)``
     public func move(request: OrganizationSecurityPoliciesClient.MoveRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1298,6 +1815,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Moves the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.move instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/movePollingUntilDone(request:options:)``
     public func movePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.MoveRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1310,6 +1843,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Moves the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.move instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/movePollingUntilDone(request:options:)``
     public func movePollingUntilDone(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1319,6 +1868,17 @@
       return try await self.movePollingUntilDone(request: request)
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.patch instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/patch(request:options:)``
     public func patch(request: OrganizationSecurityPoliciesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1331,6 +1891,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.patch instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1343,6 +1919,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.patch instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       securityPolicy: Swift.String,
       body: SecurityPolicy?,
@@ -1354,6 +1946,18 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Patches a rule at the specified priority.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.patchRule
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/patchRule(request:options:)``
     public func patchRule(request: OrganizationSecurityPoliciesClient.PatchRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1367,6 +1971,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule at the specified priority.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.patchRule
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.PatchRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1380,6 +2001,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule at the specified priority.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.patchRule
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       securityPolicy: Swift.String,
       body: SecurityPolicyRule?,
@@ -1391,6 +2029,18 @@
       return try await self.patchRulePollingUntilDone(request: request)
     }
 
+    /// Removes an association for the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.removeAssociation
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/removeAssociation(request:options:)``
     public func removeAssociation(
       request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1404,6 +2054,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes an association for the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.removeAssociation
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociationPollingUntilDone(
       request: OrganizationSecurityPoliciesClient.RemoveAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1417,6 +2084,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes an association for the specified security policy.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.removeAssociation
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociationPollingUntilDone(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1426,6 +2110,18 @@
       return try await self.removeAssociationPollingUntilDone(request: request)
     }
 
+    /// Deletes a rule at the specified priority.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.removeRule
+    /// instead.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/removeRule(request:options:)``
     public func removeRule(request: OrganizationSecurityPoliciesClient.RemoveRuleRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1439,6 +2135,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule at the specified priority.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.removeRule
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       request: OrganizationSecurityPoliciesClient.RemoveRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1452,6 +2165,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule at the specified priority.
+    ///
+    /// Use this API to modify Cloud Armor policies. Previously, alpha and beta
+    /// versions of this API were used to modify firewall policies. This usage is
+    /// now disabled for most organizations. Use firewallPolicies.removeRule
+    /// instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "organizationSecurityPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``OrganizationSecurityPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       securityPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1461,6 +2191,8 @@
       return try await self.removeRulePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource. Gets a list of operations
+    /// by making a `list()` request.
     public func getOperation(request: GlobalOrganizationOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

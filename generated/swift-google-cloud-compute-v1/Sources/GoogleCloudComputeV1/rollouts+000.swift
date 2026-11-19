@@ -24,6 +24,10 @@
   /// Service for the `rollouts` resource.
   ///
   /// @Snippet(path: "rolloutsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RolloutsProtocol``
   public final class RolloutsClient: Clients.RolloutsProtocol, Sendable {
     let inner: any Clients.RolloutsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Advances a Rollout to the next wave, or completes it if no waves remain.
     ///
     /// @Snippet(path: "rollouts_advance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``advance(request:)``
+    /// - ``advancePollingUntilDone(project:rollout:)``
+    /// - ``advancePollingUntilDone(request:)``
+    /// - ``advancePollingUntilDone(request:options:)``
     public func advance(
       request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "rollouts_advance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``advance(request:)``
+    /// - ``advance(request:options:)``
+    /// - ``advancePollingUntilDone(project:rollout:)``
+    /// - ``advancePollingUntilDone(request:)``
     public func advancePollingUntilDone(
       request: RolloutsClient.AdvanceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,6 +117,13 @@
     /// Cancels a Rollout.
     ///
     /// @Snippet(path: "rollouts_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancel(request:)``
+    /// - ``cancelPollingUntilDone(project:rollout:)``
+    /// - ``cancelPollingUntilDone(request:)``
+    /// - ``cancelPollingUntilDone(request:options:)``
     public func cancel(
       request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -113,6 +138,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "rollouts_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancel(request:)``
+    /// - ``cancel(request:options:)``
+    /// - ``cancelPollingUntilDone(project:rollout:)``
+    /// - ``cancelPollingUntilDone(request:)``
     public func cancelPollingUntilDone(
       request: RolloutsClient.CancelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -154,6 +186,13 @@
     /// Deletes a Rollout.
     ///
     /// @Snippet(path: "rollouts_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:rollout:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +207,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "rollouts_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:rollout:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RolloutsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -209,6 +255,11 @@
     /// Gets details of a single project-scoped Rollout.
     ///
     /// @Snippet(path: "rollouts_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:rollout:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RolloutsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Rollout {
@@ -218,6 +269,13 @@
     /// Lists Rollouts in a given project and location.
     ///
     /// @Snippet(path: "rollouts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RolloutsListResponse {
@@ -227,6 +285,13 @@
     /// Pauses a Rollout.
     ///
     /// @Snippet(path: "rollouts_pause")
+    ///
+    /// ## See Also
+    ///
+    /// - ``pause(request:)``
+    /// - ``pausePollingUntilDone(project:rollout:)``
+    /// - ``pausePollingUntilDone(request:)``
+    /// - ``pausePollingUntilDone(request:options:)``
     public func pause(
       request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -241,6 +306,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "rollouts_pause")
+    ///
+    /// ## See Also
+    ///
+    /// - ``pause(request:)``
+    /// - ``pause(request:options:)``
+    /// - ``pausePollingUntilDone(project:rollout:)``
+    /// - ``pausePollingUntilDone(request:)``
     public func pausePollingUntilDone(
       request: RolloutsClient.PauseRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -282,6 +354,13 @@
     /// Resumes a Rollout.
     ///
     /// @Snippet(path: "rollouts_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resume(request:)``
+    /// - ``resumePollingUntilDone(project:rollout:)``
+    /// - ``resumePollingUntilDone(request:)``
+    /// - ``resumePollingUntilDone(request:options:)``
     public func resume(
       request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -296,6 +375,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "rollouts_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``resume(request:)``
+    /// - ``resume(request:options:)``
+    /// - ``resumePollingUntilDone(project:rollout:)``
+    /// - ``resumePollingUntilDone(request:)``
     public func resumePollingUntilDone(
       request: RolloutsClient.ResumeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -440,6 +526,13 @@
 
   // Default implementations
   extension Clients.RolloutsProtocol {
+    /// Advances a Rollout to the next wave, or completes it if no waves remain.
+    ///
+    /// @Snippet(path: "rollouts_advance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/advance(request:options:)``
     public func advance(request: RolloutsClient.AdvanceRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -452,6 +545,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Advances a Rollout to the next wave, or completes it if no waves remain.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_advance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/advancePollingUntilDone(request:options:)``
     public func advancePollingUntilDone(
       request: RolloutsClient.AdvanceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -464,6 +569,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Advances a Rollout to the next wave, or completes it if no waves remain.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_advance")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/advancePollingUntilDone(request:options:)``
     public func advancePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
@@ -475,6 +592,13 @@
       return try await self.advancePollingUntilDone(request: request)
     }
 
+    /// Cancels a Rollout.
+    ///
+    /// @Snippet(path: "rollouts_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/cancel(request:options:)``
     public func cancel(request: RolloutsClient.CancelRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -487,6 +611,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Cancels a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/cancelPollingUntilDone(request:options:)``
     public func cancelPollingUntilDone(
       request: RolloutsClient.CancelRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -499,6 +635,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Cancels a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_cancel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/cancelPollingUntilDone(request:options:)``
     public func cancelPollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
@@ -510,6 +658,13 @@
       return try await self.cancelPollingUntilDone(request: request)
     }
 
+    /// Deletes a Rollout.
+    ///
+    /// @Snippet(path: "rollouts_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/delete(request:options:)``
     public func delete(request: RolloutsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -522,6 +677,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RolloutsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -534,6 +701,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
@@ -545,6 +724,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Gets details of a single project-scoped Rollout.
+    ///
+    /// @Snippet(path: "rollouts_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/get(request:options:)``
     public func `get`(request: RolloutsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Rollout
     {
@@ -557,6 +743,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets details of a single project-scoped Rollout.
+    ///
+    /// @Snippet(path: "rollouts_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       rollout: Swift.String,
@@ -568,6 +761,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Lists Rollouts in a given project and location.
+    ///
+    /// @Snippet(path: "rollouts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/list(request:options:)``
     public func list(request: RolloutsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RolloutsListResponse
     {
@@ -580,6 +780,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Rollouts in a given project and location.
+    ///
+    /// @Snippet(path: "rollouts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/list(request:options:)``
     public func listByItems(
       request: RolloutsClient.ListRequest
     ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -589,6 +796,10 @@
     /// Lists Rollouts in a given project and location.
     ///
     /// @Snippet(path: "rollouts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/list(request:options:)``
     public func listByItems(
       request: RolloutsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -602,6 +813,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Rollouts in a given project and location.
+    ///
+    /// @Snippet(path: "rollouts_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -611,6 +829,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Pauses a Rollout.
+    ///
+    /// @Snippet(path: "rollouts_pause")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/pause(request:options:)``
     public func pause(request: RolloutsClient.PauseRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -623,6 +848,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Pauses a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_pause")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/pausePollingUntilDone(request:options:)``
     public func pausePollingUntilDone(
       request: RolloutsClient.PauseRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -635,6 +872,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Pauses a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_pause")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/pausePollingUntilDone(request:options:)``
     public func pausePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
@@ -646,6 +895,13 @@
       return try await self.pausePollingUntilDone(request: request)
     }
 
+    /// Resumes a Rollout.
+    ///
+    /// @Snippet(path: "rollouts_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/resume(request:options:)``
     public func resume(request: RolloutsClient.ResumeRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -658,6 +914,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Resumes a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/resumePollingUntilDone(request:options:)``
     public func resumePollingUntilDone(
       request: RolloutsClient.ResumeRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -670,6 +938,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Resumes a Rollout.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "rollouts_resume")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RolloutsClient/resumePollingUntilDone(request:options:)``
     public func resumePollingUntilDone(
       project: Swift.String,
       rollout: Swift.String,
@@ -681,6 +961,7 @@
       return try await self.resumePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

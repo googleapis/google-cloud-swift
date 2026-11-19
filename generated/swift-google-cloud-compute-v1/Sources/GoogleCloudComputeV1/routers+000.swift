@@ -24,6 +24,10 @@
   /// Service for the `routers` resource.
   ///
   /// @Snippet(path: "routersQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RoutersProtocol``
   public final class RoutersClient: Clients.RoutersProtocol, Sendable {
     let inner: any Clients.RoutersStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "routers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouterAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified Router resource.
     ///
     /// @Snippet(path: "routers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:router:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:router:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RoutersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,13 @@
     /// Deletes Named Set
     ///
     /// @Snippet(path: "routers_deleteNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteNamedSet(request:)``
+    /// - ``deleteNamedSetPollingUntilDone(project:region:router:)``
+    /// - ``deleteNamedSetPollingUntilDone(request:)``
+    /// - ``deleteNamedSetPollingUntilDone(request:options:)``
     public func deleteNamedSet(
       request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -126,6 +158,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_deleteNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteNamedSet(request:)``
+    /// - ``deleteNamedSet(request:options:)``
+    /// - ``deleteNamedSetPollingUntilDone(project:region:router:)``
+    /// - ``deleteNamedSetPollingUntilDone(request:)``
     public func deleteNamedSetPollingUntilDone(
       request: RoutersClient.DeleteNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +207,13 @@
     /// Deletes Route Policy
     ///
     /// @Snippet(path: "routers_deleteRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteRoutePolicy(request:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(project:region:router:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(request:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(request:options:)``
     public func deleteRoutePolicy(
       request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -182,6 +228,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_deleteRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteRoutePolicy(request:)``
+    /// - ``deleteRoutePolicy(request:options:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(project:region:router:)``
+    /// - ``deleteRoutePolicyPollingUntilDone(request:)``
     public func deleteRoutePolicyPollingUntilDone(
       request: RoutersClient.DeleteRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -224,6 +277,11 @@
     /// Returns the specified Router resource.
     ///
     /// @Snippet(path: "routers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:router:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RoutersClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Router {
@@ -233,6 +291,11 @@
     /// Returns specified Named Set
     ///
     /// @Snippet(path: "routers_getNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getNamedSet(project:region:router:)``
+    /// - ``getNamedSet(request:)``
     public func getNamedSet(
       request: RoutersClient.GetNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersGetNamedSetResponse {
@@ -242,6 +305,11 @@
     /// Retrieves runtime NAT IP information.
     ///
     /// @Snippet(path: "routers_getNatIpInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getNatIpInfo(project:region:router:)``
+    /// - ``getNatIpInfo(request:)``
     public func getNatIpInfo(
       request: RoutersClient.GetNatIpInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NatIpInfoResponse {
@@ -251,6 +319,13 @@
     /// Retrieves runtime Nat mapping information of VM endpoints.
     ///
     /// @Snippet(path: "routers_getNatMappingInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getNatMappingInfo(request:)``
+    /// - ``getNatMappingInfoByItems(project:region:router:)``
+    /// - ``getNatMappingInfoByItems(request:)``
+    /// - ``getNatMappingInfoByItems(request:options:)``
     public func getNatMappingInfo(
       request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VmEndpointNatMappingsList {
@@ -260,6 +335,11 @@
     /// Returns specified Route Policy
     ///
     /// @Snippet(path: "routers_getRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getRoutePolicy(project:region:router:)``
+    /// - ``getRoutePolicy(request:)``
     public func getRoutePolicy(
       request: RoutersClient.GetRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersGetRoutePolicyResponse {
@@ -269,6 +349,11 @@
     /// Retrieves runtime information of the specified router.
     ///
     /// @Snippet(path: "routers_getRouterStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getRouterStatus(project:region:router:)``
+    /// - ``getRouterStatus(request:)``
     public func getRouterStatus(
       request: RoutersClient.GetRouterStatusRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouterStatusResponse {
@@ -279,6 +364,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "routers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -294,6 +386,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RoutersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -336,6 +435,13 @@
     /// Retrieves a list of Router resources available to the specified project.
     ///
     /// @Snippet(path: "routers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RouterList {
@@ -345,6 +451,13 @@
     /// Retrieves a list of router bgp routes available to the specified project.
     ///
     /// @Snippet(path: "routers_listBgpRoutes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listBgpRoutes(request:)``
+    /// - ``listBgpRoutesByItems(project:region:router:)``
+    /// - ``listBgpRoutesByItems(request:)``
+    /// - ``listBgpRoutesByItems(request:options:)``
     public func listBgpRoutes(
       request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersListBgpRoutes {
@@ -355,6 +468,13 @@
     /// specified project.
     ///
     /// @Snippet(path: "routers_listNamedSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listNamedSets(request:)``
+    /// - ``listNamedSetsByItems(project:region:router:)``
+    /// - ``listNamedSetsByItems(request:)``
+    /// - ``listNamedSetsByItems(request:options:)``
     public func listNamedSets(
       request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersListNamedSets {
@@ -365,6 +485,13 @@
     /// specified project.
     ///
     /// @Snippet(path: "routers_listRoutePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listRoutePolicies(request:)``
+    /// - ``listRoutePoliciesByItems(project:region:router:)``
+    /// - ``listRoutePoliciesByItems(request:)``
+    /// - ``listRoutePoliciesByItems(request:options:)``
     public func listRoutePolicies(
       request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersListRoutePolicies {
@@ -377,6 +504,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "routers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:router:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -394,6 +528,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:router:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RoutersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -436,6 +577,13 @@
     /// Patches Named Set
     ///
     /// @Snippet(path: "routers_patchNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchNamedSet(request:)``
+    /// - ``patchNamedSetPollingUntilDone(project:region:router:body:)``
+    /// - ``patchNamedSetPollingUntilDone(request:)``
+    /// - ``patchNamedSetPollingUntilDone(request:options:)``
     public func patchNamedSet(
       request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -450,6 +598,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_patchNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchNamedSet(request:)``
+    /// - ``patchNamedSet(request:options:)``
+    /// - ``patchNamedSetPollingUntilDone(project:region:router:body:)``
+    /// - ``patchNamedSetPollingUntilDone(request:)``
     public func patchNamedSetPollingUntilDone(
       request: RoutersClient.PatchNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -492,6 +647,13 @@
     /// Patches Route Policy
     ///
     /// @Snippet(path: "routers_patchRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRoutePolicy(request:)``
+    /// - ``patchRoutePolicyPollingUntilDone(project:region:router:body:)``
+    /// - ``patchRoutePolicyPollingUntilDone(request:)``
+    /// - ``patchRoutePolicyPollingUntilDone(request:options:)``
     public func patchRoutePolicy(
       request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -506,6 +668,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_patchRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRoutePolicy(request:)``
+    /// - ``patchRoutePolicy(request:options:)``
+    /// - ``patchRoutePolicyPollingUntilDone(project:region:router:body:)``
+    /// - ``patchRoutePolicyPollingUntilDone(request:)``
     public func patchRoutePolicyPollingUntilDone(
       request: RoutersClient.PatchRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -549,6 +718,11 @@
     /// Calling this method does NOT create or update the router.
     ///
     /// @Snippet(path: "routers_preview")
+    ///
+    /// ## See Also
+    ///
+    /// - ``preview(project:region:router:body:)``
+    /// - ``preview(request:)``
     public func preview(
       request: RoutersClient.PreviewRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RoutersPreviewResponse {
@@ -561,6 +735,13 @@
     /// representation enclosed in the request message payload.
     ///
     /// @Snippet(path: "routers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:region:router:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -578,6 +759,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:region:router:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: RoutersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -620,6 +808,13 @@
     /// Updates or creates new Named Set
     ///
     /// @Snippet(path: "routers_updateNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateNamedSet(request:)``
+    /// - ``updateNamedSetPollingUntilDone(project:region:router:body:)``
+    /// - ``updateNamedSetPollingUntilDone(request:)``
+    /// - ``updateNamedSetPollingUntilDone(request:options:)``
     public func updateNamedSet(
       request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -634,6 +829,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_updateNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateNamedSet(request:)``
+    /// - ``updateNamedSet(request:options:)``
+    /// - ``updateNamedSetPollingUntilDone(project:region:router:body:)``
+    /// - ``updateNamedSetPollingUntilDone(request:)``
     public func updateNamedSetPollingUntilDone(
       request: RoutersClient.UpdateNamedSetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -676,6 +878,13 @@
     /// Updates or creates new Route Policy
     ///
     /// @Snippet(path: "routers_updateRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateRoutePolicy(request:)``
+    /// - ``updateRoutePolicyPollingUntilDone(project:region:router:body:)``
+    /// - ``updateRoutePolicyPollingUntilDone(request:)``
+    /// - ``updateRoutePolicyPollingUntilDone(request:options:)``
     public func updateRoutePolicy(
       request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -690,6 +899,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "routers_updateRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateRoutePolicy(request:)``
+    /// - ``updateRoutePolicy(request:options:)``
+    /// - ``updateRoutePolicyPollingUntilDone(project:region:router:body:)``
+    /// - ``updateRoutePolicyPollingUntilDone(request:)``
     public func updateRoutePolicyPollingUntilDone(
       request: RoutersClient.UpdateRoutePolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -960,6 +1176,16 @@
 
   // Default implementations
   extension Clients.RoutersProtocol {
+    /// Retrieves an aggregated list of routers.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "routers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/aggregatedList(request:options:)``
     public func aggregatedList(request: RoutersClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.RouterAggregatedList
     {
@@ -972,6 +1198,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of routers.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "routers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RoutersClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, RoutersScopedList), any Swift.Error> & Sendable {
@@ -984,6 +1220,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "routers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RoutersClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, RoutersScopedList), any Swift.Error> & Sendable {
@@ -997,6 +1237,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of routers.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "routers_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, RoutersScopedList), any Swift.Error> & Sendable {
@@ -1006,6 +1256,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified Router resource.
+    ///
+    /// @Snippet(path: "routers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/delete(request:options:)``
     public func delete(request: RoutersClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1018,6 +1275,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Router resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RoutersClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1030,6 +1299,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Router resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1043,6 +1324,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Deletes Named Set
+    ///
+    /// @Snippet(path: "routers_deleteNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deleteNamedSet(request:options:)``
     public func deleteNamedSet(request: RoutersClient.DeleteNamedSetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1055,6 +1343,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes Named Set
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_deleteNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deleteNamedSetPollingUntilDone(request:options:)``
     public func deleteNamedSetPollingUntilDone(
       request: RoutersClient.DeleteNamedSetRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1067,6 +1367,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes Named Set
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_deleteNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deleteNamedSetPollingUntilDone(request:options:)``
     public func deleteNamedSetPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1080,6 +1392,13 @@
       return try await self.deleteNamedSetPollingUntilDone(request: request)
     }
 
+    /// Deletes Route Policy
+    ///
+    /// @Snippet(path: "routers_deleteRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deleteRoutePolicy(request:options:)``
     public func deleteRoutePolicy(request: RoutersClient.DeleteRoutePolicyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1092,6 +1411,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_deleteRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deleteRoutePolicyPollingUntilDone(request:options:)``
     public func deleteRoutePolicyPollingUntilDone(
       request: RoutersClient.DeleteRoutePolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1104,6 +1435,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_deleteRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/deleteRoutePolicyPollingUntilDone(request:options:)``
     public func deleteRoutePolicyPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1117,6 +1460,13 @@
       return try await self.deleteRoutePolicyPollingUntilDone(request: request)
     }
 
+    /// Returns the specified Router resource.
+    ///
+    /// @Snippet(path: "routers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/get(request:options:)``
     public func `get`(request: RoutersClient.GetRequest) async throws -> GoogleCloudComputeV1.Router
     {
       try await self.`get`(request: request, options: .init())
@@ -1128,6 +1478,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified Router resource.
+    ///
+    /// @Snippet(path: "routers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -1141,6 +1498,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Returns specified Named Set
+    ///
+    /// @Snippet(path: "routers_getNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNamedSet(request:options:)``
     public func getNamedSet(request: RoutersClient.GetNamedSetRequest) async throws
       -> GoogleCloudComputeV1.RoutersGetNamedSetResponse
     {
@@ -1153,6 +1517,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns specified Named Set
+    ///
+    /// @Snippet(path: "routers_getNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNamedSet(request:options:)``
     public func getNamedSet(
       project: Swift.String,
       region: Swift.String,
@@ -1166,6 +1537,13 @@
       return try await self.getNamedSet(request: request)
     }
 
+    /// Retrieves runtime NAT IP information.
+    ///
+    /// @Snippet(path: "routers_getNatIpInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNatIpInfo(request:options:)``
     public func getNatIpInfo(request: RoutersClient.GetNatIpInfoRequest) async throws
       -> GoogleCloudComputeV1.NatIpInfoResponse
     {
@@ -1178,6 +1556,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves runtime NAT IP information.
+    ///
+    /// @Snippet(path: "routers_getNatIpInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNatIpInfo(request:options:)``
     public func getNatIpInfo(
       project: Swift.String,
       region: Swift.String,
@@ -1191,6 +1576,13 @@
       return try await self.getNatIpInfo(request: request)
     }
 
+    /// Retrieves runtime Nat mapping information of VM endpoints.
+    ///
+    /// @Snippet(path: "routers_getNatMappingInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNatMappingInfo(request:options:)``
     public func getNatMappingInfo(request: RoutersClient.GetNatMappingInfoRequest) async throws
       -> GoogleCloudComputeV1.VmEndpointNatMappingsList
     {
@@ -1203,6 +1595,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves runtime Nat mapping information of VM endpoints.
+    ///
+    /// @Snippet(path: "routers_getNatMappingInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNatMappingInfo(request:options:)``
     public func getNatMappingInfoByItems(
       request: RoutersClient.GetNatMappingInfoRequest
     ) -> some AsyncSequence<VmEndpointNatMappings, any Swift.Error> & Sendable {
@@ -1212,6 +1611,10 @@
     /// Retrieves runtime Nat mapping information of VM endpoints.
     ///
     /// @Snippet(path: "routers_getNatMappingInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNatMappingInfo(request:options:)``
     public func getNatMappingInfoByItems(
       request: RoutersClient.GetNatMappingInfoRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<VmEndpointNatMappings, any Swift.Error> & Sendable {
@@ -1226,6 +1629,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves runtime Nat mapping information of VM endpoints.
+    ///
+    /// @Snippet(path: "routers_getNatMappingInfo")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getNatMappingInfo(request:options:)``
     public func getNatMappingInfoByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1239,6 +1649,13 @@
       return self.getNatMappingInfoByItems(request: request)
     }
 
+    /// Returns specified Route Policy
+    ///
+    /// @Snippet(path: "routers_getRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getRoutePolicy(request:options:)``
     public func getRoutePolicy(request: RoutersClient.GetRoutePolicyRequest) async throws
       -> GoogleCloudComputeV1.RoutersGetRoutePolicyResponse
     {
@@ -1251,6 +1668,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns specified Route Policy
+    ///
+    /// @Snippet(path: "routers_getRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getRoutePolicy(request:options:)``
     public func getRoutePolicy(
       project: Swift.String,
       region: Swift.String,
@@ -1264,6 +1688,13 @@
       return try await self.getRoutePolicy(request: request)
     }
 
+    /// Retrieves runtime information of the specified router.
+    ///
+    /// @Snippet(path: "routers_getRouterStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getRouterStatus(request:options:)``
     public func getRouterStatus(request: RoutersClient.GetRouterStatusRequest) async throws
       -> GoogleCloudComputeV1.RouterStatusResponse
     {
@@ -1276,6 +1707,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves runtime information of the specified router.
+    ///
+    /// @Snippet(path: "routers_getRouterStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/getRouterStatus(request:options:)``
     public func getRouterStatus(
       project: Swift.String,
       region: Swift.String,
@@ -1289,6 +1727,14 @@
       return try await self.getRouterStatus(request: request)
     }
 
+    /// Creates a Router resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "routers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/insert(request:options:)``
     public func insert(request: RoutersClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1301,6 +1747,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Router resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RoutersClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1313,6 +1772,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Router resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1326,6 +1798,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of Router resources available to the specified project.
+    ///
+    /// @Snippet(path: "routers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/list(request:options:)``
     public func list(request: RoutersClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RouterList
     {
@@ -1338,6 +1817,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of Router resources available to the specified project.
+    ///
+    /// @Snippet(path: "routers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/list(request:options:)``
     public func listByItems(
       request: RoutersClient.ListRequest
     ) -> some AsyncSequence<Router, any Swift.Error> & Sendable {
@@ -1347,6 +1833,10 @@
     /// Retrieves a list of Router resources available to the specified project.
     ///
     /// @Snippet(path: "routers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/list(request:options:)``
     public func listByItems(
       request: RoutersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Router, any Swift.Error> & Sendable {
@@ -1360,6 +1850,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of Router resources available to the specified project.
+    ///
+    /// @Snippet(path: "routers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1371,6 +1868,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves a list of router bgp routes available to the specified project.
+    ///
+    /// @Snippet(path: "routers_listBgpRoutes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listBgpRoutes(request:options:)``
     public func listBgpRoutes(request: RoutersClient.ListBgpRoutesRequest) async throws
       -> GoogleCloudComputeV1.RoutersListBgpRoutes
     {
@@ -1383,6 +1887,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of router bgp routes available to the specified project.
+    ///
+    /// @Snippet(path: "routers_listBgpRoutes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listBgpRoutes(request:options:)``
     public func listBgpRoutesByItems(
       request: RoutersClient.ListBgpRoutesRequest
     ) -> some AsyncSequence<BgpRoute, any Swift.Error> & Sendable {
@@ -1392,6 +1903,10 @@
     /// Retrieves a list of router bgp routes available to the specified project.
     ///
     /// @Snippet(path: "routers_listBgpRoutes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listBgpRoutes(request:options:)``
     public func listBgpRoutesByItems(
       request: RoutersClient.ListBgpRoutesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<BgpRoute, any Swift.Error> & Sendable {
@@ -1405,6 +1920,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of router bgp routes available to the specified project.
+    ///
+    /// @Snippet(path: "routers_listBgpRoutes")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listBgpRoutes(request:options:)``
     public func listBgpRoutesByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1418,6 +1940,14 @@
       return self.listBgpRoutesByItems(request: request)
     }
 
+    /// Retrieves a list of router named set subresources available to the
+    /// specified project.
+    ///
+    /// @Snippet(path: "routers_listNamedSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listNamedSets(request:options:)``
     public func listNamedSets(request: RoutersClient.ListNamedSetsRequest) async throws
       -> GoogleCloudComputeV1.RoutersListNamedSets
     {
@@ -1430,6 +1960,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of router named set subresources available to the
+    /// specified project.
+    ///
+    /// @Snippet(path: "routers_listNamedSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listNamedSets(request:options:)``
     public func listNamedSetsByItems(
       request: RoutersClient.ListNamedSetsRequest
     ) -> some AsyncSequence<NamedSet, any Swift.Error> & Sendable {
@@ -1440,6 +1978,10 @@
     /// specified project.
     ///
     /// @Snippet(path: "routers_listNamedSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listNamedSets(request:options:)``
     public func listNamedSetsByItems(
       request: RoutersClient.ListNamedSetsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NamedSet, any Swift.Error> & Sendable {
@@ -1453,6 +1995,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of router named set subresources available to the
+    /// specified project.
+    ///
+    /// @Snippet(path: "routers_listNamedSets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listNamedSets(request:options:)``
     public func listNamedSetsByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1466,6 +2016,14 @@
       return self.listNamedSetsByItems(request: request)
     }
 
+    /// Retrieves a list of router route policy subresources available to the
+    /// specified project.
+    ///
+    /// @Snippet(path: "routers_listRoutePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listRoutePolicies(request:options:)``
     public func listRoutePolicies(request: RoutersClient.ListRoutePoliciesRequest) async throws
       -> GoogleCloudComputeV1.RoutersListRoutePolicies
     {
@@ -1478,6 +2036,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of router route policy subresources available to the
+    /// specified project.
+    ///
+    /// @Snippet(path: "routers_listRoutePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listRoutePolicies(request:options:)``
     public func listRoutePoliciesByItems(
       request: RoutersClient.ListRoutePoliciesRequest
     ) -> some AsyncSequence<RoutePolicy, any Swift.Error> & Sendable {
@@ -1488,6 +2054,10 @@
     /// specified project.
     ///
     /// @Snippet(path: "routers_listRoutePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listRoutePolicies(request:options:)``
     public func listRoutePoliciesByItems(
       request: RoutersClient.ListRoutePoliciesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<RoutePolicy, any Swift.Error> & Sendable {
@@ -1502,6 +2072,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of router route policy subresources available to the
+    /// specified project.
+    ///
+    /// @Snippet(path: "routers_listRoutePolicies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/listRoutePolicies(request:options:)``
     public func listRoutePoliciesByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1515,6 +2093,16 @@
       return self.listRoutePoliciesByItems(request: request)
     }
 
+    /// Patches the specified Router resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "routers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patch(request:options:)``
     public func patch(request: RoutersClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1527,6 +2115,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified Router resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RoutersClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1539,6 +2142,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified Router resource with the data included in the
+    /// request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1554,6 +2172,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Patches Named Set
+    ///
+    /// @Snippet(path: "routers_patchNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchNamedSet(request:options:)``
     public func patchNamedSet(request: RoutersClient.PatchNamedSetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1566,6 +2191,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches Named Set
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_patchNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchNamedSetPollingUntilDone(request:options:)``
     public func patchNamedSetPollingUntilDone(
       request: RoutersClient.PatchNamedSetRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1578,6 +2215,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches Named Set
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_patchNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchNamedSetPollingUntilDone(request:options:)``
     public func patchNamedSetPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1593,6 +2242,13 @@
       return try await self.patchNamedSetPollingUntilDone(request: request)
     }
 
+    /// Patches Route Policy
+    ///
+    /// @Snippet(path: "routers_patchRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchRoutePolicy(request:options:)``
     public func patchRoutePolicy(request: RoutersClient.PatchRoutePolicyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1605,6 +2261,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_patchRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchRoutePolicyPollingUntilDone(request:options:)``
     public func patchRoutePolicyPollingUntilDone(
       request: RoutersClient.PatchRoutePolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1617,6 +2285,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_patchRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/patchRoutePolicyPollingUntilDone(request:options:)``
     public func patchRoutePolicyPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1632,6 +2312,14 @@
       return try await self.patchRoutePolicyPollingUntilDone(request: request)
     }
 
+    /// Preview fields auto-generated during router create andupdate operations.
+    /// Calling this method does NOT create or update the router.
+    ///
+    /// @Snippet(path: "routers_preview")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/preview(request:options:)``
     public func preview(request: RoutersClient.PreviewRequest) async throws
       -> GoogleCloudComputeV1.RoutersPreviewResponse
     {
@@ -1644,6 +2332,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Preview fields auto-generated during router create andupdate operations.
+    /// Calling this method does NOT create or update the router.
+    ///
+    /// @Snippet(path: "routers_preview")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/preview(request:options:)``
     public func preview(
       project: Swift.String,
       region: Swift.String,
@@ -1659,6 +2355,16 @@
       return try await self.preview(request: request)
     }
 
+    /// Updates the specified Router resource with the data included in the
+    /// request.  This method conforms toPUT semantics, which requests that the state of the
+    /// target resource be created or replaced with the state defined by the
+    /// representation enclosed in the request message payload.
+    ///
+    /// @Snippet(path: "routers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/update(request:options:)``
     public func update(request: RoutersClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1671,6 +2377,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified Router resource with the data included in the
+    /// request.  This method conforms toPUT semantics, which requests that the state of the
+    /// target resource be created or replaced with the state defined by the
+    /// representation enclosed in the request message payload.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: RoutersClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1683,6 +2404,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified Router resource with the data included in the
+    /// request.  This method conforms toPUT semantics, which requests that the state of the
+    /// target resource be created or replaced with the state defined by the
+    /// representation enclosed in the request message payload.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1698,6 +2434,13 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Updates or creates new Named Set
+    ///
+    /// @Snippet(path: "routers_updateNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updateNamedSet(request:options:)``
     public func updateNamedSet(request: RoutersClient.UpdateNamedSetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1710,6 +2453,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates or creates new Named Set
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_updateNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updateNamedSetPollingUntilDone(request:options:)``
     public func updateNamedSetPollingUntilDone(
       request: RoutersClient.UpdateNamedSetRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1722,6 +2477,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates or creates new Named Set
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_updateNamedSet")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updateNamedSetPollingUntilDone(request:options:)``
     public func updateNamedSetPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1737,6 +2504,13 @@
       return try await self.updateNamedSetPollingUntilDone(request: request)
     }
 
+    /// Updates or creates new Route Policy
+    ///
+    /// @Snippet(path: "routers_updateRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updateRoutePolicy(request:options:)``
     public func updateRoutePolicy(request: RoutersClient.UpdateRoutePolicyRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1749,6 +2523,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates or creates new Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_updateRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updateRoutePolicyPollingUntilDone(request:options:)``
     public func updateRoutePolicyPollingUntilDone(
       request: RoutersClient.UpdateRoutePolicyRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1761,6 +2547,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates or creates new Route Policy
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "routers_updateRoutePolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RoutersClient/updateRoutePolicyPollingUntilDone(request:options:)``
     public func updateRoutePolicyPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1776,6 +2574,7 @@
       return try await self.updateRoutePolicyPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

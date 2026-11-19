@@ -32,6 +32,10 @@ public import Foundation
 /// more.
 ///
 /// @Snippet(path: "IAMCredentialsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IAMCredentialsProtocol``
 public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendable {
   let inner: any Clients.IAMCredentialsStub
 
@@ -48,6 +52,11 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   /// Generates an OAuth 2.0 access token for a service account.
   ///
   /// @Snippet(path: "IAMCredentials_GenerateAccessToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAccessToken(name:delegates:scope:lifetime:)``
+  /// - ``generateAccessToken(request:)``
   public func generateAccessToken(
     request: GenerateAccessTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse {
@@ -57,6 +66,11 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   /// Generates an OpenID Connect ID token for a service account.
   ///
   /// @Snippet(path: "IAMCredentials_GenerateIdToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateIdToken(name:delegates:audience:includeEmail:)``
+  /// - ``generateIdToken(request:)``
   public func generateIdToken(
     request: GenerateIdTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.GenerateIdTokenResponse {
@@ -66,6 +80,11 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   /// Signs a blob using a service account's system-managed private key.
   ///
   /// @Snippet(path: "IAMCredentials_SignBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``signBlob(name:delegates:payload:)``
+  /// - ``signBlob(request:)``
   public func signBlob(
     request: SignBlobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.SignBlobResponse {
@@ -75,6 +94,11 @@ public final class IAMCredentialsClient: Clients.IAMCredentialsProtocol, Sendabl
   /// Signs a JWT using a service account's system-managed private key.
   ///
   /// @Snippet(path: "IAMCredentials_SignJwt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``signJwt(name:delegates:payload:)``
+  /// - ``signJwt(request:)``
   public func signJwt(
     request: SignJwtRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMCredentialsV1.SignJwtResponse {
@@ -113,6 +137,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.IAMCredentialsProtocol {
+  /// Generates an OAuth 2.0 access token for a service account.
+  ///
+  /// @Snippet(path: "IAMCredentials_GenerateAccessToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/generateAccessToken(request:options:)``
   public func generateAccessToken(request: GenerateAccessTokenRequest) async throws
     -> GoogleIAMCredentialsV1.GenerateAccessTokenResponse
   {
@@ -125,6 +156,13 @@ extension Clients.IAMCredentialsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates an OAuth 2.0 access token for a service account.
+  ///
+  /// @Snippet(path: "IAMCredentials_GenerateAccessToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/generateAccessToken(request:options:)``
   public func generateAccessToken(
     name: Swift.String,
     delegates: [Swift.String],
@@ -140,6 +178,13 @@ extension Clients.IAMCredentialsProtocol {
     return try await self.generateAccessToken(request: request)
   }
 
+  /// Generates an OpenID Connect ID token for a service account.
+  ///
+  /// @Snippet(path: "IAMCredentials_GenerateIdToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/generateIdToken(request:options:)``
   public func generateIdToken(request: GenerateIdTokenRequest) async throws
     -> GoogleIAMCredentialsV1.GenerateIdTokenResponse
   {
@@ -152,6 +197,13 @@ extension Clients.IAMCredentialsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates an OpenID Connect ID token for a service account.
+  ///
+  /// @Snippet(path: "IAMCredentials_GenerateIdToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/generateIdToken(request:options:)``
   public func generateIdToken(
     name: Swift.String,
     delegates: [Swift.String],
@@ -167,6 +219,13 @@ extension Clients.IAMCredentialsProtocol {
     return try await self.generateIdToken(request: request)
   }
 
+  /// Signs a blob using a service account's system-managed private key.
+  ///
+  /// @Snippet(path: "IAMCredentials_SignBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/signBlob(request:options:)``
   public func signBlob(request: SignBlobRequest) async throws
     -> GoogleIAMCredentialsV1.SignBlobResponse
   {
@@ -179,6 +238,13 @@ extension Clients.IAMCredentialsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Signs a blob using a service account's system-managed private key.
+  ///
+  /// @Snippet(path: "IAMCredentials_SignBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/signBlob(request:options:)``
   public func signBlob(
     name: Swift.String,
     delegates: [Swift.String],
@@ -192,6 +258,13 @@ extension Clients.IAMCredentialsProtocol {
     return try await self.signBlob(request: request)
   }
 
+  /// Signs a JWT using a service account's system-managed private key.
+  ///
+  /// @Snippet(path: "IAMCredentials_SignJwt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/signJwt(request:options:)``
   public func signJwt(request: SignJwtRequest) async throws
     -> GoogleIAMCredentialsV1.SignJwtResponse
   {
@@ -204,6 +277,13 @@ extension Clients.IAMCredentialsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Signs a JWT using a service account's system-managed private key.
+  ///
+  /// @Snippet(path: "IAMCredentials_SignJwt")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IAMCredentialsClient/signJwt(request:options:)``
   public func signJwt(
     name: Swift.String,
     delegates: [Swift.String],

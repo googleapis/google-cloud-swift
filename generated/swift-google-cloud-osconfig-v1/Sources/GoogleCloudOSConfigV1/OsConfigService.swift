@@ -28,6 +28,10 @@ import Foundation
 /// manage package installations and patch jobs for virtual machine instances.
 ///
 /// @Snippet(path: "OsConfigServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/OsConfigServiceProtocol``
 public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Sendable {
   let inner: any Clients.OsConfigServiceStub
 
@@ -44,6 +48,10 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Patch VM instances by creating and running a patch job.
   ///
   /// @Snippet(path: "OsConfigService_ExecutePatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executePatchJob(request:)``
   public func executePatchJob(
     request: ExecutePatchJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -54,6 +62,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// ongoing patch job or review the details of completed jobs.
   ///
   /// @Snippet(path: "OsConfigService_GetPatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPatchJob(name:)``
+  /// - ``getPatchJob(request:)``
   public func getPatchJob(
     request: GetPatchJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -64,6 +77,10 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// cannot be restarted.
   ///
   /// @Snippet(path: "OsConfigService_CancelPatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelPatchJob(request:)``
   public func cancelPatchJob(
     request: CancelPatchJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -73,6 +90,13 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Get a list of patch jobs.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPatchJobs(request:)``
+  /// - ``listPatchJobsByItems(parent:)``
+  /// - ``listPatchJobsByItems(request:)``
+  /// - ``listPatchJobsByItems(request:options:)``
   public func listPatchJobs(
     request: ListPatchJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchJobsResponse {
@@ -82,6 +106,13 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Get a list of instance details for a given patch job.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPatchJobInstanceDetails(request:)``
+  /// - ``listPatchJobInstanceDetailsByItems(parent:)``
+  /// - ``listPatchJobInstanceDetailsByItems(request:)``
+  /// - ``listPatchJobInstanceDetailsByItems(request:options:)``
   public func listPatchJobInstanceDetails(
     request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse {
@@ -91,6 +122,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Create an OS Config patch deployment.
   ///
   /// @Snippet(path: "OsConfigService_CreatePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPatchDeployment(parent:patchDeployment:patchDeploymentId:)``
+  /// - ``createPatchDeployment(request:)``
   public func createPatchDeployment(
     request: CreatePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -100,6 +136,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Get an OS Config patch deployment.
   ///
   /// @Snippet(path: "OsConfigService_GetPatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPatchDeployment(name:)``
+  /// - ``getPatchDeployment(request:)``
   public func getPatchDeployment(
     request: GetPatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -109,6 +150,13 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Get a page of OS Config patch deployments.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPatchDeployments(request:)``
+  /// - ``listPatchDeploymentsByItems(parent:)``
+  /// - ``listPatchDeploymentsByItems(request:)``
+  /// - ``listPatchDeploymentsByItems(request:options:)``
   public func listPatchDeployments(
     request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse {
@@ -118,6 +166,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Delete an OS Config patch deployment.
   ///
   /// @Snippet(path: "OsConfigService_DeletePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePatchDeployment(name:)``
+  /// - ``deletePatchDeployment(request:)``
   public func deletePatchDeployment(
     request: DeletePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -127,6 +180,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Update an OS Config patch deployment.
   ///
   /// @Snippet(path: "OsConfigService_UpdatePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePatchDeployment(patchDeployment:updateMask:)``
+  /// - ``updatePatchDeployment(request:)``
   public func updatePatchDeployment(
     request: UpdatePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -137,6 +195,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Patch deployment in paused state doesn't generate patch jobs.
   ///
   /// @Snippet(path: "OsConfigService_PausePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pausePatchDeployment(name:)``
+  /// - ``pausePatchDeployment(request:)``
   public func pausePatchDeployment(
     request: PausePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -147,6 +210,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// Patch deployment in active state continues to generate patch jobs.
   ///
   /// @Snippet(path: "OsConfigService_ResumePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumePatchDeployment(name:)``
+  /// - ``resumePatchDeployment(request:)``
   public func resumePatchDeployment(
     request: ResumePatchDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -169,6 +237,11 @@ public final class OsConfigServiceClient: Clients.OsConfigServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "OsConfigService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -252,6 +325,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.OsConfigServiceProtocol {
+  /// Patch VM instances by creating and running a patch job.
+  ///
+  /// @Snippet(path: "OsConfigService_ExecutePatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/executePatchJob(request:options:)``
   public func executePatchJob(request: ExecutePatchJobRequest) async throws
     -> GoogleCloudOSConfigV1.PatchJob
   {
@@ -264,6 +344,14 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the patch job. This can be used to track the progress of an
+  /// ongoing patch job or review the details of completed jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_GetPatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/getPatchJob(request:options:)``
   public func getPatchJob(request: GetPatchJobRequest) async throws
     -> GoogleCloudOSConfigV1.PatchJob
   {
@@ -276,6 +364,14 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the patch job. This can be used to track the progress of an
+  /// ongoing patch job or review the details of completed jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_GetPatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/getPatchJob(request:options:)``
   public func getPatchJob(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.PatchJob {
@@ -285,6 +381,14 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.getPatchJob(request: request)
   }
 
+  /// Cancel a patch job. The patch job must be active. Canceled patch jobs
+  /// cannot be restarted.
+  ///
+  /// @Snippet(path: "OsConfigService_CancelPatchJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/cancelPatchJob(request:options:)``
   public func cancelPatchJob(request: CancelPatchJobRequest) async throws
     -> GoogleCloudOSConfigV1.PatchJob
   {
@@ -297,6 +401,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a list of patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobs(request:options:)``
   public func listPatchJobs(request: ListPatchJobsRequest) async throws
     -> GoogleCloudOSConfigV1.ListPatchJobsResponse
   {
@@ -309,6 +420,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a list of patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobs(request:options:)``
   public func listPatchJobsByItems(
     request: ListPatchJobsRequest
   ) -> some AsyncSequence<PatchJob, any Swift.Error> & Sendable {
@@ -318,6 +436,10 @@ extension Clients.OsConfigServiceProtocol {
   /// Get a list of patch jobs.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobs(request:options:)``
   public func listPatchJobsByItems(
     request: ListPatchJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PatchJob, any Swift.Error> & Sendable {
@@ -331,6 +453,13 @@ extension Clients.OsConfigServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Get a list of patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobs(request:options:)``
   public func listPatchJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PatchJob, any Swift.Error> & Sendable {
@@ -340,6 +469,13 @@ extension Clients.OsConfigServiceProtocol {
     return self.listPatchJobsByItems(request: request)
   }
 
+  /// Get a list of instance details for a given patch job.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobInstanceDetails(request:options:)``
   public func listPatchJobInstanceDetails(request: ListPatchJobInstanceDetailsRequest) async throws
     -> GoogleCloudOSConfigV1.ListPatchJobInstanceDetailsResponse
   {
@@ -352,6 +488,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a list of instance details for a given patch job.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobInstanceDetails(request:options:)``
   public func listPatchJobInstanceDetailsByItems(
     request: ListPatchJobInstanceDetailsRequest
   ) -> some AsyncSequence<PatchJobInstanceDetails, any Swift.Error> & Sendable {
@@ -361,6 +504,10 @@ extension Clients.OsConfigServiceProtocol {
   /// Get a list of instance details for a given patch job.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobInstanceDetails(request:options:)``
   public func listPatchJobInstanceDetailsByItems(
     request: ListPatchJobInstanceDetailsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PatchJobInstanceDetails, any Swift.Error> & Sendable {
@@ -375,6 +522,13 @@ extension Clients.OsConfigServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Get a list of instance details for a given patch job.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchJobInstanceDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchJobInstanceDetails(request:options:)``
   public func listPatchJobInstanceDetailsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PatchJobInstanceDetails, any Swift.Error> & Sendable {
@@ -384,6 +538,13 @@ extension Clients.OsConfigServiceProtocol {
     return self.listPatchJobInstanceDetailsByItems(request: request)
   }
 
+  /// Create an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_CreatePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/createPatchDeployment(request:options:)``
   public func createPatchDeployment(request: CreatePatchDeploymentRequest) async throws
     -> GoogleCloudOSConfigV1.PatchDeployment
   {
@@ -396,6 +557,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_CreatePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/createPatchDeployment(request:options:)``
   public func createPatchDeployment(
     parent: Swift.String,
     patchDeployment: PatchDeployment?,
@@ -409,6 +577,13 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.createPatchDeployment(request: request)
   }
 
+  /// Get an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_GetPatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/getPatchDeployment(request:options:)``
   public func getPatchDeployment(request: GetPatchDeploymentRequest) async throws
     -> GoogleCloudOSConfigV1.PatchDeployment
   {
@@ -421,6 +596,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_GetPatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/getPatchDeployment(request:options:)``
   public func getPatchDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -430,6 +612,13 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.getPatchDeployment(request: request)
   }
 
+  /// Get a page of OS Config patch deployments.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchDeployments(request:options:)``
   public func listPatchDeployments(request: ListPatchDeploymentsRequest) async throws
     -> GoogleCloudOSConfigV1.ListPatchDeploymentsResponse
   {
@@ -442,6 +631,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a page of OS Config patch deployments.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchDeployments(request:options:)``
   public func listPatchDeploymentsByItems(
     request: ListPatchDeploymentsRequest
   ) -> some AsyncSequence<PatchDeployment, any Swift.Error> & Sendable {
@@ -451,6 +647,10 @@ extension Clients.OsConfigServiceProtocol {
   /// Get a page of OS Config patch deployments.
   ///
   /// @Snippet(path: "OsConfigService_ListPatchDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchDeployments(request:options:)``
   public func listPatchDeploymentsByItems(
     request: ListPatchDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PatchDeployment, any Swift.Error> & Sendable {
@@ -465,6 +665,13 @@ extension Clients.OsConfigServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Get a page of OS Config patch deployments.
+  ///
+  /// @Snippet(path: "OsConfigService_ListPatchDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/listPatchDeployments(request:options:)``
   public func listPatchDeploymentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PatchDeployment, any Swift.Error> & Sendable {
@@ -474,6 +681,13 @@ extension Clients.OsConfigServiceProtocol {
     return self.listPatchDeploymentsByItems(request: request)
   }
 
+  /// Delete an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_DeletePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/deletePatchDeployment(request:options:)``
   public func deletePatchDeployment(request: DeletePatchDeploymentRequest) async throws {
     try await self.deletePatchDeployment(request: request, options: .init())
   }
@@ -484,6 +698,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_DeletePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/deletePatchDeployment(request:options:)``
   public func deletePatchDeployment(
     name: Swift.String,
   ) async throws {
@@ -493,6 +714,13 @@ extension Clients.OsConfigServiceProtocol {
     try await self.deletePatchDeployment(request: request)
   }
 
+  /// Update an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_UpdatePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/updatePatchDeployment(request:options:)``
   public func updatePatchDeployment(request: UpdatePatchDeploymentRequest) async throws
     -> GoogleCloudOSConfigV1.PatchDeployment
   {
@@ -505,6 +733,13 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update an OS Config patch deployment.
+  ///
+  /// @Snippet(path: "OsConfigService_UpdatePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/updatePatchDeployment(request:options:)``
   public func updatePatchDeployment(
     patchDeployment: PatchDeployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -516,6 +751,14 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.updatePatchDeployment(request: request)
   }
 
+  /// Change state of patch deployment to "PAUSED".
+  /// Patch deployment in paused state doesn't generate patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_PausePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/pausePatchDeployment(request:options:)``
   public func pausePatchDeployment(request: PausePatchDeploymentRequest) async throws
     -> GoogleCloudOSConfigV1.PatchDeployment
   {
@@ -528,6 +771,14 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Change state of patch deployment to "PAUSED".
+  /// Patch deployment in paused state doesn't generate patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_PausePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/pausePatchDeployment(request:options:)``
   public func pausePatchDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -537,6 +788,14 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.pausePatchDeployment(request: request)
   }
 
+  /// Change state of patch deployment back to "ACTIVE".
+  /// Patch deployment in active state continues to generate patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_ResumePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/resumePatchDeployment(request:options:)``
   public func resumePatchDeployment(request: ResumePatchDeploymentRequest) async throws
     -> GoogleCloudOSConfigV1.PatchDeployment
   {
@@ -549,6 +808,14 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Change state of patch deployment back to "ACTIVE".
+  /// Patch deployment in active state continues to generate patch jobs.
+  ///
+  /// @Snippet(path: "OsConfigService_ResumePatchDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/resumePatchDeployment(request:options:)``
   public func resumePatchDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudOSConfigV1.PatchDeployment {
@@ -558,6 +825,9 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.resumePatchDeployment(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -570,6 +840,9 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -579,6 +852,15 @@ extension Clients.OsConfigServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "OsConfigService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -589,6 +871,15 @@ extension Clients.OsConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "OsConfigService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OsConfigServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

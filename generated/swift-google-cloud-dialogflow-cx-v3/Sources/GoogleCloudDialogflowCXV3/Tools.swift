@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
   ///
   /// @Snippet(path: "ToolsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ToolsProtocol``
   public final class ToolsClient: Clients.ToolsProtocol, Sendable {
     let inner: any Clients.ToolsStub
 
@@ -48,6 +52,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_CreateTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTool(parent:tool:)``
+    /// - ``createTool(request:)``
     public func createTool(
       request: CreateToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -60,6 +69,13 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_ListTools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTools(request:)``
+    /// - ``listToolsByItems(parent:)``
+    /// - ``listToolsByItems(request:)``
+    /// - ``listToolsByItems(request:options:)``
     public func listTools(
       request: ListToolsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListToolsResponse {
@@ -71,6 +87,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_GetTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTool(name:)``
+    /// - ``getTool(request:)``
     public func getTool(
       request: GetToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -82,6 +103,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_UpdateTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTool(request:)``
+    /// - ``updateTool(tool:updateMask:)``
     public func updateTool(
       request: UpdateToolRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -93,6 +119,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_DeleteTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTool(name:)``
+    /// - ``deleteTool(request:)``
     public func deleteTool(
       request: DeleteToolRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -104,6 +135,13 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_ListToolVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listToolVersions(request:)``
+    /// - ``listToolVersionsByItems(parent:)``
+    /// - ``listToolVersionsByItems(request:)``
+    /// - ``listToolVersionsByItems(request:options:)``
     public func listToolVersions(
       request: ListToolVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListToolVersionsResponse {
@@ -116,6 +154,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_CreateToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createToolVersion(parent:toolVersion:)``
+    /// - ``createToolVersion(request:)``
     public func createToolVersion(
       request: CreateToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -128,6 +171,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_GetToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getToolVersion(name:)``
+    /// - ``getToolVersion(request:)``
     public func getToolVersion(
       request: GetToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -140,6 +188,11 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_DeleteToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteToolVersion(name:)``
+    /// - ``deleteToolVersion(request:)``
     public func deleteToolVersion(
       request: DeleteToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -150,6 +203,11 @@
     /// current tool draft, returning the tool with resources updated.
     ///
     /// @Snippet(path: "Tools_RestoreToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restoreToolVersion(name:)``
+    /// - ``restoreToolVersion(request:)``
     public func restoreToolVersion(
       request: RestoreToolVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.RestoreToolVersionResponse {
@@ -176,6 +234,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Tools_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -185,6 +249,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Tools_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -196,6 +264,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Tools_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -218,6 +293,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Tools_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -306,6 +386,16 @@
 
   // Default implementations
   extension Clients.ToolsProtocol {
+    /// Creates a [Tool][google.cloud.dialogflow.cx.v3.Tool] in the specified
+    /// agent.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_CreateTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/createTool(request:options:)``
     public func createTool(request: CreateToolRequest) async throws
       -> GoogleCloudDialogflowCXV3.Tool
     {
@@ -318,6 +408,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a [Tool][google.cloud.dialogflow.cx.v3.Tool] in the specified
+    /// agent.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_CreateTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/createTool(request:options:)``
     public func createTool(
       parent: Swift.String,
       tool: Tool?,
@@ -329,6 +429,16 @@
       return try await self.createTool(request: request)
     }
 
+    /// Returns a list of [Tools][google.cloud.dialogflow.cx.v3.Tool] in the
+    /// specified agent.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_ListTools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listTools(request:options:)``
     public func listTools(request: ListToolsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListToolsResponse
     {
@@ -341,6 +451,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns a list of [Tools][google.cloud.dialogflow.cx.v3.Tool] in the
+    /// specified agent.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_ListTools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listTools(request:options:)``
     public func listToolsByItems(
       request: ListToolsRequest
     ) -> some AsyncSequence<Tool, any Swift.Error> & Sendable {
@@ -353,6 +473,10 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_ListTools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listTools(request:options:)``
     public func listToolsByItems(
       request: ListToolsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Tool, any Swift.Error> & Sendable {
@@ -367,6 +491,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns a list of [Tools][google.cloud.dialogflow.cx.v3.Tool] in the
+    /// specified agent.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_ListTools")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listTools(request:options:)``
     public func listToolsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Tool, any Swift.Error> & Sendable {
@@ -376,6 +510,15 @@
       return self.listToolsByItems(request: request)
     }
 
+    /// Retrieves the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_GetTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/getTool(request:options:)``
     public func getTool(request: GetToolRequest) async throws -> GoogleCloudDialogflowCXV3.Tool {
       try await self.getTool(request: request, options: .init())
     }
@@ -386,6 +529,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_GetTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/getTool(request:options:)``
     public func getTool(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Tool {
@@ -395,6 +547,15 @@
       return try await self.getTool(request: request)
     }
 
+    /// Update the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_UpdateTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/updateTool(request:options:)``
     public func updateTool(request: UpdateToolRequest) async throws
       -> GoogleCloudDialogflowCXV3.Tool
     {
@@ -407,6 +568,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_UpdateTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/updateTool(request:options:)``
     public func updateTool(
       tool: Tool?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -418,6 +588,15 @@
       return try await self.updateTool(request: request)
     }
 
+    /// Deletes a specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_DeleteTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/deleteTool(request:options:)``
     public func deleteTool(request: DeleteToolRequest) async throws {
       try await self.deleteTool(request: request, options: .init())
     }
@@ -428,6 +607,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_DeleteTool")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/deleteTool(request:options:)``
     public func deleteTool(
       name: Swift.String,
     ) async throws {
@@ -437,6 +625,15 @@
       try await self.deleteTool(request: request)
     }
 
+    /// List versions of the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_ListToolVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listToolVersions(request:options:)``
     public func listToolVersions(request: ListToolVersionsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListToolVersionsResponse
     {
@@ -449,6 +646,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List versions of the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_ListToolVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listToolVersions(request:options:)``
     public func listToolVersionsByItems(
       request: ListToolVersionsRequest
     ) -> some AsyncSequence<ToolVersion, any Swift.Error> & Sendable {
@@ -460,6 +666,10 @@
     /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
     ///
     /// @Snippet(path: "Tools_ListToolVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listToolVersions(request:options:)``
     public func listToolVersionsByItems(
       request: ListToolVersionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ToolVersion, any Swift.Error> & Sendable {
@@ -474,6 +684,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// List versions of the specified [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_ListToolVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listToolVersions(request:options:)``
     public func listToolVersionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ToolVersion, any Swift.Error> & Sendable {
@@ -483,6 +702,16 @@
       return self.listToolVersionsByItems(request: request)
     }
 
+    /// Creates a version for the specified
+    /// [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_CreateToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/createToolVersion(request:options:)``
     public func createToolVersion(request: CreateToolVersionRequest) async throws
       -> GoogleCloudDialogflowCXV3.ToolVersion
     {
@@ -495,6 +724,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a version for the specified
+    /// [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_CreateToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/createToolVersion(request:options:)``
     public func createToolVersion(
       parent: Swift.String,
       toolVersion: ToolVersion?,
@@ -506,6 +745,16 @@
       return try await self.createToolVersion(request: request)
     }
 
+    /// Retrieves the specified version of the
+    /// [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_GetToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/getToolVersion(request:options:)``
     public func getToolVersion(request: GetToolVersionRequest) async throws
       -> GoogleCloudDialogflowCXV3.ToolVersion
     {
@@ -518,6 +767,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified version of the
+    /// [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_GetToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/getToolVersion(request:options:)``
     public func getToolVersion(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.ToolVersion {
@@ -527,6 +786,16 @@
       return try await self.getToolVersion(request: request)
     }
 
+    /// Deletes the specified version of the
+    /// [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_DeleteToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/deleteToolVersion(request:options:)``
     public func deleteToolVersion(request: DeleteToolVersionRequest) async throws {
       try await self.deleteToolVersion(request: request, options: .init())
     }
@@ -537,6 +806,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified version of the
+    /// [Tool][google.cloud.dialogflow.cx.v3.Tool].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Tool]: <doc:Tool>
+    ///
+    /// @Snippet(path: "Tools_DeleteToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/deleteToolVersion(request:options:)``
     public func deleteToolVersion(
       name: Swift.String,
     ) async throws {
@@ -546,6 +825,14 @@
       try await self.deleteToolVersion(request: request)
     }
 
+    /// Retrieves the specified version of the Tool and stores it as the
+    /// current tool draft, returning the tool with resources updated.
+    ///
+    /// @Snippet(path: "Tools_RestoreToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/restoreToolVersion(request:options:)``
     public func restoreToolVersion(request: RestoreToolVersionRequest) async throws
       -> GoogleCloudDialogflowCXV3.RestoreToolVersionResponse
     {
@@ -558,6 +845,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified version of the Tool and stores it as the
+    /// current tool draft, returning the tool with resources updated.
+    ///
+    /// @Snippet(path: "Tools_RestoreToolVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/restoreToolVersion(request:options:)``
     public func restoreToolVersion(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.RestoreToolVersionResponse {
@@ -567,6 +862,30 @@
       return try await self.restoreToolVersion(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Tools_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -579,6 +898,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Tools_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -605,6 +948,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Tools_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -618,6 +965,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Tools_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -630,6 +984,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Tools_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -642,6 +1005,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Tools_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -653,6 +1025,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Tools_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -666,6 +1042,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Tools_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -677,6 +1062,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -689,6 +1077,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -698,6 +1089,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Tools_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -708,6 +1108,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Tools_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ToolsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

@@ -42,6 +42,10 @@ import Foundation
 /// particular resource and its child resources.
 ///
 /// @Snippet(path: "OrgPolicyQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/OrgPolicyProtocol``
 public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   let inner: any Clients.OrgPolicyStub
 
@@ -58,6 +62,13 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// Lists constraints that could be applied on the specified resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConstraints(request:)``
+  /// - ``listConstraintsByItems(parent:)``
+  /// - ``listConstraintsByItems(request:)``
+  /// - ``listConstraintsByItems(request:options:)``
   public func listConstraints(
     request: ListConstraintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListConstraintsResponse {
@@ -67,6 +78,13 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// Retrieves all of the policies that exist on a particular resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPolicies(request:)``
+  /// - ``listPoliciesByItems(parent:)``
+  /// - ``listPoliciesByItems(request:)``
+  /// - ``listPoliciesByItems(request:options:)``
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListPoliciesResponse {
@@ -80,6 +98,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// policy during read-modify-write.
   ///
   /// @Snippet(path: "OrgPolicy_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -94,6 +117,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// not be expanded.
   ///
   /// @Snippet(path: "OrgPolicy_GetEffectivePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEffectivePolicy(name:)``
+  /// - ``getEffectivePolicy(request:)``
   public func getEffectivePolicy(
     request: GetEffectivePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -108,6 +136,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// policy already exists on the given Google Cloud resource.
   ///
   /// @Snippet(path: "OrgPolicy_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPolicy(parent:policy:)``
+  /// - ``createPolicy(request:)``
   public func createPolicy(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -125,6 +158,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// fields.
   ///
   /// @Snippet(path: "OrgPolicy_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicy(policy:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -137,6 +175,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// constraint or organization policy does not exist.
   ///
   /// @Snippet(path: "OrgPolicy_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePolicy(name:)``
+  /// - ``deletePolicy(request:)``
   public func deletePolicy(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -151,6 +194,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// constraint already exists on the given organization.
   ///
   /// @Snippet(path: "OrgPolicy_CreateCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCustomConstraint(parent:customConstraint:)``
+  /// - ``createCustomConstraint(request:)``
   public func createCustomConstraint(
     request: CreateCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -166,6 +214,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// fields.
   ///
   /// @Snippet(path: "OrgPolicy_UpdateCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCustomConstraint(customConstraint:)``
+  /// - ``updateCustomConstraint(request:)``
   public func updateCustomConstraint(
     request: UpdateCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -178,6 +231,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// custom or managed constraint does not exist.
   ///
   /// @Snippet(path: "OrgPolicy_GetCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCustomConstraint(name:)``
+  /// - ``getCustomConstraint(request:)``
   public func getCustomConstraint(
     request: GetCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -188,6 +246,13 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// organization resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCustomConstraints(request:)``
+  /// - ``listCustomConstraintsByItems(parent:)``
+  /// - ``listCustomConstraintsByItems(request:)``
+  /// - ``listCustomConstraintsByItems(request:options:)``
   public func listCustomConstraints(
     request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse {
@@ -200,6 +265,11 @@ public final class OrgPolicyClient: Clients.OrgPolicyProtocol, Sendable {
   /// constraint does not exist.
   ///
   /// @Snippet(path: "OrgPolicy_DeleteCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCustomConstraint(name:)``
+  /// - ``deleteCustomConstraint(request:)``
   public func deleteCustomConstraint(
     request: DeleteCustomConstraintRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -278,6 +348,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.OrgPolicyProtocol {
+  /// Lists constraints that could be applied on the specified resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listConstraints(request:options:)``
   public func listConstraints(request: ListConstraintsRequest) async throws
     -> GoogleCloudOrgPolicyV2.ListConstraintsResponse
   {
@@ -290,6 +367,13 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists constraints that could be applied on the specified resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listConstraints(request:options:)``
   public func listConstraintsByItems(
     request: ListConstraintsRequest
   ) -> some AsyncSequence<Constraint, any Swift.Error> & Sendable {
@@ -299,6 +383,10 @@ extension Clients.OrgPolicyProtocol {
   /// Lists constraints that could be applied on the specified resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listConstraints(request:options:)``
   public func listConstraintsByItems(
     request: ListConstraintsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Constraint, any Swift.Error> & Sendable {
@@ -313,6 +401,13 @@ extension Clients.OrgPolicyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists constraints that could be applied on the specified resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listConstraints(request:options:)``
   public func listConstraintsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Constraint, any Swift.Error> & Sendable {
@@ -322,6 +417,13 @@ extension Clients.OrgPolicyProtocol {
     return self.listConstraintsByItems(request: request)
   }
 
+  /// Retrieves all of the policies that exist on a particular resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listPolicies(request:options:)``
   public func listPolicies(request: ListPoliciesRequest) async throws
     -> GoogleCloudOrgPolicyV2.ListPoliciesResponse
   {
@@ -334,6 +436,13 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves all of the policies that exist on a particular resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     request: ListPoliciesRequest
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -343,6 +452,10 @@ extension Clients.OrgPolicyProtocol {
   /// Retrieves all of the policies that exist on a particular resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -356,6 +469,13 @@ extension Clients.OrgPolicyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves all of the policies that exist on a particular resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -365,6 +485,17 @@ extension Clients.OrgPolicyProtocol {
     return self.listPoliciesByItems(request: request)
   }
 
+  /// Gets a policy on a resource.
+  ///
+  /// If no policy is set on the resource, `NOT_FOUND` is returned. The
+  /// `etag` value can be used with `UpdatePolicy()` to update a
+  /// policy during read-modify-write.
+  ///
+  /// @Snippet(path: "OrgPolicy_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/getPolicy(request:options:)``
   public func getPolicy(request: GetPolicyRequest) async throws -> GoogleCloudOrgPolicyV2.Policy {
     try await self.getPolicy(request: request, options: .init())
   }
@@ -375,6 +506,17 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a policy on a resource.
+  ///
+  /// If no policy is set on the resource, `NOT_FOUND` is returned. The
+  /// `etag` value can be used with `UpdatePolicy()` to update a
+  /// policy during read-modify-write.
+  ///
+  /// @Snippet(path: "OrgPolicy_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/getPolicy(request:options:)``
   public func getPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -384,6 +526,18 @@ extension Clients.OrgPolicyProtocol {
     return try await self.getPolicy(request: request)
   }
 
+  /// Gets the effective policy on a resource. This is the result of merging
+  /// policies in the resource hierarchy and evaluating conditions. The
+  /// returned policy will not have an `etag` or `condition` set because it is
+  /// an evaluated policy across multiple resources.
+  /// Subtrees of Resource Manager resource hierarchy with 'under:' prefix will
+  /// not be expanded.
+  ///
+  /// @Snippet(path: "OrgPolicy_GetEffectivePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/getEffectivePolicy(request:options:)``
   public func getEffectivePolicy(request: GetEffectivePolicyRequest) async throws
     -> GoogleCloudOrgPolicyV2.Policy
   {
@@ -396,6 +550,18 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the effective policy on a resource. This is the result of merging
+  /// policies in the resource hierarchy and evaluating conditions. The
+  /// returned policy will not have an `etag` or `condition` set because it is
+  /// an evaluated policy across multiple resources.
+  /// Subtrees of Resource Manager resource hierarchy with 'under:' prefix will
+  /// not be expanded.
+  ///
+  /// @Snippet(path: "OrgPolicy_GetEffectivePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/getEffectivePolicy(request:options:)``
   public func getEffectivePolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -405,6 +571,18 @@ extension Clients.OrgPolicyProtocol {
     return try await self.getEffectivePolicy(request: request)
   }
 
+  /// Creates a policy.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+  /// policy already exists on the given Google Cloud resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/createPolicy(request:options:)``
   public func createPolicy(request: CreatePolicyRequest) async throws
     -> GoogleCloudOrgPolicyV2.Policy
   {
@@ -417,6 +595,18 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a policy.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+  /// policy already exists on the given Google Cloud resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/createPolicy(request:options:)``
   public func createPolicy(
     parent: Swift.String,
     policy: Policy?,
@@ -428,6 +618,21 @@ extension Clients.OrgPolicyProtocol {
     return try await self.createPolicy(request: request)
   }
 
+  /// Updates a policy.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint or the policy do not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
+  /// supplied in the request does not match the persisted etag of the policy
+  ///
+  /// Note: the supplied policy will perform a full overwrite of all
+  /// fields.
+  ///
+  /// @Snippet(path: "OrgPolicy_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/updatePolicy(request:options:)``
   public func updatePolicy(request: UpdatePolicyRequest) async throws
     -> GoogleCloudOrgPolicyV2.Policy
   {
@@ -440,6 +645,21 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a policy.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint or the policy do not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ABORTED` if the etag
+  /// supplied in the request does not match the persisted etag of the policy
+  ///
+  /// Note: the supplied policy will perform a full overwrite of all
+  /// fields.
+  ///
+  /// @Snippet(path: "OrgPolicy_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/updatePolicy(request:options:)``
   public func updatePolicy(
     policy: Policy?,
   ) async throws -> GoogleCloudOrgPolicyV2.Policy {
@@ -449,6 +669,16 @@ extension Clients.OrgPolicyProtocol {
     return try await self.updatePolicy(request: request)
   }
 
+  /// Deletes a policy.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint or organization policy does not exist.
+  ///
+  /// @Snippet(path: "OrgPolicy_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/deletePolicy(request:options:)``
   public func deletePolicy(request: DeletePolicyRequest) async throws {
     try await self.deletePolicy(request: request, options: .init())
   }
@@ -459,6 +689,16 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint or organization policy does not exist.
+  ///
+  /// @Snippet(path: "OrgPolicy_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/deletePolicy(request:options:)``
   public func deletePolicy(
     name: Swift.String,
   ) async throws {
@@ -468,6 +708,18 @@ extension Clients.OrgPolicyProtocol {
     try await self.deletePolicy(request: request)
   }
 
+  /// Creates a custom constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// organization does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+  /// constraint already exists on the given organization.
+  ///
+  /// @Snippet(path: "OrgPolicy_CreateCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/createCustomConstraint(request:options:)``
   public func createCustomConstraint(request: CreateCustomConstraintRequest) async throws
     -> GoogleCloudOrgPolicyV2.CustomConstraint
   {
@@ -480,6 +732,18 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a custom constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// organization does not exist.
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.ALREADY_EXISTS` if the
+  /// constraint already exists on the given organization.
+  ///
+  /// @Snippet(path: "OrgPolicy_CreateCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/createCustomConstraint(request:options:)``
   public func createCustomConstraint(
     parent: Swift.String,
     customConstraint: CustomConstraint?,
@@ -491,6 +755,19 @@ extension Clients.OrgPolicyProtocol {
     return try await self.createCustomConstraint(request: request)
   }
 
+  /// Updates a custom constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint does not exist.
+  ///
+  /// Note: the supplied policy will perform a full overwrite of all
+  /// fields.
+  ///
+  /// @Snippet(path: "OrgPolicy_UpdateCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/updateCustomConstraint(request:options:)``
   public func updateCustomConstraint(request: UpdateCustomConstraintRequest) async throws
     -> GoogleCloudOrgPolicyV2.CustomConstraint
   {
@@ -503,6 +780,19 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a custom constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint does not exist.
+  ///
+  /// Note: the supplied policy will perform a full overwrite of all
+  /// fields.
+  ///
+  /// @Snippet(path: "OrgPolicy_UpdateCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/updateCustomConstraint(request:options:)``
   public func updateCustomConstraint(
     customConstraint: CustomConstraint?,
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -512,6 +802,16 @@ extension Clients.OrgPolicyProtocol {
     return try await self.updateCustomConstraint(request: request)
   }
 
+  /// Gets a custom or managed constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// custom or managed constraint does not exist.
+  ///
+  /// @Snippet(path: "OrgPolicy_GetCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/getCustomConstraint(request:options:)``
   public func getCustomConstraint(request: GetCustomConstraintRequest) async throws
     -> GoogleCloudOrgPolicyV2.CustomConstraint
   {
@@ -524,6 +824,16 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a custom or managed constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// custom or managed constraint does not exist.
+  ///
+  /// @Snippet(path: "OrgPolicy_GetCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/getCustomConstraint(request:options:)``
   public func getCustomConstraint(
     name: Swift.String,
   ) async throws -> GoogleCloudOrgPolicyV2.CustomConstraint {
@@ -533,6 +843,14 @@ extension Clients.OrgPolicyProtocol {
     return try await self.getCustomConstraint(request: request)
   }
 
+  /// Retrieves all of the custom constraints that exist on a particular
+  /// organization resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listCustomConstraints(request:options:)``
   public func listCustomConstraints(request: ListCustomConstraintsRequest) async throws
     -> GoogleCloudOrgPolicyV2.ListCustomConstraintsResponse
   {
@@ -545,6 +863,14 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves all of the custom constraints that exist on a particular
+  /// organization resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listCustomConstraints(request:options:)``
   public func listCustomConstraintsByItems(
     request: ListCustomConstraintsRequest
   ) -> some AsyncSequence<CustomConstraint, any Swift.Error> & Sendable {
@@ -555,6 +881,10 @@ extension Clients.OrgPolicyProtocol {
   /// organization resource.
   ///
   /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listCustomConstraints(request:options:)``
   public func listCustomConstraintsByItems(
     request: ListCustomConstraintsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CustomConstraint, any Swift.Error> & Sendable {
@@ -569,6 +899,14 @@ extension Clients.OrgPolicyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves all of the custom constraints that exist on a particular
+  /// organization resource.
+  ///
+  /// @Snippet(path: "OrgPolicy_ListCustomConstraints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/listCustomConstraints(request:options:)``
   public func listCustomConstraintsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CustomConstraint, any Swift.Error> & Sendable {
@@ -578,6 +916,16 @@ extension Clients.OrgPolicyProtocol {
     return self.listCustomConstraintsByItems(request: request)
   }
 
+  /// Deletes a custom constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint does not exist.
+  ///
+  /// @Snippet(path: "OrgPolicy_DeleteCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/deleteCustomConstraint(request:options:)``
   public func deleteCustomConstraint(request: DeleteCustomConstraintRequest) async throws {
     try await self.deleteCustomConstraint(request: request, options: .init())
   }
@@ -588,6 +936,16 @@ extension Clients.OrgPolicyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a custom constraint.
+  ///
+  /// Returns a `google.rpc.Status` with `google.rpc.Code.NOT_FOUND` if the
+  /// constraint does not exist.
+  ///
+  /// @Snippet(path: "OrgPolicy_DeleteCustomConstraint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``OrgPolicyClient/deleteCustomConstraint(request:options:)``
   public func deleteCustomConstraint(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@
   /// Service for the `instanceTemplates` resource.
   ///
   /// @Snippet(path: "instanceTemplatesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/InstanceTemplatesProtocol``
   public final class InstanceTemplatesClient: Clients.InstanceTemplatesProtocol, Sendable {
     let inner: any Clients.InstanceTemplatesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instanceTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceTemplateAggregatedList {
@@ -59,6 +70,13 @@
     /// that are already in use by a managed instance group.
     ///
     /// @Snippet(path: "instanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:instanceTemplate:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: InstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -75,6 +93,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:instanceTemplate:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: InstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -116,6 +141,11 @@
     /// Returns the specified instance template.
     ///
     /// @Snippet(path: "instanceTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:instanceTemplate:)``
+    /// - ``get(request:)``
     public func `get`(
       request: InstanceTemplatesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceTemplate {
@@ -126,6 +156,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "instanceTemplates_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: InstanceTemplatesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -139,6 +174,13 @@
     /// template.
     ///
     /// @Snippet(path: "instanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: InstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -157,6 +199,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "instanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: InstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -199,6 +248,13 @@
     /// the specified project.
     ///
     /// @Snippet(path: "instanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceTemplateList {
@@ -209,6 +265,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "instanceTemplates_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: InstanceTemplatesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -218,6 +279,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "instanceTemplates_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: InstanceTemplatesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -306,6 +372,17 @@
 
   // Default implementations
   extension Clients.InstanceTemplatesProtocol {
+    /// Retrieves the list of all InstanceTemplates resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: InstanceTemplatesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.InstanceTemplateAggregatedList
     {
@@ -318,6 +395,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all InstanceTemplates resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: InstanceTemplatesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
@@ -332,6 +420,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "instanceTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: InstanceTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
@@ -347,6 +439,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all InstanceTemplates resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "instanceTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, InstanceTemplatesScopedList), any Swift.Error> & Sendable
@@ -357,6 +460,15 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified instance template. Deleting an instance template is
+    /// permanent and cannot be undone. It is not possible to delete templates
+    /// that are already in use by a managed instance group.
+    ///
+    /// @Snippet(path: "instanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/delete(request:options:)``
     public func delete(request: InstanceTemplatesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -369,6 +481,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified instance template. Deleting an instance template is
+    /// permanent and cannot be undone. It is not possible to delete templates
+    /// that are already in use by a managed instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: InstanceTemplatesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -381,6 +507,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified instance template. Deleting an instance template is
+    /// permanent and cannot be undone. It is not possible to delete templates
+    /// that are already in use by a managed instance group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       instanceTemplate: Swift.String,
@@ -392,6 +532,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified instance template.
+    ///
+    /// @Snippet(path: "instanceTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/get(request:options:)``
     public func `get`(request: InstanceTemplatesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceTemplate
     {
@@ -404,6 +551,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified instance template.
+    ///
+    /// @Snippet(path: "instanceTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       instanceTemplate: Swift.String,
@@ -415,6 +569,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "instanceTemplates_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: InstanceTemplatesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -427,6 +589,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "instanceTemplates_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -438,6 +608,17 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates an instance template in the specified project using the
+    /// data that is included in the request. If you are creating a new template to
+    /// update an existing instance group, your new instance template must use the
+    /// same network or, if applicable, the same subnetwork as the original
+    /// template.
+    ///
+    /// @Snippet(path: "instanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/insert(request:options:)``
     public func insert(request: InstanceTemplatesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -450,6 +631,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance template in the specified project using the
+    /// data that is included in the request. If you are creating a new template to
+    /// update an existing instance group, your new instance template must use the
+    /// same network or, if applicable, the same subnetwork as the original
+    /// template.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: InstanceTemplatesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -462,6 +659,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance template in the specified project using the
+    /// data that is included in the request. If you are creating a new template to
+    /// update an existing instance group, your new instance template must use the
+    /// same network or, if applicable, the same subnetwork as the original
+    /// template.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "instanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: InstanceTemplate?,
@@ -473,6 +686,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of instance templates that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "instanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/list(request:options:)``
     public func list(request: InstanceTemplatesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.InstanceTemplateList
     {
@@ -485,6 +706,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of instance templates that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "instanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/list(request:options:)``
     public func listByItems(
       request: InstanceTemplatesClient.ListRequest
     ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
@@ -495,6 +724,10 @@
     /// the specified project.
     ///
     /// @Snippet(path: "instanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/list(request:options:)``
     public func listByItems(
       request: InstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
@@ -508,6 +741,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of instance templates that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "instanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
@@ -517,6 +758,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "instanceTemplates_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: InstanceTemplatesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -529,6 +778,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "instanceTemplates_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -542,6 +799,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "instanceTemplates_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: InstanceTemplatesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -554,6 +818,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "instanceTemplates_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InstanceTemplatesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -567,6 +838,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

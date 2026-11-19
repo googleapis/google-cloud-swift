@@ -44,6 +44,10 @@ import Foundation
 /// [google.cloud.vision.v1.ReferenceImage]: <doc:ReferenceImage>
 ///
 /// @Snippet(path: "ProductSearchQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ProductSearchProtocol``
 public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable {
   let inner: any Clients.ProductSearchStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -69,6 +73,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///   4096 characters.
   ///
   /// @Snippet(path: "ProductSearch_CreateProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProductSet(parent:productSet:productSetId:)``
+  /// - ``createProductSet(request:)``
   public func createProductSet(
     request: CreateProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -83,6 +92,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///   than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProductSets(request:)``
+  /// - ``listProductSetsByItems(parent:)``
+  /// - ``listProductSetsByItems(request:)``
+  /// - ``listProductSetsByItems(request:options:)``
   public func listProductSets(
     request: ListProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListProductSetsResponse {
@@ -96,6 +112,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns NOT_FOUND if the ProductSet does not exist.
   ///
   /// @Snippet(path: "ProductSearch_GetProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProductSet(name:)``
+  /// - ``getProductSet(request:)``
   public func getProductSet(
     request: GetProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -112,6 +133,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///   missing from the request or longer than 4096 characters.
   ///
   /// @Snippet(path: "ProductSearch_UpdateProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProductSet(productSet:updateMask:)``
+  /// - ``updateProductSet(request:)``
   public func updateProductSet(
     request: UpdateProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -124,6 +150,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// The actual image files are not deleted from Google Cloud Storage.
   ///
   /// @Snippet(path: "ProductSearch_DeleteProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProductSet(name:)``
+  /// - ``deleteProductSet(request:)``
   public func deleteProductSet(
     request: DeleteProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -140,6 +171,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns INVALID_ARGUMENT if product_category is missing or invalid.
   ///
   /// @Snippet(path: "ProductSearch_CreateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProduct(parent:product:productId:)``
+  /// - ``createProduct(request:)``
   public func createProduct(
     request: CreateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -153,6 +189,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProducts(request:)``
+  /// - ``listProductsByItems(parent:)``
+  /// - ``listProductsByItems(request:)``
+  /// - ``listProductsByItems(request:options:)``
   public func listProducts(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListProductsResponse {
@@ -166,6 +209,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns NOT_FOUND if the Product does not exist.
   ///
   /// @Snippet(path: "ProductSearch_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProduct(name:)``
+  /// - ``getProduct(request:)``
   public func getProduct(
     request: GetProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -189,6 +237,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns INVALID_ARGUMENT if product_category is present in update_mask.
   ///
   /// @Snippet(path: "ProductSearch_UpdateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProduct(product:updateMask:)``
+  /// - ``updateProduct(request:)``
   public func updateProduct(
     request: UpdateProductRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -202,6 +255,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// until all related caches are refreshed.
   ///
   /// @Snippet(path: "ProductSearch_DeleteProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProduct(name:)``
+  /// - ``deleteProduct(request:)``
   public func deleteProduct(
     request: DeleteProductRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -229,6 +287,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
   ///
   /// @Snippet(path: "ProductSearch_CreateReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReferenceImage(parent:referenceImage:referenceImageId:)``
+  /// - ``createReferenceImage(request:)``
   public func createReferenceImage(
     request: CreateReferenceImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -244,6 +307,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// The actual image files are not deleted from Google Cloud Storage.
   ///
   /// @Snippet(path: "ProductSearch_DeleteReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReferenceImage(name:)``
+  /// - ``deleteReferenceImage(request:)``
   public func deleteReferenceImage(
     request: DeleteReferenceImageRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -259,6 +327,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   ///   than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListReferenceImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReferenceImages(request:)``
+  /// - ``listReferenceImagesByItems(parent:)``
+  /// - ``listReferenceImagesByItems(request:)``
+  /// - ``listReferenceImagesByItems(request:options:)``
   public func listReferenceImages(
     request: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListReferenceImagesResponse {
@@ -272,6 +347,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns NOT_FOUND if the specified image does not exist.
   ///
   /// @Snippet(path: "ProductSearch_GetReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReferenceImage(name:)``
+  /// - ``getReferenceImage(request:)``
   public func getReferenceImage(
     request: GetReferenceImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -288,6 +368,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
   ///
   /// @Snippet(path: "ProductSearch_AddProductToProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addProductToProductSet(name:product:)``
+  /// - ``addProductToProductSet(request:)``
   public func addProductToProductSet(
     request: AddProductToProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -297,6 +382,11 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// Removes a Product from the specified ProductSet.
   ///
   /// @Snippet(path: "ProductSearch_RemoveProductFromProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeProductFromProductSet(name:product:)``
+  /// - ``removeProductFromProductSet(request:)``
   public func removeProductFromProductSet(
     request: RemoveProductFromProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,6 +402,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProductsInProductSet(request:)``
+  /// - ``listProductsInProductSetByItems(name:)``
+  /// - ``listProductsInProductSetByItems(request:)``
+  /// - ``listProductsInProductSetByItems(request:options:)``
   public func listProductsInProductSet(
     request: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVisionV1.ListProductsInProductSetResponse {
@@ -334,6 +431,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_ImportProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importProductSets(request:)``
+  /// - ``importProductSetsPollingUntilDone(parent:inputConfig:)``
+  /// - ``importProductSetsPollingUntilDone(request:)``
+  /// - ``importProductSetsPollingUntilDone(request:options:)``
   public func importProductSets(
     request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -356,6 +460,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_ImportProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importProductSets(request:)``
+  /// - ``importProductSets(request:options:)``
+  /// - ``importProductSetsPollingUntilDone(parent:inputConfig:)``
+  /// - ``importProductSetsPollingUntilDone(request:)``
   public func importProductSetsPollingUntilDone(
     request: ImportProductSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportProductSetsResponse {
@@ -410,6 +521,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``purgeProducts(request:)``
+  /// - ``purgeProductsPollingUntilDone(parent:)``
+  /// - ``purgeProductsPollingUntilDone(request:)``
+  /// - ``purgeProductsPollingUntilDone(request:options:)``
   public func purgeProducts(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -444,6 +562,13 @@ public final class ProductSearchClient: Clients.ProductSearchProtocol, Sendable 
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "ProductSearch_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``purgeProducts(request:)``
+  /// - ``purgeProducts(request:options:)``
+  /// - ``purgeProductsPollingUntilDone(parent:)``
+  /// - ``purgeProductsPollingUntilDone(request:)``
   public func purgeProductsPollingUntilDone(
     request: PurgeProductsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -596,6 +721,18 @@ extension Clients {
 
 // Default implementations
 extension Clients.ProductSearchProtocol {
+  /// Creates and returns a new ProductSet resource.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
+  ///   4096 characters.
+  ///
+  /// @Snippet(path: "ProductSearch_CreateProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/createProductSet(request:options:)``
   public func createProductSet(request: CreateProductSetRequest) async throws
     -> GoogleCloudVisionV1.ProductSet
   {
@@ -608,6 +745,18 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates and returns a new ProductSet resource.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if display_name is missing, or is longer than
+  ///   4096 characters.
+  ///
+  /// @Snippet(path: "ProductSearch_CreateProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/createProductSet(request:options:)``
   public func createProductSet(
     parent: Swift.String,
     productSet: ProductSet?,
@@ -621,6 +770,18 @@ extension Clients.ProductSearchProtocol {
     return try await self.createProductSet(request: request)
   }
 
+  /// Lists ProductSets in an unspecified order.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
+  ///   than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductSets(request:options:)``
   public func listProductSets(request: ListProductSetsRequest) async throws
     -> GoogleCloudVisionV1.ListProductSetsResponse
   {
@@ -633,6 +794,18 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ProductSets in an unspecified order.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
+  ///   than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductSets(request:options:)``
   public func listProductSetsByItems(
     request: ListProductSetsRequest
   ) -> some AsyncSequence<ProductSet, any Swift.Error> & Sendable {
@@ -647,6 +820,10 @@ extension Clients.ProductSearchProtocol {
   ///   than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductSets(request:options:)``
   public func listProductSetsByItems(
     request: ListProductSetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ProductSet, any Swift.Error> & Sendable {
@@ -660,6 +837,18 @@ extension Clients.ProductSearchProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ProductSets in an unspecified order.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100, or less
+  ///   than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductSets(request:options:)``
   public func listProductSetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ProductSet, any Swift.Error> & Sendable {
@@ -669,6 +858,17 @@ extension Clients.ProductSearchProtocol {
     return self.listProductSetsByItems(request: request)
   }
 
+  /// Gets information associated with a ProductSet.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the ProductSet does not exist.
+  ///
+  /// @Snippet(path: "ProductSearch_GetProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/getProductSet(request:options:)``
   public func getProductSet(request: GetProductSetRequest) async throws
     -> GoogleCloudVisionV1.ProductSet
   {
@@ -681,6 +881,17 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information associated with a ProductSet.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the ProductSet does not exist.
+  ///
+  /// @Snippet(path: "ProductSearch_GetProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/getProductSet(request:options:)``
   public func getProductSet(
     name: Swift.String,
   ) async throws -> GoogleCloudVisionV1.ProductSet {
@@ -690,6 +901,20 @@ extension Clients.ProductSearchProtocol {
     return try await self.getProductSet(request: request)
   }
 
+  /// Makes changes to a ProductSet resource.
+  /// Only display_name can be updated currently.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the ProductSet does not exist.
+  /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but
+  ///   missing from the request or longer than 4096 characters.
+  ///
+  /// @Snippet(path: "ProductSearch_UpdateProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/updateProductSet(request:options:)``
   public func updateProductSet(request: UpdateProductSetRequest) async throws
     -> GoogleCloudVisionV1.ProductSet
   {
@@ -702,6 +927,20 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Makes changes to a ProductSet resource.
+  /// Only display_name can be updated currently.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the ProductSet does not exist.
+  /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but
+  ///   missing from the request or longer than 4096 characters.
+  ///
+  /// @Snippet(path: "ProductSearch_UpdateProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/updateProductSet(request:options:)``
   public func updateProductSet(
     productSet: ProductSet?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -713,6 +952,16 @@ extension Clients.ProductSearchProtocol {
     return try await self.updateProductSet(request: request)
   }
 
+  /// Permanently deletes a ProductSet. Products and ReferenceImages in the
+  /// ProductSet are not deleted.
+  ///
+  /// The actual image files are not deleted from Google Cloud Storage.
+  ///
+  /// @Snippet(path: "ProductSearch_DeleteProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/deleteProductSet(request:options:)``
   public func deleteProductSet(request: DeleteProductSetRequest) async throws {
     try await self.deleteProductSet(request: request, options: .init())
   }
@@ -723,6 +972,16 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Permanently deletes a ProductSet. Products and ReferenceImages in the
+  /// ProductSet are not deleted.
+  ///
+  /// The actual image files are not deleted from Google Cloud Storage.
+  ///
+  /// @Snippet(path: "ProductSearch_DeleteProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/deleteProductSet(request:options:)``
   public func deleteProductSet(
     name: Swift.String,
   ) async throws {
@@ -732,6 +991,20 @@ extension Clients.ProductSearchProtocol {
     try await self.deleteProductSet(request: request)
   }
 
+  /// Creates and returns a new product resource.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096
+  ///   characters.
+  /// * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
+  /// * Returns INVALID_ARGUMENT if product_category is missing or invalid.
+  ///
+  /// @Snippet(path: "ProductSearch_CreateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/createProduct(request:options:)``
   public func createProduct(request: CreateProductRequest) async throws
     -> GoogleCloudVisionV1.Product
   {
@@ -744,6 +1017,20 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates and returns a new product resource.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096
+  ///   characters.
+  /// * Returns INVALID_ARGUMENT if description is longer than 4096 characters.
+  /// * Returns INVALID_ARGUMENT if product_category is missing or invalid.
+  ///
+  /// @Snippet(path: "ProductSearch_CreateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/createProduct(request:options:)``
   public func createProduct(
     parent: Swift.String,
     product: Product?,
@@ -757,6 +1044,17 @@ extension Clients.ProductSearchProtocol {
     return try await self.createProduct(request: request)
   }
 
+  /// Lists products in an unspecified order.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProducts(request:options:)``
   public func listProducts(request: ListProductsRequest) async throws
     -> GoogleCloudVisionV1.ListProductsResponse
   {
@@ -769,6 +1067,17 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists products in an unspecified order.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -782,6 +1091,10 @@ extension Clients.ProductSearchProtocol {
   /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProducts(request:options:)``
   public func listProductsByItems(
     request: ListProductsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -795,6 +1108,17 @@ extension Clients.ProductSearchProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists products in an unspecified order.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProducts(request:options:)``
   public func listProductsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -804,6 +1128,17 @@ extension Clients.ProductSearchProtocol {
     return self.listProductsByItems(request: request)
   }
 
+  /// Gets information associated with a Product.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the Product does not exist.
+  ///
+  /// @Snippet(path: "ProductSearch_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/getProduct(request:options:)``
   public func getProduct(request: GetProductRequest) async throws -> GoogleCloudVisionV1.Product {
     try await self.getProduct(request: request, options: .init())
   }
@@ -814,6 +1149,17 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information associated with a Product.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the Product does not exist.
+  ///
+  /// @Snippet(path: "ProductSearch_GetProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/getProduct(request:options:)``
   public func getProduct(
     name: Swift.String,
   ) async throws -> GoogleCloudVisionV1.Product {
@@ -823,6 +1169,27 @@ extension Clients.ProductSearchProtocol {
     return try await self.getProduct(request: request)
   }
 
+  /// Makes changes to a Product resource.
+  /// Only the `display_name`, `description`, and `labels` fields can be updated
+  /// right now.
+  ///
+  /// If labels are updated, the change will not be reflected in queries until
+  /// the next index time.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the Product does not exist.
+  /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but is
+  ///   missing from the request or longer than 4096 characters.
+  /// * Returns INVALID_ARGUMENT if description is present in update_mask but is
+  ///   longer than 4096 characters.
+  /// * Returns INVALID_ARGUMENT if product_category is present in update_mask.
+  ///
+  /// @Snippet(path: "ProductSearch_UpdateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/updateProduct(request:options:)``
   public func updateProduct(request: UpdateProductRequest) async throws
     -> GoogleCloudVisionV1.Product
   {
@@ -835,6 +1202,27 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Makes changes to a Product resource.
+  /// Only the `display_name`, `description`, and `labels` fields can be updated
+  /// right now.
+  ///
+  /// If labels are updated, the change will not be reflected in queries until
+  /// the next index time.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the Product does not exist.
+  /// * Returns INVALID_ARGUMENT if display_name is present in update_mask but is
+  ///   missing from the request or longer than 4096 characters.
+  /// * Returns INVALID_ARGUMENT if description is present in update_mask but is
+  ///   longer than 4096 characters.
+  /// * Returns INVALID_ARGUMENT if product_category is present in update_mask.
+  ///
+  /// @Snippet(path: "ProductSearch_UpdateProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/updateProduct(request:options:)``
   public func updateProduct(
     product: Product?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -846,6 +1234,17 @@ extension Clients.ProductSearchProtocol {
     return try await self.updateProduct(request: request)
   }
 
+  /// Permanently deletes a product and its reference images.
+  ///
+  /// Metadata of the product and all its images will be deleted right away, but
+  /// search queries against ProductSets containing the product may still work
+  /// until all related caches are refreshed.
+  ///
+  /// @Snippet(path: "ProductSearch_DeleteProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/deleteProduct(request:options:)``
   public func deleteProduct(request: DeleteProductRequest) async throws {
     try await self.deleteProduct(request: request, options: .init())
   }
@@ -856,6 +1255,17 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Permanently deletes a product and its reference images.
+  ///
+  /// Metadata of the product and all its images will be deleted right away, but
+  /// search queries against ProductSets containing the product may still work
+  /// until all related caches are refreshed.
+  ///
+  /// @Snippet(path: "ProductSearch_DeleteProduct")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/deleteProduct(request:options:)``
   public func deleteProduct(
     name: Swift.String,
   ) async throws {
@@ -865,6 +1275,31 @@ extension Clients.ProductSearchProtocol {
     try await self.deleteProduct(request: request)
   }
 
+  /// Creates and returns a new ReferenceImage resource.
+  ///
+  /// The `bounding_poly` field is optional. If `bounding_poly` is not specified,
+  /// the system will try to detect regions of interest in the image that are
+  /// compatible with the product_category on the parent product. If it is
+  /// specified, detection is ALWAYS skipped. The system converts polygons into
+  /// non-rotated rectangles.
+  ///
+  /// Note that the pipeline will resize the image if the image resolution is too
+  /// large to process (above 50MP).
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
+  ///   characters.
+  /// * Returns INVALID_ARGUMENT if the product does not exist.
+  /// * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
+  ///   compatible with the parent product's product_category is detected.
+  /// * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
+  ///
+  /// @Snippet(path: "ProductSearch_CreateReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/createReferenceImage(request:options:)``
   public func createReferenceImage(request: CreateReferenceImageRequest) async throws
     -> GoogleCloudVisionV1.ReferenceImage
   {
@@ -877,6 +1312,31 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates and returns a new ReferenceImage resource.
+  ///
+  /// The `bounding_poly` field is optional. If `bounding_poly` is not specified,
+  /// the system will try to detect regions of interest in the image that are
+  /// compatible with the product_category on the parent product. If it is
+  /// specified, detection is ALWAYS skipped. The system converts polygons into
+  /// non-rotated rectangles.
+  ///
+  /// Note that the pipeline will resize the image if the image resolution is too
+  /// large to process (above 50MP).
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096
+  ///   characters.
+  /// * Returns INVALID_ARGUMENT if the product does not exist.
+  /// * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing
+  ///   compatible with the parent product's product_category is detected.
+  /// * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
+  ///
+  /// @Snippet(path: "ProductSearch_CreateReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/createReferenceImage(request:options:)``
   public func createReferenceImage(
     parent: Swift.String,
     referenceImage: ReferenceImage?,
@@ -890,6 +1350,19 @@ extension Clients.ProductSearchProtocol {
     return try await self.createReferenceImage(request: request)
   }
 
+  /// Permanently deletes a reference image.
+  ///
+  /// The image metadata will be deleted right away, but search queries
+  /// against ProductSets containing the image may still work until all related
+  /// caches are refreshed.
+  ///
+  /// The actual image files are not deleted from Google Cloud Storage.
+  ///
+  /// @Snippet(path: "ProductSearch_DeleteReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/deleteReferenceImage(request:options:)``
   public func deleteReferenceImage(request: DeleteReferenceImageRequest) async throws {
     try await self.deleteReferenceImage(request: request, options: .init())
   }
@@ -900,6 +1373,19 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Permanently deletes a reference image.
+  ///
+  /// The image metadata will be deleted right away, but search queries
+  /// against ProductSets containing the image may still work until all related
+  /// caches are refreshed.
+  ///
+  /// The actual image files are not deleted from Google Cloud Storage.
+  ///
+  /// @Snippet(path: "ProductSearch_DeleteReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/deleteReferenceImage(request:options:)``
   public func deleteReferenceImage(
     name: Swift.String,
   ) async throws {
@@ -909,6 +1395,19 @@ extension Clients.ProductSearchProtocol {
     try await self.deleteReferenceImage(request: request)
   }
 
+  /// Lists reference images.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the parent product does not exist.
+  /// * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
+  ///   than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListReferenceImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listReferenceImages(request:options:)``
   public func listReferenceImages(request: ListReferenceImagesRequest) async throws
     -> GoogleCloudVisionV1.ListReferenceImagesResponse
   {
@@ -921,6 +1420,19 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists reference images.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the parent product does not exist.
+  /// * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
+  ///   than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListReferenceImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listReferenceImages(request:options:)``
   public func listReferenceImagesByItems(
     request: ListReferenceImagesRequest
   ) -> some AsyncSequence<ReferenceImage, any Swift.Error> & Sendable {
@@ -936,6 +1448,10 @@ extension Clients.ProductSearchProtocol {
   ///   than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListReferenceImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listReferenceImages(request:options:)``
   public func listReferenceImagesByItems(
     request: ListReferenceImagesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReferenceImage, any Swift.Error> & Sendable {
@@ -950,6 +1466,19 @@ extension Clients.ProductSearchProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists reference images.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the parent product does not exist.
+  /// * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less
+  ///   than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListReferenceImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listReferenceImages(request:options:)``
   public func listReferenceImagesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReferenceImage, any Swift.Error> & Sendable {
@@ -959,6 +1488,17 @@ extension Clients.ProductSearchProtocol {
     return self.listReferenceImagesByItems(request: request)
   }
 
+  /// Gets information associated with a ReferenceImage.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the specified image does not exist.
+  ///
+  /// @Snippet(path: "ProductSearch_GetReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/getReferenceImage(request:options:)``
   public func getReferenceImage(request: GetReferenceImageRequest) async throws
     -> GoogleCloudVisionV1.ReferenceImage
   {
@@ -971,6 +1511,17 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information associated with a ReferenceImage.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the specified image does not exist.
+  ///
+  /// @Snippet(path: "ProductSearch_GetReferenceImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/getReferenceImage(request:options:)``
   public func getReferenceImage(
     name: Swift.String,
   ) async throws -> GoogleCloudVisionV1.ReferenceImage {
@@ -980,6 +1531,20 @@ extension Clients.ProductSearchProtocol {
     return try await self.getReferenceImage(request: request)
   }
 
+  /// Adds a Product to the specified ProductSet. If the Product is already
+  /// present, no change is made.
+  ///
+  /// One Product can be added to at most 100 ProductSets.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
+  ///
+  /// @Snippet(path: "ProductSearch_AddProductToProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/addProductToProductSet(request:options:)``
   public func addProductToProductSet(request: AddProductToProductSetRequest) async throws {
     try await self.addProductToProductSet(request: request, options: .init())
   }
@@ -990,6 +1555,20 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a Product to the specified ProductSet. If the Product is already
+  /// present, no change is made.
+  ///
+  /// One Product can be added to at most 100 ProductSets.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
+  ///
+  /// @Snippet(path: "ProductSearch_AddProductToProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/addProductToProductSet(request:options:)``
   public func addProductToProductSet(
     name: Swift.String,
     product: Swift.String,
@@ -1001,6 +1580,13 @@ extension Clients.ProductSearchProtocol {
     try await self.addProductToProductSet(request: request)
   }
 
+  /// Removes a Product from the specified ProductSet.
+  ///
+  /// @Snippet(path: "ProductSearch_RemoveProductFromProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/removeProductFromProductSet(request:options:)``
   public func removeProductFromProductSet(request: RemoveProductFromProductSetRequest) async throws
   {
     try await self.removeProductFromProductSet(request: request, options: .init())
@@ -1012,6 +1598,13 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Product from the specified ProductSet.
+  ///
+  /// @Snippet(path: "ProductSearch_RemoveProductFromProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/removeProductFromProductSet(request:options:)``
   public func removeProductFromProductSet(
     name: Swift.String,
     product: Swift.String,
@@ -1023,6 +1616,19 @@ extension Clients.ProductSearchProtocol {
     try await self.removeProductFromProductSet(request: request)
   }
 
+  /// Lists the Products in a ProductSet, in an unspecified order. If the
+  /// ProductSet does not exist, the products field of the response will be
+  /// empty.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductsInProductSet(request:options:)``
   public func listProductsInProductSet(request: ListProductsInProductSetRequest) async throws
     -> GoogleCloudVisionV1.ListProductsInProductSetResponse
   {
@@ -1035,6 +1641,19 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the Products in a ProductSet, in an unspecified order. If the
+  /// ProductSet does not exist, the products field of the response will be
+  /// empty.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductsInProductSet(request:options:)``
   public func listProductsInProductSetByItems(
     request: ListProductsInProductSetRequest
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -1050,6 +1669,10 @@ extension Clients.ProductSearchProtocol {
   /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
   ///
   /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductsInProductSet(request:options:)``
   public func listProductsInProductSetByItems(
     request: ListProductsInProductSetRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -1064,6 +1687,19 @@ extension Clients.ProductSearchProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the Products in a ProductSet, in an unspecified order. If the
+  /// ProductSet does not exist, the products field of the response will be
+  /// empty.
+  ///
+  /// Possible errors:
+  ///
+  /// * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+  ///
+  /// @Snippet(path: "ProductSearch_ListProductsInProductSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/listProductsInProductSet(request:options:)``
   public func listProductsInProductSetByItems(
     name: Swift.String,
   ) -> some AsyncSequence<Product, any Swift.Error> & Sendable {
@@ -1073,6 +1709,26 @@ extension Clients.ProductSearchProtocol {
     return self.listProductsInProductSetByItems(request: request)
   }
 
+  /// Asynchronous API that imports a list of reference images to specified
+  /// product sets based on a list of image information.
+  ///
+  /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+  /// used to keep track of the progress and results of the request.
+  /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+  /// `Operation.response` contains `ImportProductSetsResponse`. (results)
+  ///
+  /// The input source of this method is a csv file on Google Cloud Storage.
+  /// For the format of the csv file please see
+  /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
+  ///
+  /// [google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]: <doc:ImportProductSetsGcsSource/csvFileUri>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "ProductSearch_ImportProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/importProductSets(request:options:)``
   public func importProductSets(request: ImportProductSetsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1085,6 +1741,26 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Asynchronous API that imports a list of reference images to specified
+  /// product sets based on a list of image information.
+  ///
+  /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+  /// used to keep track of the progress and results of the request.
+  /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+  /// `Operation.response` contains `ImportProductSetsResponse`. (results)
+  ///
+  /// The input source of this method is a csv file on Google Cloud Storage.
+  /// For the format of the csv file please see
+  /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
+  ///
+  /// [google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]: <doc:ImportProductSetsGcsSource/csvFileUri>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "ProductSearch_ImportProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/importProductSetsPollingUntilDone(request:options:)``
   public func importProductSetsPollingUntilDone(request: ImportProductSetsRequest) async throws
     -> ImportProductSetsResponse
   {
@@ -1097,6 +1773,26 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Asynchronous API that imports a list of reference images to specified
+  /// product sets based on a list of image information.
+  ///
+  /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+  /// used to keep track of the progress and results of the request.
+  /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+  /// `Operation.response` contains `ImportProductSetsResponse`. (results)
+  ///
+  /// The input source of this method is a csv file on Google Cloud Storage.
+  /// For the format of the csv file please see
+  /// [ImportProductSetsGcsSource.csv_file_uri][google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri].
+  ///
+  /// [google.cloud.vision.v1.ImportProductSetsGcsSource.csv_file_uri]: <doc:ImportProductSetsGcsSource/csvFileUri>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "ProductSearch_ImportProductSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/importProductSetsPollingUntilDone(request:options:)``
   public func importProductSetsPollingUntilDone(
     parent: Swift.String,
     inputConfig: ImportProductSetsInputConfig?,
@@ -1108,6 +1804,38 @@ extension Clients.ProductSearchProtocol {
     return try await self.importProductSetsPollingUntilDone(request: request)
   }
 
+  /// Asynchronous API to delete all Products in a ProductSet or all Products
+  /// that are in no ProductSet.
+  ///
+  /// If a Product is a member of the specified ProductSet in addition to other
+  /// ProductSets, the Product will still be deleted.
+  ///
+  /// It is recommended to not delete the specified ProductSet until after this
+  /// operation has completed. It is also recommended to not add any of the
+  /// Products involved in the batch delete to a new ProductSet while this
+  /// operation is running because those Products may still end up deleted.
+  ///
+  /// It's not possible to undo the PurgeProducts operation. Therefore, it is
+  /// recommended to keep the csv files used in ImportProductSets (if that was
+  /// how you originally built the Product Set) before starting PurgeProducts, in
+  /// case you need to re-import the data after deletion.
+  ///
+  /// If the plan is to purge all of the Products from a ProductSet and then
+  /// re-use the empty ProductSet to re-import new Products into the empty
+  /// ProductSet, you must wait until the PurgeProducts operation has finished
+  /// for that ProductSet.
+  ///
+  /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+  /// used to keep track of the progress and results of the request.
+  /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+  ///
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "ProductSearch_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/purgeProducts(request:options:)``
   public func purgeProducts(request: PurgeProductsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1120,6 +1848,38 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Asynchronous API to delete all Products in a ProductSet or all Products
+  /// that are in no ProductSet.
+  ///
+  /// If a Product is a member of the specified ProductSet in addition to other
+  /// ProductSets, the Product will still be deleted.
+  ///
+  /// It is recommended to not delete the specified ProductSet until after this
+  /// operation has completed. It is also recommended to not add any of the
+  /// Products involved in the batch delete to a new ProductSet while this
+  /// operation is running because those Products may still end up deleted.
+  ///
+  /// It's not possible to undo the PurgeProducts operation. Therefore, it is
+  /// recommended to keep the csv files used in ImportProductSets (if that was
+  /// how you originally built the Product Set) before starting PurgeProducts, in
+  /// case you need to re-import the data after deletion.
+  ///
+  /// If the plan is to purge all of the Products from a ProductSet and then
+  /// re-use the empty ProductSet to re-import new Products into the empty
+  /// ProductSet, you must wait until the PurgeProducts operation has finished
+  /// for that ProductSet.
+  ///
+  /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+  /// used to keep track of the progress and results of the request.
+  /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+  ///
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "ProductSearch_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/purgeProductsPollingUntilDone(request:options:)``
   public func purgeProductsPollingUntilDone(request: PurgeProductsRequest) async throws {
     try await self.purgeProductsPollingUntilDone(request: request, options: .init())
   }
@@ -1130,6 +1890,38 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Asynchronous API to delete all Products in a ProductSet or all Products
+  /// that are in no ProductSet.
+  ///
+  /// If a Product is a member of the specified ProductSet in addition to other
+  /// ProductSets, the Product will still be deleted.
+  ///
+  /// It is recommended to not delete the specified ProductSet until after this
+  /// operation has completed. It is also recommended to not add any of the
+  /// Products involved in the batch delete to a new ProductSet while this
+  /// operation is running because those Products may still end up deleted.
+  ///
+  /// It's not possible to undo the PurgeProducts operation. Therefore, it is
+  /// recommended to keep the csv files used in ImportProductSets (if that was
+  /// how you originally built the Product Set) before starting PurgeProducts, in
+  /// case you need to re-import the data after deletion.
+  ///
+  /// If the plan is to purge all of the Products from a ProductSet and then
+  /// re-use the empty ProductSet to re-import new Products into the empty
+  /// ProductSet, you must wait until the PurgeProducts operation has finished
+  /// for that ProductSet.
+  ///
+  /// The [google.longrunning.Operation][google.longrunning.Operation] API can be
+  /// used to keep track of the progress and results of the request.
+  /// `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+  ///
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "ProductSearch_PurgeProducts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ProductSearchClient/purgeProductsPollingUntilDone(request:options:)``
   public func purgeProductsPollingUntilDone(
     parent: Swift.String,
   ) async throws {
@@ -1139,6 +1931,9 @@ extension Clients.ProductSearchProtocol {
     try await self.purgeProductsPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1151,6 +1946,9 @@ extension Clients.ProductSearchProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

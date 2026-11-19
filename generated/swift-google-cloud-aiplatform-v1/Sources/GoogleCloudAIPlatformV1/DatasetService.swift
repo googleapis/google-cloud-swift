@@ -28,6 +28,10 @@
   /// The service that manages Vertex AI Dataset and its child resources.
   ///
   /// @Snippet(path: "DatasetServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/DatasetServiceProtocol``
   public final class DatasetServiceClient: Clients.DatasetServiceProtocol, Sendable {
     let inner: any Clients.DatasetServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@
     /// Creates a Dataset.
     ///
     /// @Snippet(path: "DatasetService_CreateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDataset(request:)``
+    /// - ``createDatasetPollingUntilDone(parent:dataset:)``
+    /// - ``createDatasetPollingUntilDone(request:)``
+    /// - ``createDatasetPollingUntilDone(request:options:)``
     public func createDataset(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -57,6 +68,13 @@
     /// Creates a Dataset.
     ///
     /// @Snippet(path: "DatasetService_CreateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDataset(request:)``
+    /// - ``createDataset(request:options:)``
+    /// - ``createDatasetPollingUntilDone(parent:dataset:)``
+    /// - ``createDatasetPollingUntilDone(request:)``
     public func createDatasetPollingUntilDone(
       request: CreateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> Dataset {
@@ -84,6 +102,11 @@
     /// Gets a Dataset.
     ///
     /// @Snippet(path: "DatasetService_GetDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDataset(name:)``
+    /// - ``getDataset(request:)``
     public func getDataset(
       request: GetDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
@@ -93,6 +116,11 @@
     /// Updates a Dataset.
     ///
     /// @Snippet(path: "DatasetService_UpdateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDataset(dataset:updateMask:)``
+    /// - ``updateDataset(request:)``
     public func updateDataset(
       request: UpdateDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
@@ -102,6 +130,13 @@
     /// Lists Datasets in a Location.
     ///
     /// @Snippet(path: "DatasetService_ListDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDatasets(request:)``
+    /// - ``listDatasetsByItems(parent:)``
+    /// - ``listDatasetsByItems(request:)``
+    /// - ``listDatasetsByItems(request:options:)``
     public func listDatasets(
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDatasetsResponse {
@@ -111,6 +146,13 @@
     /// Deletes a Dataset.
     ///
     /// @Snippet(path: "DatasetService_DeleteDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDataset(request:)``
+    /// - ``deleteDatasetPollingUntilDone(name:)``
+    /// - ``deleteDatasetPollingUntilDone(request:)``
+    /// - ``deleteDatasetPollingUntilDone(request:options:)``
     public func deleteDataset(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -120,6 +162,13 @@
     /// Deletes a Dataset.
     ///
     /// @Snippet(path: "DatasetService_DeleteDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDataset(request:)``
+    /// - ``deleteDataset(request:options:)``
+    /// - ``deleteDatasetPollingUntilDone(name:)``
+    /// - ``deleteDatasetPollingUntilDone(request:)``
     public func deleteDatasetPollingUntilDone(
       request: DeleteDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -148,6 +197,13 @@
     /// Imports data into a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ImportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importData(request:)``
+    /// - ``importDataPollingUntilDone(name:importConfigs:)``
+    /// - ``importDataPollingUntilDone(request:)``
+    /// - ``importDataPollingUntilDone(request:options:)``
     public func importData(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -157,6 +213,13 @@
     /// Imports data into a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ImportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importData(request:)``
+    /// - ``importData(request:options:)``
+    /// - ``importDataPollingUntilDone(name:importConfigs:)``
+    /// - ``importDataPollingUntilDone(request:)``
     public func importDataPollingUntilDone(
       request: ImportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportDataResponse {
@@ -185,6 +248,13 @@
     /// Exports data from a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ExportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportData(request:)``
+    /// - ``exportDataPollingUntilDone(name:exportConfig:)``
+    /// - ``exportDataPollingUntilDone(request:)``
+    /// - ``exportDataPollingUntilDone(request:options:)``
     public func exportData(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -194,6 +264,13 @@
     /// Exports data from a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ExportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportData(request:)``
+    /// - ``exportData(request:options:)``
+    /// - ``exportDataPollingUntilDone(name:exportConfig:)``
+    /// - ``exportDataPollingUntilDone(request:)``
     public func exportDataPollingUntilDone(
       request: ExportDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportDataResponse {
@@ -222,6 +299,13 @@
     /// Create a version from a Dataset.
     ///
     /// @Snippet(path: "DatasetService_CreateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDatasetVersion(request:)``
+    /// - ``createDatasetVersionPollingUntilDone(parent:datasetVersion:)``
+    /// - ``createDatasetVersionPollingUntilDone(request:)``
+    /// - ``createDatasetVersionPollingUntilDone(request:options:)``
     public func createDatasetVersion(
       request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -231,6 +315,13 @@
     /// Create a version from a Dataset.
     ///
     /// @Snippet(path: "DatasetService_CreateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDatasetVersion(request:)``
+    /// - ``createDatasetVersion(request:options:)``
+    /// - ``createDatasetVersionPollingUntilDone(parent:datasetVersion:)``
+    /// - ``createDatasetVersionPollingUntilDone(request:)``
     public func createDatasetVersionPollingUntilDone(
       request: CreateDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> DatasetVersion {
@@ -259,6 +350,11 @@
     /// Updates a DatasetVersion.
     ///
     /// @Snippet(path: "DatasetService_UpdateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDatasetVersion(datasetVersion:updateMask:)``
+    /// - ``updateDatasetVersion(request:)``
     public func updateDatasetVersion(
       request: UpdateDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
@@ -268,6 +364,13 @@
     /// Deletes a Dataset version.
     ///
     /// @Snippet(path: "DatasetService_DeleteDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDatasetVersion(request:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(name:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(request:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(request:options:)``
     public func deleteDatasetVersion(
       request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -277,6 +380,13 @@
     /// Deletes a Dataset version.
     ///
     /// @Snippet(path: "DatasetService_DeleteDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDatasetVersion(request:)``
+    /// - ``deleteDatasetVersion(request:options:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(name:)``
+    /// - ``deleteDatasetVersionPollingUntilDone(request:)``
     public func deleteDatasetVersionPollingUntilDone(
       request: DeleteDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -305,6 +415,11 @@
     /// Gets a Dataset version.
     ///
     /// @Snippet(path: "DatasetService_GetDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDatasetVersion(name:)``
+    /// - ``getDatasetVersion(request:)``
     public func getDatasetVersion(
       request: GetDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
@@ -314,6 +429,13 @@
     /// Lists DatasetVersions in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ListDatasetVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDatasetVersions(request:)``
+    /// - ``listDatasetVersionsByItems(parent:)``
+    /// - ``listDatasetVersionsByItems(request:)``
+    /// - ``listDatasetVersionsByItems(request:options:)``
     public func listDatasetVersions(
       request: ListDatasetVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDatasetVersionsResponse {
@@ -323,6 +445,13 @@
     /// Restores a dataset version.
     ///
     /// @Snippet(path: "DatasetService_RestoreDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restoreDatasetVersion(request:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(name:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(request:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(request:options:)``
     public func restoreDatasetVersion(
       request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -332,6 +461,13 @@
     /// Restores a dataset version.
     ///
     /// @Snippet(path: "DatasetService_RestoreDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restoreDatasetVersion(request:)``
+    /// - ``restoreDatasetVersion(request:options:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(name:)``
+    /// - ``restoreDatasetVersionPollingUntilDone(request:)``
     public func restoreDatasetVersionPollingUntilDone(
       request: RestoreDatasetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> DatasetVersion {
@@ -360,6 +496,13 @@
     /// Lists DataItems in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ListDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDataItems(request:)``
+    /// - ``listDataItemsByItems(parent:)``
+    /// - ``listDataItemsByItems(request:)``
+    /// - ``listDataItemsByItems(request:options:)``
     public func listDataItems(
       request: ListDataItemsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListDataItemsResponse {
@@ -369,6 +512,12 @@
     /// Searches DataItems in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_SearchDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``searchDataItems(request:)``
+    /// - ``searchDataItemsByItems(request:)``
+    /// - ``searchDataItemsByItems(request:options:)``
     public func searchDataItems(
       request: SearchDataItemsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.SearchDataItemsResponse {
@@ -378,6 +527,13 @@
     /// Lists SavedQueries in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ListSavedQueries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listSavedQueries(request:)``
+    /// - ``listSavedQueriesByItems(parent:)``
+    /// - ``listSavedQueriesByItems(request:)``
+    /// - ``listSavedQueriesByItems(request:options:)``
     public func listSavedQueries(
       request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListSavedQueriesResponse {
@@ -387,6 +543,13 @@
     /// Deletes a SavedQuery.
     ///
     /// @Snippet(path: "DatasetService_DeleteSavedQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSavedQuery(request:)``
+    /// - ``deleteSavedQueryPollingUntilDone(name:)``
+    /// - ``deleteSavedQueryPollingUntilDone(request:)``
+    /// - ``deleteSavedQueryPollingUntilDone(request:options:)``
     public func deleteSavedQuery(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -396,6 +559,13 @@
     /// Deletes a SavedQuery.
     ///
     /// @Snippet(path: "DatasetService_DeleteSavedQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteSavedQuery(request:)``
+    /// - ``deleteSavedQuery(request:options:)``
+    /// - ``deleteSavedQueryPollingUntilDone(name:)``
+    /// - ``deleteSavedQueryPollingUntilDone(request:)``
     public func deleteSavedQueryPollingUntilDone(
       request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -424,6 +594,11 @@
     /// Gets an AnnotationSpec.
     ///
     /// @Snippet(path: "DatasetService_GetAnnotationSpec")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAnnotationSpec(name:)``
+    /// - ``getAnnotationSpec(request:)``
     public func getAnnotationSpec(
       request: GetAnnotationSpecRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AnnotationSpec {
@@ -433,6 +608,13 @@
     /// Lists Annotations belongs to a dataitem.
     ///
     /// @Snippet(path: "DatasetService_ListAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listAnnotations(request:)``
+    /// - ``listAnnotationsByItems(parent:)``
+    /// - ``listAnnotationsByItems(request:)``
+    /// - ``listAnnotationsByItems(request:options:)``
     public func listAnnotations(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListAnnotationsResponse {
@@ -442,6 +624,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "DatasetService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -451,6 +639,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "DatasetService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -464,6 +656,10 @@
     /// errors.
     ///
     /// @Snippet(path: "DatasetService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -474,6 +670,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "DatasetService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -489,6 +689,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "DatasetService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -500,6 +704,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DatasetService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -522,6 +733,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DatasetService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -533,6 +749,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DatasetService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -544,6 +765,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DatasetService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -742,6 +967,13 @@
 
   // Default implementations
   extension Clients.DatasetServiceProtocol {
+    /// Creates a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_CreateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/createDataset(request:options:)``
     public func createDataset(request: CreateDatasetRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -754,6 +986,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_CreateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/createDatasetPollingUntilDone(request:options:)``
     public func createDatasetPollingUntilDone(request: CreateDatasetRequest) async throws -> Dataset
     {
       return try await self.createDatasetPollingUntilDone(request: request, options: .init())
@@ -765,6 +1004,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_CreateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/createDatasetPollingUntilDone(request:options:)``
     public func createDatasetPollingUntilDone(
       parent: Swift.String,
       dataset: Dataset?,
@@ -776,6 +1022,13 @@
       return try await self.createDatasetPollingUntilDone(request: request)
     }
 
+    /// Gets a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_GetDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getDataset(request:options:)``
     public func getDataset(request: GetDatasetRequest) async throws
       -> GoogleCloudAIPlatformV1.Dataset
     {
@@ -788,6 +1041,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_GetDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getDataset(request:options:)``
     public func getDataset(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Dataset {
@@ -797,6 +1057,13 @@
       return try await self.getDataset(request: request)
     }
 
+    /// Updates a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_UpdateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/updateDataset(request:options:)``
     public func updateDataset(request: UpdateDatasetRequest) async throws
       -> GoogleCloudAIPlatformV1.Dataset
     {
@@ -809,6 +1076,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_UpdateDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/updateDataset(request:options:)``
     public func updateDataset(
       dataset: Dataset?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -820,6 +1094,13 @@
       return try await self.updateDataset(request: request)
     }
 
+    /// Lists Datasets in a Location.
+    ///
+    /// @Snippet(path: "DatasetService_ListDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasets(request:options:)``
     public func listDatasets(request: ListDatasetsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListDatasetsResponse
     {
@@ -832,6 +1113,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Datasets in a Location.
+    ///
+    /// @Snippet(path: "DatasetService_ListDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasets(request:options:)``
     public func listDatasetsByItems(
       request: ListDatasetsRequest
     ) -> some AsyncSequence<Dataset, any Swift.Error> & Sendable {
@@ -841,6 +1129,10 @@
     /// Lists Datasets in a Location.
     ///
     /// @Snippet(path: "DatasetService_ListDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasets(request:options:)``
     public func listDatasetsByItems(
       request: ListDatasetsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Dataset, any Swift.Error> & Sendable {
@@ -855,6 +1147,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Datasets in a Location.
+    ///
+    /// @Snippet(path: "DatasetService_ListDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasets(request:options:)``
     public func listDatasetsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Dataset, any Swift.Error> & Sendable {
@@ -864,6 +1163,13 @@
       return self.listDatasetsByItems(request: request)
     }
 
+    /// Deletes a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteDataset(request:options:)``
     public func deleteDataset(request: DeleteDatasetRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -876,6 +1182,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteDatasetPollingUntilDone(request:options:)``
     public func deleteDatasetPollingUntilDone(request: DeleteDatasetRequest) async throws {
       try await self.deleteDatasetPollingUntilDone(request: request, options: .init())
     }
@@ -886,6 +1199,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteDatasetPollingUntilDone(request:options:)``
     public func deleteDatasetPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -895,6 +1215,13 @@
       try await self.deleteDatasetPollingUntilDone(request: request)
     }
 
+    /// Imports data into a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ImportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/importData(request:options:)``
     public func importData(request: ImportDataRequest) async throws -> GoogleLongRunning.Operation {
       try await self.importData(request: request, options: .init())
     }
@@ -905,6 +1232,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports data into a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ImportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/importDataPollingUntilDone(request:options:)``
     public func importDataPollingUntilDone(request: ImportDataRequest) async throws
       -> ImportDataResponse
     {
@@ -917,6 +1251,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports data into a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ImportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/importDataPollingUntilDone(request:options:)``
     public func importDataPollingUntilDone(
       name: Swift.String,
       importConfigs: [ImportDataConfig],
@@ -928,6 +1269,13 @@
       return try await self.importDataPollingUntilDone(request: request)
     }
 
+    /// Exports data from a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ExportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/exportData(request:options:)``
     public func exportData(request: ExportDataRequest) async throws -> GoogleLongRunning.Operation {
       try await self.exportData(request: request, options: .init())
     }
@@ -938,6 +1286,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports data from a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ExportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/exportDataPollingUntilDone(request:options:)``
     public func exportDataPollingUntilDone(request: ExportDataRequest) async throws
       -> ExportDataResponse
     {
@@ -950,6 +1305,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports data from a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ExportData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/exportDataPollingUntilDone(request:options:)``
     public func exportDataPollingUntilDone(
       name: Swift.String,
       exportConfig: ExportDataConfig?,
@@ -961,6 +1323,13 @@
       return try await self.exportDataPollingUntilDone(request: request)
     }
 
+    /// Create a version from a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_CreateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/createDatasetVersion(request:options:)``
     public func createDatasetVersion(request: CreateDatasetVersionRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -973,6 +1342,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a version from a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_CreateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/createDatasetVersionPollingUntilDone(request:options:)``
     public func createDatasetVersionPollingUntilDone(request: CreateDatasetVersionRequest)
       async throws -> DatasetVersion
     {
@@ -985,6 +1361,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a version from a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_CreateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/createDatasetVersionPollingUntilDone(request:options:)``
     public func createDatasetVersionPollingUntilDone(
       parent: Swift.String,
       datasetVersion: DatasetVersion?,
@@ -996,6 +1379,13 @@
       return try await self.createDatasetVersionPollingUntilDone(request: request)
     }
 
+    /// Updates a DatasetVersion.
+    ///
+    /// @Snippet(path: "DatasetService_UpdateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/updateDatasetVersion(request:options:)``
     public func updateDatasetVersion(request: UpdateDatasetVersionRequest) async throws
       -> GoogleCloudAIPlatformV1.DatasetVersion
     {
@@ -1008,6 +1398,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a DatasetVersion.
+    ///
+    /// @Snippet(path: "DatasetService_UpdateDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/updateDatasetVersion(request:options:)``
     public func updateDatasetVersion(
       datasetVersion: DatasetVersion?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1019,6 +1416,13 @@
       return try await self.updateDatasetVersion(request: request)
     }
 
+    /// Deletes a Dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteDatasetVersion(request:options:)``
     public func deleteDatasetVersion(request: DeleteDatasetVersionRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1031,6 +1435,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteDatasetVersionPollingUntilDone(request:options:)``
     public func deleteDatasetVersionPollingUntilDone(request: DeleteDatasetVersionRequest)
       async throws
     {
@@ -1043,6 +1454,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteDatasetVersionPollingUntilDone(request:options:)``
     public func deleteDatasetVersionPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1052,6 +1470,13 @@
       try await self.deleteDatasetVersionPollingUntilDone(request: request)
     }
 
+    /// Gets a Dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_GetDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getDatasetVersion(request:options:)``
     public func getDatasetVersion(request: GetDatasetVersionRequest) async throws
       -> GoogleCloudAIPlatformV1.DatasetVersion
     {
@@ -1064,6 +1489,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_GetDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getDatasetVersion(request:options:)``
     public func getDatasetVersion(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.DatasetVersion {
@@ -1073,6 +1505,13 @@
       return try await self.getDatasetVersion(request: request)
     }
 
+    /// Lists DatasetVersions in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListDatasetVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasetVersions(request:options:)``
     public func listDatasetVersions(request: ListDatasetVersionsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListDatasetVersionsResponse
     {
@@ -1085,6 +1524,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists DatasetVersions in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListDatasetVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasetVersions(request:options:)``
     public func listDatasetVersionsByItems(
       request: ListDatasetVersionsRequest
     ) -> some AsyncSequence<DatasetVersion, any Swift.Error> & Sendable {
@@ -1094,6 +1540,10 @@
     /// Lists DatasetVersions in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ListDatasetVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasetVersions(request:options:)``
     public func listDatasetVersionsByItems(
       request: ListDatasetVersionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<DatasetVersion, any Swift.Error> & Sendable {
@@ -1108,6 +1558,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists DatasetVersions in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListDatasetVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDatasetVersions(request:options:)``
     public func listDatasetVersionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<DatasetVersion, any Swift.Error> & Sendable {
@@ -1117,6 +1574,13 @@
       return self.listDatasetVersionsByItems(request: request)
     }
 
+    /// Restores a dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_RestoreDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/restoreDatasetVersion(request:options:)``
     public func restoreDatasetVersion(request: RestoreDatasetVersionRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1129,6 +1593,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Restores a dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_RestoreDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/restoreDatasetVersionPollingUntilDone(request:options:)``
     public func restoreDatasetVersionPollingUntilDone(request: RestoreDatasetVersionRequest)
       async throws -> DatasetVersion
     {
@@ -1142,6 +1613,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Restores a dataset version.
+    ///
+    /// @Snippet(path: "DatasetService_RestoreDatasetVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/restoreDatasetVersionPollingUntilDone(request:options:)``
     public func restoreDatasetVersionPollingUntilDone(
       name: Swift.String,
     ) async throws -> DatasetVersion {
@@ -1151,6 +1629,13 @@
       return try await self.restoreDatasetVersionPollingUntilDone(request: request)
     }
 
+    /// Lists DataItems in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDataItems(request:options:)``
     public func listDataItems(request: ListDataItemsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListDataItemsResponse
     {
@@ -1163,6 +1648,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists DataItems in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDataItems(request:options:)``
     public func listDataItemsByItems(
       request: ListDataItemsRequest
     ) -> some AsyncSequence<DataItem, any Swift.Error> & Sendable {
@@ -1172,6 +1664,10 @@
     /// Lists DataItems in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ListDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDataItems(request:options:)``
     public func listDataItemsByItems(
       request: ListDataItemsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<DataItem, any Swift.Error> & Sendable {
@@ -1186,6 +1682,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists DataItems in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listDataItems(request:options:)``
     public func listDataItemsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<DataItem, any Swift.Error> & Sendable {
@@ -1195,6 +1698,13 @@
       return self.listDataItemsByItems(request: request)
     }
 
+    /// Searches DataItems in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_SearchDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/searchDataItems(request:options:)``
     public func searchDataItems(request: SearchDataItemsRequest) async throws
       -> GoogleCloudAIPlatformV1.SearchDataItemsResponse
     {
@@ -1207,6 +1717,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Searches DataItems in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_SearchDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/searchDataItems(request:options:)``
     public func searchDataItemsByItems(
       request: SearchDataItemsRequest
     ) -> some AsyncSequence<DataItemView, any Swift.Error> & Sendable {
@@ -1216,6 +1733,10 @@
     /// Searches DataItems in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_SearchDataItems")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/searchDataItems(request:options:)``
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1233,6 +1754,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists SavedQueries in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListSavedQueries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listSavedQueries(request:options:)``
     public func listSavedQueries(request: ListSavedQueriesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListSavedQueriesResponse
     {
@@ -1245,6 +1773,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists SavedQueries in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListSavedQueries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listSavedQueries(request:options:)``
     public func listSavedQueriesByItems(
       request: ListSavedQueriesRequest
     ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
@@ -1254,6 +1789,10 @@
     /// Lists SavedQueries in a Dataset.
     ///
     /// @Snippet(path: "DatasetService_ListSavedQueries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listSavedQueries(request:options:)``
     public func listSavedQueriesByItems(
       request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
@@ -1268,6 +1807,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists SavedQueries in a Dataset.
+    ///
+    /// @Snippet(path: "DatasetService_ListSavedQueries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listSavedQueries(request:options:)``
     public func listSavedQueriesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
@@ -1277,6 +1823,13 @@
       return self.listSavedQueriesByItems(request: request)
     }
 
+    /// Deletes a SavedQuery.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteSavedQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteSavedQuery(request:options:)``
     public func deleteSavedQuery(request: DeleteSavedQueryRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1289,6 +1842,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a SavedQuery.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteSavedQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteSavedQueryPollingUntilDone(request:options:)``
     public func deleteSavedQueryPollingUntilDone(request: DeleteSavedQueryRequest) async throws {
       try await self.deleteSavedQueryPollingUntilDone(request: request, options: .init())
     }
@@ -1299,6 +1859,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a SavedQuery.
+    ///
+    /// @Snippet(path: "DatasetService_DeleteSavedQuery")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteSavedQueryPollingUntilDone(request:options:)``
     public func deleteSavedQueryPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1308,6 +1875,13 @@
       try await self.deleteSavedQueryPollingUntilDone(request: request)
     }
 
+    /// Gets an AnnotationSpec.
+    ///
+    /// @Snippet(path: "DatasetService_GetAnnotationSpec")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getAnnotationSpec(request:options:)``
     public func getAnnotationSpec(request: GetAnnotationSpecRequest) async throws
       -> GoogleCloudAIPlatformV1.AnnotationSpec
     {
@@ -1320,6 +1894,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an AnnotationSpec.
+    ///
+    /// @Snippet(path: "DatasetService_GetAnnotationSpec")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getAnnotationSpec(request:options:)``
     public func getAnnotationSpec(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.AnnotationSpec {
@@ -1329,6 +1910,13 @@
       return try await self.getAnnotationSpec(request: request)
     }
 
+    /// Lists Annotations belongs to a dataitem.
+    ///
+    /// @Snippet(path: "DatasetService_ListAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listAnnotations(request:options:)``
     public func listAnnotations(request: ListAnnotationsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListAnnotationsResponse
     {
@@ -1341,6 +1929,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Annotations belongs to a dataitem.
+    ///
+    /// @Snippet(path: "DatasetService_ListAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listAnnotations(request:options:)``
     public func listAnnotationsByItems(
       request: ListAnnotationsRequest
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, any Swift.Error> & Sendable {
@@ -1350,6 +1945,10 @@
     /// Lists Annotations belongs to a dataitem.
     ///
     /// @Snippet(path: "DatasetService_ListAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listAnnotations(request:options:)``
     public func listAnnotationsByItems(
       request: ListAnnotationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, any Swift.Error> & Sendable {
@@ -1364,6 +1963,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Annotations belongs to a dataitem.
+    ///
+    /// @Snippet(path: "DatasetService_ListAnnotations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listAnnotations(request:options:)``
     public func listAnnotationsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Annotation, any Swift.Error> & Sendable {
@@ -1373,6 +1979,13 @@
       return self.listAnnotationsByItems(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "DatasetService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -1385,6 +1998,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "DatasetService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1394,6 +2014,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "DatasetService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1407,6 +2031,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "DatasetService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -1419,6 +2050,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "DatasetService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1431,6 +2073,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "DatasetService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1443,6 +2093,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "DatasetService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -1455,6 +2118,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1467,6 +2139,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1478,6 +2159,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "DatasetService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1491,6 +2176,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1502,6 +2196,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1514,6 +2211,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1523,6 +2223,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -1533,6 +2242,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -1542,6 +2260,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1552,6 +2279,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -1561,6 +2297,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "DatasetService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DatasetServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

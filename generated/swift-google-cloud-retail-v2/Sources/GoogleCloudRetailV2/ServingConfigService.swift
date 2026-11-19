@@ -25,6 +25,10 @@ import Foundation
 /// Service for modifying ServingConfig.
 ///
 /// @Snippet(path: "ServingConfigServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ServingConfigServiceProtocol``
 public final class ServingConfigServiceClient: Clients.ServingConfigServiceProtocol, Sendable {
   let inner: any Clients.ServingConfigServiceStub
 
@@ -49,6 +53,11 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// [google.cloud.retail.v2.ServingConfig]: <doc:ServingConfig>
   ///
   /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServingConfig(parent:servingConfig:servingConfigId:)``
+  /// - ``createServingConfig(request:)``
   public func createServingConfig(
     request: CreateServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -60,6 +69,11 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// Returns a NotFound error if the ServingConfig does not exist.
   ///
   /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServingConfig(name:)``
+  /// - ``deleteServingConfig(request:)``
   public func deleteServingConfig(
     request: DeleteServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -69,6 +83,11 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// Updates a ServingConfig.
   ///
   /// @Snippet(path: "ServingConfigService_UpdateServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServingConfig(request:)``
+  /// - ``updateServingConfig(servingConfig:updateMask:)``
   public func updateServingConfig(
     request: UpdateServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -80,6 +99,11 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// Returns a NotFound error if the ServingConfig does not exist.
   ///
   /// @Snippet(path: "ServingConfigService_GetServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServingConfig(name:)``
+  /// - ``getServingConfig(request:)``
   public func getServingConfig(
     request: GetServingConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -89,6 +113,13 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// Lists all ServingConfigs linked to this catalog.
   ///
   /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServingConfigs(request:)``
+  /// - ``listServingConfigsByItems(parent:)``
+  /// - ``listServingConfigsByItems(request:)``
+  /// - ``listServingConfigsByItems(request:options:)``
   public func listServingConfigs(
     request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ListServingConfigsResponse {
@@ -104,6 +135,11 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// number of control allowed for that type of control.
   ///
   /// @Snippet(path: "ServingConfigService_AddControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addControl(request:)``
+  /// - ``addControl(servingConfig:)``
   public func addControl(
     request: AddControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -116,6 +152,11 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// ServingConfig.
   ///
   /// @Snippet(path: "ServingConfigService_RemoveControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeControl(request:)``
+  /// - ``removeControl(servingConfig:)``
   public func removeControl(
     request: RemoveControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -127,6 +168,13 @@ public final class ServingConfigServiceClient: Clients.ServingConfigServiceProto
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ServingConfigService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -196,6 +244,20 @@ extension Clients {
 
 // Default implementations
 extension Clients.ServingConfigServiceProtocol {
+  /// Creates a ServingConfig.
+  ///
+  /// A maximum of 100 [ServingConfig][google.cloud.retail.v2.ServingConfig]s are
+  /// allowed in a [Catalog][google.cloud.retail.v2.Catalog], otherwise a
+  /// FAILED_PRECONDITION error is returned.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  /// [google.cloud.retail.v2.ServingConfig]: <doc:ServingConfig>
+  ///
+  /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/createServingConfig(request:options:)``
   public func createServingConfig(request: CreateServingConfigRequest) async throws
     -> GoogleCloudRetailV2.ServingConfig
   {
@@ -208,6 +270,20 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a ServingConfig.
+  ///
+  /// A maximum of 100 [ServingConfig][google.cloud.retail.v2.ServingConfig]s are
+  /// allowed in a [Catalog][google.cloud.retail.v2.Catalog], otherwise a
+  /// FAILED_PRECONDITION error is returned.
+  ///
+  /// [google.cloud.retail.v2.Catalog]: <doc:Catalog>
+  /// [google.cloud.retail.v2.ServingConfig]: <doc:ServingConfig>
+  ///
+  /// @Snippet(path: "ServingConfigService_CreateServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/createServingConfig(request:options:)``
   public func createServingConfig(
     parent: Swift.String,
     servingConfig: ServingConfig?,
@@ -221,6 +297,15 @@ extension Clients.ServingConfigServiceProtocol {
     return try await self.createServingConfig(request: request)
   }
 
+  /// Deletes a ServingConfig.
+  ///
+  /// Returns a NotFound error if the ServingConfig does not exist.
+  ///
+  /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/deleteServingConfig(request:options:)``
   public func deleteServingConfig(request: DeleteServingConfigRequest) async throws {
     try await self.deleteServingConfig(request: request, options: .init())
   }
@@ -231,6 +316,15 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a ServingConfig.
+  ///
+  /// Returns a NotFound error if the ServingConfig does not exist.
+  ///
+  /// @Snippet(path: "ServingConfigService_DeleteServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/deleteServingConfig(request:options:)``
   public func deleteServingConfig(
     name: Swift.String,
   ) async throws {
@@ -240,6 +334,13 @@ extension Clients.ServingConfigServiceProtocol {
     try await self.deleteServingConfig(request: request)
   }
 
+  /// Updates a ServingConfig.
+  ///
+  /// @Snippet(path: "ServingConfigService_UpdateServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/updateServingConfig(request:options:)``
   public func updateServingConfig(request: UpdateServingConfigRequest) async throws
     -> GoogleCloudRetailV2.ServingConfig
   {
@@ -252,6 +353,13 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a ServingConfig.
+  ///
+  /// @Snippet(path: "ServingConfigService_UpdateServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/updateServingConfig(request:options:)``
   public func updateServingConfig(
     servingConfig: ServingConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -263,6 +371,15 @@ extension Clients.ServingConfigServiceProtocol {
     return try await self.updateServingConfig(request: request)
   }
 
+  /// Gets a ServingConfig.
+  ///
+  /// Returns a NotFound error if the ServingConfig does not exist.
+  ///
+  /// @Snippet(path: "ServingConfigService_GetServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/getServingConfig(request:options:)``
   public func getServingConfig(request: GetServingConfigRequest) async throws
     -> GoogleCloudRetailV2.ServingConfig
   {
@@ -275,6 +392,15 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a ServingConfig.
+  ///
+  /// Returns a NotFound error if the ServingConfig does not exist.
+  ///
+  /// @Snippet(path: "ServingConfigService_GetServingConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/getServingConfig(request:options:)``
   public func getServingConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -284,6 +410,13 @@ extension Clients.ServingConfigServiceProtocol {
     return try await self.getServingConfig(request: request)
   }
 
+  /// Lists all ServingConfigs linked to this catalog.
+  ///
+  /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
   public func listServingConfigs(request: ListServingConfigsRequest) async throws
     -> GoogleCloudRetailV2.ListServingConfigsResponse
   {
@@ -296,6 +429,13 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all ServingConfigs linked to this catalog.
+  ///
+  /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
   public func listServingConfigsByItems(
     request: ListServingConfigsRequest
   ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
@@ -305,6 +445,10 @@ extension Clients.ServingConfigServiceProtocol {
   /// Lists all ServingConfigs linked to this catalog.
   ///
   /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
   public func listServingConfigsByItems(
     request: ListServingConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
@@ -319,6 +463,13 @@ extension Clients.ServingConfigServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all ServingConfigs linked to this catalog.
+  ///
+  /// @Snippet(path: "ServingConfigService_ListServingConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listServingConfigs(request:options:)``
   public func listServingConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ServingConfig, any Swift.Error> & Sendable {
@@ -328,6 +479,19 @@ extension Clients.ServingConfigServiceProtocol {
     return self.listServingConfigsByItems(request: request)
   }
 
+  /// Enables a Control on the specified ServingConfig.
+  /// The control is added in the last position of the list of controls
+  /// it belongs to (e.g. if it's a facet spec control it will be applied
+  /// in the last position of servingConfig.facetSpecIds)
+  /// Returns a ALREADY_EXISTS error if the control has already been applied.
+  /// Returns a FAILED_PRECONDITION error if the addition could exceed maximum
+  /// number of control allowed for that type of control.
+  ///
+  /// @Snippet(path: "ServingConfigService_AddControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/addControl(request:options:)``
   public func addControl(request: AddControlRequest) async throws
     -> GoogleCloudRetailV2.ServingConfig
   {
@@ -340,6 +504,19 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables a Control on the specified ServingConfig.
+  /// The control is added in the last position of the list of controls
+  /// it belongs to (e.g. if it's a facet spec control it will be applied
+  /// in the last position of servingConfig.facetSpecIds)
+  /// Returns a ALREADY_EXISTS error if the control has already been applied.
+  /// Returns a FAILED_PRECONDITION error if the addition could exceed maximum
+  /// number of control allowed for that type of control.
+  ///
+  /// @Snippet(path: "ServingConfigService_AddControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/addControl(request:options:)``
   public func addControl(
     servingConfig: Swift.String,
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -349,6 +526,16 @@ extension Clients.ServingConfigServiceProtocol {
     return try await self.addControl(request: request)
   }
 
+  /// Disables a Control on the specified ServingConfig.
+  /// The control is removed from the ServingConfig.
+  /// Returns a NOT_FOUND error if the Control is not enabled for the
+  /// ServingConfig.
+  ///
+  /// @Snippet(path: "ServingConfigService_RemoveControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/removeControl(request:options:)``
   public func removeControl(request: RemoveControlRequest) async throws
     -> GoogleCloudRetailV2.ServingConfig
   {
@@ -361,6 +548,16 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disables a Control on the specified ServingConfig.
+  /// The control is removed from the ServingConfig.
+  /// Returns a NOT_FOUND error if the Control is not enabled for the
+  /// ServingConfig.
+  ///
+  /// @Snippet(path: "ServingConfigService_RemoveControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/removeControl(request:options:)``
   public func removeControl(
     servingConfig: Swift.String,
   ) async throws -> GoogleCloudRetailV2.ServingConfig {
@@ -370,6 +567,15 @@ extension Clients.ServingConfigServiceProtocol {
     return try await self.removeControl(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServingConfigService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -382,6 +588,15 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServingConfigService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -393,6 +608,10 @@ extension Clients.ServingConfigServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ServingConfigService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -406,6 +625,15 @@ extension Clients.ServingConfigServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServingConfigService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServingConfigServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -417,6 +645,9 @@ extension Clients.ServingConfigServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -429,6 +660,9 @@ extension Clients.ServingConfigServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

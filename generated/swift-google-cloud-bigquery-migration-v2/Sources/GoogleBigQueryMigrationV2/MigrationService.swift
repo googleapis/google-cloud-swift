@@ -23,6 +23,10 @@ import Foundation
 /// Service to handle EDW migrations.
 ///
 /// @Snippet(path: "MigrationServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MigrationServiceProtocol``
 public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sendable {
   let inner: any Clients.MigrationServiceStub
 
@@ -39,6 +43,11 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// Creates a migration workflow.
   ///
   /// @Snippet(path: "MigrationService_CreateMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMigrationWorkflow(parent:migrationWorkflow:)``
+  /// - ``createMigrationWorkflow(request:)``
   public func createMigrationWorkflow(
     request: CreateMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -48,6 +57,11 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// Gets a previously created migration workflow.
   ///
   /// @Snippet(path: "MigrationService_GetMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMigrationWorkflow(name:)``
+  /// - ``getMigrationWorkflow(request:)``
   public func getMigrationWorkflow(
     request: GetMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -57,6 +71,13 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// Lists previously created migration workflow.
   ///
   /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMigrationWorkflows(request:)``
+  /// - ``listMigrationWorkflowsByItems(parent:)``
+  /// - ``listMigrationWorkflowsByItems(request:)``
+  /// - ``listMigrationWorkflowsByItems(request:options:)``
   public func listMigrationWorkflows(
     request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse {
@@ -66,6 +87,11 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// Deletes a migration workflow by name.
   ///
   /// @Snippet(path: "MigrationService_DeleteMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMigrationWorkflow(name:)``
+  /// - ``deleteMigrationWorkflow(request:)``
   public func deleteMigrationWorkflow(
     request: DeleteMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -78,6 +104,11 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// RUNNING.
   ///
   /// @Snippet(path: "MigrationService_StartMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startMigrationWorkflow(name:)``
+  /// - ``startMigrationWorkflow(request:)``
   public func startMigrationWorkflow(
     request: StartMigrationWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -87,6 +118,11 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// Gets a previously created migration subtask.
   ///
   /// @Snippet(path: "MigrationService_GetMigrationSubtask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMigrationSubtask(name:)``
+  /// - ``getMigrationSubtask(request:)``
   public func getMigrationSubtask(
     request: GetMigrationSubtaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.MigrationSubtask {
@@ -96,6 +132,13 @@ public final class MigrationServiceClient: Clients.MigrationServiceProtocol, Sen
   /// Lists previously created migration subtasks.
   ///
   /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMigrationSubtasks(request:)``
+  /// - ``listMigrationSubtasksByItems(parent:)``
+  /// - ``listMigrationSubtasksByItems(request:)``
+  /// - ``listMigrationSubtasksByItems(request:options:)``
   public func listMigrationSubtasks(
     request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse {
@@ -149,6 +192,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MigrationServiceProtocol {
+  /// Creates a migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_CreateMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/createMigrationWorkflow(request:options:)``
   public func createMigrationWorkflow(request: CreateMigrationWorkflowRequest) async throws
     -> GoogleBigQueryMigrationV2.MigrationWorkflow
   {
@@ -161,6 +211,13 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_CreateMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/createMigrationWorkflow(request:options:)``
   public func createMigrationWorkflow(
     parent: Swift.String,
     migrationWorkflow: MigrationWorkflow?,
@@ -172,6 +229,13 @@ extension Clients.MigrationServiceProtocol {
     return try await self.createMigrationWorkflow(request: request)
   }
 
+  /// Gets a previously created migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_GetMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/getMigrationWorkflow(request:options:)``
   public func getMigrationWorkflow(request: GetMigrationWorkflowRequest) async throws
     -> GoogleBigQueryMigrationV2.MigrationWorkflow
   {
@@ -184,6 +248,13 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a previously created migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_GetMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/getMigrationWorkflow(request:options:)``
   public func getMigrationWorkflow(
     name: Swift.String,
   ) async throws -> GoogleBigQueryMigrationV2.MigrationWorkflow {
@@ -193,6 +264,13 @@ extension Clients.MigrationServiceProtocol {
     return try await self.getMigrationWorkflow(request: request)
   }
 
+  /// Lists previously created migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationWorkflows(request:options:)``
   public func listMigrationWorkflows(request: ListMigrationWorkflowsRequest) async throws
     -> GoogleBigQueryMigrationV2.ListMigrationWorkflowsResponse
   {
@@ -205,6 +283,13 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists previously created migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationWorkflows(request:options:)``
   public func listMigrationWorkflowsByItems(
     request: ListMigrationWorkflowsRequest
   ) -> some AsyncSequence<MigrationWorkflow, any Swift.Error> & Sendable {
@@ -214,6 +299,10 @@ extension Clients.MigrationServiceProtocol {
   /// Lists previously created migration workflow.
   ///
   /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationWorkflows(request:options:)``
   public func listMigrationWorkflowsByItems(
     request: ListMigrationWorkflowsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MigrationWorkflow, any Swift.Error> & Sendable {
@@ -228,6 +317,13 @@ extension Clients.MigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists previously created migration workflow.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationWorkflows(request:options:)``
   public func listMigrationWorkflowsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MigrationWorkflow, any Swift.Error> & Sendable {
@@ -237,6 +333,13 @@ extension Clients.MigrationServiceProtocol {
     return self.listMigrationWorkflowsByItems(request: request)
   }
 
+  /// Deletes a migration workflow by name.
+  ///
+  /// @Snippet(path: "MigrationService_DeleteMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/deleteMigrationWorkflow(request:options:)``
   public func deleteMigrationWorkflow(request: DeleteMigrationWorkflowRequest) async throws {
     try await self.deleteMigrationWorkflow(request: request, options: .init())
   }
@@ -247,6 +350,13 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a migration workflow by name.
+  ///
+  /// @Snippet(path: "MigrationService_DeleteMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/deleteMigrationWorkflow(request:options:)``
   public func deleteMigrationWorkflow(
     name: Swift.String,
   ) async throws {
@@ -256,6 +366,16 @@ extension Clients.MigrationServiceProtocol {
     try await self.deleteMigrationWorkflow(request: request)
   }
 
+  /// Starts a previously created migration workflow. I.e., the state transitions
+  /// from DRAFT to RUNNING. This is a no-op if the state is already RUNNING.
+  /// An error will be signaled if the state is anything other than DRAFT or
+  /// RUNNING.
+  ///
+  /// @Snippet(path: "MigrationService_StartMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/startMigrationWorkflow(request:options:)``
   public func startMigrationWorkflow(request: StartMigrationWorkflowRequest) async throws {
     try await self.startMigrationWorkflow(request: request, options: .init())
   }
@@ -266,6 +386,16 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a previously created migration workflow. I.e., the state transitions
+  /// from DRAFT to RUNNING. This is a no-op if the state is already RUNNING.
+  /// An error will be signaled if the state is anything other than DRAFT or
+  /// RUNNING.
+  ///
+  /// @Snippet(path: "MigrationService_StartMigrationWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/startMigrationWorkflow(request:options:)``
   public func startMigrationWorkflow(
     name: Swift.String,
   ) async throws {
@@ -275,6 +405,13 @@ extension Clients.MigrationServiceProtocol {
     try await self.startMigrationWorkflow(request: request)
   }
 
+  /// Gets a previously created migration subtask.
+  ///
+  /// @Snippet(path: "MigrationService_GetMigrationSubtask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/getMigrationSubtask(request:options:)``
   public func getMigrationSubtask(request: GetMigrationSubtaskRequest) async throws
     -> GoogleBigQueryMigrationV2.MigrationSubtask
   {
@@ -287,6 +424,13 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a previously created migration subtask.
+  ///
+  /// @Snippet(path: "MigrationService_GetMigrationSubtask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/getMigrationSubtask(request:options:)``
   public func getMigrationSubtask(
     name: Swift.String,
   ) async throws -> GoogleBigQueryMigrationV2.MigrationSubtask {
@@ -296,6 +440,13 @@ extension Clients.MigrationServiceProtocol {
     return try await self.getMigrationSubtask(request: request)
   }
 
+  /// Lists previously created migration subtasks.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationSubtasks(request:options:)``
   public func listMigrationSubtasks(request: ListMigrationSubtasksRequest) async throws
     -> GoogleBigQueryMigrationV2.ListMigrationSubtasksResponse
   {
@@ -308,6 +459,13 @@ extension Clients.MigrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists previously created migration subtasks.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationSubtasks(request:options:)``
   public func listMigrationSubtasksByItems(
     request: ListMigrationSubtasksRequest
   ) -> some AsyncSequence<MigrationSubtask, any Swift.Error> & Sendable {
@@ -317,6 +475,10 @@ extension Clients.MigrationServiceProtocol {
   /// Lists previously created migration subtasks.
   ///
   /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationSubtasks(request:options:)``
   public func listMigrationSubtasksByItems(
     request: ListMigrationSubtasksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MigrationSubtask, any Swift.Error> & Sendable {
@@ -331,6 +493,13 @@ extension Clients.MigrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists previously created migration subtasks.
+  ///
+  /// @Snippet(path: "MigrationService_ListMigrationSubtasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MigrationServiceClient/listMigrationSubtasks(request:options:)``
   public func listMigrationSubtasksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MigrationSubtask, any Swift.Error> & Sendable {

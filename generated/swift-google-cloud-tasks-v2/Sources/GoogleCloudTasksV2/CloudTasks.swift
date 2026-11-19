@@ -28,6 +28,10 @@ import Foundation
 /// work in their applications.
 ///
 /// @Snippet(path: "CloudTasksQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudTasksProtocol``
 public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   let inner: any Clients.CloudTasksStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,13 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// Queues are returned in lexicographical order.
   ///
   /// @Snippet(path: "CloudTasks_ListQueues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listQueues(request:)``
+  /// - ``listQueuesByItems(parent:)``
+  /// - ``listQueuesByItems(request:)``
+  /// - ``listQueuesByItems(request:options:)``
   public func listQueues(
     request: ListQueuesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.ListQueuesResponse {
@@ -59,6 +70,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// Gets a queue.
   ///
   /// @Snippet(path: "CloudTasks_GetQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getQueue(name:)``
+  /// - ``getQueue(request:)``
   public func getQueue(
     request: GetQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -79,6 +95,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// this method.
   ///
   /// @Snippet(path: "CloudTasks_CreateQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createQueue(parent:queue:)``
+  /// - ``createQueue(request:)``
   public func createQueue(
     request: CreateQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -102,6 +123,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// this method.
   ///
   /// @Snippet(path: "CloudTasks_UpdateQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateQueue(queue:updateMask:)``
+  /// - ``updateQueue(request:)``
   public func updateQueue(
     request: UpdateQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -130,6 +156,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// this method.
   ///
   /// @Snippet(path: "CloudTasks_DeleteQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteQueue(name:)``
+  /// - ``deleteQueue(request:)``
   public func deleteQueue(
     request: DeleteQueueRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -144,6 +175,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// might be dispatched before the purge takes effect. A purge is irreversible.
   ///
   /// @Snippet(path: "CloudTasks_PurgeQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``purgeQueue(name:)``
+  /// - ``purgeQueue(request:)``
   public func purgeQueue(
     request: PurgeQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -164,6 +200,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
   ///
   /// @Snippet(path: "CloudTasks_PauseQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pauseQueue(name:)``
+  /// - ``pauseQueue(request:)``
   public func pauseQueue(
     request: PauseQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -191,6 +232,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
   ///
   /// @Snippet(path: "CloudTasks_ResumeQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeQueue(name:)``
+  /// - ``resumeQueue(request:)``
   public func resumeQueue(
     request: ResumeQueueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -210,6 +256,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
   ///
   /// @Snippet(path: "CloudTasks_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -231,6 +282,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
   ///
   /// @Snippet(path: "CloudTasks_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -249,6 +305,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
   ///
   /// @Snippet(path: "CloudTasks_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
+  /// - ``testIamPermissions(resource:permissions:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -269,6 +330,13 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
   ///
   /// @Snippet(path: "CloudTasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTasks(request:)``
+  /// - ``listTasksByItems(parent:)``
+  /// - ``listTasksByItems(request:)``
+  /// - ``listTasksByItems(request:options:)``
   public func listTasks(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.ListTasksResponse {
@@ -282,6 +350,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// `NOT_FOUND` error.
   ///
   /// @Snippet(path: "CloudTasks_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTask(name:)``
+  /// - ``getTask(request:)``
   public func getTask(
     request: GetTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -295,6 +368,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// * The maximum task size is 100KB.
   ///
   /// @Snippet(path: "CloudTasks_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTask(parent:task:)``
+  /// - ``createTask(request:)``
   public func createTask(
     request: CreateTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -307,6 +385,13 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// A maximum of 100 tasks can be created in a single batch.
   ///
   /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchCreateTasks(request:)``
+  /// - ``batchCreateTasksPollingUntilDone(parent:requests:)``
+  /// - ``batchCreateTasksPollingUntilDone(request:)``
+  /// - ``batchCreateTasksPollingUntilDone(request:options:)``
   public func batchCreateTasks(
     request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -319,6 +404,13 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// A maximum of 100 tasks can be created in a single batch.
   ///
   /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchCreateTasks(request:)``
+  /// - ``batchCreateTasks(request:options:)``
+  /// - ``batchCreateTasksPollingUntilDone(parent:requests:)``
+  /// - ``batchCreateTasksPollingUntilDone(request:)``
   public func batchCreateTasksPollingUntilDone(
     request: BatchCreateTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchCreateTasksResponse {
@@ -352,6 +444,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// failed.
   ///
   /// @Snippet(path: "CloudTasks_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTask(name:)``
+  /// - ``deleteTask(request:)``
   public func deleteTask(
     request: DeleteTaskRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -365,6 +462,13 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// A maximum of 1000 tasks can be deleted in a batch.
   ///
   /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteTasks(request:)``
+  /// - ``batchDeleteTasksPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteTasksPollingUntilDone(request:)``
+  /// - ``batchDeleteTasksPollingUntilDone(request:options:)``
   public func batchDeleteTasks(
     request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -378,6 +482,13 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// A maximum of 1000 tasks can be deleted in a batch.
   ///
   /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteTasks(request:)``
+  /// - ``batchDeleteTasks(request:options:)``
+  /// - ``batchDeleteTasksPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteTasksPollingUntilDone(request:)``
   public func batchDeleteTasksPollingUntilDone(
     request: BatchDeleteTasksRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -432,6 +543,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
   ///
   /// @Snippet(path: "CloudTasks_RunTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runTask(name:)``
+  /// - ``runTask(request:)``
   public func runTask(
     request: RunTaskRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -446,6 +562,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// config.
   ///
   /// @Snippet(path: "CloudTasks_UpdateCmekConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCmekConfig(cmekConfig:updateMask:)``
+  /// - ``updateCmekConfig(request:)``
   public func updateCmekConfig(
     request: UpdateCmekConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.CmekConfig {
@@ -458,6 +579,11 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// location. By default there is no kms_key configured.
   ///
   /// @Snippet(path: "CloudTasks_GetCmekConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCmekConfig(name:)``
+  /// - ``getCmekConfig(request:)``
   public func getCmekConfig(
     request: GetCmekConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTasksV2.CmekConfig {
@@ -484,6 +610,12 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CloudTasks_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -493,6 +625,10 @@ public final class CloudTasksClient: Clients.CloudTasksProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudTasks_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -642,6 +778,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudTasksProtocol {
+  /// Lists queues.
+  ///
+  /// Queues are returned in lexicographical order.
+  ///
+  /// @Snippet(path: "CloudTasks_ListQueues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listQueues(request:options:)``
   public func listQueues(request: ListQueuesRequest) async throws
     -> GoogleCloudTasksV2.ListQueuesResponse
   {
@@ -654,6 +799,15 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists queues.
+  ///
+  /// Queues are returned in lexicographical order.
+  ///
+  /// @Snippet(path: "CloudTasks_ListQueues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listQueues(request:options:)``
   public func listQueuesByItems(
     request: ListQueuesRequest
   ) -> some AsyncSequence<Queue, any Swift.Error> & Sendable {
@@ -665,6 +819,10 @@ extension Clients.CloudTasksProtocol {
   /// Queues are returned in lexicographical order.
   ///
   /// @Snippet(path: "CloudTasks_ListQueues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listQueues(request:options:)``
   public func listQueuesByItems(
     request: ListQueuesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Queue, any Swift.Error> & Sendable {
@@ -678,6 +836,15 @@ extension Clients.CloudTasksProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists queues.
+  ///
+  /// Queues are returned in lexicographical order.
+  ///
+  /// @Snippet(path: "CloudTasks_ListQueues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listQueues(request:options:)``
   public func listQueuesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Queue, any Swift.Error> & Sendable {
@@ -687,6 +854,13 @@ extension Clients.CloudTasksProtocol {
     return self.listQueuesByItems(request: request)
   }
 
+  /// Gets a queue.
+  ///
+  /// @Snippet(path: "CloudTasks_GetQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getQueue(request:options:)``
   public func getQueue(request: GetQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
     try await self.getQueue(request: request, options: .init())
   }
@@ -697,6 +871,13 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a queue.
+  ///
+  /// @Snippet(path: "CloudTasks_GetQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getQueue(request:options:)``
   public func getQueue(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -706,6 +887,24 @@ extension Clients.CloudTasksProtocol {
     return try await self.getQueue(request: request)
   }
 
+  /// Creates a queue.
+  ///
+  /// Queues created with this method allow tasks to live for a maximum of 31
+  /// days. After a task is 31 days old, the task will be deleted regardless of
+  /// whether it was dispatched or not.
+  ///
+  /// WARNING: Using this method may have unintended side effects if you are
+  /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
+  /// Read
+  /// [Overview of Queue Management and
+  /// queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+  /// this method.
+  ///
+  /// @Snippet(path: "CloudTasks_CreateQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/createQueue(request:options:)``
   public func createQueue(request: CreateQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
     try await self.createQueue(request: request, options: .init())
   }
@@ -716,6 +915,24 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a queue.
+  ///
+  /// Queues created with this method allow tasks to live for a maximum of 31
+  /// days. After a task is 31 days old, the task will be deleted regardless of
+  /// whether it was dispatched or not.
+  ///
+  /// WARNING: Using this method may have unintended side effects if you are
+  /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
+  /// Read
+  /// [Overview of Queue Management and
+  /// queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+  /// this method.
+  ///
+  /// @Snippet(path: "CloudTasks_CreateQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/createQueue(request:options:)``
   public func createQueue(
     parent: Swift.String,
     queue: Queue?,
@@ -727,6 +944,27 @@ extension Clients.CloudTasksProtocol {
     return try await self.createQueue(request: request)
   }
 
+  /// Updates a queue.
+  ///
+  /// This method creates the queue if it does not exist and updates
+  /// the queue if it does exist.
+  ///
+  /// Queues created with this method allow tasks to live for a maximum of 31
+  /// days. After a task is 31 days old, the task will be deleted regardless of
+  /// whether it was dispatched or not.
+  ///
+  /// WARNING: Using this method may have unintended side effects if you are
+  /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
+  /// Read
+  /// [Overview of Queue Management and
+  /// queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+  /// this method.
+  ///
+  /// @Snippet(path: "CloudTasks_UpdateQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/updateQueue(request:options:)``
   public func updateQueue(request: UpdateQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
     try await self.updateQueue(request: request, options: .init())
   }
@@ -737,6 +975,27 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a queue.
+  ///
+  /// This method creates the queue if it does not exist and updates
+  /// the queue if it does exist.
+  ///
+  /// Queues created with this method allow tasks to live for a maximum of 31
+  /// days. After a task is 31 days old, the task will be deleted regardless of
+  /// whether it was dispatched or not.
+  ///
+  /// WARNING: Using this method may have unintended side effects if you are
+  /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
+  /// Read
+  /// [Overview of Queue Management and
+  /// queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+  /// this method.
+  ///
+  /// @Snippet(path: "CloudTasks_UpdateQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/updateQueue(request:options:)``
   public func updateQueue(
     queue: Queue?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -748,6 +1007,32 @@ extension Clients.CloudTasksProtocol {
     return try await self.updateQueue(request: request)
   }
 
+  /// Deletes a queue.
+  ///
+  /// This command will delete the queue even if it has tasks in it.
+  ///
+  /// Note: If you delete a queue, you may be prevented from creating a new queue
+  /// with the same name as the deleted queue for a tombstone window of up to
+  /// 3 days. During this window, the CreateQueue operation may appear to
+  /// recreate the queue, but this can be misleading. If you attempt to create
+  /// a queue with the same name as one that is in the tombstone window, run
+  /// GetQueue to confirm that the queue creation was successful. If GetQueue
+  /// returns 200 response code, your queue was successfully created with the
+  /// name of the previously deleted queue. Otherwise, your queue did not
+  /// successfully recreate.
+  ///
+  /// WARNING: Using this method may have unintended side effects if you are
+  /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
+  /// Read
+  /// [Overview of Queue Management and
+  /// queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+  /// this method.
+  ///
+  /// @Snippet(path: "CloudTasks_DeleteQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/deleteQueue(request:options:)``
   public func deleteQueue(request: DeleteQueueRequest) async throws {
     try await self.deleteQueue(request: request, options: .init())
   }
@@ -758,6 +1043,32 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a queue.
+  ///
+  /// This command will delete the queue even if it has tasks in it.
+  ///
+  /// Note: If you delete a queue, you may be prevented from creating a new queue
+  /// with the same name as the deleted queue for a tombstone window of up to
+  /// 3 days. During this window, the CreateQueue operation may appear to
+  /// recreate the queue, but this can be misleading. If you attempt to create
+  /// a queue with the same name as one that is in the tombstone window, run
+  /// GetQueue to confirm that the queue creation was successful. If GetQueue
+  /// returns 200 response code, your queue was successfully created with the
+  /// name of the previously deleted queue. Otherwise, your queue did not
+  /// successfully recreate.
+  ///
+  /// WARNING: Using this method may have unintended side effects if you are
+  /// using an App Engine `queue.yaml` or `queue.xml` file to manage your queues.
+  /// Read
+  /// [Overview of Queue Management and
+  /// queue.yaml](https://cloud.google.com/tasks/docs/queue-yaml) before using
+  /// this method.
+  ///
+  /// @Snippet(path: "CloudTasks_DeleteQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/deleteQueue(request:options:)``
   public func deleteQueue(
     name: Swift.String,
   ) async throws {
@@ -767,6 +1078,18 @@ extension Clients.CloudTasksProtocol {
     try await self.deleteQueue(request: request)
   }
 
+  /// Purges a queue by deleting all of its tasks.
+  ///
+  /// All tasks created before this method is called are permanently deleted.
+  ///
+  /// Purge operations can take up to one minute to take effect. Tasks
+  /// might be dispatched before the purge takes effect. A purge is irreversible.
+  ///
+  /// @Snippet(path: "CloudTasks_PurgeQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/purgeQueue(request:options:)``
   public func purgeQueue(request: PurgeQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
     try await self.purgeQueue(request: request, options: .init())
   }
@@ -777,6 +1100,18 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Purges a queue by deleting all of its tasks.
+  ///
+  /// All tasks created before this method is called are permanently deleted.
+  ///
+  /// Purge operations can take up to one minute to take effect. Tasks
+  /// might be dispatched before the purge takes effect. A purge is irreversible.
+  ///
+  /// @Snippet(path: "CloudTasks_PurgeQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/purgeQueue(request:options:)``
   public func purgeQueue(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -786,6 +1121,24 @@ extension Clients.CloudTasksProtocol {
     return try await self.purgeQueue(request: request)
   }
 
+  /// Pauses the queue.
+  ///
+  /// If a queue is paused then the system will stop dispatching tasks
+  /// until the queue is resumed via
+  /// [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue]. Tasks can
+  /// still be added when the queue is paused. A queue is paused if its
+  /// [state][google.cloud.tasks.v2.Queue.state] is
+  /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+  ///
+  /// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasksClient/resumeQueue(request:options:)>
+  /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
+  /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
+  ///
+  /// @Snippet(path: "CloudTasks_PauseQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/pauseQueue(request:options:)``
   public func pauseQueue(request: PauseQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
     try await self.pauseQueue(request: request, options: .init())
   }
@@ -796,6 +1149,24 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pauses the queue.
+  ///
+  /// If a queue is paused then the system will stop dispatching tasks
+  /// until the queue is resumed via
+  /// [ResumeQueue][google.cloud.tasks.v2.CloudTasks.ResumeQueue]. Tasks can
+  /// still be added when the queue is paused. A queue is paused if its
+  /// [state][google.cloud.tasks.v2.Queue.state] is
+  /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+  ///
+  /// [google.cloud.tasks.v2.CloudTasks.ResumeQueue]: <doc:CloudTasksClient/resumeQueue(request:options:)>
+  /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
+  /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
+  ///
+  /// @Snippet(path: "CloudTasks_PauseQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/pauseQueue(request:options:)``
   public func pauseQueue(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -805,6 +1176,31 @@ extension Clients.CloudTasksProtocol {
     return try await self.pauseQueue(request: request)
   }
 
+  /// Resume a queue.
+  ///
+  /// This method resumes a queue after it has been
+  /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED] or
+  /// [DISABLED][google.cloud.tasks.v2.Queue.State.DISABLED]. The state of a
+  /// queue is stored in the queue's [state][google.cloud.tasks.v2.Queue.state];
+  /// after calling this method it will be set to
+  /// [RUNNING][google.cloud.tasks.v2.Queue.State.RUNNING].
+  ///
+  /// WARNING: Resuming many high-QPS queues at the same time can
+  /// lead to target overloading. If you are resuming high-QPS
+  /// queues, follow the 500/50/5 pattern described in
+  /// [Managing Cloud Tasks Scaling
+  /// Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+  ///
+  /// [google.cloud.tasks.v2.Queue.State.DISABLED]: <doc:Queue/State/disabled>
+  /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
+  /// [google.cloud.tasks.v2.Queue.State.RUNNING]: <doc:Queue/State/running>
+  /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
+  ///
+  /// @Snippet(path: "CloudTasks_ResumeQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/resumeQueue(request:options:)``
   public func resumeQueue(request: ResumeQueueRequest) async throws -> GoogleCloudTasksV2.Queue {
     try await self.resumeQueue(request: request, options: .init())
   }
@@ -815,6 +1211,31 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resume a queue.
+  ///
+  /// This method resumes a queue after it has been
+  /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED] or
+  /// [DISABLED][google.cloud.tasks.v2.Queue.State.DISABLED]. The state of a
+  /// queue is stored in the queue's [state][google.cloud.tasks.v2.Queue.state];
+  /// after calling this method it will be set to
+  /// [RUNNING][google.cloud.tasks.v2.Queue.State.RUNNING].
+  ///
+  /// WARNING: Resuming many high-QPS queues at the same time can
+  /// lead to target overloading. If you are resuming high-QPS
+  /// queues, follow the 500/50/5 pattern described in
+  /// [Managing Cloud Tasks Scaling
+  /// Risks](https://cloud.google.com/tasks/docs/manage-cloud-task-scaling).
+  ///
+  /// [google.cloud.tasks.v2.Queue.State.DISABLED]: <doc:Queue/State/disabled>
+  /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
+  /// [google.cloud.tasks.v2.Queue.State.RUNNING]: <doc:Queue/State/running>
+  /// [google.cloud.tasks.v2.Queue.state]: <doc:Queue/state>
+  ///
+  /// @Snippet(path: "CloudTasks_ResumeQueue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/resumeQueue(request:options:)``
   public func resumeQueue(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.Queue {
@@ -824,6 +1245,23 @@ extension Clients.CloudTasksProtocol {
     return try await self.resumeQueue(request: request)
   }
 
+  /// Gets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// Authorization requires the following
+  /// [Google IAM](https://cloud.google.com/iam) permission on the specified
+  /// resource parent:
+  ///
+  /// * `cloudtasks.queues.getIamPolicy`
+  ///
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
+  ///
+  /// @Snippet(path: "CloudTasks_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -836,6 +1274,23 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
+  /// Returns an empty policy if the resource exists and does not have a policy
+  /// set.
+  ///
+  /// Authorization requires the following
+  /// [Google IAM](https://cloud.google.com/iam) permission on the specified
+  /// resource parent:
+  ///
+  /// * `cloudtasks.queues.getIamPolicy`
+  ///
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
+  ///
+  /// @Snippet(path: "CloudTasks_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -845,6 +1300,25 @@ extension Clients.CloudTasksProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
+  /// Replaces any existing policy.
+  ///
+  /// Note: The Cloud Console does not check queue-level IAM permissions yet.
+  /// Project-level permissions are required to use the Cloud Console.
+  ///
+  /// Authorization requires the following
+  /// [Google IAM](https://cloud.google.com/iam) permission on the specified
+  /// resource parent:
+  ///
+  /// * `cloudtasks.queues.setIamPolicy`
+  ///
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
+  ///
+  /// @Snippet(path: "CloudTasks_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -857,6 +1331,25 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy for a [Queue][google.cloud.tasks.v2.Queue].
+  /// Replaces any existing policy.
+  ///
+  /// Note: The Cloud Console does not check queue-level IAM permissions yet.
+  /// Project-level permissions are required to use the Cloud Console.
+  ///
+  /// Authorization requires the following
+  /// [Google IAM](https://cloud.google.com/iam) permission on the specified
+  /// resource parent:
+  ///
+  /// * `cloudtasks.queues.setIamPolicy`
+  ///
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
+  ///
+  /// @Snippet(path: "CloudTasks_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -868,6 +1361,22 @@ extension Clients.CloudTasksProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Returns permissions that a caller has on a
+  /// [Queue][google.cloud.tasks.v2.Queue]. If the resource does not exist, this
+  /// will return an empty set of permissions, not a
+  /// [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
+  ///
+  /// Note: This operation is designed to be used for building permission-aware
+  /// UIs and command-line tools, not for authorization checking. This operation
+  /// may "fail open" without warning.
+  ///
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
+  ///
+  /// @Snippet(path: "CloudTasks_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -880,6 +1389,22 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on a
+  /// [Queue][google.cloud.tasks.v2.Queue]. If the resource does not exist, this
+  /// will return an empty set of permissions, not a
+  /// [NOT_FOUND][google.rpc.Code.NOT_FOUND] error.
+  ///
+  /// Note: This operation is designed to be used for building permission-aware
+  /// UIs and command-line tools, not for authorization checking. This operation
+  /// may "fail open" without warning.
+  ///
+  /// [google.cloud.tasks.v2.Queue]: <doc:Queue>
+  ///
+  /// @Snippet(path: "CloudTasks_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/testIamPermissions(request:options:)``
   public func testIamPermissions(
     resource: Swift.String,
     permissions: [Swift.String],
@@ -891,6 +1416,24 @@ extension Clients.CloudTasksProtocol {
     return try await self.testIamPermissions(request: request)
   }
 
+  /// Lists the tasks in a queue.
+  ///
+  /// By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
+  /// retrieved due to performance considerations;
+  /// [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
+  /// controls the subset of information which is returned.
+  ///
+  /// The tasks may be returned in any order. The ordering may change at any
+  /// time.
+  ///
+  /// [google.cloud.tasks.v2.ListTasksRequest.response_view]: <doc:ListTasksRequest/responseView>
+  /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
+  ///
+  /// @Snippet(path: "CloudTasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listTasks(request:options:)``
   public func listTasks(request: ListTasksRequest) async throws
     -> GoogleCloudTasksV2.ListTasksResponse
   {
@@ -903,6 +1446,24 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the tasks in a queue.
+  ///
+  /// By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
+  /// retrieved due to performance considerations;
+  /// [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
+  /// controls the subset of information which is returned.
+  ///
+  /// The tasks may be returned in any order. The ordering may change at any
+  /// time.
+  ///
+  /// [google.cloud.tasks.v2.ListTasksRequest.response_view]: <doc:ListTasksRequest/responseView>
+  /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
+  ///
+  /// @Snippet(path: "CloudTasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -923,6 +1484,10 @@ extension Clients.CloudTasksProtocol {
   /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
   ///
   /// @Snippet(path: "CloudTasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listTasks(request:options:)``
   public func listTasksByItems(
     request: ListTasksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -936,6 +1501,24 @@ extension Clients.CloudTasksProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the tasks in a queue.
+  ///
+  /// By default, only the [BASIC][google.cloud.tasks.v2.Task.View.BASIC] view is
+  /// retrieved due to performance considerations;
+  /// [response_view][google.cloud.tasks.v2.ListTasksRequest.response_view]
+  /// controls the subset of information which is returned.
+  ///
+  /// The tasks may be returned in any order. The ordering may change at any
+  /// time.
+  ///
+  /// [google.cloud.tasks.v2.ListTasksRequest.response_view]: <doc:ListTasksRequest/responseView>
+  /// [google.cloud.tasks.v2.Task.View.BASIC]: <doc:Task/View/basic>
+  ///
+  /// @Snippet(path: "CloudTasks_ListTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listTasks(request:options:)``
   public func listTasksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Task, any Swift.Error> & Sendable {
@@ -945,6 +1528,17 @@ extension Clients.CloudTasksProtocol {
     return self.listTasksByItems(request: request)
   }
 
+  /// Gets a task.
+  ///
+  /// After a task is successfully executed or has exhausted its retry attempts,
+  /// the task is deleted. A `GetTask` request for a deleted task returns a
+  /// `NOT_FOUND` error.
+  ///
+  /// @Snippet(path: "CloudTasks_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getTask(request:options:)``
   public func getTask(request: GetTaskRequest) async throws -> GoogleCloudTasksV2.Task {
     try await self.getTask(request: request, options: .init())
   }
@@ -955,6 +1549,17 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a task.
+  ///
+  /// After a task is successfully executed or has exhausted its retry attempts,
+  /// the task is deleted. A `GetTask` request for a deleted task returns a
+  /// `NOT_FOUND` error.
+  ///
+  /// @Snippet(path: "CloudTasks_GetTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getTask(request:options:)``
   public func getTask(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -964,6 +1569,17 @@ extension Clients.CloudTasksProtocol {
     return try await self.getTask(request: request)
   }
 
+  /// Creates a task and adds it to a queue.
+  ///
+  /// Tasks cannot be updated after creation; there is no UpdateTask command.
+  ///
+  /// * The maximum task size is 100KB.
+  ///
+  /// @Snippet(path: "CloudTasks_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/createTask(request:options:)``
   public func createTask(request: CreateTaskRequest) async throws -> GoogleCloudTasksV2.Task {
     try await self.createTask(request: request, options: .init())
   }
@@ -974,6 +1590,17 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a task and adds it to a queue.
+  ///
+  /// Tasks cannot be updated after creation; there is no UpdateTask command.
+  ///
+  /// * The maximum task size is 100KB.
+  ///
+  /// @Snippet(path: "CloudTasks_CreateTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/createTask(request:options:)``
   public func createTask(
     parent: Swift.String,
     task: Task?,
@@ -985,6 +1612,16 @@ extension Clients.CloudTasksProtocol {
     return try await self.createTask(request: request)
   }
 
+  /// Creates a batch of tasks and adds them to a queue.
+  ///
+  /// All tasks must be for the same queue.
+  /// A maximum of 100 tasks can be created in a single batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/batchCreateTasks(request:options:)``
   public func batchCreateTasks(request: BatchCreateTasksRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -997,6 +1634,16 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a batch of tasks and adds them to a queue.
+  ///
+  /// All tasks must be for the same queue.
+  /// A maximum of 100 tasks can be created in a single batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/batchCreateTasksPollingUntilDone(request:options:)``
   public func batchCreateTasksPollingUntilDone(request: BatchCreateTasksRequest) async throws
     -> BatchCreateTasksResponse
   {
@@ -1009,6 +1656,16 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a batch of tasks and adds them to a queue.
+  ///
+  /// All tasks must be for the same queue.
+  /// A maximum of 100 tasks can be created in a single batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchCreateTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/batchCreateTasksPollingUntilDone(request:options:)``
   public func batchCreateTasksPollingUntilDone(
     parent: Swift.String,
     requests: [CreateTaskRequest],
@@ -1020,6 +1677,17 @@ extension Clients.CloudTasksProtocol {
     return try await self.batchCreateTasksPollingUntilDone(request: request)
   }
 
+  /// Deletes a task.
+  ///
+  /// A task can be deleted if it is scheduled or dispatched. A task
+  /// cannot be deleted if it has executed successfully or permanently
+  /// failed.
+  ///
+  /// @Snippet(path: "CloudTasks_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/deleteTask(request:options:)``
   public func deleteTask(request: DeleteTaskRequest) async throws {
     try await self.deleteTask(request: request, options: .init())
   }
@@ -1030,6 +1698,17 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a task.
+  ///
+  /// A task can be deleted if it is scheduled or dispatched. A task
+  /// cannot be deleted if it has executed successfully or permanently
+  /// failed.
+  ///
+  /// @Snippet(path: "CloudTasks_DeleteTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/deleteTask(request:options:)``
   public func deleteTask(
     name: Swift.String,
   ) async throws {
@@ -1039,6 +1718,17 @@ extension Clients.CloudTasksProtocol {
     try await self.deleteTask(request: request)
   }
 
+  /// Deletes a batch of tasks.
+  /// This is a non-atomic operation: if deletion fails for some tasks, it
+  /// can still succeed for others. The metadata field of
+  /// google.longrunning.Operation contains details of failed deletions.
+  /// A maximum of 1000 tasks can be deleted in a batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/batchDeleteTasks(request:options:)``
   public func batchDeleteTasks(request: BatchDeleteTasksRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1051,6 +1741,17 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a batch of tasks.
+  /// This is a non-atomic operation: if deletion fails for some tasks, it
+  /// can still succeed for others. The metadata field of
+  /// google.longrunning.Operation contains details of failed deletions.
+  /// A maximum of 1000 tasks can be deleted in a batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/batchDeleteTasksPollingUntilDone(request:options:)``
   public func batchDeleteTasksPollingUntilDone(request: BatchDeleteTasksRequest) async throws {
     try await self.batchDeleteTasksPollingUntilDone(request: request, options: .init())
   }
@@ -1061,6 +1762,17 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a batch of tasks.
+  /// This is a non-atomic operation: if deletion fails for some tasks, it
+  /// can still succeed for others. The metadata field of
+  /// google.longrunning.Operation contains details of failed deletions.
+  /// A maximum of 1000 tasks can be deleted in a batch.
+  ///
+  /// @Snippet(path: "CloudTasks_BatchDeleteTasks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/batchDeleteTasksPollingUntilDone(request:options:)``
   public func batchDeleteTasksPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
@@ -1072,6 +1784,40 @@ extension Clients.CloudTasksProtocol {
     try await self.batchDeleteTasksPollingUntilDone(request: request)
   }
 
+  /// Forces a task to run now.
+  ///
+  /// When this method is called, Cloud Tasks will dispatch the task, even if
+  /// the task is already running, the queue has reached its
+  /// [RateLimits][google.cloud.tasks.v2.RateLimits] or is
+  /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+  ///
+  /// This command is meant to be used for manual debugging. For
+  /// example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to
+  /// retry a failed task after a fix has been made or to manually force a task
+  /// to be dispatched now.
+  ///
+  /// If Cloud Tasks receives a successful response from the task's
+  /// target, then the task will be deleted; otherwise the task's
+  /// [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to
+  /// the time that [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] was
+  /// called plus the retry delay specified in the queue's
+  /// [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+  ///
+  /// [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] returns
+  /// [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
+  /// task that has already succeeded or permanently failed.
+  ///
+  /// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:options:)>
+  /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
+  /// [google.cloud.tasks.v2.RateLimits]: <doc:RateLimits>
+  /// [google.cloud.tasks.v2.RetryConfig]: <doc:RetryConfig>
+  /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
+  ///
+  /// @Snippet(path: "CloudTasks_RunTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/runTask(request:options:)``
   public func runTask(request: RunTaskRequest) async throws -> GoogleCloudTasksV2.Task {
     try await self.runTask(request: request, options: .init())
   }
@@ -1082,6 +1828,40 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Forces a task to run now.
+  ///
+  /// When this method is called, Cloud Tasks will dispatch the task, even if
+  /// the task is already running, the queue has reached its
+  /// [RateLimits][google.cloud.tasks.v2.RateLimits] or is
+  /// [PAUSED][google.cloud.tasks.v2.Queue.State.PAUSED].
+  ///
+  /// This command is meant to be used for manual debugging. For
+  /// example, [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] can be used to
+  /// retry a failed task after a fix has been made or to manually force a task
+  /// to be dispatched now.
+  ///
+  /// If Cloud Tasks receives a successful response from the task's
+  /// target, then the task will be deleted; otherwise the task's
+  /// [schedule_time][google.cloud.tasks.v2.Task.schedule_time] will be reset to
+  /// the time that [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] was
+  /// called plus the retry delay specified in the queue's
+  /// [RetryConfig][google.cloud.tasks.v2.RetryConfig].
+  ///
+  /// [RunTask][google.cloud.tasks.v2.CloudTasks.RunTask] returns
+  /// [NOT_FOUND][google.rpc.Code.NOT_FOUND] when it is called on a
+  /// task that has already succeeded or permanently failed.
+  ///
+  /// [google.cloud.tasks.v2.CloudTasks.RunTask]: <doc:CloudTasksClient/runTask(request:options:)>
+  /// [google.cloud.tasks.v2.Queue.State.PAUSED]: <doc:Queue/State/paused>
+  /// [google.cloud.tasks.v2.RateLimits]: <doc:RateLimits>
+  /// [google.cloud.tasks.v2.RetryConfig]: <doc:RetryConfig>
+  /// [google.cloud.tasks.v2.Task.schedule_time]: <doc:Task/scheduleTime>
+  ///
+  /// @Snippet(path: "CloudTasks_RunTask")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/runTask(request:options:)``
   public func runTask(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.Task {
@@ -1091,6 +1871,18 @@ extension Clients.CloudTasksProtocol {
     return try await self.runTask(request: request)
   }
 
+  /// Creates or Updates a CMEK config.
+  ///
+  /// Updates the Customer Managed Encryption Key associated with the Cloud Tasks
+  /// location (Creates if the key does not already exist). All new tasks created
+  /// in the location will be encrypted at-rest with the KMS-key provided in the
+  /// config.
+  ///
+  /// @Snippet(path: "CloudTasks_UpdateCmekConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/updateCmekConfig(request:options:)``
   public func updateCmekConfig(request: UpdateCmekConfigRequest) async throws
     -> GoogleCloudTasksV2.CmekConfig
   {
@@ -1103,6 +1895,18 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates or Updates a CMEK config.
+  ///
+  /// Updates the Customer Managed Encryption Key associated with the Cloud Tasks
+  /// location (Creates if the key does not already exist). All new tasks created
+  /// in the location will be encrypted at-rest with the KMS-key provided in the
+  /// config.
+  ///
+  /// @Snippet(path: "CloudTasks_UpdateCmekConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/updateCmekConfig(request:options:)``
   public func updateCmekConfig(
     cmekConfig: CmekConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1114,6 +1918,16 @@ extension Clients.CloudTasksProtocol {
     return try await self.updateCmekConfig(request: request)
   }
 
+  /// Gets the CMEK config.
+  ///
+  /// Gets the Customer Managed Encryption Key configured with the Cloud Tasks
+  /// location. By default there is no kms_key configured.
+  ///
+  /// @Snippet(path: "CloudTasks_GetCmekConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getCmekConfig(request:options:)``
   public func getCmekConfig(request: GetCmekConfigRequest) async throws
     -> GoogleCloudTasksV2.CmekConfig
   {
@@ -1126,6 +1940,16 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the CMEK config.
+  ///
+  /// Gets the Customer Managed Encryption Key configured with the Cloud Tasks
+  /// location. By default there is no kms_key configured.
+  ///
+  /// @Snippet(path: "CloudTasks_GetCmekConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getCmekConfig(request:options:)``
   public func getCmekConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudTasksV2.CmekConfig {
@@ -1135,6 +1959,30 @@ extension Clients.CloudTasksProtocol {
     return try await self.getCmekConfig(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CloudTasks_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1147,6 +1995,30 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CloudTasks_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1173,6 +2045,10 @@ extension Clients.CloudTasksProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CloudTasks_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1186,6 +2062,13 @@ extension Clients.CloudTasksProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CloudTasks_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudTasksClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1198,6 +2081,9 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1210,6 +2096,9 @@ extension Clients.CloudTasksProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

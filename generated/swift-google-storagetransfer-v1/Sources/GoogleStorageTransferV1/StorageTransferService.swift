@@ -27,6 +27,10 @@ import Foundation
 /// source external to Google to a Cloud Storage bucket.
 ///
 /// @Snippet(path: "StorageTransferServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/StorageTransferServiceProtocol``
 public final class StorageTransferServiceClient: Clients.StorageTransferServiceProtocol, Sendable {
   let inner: any Clients.StorageTransferServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -55,6 +59,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// only be used by Storage Transfer Service.
   ///
   /// @Snippet(path: "StorageTransferService_GetGoogleServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGoogleServiceAccount(request:)``
   public func getGoogleServiceAccount(
     request: GetGoogleServiceAccountRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.GoogleServiceAccount {
@@ -64,6 +72,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Creates a transfer job that runs periodically.
   ///
   /// @Snippet(path: "StorageTransferService_CreateTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTransferJob(request:)``
   public func createTransferJob(
     request: CreateTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.TransferJob {
@@ -85,6 +97,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// [google.storagetransfer.v1.TransferJob.status]: <doc:TransferJob/status>
   ///
   /// @Snippet(path: "StorageTransferService_UpdateTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTransferJob(request:)``
   public func updateTransferJob(
     request: UpdateTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.TransferJob {
@@ -94,6 +110,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Gets a transfer job.
   ///
   /// @Snippet(path: "StorageTransferService_GetTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTransferJob(request:)``
   public func getTransferJob(
     request: GetTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.TransferJob {
@@ -103,6 +123,12 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Lists transfer jobs.
   ///
   /// @Snippet(path: "StorageTransferService_ListTransferJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTransferJobs(request:)``
+  /// - ``listTransferJobsByItems(request:)``
+  /// - ``listTransferJobsByItems(request:options:)``
   public func listTransferJobs(
     request: ListTransferJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.ListTransferJobsResponse {
@@ -112,6 +138,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Pauses a transfer operation.
   ///
   /// @Snippet(path: "StorageTransferService_PauseTransferOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pauseTransferOperation(request:)``
   public func pauseTransferOperation(
     request: PauseTransferOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -121,6 +151,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Resumes a transfer operation that is paused.
   ///
   /// @Snippet(path: "StorageTransferService_ResumeTransferOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeTransferOperation(request:)``
   public func resumeTransferOperation(
     request: ResumeTransferOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -133,6 +167,12 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// returned.
   ///
   /// @Snippet(path: "StorageTransferService_RunTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runTransferJob(request:)``
+  /// - ``runTransferJobPollingUntilDone(request:)``
+  /// - ``runTransferJobPollingUntilDone(request:options:)``
   public func runTransferJob(
     request: RunTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -145,6 +185,12 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// returned.
   ///
   /// @Snippet(path: "StorageTransferService_RunTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runTransferJob(request:)``
+  /// - ``runTransferJob(request:options:)``
+  /// - ``runTransferJobPollingUntilDone(request:)``
   public func runTransferJobPollingUntilDone(
     request: RunTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -175,6 +221,10 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// [google.storagetransfer.v1.TransferJob.Status.DELETED]: <doc:TransferJob/Status/deleted>
   ///
   /// @Snippet(path: "StorageTransferService_DeleteTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTransferJob(request:)``
   public func deleteTransferJob(
     request: DeleteTransferJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -184,6 +234,11 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Creates an agent pool resource.
   ///
   /// @Snippet(path: "StorageTransferService_CreateAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAgentPool(projectId:agentPool:agentPoolId:)``
+  /// - ``createAgentPool(request:)``
   public func createAgentPool(
     request: CreateAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -193,6 +248,11 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Updates an existing agent pool resource.
   ///
   /// @Snippet(path: "StorageTransferService_UpdateAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAgentPool(agentPool:updateMask:)``
+  /// - ``updateAgentPool(request:)``
   public func updateAgentPool(
     request: UpdateAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -202,6 +262,11 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Gets an agent pool.
   ///
   /// @Snippet(path: "StorageTransferService_GetAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAgentPool(name:)``
+  /// - ``getAgentPool(request:)``
   public func getAgentPool(
     request: GetAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -211,6 +276,13 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Lists agent pools.
   ///
   /// @Snippet(path: "StorageTransferService_ListAgentPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAgentPools(request:)``
+  /// - ``listAgentPoolsByItems(projectId:)``
+  /// - ``listAgentPoolsByItems(request:)``
+  /// - ``listAgentPoolsByItems(request:options:)``
   public func listAgentPools(
     request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleStorageTransferV1.ListAgentPoolsResponse {
@@ -220,6 +292,11 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// Deletes an agent pool.
   ///
   /// @Snippet(path: "StorageTransferService_DeleteAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAgentPool(name:)``
+  /// - ``deleteAgentPool(request:)``
   public func deleteAgentPool(
     request: DeleteAgentPoolRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -230,6 +307,13 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// time in reverse chronological order.
   ///
   /// @Snippet(path: "StorageTransferService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -276,6 +360,11 @@ public final class StorageTransferServiceClient: Clients.StorageTransferServiceP
   /// plus any new files discovered tomorrow.
   ///
   /// @Snippet(path: "StorageTransferService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -379,6 +468,20 @@ extension Clients {
 
 // Default implementations
 extension Clients.StorageTransferServiceProtocol {
+  /// Returns the Google service account that is used by Storage Transfer
+  /// Service to access buckets in the project where transfers
+  /// run or in other projects. Each Google service account is associated
+  /// with one Google Cloud project. Users
+  /// should add this service account to the Google Cloud Storage bucket
+  /// ACLs to grant access to Storage Transfer Service. This service
+  /// account is created and owned by Storage Transfer Service and can
+  /// only be used by Storage Transfer Service.
+  ///
+  /// @Snippet(path: "StorageTransferService_GetGoogleServiceAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/getGoogleServiceAccount(request:options:)``
   public func getGoogleServiceAccount(request: GetGoogleServiceAccountRequest) async throws
     -> GoogleStorageTransferV1.GoogleServiceAccount
   {
@@ -391,6 +494,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a transfer job that runs periodically.
+  ///
+  /// @Snippet(path: "StorageTransferService_CreateTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/createTransferJob(request:options:)``
   public func createTransferJob(request: CreateTransferJobRequest) async throws
     -> GoogleStorageTransferV1.TransferJob
   {
@@ -403,6 +513,25 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a transfer job. Updating a job's transfer spec does not affect
+  /// transfer operations that are running already.
+  ///
+  /// **Note:** The job's [status][google.storagetransfer.v1.TransferJob.status]
+  /// field can be modified using this RPC (for example, to set a job's status to
+  /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED],
+  /// [DISABLED][google.storagetransfer.v1.TransferJob.Status.DISABLED], or
+  /// [ENABLED][google.storagetransfer.v1.TransferJob.Status.ENABLED]).
+  ///
+  /// [google.storagetransfer.v1.TransferJob.Status.DELETED]: <doc:TransferJob/Status/deleted>
+  /// [google.storagetransfer.v1.TransferJob.Status.DISABLED]: <doc:TransferJob/Status/disabled>
+  /// [google.storagetransfer.v1.TransferJob.Status.ENABLED]: <doc:TransferJob/Status/enabled>
+  /// [google.storagetransfer.v1.TransferJob.status]: <doc:TransferJob/status>
+  ///
+  /// @Snippet(path: "StorageTransferService_UpdateTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/updateTransferJob(request:options:)``
   public func updateTransferJob(request: UpdateTransferJobRequest) async throws
     -> GoogleStorageTransferV1.TransferJob
   {
@@ -415,6 +544,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a transfer job.
+  ///
+  /// @Snippet(path: "StorageTransferService_GetTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/getTransferJob(request:options:)``
   public func getTransferJob(request: GetTransferJobRequest) async throws
     -> GoogleStorageTransferV1.TransferJob
   {
@@ -427,6 +563,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists transfer jobs.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListTransferJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listTransferJobs(request:options:)``
   public func listTransferJobs(request: ListTransferJobsRequest) async throws
     -> GoogleStorageTransferV1.ListTransferJobsResponse
   {
@@ -439,6 +582,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists transfer jobs.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListTransferJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listTransferJobs(request:options:)``
   public func listTransferJobsByItems(
     request: ListTransferJobsRequest
   ) -> some AsyncSequence<TransferJob, any Swift.Error> & Sendable {
@@ -448,6 +598,10 @@ extension Clients.StorageTransferServiceProtocol {
   /// Lists transfer jobs.
   ///
   /// @Snippet(path: "StorageTransferService_ListTransferJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listTransferJobs(request:options:)``
   public func listTransferJobsByItems(
     request: ListTransferJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TransferJob, any Swift.Error> & Sendable {
@@ -462,6 +616,13 @@ extension Clients.StorageTransferServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Pauses a transfer operation.
+  ///
+  /// @Snippet(path: "StorageTransferService_PauseTransferOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/pauseTransferOperation(request:options:)``
   public func pauseTransferOperation(request: PauseTransferOperationRequest) async throws {
     try await self.pauseTransferOperation(request: request, options: .init())
   }
@@ -472,6 +633,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resumes a transfer operation that is paused.
+  ///
+  /// @Snippet(path: "StorageTransferService_ResumeTransferOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/resumeTransferOperation(request:options:)``
   public func resumeTransferOperation(request: ResumeTransferOperationRequest) async throws {
     try await self.resumeTransferOperation(request: request, options: .init())
   }
@@ -482,6 +650,16 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a new operation for the specified transfer job.
+  /// A `TransferJob` has a maximum of one active `TransferOperation`. If this
+  /// method is called while a `TransferOperation` is active, an error is
+  /// returned.
+  ///
+  /// @Snippet(path: "StorageTransferService_RunTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/runTransferJob(request:options:)``
   public func runTransferJob(request: RunTransferJobRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -494,6 +672,16 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a new operation for the specified transfer job.
+  /// A `TransferJob` has a maximum of one active `TransferOperation`. If this
+  /// method is called while a `TransferOperation` is active, an error is
+  /// returned.
+  ///
+  /// @Snippet(path: "StorageTransferService_RunTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/runTransferJobPollingUntilDone(request:options:)``
   public func runTransferJobPollingUntilDone(request: RunTransferJobRequest) async throws {
     try await self.runTransferJobPollingUntilDone(request: request, options: .init())
   }
@@ -504,6 +692,16 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a transfer job. Deleting a transfer job sets its status to
+  /// [DELETED][google.storagetransfer.v1.TransferJob.Status.DELETED].
+  ///
+  /// [google.storagetransfer.v1.TransferJob.Status.DELETED]: <doc:TransferJob/Status/deleted>
+  ///
+  /// @Snippet(path: "StorageTransferService_DeleteTransferJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/deleteTransferJob(request:options:)``
   public func deleteTransferJob(request: DeleteTransferJobRequest) async throws {
     try await self.deleteTransferJob(request: request, options: .init())
   }
@@ -514,6 +712,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an agent pool resource.
+  ///
+  /// @Snippet(path: "StorageTransferService_CreateAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/createAgentPool(request:options:)``
   public func createAgentPool(request: CreateAgentPoolRequest) async throws
     -> GoogleStorageTransferV1.AgentPool
   {
@@ -526,6 +731,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an agent pool resource.
+  ///
+  /// @Snippet(path: "StorageTransferService_CreateAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/createAgentPool(request:options:)``
   public func createAgentPool(
     projectId: Swift.String,
     agentPool: AgentPool?,
@@ -539,6 +751,13 @@ extension Clients.StorageTransferServiceProtocol {
     return try await self.createAgentPool(request: request)
   }
 
+  /// Updates an existing agent pool resource.
+  ///
+  /// @Snippet(path: "StorageTransferService_UpdateAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/updateAgentPool(request:options:)``
   public func updateAgentPool(request: UpdateAgentPoolRequest) async throws
     -> GoogleStorageTransferV1.AgentPool
   {
@@ -551,6 +770,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing agent pool resource.
+  ///
+  /// @Snippet(path: "StorageTransferService_UpdateAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/updateAgentPool(request:options:)``
   public func updateAgentPool(
     agentPool: AgentPool?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -562,6 +788,13 @@ extension Clients.StorageTransferServiceProtocol {
     return try await self.updateAgentPool(request: request)
   }
 
+  /// Gets an agent pool.
+  ///
+  /// @Snippet(path: "StorageTransferService_GetAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/getAgentPool(request:options:)``
   public func getAgentPool(request: GetAgentPoolRequest) async throws
     -> GoogleStorageTransferV1.AgentPool
   {
@@ -574,6 +807,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an agent pool.
+  ///
+  /// @Snippet(path: "StorageTransferService_GetAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/getAgentPool(request:options:)``
   public func getAgentPool(
     name: Swift.String,
   ) async throws -> GoogleStorageTransferV1.AgentPool {
@@ -583,6 +823,13 @@ extension Clients.StorageTransferServiceProtocol {
     return try await self.getAgentPool(request: request)
   }
 
+  /// Lists agent pools.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListAgentPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listAgentPools(request:options:)``
   public func listAgentPools(request: ListAgentPoolsRequest) async throws
     -> GoogleStorageTransferV1.ListAgentPoolsResponse
   {
@@ -595,6 +842,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists agent pools.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListAgentPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listAgentPools(request:options:)``
   public func listAgentPoolsByItems(
     request: ListAgentPoolsRequest
   ) -> some AsyncSequence<AgentPool, any Swift.Error> & Sendable {
@@ -604,6 +858,10 @@ extension Clients.StorageTransferServiceProtocol {
   /// Lists agent pools.
   ///
   /// @Snippet(path: "StorageTransferService_ListAgentPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listAgentPools(request:options:)``
   public func listAgentPoolsByItems(
     request: ListAgentPoolsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AgentPool, any Swift.Error> & Sendable {
@@ -618,6 +876,13 @@ extension Clients.StorageTransferServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists agent pools.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListAgentPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listAgentPools(request:options:)``
   public func listAgentPoolsByItems(
     projectId: Swift.String,
   ) -> some AsyncSequence<AgentPool, any Swift.Error> & Sendable {
@@ -627,6 +892,13 @@ extension Clients.StorageTransferServiceProtocol {
     return self.listAgentPoolsByItems(request: request)
   }
 
+  /// Deletes an agent pool.
+  ///
+  /// @Snippet(path: "StorageTransferService_DeleteAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/deleteAgentPool(request:options:)``
   public func deleteAgentPool(request: DeleteAgentPoolRequest) async throws {
     try await self.deleteAgentPool(request: request, options: .init())
   }
@@ -637,6 +909,13 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an agent pool.
+  ///
+  /// @Snippet(path: "StorageTransferService_DeleteAgentPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/deleteAgentPool(request:options:)``
   public func deleteAgentPool(
     name: Swift.String,
   ) async throws {
@@ -646,6 +925,14 @@ extension Clients.StorageTransferServiceProtocol {
     try await self.deleteAgentPool(request: request)
   }
 
+  /// Lists transfer operations. Operations are ordered by their creation
+  /// time in reverse chronological order.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -658,6 +945,14 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists transfer operations. Operations are ordered by their creation
+  /// time in reverse chronological order.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -668,6 +963,10 @@ extension Clients.StorageTransferServiceProtocol {
   /// time in reverse chronological order.
   ///
   /// @Snippet(path: "StorageTransferService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -681,6 +980,14 @@ extension Clients.StorageTransferServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists transfer operations. Operations are ordered by their creation
+  /// time in reverse chronological order.
+  ///
+  /// @Snippet(path: "StorageTransferService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -692,6 +999,9 @@ extension Clients.StorageTransferServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -704,6 +1014,9 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -713,6 +1026,39 @@ extension Clients.StorageTransferServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Cancels a transfer. Use
+  /// the [transferOperations.get][google.longrunning.Operations.GetOperation]
+  /// method to check if the cancellation succeeded or if the operation
+  /// completed despite the `cancel` request.
+  ///
+  /// When you cancel an operation, the currently running transfer is
+  /// interrupted.  For recurring transfer jobs, the next instance of the
+  /// transfer job will still run.  For example, if your job is configured
+  /// to run every day at 1pm and you cancel Monday's operation at 1:05pm,
+  /// Monday's transfer
+  /// will stop. However, a transfer job will still be attempted on Tuesday.
+  ///
+  /// This applies only to currently running operations. If an operation is
+  /// not currently running, `cancel` does nothing.
+  ///
+  /// <aside class="caution">
+  /// <b>Caution:</b> Canceling a transfer job can leave your data in an
+  /// unknown state. We recommend that you restore the state at both the
+  /// destination and the source after the `cancel` request completes so
+  /// that your data is in a consistent state. </aside>
+  ///
+  /// When you cancel a job, the next job computes a delta of files and may
+  /// repair any inconsistent state. For instance, if you run a job every
+  /// day, and today's job found 10 new files and transferred five files
+  /// before you canceled the job, tomorrow's transfer operation will
+  /// compute a new delta with the five files that were not copied today
+  /// plus any new files discovered tomorrow.
+  ///
+  /// @Snippet(path: "StorageTransferService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -723,6 +1069,39 @@ extension Clients.StorageTransferServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Cancels a transfer. Use
+  /// the [transferOperations.get][google.longrunning.Operations.GetOperation]
+  /// method to check if the cancellation succeeded or if the operation
+  /// completed despite the `cancel` request.
+  ///
+  /// When you cancel an operation, the currently running transfer is
+  /// interrupted.  For recurring transfer jobs, the next instance of the
+  /// transfer job will still run.  For example, if your job is configured
+  /// to run every day at 1pm and you cancel Monday's operation at 1:05pm,
+  /// Monday's transfer
+  /// will stop. However, a transfer job will still be attempted on Tuesday.
+  ///
+  /// This applies only to currently running operations. If an operation is
+  /// not currently running, `cancel` does nothing.
+  ///
+  /// <aside class="caution">
+  /// <b>Caution:</b> Canceling a transfer job can leave your data in an
+  /// unknown state. We recommend that you restore the state at both the
+  /// destination and the source after the `cancel` request completes so
+  /// that your data is in a consistent state. </aside>
+  ///
+  /// When you cancel a job, the next job computes a delta of files and may
+  /// repair any inconsistent state. For instance, if you run a job every
+  /// day, and today's job found 10 new files and transferred five files
+  /// before you canceled the job, tomorrow's transfer operation will
+  /// compute a new delta with the five files that were not copied today
+  /// plus any new files discovered tomorrow.
+  ///
+  /// @Snippet(path: "StorageTransferService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``StorageTransferServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

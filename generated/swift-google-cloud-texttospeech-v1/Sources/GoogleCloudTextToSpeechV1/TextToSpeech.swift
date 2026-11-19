@@ -24,6 +24,10 @@ import Foundation
 /// Service that implements Google Cloud Text-to-Speech API.
 ///
 /// @Snippet(path: "TextToSpeechQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TextToSpeechProtocol``
 public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   let inner: any Clients.TextToSpeechStub
 
@@ -40,6 +44,11 @@ public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   /// Returns a list of Voice supported for synthesis.
   ///
   /// @Snippet(path: "TextToSpeech_ListVoices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVoices(languageCode:)``
+  /// - ``listVoices(request:)``
   public func listVoices(
     request: ListVoicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTextToSpeechV1.ListVoicesResponse {
@@ -50,6 +59,11 @@ public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   /// has been processed.
   ///
   /// @Snippet(path: "TextToSpeech_SynthesizeSpeech")
+  ///
+  /// ## See Also
+  ///
+  /// - ``synthesizeSpeech(input:voice:audioConfig:)``
+  /// - ``synthesizeSpeech(request:)``
   public func synthesizeSpeech(
     request: SynthesizeSpeechRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTextToSpeechV1.SynthesizeSpeechResponse {
@@ -61,6 +75,13 @@ public final class TextToSpeechClient: Clients.TextToSpeechProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "TextToSpeech_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -105,6 +126,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.TextToSpeechProtocol {
+  /// Returns a list of Voice supported for synthesis.
+  ///
+  /// @Snippet(path: "TextToSpeech_ListVoices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/listVoices(request:options:)``
   public func listVoices(request: ListVoicesRequest) async throws
     -> GoogleCloudTextToSpeechV1.ListVoicesResponse
   {
@@ -117,6 +145,13 @@ extension Clients.TextToSpeechProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns a list of Voice supported for synthesis.
+  ///
+  /// @Snippet(path: "TextToSpeech_ListVoices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/listVoices(request:options:)``
   public func listVoices(
     languageCode: Swift.String,
   ) async throws -> GoogleCloudTextToSpeechV1.ListVoicesResponse {
@@ -126,6 +161,14 @@ extension Clients.TextToSpeechProtocol {
     return try await self.listVoices(request: request)
   }
 
+  /// Synthesizes speech synchronously: receive results after all text input
+  /// has been processed.
+  ///
+  /// @Snippet(path: "TextToSpeech_SynthesizeSpeech")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/synthesizeSpeech(request:options:)``
   public func synthesizeSpeech(request: SynthesizeSpeechRequest) async throws
     -> GoogleCloudTextToSpeechV1.SynthesizeSpeechResponse
   {
@@ -138,6 +181,14 @@ extension Clients.TextToSpeechProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Synthesizes speech synchronously: receive results after all text input
+  /// has been processed.
+  ///
+  /// @Snippet(path: "TextToSpeech_SynthesizeSpeech")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/synthesizeSpeech(request:options:)``
   public func synthesizeSpeech(
     input: SynthesisInput?,
     voice: VoiceSelectionParams?,
@@ -151,6 +202,15 @@ extension Clients.TextToSpeechProtocol {
     return try await self.synthesizeSpeech(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TextToSpeech_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -163,6 +223,15 @@ extension Clients.TextToSpeechProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TextToSpeech_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -174,6 +243,10 @@ extension Clients.TextToSpeechProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "TextToSpeech_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -187,6 +260,15 @@ extension Clients.TextToSpeechProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "TextToSpeech_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TextToSpeechClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -198,6 +280,9 @@ extension Clients.TextToSpeechProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -210,6 +295,9 @@ extension Clients.TextToSpeechProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

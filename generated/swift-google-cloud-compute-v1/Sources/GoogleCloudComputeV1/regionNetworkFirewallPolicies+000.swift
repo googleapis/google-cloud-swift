@@ -24,6 +24,10 @@
   /// Service for the `regionNetworkFirewallPolicies` resource.
   ///
   /// @Snippet(path: "regionNetworkFirewallPoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionNetworkFirewallPoliciesProtocol``
   public final class RegionNetworkFirewallPoliciesClient: Clients
       .RegionNetworkFirewallPoliciesProtocol, Sendable
   {
@@ -47,6 +51,13 @@
     /// Inserts an association for the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAssociation(request:)``
+    /// - ``addAssociationPollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
+    /// - ``addAssociationPollingUntilDone(request:options:)``
     public func addAssociation(
       request: RegionNetworkFirewallPoliciesClient.AddAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -62,6 +73,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAssociation(request:)``
+    /// - ``addAssociation(request:options:)``
+    /// - ``addAssociationPollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
     public func addAssociationPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.AddAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -105,6 +123,13 @@
     /// Inserts a rule into a network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRulePollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``addRulePollingUntilDone(request:)``
+    /// - ``addRulePollingUntilDone(request:options:)``
     public func addRule(
       request: RegionNetworkFirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -119,6 +144,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRule(request:options:)``
+    /// - ``addRulePollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``addRulePollingUntilDone(request:)``
     public func addRulePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -161,6 +193,13 @@
     /// Copies rules to the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cloneRules(request:)``
+    /// - ``cloneRulesPollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``cloneRulesPollingUntilDone(request:)``
+    /// - ``cloneRulesPollingUntilDone(request:options:)``
     public func cloneRules(
       request: RegionNetworkFirewallPoliciesClient.CloneRulesRequest,
       options: GoogleGax.RequestOptions
@@ -176,6 +215,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cloneRules(request:)``
+    /// - ``cloneRules(request:options:)``
+    /// - ``cloneRulesPollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``cloneRulesPollingUntilDone(request:)``
     public func cloneRulesPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.CloneRulesRequest,
       options: GoogleGax.RequestOptions
@@ -219,6 +265,13 @@
     /// Deletes the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionNetworkFirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -233,6 +286,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -275,6 +335,11 @@
     /// Returns the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:firewallPolicy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionNetworkFirewallPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
@@ -284,6 +349,11 @@
     /// Gets an association with the specified name.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAssociation(project:region:firewallPolicy:)``
+    /// - ``getAssociation(request:)``
     public func getAssociation(
       request: RegionNetworkFirewallPoliciesClient.GetAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -294,6 +364,11 @@
     /// Returns the effective firewalls on a given network.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_getEffectiveFirewalls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getEffectiveFirewalls(project:region:network:)``
+    /// - ``getEffectiveFirewalls(request:)``
     public func getEffectiveFirewalls(
       request: RegionNetworkFirewallPoliciesClient.GetEffectiveFirewallsRequest,
       options: GoogleGax.RequestOptions
@@ -307,6 +382,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:region:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: RegionNetworkFirewallPoliciesClient.GetIamPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -317,6 +397,11 @@
     /// Gets a rule of the specified priority.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getRule(project:region:firewallPolicy:)``
+    /// - ``getRule(request:)``
     public func getRule(
       request: RegionNetworkFirewallPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
@@ -326,6 +411,13 @@
     /// Creates a new network firewall policy in the specified project and region.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionNetworkFirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -340,6 +432,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -383,6 +482,13 @@
     /// for the specified project in the given region.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyList {
@@ -392,6 +498,13 @@
     /// Patches the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RegionNetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -406,6 +519,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -448,6 +568,13 @@
     /// Updates an association for the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchAssociation(request:)``
+    /// - ``patchAssociationPollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``patchAssociationPollingUntilDone(request:)``
+    /// - ``patchAssociationPollingUntilDone(request:options:)``
     public func patchAssociation(
       request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -463,6 +590,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchAssociation(request:)``
+    /// - ``patchAssociation(request:options:)``
+    /// - ``patchAssociationPollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``patchAssociationPollingUntilDone(request:)``
     public func patchAssociationPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -506,6 +640,13 @@
     /// Patches a rule of the specified priority.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRulePollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``patchRulePollingUntilDone(request:)``
+    /// - ``patchRulePollingUntilDone(request:options:)``
     public func patchRule(
       request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest,
       options: GoogleGax.RequestOptions
@@ -521,6 +662,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRule(request:options:)``
+    /// - ``patchRulePollingUntilDone(project:region:firewallPolicy:body:)``
+    /// - ``patchRulePollingUntilDone(request:)``
     public func patchRulePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest,
       options: GoogleGax.RequestOptions
@@ -564,6 +712,13 @@
     /// Removes an association for the specified network firewall policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeAssociation(request:)``
+    /// - ``removeAssociationPollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
+    /// - ``removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociation(
       request: RegionNetworkFirewallPoliciesClient.RemoveAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -579,6 +734,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeAssociation(request:)``
+    /// - ``removeAssociation(request:options:)``
+    /// - ``removeAssociationPollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
     public func removeAssociationPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.RemoveAssociationRequest,
       options: GoogleGax.RequestOptions
@@ -622,6 +784,13 @@
     /// Deletes a rule of the specified priority.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRulePollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``removeRulePollingUntilDone(request:)``
+    /// - ``removeRulePollingUntilDone(request:options:)``
     public func removeRule(
       request: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest,
       options: GoogleGax.RequestOptions
@@ -637,6 +806,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRule(request:options:)``
+    /// - ``removeRulePollingUntilDone(project:region:firewallPolicy:)``
+    /// - ``removeRulePollingUntilDone(request:)``
     public func removeRulePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest,
       options: GoogleGax.RequestOptions
@@ -681,6 +857,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:region:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: RegionNetworkFirewallPoliciesClient.SetIamPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -691,6 +872,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: RegionNetworkFirewallPoliciesClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -934,6 +1120,13 @@
 
   // Default implementations
   extension Clients.RegionNetworkFirewallPoliciesProtocol {
+    /// Inserts an association for the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/addAssociation(request:options:)``
     public func addAssociation(request: RegionNetworkFirewallPoliciesClient.AddAssociationRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -947,6 +1140,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts an association for the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/addAssociationPollingUntilDone(request:options:)``
     public func addAssociationPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.AddAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -960,6 +1165,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts an association for the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/addAssociationPollingUntilDone(request:options:)``
     public func addAssociationPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -975,6 +1192,13 @@
       return try await self.addAssociationPollingUntilDone(request: request)
     }
 
+    /// Inserts a rule into a network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/addRule(request:options:)``
     public func addRule(request: RegionNetworkFirewallPoliciesClient.AddRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -987,6 +1211,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.AddRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -999,6 +1235,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1014,6 +1262,13 @@
       return try await self.addRulePollingUntilDone(request: request)
     }
 
+    /// Copies rules to the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/cloneRules(request:options:)``
     public func cloneRules(request: RegionNetworkFirewallPoliciesClient.CloneRulesRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1027,6 +1282,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies rules to the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/cloneRulesPollingUntilDone(request:options:)``
     public func cloneRulesPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.CloneRulesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1040,6 +1307,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies rules to the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/cloneRulesPollingUntilDone(request:options:)``
     public func cloneRulesPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1053,6 +1332,13 @@
       return try await self.cloneRulesPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/delete(request:options:)``
     public func delete(request: RegionNetworkFirewallPoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1065,6 +1351,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1077,6 +1375,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1090,6 +1400,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/get(request:options:)``
     public func `get`(request: RegionNetworkFirewallPoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicy
     {
@@ -1102,6 +1419,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -1115,6 +1439,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets an association with the specified name.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getAssociation(request:options:)``
     public func getAssociation(request: RegionNetworkFirewallPoliciesClient.GetAssociationRequest)
       async throws -> GoogleCloudComputeV1.FirewallPolicyAssociation
     {
@@ -1128,6 +1459,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an association with the specified name.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getAssociation(request:options:)``
     public func getAssociation(
       project: Swift.String,
       region: Swift.String,
@@ -1141,6 +1479,13 @@
       return try await self.getAssociation(request: request)
     }
 
+    /// Returns the effective firewalls on a given network.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getEffectiveFirewalls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getEffectiveFirewalls(request:options:)``
     public func getEffectiveFirewalls(
       request: RegionNetworkFirewallPoliciesClient.GetEffectiveFirewallsRequest
     ) async throws
@@ -1158,6 +1503,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the effective firewalls on a given network.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getEffectiveFirewalls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getEffectiveFirewalls(request:options:)``
     public func getEffectiveFirewalls(
       project: Swift.String,
       region: Swift.String,
@@ -1173,6 +1525,14 @@
       return try await self.getEffectiveFirewalls(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: RegionNetworkFirewallPoliciesClient.GetIamPolicyRequest)
       async throws -> GoogleCloudComputeV1.Policy
     {
@@ -1186,6 +1546,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -1199,6 +1567,13 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Gets a rule of the specified priority.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getRule(request:options:)``
     public func getRule(request: RegionNetworkFirewallPoliciesClient.GetRuleRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicyRule
     {
@@ -1211,6 +1586,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a rule of the specified priority.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/getRule(request:options:)``
     public func getRule(
       project: Swift.String,
       region: Swift.String,
@@ -1224,6 +1606,13 @@
       return try await self.getRule(request: request)
     }
 
+    /// Creates a new network firewall policy in the specified project and region.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/insert(request:options:)``
     public func insert(request: RegionNetworkFirewallPoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1236,6 +1625,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new network firewall policy in the specified project and region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1248,6 +1649,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new network firewall policy in the specified project and region.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1261,6 +1674,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists all the network firewall policies that have been configured
+    /// for the specified project in the given region.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/list(request:options:)``
     public func list(request: RegionNetworkFirewallPoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicyList
     {
@@ -1273,6 +1694,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the network firewall policies that have been configured
+    /// for the specified project in the given region.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/list(request:options:)``
     public func listByItems(
       request: RegionNetworkFirewallPoliciesClient.ListRequest
     ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
@@ -1283,6 +1712,10 @@
     /// for the specified project in the given region.
     ///
     /// @Snippet(path: "regionNetworkFirewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/list(request:options:)``
     public func listByItems(
       request: RegionNetworkFirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
@@ -1296,6 +1729,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all the network firewall policies that have been configured
+    /// for the specified project in the given region.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -1307,6 +1748,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patch(request:options:)``
     public func patch(request: RegionNetworkFirewallPoliciesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1319,6 +1767,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1331,6 +1791,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1346,6 +1818,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Updates an association for the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchAssociation(request:options:)``
     public func patchAssociation(
       request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1359,6 +1838,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an association for the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchAssociationPollingUntilDone(request:options:)``
     public func patchAssociationPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.PatchAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1372,6 +1863,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an association for the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchAssociationPollingUntilDone(request:options:)``
     public func patchAssociationPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1387,6 +1890,13 @@
       return try await self.patchAssociationPollingUntilDone(request: request)
     }
 
+    /// Patches a rule of the specified priority.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchRule(request:options:)``
     public func patchRule(request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1400,6 +1910,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.PatchRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1413,6 +1935,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1428,6 +1962,13 @@
       return try await self.patchRulePollingUntilDone(request: request)
     }
 
+    /// Removes an association for the specified network firewall policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/removeAssociation(request:options:)``
     public func removeAssociation(
       request: RegionNetworkFirewallPoliciesClient.RemoveAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1441,6 +1982,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes an association for the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociationPollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.RemoveAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1454,6 +2007,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes an association for the specified network firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociationPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1467,6 +2032,13 @@
       return try await self.removeAssociationPollingUntilDone(request: request)
     }
 
+    /// Deletes a rule of the specified priority.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/removeRule(request:options:)``
     public func removeRule(request: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1480,6 +2052,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       request: RegionNetworkFirewallPoliciesClient.RemoveRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1493,6 +2077,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -1506,6 +2102,14 @@
       return try await self.removeRulePollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: RegionNetworkFirewallPoliciesClient.SetIamPolicyRequest)
       async throws -> GoogleCloudComputeV1.Policy
     {
@@ -1519,6 +2123,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -1534,6 +2146,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: RegionNetworkFirewallPoliciesClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -1547,6 +2166,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionNetworkFirewallPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNetworkFirewallPoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -1562,6 +2188,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

@@ -25,6 +25,10 @@ import Foundation
 /// Service for managing BigQuery export configurations for Chronicle instances.
 ///
 /// @Snippet(path: "BigQueryExportServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BigQueryExportServiceProtocol``
 public final class BigQueryExportServiceClient: Clients.BigQueryExportServiceProtocol, Sendable {
   let inner: any Clients.BigQueryExportServiceStub
 
@@ -42,6 +46,11 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// Get the BigQuery export configuration for a Chronicle instance.
   ///
   /// @Snippet(path: "BigQueryExportService_GetBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBigQueryExport(name:)``
+  /// - ``getBigQueryExport(request:)``
   public func getBigQueryExport(
     request: GetBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -51,6 +60,11 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// Update the BigQuery export configuration for a Chronicle instance.
   ///
   /// @Snippet(path: "BigQueryExportService_UpdateBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBigQueryExport(bigQueryExport:updateMask:)``
+  /// - ``updateBigQueryExport(request:)``
   public func updateBigQueryExport(
     request: UpdateBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -62,6 +76,11 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// and set default export settings for each data source.
   ///
   /// @Snippet(path: "BigQueryExportService_ProvisionBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``provisionBigQueryExport(parent:)``
+  /// - ``provisionBigQueryExport(request:)``
   public func provisionBigQueryExport(
     request: ProvisionBigQueryExportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -73,6 +92,13 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BigQueryExportService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -95,6 +121,11 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BigQueryExportService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -106,6 +137,11 @@ public final class BigQueryExportServiceClient: Clients.BigQueryExportServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BigQueryExportService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -154,6 +190,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BigQueryExportServiceProtocol {
+  /// Get the BigQuery export configuration for a Chronicle instance.
+  ///
+  /// @Snippet(path: "BigQueryExportService_GetBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/getBigQueryExport(request:options:)``
   public func getBigQueryExport(request: GetBigQueryExportRequest) async throws
     -> GoogleCloudChronicleV1.BigQueryExport
   {
@@ -166,6 +209,13 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the BigQuery export configuration for a Chronicle instance.
+  ///
+  /// @Snippet(path: "BigQueryExportService_GetBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/getBigQueryExport(request:options:)``
   public func getBigQueryExport(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -175,6 +225,13 @@ extension Clients.BigQueryExportServiceProtocol {
     return try await self.getBigQueryExport(request: request)
   }
 
+  /// Update the BigQuery export configuration for a Chronicle instance.
+  ///
+  /// @Snippet(path: "BigQueryExportService_UpdateBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/updateBigQueryExport(request:options:)``
   public func updateBigQueryExport(request: UpdateBigQueryExportRequest) async throws
     -> GoogleCloudChronicleV1.BigQueryExport
   {
@@ -187,6 +244,13 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update the BigQuery export configuration for a Chronicle instance.
+  ///
+  /// @Snippet(path: "BigQueryExportService_UpdateBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/updateBigQueryExport(request:options:)``
   public func updateBigQueryExport(
     bigQueryExport: BigQueryExport?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -198,6 +262,15 @@ extension Clients.BigQueryExportServiceProtocol {
     return try await self.updateBigQueryExport(request: request)
   }
 
+  /// Provision the BigQuery export for a Chronicle instance. This will create
+  /// {{gcp_name}} resources like {{storage_name}} buckets, BigQuery datasets
+  /// and set default export settings for each data source.
+  ///
+  /// @Snippet(path: "BigQueryExportService_ProvisionBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/provisionBigQueryExport(request:options:)``
   public func provisionBigQueryExport(request: ProvisionBigQueryExportRequest) async throws
     -> GoogleCloudChronicleV1.BigQueryExport
   {
@@ -210,6 +283,15 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provision the BigQuery export for a Chronicle instance. This will create
+  /// {{gcp_name}} resources like {{storage_name}} buckets, BigQuery datasets
+  /// and set default export settings for each data source.
+  ///
+  /// @Snippet(path: "BigQueryExportService_ProvisionBigQueryExport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/provisionBigQueryExport(request:options:)``
   public func provisionBigQueryExport(
     parent: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.BigQueryExport {
@@ -219,6 +301,15 @@ extension Clients.BigQueryExportServiceProtocol {
     return try await self.provisionBigQueryExport(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -231,6 +322,15 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -242,6 +342,10 @@ extension Clients.BigQueryExportServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BigQueryExportService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -255,6 +359,15 @@ extension Clients.BigQueryExportServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -266,6 +379,9 @@ extension Clients.BigQueryExportServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -278,6 +394,9 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -287,6 +406,15 @@ extension Clients.BigQueryExportServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -297,6 +425,15 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -306,6 +443,15 @@ extension Clients.BigQueryExportServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -316,6 +462,15 @@ extension Clients.BigQueryExportServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BigQueryExportService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BigQueryExportServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -23,6 +23,10 @@ import Foundation
 /// A service to manage file attachments for Google Cloud support cases.
 ///
 /// @Snippet(path: "CaseAttachmentServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CaseAttachmentServiceProtocol``
 public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServiceProtocol, Sendable {
   let inner: any Clients.CaseAttachmentServiceStub
 
@@ -40,6 +44,13 @@ public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServicePro
   /// List all the attachments associated with a support case.
   ///
   /// @Snippet(path: "CaseAttachmentService_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAttachments(request:)``
+  /// - ``listAttachmentsByItems(parent:)``
+  /// - ``listAttachmentsByItems(request:)``
+  /// - ``listAttachmentsByItems(request:options:)``
   public func listAttachments(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.ListAttachmentsResponse {
@@ -79,6 +90,11 @@ public final class CaseAttachmentServiceClient: Clients.CaseAttachmentServicePro
   /// ```
   ///
   /// @Snippet(path: "CaseAttachmentService_GetAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAttachment(name:)``
+  /// - ``getAttachment(request:)``
   public func getAttachment(
     request: GetAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSupportV2.Attachment {
@@ -107,6 +123,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CaseAttachmentServiceProtocol {
+  /// List all the attachments associated with a support case.
+  ///
+  /// @Snippet(path: "CaseAttachmentService_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CaseAttachmentServiceClient/listAttachments(request:options:)``
   public func listAttachments(request: ListAttachmentsRequest) async throws
     -> GoogleCloudSupportV2.ListAttachmentsResponse
   {
@@ -119,6 +142,13 @@ extension Clients.CaseAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all the attachments associated with a support case.
+  ///
+  /// @Snippet(path: "CaseAttachmentService_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CaseAttachmentServiceClient/listAttachments(request:options:)``
   public func listAttachmentsByItems(
     request: ListAttachmentsRequest
   ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
@@ -128,6 +158,10 @@ extension Clients.CaseAttachmentServiceProtocol {
   /// List all the attachments associated with a support case.
   ///
   /// @Snippet(path: "CaseAttachmentService_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CaseAttachmentServiceClient/listAttachments(request:options:)``
   public func listAttachmentsByItems(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
@@ -142,6 +176,13 @@ extension Clients.CaseAttachmentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all the attachments associated with a support case.
+  ///
+  /// @Snippet(path: "CaseAttachmentService_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CaseAttachmentServiceClient/listAttachments(request:options:)``
   public func listAttachmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
@@ -151,6 +192,43 @@ extension Clients.CaseAttachmentServiceProtocol {
     return self.listAttachmentsByItems(request: request)
   }
 
+  /// Retrieve an attachment associated with a support case.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// attachment="projects/some-project/cases/23598314/attachments/0684M00000P3h1fQAB"
+  /// curl \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$attachment"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  /// request = (
+  ///     supportApiService.cases()
+  ///     .attachments()
+  ///     .get(name="projects/some-project/cases/43595344/attachments/0684M00000P3h1fQAB")
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "CaseAttachmentService_GetAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CaseAttachmentServiceClient/getAttachment(request:options:)``
   public func getAttachment(request: GetAttachmentRequest) async throws
     -> GoogleCloudSupportV2.Attachment
   {
@@ -163,6 +241,43 @@ extension Clients.CaseAttachmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve an attachment associated with a support case.
+  ///
+  /// EXAMPLES:
+  ///
+  /// cURL:
+  ///
+  /// ```shell
+  /// attachment="projects/some-project/cases/23598314/attachments/0684M00000P3h1fQAB"
+  /// curl \
+  ///   --header "Authorization: Bearer $(gcloud auth print-access-token)" \
+  ///   "https://cloudsupport.googleapis.com/v2/$attachment"
+  /// ```
+  ///
+  /// Python:
+  ///
+  /// ```python
+  /// import googleapiclient.discovery
+  ///
+  /// api_version = "v2"
+  /// supportApiService = googleapiclient.discovery.build(
+  ///     serviceName="cloudsupport",
+  ///     version=api_version,
+  ///     discoveryServiceUrl=f"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}",
+  /// )
+  /// request = (
+  ///     supportApiService.cases()
+  ///     .attachments()
+  ///     .get(name="projects/some-project/cases/43595344/attachments/0684M00000P3h1fQAB")
+  /// )
+  /// print(request.execute())
+  /// ```
+  ///
+  /// @Snippet(path: "CaseAttachmentService_GetAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CaseAttachmentServiceClient/getAttachment(request:options:)``
   public func getAttachment(
     name: Swift.String,
   ) async throws -> GoogleCloudSupportV2.Attachment {

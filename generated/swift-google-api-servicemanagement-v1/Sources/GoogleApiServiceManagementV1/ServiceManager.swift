@@ -28,6 +28,10 @@ import Foundation
 /// API](https://cloud.google.com/service-infrastructure/docs/overview)
 ///
 /// @Snippet(path: "ServiceManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ServiceManagerProtocol``
 public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendable {
   let inner: any Clients.ServiceManagerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -52,6 +56,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// for.
   ///
   /// @Snippet(path: "ServiceManager_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServices(request:)``
+  /// - ``listServicesByItems(producerProjectId:consumerId:)``
+  /// - ``listServicesByItems(request:)``
+  /// - ``listServicesByItems(request:options:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.ListServicesResponse {
@@ -62,6 +73,11 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// public.
   ///
   /// @Snippet(path: "ServiceManager_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getService(request:)``
+  /// - ``getService(serviceName:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.ManagedService {
@@ -81,6 +97,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Operation<response: ManagedService>
   ///
   /// @Snippet(path: "ServiceManager_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createService(request:)``
+  /// - ``createServicePollingUntilDone(request:)``
+  /// - ``createServicePollingUntilDone(request:options:)``
+  /// - ``createServicePollingUntilDone(service:)``
   public func createService(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,6 +123,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Operation<response: ManagedService>
   ///
   /// @Snippet(path: "ServiceManager_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createService(request:)``
+  /// - ``createService(request:options:)``
+  /// - ``createServicePollingUntilDone(request:)``
+  /// - ``createServicePollingUntilDone(service:)``
   public func createServicePollingUntilDone(
     request: CreateServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> ManagedService {
@@ -137,6 +167,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteService(request:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
+  /// - ``deleteServicePollingUntilDone(request:options:)``
+  /// - ``deleteServicePollingUntilDone(serviceName:)``
   public func deleteService(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -155,6 +192,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteService(request:)``
+  /// - ``deleteService(request:options:)``
+  /// - ``deleteServicePollingUntilDone(request:)``
+  /// - ``deleteServicePollingUntilDone(serviceName:)``
   public func deleteServicePollingUntilDone(
     request: DeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -187,6 +231,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Operation<response: UndeleteServiceResponse>
   ///
   /// @Snippet(path: "ServiceManager_UndeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteService(request:)``
+  /// - ``undeleteServicePollingUntilDone(request:)``
+  /// - ``undeleteServicePollingUntilDone(request:options:)``
+  /// - ``undeleteServicePollingUntilDone(serviceName:)``
   public func undeleteService(
     request: UndeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -201,6 +252,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Operation<response: UndeleteServiceResponse>
   ///
   /// @Snippet(path: "ServiceManager_UndeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteService(request:)``
+  /// - ``undeleteService(request:options:)``
+  /// - ``undeleteServicePollingUntilDone(request:)``
+  /// - ``undeleteServicePollingUntilDone(serviceName:)``
   public func undeleteServicePollingUntilDone(
     request: UndeleteServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> UndeleteServiceResponse {
@@ -231,6 +289,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// from the newest to the oldest.
   ///
   /// @Snippet(path: "ServiceManager_ListServiceConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServiceConfigs(request:)``
+  /// - ``listServiceConfigsByItems(request:)``
+  /// - ``listServiceConfigsByItems(request:options:)``
+  /// - ``listServiceConfigsByItems(serviceName:)``
   public func listServiceConfigs(
     request: ListServiceConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.ListServiceConfigsResponse {
@@ -240,6 +305,11 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Gets a service configuration (version) for a managed service.
   ///
   /// @Snippet(path: "ServiceManager_GetServiceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServiceConfig(request:)``
+  /// - ``getServiceConfig(serviceName:configId:view:)``
   public func getServiceConfig(
     request: GetServiceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.Service {
@@ -258,6 +328,11 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_CreateServiceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceConfig(request:)``
+  /// - ``createServiceConfig(serviceName:serviceConfig:)``
   public func createServiceConfig(
     request: CreateServiceConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.Service {
@@ -282,6 +357,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_SubmitConfigSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitConfigSource(request:)``
+  /// - ``submitConfigSourcePollingUntilDone(request:)``
+  /// - ``submitConfigSourcePollingUntilDone(request:options:)``
+  /// - ``submitConfigSourcePollingUntilDone(serviceName:configSource:validateOnly:)``
   public func submitConfigSource(
     request: SubmitConfigSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -306,6 +388,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
   ///
   /// @Snippet(path: "ServiceManager_SubmitConfigSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitConfigSource(request:)``
+  /// - ``submitConfigSource(request:options:)``
+  /// - ``submitConfigSourcePollingUntilDone(request:)``
+  /// - ``submitConfigSourcePollingUntilDone(serviceName:configSource:validateOnly:)``
   public func submitConfigSourcePollingUntilDone(
     request: SubmitConfigSourceRequest, options: GoogleGax.RequestOptions
   ) async throws -> SubmitConfigSourceResponse {
@@ -336,6 +425,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// service, from the newest to the oldest.
   ///
   /// @Snippet(path: "ServiceManager_ListServiceRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServiceRollouts(request:)``
+  /// - ``listServiceRolloutsByItems(request:)``
+  /// - ``listServiceRolloutsByItems(request:options:)``
+  /// - ``listServiceRolloutsByItems(serviceName:filter:)``
   public func listServiceRollouts(
     request: ListServiceRolloutsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.ListServiceRolloutsResponse {
@@ -348,6 +444,11 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// [google.api.servicemanagement.v1.Rollout]: <doc:Rollout>
   ///
   /// @Snippet(path: "ServiceManager_GetServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServiceRollout(request:)``
+  /// - ``getServiceRollout(serviceName:rolloutId:)``
   public func getServiceRollout(
     request: GetServiceRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.Rollout {
@@ -370,6 +471,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Operation<response: Rollout>
   ///
   /// @Snippet(path: "ServiceManager_CreateServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceRollout(request:)``
+  /// - ``createServiceRolloutPollingUntilDone(request:)``
+  /// - ``createServiceRolloutPollingUntilDone(request:options:)``
+  /// - ``createServiceRolloutPollingUntilDone(serviceName:rollout:)``
   public func createServiceRollout(
     request: CreateServiceRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -392,6 +500,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Operation<response: Rollout>
   ///
   /// @Snippet(path: "ServiceManager_CreateServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceRollout(request:)``
+  /// - ``createServiceRollout(request:options:)``
+  /// - ``createServiceRolloutPollingUntilDone(request:)``
+  /// - ``createServiceRolloutPollingUntilDone(serviceName:rollout:)``
   public func createServiceRolloutPollingUntilDone(
     request: CreateServiceRolloutRequest, options: GoogleGax.RequestOptions
   ) async throws -> Rollout {
@@ -429,6 +544,11 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// service configuration.
   ///
   /// @Snippet(path: "ServiceManager_GenerateConfigReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateConfigReport(newConfig:oldConfig:)``
+  /// - ``generateConfigReport(request:)``
   public func generateConfigReport(
     request: GenerateConfigReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceManagementV1.GenerateConfigReportResponse {
@@ -442,6 +562,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// errors.
   ///
   /// @Snippet(path: "ServiceManager_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -452,6 +576,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "ServiceManager_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -467,6 +595,10 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "ServiceManager_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -476,6 +608,13 @@ public final class ServiceManagerClient: Clients.ServiceManagerProtocol, Sendabl
   /// Lists service operations that match the specified filter in the request.
   ///
   /// @Snippet(path: "ServiceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -615,6 +754,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.ServiceManagerProtocol {
+  /// Lists managed services.
+  ///
+  /// Returns all public services. For authenticated users, also returns all
+  /// services the calling user has "servicemanagement.services.get" permission
+  /// for.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServices(request:options:)``
   public func listServices(request: ListServicesRequest) async throws
     -> GoogleApiServiceManagementV1.ListServicesResponse
   {
@@ -627,6 +777,17 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists managed services.
+  ///
+  /// Returns all public services. For authenticated users, also returns all
+  /// services the calling user has "servicemanagement.services.get" permission
+  /// for.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest
   ) -> some AsyncSequence<ManagedService, any Swift.Error> & Sendable {
@@ -640,6 +801,10 @@ extension Clients.ServiceManagerProtocol {
   /// for.
   ///
   /// @Snippet(path: "ServiceManager_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServices(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -657,6 +822,17 @@ extension Clients.ServiceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists managed services.
+  ///
+  /// Returns all public services. For authenticated users, also returns all
+  /// services the calling user has "servicemanagement.services.get" permission
+  /// for.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServices(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -671,6 +847,14 @@ extension Clients.ServiceManagerProtocol {
     return self.listServicesByItems(request: request)
   }
 
+  /// Gets a managed service. Authentication is required unless the service is
+  /// public.
+  ///
+  /// @Snippet(path: "ServiceManager_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getService(request:options:)``
   public func getService(request: GetServiceRequest) async throws
     -> GoogleApiServiceManagementV1.ManagedService
   {
@@ -683,6 +867,14 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a managed service. Authentication is required unless the service is
+  /// public.
+  ///
+  /// @Snippet(path: "ServiceManager_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getService(request:options:)``
   public func getService(
     serviceName: Swift.String,
   ) async throws -> GoogleApiServiceManagementV1.ManagedService {
@@ -692,6 +884,23 @@ extension Clients.ServiceManagerProtocol {
     return try await self.getService(request: request)
   }
 
+  /// Creates a new managed service.
+  ///
+  /// A managed service is immutable, and is subject to mandatory 30-day
+  /// data retention. You cannot move a service or recreate it within 30 days
+  /// after deletion.
+  ///
+  /// One producer project can own no more than 500 services. For security and
+  /// reliability purposes, a production service should be hosted in a
+  /// dedicated producer project.
+  ///
+  /// Operation<response: ManagedService>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createService(request:options:)``
   public func createService(request: CreateServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -704,6 +913,23 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new managed service.
+  ///
+  /// A managed service is immutable, and is subject to mandatory 30-day
+  /// data retention. You cannot move a service or recreate it within 30 days
+  /// after deletion.
+  ///
+  /// One producer project can own no more than 500 services. For security and
+  /// reliability purposes, a production service should be hosted in a
+  /// dedicated producer project.
+  ///
+  /// Operation<response: ManagedService>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServicePollingUntilDone(request:options:)``
   public func createServicePollingUntilDone(request: CreateServiceRequest) async throws
     -> ManagedService
   {
@@ -716,6 +942,23 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new managed service.
+  ///
+  /// A managed service is immutable, and is subject to mandatory 30-day
+  /// data retention. You cannot move a service or recreate it within 30 days
+  /// after deletion.
+  ///
+  /// One producer project can own no more than 500 services. For security and
+  /// reliability purposes, a production service should be hosted in a
+  /// dedicated producer project.
+  ///
+  /// Operation<response: ManagedService>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServicePollingUntilDone(request:options:)``
   public func createServicePollingUntilDone(
     service: ManagedService?,
   ) async throws -> ManagedService {
@@ -725,6 +968,22 @@ extension Clients.ServiceManagerProtocol {
     return try await self.createServicePollingUntilDone(request: request)
   }
 
+  /// Deletes a managed service. This method will change the service to the
+  /// `Soft-Delete` state for 30 days. Within this period, service producers may
+  /// call
+  /// [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
+  /// to restore the service. After 30 days, the service will be permanently
+  /// deleted.
+  ///
+  /// Operation<response: google.protobuf.Empty>
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/deleteService(request:options:)``
   public func deleteService(request: DeleteServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -737,6 +996,22 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a managed service. This method will change the service to the
+  /// `Soft-Delete` state for 30 days. Within this period, service producers may
+  /// call
+  /// [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
+  /// to restore the service. After 30 days, the service will be permanently
+  /// deleted.
+  ///
+  /// Operation<response: google.protobuf.Empty>
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/deleteServicePollingUntilDone(request:options:)``
   public func deleteServicePollingUntilDone(request: DeleteServiceRequest) async throws {
     try await self.deleteServicePollingUntilDone(request: request, options: .init())
   }
@@ -747,6 +1022,22 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a managed service. This method will change the service to the
+  /// `Soft-Delete` state for 30 days. Within this period, service producers may
+  /// call
+  /// [UndeleteService][google.api.servicemanagement.v1.ServiceManager.UndeleteService]
+  /// to restore the service. After 30 days, the service will be permanently
+  /// deleted.
+  ///
+  /// Operation<response: google.protobuf.Empty>
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.UndeleteService]: <doc:ServiceManagerClient/undeleteService(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_DeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/deleteServicePollingUntilDone(request:options:)``
   public func deleteServicePollingUntilDone(
     serviceName: Swift.String,
   ) async throws {
@@ -756,6 +1047,18 @@ extension Clients.ServiceManagerProtocol {
     try await self.deleteServicePollingUntilDone(request: request)
   }
 
+  /// Revives a previously deleted managed service. The method restores the
+  /// service using the configuration at the time the service was deleted.
+  /// The target service must exist and must have been deleted within the
+  /// last 30 days.
+  ///
+  /// Operation<response: UndeleteServiceResponse>
+  ///
+  /// @Snippet(path: "ServiceManager_UndeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/undeleteService(request:options:)``
   public func undeleteService(request: UndeleteServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -768,6 +1071,18 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Revives a previously deleted managed service. The method restores the
+  /// service using the configuration at the time the service was deleted.
+  /// The target service must exist and must have been deleted within the
+  /// last 30 days.
+  ///
+  /// Operation<response: UndeleteServiceResponse>
+  ///
+  /// @Snippet(path: "ServiceManager_UndeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/undeleteServicePollingUntilDone(request:options:)``
   public func undeleteServicePollingUntilDone(request: UndeleteServiceRequest) async throws
     -> UndeleteServiceResponse
   {
@@ -780,6 +1095,18 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Revives a previously deleted managed service. The method restores the
+  /// service using the configuration at the time the service was deleted.
+  /// The target service must exist and must have been deleted within the
+  /// last 30 days.
+  ///
+  /// Operation<response: UndeleteServiceResponse>
+  ///
+  /// @Snippet(path: "ServiceManager_UndeleteService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/undeleteServicePollingUntilDone(request:options:)``
   public func undeleteServicePollingUntilDone(
     serviceName: Swift.String,
   ) async throws -> UndeleteServiceResponse {
@@ -789,6 +1116,14 @@ extension Clients.ServiceManagerProtocol {
     return try await self.undeleteServicePollingUntilDone(request: request)
   }
 
+  /// Lists the history of the service configuration for a managed service,
+  /// from the newest to the oldest.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServiceConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceConfigs(request:options:)``
   public func listServiceConfigs(request: ListServiceConfigsRequest) async throws
     -> GoogleApiServiceManagementV1.ListServiceConfigsResponse
   {
@@ -801,6 +1136,14 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the history of the service configuration for a managed service,
+  /// from the newest to the oldest.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServiceConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceConfigs(request:options:)``
   public func listServiceConfigsByItems(
     request: ListServiceConfigsRequest
   ) -> some AsyncSequence<GoogleApi.Service, any Swift.Error> & Sendable {
@@ -811,6 +1154,10 @@ extension Clients.ServiceManagerProtocol {
   /// from the newest to the oldest.
   ///
   /// @Snippet(path: "ServiceManager_ListServiceConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceConfigs(request:options:)``
   public func listServiceConfigsByItems(
     request: ListServiceConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleApi.Service, any Swift.Error> & Sendable {
@@ -825,6 +1172,14 @@ extension Clients.ServiceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the history of the service configuration for a managed service,
+  /// from the newest to the oldest.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServiceConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceConfigs(request:options:)``
   public func listServiceConfigsByItems(
     serviceName: Swift.String,
   ) -> some AsyncSequence<GoogleApi.Service, any Swift.Error> & Sendable {
@@ -834,6 +1189,13 @@ extension Clients.ServiceManagerProtocol {
     return self.listServiceConfigsByItems(request: request)
   }
 
+  /// Gets a service configuration (version) for a managed service.
+  ///
+  /// @Snippet(path: "ServiceManager_GetServiceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getServiceConfig(request:options:)``
   public func getServiceConfig(request: GetServiceConfigRequest) async throws -> GoogleApi.Service {
     try await self.getServiceConfig(request: request, options: .init())
   }
@@ -844,6 +1206,13 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a service configuration (version) for a managed service.
+  ///
+  /// @Snippet(path: "ServiceManager_GetServiceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getServiceConfig(request:options:)``
   public func getServiceConfig(
     serviceName: Swift.String,
     configId: Swift.String,
@@ -857,6 +1226,22 @@ extension Clients.ServiceManagerProtocol {
     return try await self.getServiceConfig(request: request)
   }
 
+  /// Creates a new service configuration (version) for a managed service.
+  /// This method only stores the service configuration. To roll out the service
+  /// configuration to backend systems please call
+  /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+  ///
+  /// Only the 100 most recent service configurations and ones referenced by
+  /// existing rollouts are kept for each service. The rest will be deleted
+  /// eventually.
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateServiceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServiceConfig(request:options:)``
   public func createServiceConfig(request: CreateServiceConfigRequest) async throws
     -> GoogleApi.Service
   {
@@ -869,6 +1254,22 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new service configuration (version) for a managed service.
+  /// This method only stores the service configuration. To roll out the service
+  /// configuration to backend systems please call
+  /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+  ///
+  /// Only the 100 most recent service configurations and ones referenced by
+  /// existing rollouts are kept for each service. The rest will be deleted
+  /// eventually.
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateServiceConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServiceConfig(request:options:)``
   public func createServiceConfig(
     serviceName: Swift.String,
     serviceConfig: GoogleApi.Service?,
@@ -880,6 +1281,28 @@ extension Clients.ServiceManagerProtocol {
     return try await self.createServiceConfig(request: request)
   }
 
+  /// Creates a new service configuration (version) for a managed service based
+  /// on
+  /// user-supplied configuration source files (for example: OpenAPI
+  /// Specification). This method stores the source configurations as well as the
+  /// generated service configuration. To rollout the service configuration to
+  /// other services,
+  /// please call
+  /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+  ///
+  /// Only the 100 most recent configuration sources and ones referenced by
+  /// existing service configurtions are kept for each service. The rest will be
+  /// deleted eventually.
+  ///
+  /// Operation<response: SubmitConfigSourceResponse>
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_SubmitConfigSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/submitConfigSource(request:options:)``
   public func submitConfigSource(request: SubmitConfigSourceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -892,6 +1315,28 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new service configuration (version) for a managed service based
+  /// on
+  /// user-supplied configuration source files (for example: OpenAPI
+  /// Specification). This method stores the source configurations as well as the
+  /// generated service configuration. To rollout the service configuration to
+  /// other services,
+  /// please call
+  /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+  ///
+  /// Only the 100 most recent configuration sources and ones referenced by
+  /// existing service configurtions are kept for each service. The rest will be
+  /// deleted eventually.
+  ///
+  /// Operation<response: SubmitConfigSourceResponse>
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_SubmitConfigSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/submitConfigSourcePollingUntilDone(request:options:)``
   public func submitConfigSourcePollingUntilDone(request: SubmitConfigSourceRequest) async throws
     -> SubmitConfigSourceResponse
   {
@@ -904,6 +1349,28 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new service configuration (version) for a managed service based
+  /// on
+  /// user-supplied configuration source files (for example: OpenAPI
+  /// Specification). This method stores the source configurations as well as the
+  /// generated service configuration. To rollout the service configuration to
+  /// other services,
+  /// please call
+  /// [CreateServiceRollout][google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout].
+  ///
+  /// Only the 100 most recent configuration sources and ones referenced by
+  /// existing service configurtions are kept for each service. The rest will be
+  /// deleted eventually.
+  ///
+  /// Operation<response: SubmitConfigSourceResponse>
+  ///
+  /// [google.api.servicemanagement.v1.ServiceManager.CreateServiceRollout]: <doc:ServiceManagerClient/createServiceRollout(request:options:)>
+  ///
+  /// @Snippet(path: "ServiceManager_SubmitConfigSource")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/submitConfigSourcePollingUntilDone(request:options:)``
   public func submitConfigSourcePollingUntilDone(
     serviceName: Swift.String,
     configSource: ConfigSource?,
@@ -917,6 +1384,14 @@ extension Clients.ServiceManagerProtocol {
     return try await self.submitConfigSourcePollingUntilDone(request: request)
   }
 
+  /// Lists the history of the service configuration rollouts for a managed
+  /// service, from the newest to the oldest.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServiceRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceRollouts(request:options:)``
   public func listServiceRollouts(request: ListServiceRolloutsRequest) async throws
     -> GoogleApiServiceManagementV1.ListServiceRolloutsResponse
   {
@@ -929,6 +1404,14 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the history of the service configuration rollouts for a managed
+  /// service, from the newest to the oldest.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServiceRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceRollouts(request:options:)``
   public func listServiceRolloutsByItems(
     request: ListServiceRolloutsRequest
   ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -939,6 +1422,10 @@ extension Clients.ServiceManagerProtocol {
   /// service, from the newest to the oldest.
   ///
   /// @Snippet(path: "ServiceManager_ListServiceRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceRollouts(request:options:)``
   public func listServiceRolloutsByItems(
     request: ListServiceRolloutsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Rollout, any Swift.Error> & Sendable {
@@ -953,6 +1440,14 @@ extension Clients.ServiceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the history of the service configuration rollouts for a managed
+  /// service, from the newest to the oldest.
+  ///
+  /// @Snippet(path: "ServiceManager_ListServiceRollouts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listServiceRollouts(request:options:)``
   public func listServiceRolloutsByItems(
     serviceName: Swift.String,
     filter: Swift.String,
@@ -964,6 +1459,16 @@ extension Clients.ServiceManagerProtocol {
     return self.listServiceRolloutsByItems(request: request)
   }
 
+  /// Gets a service configuration
+  /// [rollout][google.api.servicemanagement.v1.Rollout].
+  ///
+  /// [google.api.servicemanagement.v1.Rollout]: <doc:Rollout>
+  ///
+  /// @Snippet(path: "ServiceManager_GetServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getServiceRollout(request:options:)``
   public func getServiceRollout(request: GetServiceRolloutRequest) async throws
     -> GoogleApiServiceManagementV1.Rollout
   {
@@ -976,6 +1481,16 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a service configuration
+  /// [rollout][google.api.servicemanagement.v1.Rollout].
+  ///
+  /// [google.api.servicemanagement.v1.Rollout]: <doc:Rollout>
+  ///
+  /// @Snippet(path: "ServiceManager_GetServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getServiceRollout(request:options:)``
   public func getServiceRollout(
     serviceName: Swift.String,
     rolloutId: Swift.String,
@@ -987,6 +1502,26 @@ extension Clients.ServiceManagerProtocol {
     return try await self.getServiceRollout(request: request)
   }
 
+  /// Creates a new service configuration rollout. Based on rollout, the
+  /// Google Service Management will roll out the service configurations to
+  /// different backend services. For example, the logging configuration will be
+  /// pushed to Google Cloud Logging.
+  ///
+  /// Please note that any previous pending and running Rollouts and associated
+  /// Operations will be automatically cancelled so that the latest Rollout will
+  /// not be blocked by previous Rollouts.
+  ///
+  /// Only the 100 most recent (in any state) and the last 10 successful (if not
+  /// already part of the set of 100 most recent) rollouts are kept for each
+  /// service. The rest will be deleted eventually.
+  ///
+  /// Operation<response: Rollout>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServiceRollout(request:options:)``
   public func createServiceRollout(request: CreateServiceRolloutRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -999,6 +1534,26 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new service configuration rollout. Based on rollout, the
+  /// Google Service Management will roll out the service configurations to
+  /// different backend services. For example, the logging configuration will be
+  /// pushed to Google Cloud Logging.
+  ///
+  /// Please note that any previous pending and running Rollouts and associated
+  /// Operations will be automatically cancelled so that the latest Rollout will
+  /// not be blocked by previous Rollouts.
+  ///
+  /// Only the 100 most recent (in any state) and the last 10 successful (if not
+  /// already part of the set of 100 most recent) rollouts are kept for each
+  /// service. The rest will be deleted eventually.
+  ///
+  /// Operation<response: Rollout>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServiceRolloutPollingUntilDone(request:options:)``
   public func createServiceRolloutPollingUntilDone(request: CreateServiceRolloutRequest)
     async throws -> Rollout
   {
@@ -1011,6 +1566,26 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new service configuration rollout. Based on rollout, the
+  /// Google Service Management will roll out the service configurations to
+  /// different backend services. For example, the logging configuration will be
+  /// pushed to Google Cloud Logging.
+  ///
+  /// Please note that any previous pending and running Rollouts and associated
+  /// Operations will be automatically cancelled so that the latest Rollout will
+  /// not be blocked by previous Rollouts.
+  ///
+  /// Only the 100 most recent (in any state) and the last 10 successful (if not
+  /// already part of the set of 100 most recent) rollouts are kept for each
+  /// service. The rest will be deleted eventually.
+  ///
+  /// Operation<response: Rollout>
+  ///
+  /// @Snippet(path: "ServiceManager_CreateServiceRollout")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/createServiceRolloutPollingUntilDone(request:options:)``
   public func createServiceRolloutPollingUntilDone(
     serviceName: Swift.String,
     rollout: Rollout?,
@@ -1022,6 +1597,23 @@ extension Clients.ServiceManagerProtocol {
     return try await self.createServiceRolloutPollingUntilDone(request: request)
   }
 
+  /// Generates and returns a report (errors, warnings and changes from
+  /// existing configurations) associated with
+  /// GenerateConfigReportRequest.new_value
+  ///
+  /// If GenerateConfigReportRequest.old_value is specified,
+  /// GenerateConfigReportRequest will contain a single ChangeReport based on the
+  /// comparison between GenerateConfigReportRequest.new_value and
+  /// GenerateConfigReportRequest.old_value.
+  /// If GenerateConfigReportRequest.old_value is not specified, this method
+  /// will compare GenerateConfigReportRequest.new_value with the last pushed
+  /// service configuration.
+  ///
+  /// @Snippet(path: "ServiceManager_GenerateConfigReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/generateConfigReport(request:options:)``
   public func generateConfigReport(request: GenerateConfigReportRequest) async throws
     -> GoogleApiServiceManagementV1.GenerateConfigReportResponse
   {
@@ -1034,6 +1626,23 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates and returns a report (errors, warnings and changes from
+  /// existing configurations) associated with
+  /// GenerateConfigReportRequest.new_value
+  ///
+  /// If GenerateConfigReportRequest.old_value is specified,
+  /// GenerateConfigReportRequest will contain a single ChangeReport based on the
+  /// comparison between GenerateConfigReportRequest.new_value and
+  /// GenerateConfigReportRequest.old_value.
+  /// If GenerateConfigReportRequest.old_value is not specified, this method
+  /// will compare GenerateConfigReportRequest.new_value with the last pushed
+  /// service configuration.
+  ///
+  /// @Snippet(path: "ServiceManager_GenerateConfigReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/generateConfigReport(request:options:)``
   public func generateConfigReport(
     newConfig: GoogleWKT.WKTAny?,
     oldConfig: GoogleWKT.WKTAny?,
@@ -1045,6 +1654,17 @@ extension Clients.ServiceManagerProtocol {
     return try await self.generateConfigReport(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "ServiceManager_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1057,6 +1677,14 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "ServiceManager_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1069,6 +1697,19 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ServiceManager_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1081,6 +1722,13 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists service operations that match the specified filter in the request.
+  ///
+  /// @Snippet(path: "ServiceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1093,6 +1741,13 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists service operations that match the specified filter in the request.
+  ///
+  /// @Snippet(path: "ServiceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1102,6 +1757,10 @@ extension Clients.ServiceManagerProtocol {
   /// Lists service operations that match the specified filter in the request.
   ///
   /// @Snippet(path: "ServiceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1115,6 +1774,13 @@ extension Clients.ServiceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists service operations that match the specified filter in the request.
+  ///
+  /// @Snippet(path: "ServiceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1126,6 +1792,9 @@ extension Clients.ServiceManagerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1138,6 +1807,9 @@ extension Clients.ServiceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

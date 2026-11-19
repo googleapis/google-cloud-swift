@@ -24,6 +24,10 @@ import Foundation
 /// Provides a cross-region view of all Cloud KMS keys in a given Cloud project.
 ///
 /// @Snippet(path: "KeyDashboardServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/KeyDashboardServiceProtocol``
 public final class KeyDashboardServiceClient: Clients.KeyDashboardServiceProtocol, Sendable {
   let inner: any Clients.KeyDashboardServiceStub
 
@@ -43,6 +47,13 @@ public final class KeyDashboardServiceClient: Clients.KeyDashboardServiceProtoco
   /// completely reflect the actual state of key metadata at call time.
   ///
   /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCryptoKeys(request:)``
+  /// - ``listCryptoKeysByItems(parent:)``
+  /// - ``listCryptoKeysByItems(request:)``
+  /// - ``listCryptoKeysByItems(request:options:)``
   public func listCryptoKeys(
     request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse {
@@ -66,6 +77,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.KeyDashboardServiceProtocol {
+  /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
+  /// Note that this data is sourced from snapshots, meaning it may not
+  /// completely reflect the actual state of key metadata at call time.
+  ///
+  /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyDashboardServiceClient/listCryptoKeys(request:options:)``
   public func listCryptoKeys(request: ListCryptoKeysRequest) async throws
     -> GoogleCloudKMSInventoryV1.ListCryptoKeysResponse
   {
@@ -78,6 +98,15 @@ extension Clients.KeyDashboardServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
+  /// Note that this data is sourced from snapshots, meaning it may not
+  /// completely reflect the actual state of key metadata at call time.
+  ///
+  /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyDashboardServiceClient/listCryptoKeys(request:options:)``
   public func listCryptoKeysByItems(
     request: ListCryptoKeysRequest
   ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, any Swift.Error> & Sendable {
@@ -89,6 +118,10 @@ extension Clients.KeyDashboardServiceProtocol {
   /// completely reflect the actual state of key metadata at call time.
   ///
   /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyDashboardServiceClient/listCryptoKeys(request:options:)``
   public func listCryptoKeysByItems(
     request: ListCryptoKeysRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, any Swift.Error> & Sendable {
@@ -103,6 +136,15 @@ extension Clients.KeyDashboardServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns cryptographic keys managed by Cloud KMS in a given Cloud project.
+  /// Note that this data is sourced from snapshots, meaning it may not
+  /// completely reflect the actual state of key metadata at call time.
+  ///
+  /// @Snippet(path: "KeyDashboardService_ListCryptoKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``KeyDashboardServiceClient/listCryptoKeys(request:options:)``
   public func listCryptoKeysByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudKMSV1.CryptoKey, any Swift.Error> & Sendable {

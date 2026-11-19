@@ -24,6 +24,10 @@ import Foundation
 /// A service providing functionality for managing dashboards' charts.
 ///
 /// @Snippet(path: "DashboardChartServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DashboardChartServiceProtocol``
 public final class DashboardChartServiceClient: Clients.DashboardChartServiceProtocol, Sendable {
   let inner: any Clients.DashboardChartServiceStub
 
@@ -41,6 +45,11 @@ public final class DashboardChartServiceClient: Clients.DashboardChartServicePro
   /// Get a dashboard chart.
   ///
   /// @Snippet(path: "DashboardChartService_GetDashboardChart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDashboardChart(name:)``
+  /// - ``getDashboardChart(request:)``
   public func getDashboardChart(
     request: GetDashboardChartRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DashboardChart {
@@ -50,6 +59,11 @@ public final class DashboardChartServiceClient: Clients.DashboardChartServicePro
   /// Get dashboard charts in batches.
   ///
   /// @Snippet(path: "DashboardChartService_BatchGetDashboardCharts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchGetDashboardCharts(parent:names:)``
+  /// - ``batchGetDashboardCharts(request:)``
   public func batchGetDashboardCharts(
     request: BatchGetDashboardChartsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BatchGetDashboardChartsResponse {
@@ -61,6 +75,13 @@ public final class DashboardChartServiceClient: Clients.DashboardChartServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardChartService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -83,6 +104,11 @@ public final class DashboardChartServiceClient: Clients.DashboardChartServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardChartService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -94,6 +120,11 @@ public final class DashboardChartServiceClient: Clients.DashboardChartServicePro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardChartService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -137,6 +168,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DashboardChartServiceProtocol {
+  /// Get a dashboard chart.
+  ///
+  /// @Snippet(path: "DashboardChartService_GetDashboardChart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/getDashboardChart(request:options:)``
   public func getDashboardChart(request: GetDashboardChartRequest) async throws
     -> GoogleCloudChronicleV1.DashboardChart
   {
@@ -149,6 +187,13 @@ extension Clients.DashboardChartServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a dashboard chart.
+  ///
+  /// @Snippet(path: "DashboardChartService_GetDashboardChart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/getDashboardChart(request:options:)``
   public func getDashboardChart(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.DashboardChart {
@@ -158,6 +203,13 @@ extension Clients.DashboardChartServiceProtocol {
     return try await self.getDashboardChart(request: request)
   }
 
+  /// Get dashboard charts in batches.
+  ///
+  /// @Snippet(path: "DashboardChartService_BatchGetDashboardCharts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/batchGetDashboardCharts(request:options:)``
   public func batchGetDashboardCharts(request: BatchGetDashboardChartsRequest) async throws
     -> GoogleCloudChronicleV1.BatchGetDashboardChartsResponse
   {
@@ -170,6 +222,13 @@ extension Clients.DashboardChartServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get dashboard charts in batches.
+  ///
+  /// @Snippet(path: "DashboardChartService_BatchGetDashboardCharts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/batchGetDashboardCharts(request:options:)``
   public func batchGetDashboardCharts(
     parent: Swift.String,
     names: [Swift.String],
@@ -181,6 +240,15 @@ extension Clients.DashboardChartServiceProtocol {
     return try await self.batchGetDashboardCharts(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -193,6 +261,15 @@ extension Clients.DashboardChartServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -204,6 +281,10 @@ extension Clients.DashboardChartServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DashboardChartService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -217,6 +298,15 @@ extension Clients.DashboardChartServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -228,6 +318,9 @@ extension Clients.DashboardChartServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -240,6 +333,9 @@ extension Clients.DashboardChartServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -249,6 +345,15 @@ extension Clients.DashboardChartServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -259,6 +364,15 @@ extension Clients.DashboardChartServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -268,6 +382,15 @@ extension Clients.DashboardChartServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -278,6 +401,15 @@ extension Clients.DashboardChartServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DashboardChartService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DashboardChartServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

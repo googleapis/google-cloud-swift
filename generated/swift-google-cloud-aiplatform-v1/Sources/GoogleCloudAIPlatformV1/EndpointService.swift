@@ -28,6 +28,10 @@
   /// A service for managing Vertex AI's Endpoints.
   ///
   /// @Snippet(path: "EndpointServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/EndpointServiceProtocol``
   public final class EndpointServiceClient: Clients.EndpointServiceProtocol, Sendable {
     let inner: any Clients.EndpointServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,14 @@
     /// Creates an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_CreateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createEndpoint(request:)``
+    /// - ``createEndpointPollingUntilDone(parent:endpoint:)``
+    /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
+    /// - ``createEndpointPollingUntilDone(request:)``
+    /// - ``createEndpointPollingUntilDone(request:options:)``
     public func createEndpoint(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -57,6 +69,14 @@
     /// Creates an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_CreateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createEndpoint(request:)``
+    /// - ``createEndpoint(request:options:)``
+    /// - ``createEndpointPollingUntilDone(parent:endpoint:)``
+    /// - ``createEndpointPollingUntilDone(parent:endpoint:endpointId:)``
+    /// - ``createEndpointPollingUntilDone(request:)``
     public func createEndpointPollingUntilDone(
       request: CreateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> Endpoint {
@@ -84,6 +104,11 @@
     /// Gets an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_GetEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getEndpoint(name:)``
+    /// - ``getEndpoint(request:)``
     public func getEndpoint(
       request: GetEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
@@ -93,6 +118,13 @@
     /// Lists Endpoints in a Location.
     ///
     /// @Snippet(path: "EndpointService_ListEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listEndpoints(request:)``
+    /// - ``listEndpointsByItems(parent:)``
+    /// - ``listEndpointsByItems(request:)``
+    /// - ``listEndpointsByItems(request:options:)``
     public func listEndpoints(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListEndpointsResponse {
@@ -102,6 +134,11 @@
     /// Updates an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_UpdateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateEndpoint(endpoint:updateMask:)``
+    /// - ``updateEndpoint(request:)``
     public func updateEndpoint(
       request: UpdateEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
@@ -111,6 +148,13 @@
     /// Updates an Endpoint with a long running operation.
     ///
     /// @Snippet(path: "EndpointService_UpdateEndpointLongRunning")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateEndpointLongRunning(request:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(endpoint:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(request:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(request:options:)``
     public func updateEndpointLongRunning(
       request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -120,6 +164,13 @@
     /// Updates an Endpoint with a long running operation.
     ///
     /// @Snippet(path: "EndpointService_UpdateEndpointLongRunning")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateEndpointLongRunning(request:)``
+    /// - ``updateEndpointLongRunning(request:options:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(endpoint:)``
+    /// - ``updateEndpointLongRunningPollingUntilDone(request:)``
     public func updateEndpointLongRunningPollingUntilDone(
       request: UpdateEndpointLongRunningRequest, options: GoogleGax.RequestOptions
     ) async throws -> Endpoint {
@@ -147,6 +198,13 @@
     /// Deletes an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_DeleteEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteEndpoint(request:)``
+    /// - ``deleteEndpointPollingUntilDone(name:)``
+    /// - ``deleteEndpointPollingUntilDone(request:)``
+    /// - ``deleteEndpointPollingUntilDone(request:options:)``
     public func deleteEndpoint(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -156,6 +214,13 @@
     /// Deletes an Endpoint.
     ///
     /// @Snippet(path: "EndpointService_DeleteEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteEndpoint(request:)``
+    /// - ``deleteEndpoint(request:options:)``
+    /// - ``deleteEndpointPollingUntilDone(name:)``
+    /// - ``deleteEndpointPollingUntilDone(request:)``
     public func deleteEndpointPollingUntilDone(
       request: DeleteEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -184,6 +249,13 @@
     /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
     ///
     /// @Snippet(path: "EndpointService_DeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deployModel(request:)``
+    /// - ``deployModelPollingUntilDone(endpoint:deployedModel:trafficSplit:)``
+    /// - ``deployModelPollingUntilDone(request:)``
+    /// - ``deployModelPollingUntilDone(request:options:)``
     public func deployModel(
       request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -193,6 +265,13 @@
     /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
     ///
     /// @Snippet(path: "EndpointService_DeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deployModel(request:)``
+    /// - ``deployModel(request:options:)``
+    /// - ``deployModelPollingUntilDone(endpoint:deployedModel:trafficSplit:)``
+    /// - ``deployModelPollingUntilDone(request:)``
     public func deployModelPollingUntilDone(
       request: DeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeployModelResponse {
@@ -222,6 +301,13 @@
     /// freeing all resources it's using.
     ///
     /// @Snippet(path: "EndpointService_UndeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``undeployModel(request:)``
+    /// - ``undeployModelPollingUntilDone(endpoint:deployedModelId:trafficSplit:)``
+    /// - ``undeployModelPollingUntilDone(request:)``
+    /// - ``undeployModelPollingUntilDone(request:options:)``
     public func undeployModel(
       request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -232,6 +318,13 @@
     /// freeing all resources it's using.
     ///
     /// @Snippet(path: "EndpointService_UndeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``undeployModel(request:)``
+    /// - ``undeployModel(request:options:)``
+    /// - ``undeployModelPollingUntilDone(endpoint:deployedModelId:trafficSplit:)``
+    /// - ``undeployModelPollingUntilDone(request:)``
     public func undeployModelPollingUntilDone(
       request: UndeployModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> UndeployModelResponse {
@@ -264,6 +357,13 @@
     /// `enable_container_logging` (v1beta1 only).
     ///
     /// @Snippet(path: "EndpointService_MutateDeployedModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``mutateDeployedModel(request:)``
+    /// - ``mutateDeployedModelPollingUntilDone(endpoint:deployedModel:updateMask:)``
+    /// - ``mutateDeployedModelPollingUntilDone(request:)``
+    /// - ``mutateDeployedModelPollingUntilDone(request:options:)``
     public func mutateDeployedModel(
       request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -276,6 +376,13 @@
     /// `enable_container_logging` (v1beta1 only).
     ///
     /// @Snippet(path: "EndpointService_MutateDeployedModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``mutateDeployedModel(request:)``
+    /// - ``mutateDeployedModel(request:options:)``
+    /// - ``mutateDeployedModelPollingUntilDone(endpoint:deployedModel:updateMask:)``
+    /// - ``mutateDeployedModelPollingUntilDone(request:)``
     public func mutateDeployedModelPollingUntilDone(
       request: MutateDeployedModelRequest, options: GoogleGax.RequestOptions
     ) async throws -> MutateDeployedModelResponse {
@@ -305,6 +412,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "EndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -314,6 +427,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "EndpointService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -327,6 +444,10 @@
     /// errors.
     ///
     /// @Snippet(path: "EndpointService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -337,6 +458,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "EndpointService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -352,6 +477,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "EndpointService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -363,6 +492,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -385,6 +521,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EndpointService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -396,6 +537,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EndpointService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -407,6 +553,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EndpointService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -545,6 +695,13 @@
 
   // Default implementations
   extension Clients.EndpointServiceProtocol {
+    /// Creates an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_CreateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/createEndpoint(request:options:)``
     public func createEndpoint(request: CreateEndpointRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -557,6 +714,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_CreateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/createEndpointPollingUntilDone(request:options:)``
     public func createEndpointPollingUntilDone(request: CreateEndpointRequest) async throws
       -> Endpoint
     {
@@ -569,6 +733,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_CreateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/createEndpointPollingUntilDone(request:options:)``
     public func createEndpointPollingUntilDone(
       parent: Swift.String,
       endpoint: Endpoint?,
@@ -580,6 +751,13 @@
       return try await self.createEndpointPollingUntilDone(request: request)
     }
 
+    /// Creates an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_CreateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/createEndpointPollingUntilDone(request:options:)``
     public func createEndpointPollingUntilDone(
       parent: Swift.String,
       endpoint: Endpoint?,
@@ -593,6 +771,13 @@
       return try await self.createEndpointPollingUntilDone(request: request)
     }
 
+    /// Gets an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_GetEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/getEndpoint(request:options:)``
     public func getEndpoint(request: GetEndpointRequest) async throws
       -> GoogleCloudAIPlatformV1.Endpoint
     {
@@ -605,6 +790,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_GetEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/getEndpoint(request:options:)``
     public func getEndpoint(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Endpoint {
@@ -614,6 +806,13 @@
       return try await self.getEndpoint(request: request)
     }
 
+    /// Lists Endpoints in a Location.
+    ///
+    /// @Snippet(path: "EndpointService_ListEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listEndpoints(request:options:)``
     public func listEndpoints(request: ListEndpointsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListEndpointsResponse
     {
@@ -626,6 +825,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Endpoints in a Location.
+    ///
+    /// @Snippet(path: "EndpointService_ListEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listEndpoints(request:options:)``
     public func listEndpointsByItems(
       request: ListEndpointsRequest
     ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -635,6 +841,10 @@
     /// Lists Endpoints in a Location.
     ///
     /// @Snippet(path: "EndpointService_ListEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listEndpoints(request:options:)``
     public func listEndpointsByItems(
       request: ListEndpointsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -649,6 +859,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Endpoints in a Location.
+    ///
+    /// @Snippet(path: "EndpointService_ListEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listEndpoints(request:options:)``
     public func listEndpointsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -658,6 +875,13 @@
       return self.listEndpointsByItems(request: request)
     }
 
+    /// Updates an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_UpdateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/updateEndpoint(request:options:)``
     public func updateEndpoint(request: UpdateEndpointRequest) async throws
       -> GoogleCloudAIPlatformV1.Endpoint
     {
@@ -670,6 +894,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_UpdateEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/updateEndpoint(request:options:)``
     public func updateEndpoint(
       endpoint: Endpoint?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -681,6 +912,13 @@
       return try await self.updateEndpoint(request: request)
     }
 
+    /// Updates an Endpoint with a long running operation.
+    ///
+    /// @Snippet(path: "EndpointService_UpdateEndpointLongRunning")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/updateEndpointLongRunning(request:options:)``
     public func updateEndpointLongRunning(request: UpdateEndpointLongRunningRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -693,6 +931,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an Endpoint with a long running operation.
+    ///
+    /// @Snippet(path: "EndpointService_UpdateEndpointLongRunning")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/updateEndpointLongRunningPollingUntilDone(request:options:)``
     public func updateEndpointLongRunningPollingUntilDone(request: UpdateEndpointLongRunningRequest)
       async throws -> Endpoint
     {
@@ -706,6 +951,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an Endpoint with a long running operation.
+    ///
+    /// @Snippet(path: "EndpointService_UpdateEndpointLongRunning")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/updateEndpointLongRunningPollingUntilDone(request:options:)``
     public func updateEndpointLongRunningPollingUntilDone(
       endpoint: Endpoint?,
     ) async throws -> Endpoint {
@@ -715,6 +967,13 @@
       return try await self.updateEndpointLongRunningPollingUntilDone(request: request)
     }
 
+    /// Deletes an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_DeleteEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deleteEndpoint(request:options:)``
     public func deleteEndpoint(request: DeleteEndpointRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -727,6 +986,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_DeleteEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deleteEndpointPollingUntilDone(request:options:)``
     public func deleteEndpointPollingUntilDone(request: DeleteEndpointRequest) async throws {
       try await self.deleteEndpointPollingUntilDone(request: request, options: .init())
     }
@@ -737,6 +1003,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an Endpoint.
+    ///
+    /// @Snippet(path: "EndpointService_DeleteEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deleteEndpointPollingUntilDone(request:options:)``
     public func deleteEndpointPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -746,6 +1019,13 @@
       try await self.deleteEndpointPollingUntilDone(request: request)
     }
 
+    /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
+    ///
+    /// @Snippet(path: "EndpointService_DeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deployModel(request:options:)``
     public func deployModel(request: DeployModelRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.deployModel(request: request, options: .init())
@@ -757,6 +1037,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
+    ///
+    /// @Snippet(path: "EndpointService_DeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deployModelPollingUntilDone(request:options:)``
     public func deployModelPollingUntilDone(request: DeployModelRequest) async throws
       -> DeployModelResponse
     {
@@ -769,6 +1056,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deploys a Model into this Endpoint, creating a DeployedModel within it.
+    ///
+    /// @Snippet(path: "EndpointService_DeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deployModelPollingUntilDone(request:options:)``
     public func deployModelPollingUntilDone(
       endpoint: Swift.String,
       deployedModel: DeployedModel?,
@@ -782,6 +1076,14 @@
       return try await self.deployModelPollingUntilDone(request: request)
     }
 
+    /// Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
+    /// freeing all resources it's using.
+    ///
+    /// @Snippet(path: "EndpointService_UndeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/undeployModel(request:options:)``
     public func undeployModel(request: UndeployModelRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -794,6 +1096,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
+    /// freeing all resources it's using.
+    ///
+    /// @Snippet(path: "EndpointService_UndeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/undeployModelPollingUntilDone(request:options:)``
     public func undeployModelPollingUntilDone(request: UndeployModelRequest) async throws
       -> UndeployModelResponse
     {
@@ -806,6 +1116,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Undeploys a Model from an Endpoint, removing a DeployedModel from it, and
+    /// freeing all resources it's using.
+    ///
+    /// @Snippet(path: "EndpointService_UndeployModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/undeployModelPollingUntilDone(request:options:)``
     public func undeployModelPollingUntilDone(
       endpoint: Swift.String,
       deployedModelId: Swift.String,
@@ -819,6 +1137,16 @@
       return try await self.undeployModelPollingUntilDone(request: request)
     }
 
+    /// Updates an existing deployed model. Updatable fields include
+    /// `min_replica_count`, `max_replica_count`, `required_replica_count`,
+    /// `autoscaling_metric_specs`, `disable_container_logging` (v1 only), and
+    /// `enable_container_logging` (v1beta1 only).
+    ///
+    /// @Snippet(path: "EndpointService_MutateDeployedModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/mutateDeployedModel(request:options:)``
     public func mutateDeployedModel(request: MutateDeployedModelRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -831,6 +1159,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an existing deployed model. Updatable fields include
+    /// `min_replica_count`, `max_replica_count`, `required_replica_count`,
+    /// `autoscaling_metric_specs`, `disable_container_logging` (v1 only), and
+    /// `enable_container_logging` (v1beta1 only).
+    ///
+    /// @Snippet(path: "EndpointService_MutateDeployedModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/mutateDeployedModelPollingUntilDone(request:options:)``
     public func mutateDeployedModelPollingUntilDone(request: MutateDeployedModelRequest)
       async throws -> MutateDeployedModelResponse
     {
@@ -843,6 +1181,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an existing deployed model. Updatable fields include
+    /// `min_replica_count`, `max_replica_count`, `required_replica_count`,
+    /// `autoscaling_metric_specs`, `disable_container_logging` (v1 only), and
+    /// `enable_container_logging` (v1beta1 only).
+    ///
+    /// @Snippet(path: "EndpointService_MutateDeployedModel")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/mutateDeployedModelPollingUntilDone(request:options:)``
     public func mutateDeployedModelPollingUntilDone(
       endpoint: Swift.String,
       deployedModel: DeployedModel?,
@@ -856,6 +1204,13 @@
       return try await self.mutateDeployedModelPollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "EndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -868,6 +1223,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "EndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -877,6 +1239,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "EndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -890,6 +1256,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "EndpointService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -902,6 +1275,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "EndpointService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -914,6 +1298,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "EndpointService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -926,6 +1318,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "EndpointService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -938,6 +1343,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -950,6 +1364,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -961,6 +1384,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -974,6 +1401,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -985,6 +1421,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -997,6 +1436,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1006,6 +1448,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -1016,6 +1467,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -1025,6 +1485,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1035,6 +1504,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -1044,6 +1522,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EndpointService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EndpointServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

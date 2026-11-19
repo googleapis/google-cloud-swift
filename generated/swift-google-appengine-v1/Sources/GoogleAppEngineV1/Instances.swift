@@ -24,6 +24,10 @@ import Foundation
 /// Manages instances of a version.
 ///
 /// @Snippet(path: "InstancesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/InstancesProtocol``
 public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   let inner: any Clients.InstancesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,12 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
   ///
   /// @Snippet(path: "Instances_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.ListInstancesResponse {
@@ -56,6 +66,10 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Gets instance information.
   ///
   /// @Snippet(path: "Instances_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleAppEngineV1.Instance {
@@ -76,6 +90,12 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// method.
   ///
   /// @Snippet(path: "Instances_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -96,6 +116,12 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// method.
   ///
   /// @Snippet(path: "Instances_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -130,6 +156,12 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Only applicable for instances in App Engine flexible environment.
   ///
   /// @Snippet(path: "Instances_DebugInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``debugInstance(request:)``
+  /// - ``debugInstancePollingUntilDone(request:)``
+  /// - ``debugInstancePollingUntilDone(request:options:)``
   public func debugInstance(
     request: DebugInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -146,6 +178,12 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// Only applicable for instances in App Engine flexible environment.
   ///
   /// @Snippet(path: "Instances_DebugInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``debugInstance(request:)``
+  /// - ``debugInstance(request:options:)``
+  /// - ``debugInstancePollingUntilDone(request:)``
   public func debugInstancePollingUntilDone(
     request: DebugInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -175,6 +213,13 @@ public final class InstancesClient: Clients.InstancesProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Instances_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -239,6 +284,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.InstancesProtocol {
+  /// Lists the instances of a version.
+  ///
+  /// Tip: To aggregate details about instances over time, see the
+  /// [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+  ///
+  /// @Snippet(path: "Instances_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleAppEngineV1.ListInstancesResponse
   {
@@ -251,6 +306,16 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the instances of a version.
+  ///
+  /// Tip: To aggregate details about instances over time, see the
+  /// [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+  ///
+  /// @Snippet(path: "Instances_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -263,6 +328,10 @@ extension Clients.InstancesProtocol {
   /// [Stackdriver Monitoring API](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
   ///
   /// @Snippet(path: "Instances_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -276,6 +345,13 @@ extension Clients.InstancesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets instance information.
+  ///
+  /// @Snippet(path: "Instances_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleAppEngineV1.Instance {
     try await self.getInstance(request: request, options: .init())
   }
@@ -286,6 +362,24 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops a running instance.
+  ///
+  /// The instance might be automatically recreated based on the scaling settings
+  /// of the version. For more information, see "How Instances are Managed"
+  /// ([standard environment](https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) |
+  /// [flexible environment](https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).
+  ///
+  /// To ensure that instances are not re-created and avoid getting billed, you
+  /// can stop all instances within the target version by changing the serving
+  /// status of the version to `STOPPED` with the
+  /// [`apps.services.versions.patch`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch)
+  /// method.
+  ///
+  /// @Snippet(path: "Instances_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -298,6 +392,24 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops a running instance.
+  ///
+  /// The instance might be automatically recreated based on the scaling settings
+  /// of the version. For more information, see "How Instances are Managed"
+  /// ([standard environment](https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) |
+  /// [flexible environment](https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).
+  ///
+  /// To ensure that instances are not re-created and avoid getting billed, you
+  /// can stop all instances within the target version by changing the serving
+  /// status of the version to `STOPPED` with the
+  /// [`apps.services.versions.patch`](https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch)
+  /// method.
+  ///
+  /// @Snippet(path: "Instances_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -308,6 +420,20 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables debugging on a VM instance. This allows you to use the SSH
+  /// command to connect to the virtual machine where the instance lives.
+  /// While in "debug mode", the instance continues to serve live traffic.
+  /// You should delete the instance when you are done debugging and then
+  /// allow the system to take over and determine if another instance
+  /// should be started.
+  ///
+  /// Only applicable for instances in App Engine flexible environment.
+  ///
+  /// @Snippet(path: "Instances_DebugInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/debugInstance(request:options:)``
   public func debugInstance(request: DebugInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -320,6 +446,20 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enables debugging on a VM instance. This allows you to use the SSH
+  /// command to connect to the virtual machine where the instance lives.
+  /// While in "debug mode", the instance continues to serve live traffic.
+  /// You should delete the instance when you are done debugging and then
+  /// allow the system to take over and determine if another instance
+  /// should be started.
+  ///
+  /// Only applicable for instances in App Engine flexible environment.
+  ///
+  /// @Snippet(path: "Instances_DebugInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/debugInstancePollingUntilDone(request:options:)``
   public func debugInstancePollingUntilDone(request: DebugInstanceRequest) async throws -> Instance
   {
     return try await self.debugInstancePollingUntilDone(request: request, options: .init())
@@ -331,6 +471,15 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Instances_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -343,6 +492,15 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Instances_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -354,6 +512,10 @@ extension Clients.InstancesProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Instances_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -367,6 +529,15 @@ extension Clients.InstancesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Instances_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``InstancesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -378,6 +549,9 @@ extension Clients.InstancesProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -390,6 +564,9 @@ extension Clients.InstancesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

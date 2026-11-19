@@ -40,6 +40,10 @@ import Foundation
 /// * `projects/redpepper-1290/locations/us-central1/instances/my-redis`
 ///
 /// @Snippet(path: "CloudRedisQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudRedisProtocol``
 public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   let inner: any Clients.CloudRedisStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -68,6 +72,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedis_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisV1.ListInstancesResponse {
@@ -77,6 +88,11 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// Gets the details of a specific Redis instance.
   ///
   /// @Snippet(path: "CloudRedis_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisV1.Instance {
@@ -88,6 +104,11 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// the details returned to GetInstance.
   ///
   /// @Snippet(path: "CloudRedis_GetInstanceAuthString")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstanceAuthString(name:)``
+  /// - ``getInstanceAuthString(request:)``
   public func getInstanceAuthString(
     request: GetInstanceAuthStringRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRedisV1.InstanceAuthString {
@@ -108,6 +129,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:)``
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(request:options:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -128,6 +156,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instanceId:instance:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -159,6 +194,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// after a few hours, so there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(request:options:)``
+  /// - ``updateInstancePollingUntilDone(updateMask:instance:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -172,6 +214,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// after a few hours, so there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(updateMask:instance:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -200,6 +249,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// request.
   ///
   /// @Snippet(path: "CloudRedis_UpgradeInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``upgradeInstance(request:)``
+  /// - ``upgradeInstancePollingUntilDone(name:redisVersion:)``
+  /// - ``upgradeInstancePollingUntilDone(request:)``
+  /// - ``upgradeInstancePollingUntilDone(request:options:)``
   public func upgradeInstance(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -210,6 +266,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// request.
   ///
   /// @Snippet(path: "CloudRedis_UpgradeInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``upgradeInstance(request:)``
+  /// - ``upgradeInstance(request:options:)``
+  /// - ``upgradeInstancePollingUntilDone(name:redisVersion:)``
+  /// - ``upgradeInstancePollingUntilDone(request:)``
   public func upgradeInstancePollingUntilDone(
     request: UpgradeInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -244,6 +307,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_ImportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importInstance(request:)``
+  /// - ``importInstancePollingUntilDone(name:inputConfig:)``
+  /// - ``importInstancePollingUntilDone(request:)``
+  /// - ``importInstancePollingUntilDone(request:options:)``
   public func importInstance(
     request: ImportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -260,6 +330,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_ImportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importInstance(request:)``
+  /// - ``importInstance(request:options:)``
+  /// - ``importInstancePollingUntilDone(name:inputConfig:)``
+  /// - ``importInstancePollingUntilDone(request:)``
   public func importInstancePollingUntilDone(
     request: ImportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -292,6 +369,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_ExportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportInstance(request:)``
+  /// - ``exportInstancePollingUntilDone(name:outputConfig:)``
+  /// - ``exportInstancePollingUntilDone(request:)``
+  /// - ``exportInstancePollingUntilDone(request:options:)``
   public func exportInstance(
     request: ExportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -306,6 +390,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// there is no need to call DeleteOperation.
   ///
   /// @Snippet(path: "CloudRedis_ExportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportInstance(request:)``
+  /// - ``exportInstance(request:options:)``
+  /// - ``exportInstancePollingUntilDone(name:outputConfig:)``
+  /// - ``exportInstancePollingUntilDone(request:)``
   public func exportInstancePollingUntilDone(
     request: ExportInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -334,6 +425,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// specific STANDARD tier Cloud Memorystore for Redis instance.
   ///
   /// @Snippet(path: "CloudRedis_FailoverInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``failoverInstance(request:)``
+  /// - ``failoverInstancePollingUntilDone(name:dataProtectionMode:)``
+  /// - ``failoverInstancePollingUntilDone(request:)``
+  /// - ``failoverInstancePollingUntilDone(request:options:)``
   public func failoverInstance(
     request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -344,6 +442,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// specific STANDARD tier Cloud Memorystore for Redis instance.
   ///
   /// @Snippet(path: "CloudRedis_FailoverInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``failoverInstance(request:)``
+  /// - ``failoverInstance(request:options:)``
+  /// - ``failoverInstancePollingUntilDone(name:dataProtectionMode:)``
+  /// - ``failoverInstancePollingUntilDone(request:)``
   public func failoverInstancePollingUntilDone(
     request: FailoverInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -372,6 +477,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// deleted.
   ///
   /// @Snippet(path: "CloudRedis_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -382,6 +494,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// deleted.
   ///
   /// @Snippet(path: "CloudRedis_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -410,6 +529,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "CloudRedis_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenance(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -420,6 +546,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// location.
   ///
   /// @Snippet(path: "CloudRedis_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenance(request:options:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -447,6 +580,12 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudRedis_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -456,6 +595,10 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudRedis_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -467,6 +610,13 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedis_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -489,6 +639,11 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedis_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -500,6 +655,11 @@ public final class CloudRedisClient: Clients.CloudRedisProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedis_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -638,6 +798,21 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudRedisProtocol {
+  /// Lists all Redis instances owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedis_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudRedisV1.ListInstancesResponse
   {
@@ -650,6 +825,21 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all Redis instances owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedis_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -667,6 +857,10 @@ extension Clients.CloudRedisProtocol {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "CloudRedis_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -680,6 +874,21 @@ extension Clients.CloudRedisProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all Redis instances owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "CloudRedis_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -689,6 +898,13 @@ extension Clients.CloudRedisProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets the details of a specific Redis instance.
+  ///
+  /// @Snippet(path: "CloudRedis_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws -> GoogleCloudRedisV1.Instance {
     try await self.getInstance(request: request, options: .init())
   }
@@ -699,6 +915,13 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific Redis instance.
+  ///
+  /// @Snippet(path: "CloudRedis_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisV1.Instance {
@@ -708,6 +931,15 @@ extension Clients.CloudRedisProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
+  /// instance the response will be empty. This information is not included in
+  /// the details returned to GetInstance.
+  ///
+  /// @Snippet(path: "CloudRedis_GetInstanceAuthString")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/getInstanceAuthString(request:options:)``
   public func getInstanceAuthString(request: GetInstanceAuthStringRequest) async throws
     -> GoogleCloudRedisV1.InstanceAuthString
   {
@@ -720,6 +952,15 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the AUTH string for a Redis instance. If AUTH is not enabled for the
+  /// instance the response will be empty. This information is not included in
+  /// the details returned to GetInstance.
+  ///
+  /// @Snippet(path: "CloudRedis_GetInstanceAuthString")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/getInstanceAuthString(request:options:)``
   public func getInstanceAuthString(
     name: Swift.String,
   ) async throws -> GoogleCloudRedisV1.InstanceAuthString {
@@ -729,6 +970,24 @@ extension Clients.CloudRedisProtocol {
     return try await self.getInstanceAuthString(request: request)
   }
 
+  /// Creates a Redis instance based on the specified tier and memory size.
+  ///
+  /// By default, the instance is accessible from the project's
+  /// [default network](https://cloud.google.com/vpc/docs/vpc).
+  ///
+  /// The creation is executed asynchronously and callers may check the returned
+  /// operation to track its progress. Once the operation is completed the Redis
+  /// instance will be fully functional. Completed longrunning.Operation will
+  /// contain the new instance object in the response field.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so there
+  /// is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/createInstance(request:options:)``
   public func createInstance(request: CreateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -741,6 +1000,24 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Redis instance based on the specified tier and memory size.
+  ///
+  /// By default, the instance is accessible from the project's
+  /// [default network](https://cloud.google.com/vpc/docs/vpc).
+  ///
+  /// The creation is executed asynchronously and callers may check the returned
+  /// operation to track its progress. Once the operation is completed the Redis
+  /// instance will be fully functional. Completed longrunning.Operation will
+  /// contain the new instance object in the response field.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so there
+  /// is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
     -> Instance
   {
@@ -753,6 +1030,24 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Redis instance based on the specified tier and memory size.
+  ///
+  /// By default, the instance is accessible from the project's
+  /// [default network](https://cloud.google.com/vpc/docs/vpc).
+  ///
+  /// The creation is executed asynchronously and callers may check the returned
+  /// operation to track its progress. Once the operation is completed the Redis
+  /// instance will be fully functional. Completed longrunning.Operation will
+  /// contain the new instance object in the response field.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so there
+  /// is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instanceId: Swift.String,
@@ -766,6 +1061,17 @@ extension Clients.CloudRedisProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  /// Updates the metadata and configuration of a specific Redis instance.
+  ///
+  /// Completed longrunning.Operation will contain the new instance object
+  /// in the response field. The returned operation is automatically deleted
+  /// after a few hours, so there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/updateInstance(request:options:)``
   public func updateInstance(request: UpdateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -778,6 +1084,17 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata and configuration of a specific Redis instance.
+  ///
+  /// Completed longrunning.Operation will contain the new instance object
+  /// in the response field. The returned operation is automatically deleted
+  /// after a few hours, so there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
     -> Instance
   {
@@ -790,6 +1107,17 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata and configuration of a specific Redis instance.
+  ///
+  /// Completed longrunning.Operation will contain the new instance object
+  /// in the response field. The returned operation is automatically deleted
+  /// after a few hours, so there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(
     updateMask: GoogleWKT.WKTFieldMask?,
     instance: Instance?,
@@ -801,6 +1129,14 @@ extension Clients.CloudRedisProtocol {
     return try await self.updateInstancePollingUntilDone(request: request)
   }
 
+  /// Upgrades Redis instance to the newer Redis version specified in the
+  /// request.
+  ///
+  /// @Snippet(path: "CloudRedis_UpgradeInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/upgradeInstance(request:options:)``
   public func upgradeInstance(request: UpgradeInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -813,6 +1149,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Upgrades Redis instance to the newer Redis version specified in the
+  /// request.
+  ///
+  /// @Snippet(path: "CloudRedis_UpgradeInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/upgradeInstancePollingUntilDone(request:options:)``
   public func upgradeInstancePollingUntilDone(request: UpgradeInstanceRequest) async throws
     -> Instance
   {
@@ -825,6 +1169,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Upgrades Redis instance to the newer Redis version specified in the
+  /// request.
+  ///
+  /// @Snippet(path: "CloudRedis_UpgradeInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/upgradeInstancePollingUntilDone(request:options:)``
   public func upgradeInstancePollingUntilDone(
     name: Swift.String,
     redisVersion: Swift.String,
@@ -836,6 +1188,20 @@ extension Clients.CloudRedisProtocol {
     return try await self.upgradeInstancePollingUntilDone(request: request)
   }
 
+  /// Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
+  ///
+  /// Redis may stop serving during this operation. Instance state will be
+  /// IMPORTING for entire operation. When complete, the instance will contain
+  /// only data from the imported file.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so
+  /// there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_ImportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/importInstance(request:options:)``
   public func importInstance(request: ImportInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -848,6 +1214,20 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
+  ///
+  /// Redis may stop serving during this operation. Instance state will be
+  /// IMPORTING for entire operation. When complete, the instance will contain
+  /// only data from the imported file.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so
+  /// there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_ImportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/importInstancePollingUntilDone(request:options:)``
   public func importInstancePollingUntilDone(request: ImportInstanceRequest) async throws
     -> Instance
   {
@@ -860,6 +1240,20 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Import a Redis RDB snapshot file from Cloud Storage into a Redis instance.
+  ///
+  /// Redis may stop serving during this operation. Instance state will be
+  /// IMPORTING for entire operation. When complete, the instance will contain
+  /// only data from the imported file.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so
+  /// there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_ImportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/importInstancePollingUntilDone(request:options:)``
   public func importInstancePollingUntilDone(
     name: Swift.String,
     inputConfig: InputConfig?,
@@ -871,6 +1265,18 @@ extension Clients.CloudRedisProtocol {
     return try await self.importInstancePollingUntilDone(request: request)
   }
 
+  /// Export Redis instance data into a Redis RDB format file in Cloud Storage.
+  ///
+  /// Redis will continue serving during this operation.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so
+  /// there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_ExportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/exportInstance(request:options:)``
   public func exportInstance(request: ExportInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -883,6 +1289,18 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Export Redis instance data into a Redis RDB format file in Cloud Storage.
+  ///
+  /// Redis will continue serving during this operation.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so
+  /// there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_ExportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/exportInstancePollingUntilDone(request:options:)``
   public func exportInstancePollingUntilDone(request: ExportInstanceRequest) async throws
     -> Instance
   {
@@ -895,6 +1313,18 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Export Redis instance data into a Redis RDB format file in Cloud Storage.
+  ///
+  /// Redis will continue serving during this operation.
+  ///
+  /// The returned operation is automatically deleted after a few hours, so
+  /// there is no need to call DeleteOperation.
+  ///
+  /// @Snippet(path: "CloudRedis_ExportInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/exportInstancePollingUntilDone(request:options:)``
   public func exportInstancePollingUntilDone(
     name: Swift.String,
     outputConfig: OutputConfig?,
@@ -906,6 +1336,14 @@ extension Clients.CloudRedisProtocol {
     return try await self.exportInstancePollingUntilDone(request: request)
   }
 
+  /// Initiates a failover of the primary node to current replica node for a
+  /// specific STANDARD tier Cloud Memorystore for Redis instance.
+  ///
+  /// @Snippet(path: "CloudRedis_FailoverInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/failoverInstance(request:options:)``
   public func failoverInstance(request: FailoverInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -918,6 +1356,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates a failover of the primary node to current replica node for a
+  /// specific STANDARD tier Cloud Memorystore for Redis instance.
+  ///
+  /// @Snippet(path: "CloudRedis_FailoverInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/failoverInstancePollingUntilDone(request:options:)``
   public func failoverInstancePollingUntilDone(request: FailoverInstanceRequest) async throws
     -> Instance
   {
@@ -930,6 +1376,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates a failover of the primary node to current replica node for a
+  /// specific STANDARD tier Cloud Memorystore for Redis instance.
+  ///
+  /// @Snippet(path: "CloudRedis_FailoverInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/failoverInstancePollingUntilDone(request:options:)``
   public func failoverInstancePollingUntilDone(
     name: Swift.String,
     dataProtectionMode: FailoverInstanceRequest.DataProtectionMode,
@@ -941,6 +1395,14 @@ extension Clients.CloudRedisProtocol {
     return try await self.failoverInstancePollingUntilDone(request: request)
   }
 
+  /// Deletes a specific Redis instance.  Instance stops serving and data is
+  /// deleted.
+  ///
+  /// @Snippet(path: "CloudRedis_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -953,6 +1415,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific Redis instance.  Instance stops serving and data is
+  /// deleted.
+  ///
+  /// @Snippet(path: "CloudRedis_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -963,6 +1433,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific Redis instance.  Instance stops serving and data is
+  /// deleted.
+  ///
+  /// @Snippet(path: "CloudRedis_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -972,6 +1450,14 @@ extension Clients.CloudRedisProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  /// Reschedule maintenance for a given instance in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "CloudRedis_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/rescheduleMaintenance(request:options:)``
   public func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -984,6 +1470,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedule maintenance for a given instance in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "CloudRedis_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
     async throws -> Instance
   {
@@ -996,6 +1490,14 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedule maintenance for a given instance in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "CloudRedis_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
@@ -1009,6 +1511,13 @@ extension Clients.CloudRedisProtocol {
     return try await self.rescheduleMaintenancePollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudRedis_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1021,6 +1530,13 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudRedis_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1030,6 +1546,10 @@ extension Clients.CloudRedisProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudRedis_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1043,6 +1563,13 @@ extension Clients.CloudRedisProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CloudRedis_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1055,6 +1582,15 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1067,6 +1603,15 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1078,6 +1623,10 @@ extension Clients.CloudRedisProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudRedis_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1091,6 +1640,15 @@ extension Clients.CloudRedisProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1102,6 +1660,9 @@ extension Clients.CloudRedisProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1114,6 +1675,9 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1123,6 +1687,15 @@ extension Clients.CloudRedisProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1133,6 +1706,15 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1142,6 +1724,15 @@ extension Clients.CloudRedisProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1152,6 +1743,15 @@ extension Clients.CloudRedisProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudRedis_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudRedisClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

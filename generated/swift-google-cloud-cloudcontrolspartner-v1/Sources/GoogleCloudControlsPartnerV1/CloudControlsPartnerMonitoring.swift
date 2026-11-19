@@ -23,6 +23,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "CloudControlsPartnerMonitoringQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudControlsPartnerMonitoringProtocol``
 public final class CloudControlsPartnerMonitoringClient: Clients
     .CloudControlsPartnerMonitoringProtocol, Sendable
 {
@@ -48,6 +52,13 @@ public final class CloudControlsPartnerMonitoringClient: Clients
   /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
   ///
   /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listViolations(request:)``
+  /// - ``listViolationsByItems(parent:)``
+  /// - ``listViolationsByItems(request:)``
+  /// - ``listViolationsByItems(request:options:)``
   public func listViolations(
     request: ListViolationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.ListViolationsResponse {
@@ -57,6 +68,11 @@ public final class CloudControlsPartnerMonitoringClient: Clients
   /// Gets details of a single Violation.
   ///
   /// @Snippet(path: "CloudControlsPartnerMonitoring_GetViolation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getViolation(name:)``
+  /// - ``getViolation(request:)``
   public func getViolation(
     request: GetViolationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudControlsPartnerV1.Violation {
@@ -85,6 +101,19 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudControlsPartnerMonitoringProtocol {
+  /// Lists Violations for a workload
+  /// Callers may also choose to read across multiple Customers or for a single
+  /// customer as per
+  /// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
+  /// character) as a wildcard character instead of {customer} & {workload}.
+  /// Format:
+  /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
+  ///
+  /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudControlsPartnerMonitoringClient/listViolations(request:options:)``
   public func listViolations(request: ListViolationsRequest) async throws
     -> GoogleCloudControlsPartnerV1.ListViolationsResponse
   {
@@ -97,6 +126,19 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Violations for a workload
+  /// Callers may also choose to read across multiple Customers or for a single
+  /// customer as per
+  /// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
+  /// character) as a wildcard character instead of {customer} & {workload}.
+  /// Format:
+  /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
+  ///
+  /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudControlsPartnerMonitoringClient/listViolations(request:options:)``
   public func listViolationsByItems(
     request: ListViolationsRequest
   ) -> some AsyncSequence<Violation, any Swift.Error> & Sendable {
@@ -112,6 +154,10 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
   /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
   ///
   /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudControlsPartnerMonitoringClient/listViolations(request:options:)``
   public func listViolationsByItems(
     request: ListViolationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Violation, any Swift.Error> & Sendable {
@@ -126,6 +172,19 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Violations for a workload
+  /// Callers may also choose to read across multiple Customers or for a single
+  /// customer as per
+  /// [AIP-159](https://google.aip.dev/159) by using '-' (the hyphen or dash
+  /// character) as a wildcard character instead of {customer} & {workload}.
+  /// Format:
+  /// `organizations/{organization}/locations/{location}/customers/{customer}/workloads/{workload}`
+  ///
+  /// @Snippet(path: "CloudControlsPartnerMonitoring_ListViolations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudControlsPartnerMonitoringClient/listViolations(request:options:)``
   public func listViolationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Violation, any Swift.Error> & Sendable {
@@ -135,6 +194,13 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
     return self.listViolationsByItems(request: request)
   }
 
+  /// Gets details of a single Violation.
+  ///
+  /// @Snippet(path: "CloudControlsPartnerMonitoring_GetViolation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudControlsPartnerMonitoringClient/getViolation(request:options:)``
   public func getViolation(request: GetViolationRequest) async throws
     -> GoogleCloudControlsPartnerV1.Violation
   {
@@ -147,6 +213,13 @@ extension Clients.CloudControlsPartnerMonitoringProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Violation.
+  ///
+  /// @Snippet(path: "CloudControlsPartnerMonitoring_GetViolation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudControlsPartnerMonitoringClient/getViolation(request:options:)``
   public func getViolation(
     name: Swift.String,
   ) async throws -> GoogleCloudControlsPartnerV1.Violation {

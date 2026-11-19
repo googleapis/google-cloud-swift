@@ -25,6 +25,10 @@
   /// Service for managing Acl Configuration.
   ///
   /// @Snippet(path: "AclConfigServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/AclConfigServiceProtocol``
   public final class AclConfigServiceClient: Clients.AclConfigServiceProtocol, Sendable {
     let inner: any Clients.AclConfigServiceStub
 
@@ -43,6 +47,10 @@
     /// still use the old value.
     ///
     /// @Snippet(path: "AclConfigService_UpdateAclConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateAclConfig(request:)``
     public func updateAclConfig(
       request: UpdateAclConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.AclConfig {
@@ -54,6 +62,11 @@
     /// [google.cloud.discoveryengine.v1.AclConfig]: <doc:AclConfig>
     ///
     /// @Snippet(path: "AclConfigService_GetAclConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAclConfig(name:)``
+    /// - ``getAclConfig(request:)``
     public func getAclConfig(
       request: GetAclConfigRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.AclConfig {
@@ -65,6 +78,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "AclConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -87,6 +107,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "AclConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -125,6 +150,15 @@
 
   // Default implementations
   extension Clients.AclConfigServiceProtocol {
+    /// Default ACL configuration for use in a location of a customer's project.
+    /// Updates will only reflect to new data stores. Existing data stores will
+    /// still use the old value.
+    ///
+    /// @Snippet(path: "AclConfigService_UpdateAclConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/updateAclConfig(request:options:)``
     public func updateAclConfig(request: UpdateAclConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.AclConfig
     {
@@ -137,6 +171,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the [AclConfig][google.cloud.discoveryengine.v1.AclConfig].
+    ///
+    /// [google.cloud.discoveryengine.v1.AclConfig]: <doc:AclConfig>
+    ///
+    /// @Snippet(path: "AclConfigService_GetAclConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/getAclConfig(request:options:)``
     public func getAclConfig(request: GetAclConfigRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.AclConfig
     {
@@ -149,6 +192,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the [AclConfig][google.cloud.discoveryengine.v1.AclConfig].
+    ///
+    /// [google.cloud.discoveryengine.v1.AclConfig]: <doc:AclConfig>
+    ///
+    /// @Snippet(path: "AclConfigService_GetAclConfig")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/getAclConfig(request:options:)``
     public func getAclConfig(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.AclConfig {
@@ -158,6 +210,15 @@
       return try await self.getAclConfig(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AclConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -170,6 +231,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AclConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -181,6 +251,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "AclConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -194,6 +268,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AclConfigService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -205,6 +288,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -217,6 +303,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -226,6 +315,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AclConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -236,6 +334,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "AclConfigService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``AclConfigServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

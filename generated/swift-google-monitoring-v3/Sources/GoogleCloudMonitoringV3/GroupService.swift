@@ -35,6 +35,10 @@ import Foundation
 /// from the infrastructure.
 ///
 /// @Snippet(path: "GroupServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/GroupServiceProtocol``
 public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   let inner: any Clients.GroupServiceStub
 
@@ -51,6 +55,13 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// Lists the existing groups.
   ///
   /// @Snippet(path: "GroupService_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGroups(request:)``
+  /// - ``listGroupsByItems(name:)``
+  /// - ``listGroupsByItems(request:)``
+  /// - ``listGroupsByItems(request:options:)``
   public func listGroups(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListGroupsResponse {
@@ -60,6 +71,11 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// Gets a single group.
   ///
   /// @Snippet(path: "GroupService_GetGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGroup(name:)``
+  /// - ``getGroup(request:)``
   public func getGroup(
     request: GetGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -69,6 +85,11 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// Creates a new group.
   ///
   /// @Snippet(path: "GroupService_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGroup(name:group:)``
+  /// - ``createGroup(request:)``
   public func createGroup(
     request: CreateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -79,6 +100,11 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// You can change any group attributes except `name`.
   ///
   /// @Snippet(path: "GroupService_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGroup(group:)``
+  /// - ``updateGroup(request:)``
   public func updateGroup(
     request: UpdateGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -88,6 +114,11 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// Deletes an existing group.
   ///
   /// @Snippet(path: "GroupService_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGroup(name:)``
+  /// - ``deleteGroup(request:)``
   public func deleteGroup(
     request: DeleteGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -97,6 +128,13 @@ public final class GroupServiceClient: Clients.GroupServiceProtocol, Sendable {
   /// Lists the monitored resources that are members of a group.
   ///
   /// @Snippet(path: "GroupService_ListGroupMembers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGroupMembers(request:)``
+  /// - ``listGroupMembersByItems(name:)``
+  /// - ``listGroupMembersByItems(request:)``
+  /// - ``listGroupMembersByItems(request:options:)``
   public func listGroupMembers(
     request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListGroupMembersResponse {
@@ -145,6 +183,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.GroupServiceProtocol {
+  /// Lists the existing groups.
+  ///
+  /// @Snippet(path: "GroupService_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroups(request:options:)``
   public func listGroups(request: ListGroupsRequest) async throws
     -> GoogleCloudMonitoringV3.ListGroupsResponse
   {
@@ -157,6 +202,13 @@ extension Clients.GroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the existing groups.
+  ///
+  /// @Snippet(path: "GroupService_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroups(request:options:)``
   public func listGroupsByItems(
     request: ListGroupsRequest
   ) -> some AsyncSequence<Group, any Swift.Error> & Sendable {
@@ -166,6 +218,10 @@ extension Clients.GroupServiceProtocol {
   /// Lists the existing groups.
   ///
   /// @Snippet(path: "GroupService_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroups(request:options:)``
   public func listGroupsByItems(
     request: ListGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Group, any Swift.Error> & Sendable {
@@ -179,6 +235,13 @@ extension Clients.GroupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the existing groups.
+  ///
+  /// @Snippet(path: "GroupService_ListGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroups(request:options:)``
   public func listGroupsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<Group, any Swift.Error> & Sendable {
@@ -188,6 +251,13 @@ extension Clients.GroupServiceProtocol {
     return self.listGroupsByItems(request: request)
   }
 
+  /// Gets a single group.
+  ///
+  /// @Snippet(path: "GroupService_GetGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/getGroup(request:options:)``
   public func getGroup(request: GetGroupRequest) async throws -> GoogleCloudMonitoringV3.Group {
     try await self.getGroup(request: request, options: .init())
   }
@@ -198,6 +268,13 @@ extension Clients.GroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single group.
+  ///
+  /// @Snippet(path: "GroupService_GetGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/getGroup(request:options:)``
   public func getGroup(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -207,6 +284,13 @@ extension Clients.GroupServiceProtocol {
     return try await self.getGroup(request: request)
   }
 
+  /// Creates a new group.
+  ///
+  /// @Snippet(path: "GroupService_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/createGroup(request:options:)``
   public func createGroup(request: CreateGroupRequest) async throws -> GoogleCloudMonitoringV3.Group
   {
     try await self.createGroup(request: request, options: .init())
@@ -218,6 +302,13 @@ extension Clients.GroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new group.
+  ///
+  /// @Snippet(path: "GroupService_CreateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/createGroup(request:options:)``
   public func createGroup(
     name: Swift.String,
     group: Group?,
@@ -229,6 +320,14 @@ extension Clients.GroupServiceProtocol {
     return try await self.createGroup(request: request)
   }
 
+  /// Updates an existing group.
+  /// You can change any group attributes except `name`.
+  ///
+  /// @Snippet(path: "GroupService_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/updateGroup(request:options:)``
   public func updateGroup(request: UpdateGroupRequest) async throws -> GoogleCloudMonitoringV3.Group
   {
     try await self.updateGroup(request: request, options: .init())
@@ -240,6 +339,14 @@ extension Clients.GroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing group.
+  /// You can change any group attributes except `name`.
+  ///
+  /// @Snippet(path: "GroupService_UpdateGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/updateGroup(request:options:)``
   public func updateGroup(
     group: Group?,
   ) async throws -> GoogleCloudMonitoringV3.Group {
@@ -249,6 +356,13 @@ extension Clients.GroupServiceProtocol {
     return try await self.updateGroup(request: request)
   }
 
+  /// Deletes an existing group.
+  ///
+  /// @Snippet(path: "GroupService_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/deleteGroup(request:options:)``
   public func deleteGroup(request: DeleteGroupRequest) async throws {
     try await self.deleteGroup(request: request, options: .init())
   }
@@ -259,6 +373,13 @@ extension Clients.GroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing group.
+  ///
+  /// @Snippet(path: "GroupService_DeleteGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/deleteGroup(request:options:)``
   public func deleteGroup(
     name: Swift.String,
   ) async throws {
@@ -268,6 +389,13 @@ extension Clients.GroupServiceProtocol {
     try await self.deleteGroup(request: request)
   }
 
+  /// Lists the monitored resources that are members of a group.
+  ///
+  /// @Snippet(path: "GroupService_ListGroupMembers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroupMembers(request:options:)``
   public func listGroupMembers(request: ListGroupMembersRequest) async throws
     -> GoogleCloudMonitoringV3.ListGroupMembersResponse
   {
@@ -280,6 +408,13 @@ extension Clients.GroupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the monitored resources that are members of a group.
+  ///
+  /// @Snippet(path: "GroupService_ListGroupMembers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroupMembers(request:options:)``
   public func listGroupMembersByItems(
     request: ListGroupMembersRequest
   ) -> some AsyncSequence<GoogleApi.MonitoredResource, any Swift.Error> & Sendable {
@@ -289,6 +424,10 @@ extension Clients.GroupServiceProtocol {
   /// Lists the monitored resources that are members of a group.
   ///
   /// @Snippet(path: "GroupService_ListGroupMembers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroupMembers(request:options:)``
   public func listGroupMembersByItems(
     request: ListGroupMembersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleApi.MonitoredResource, any Swift.Error> & Sendable {
@@ -303,6 +442,13 @@ extension Clients.GroupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the monitored resources that are members of a group.
+  ///
+  /// @Snippet(path: "GroupService_ListGroupMembers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GroupServiceClient/listGroupMembers(request:options:)``
   public func listGroupMembersByItems(
     name: Swift.String,
   ) -> some AsyncSequence<GoogleApi.MonitoredResource, any Swift.Error> & Sendable {

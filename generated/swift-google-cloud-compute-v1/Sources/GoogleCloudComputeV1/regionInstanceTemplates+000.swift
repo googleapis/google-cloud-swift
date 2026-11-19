@@ -24,6 +24,10 @@
   /// Service for the `regionInstanceTemplates` resource.
   ///
   /// @Snippet(path: "regionInstanceTemplatesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionInstanceTemplatesProtocol``
   public final class RegionInstanceTemplatesClient: Clients.RegionInstanceTemplatesProtocol,
     Sendable
   {
@@ -48,6 +52,13 @@
     /// permanent and cannot be undone.
     ///
     /// @Snippet(path: "regionInstanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:instanceTemplate:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionInstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -63,6 +74,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:instanceTemplate:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionInstanceTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -105,6 +123,11 @@
     /// Returns the specified instance template.
     ///
     /// @Snippet(path: "regionInstanceTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:instanceTemplate:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionInstanceTemplatesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceTemplate {
@@ -115,6 +138,13 @@
     /// global instance template whose URL is included in the request.
     ///
     /// @Snippet(path: "regionInstanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionInstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -130,6 +160,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionInstanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionInstanceTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -173,6 +210,13 @@
     /// specified project and region.
     ///
     /// @Snippet(path: "regionInstanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InstanceTemplateList {
@@ -240,6 +284,14 @@
 
   // Default implementations
   extension Clients.RegionInstanceTemplatesProtocol {
+    /// Deletes the specified instance template. Deleting an instance template is
+    /// permanent and cannot be undone.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/delete(request:options:)``
     public func delete(request: RegionInstanceTemplatesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -252,6 +304,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified instance template. Deleting an instance template is
+    /// permanent and cannot be undone.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionInstanceTemplatesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -264,6 +329,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified instance template. Deleting an instance template is
+    /// permanent and cannot be undone.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -277,6 +355,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified instance template.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/get(request:options:)``
     public func `get`(request: RegionInstanceTemplatesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InstanceTemplate
     {
@@ -289,6 +374,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified instance template.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -302,6 +394,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates an instance template in the specified project and region using the
+    /// global instance template whose URL is included in the request.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/insert(request:options:)``
     public func insert(request: RegionInstanceTemplatesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -314,6 +414,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance template in the specified project and region using the
+    /// global instance template whose URL is included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionInstanceTemplatesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -326,6 +439,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an instance template in the specified project and region using the
+    /// global instance template whose URL is included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -339,6 +465,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of instance templates that are contained within the
+    /// specified project and region.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/list(request:options:)``
     public func list(request: RegionInstanceTemplatesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.InstanceTemplateList
     {
@@ -351,6 +485,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of instance templates that are contained within the
+    /// specified project and region.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/list(request:options:)``
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest
     ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
@@ -361,6 +503,10 @@
     /// specified project and region.
     ///
     /// @Snippet(path: "regionInstanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/list(request:options:)``
     public func listByItems(
       request: RegionInstanceTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InstanceTemplate, any Swift.Error> & Sendable {
@@ -374,6 +520,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of instance templates that are contained within the
+    /// specified project and region.
+    ///
+    /// @Snippet(path: "regionInstanceTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionInstanceTemplatesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -385,6 +539,7 @@
       return self.listByItems(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

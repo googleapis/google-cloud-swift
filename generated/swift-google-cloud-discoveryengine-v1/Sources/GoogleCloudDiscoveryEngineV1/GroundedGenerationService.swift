@@ -25,6 +25,10 @@
   /// Service for grounded generation.
   ///
   /// @Snippet(path: "GroundedGenerationServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/GroundedGenerationServiceProtocol``
   public final class GroundedGenerationServiceClient: Clients.GroundedGenerationServiceProtocol,
     Sendable
   {
@@ -44,6 +48,10 @@
     /// Generates grounded content.
     ///
     /// @Snippet(path: "GroundedGenerationService_GenerateGroundedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``generateGroundedContent(request:)``
     public func generateGroundedContent(
       request: GenerateGroundedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse {
@@ -53,6 +61,10 @@
     /// Performs a grounding check.
     ///
     /// @Snippet(path: "GroundedGenerationService_CheckGrounding")
+    ///
+    /// ## See Also
+    ///
+    /// - ``checkGrounding(request:)``
     public func checkGrounding(
       request: CheckGroundingRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.CheckGroundingResponse {
@@ -64,6 +76,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GroundedGenerationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -86,6 +105,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GroundedGenerationService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -124,6 +148,13 @@
 
   // Default implementations
   extension Clients.GroundedGenerationServiceProtocol {
+    /// Generates grounded content.
+    ///
+    /// @Snippet(path: "GroundedGenerationService_GenerateGroundedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/generateGroundedContent(request:options:)``
     public func generateGroundedContent(request: GenerateGroundedContentRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.GenerateGroundedContentResponse
     {
@@ -136,6 +167,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Performs a grounding check.
+    ///
+    /// @Snippet(path: "GroundedGenerationService_CheckGrounding")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/checkGrounding(request:options:)``
     public func checkGrounding(request: CheckGroundingRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.CheckGroundingResponse
     {
@@ -148,6 +186,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GroundedGenerationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -160,6 +207,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GroundedGenerationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -171,6 +227,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "GroundedGenerationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -184,6 +244,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GroundedGenerationService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -195,6 +264,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -207,6 +279,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -216,6 +291,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GroundedGenerationService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -226,6 +310,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "GroundedGenerationService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GroundedGenerationServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

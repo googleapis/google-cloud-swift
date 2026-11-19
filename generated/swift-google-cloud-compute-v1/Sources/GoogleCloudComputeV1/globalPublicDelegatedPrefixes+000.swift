@@ -24,6 +24,10 @@
   /// Service for the `globalPublicDelegatedPrefixes` resource.
   ///
   /// @Snippet(path: "globalPublicDelegatedPrefixesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/GlobalPublicDelegatedPrefixesProtocol``
   public final class GlobalPublicDelegatedPrefixesClient: Clients
       .GlobalPublicDelegatedPrefixesProtocol, Sendable
   {
@@ -47,6 +51,13 @@
     /// Deletes the specified global PublicDelegatedPrefix.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:publicDelegatedPrefix:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: GlobalPublicDelegatedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -61,6 +72,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:publicDelegatedPrefix:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -102,6 +120,11 @@
     /// Returns the specified global PublicDelegatedPrefix resource.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:publicDelegatedPrefix:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalPublicDelegatedPrefixesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefix {
@@ -112,6 +135,13 @@
     /// parameters that are included in the request.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: GlobalPublicDelegatedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -127,6 +157,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +205,13 @@
     /// Lists the global PublicDelegatedPrefixes for a project.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.PublicDelegatedPrefixList {
@@ -180,6 +224,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:publicDelegatedPrefix:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -197,6 +248,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:publicDelegatedPrefix:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -315,6 +373,13 @@
 
   // Default implementations
   extension Clients.GlobalPublicDelegatedPrefixesProtocol {
+    /// Deletes the specified global PublicDelegatedPrefix.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/delete(request:options:)``
     public func delete(request: GlobalPublicDelegatedPrefixesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -327,6 +392,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified global PublicDelegatedPrefix.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -339,6 +416,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified global PublicDelegatedPrefix.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       publicDelegatedPrefix: Swift.String,
@@ -350,6 +439,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified global PublicDelegatedPrefix resource.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/get(request:options:)``
     public func `get`(request: GlobalPublicDelegatedPrefixesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.PublicDelegatedPrefix
     {
@@ -362,6 +458,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified global PublicDelegatedPrefix resource.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       publicDelegatedPrefix: Swift.String,
@@ -373,6 +476,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a global PublicDelegatedPrefix in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/insert(request:options:)``
     public func insert(request: GlobalPublicDelegatedPrefixesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -385,6 +496,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a global PublicDelegatedPrefix in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -397,6 +521,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a global PublicDelegatedPrefix in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: PublicDelegatedPrefix?,
@@ -408,6 +545,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the global PublicDelegatedPrefixes for a project.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/list(request:options:)``
     public func list(request: GlobalPublicDelegatedPrefixesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.PublicDelegatedPrefixList
     {
@@ -420,6 +564,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the global PublicDelegatedPrefixes for a project.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/list(request:options:)``
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest
     ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
@@ -429,6 +580,10 @@
     /// Lists the global PublicDelegatedPrefixes for a project.
     ///
     /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/list(request:options:)``
     public func listByItems(
       request: GlobalPublicDelegatedPrefixesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
@@ -443,6 +598,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the global PublicDelegatedPrefixes for a project.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<PublicDelegatedPrefix, any Swift.Error> & Sendable {
@@ -452,6 +614,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified global PublicDelegatedPrefix resource with the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/patch(request:options:)``
     public func patch(request: GlobalPublicDelegatedPrefixesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -464,6 +636,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified global PublicDelegatedPrefix resource with the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: GlobalPublicDelegatedPrefixesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -476,6 +663,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified global PublicDelegatedPrefix resource with the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalPublicDelegatedPrefixes_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalPublicDelegatedPrefixesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       publicDelegatedPrefix: Swift.String,
@@ -489,6 +691,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

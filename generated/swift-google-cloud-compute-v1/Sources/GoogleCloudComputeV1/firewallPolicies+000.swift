@@ -24,6 +24,10 @@
   /// Service for the `firewallPolicies` resource.
   ///
   /// @Snippet(path: "firewallPoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/FirewallPoliciesProtocol``
   public final class FirewallPoliciesClient: Clients.FirewallPoliciesProtocol, Sendable {
     let inner: any Clients.FirewallPoliciesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Inserts an association for the specified firewall policy.
     ///
     /// @Snippet(path: "firewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAssociation(request:)``
+    /// - ``addAssociationPollingUntilDone(firewallPolicy:body:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
+    /// - ``addAssociationPollingUntilDone(request:options:)``
     public func addAssociation(
       request: FirewallPoliciesClient.AddAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addAssociation(request:)``
+    /// - ``addAssociation(request:options:)``
+    /// - ``addAssociationPollingUntilDone(firewallPolicy:body:)``
+    /// - ``addAssociationPollingUntilDone(request:)``
     public func addAssociationPollingUntilDone(
       request: FirewallPoliciesClient.AddAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -98,6 +116,13 @@
     /// Inserts a rule into a firewall policy.
     ///
     /// @Snippet(path: "firewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRulePollingUntilDone(firewallPolicy:body:)``
+    /// - ``addRulePollingUntilDone(request:)``
+    /// - ``addRulePollingUntilDone(request:options:)``
     public func addRule(
       request: FirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addRule(request:)``
+    /// - ``addRule(request:options:)``
+    /// - ``addRulePollingUntilDone(firewallPolicy:body:)``
+    /// - ``addRulePollingUntilDone(request:)``
     public func addRulePollingUntilDone(
       request: FirewallPoliciesClient.AddRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -152,6 +184,13 @@
     /// Copies rules to the specified firewall policy.
     ///
     /// @Snippet(path: "firewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cloneRules(request:)``
+    /// - ``cloneRulesPollingUntilDone(firewallPolicy:)``
+    /// - ``cloneRulesPollingUntilDone(request:)``
+    /// - ``cloneRulesPollingUntilDone(request:options:)``
     public func cloneRules(
       request: FirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +205,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cloneRules(request:)``
+    /// - ``cloneRules(request:options:)``
+    /// - ``cloneRulesPollingUntilDone(firewallPolicy:)``
+    /// - ``cloneRulesPollingUntilDone(request:)``
     public func cloneRulesPollingUntilDone(
       request: FirewallPoliciesClient.CloneRulesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -206,6 +252,13 @@
     /// Deletes the specified policy.
     ///
     /// @Snippet(path: "firewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(firewallPolicy:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: FirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -220,6 +273,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(firewallPolicy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: FirewallPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -260,6 +320,11 @@
     /// Returns the specified firewall policy.
     ///
     /// @Snippet(path: "firewallPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(firewallPolicy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: FirewallPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
@@ -269,6 +334,11 @@
     /// Gets an association with the specified name.
     ///
     /// @Snippet(path: "firewallPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getAssociation(firewallPolicy:)``
+    /// - ``getAssociation(request:)``
     public func getAssociation(
       request: FirewallPoliciesClient.GetAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyAssociation {
@@ -279,6 +349,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "firewallPolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(resource:)``
     public func getIamPolicy(
       request: FirewallPoliciesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -288,6 +363,11 @@
     /// Gets a rule of the specified priority.
     ///
     /// @Snippet(path: "firewallPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getRule(firewallPolicy:)``
+    /// - ``getRule(request:)``
     public func getRule(
       request: FirewallPoliciesClient.GetRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
@@ -298,6 +378,12 @@
     /// the request.
     ///
     /// @Snippet(path: "firewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: FirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -313,6 +399,12 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: FirewallPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -354,6 +446,12 @@
     /// folder or organization.
     ///
     /// @Snippet(path: "firewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyList {
@@ -363,6 +461,10 @@
     /// Lists associations of a specified target, i.e., organization or folder.
     ///
     /// @Snippet(path: "firewallPolicies_listAssociations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listAssociations(request:)``
     public func listAssociations(
       request: FirewallPoliciesClient.ListAssociationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.FirewallPoliciesListAssociationsResponse {
@@ -372,6 +474,13 @@
     /// Moves the specified firewall policy.
     ///
     /// @Snippet(path: "firewallPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``move(request:)``
+    /// - ``movePollingUntilDone(firewallPolicy:)``
+    /// - ``movePollingUntilDone(request:)``
+    /// - ``movePollingUntilDone(request:options:)``
     public func move(
       request: FirewallPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -386,6 +495,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``move(request:)``
+    /// - ``move(request:options:)``
+    /// - ``movePollingUntilDone(firewallPolicy:)``
+    /// - ``movePollingUntilDone(request:)``
     public func movePollingUntilDone(
       request: FirewallPoliciesClient.MoveRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -426,6 +542,13 @@
     /// Patches the specified policy with the data included in the request.
     ///
     /// @Snippet(path: "firewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(firewallPolicy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: FirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -440,6 +563,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(firewallPolicy:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: FirewallPoliciesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -480,6 +610,13 @@
     /// Patches a rule of the specified priority.
     ///
     /// @Snippet(path: "firewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRulePollingUntilDone(firewallPolicy:body:)``
+    /// - ``patchRulePollingUntilDone(request:)``
+    /// - ``patchRulePollingUntilDone(request:options:)``
     public func patchRule(
       request: FirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -494,6 +631,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patchRule(request:)``
+    /// - ``patchRule(request:options:)``
+    /// - ``patchRulePollingUntilDone(firewallPolicy:body:)``
+    /// - ``patchRulePollingUntilDone(request:)``
     public func patchRulePollingUntilDone(
       request: FirewallPoliciesClient.PatchRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -534,6 +678,13 @@
     /// Removes an association for the specified firewall policy.
     ///
     /// @Snippet(path: "firewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeAssociation(request:)``
+    /// - ``removeAssociationPollingUntilDone(firewallPolicy:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
+    /// - ``removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociation(
       request: FirewallPoliciesClient.RemoveAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -548,6 +699,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeAssociation(request:)``
+    /// - ``removeAssociation(request:options:)``
+    /// - ``removeAssociationPollingUntilDone(firewallPolicy:)``
+    /// - ``removeAssociationPollingUntilDone(request:)``
     public func removeAssociationPollingUntilDone(
       request: FirewallPoliciesClient.RemoveAssociationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -588,6 +746,13 @@
     /// Deletes a rule of the specified priority.
     ///
     /// @Snippet(path: "firewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRulePollingUntilDone(firewallPolicy:)``
+    /// - ``removeRulePollingUntilDone(request:)``
+    /// - ``removeRulePollingUntilDone(request:options:)``
     public func removeRule(
       request: FirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -602,6 +767,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "firewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeRule(request:)``
+    /// - ``removeRule(request:options:)``
+    /// - ``removeRulePollingUntilDone(firewallPolicy:)``
+    /// - ``removeRulePollingUntilDone(request:)``
     public func removeRulePollingUntilDone(
       request: FirewallPoliciesClient.RemoveRuleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -643,6 +815,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "firewallPolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(resource:body:)``
     public func setIamPolicy(
       request: FirewallPoliciesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -652,6 +829,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "firewallPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
+    /// - ``testIamPermissions(resource:body:)``
     public func testIamPermissions(
       request: FirewallPoliciesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -870,6 +1052,13 @@
 
   // Default implementations
   extension Clients.FirewallPoliciesProtocol {
+    /// Inserts an association for the specified firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/addAssociation(request:options:)``
     public func addAssociation(request: FirewallPoliciesClient.AddAssociationRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -882,6 +1071,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts an association for the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/addAssociationPollingUntilDone(request:options:)``
     public func addAssociationPollingUntilDone(
       request: FirewallPoliciesClient.AddAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -894,6 +1095,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts an association for the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_addAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/addAssociationPollingUntilDone(request:options:)``
     public func addAssociationPollingUntilDone(
       firewallPolicy: Swift.String,
       body: FirewallPolicyAssociation?,
@@ -905,6 +1118,13 @@
       return try await self.addAssociationPollingUntilDone(request: request)
     }
 
+    /// Inserts a rule into a firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/addRule(request:options:)``
     public func addRule(request: FirewallPoliciesClient.AddRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -917,6 +1137,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       request: FirewallPoliciesClient.AddRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -929,6 +1161,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Inserts a rule into a firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_addRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/addRulePollingUntilDone(request:options:)``
     public func addRulePollingUntilDone(
       firewallPolicy: Swift.String,
       body: FirewallPolicyRule?,
@@ -940,6 +1184,13 @@
       return try await self.addRulePollingUntilDone(request: request)
     }
 
+    /// Copies rules to the specified firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/cloneRules(request:options:)``
     public func cloneRules(request: FirewallPoliciesClient.CloneRulesRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -952,6 +1203,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies rules to the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/cloneRulesPollingUntilDone(request:options:)``
     public func cloneRulesPollingUntilDone(
       request: FirewallPoliciesClient.CloneRulesRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -964,6 +1227,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Copies rules to the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_cloneRules")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/cloneRulesPollingUntilDone(request:options:)``
     public func cloneRulesPollingUntilDone(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -973,6 +1248,13 @@
       return try await self.cloneRulesPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/delete(request:options:)``
     public func delete(request: FirewallPoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -985,6 +1267,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: FirewallPoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -997,6 +1291,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1006,6 +1312,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/get(request:options:)``
     public func `get`(request: FirewallPoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicy
     {
@@ -1018,6 +1331,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/get(request:options:)``
     public func `get`(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.FirewallPolicy {
@@ -1027,6 +1347,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets an association with the specified name.
+    ///
+    /// @Snippet(path: "firewallPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/getAssociation(request:options:)``
     public func getAssociation(request: FirewallPoliciesClient.GetAssociationRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicyAssociation
     {
@@ -1039,6 +1366,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an association with the specified name.
+    ///
+    /// @Snippet(path: "firewallPolicies_getAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/getAssociation(request:options:)``
     public func getAssociation(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyAssociation {
@@ -1048,6 +1382,14 @@
       return try await self.getAssociation(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "firewallPolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: FirewallPoliciesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -1060,6 +1402,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "firewallPolicies_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       resource: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -1069,6 +1419,13 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Gets a rule of the specified priority.
+    ///
+    /// @Snippet(path: "firewallPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/getRule(request:options:)``
     public func getRule(request: FirewallPoliciesClient.GetRuleRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicyRule
     {
@@ -1081,6 +1438,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a rule of the specified priority.
+    ///
+    /// @Snippet(path: "firewallPolicies_getRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/getRule(request:options:)``
     public func getRule(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.FirewallPolicyRule {
@@ -1090,6 +1454,14 @@
       return try await self.getRule(request: request)
     }
 
+    /// Creates a new policy in the specified project using the data included in
+    /// the request.
+    ///
+    /// @Snippet(path: "firewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/insert(request:options:)``
     public func insert(request: FirewallPoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1102,6 +1474,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new policy in the specified project using the data included in
+    /// the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: FirewallPoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1114,6 +1499,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the policies that have been configured for the specified
+    /// folder or organization.
+    ///
+    /// @Snippet(path: "firewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/list(request:options:)``
     public func list(request: FirewallPoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.FirewallPolicyList
     {
@@ -1126,6 +1519,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the policies that have been configured for the specified
+    /// folder or organization.
+    ///
+    /// @Snippet(path: "firewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/list(request:options:)``
     public func listByItems(
       request: FirewallPoliciesClient.ListRequest
     ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
@@ -1136,6 +1537,10 @@
     /// folder or organization.
     ///
     /// @Snippet(path: "firewallPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/list(request:options:)``
     public func listByItems(
       request: FirewallPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<FirewallPolicy, any Swift.Error> & Sendable {
@@ -1149,6 +1554,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists associations of a specified target, i.e., organization or folder.
+    ///
+    /// @Snippet(path: "firewallPolicies_listAssociations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/listAssociations(request:options:)``
     public func listAssociations(request: FirewallPoliciesClient.ListAssociationsRequest)
       async throws -> GoogleCloudComputeV1.FirewallPoliciesListAssociationsResponse
     {
@@ -1161,6 +1573,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Moves the specified firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/move(request:options:)``
     public func move(request: FirewallPoliciesClient.MoveRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1173,6 +1592,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Moves the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/movePollingUntilDone(request:options:)``
     public func movePollingUntilDone(
       request: FirewallPoliciesClient.MoveRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1185,6 +1616,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Moves the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_move")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/movePollingUntilDone(request:options:)``
     public func movePollingUntilDone(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1194,6 +1637,13 @@
       return try await self.movePollingUntilDone(request: request)
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// @Snippet(path: "firewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/patch(request:options:)``
     public func patch(request: FirewallPoliciesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1206,6 +1656,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: FirewallPoliciesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1218,6 +1680,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       firewallPolicy: Swift.String,
       body: FirewallPolicy?,
@@ -1229,6 +1703,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Patches a rule of the specified priority.
+    ///
+    /// @Snippet(path: "firewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/patchRule(request:options:)``
     public func patchRule(request: FirewallPoliciesClient.PatchRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1241,6 +1722,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       request: FirewallPoliciesClient.PatchRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1253,6 +1746,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_patchRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/patchRulePollingUntilDone(request:options:)``
     public func patchRulePollingUntilDone(
       firewallPolicy: Swift.String,
       body: FirewallPolicyRule?,
@@ -1264,6 +1769,13 @@
       return try await self.patchRulePollingUntilDone(request: request)
     }
 
+    /// Removes an association for the specified firewall policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/removeAssociation(request:options:)``
     public func removeAssociation(request: FirewallPoliciesClient.RemoveAssociationRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -1276,6 +1788,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes an association for the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociationPollingUntilDone(
       request: FirewallPoliciesClient.RemoveAssociationRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1288,6 +1812,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Removes an association for the specified firewall policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_removeAssociation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/removeAssociationPollingUntilDone(request:options:)``
     public func removeAssociationPollingUntilDone(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1297,6 +1833,13 @@
       return try await self.removeAssociationPollingUntilDone(request: request)
     }
 
+    /// Deletes a rule of the specified priority.
+    ///
+    /// @Snippet(path: "firewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/removeRule(request:options:)``
     public func removeRule(request: FirewallPoliciesClient.RemoveRuleRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -1309,6 +1852,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       request: FirewallPoliciesClient.RemoveRuleRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1321,6 +1876,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a rule of the specified priority.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "firewallPolicies_removeRule")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/removeRulePollingUntilDone(request:options:)``
     public func removeRulePollingUntilDone(
       firewallPolicy: Swift.String,
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -1330,6 +1897,14 @@
       return try await self.removeRulePollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: FirewallPoliciesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -1342,6 +1917,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "firewallPolicies_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       resource: Swift.String,
       body: GlobalOrganizationSetPolicyRequest?,
@@ -1353,6 +1936,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "firewallPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: FirewallPoliciesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -1365,6 +1955,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "firewallPolicies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FirewallPoliciesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       resource: Swift.String,
       body: TestPermissionsRequest?,
@@ -1376,6 +1973,8 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource. Gets a list of operations
+    /// by making a `list()` request.
     public func getOperation(request: GlobalOrganizationOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

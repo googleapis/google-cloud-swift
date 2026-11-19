@@ -26,6 +26,10 @@ import Foundation
 /// to create and manage Anthos clusters that run on AWS infrastructure.
 ///
 /// @Snippet(path: "AwsClustersQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AwsClustersProtocol``
 @available(*, deprecated)
 public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   let inner: any Clients.AwsClustersStub
@@ -55,6 +59,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_CreateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAwsCluster(request:)``
+  /// - ``createAwsClusterPollingUntilDone(parent:awsCluster:awsClusterId:)``
+  /// - ``createAwsClusterPollingUntilDone(request:)``
+  /// - ``createAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAwsCluster(
     request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -73,6 +84,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_CreateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAwsCluster(request:)``
+  /// - ``createAwsCluster(request:options:)``
+  /// - ``createAwsClusterPollingUntilDone(parent:awsCluster:awsClusterId:)``
+  /// - ``createAwsClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAwsClusterPollingUntilDone(
     request: CreateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -103,6 +121,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
   ///
   /// @Snippet(path: "AwsClusters_UpdateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAwsCluster(request:)``
+  /// - ``updateAwsClusterPollingUntilDone(awsCluster:updateMask:)``
+  /// - ``updateAwsClusterPollingUntilDone(request:)``
+  /// - ``updateAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAwsCluster(
     request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -115,6 +140,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
   ///
   /// @Snippet(path: "AwsClusters_UpdateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAwsCluster(request:)``
+  /// - ``updateAwsCluster(request:options:)``
+  /// - ``updateAwsClusterPollingUntilDone(awsCluster:updateMask:)``
+  /// - ``updateAwsClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAwsClusterPollingUntilDone(
     request: UpdateAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -146,6 +178,11 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
   ///
   /// @Snippet(path: "AwsClusters_GetAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAwsCluster(name:)``
+  /// - ``getAwsCluster(request:)``
   @available(*, deprecated)
   public func getAwsCluster(
     request: GetAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -159,6 +196,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
   ///
   /// @Snippet(path: "AwsClusters_ListAwsClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAwsClusters(request:)``
+  /// - ``listAwsClustersByItems(parent:)``
+  /// - ``listAwsClustersByItems(request:)``
+  /// - ``listAwsClustersByItems(request:options:)``
   @available(*, deprecated)
   public func listAwsClusters(
     request: ListAwsClustersRequest, options: GoogleGax.RequestOptions
@@ -181,6 +225,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_DeleteAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAwsCluster(request:)``
+  /// - ``deleteAwsClusterPollingUntilDone(name:)``
+  /// - ``deleteAwsClusterPollingUntilDone(request:)``
+  /// - ``deleteAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAwsCluster(
     request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -203,6 +254,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_DeleteAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAwsCluster(request:)``
+  /// - ``deleteAwsCluster(request:options:)``
+  /// - ``deleteAwsClusterPollingUntilDone(name:)``
+  /// - ``deleteAwsClusterPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAwsClusterPollingUntilDone(
     request: DeleteAwsClusterRequest, options: GoogleGax.RequestOptions
@@ -231,6 +289,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// Generates an access token for a cluster agent.
   ///
   /// @Snippet(path: "AwsClusters_GenerateAwsClusterAgentToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAwsClusterAgentToken(request:)``
   @available(*, deprecated)
   public func generateAwsClusterAgentToken(
     request: GenerateAwsClusterAgentTokenRequest, options: GoogleGax.RequestOptions
@@ -244,6 +306,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
   ///
   /// @Snippet(path: "AwsClusters_GenerateAwsAccessToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAwsAccessToken(request:)``
   @available(*, deprecated)
   public func generateAwsAccessToken(
     request: GenerateAwsAccessTokenRequest, options: GoogleGax.RequestOptions
@@ -263,6 +329,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_CreateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAwsNodePool(request:)``
+  /// - ``createAwsNodePoolPollingUntilDone(parent:awsNodePool:awsNodePoolId:)``
+  /// - ``createAwsNodePoolPollingUntilDone(request:)``
+  /// - ``createAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAwsNodePool(
     request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -282,6 +355,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_CreateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAwsNodePool(request:)``
+  /// - ``createAwsNodePool(request:options:)``
+  /// - ``createAwsNodePoolPollingUntilDone(parent:awsNodePool:awsNodePoolId:)``
+  /// - ``createAwsNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAwsNodePoolPollingUntilDone(
     request: CreateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -312,6 +392,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_UpdateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAwsNodePool(request:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(awsNodePool:updateMask:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(request:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAwsNodePool(
     request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -324,6 +411,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_UpdateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAwsNodePool(request:)``
+  /// - ``updateAwsNodePool(request:options:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(awsNodePool:updateMask:)``
+  /// - ``updateAwsNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func updateAwsNodePoolPollingUntilDone(
     request: UpdateAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -359,6 +453,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_RollbackAwsNodePoolUpdate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rollbackAwsNodePoolUpdate(request:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(name:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdate(
     request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
@@ -376,6 +477,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_RollbackAwsNodePoolUpdate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rollbackAwsNodePoolUpdate(request:)``
+  /// - ``rollbackAwsNodePoolUpdate(request:options:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(name:)``
+  /// - ``rollbackAwsNodePoolUpdatePollingUntilDone(request:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdatePollingUntilDone(
     request: RollbackAwsNodePoolUpdateRequest, options: GoogleGax.RequestOptions
@@ -407,6 +515,11 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_GetAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAwsNodePool(name:)``
+  /// - ``getAwsNodePool(request:)``
   @available(*, deprecated)
   public func getAwsNodePool(
     request: GetAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -422,6 +535,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_ListAwsNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAwsNodePools(request:)``
+  /// - ``listAwsNodePoolsByItems(parent:)``
+  /// - ``listAwsNodePoolsByItems(request:)``
+  /// - ``listAwsNodePoolsByItems(request:options:)``
   @available(*, deprecated)
   public func listAwsNodePools(
     request: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
@@ -440,6 +560,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_DeleteAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAwsNodePool(request:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(name:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(request:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAwsNodePool(
     request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -458,6 +585,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AwsClusters_DeleteAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAwsNodePool(request:)``
+  /// - ``deleteAwsNodePool(request:options:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(name:)``
+  /// - ``deleteAwsNodePoolPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAwsNodePoolPollingUntilDone(
     request: DeleteAwsNodePoolRequest, options: GoogleGax.RequestOptions
@@ -490,6 +624,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// for details.
   ///
   /// @Snippet(path: "AwsClusters_GetAwsOpenIdConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAwsOpenIdConfig(request:)``
   @available(*, deprecated)
   public func getAwsOpenIdConfig(
     request: GetAwsOpenIdConfigRequest, options: GoogleGax.RequestOptions
@@ -501,6 +639,10 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// JSON Web Key format.
   ///
   /// @Snippet(path: "AwsClusters_GetAwsJsonWebKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAwsJsonWebKeys(request:)``
   @available(*, deprecated)
   public func getAwsJsonWebKeys(
     request: GetAwsJsonWebKeysRequest, options: GoogleGax.RequestOptions
@@ -512,6 +654,11 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// versions, on a given Google Cloud location.
   ///
   /// @Snippet(path: "AwsClusters_GetAwsServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAwsServerConfig(name:)``
+  /// - ``getAwsServerConfig(request:)``
   @available(*, deprecated)
   public func getAwsServerConfig(
     request: GetAwsServerConfigRequest, options: GoogleGax.RequestOptions
@@ -524,6 +671,13 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AwsClusters_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -546,6 +700,11 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AwsClusters_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -557,6 +716,11 @@ public final class AwsClustersClient: Clients.AwsClustersProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AwsClusters_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -730,6 +894,21 @@ extension Clients {
 // Default implementations
 @available(*, deprecated)
 extension Clients.AwsClustersProtocol {
+  /// Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource on a given Google Cloud Platform project and region.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_CreateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/createAwsCluster(request:options:)``
   @available(*, deprecated)
   public func createAwsCluster(request: CreateAwsClusterRequest) async throws
     -> GoogleLongRunning.Operation
@@ -744,6 +923,21 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource on a given Google Cloud Platform project and region.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_CreateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/createAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAwsClusterPollingUntilDone(request: CreateAwsClusterRequest) async throws
     -> AwsCluster
@@ -758,6 +952,21 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource on a given Google Cloud Platform project and region.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_CreateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/createAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAwsClusterPollingUntilDone(
     parent: Swift.String,
@@ -772,6 +981,15 @@ extension Clients.AwsClustersProtocol {
     return try await self.createAwsClusterPollingUntilDone(request: request)
   }
 
+  /// Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_UpdateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/updateAwsCluster(request:options:)``
   @available(*, deprecated)
   public func updateAwsCluster(request: UpdateAwsClusterRequest) async throws
     -> GoogleLongRunning.Operation
@@ -786,6 +1004,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_UpdateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/updateAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAwsClusterPollingUntilDone(request: UpdateAwsClusterRequest) async throws
     -> AwsCluster
@@ -800,6 +1027,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_UpdateAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/updateAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAwsClusterPollingUntilDone(
     awsCluster: AwsCluster?,
@@ -812,6 +1048,16 @@ extension Clients.AwsClustersProtocol {
     return try await self.updateAwsClusterPollingUntilDone(request: request)
   }
 
+  /// Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsCluster(request:options:)``
   @available(*, deprecated)
   public func getAwsCluster(request: GetAwsClusterRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.AwsCluster
@@ -826,6 +1072,16 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsCluster(request:options:)``
   @available(*, deprecated)
   public func getAwsCluster(
     name: Swift.String,
@@ -836,6 +1092,16 @@ extension Clients.AwsClustersProtocol {
     return try await self.getAwsCluster(request: request)
   }
 
+  /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+  /// on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsClusters(request:options:)``
   @available(*, deprecated)
   public func listAwsClusters(request: ListAwsClustersRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.ListAwsClustersResponse
@@ -850,6 +1116,16 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+  /// on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsClusters(request:options:)``
   @available(*, deprecated)
   public func listAwsClustersByItems(
     request: ListAwsClustersRequest
@@ -863,6 +1139,10 @@ extension Clients.AwsClustersProtocol {
   /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
   ///
   /// @Snippet(path: "AwsClusters_ListAwsClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsClusters(request:options:)``
   @available(*, deprecated)
   public func listAwsClustersByItems(
     request: ListAwsClustersRequest, options: GoogleGax.RequestOptions
@@ -878,6 +1158,16 @@ extension Clients.AwsClustersProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resources
+  /// on a given Google Cloud project and region.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsClusters")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsClusters(request:options:)``
   @available(*, deprecated)
   public func listAwsClustersByItems(
     parent: Swift.String,
@@ -888,6 +1178,25 @@ extension Clients.AwsClustersProtocol {
     return self.listAwsClustersByItems(request: request)
   }
 
+  /// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource.
+  ///
+  /// Fails if the cluster has one or more associated
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteAwsCluster(request:options:)``
   @available(*, deprecated)
   public func deleteAwsCluster(request: DeleteAwsClusterRequest) async throws
     -> GoogleLongRunning.Operation
@@ -902,6 +1211,25 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource.
+  ///
+  /// Fails if the cluster has one or more associated
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAwsClusterPollingUntilDone(request: DeleteAwsClusterRequest) async throws {
     try await self.deleteAwsClusterPollingUntilDone(request: request, options: .init())
@@ -914,6 +1242,25 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster]
+  /// resource.
+  ///
+  /// Fails if the cluster has one or more associated
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resources.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteAwsCluster")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteAwsClusterPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAwsClusterPollingUntilDone(
     name: Swift.String,
@@ -924,6 +1271,13 @@ extension Clients.AwsClustersProtocol {
     try await self.deleteAwsClusterPollingUntilDone(request: request)
   }
 
+  /// Generates an access token for a cluster agent.
+  ///
+  /// @Snippet(path: "AwsClusters_GenerateAwsClusterAgentToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/generateAwsClusterAgentToken(request:options:)``
   @available(*, deprecated)
   public func generateAwsClusterAgentToken(request: GenerateAwsClusterAgentTokenRequest)
     async throws -> GoogleCloudGKEMultiCloudV1.GenerateAwsClusterAgentTokenResponse
@@ -938,6 +1292,16 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates a short-lived access token to authenticate to a given
+  /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster] resource.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  ///
+  /// @Snippet(path: "AwsClusters_GenerateAwsAccessToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/generateAwsAccessToken(request:options:)``
   @available(*, deprecated)
   public func generateAwsAccessToken(request: GenerateAwsAccessTokenRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.GenerateAwsAccessTokenResponse
@@ -952,6 +1316,22 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
+  /// attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_CreateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/createAwsNodePool(request:options:)``
   @available(*, deprecated)
   public func createAwsNodePool(request: CreateAwsNodePoolRequest) async throws
     -> GoogleLongRunning.Operation
@@ -966,6 +1346,22 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
+  /// attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_CreateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/createAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAwsNodePoolPollingUntilDone(request: CreateAwsNodePoolRequest) async throws
     -> AwsNodePool
@@ -980,6 +1376,22 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool],
+  /// attached to a given [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_CreateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/createAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAwsNodePoolPollingUntilDone(
     parent: Swift.String,
@@ -994,6 +1406,15 @@ extension Clients.AwsClustersProtocol {
     return try await self.createAwsNodePoolPollingUntilDone(request: request)
   }
 
+  /// Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_UpdateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/updateAwsNodePool(request:options:)``
   @available(*, deprecated)
   public func updateAwsNodePool(request: UpdateAwsNodePoolRequest) async throws
     -> GoogleLongRunning.Operation
@@ -1008,6 +1429,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_UpdateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/updateAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAwsNodePoolPollingUntilDone(request: UpdateAwsNodePoolRequest) async throws
     -> AwsNodePool
@@ -1022,6 +1452,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_UpdateAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/updateAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func updateAwsNodePoolPollingUntilDone(
     awsNodePool: AwsNodePool?,
@@ -1034,6 +1473,20 @@ extension Clients.AwsClustersProtocol {
     return try await self.updateAwsNodePoolPollingUntilDone(request: request)
   }
 
+  /// Rolls back a previously aborted or failed
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
+  /// Makes no changes if the last update request successfully finished.
+  /// If an update request is in progress, you cannot rollback the update.
+  /// You must first cancel or let it finish unsuccessfully before you can
+  /// rollback.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_RollbackAwsNodePoolUpdate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/rollbackAwsNodePoolUpdate(request:options:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdate(request: RollbackAwsNodePoolUpdateRequest) async throws
     -> GoogleLongRunning.Operation
@@ -1048,6 +1501,20 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rolls back a previously aborted or failed
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
+  /// Makes no changes if the last update request successfully finished.
+  /// If an update request is in progress, you cannot rollback the update.
+  /// You must first cancel or let it finish unsuccessfully before you can
+  /// rollback.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_RollbackAwsNodePoolUpdate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/rollbackAwsNodePoolUpdatePollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdatePollingUntilDone(request: RollbackAwsNodePoolUpdateRequest)
     async throws -> AwsNodePool
@@ -1063,6 +1530,20 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Rolls back a previously aborted or failed
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] update request.
+  /// Makes no changes if the last update request successfully finished.
+  /// If an update request is in progress, you cannot rollback the update.
+  /// You must first cancel or let it finish unsuccessfully before you can
+  /// rollback.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_RollbackAwsNodePoolUpdate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/rollbackAwsNodePoolUpdatePollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func rollbackAwsNodePoolUpdatePollingUntilDone(
     name: Swift.String,
@@ -1073,6 +1554,16 @@ extension Clients.AwsClustersProtocol {
     return try await self.rollbackAwsNodePoolUpdatePollingUntilDone(request: request)
   }
 
+  /// Describes a specific
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsNodePool(request:options:)``
   @available(*, deprecated)
   public func getAwsNodePool(request: GetAwsNodePoolRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.AwsNodePool
@@ -1087,6 +1578,16 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Describes a specific
+  /// [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool] resource.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsNodePool(request:options:)``
   @available(*, deprecated)
   public func getAwsNodePool(
     name: Swift.String,
@@ -1097,6 +1598,18 @@ extension Clients.AwsClustersProtocol {
     return try await self.getAwsNodePool(request: request)
   }
 
+  /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resources on a given
+  /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsNodePools(request:options:)``
   @available(*, deprecated)
   public func listAwsNodePools(request: ListAwsNodePoolsRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.ListAwsNodePoolsResponse
@@ -1111,6 +1624,18 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resources on a given
+  /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsNodePools(request:options:)``
   @available(*, deprecated)
   public func listAwsNodePoolsByItems(
     request: ListAwsNodePoolsRequest
@@ -1126,6 +1651,10 @@ extension Clients.AwsClustersProtocol {
   /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
   ///
   /// @Snippet(path: "AwsClusters_ListAwsNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsNodePools(request:options:)``
   @available(*, deprecated)
   public func listAwsNodePoolsByItems(
     request: ListAwsNodePoolsRequest, options: GoogleGax.RequestOptions
@@ -1141,6 +1670,18 @@ extension Clients.AwsClustersProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resources on a given
+  /// [AwsCluster][google.cloud.gkemulticloud.v1.AwsCluster].
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsCluster]: <doc:AwsCluster>
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  ///
+  /// @Snippet(path: "AwsClusters_ListAwsNodePools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listAwsNodePools(request:options:)``
   @available(*, deprecated)
   public func listAwsNodePoolsByItems(
     parent: Swift.String,
@@ -1151,6 +1692,21 @@ extension Clients.AwsClustersProtocol {
     return self.listAwsNodePoolsByItems(request: request)
   }
 
+  /// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resource.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteAwsNodePool(request:options:)``
   @available(*, deprecated)
   public func deleteAwsNodePool(request: DeleteAwsNodePoolRequest) async throws
     -> GoogleLongRunning.Operation
@@ -1165,6 +1721,21 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resource.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAwsNodePoolPollingUntilDone(request: DeleteAwsNodePoolRequest) async throws {
     try await self.deleteAwsNodePoolPollingUntilDone(request: request, options: .init())
@@ -1177,6 +1748,21 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific [AwsNodePool][google.cloud.gkemulticloud.v1.AwsNodePool]
+  /// resource.
+  ///
+  /// If successful, the response contains a newly created
+  /// [Operation][google.longrunning.Operation] resource that can be
+  /// described to track the status of the operation.
+  ///
+  /// [google.cloud.gkemulticloud.v1.AwsNodePool]: <doc:AwsNodePool>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteAwsNodePool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteAwsNodePoolPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAwsNodePoolPollingUntilDone(
     name: Swift.String,
@@ -1187,6 +1773,17 @@ extension Clients.AwsClustersProtocol {
     try await self.deleteAwsNodePoolPollingUntilDone(request: request)
   }
 
+  /// Gets the OIDC discovery document for the cluster.
+  /// See the
+  /// [OpenID Connect Discovery 1.0
+  /// specification](https://openid.net/specs/openid-connect-discovery-1_0.html)
+  /// for details.
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsOpenIdConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsOpenIdConfig(request:options:)``
   @available(*, deprecated)
   public func getAwsOpenIdConfig(request: GetAwsOpenIdConfigRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.AwsOpenIdConfig
@@ -1201,6 +1798,14 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the public component of the cluster signing keys in
+  /// JSON Web Key format.
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsJsonWebKeys")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsJsonWebKeys(request:options:)``
   @available(*, deprecated)
   public func getAwsJsonWebKeys(request: GetAwsJsonWebKeysRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.AwsJsonWebKeys
@@ -1215,6 +1820,14 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information, such as supported AWS regions and Kubernetes
+  /// versions, on a given Google Cloud location.
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsServerConfig(request:options:)``
   @available(*, deprecated)
   public func getAwsServerConfig(request: GetAwsServerConfigRequest) async throws
     -> GoogleCloudGKEMultiCloudV1.AwsServerConfig
@@ -1229,6 +1842,14 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information, such as supported AWS regions and Kubernetes
+  /// versions, on a given Google Cloud location.
+  ///
+  /// @Snippet(path: "AwsClusters_GetAwsServerConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/getAwsServerConfig(request:options:)``
   @available(*, deprecated)
   public func getAwsServerConfig(
     name: Swift.String,
@@ -1239,6 +1860,15 @@ extension Clients.AwsClustersProtocol {
     return try await self.getAwsServerConfig(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1251,6 +1881,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1262,6 +1901,10 @@ extension Clients.AwsClustersProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AwsClusters_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1275,6 +1918,15 @@ extension Clients.AwsClustersProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1286,6 +1938,9 @@ extension Clients.AwsClustersProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1298,6 +1953,9 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1307,6 +1965,15 @@ extension Clients.AwsClustersProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1317,6 +1984,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1326,6 +2002,15 @@ extension Clients.AwsClustersProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1336,6 +2021,15 @@ extension Clients.AwsClustersProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AwsClusters_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AwsClustersClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -35,6 +35,10 @@ import Foundation
 /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
 ///
 /// @Snippet(path: "HsmManagementQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/HsmManagementProtocol``
 public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable {
   let inner: any Clients.HsmManagementStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -58,6 +62,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSingleTenantHsmInstances(request:)``
+  /// - ``listSingleTenantHsmInstancesByItems(parent:)``
+  /// - ``listSingleTenantHsmInstancesByItems(request:)``
+  /// - ``listSingleTenantHsmInstancesByItems(request:options:)``
   public func listSingleTenantHsmInstances(
     request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse {
@@ -70,6 +81,11 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_GetSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSingleTenantHsmInstance(name:)``
+  /// - ``getSingleTenantHsmInstance(request:)``
   public func getSingleTenantHsmInstance(
     request: GetSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstance {
@@ -85,6 +101,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSingleTenantHsmInstance(request:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(parent:singleTenantHsmInstance:singleTenantHsmInstanceId:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(request:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(request:options:)``
   public func createSingleTenantHsmInstance(
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -100,6 +123,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSingleTenantHsmInstance(request:)``
+  /// - ``createSingleTenantHsmInstance(request:options:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(parent:singleTenantHsmInstance:singleTenantHsmInstanceId:)``
+  /// - ``createSingleTenantHsmInstancePollingUntilDone(request:)``
   public func createSingleTenantHsmInstancePollingUntilDone(
     request: CreateSingleTenantHsmInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> SingleTenantHsmInstance {
@@ -135,6 +165,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSingleTenantHsmInstanceProposal(request:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(parent:singleTenantHsmInstanceProposal:singleTenantHsmInstanceProposalId:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
   public func createSingleTenantHsmInstanceProposal(
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +187,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSingleTenantHsmInstanceProposal(request:)``
+  /// - ``createSingleTenantHsmInstanceProposal(request:options:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(parent:singleTenantHsmInstanceProposal:singleTenantHsmInstanceProposalId:)``
+  /// - ``createSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
   public func createSingleTenantHsmInstanceProposalPollingUntilDone(
     request: CreateSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> SingleTenantHsmInstanceProposal {
@@ -190,6 +234,11 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.PENDING]: <doc:SingleTenantHsmInstanceProposal/State/pending>
   ///
   /// @Snippet(path: "HsmManagement_ApproveSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``approveSingleTenantHsmInstanceProposal(name:quorumReply:)``
+  /// - ``approveSingleTenantHsmInstanceProposal(request:)``
   public func approveSingleTenantHsmInstanceProposal(
     request: ApproveSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse {
@@ -209,6 +258,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]: <doc:SingleTenantHsmInstanceProposal/State/approved>
   ///
   /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executeSingleTenantHsmInstanceProposal(request:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(name:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
   public func executeSingleTenantHsmInstanceProposal(
     request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -228,6 +284,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]: <doc:SingleTenantHsmInstanceProposal/State/approved>
   ///
   /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``executeSingleTenantHsmInstanceProposal(request:)``
+  /// - ``executeSingleTenantHsmInstanceProposal(request:options:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(name:)``
+  /// - ``executeSingleTenantHsmInstanceProposalPollingUntilDone(request:)``
   public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
     request: ExecuteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExecuteSingleTenantHsmInstanceProposalResponse {
@@ -261,6 +324,11 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_GetSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSingleTenantHsmInstanceProposal(name:)``
+  /// - ``getSingleTenantHsmInstanceProposal(request:)``
   public func getSingleTenantHsmInstanceProposal(
     request: GetSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal {
@@ -273,6 +341,13 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSingleTenantHsmInstanceProposals(request:)``
+  /// - ``listSingleTenantHsmInstanceProposalsByItems(parent:)``
+  /// - ``listSingleTenantHsmInstanceProposalsByItems(request:)``
+  /// - ``listSingleTenantHsmInstanceProposalsByItems(request:options:)``
   public func listSingleTenantHsmInstanceProposals(
     request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse {
@@ -285,6 +360,11 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_DeleteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSingleTenantHsmInstanceProposal(name:)``
+  /// - ``deleteSingleTenantHsmInstanceProposal(request:)``
   public func deleteSingleTenantHsmInstanceProposal(
     request: DeleteSingleTenantHsmInstanceProposalRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -311,6 +391,12 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "HsmManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -320,6 +406,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// Gets information about a location.
   ///
   /// @Snippet(path: "HsmManagement_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -333,6 +423,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// errors.
   ///
   /// @Snippet(path: "HsmManagement_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -343,6 +437,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "HsmManagement_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -358,6 +456,10 @@ public final class HsmManagementClient: Clients.HsmManagementProtocol, Sendable 
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "HsmManagement_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -472,6 +574,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.HsmManagementProtocol {
+  /// Lists
+  /// [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstances(request:options:)``
   public func listSingleTenantHsmInstances(request: ListSingleTenantHsmInstancesRequest)
     async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstancesResponse
   {
@@ -484,6 +596,16 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstances(request:options:)``
   public func listSingleTenantHsmInstancesByItems(
     request: ListSingleTenantHsmInstancesRequest
   ) -> some AsyncSequence<SingleTenantHsmInstance, any Swift.Error> & Sendable {
@@ -496,6 +618,10 @@ extension Clients.HsmManagementProtocol {
   /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
   ///
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstances(request:options:)``
   public func listSingleTenantHsmInstancesByItems(
     request: ListSingleTenantHsmInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SingleTenantHsmInstance, any Swift.Error> & Sendable {
@@ -510,6 +636,16 @@ extension Clients.HsmManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstances][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstances(request:options:)``
   public func listSingleTenantHsmInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SingleTenantHsmInstance, any Swift.Error> & Sendable {
@@ -519,6 +655,16 @@ extension Clients.HsmManagementProtocol {
     return self.listSingleTenantHsmInstancesByItems(request: request)
   }
 
+  /// Returns metadata for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_GetSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/getSingleTenantHsmInstance(request:options:)``
   public func getSingleTenantHsmInstance(request: GetSingleTenantHsmInstanceRequest) async throws
     -> GoogleCloudKMSV1.SingleTenantHsmInstance
   {
@@ -531,6 +677,16 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns metadata for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_GetSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/getSingleTenantHsmInstance(request:options:)``
   public func getSingleTenantHsmInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstance {
@@ -540,6 +696,19 @@ extension Clients.HsmManagementProtocol {
     return try await self.getSingleTenantHsmInstance(request: request)
   }
 
+  /// Creates a new
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in a
+  /// given Project and Location. User must create a RegisterTwoFactorAuthKeys
+  /// proposal with this single-tenant HSM instance to finish setup of the
+  /// instance.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/createSingleTenantHsmInstance(request:options:)``
   public func createSingleTenantHsmInstance(request: CreateSingleTenantHsmInstanceRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -552,6 +721,19 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in a
+  /// given Project and Location. User must create a RegisterTwoFactorAuthKeys
+  /// proposal with this single-tenant HSM instance to finish setup of the
+  /// instance.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/createSingleTenantHsmInstancePollingUntilDone(request:options:)``
   public func createSingleTenantHsmInstancePollingUntilDone(
     request: CreateSingleTenantHsmInstanceRequest
   ) async throws -> SingleTenantHsmInstance {
@@ -565,6 +747,19 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance] in a
+  /// given Project and Location. User must create a RegisterTwoFactorAuthKeys
+  /// proposal with this single-tenant HSM instance to finish setup of the
+  /// instance.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  ///
+  /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/createSingleTenantHsmInstancePollingUntilDone(request:options:)``
   public func createSingleTenantHsmInstancePollingUntilDone(
     parent: Swift.String,
     singleTenantHsmInstance: SingleTenantHsmInstance?,
@@ -578,6 +773,19 @@ extension Clients.HsmManagementProtocol {
     return try await self.createSingleTenantHsmInstancePollingUntilDone(request: request)
   }
 
+  /// Creates a new
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/createSingleTenantHsmInstanceProposal(request:options:)``
   public func createSingleTenantHsmInstanceProposal(
     request: CreateSingleTenantHsmInstanceProposalRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -590,6 +798,19 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/createSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
   public func createSingleTenantHsmInstanceProposalPollingUntilDone(
     request: CreateSingleTenantHsmInstanceProposalRequest
   ) async throws -> SingleTenantHsmInstanceProposal {
@@ -603,6 +824,19 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_CreateSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/createSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
   public func createSingleTenantHsmInstanceProposalPollingUntilDone(
     parent: Swift.String,
     singleTenantHsmInstanceProposal: SingleTenantHsmInstanceProposal?,
@@ -616,6 +850,23 @@ extension Clients.HsmManagementProtocol {
     return try await self.createSingleTenantHsmInstanceProposalPollingUntilDone(request: request)
   }
 
+  /// Approves a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]. The
+  /// proposal must be in the
+  /// [PENDING][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.PENDING]
+  /// state.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.PENDING]: <doc:SingleTenantHsmInstanceProposal/State/pending>
+  ///
+  /// @Snippet(path: "HsmManagement_ApproveSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/approveSingleTenantHsmInstanceProposal(request:options:)``
   public func approveSingleTenantHsmInstanceProposal(
     request: ApproveSingleTenantHsmInstanceProposalRequest
   ) async throws -> GoogleCloudKMSV1.ApproveSingleTenantHsmInstanceProposalResponse {
@@ -628,6 +879,23 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Approves a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]. The
+  /// proposal must be in the
+  /// [PENDING][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.PENDING]
+  /// state.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.PENDING]: <doc:SingleTenantHsmInstanceProposal/State/pending>
+  ///
+  /// @Snippet(path: "HsmManagement_ApproveSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/approveSingleTenantHsmInstanceProposal(request:options:)``
   public func approveSingleTenantHsmInstanceProposal(
     name: Swift.String,
     quorumReply: ApproveSingleTenantHsmInstanceProposalRequest.QuorumReply,
@@ -639,6 +907,23 @@ extension Clients.HsmManagementProtocol {
     return try await self.approveSingleTenantHsmInstanceProposal(request: request)
   }
 
+  /// Executes a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]. The
+  /// proposal must be in the
+  /// [APPROVED][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]
+  /// state.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]: <doc:SingleTenantHsmInstanceProposal/State/approved>
+  ///
+  /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/executeSingleTenantHsmInstanceProposal(request:options:)``
   public func executeSingleTenantHsmInstanceProposal(
     request: ExecuteSingleTenantHsmInstanceProposalRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -651,6 +936,23 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Executes a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]. The
+  /// proposal must be in the
+  /// [APPROVED][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]
+  /// state.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]: <doc:SingleTenantHsmInstanceProposal/State/approved>
+  ///
+  /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/executeSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
   public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
     request: ExecuteSingleTenantHsmInstanceProposalRequest
   ) async throws -> ExecuteSingleTenantHsmInstanceProposalResponse {
@@ -664,6 +966,23 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Executes a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal]
+  /// for a given
+  /// [SingleTenantHsmInstance][google.cloud.kms.v1.SingleTenantHsmInstance]. The
+  /// proposal must be in the
+  /// [APPROVED][google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]
+  /// state.
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstance]: <doc:SingleTenantHsmInstance>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal.State.APPROVED]: <doc:SingleTenantHsmInstanceProposal/State/approved>
+  ///
+  /// @Snippet(path: "HsmManagement_ExecuteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/executeSingleTenantHsmInstanceProposalPollingUntilDone(request:options:)``
   public func executeSingleTenantHsmInstanceProposalPollingUntilDone(
     name: Swift.String,
   ) async throws -> ExecuteSingleTenantHsmInstanceProposalResponse {
@@ -673,6 +992,16 @@ extension Clients.HsmManagementProtocol {
     return try await self.executeSingleTenantHsmInstanceProposalPollingUntilDone(request: request)
   }
 
+  /// Returns metadata for a given
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_GetSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/getSingleTenantHsmInstanceProposal(request:options:)``
   public func getSingleTenantHsmInstanceProposal(request: GetSingleTenantHsmInstanceProposalRequest)
     async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal
   {
@@ -685,6 +1014,16 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns metadata for a given
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_GetSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/getSingleTenantHsmInstanceProposal(request:options:)``
   public func getSingleTenantHsmInstanceProposal(
     name: Swift.String,
   ) async throws -> GoogleCloudKMSV1.SingleTenantHsmInstanceProposal {
@@ -694,6 +1033,16 @@ extension Clients.HsmManagementProtocol {
     return try await self.getSingleTenantHsmInstanceProposal(request: request)
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstanceProposals(request:options:)``
   public func listSingleTenantHsmInstanceProposals(
     request: ListSingleTenantHsmInstanceProposalsRequest
   ) async throws -> GoogleCloudKMSV1.ListSingleTenantHsmInstanceProposalsResponse {
@@ -706,6 +1055,16 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstanceProposals(request:options:)``
   public func listSingleTenantHsmInstanceProposalsByItems(
     request: ListSingleTenantHsmInstanceProposalsRequest
   ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, any Swift.Error> & Sendable {
@@ -718,6 +1077,10 @@ extension Clients.HsmManagementProtocol {
   /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
   ///
   /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstanceProposals(request:options:)``
   public func listSingleTenantHsmInstanceProposalsByItems(
     request: ListSingleTenantHsmInstanceProposalsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, any Swift.Error> & Sendable {
@@ -732,6 +1095,16 @@ extension Clients.HsmManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists
+  /// [SingleTenantHsmInstanceProposals][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_ListSingleTenantHsmInstanceProposals")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listSingleTenantHsmInstanceProposals(request:options:)``
   public func listSingleTenantHsmInstanceProposalsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SingleTenantHsmInstanceProposal, any Swift.Error> & Sendable {
@@ -741,6 +1114,16 @@ extension Clients.HsmManagementProtocol {
     return self.listSingleTenantHsmInstanceProposalsByItems(request: request)
   }
 
+  /// Deletes a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_DeleteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/deleteSingleTenantHsmInstanceProposal(request:options:)``
   public func deleteSingleTenantHsmInstanceProposal(
     request: DeleteSingleTenantHsmInstanceProposalRequest
   ) async throws {
@@ -753,6 +1136,16 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a
+  /// [SingleTenantHsmInstanceProposal][google.cloud.kms.v1.SingleTenantHsmInstanceProposal].
+  ///
+  /// [google.cloud.kms.v1.SingleTenantHsmInstanceProposal]: <doc:SingleTenantHsmInstanceProposal>
+  ///
+  /// @Snippet(path: "HsmManagement_DeleteSingleTenantHsmInstanceProposal")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/deleteSingleTenantHsmInstanceProposal(request:options:)``
   public func deleteSingleTenantHsmInstanceProposal(
     name: Swift.String,
   ) async throws {
@@ -762,6 +1155,30 @@ extension Clients.HsmManagementProtocol {
     try await self.deleteSingleTenantHsmInstanceProposal(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "HsmManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -774,6 +1191,30 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "HsmManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -800,6 +1241,10 @@ extension Clients.HsmManagementProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "HsmManagement_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -813,6 +1258,13 @@ extension Clients.HsmManagementProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "HsmManagement_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -825,6 +1277,17 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "HsmManagement_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -837,6 +1300,14 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "HsmManagement_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -849,6 +1320,19 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "HsmManagement_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HsmManagementClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -861,6 +1345,9 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -873,6 +1360,9 @@ extension Clients.HsmManagementProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

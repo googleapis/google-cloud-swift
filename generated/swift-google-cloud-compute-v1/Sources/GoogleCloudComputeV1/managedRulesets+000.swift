@@ -24,6 +24,10 @@
   /// Service for the `managedRulesets` resource.
   ///
   /// @Snippet(path: "managedRulesetsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ManagedRulesetsProtocol``
   public final class ManagedRulesetsClient: Clients.ManagedRulesetsProtocol, Sendable {
     let inner: any Clients.ManagedRulesetsStub
 
@@ -40,6 +44,11 @@
     /// Gets the details for the specified managed ruleset name.
     ///
     /// @Snippet(path: "managedRulesets_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:managedRuleset:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ManagedRulesetsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ManagedRuleset {
@@ -49,6 +58,13 @@
     /// Retrieves the list of all the managed rulesets available.
     ///
     /// @Snippet(path: "managedRulesets_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: ManagedRulesetsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ManagedRulesetList {
@@ -77,6 +93,13 @@
 
   // Default implementations
   extension Clients.ManagedRulesetsProtocol {
+    /// Gets the details for the specified managed ruleset name.
+    ///
+    /// @Snippet(path: "managedRulesets_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ManagedRulesetsClient/get(request:options:)``
     public func `get`(request: ManagedRulesetsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ManagedRuleset
     {
@@ -89,6 +112,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the details for the specified managed ruleset name.
+    ///
+    /// @Snippet(path: "managedRulesets_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ManagedRulesetsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       managedRuleset: Swift.String,
@@ -100,6 +130,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves the list of all the managed rulesets available.
+    ///
+    /// @Snippet(path: "managedRulesets_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ManagedRulesetsClient/list(request:options:)``
     public func list(request: ManagedRulesetsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ManagedRulesetList
     {
@@ -112,6 +149,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all the managed rulesets available.
+    ///
+    /// @Snippet(path: "managedRulesets_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ManagedRulesetsClient/list(request:options:)``
     public func listByItems(
       request: ManagedRulesetsClient.ListRequest
     ) -> some AsyncSequence<ManagedRuleset, any Swift.Error> & Sendable {
@@ -121,6 +165,10 @@
     /// Retrieves the list of all the managed rulesets available.
     ///
     /// @Snippet(path: "managedRulesets_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ManagedRulesetsClient/list(request:options:)``
     public func listByItems(
       request: ManagedRulesetsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ManagedRuleset, any Swift.Error> & Sendable {
@@ -134,6 +182,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all the managed rulesets available.
+    ///
+    /// @Snippet(path: "managedRulesets_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ManagedRulesetsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<ManagedRuleset, any Swift.Error> & Sendable {

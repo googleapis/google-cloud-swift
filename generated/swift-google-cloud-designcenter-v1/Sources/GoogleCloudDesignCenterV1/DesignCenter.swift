@@ -27,6 +27,10 @@ public import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "DesignCenterQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DesignCenterProtocol``
 public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   let inner: any Clients.DesignCenterStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a space.
   ///
   /// @Snippet(path: "DesignCenter_GetSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSpace(name:)``
+  /// - ``getSpace(request:)``
   public func getSpace(
     request: GetSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Space {
@@ -56,6 +65,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists spaces in a given project and location.
   ///
   /// @Snippet(path: "DesignCenter_ListSpaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSpaces(request:)``
+  /// - ``listSpacesByItems(parent:)``
+  /// - ``listSpacesByItems(request:)``
+  /// - ``listSpacesByItems(request:options:)``
   public func listSpaces(
     request: ListSpacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSpacesResponse {
@@ -65,6 +81,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a space.
   ///
   /// @Snippet(path: "DesignCenter_CreateSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSpace(parent:space:spaceId:)``
+  /// - ``createSpace(request:)``
   public func createSpace(
     request: CreateSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Space {
@@ -74,6 +95,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates a space.
   ///
   /// @Snippet(path: "DesignCenter_UpdateSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSpace(request:)``
+  /// - ``updateSpace(space:updateMask:)``
   public func updateSpace(
     request: UpdateSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Space {
@@ -83,6 +109,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a space.
   ///
   /// @Snippet(path: "DesignCenter_DeleteSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSpace(name:)``
+  /// - ``deleteSpace(request:)``
   public func deleteSpace(
     request: DeleteSpaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -92,6 +123,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about an application template.
   ///
   /// @Snippet(path: "DesignCenter_GetApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApplicationTemplate(name:)``
+  /// - ``getApplicationTemplate(request:)``
   public func getApplicationTemplate(
     request: GetApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -101,6 +137,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists application templates in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListApplicationTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApplicationTemplates(request:)``
+  /// - ``listApplicationTemplatesByItems(parent:)``
+  /// - ``listApplicationTemplatesByItems(request:)``
+  /// - ``listApplicationTemplatesByItems(request:options:)``
   public func listApplicationTemplates(
     request: ListApplicationTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplatesResponse {
@@ -110,6 +153,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates an application template.
   ///
   /// @Snippet(path: "DesignCenter_CreateApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplicationTemplate(parent:applicationTemplate:applicationTemplateId:)``
+  /// - ``createApplicationTemplate(request:)``
   public func createApplicationTemplate(
     request: CreateApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -119,6 +167,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates an application template.
   ///
   /// @Snippet(path: "DesignCenter_UpdateApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplicationTemplate(applicationTemplate:updateMask:)``
+  /// - ``updateApplicationTemplate(request:)``
   public func updateApplicationTemplate(
     request: UpdateApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -128,6 +181,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Imports to an existing application template from a given shared template.
   ///
   /// @Snippet(path: "DesignCenter_ImportApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importApplicationTemplate(name:applicationTemplateRevisionUri:)``
+  /// - ``importApplicationTemplate(request:)``
   public func importApplicationTemplate(
     request: ImportApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -137,6 +195,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes an application template.
   ///
   /// @Snippet(path: "DesignCenter_DeleteApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplicationTemplate(name:)``
+  /// - ``deleteApplicationTemplate(request:)``
   public func deleteApplicationTemplate(
     request: DeleteApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -146,6 +209,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Commits an application template to create a new revision.
   ///
   /// @Snippet(path: "DesignCenter_CommitApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``commitApplicationTemplate(name:)``
+  /// - ``commitApplicationTemplate(request:)``
   public func commitApplicationTemplate(
     request: CommitApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision {
@@ -155,6 +223,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Snapshots an application template to create a new revision asynchronously.
   ///
   /// @Snippet(path: "DesignCenter_SnapshotApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``snapshotApplicationTemplate(request:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(name:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(request:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(request:options:)``
   public func snapshotApplicationTemplate(
     request: SnapshotApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,6 +239,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Snapshots an application template to create a new revision asynchronously.
   ///
   /// @Snippet(path: "DesignCenter_SnapshotApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``snapshotApplicationTemplate(request:)``
+  /// - ``snapshotApplicationTemplate(request:options:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(name:)``
+  /// - ``snapshotApplicationTemplatePollingUntilDone(request:)``
   public func snapshotApplicationTemplatePollingUntilDone(
     request: SnapshotApplicationTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> SnapshotApplicationTemplateResponse {
@@ -196,6 +278,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// does NOT download external module sources; it only uses remote sources.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationTemplateIaC(name:)``
+  /// - ``generateApplicationTemplateIaC(request:)``
   public func generateApplicationTemplateIaC(
     request: GenerateApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateIaCResponse {
@@ -207,6 +294,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
   ///
   /// @Snippet(path: "DesignCenter_ExportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportApplicationTemplateIaC(request:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(request:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(request:options:)``
   public func exportApplicationTemplateIaC(
     request: ExportApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,6 +312,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
   ///
   /// @Snippet(path: "DesignCenter_ExportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportApplicationTemplateIaC(request:)``
+  /// - ``exportApplicationTemplateIaC(request:options:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationTemplateIaCPollingUntilDone(request:)``
   public func exportApplicationTemplateIaCPollingUntilDone(
     request: ExportApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportApplicationTemplateIaCResponse {
@@ -250,6 +351,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// does NOT download external module sources; it only uses remote sources.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationTemplateRevisionIaC(name:)``
+  /// - ``generateApplicationTemplateRevisionIaC(request:)``
   public func generateApplicationTemplateRevisionIaC(
     request: GenerateApplicationTemplateRevisionIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateRevisionIaCResponse {
@@ -261,6 +367,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
   ///
   /// @Snippet(path: "DesignCenter_ExportApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportApplicationTemplateRevisionIaC(request:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:options:)``
   public func exportApplicationTemplateRevisionIaC(
     request: ExportApplicationTemplateRevisionIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -272,6 +385,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
   ///
   /// @Snippet(path: "DesignCenter_ExportApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportApplicationTemplateRevisionIaC(request:)``
+  /// - ``exportApplicationTemplateRevisionIaC(request:options:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationTemplateRevisionIaCPollingUntilDone(request:)``
   public func exportApplicationTemplateRevisionIaCPollingUntilDone(
     request: ExportApplicationTemplateRevisionIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportApplicationTemplateRevisionIaCResponse {
@@ -302,6 +422,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a Component.
   ///
   /// @Snippet(path: "DesignCenter_GetComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getComponent(name:)``
+  /// - ``getComponent(request:)``
   public func getComponent(
     request: GetComponentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -311,6 +436,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists components in an application template.
   ///
   /// @Snippet(path: "DesignCenter_ListComponents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listComponents(request:)``
+  /// - ``listComponentsByItems(parent:)``
+  /// - ``listComponentsByItems(request:)``
+  /// - ``listComponentsByItems(request:options:)``
   public func listComponents(
     request: ListComponentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListComponentsResponse {
@@ -320,6 +452,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a component.
   ///
   /// @Snippet(path: "DesignCenter_CreateComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createComponent(parent:component:componentId:)``
+  /// - ``createComponent(request:)``
   public func createComponent(
     request: CreateComponentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -329,6 +466,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates a component.
   ///
   /// @Snippet(path: "DesignCenter_UpdateComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateComponent(component:updateMask:)``
+  /// - ``updateComponent(request:)``
   public func updateComponent(
     request: UpdateComponentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -338,6 +480,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a component.
   ///
   /// @Snippet(path: "DesignCenter_DeleteComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteComponent(name:)``
+  /// - ``deleteComponent(request:)``
   public func deleteComponent(
     request: DeleteComponentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -347,6 +494,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a connection.
   ///
   /// @Snippet(path: "DesignCenter_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getConnection(name:)``
+  /// - ``getConnection(request:)``
   public func getConnection(
     request: GetConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -356,6 +508,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists connections in an application template.
   ///
   /// @Snippet(path: "DesignCenter_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listConnections(request:)``
+  /// - ``listConnectionsByItems(parent:)``
+  /// - ``listConnectionsByItems(request:)``
+  /// - ``listConnectionsByItems(request:options:)``
   public func listConnections(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListConnectionsResponse {
@@ -365,6 +524,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a connection.
   ///
   /// @Snippet(path: "DesignCenter_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createConnection(parent:connection:connectionId:)``
+  /// - ``createConnection(request:)``
   public func createConnection(
     request: CreateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -374,6 +538,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates a connection.
   ///
   /// @Snippet(path: "DesignCenter_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateConnection(connection:updateMask:)``
+  /// - ``updateConnection(request:)``
   public func updateConnection(
     request: UpdateConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -383,6 +552,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a connection.
   ///
   /// @Snippet(path: "DesignCenter_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteConnection(name:)``
+  /// - ``deleteConnection(request:)``
   public func deleteConnection(
     request: DeleteConnectionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -392,6 +566,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about an application template revision.
   ///
   /// @Snippet(path: "DesignCenter_GetApplicationTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApplicationTemplateRevision(name:)``
+  /// - ``getApplicationTemplateRevision(request:)``
   public func getApplicationTemplateRevision(
     request: GetApplicationTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision {
@@ -401,6 +580,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists application template revisions in a given application template.
   ///
   /// @Snippet(path: "DesignCenter_ListApplicationTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApplicationTemplateRevisions(request:)``
+  /// - ``listApplicationTemplateRevisionsByItems(parent:)``
+  /// - ``listApplicationTemplateRevisionsByItems(request:)``
+  /// - ``listApplicationTemplateRevisionsByItems(request:options:)``
   public func listApplicationTemplateRevisions(
     request: ListApplicationTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplateRevisionsResponse {
@@ -410,6 +596,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes an application template revision.
   ///
   /// @Snippet(path: "DesignCenter_DeleteApplicationTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplicationTemplateRevision(name:)``
+  /// - ``deleteApplicationTemplateRevision(request:)``
   public func deleteApplicationTemplateRevision(
     request: DeleteApplicationTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -419,6 +610,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a catalog.
   ///
   /// @Snippet(path: "DesignCenter_GetCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCatalog(name:)``
+  /// - ``getCatalog(request:)``
   public func getCatalog(
     request: GetCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -428,6 +624,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists catalogs in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCatalogs(request:)``
+  /// - ``listCatalogsByItems(parent:)``
+  /// - ``listCatalogsByItems(request:)``
+  /// - ``listCatalogsByItems(request:options:)``
   public func listCatalogs(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListCatalogsResponse {
@@ -437,6 +640,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a catalog.
   ///
   /// @Snippet(path: "DesignCenter_CreateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCatalog(parent:catalog:catalogId:)``
+  /// - ``createCatalog(request:)``
   public func createCatalog(
     request: CreateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -446,6 +654,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates a catalog.
   ///
   /// @Snippet(path: "DesignCenter_UpdateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCatalog(catalog:updateMask:)``
+  /// - ``updateCatalog(request:)``
   public func updateCatalog(
     request: UpdateCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -455,6 +668,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a catalog.
   ///
   /// @Snippet(path: "DesignCenter_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalog(request:)``
+  /// - ``deleteCatalogPollingUntilDone(name:)``
+  /// - ``deleteCatalogPollingUntilDone(request:)``
+  /// - ``deleteCatalogPollingUntilDone(request:options:)``
   public func deleteCatalog(
     request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -464,6 +684,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a catalog.
   ///
   /// @Snippet(path: "DesignCenter_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalog(request:)``
+  /// - ``deleteCatalog(request:options:)``
+  /// - ``deleteCatalogPollingUntilDone(name:)``
+  /// - ``deleteCatalogPollingUntilDone(request:)``
   public func deleteCatalogPollingUntilDone(
     request: DeleteCatalogRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -491,6 +718,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Adds a template to a catalog.
   ///
   /// @Snippet(path: "DesignCenter_CreateCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCatalogTemplate(parent:catalogTemplate:catalogTemplateId:)``
+  /// - ``createCatalogTemplate(request:)``
   public func createCatalogTemplate(
     request: CreateCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -500,6 +732,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets a catalog template.
   ///
   /// @Snippet(path: "DesignCenter_GetCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCatalogTemplate(name:)``
+  /// - ``getCatalogTemplate(request:)``
   public func getCatalogTemplate(
     request: GetCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -509,6 +746,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists catalog templates.
   ///
   /// @Snippet(path: "DesignCenter_ListCatalogTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCatalogTemplates(request:)``
+  /// - ``listCatalogTemplatesByItems(parent:)``
+  /// - ``listCatalogTemplatesByItems(request:)``
+  /// - ``listCatalogTemplatesByItems(request:options:)``
   public func listCatalogTemplates(
     request: ListCatalogTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListCatalogTemplatesResponse {
@@ -518,6 +762,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates a catalog template resource.
   ///
   /// @Snippet(path: "DesignCenter_UpdateCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCatalogTemplate(catalogTemplate:updateMask:)``
+  /// - ``updateCatalogTemplate(request:)``
   public func updateCatalogTemplate(
     request: UpdateCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -527,6 +776,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a catalog template.
   ///
   /// @Snippet(path: "DesignCenter_DeleteCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalogTemplate(request:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(name:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(request:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(request:options:)``
   public func deleteCatalogTemplate(
     request: DeleteCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -536,6 +792,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a catalog template.
   ///
   /// @Snippet(path: "DesignCenter_DeleteCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalogTemplate(request:)``
+  /// - ``deleteCatalogTemplate(request:options:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(name:)``
+  /// - ``deleteCatalogTemplatePollingUntilDone(request:)``
   public func deleteCatalogTemplatePollingUntilDone(
     request: DeleteCatalogTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -563,6 +826,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Shares a catalog from one space to another space.
   ///
   /// @Snippet(path: "DesignCenter_CreateShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createShare(request:)``
+  /// - ``createSharePollingUntilDone(parent:share:shareId:)``
+  /// - ``createSharePollingUntilDone(request:)``
+  /// - ``createSharePollingUntilDone(request:options:)``
   public func createShare(
     request: CreateShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -572,6 +842,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Shares a catalog from one space to another space.
   ///
   /// @Snippet(path: "DesignCenter_CreateShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createShare(request:)``
+  /// - ``createShare(request:options:)``
+  /// - ``createSharePollingUntilDone(parent:share:shareId:)``
+  /// - ``createSharePollingUntilDone(request:)``
   public func createSharePollingUntilDone(
     request: CreateShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> Share {
@@ -599,6 +876,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists catalog share objects for the space.
   ///
   /// @Snippet(path: "DesignCenter_ListShares")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listShares(request:)``
+  /// - ``listSharesByItems(parent:)``
+  /// - ``listSharesByItems(request:)``
+  /// - ``listSharesByItems(request:options:)``
   public func listShares(
     request: ListSharesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSharesResponse {
@@ -608,6 +892,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Get catalog share object for the space.
   ///
   /// @Snippet(path: "DesignCenter_GetShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getShare(name:)``
+  /// - ``getShare(request:)``
   public func getShare(
     request: GetShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Share {
@@ -617,6 +906,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a catalog share.
   ///
   /// @Snippet(path: "DesignCenter_DeleteShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteShare(request:)``
+  /// - ``deleteSharePollingUntilDone(name:)``
+  /// - ``deleteSharePollingUntilDone(request:)``
+  /// - ``deleteSharePollingUntilDone(request:options:)``
   public func deleteShare(
     request: DeleteShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -626,6 +922,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a catalog share.
   ///
   /// @Snippet(path: "DesignCenter_DeleteShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteShare(request:)``
+  /// - ``deleteShare(request:options:)``
+  /// - ``deleteSharePollingUntilDone(name:)``
+  /// - ``deleteSharePollingUntilDone(request:)``
   public func deleteSharePollingUntilDone(
     request: DeleteShareRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -654,6 +957,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// reflect the most recent changes to the catalog.
   ///
   /// @Snippet(path: "DesignCenter_SyncShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``syncShare(request:)``
+  /// - ``syncSharePollingUntilDone(name:)``
+  /// - ``syncSharePollingUntilDone(request:)``
+  /// - ``syncSharePollingUntilDone(request:options:)``
   public func syncShare(
     request: SyncShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -664,6 +974,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// reflect the most recent changes to the catalog.
   ///
   /// @Snippet(path: "DesignCenter_SyncShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``syncShare(request:)``
+  /// - ``syncShare(request:options:)``
+  /// - ``syncSharePollingUntilDone(name:)``
+  /// - ``syncSharePollingUntilDone(request:)``
   public func syncSharePollingUntilDone(
     request: SyncShareRequest, options: GoogleGax.RequestOptions
   ) async throws -> Share {
@@ -691,6 +1008,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a shared template.
   ///
   /// @Snippet(path: "DesignCenter_GetSharedTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSharedTemplate(name:)``
+  /// - ``getSharedTemplate(request:)``
   public func getSharedTemplate(
     request: GetSharedTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.SharedTemplate {
@@ -700,6 +1022,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists shared templates in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListSharedTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSharedTemplates(request:)``
+  /// - ``listSharedTemplatesByItems(parent:)``
+  /// - ``listSharedTemplatesByItems(request:)``
+  /// - ``listSharedTemplatesByItems(request:options:)``
   public func listSharedTemplates(
     request: ListSharedTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSharedTemplatesResponse {
@@ -709,6 +1038,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a shared template revision.
   ///
   /// @Snippet(path: "DesignCenter_GetSharedTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSharedTemplateRevision(name:)``
+  /// - ``getSharedTemplateRevision(request:)``
   public func getSharedTemplateRevision(
     request: GetSharedTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.SharedTemplateRevision {
@@ -718,6 +1052,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists shared template revisions in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListSharedTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSharedTemplateRevisions(request:)``
+  /// - ``listSharedTemplateRevisionsByItems(parent:)``
+  /// - ``listSharedTemplateRevisionsByItems(request:)``
+  /// - ``listSharedTemplateRevisionsByItems(request:options:)``
   public func listSharedTemplateRevisions(
     request: ListSharedTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListSharedTemplateRevisionsResponse {
@@ -727,6 +1068,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a template revision.
   ///
   /// @Snippet(path: "DesignCenter_CreateCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCatalogTemplateRevision(request:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(parent:catalogTemplateRevision:catalogTemplateRevisionId:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(request:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(request:options:)``
   public func createCatalogTemplateRevision(
     request: CreateCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -736,6 +1084,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a template revision.
   ///
   /// @Snippet(path: "DesignCenter_CreateCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCatalogTemplateRevision(request:)``
+  /// - ``createCatalogTemplateRevision(request:options:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(parent:catalogTemplateRevision:catalogTemplateRevisionId:)``
+  /// - ``createCatalogTemplateRevisionPollingUntilDone(request:)``
   public func createCatalogTemplateRevisionPollingUntilDone(
     request: CreateCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> CatalogTemplateRevision {
@@ -765,6 +1120,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about a template revision.
   ///
   /// @Snippet(path: "DesignCenter_GetCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCatalogTemplateRevision(name:)``
+  /// - ``getCatalogTemplateRevision(request:)``
   public func getCatalogTemplateRevision(
     request: GetCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplateRevision {
@@ -774,6 +1134,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists template revisions.
   ///
   /// @Snippet(path: "DesignCenter_ListCatalogTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCatalogTemplateRevisions(request:)``
+  /// - ``listCatalogTemplateRevisionsByItems(parent:)``
+  /// - ``listCatalogTemplateRevisionsByItems(request:)``
+  /// - ``listCatalogTemplateRevisionsByItems(request:options:)``
   public func listCatalogTemplateRevisions(
     request: ListCatalogTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListCatalogTemplateRevisionsResponse {
@@ -783,6 +1150,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a template revision.
   ///
   /// @Snippet(path: "DesignCenter_DeleteCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalogTemplateRevision(request:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(name:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:options:)``
   public func deleteCatalogTemplateRevision(
     request: DeleteCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -792,6 +1166,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a template revision.
   ///
   /// @Snippet(path: "DesignCenter_DeleteCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCatalogTemplateRevision(request:)``
+  /// - ``deleteCatalogTemplateRevision(request:options:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(name:)``
+  /// - ``deleteCatalogTemplateRevisionPollingUntilDone(request:)``
   public func deleteCatalogTemplateRevisionPollingUntilDone(
     request: DeleteCatalogTemplateRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -819,6 +1200,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates an application.
   ///
   /// @Snippet(path: "DesignCenter_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createApplication(parent:application:applicationId:)``
+  /// - ``createApplication(request:)``
   public func createApplication(
     request: CreateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -828,6 +1214,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets details about an application.
   ///
   /// @Snippet(path: "DesignCenter_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApplication(name:)``
+  /// - ``getApplication(request:)``
   public func getApplication(
     request: GetApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -837,6 +1228,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists applications in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApplications(request:)``
+  /// - ``listApplicationsByItems(parent:)``
+  /// - ``listApplicationsByItems(request:)``
+  /// - ``listApplicationsByItems(request:options:)``
   public func listApplications(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationsResponse {
@@ -846,6 +1244,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates an application.
   ///
   /// @Snippet(path: "DesignCenter_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateApplication(application:updateMask:)``
+  /// - ``updateApplication(request:)``
   public func updateApplication(
     request: UpdateApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -855,6 +1258,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes an application.
   ///
   /// @Snippet(path: "DesignCenter_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplication(request:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
+  /// - ``deleteApplicationPollingUntilDone(request:)``
+  /// - ``deleteApplicationPollingUntilDone(request:options:)``
   public func deleteApplication(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -864,6 +1274,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes an application.
   ///
   /// @Snippet(path: "DesignCenter_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteApplication(request:)``
+  /// - ``deleteApplication(request:options:)``
+  /// - ``deleteApplicationPollingUntilDone(name:)``
+  /// - ``deleteApplicationPollingUntilDone(request:)``
   public func deleteApplicationPollingUntilDone(
     request: DeleteApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -891,6 +1308,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deploys an application.
   ///
   /// @Snippet(path: "DesignCenter_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deployApplication(request:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
+  /// - ``deployApplicationPollingUntilDone(request:)``
+  /// - ``deployApplicationPollingUntilDone(request:options:)``
   public func deployApplication(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -900,6 +1324,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deploys an application.
   ///
   /// @Snippet(path: "DesignCenter_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deployApplication(request:)``
+  /// - ``deployApplication(request:options:)``
+  /// - ``deployApplicationPollingUntilDone(name:)``
+  /// - ``deployApplicationPollingUntilDone(request:)``
   public func deployApplicationPollingUntilDone(
     request: DeployApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> DeployApplicationResponse {
@@ -929,6 +1360,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Previews deployment of an application.
   ///
   /// @Snippet(path: "DesignCenter_PreviewApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``previewApplication(request:)``
+  /// - ``previewApplicationPollingUntilDone(name:)``
+  /// - ``previewApplicationPollingUntilDone(request:)``
+  /// - ``previewApplicationPollingUntilDone(request:options:)``
   public func previewApplication(
     request: PreviewApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -938,6 +1376,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Previews deployment of an application.
   ///
   /// @Snippet(path: "DesignCenter_PreviewApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``previewApplication(request:)``
+  /// - ``previewApplication(request:options:)``
+  /// - ``previewApplicationPollingUntilDone(name:)``
+  /// - ``previewApplicationPollingUntilDone(request:)``
   public func previewApplicationPollingUntilDone(
     request: PreviewApplicationRequest, options: GoogleGax.RequestOptions
   ) async throws -> PreviewApplicationResponse {
@@ -967,6 +1412,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Fetches the assessment report of a deployed application if present.
   ///
   /// @Snippet(path: "DesignCenter_FetchApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchApplicationAssessmentReport(name:)``
+  /// - ``fetchApplicationAssessmentReport(request:)``
   public func fetchApplicationAssessmentReport(
     request: FetchApplicationAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.FetchApplicationAssessmentReportResponse {
@@ -976,6 +1426,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate Assessment Reports of an application.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationAssessmentReport(request:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(name:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(request:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(request:options:)``
   public func generateApplicationAssessmentReport(
     request: GenerateApplicationAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -985,6 +1442,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate Assessment Reports of an application.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationAssessmentReport(request:)``
+  /// - ``generateApplicationAssessmentReport(request:options:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(name:)``
+  /// - ``generateApplicationAssessmentReportPollingUntilDone(request:)``
   public func generateApplicationAssessmentReportPollingUntilDone(
     request: GenerateApplicationAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateApplicationAssessmentReportResponse {
@@ -1015,6 +1479,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate Assessment Reports of an application template.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationTemplateAssessmentReport(request:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(name:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:options:)``
   public func generateApplicationTemplateAssessmentReport(
     request: GenerateApplicationTemplateAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1025,6 +1496,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate Assessment Reports of an application template.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationTemplateAssessmentReport(request:)``
+  /// - ``generateApplicationTemplateAssessmentReport(request:options:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(name:)``
+  /// - ``generateApplicationTemplateAssessmentReportPollingUntilDone(request:)``
   public func generateApplicationTemplateAssessmentReportPollingUntilDone(
     request: GenerateApplicationTemplateAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateApplicationTemplateAssessmentReportResponse {
@@ -1059,6 +1537,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate a best practice report for a given Terraform plan.
   ///
   /// @Snippet(path: "DesignCenter_GenerateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAssessmentReport(request:)``
+  /// - ``generateAssessmentReportPollingUntilDone(request:)``
+  /// - ``generateAssessmentReportPollingUntilDone(request:options:)``
+  /// - ``generateAssessmentReportPollingUntilDone(spaceName:)``
   @available(*, deprecated)
   public func generateAssessmentReport(
     request: GenerateAssessmentReportRequest, options: GoogleGax.RequestOptions
@@ -1071,6 +1556,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate a best practice report for a given Terraform plan.
   ///
   /// @Snippet(path: "DesignCenter_GenerateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateAssessmentReport(request:)``
+  /// - ``generateAssessmentReport(request:options:)``
+  /// - ``generateAssessmentReportPollingUntilDone(request:)``
+  /// - ``generateAssessmentReportPollingUntilDone(spaceName:)``
   @available(*, deprecated)
   public func generateAssessmentReportPollingUntilDone(
     request: GenerateAssessmentReportRequest, options: GoogleGax.RequestOptions
@@ -1101,6 +1593,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate a Terraform plan assessment report for a given Terraform plan.
   ///
   /// @Snippet(path: "DesignCenter_GenerateTerraformPlanAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateTerraformPlanAssessmentReport(request:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(name:terraformPlan:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:options:)``
   public func generateTerraformPlanAssessmentReport(
     request: GenerateTerraformPlanAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1110,6 +1609,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generate a Terraform plan assessment report for a given Terraform plan.
   ///
   /// @Snippet(path: "DesignCenter_GenerateTerraformPlanAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateTerraformPlanAssessmentReport(request:)``
+  /// - ``generateTerraformPlanAssessmentReport(request:options:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(name:terraformPlan:)``
+  /// - ``generateTerraformPlanAssessmentReportPollingUntilDone(request:)``
   public func generateTerraformPlanAssessmentReportPollingUntilDone(
     request: GenerateTerraformPlanAssessmentReportRequest, options: GoogleGax.RequestOptions
   ) async throws -> GenerateTerraformPlanAssessmentReportResponse {
@@ -1141,6 +1647,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Get a policy for an application template.
   ///
   /// @Snippet(path: "DesignCenter_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -1150,6 +1661,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Lists policies for an application template.
   ///
   /// @Snippet(path: "DesignCenter_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPolicies(request:)``
+  /// - ``listPoliciesByItems(parent:)``
+  /// - ``listPoliciesByItems(request:)``
+  /// - ``listPoliciesByItems(request:options:)``
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListPoliciesResponse {
@@ -1159,6 +1677,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Creates a policy for an application template.
   ///
   /// @Snippet(path: "DesignCenter_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPolicy(parent:policy:policyId:)``
+  /// - ``createPolicy(request:)``
   public func createPolicy(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -1168,6 +1691,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Updates a policy.
   ///
   /// @Snippet(path: "DesignCenter_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicy(policy:updateMask:)``
+  /// - ``updatePolicy(request:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -1177,6 +1705,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Deletes a policy.
   ///
   /// @Snippet(path: "DesignCenter_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePolicy(name:)``
+  /// - ``deletePolicy(request:)``
   public func deletePolicy(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1186,6 +1719,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Fetches all frameworks for assessment report.
   ///
   /// @Snippet(path: "DesignCenter_FetchFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchFrameworks(request:)``
+  /// - ``fetchFrameworksByItems(parent:)``
+  /// - ``fetchFrameworksByItems(request:)``
+  /// - ``fetchFrameworksByItems(request:options:)``
   public func fetchFrameworks(
     request: FetchFrameworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.FetchFrameworksResponse {
@@ -1195,6 +1735,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Generates Terraform files for an application.
   ///
   /// @Snippet(path: "DesignCenter_GenerateApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateApplicationIaC(name:)``
+  /// - ``generateApplicationIaC(request:)``
   public func generateApplicationIaC(
     request: GenerateApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationIaCResponse {
@@ -1204,6 +1749,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Exports Terraform files for an application asynchronously.
   ///
   /// @Snippet(path: "DesignCenter_ExportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportApplicationIaC(request:)``
+  /// - ``exportApplicationIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationIaCPollingUntilDone(request:)``
+  /// - ``exportApplicationIaCPollingUntilDone(request:options:)``
   public func exportApplicationIaC(
     request: ExportApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1213,6 +1765,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Exports Terraform files for an application asynchronously.
   ///
   /// @Snippet(path: "DesignCenter_ExportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportApplicationIaC(request:)``
+  /// - ``exportApplicationIaC(request:options:)``
+  /// - ``exportApplicationIaCPollingUntilDone(name:)``
+  /// - ``exportApplicationIaCPollingUntilDone(request:)``
   public func exportApplicationIaCPollingUntilDone(
     request: ExportApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportApplicationIaCResponse {
@@ -1242,6 +1801,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Imports IaC for an application template.
   ///
   /// @Snippet(path: "DesignCenter_ImportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importApplicationTemplateIaC(name:)``
+  /// - ``importApplicationTemplateIaC(request:)``
   public func importApplicationTemplateIaC(
     request: ImportApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ImportApplicationTemplateIaCResponse {
@@ -1251,6 +1815,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Ingests IaC for an application template asynchronously.
   ///
   /// @Snippet(path: "DesignCenter_IngestApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ingestApplicationTemplateIaC(request:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(name:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:options:)``
   public func ingestApplicationTemplateIaC(
     request: IngestApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1260,6 +1831,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Ingests IaC for an application template asynchronously.
   ///
   /// @Snippet(path: "DesignCenter_IngestApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ingestApplicationTemplateIaC(request:)``
+  /// - ``ingestApplicationTemplateIaC(request:options:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(name:)``
+  /// - ``ingestApplicationTemplateIaCPollingUntilDone(request:)``
   public func ingestApplicationTemplateIaCPollingUntilDone(
     request: IngestApplicationTemplateIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> IngestApplicationTemplateIaCResponse {
@@ -1289,6 +1867,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Imports IaC for an application resource.
   ///
   /// @Snippet(path: "DesignCenter_ImportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importApplicationIaC(name:)``
+  /// - ``importApplicationIaC(request:)``
   public func importApplicationIaC(
     request: ImportApplicationIaCRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ImportApplicationIaCResponse {
@@ -1299,6 +1882,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// without needing a space.
   ///
   /// @Snippet(path: "DesignCenter_RegisterAppHubApplicationResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``registerAppHubApplicationResources(request:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(parent:apphubApplication:tfstateContent:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:options:)``
   public func registerAppHubApplicationResources(
     request: RegisterAppHubApplicationResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1309,6 +1899,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// without needing a space.
   ///
   /// @Snippet(path: "DesignCenter_RegisterAppHubApplicationResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``registerAppHubApplicationResources(request:)``
+  /// - ``registerAppHubApplicationResources(request:options:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(parent:apphubApplication:tfstateContent:)``
+  /// - ``registerAppHubApplicationResourcesPollingUntilDone(request:)``
   public func registerAppHubApplicationResourcesPollingUntilDone(
     request: RegisterAppHubApplicationResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RegisterAppHubApplicationResourcesResponse {
@@ -1340,6 +1937,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// template.
   ///
   /// @Snippet(path: "DesignCenter_ListApplicationTemplateSystemRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listApplicationTemplateSystemRevisions(request:)``
+  /// - ``listApplicationTemplateSystemRevisionsByItems(parent:)``
+  /// - ``listApplicationTemplateSystemRevisionsByItems(request:)``
+  /// - ``listApplicationTemplateSystemRevisionsByItems(request:options:)``
   public func listApplicationTemplateSystemRevisions(
     request: ListApplicationTemplateSystemRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplateSystemRevisionsResponse {
@@ -1349,6 +1953,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets the given application template system revision.
   ///
   /// @Snippet(path: "DesignCenter_GetApplicationTemplateSystemRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getApplicationTemplateSystemRevision(name:)``
+  /// - ``getApplicationTemplateSystemRevision(request:)``
   public func getApplicationTemplateSystemRevision(
     request: GetApplicationTemplateSystemRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateSystemRevision {
@@ -1368,6 +1977,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// recommendations.
   ///
   /// @Snippet(path: "DesignCenter_RecommendIAMRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``recommendIamroles(request:)``
+  /// - ``recommendIamrolesPollingUntilDone(name:)``
+  /// - ``recommendIamrolesPollingUntilDone(request:)``
+  /// - ``recommendIamrolesPollingUntilDone(request:options:)``
   public func recommendIamroles(
     request: RecommendIAMRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1387,6 +2003,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// recommendations.
   ///
   /// @Snippet(path: "DesignCenter_RecommendIAMRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``recommendIamroles(request:)``
+  /// - ``recommendIamroles(request:options:)``
+  /// - ``recommendIamrolesPollingUntilDone(name:)``
+  /// - ``recommendIamrolesPollingUntilDone(request:)``
   public func recommendIamrolesPollingUntilDone(
     request: RecommendIAMRolesRequest, options: GoogleGax.RequestOptions
   ) async throws -> RecommendIAMRolesResponse {
@@ -1433,6 +2056,12 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DesignCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1442,6 +2071,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "DesignCenter_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1455,6 +2088,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "DesignCenter_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1465,6 +2102,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "DesignCenter_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1480,6 +2121,10 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "DesignCenter_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1491,6 +2136,13 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DesignCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1513,6 +2165,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DesignCenter_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1524,6 +2181,11 @@ public final class DesignCenterClient: Clients.DesignCenterProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DesignCenter_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2089,6 +2751,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DesignCenterProtocol {
+  /// Gets details about a space.
+  ///
+  /// @Snippet(path: "DesignCenter_GetSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getSpace(request:options:)``
   public func getSpace(request: GetSpaceRequest) async throws -> GoogleCloudDesignCenterV1.Space {
     try await self.getSpace(request: request, options: .init())
   }
@@ -2099,6 +2768,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a space.
+  ///
+  /// @Snippet(path: "DesignCenter_GetSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getSpace(request:options:)``
   public func getSpace(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Space {
@@ -2108,6 +2784,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getSpace(request: request)
   }
 
+  /// Lists spaces in a given project and location.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSpaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSpaces(request:options:)``
   public func listSpaces(request: ListSpacesRequest) async throws
     -> GoogleCloudDesignCenterV1.ListSpacesResponse
   {
@@ -2120,6 +2803,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists spaces in a given project and location.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSpaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSpaces(request:options:)``
   public func listSpacesByItems(
     request: ListSpacesRequest
   ) -> some AsyncSequence<Space, any Swift.Error> & Sendable {
@@ -2129,6 +2819,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists spaces in a given project and location.
   ///
   /// @Snippet(path: "DesignCenter_ListSpaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSpaces(request:options:)``
   public func listSpacesByItems(
     request: ListSpacesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Space, any Swift.Error> & Sendable {
@@ -2143,6 +2837,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists spaces in a given project and location.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSpaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSpaces(request:options:)``
   public func listSpacesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Space, any Swift.Error> & Sendable {
@@ -2152,6 +2853,13 @@ extension Clients.DesignCenterProtocol {
     return self.listSpacesByItems(request: request)
   }
 
+  /// Creates a space.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createSpace(request:options:)``
   public func createSpace(request: CreateSpaceRequest) async throws
     -> GoogleCloudDesignCenterV1.Space
   {
@@ -2164,6 +2872,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a space.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createSpace(request:options:)``
   public func createSpace(
     parent: Swift.String,
     space: Space?,
@@ -2177,6 +2892,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createSpace(request: request)
   }
 
+  /// Updates a space.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateSpace(request:options:)``
   public func updateSpace(request: UpdateSpaceRequest) async throws
     -> GoogleCloudDesignCenterV1.Space
   {
@@ -2189,6 +2911,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a space.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateSpace(request:options:)``
   public func updateSpace(
     space: Space?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2200,6 +2929,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateSpace(request: request)
   }
 
+  /// Deletes a space.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteSpace(request:options:)``
   public func deleteSpace(request: DeleteSpaceRequest) async throws {
     try await self.deleteSpace(request: request, options: .init())
   }
@@ -2210,6 +2946,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a space.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteSpace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteSpace(request:options:)``
   public func deleteSpace(
     name: Swift.String,
   ) async throws {
@@ -2219,6 +2962,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteSpace(request: request)
   }
 
+  /// Gets details about an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplicationTemplate(request:options:)``
   public func getApplicationTemplate(request: GetApplicationTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.ApplicationTemplate
   {
@@ -2231,6 +2981,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplicationTemplate(request:options:)``
   public func getApplicationTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplate {
@@ -2240,6 +2997,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getApplicationTemplate(request: request)
   }
 
+  /// Lists application templates in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplates(request:options:)``
   public func listApplicationTemplates(request: ListApplicationTemplatesRequest) async throws
     -> GoogleCloudDesignCenterV1.ListApplicationTemplatesResponse
   {
@@ -2252,6 +3016,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists application templates in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplates(request:options:)``
   public func listApplicationTemplatesByItems(
     request: ListApplicationTemplatesRequest
   ) -> some AsyncSequence<ApplicationTemplate, any Swift.Error> & Sendable {
@@ -2261,6 +3032,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists application templates in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListApplicationTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplates(request:options:)``
   public func listApplicationTemplatesByItems(
     request: ListApplicationTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ApplicationTemplate, any Swift.Error> & Sendable {
@@ -2275,6 +3050,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists application templates in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplates(request:options:)``
   public func listApplicationTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ApplicationTemplate, any Swift.Error> & Sendable {
@@ -2284,6 +3066,13 @@ extension Clients.DesignCenterProtocol {
     return self.listApplicationTemplatesByItems(request: request)
   }
 
+  /// Creates an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createApplicationTemplate(request:options:)``
   public func createApplicationTemplate(request: CreateApplicationTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.ApplicationTemplate
   {
@@ -2296,6 +3085,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createApplicationTemplate(request:options:)``
   public func createApplicationTemplate(
     parent: Swift.String,
     applicationTemplate: ApplicationTemplate?,
@@ -2309,6 +3105,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createApplicationTemplate(request: request)
   }
 
+  /// Updates an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateApplicationTemplate(request:options:)``
   public func updateApplicationTemplate(request: UpdateApplicationTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.ApplicationTemplate
   {
@@ -2321,6 +3124,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateApplicationTemplate(request:options:)``
   public func updateApplicationTemplate(
     applicationTemplate: ApplicationTemplate?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2332,6 +3142,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateApplicationTemplate(request: request)
   }
 
+  /// Imports to an existing application template from a given shared template.
+  ///
+  /// @Snippet(path: "DesignCenter_ImportApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/importApplicationTemplate(request:options:)``
   public func importApplicationTemplate(request: ImportApplicationTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.ApplicationTemplate
   {
@@ -2344,6 +3161,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports to an existing application template from a given shared template.
+  ///
+  /// @Snippet(path: "DesignCenter_ImportApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/importApplicationTemplate(request:options:)``
   public func importApplicationTemplate(
     name: Swift.String,
     applicationTemplateRevisionUri: Swift.String,
@@ -2355,6 +3179,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.importApplicationTemplate(request: request)
   }
 
+  /// Deletes an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplicationTemplate(request:options:)``
   public func deleteApplicationTemplate(request: DeleteApplicationTemplateRequest) async throws {
     try await self.deleteApplicationTemplate(request: request, options: .init())
   }
@@ -2365,6 +3196,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplicationTemplate(request:options:)``
   public func deleteApplicationTemplate(
     name: Swift.String,
   ) async throws {
@@ -2374,6 +3212,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteApplicationTemplate(request: request)
   }
 
+  /// Commits an application template to create a new revision.
+  ///
+  /// @Snippet(path: "DesignCenter_CommitApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/commitApplicationTemplate(request:options:)``
   public func commitApplicationTemplate(request: CommitApplicationTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision
   {
@@ -2386,6 +3231,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Commits an application template to create a new revision.
+  ///
+  /// @Snippet(path: "DesignCenter_CommitApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/commitApplicationTemplate(request:options:)``
   public func commitApplicationTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision {
@@ -2395,6 +3247,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.commitApplicationTemplate(request: request)
   }
 
+  /// Snapshots an application template to create a new revision asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_SnapshotApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/snapshotApplicationTemplate(request:options:)``
   public func snapshotApplicationTemplate(request: SnapshotApplicationTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2407,6 +3266,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Snapshots an application template to create a new revision asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_SnapshotApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/snapshotApplicationTemplatePollingUntilDone(request:options:)``
   public func snapshotApplicationTemplatePollingUntilDone(
     request: SnapshotApplicationTemplateRequest
   ) async throws -> SnapshotApplicationTemplateResponse {
@@ -2420,6 +3286,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Snapshots an application template to create a new revision asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_SnapshotApplicationTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/snapshotApplicationTemplatePollingUntilDone(request:options:)``
   public func snapshotApplicationTemplatePollingUntilDone(
     name: Swift.String,
   ) async throws -> SnapshotApplicationTemplateResponse {
@@ -2429,6 +3302,16 @@ extension Clients.DesignCenterProtocol {
     return try await self.snapshotApplicationTemplatePollingUntilDone(request: request)
   }
 
+  /// Generates Terraform files for an application template.
+  /// This is a SYNCHRONOUS operation and returns the generated IaC
+  /// directly in the response. It
+  /// does NOT download external module sources; it only uses remote sources.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateIaC(request:options:)``
   public func generateApplicationTemplateIaC(request: GenerateApplicationTemplateIaCRequest)
     async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateIaCResponse
   {
@@ -2441,6 +3324,16 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates Terraform files for an application template.
+  /// This is a SYNCHRONOUS operation and returns the generated IaC
+  /// directly in the response. It
+  /// does NOT download external module sources; it only uses remote sources.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateIaC(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -2453,6 +3346,15 @@ extension Clients.DesignCenterProtocol {
     return try await self.generateApplicationTemplateIaC(request: request)
   }
 
+  /// Exports Terraform files for an application template. The generated
+  /// modules can have remote sources or local sources downloaded from remote.
+  /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationTemplateIaC(request:options:)``
   public func exportApplicationTemplateIaC(request: ExportApplicationTemplateIaCRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2465,6 +3367,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports Terraform files for an application template. The generated
+  /// modules can have remote sources or local sources downloaded from remote.
+  /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationTemplateIaCPollingUntilDone(request:options:)``
   public func exportApplicationTemplateIaCPollingUntilDone(
     request: ExportApplicationTemplateIaCRequest
   ) async throws -> ExportApplicationTemplateIaCResponse {
@@ -2478,6 +3389,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports Terraform files for an application template. The generated
+  /// modules can have remote sources or local sources downloaded from remote.
+  /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationTemplateIaCPollingUntilDone(request:options:)``
   public func exportApplicationTemplateIaCPollingUntilDone(
     name: Swift.String,
   ) async throws -> ExportApplicationTemplateIaCResponse {
@@ -2487,6 +3407,16 @@ extension Clients.DesignCenterProtocol {
     return try await self.exportApplicationTemplateIaCPollingUntilDone(request: request)
   }
 
+  /// Generates Terraform files for an application template revision.
+  /// This is a SYNCHRONOUS operation and returns the generated IaC
+  /// directly in the response. It
+  /// does NOT download external module sources; it only uses remote sources.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateRevisionIaC(request:options:)``
   public func generateApplicationTemplateRevisionIaC(
     request: GenerateApplicationTemplateRevisionIaCRequest
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateRevisionIaCResponse {
@@ -2499,6 +3429,16 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates Terraform files for an application template revision.
+  /// This is a SYNCHRONOUS operation and returns the generated IaC
+  /// directly in the response. It
+  /// does NOT download external module sources; it only uses remote sources.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateRevisionIaC(request:options:)``
   public func generateApplicationTemplateRevisionIaC(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.GenerateApplicationTemplateRevisionIaCResponse {
@@ -2508,6 +3448,15 @@ extension Clients.DesignCenterProtocol {
     return try await self.generateApplicationTemplateRevisionIaC(request: request)
   }
 
+  /// Exports Terraform files for an application template revision. The generated
+  /// modules can have remote sources or local sources downloaded from remote.
+  /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationTemplateRevisionIaC(request:options:)``
   public func exportApplicationTemplateRevisionIaC(
     request: ExportApplicationTemplateRevisionIaCRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -2520,6 +3469,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports Terraform files for an application template revision. The generated
+  /// modules can have remote sources or local sources downloaded from remote.
+  /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationTemplateRevisionIaCPollingUntilDone(request:options:)``
   public func exportApplicationTemplateRevisionIaCPollingUntilDone(
     request: ExportApplicationTemplateRevisionIaCRequest
   ) async throws -> ExportApplicationTemplateRevisionIaCResponse {
@@ -2533,6 +3491,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports Terraform files for an application template revision. The generated
+  /// modules can have remote sources or local sources downloaded from remote.
+  /// This is an ASYNCHRONOUS operation that returns a Long Running Operation.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationTemplateRevisionIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationTemplateRevisionIaCPollingUntilDone(request:options:)``
   public func exportApplicationTemplateRevisionIaCPollingUntilDone(
     name: Swift.String,
   ) async throws -> ExportApplicationTemplateRevisionIaCResponse {
@@ -2542,6 +3509,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.exportApplicationTemplateRevisionIaCPollingUntilDone(request: request)
   }
 
+  /// Gets details about a Component.
+  ///
+  /// @Snippet(path: "DesignCenter_GetComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getComponent(request:options:)``
   public func getComponent(request: GetComponentRequest) async throws
     -> GoogleCloudDesignCenterV1.Component
   {
@@ -2554,6 +3528,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a Component.
+  ///
+  /// @Snippet(path: "DesignCenter_GetComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getComponent(request:options:)``
   public func getComponent(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Component {
@@ -2563,6 +3544,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getComponent(request: request)
   }
 
+  /// Lists components in an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListComponents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listComponents(request:options:)``
   public func listComponents(request: ListComponentsRequest) async throws
     -> GoogleCloudDesignCenterV1.ListComponentsResponse
   {
@@ -2575,6 +3563,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists components in an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListComponents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listComponents(request:options:)``
   public func listComponentsByItems(
     request: ListComponentsRequest
   ) -> some AsyncSequence<Component, any Swift.Error> & Sendable {
@@ -2584,6 +3579,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists components in an application template.
   ///
   /// @Snippet(path: "DesignCenter_ListComponents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listComponents(request:options:)``
   public func listComponentsByItems(
     request: ListComponentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Component, any Swift.Error> & Sendable {
@@ -2598,6 +3597,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists components in an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListComponents")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listComponents(request:options:)``
   public func listComponentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Component, any Swift.Error> & Sendable {
@@ -2607,6 +3613,13 @@ extension Clients.DesignCenterProtocol {
     return self.listComponentsByItems(request: request)
   }
 
+  /// Creates a component.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createComponent(request:options:)``
   public func createComponent(request: CreateComponentRequest) async throws
     -> GoogleCloudDesignCenterV1.Component
   {
@@ -2619,6 +3632,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a component.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createComponent(request:options:)``
   public func createComponent(
     parent: Swift.String,
     component: Component?,
@@ -2632,6 +3652,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createComponent(request: request)
   }
 
+  /// Updates a component.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateComponent(request:options:)``
   public func updateComponent(request: UpdateComponentRequest) async throws
     -> GoogleCloudDesignCenterV1.Component
   {
@@ -2644,6 +3671,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a component.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateComponent(request:options:)``
   public func updateComponent(
     component: Component?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2655,6 +3689,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateComponent(request: request)
   }
 
+  /// Deletes a component.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteComponent(request:options:)``
   public func deleteComponent(request: DeleteComponentRequest) async throws {
     try await self.deleteComponent(request: request, options: .init())
   }
@@ -2665,6 +3706,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a component.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteComponent")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteComponent(request:options:)``
   public func deleteComponent(
     name: Swift.String,
   ) async throws {
@@ -2674,6 +3722,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteComponent(request: request)
   }
 
+  /// Gets details about a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getConnection(request:options:)``
   public func getConnection(request: GetConnectionRequest) async throws
     -> GoogleCloudDesignCenterV1.Connection
   {
@@ -2686,6 +3741,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_GetConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getConnection(request:options:)``
   public func getConnection(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Connection {
@@ -2695,6 +3757,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getConnection(request: request)
   }
 
+  /// Lists connections in an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listConnections(request:options:)``
   public func listConnections(request: ListConnectionsRequest) async throws
     -> GoogleCloudDesignCenterV1.ListConnectionsResponse
   {
@@ -2707,6 +3776,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists connections in an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2716,6 +3792,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists connections in an application template.
   ///
   /// @Snippet(path: "DesignCenter_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     request: ListConnectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2730,6 +3810,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists connections in an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListConnections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listConnections(request:options:)``
   public func listConnectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Connection, any Swift.Error> & Sendable {
@@ -2739,6 +3826,13 @@ extension Clients.DesignCenterProtocol {
     return self.listConnectionsByItems(request: request)
   }
 
+  /// Creates a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createConnection(request:options:)``
   public func createConnection(request: CreateConnectionRequest) async throws
     -> GoogleCloudDesignCenterV1.Connection
   {
@@ -2751,6 +3845,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createConnection(request:options:)``
   public func createConnection(
     parent: Swift.String,
     connection: Connection?,
@@ -2764,6 +3865,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createConnection(request: request)
   }
 
+  /// Updates a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateConnection(request:options:)``
   public func updateConnection(request: UpdateConnectionRequest) async throws
     -> GoogleCloudDesignCenterV1.Connection
   {
@@ -2776,6 +3884,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateConnection(request:options:)``
   public func updateConnection(
     connection: Connection?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2787,6 +3902,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateConnection(request: request)
   }
 
+  /// Deletes a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteConnection(request:options:)``
   public func deleteConnection(request: DeleteConnectionRequest) async throws {
     try await self.deleteConnection(request: request, options: .init())
   }
@@ -2797,6 +3919,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a connection.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteConnection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteConnection(request:options:)``
   public func deleteConnection(
     name: Swift.String,
   ) async throws {
@@ -2806,6 +3935,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteConnection(request: request)
   }
 
+  /// Gets details about an application template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplicationTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplicationTemplateRevision(request:options:)``
   public func getApplicationTemplateRevision(request: GetApplicationTemplateRevisionRequest)
     async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision
   {
@@ -2818,6 +3954,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about an application template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplicationTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplicationTemplateRevision(request:options:)``
   public func getApplicationTemplateRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateRevision {
@@ -2827,6 +3970,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getApplicationTemplateRevision(request: request)
   }
 
+  /// Lists application template revisions in a given application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateRevisions(request:options:)``
   public func listApplicationTemplateRevisions(request: ListApplicationTemplateRevisionsRequest)
     async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplateRevisionsResponse
   {
@@ -2839,6 +3989,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists application template revisions in a given application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateRevisions(request:options:)``
   public func listApplicationTemplateRevisionsByItems(
     request: ListApplicationTemplateRevisionsRequest
   ) -> some AsyncSequence<ApplicationTemplateRevision, any Swift.Error> & Sendable {
@@ -2848,6 +4005,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists application template revisions in a given application template.
   ///
   /// @Snippet(path: "DesignCenter_ListApplicationTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateRevisions(request:options:)``
   public func listApplicationTemplateRevisionsByItems(
     request: ListApplicationTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ApplicationTemplateRevision, any Swift.Error> & Sendable {
@@ -2862,6 +4023,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists application template revisions in a given application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateRevisions(request:options:)``
   public func listApplicationTemplateRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ApplicationTemplateRevision, any Swift.Error> & Sendable {
@@ -2871,6 +4039,13 @@ extension Clients.DesignCenterProtocol {
     return self.listApplicationTemplateRevisionsByItems(request: request)
   }
 
+  /// Deletes an application template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplicationTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplicationTemplateRevision(request:options:)``
   public func deleteApplicationTemplateRevision(request: DeleteApplicationTemplateRevisionRequest)
     async throws
   {
@@ -2883,6 +4058,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an application template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplicationTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplicationTemplateRevision(request:options:)``
   public func deleteApplicationTemplateRevision(
     name: Swift.String,
   ) async throws {
@@ -2892,6 +4074,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteApplicationTemplateRevision(request: request)
   }
 
+  /// Gets details about a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_GetCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getCatalog(request:options:)``
   public func getCatalog(request: GetCatalogRequest) async throws
     -> GoogleCloudDesignCenterV1.Catalog
   {
@@ -2904,6 +4093,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_GetCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getCatalog(request:options:)``
   public func getCatalog(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Catalog {
@@ -2913,6 +4109,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getCatalog(request: request)
   }
 
+  /// Lists catalogs in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogs(request:options:)``
   public func listCatalogs(request: ListCatalogsRequest) async throws
     -> GoogleCloudDesignCenterV1.ListCatalogsResponse
   {
@@ -2925,6 +4128,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists catalogs in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     request: ListCatalogsRequest
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -2934,6 +4144,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists catalogs in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     request: ListCatalogsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -2948,6 +4162,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists catalogs in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogs(request:options:)``
   public func listCatalogsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Catalog, any Swift.Error> & Sendable {
@@ -2957,6 +4178,13 @@ extension Clients.DesignCenterProtocol {
     return self.listCatalogsByItems(request: request)
   }
 
+  /// Creates a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalog(request:options:)``
   public func createCatalog(request: CreateCatalogRequest) async throws
     -> GoogleCloudDesignCenterV1.Catalog
   {
@@ -2969,6 +4197,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalog(request:options:)``
   public func createCatalog(
     parent: Swift.String,
     catalog: Catalog?,
@@ -2982,6 +4217,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createCatalog(request: request)
   }
 
+  /// Updates a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateCatalog(request:options:)``
   public func updateCatalog(request: UpdateCatalogRequest) async throws
     -> GoogleCloudDesignCenterV1.Catalog
   {
@@ -2994,6 +4236,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateCatalog(request:options:)``
   public func updateCatalog(
     catalog: Catalog?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3005,6 +4254,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateCatalog(request: request)
   }
 
+  /// Deletes a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalog(request:options:)``
   public func deleteCatalog(request: DeleteCatalogRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3017,6 +4273,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogPollingUntilDone(request:options:)``
   public func deleteCatalogPollingUntilDone(request: DeleteCatalogRequest) async throws {
     try await self.deleteCatalogPollingUntilDone(request: request, options: .init())
   }
@@ -3027,6 +4290,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalog")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogPollingUntilDone(request:options:)``
   public func deleteCatalogPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3036,6 +4306,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteCatalogPollingUntilDone(request: request)
   }
 
+  /// Adds a template to a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalogTemplate(request:options:)``
   public func createCatalogTemplate(request: CreateCatalogTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.CatalogTemplate
   {
@@ -3048,6 +4325,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a template to a catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalogTemplate(request:options:)``
   public func createCatalogTemplate(
     parent: Swift.String,
     catalogTemplate: CatalogTemplate?,
@@ -3061,6 +4345,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createCatalogTemplate(request: request)
   }
 
+  /// Gets a catalog template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getCatalogTemplate(request:options:)``
   public func getCatalogTemplate(request: GetCatalogTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.CatalogTemplate
   {
@@ -3073,6 +4364,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a catalog template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getCatalogTemplate(request:options:)``
   public func getCatalogTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplate {
@@ -3082,6 +4380,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getCatalogTemplate(request: request)
   }
 
+  /// Lists catalog templates.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplates(request:options:)``
   public func listCatalogTemplates(request: ListCatalogTemplatesRequest) async throws
     -> GoogleCloudDesignCenterV1.ListCatalogTemplatesResponse
   {
@@ -3094,6 +4399,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists catalog templates.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplates(request:options:)``
   public func listCatalogTemplatesByItems(
     request: ListCatalogTemplatesRequest
   ) -> some AsyncSequence<CatalogTemplate, any Swift.Error> & Sendable {
@@ -3103,6 +4415,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists catalog templates.
   ///
   /// @Snippet(path: "DesignCenter_ListCatalogTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplates(request:options:)``
   public func listCatalogTemplatesByItems(
     request: ListCatalogTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CatalogTemplate, any Swift.Error> & Sendable {
@@ -3117,6 +4433,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists catalog templates.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplates(request:options:)``
   public func listCatalogTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CatalogTemplate, any Swift.Error> & Sendable {
@@ -3126,6 +4449,13 @@ extension Clients.DesignCenterProtocol {
     return self.listCatalogTemplatesByItems(request: request)
   }
 
+  /// Updates a catalog template resource.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateCatalogTemplate(request:options:)``
   public func updateCatalogTemplate(request: UpdateCatalogTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.CatalogTemplate
   {
@@ -3138,6 +4468,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a catalog template resource.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateCatalogTemplate(request:options:)``
   public func updateCatalogTemplate(
     catalogTemplate: CatalogTemplate?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3149,6 +4486,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateCatalogTemplate(request: request)
   }
 
+  /// Deletes a catalog template.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogTemplate(request:options:)``
   public func deleteCatalogTemplate(request: DeleteCatalogTemplateRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3161,6 +4505,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a catalog template.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogTemplatePollingUntilDone(request:options:)``
   public func deleteCatalogTemplatePollingUntilDone(request: DeleteCatalogTemplateRequest)
     async throws
   {
@@ -3173,6 +4524,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a catalog template.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalogTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogTemplatePollingUntilDone(request:options:)``
   public func deleteCatalogTemplatePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3182,6 +4540,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteCatalogTemplatePollingUntilDone(request: request)
   }
 
+  /// Shares a catalog from one space to another space.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createShare(request:options:)``
   public func createShare(request: CreateShareRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createShare(request: request, options: .init())
   }
@@ -3192,6 +4557,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Shares a catalog from one space to another space.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createSharePollingUntilDone(request:options:)``
   public func createSharePollingUntilDone(request: CreateShareRequest) async throws -> Share {
     return try await self.createSharePollingUntilDone(request: request, options: .init())
   }
@@ -3202,6 +4574,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Shares a catalog from one space to another space.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createSharePollingUntilDone(request:options:)``
   public func createSharePollingUntilDone(
     parent: Swift.String,
     share: Share?,
@@ -3215,6 +4594,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createSharePollingUntilDone(request: request)
   }
 
+  /// Lists catalog share objects for the space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListShares")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listShares(request:options:)``
   public func listShares(request: ListSharesRequest) async throws
     -> GoogleCloudDesignCenterV1.ListSharesResponse
   {
@@ -3227,6 +4613,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists catalog share objects for the space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListShares")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listShares(request:options:)``
   public func listSharesByItems(
     request: ListSharesRequest
   ) -> some AsyncSequence<Share, any Swift.Error> & Sendable {
@@ -3236,6 +4629,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists catalog share objects for the space.
   ///
   /// @Snippet(path: "DesignCenter_ListShares")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listShares(request:options:)``
   public func listSharesByItems(
     request: ListSharesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Share, any Swift.Error> & Sendable {
@@ -3250,6 +4647,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists catalog share objects for the space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListShares")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listShares(request:options:)``
   public func listSharesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Share, any Swift.Error> & Sendable {
@@ -3259,6 +4663,13 @@ extension Clients.DesignCenterProtocol {
     return self.listSharesByItems(request: request)
   }
 
+  /// Get catalog share object for the space.
+  ///
+  /// @Snippet(path: "DesignCenter_GetShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getShare(request:options:)``
   public func getShare(request: GetShareRequest) async throws -> GoogleCloudDesignCenterV1.Share {
     try await self.getShare(request: request, options: .init())
   }
@@ -3269,6 +4680,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get catalog share object for the space.
+  ///
+  /// @Snippet(path: "DesignCenter_GetShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getShare(request:options:)``
   public func getShare(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Share {
@@ -3278,6 +4696,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getShare(request: request)
   }
 
+  /// Deletes a catalog share.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteShare(request:options:)``
   public func deleteShare(request: DeleteShareRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteShare(request: request, options: .init())
   }
@@ -3288,6 +4713,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a catalog share.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteSharePollingUntilDone(request:options:)``
   public func deleteSharePollingUntilDone(request: DeleteShareRequest) async throws {
     try await self.deleteSharePollingUntilDone(request: request, options: .init())
   }
@@ -3298,6 +4730,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a catalog share.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteSharePollingUntilDone(request:options:)``
   public func deleteSharePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3307,6 +4746,14 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteSharePollingUntilDone(request: request)
   }
 
+  /// Synchronizes a share and updates the destination workspace to reflect.
+  /// reflect the most recent changes to the catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_SyncShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/syncShare(request:options:)``
   public func syncShare(request: SyncShareRequest) async throws -> GoogleLongRunning.Operation {
     try await self.syncShare(request: request, options: .init())
   }
@@ -3317,6 +4764,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Synchronizes a share and updates the destination workspace to reflect.
+  /// reflect the most recent changes to the catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_SyncShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/syncSharePollingUntilDone(request:options:)``
   public func syncSharePollingUntilDone(request: SyncShareRequest) async throws -> Share {
     return try await self.syncSharePollingUntilDone(request: request, options: .init())
   }
@@ -3327,6 +4782,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Synchronizes a share and updates the destination workspace to reflect.
+  /// reflect the most recent changes to the catalog.
+  ///
+  /// @Snippet(path: "DesignCenter_SyncShare")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/syncSharePollingUntilDone(request:options:)``
   public func syncSharePollingUntilDone(
     name: Swift.String,
   ) async throws -> Share {
@@ -3336,6 +4799,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.syncSharePollingUntilDone(request: request)
   }
 
+  /// Gets details about a shared template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetSharedTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getSharedTemplate(request:options:)``
   public func getSharedTemplate(request: GetSharedTemplateRequest) async throws
     -> GoogleCloudDesignCenterV1.SharedTemplate
   {
@@ -3348,6 +4818,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a shared template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetSharedTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getSharedTemplate(request:options:)``
   public func getSharedTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.SharedTemplate {
@@ -3357,6 +4834,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getSharedTemplate(request: request)
   }
 
+  /// Lists shared templates in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSharedTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplates(request:options:)``
   public func listSharedTemplates(request: ListSharedTemplatesRequest) async throws
     -> GoogleCloudDesignCenterV1.ListSharedTemplatesResponse
   {
@@ -3369,6 +4853,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists shared templates in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSharedTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplates(request:options:)``
   public func listSharedTemplatesByItems(
     request: ListSharedTemplatesRequest
   ) -> some AsyncSequence<SharedTemplate, any Swift.Error> & Sendable {
@@ -3378,6 +4869,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists shared templates in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListSharedTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplates(request:options:)``
   public func listSharedTemplatesByItems(
     request: ListSharedTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SharedTemplate, any Swift.Error> & Sendable {
@@ -3392,6 +4887,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists shared templates in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSharedTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplates(request:options:)``
   public func listSharedTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SharedTemplate, any Swift.Error> & Sendable {
@@ -3401,6 +4903,13 @@ extension Clients.DesignCenterProtocol {
     return self.listSharedTemplatesByItems(request: request)
   }
 
+  /// Gets details about a shared template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetSharedTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getSharedTemplateRevision(request:options:)``
   public func getSharedTemplateRevision(request: GetSharedTemplateRevisionRequest) async throws
     -> GoogleCloudDesignCenterV1.SharedTemplateRevision
   {
@@ -3413,6 +4922,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a shared template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetSharedTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getSharedTemplateRevision(request:options:)``
   public func getSharedTemplateRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.SharedTemplateRevision {
@@ -3422,6 +4938,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getSharedTemplateRevision(request: request)
   }
 
+  /// Lists shared template revisions in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSharedTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplateRevisions(request:options:)``
   public func listSharedTemplateRevisions(request: ListSharedTemplateRevisionsRequest) async throws
     -> GoogleCloudDesignCenterV1.ListSharedTemplateRevisionsResponse
   {
@@ -3434,6 +4957,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists shared template revisions in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSharedTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplateRevisions(request:options:)``
   public func listSharedTemplateRevisionsByItems(
     request: ListSharedTemplateRevisionsRequest
   ) -> some AsyncSequence<SharedTemplateRevision, any Swift.Error> & Sendable {
@@ -3443,6 +4973,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists shared template revisions in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListSharedTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplateRevisions(request:options:)``
   public func listSharedTemplateRevisionsByItems(
     request: ListSharedTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SharedTemplateRevision, any Swift.Error> & Sendable {
@@ -3457,6 +4991,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists shared template revisions in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListSharedTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listSharedTemplateRevisions(request:options:)``
   public func listSharedTemplateRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SharedTemplateRevision, any Swift.Error> & Sendable {
@@ -3466,6 +5007,13 @@ extension Clients.DesignCenterProtocol {
     return self.listSharedTemplateRevisionsByItems(request: request)
   }
 
+  /// Creates a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalogTemplateRevision(request:options:)``
   public func createCatalogTemplateRevision(request: CreateCatalogTemplateRevisionRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -3478,6 +5026,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalogTemplateRevisionPollingUntilDone(request:options:)``
   public func createCatalogTemplateRevisionPollingUntilDone(
     request: CreateCatalogTemplateRevisionRequest
   ) async throws -> CatalogTemplateRevision {
@@ -3491,6 +5046,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createCatalogTemplateRevisionPollingUntilDone(request:options:)``
   public func createCatalogTemplateRevisionPollingUntilDone(
     parent: Swift.String,
     catalogTemplateRevision: CatalogTemplateRevision?,
@@ -3504,6 +5066,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createCatalogTemplateRevisionPollingUntilDone(request: request)
   }
 
+  /// Gets details about a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getCatalogTemplateRevision(request:options:)``
   public func getCatalogTemplateRevision(request: GetCatalogTemplateRevisionRequest) async throws
     -> GoogleCloudDesignCenterV1.CatalogTemplateRevision
   {
@@ -3516,6 +5085,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getCatalogTemplateRevision(request:options:)``
   public func getCatalogTemplateRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.CatalogTemplateRevision {
@@ -3525,6 +5101,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getCatalogTemplateRevision(request: request)
   }
 
+  /// Lists template revisions.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplateRevisions(request:options:)``
   public func listCatalogTemplateRevisions(request: ListCatalogTemplateRevisionsRequest)
     async throws -> GoogleCloudDesignCenterV1.ListCatalogTemplateRevisionsResponse
   {
@@ -3537,6 +5120,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists template revisions.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplateRevisions(request:options:)``
   public func listCatalogTemplateRevisionsByItems(
     request: ListCatalogTemplateRevisionsRequest
   ) -> some AsyncSequence<CatalogTemplateRevision, any Swift.Error> & Sendable {
@@ -3546,6 +5136,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists template revisions.
   ///
   /// @Snippet(path: "DesignCenter_ListCatalogTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplateRevisions(request:options:)``
   public func listCatalogTemplateRevisionsByItems(
     request: ListCatalogTemplateRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CatalogTemplateRevision, any Swift.Error> & Sendable {
@@ -3560,6 +5154,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists template revisions.
+  ///
+  /// @Snippet(path: "DesignCenter_ListCatalogTemplateRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listCatalogTemplateRevisions(request:options:)``
   public func listCatalogTemplateRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CatalogTemplateRevision, any Swift.Error> & Sendable {
@@ -3569,6 +5170,13 @@ extension Clients.DesignCenterProtocol {
     return self.listCatalogTemplateRevisionsByItems(request: request)
   }
 
+  /// Deletes a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogTemplateRevision(request:options:)``
   public func deleteCatalogTemplateRevision(request: DeleteCatalogTemplateRevisionRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -3581,6 +5189,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogTemplateRevisionPollingUntilDone(request:options:)``
   public func deleteCatalogTemplateRevisionPollingUntilDone(
     request: DeleteCatalogTemplateRevisionRequest
   ) async throws {
@@ -3593,6 +5208,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a template revision.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteCatalogTemplateRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteCatalogTemplateRevisionPollingUntilDone(request:options:)``
   public func deleteCatalogTemplateRevisionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3602,6 +5224,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteCatalogTemplateRevisionPollingUntilDone(request: request)
   }
 
+  /// Creates an application.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createApplication(request:options:)``
   public func createApplication(request: CreateApplicationRequest) async throws
     -> GoogleCloudDesignCenterV1.Application
   {
@@ -3614,6 +5243,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an application.
+  ///
+  /// @Snippet(path: "DesignCenter_CreateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createApplication(request:options:)``
   public func createApplication(
     parent: Swift.String,
     application: GoogleCloudDesignCenterV1.Application?,
@@ -3627,6 +5263,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createApplication(request: request)
   }
 
+  /// Gets details about an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplication(request:options:)``
   public func getApplication(request: GetApplicationRequest) async throws
     -> GoogleCloudDesignCenterV1.Application
   {
@@ -3639,6 +5282,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplication(request:options:)``
   public func getApplication(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Application {
@@ -3648,6 +5298,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getApplication(request: request)
   }
 
+  /// Lists applications in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplications(request:options:)``
   public func listApplications(request: ListApplicationsRequest) async throws
     -> GoogleCloudDesignCenterV1.ListApplicationsResponse
   {
@@ -3660,6 +5317,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists applications in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplications(request:options:)``
   public func listApplicationsByItems(
     request: ListApplicationsRequest
   ) -> some AsyncSequence<GoogleCloudDesignCenterV1.Application, any Swift.Error> & Sendable {
@@ -3669,6 +5333,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists applications in a given space.
   ///
   /// @Snippet(path: "DesignCenter_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplications(request:options:)``
   public func listApplicationsByItems(
     request: ListApplicationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudDesignCenterV1.Application, any Swift.Error> & Sendable {
@@ -3683,6 +5351,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists applications in a given space.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplications")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplications(request:options:)``
   public func listApplicationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudDesignCenterV1.Application, any Swift.Error> & Sendable {
@@ -3692,6 +5367,13 @@ extension Clients.DesignCenterProtocol {
     return self.listApplicationsByItems(request: request)
   }
 
+  /// Updates an application.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateApplication(request:options:)``
   public func updateApplication(request: UpdateApplicationRequest) async throws
     -> GoogleCloudDesignCenterV1.Application
   {
@@ -3704,6 +5386,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an application.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdateApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updateApplication(request:options:)``
   public func updateApplication(
     application: GoogleCloudDesignCenterV1.Application?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3715,6 +5404,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updateApplication(request: request)
   }
 
+  /// Deletes an application.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplication(request:options:)``
   public func deleteApplication(request: DeleteApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3727,6 +5423,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an application.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplicationPollingUntilDone(request:options:)``
   public func deleteApplicationPollingUntilDone(request: DeleteApplicationRequest) async throws {
     try await self.deleteApplicationPollingUntilDone(request: request, options: .init())
   }
@@ -3737,6 +5440,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an application.
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteApplicationPollingUntilDone(request:options:)``
   public func deleteApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3746,6 +5456,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteApplicationPollingUntilDone(request: request)
   }
 
+  /// Deploys an application.
+  ///
+  /// @Snippet(path: "DesignCenter_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deployApplication(request:options:)``
   public func deployApplication(request: DeployApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3758,6 +5475,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deploys an application.
+  ///
+  /// @Snippet(path: "DesignCenter_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deployApplicationPollingUntilDone(request:options:)``
   public func deployApplicationPollingUntilDone(request: DeployApplicationRequest) async throws
     -> DeployApplicationResponse
   {
@@ -3770,6 +5494,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deploys an application.
+  ///
+  /// @Snippet(path: "DesignCenter_DeployApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deployApplicationPollingUntilDone(request:options:)``
   public func deployApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> DeployApplicationResponse {
@@ -3779,6 +5510,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.deployApplicationPollingUntilDone(request: request)
   }
 
+  /// Previews deployment of an application.
+  ///
+  /// @Snippet(path: "DesignCenter_PreviewApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/previewApplication(request:options:)``
   public func previewApplication(request: PreviewApplicationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3791,6 +5529,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Previews deployment of an application.
+  ///
+  /// @Snippet(path: "DesignCenter_PreviewApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/previewApplicationPollingUntilDone(request:options:)``
   public func previewApplicationPollingUntilDone(request: PreviewApplicationRequest) async throws
     -> PreviewApplicationResponse
   {
@@ -3803,6 +5548,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Previews deployment of an application.
+  ///
+  /// @Snippet(path: "DesignCenter_PreviewApplication")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/previewApplicationPollingUntilDone(request:options:)``
   public func previewApplicationPollingUntilDone(
     name: Swift.String,
   ) async throws -> PreviewApplicationResponse {
@@ -3812,6 +5564,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.previewApplicationPollingUntilDone(request: request)
   }
 
+  /// Fetches the assessment report of a deployed application if present.
+  ///
+  /// @Snippet(path: "DesignCenter_FetchApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/fetchApplicationAssessmentReport(request:options:)``
   public func fetchApplicationAssessmentReport(request: FetchApplicationAssessmentReportRequest)
     async throws -> GoogleCloudDesignCenterV1.FetchApplicationAssessmentReportResponse
   {
@@ -3824,6 +5583,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the assessment report of a deployed application if present.
+  ///
+  /// @Snippet(path: "DesignCenter_FetchApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/fetchApplicationAssessmentReport(request:options:)``
   public func fetchApplicationAssessmentReport(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.FetchApplicationAssessmentReportResponse {
@@ -3833,6 +5599,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.fetchApplicationAssessmentReport(request: request)
   }
 
+  /// Generate Assessment Reports of an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationAssessmentReport(request:options:)``
   public func generateApplicationAssessmentReport(
     request: GenerateApplicationAssessmentReportRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -3845,6 +5618,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate Assessment Reports of an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationAssessmentReportPollingUntilDone(request:options:)``
   public func generateApplicationAssessmentReportPollingUntilDone(
     request: GenerateApplicationAssessmentReportRequest
   ) async throws -> GenerateApplicationAssessmentReportResponse {
@@ -3858,6 +5638,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate Assessment Reports of an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationAssessmentReportPollingUntilDone(request:options:)``
   public func generateApplicationAssessmentReportPollingUntilDone(
     name: Swift.String,
   ) async throws -> GenerateApplicationAssessmentReportResponse {
@@ -3867,6 +5654,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.generateApplicationAssessmentReportPollingUntilDone(request: request)
   }
 
+  /// Generate Assessment Reports of an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateAssessmentReport(request:options:)``
   public func generateApplicationTemplateAssessmentReport(
     request: GenerateApplicationTemplateAssessmentReportRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -3879,6 +5673,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate Assessment Reports of an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateAssessmentReportPollingUntilDone(request:options:)``
   public func generateApplicationTemplateAssessmentReportPollingUntilDone(
     request: GenerateApplicationTemplateAssessmentReportRequest
   ) async throws -> GenerateApplicationTemplateAssessmentReportResponse {
@@ -3892,6 +5693,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate Assessment Reports of an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationTemplateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationTemplateAssessmentReportPollingUntilDone(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -3905,6 +5713,15 @@ extension Clients.DesignCenterProtocol {
       request: request)
   }
 
+  /// Deprecated: Use GenerateTerraformPlanAssessmentReport instead.
+  ///
+  /// Generate a best practice report for a given Terraform plan.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateAssessmentReport(request:options:)``
   @available(*, deprecated)
   public func generateAssessmentReport(request: GenerateAssessmentReportRequest) async throws
     -> GoogleLongRunning.Operation
@@ -3919,6 +5736,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deprecated: Use GenerateTerraformPlanAssessmentReport instead.
+  ///
+  /// Generate a best practice report for a given Terraform plan.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateAssessmentReportPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func generateAssessmentReportPollingUntilDone(request: GenerateAssessmentReportRequest)
     async throws -> GenerateAssessmentReportResponse
@@ -3934,6 +5760,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deprecated: Use GenerateTerraformPlanAssessmentReport instead.
+  ///
+  /// Generate a best practice report for a given Terraform plan.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateAssessmentReportPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func generateAssessmentReportPollingUntilDone(
     spaceName: Swift.String,
@@ -3944,6 +5779,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.generateAssessmentReportPollingUntilDone(request: request)
   }
 
+  /// Generate a Terraform plan assessment report for a given Terraform plan.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateTerraformPlanAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateTerraformPlanAssessmentReport(request:options:)``
   public func generateTerraformPlanAssessmentReport(
     request: GenerateTerraformPlanAssessmentReportRequest
   ) async throws -> GoogleLongRunning.Operation {
@@ -3956,6 +5798,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate a Terraform plan assessment report for a given Terraform plan.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateTerraformPlanAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateTerraformPlanAssessmentReportPollingUntilDone(request:options:)``
   public func generateTerraformPlanAssessmentReportPollingUntilDone(
     request: GenerateTerraformPlanAssessmentReportRequest
   ) async throws -> GenerateTerraformPlanAssessmentReportResponse {
@@ -3969,6 +5818,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generate a Terraform plan assessment report for a given Terraform plan.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateTerraformPlanAssessmentReport")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateTerraformPlanAssessmentReportPollingUntilDone(request:options:)``
   public func generateTerraformPlanAssessmentReportPollingUntilDone(
     name: Swift.String,
     terraformPlan: Foundation.Data,
@@ -3980,6 +5836,14 @@ extension Clients.DesignCenterProtocol {
     return try await self.generateTerraformPlanAssessmentReportPollingUntilDone(request: request)
   }
 
+  /// Policy related APIs.
+  /// Get a policy for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getPolicy(request:options:)``
   public func getPolicy(request: GetPolicyRequest) async throws -> GoogleCloudDesignCenterV1.Policy
   {
     try await self.getPolicy(request: request, options: .init())
@@ -3991,6 +5855,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Policy related APIs.
+  /// Get a policy for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getPolicy(request:options:)``
   public func getPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.Policy {
@@ -4000,6 +5872,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.getPolicy(request: request)
   }
 
+  /// Lists policies for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listPolicies(request:options:)``
   public func listPolicies(request: ListPoliciesRequest) async throws
     -> GoogleCloudDesignCenterV1.ListPoliciesResponse
   {
@@ -4012,6 +5891,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists policies for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     request: ListPoliciesRequest
   ) -> some AsyncSequence<GoogleCloudDesignCenterV1.Policy, any Swift.Error> & Sendable {
@@ -4021,6 +5907,10 @@ extension Clients.DesignCenterProtocol {
   /// Lists policies for an application template.
   ///
   /// @Snippet(path: "DesignCenter_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudDesignCenterV1.Policy, any Swift.Error> & Sendable {
@@ -4035,6 +5925,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists policies for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GoogleCloudDesignCenterV1.Policy, any Swift.Error> & Sendable {
@@ -4044,6 +5941,13 @@ extension Clients.DesignCenterProtocol {
     return self.listPoliciesByItems(request: request)
   }
 
+  /// Creates a policy for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createPolicy(request:options:)``
   public func createPolicy(request: CreatePolicyRequest) async throws
     -> GoogleCloudDesignCenterV1.Policy
   {
@@ -4056,6 +5960,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a policy for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/createPolicy(request:options:)``
   public func createPolicy(
     parent: Swift.String,
     policy: GoogleCloudDesignCenterV1.Policy?,
@@ -4069,6 +5980,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.createPolicy(request: request)
   }
 
+  /// Updates a policy.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updatePolicy(request:options:)``
   public func updatePolicy(request: UpdatePolicyRequest) async throws
     -> GoogleCloudDesignCenterV1.Policy
   {
@@ -4081,6 +5999,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a policy.
+  ///
+  /// @Snippet(path: "DesignCenter_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/updatePolicy(request:options:)``
   public func updatePolicy(
     policy: GoogleCloudDesignCenterV1.Policy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4092,6 +6017,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.updatePolicy(request: request)
   }
 
+  /// Deletes a policy.
+  ///
+  /// @Snippet(path: "DesignCenter_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deletePolicy(request:options:)``
   public func deletePolicy(request: DeletePolicyRequest) async throws {
     try await self.deletePolicy(request: request, options: .init())
   }
@@ -4102,6 +6034,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy.
+  ///
+  /// @Snippet(path: "DesignCenter_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deletePolicy(request:options:)``
   public func deletePolicy(
     name: Swift.String,
   ) async throws {
@@ -4111,6 +6050,13 @@ extension Clients.DesignCenterProtocol {
     try await self.deletePolicy(request: request)
   }
 
+  /// Fetches all frameworks for assessment report.
+  ///
+  /// @Snippet(path: "DesignCenter_FetchFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/fetchFrameworks(request:options:)``
   public func fetchFrameworks(request: FetchFrameworksRequest) async throws
     -> GoogleCloudDesignCenterV1.FetchFrameworksResponse
   {
@@ -4123,6 +6069,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches all frameworks for assessment report.
+  ///
+  /// @Snippet(path: "DesignCenter_FetchFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/fetchFrameworks(request:options:)``
   public func fetchFrameworksByItems(
     request: FetchFrameworksRequest
   ) -> some AsyncSequence<Framework, any Swift.Error> & Sendable {
@@ -4132,6 +6085,10 @@ extension Clients.DesignCenterProtocol {
   /// Fetches all frameworks for assessment report.
   ///
   /// @Snippet(path: "DesignCenter_FetchFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/fetchFrameworks(request:options:)``
   public func fetchFrameworksByItems(
     request: FetchFrameworksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Framework, any Swift.Error> & Sendable {
@@ -4146,6 +6103,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Fetches all frameworks for assessment report.
+  ///
+  /// @Snippet(path: "DesignCenter_FetchFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/fetchFrameworks(request:options:)``
   public func fetchFrameworksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Framework, any Swift.Error> & Sendable {
@@ -4155,6 +6119,13 @@ extension Clients.DesignCenterProtocol {
     return self.fetchFrameworksByItems(request: request)
   }
 
+  /// Generates Terraform files for an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationIaC(request:options:)``
   public func generateApplicationIaC(request: GenerateApplicationIaCRequest) async throws
     -> GoogleCloudDesignCenterV1.GenerateApplicationIaCResponse
   {
@@ -4167,6 +6138,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Generates Terraform files for an application.
+  ///
+  /// @Snippet(path: "DesignCenter_GenerateApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/generateApplicationIaC(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -4179,6 +6157,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.generateApplicationIaC(request: request)
   }
 
+  /// Exports Terraform files for an application asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationIaC(request:options:)``
   public func exportApplicationIaC(request: ExportApplicationIaCRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4191,6 +6176,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports Terraform files for an application asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationIaCPollingUntilDone(request:options:)``
   public func exportApplicationIaCPollingUntilDone(request: ExportApplicationIaCRequest)
     async throws -> ExportApplicationIaCResponse
   {
@@ -4203,6 +6195,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports Terraform files for an application asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_ExportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/exportApplicationIaCPollingUntilDone(request:options:)``
   public func exportApplicationIaCPollingUntilDone(
     name: Swift.String,
   ) async throws -> ExportApplicationIaCResponse {
@@ -4212,6 +6211,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.exportApplicationIaCPollingUntilDone(request: request)
   }
 
+  /// Imports IaC for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ImportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/importApplicationTemplateIaC(request:options:)``
   public func importApplicationTemplateIaC(request: ImportApplicationTemplateIaCRequest)
     async throws -> GoogleCloudDesignCenterV1.ImportApplicationTemplateIaCResponse
   {
@@ -4224,6 +6230,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports IaC for an application template.
+  ///
+  /// @Snippet(path: "DesignCenter_ImportApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/importApplicationTemplateIaC(request:options:)``
   public func importApplicationTemplateIaC(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.ImportApplicationTemplateIaCResponse {
@@ -4233,6 +6246,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.importApplicationTemplateIaC(request: request)
   }
 
+  /// Ingests IaC for an application template asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_IngestApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/ingestApplicationTemplateIaC(request:options:)``
   public func ingestApplicationTemplateIaC(request: IngestApplicationTemplateIaCRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -4245,6 +6265,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Ingests IaC for an application template asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_IngestApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/ingestApplicationTemplateIaCPollingUntilDone(request:options:)``
   public func ingestApplicationTemplateIaCPollingUntilDone(
     request: IngestApplicationTemplateIaCRequest
   ) async throws -> IngestApplicationTemplateIaCResponse {
@@ -4258,6 +6285,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Ingests IaC for an application template asynchronously.
+  ///
+  /// @Snippet(path: "DesignCenter_IngestApplicationTemplateIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/ingestApplicationTemplateIaCPollingUntilDone(request:options:)``
   public func ingestApplicationTemplateIaCPollingUntilDone(
     name: Swift.String,
   ) async throws -> IngestApplicationTemplateIaCResponse {
@@ -4267,6 +6301,13 @@ extension Clients.DesignCenterProtocol {
     return try await self.ingestApplicationTemplateIaCPollingUntilDone(request: request)
   }
 
+  /// Imports IaC for an application resource.
+  ///
+  /// @Snippet(path: "DesignCenter_ImportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/importApplicationIaC(request:options:)``
   public func importApplicationIaC(request: ImportApplicationIaCRequest) async throws
     -> GoogleCloudDesignCenterV1.ImportApplicationIaCResponse
   {
@@ -4279,6 +6320,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports IaC for an application resource.
+  ///
+  /// @Snippet(path: "DesignCenter_ImportApplicationIaC")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/importApplicationIaC(request:options:)``
   public func importApplicationIaC(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.ImportApplicationIaCResponse {
@@ -4288,6 +6336,14 @@ extension Clients.DesignCenterProtocol {
     return try await self.importApplicationIaC(request: request)
   }
 
+  /// Register deployed resources from terraform state file with App Hub
+  /// without needing a space.
+  ///
+  /// @Snippet(path: "DesignCenter_RegisterAppHubApplicationResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/registerAppHubApplicationResources(request:options:)``
   public func registerAppHubApplicationResources(request: RegisterAppHubApplicationResourcesRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -4300,6 +6356,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Register deployed resources from terraform state file with App Hub
+  /// without needing a space.
+  ///
+  /// @Snippet(path: "DesignCenter_RegisterAppHubApplicationResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/registerAppHubApplicationResourcesPollingUntilDone(request:options:)``
   public func registerAppHubApplicationResourcesPollingUntilDone(
     request: RegisterAppHubApplicationResourcesRequest
   ) async throws -> RegisterAppHubApplicationResourcesResponse {
@@ -4313,6 +6377,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Register deployed resources from terraform state file with App Hub
+  /// without needing a space.
+  ///
+  /// @Snippet(path: "DesignCenter_RegisterAppHubApplicationResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/registerAppHubApplicationResourcesPollingUntilDone(request:options:)``
   public func registerAppHubApplicationResourcesPollingUntilDone(
     parent: Swift.String,
     apphubApplication: Swift.String,
@@ -4326,6 +6398,14 @@ extension Clients.DesignCenterProtocol {
     return try await self.registerAppHubApplicationResourcesPollingUntilDone(request: request)
   }
 
+  /// Lists application template system revisions in a given application
+  /// template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplateSystemRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateSystemRevisions(request:options:)``
   public func listApplicationTemplateSystemRevisions(
     request: ListApplicationTemplateSystemRevisionsRequest
   ) async throws -> GoogleCloudDesignCenterV1.ListApplicationTemplateSystemRevisionsResponse {
@@ -4338,6 +6418,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists application template system revisions in a given application
+  /// template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplateSystemRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateSystemRevisions(request:options:)``
   public func listApplicationTemplateSystemRevisionsByItems(
     request: ListApplicationTemplateSystemRevisionsRequest
   ) -> some AsyncSequence<ApplicationTemplateSystemRevision, any Swift.Error> & Sendable {
@@ -4348,6 +6436,10 @@ extension Clients.DesignCenterProtocol {
   /// template.
   ///
   /// @Snippet(path: "DesignCenter_ListApplicationTemplateSystemRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateSystemRevisions(request:options:)``
   public func listApplicationTemplateSystemRevisionsByItems(
     request: ListApplicationTemplateSystemRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ApplicationTemplateSystemRevision, any Swift.Error> & Sendable {
@@ -4363,6 +6455,14 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists application template system revisions in a given application
+  /// template.
+  ///
+  /// @Snippet(path: "DesignCenter_ListApplicationTemplateSystemRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listApplicationTemplateSystemRevisions(request:options:)``
   public func listApplicationTemplateSystemRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ApplicationTemplateSystemRevision, any Swift.Error> & Sendable {
@@ -4372,6 +6472,13 @@ extension Clients.DesignCenterProtocol {
     return self.listApplicationTemplateSystemRevisionsByItems(request: request)
   }
 
+  /// Gets the given application template system revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplicationTemplateSystemRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplicationTemplateSystemRevision(request:options:)``
   public func getApplicationTemplateSystemRevision(
     request: GetApplicationTemplateSystemRevisionRequest
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateSystemRevision {
@@ -4384,6 +6491,13 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the given application template system revision.
+  ///
+  /// @Snippet(path: "DesignCenter_GetApplicationTemplateSystemRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getApplicationTemplateSystemRevision(request:options:)``
   public func getApplicationTemplateSystemRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudDesignCenterV1.ApplicationTemplateSystemRevision {
@@ -4393,6 +6507,23 @@ extension Clients.DesignCenterProtocol {
     return try await self.getApplicationTemplateSystemRevision(request: request)
   }
 
+  /// Gets recommended IAM roles for an application.
+  ///
+  /// Evaluates the infrastructure resources defined by an application (including
+  /// its template configuration and parameters) to determine the set of IAM
+  /// roles and Google Cloud APIs that you must configure before you deploy
+  /// across target projects.
+  ///
+  /// The operation is asynchronous and returns a `google.longrunning.Operation`.
+  /// Upon completion, the operation result contains a
+  /// `RecommendIAMRolesResponse` with project-level IAM role and API
+  /// recommendations.
+  ///
+  /// @Snippet(path: "DesignCenter_RecommendIAMRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/recommendIamroles(request:options:)``
   public func recommendIamroles(request: RecommendIAMRolesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4405,6 +6536,23 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets recommended IAM roles for an application.
+  ///
+  /// Evaluates the infrastructure resources defined by an application (including
+  /// its template configuration and parameters) to determine the set of IAM
+  /// roles and Google Cloud APIs that you must configure before you deploy
+  /// across target projects.
+  ///
+  /// The operation is asynchronous and returns a `google.longrunning.Operation`.
+  /// Upon completion, the operation result contains a
+  /// `RecommendIAMRolesResponse` with project-level IAM role and API
+  /// recommendations.
+  ///
+  /// @Snippet(path: "DesignCenter_RecommendIAMRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/recommendIamrolesPollingUntilDone(request:options:)``
   public func recommendIamrolesPollingUntilDone(request: RecommendIAMRolesRequest) async throws
     -> RecommendIAMRolesResponse
   {
@@ -4417,6 +6565,23 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets recommended IAM roles for an application.
+  ///
+  /// Evaluates the infrastructure resources defined by an application (including
+  /// its template configuration and parameters) to determine the set of IAM
+  /// roles and Google Cloud APIs that you must configure before you deploy
+  /// across target projects.
+  ///
+  /// The operation is asynchronous and returns a `google.longrunning.Operation`.
+  /// Upon completion, the operation result contains a
+  /// `RecommendIAMRolesResponse` with project-level IAM role and API
+  /// recommendations.
+  ///
+  /// @Snippet(path: "DesignCenter_RecommendIAMRoles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/recommendIamrolesPollingUntilDone(request:options:)``
   public func recommendIamrolesPollingUntilDone(
     name: Swift.String,
   ) async throws -> RecommendIAMRolesResponse {
@@ -4426,6 +6591,30 @@ extension Clients.DesignCenterProtocol {
     return try await self.recommendIamrolesPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DesignCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -4438,6 +6627,30 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "DesignCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -4464,6 +6677,10 @@ extension Clients.DesignCenterProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "DesignCenter_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -4477,6 +6694,13 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "DesignCenter_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -4489,6 +6713,17 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "DesignCenter_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -4501,6 +6736,14 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "DesignCenter_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -4513,6 +6756,19 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "DesignCenter_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -4525,6 +6781,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -4537,6 +6802,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -4548,6 +6822,10 @@ extension Clients.DesignCenterProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DesignCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -4561,6 +6839,15 @@ extension Clients.DesignCenterProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -4572,6 +6859,9 @@ extension Clients.DesignCenterProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4584,6 +6874,9 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -4593,6 +6886,15 @@ extension Clients.DesignCenterProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -4603,6 +6905,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -4612,6 +6923,15 @@ extension Clients.DesignCenterProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -4622,6 +6942,15 @@ extension Clients.DesignCenterProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DesignCenter_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DesignCenterClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

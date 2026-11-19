@@ -27,6 +27,10 @@ import Foundation
 /// Service describing handlers for resources.
 ///
 /// @Snippet(path: "NetworkServicesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/NetworkServicesProtocol``
 public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Sendable {
   let inner: any Clients.NetworkServicesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists EndpointPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListEndpointPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEndpointPolicies(request:)``
+  /// - ``listEndpointPoliciesByItems(parent:)``
+  /// - ``listEndpointPoliciesByItems(request:)``
+  /// - ``listEndpointPoliciesByItems(request:options:)``
   public func listEndpointPolicies(
     request: ListEndpointPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListEndpointPoliciesResponse {
@@ -56,6 +67,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_GetEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEndpointPolicy(name:)``
+  /// - ``getEndpointPolicy(request:)``
   public func getEndpointPolicy(
     request: GetEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.EndpointPolicy {
@@ -65,6 +81,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new EndpointPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEndpointPolicy(request:)``
+  /// - ``createEndpointPolicyPollingUntilDone(parent:endpointPolicy:endpointPolicyId:)``
+  /// - ``createEndpointPolicyPollingUntilDone(request:)``
+  /// - ``createEndpointPolicyPollingUntilDone(request:options:)``
   public func createEndpointPolicy(
     request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -74,6 +97,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new EndpointPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createEndpointPolicy(request:)``
+  /// - ``createEndpointPolicy(request:options:)``
+  /// - ``createEndpointPolicyPollingUntilDone(parent:endpointPolicy:endpointPolicyId:)``
+  /// - ``createEndpointPolicyPollingUntilDone(request:)``
   public func createEndpointPolicyPollingUntilDone(
     request: CreateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> EndpointPolicy {
@@ -102,6 +132,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_UpdateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEndpointPolicy(request:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(endpointPolicy:updateMask:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(request:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(request:options:)``
   public func updateEndpointPolicy(
     request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -111,6 +148,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_UpdateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateEndpointPolicy(request:)``
+  /// - ``updateEndpointPolicy(request:options:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(endpointPolicy:updateMask:)``
+  /// - ``updateEndpointPolicyPollingUntilDone(request:)``
   public func updateEndpointPolicyPollingUntilDone(
     request: UpdateEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> EndpointPolicy {
@@ -139,6 +183,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_DeleteEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEndpointPolicy(request:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(name:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(request:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(request:options:)``
   public func deleteEndpointPolicy(
     request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -148,6 +199,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single EndpointPolicy.
   ///
   /// @Snippet(path: "NetworkServices_DeleteEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteEndpointPolicy(request:)``
+  /// - ``deleteEndpointPolicy(request:options:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(name:)``
+  /// - ``deleteEndpointPolicyPollingUntilDone(request:)``
   public func deleteEndpointPolicyPollingUntilDone(
     request: DeleteEndpointPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,6 +234,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// location.
   ///
   /// @Snippet(path: "NetworkServices_ListWasmPluginVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWasmPluginVersions(request:)``
+  /// - ``listWasmPluginVersionsByItems(parent:)``
+  /// - ``listWasmPluginVersionsByItems(request:)``
+  /// - ``listWasmPluginVersionsByItems(request:options:)``
   public func listWasmPluginVersions(
     request: ListWasmPluginVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginVersionsResponse {
@@ -185,6 +250,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of the specified `WasmPluginVersion` resource.
   ///
   /// @Snippet(path: "NetworkServices_GetWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWasmPluginVersion(name:)``
+  /// - ``getWasmPluginVersion(request:)``
   public func getWasmPluginVersion(
     request: GetWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.WasmPluginVersion {
@@ -195,6 +265,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWasmPluginVersion(request:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(parent:wasmPluginVersion:wasmPluginVersionId:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(request:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(request:options:)``
   public func createWasmPluginVersion(
     request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -205,6 +282,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWasmPluginVersion(request:)``
+  /// - ``createWasmPluginVersion(request:options:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(parent:wasmPluginVersion:wasmPluginVersionId:)``
+  /// - ``createWasmPluginVersionPollingUntilDone(request:)``
   public func createWasmPluginVersionPollingUntilDone(
     request: CreateWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> WasmPluginVersion {
@@ -233,6 +317,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes the specified `WasmPluginVersion` resource.
   ///
   /// @Snippet(path: "NetworkServices_DeleteWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWasmPluginVersion(request:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(name:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(request:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(request:options:)``
   public func deleteWasmPluginVersion(
     request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -242,6 +333,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes the specified `WasmPluginVersion` resource.
   ///
   /// @Snippet(path: "NetworkServices_DeleteWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWasmPluginVersion(request:)``
+  /// - ``deleteWasmPluginVersion(request:options:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(name:)``
+  /// - ``deleteWasmPluginVersionPollingUntilDone(request:)``
   public func deleteWasmPluginVersionPollingUntilDone(
     request: DeleteWasmPluginVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -270,6 +368,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// location.
   ///
   /// @Snippet(path: "NetworkServices_ListWasmPlugins")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWasmPlugins(request:)``
+  /// - ``listWasmPluginsByItems(parent:)``
+  /// - ``listWasmPluginsByItems(request:)``
+  /// - ``listWasmPluginsByItems(request:options:)``
   public func listWasmPlugins(
     request: ListWasmPluginsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListWasmPluginsResponse {
@@ -279,6 +384,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_GetWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWasmPlugin(name:)``
+  /// - ``getWasmPlugin(request:)``
   public func getWasmPlugin(
     request: GetWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.WasmPlugin {
@@ -289,6 +399,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWasmPlugin(request:)``
+  /// - ``createWasmPluginPollingUntilDone(parent:wasmPlugin:wasmPluginId:)``
+  /// - ``createWasmPluginPollingUntilDone(request:)``
+  /// - ``createWasmPluginPollingUntilDone(request:options:)``
   public func createWasmPlugin(
     request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -299,6 +416,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWasmPlugin(request:)``
+  /// - ``createWasmPlugin(request:options:)``
+  /// - ``createWasmPluginPollingUntilDone(parent:wasmPlugin:wasmPluginId:)``
+  /// - ``createWasmPluginPollingUntilDone(request:)``
   public func createWasmPluginPollingUntilDone(
     request: CreateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> WasmPlugin {
@@ -326,6 +450,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_UpdateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWasmPlugin(request:)``
+  /// - ``updateWasmPluginPollingUntilDone(request:)``
+  /// - ``updateWasmPluginPollingUntilDone(request:options:)``
+  /// - ``updateWasmPluginPollingUntilDone(wasmPlugin:updateMask:)``
   public func updateWasmPlugin(
     request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -335,6 +466,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_UpdateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWasmPlugin(request:)``
+  /// - ``updateWasmPlugin(request:options:)``
+  /// - ``updateWasmPluginPollingUntilDone(request:)``
+  /// - ``updateWasmPluginPollingUntilDone(wasmPlugin:updateMask:)``
   public func updateWasmPluginPollingUntilDone(
     request: UpdateWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> WasmPlugin {
@@ -362,6 +500,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_DeleteWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWasmPlugin(request:)``
+  /// - ``deleteWasmPluginPollingUntilDone(name:)``
+  /// - ``deleteWasmPluginPollingUntilDone(request:)``
+  /// - ``deleteWasmPluginPollingUntilDone(request:options:)``
   public func deleteWasmPlugin(
     request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -371,6 +516,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes the specified `WasmPlugin` resource.
   ///
   /// @Snippet(path: "NetworkServices_DeleteWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWasmPlugin(request:)``
+  /// - ``deleteWasmPlugin(request:options:)``
+  /// - ``deleteWasmPluginPollingUntilDone(name:)``
+  /// - ``deleteWasmPluginPollingUntilDone(request:)``
   public func deleteWasmPluginPollingUntilDone(
     request: DeleteWasmPluginRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -398,6 +550,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists Gateways in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGateways(request:)``
+  /// - ``listGatewaysByItems(parent:)``
+  /// - ``listGatewaysByItems(request:)``
+  /// - ``listGatewaysByItems(request:options:)``
   public func listGateways(
     request: ListGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListGatewaysResponse {
@@ -407,6 +566,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_GetGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGateway(name:)``
+  /// - ``getGateway(request:)``
   public func getGateway(
     request: GetGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.Gateway {
@@ -416,6 +580,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new Gateway in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGateway(request:)``
+  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
+  /// - ``createGatewayPollingUntilDone(request:)``
+  /// - ``createGatewayPollingUntilDone(request:options:)``
   public func createGateway(
     request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -425,6 +596,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new Gateway in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGateway(request:)``
+  /// - ``createGateway(request:options:)``
+  /// - ``createGatewayPollingUntilDone(parent:gateway:gatewayId:)``
+  /// - ``createGatewayPollingUntilDone(request:)``
   public func createGatewayPollingUntilDone(
     request: CreateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Gateway {
@@ -452,6 +630,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_UpdateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGateway(request:)``
+  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
+  /// - ``updateGatewayPollingUntilDone(request:)``
+  /// - ``updateGatewayPollingUntilDone(request:options:)``
   public func updateGateway(
     request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -461,6 +646,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_UpdateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGateway(request:)``
+  /// - ``updateGateway(request:options:)``
+  /// - ``updateGatewayPollingUntilDone(gateway:updateMask:)``
+  /// - ``updateGatewayPollingUntilDone(request:)``
   public func updateGatewayPollingUntilDone(
     request: UpdateGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> Gateway {
@@ -488,6 +680,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_DeleteGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGateway(request:)``
+  /// - ``deleteGatewayPollingUntilDone(name:)``
+  /// - ``deleteGatewayPollingUntilDone(request:)``
+  /// - ``deleteGatewayPollingUntilDone(request:options:)``
   public func deleteGateway(
     request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -497,6 +696,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single Gateway.
   ///
   /// @Snippet(path: "NetworkServices_DeleteGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGateway(request:)``
+  /// - ``deleteGateway(request:options:)``
+  /// - ``deleteGatewayPollingUntilDone(name:)``
+  /// - ``deleteGatewayPollingUntilDone(request:)``
   public func deleteGatewayPollingUntilDone(
     request: DeleteGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -524,6 +730,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists GrpcRoutes in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListGrpcRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGrpcRoutes(request:)``
+  /// - ``listGrpcRoutesByItems(parent:)``
+  /// - ``listGrpcRoutesByItems(request:)``
+  /// - ``listGrpcRoutesByItems(request:options:)``
   public func listGrpcRoutes(
     request: ListGrpcRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListGrpcRoutesResponse {
@@ -533,6 +746,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_GetGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGrpcRoute(name:)``
+  /// - ``getGrpcRoute(request:)``
   public func getGrpcRoute(
     request: GetGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.GrpcRoute {
@@ -542,6 +760,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new GrpcRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGrpcRoute(request:)``
+  /// - ``createGrpcRoutePollingUntilDone(parent:grpcRoute:grpcRouteId:)``
+  /// - ``createGrpcRoutePollingUntilDone(request:)``
+  /// - ``createGrpcRoutePollingUntilDone(request:options:)``
   public func createGrpcRoute(
     request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -551,6 +776,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new GrpcRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGrpcRoute(request:)``
+  /// - ``createGrpcRoute(request:options:)``
+  /// - ``createGrpcRoutePollingUntilDone(parent:grpcRoute:grpcRouteId:)``
+  /// - ``createGrpcRoutePollingUntilDone(request:)``
   public func createGrpcRoutePollingUntilDone(
     request: CreateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GrpcRoute {
@@ -578,6 +810,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGrpcRoute(request:)``
+  /// - ``updateGrpcRoutePollingUntilDone(grpcRoute:updateMask:)``
+  /// - ``updateGrpcRoutePollingUntilDone(request:)``
+  /// - ``updateGrpcRoutePollingUntilDone(request:options:)``
   public func updateGrpcRoute(
     request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -587,6 +826,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGrpcRoute(request:)``
+  /// - ``updateGrpcRoute(request:options:)``
+  /// - ``updateGrpcRoutePollingUntilDone(grpcRoute:updateMask:)``
+  /// - ``updateGrpcRoutePollingUntilDone(request:)``
   public func updateGrpcRoutePollingUntilDone(
     request: UpdateGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GrpcRoute {
@@ -614,6 +860,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGrpcRoute(request:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(name:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(request:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(request:options:)``
   public func deleteGrpcRoute(
     request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -623,6 +876,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single GrpcRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGrpcRoute(request:)``
+  /// - ``deleteGrpcRoute(request:options:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(name:)``
+  /// - ``deleteGrpcRoutePollingUntilDone(request:)``
   public func deleteGrpcRoutePollingUntilDone(
     request: DeleteGrpcRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -650,6 +910,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists HttpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListHttpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listHttpRoutes(request:)``
+  /// - ``listHttpRoutesByItems(parent:)``
+  /// - ``listHttpRoutesByItems(request:)``
+  /// - ``listHttpRoutesByItems(request:options:)``
   public func listHttpRoutes(
     request: ListHttpRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListHttpRoutesResponse {
@@ -659,6 +926,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_GetHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getHttpRoute(name:)``
+  /// - ``getHttpRoute(request:)``
   public func getHttpRoute(
     request: GetHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.HttpRoute {
@@ -668,6 +940,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new HttpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHttpRoute(request:)``
+  /// - ``createHttpRoutePollingUntilDone(parent:httpRoute:httpRouteId:)``
+  /// - ``createHttpRoutePollingUntilDone(request:)``
+  /// - ``createHttpRoutePollingUntilDone(request:options:)``
   public func createHttpRoute(
     request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -677,6 +956,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new HttpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHttpRoute(request:)``
+  /// - ``createHttpRoute(request:options:)``
+  /// - ``createHttpRoutePollingUntilDone(parent:httpRoute:httpRouteId:)``
+  /// - ``createHttpRoutePollingUntilDone(request:)``
   public func createHttpRoutePollingUntilDone(
     request: CreateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> HttpRoute {
@@ -704,6 +990,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateHttpRoute(request:)``
+  /// - ``updateHttpRoutePollingUntilDone(httpRoute:updateMask:)``
+  /// - ``updateHttpRoutePollingUntilDone(request:)``
+  /// - ``updateHttpRoutePollingUntilDone(request:options:)``
   public func updateHttpRoute(
     request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -713,6 +1006,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateHttpRoute(request:)``
+  /// - ``updateHttpRoute(request:options:)``
+  /// - ``updateHttpRoutePollingUntilDone(httpRoute:updateMask:)``
+  /// - ``updateHttpRoutePollingUntilDone(request:)``
   public func updateHttpRoutePollingUntilDone(
     request: UpdateHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> HttpRoute {
@@ -740,6 +1040,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteHttpRoute(request:)``
+  /// - ``deleteHttpRoutePollingUntilDone(name:)``
+  /// - ``deleteHttpRoutePollingUntilDone(request:)``
+  /// - ``deleteHttpRoutePollingUntilDone(request:options:)``
   public func deleteHttpRoute(
     request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -749,6 +1056,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single HttpRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteHttpRoute(request:)``
+  /// - ``deleteHttpRoute(request:options:)``
+  /// - ``deleteHttpRoutePollingUntilDone(name:)``
+  /// - ``deleteHttpRoutePollingUntilDone(request:)``
   public func deleteHttpRoutePollingUntilDone(
     request: DeleteHttpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -776,6 +1090,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists TcpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListTcpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTcpRoutes(request:)``
+  /// - ``listTcpRoutesByItems(parent:)``
+  /// - ``listTcpRoutesByItems(request:)``
+  /// - ``listTcpRoutesByItems(request:options:)``
   public func listTcpRoutes(
     request: ListTcpRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListTcpRoutesResponse {
@@ -785,6 +1106,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_GetTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTcpRoute(name:)``
+  /// - ``getTcpRoute(request:)``
   public func getTcpRoute(
     request: GetTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.TcpRoute {
@@ -794,6 +1120,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new TcpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTcpRoute(request:)``
+  /// - ``createTcpRoutePollingUntilDone(parent:tcpRoute:tcpRouteId:)``
+  /// - ``createTcpRoutePollingUntilDone(request:)``
+  /// - ``createTcpRoutePollingUntilDone(request:options:)``
   public func createTcpRoute(
     request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -803,6 +1136,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new TcpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTcpRoute(request:)``
+  /// - ``createTcpRoute(request:options:)``
+  /// - ``createTcpRoutePollingUntilDone(parent:tcpRoute:tcpRouteId:)``
+  /// - ``createTcpRoutePollingUntilDone(request:)``
   public func createTcpRoutePollingUntilDone(
     request: CreateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TcpRoute {
@@ -830,6 +1170,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTcpRoute(request:)``
+  /// - ``updateTcpRoutePollingUntilDone(request:)``
+  /// - ``updateTcpRoutePollingUntilDone(request:options:)``
+  /// - ``updateTcpRoutePollingUntilDone(tcpRoute:updateMask:)``
   public func updateTcpRoute(
     request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -839,6 +1186,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTcpRoute(request:)``
+  /// - ``updateTcpRoute(request:options:)``
+  /// - ``updateTcpRoutePollingUntilDone(request:)``
+  /// - ``updateTcpRoutePollingUntilDone(tcpRoute:updateMask:)``
   public func updateTcpRoutePollingUntilDone(
     request: UpdateTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TcpRoute {
@@ -866,6 +1220,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTcpRoute(request:)``
+  /// - ``deleteTcpRoutePollingUntilDone(name:)``
+  /// - ``deleteTcpRoutePollingUntilDone(request:)``
+  /// - ``deleteTcpRoutePollingUntilDone(request:options:)``
   public func deleteTcpRoute(
     request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -875,6 +1236,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single TcpRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTcpRoute(request:)``
+  /// - ``deleteTcpRoute(request:options:)``
+  /// - ``deleteTcpRoutePollingUntilDone(name:)``
+  /// - ``deleteTcpRoutePollingUntilDone(request:)``
   public func deleteTcpRoutePollingUntilDone(
     request: DeleteTcpRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -902,6 +1270,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists TlsRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListTlsRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTlsRoutes(request:)``
+  /// - ``listTlsRoutesByItems(parent:)``
+  /// - ``listTlsRoutesByItems(request:)``
+  /// - ``listTlsRoutesByItems(request:options:)``
   public func listTlsRoutes(
     request: ListTlsRoutesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListTlsRoutesResponse {
@@ -911,6 +1286,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_GetTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTlsRoute(name:)``
+  /// - ``getTlsRoute(request:)``
   public func getTlsRoute(
     request: GetTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.TlsRoute {
@@ -920,6 +1300,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new TlsRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTlsRoute(request:)``
+  /// - ``createTlsRoutePollingUntilDone(parent:tlsRoute:tlsRouteId:)``
+  /// - ``createTlsRoutePollingUntilDone(request:)``
+  /// - ``createTlsRoutePollingUntilDone(request:options:)``
   public func createTlsRoute(
     request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -929,6 +1316,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new TlsRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTlsRoute(request:)``
+  /// - ``createTlsRoute(request:options:)``
+  /// - ``createTlsRoutePollingUntilDone(parent:tlsRoute:tlsRouteId:)``
+  /// - ``createTlsRoutePollingUntilDone(request:)``
   public func createTlsRoutePollingUntilDone(
     request: CreateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TlsRoute {
@@ -956,6 +1350,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTlsRoute(request:)``
+  /// - ``updateTlsRoutePollingUntilDone(request:)``
+  /// - ``updateTlsRoutePollingUntilDone(request:options:)``
+  /// - ``updateTlsRoutePollingUntilDone(tlsRoute:updateMask:)``
   public func updateTlsRoute(
     request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -965,6 +1366,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_UpdateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTlsRoute(request:)``
+  /// - ``updateTlsRoute(request:options:)``
+  /// - ``updateTlsRoutePollingUntilDone(request:)``
+  /// - ``updateTlsRoutePollingUntilDone(tlsRoute:updateMask:)``
   public func updateTlsRoutePollingUntilDone(
     request: UpdateTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> TlsRoute {
@@ -992,6 +1400,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTlsRoute(request:)``
+  /// - ``deleteTlsRoutePollingUntilDone(name:)``
+  /// - ``deleteTlsRoutePollingUntilDone(request:)``
+  /// - ``deleteTlsRoutePollingUntilDone(request:options:)``
   public func deleteTlsRoute(
     request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1001,6 +1416,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single TlsRoute.
   ///
   /// @Snippet(path: "NetworkServices_DeleteTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTlsRoute(request:)``
+  /// - ``deleteTlsRoute(request:options:)``
+  /// - ``deleteTlsRoutePollingUntilDone(name:)``
+  /// - ``deleteTlsRoutePollingUntilDone(request:)``
   public func deleteTlsRoutePollingUntilDone(
     request: DeleteTlsRouteRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1028,6 +1450,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists ServiceBinding in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListServiceBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServiceBindings(request:)``
+  /// - ``listServiceBindingsByItems(parent:)``
+  /// - ``listServiceBindingsByItems(request:)``
+  /// - ``listServiceBindingsByItems(request:options:)``
   public func listServiceBindings(
     request: ListServiceBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListServiceBindingsResponse {
@@ -1037,6 +1466,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_GetServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServiceBinding(name:)``
+  /// - ``getServiceBinding(request:)``
   public func getServiceBinding(
     request: GetServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ServiceBinding {
@@ -1046,6 +1480,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new ServiceBinding in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceBinding(request:)``
+  /// - ``createServiceBindingPollingUntilDone(parent:serviceBinding:serviceBindingId:)``
+  /// - ``createServiceBindingPollingUntilDone(request:)``
+  /// - ``createServiceBindingPollingUntilDone(request:options:)``
   public func createServiceBinding(
     request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1055,6 +1496,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new ServiceBinding in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceBinding(request:)``
+  /// - ``createServiceBinding(request:options:)``
+  /// - ``createServiceBindingPollingUntilDone(parent:serviceBinding:serviceBindingId:)``
+  /// - ``createServiceBindingPollingUntilDone(request:)``
   public func createServiceBindingPollingUntilDone(
     request: CreateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceBinding {
@@ -1083,6 +1531,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_UpdateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServiceBinding(request:)``
+  /// - ``updateServiceBindingPollingUntilDone(request:)``
+  /// - ``updateServiceBindingPollingUntilDone(request:options:)``
+  /// - ``updateServiceBindingPollingUntilDone(serviceBinding:updateMask:)``
   public func updateServiceBinding(
     request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1092,6 +1547,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_UpdateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServiceBinding(request:)``
+  /// - ``updateServiceBinding(request:options:)``
+  /// - ``updateServiceBindingPollingUntilDone(request:)``
+  /// - ``updateServiceBindingPollingUntilDone(serviceBinding:updateMask:)``
   public func updateServiceBindingPollingUntilDone(
     request: UpdateServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceBinding {
@@ -1120,6 +1582,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_DeleteServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServiceBinding(request:)``
+  /// - ``deleteServiceBindingPollingUntilDone(name:)``
+  /// - ``deleteServiceBindingPollingUntilDone(request:)``
+  /// - ``deleteServiceBindingPollingUntilDone(request:options:)``
   public func deleteServiceBinding(
     request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1129,6 +1598,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single ServiceBinding.
   ///
   /// @Snippet(path: "NetworkServices_DeleteServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServiceBinding(request:)``
+  /// - ``deleteServiceBinding(request:options:)``
+  /// - ``deleteServiceBindingPollingUntilDone(name:)``
+  /// - ``deleteServiceBindingPollingUntilDone(request:)``
   public func deleteServiceBindingPollingUntilDone(
     request: DeleteServiceBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1156,6 +1632,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists Meshes in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListMeshes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMeshes(request:)``
+  /// - ``listMeshesByItems(parent:)``
+  /// - ``listMeshesByItems(request:)``
+  /// - ``listMeshesByItems(request:options:)``
   public func listMeshes(
     request: ListMeshesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListMeshesResponse {
@@ -1165,6 +1648,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_GetMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMesh(name:)``
+  /// - ``getMesh(request:)``
   public func getMesh(
     request: GetMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.Mesh {
@@ -1174,6 +1662,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new Mesh in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMesh(request:)``
+  /// - ``createMeshPollingUntilDone(parent:mesh:meshId:)``
+  /// - ``createMeshPollingUntilDone(request:)``
+  /// - ``createMeshPollingUntilDone(request:options:)``
   public func createMesh(
     request: CreateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1183,6 +1678,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new Mesh in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMesh(request:)``
+  /// - ``createMesh(request:options:)``
+  /// - ``createMeshPollingUntilDone(parent:mesh:meshId:)``
+  /// - ``createMeshPollingUntilDone(request:)``
   public func createMeshPollingUntilDone(
     request: CreateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> Mesh {
@@ -1210,6 +1712,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_UpdateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMesh(request:)``
+  /// - ``updateMeshPollingUntilDone(mesh:updateMask:)``
+  /// - ``updateMeshPollingUntilDone(request:)``
+  /// - ``updateMeshPollingUntilDone(request:options:)``
   public func updateMesh(
     request: UpdateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1219,6 +1728,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_UpdateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMesh(request:)``
+  /// - ``updateMesh(request:options:)``
+  /// - ``updateMeshPollingUntilDone(mesh:updateMask:)``
+  /// - ``updateMeshPollingUntilDone(request:)``
   public func updateMeshPollingUntilDone(
     request: UpdateMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> Mesh {
@@ -1246,6 +1762,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_DeleteMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMesh(request:)``
+  /// - ``deleteMeshPollingUntilDone(name:)``
+  /// - ``deleteMeshPollingUntilDone(request:)``
+  /// - ``deleteMeshPollingUntilDone(request:options:)``
   public func deleteMesh(
     request: DeleteMeshRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1255,6 +1778,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single Mesh.
   ///
   /// @Snippet(path: "NetworkServices_DeleteMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMesh(request:)``
+  /// - ``deleteMesh(request:options:)``
+  /// - ``deleteMeshPollingUntilDone(name:)``
+  /// - ``deleteMeshPollingUntilDone(request:)``
   public func deleteMeshPollingUntilDone(
     request: DeleteMeshRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1282,6 +1812,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists ServiceLbPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListServiceLbPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServiceLbPolicies(request:)``
+  /// - ``listServiceLbPoliciesByItems(parent:)``
+  /// - ``listServiceLbPoliciesByItems(request:)``
+  /// - ``listServiceLbPoliciesByItems(request:options:)``
   public func listServiceLbPolicies(
     request: ListServiceLbPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListServiceLbPoliciesResponse {
@@ -1291,6 +1828,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_GetServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServiceLbPolicy(name:)``
+  /// - ``getServiceLbPolicy(request:)``
   public func getServiceLbPolicy(
     request: GetServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ServiceLbPolicy {
@@ -1300,6 +1842,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new ServiceLbPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceLbPolicy(request:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(parent:serviceLbPolicy:serviceLbPolicyId:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(request:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(request:options:)``
   public func createServiceLbPolicy(
     request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1309,6 +1858,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new ServiceLbPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceLbPolicy(request:)``
+  /// - ``createServiceLbPolicy(request:options:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(parent:serviceLbPolicy:serviceLbPolicyId:)``
+  /// - ``createServiceLbPolicyPollingUntilDone(request:)``
   public func createServiceLbPolicyPollingUntilDone(
     request: CreateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceLbPolicy {
@@ -1337,6 +1893,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_UpdateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServiceLbPolicy(request:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(request:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(request:options:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(serviceLbPolicy:updateMask:)``
   public func updateServiceLbPolicy(
     request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1346,6 +1909,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_UpdateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServiceLbPolicy(request:)``
+  /// - ``updateServiceLbPolicy(request:options:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(request:)``
+  /// - ``updateServiceLbPolicyPollingUntilDone(serviceLbPolicy:updateMask:)``
   public func updateServiceLbPolicyPollingUntilDone(
     request: UpdateServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServiceLbPolicy {
@@ -1374,6 +1944,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_DeleteServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServiceLbPolicy(request:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(name:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(request:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(request:options:)``
   public func deleteServiceLbPolicy(
     request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1383,6 +1960,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single ServiceLbPolicy.
   ///
   /// @Snippet(path: "NetworkServices_DeleteServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServiceLbPolicy(request:)``
+  /// - ``deleteServiceLbPolicy(request:options:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(name:)``
+  /// - ``deleteServiceLbPolicyPollingUntilDone(request:)``
   public func deleteServiceLbPolicyPollingUntilDone(
     request: DeleteServiceLbPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1410,6 +1994,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Get a single RouteView of a Gateway.
   ///
   /// @Snippet(path: "NetworkServices_GetGatewayRouteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGatewayRouteView(name:)``
+  /// - ``getGatewayRouteView(request:)``
   public func getGatewayRouteView(
     request: GetGatewayRouteViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.GatewayRouteView {
@@ -1419,6 +2008,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Get a single RouteView of a Mesh.
   ///
   /// @Snippet(path: "NetworkServices_GetMeshRouteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMeshRouteView(name:)``
+  /// - ``getMeshRouteView(request:)``
   public func getMeshRouteView(
     request: GetMeshRouteViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.MeshRouteView {
@@ -1428,6 +2022,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists RouteViews
   ///
   /// @Snippet(path: "NetworkServices_ListGatewayRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGatewayRouteViews(request:)``
+  /// - ``listGatewayRouteViewsByItems(parent:)``
+  /// - ``listGatewayRouteViewsByItems(request:)``
+  /// - ``listGatewayRouteViewsByItems(request:options:)``
   public func listGatewayRouteViews(
     request: ListGatewayRouteViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListGatewayRouteViewsResponse {
@@ -1437,6 +2038,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists RouteViews
   ///
   /// @Snippet(path: "NetworkServices_ListMeshRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMeshRouteViews(request:)``
+  /// - ``listMeshRouteViewsByItems(parent:)``
+  /// - ``listMeshRouteViewsByItems(request:)``
+  /// - ``listMeshRouteViewsByItems(request:options:)``
   public func listMeshRouteViews(
     request: ListMeshRouteViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListMeshRouteViewsResponse {
@@ -1446,6 +2054,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists AgentGateways in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListAgentGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAgentGateways(request:)``
+  /// - ``listAgentGatewaysByItems(parent:)``
+  /// - ``listAgentGatewaysByItems(request:)``
+  /// - ``listAgentGatewaysByItems(request:options:)``
   public func listAgentGateways(
     request: ListAgentGatewaysRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.ListAgentGatewaysResponse {
@@ -1455,6 +2070,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets details of a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_GetAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAgentGateway(name:)``
+  /// - ``getAgentGateway(request:)``
   public func getAgentGateway(
     request: GetAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkServicesV1.AgentGateway {
@@ -1464,6 +2084,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new AgentGateway in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAgentGateway(request:)``
+  /// - ``createAgentGatewayPollingUntilDone(parent:agentGateway:agentGatewayId:)``
+  /// - ``createAgentGatewayPollingUntilDone(request:)``
+  /// - ``createAgentGatewayPollingUntilDone(request:options:)``
   public func createAgentGateway(
     request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1473,6 +2100,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Creates a new AgentGateway in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_CreateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAgentGateway(request:)``
+  /// - ``createAgentGateway(request:options:)``
+  /// - ``createAgentGatewayPollingUntilDone(parent:agentGateway:agentGatewayId:)``
+  /// - ``createAgentGatewayPollingUntilDone(request:)``
   public func createAgentGatewayPollingUntilDone(
     request: CreateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> AgentGateway {
@@ -1501,6 +2135,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_UpdateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAgentGateway(request:)``
+  /// - ``updateAgentGatewayPollingUntilDone(agentGateway:updateMask:)``
+  /// - ``updateAgentGatewayPollingUntilDone(request:)``
+  /// - ``updateAgentGatewayPollingUntilDone(request:options:)``
   public func updateAgentGateway(
     request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1510,6 +2151,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Updates the parameters of a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_UpdateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAgentGateway(request:)``
+  /// - ``updateAgentGateway(request:options:)``
+  /// - ``updateAgentGatewayPollingUntilDone(agentGateway:updateMask:)``
+  /// - ``updateAgentGatewayPollingUntilDone(request:)``
   public func updateAgentGatewayPollingUntilDone(
     request: UpdateAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> AgentGateway {
@@ -1538,6 +2186,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_DeleteAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAgentGateway(request:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(name:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(request:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(request:options:)``
   public func deleteAgentGateway(
     request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1547,6 +2202,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Deletes a single AgentGateway.
   ///
   /// @Snippet(path: "NetworkServices_DeleteAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAgentGateway(request:)``
+  /// - ``deleteAgentGateway(request:options:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(name:)``
+  /// - ``deleteAgentGatewayPollingUntilDone(request:)``
   public func deleteAgentGatewayPollingUntilDone(
     request: DeleteAgentGatewayRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1574,6 +2236,12 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "NetworkServices_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1583,6 +2251,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "NetworkServices_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1596,6 +2268,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "NetworkServices_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1606,6 +2282,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "NetworkServices_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1621,6 +2301,10 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "NetworkServices_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1632,6 +2316,13 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkServices_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1654,6 +2345,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkServices_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1665,6 +2361,11 @@ public final class NetworkServicesClient: Clients.NetworkServicesProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkServices_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -2213,6 +2914,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.NetworkServicesProtocol {
+  /// Lists EndpointPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListEndpointPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listEndpointPolicies(request:options:)``
   public func listEndpointPolicies(request: ListEndpointPoliciesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListEndpointPoliciesResponse
   {
@@ -2225,6 +2933,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists EndpointPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListEndpointPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listEndpointPolicies(request:options:)``
   public func listEndpointPoliciesByItems(
     request: ListEndpointPoliciesRequest
   ) -> some AsyncSequence<EndpointPolicy, any Swift.Error> & Sendable {
@@ -2234,6 +2949,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists EndpointPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListEndpointPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listEndpointPolicies(request:options:)``
   public func listEndpointPoliciesByItems(
     request: ListEndpointPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EndpointPolicy, any Swift.Error> & Sendable {
@@ -2248,6 +2967,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists EndpointPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListEndpointPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listEndpointPolicies(request:options:)``
   public func listEndpointPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<EndpointPolicy, any Swift.Error> & Sendable {
@@ -2257,6 +2983,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listEndpointPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_GetEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getEndpointPolicy(request:options:)``
   public func getEndpointPolicy(request: GetEndpointPolicyRequest) async throws
     -> GoogleCloudNetworkServicesV1.EndpointPolicy
   {
@@ -2269,6 +3002,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_GetEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getEndpointPolicy(request:options:)``
   public func getEndpointPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.EndpointPolicy {
@@ -2278,6 +3018,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getEndpointPolicy(request: request)
   }
 
+  /// Creates a new EndpointPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createEndpointPolicy(request:options:)``
   public func createEndpointPolicy(request: CreateEndpointPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2290,6 +3037,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new EndpointPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createEndpointPolicyPollingUntilDone(request:options:)``
   public func createEndpointPolicyPollingUntilDone(request: CreateEndpointPolicyRequest)
     async throws -> EndpointPolicy
   {
@@ -2302,6 +3056,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new EndpointPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createEndpointPolicyPollingUntilDone(request:options:)``
   public func createEndpointPolicyPollingUntilDone(
     parent: Swift.String,
     endpointPolicy: EndpointPolicy?,
@@ -2315,6 +3076,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createEndpointPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateEndpointPolicy(request:options:)``
   public func updateEndpointPolicy(request: UpdateEndpointPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2327,6 +3095,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateEndpointPolicyPollingUntilDone(request:options:)``
   public func updateEndpointPolicyPollingUntilDone(request: UpdateEndpointPolicyRequest)
     async throws -> EndpointPolicy
   {
@@ -2339,6 +3114,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateEndpointPolicyPollingUntilDone(request:options:)``
   public func updateEndpointPolicyPollingUntilDone(
     endpointPolicy: EndpointPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2350,6 +3132,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateEndpointPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteEndpointPolicy(request:options:)``
   public func deleteEndpointPolicy(request: DeleteEndpointPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2362,6 +3151,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteEndpointPolicyPollingUntilDone(request:options:)``
   public func deleteEndpointPolicyPollingUntilDone(request: DeleteEndpointPolicyRequest)
     async throws
   {
@@ -2374,6 +3170,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single EndpointPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteEndpointPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteEndpointPolicyPollingUntilDone(request:options:)``
   public func deleteEndpointPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2383,6 +3186,14 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteEndpointPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists `WasmPluginVersion` resources in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListWasmPluginVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPluginVersions(request:options:)``
   public func listWasmPluginVersions(request: ListWasmPluginVersionsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListWasmPluginVersionsResponse
   {
@@ -2395,6 +3206,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `WasmPluginVersion` resources in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListWasmPluginVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPluginVersions(request:options:)``
   public func listWasmPluginVersionsByItems(
     request: ListWasmPluginVersionsRequest
   ) -> some AsyncSequence<WasmPluginVersion, any Swift.Error> & Sendable {
@@ -2405,6 +3224,10 @@ extension Clients.NetworkServicesProtocol {
   /// location.
   ///
   /// @Snippet(path: "NetworkServices_ListWasmPluginVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPluginVersions(request:options:)``
   public func listWasmPluginVersionsByItems(
     request: ListWasmPluginVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WasmPluginVersion, any Swift.Error> & Sendable {
@@ -2419,6 +3242,14 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `WasmPluginVersion` resources in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListWasmPluginVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPluginVersions(request:options:)``
   public func listWasmPluginVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WasmPluginVersion, any Swift.Error> & Sendable {
@@ -2428,6 +3259,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listWasmPluginVersionsByItems(request: request)
   }
 
+  /// Gets details of the specified `WasmPluginVersion` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_GetWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getWasmPluginVersion(request:options:)``
   public func getWasmPluginVersion(request: GetWasmPluginVersionRequest) async throws
     -> GoogleCloudNetworkServicesV1.WasmPluginVersion
   {
@@ -2440,6 +3278,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of the specified `WasmPluginVersion` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_GetWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getWasmPluginVersion(request:options:)``
   public func getWasmPluginVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.WasmPluginVersion {
@@ -2449,6 +3294,14 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getWasmPluginVersion(request: request)
   }
 
+  /// Creates a new `WasmPluginVersion` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createWasmPluginVersion(request:options:)``
   public func createWasmPluginVersion(request: CreateWasmPluginVersionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2461,6 +3314,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `WasmPluginVersion` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createWasmPluginVersionPollingUntilDone(request:options:)``
   public func createWasmPluginVersionPollingUntilDone(request: CreateWasmPluginVersionRequest)
     async throws -> WasmPluginVersion
   {
@@ -2474,6 +3335,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `WasmPluginVersion` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createWasmPluginVersionPollingUntilDone(request:options:)``
   public func createWasmPluginVersionPollingUntilDone(
     parent: Swift.String,
     wasmPluginVersion: WasmPluginVersion?,
@@ -2487,6 +3356,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createWasmPluginVersionPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified `WasmPluginVersion` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteWasmPluginVersion(request:options:)``
   public func deleteWasmPluginVersion(request: DeleteWasmPluginVersionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2499,6 +3375,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `WasmPluginVersion` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteWasmPluginVersionPollingUntilDone(request:options:)``
   public func deleteWasmPluginVersionPollingUntilDone(request: DeleteWasmPluginVersionRequest)
     async throws
   {
@@ -2511,6 +3394,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `WasmPluginVersion` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteWasmPluginVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteWasmPluginVersionPollingUntilDone(request:options:)``
   public func deleteWasmPluginVersionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2520,6 +3410,14 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteWasmPluginVersionPollingUntilDone(request: request)
   }
 
+  /// Lists `WasmPlugin` resources in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListWasmPlugins")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPlugins(request:options:)``
   public func listWasmPlugins(request: ListWasmPluginsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListWasmPluginsResponse
   {
@@ -2532,6 +3430,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists `WasmPlugin` resources in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListWasmPlugins")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPlugins(request:options:)``
   public func listWasmPluginsByItems(
     request: ListWasmPluginsRequest
   ) -> some AsyncSequence<WasmPlugin, any Swift.Error> & Sendable {
@@ -2542,6 +3448,10 @@ extension Clients.NetworkServicesProtocol {
   /// location.
   ///
   /// @Snippet(path: "NetworkServices_ListWasmPlugins")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPlugins(request:options:)``
   public func listWasmPluginsByItems(
     request: ListWasmPluginsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WasmPlugin, any Swift.Error> & Sendable {
@@ -2556,6 +3466,14 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists `WasmPlugin` resources in a given project and
+  /// location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListWasmPlugins")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listWasmPlugins(request:options:)``
   public func listWasmPluginsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WasmPlugin, any Swift.Error> & Sendable {
@@ -2565,6 +3483,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listWasmPluginsByItems(request: request)
   }
 
+  /// Gets details of the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_GetWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getWasmPlugin(request:options:)``
   public func getWasmPlugin(request: GetWasmPluginRequest) async throws
     -> GoogleCloudNetworkServicesV1.WasmPlugin
   {
@@ -2577,6 +3502,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_GetWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getWasmPlugin(request:options:)``
   public func getWasmPlugin(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.WasmPlugin {
@@ -2586,6 +3518,14 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getWasmPlugin(request: request)
   }
 
+  /// Creates a new `WasmPlugin` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createWasmPlugin(request:options:)``
   public func createWasmPlugin(request: CreateWasmPluginRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2598,6 +3538,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `WasmPlugin` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createWasmPluginPollingUntilDone(request:options:)``
   public func createWasmPluginPollingUntilDone(request: CreateWasmPluginRequest) async throws
     -> WasmPlugin
   {
@@ -2610,6 +3558,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new `WasmPlugin` resource in a given project
+  /// and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createWasmPluginPollingUntilDone(request:options:)``
   public func createWasmPluginPollingUntilDone(
     parent: Swift.String,
     wasmPlugin: WasmPlugin?,
@@ -2623,6 +3579,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createWasmPluginPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateWasmPlugin(request:options:)``
   public func updateWasmPlugin(request: UpdateWasmPluginRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2635,6 +3598,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateWasmPluginPollingUntilDone(request:options:)``
   public func updateWasmPluginPollingUntilDone(request: UpdateWasmPluginRequest) async throws
     -> WasmPlugin
   {
@@ -2647,6 +3617,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateWasmPluginPollingUntilDone(request:options:)``
   public func updateWasmPluginPollingUntilDone(
     wasmPlugin: WasmPlugin?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2658,6 +3635,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateWasmPluginPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteWasmPlugin(request:options:)``
   public func deleteWasmPlugin(request: DeleteWasmPluginRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2670,6 +3654,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteWasmPluginPollingUntilDone(request:options:)``
   public func deleteWasmPluginPollingUntilDone(request: DeleteWasmPluginRequest) async throws {
     try await self.deleteWasmPluginPollingUntilDone(request: request, options: .init())
   }
@@ -2680,6 +3671,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified `WasmPlugin` resource.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteWasmPlugin")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteWasmPluginPollingUntilDone(request:options:)``
   public func deleteWasmPluginPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2689,6 +3687,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteWasmPluginPollingUntilDone(request: request)
   }
 
+  /// Lists Gateways in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGateways(request:options:)``
   public func listGateways(request: ListGatewaysRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListGatewaysResponse
   {
@@ -2701,6 +3706,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Gateways in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGateways(request:options:)``
   public func listGatewaysByItems(
     request: ListGatewaysRequest
   ) -> some AsyncSequence<Gateway, any Swift.Error> & Sendable {
@@ -2710,6 +3722,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists Gateways in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGateways(request:options:)``
   public func listGatewaysByItems(
     request: ListGatewaysRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Gateway, any Swift.Error> & Sendable {
@@ -2724,6 +3740,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Gateways in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGateways(request:options:)``
   public func listGatewaysByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Gateway, any Swift.Error> & Sendable {
@@ -2733,6 +3756,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listGatewaysByItems(request: request)
   }
 
+  /// Gets details of a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_GetGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getGateway(request:options:)``
   public func getGateway(request: GetGatewayRequest) async throws
     -> GoogleCloudNetworkServicesV1.Gateway
   {
@@ -2745,6 +3775,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_GetGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getGateway(request:options:)``
   public func getGateway(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.Gateway {
@@ -2754,6 +3791,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getGateway(request: request)
   }
 
+  /// Creates a new Gateway in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createGateway(request:options:)``
   public func createGateway(request: CreateGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2766,6 +3810,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Gateway in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createGatewayPollingUntilDone(request:options:)``
   public func createGatewayPollingUntilDone(request: CreateGatewayRequest) async throws -> Gateway {
     return try await self.createGatewayPollingUntilDone(request: request, options: .init())
   }
@@ -2776,6 +3827,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Gateway in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createGatewayPollingUntilDone(request:options:)``
   public func createGatewayPollingUntilDone(
     parent: Swift.String,
     gateway: Gateway?,
@@ -2789,6 +3847,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createGatewayPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateGateway(request:options:)``
   public func updateGateway(request: UpdateGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2801,6 +3866,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateGatewayPollingUntilDone(request:options:)``
   public func updateGatewayPollingUntilDone(request: UpdateGatewayRequest) async throws -> Gateway {
     return try await self.updateGatewayPollingUntilDone(request: request, options: .init())
   }
@@ -2811,6 +3883,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateGatewayPollingUntilDone(request:options:)``
   public func updateGatewayPollingUntilDone(
     gateway: Gateway?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2822,6 +3901,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateGatewayPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteGateway(request:options:)``
   public func deleteGateway(request: DeleteGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2834,6 +3920,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteGatewayPollingUntilDone(request:options:)``
   public func deleteGatewayPollingUntilDone(request: DeleteGatewayRequest) async throws {
     try await self.deleteGatewayPollingUntilDone(request: request, options: .init())
   }
@@ -2844,6 +3937,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteGatewayPollingUntilDone(request:options:)``
   public func deleteGatewayPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2853,6 +3953,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteGatewayPollingUntilDone(request: request)
   }
 
+  /// Lists GrpcRoutes in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListGrpcRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGrpcRoutes(request:options:)``
   public func listGrpcRoutes(request: ListGrpcRoutesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListGrpcRoutesResponse
   {
@@ -2865,6 +3972,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists GrpcRoutes in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListGrpcRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGrpcRoutes(request:options:)``
   public func listGrpcRoutesByItems(
     request: ListGrpcRoutesRequest
   ) -> some AsyncSequence<GrpcRoute, any Swift.Error> & Sendable {
@@ -2874,6 +3988,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists GrpcRoutes in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListGrpcRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGrpcRoutes(request:options:)``
   public func listGrpcRoutesByItems(
     request: ListGrpcRoutesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GrpcRoute, any Swift.Error> & Sendable {
@@ -2888,6 +4006,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists GrpcRoutes in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListGrpcRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGrpcRoutes(request:options:)``
   public func listGrpcRoutesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GrpcRoute, any Swift.Error> & Sendable {
@@ -2897,6 +4022,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listGrpcRoutesByItems(request: request)
   }
 
+  /// Gets details of a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getGrpcRoute(request:options:)``
   public func getGrpcRoute(request: GetGrpcRouteRequest) async throws
     -> GoogleCloudNetworkServicesV1.GrpcRoute
   {
@@ -2909,6 +4041,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getGrpcRoute(request:options:)``
   public func getGrpcRoute(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.GrpcRoute {
@@ -2918,6 +4057,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getGrpcRoute(request: request)
   }
 
+  /// Creates a new GrpcRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createGrpcRoute(request:options:)``
   public func createGrpcRoute(request: CreateGrpcRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2930,6 +4076,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new GrpcRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createGrpcRoutePollingUntilDone(request:options:)``
   public func createGrpcRoutePollingUntilDone(request: CreateGrpcRouteRequest) async throws
     -> GrpcRoute
   {
@@ -2942,6 +4095,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new GrpcRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createGrpcRoutePollingUntilDone(request:options:)``
   public func createGrpcRoutePollingUntilDone(
     parent: Swift.String,
     grpcRoute: GrpcRoute?,
@@ -2955,6 +4115,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createGrpcRoutePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateGrpcRoute(request:options:)``
   public func updateGrpcRoute(request: UpdateGrpcRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2967,6 +4134,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateGrpcRoutePollingUntilDone(request:options:)``
   public func updateGrpcRoutePollingUntilDone(request: UpdateGrpcRouteRequest) async throws
     -> GrpcRoute
   {
@@ -2979,6 +4153,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateGrpcRoutePollingUntilDone(request:options:)``
   public func updateGrpcRoutePollingUntilDone(
     grpcRoute: GrpcRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2990,6 +4171,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateGrpcRoutePollingUntilDone(request: request)
   }
 
+  /// Deletes a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteGrpcRoute(request:options:)``
   public func deleteGrpcRoute(request: DeleteGrpcRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3002,6 +4190,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteGrpcRoutePollingUntilDone(request:options:)``
   public func deleteGrpcRoutePollingUntilDone(request: DeleteGrpcRouteRequest) async throws {
     try await self.deleteGrpcRoutePollingUntilDone(request: request, options: .init())
   }
@@ -3012,6 +4207,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single GrpcRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteGrpcRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteGrpcRoutePollingUntilDone(request:options:)``
   public func deleteGrpcRoutePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3021,6 +4223,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteGrpcRoutePollingUntilDone(request: request)
   }
 
+  /// Lists HttpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListHttpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listHttpRoutes(request:options:)``
   public func listHttpRoutes(request: ListHttpRoutesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListHttpRoutesResponse
   {
@@ -3033,6 +4242,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists HttpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListHttpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listHttpRoutes(request:options:)``
   public func listHttpRoutesByItems(
     request: ListHttpRoutesRequest
   ) -> some AsyncSequence<HttpRoute, any Swift.Error> & Sendable {
@@ -3042,6 +4258,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists HttpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListHttpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listHttpRoutes(request:options:)``
   public func listHttpRoutesByItems(
     request: ListHttpRoutesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<HttpRoute, any Swift.Error> & Sendable {
@@ -3056,6 +4276,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists HttpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListHttpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listHttpRoutes(request:options:)``
   public func listHttpRoutesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<HttpRoute, any Swift.Error> & Sendable {
@@ -3065,6 +4292,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listHttpRoutesByItems(request: request)
   }
 
+  /// Gets details of a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getHttpRoute(request:options:)``
   public func getHttpRoute(request: GetHttpRouteRequest) async throws
     -> GoogleCloudNetworkServicesV1.HttpRoute
   {
@@ -3077,6 +4311,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getHttpRoute(request:options:)``
   public func getHttpRoute(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.HttpRoute {
@@ -3086,6 +4327,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getHttpRoute(request: request)
   }
 
+  /// Creates a new HttpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createHttpRoute(request:options:)``
   public func createHttpRoute(request: CreateHttpRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3098,6 +4346,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new HttpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createHttpRoutePollingUntilDone(request:options:)``
   public func createHttpRoutePollingUntilDone(request: CreateHttpRouteRequest) async throws
     -> HttpRoute
   {
@@ -3110,6 +4365,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new HttpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createHttpRoutePollingUntilDone(request:options:)``
   public func createHttpRoutePollingUntilDone(
     parent: Swift.String,
     httpRoute: HttpRoute?,
@@ -3123,6 +4385,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createHttpRoutePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateHttpRoute(request:options:)``
   public func updateHttpRoute(request: UpdateHttpRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3135,6 +4404,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateHttpRoutePollingUntilDone(request:options:)``
   public func updateHttpRoutePollingUntilDone(request: UpdateHttpRouteRequest) async throws
     -> HttpRoute
   {
@@ -3147,6 +4423,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateHttpRoutePollingUntilDone(request:options:)``
   public func updateHttpRoutePollingUntilDone(
     httpRoute: HttpRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3158,6 +4441,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateHttpRoutePollingUntilDone(request: request)
   }
 
+  /// Deletes a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteHttpRoute(request:options:)``
   public func deleteHttpRoute(request: DeleteHttpRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3170,6 +4460,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteHttpRoutePollingUntilDone(request:options:)``
   public func deleteHttpRoutePollingUntilDone(request: DeleteHttpRouteRequest) async throws {
     try await self.deleteHttpRoutePollingUntilDone(request: request, options: .init())
   }
@@ -3180,6 +4477,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single HttpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteHttpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteHttpRoutePollingUntilDone(request:options:)``
   public func deleteHttpRoutePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3189,6 +4493,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteHttpRoutePollingUntilDone(request: request)
   }
 
+  /// Lists TcpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListTcpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTcpRoutes(request:options:)``
   public func listTcpRoutes(request: ListTcpRoutesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListTcpRoutesResponse
   {
@@ -3201,6 +4512,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists TcpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListTcpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTcpRoutes(request:options:)``
   public func listTcpRoutesByItems(
     request: ListTcpRoutesRequest
   ) -> some AsyncSequence<TcpRoute, any Swift.Error> & Sendable {
@@ -3210,6 +4528,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists TcpRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListTcpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTcpRoutes(request:options:)``
   public func listTcpRoutesByItems(
     request: ListTcpRoutesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TcpRoute, any Swift.Error> & Sendable {
@@ -3224,6 +4546,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists TcpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListTcpRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTcpRoutes(request:options:)``
   public func listTcpRoutesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TcpRoute, any Swift.Error> & Sendable {
@@ -3233,6 +4562,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listTcpRoutesByItems(request: request)
   }
 
+  /// Gets details of a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getTcpRoute(request:options:)``
   public func getTcpRoute(request: GetTcpRouteRequest) async throws
     -> GoogleCloudNetworkServicesV1.TcpRoute
   {
@@ -3245,6 +4581,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getTcpRoute(request:options:)``
   public func getTcpRoute(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.TcpRoute {
@@ -3254,6 +4597,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getTcpRoute(request: request)
   }
 
+  /// Creates a new TcpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createTcpRoute(request:options:)``
   public func createTcpRoute(request: CreateTcpRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3266,6 +4616,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TcpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createTcpRoutePollingUntilDone(request:options:)``
   public func createTcpRoutePollingUntilDone(request: CreateTcpRouteRequest) async throws
     -> TcpRoute
   {
@@ -3278,6 +4635,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TcpRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createTcpRoutePollingUntilDone(request:options:)``
   public func createTcpRoutePollingUntilDone(
     parent: Swift.String,
     tcpRoute: TcpRoute?,
@@ -3291,6 +4655,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createTcpRoutePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateTcpRoute(request:options:)``
   public func updateTcpRoute(request: UpdateTcpRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3303,6 +4674,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateTcpRoutePollingUntilDone(request:options:)``
   public func updateTcpRoutePollingUntilDone(request: UpdateTcpRouteRequest) async throws
     -> TcpRoute
   {
@@ -3315,6 +4693,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateTcpRoutePollingUntilDone(request:options:)``
   public func updateTcpRoutePollingUntilDone(
     tcpRoute: TcpRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3326,6 +4711,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateTcpRoutePollingUntilDone(request: request)
   }
 
+  /// Deletes a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteTcpRoute(request:options:)``
   public func deleteTcpRoute(request: DeleteTcpRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3338,6 +4730,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteTcpRoutePollingUntilDone(request:options:)``
   public func deleteTcpRoutePollingUntilDone(request: DeleteTcpRouteRequest) async throws {
     try await self.deleteTcpRoutePollingUntilDone(request: request, options: .init())
   }
@@ -3348,6 +4747,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TcpRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteTcpRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteTcpRoutePollingUntilDone(request:options:)``
   public func deleteTcpRoutePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3357,6 +4763,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteTcpRoutePollingUntilDone(request: request)
   }
 
+  /// Lists TlsRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListTlsRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTlsRoutes(request:options:)``
   public func listTlsRoutes(request: ListTlsRoutesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListTlsRoutesResponse
   {
@@ -3369,6 +4782,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists TlsRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListTlsRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTlsRoutes(request:options:)``
   public func listTlsRoutesByItems(
     request: ListTlsRoutesRequest
   ) -> some AsyncSequence<TlsRoute, any Swift.Error> & Sendable {
@@ -3378,6 +4798,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists TlsRoute in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListTlsRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTlsRoutes(request:options:)``
   public func listTlsRoutesByItems(
     request: ListTlsRoutesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TlsRoute, any Swift.Error> & Sendable {
@@ -3392,6 +4816,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists TlsRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListTlsRoutes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listTlsRoutes(request:options:)``
   public func listTlsRoutesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TlsRoute, any Swift.Error> & Sendable {
@@ -3401,6 +4832,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listTlsRoutesByItems(request: request)
   }
 
+  /// Gets details of a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getTlsRoute(request:options:)``
   public func getTlsRoute(request: GetTlsRouteRequest) async throws
     -> GoogleCloudNetworkServicesV1.TlsRoute
   {
@@ -3413,6 +4851,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_GetTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getTlsRoute(request:options:)``
   public func getTlsRoute(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.TlsRoute {
@@ -3422,6 +4867,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getTlsRoute(request: request)
   }
 
+  /// Creates a new TlsRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createTlsRoute(request:options:)``
   public func createTlsRoute(request: CreateTlsRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3434,6 +4886,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TlsRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createTlsRoutePollingUntilDone(request:options:)``
   public func createTlsRoutePollingUntilDone(request: CreateTlsRouteRequest) async throws
     -> TlsRoute
   {
@@ -3446,6 +4905,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TlsRoute in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createTlsRoutePollingUntilDone(request:options:)``
   public func createTlsRoutePollingUntilDone(
     parent: Swift.String,
     tlsRoute: TlsRoute?,
@@ -3459,6 +4925,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createTlsRoutePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateTlsRoute(request:options:)``
   public func updateTlsRoute(request: UpdateTlsRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3471,6 +4944,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateTlsRoutePollingUntilDone(request:options:)``
   public func updateTlsRoutePollingUntilDone(request: UpdateTlsRouteRequest) async throws
     -> TlsRoute
   {
@@ -3483,6 +4963,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateTlsRoutePollingUntilDone(request:options:)``
   public func updateTlsRoutePollingUntilDone(
     tlsRoute: TlsRoute?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3494,6 +4981,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateTlsRoutePollingUntilDone(request: request)
   }
 
+  /// Deletes a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteTlsRoute(request:options:)``
   public func deleteTlsRoute(request: DeleteTlsRouteRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3506,6 +5000,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteTlsRoutePollingUntilDone(request:options:)``
   public func deleteTlsRoutePollingUntilDone(request: DeleteTlsRouteRequest) async throws {
     try await self.deleteTlsRoutePollingUntilDone(request: request, options: .init())
   }
@@ -3516,6 +5017,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TlsRoute.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteTlsRoute")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteTlsRoutePollingUntilDone(request:options:)``
   public func deleteTlsRoutePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3525,6 +5033,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteTlsRoutePollingUntilDone(request: request)
   }
 
+  /// Lists ServiceBinding in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListServiceBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceBindings(request:options:)``
   public func listServiceBindings(request: ListServiceBindingsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListServiceBindingsResponse
   {
@@ -3537,6 +5052,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ServiceBinding in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListServiceBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceBindings(request:options:)``
   public func listServiceBindingsByItems(
     request: ListServiceBindingsRequest
   ) -> some AsyncSequence<ServiceBinding, any Swift.Error> & Sendable {
@@ -3546,6 +5068,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists ServiceBinding in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListServiceBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceBindings(request:options:)``
   public func listServiceBindingsByItems(
     request: ListServiceBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ServiceBinding, any Swift.Error> & Sendable {
@@ -3560,6 +5086,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ServiceBinding in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListServiceBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceBindings(request:options:)``
   public func listServiceBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ServiceBinding, any Swift.Error> & Sendable {
@@ -3569,6 +5102,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listServiceBindingsByItems(request: request)
   }
 
+  /// Gets details of a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_GetServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getServiceBinding(request:options:)``
   public func getServiceBinding(request: GetServiceBindingRequest) async throws
     -> GoogleCloudNetworkServicesV1.ServiceBinding
   {
@@ -3581,6 +5121,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_GetServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getServiceBinding(request:options:)``
   public func getServiceBinding(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.ServiceBinding {
@@ -3590,6 +5137,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getServiceBinding(request: request)
   }
 
+  /// Creates a new ServiceBinding in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createServiceBinding(request:options:)``
   public func createServiceBinding(request: CreateServiceBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3602,6 +5156,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ServiceBinding in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createServiceBindingPollingUntilDone(request:options:)``
   public func createServiceBindingPollingUntilDone(request: CreateServiceBindingRequest)
     async throws -> ServiceBinding
   {
@@ -3614,6 +5175,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ServiceBinding in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createServiceBindingPollingUntilDone(request:options:)``
   public func createServiceBindingPollingUntilDone(
     parent: Swift.String,
     serviceBinding: ServiceBinding?,
@@ -3627,6 +5195,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createServiceBindingPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateServiceBinding(request:options:)``
   public func updateServiceBinding(request: UpdateServiceBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3639,6 +5214,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateServiceBindingPollingUntilDone(request:options:)``
   public func updateServiceBindingPollingUntilDone(request: UpdateServiceBindingRequest)
     async throws -> ServiceBinding
   {
@@ -3651,6 +5233,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateServiceBindingPollingUntilDone(request:options:)``
   public func updateServiceBindingPollingUntilDone(
     serviceBinding: ServiceBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3662,6 +5251,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateServiceBindingPollingUntilDone(request: request)
   }
 
+  /// Deletes a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteServiceBinding(request:options:)``
   public func deleteServiceBinding(request: DeleteServiceBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3674,6 +5270,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteServiceBindingPollingUntilDone(request:options:)``
   public func deleteServiceBindingPollingUntilDone(request: DeleteServiceBindingRequest)
     async throws
   {
@@ -3686,6 +5289,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ServiceBinding.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteServiceBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteServiceBindingPollingUntilDone(request:options:)``
   public func deleteServiceBindingPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3695,6 +5305,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteServiceBindingPollingUntilDone(request: request)
   }
 
+  /// Lists Meshes in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListMeshes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshes(request:options:)``
   public func listMeshes(request: ListMeshesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListMeshesResponse
   {
@@ -3707,6 +5324,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Meshes in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListMeshes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshes(request:options:)``
   public func listMeshesByItems(
     request: ListMeshesRequest
   ) -> some AsyncSequence<Mesh, any Swift.Error> & Sendable {
@@ -3716,6 +5340,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists Meshes in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListMeshes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshes(request:options:)``
   public func listMeshesByItems(
     request: ListMeshesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Mesh, any Swift.Error> & Sendable {
@@ -3730,6 +5358,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Meshes in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListMeshes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshes(request:options:)``
   public func listMeshesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Mesh, any Swift.Error> & Sendable {
@@ -3739,6 +5374,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listMeshesByItems(request: request)
   }
 
+  /// Gets details of a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_GetMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getMesh(request:options:)``
   public func getMesh(request: GetMeshRequest) async throws -> GoogleCloudNetworkServicesV1.Mesh {
     try await self.getMesh(request: request, options: .init())
   }
@@ -3749,6 +5391,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_GetMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getMesh(request:options:)``
   public func getMesh(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.Mesh {
@@ -3758,6 +5407,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getMesh(request: request)
   }
 
+  /// Creates a new Mesh in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createMesh(request:options:)``
   public func createMesh(request: CreateMeshRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createMesh(request: request, options: .init())
   }
@@ -3768,6 +5424,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Mesh in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createMeshPollingUntilDone(request:options:)``
   public func createMeshPollingUntilDone(request: CreateMeshRequest) async throws -> Mesh {
     return try await self.createMeshPollingUntilDone(request: request, options: .init())
   }
@@ -3778,6 +5441,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Mesh in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createMeshPollingUntilDone(request:options:)``
   public func createMeshPollingUntilDone(
     parent: Swift.String,
     mesh: Mesh?,
@@ -3791,6 +5461,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createMeshPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateMesh(request:options:)``
   public func updateMesh(request: UpdateMeshRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateMesh(request: request, options: .init())
   }
@@ -3801,6 +5478,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateMeshPollingUntilDone(request:options:)``
   public func updateMeshPollingUntilDone(request: UpdateMeshRequest) async throws -> Mesh {
     return try await self.updateMeshPollingUntilDone(request: request, options: .init())
   }
@@ -3811,6 +5495,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateMeshPollingUntilDone(request:options:)``
   public func updateMeshPollingUntilDone(
     mesh: Mesh?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3822,6 +5513,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateMeshPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteMesh(request:options:)``
   public func deleteMesh(request: DeleteMeshRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteMesh(request: request, options: .init())
   }
@@ -3832,6 +5530,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteMeshPollingUntilDone(request:options:)``
   public func deleteMeshPollingUntilDone(request: DeleteMeshRequest) async throws {
     try await self.deleteMeshPollingUntilDone(request: request, options: .init())
   }
@@ -3842,6 +5547,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteMesh")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteMeshPollingUntilDone(request:options:)``
   public func deleteMeshPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3851,6 +5563,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteMeshPollingUntilDone(request: request)
   }
 
+  /// Lists ServiceLbPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListServiceLbPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceLbPolicies(request:options:)``
   public func listServiceLbPolicies(request: ListServiceLbPoliciesRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListServiceLbPoliciesResponse
   {
@@ -3863,6 +5582,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ServiceLbPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListServiceLbPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceLbPolicies(request:options:)``
   public func listServiceLbPoliciesByItems(
     request: ListServiceLbPoliciesRequest
   ) -> some AsyncSequence<ServiceLbPolicy, any Swift.Error> & Sendable {
@@ -3872,6 +5598,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists ServiceLbPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListServiceLbPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceLbPolicies(request:options:)``
   public func listServiceLbPoliciesByItems(
     request: ListServiceLbPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ServiceLbPolicy, any Swift.Error> & Sendable {
@@ -3886,6 +5616,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ServiceLbPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListServiceLbPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listServiceLbPolicies(request:options:)``
   public func listServiceLbPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ServiceLbPolicy, any Swift.Error> & Sendable {
@@ -3895,6 +5632,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listServiceLbPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_GetServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getServiceLbPolicy(request:options:)``
   public func getServiceLbPolicy(request: GetServiceLbPolicyRequest) async throws
     -> GoogleCloudNetworkServicesV1.ServiceLbPolicy
   {
@@ -3907,6 +5651,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_GetServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getServiceLbPolicy(request:options:)``
   public func getServiceLbPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.ServiceLbPolicy {
@@ -3916,6 +5667,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getServiceLbPolicy(request: request)
   }
 
+  /// Creates a new ServiceLbPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createServiceLbPolicy(request:options:)``
   public func createServiceLbPolicy(request: CreateServiceLbPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3928,6 +5686,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ServiceLbPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createServiceLbPolicyPollingUntilDone(request:options:)``
   public func createServiceLbPolicyPollingUntilDone(request: CreateServiceLbPolicyRequest)
     async throws -> ServiceLbPolicy
   {
@@ -3940,6 +5705,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ServiceLbPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createServiceLbPolicyPollingUntilDone(request:options:)``
   public func createServiceLbPolicyPollingUntilDone(
     parent: Swift.String,
     serviceLbPolicy: ServiceLbPolicy?,
@@ -3953,6 +5725,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createServiceLbPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateServiceLbPolicy(request:options:)``
   public func updateServiceLbPolicy(request: UpdateServiceLbPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3965,6 +5744,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateServiceLbPolicyPollingUntilDone(request:options:)``
   public func updateServiceLbPolicyPollingUntilDone(request: UpdateServiceLbPolicyRequest)
     async throws -> ServiceLbPolicy
   {
@@ -3977,6 +5763,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateServiceLbPolicyPollingUntilDone(request:options:)``
   public func updateServiceLbPolicyPollingUntilDone(
     serviceLbPolicy: ServiceLbPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3988,6 +5781,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateServiceLbPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteServiceLbPolicy(request:options:)``
   public func deleteServiceLbPolicy(request: DeleteServiceLbPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4000,6 +5800,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteServiceLbPolicyPollingUntilDone(request:options:)``
   public func deleteServiceLbPolicyPollingUntilDone(request: DeleteServiceLbPolicyRequest)
     async throws
   {
@@ -4012,6 +5819,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ServiceLbPolicy.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteServiceLbPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteServiceLbPolicyPollingUntilDone(request:options:)``
   public func deleteServiceLbPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4021,6 +5835,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteServiceLbPolicyPollingUntilDone(request: request)
   }
 
+  /// Get a single RouteView of a Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_GetGatewayRouteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getGatewayRouteView(request:options:)``
   public func getGatewayRouteView(request: GetGatewayRouteViewRequest) async throws
     -> GoogleCloudNetworkServicesV1.GatewayRouteView
   {
@@ -4033,6 +5854,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single RouteView of a Gateway.
+  ///
+  /// @Snippet(path: "NetworkServices_GetGatewayRouteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getGatewayRouteView(request:options:)``
   public func getGatewayRouteView(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.GatewayRouteView {
@@ -4042,6 +5870,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getGatewayRouteView(request: request)
   }
 
+  /// Get a single RouteView of a Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_GetMeshRouteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getMeshRouteView(request:options:)``
   public func getMeshRouteView(request: GetMeshRouteViewRequest) async throws
     -> GoogleCloudNetworkServicesV1.MeshRouteView
   {
@@ -4054,6 +5889,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a single RouteView of a Mesh.
+  ///
+  /// @Snippet(path: "NetworkServices_GetMeshRouteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getMeshRouteView(request:options:)``
   public func getMeshRouteView(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.MeshRouteView {
@@ -4063,6 +5905,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getMeshRouteView(request: request)
   }
 
+  /// Lists RouteViews
+  ///
+  /// @Snippet(path: "NetworkServices_ListGatewayRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGatewayRouteViews(request:options:)``
   public func listGatewayRouteViews(request: ListGatewayRouteViewsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListGatewayRouteViewsResponse
   {
@@ -4075,6 +5924,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists RouteViews
+  ///
+  /// @Snippet(path: "NetworkServices_ListGatewayRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGatewayRouteViews(request:options:)``
   public func listGatewayRouteViewsByItems(
     request: ListGatewayRouteViewsRequest
   ) -> some AsyncSequence<GatewayRouteView, any Swift.Error> & Sendable {
@@ -4084,6 +5940,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists RouteViews
   ///
   /// @Snippet(path: "NetworkServices_ListGatewayRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGatewayRouteViews(request:options:)``
   public func listGatewayRouteViewsByItems(
     request: ListGatewayRouteViewsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GatewayRouteView, any Swift.Error> & Sendable {
@@ -4098,6 +5958,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists RouteViews
+  ///
+  /// @Snippet(path: "NetworkServices_ListGatewayRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listGatewayRouteViews(request:options:)``
   public func listGatewayRouteViewsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GatewayRouteView, any Swift.Error> & Sendable {
@@ -4107,6 +5974,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listGatewayRouteViewsByItems(request: request)
   }
 
+  /// Lists RouteViews
+  ///
+  /// @Snippet(path: "NetworkServices_ListMeshRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshRouteViews(request:options:)``
   public func listMeshRouteViews(request: ListMeshRouteViewsRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListMeshRouteViewsResponse
   {
@@ -4119,6 +5993,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists RouteViews
+  ///
+  /// @Snippet(path: "NetworkServices_ListMeshRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshRouteViews(request:options:)``
   public func listMeshRouteViewsByItems(
     request: ListMeshRouteViewsRequest
   ) -> some AsyncSequence<MeshRouteView, any Swift.Error> & Sendable {
@@ -4128,6 +6009,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists RouteViews
   ///
   /// @Snippet(path: "NetworkServices_ListMeshRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshRouteViews(request:options:)``
   public func listMeshRouteViewsByItems(
     request: ListMeshRouteViewsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MeshRouteView, any Swift.Error> & Sendable {
@@ -4142,6 +6027,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists RouteViews
+  ///
+  /// @Snippet(path: "NetworkServices_ListMeshRouteViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listMeshRouteViews(request:options:)``
   public func listMeshRouteViewsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MeshRouteView, any Swift.Error> & Sendable {
@@ -4151,6 +6043,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listMeshRouteViewsByItems(request: request)
   }
 
+  /// Lists AgentGateways in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListAgentGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listAgentGateways(request:options:)``
   public func listAgentGateways(request: ListAgentGatewaysRequest) async throws
     -> GoogleCloudNetworkServicesV1.ListAgentGatewaysResponse
   {
@@ -4163,6 +6062,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AgentGateways in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListAgentGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listAgentGateways(request:options:)``
   public func listAgentGatewaysByItems(
     request: ListAgentGatewaysRequest
   ) -> some AsyncSequence<AgentGateway, any Swift.Error> & Sendable {
@@ -4172,6 +6078,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists AgentGateways in a given project and location.
   ///
   /// @Snippet(path: "NetworkServices_ListAgentGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listAgentGateways(request:options:)``
   public func listAgentGatewaysByItems(
     request: ListAgentGatewaysRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AgentGateway, any Swift.Error> & Sendable {
@@ -4186,6 +6096,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AgentGateways in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_ListAgentGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listAgentGateways(request:options:)``
   public func listAgentGatewaysByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AgentGateway, any Swift.Error> & Sendable {
@@ -4195,6 +6112,13 @@ extension Clients.NetworkServicesProtocol {
     return self.listAgentGatewaysByItems(request: request)
   }
 
+  /// Gets details of a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_GetAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getAgentGateway(request:options:)``
   public func getAgentGateway(request: GetAgentGatewayRequest) async throws
     -> GoogleCloudNetworkServicesV1.AgentGateway
   {
@@ -4207,6 +6131,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_GetAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getAgentGateway(request:options:)``
   public func getAgentGateway(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkServicesV1.AgentGateway {
@@ -4216,6 +6147,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getAgentGateway(request: request)
   }
 
+  /// Creates a new AgentGateway in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createAgentGateway(request:options:)``
   public func createAgentGateway(request: CreateAgentGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4228,6 +6166,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AgentGateway in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createAgentGatewayPollingUntilDone(request:options:)``
   public func createAgentGatewayPollingUntilDone(request: CreateAgentGatewayRequest) async throws
     -> AgentGateway
   {
@@ -4240,6 +6185,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AgentGateway in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkServices_CreateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/createAgentGatewayPollingUntilDone(request:options:)``
   public func createAgentGatewayPollingUntilDone(
     parent: Swift.String,
     agentGateway: AgentGateway?,
@@ -4253,6 +6205,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.createAgentGatewayPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateAgentGateway(request:options:)``
   public func updateAgentGateway(request: UpdateAgentGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4265,6 +6224,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateAgentGatewayPollingUntilDone(request:options:)``
   public func updateAgentGatewayPollingUntilDone(request: UpdateAgentGatewayRequest) async throws
     -> AgentGateway
   {
@@ -4277,6 +6243,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_UpdateAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/updateAgentGatewayPollingUntilDone(request:options:)``
   public func updateAgentGatewayPollingUntilDone(
     agentGateway: AgentGateway?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -4288,6 +6261,13 @@ extension Clients.NetworkServicesProtocol {
     return try await self.updateAgentGatewayPollingUntilDone(request: request)
   }
 
+  /// Deletes a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteAgentGateway(request:options:)``
   public func deleteAgentGateway(request: DeleteAgentGatewayRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4300,6 +6280,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteAgentGatewayPollingUntilDone(request:options:)``
   public func deleteAgentGatewayPollingUntilDone(request: DeleteAgentGatewayRequest) async throws {
     try await self.deleteAgentGatewayPollingUntilDone(request: request, options: .init())
   }
@@ -4310,6 +6297,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AgentGateway.
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteAgentGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteAgentGatewayPollingUntilDone(request:options:)``
   public func deleteAgentGatewayPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -4319,6 +6313,13 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteAgentGatewayPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "NetworkServices_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -4331,6 +6332,13 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "NetworkServices_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -4340,6 +6348,10 @@ extension Clients.NetworkServicesProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "NetworkServices_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -4353,6 +6365,13 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "NetworkServices_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -4365,6 +6384,17 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "NetworkServices_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -4377,6 +6407,14 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "NetworkServices_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -4389,6 +6427,19 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "NetworkServices_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -4401,6 +6452,15 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -4413,6 +6473,15 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -4424,6 +6493,10 @@ extension Clients.NetworkServicesProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkServices_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -4437,6 +6510,15 @@ extension Clients.NetworkServicesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -4448,6 +6530,9 @@ extension Clients.NetworkServicesProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -4460,6 +6545,9 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -4469,6 +6557,15 @@ extension Clients.NetworkServicesProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -4479,6 +6576,15 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -4488,6 +6594,15 @@ extension Clients.NetworkServicesProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -4498,6 +6613,15 @@ extension Clients.NetworkServicesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkServices_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkServicesClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

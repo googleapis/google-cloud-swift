@@ -29,6 +29,10 @@
   /// request.
   ///
   /// @Snippet(path: "ControlServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ControlServiceProtocol``
   public final class ControlServiceClient: Clients.ControlServiceProtocol, Sendable {
     let inner: any Clients.ControlServiceStub
 
@@ -52,6 +56,11 @@
     /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
     ///
     /// @Snippet(path: "ControlService_CreateControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createControl(parent:control:controlId:)``
+    /// - ``createControl(request:)``
     public func createControl(
       request: CreateControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -66,6 +75,11 @@
     /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
     ///
     /// @Snippet(path: "ControlService_DeleteControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteControl(name:)``
+    /// - ``deleteControl(request:)``
     public func deleteControl(
       request: DeleteControlRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -81,6 +95,11 @@
     /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
     ///
     /// @Snippet(path: "ControlService_UpdateControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateControl(control:updateMask:)``
+    /// - ``updateControl(request:)``
     public func updateControl(
       request: UpdateControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -90,6 +109,11 @@
     /// Gets a Control.
     ///
     /// @Snippet(path: "ControlService_GetControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getControl(name:)``
+    /// - ``getControl(request:)``
     public func getControl(
       request: GetControlRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -102,6 +126,13 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "ControlService_ListControls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listControls(request:)``
+    /// - ``listControlsByItems(parent:)``
+    /// - ``listControlsByItems(request:)``
+    /// - ``listControlsByItems(request:options:)``
     public func listControls(
       request: ListControlsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListControlsResponse {
@@ -113,6 +144,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ControlService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -135,6 +173,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ControlService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -188,6 +231,20 @@
 
   // Default implementations
   extension Clients.ControlServiceProtocol {
+    /// Creates a Control.
+    ///
+    /// By default 1000 controls are allowed for a data store.
+    /// A request can be submitted to adjust this limit.
+    /// If the [Control][google.cloud.discoveryengine.v1.Control] to create already
+    /// exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
+    ///
+    /// @Snippet(path: "ControlService_CreateControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/createControl(request:options:)``
     public func createControl(request: CreateControlRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Control
     {
@@ -200,6 +257,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Control.
+    ///
+    /// By default 1000 controls are allowed for a data store.
+    /// A request can be submitted to adjust this limit.
+    /// If the [Control][google.cloud.discoveryengine.v1.Control] to create already
+    /// exists, an ALREADY_EXISTS error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
+    ///
+    /// @Snippet(path: "ControlService_CreateControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/createControl(request:options:)``
     public func createControl(
       parent: Swift.String,
       control: Control?,
@@ -213,6 +284,18 @@
       return try await self.createControl(request: request)
     }
 
+    /// Deletes a Control.
+    ///
+    /// If the [Control][google.cloud.discoveryengine.v1.Control] to delete does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
+    ///
+    /// @Snippet(path: "ControlService_DeleteControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/deleteControl(request:options:)``
     public func deleteControl(request: DeleteControlRequest) async throws {
       try await self.deleteControl(request: request, options: .init())
     }
@@ -223,6 +306,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Control.
+    ///
+    /// If the [Control][google.cloud.discoveryengine.v1.Control] to delete does
+    /// not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
+    ///
+    /// @Snippet(path: "ControlService_DeleteControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/deleteControl(request:options:)``
     public func deleteControl(
       name: Swift.String,
     ) async throws {
@@ -232,6 +327,19 @@
       try await self.deleteControl(request: request)
     }
 
+    /// Updates a Control.
+    ///
+    /// [Control][google.cloud.discoveryengine.v1.Control] action type cannot be
+    /// changed. If the [Control][google.cloud.discoveryengine.v1.Control] to
+    /// update does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
+    ///
+    /// @Snippet(path: "ControlService_UpdateControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/updateControl(request:options:)``
     public func updateControl(request: UpdateControlRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Control
     {
@@ -244,6 +352,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Control.
+    ///
+    /// [Control][google.cloud.discoveryengine.v1.Control] action type cannot be
+    /// changed. If the [Control][google.cloud.discoveryengine.v1.Control] to
+    /// update does not exist, a NOT_FOUND error is returned.
+    ///
+    /// [google.cloud.discoveryengine.v1.Control]: <doc:Control>
+    ///
+    /// @Snippet(path: "ControlService_UpdateControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/updateControl(request:options:)``
     public func updateControl(
       control: Control?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -255,6 +376,13 @@
       return try await self.updateControl(request: request)
     }
 
+    /// Gets a Control.
+    ///
+    /// @Snippet(path: "ControlService_GetControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/getControl(request:options:)``
     public func getControl(request: GetControlRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Control
     {
@@ -267,6 +395,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Control.
+    ///
+    /// @Snippet(path: "ControlService_GetControl")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/getControl(request:options:)``
     public func getControl(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Control {
@@ -276,6 +411,16 @@
       return try await self.getControl(request: request)
     }
 
+    /// Lists all Controls by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ControlService_ListControls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listControls(request:options:)``
     public func listControls(request: ListControlsRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListControlsResponse
     {
@@ -288,6 +433,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all Controls by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ControlService_ListControls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listControls(request:options:)``
     public func listControlsByItems(
       request: ListControlsRequest
     ) -> some AsyncSequence<Control, any Swift.Error> & Sendable {
@@ -300,6 +455,10 @@
     /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
     ///
     /// @Snippet(path: "ControlService_ListControls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listControls(request:options:)``
     public func listControlsByItems(
       request: ListControlsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Control, any Swift.Error> & Sendable {
@@ -314,6 +473,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all Controls by their parent
+    /// [DataStore][google.cloud.discoveryengine.v1.DataStore].
+    ///
+    /// [google.cloud.discoveryengine.v1.DataStore]: <doc:DataStore>
+    ///
+    /// @Snippet(path: "ControlService_ListControls")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listControls(request:options:)``
     public func listControlsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Control, any Swift.Error> & Sendable {
@@ -323,6 +492,15 @@
       return self.listControlsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ControlService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -335,6 +513,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ControlService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -346,6 +533,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ControlService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -359,6 +550,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ControlService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -370,6 +570,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -382,6 +585,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -391,6 +597,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ControlService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -401,6 +616,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ControlService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ControlServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

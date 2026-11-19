@@ -32,6 +32,10 @@ import Foundation
 /// echoed in the response headers.
 ///
 /// @Snippet(path: "EchoQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/EchoProtocol``
 public final class EchoClient: Clients.EchoProtocol, Sendable {
   let inner: any Clients.EchoStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -52,6 +56,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// This method simply echoes the request. This method showcases unary RPCs.
   ///
   /// @Snippet(path: "Echo_Echo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``echo(request:)``
   public func echo(
     request: EchoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
@@ -73,6 +81,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// google/rpc/error_details.proto.
   ///
   /// @Snippet(path: "Echo_EchoErrorDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``echoErrorDetails(request:)``
   public func echoErrorDetails(
     request: EchoErrorDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.EchoErrorDetailsResponse {
@@ -88,6 +100,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// to the user in an idiomatic form.
   ///
   /// @Snippet(path: "Echo_FailEchoWithDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``failEchoWithDetails(request:)``
   public func failEchoWithDetails(
     request: FailEchoWithDetailsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.FailEchoWithDetailsResponse {
@@ -98,6 +114,12 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// expanded words, this method returns a paged list of expanded words.
   ///
   /// @Snippet(path: "Echo_PagedExpand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pagedExpand(request:)``
+  /// - ``pagedExpandByItems(request:)``
+  /// - ``pagedExpandByItems(request:options:)``
   public func pagedExpand(
     request: PagedExpandRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse {
@@ -109,6 +131,12 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// do. New APIs should NOT use this pattern.
   ///
   /// @Snippet(path: "Echo_PagedExpandLegacy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pagedExpandLegacy(request:)``
+  /// - ``pagedExpandLegacyByItems(request:)``
+  /// - ``pagedExpandLegacyByItems(request:options:)``
   public func pagedExpandLegacy(
     request: PagedExpandLegacyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.PagedExpandResponse {
@@ -122,6 +150,12 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// APIs. New APIs should NOT use this pattern.
   ///
   /// @Snippet(path: "Echo_PagedExpandLegacyMapped")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pagedExpandLegacyMapped(request:)``
+  /// - ``pagedExpandLegacyMappedByItems(request:)``
+  /// - ``pagedExpandLegacyMappedByItems(request:options:)``
   public func pagedExpandLegacyMapped(
     request: PagedExpandRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.PagedExpandLegacyMappedResponse {
@@ -132,6 +166,12 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// This method showcases how a client handles a request timeout.
   ///
   /// @Snippet(path: "Echo_Wait")
+  ///
+  /// ## See Also
+  ///
+  /// - ``wait(request:)``
+  /// - ``waitPollingUntilDone(request:)``
+  /// - ``waitPollingUntilDone(request:options:)``
   public func wait(
     request: WaitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -142,6 +182,12 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// This method showcases how a client handles a request timeout.
   ///
   /// @Snippet(path: "Echo_Wait")
+  ///
+  /// ## See Also
+  ///
+  /// - ``wait(request:)``
+  /// - ``wait(request:options:)``
+  /// - ``waitPollingUntilDone(request:)``
   public func waitPollingUntilDone(
     request: WaitRequest, options: GoogleGax.RequestOptions
   ) async throws -> WaitResponse {
@@ -172,6 +218,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// This method showcases how a client handles delays or retries.
   ///
   /// @Snippet(path: "Echo_Block")
+  ///
+  /// ## See Also
+  ///
+  /// - ``block(request:)``
   public func block(
     request: BlockRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.BlockResponse {
@@ -183,6 +233,12 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Echo_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -194,6 +250,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Echo_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -205,6 +265,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Echo_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -216,6 +280,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Echo_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -227,6 +295,10 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Echo_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -238,6 +310,13 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Echo_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -260,6 +339,11 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Echo_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -271,6 +355,11 @@ public final class EchoClient: Clients.EchoProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Echo_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -374,6 +463,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.EchoProtocol {
+  /// This method simply echoes the request. This method showcases unary RPCs.
+  ///
+  /// @Snippet(path: "Echo_Echo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/echo(request:options:)``
   public func echo(request: EchoRequest) async throws -> GoogleShowcaseV1Beta1.EchoResponse {
     try await self.echo(request: request, options: .init())
   }
@@ -384,6 +480,18 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method returns error details in a repeated "google.protobuf.Any"
+  /// field. This method showcases handling errors thus encoded, particularly
+  /// over REST transport. Note that GAPICs only allow the type
+  /// "google.protobuf.Any" for field paths ending in "error.details", and, at
+  /// run-time, the actual types for these fields must be one of the types in
+  /// google/rpc/error_details.proto.
+  ///
+  /// @Snippet(path: "Echo_EchoErrorDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/echoErrorDetails(request:options:)``
   public func echoErrorDetails(request: EchoErrorDetailsRequest) async throws
     -> GoogleShowcaseV1Beta1.EchoErrorDetailsResponse
   {
@@ -396,6 +504,19 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method always fails with a gRPC "Aborted" error status that contains
+  /// multiple error details.  These include one instance of each of the standard
+  /// ones in error_details.proto
+  /// (https://github.com/googleapis/googleapis/blob/master/google/rpc/error_details.proto)
+  /// plus a custom, Showcase-defined PoetryError. The intent of this RPC is to
+  /// verify that GAPICs can process these various error details and surface them
+  /// to the user in an idiomatic form.
+  ///
+  /// @Snippet(path: "Echo_FailEchoWithDetails")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/failEchoWithDetails(request:options:)``
   public func failEchoWithDetails(request: FailEchoWithDetailsRequest) async throws
     -> GoogleShowcaseV1Beta1.FailEchoWithDetailsResponse
   {
@@ -408,6 +529,14 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This is similar to the Expand method but instead of returning a stream of
+  /// expanded words, this method returns a paged list of expanded words.
+  ///
+  /// @Snippet(path: "Echo_PagedExpand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpand(request:options:)``
   public func pagedExpand(request: PagedExpandRequest) async throws
     -> GoogleShowcaseV1Beta1.PagedExpandResponse
   {
@@ -420,6 +549,14 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This is similar to the Expand method but instead of returning a stream of
+  /// expanded words, this method returns a paged list of expanded words.
+  ///
+  /// @Snippet(path: "Echo_PagedExpand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpand(request:options:)``
   public func pagedExpandByItems(
     request: PagedExpandRequest
   ) -> some AsyncSequence<EchoResponse, any Swift.Error> & Sendable {
@@ -430,6 +567,10 @@ extension Clients.EchoProtocol {
   /// expanded words, this method returns a paged list of expanded words.
   ///
   /// @Snippet(path: "Echo_PagedExpand")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpand(request:options:)``
   public func pagedExpandByItems(
     request: PagedExpandRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EchoResponse, any Swift.Error> & Sendable {
@@ -443,6 +584,15 @@ extension Clients.EchoProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// This is similar to the PagedExpand except that it uses
+  /// max_results instead of page_size, as some legacy APIs still
+  /// do. New APIs should NOT use this pattern.
+  ///
+  /// @Snippet(path: "Echo_PagedExpandLegacy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpandLegacy(request:options:)``
   public func pagedExpandLegacy(request: PagedExpandLegacyRequest) async throws
     -> GoogleShowcaseV1Beta1.PagedExpandResponse
   {
@@ -455,6 +605,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This is similar to the PagedExpand except that it uses
+  /// max_results instead of page_size, as some legacy APIs still
+  /// do. New APIs should NOT use this pattern.
+  ///
+  /// @Snippet(path: "Echo_PagedExpandLegacy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpandLegacy(request:options:)``
   public func pagedExpandLegacyByItems(
     request: PagedExpandLegacyRequest
   ) -> some AsyncSequence<EchoResponse, any Swift.Error> & Sendable {
@@ -466,6 +625,10 @@ extension Clients.EchoProtocol {
   /// do. New APIs should NOT use this pattern.
   ///
   /// @Snippet(path: "Echo_PagedExpandLegacy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpandLegacy(request:options:)``
   public func pagedExpandLegacyByItems(
     request: PagedExpandLegacyRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<EchoResponse, any Swift.Error> & Sendable {
@@ -479,6 +642,17 @@ extension Clients.EchoProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// This method returns a map containing lists of words that appear in the input, keyed by their
+  /// initial character. The only words returned are the ones included in the current page,
+  /// as determined by page_token and page_size, which both refer to the word indices in the
+  /// input. This paging result consisting of a map of lists is a pattern used by some legacy
+  /// APIs. New APIs should NOT use this pattern.
+  ///
+  /// @Snippet(path: "Echo_PagedExpandLegacyMapped")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpandLegacyMapped(request:options:)``
   public func pagedExpandLegacyMapped(request: PagedExpandRequest) async throws
     -> GoogleShowcaseV1Beta1.PagedExpandLegacyMappedResponse
   {
@@ -491,6 +665,17 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method returns a map containing lists of words that appear in the input, keyed by their
+  /// initial character. The only words returned are the ones included in the current page,
+  /// as determined by page_token and page_size, which both refer to the word indices in the
+  /// input. This paging result consisting of a map of lists is a pattern used by some legacy
+  /// APIs. New APIs should NOT use this pattern.
+  ///
+  /// @Snippet(path: "Echo_PagedExpandLegacyMapped")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpandLegacyMapped(request:options:)``
   public func pagedExpandLegacyMappedByItems(
     request: PagedExpandRequest
   ) -> some AsyncSequence<(Swift.String, PagedExpandResponseList), any Swift.Error> & Sendable {
@@ -504,6 +689,10 @@ extension Clients.EchoProtocol {
   /// APIs. New APIs should NOT use this pattern.
   ///
   /// @Snippet(path: "Echo_PagedExpandLegacyMapped")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/pagedExpandLegacyMapped(request:options:)``
   public func pagedExpandLegacyMappedByItems(
     request: PagedExpandRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<(Swift.String, PagedExpandResponseList), any Swift.Error> & Sendable {
@@ -518,6 +707,14 @@ extension Clients.EchoProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// This method will wait for the requested amount of time and then return.
+  /// This method showcases how a client handles a request timeout.
+  ///
+  /// @Snippet(path: "Echo_Wait")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/wait(request:options:)``
   public func wait(request: WaitRequest) async throws -> GoogleLongRunning.Operation {
     try await self.wait(request: request, options: .init())
   }
@@ -528,6 +725,14 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method will wait for the requested amount of time and then return.
+  /// This method showcases how a client handles a request timeout.
+  ///
+  /// @Snippet(path: "Echo_Wait")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/waitPollingUntilDone(request:options:)``
   public func waitPollingUntilDone(request: WaitRequest) async throws -> WaitResponse {
     return try await self.waitPollingUntilDone(request: request, options: .init())
   }
@@ -538,6 +743,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method will block (wait) for the requested amount of time
+  /// and then return the response or error.
+  /// This method showcases how a client handles delays or retries.
+  ///
+  /// @Snippet(path: "Echo_Block")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/block(request:options:)``
   public func block(request: BlockRequest) async throws -> GoogleShowcaseV1Beta1.BlockResponse {
     try await self.block(request: request, options: .init())
   }
@@ -548,6 +762,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Echo_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -560,6 +783,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Echo_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -571,6 +803,10 @@ extension Clients.EchoProtocol {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Echo_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -584,6 +820,15 @@ extension Clients.EchoProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Echo_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -596,6 +841,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Echo_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -608,6 +862,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Echo_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -620,6 +883,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Echo_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -632,6 +904,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -644,6 +925,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -655,6 +945,10 @@ extension Clients.EchoProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Echo_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -668,6 +962,15 @@ extension Clients.EchoProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -679,6 +982,9 @@ extension Clients.EchoProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -691,6 +997,9 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -700,6 +1009,15 @@ extension Clients.EchoProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -710,6 +1028,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -719,6 +1046,15 @@ extension Clients.EchoProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -729,6 +1065,15 @@ extension Clients.EchoProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Echo_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``EchoClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

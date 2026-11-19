@@ -23,6 +23,10 @@ import Foundation
 /// Service for the `changes` resource.
 ///
 /// @Snippet(path: "changesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ChangesProtocol``
 public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   let inner: any Clients.ChangesStub
 
@@ -39,6 +43,11 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   /// Atomically updates the ResourceRecordSet collection. Note: While `dns.changes.create` is the baseline permission required to invoke this method, additional permissions are checked depending on the specific additions or deletions contained in the payload.
   ///
   /// @Snippet(path: "changes_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``create(project:managedZone:body:)``
+  /// - ``create(request:)``
   public func create(
     request: ChangesClient.CreateRequest, options: GoogleGax.RequestOptions
   ) async throws -> Change {
@@ -48,6 +57,11 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   /// Fetches the representation of an existing Change.
   ///
   /// @Snippet(path: "changes_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``get(project:managedZone:changeId:)``
+  /// - ``get(request:)``
   public func `get`(
     request: ChangesClient.GetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Change {
@@ -57,6 +71,13 @@ public final class ChangesClient: Clients.ChangesProtocol, Sendable {
   /// Enumerates Changes to a ResourceRecordSet collection.
   ///
   /// @Snippet(path: "changes_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``list(request:)``
+  /// - ``listByItems(project:managedZone:)``
+  /// - ``listByItems(request:)``
+  /// - ``listByItems(request:options:)``
   public func list(
     request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
   ) async throws -> ChangesListResponse {
@@ -90,6 +111,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ChangesProtocol {
+  /// Atomically updates the ResourceRecordSet collection. Note: While `dns.changes.create` is the baseline permission required to invoke this method, additional permissions are checked depending on the specific additions or deletions contained in the payload.
+  ///
+  /// @Snippet(path: "changes_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/create(request:options:)``
   public func create(request: ChangesClient.CreateRequest) async throws -> Change {
     try await self.create(request: request, options: .init())
   }
@@ -100,6 +128,13 @@ extension Clients.ChangesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Atomically updates the ResourceRecordSet collection. Note: While `dns.changes.create` is the baseline permission required to invoke this method, additional permissions are checked depending on the specific additions or deletions contained in the payload.
+  ///
+  /// @Snippet(path: "changes_create")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/create(request:options:)``
   public func create(
     project: Swift.String,
     managedZone: Swift.String,
@@ -113,6 +148,13 @@ extension Clients.ChangesProtocol {
     return try await self.create(request: request)
   }
 
+  /// Fetches the representation of an existing Change.
+  ///
+  /// @Snippet(path: "changes_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/get(request:options:)``
   public func `get`(request: ChangesClient.GetRequest) async throws -> Change {
     try await self.`get`(request: request, options: .init())
   }
@@ -123,6 +165,13 @@ extension Clients.ChangesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the representation of an existing Change.
+  ///
+  /// @Snippet(path: "changes_get")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/get(request:options:)``
   public func `get`(
     project: Swift.String,
     managedZone: Swift.String,
@@ -136,6 +185,13 @@ extension Clients.ChangesProtocol {
     return try await self.`get`(request: request)
   }
 
+  /// Enumerates Changes to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "changes_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/list(request:options:)``
   public func list(request: ChangesClient.ListRequest) async throws -> ChangesListResponse {
     try await self.list(request: request, options: .init())
   }
@@ -146,6 +202,13 @@ extension Clients.ChangesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enumerates Changes to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "changes_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/list(request:options:)``
   public func listByItems(
     request: ChangesClient.ListRequest
   ) -> some AsyncSequence<Change, any Swift.Error> & Sendable {
@@ -155,6 +218,10 @@ extension Clients.ChangesProtocol {
   /// Enumerates Changes to a ResourceRecordSet collection.
   ///
   /// @Snippet(path: "changes_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/list(request:options:)``
   public func listByItems(
     request: ChangesClient.ListRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Change, any Swift.Error> & Sendable {
@@ -167,6 +234,13 @@ extension Clients.ChangesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enumerates Changes to a ResourceRecordSet collection.
+  ///
+  /// @Snippet(path: "changes_list")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ChangesClient/list(request:options:)``
   public func listByItems(
     project: Swift.String,
     managedZone: Swift.String,

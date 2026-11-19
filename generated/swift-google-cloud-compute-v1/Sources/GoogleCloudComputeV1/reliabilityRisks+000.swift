@@ -24,6 +24,10 @@
   /// Service for the `reliabilityRisks` resource.
   ///
   /// @Snippet(path: "reliabilityRisksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ReliabilityRisksProtocol``
   public final class ReliabilityRisksClient: Clients.ReliabilityRisksProtocol, Sendable {
     let inner: any Clients.ReliabilityRisksStub
 
@@ -40,6 +44,11 @@
     /// Returns the specified ReliabilityRisk resource.
     ///
     /// @Snippet(path: "reliabilityRisks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:reliabilityRisk:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ReliabilityRisksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReliabilityRisk {
@@ -49,6 +58,13 @@
     /// Retrieves the list of reliabilityRisks available in the specified project.
     ///
     /// @Snippet(path: "reliabilityRisks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReliabilityRisksListResponse {
@@ -77,6 +93,13 @@
 
   // Default implementations
   extension Clients.ReliabilityRisksProtocol {
+    /// Returns the specified ReliabilityRisk resource.
+    ///
+    /// @Snippet(path: "reliabilityRisks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReliabilityRisksClient/get(request:options:)``
     public func `get`(request: ReliabilityRisksClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ReliabilityRisk
     {
@@ -89,6 +112,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified ReliabilityRisk resource.
+    ///
+    /// @Snippet(path: "reliabilityRisks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReliabilityRisksClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       reliabilityRisk: Swift.String,
@@ -100,6 +130,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves the list of reliabilityRisks available in the specified project.
+    ///
+    /// @Snippet(path: "reliabilityRisks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReliabilityRisksClient/list(request:options:)``
     public func list(request: ReliabilityRisksClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ReliabilityRisksListResponse
     {
@@ -112,6 +149,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of reliabilityRisks available in the specified project.
+    ///
+    /// @Snippet(path: "reliabilityRisks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReliabilityRisksClient/list(request:options:)``
     public func listByItems(
       request: ReliabilityRisksClient.ListRequest
     ) -> some AsyncSequence<ReliabilityRisk, any Swift.Error> & Sendable {
@@ -121,6 +165,10 @@
     /// Retrieves the list of reliabilityRisks available in the specified project.
     ///
     /// @Snippet(path: "reliabilityRisks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReliabilityRisksClient/list(request:options:)``
     public func listByItems(
       request: ReliabilityRisksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ReliabilityRisk, any Swift.Error> & Sendable {
@@ -135,6 +183,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of reliabilityRisks available in the specified project.
+    ///
+    /// @Snippet(path: "reliabilityRisks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReliabilityRisksClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<ReliabilityRisk, any Swift.Error> & Sendable {

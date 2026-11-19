@@ -25,6 +25,10 @@ import Foundation
 /// attempts to exercise as many user inputs and event handlers as possible.
 ///
 /// @Snippet(path: "WebSecurityScannerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/WebSecurityScannerProtocol``
 public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol, Sendable {
   let inner: any Clients.WebSecurityScannerStub
 
@@ -41,6 +45,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Creates a new ScanConfig.
   ///
   /// @Snippet(path: "WebSecurityScanner_CreateScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScanConfig(request:)``
   public func createScanConfig(
     request: CreateScanConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
@@ -50,6 +58,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Deletes an existing ScanConfig and its child resources.
   ///
   /// @Snippet(path: "WebSecurityScanner_DeleteScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScanConfig(request:)``
   public func deleteScanConfig(
     request: DeleteScanConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -59,6 +71,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Gets a ScanConfig.
   ///
   /// @Snippet(path: "WebSecurityScanner_GetScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getScanConfig(request:)``
   public func getScanConfig(
     request: GetScanConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
@@ -68,6 +84,12 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Lists ScanConfigs under a given project.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listScanConfigs(request:)``
+  /// - ``listScanConfigsByItems(request:)``
+  /// - ``listScanConfigsByItems(request:options:)``
   public func listScanConfigs(
     request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse {
@@ -77,6 +99,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Updates a ScanConfig. This method support partial update of a ScanConfig.
   ///
   /// @Snippet(path: "WebSecurityScanner_UpdateScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScanConfig(request:)``
   public func updateScanConfig(
     request: UpdateScanConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ScanConfig {
@@ -86,6 +112,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Start a ScanRun according to the given ScanConfig.
   ///
   /// @Snippet(path: "WebSecurityScanner_StartScanRun")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startScanRun(request:)``
   public func startScanRun(
     request: StartScanRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
@@ -95,6 +125,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Gets a ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_GetScanRun")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getScanRun(request:)``
   public func getScanRun(
     request: GetScanRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
@@ -105,6 +139,12 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// stop time.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listScanRuns(request:)``
+  /// - ``listScanRunsByItems(request:)``
+  /// - ``listScanRunsByItems(request:options:)``
   public func listScanRuns(
     request: ListScanRunsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse {
@@ -114,6 +154,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Stops a ScanRun. The stopped ScanRun is returned.
   ///
   /// @Snippet(path: "WebSecurityScanner_StopScanRun")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopScanRun(request:)``
   public func stopScanRun(
     request: StopScanRunRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ScanRun {
@@ -123,6 +167,12 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// List CrawledUrls under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCrawledUrls(request:)``
+  /// - ``listCrawledUrlsByItems(request:)``
+  /// - ``listCrawledUrlsByItems(request:options:)``
   public func listCrawledUrls(
     request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse {
@@ -132,6 +182,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// Gets a Finding.
   ///
   /// @Snippet(path: "WebSecurityScanner_GetFinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFinding(request:)``
   public func getFinding(
     request: GetFindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.Finding {
@@ -141,6 +195,12 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// List Findings under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListFindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFindings(request:)``
+  /// - ``listFindingsByItems(request:)``
+  /// - ``listFindingsByItems(request:options:)``
   public func listFindings(
     request: ListFindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse {
@@ -150,6 +210,10 @@ public final class WebSecurityScannerClient: Clients.WebSecurityScannerProtocol,
   /// List all FindingTypeStats under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListFindingTypeStats")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFindingTypeStats(request:)``
   public func listFindingTypeStats(
     request: ListFindingTypeStatsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebSecurityScannerV1.ListFindingTypeStatsResponse {
@@ -233,6 +297,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.WebSecurityScannerProtocol {
+  /// Creates a new ScanConfig.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_CreateScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/createScanConfig(request:options:)``
   public func createScanConfig(request: CreateScanConfigRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ScanConfig
   {
@@ -245,6 +316,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an existing ScanConfig and its child resources.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_DeleteScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/deleteScanConfig(request:options:)``
   public func deleteScanConfig(request: DeleteScanConfigRequest) async throws {
     try await self.deleteScanConfig(request: request, options: .init())
   }
@@ -255,6 +333,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a ScanConfig.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_GetScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/getScanConfig(request:options:)``
   public func getScanConfig(request: GetScanConfigRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ScanConfig
   {
@@ -267,6 +352,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ScanConfigs under a given project.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listScanConfigs(request:options:)``
   public func listScanConfigs(request: ListScanConfigsRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ListScanConfigsResponse
   {
@@ -279,6 +371,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ScanConfigs under a given project.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listScanConfigs(request:options:)``
   public func listScanConfigsByItems(
     request: ListScanConfigsRequest
   ) -> some AsyncSequence<ScanConfig, any Swift.Error> & Sendable {
@@ -288,6 +387,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// Lists ScanConfigs under a given project.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListScanConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listScanConfigs(request:options:)``
   public func listScanConfigsByItems(
     request: ListScanConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ScanConfig, any Swift.Error> & Sendable {
@@ -302,6 +405,13 @@ extension Clients.WebSecurityScannerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Updates a ScanConfig. This method support partial update of a ScanConfig.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_UpdateScanConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/updateScanConfig(request:options:)``
   public func updateScanConfig(request: UpdateScanConfigRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ScanConfig
   {
@@ -314,6 +424,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Start a ScanRun according to the given ScanConfig.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_StartScanRun")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/startScanRun(request:options:)``
   public func startScanRun(request: StartScanRunRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ScanRun
   {
@@ -326,6 +443,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a ScanRun.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_GetScanRun")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/getScanRun(request:options:)``
   public func getScanRun(request: GetScanRunRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ScanRun
   {
@@ -338,6 +462,14 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
+  /// stop time.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listScanRuns(request:options:)``
   public func listScanRuns(request: ListScanRunsRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ListScanRunsResponse
   {
@@ -350,6 +482,14 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ScanRuns under a given ScanConfig, in descending order of ScanRun
+  /// stop time.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listScanRuns(request:options:)``
   public func listScanRunsByItems(
     request: ListScanRunsRequest
   ) -> some AsyncSequence<ScanRun, any Swift.Error> & Sendable {
@@ -360,6 +500,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// stop time.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListScanRuns")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listScanRuns(request:options:)``
   public func listScanRunsByItems(
     request: ListScanRunsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ScanRun, any Swift.Error> & Sendable {
@@ -374,6 +518,13 @@ extension Clients.WebSecurityScannerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Stops a ScanRun. The stopped ScanRun is returned.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_StopScanRun")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/stopScanRun(request:options:)``
   public func stopScanRun(request: StopScanRunRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ScanRun
   {
@@ -386,6 +537,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List CrawledUrls under a given ScanRun.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listCrawledUrls(request:options:)``
   public func listCrawledUrls(request: ListCrawledUrlsRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ListCrawledUrlsResponse
   {
@@ -398,6 +556,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List CrawledUrls under a given ScanRun.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listCrawledUrls(request:options:)``
   public func listCrawledUrlsByItems(
     request: ListCrawledUrlsRequest
   ) -> some AsyncSequence<CrawledUrl, any Swift.Error> & Sendable {
@@ -407,6 +572,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// List CrawledUrls under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListCrawledUrls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listCrawledUrls(request:options:)``
   public func listCrawledUrlsByItems(
     request: ListCrawledUrlsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CrawledUrl, any Swift.Error> & Sendable {
@@ -421,6 +590,13 @@ extension Clients.WebSecurityScannerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets a Finding.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_GetFinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/getFinding(request:options:)``
   public func getFinding(request: GetFindingRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.Finding
   {
@@ -433,6 +609,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List Findings under a given ScanRun.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListFindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listFindings(request:options:)``
   public func listFindings(request: ListFindingsRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ListFindingsResponse
   {
@@ -445,6 +628,13 @@ extension Clients.WebSecurityScannerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List Findings under a given ScanRun.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListFindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listFindings(request:options:)``
   public func listFindingsByItems(
     request: ListFindingsRequest
   ) -> some AsyncSequence<Finding, any Swift.Error> & Sendable {
@@ -454,6 +644,10 @@ extension Clients.WebSecurityScannerProtocol {
   /// List Findings under a given ScanRun.
   ///
   /// @Snippet(path: "WebSecurityScanner_ListFindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listFindings(request:options:)``
   public func listFindingsByItems(
     request: ListFindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Finding, any Swift.Error> & Sendable {
@@ -468,6 +662,13 @@ extension Clients.WebSecurityScannerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all FindingTypeStats under a given ScanRun.
+  ///
+  /// @Snippet(path: "WebSecurityScanner_ListFindingTypeStats")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebSecurityScannerClient/listFindingTypeStats(request:options:)``
   public func listFindingTypeStats(request: ListFindingTypeStatsRequest) async throws
     -> GoogleCloudWebSecurityScannerV1.ListFindingTypeStatsResponse
   {

@@ -24,6 +24,10 @@
   /// Service for the `machineImages` resource.
   ///
   /// @Snippet(path: "machineImagesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/MachineImagesProtocol``
   public final class MachineImagesClient: Clients.MachineImagesProtocol, Sendable {
     let inner: any Clients.MachineImagesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@
     /// and cannot be undone.
     ///
     /// @Snippet(path: "machineImages_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:machineImage:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: MachineImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -60,6 +71,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "machineImages_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:machineImage:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: MachineImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -101,6 +119,11 @@
     /// Returns the specified machine image.
     ///
     /// @Snippet(path: "machineImages_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:machineImage:)``
+    /// - ``get(request:)``
     public func `get`(
       request: MachineImagesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.MachineImage {
@@ -111,6 +134,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "machineImages_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: MachineImagesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -124,6 +152,13 @@
     /// instance.
     ///
     /// @Snippet(path: "machineImages_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: MachineImagesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -142,6 +177,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "machineImages_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: MachineImagesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -184,6 +226,13 @@
     /// the specified project.
     ///
     /// @Snippet(path: "machineImages_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.MachineImageList {
@@ -194,6 +243,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "machineImages_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: MachineImagesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -204,6 +258,13 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "machineImages_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
     public func setLabels(
       request: MachineImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -219,6 +280,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "machineImages_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: MachineImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -260,6 +328,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "machineImages_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: MachineImagesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -357,6 +430,14 @@
 
   // Default implementations
   extension Clients.MachineImagesProtocol {
+    /// Deletes the specified machine image. Deleting a machine image is permanent
+    /// and cannot be undone.
+    ///
+    /// @Snippet(path: "machineImages_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/delete(request:options:)``
     public func delete(request: MachineImagesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -369,6 +450,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified machine image. Deleting a machine image is permanent
+    /// and cannot be undone.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "machineImages_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: MachineImagesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -381,6 +475,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified machine image. Deleting a machine image is permanent
+    /// and cannot be undone.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "machineImages_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       machineImage: Swift.String,
@@ -392,6 +499,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified machine image.
+    ///
+    /// @Snippet(path: "machineImages_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/get(request:options:)``
     public func `get`(request: MachineImagesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.MachineImage
     {
@@ -404,6 +518,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified machine image.
+    ///
+    /// @Snippet(path: "machineImages_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       machineImage: Swift.String,
@@ -415,6 +536,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "machineImages_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: MachineImagesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -427,6 +556,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "machineImages_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -438,6 +575,17 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a machine image in the specified project using the
+    /// data that is included in the request. If you are creating a new machine
+    /// image to update an existing instance, your new machine image should use the
+    /// same network or, if applicable, the same subnetwork as the original
+    /// instance.
+    ///
+    /// @Snippet(path: "machineImages_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/insert(request:options:)``
     public func insert(request: MachineImagesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -450,6 +598,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a machine image in the specified project using the
+    /// data that is included in the request. If you are creating a new machine
+    /// image to update an existing instance, your new machine image should use the
+    /// same network or, if applicable, the same subnetwork as the original
+    /// instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "machineImages_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: MachineImagesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -462,6 +626,22 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a machine image in the specified project using the
+    /// data that is included in the request. If you are creating a new machine
+    /// image to update an existing instance, your new machine image should use the
+    /// same network or, if applicable, the same subnetwork as the original
+    /// instance.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "machineImages_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: MachineImage?,
@@ -473,6 +653,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of machine images that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "machineImages_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/list(request:options:)``
     public func list(request: MachineImagesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.MachineImageList
     {
@@ -485,6 +673,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of machine images that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "machineImages_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/list(request:options:)``
     public func listByItems(
       request: MachineImagesClient.ListRequest
     ) -> some AsyncSequence<MachineImage, any Swift.Error> & Sendable {
@@ -495,6 +691,10 @@
     /// the specified project.
     ///
     /// @Snippet(path: "machineImages_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/list(request:options:)``
     public func listByItems(
       request: MachineImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<MachineImage, any Swift.Error> & Sendable {
@@ -508,6 +708,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of machine images that are contained within
+    /// the specified project.
+    ///
+    /// @Snippet(path: "machineImages_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<MachineImage, any Swift.Error> & Sendable {
@@ -517,6 +725,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "machineImages_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: MachineImagesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -529,6 +745,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "machineImages_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -542,6 +766,14 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Sets the labels on a machine image. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// @Snippet(path: "machineImages_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/setLabels(request:options:)``
     public func setLabels(request: MachineImagesClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -554,6 +786,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a machine image. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "machineImages_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: MachineImagesClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -566,6 +811,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a machine image. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "machineImages_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       resource: Swift.String,
@@ -579,6 +837,13 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "machineImages_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: MachineImagesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -591,6 +856,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "machineImages_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MachineImagesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -604,6 +876,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

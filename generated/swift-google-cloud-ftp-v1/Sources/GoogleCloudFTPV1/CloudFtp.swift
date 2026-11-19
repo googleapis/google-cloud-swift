@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "CloudFtpQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudFtpProtocol``
 public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   let inner: any Clients.CloudFtpStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Lists Servers in a given project and location.
   ///
   /// @Snippet(path: "CloudFtp_ListServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServers(request:)``
+  /// - ``listServersByItems(parent:)``
+  /// - ``listServersByItems(request:)``
+  /// - ``listServersByItems(request:options:)``
   public func listServers(
     request: ListServersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.ListServersResponse {
@@ -55,6 +66,11 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Gets details of a single Server.
   ///
   /// @Snippet(path: "CloudFtp_GetServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServer(name:)``
+  /// - ``getServer(request:)``
   public func getServer(
     request: GetServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.Server {
@@ -64,6 +80,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Creates a new Server in a given project and location.
   ///
   /// @Snippet(path: "CloudFtp_CreateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServer(request:)``
+  /// - ``createServerPollingUntilDone(parent:server:serverId:)``
+  /// - ``createServerPollingUntilDone(request:)``
+  /// - ``createServerPollingUntilDone(request:options:)``
   public func createServer(
     request: CreateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +96,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Creates a new Server in a given project and location.
   ///
   /// @Snippet(path: "CloudFtp_CreateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServer(request:)``
+  /// - ``createServer(request:options:)``
+  /// - ``createServerPollingUntilDone(parent:server:serverId:)``
+  /// - ``createServerPollingUntilDone(request:)``
   public func createServerPollingUntilDone(
     request: CreateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -100,6 +130,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Updates the parameters of a single Server.
   ///
   /// @Snippet(path: "CloudFtp_UpdateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServer(request:)``
+  /// - ``updateServerPollingUntilDone(request:)``
+  /// - ``updateServerPollingUntilDone(request:options:)``
+  /// - ``updateServerPollingUntilDone(server:updateMask:)``
   public func updateServer(
     request: UpdateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +146,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Updates the parameters of a single Server.
   ///
   /// @Snippet(path: "CloudFtp_UpdateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServer(request:)``
+  /// - ``updateServer(request:options:)``
+  /// - ``updateServerPollingUntilDone(request:)``
+  /// - ``updateServerPollingUntilDone(server:updateMask:)``
   public func updateServerPollingUntilDone(
     request: UpdateServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -136,6 +180,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Deletes a single Server.
   ///
   /// @Snippet(path: "CloudFtp_DeleteServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServer(request:)``
+  /// - ``deleteServerPollingUntilDone(name:)``
+  /// - ``deleteServerPollingUntilDone(request:)``
+  /// - ``deleteServerPollingUntilDone(request:options:)``
   public func deleteServer(
     request: DeleteServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -145,6 +196,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Deletes a single Server.
   ///
   /// @Snippet(path: "CloudFtp_DeleteServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServer(request:)``
+  /// - ``deleteServer(request:options:)``
+  /// - ``deleteServerPollingUntilDone(name:)``
+  /// - ``deleteServerPollingUntilDone(request:)``
   public func deleteServerPollingUntilDone(
     request: DeleteServerRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -172,6 +230,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Lists Users in a given project and location.
   ///
   /// @Snippet(path: "CloudFtp_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUsers(request:)``
+  /// - ``listUsersByItems(parent:)``
+  /// - ``listUsersByItems(request:)``
+  /// - ``listUsersByItems(request:options:)``
   public func listUsers(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.ListUsersResponse {
@@ -181,6 +246,11 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Gets details of a single User.
   ///
   /// @Snippet(path: "CloudFtp_GetUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getUser(name:)``
+  /// - ``getUser(request:)``
   public func getUser(
     request: GetUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFTPV1.User {
@@ -190,6 +260,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Creates a new User in a given project and location and Server.
   ///
   /// @Snippet(path: "CloudFtp_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUser(request:)``
+  /// - ``createUserPollingUntilDone(parent:user:userId:)``
+  /// - ``createUserPollingUntilDone(request:)``
+  /// - ``createUserPollingUntilDone(request:options:)``
   public func createUser(
     request: CreateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -199,6 +276,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Creates a new User in a given project and location and Server.
   ///
   /// @Snippet(path: "CloudFtp_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUser(request:)``
+  /// - ``createUser(request:options:)``
+  /// - ``createUserPollingUntilDone(parent:user:userId:)``
+  /// - ``createUserPollingUntilDone(request:)``
   public func createUserPollingUntilDone(
     request: CreateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> User {
@@ -226,6 +310,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Updates the parameters of a single User.
   ///
   /// @Snippet(path: "CloudFtp_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUser(request:)``
+  /// - ``updateUserPollingUntilDone(request:)``
+  /// - ``updateUserPollingUntilDone(request:options:)``
+  /// - ``updateUserPollingUntilDone(user:updateMask:)``
   public func updateUser(
     request: UpdateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -235,6 +326,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Updates the parameters of a single User.
   ///
   /// @Snippet(path: "CloudFtp_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUser(request:)``
+  /// - ``updateUser(request:options:)``
+  /// - ``updateUserPollingUntilDone(request:)``
+  /// - ``updateUserPollingUntilDone(user:updateMask:)``
   public func updateUserPollingUntilDone(
     request: UpdateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> User {
@@ -262,6 +360,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Deletes a single User.
   ///
   /// @Snippet(path: "CloudFtp_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUser(request:)``
+  /// - ``deleteUserPollingUntilDone(name:)``
+  /// - ``deleteUserPollingUntilDone(request:)``
+  /// - ``deleteUserPollingUntilDone(request:options:)``
   public func deleteUser(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -271,6 +376,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Deletes a single User.
   ///
   /// @Snippet(path: "CloudFtp_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUser(request:)``
+  /// - ``deleteUser(request:options:)``
+  /// - ``deleteUserPollingUntilDone(name:)``
+  /// - ``deleteUserPollingUntilDone(request:)``
   public func deleteUserPollingUntilDone(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -298,6 +410,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Starts a stopping/stopped Server.
   ///
   /// @Snippet(path: "CloudFtp_StartServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startServer(request:)``
+  /// - ``startServerPollingUntilDone(name:)``
+  /// - ``startServerPollingUntilDone(request:)``
+  /// - ``startServerPollingUntilDone(request:options:)``
   public func startServer(
     request: StartServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -307,6 +426,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Starts a stopping/stopped Server.
   ///
   /// @Snippet(path: "CloudFtp_StartServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startServer(request:)``
+  /// - ``startServer(request:options:)``
+  /// - ``startServerPollingUntilDone(name:)``
+  /// - ``startServerPollingUntilDone(request:)``
   public func startServerPollingUntilDone(
     request: StartServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -334,6 +460,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Stops an active Server.
   ///
   /// @Snippet(path: "CloudFtp_StopServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopServer(request:)``
+  /// - ``stopServerPollingUntilDone(name:)``
+  /// - ``stopServerPollingUntilDone(request:)``
+  /// - ``stopServerPollingUntilDone(request:options:)``
   public func stopServer(
     request: StopServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -343,6 +476,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Stops an active Server.
   ///
   /// @Snippet(path: "CloudFtp_StopServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``stopServer(request:)``
+  /// - ``stopServer(request:options:)``
+  /// - ``stopServerPollingUntilDone(name:)``
+  /// - ``stopServerPollingUntilDone(request:)``
   public func stopServerPollingUntilDone(
     request: StopServerRequest, options: GoogleGax.RequestOptions
   ) async throws -> Server {
@@ -387,6 +527,12 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CloudFtp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -396,6 +542,10 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudFtp_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -407,6 +557,13 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFtp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -429,6 +586,11 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFtp_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -440,6 +602,11 @@ public final class CloudFtpClient: Clients.CloudFtpProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFtp_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -583,6 +750,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudFtpProtocol {
+  /// Lists Servers in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_ListServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listServers(request:options:)``
   public func listServers(request: ListServersRequest) async throws
     -> GoogleCloudFTPV1.ListServersResponse
   {
@@ -595,6 +769,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Servers in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_ListServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listServers(request:options:)``
   public func listServersByItems(
     request: ListServersRequest
   ) -> some AsyncSequence<Server, any Swift.Error> & Sendable {
@@ -604,6 +785,10 @@ extension Clients.CloudFtpProtocol {
   /// Lists Servers in a given project and location.
   ///
   /// @Snippet(path: "CloudFtp_ListServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listServers(request:options:)``
   public func listServersByItems(
     request: ListServersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Server, any Swift.Error> & Sendable {
@@ -617,6 +802,13 @@ extension Clients.CloudFtpProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Servers in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_ListServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listServers(request:options:)``
   public func listServersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Server, any Swift.Error> & Sendable {
@@ -626,6 +818,13 @@ extension Clients.CloudFtpProtocol {
     return self.listServersByItems(request: request)
   }
 
+  /// Gets details of a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_GetServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/getServer(request:options:)``
   public func getServer(request: GetServerRequest) async throws -> GoogleCloudFTPV1.Server {
     try await self.getServer(request: request, options: .init())
   }
@@ -636,6 +835,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_GetServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/getServer(request:options:)``
   public func getServer(
     name: Swift.String,
   ) async throws -> GoogleCloudFTPV1.Server {
@@ -645,6 +851,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.getServer(request: request)
   }
 
+  /// Creates a new Server in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_CreateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/createServer(request:options:)``
   public func createServer(request: CreateServerRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createServer(request: request, options: .init())
@@ -656,6 +869,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Server in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_CreateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/createServerPollingUntilDone(request:options:)``
   public func createServerPollingUntilDone(request: CreateServerRequest) async throws -> Server {
     return try await self.createServerPollingUntilDone(request: request, options: .init())
   }
@@ -666,6 +886,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Server in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_CreateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/createServerPollingUntilDone(request:options:)``
   public func createServerPollingUntilDone(
     parent: Swift.String,
     server: Server?,
@@ -679,6 +906,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.createServerPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_UpdateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/updateServer(request:options:)``
   public func updateServer(request: UpdateServerRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateServer(request: request, options: .init())
@@ -690,6 +924,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_UpdateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/updateServerPollingUntilDone(request:options:)``
   public func updateServerPollingUntilDone(request: UpdateServerRequest) async throws -> Server {
     return try await self.updateServerPollingUntilDone(request: request, options: .init())
   }
@@ -700,6 +941,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_UpdateServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/updateServerPollingUntilDone(request:options:)``
   public func updateServerPollingUntilDone(
     server: Server?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -711,6 +959,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.updateServerPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteServer(request:options:)``
   public func deleteServer(request: DeleteServerRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteServer(request: request, options: .init())
@@ -722,6 +977,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteServerPollingUntilDone(request:options:)``
   public func deleteServerPollingUntilDone(request: DeleteServerRequest) async throws {
     try await self.deleteServerPollingUntilDone(request: request, options: .init())
   }
@@ -732,6 +994,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Server.
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteServerPollingUntilDone(request:options:)``
   public func deleteServerPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -741,6 +1010,13 @@ extension Clients.CloudFtpProtocol {
     try await self.deleteServerPollingUntilDone(request: request)
   }
 
+  /// Lists Users in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listUsers(request:options:)``
   public func listUsers(request: ListUsersRequest) async throws
     -> GoogleCloudFTPV1.ListUsersResponse
   {
@@ -753,6 +1029,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Users in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listUsers(request:options:)``
   public func listUsersByItems(
     request: ListUsersRequest
   ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
@@ -762,6 +1045,10 @@ extension Clients.CloudFtpProtocol {
   /// Lists Users in a given project and location.
   ///
   /// @Snippet(path: "CloudFtp_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listUsers(request:options:)``
   public func listUsersByItems(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
@@ -775,6 +1062,13 @@ extension Clients.CloudFtpProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Users in a given project and location.
+  ///
+  /// @Snippet(path: "CloudFtp_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listUsers(request:options:)``
   public func listUsersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
@@ -784,6 +1078,13 @@ extension Clients.CloudFtpProtocol {
     return self.listUsersByItems(request: request)
   }
 
+  /// Gets details of a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_GetUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/getUser(request:options:)``
   public func getUser(request: GetUserRequest) async throws -> GoogleCloudFTPV1.User {
     try await self.getUser(request: request, options: .init())
   }
@@ -794,6 +1095,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_GetUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/getUser(request:options:)``
   public func getUser(
     name: Swift.String,
   ) async throws -> GoogleCloudFTPV1.User {
@@ -803,6 +1111,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.getUser(request: request)
   }
 
+  /// Creates a new User in a given project and location and Server.
+  ///
+  /// @Snippet(path: "CloudFtp_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/createUser(request:options:)``
   public func createUser(request: CreateUserRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createUser(request: request, options: .init())
   }
@@ -813,6 +1128,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new User in a given project and location and Server.
+  ///
+  /// @Snippet(path: "CloudFtp_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/createUserPollingUntilDone(request:options:)``
   public func createUserPollingUntilDone(request: CreateUserRequest) async throws -> User {
     return try await self.createUserPollingUntilDone(request: request, options: .init())
   }
@@ -823,6 +1145,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new User in a given project and location and Server.
+  ///
+  /// @Snippet(path: "CloudFtp_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/createUserPollingUntilDone(request:options:)``
   public func createUserPollingUntilDone(
     parent: Swift.String,
     user: User?,
@@ -836,6 +1165,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.createUserPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/updateUser(request:options:)``
   public func updateUser(request: UpdateUserRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateUser(request: request, options: .init())
   }
@@ -846,6 +1182,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/updateUserPollingUntilDone(request:options:)``
   public func updateUserPollingUntilDone(request: UpdateUserRequest) async throws -> User {
     return try await self.updateUserPollingUntilDone(request: request, options: .init())
   }
@@ -856,6 +1199,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/updateUserPollingUntilDone(request:options:)``
   public func updateUserPollingUntilDone(
     user: User?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -867,6 +1217,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.updateUserPollingUntilDone(request: request)
   }
 
+  /// Deletes a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteUser(request:options:)``
   public func deleteUser(request: DeleteUserRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteUser(request: request, options: .init())
   }
@@ -877,6 +1234,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteUserPollingUntilDone(request:options:)``
   public func deleteUserPollingUntilDone(request: DeleteUserRequest) async throws {
     try await self.deleteUserPollingUntilDone(request: request, options: .init())
   }
@@ -887,6 +1251,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single User.
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteUserPollingUntilDone(request:options:)``
   public func deleteUserPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -896,6 +1267,13 @@ extension Clients.CloudFtpProtocol {
     try await self.deleteUserPollingUntilDone(request: request)
   }
 
+  /// Starts a stopping/stopped Server.
+  ///
+  /// @Snippet(path: "CloudFtp_StartServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/startServer(request:options:)``
   public func startServer(request: StartServerRequest) async throws -> GoogleLongRunning.Operation {
     try await self.startServer(request: request, options: .init())
   }
@@ -906,6 +1284,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a stopping/stopped Server.
+  ///
+  /// @Snippet(path: "CloudFtp_StartServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/startServerPollingUntilDone(request:options:)``
   public func startServerPollingUntilDone(request: StartServerRequest) async throws -> Server {
     return try await self.startServerPollingUntilDone(request: request, options: .init())
   }
@@ -916,6 +1301,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Starts a stopping/stopped Server.
+  ///
+  /// @Snippet(path: "CloudFtp_StartServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/startServerPollingUntilDone(request:options:)``
   public func startServerPollingUntilDone(
     name: Swift.String,
   ) async throws -> Server {
@@ -925,6 +1317,13 @@ extension Clients.CloudFtpProtocol {
     return try await self.startServerPollingUntilDone(request: request)
   }
 
+  /// Stops an active Server.
+  ///
+  /// @Snippet(path: "CloudFtp_StopServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/stopServer(request:options:)``
   public func stopServer(request: StopServerRequest) async throws -> GoogleLongRunning.Operation {
     try await self.stopServer(request: request, options: .init())
   }
@@ -935,6 +1334,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops an active Server.
+  ///
+  /// @Snippet(path: "CloudFtp_StopServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/stopServerPollingUntilDone(request:options:)``
   public func stopServerPollingUntilDone(request: StopServerRequest) async throws -> Server {
     return try await self.stopServerPollingUntilDone(request: request, options: .init())
   }
@@ -945,6 +1351,13 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Stops an active Server.
+  ///
+  /// @Snippet(path: "CloudFtp_StopServer")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/stopServerPollingUntilDone(request:options:)``
   public func stopServerPollingUntilDone(
     name: Swift.String,
   ) async throws -> Server {
@@ -954,6 +1367,30 @@ extension Clients.CloudFtpProtocol {
     return try await self.stopServerPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CloudFtp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -966,6 +1403,30 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CloudFtp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -992,6 +1453,10 @@ extension Clients.CloudFtpProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CloudFtp_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1005,6 +1470,13 @@ extension Clients.CloudFtpProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CloudFtp_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1017,6 +1489,15 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1029,6 +1510,15 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1040,6 +1530,10 @@ extension Clients.CloudFtpProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFtp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1053,6 +1547,15 @@ extension Clients.CloudFtpProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1064,6 +1567,9 @@ extension Clients.CloudFtpProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1076,6 +1582,9 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1085,6 +1594,15 @@ extension Clients.CloudFtpProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1095,6 +1613,15 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1104,6 +1631,15 @@ extension Clients.CloudFtpProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1114,6 +1650,15 @@ extension Clients.CloudFtpProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFtp_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFtpClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

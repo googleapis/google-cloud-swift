@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
   ///
   /// @Snippet(path: "ExperimentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ExperimentsProtocol``
   public final class ExperimentsClient: Clients.ExperimentsProtocol, Sendable {
     let inner: any Clients.ExperimentsStub
 
@@ -48,6 +52,13 @@
     /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
     ///
     /// @Snippet(path: "Experiments_ListExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listExperiments(request:)``
+    /// - ``listExperimentsByItems(parent:)``
+    /// - ``listExperimentsByItems(request:)``
+    /// - ``listExperimentsByItems(request:options:)``
     public func listExperiments(
       request: ListExperimentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListExperimentsResponse {
@@ -60,6 +71,11 @@
     /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
     ///
     /// @Snippet(path: "Experiments_GetExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getExperiment(name:)``
+    /// - ``getExperiment(request:)``
     public func getExperiment(
       request: GetExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -73,6 +89,11 @@
     /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
     ///
     /// @Snippet(path: "Experiments_CreateExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createExperiment(parent:experiment:)``
+    /// - ``createExperiment(request:)``
     public func createExperiment(
       request: CreateExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -85,6 +106,11 @@
     /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
     ///
     /// @Snippet(path: "Experiments_UpdateExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateExperiment(experiment:updateMask:)``
+    /// - ``updateExperiment(request:)``
     public func updateExperiment(
       request: UpdateExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -97,6 +123,11 @@
     /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
     ///
     /// @Snippet(path: "Experiments_DeleteExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteExperiment(name:)``
+    /// - ``deleteExperiment(request:)``
     public func deleteExperiment(
       request: DeleteExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -110,6 +141,11 @@
     /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
     ///
     /// @Snippet(path: "Experiments_StartExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``startExperiment(name:)``
+    /// - ``startExperiment(request:)``
     public func startExperiment(
       request: StartExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -122,6 +158,11 @@
     /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
     ///
     /// @Snippet(path: "Experiments_StopExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopExperiment(name:)``
+    /// - ``stopExperiment(request:)``
     public func stopExperiment(
       request: StopExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -148,6 +189,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Experiments_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -157,6 +204,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Experiments_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -168,6 +219,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Experiments_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -190,6 +248,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Experiments_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -263,6 +326,16 @@
 
   // Default implementations
   extension Clients.ExperimentsProtocol {
+    /// Returns the list of all experiments in the specified
+    /// [Environment][google.cloud.dialogflow.cx.v3.Environment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
+    ///
+    /// @Snippet(path: "Experiments_ListExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listExperiments(request:options:)``
     public func listExperiments(request: ListExperimentsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListExperimentsResponse
     {
@@ -275,6 +348,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all experiments in the specified
+    /// [Environment][google.cloud.dialogflow.cx.v3.Environment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
+    ///
+    /// @Snippet(path: "Experiments_ListExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listExperiments(request:options:)``
     public func listExperimentsByItems(
       request: ListExperimentsRequest
     ) -> some AsyncSequence<Experiment, any Swift.Error> & Sendable {
@@ -287,6 +370,10 @@
     /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
     ///
     /// @Snippet(path: "Experiments_ListExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listExperiments(request:options:)``
     public func listExperimentsByItems(
       request: ListExperimentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Experiment, any Swift.Error> & Sendable {
@@ -301,6 +388,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all experiments in the specified
+    /// [Environment][google.cloud.dialogflow.cx.v3.Environment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
+    ///
+    /// @Snippet(path: "Experiments_ListExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listExperiments(request:options:)``
     public func listExperimentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Experiment, any Swift.Error> & Sendable {
@@ -310,6 +407,16 @@
       return self.listExperimentsByItems(request: request)
     }
 
+    /// Retrieves the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_GetExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/getExperiment(request:options:)``
     public func getExperiment(request: GetExperimentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Experiment
     {
@@ -322,6 +429,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_GetExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/getExperiment(request:options:)``
     public func getExperiment(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -331,6 +448,17 @@
       return try await self.getExperiment(request: request)
     }
 
+    /// Creates an [Experiment][google.cloud.dialogflow.cx.v3.Experiment] in the
+    /// specified [Environment][google.cloud.dialogflow.cx.v3.Environment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_CreateExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/createExperiment(request:options:)``
     public func createExperiment(request: CreateExperimentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Experiment
     {
@@ -343,6 +471,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an [Experiment][google.cloud.dialogflow.cx.v3.Experiment] in the
+    /// specified [Environment][google.cloud.dialogflow.cx.v3.Environment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Environment]: <doc:Environment>
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_CreateExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/createExperiment(request:options:)``
     public func createExperiment(
       parent: Swift.String,
       experiment: Experiment?,
@@ -354,6 +493,16 @@
       return try await self.createExperiment(request: request)
     }
 
+    /// Updates the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_UpdateExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/updateExperiment(request:options:)``
     public func updateExperiment(request: UpdateExperimentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Experiment
     {
@@ -366,6 +515,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_UpdateExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/updateExperiment(request:options:)``
     public func updateExperiment(
       experiment: Experiment?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -377,6 +536,16 @@
       return try await self.updateExperiment(request: request)
     }
 
+    /// Deletes the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_DeleteExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/deleteExperiment(request:options:)``
     public func deleteExperiment(request: DeleteExperimentRequest) async throws {
       try await self.deleteExperiment(request: request, options: .init())
     }
@@ -387,6 +556,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_DeleteExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/deleteExperiment(request:options:)``
     public func deleteExperiment(
       name: Swift.String,
     ) async throws {
@@ -396,6 +575,17 @@
       try await self.deleteExperiment(request: request)
     }
 
+    /// Starts the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment]. This rpc only
+    /// changes the state of experiment from PENDING to RUNNING.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_StartExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/startExperiment(request:options:)``
     public func startExperiment(request: StartExperimentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Experiment
     {
@@ -408,6 +598,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Starts the specified
+    /// [Experiment][google.cloud.dialogflow.cx.v3.Experiment]. This rpc only
+    /// changes the state of experiment from PENDING to RUNNING.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_StartExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/startExperiment(request:options:)``
     public func startExperiment(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -417,6 +618,16 @@
       return try await self.startExperiment(request: request)
     }
 
+    /// Stops the specified [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    /// This rpc only changes the state of experiment from RUNNING to DONE.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_StopExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/stopExperiment(request:options:)``
     public func stopExperiment(request: StopExperimentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Experiment
     {
@@ -429,6 +640,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops the specified [Experiment][google.cloud.dialogflow.cx.v3.Experiment].
+    /// This rpc only changes the state of experiment from RUNNING to DONE.
+    ///
+    /// [google.cloud.dialogflow.cx.v3.Experiment]: <doc:Experiment>
+    ///
+    /// @Snippet(path: "Experiments_StopExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/stopExperiment(request:options:)``
     public func stopExperiment(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Experiment {
@@ -438,6 +659,30 @@
       return try await self.stopExperiment(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Experiments_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -450,6 +695,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Experiments_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -476,6 +745,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Experiments_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -489,6 +762,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Experiments_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -501,6 +781,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Experiments_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -513,6 +802,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Experiments_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -524,6 +822,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Experiments_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -537,6 +839,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Experiments_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -548,6 +859,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -560,6 +874,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -569,6 +886,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Experiments_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -579,6 +905,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Experiments_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExperimentsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

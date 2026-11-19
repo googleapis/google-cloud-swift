@@ -24,6 +24,10 @@
   /// Service for the `images` resource.
   ///
   /// @Snippet(path: "imagesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ImagesProtocol``
   public final class ImagesClient: Clients.ImagesProtocol, Sendable {
     let inner: any Clients.ImagesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified image.
     ///
     /// @Snippet(path: "images_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:image:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:image:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: ImagesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -101,6 +119,13 @@
     /// If an empty request body is given, clears the deprecation status instead.
     ///
     /// @Snippet(path: "images_deprecate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deprecate(request:)``
+    /// - ``deprecatePollingUntilDone(project:image:body:)``
+    /// - ``deprecatePollingUntilDone(request:)``
+    /// - ``deprecatePollingUntilDone(request:options:)``
     public func deprecate(
       request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -117,6 +142,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_deprecate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deprecate(request:)``
+    /// - ``deprecate(request:options:)``
+    /// - ``deprecatePollingUntilDone(project:image:body:)``
+    /// - ``deprecatePollingUntilDone(request:)``
     public func deprecatePollingUntilDone(
       request: ImagesClient.DeprecateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -158,6 +190,11 @@
     /// Returns the specified image.
     ///
     /// @Snippet(path: "images_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:image:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ImagesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Image {
@@ -169,6 +206,11 @@
     /// image families documentation.
     ///
     /// @Snippet(path: "images_getFromFamily")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getFromFamily(project:family:)``
+    /// - ``getFromFamily(request:)``
     public func getFromFamily(
       request: ImagesClient.GetFromFamilyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Image {
@@ -179,6 +221,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "images_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: ImagesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -189,6 +236,13 @@
     /// in the request.
     ///
     /// @Snippet(path: "images_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -204,6 +258,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: ImagesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -251,6 +312,13 @@
     /// such as debian-cloud or windows-cloud.
     ///
     /// @Snippet(path: "images_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ImageList {
@@ -262,6 +330,13 @@
     /// deprecation status.
     ///
     /// @Snippet(path: "images_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:image:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -278,6 +353,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:image:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: ImagesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -320,6 +402,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "images_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: ImagesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -330,6 +417,13 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "images_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
     public func setLabels(
       request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -345,6 +439,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "images_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: ImagesClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -386,6 +487,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "images_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: ImagesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -518,6 +624,13 @@
 
   // Default implementations
   extension Clients.ImagesProtocol {
+    /// Deletes the specified image.
+    ///
+    /// @Snippet(path: "images_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/delete(request:options:)``
     public func delete(request: ImagesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -530,6 +643,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified image.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: ImagesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -542,6 +667,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified image.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       image: Swift.String,
@@ -553,6 +690,15 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Sets the deprecation status of an image.
+    ///
+    /// If an empty request body is given, clears the deprecation status instead.
+    ///
+    /// @Snippet(path: "images_deprecate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/deprecate(request:options:)``
     public func deprecate(request: ImagesClient.DeprecateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -565,6 +711,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the deprecation status of an image.
+    ///
+    /// If an empty request body is given, clears the deprecation status instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_deprecate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/deprecatePollingUntilDone(request:options:)``
     public func deprecatePollingUntilDone(
       request: ImagesClient.DeprecateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -577,6 +737,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the deprecation status of an image.
+    ///
+    /// If an empty request body is given, clears the deprecation status instead.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_deprecate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/deprecatePollingUntilDone(request:options:)``
     public func deprecatePollingUntilDone(
       project: Swift.String,
       image: Swift.String,
@@ -590,6 +764,13 @@
       return try await self.deprecatePollingUntilDone(request: request)
     }
 
+    /// Returns the specified image.
+    ///
+    /// @Snippet(path: "images_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/get(request:options:)``
     public func `get`(request: ImagesClient.GetRequest) async throws -> GoogleCloudComputeV1.Image {
       try await self.`get`(request: request, options: .init())
     }
@@ -600,6 +781,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified image.
+    ///
+    /// @Snippet(path: "images_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       image: Swift.String,
@@ -611,6 +799,15 @@
       return try await self.`get`(request: request)
     }
 
+    /// Returns the latest image that is part of an image family and is not
+    /// deprecated. For more information on image families, seePublic
+    /// image families documentation.
+    ///
+    /// @Snippet(path: "images_getFromFamily")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/getFromFamily(request:options:)``
     public func getFromFamily(request: ImagesClient.GetFromFamilyRequest) async throws
       -> GoogleCloudComputeV1.Image
     {
@@ -623,6 +820,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the latest image that is part of an image family and is not
+    /// deprecated. For more information on image families, seePublic
+    /// image families documentation.
+    ///
+    /// @Snippet(path: "images_getFromFamily")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/getFromFamily(request:options:)``
     public func getFromFamily(
       project: Swift.String,
       family: Swift.String,
@@ -634,6 +840,14 @@
       return try await self.getFromFamily(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "images_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: ImagesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -646,6 +860,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "images_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -657,6 +879,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates an image in the specified project using the data included
+    /// in the request.
+    ///
+    /// @Snippet(path: "images_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/insert(request:options:)``
     public func insert(request: ImagesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -669,6 +899,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an image in the specified project using the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: ImagesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -681,6 +924,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an image in the specified project using the data included
+    /// in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: Image?,
@@ -692,6 +948,19 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of custom images
+    /// available to the specified project. Custom images are images you
+    /// create that belong to your project. This method does not
+    /// get any images that belong to other projects, including publicly-available
+    /// images, like Debian 8. If you want to get a list of publicly-available
+    /// images, use this method to make a request to the respective image project,
+    /// such as debian-cloud or windows-cloud.
+    ///
+    /// @Snippet(path: "images_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/list(request:options:)``
     public func list(request: ImagesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ImageList
     {
@@ -704,6 +973,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of custom images
+    /// available to the specified project. Custom images are images you
+    /// create that belong to your project. This method does not
+    /// get any images that belong to other projects, including publicly-available
+    /// images, like Debian 8. If you want to get a list of publicly-available
+    /// images, use this method to make a request to the respective image project,
+    /// such as debian-cloud or windows-cloud.
+    ///
+    /// @Snippet(path: "images_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/list(request:options:)``
     public func listByItems(
       request: ImagesClient.ListRequest
     ) -> some AsyncSequence<Image, any Swift.Error> & Sendable {
@@ -719,6 +1001,10 @@
     /// such as debian-cloud or windows-cloud.
     ///
     /// @Snippet(path: "images_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/list(request:options:)``
     public func listByItems(
       request: ImagesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Image, any Swift.Error> & Sendable {
@@ -732,6 +1018,19 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of custom images
+    /// available to the specified project. Custom images are images you
+    /// create that belong to your project. This method does not
+    /// get any images that belong to other projects, including publicly-available
+    /// images, like Debian 8. If you want to get a list of publicly-available
+    /// images, use this method to make a request to the respective image project,
+    /// such as debian-cloud or windows-cloud.
+    ///
+    /// @Snippet(path: "images_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<Image, any Swift.Error> & Sendable {
@@ -741,6 +1040,15 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified image with the data included in the request.
+    /// Only the following fields can be modified: family, description,
+    /// deprecation status.
+    ///
+    /// @Snippet(path: "images_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/patch(request:options:)``
     public func patch(request: ImagesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -753,6 +1061,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified image with the data included in the request.
+    /// Only the following fields can be modified: family, description,
+    /// deprecation status.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: ImagesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -765,6 +1087,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified image with the data included in the request.
+    /// Only the following fields can be modified: family, description,
+    /// deprecation status.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       image: Swift.String,
@@ -778,6 +1114,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "images_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: ImagesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -790,6 +1134,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "images_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -803,6 +1155,14 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Sets the labels on an image. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// @Snippet(path: "images_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/setLabels(request:options:)``
     public func setLabels(request: ImagesClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -815,6 +1175,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on an image. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: ImagesClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -827,6 +1200,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on an image. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "images_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       resource: Swift.String,
@@ -840,6 +1226,13 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "images_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: ImagesClient.TestIamPermissionsRequest) async throws
       -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -852,6 +1245,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "images_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ImagesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -865,6 +1265,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

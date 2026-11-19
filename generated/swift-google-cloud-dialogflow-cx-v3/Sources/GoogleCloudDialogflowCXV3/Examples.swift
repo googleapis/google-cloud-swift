@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.cx.v3.Example]: <doc:Example>
   ///
   /// @Snippet(path: "ExamplesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ExamplesProtocol``
   public final class ExamplesClient: Clients.ExamplesProtocol, Sendable {
     let inner: any Clients.ExamplesStub
 
@@ -45,6 +49,11 @@
     /// Creates an example in the specified playbook.
     ///
     /// @Snippet(path: "Examples_CreateExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createExample(parent:example:)``
+    /// - ``createExample(request:)``
     public func createExample(
       request: CreateExampleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -54,6 +63,11 @@
     /// Deletes the specified example.
     ///
     /// @Snippet(path: "Examples_DeleteExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteExample(name:)``
+    /// - ``deleteExample(request:)``
     public func deleteExample(
       request: DeleteExampleRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -63,6 +77,13 @@
     /// Returns a list of examples in the specified playbook.
     ///
     /// @Snippet(path: "Examples_ListExamples")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listExamples(request:)``
+    /// - ``listExamplesByItems(parent:)``
+    /// - ``listExamplesByItems(request:)``
+    /// - ``listExamplesByItems(request:options:)``
     public func listExamples(
       request: ListExamplesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListExamplesResponse {
@@ -72,6 +93,11 @@
     /// Retrieves the specified example.
     ///
     /// @Snippet(path: "Examples_GetExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getExample(name:)``
+    /// - ``getExample(request:)``
     public func getExample(
       request: GetExampleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -81,6 +107,11 @@
     /// Update the specified example.
     ///
     /// @Snippet(path: "Examples_UpdateExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateExample(example:updateMask:)``
+    /// - ``updateExample(request:)``
     public func updateExample(
       request: UpdateExampleRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -107,6 +138,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Examples_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -116,6 +153,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Examples_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -127,6 +168,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Examples_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -149,6 +197,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Examples_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -212,6 +265,13 @@
 
   // Default implementations
   extension Clients.ExamplesProtocol {
+    /// Creates an example in the specified playbook.
+    ///
+    /// @Snippet(path: "Examples_CreateExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/createExample(request:options:)``
     public func createExample(request: CreateExampleRequest) async throws
       -> GoogleCloudDialogflowCXV3.Example
     {
@@ -224,6 +284,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an example in the specified playbook.
+    ///
+    /// @Snippet(path: "Examples_CreateExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/createExample(request:options:)``
     public func createExample(
       parent: Swift.String,
       example: Example?,
@@ -235,6 +302,13 @@
       return try await self.createExample(request: request)
     }
 
+    /// Deletes the specified example.
+    ///
+    /// @Snippet(path: "Examples_DeleteExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/deleteExample(request:options:)``
     public func deleteExample(request: DeleteExampleRequest) async throws {
       try await self.deleteExample(request: request, options: .init())
     }
@@ -245,6 +319,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified example.
+    ///
+    /// @Snippet(path: "Examples_DeleteExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/deleteExample(request:options:)``
     public func deleteExample(
       name: Swift.String,
     ) async throws {
@@ -254,6 +335,13 @@
       try await self.deleteExample(request: request)
     }
 
+    /// Returns a list of examples in the specified playbook.
+    ///
+    /// @Snippet(path: "Examples_ListExamples")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listExamples(request:options:)``
     public func listExamples(request: ListExamplesRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListExamplesResponse
     {
@@ -266,6 +354,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns a list of examples in the specified playbook.
+    ///
+    /// @Snippet(path: "Examples_ListExamples")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listExamples(request:options:)``
     public func listExamplesByItems(
       request: ListExamplesRequest
     ) -> some AsyncSequence<Example, any Swift.Error> & Sendable {
@@ -275,6 +370,10 @@
     /// Returns a list of examples in the specified playbook.
     ///
     /// @Snippet(path: "Examples_ListExamples")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listExamples(request:options:)``
     public func listExamplesByItems(
       request: ListExamplesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Example, any Swift.Error> & Sendable {
@@ -289,6 +388,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns a list of examples in the specified playbook.
+    ///
+    /// @Snippet(path: "Examples_ListExamples")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listExamples(request:options:)``
     public func listExamplesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Example, any Swift.Error> & Sendable {
@@ -298,6 +404,13 @@
       return self.listExamplesByItems(request: request)
     }
 
+    /// Retrieves the specified example.
+    ///
+    /// @Snippet(path: "Examples_GetExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/getExample(request:options:)``
     public func getExample(request: GetExampleRequest) async throws
       -> GoogleCloudDialogflowCXV3.Example
     {
@@ -310,6 +423,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified example.
+    ///
+    /// @Snippet(path: "Examples_GetExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/getExample(request:options:)``
     public func getExample(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Example {
@@ -319,6 +439,13 @@
       return try await self.getExample(request: request)
     }
 
+    /// Update the specified example.
+    ///
+    /// @Snippet(path: "Examples_UpdateExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/updateExample(request:options:)``
     public func updateExample(request: UpdateExampleRequest) async throws
       -> GoogleCloudDialogflowCXV3.Example
     {
@@ -331,6 +458,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update the specified example.
+    ///
+    /// @Snippet(path: "Examples_UpdateExample")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/updateExample(request:options:)``
     public func updateExample(
       example: Example?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -342,6 +476,30 @@
       return try await self.updateExample(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Examples_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -354,6 +512,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Examples_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -380,6 +562,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Examples_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -393,6 +579,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Examples_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -405,6 +598,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Examples_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -417,6 +619,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Examples_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -428,6 +639,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Examples_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -441,6 +656,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Examples_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -452,6 +676,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -464,6 +691,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -473,6 +703,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Examples_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -483,6 +722,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Examples_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ExamplesClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

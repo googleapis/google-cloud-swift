@@ -28,6 +28,10 @@
   /// [google.cloud.discoveryengine.v1.Project]: <doc:Project>
   ///
   /// @Snippet(path: "ProjectServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ProjectServiceProtocol``
   public final class ProjectServiceClient: Clients.ProjectServiceProtocol, Sendable {
     let inner: any Clients.ProjectServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -53,6 +57,13 @@
     /// specify in request to provide consent to that service terms.
     ///
     /// @Snippet(path: "ProjectService_ProvisionProject")
+    ///
+    /// ## See Also
+    ///
+    /// - ``provisionProject(request:)``
+    /// - ``provisionProjectPollingUntilDone(name:)``
+    /// - ``provisionProjectPollingUntilDone(request:)``
+    /// - ``provisionProjectPollingUntilDone(request:options:)``
     public func provisionProject(
       request: ProvisionProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -67,6 +78,13 @@
     /// specify in request to provide consent to that service terms.
     ///
     /// @Snippet(path: "ProjectService_ProvisionProject")
+    ///
+    /// ## See Also
+    ///
+    /// - ``provisionProject(request:)``
+    /// - ``provisionProject(request:options:)``
+    /// - ``provisionProjectPollingUntilDone(name:)``
+    /// - ``provisionProjectPollingUntilDone(request:)``
     public func provisionProjectPollingUntilDone(
       request: ProvisionProjectRequest, options: GoogleGax.RequestOptions
     ) async throws -> Project {
@@ -96,6 +114,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ProjectService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -118,6 +143,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ProjectService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -156,6 +186,18 @@
 
   // Default implementations
   extension Clients.ProjectServiceProtocol {
+    /// Provisions the project resource. During the
+    /// process, related systems will get prepared and initialized.
+    ///
+    /// Caller must read the [Terms for data
+    /// use](https://cloud.google.com/retail/data-use-terms), and optionally
+    /// specify in request to provide consent to that service terms.
+    ///
+    /// @Snippet(path: "ProjectService_ProvisionProject")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/provisionProject(request:options:)``
     public func provisionProject(request: ProvisionProjectRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -168,6 +210,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provisions the project resource. During the
+    /// process, related systems will get prepared and initialized.
+    ///
+    /// Caller must read the [Terms for data
+    /// use](https://cloud.google.com/retail/data-use-terms), and optionally
+    /// specify in request to provide consent to that service terms.
+    ///
+    /// @Snippet(path: "ProjectService_ProvisionProject")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/provisionProjectPollingUntilDone(request:options:)``
     public func provisionProjectPollingUntilDone(request: ProvisionProjectRequest) async throws
       -> Project
     {
@@ -180,6 +234,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provisions the project resource. During the
+    /// process, related systems will get prepared and initialized.
+    ///
+    /// Caller must read the [Terms for data
+    /// use](https://cloud.google.com/retail/data-use-terms), and optionally
+    /// specify in request to provide consent to that service terms.
+    ///
+    /// @Snippet(path: "ProjectService_ProvisionProject")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/provisionProjectPollingUntilDone(request:options:)``
     public func provisionProjectPollingUntilDone(
       name: Swift.String,
     ) async throws -> Project {
@@ -189,6 +255,15 @@
       return try await self.provisionProjectPollingUntilDone(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ProjectService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -201,6 +276,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ProjectService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -212,6 +296,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ProjectService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -225,6 +313,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ProjectService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -236,6 +333,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -248,6 +348,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -257,6 +360,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ProjectService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -267,6 +379,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ProjectService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ProjectServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

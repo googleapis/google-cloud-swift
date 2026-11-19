@@ -24,6 +24,10 @@ import Foundation
 /// BinAuthz Attestor verification
 ///
 /// @Snippet(path: "ValidationHelperV1Quickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ValidationHelperV1Protocol``
 public final class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol, Sendable {
   let inner: any Clients.ValidationHelperV1Stub
 
@@ -41,6 +45,10 @@ public final class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol,
   /// was signed by the given `Attestor`
   ///
   /// @Snippet(path: "ValidationHelperV1_ValidateAttestationOccurrence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``validateAttestationOccurrence(request:)``
   public func validateAttestationOccurrence(
     request: ValidateAttestationOccurrenceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBinaryAuthorizationV1.ValidateAttestationOccurrenceResponse {
@@ -54,6 +62,10 @@ public final class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol,
   /// errors.
   ///
   /// @Snippet(path: "ValidationHelperV1_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -64,6 +76,10 @@ public final class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol,
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "ValidationHelperV1_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -79,6 +95,10 @@ public final class ValidationHelperV1Client: Clients.ValidationHelperV1Protocol,
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "ValidationHelperV1_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -117,6 +137,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.ValidationHelperV1Protocol {
+  /// Returns whether the given `Attestation` for the given image URI
+  /// was signed by the given `Attestor`
+  ///
+  /// @Snippet(path: "ValidationHelperV1_ValidateAttestationOccurrence")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ValidationHelperV1Client/validateAttestationOccurrence(request:options:)``
   public func validateAttestationOccurrence(request: ValidateAttestationOccurrenceRequest)
     async throws -> GoogleCloudBinaryAuthorizationV1.ValidateAttestationOccurrenceResponse
   {
@@ -129,6 +157,17 @@ extension Clients.ValidationHelperV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "ValidationHelperV1_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ValidationHelperV1Client/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -141,6 +180,14 @@ extension Clients.ValidationHelperV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "ValidationHelperV1_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ValidationHelperV1Client/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -153,6 +200,19 @@ extension Clients.ValidationHelperV1Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "ValidationHelperV1_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ValidationHelperV1Client/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {

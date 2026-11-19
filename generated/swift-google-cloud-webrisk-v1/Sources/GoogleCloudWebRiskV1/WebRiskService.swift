@@ -25,6 +25,10 @@ public import Foundation
 /// website and in client applications.
 ///
 /// @Snippet(path: "WebRiskServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/WebRiskServiceProtocol``
 public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendable {
   let inner: any Clients.WebRiskServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,11 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// for each list.
   ///
   /// @Snippet(path: "WebRiskService_ComputeThreatListDiff")
+  ///
+  /// ## See Also
+  ///
+  /// - ``computeThreatListDiff(request:)``
+  /// - ``computeThreatListDiff(threatType:versionToken:constraints:)``
   public func computeThreatListDiff(
     request: ComputeThreatListDiffRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebRiskV1.ComputeThreatListDiffResponse {
@@ -63,6 +72,11 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// empty response will be returned.
   ///
   /// @Snippet(path: "WebRiskService_SearchUris")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchUris(request:)``
+  /// - ``searchUris(uri:threatTypes:)``
   public func searchUris(
     request: SearchUrisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebRiskV1.SearchUrisResponse {
@@ -76,6 +90,11 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// hash match of a threat.
   ///
   /// @Snippet(path: "WebRiskService_SearchHashes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchHashes(hashPrefix:threatTypes:)``
+  /// - ``searchHashes(request:)``
   public func searchHashes(
     request: SearchHashesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebRiskV1.SearchHashesResponse {
@@ -91,6 +110,11 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// out to Sales or your customer engineer to obtain access.
   ///
   /// @Snippet(path: "WebRiskService_CreateSubmission")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSubmission(parent:submission:)``
+  /// - ``createSubmission(request:)``
   public func createSubmission(
     request: CreateSubmissionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWebRiskV1.Submission {
@@ -109,6 +133,13 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// out to Sales or your customer engineer to obtain access.
   ///
   /// @Snippet(path: "WebRiskService_SubmitUri")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitUri(request:)``
+  /// - ``submitUriPollingUntilDone(parent:submission:)``
+  /// - ``submitUriPollingUntilDone(request:)``
+  /// - ``submitUriPollingUntilDone(request:options:)``
   public func submitUri(
     request: SubmitUriRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,6 +158,13 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// out to Sales or your customer engineer to obtain access.
   ///
   /// @Snippet(path: "WebRiskService_SubmitUri")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitUri(request:)``
+  /// - ``submitUri(request:options:)``
+  /// - ``submitUriPollingUntilDone(parent:submission:)``
+  /// - ``submitUriPollingUntilDone(request:)``
   public func submitUriPollingUntilDone(
     request: SubmitUriRequest, options: GoogleGax.RequestOptions
   ) async throws -> Submission {
@@ -156,6 +194,13 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WebRiskService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -178,6 +223,11 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WebRiskService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -189,6 +239,11 @@ public final class WebRiskServiceClient: Clients.WebRiskServiceProtocol, Sendabl
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WebRiskService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -252,6 +307,18 @@ extension Clients {
 
 // Default implementations
 extension Clients.WebRiskServiceProtocol {
+  /// Gets the most recent threat list diffs. These diffs should be applied to
+  /// a local database of hashes to keep it up-to-date. If the local database is
+  /// empty or excessively out-of-date, a complete snapshot of the database will
+  /// be returned. This Method only updates a single ThreatList at a time. To
+  /// update multiple ThreatList databases, this method needs to be called once
+  /// for each list.
+  ///
+  /// @Snippet(path: "WebRiskService_ComputeThreatListDiff")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/computeThreatListDiff(request:options:)``
   public func computeThreatListDiff(request: ComputeThreatListDiffRequest) async throws
     -> GoogleCloudWebRiskV1.ComputeThreatListDiffResponse
   {
@@ -264,6 +331,18 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the most recent threat list diffs. These diffs should be applied to
+  /// a local database of hashes to keep it up-to-date. If the local database is
+  /// empty or excessively out-of-date, a complete snapshot of the database will
+  /// be returned. This Method only updates a single ThreatList at a time. To
+  /// update multiple ThreatList databases, this method needs to be called once
+  /// for each list.
+  ///
+  /// @Snippet(path: "WebRiskService_ComputeThreatListDiff")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/computeThreatListDiff(request:options:)``
   public func computeThreatListDiff(
     threatType: ThreatType,
     versionToken: Foundation.Data,
@@ -277,6 +356,17 @@ extension Clients.WebRiskServiceProtocol {
     return try await self.computeThreatListDiff(request: request)
   }
 
+  /// This method is used to check whether a URI is on a given threatList.
+  /// Multiple threatLists may be searched in a single query.
+  /// The response will list all requested threatLists the URI was found to
+  /// match. If the URI is not found on any of the requested ThreatList an
+  /// empty response will be returned.
+  ///
+  /// @Snippet(path: "WebRiskService_SearchUris")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/searchUris(request:options:)``
   public func searchUris(request: SearchUrisRequest) async throws
     -> GoogleCloudWebRiskV1.SearchUrisResponse
   {
@@ -289,6 +379,17 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// This method is used to check whether a URI is on a given threatList.
+  /// Multiple threatLists may be searched in a single query.
+  /// The response will list all requested threatLists the URI was found to
+  /// match. If the URI is not found on any of the requested ThreatList an
+  /// empty response will be returned.
+  ///
+  /// @Snippet(path: "WebRiskService_SearchUris")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/searchUris(request:options:)``
   public func searchUris(
     uri: Swift.String,
     threatTypes: [ThreatType],
@@ -300,6 +401,17 @@ extension Clients.WebRiskServiceProtocol {
     return try await self.searchUris(request: request)
   }
 
+  /// Gets the full hashes that match the requested hash prefix.
+  /// This is used after a hash prefix is looked up in a threatList
+  /// and there is a match. The client side threatList only holds partial hashes
+  /// so the client must query this method to determine if there is a full
+  /// hash match of a threat.
+  ///
+  /// @Snippet(path: "WebRiskService_SearchHashes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/searchHashes(request:options:)``
   public func searchHashes(request: SearchHashesRequest) async throws
     -> GoogleCloudWebRiskV1.SearchHashesResponse
   {
@@ -312,6 +424,17 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the full hashes that match the requested hash prefix.
+  /// This is used after a hash prefix is looked up in a threatList
+  /// and there is a match. The client side threatList only holds partial hashes
+  /// so the client must query this method to determine if there is a full
+  /// hash match of a threat.
+  ///
+  /// @Snippet(path: "WebRiskService_SearchHashes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/searchHashes(request:options:)``
   public func searchHashes(
     hashPrefix: Foundation.Data,
     threatTypes: [ThreatType],
@@ -323,6 +446,19 @@ extension Clients.WebRiskServiceProtocol {
     return try await self.searchHashes(request: request)
   }
 
+  /// Creates a Submission of a URI suspected of containing phishing content to
+  /// be reviewed. If the result verifies the existence of malicious phishing
+  /// content, the site will be added to the [Google's Social Engineering
+  /// lists](https://support.google.com/webmasters/answer/6350487/) in order to
+  /// protect users that could get exposed to this threat in the future. Only
+  /// allowlisted projects can use this method during Early Access. Please reach
+  /// out to Sales or your customer engineer to obtain access.
+  ///
+  /// @Snippet(path: "WebRiskService_CreateSubmission")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/createSubmission(request:options:)``
   public func createSubmission(request: CreateSubmissionRequest) async throws
     -> GoogleCloudWebRiskV1.Submission
   {
@@ -335,6 +471,19 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Submission of a URI suspected of containing phishing content to
+  /// be reviewed. If the result verifies the existence of malicious phishing
+  /// content, the site will be added to the [Google's Social Engineering
+  /// lists](https://support.google.com/webmasters/answer/6350487/) in order to
+  /// protect users that could get exposed to this threat in the future. Only
+  /// allowlisted projects can use this method during Early Access. Please reach
+  /// out to Sales or your customer engineer to obtain access.
+  ///
+  /// @Snippet(path: "WebRiskService_CreateSubmission")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/createSubmission(request:options:)``
   public func createSubmission(
     parent: Swift.String,
     submission: Submission?,
@@ -346,6 +495,22 @@ extension Clients.WebRiskServiceProtocol {
     return try await self.createSubmission(request: request)
   }
 
+  /// Submits a URI suspected of containing malicious content to be reviewed.
+  /// Returns a google.longrunning.Operation which, once the review is complete,
+  /// is updated with its result. You can use the [Pub/Sub API]
+  /// (https://cloud.google.com/pubsub) to receive notifications for the returned
+  /// Operation. If the result verifies the existence of malicious content, the
+  /// site will be added to the [Google's Social Engineering lists]
+  /// (https://support.google.com/webmasters/answer/6350487/) in order to
+  /// protect users that could get exposed to this threat in the future. Only
+  /// allowlisted projects can use this method during Early Access. Please reach
+  /// out to Sales or your customer engineer to obtain access.
+  ///
+  /// @Snippet(path: "WebRiskService_SubmitUri")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/submitUri(request:options:)``
   public func submitUri(request: SubmitUriRequest) async throws -> GoogleLongRunning.Operation {
     try await self.submitUri(request: request, options: .init())
   }
@@ -356,6 +521,22 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits a URI suspected of containing malicious content to be reviewed.
+  /// Returns a google.longrunning.Operation which, once the review is complete,
+  /// is updated with its result. You can use the [Pub/Sub API]
+  /// (https://cloud.google.com/pubsub) to receive notifications for the returned
+  /// Operation. If the result verifies the existence of malicious content, the
+  /// site will be added to the [Google's Social Engineering lists]
+  /// (https://support.google.com/webmasters/answer/6350487/) in order to
+  /// protect users that could get exposed to this threat in the future. Only
+  /// allowlisted projects can use this method during Early Access. Please reach
+  /// out to Sales or your customer engineer to obtain access.
+  ///
+  /// @Snippet(path: "WebRiskService_SubmitUri")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/submitUriPollingUntilDone(request:options:)``
   public func submitUriPollingUntilDone(request: SubmitUriRequest) async throws -> Submission {
     return try await self.submitUriPollingUntilDone(request: request, options: .init())
   }
@@ -366,6 +547,22 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits a URI suspected of containing malicious content to be reviewed.
+  /// Returns a google.longrunning.Operation which, once the review is complete,
+  /// is updated with its result. You can use the [Pub/Sub API]
+  /// (https://cloud.google.com/pubsub) to receive notifications for the returned
+  /// Operation. If the result verifies the existence of malicious content, the
+  /// site will be added to the [Google's Social Engineering lists]
+  /// (https://support.google.com/webmasters/answer/6350487/) in order to
+  /// protect users that could get exposed to this threat in the future. Only
+  /// allowlisted projects can use this method during Early Access. Please reach
+  /// out to Sales or your customer engineer to obtain access.
+  ///
+  /// @Snippet(path: "WebRiskService_SubmitUri")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/submitUriPollingUntilDone(request:options:)``
   public func submitUriPollingUntilDone(
     parent: Swift.String,
     submission: Submission?,
@@ -377,6 +574,15 @@ extension Clients.WebRiskServiceProtocol {
     return try await self.submitUriPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -389,6 +595,15 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -400,6 +615,10 @@ extension Clients.WebRiskServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WebRiskService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -413,6 +632,15 @@ extension Clients.WebRiskServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -424,6 +652,9 @@ extension Clients.WebRiskServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -436,6 +667,9 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -445,6 +679,15 @@ extension Clients.WebRiskServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -455,6 +698,15 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -464,6 +716,15 @@ extension Clients.WebRiskServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -474,6 +735,15 @@ extension Clients.WebRiskServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WebRiskService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WebRiskServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

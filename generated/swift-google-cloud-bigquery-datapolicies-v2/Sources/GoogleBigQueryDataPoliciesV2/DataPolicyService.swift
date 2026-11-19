@@ -25,6 +25,10 @@ import Foundation
 /// Data Policy Service provides APIs for managing the BigQuery Data Policy.
 ///
 /// @Snippet(path: "DataPolicyServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataPolicyServiceProtocol``
 public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, Sendable {
   let inner: any Clients.DataPolicyServiceStub
 
@@ -42,6 +46,11 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// (used as the display name), and data policy type.
   ///
   /// @Snippet(path: "DataPolicyService_CreateDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataPolicy(parent:dataPolicy:dataPolicyId:)``
+  /// - ``createDataPolicy(request:)``
   public func createDataPolicy(
     request: CreateDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -55,6 +64,11 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// ignored.
   ///
   /// @Snippet(path: "DataPolicyService_AddGrantees")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addGrantees(dataPolicy:grantees:)``
+  /// - ``addGrantees(request:)``
   public func addGrantees(
     request: AddGranteesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -67,6 +81,11 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// ignored.
   ///
   /// @Snippet(path: "DataPolicyService_RemoveGrantees")
+  ///
+  /// ## See Also
+  ///
+  /// - ``removeGrantees(dataPolicy:grantees:)``
+  /// - ``removeGrantees(request:)``
   public func removeGrantees(
     request: RemoveGranteesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -77,6 +96,11 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// can be specified by the resource name.
   ///
   /// @Snippet(path: "DataPolicyService_UpdateDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataPolicy(dataPolicy:updateMask:)``
+  /// - ``updateDataPolicy(request:)``
   public func updateDataPolicy(
     request: UpdateDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -86,6 +110,11 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// Deletes the data policy specified by its resource name.
   ///
   /// @Snippet(path: "DataPolicyService_DeleteDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataPolicy(name:)``
+  /// - ``deleteDataPolicy(request:)``
   public func deleteDataPolicy(
     request: DeleteDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -95,6 +124,11 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// Gets the data policy specified by its resource name.
   ///
   /// @Snippet(path: "DataPolicyService_GetDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataPolicy(name:)``
+  /// - ``getDataPolicy(request:)``
   public func getDataPolicy(
     request: GetDataPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -104,6 +138,13 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// List all of the data policies in the specified parent project.
   ///
   /// @Snippet(path: "DataPolicyService_ListDataPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataPolicies(request:)``
+  /// - ``listDataPoliciesByItems(parent:)``
+  /// - ``listDataPoliciesByItems(request:)``
+  /// - ``listDataPoliciesByItems(request:options:)``
   public func listDataPolicies(
     request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse {
@@ -113,6 +154,10 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// Gets the IAM policy for the specified data policy.
   ///
   /// @Snippet(path: "DataPolicyService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -122,6 +167,10 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// Sets the IAM policy for the specified data policy.
   ///
   /// @Snippet(path: "DataPolicyService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -131,6 +180,10 @@ public final class DataPolicyServiceClient: Clients.DataPolicyServiceProtocol, S
   /// Returns the caller's permission on the specified data policy resource.
   ///
   /// @Snippet(path: "DataPolicyService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -199,6 +252,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataPolicyServiceProtocol {
+  /// Creates a new data policy under a project with the given `data_policy_id`
+  /// (used as the display name), and data policy type.
+  ///
+  /// @Snippet(path: "DataPolicyService_CreateDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/createDataPolicy(request:options:)``
   public func createDataPolicy(request: CreateDataPolicyRequest) async throws
     -> GoogleBigQueryDataPoliciesV2.DataPolicy
   {
@@ -211,6 +272,14 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new data policy under a project with the given `data_policy_id`
+  /// (used as the display name), and data policy type.
+  ///
+  /// @Snippet(path: "DataPolicyService_CreateDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/createDataPolicy(request:options:)``
   public func createDataPolicy(
     parent: Swift.String,
     dataPolicy: DataPolicy?,
@@ -224,6 +293,17 @@ extension Clients.DataPolicyServiceProtocol {
     return try await self.createDataPolicy(request: request)
   }
 
+  /// Adds new grantees to a data policy.
+  /// The new grantees will be added to the existing grantees.
+  /// If the request contains a duplicate grantee, the grantee will be ignored.
+  /// If the request contains a grantee that already exists, the grantee will be
+  /// ignored.
+  ///
+  /// @Snippet(path: "DataPolicyService_AddGrantees")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/addGrantees(request:options:)``
   public func addGrantees(request: AddGranteesRequest) async throws
     -> GoogleBigQueryDataPoliciesV2.DataPolicy
   {
@@ -236,6 +316,17 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds new grantees to a data policy.
+  /// The new grantees will be added to the existing grantees.
+  /// If the request contains a duplicate grantee, the grantee will be ignored.
+  /// If the request contains a grantee that already exists, the grantee will be
+  /// ignored.
+  ///
+  /// @Snippet(path: "DataPolicyService_AddGrantees")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/addGrantees(request:options:)``
   public func addGrantees(
     dataPolicy: Swift.String,
     grantees: [Swift.String],
@@ -247,6 +338,16 @@ extension Clients.DataPolicyServiceProtocol {
     return try await self.addGrantees(request: request)
   }
 
+  /// Removes grantees from a data policy.
+  /// The grantees will be removed from the existing grantees.
+  /// If the request contains a grantee that does not exist, the grantee will be
+  /// ignored.
+  ///
+  /// @Snippet(path: "DataPolicyService_RemoveGrantees")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/removeGrantees(request:options:)``
   public func removeGrantees(request: RemoveGranteesRequest) async throws
     -> GoogleBigQueryDataPoliciesV2.DataPolicy
   {
@@ -259,6 +360,16 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes grantees from a data policy.
+  /// The grantees will be removed from the existing grantees.
+  /// If the request contains a grantee that does not exist, the grantee will be
+  /// ignored.
+  ///
+  /// @Snippet(path: "DataPolicyService_RemoveGrantees")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/removeGrantees(request:options:)``
   public func removeGrantees(
     dataPolicy: Swift.String,
     grantees: [Swift.String],
@@ -270,6 +381,14 @@ extension Clients.DataPolicyServiceProtocol {
     return try await self.removeGrantees(request: request)
   }
 
+  /// Updates the metadata for an existing data policy. The target data policy
+  /// can be specified by the resource name.
+  ///
+  /// @Snippet(path: "DataPolicyService_UpdateDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/updateDataPolicy(request:options:)``
   public func updateDataPolicy(request: UpdateDataPolicyRequest) async throws
     -> GoogleBigQueryDataPoliciesV2.DataPolicy
   {
@@ -282,6 +401,14 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata for an existing data policy. The target data policy
+  /// can be specified by the resource name.
+  ///
+  /// @Snippet(path: "DataPolicyService_UpdateDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/updateDataPolicy(request:options:)``
   public func updateDataPolicy(
     dataPolicy: DataPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -293,6 +420,13 @@ extension Clients.DataPolicyServiceProtocol {
     return try await self.updateDataPolicy(request: request)
   }
 
+  /// Deletes the data policy specified by its resource name.
+  ///
+  /// @Snippet(path: "DataPolicyService_DeleteDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/deleteDataPolicy(request:options:)``
   public func deleteDataPolicy(request: DeleteDataPolicyRequest) async throws {
     try await self.deleteDataPolicy(request: request, options: .init())
   }
@@ -303,6 +437,13 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the data policy specified by its resource name.
+  ///
+  /// @Snippet(path: "DataPolicyService_DeleteDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/deleteDataPolicy(request:options:)``
   public func deleteDataPolicy(
     name: Swift.String,
   ) async throws {
@@ -312,6 +453,13 @@ extension Clients.DataPolicyServiceProtocol {
     try await self.deleteDataPolicy(request: request)
   }
 
+  /// Gets the data policy specified by its resource name.
+  ///
+  /// @Snippet(path: "DataPolicyService_GetDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/getDataPolicy(request:options:)``
   public func getDataPolicy(request: GetDataPolicyRequest) async throws
     -> GoogleBigQueryDataPoliciesV2.DataPolicy
   {
@@ -324,6 +472,13 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the data policy specified by its resource name.
+  ///
+  /// @Snippet(path: "DataPolicyService_GetDataPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/getDataPolicy(request:options:)``
   public func getDataPolicy(
     name: Swift.String,
   ) async throws -> GoogleBigQueryDataPoliciesV2.DataPolicy {
@@ -333,6 +488,13 @@ extension Clients.DataPolicyServiceProtocol {
     return try await self.getDataPolicy(request: request)
   }
 
+  /// List all of the data policies in the specified parent project.
+  ///
+  /// @Snippet(path: "DataPolicyService_ListDataPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/listDataPolicies(request:options:)``
   public func listDataPolicies(request: ListDataPoliciesRequest) async throws
     -> GoogleBigQueryDataPoliciesV2.ListDataPoliciesResponse
   {
@@ -345,6 +507,13 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all of the data policies in the specified parent project.
+  ///
+  /// @Snippet(path: "DataPolicyService_ListDataPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/listDataPolicies(request:options:)``
   public func listDataPoliciesByItems(
     request: ListDataPoliciesRequest
   ) -> some AsyncSequence<DataPolicy, any Swift.Error> & Sendable {
@@ -354,6 +523,10 @@ extension Clients.DataPolicyServiceProtocol {
   /// List all of the data policies in the specified parent project.
   ///
   /// @Snippet(path: "DataPolicyService_ListDataPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/listDataPolicies(request:options:)``
   public func listDataPoliciesByItems(
     request: ListDataPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataPolicy, any Swift.Error> & Sendable {
@@ -368,6 +541,13 @@ extension Clients.DataPolicyServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List all of the data policies in the specified parent project.
+  ///
+  /// @Snippet(path: "DataPolicyService_ListDataPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/listDataPolicies(request:options:)``
   public func listDataPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataPolicy, any Swift.Error> & Sendable {
@@ -377,6 +557,13 @@ extension Clients.DataPolicyServiceProtocol {
     return self.listDataPoliciesByItems(request: request)
   }
 
+  /// Gets the IAM policy for the specified data policy.
+  ///
+  /// @Snippet(path: "DataPolicyService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -389,6 +576,13 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the IAM policy for the specified data policy.
+  ///
+  /// @Snippet(path: "DataPolicyService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -401,6 +595,13 @@ extension Clients.DataPolicyServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the caller's permission on the specified data policy resource.
+  ///
+  /// @Snippet(path: "DataPolicyService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataPolicyServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {

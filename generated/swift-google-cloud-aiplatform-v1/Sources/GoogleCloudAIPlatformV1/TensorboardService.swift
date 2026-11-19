@@ -28,6 +28,10 @@
   /// TensorboardService
   ///
   /// @Snippet(path: "TensorboardServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/TensorboardServiceProtocol``
   public final class TensorboardServiceClient: Clients.TensorboardServiceProtocol, Sendable {
     let inner: any Clients.TensorboardServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@
     /// Creates a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_CreateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTensorboard(request:)``
+    /// - ``createTensorboardPollingUntilDone(parent:tensorboard:)``
+    /// - ``createTensorboardPollingUntilDone(request:)``
+    /// - ``createTensorboardPollingUntilDone(request:options:)``
     public func createTensorboard(
       request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -58,6 +69,13 @@
     /// Creates a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_CreateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTensorboard(request:)``
+    /// - ``createTensorboard(request:options:)``
+    /// - ``createTensorboardPollingUntilDone(parent:tensorboard:)``
+    /// - ``createTensorboardPollingUntilDone(request:)``
     public func createTensorboardPollingUntilDone(
       request: CreateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> Tensorboard {
@@ -86,6 +104,11 @@
     /// Gets a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_GetTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTensorboard(name:)``
+    /// - ``getTensorboard(request:)``
     public func getTensorboard(
       request: GetTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Tensorboard {
@@ -95,6 +118,13 @@
     /// Updates a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_UpdateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTensorboard(request:)``
+    /// - ``updateTensorboardPollingUntilDone(request:)``
+    /// - ``updateTensorboardPollingUntilDone(request:options:)``
+    /// - ``updateTensorboardPollingUntilDone(tensorboard:updateMask:)``
     public func updateTensorboard(
       request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -104,6 +134,13 @@
     /// Updates a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_UpdateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTensorboard(request:)``
+    /// - ``updateTensorboard(request:options:)``
+    /// - ``updateTensorboardPollingUntilDone(request:)``
+    /// - ``updateTensorboardPollingUntilDone(tensorboard:updateMask:)``
     public func updateTensorboardPollingUntilDone(
       request: UpdateTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> Tensorboard {
@@ -132,6 +169,13 @@
     /// Lists Tensorboards in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboards")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTensorboards(request:)``
+    /// - ``listTensorboardsByItems(parent:)``
+    /// - ``listTensorboardsByItems(request:)``
+    /// - ``listTensorboardsByItems(request:options:)``
     public func listTensorboards(
       request: ListTensorboardsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardsResponse {
@@ -141,6 +185,13 @@
     /// Deletes a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboard(request:)``
+    /// - ``deleteTensorboardPollingUntilDone(name:)``
+    /// - ``deleteTensorboardPollingUntilDone(request:)``
+    /// - ``deleteTensorboardPollingUntilDone(request:options:)``
     public func deleteTensorboard(
       request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +201,13 @@
     /// Deletes a Tensorboard.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboard(request:)``
+    /// - ``deleteTensorboard(request:options:)``
+    /// - ``deleteTensorboardPollingUntilDone(name:)``
+    /// - ``deleteTensorboardPollingUntilDone(request:)``
     public func deleteTensorboardPollingUntilDone(
       request: DeleteTensorboardRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -178,6 +236,11 @@
     /// Returns a list of monthly active users for a given TensorBoard instance.
     ///
     /// @Snippet(path: "TensorboardService_ReadTensorboardUsage")
+    ///
+    /// ## See Also
+    ///
+    /// - ``readTensorboardUsage(request:)``
+    /// - ``readTensorboardUsage(tensorboard:)``
     public func readTensorboardUsage(
       request: ReadTensorboardUsageRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardUsageResponse {
@@ -187,6 +250,11 @@
     /// Returns the storage size for a given TensorBoard instance.
     ///
     /// @Snippet(path: "TensorboardService_ReadTensorboardSize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``readTensorboardSize(request:)``
+    /// - ``readTensorboardSize(tensorboard:)``
     public func readTensorboardSize(
       request: ReadTensorboardSizeRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardSizeResponse {
@@ -196,6 +264,11 @@
     /// Creates a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_CreateTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTensorboardExperiment(parent:tensorboardExperiment:tensorboardExperimentId:)``
+    /// - ``createTensorboardExperiment(request:)``
     public func createTensorboardExperiment(
       request: CreateTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -205,6 +278,11 @@
     /// Gets a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_GetTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTensorboardExperiment(name:)``
+    /// - ``getTensorboardExperiment(request:)``
     public func getTensorboardExperiment(
       request: GetTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -214,6 +292,11 @@
     /// Updates a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_UpdateTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTensorboardExperiment(request:)``
+    /// - ``updateTensorboardExperiment(tensorboardExperiment:updateMask:)``
     public func updateTensorboardExperiment(
       request: UpdateTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -223,6 +306,13 @@
     /// Lists TensorboardExperiments in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTensorboardExperiments(request:)``
+    /// - ``listTensorboardExperimentsByItems(parent:)``
+    /// - ``listTensorboardExperimentsByItems(request:)``
+    /// - ``listTensorboardExperimentsByItems(request:options:)``
     public func listTensorboardExperiments(
       request: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse {
@@ -232,6 +322,13 @@
     /// Deletes a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboardExperiment(request:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(name:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(request:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(request:options:)``
     public func deleteTensorboardExperiment(
       request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -241,6 +338,13 @@
     /// Deletes a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboardExperiment(request:)``
+    /// - ``deleteTensorboardExperiment(request:options:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(name:)``
+    /// - ``deleteTensorboardExperimentPollingUntilDone(request:)``
     public func deleteTensorboardExperimentPollingUntilDone(
       request: DeleteTensorboardExperimentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -269,6 +373,11 @@
     /// Creates a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_CreateTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTensorboardRun(parent:tensorboardRun:tensorboardRunId:)``
+    /// - ``createTensorboardRun(request:)``
     public func createTensorboardRun(
       request: CreateTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -278,6 +387,11 @@
     /// Batch create TensorboardRuns.
     ///
     /// @Snippet(path: "TensorboardService_BatchCreateTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCreateTensorboardRuns(parent:requests:)``
+    /// - ``batchCreateTensorboardRuns(request:)``
     public func batchCreateTensorboardRuns(
       request: BatchCreateTensorboardRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardRunsResponse {
@@ -287,6 +401,11 @@
     /// Gets a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_GetTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTensorboardRun(name:)``
+    /// - ``getTensorboardRun(request:)``
     public func getTensorboardRun(
       request: GetTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -296,6 +415,11 @@
     /// Updates a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_UpdateTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTensorboardRun(request:)``
+    /// - ``updateTensorboardRun(tensorboardRun:updateMask:)``
     public func updateTensorboardRun(
       request: UpdateTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -305,6 +429,13 @@
     /// Lists TensorboardRuns in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTensorboardRuns(request:)``
+    /// - ``listTensorboardRunsByItems(parent:)``
+    /// - ``listTensorboardRunsByItems(request:)``
+    /// - ``listTensorboardRunsByItems(request:options:)``
     public func listTensorboardRuns(
       request: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse {
@@ -314,6 +445,13 @@
     /// Deletes a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboardRun(request:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(name:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(request:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(request:options:)``
     public func deleteTensorboardRun(
       request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -323,6 +461,13 @@
     /// Deletes a TensorboardRun.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboardRun(request:)``
+    /// - ``deleteTensorboardRun(request:options:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(name:)``
+    /// - ``deleteTensorboardRunPollingUntilDone(request:)``
     public func deleteTensorboardRunPollingUntilDone(
       request: DeleteTensorboardRunRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -351,6 +496,11 @@
     /// Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.
     ///
     /// @Snippet(path: "TensorboardService_BatchCreateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchCreateTensorboardTimeSeries(parent:requests:)``
+    /// - ``batchCreateTensorboardTimeSeries(request:)``
     public func batchCreateTensorboardTimeSeries(
       request: BatchCreateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardTimeSeriesResponse {
@@ -360,6 +510,11 @@
     /// Creates a TensorboardTimeSeries.
     ///
     /// @Snippet(path: "TensorboardService_CreateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTensorboardTimeSeries(parent:tensorboardTimeSeries:)``
+    /// - ``createTensorboardTimeSeries(request:)``
     public func createTensorboardTimeSeries(
       request: CreateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -369,6 +524,11 @@
     /// Gets a TensorboardTimeSeries.
     ///
     /// @Snippet(path: "TensorboardService_GetTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTensorboardTimeSeries(name:)``
+    /// - ``getTensorboardTimeSeries(request:)``
     public func getTensorboardTimeSeries(
       request: GetTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -378,6 +538,11 @@
     /// Updates a TensorboardTimeSeries.
     ///
     /// @Snippet(path: "TensorboardService_UpdateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateTensorboardTimeSeries(request:)``
+    /// - ``updateTensorboardTimeSeries(tensorboardTimeSeries:updateMask:)``
     public func updateTensorboardTimeSeries(
       request: UpdateTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -387,6 +552,13 @@
     /// Lists TensorboardTimeSeries in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTensorboardTimeSeries(request:)``
+    /// - ``listTensorboardTimeSeriesByItems(parent:)``
+    /// - ``listTensorboardTimeSeriesByItems(request:)``
+    /// - ``listTensorboardTimeSeriesByItems(request:options:)``
     public func listTensorboardTimeSeries(
       request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse {
@@ -396,6 +568,13 @@
     /// Deletes a TensorboardTimeSeries.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboardTimeSeries(request:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(name:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:options:)``
     public func deleteTensorboardTimeSeries(
       request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -405,6 +584,13 @@
     /// Deletes a TensorboardTimeSeries.
     ///
     /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTensorboardTimeSeries(request:)``
+    /// - ``deleteTensorboardTimeSeries(request:options:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(name:)``
+    /// - ``deleteTensorboardTimeSeriesPollingUntilDone(request:)``
     public func deleteTensorboardTimeSeriesPollingUntilDone(
       request: DeleteTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -437,6 +623,11 @@
     /// this time series and returned.
     ///
     /// @Snippet(path: "TensorboardService_BatchReadTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``batchReadTensorboardTimeSeriesData(request:)``
+    /// - ``batchReadTensorboardTimeSeriesData(tensorboard:)``
     public func batchReadTensorboardTimeSeriesData(
       request: BatchReadTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.BatchReadTensorboardTimeSeriesDataResponse {
@@ -450,6 +641,11 @@
     /// greater than 10k.
     ///
     /// @Snippet(path: "TensorboardService_ReadTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``readTensorboardTimeSeriesData(request:)``
+    /// - ``readTensorboardTimeSeriesData(tensorboardTimeSeries:)``
     public func readTensorboardTimeSeriesData(
       request: ReadTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse {
@@ -460,6 +656,11 @@
     /// TensorboardRun's. If any data fail to be ingested, an error is returned.
     ///
     /// @Snippet(path: "TensorboardService_WriteTensorboardExperimentData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``writeTensorboardExperimentData(request:)``
+    /// - ``writeTensorboardExperimentData(tensorboardExperiment:writeRunDataRequests:)``
     public func writeTensorboardExperimentData(
       request: WriteTensorboardExperimentDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse {
@@ -470,6 +671,11 @@
     /// a TensorboardRun. If any data fail to be ingested, an error is returned.
     ///
     /// @Snippet(path: "TensorboardService_WriteTensorboardRunData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``writeTensorboardRunData(request:)``
+    /// - ``writeTensorboardRunData(tensorboardRun:timeSeriesData:)``
     public func writeTensorboardRunData(
       request: WriteTensorboardRunDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.WriteTensorboardRunDataResponse {
@@ -480,6 +686,13 @@
     /// responses.
     ///
     /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportTensorboardTimeSeriesData(request:)``
+    /// - ``exportTensorboardTimeSeriesDataByItems(request:)``
+    /// - ``exportTensorboardTimeSeriesDataByItems(request:options:)``
+    /// - ``exportTensorboardTimeSeriesDataByItems(tensorboardTimeSeries:)``
     public func exportTensorboardTimeSeriesData(
       request: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse {
@@ -489,6 +702,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "TensorboardService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -498,6 +717,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "TensorboardService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -511,6 +734,10 @@
     /// errors.
     ///
     /// @Snippet(path: "TensorboardService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -521,6 +748,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "TensorboardService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -536,6 +767,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "TensorboardService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -547,6 +782,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TensorboardService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -569,6 +811,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TensorboardService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -580,6 +827,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TensorboardService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -591,6 +843,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TensorboardService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -829,6 +1085,13 @@
 
   // Default implementations
   extension Clients.TensorboardServiceProtocol {
+    /// Creates a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboard(request:options:)``
     public func createTensorboard(request: CreateTensorboardRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -841,6 +1104,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardPollingUntilDone(request:options:)``
     public func createTensorboardPollingUntilDone(request: CreateTensorboardRequest) async throws
       -> Tensorboard
     {
@@ -853,6 +1123,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardPollingUntilDone(request:options:)``
     public func createTensorboardPollingUntilDone(
       parent: Swift.String,
       tensorboard: Tensorboard?,
@@ -864,6 +1141,13 @@
       return try await self.createTensorboardPollingUntilDone(request: request)
     }
 
+    /// Gets a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboard(request:options:)``
     public func getTensorboard(request: GetTensorboardRequest) async throws
       -> GoogleCloudAIPlatformV1.Tensorboard
     {
@@ -876,6 +1160,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboard(request:options:)``
     public func getTensorboard(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Tensorboard {
@@ -885,6 +1176,13 @@
       return try await self.getTensorboard(request: request)
     }
 
+    /// Updates a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboard(request:options:)``
     public func updateTensorboard(request: UpdateTensorboardRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -897,6 +1195,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardPollingUntilDone(request:options:)``
     public func updateTensorboardPollingUntilDone(request: UpdateTensorboardRequest) async throws
       -> Tensorboard
     {
@@ -909,6 +1214,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardPollingUntilDone(request:options:)``
     public func updateTensorboardPollingUntilDone(
       tensorboard: Tensorboard?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -920,6 +1232,13 @@
       return try await self.updateTensorboardPollingUntilDone(request: request)
     }
 
+    /// Lists Tensorboards in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboards")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboards(request:options:)``
     public func listTensorboards(request: ListTensorboardsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListTensorboardsResponse
     {
@@ -932,6 +1251,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Tensorboards in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboards")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboards(request:options:)``
     public func listTensorboardsByItems(
       request: ListTensorboardsRequest
     ) -> some AsyncSequence<Tensorboard, any Swift.Error> & Sendable {
@@ -941,6 +1267,10 @@
     /// Lists Tensorboards in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboards")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboards(request:options:)``
     public func listTensorboardsByItems(
       request: ListTensorboardsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Tensorboard, any Swift.Error> & Sendable {
@@ -955,6 +1285,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Tensorboards in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboards")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboards(request:options:)``
     public func listTensorboardsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Tensorboard, any Swift.Error> & Sendable {
@@ -964,6 +1301,13 @@
       return self.listTensorboardsByItems(request: request)
     }
 
+    /// Deletes a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboard(request:options:)``
     public func deleteTensorboard(request: DeleteTensorboardRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -976,6 +1320,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardPollingUntilDone(request:options:)``
     public func deleteTensorboardPollingUntilDone(request: DeleteTensorboardRequest) async throws {
       try await self.deleteTensorboardPollingUntilDone(request: request, options: .init())
     }
@@ -986,6 +1337,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Tensorboard.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboard")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardPollingUntilDone(request:options:)``
     public func deleteTensorboardPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -995,6 +1353,13 @@
       try await self.deleteTensorboardPollingUntilDone(request: request)
     }
 
+    /// Returns a list of monthly active users for a given TensorBoard instance.
+    ///
+    /// @Snippet(path: "TensorboardService_ReadTensorboardUsage")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/readTensorboardUsage(request:options:)``
     public func readTensorboardUsage(request: ReadTensorboardUsageRequest) async throws
       -> GoogleCloudAIPlatformV1.ReadTensorboardUsageResponse
     {
@@ -1007,6 +1372,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns a list of monthly active users for a given TensorBoard instance.
+    ///
+    /// @Snippet(path: "TensorboardService_ReadTensorboardUsage")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/readTensorboardUsage(request:options:)``
     public func readTensorboardUsage(
       tensorboard: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardUsageResponse {
@@ -1016,6 +1388,13 @@
       return try await self.readTensorboardUsage(request: request)
     }
 
+    /// Returns the storage size for a given TensorBoard instance.
+    ///
+    /// @Snippet(path: "TensorboardService_ReadTensorboardSize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/readTensorboardSize(request:options:)``
     public func readTensorboardSize(request: ReadTensorboardSizeRequest) async throws
       -> GoogleCloudAIPlatformV1.ReadTensorboardSizeResponse
     {
@@ -1028,6 +1407,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the storage size for a given TensorBoard instance.
+    ///
+    /// @Snippet(path: "TensorboardService_ReadTensorboardSize")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/readTensorboardSize(request:options:)``
     public func readTensorboardSize(
       tensorboard: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardSizeResponse {
@@ -1037,6 +1423,13 @@
       return try await self.readTensorboardSize(request: request)
     }
 
+    /// Creates a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardExperiment(request:options:)``
     public func createTensorboardExperiment(request: CreateTensorboardExperimentRequest)
       async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment
     {
@@ -1049,6 +1442,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardExperiment(request:options:)``
     public func createTensorboardExperiment(
       parent: Swift.String,
       tensorboardExperiment: TensorboardExperiment?,
@@ -1062,6 +1462,13 @@
       return try await self.createTensorboardExperiment(request: request)
     }
 
+    /// Gets a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboardExperiment(request:options:)``
     public func getTensorboardExperiment(request: GetTensorboardExperimentRequest) async throws
       -> GoogleCloudAIPlatformV1.TensorboardExperiment
     {
@@ -1074,6 +1481,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboardExperiment(request:options:)``
     public func getTensorboardExperiment(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment {
@@ -1083,6 +1497,13 @@
       return try await self.getTensorboardExperiment(request: request)
     }
 
+    /// Updates a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardExperiment(request:options:)``
     public func updateTensorboardExperiment(request: UpdateTensorboardExperimentRequest)
       async throws -> GoogleCloudAIPlatformV1.TensorboardExperiment
     {
@@ -1095,6 +1516,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardExperiment(request:options:)``
     public func updateTensorboardExperiment(
       tensorboardExperiment: TensorboardExperiment?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1106,6 +1534,13 @@
       return try await self.updateTensorboardExperiment(request: request)
     }
 
+    /// Lists TensorboardExperiments in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardExperiments(request:options:)``
     public func listTensorboardExperiments(request: ListTensorboardExperimentsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListTensorboardExperimentsResponse
     {
@@ -1118,6 +1553,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists TensorboardExperiments in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardExperiments(request:options:)``
     public func listTensorboardExperimentsByItems(
       request: ListTensorboardExperimentsRequest
     ) -> some AsyncSequence<TensorboardExperiment, any Swift.Error> & Sendable {
@@ -1127,6 +1569,10 @@
     /// Lists TensorboardExperiments in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardExperiments(request:options:)``
     public func listTensorboardExperimentsByItems(
       request: ListTensorboardExperimentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TensorboardExperiment, any Swift.Error> & Sendable {
@@ -1141,6 +1587,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists TensorboardExperiments in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardExperiments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardExperiments(request:options:)``
     public func listTensorboardExperimentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<TensorboardExperiment, any Swift.Error> & Sendable {
@@ -1150,6 +1603,13 @@
       return self.listTensorboardExperimentsByItems(request: request)
     }
 
+    /// Deletes a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardExperiment(request:options:)``
     public func deleteTensorboardExperiment(request: DeleteTensorboardExperimentRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -1162,6 +1622,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardExperimentPollingUntilDone(request:options:)``
     public func deleteTensorboardExperimentPollingUntilDone(
       request: DeleteTensorboardExperimentRequest
     ) async throws {
@@ -1174,6 +1641,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardExperiment")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardExperimentPollingUntilDone(request:options:)``
     public func deleteTensorboardExperimentPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1183,6 +1657,13 @@
       try await self.deleteTensorboardExperimentPollingUntilDone(request: request)
     }
 
+    /// Creates a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardRun(request:options:)``
     public func createTensorboardRun(request: CreateTensorboardRunRequest) async throws
       -> GoogleCloudAIPlatformV1.TensorboardRun
     {
@@ -1195,6 +1676,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardRun(request:options:)``
     public func createTensorboardRun(
       parent: Swift.String,
       tensorboardRun: TensorboardRun?,
@@ -1208,6 +1696,13 @@
       return try await self.createTensorboardRun(request: request)
     }
 
+    /// Batch create TensorboardRuns.
+    ///
+    /// @Snippet(path: "TensorboardService_BatchCreateTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/batchCreateTensorboardRuns(request:options:)``
     public func batchCreateTensorboardRuns(request: BatchCreateTensorboardRunsRequest) async throws
       -> GoogleCloudAIPlatformV1.BatchCreateTensorboardRunsResponse
     {
@@ -1220,6 +1715,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch create TensorboardRuns.
+    ///
+    /// @Snippet(path: "TensorboardService_BatchCreateTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/batchCreateTensorboardRuns(request:options:)``
     public func batchCreateTensorboardRuns(
       parent: Swift.String,
       requests: [CreateTensorboardRunRequest],
@@ -1231,6 +1733,13 @@
       return try await self.batchCreateTensorboardRuns(request: request)
     }
 
+    /// Gets a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboardRun(request:options:)``
     public func getTensorboardRun(request: GetTensorboardRunRequest) async throws
       -> GoogleCloudAIPlatformV1.TensorboardRun
     {
@@ -1243,6 +1752,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboardRun(request:options:)``
     public func getTensorboardRun(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardRun {
@@ -1252,6 +1768,13 @@
       return try await self.getTensorboardRun(request: request)
     }
 
+    /// Updates a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardRun(request:options:)``
     public func updateTensorboardRun(request: UpdateTensorboardRunRequest) async throws
       -> GoogleCloudAIPlatformV1.TensorboardRun
     {
@@ -1264,6 +1787,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardRun(request:options:)``
     public func updateTensorboardRun(
       tensorboardRun: TensorboardRun?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1275,6 +1805,13 @@
       return try await self.updateTensorboardRun(request: request)
     }
 
+    /// Lists TensorboardRuns in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardRuns(request:options:)``
     public func listTensorboardRuns(request: ListTensorboardRunsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListTensorboardRunsResponse
     {
@@ -1287,6 +1824,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists TensorboardRuns in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardRuns(request:options:)``
     public func listTensorboardRunsByItems(
       request: ListTensorboardRunsRequest
     ) -> some AsyncSequence<TensorboardRun, any Swift.Error> & Sendable {
@@ -1296,6 +1840,10 @@
     /// Lists TensorboardRuns in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardRuns(request:options:)``
     public func listTensorboardRunsByItems(
       request: ListTensorboardRunsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TensorboardRun, any Swift.Error> & Sendable {
@@ -1310,6 +1858,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists TensorboardRuns in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardRuns")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardRuns(request:options:)``
     public func listTensorboardRunsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<TensorboardRun, any Swift.Error> & Sendable {
@@ -1319,6 +1874,13 @@
       return self.listTensorboardRunsByItems(request: request)
     }
 
+    /// Deletes a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardRun(request:options:)``
     public func deleteTensorboardRun(request: DeleteTensorboardRunRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1331,6 +1893,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardRunPollingUntilDone(request:options:)``
     public func deleteTensorboardRunPollingUntilDone(request: DeleteTensorboardRunRequest)
       async throws
     {
@@ -1343,6 +1912,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TensorboardRun.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardRun")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardRunPollingUntilDone(request:options:)``
     public func deleteTensorboardRunPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1352,6 +1928,13 @@
       try await self.deleteTensorboardRunPollingUntilDone(request: request)
     }
 
+    /// Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_BatchCreateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/batchCreateTensorboardTimeSeries(request:options:)``
     public func batchCreateTensorboardTimeSeries(request: BatchCreateTensorboardTimeSeriesRequest)
       async throws -> GoogleCloudAIPlatformV1.BatchCreateTensorboardTimeSeriesResponse
     {
@@ -1364,6 +1947,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Batch create TensorboardTimeSeries that belong to a TensorboardExperiment.
+    ///
+    /// @Snippet(path: "TensorboardService_BatchCreateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/batchCreateTensorboardTimeSeries(request:options:)``
     public func batchCreateTensorboardTimeSeries(
       parent: Swift.String,
       requests: [CreateTensorboardTimeSeriesRequest],
@@ -1375,6 +1965,13 @@
       return try await self.batchCreateTensorboardTimeSeries(request: request)
     }
 
+    /// Creates a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardTimeSeries(request:options:)``
     public func createTensorboardTimeSeries(request: CreateTensorboardTimeSeriesRequest)
       async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
     {
@@ -1387,6 +1984,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_CreateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/createTensorboardTimeSeries(request:options:)``
     public func createTensorboardTimeSeries(
       parent: Swift.String,
       tensorboardTimeSeries: TensorboardTimeSeries?,
@@ -1398,6 +2002,13 @@
       return try await self.createTensorboardTimeSeries(request: request)
     }
 
+    /// Gets a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboardTimeSeries(request:options:)``
     public func getTensorboardTimeSeries(request: GetTensorboardTimeSeriesRequest) async throws
       -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
     {
@@ -1410,6 +2021,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_GetTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getTensorboardTimeSeries(request:options:)``
     public func getTensorboardTimeSeries(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries {
@@ -1419,6 +2037,13 @@
       return try await self.getTensorboardTimeSeries(request: request)
     }
 
+    /// Updates a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardTimeSeries(request:options:)``
     public func updateTensorboardTimeSeries(request: UpdateTensorboardTimeSeriesRequest)
       async throws -> GoogleCloudAIPlatformV1.TensorboardTimeSeries
     {
@@ -1431,6 +2056,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_UpdateTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/updateTensorboardTimeSeries(request:options:)``
     public func updateTensorboardTimeSeries(
       tensorboardTimeSeries: TensorboardTimeSeries?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1442,6 +2074,13 @@
       return try await self.updateTensorboardTimeSeries(request: request)
     }
 
+    /// Lists TensorboardTimeSeries in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardTimeSeries(request:options:)``
     public func listTensorboardTimeSeries(request: ListTensorboardTimeSeriesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListTensorboardTimeSeriesResponse
     {
@@ -1454,6 +2093,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists TensorboardTimeSeries in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardTimeSeries(request:options:)``
     public func listTensorboardTimeSeriesByItems(
       request: ListTensorboardTimeSeriesRequest
     ) -> some AsyncSequence<TensorboardTimeSeries, any Swift.Error> & Sendable {
@@ -1463,6 +2109,10 @@
     /// Lists TensorboardTimeSeries in a Location.
     ///
     /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardTimeSeries(request:options:)``
     public func listTensorboardTimeSeriesByItems(
       request: ListTensorboardTimeSeriesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TensorboardTimeSeries, any Swift.Error> & Sendable {
@@ -1477,6 +2127,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists TensorboardTimeSeries in a Location.
+    ///
+    /// @Snippet(path: "TensorboardService_ListTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listTensorboardTimeSeries(request:options:)``
     public func listTensorboardTimeSeriesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<TensorboardTimeSeries, any Swift.Error> & Sendable {
@@ -1486,6 +2143,13 @@
       return self.listTensorboardTimeSeriesByItems(request: request)
     }
 
+    /// Deletes a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardTimeSeries(request:options:)``
     public func deleteTensorboardTimeSeries(request: DeleteTensorboardTimeSeriesRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -1498,6 +2162,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardTimeSeriesPollingUntilDone(request:options:)``
     public func deleteTensorboardTimeSeriesPollingUntilDone(
       request: DeleteTensorboardTimeSeriesRequest
     ) async throws {
@@ -1510,6 +2181,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a TensorboardTimeSeries.
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteTensorboardTimeSeries")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteTensorboardTimeSeriesPollingUntilDone(request:options:)``
     public func deleteTensorboardTimeSeriesPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1519,6 +2197,17 @@
       try await self.deleteTensorboardTimeSeriesPollingUntilDone(request: request)
     }
 
+    /// Reads multiple TensorboardTimeSeries' data. The data point number limit is
+    /// 1000 for scalars, 100 for tensors and blob references. If the number of
+    /// data points stored is less than the limit, all data is returned.
+    /// Otherwise, the number limit of data points is randomly selected from
+    /// this time series and returned.
+    ///
+    /// @Snippet(path: "TensorboardService_BatchReadTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/batchReadTensorboardTimeSeriesData(request:options:)``
     public func batchReadTensorboardTimeSeriesData(
       request: BatchReadTensorboardTimeSeriesDataRequest
     ) async throws -> GoogleCloudAIPlatformV1.BatchReadTensorboardTimeSeriesDataResponse {
@@ -1531,6 +2220,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reads multiple TensorboardTimeSeries' data. The data point number limit is
+    /// 1000 for scalars, 100 for tensors and blob references. If the number of
+    /// data points stored is less than the limit, all data is returned.
+    /// Otherwise, the number limit of data points is randomly selected from
+    /// this time series and returned.
+    ///
+    /// @Snippet(path: "TensorboardService_BatchReadTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/batchReadTensorboardTimeSeriesData(request:options:)``
     public func batchReadTensorboardTimeSeriesData(
       tensorboard: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.BatchReadTensorboardTimeSeriesDataResponse {
@@ -1540,6 +2240,17 @@
       return try await self.batchReadTensorboardTimeSeriesData(request: request)
     }
 
+    /// Reads a TensorboardTimeSeries' data. By default, if the number of data
+    /// points stored is less than 1000, all data is returned. Otherwise, 1000
+    /// data points is randomly selected from this time series and returned.
+    /// This value can be changed by changing max_data_points, which can't be
+    /// greater than 10k.
+    ///
+    /// @Snippet(path: "TensorboardService_ReadTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/readTensorboardTimeSeriesData(request:options:)``
     public func readTensorboardTimeSeriesData(request: ReadTensorboardTimeSeriesDataRequest)
       async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse
     {
@@ -1552,6 +2263,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reads a TensorboardTimeSeries' data. By default, if the number of data
+    /// points stored is less than 1000, all data is returned. Otherwise, 1000
+    /// data points is randomly selected from this time series and returned.
+    /// This value can be changed by changing max_data_points, which can't be
+    /// greater than 10k.
+    ///
+    /// @Snippet(path: "TensorboardService_ReadTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/readTensorboardTimeSeriesData(request:options:)``
     public func readTensorboardTimeSeriesData(
       tensorboardTimeSeries: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ReadTensorboardTimeSeriesDataResponse {
@@ -1561,6 +2283,14 @@
       return try await self.readTensorboardTimeSeriesData(request: request)
     }
 
+    /// Write time series data points of multiple TensorboardTimeSeries in multiple
+    /// TensorboardRun's. If any data fail to be ingested, an error is returned.
+    ///
+    /// @Snippet(path: "TensorboardService_WriteTensorboardExperimentData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/writeTensorboardExperimentData(request:options:)``
     public func writeTensorboardExperimentData(request: WriteTensorboardExperimentDataRequest)
       async throws -> GoogleCloudAIPlatformV1.WriteTensorboardExperimentDataResponse
     {
@@ -1573,6 +2303,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Write time series data points of multiple TensorboardTimeSeries in multiple
+    /// TensorboardRun's. If any data fail to be ingested, an error is returned.
+    ///
+    /// @Snippet(path: "TensorboardService_WriteTensorboardExperimentData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/writeTensorboardExperimentData(request:options:)``
     public func writeTensorboardExperimentData(
       tensorboardExperiment: Swift.String,
       writeRunDataRequests: [WriteTensorboardRunDataRequest],
@@ -1584,6 +2322,14 @@
       return try await self.writeTensorboardExperimentData(request: request)
     }
 
+    /// Write time series data points into multiple TensorboardTimeSeries under
+    /// a TensorboardRun. If any data fail to be ingested, an error is returned.
+    ///
+    /// @Snippet(path: "TensorboardService_WriteTensorboardRunData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/writeTensorboardRunData(request:options:)``
     public func writeTensorboardRunData(request: WriteTensorboardRunDataRequest) async throws
       -> GoogleCloudAIPlatformV1.WriteTensorboardRunDataResponse
     {
@@ -1596,6 +2342,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Write time series data points into multiple TensorboardTimeSeries under
+    /// a TensorboardRun. If any data fail to be ingested, an error is returned.
+    ///
+    /// @Snippet(path: "TensorboardService_WriteTensorboardRunData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/writeTensorboardRunData(request:options:)``
     public func writeTensorboardRunData(
       tensorboardRun: Swift.String,
       timeSeriesData: [TimeSeriesData],
@@ -1607,6 +2361,14 @@
       return try await self.writeTensorboardRunData(request: request)
     }
 
+    /// Exports a TensorboardTimeSeries' data. Data is returned in paginated
+    /// responses.
+    ///
+    /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/exportTensorboardTimeSeriesData(request:options:)``
     public func exportTensorboardTimeSeriesData(request: ExportTensorboardTimeSeriesDataRequest)
       async throws -> GoogleCloudAIPlatformV1.ExportTensorboardTimeSeriesDataResponse
     {
@@ -1619,6 +2381,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports a TensorboardTimeSeries' data. Data is returned in paginated
+    /// responses.
+    ///
+    /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/exportTensorboardTimeSeriesData(request:options:)``
     public func exportTensorboardTimeSeriesDataByItems(
       request: ExportTensorboardTimeSeriesDataRequest
     ) -> some AsyncSequence<TimeSeriesDataPoint, any Swift.Error> & Sendable {
@@ -1629,6 +2399,10 @@
     /// responses.
     ///
     /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/exportTensorboardTimeSeriesData(request:options:)``
     public func exportTensorboardTimeSeriesDataByItems(
       request: ExportTensorboardTimeSeriesDataRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TimeSeriesDataPoint, any Swift.Error> & Sendable {
@@ -1643,6 +2417,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Exports a TensorboardTimeSeries' data. Data is returned in paginated
+    /// responses.
+    ///
+    /// @Snippet(path: "TensorboardService_ExportTensorboardTimeSeriesData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/exportTensorboardTimeSeriesData(request:options:)``
     public func exportTensorboardTimeSeriesDataByItems(
       tensorboardTimeSeries: Swift.String,
     ) -> some AsyncSequence<TimeSeriesDataPoint, any Swift.Error> & Sendable {
@@ -1652,6 +2434,13 @@
       return self.exportTensorboardTimeSeriesDataByItems(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "TensorboardService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -1664,6 +2453,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "TensorboardService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1673,6 +2469,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "TensorboardService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1686,6 +2486,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "TensorboardService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -1698,6 +2505,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "TensorboardService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1710,6 +2528,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "TensorboardService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1722,6 +2548,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "TensorboardService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -1734,6 +2573,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1746,6 +2594,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1757,6 +2614,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "TensorboardService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1770,6 +2631,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1781,6 +2651,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1793,6 +2666,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1802,6 +2678,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -1812,6 +2697,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -1821,6 +2715,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1831,6 +2734,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -1840,6 +2752,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "TensorboardService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TensorboardServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

@@ -28,6 +28,10 @@ import Foundation
 /// See [Service Usage API](https://cloud.google.com/service-usage/docs/overview)
 ///
 /// @Snippet(path: "ServiceUsageQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ServiceUsageProtocol``
 public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   let inner: any Clients.ServiceUsageStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// Enable a service so that it can be used with a project.
   ///
   /// @Snippet(path: "ServiceUsage_EnableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableService(request:)``
+  /// - ``enableServicePollingUntilDone(request:)``
+  /// - ``enableServicePollingUntilDone(request:options:)``
   public func enableService(
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -57,6 +67,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// Enable a service so that it can be used with a project.
   ///
   /// @Snippet(path: "ServiceUsage_EnableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``enableService(request:)``
+  /// - ``enableService(request:options:)``
+  /// - ``enableServicePollingUntilDone(request:)``
   public func enableServicePollingUntilDone(
     request: EnableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> EnableServiceResponse {
@@ -91,6 +107,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// the target service is not currently enabled.
   ///
   /// @Snippet(path: "ServiceUsage_DisableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableService(request:)``
+  /// - ``disableServicePollingUntilDone(request:)``
+  /// - ``disableServicePollingUntilDone(request:options:)``
   public func disableService(
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -106,6 +128,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// the target service is not currently enabled.
   ///
   /// @Snippet(path: "ServiceUsage_DisableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``disableService(request:)``
+  /// - ``disableService(request:options:)``
+  /// - ``disableServicePollingUntilDone(request:)``
   public func disableServicePollingUntilDone(
     request: DisableServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> DisableServiceResponse {
@@ -134,6 +162,10 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// Returns the service configuration and enabled state for a given service.
   ///
   /// @Snippet(path: "ServiceUsage_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getService(request:)``
   public func getService(
     request: GetServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceUsageV1.Service {
@@ -155,6 +187,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// higher throughput and richer filtering capability.
   ///
   /// @Snippet(path: "ServiceUsage_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServices(request:)``
+  /// - ``listServicesByItems(request:)``
+  /// - ``listServicesByItems(request:options:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceUsageV1.ListServicesResponse {
@@ -166,6 +204,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// To enable a single service, use the `EnableService` method instead.
   ///
   /// @Snippet(path: "ServiceUsage_BatchEnableServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchEnableServices(request:)``
+  /// - ``batchEnableServicesPollingUntilDone(request:)``
+  /// - ``batchEnableServicesPollingUntilDone(request:options:)``
   public func batchEnableServices(
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -177,6 +221,12 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// To enable a single service, use the `EnableService` method instead.
   ///
   /// @Snippet(path: "ServiceUsage_BatchEnableServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchEnableServices(request:)``
+  /// - ``batchEnableServices(request:options:)``
+  /// - ``batchEnableServicesPollingUntilDone(request:)``
   public func batchEnableServicesPollingUntilDone(
     request: BatchEnableServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchEnableServicesResponse {
@@ -207,6 +257,10 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// services.
   ///
   /// @Snippet(path: "ServiceUsage_BatchGetServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchGetServices(request:)``
   public func batchGetServices(
     request: BatchGetServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceUsageV1.BatchGetServicesResponse {
@@ -218,6 +272,13 @@ public final class ServiceUsageClient: Clients.ServiceUsageProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ServiceUsage_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -297,6 +358,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ServiceUsageProtocol {
+  /// Enable a service so that it can be used with a project.
+  ///
+  /// @Snippet(path: "ServiceUsage_EnableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/enableService(request:options:)``
   public func enableService(request: EnableServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -309,6 +377,13 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enable a service so that it can be used with a project.
+  ///
+  /// @Snippet(path: "ServiceUsage_EnableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/enableServicePollingUntilDone(request:options:)``
   public func enableServicePollingUntilDone(request: EnableServiceRequest) async throws
     -> EnableServiceResponse
   {
@@ -321,6 +396,19 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disable a service so that it can no longer be used with a project.
+  /// This prevents unintended usage that may cause unexpected billing
+  /// charges or security leaks.
+  ///
+  /// It is not valid to call the disable method on a service that is not
+  /// currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
+  /// the target service is not currently enabled.
+  ///
+  /// @Snippet(path: "ServiceUsage_DisableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/disableService(request:options:)``
   public func disableService(request: DisableServiceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -333,6 +421,19 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Disable a service so that it can no longer be used with a project.
+  /// This prevents unintended usage that may cause unexpected billing
+  /// charges or security leaks.
+  ///
+  /// It is not valid to call the disable method on a service that is not
+  /// currently enabled. Callers will receive a `FAILED_PRECONDITION` status if
+  /// the target service is not currently enabled.
+  ///
+  /// @Snippet(path: "ServiceUsage_DisableService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/disableServicePollingUntilDone(request:options:)``
   public func disableServicePollingUntilDone(request: DisableServiceRequest) async throws
     -> DisableServiceResponse
   {
@@ -345,6 +446,13 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the service configuration and enabled state for a given service.
+  ///
+  /// @Snippet(path: "ServiceUsage_GetService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/getService(request:options:)``
   public func getService(request: GetServiceRequest) async throws -> GoogleApiServiceUsageV1.Service
   {
     try await self.getService(request: request, options: .init())
@@ -356,6 +464,25 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all services available to the specified project, and the current
+  /// state of those services with respect to the project. The list includes
+  /// all public services, all services for which the calling user has the
+  /// `servicemanagement.services.bind` permission, and all services that have
+  /// already been enabled on the project. The list can be filtered to
+  /// only include services in a specific state, for example to only include
+  /// services enabled on the project.
+  ///
+  /// WARNING: If you need to query enabled services frequently or across
+  /// an organization, you should use
+  /// [Cloud Asset Inventory
+  /// API](https://cloud.google.com/asset-inventory/docs/apis), which provides
+  /// higher throughput and richer filtering capability.
+  ///
+  /// @Snippet(path: "ServiceUsage_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listServices(request:options:)``
   public func listServices(request: ListServicesRequest) async throws
     -> GoogleApiServiceUsageV1.ListServicesResponse
   {
@@ -368,6 +495,25 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List all services available to the specified project, and the current
+  /// state of those services with respect to the project. The list includes
+  /// all public services, all services for which the calling user has the
+  /// `servicemanagement.services.bind` permission, and all services that have
+  /// already been enabled on the project. The list can be filtered to
+  /// only include services in a specific state, for example to only include
+  /// services enabled on the project.
+  ///
+  /// WARNING: If you need to query enabled services frequently or across
+  /// an organization, you should use
+  /// [Cloud Asset Inventory
+  /// API](https://cloud.google.com/asset-inventory/docs/apis), which provides
+  /// higher throughput and richer filtering capability.
+  ///
+  /// @Snippet(path: "ServiceUsage_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -389,6 +535,10 @@ extension Clients.ServiceUsageProtocol {
   /// higher throughput and richer filtering capability.
   ///
   /// @Snippet(path: "ServiceUsage_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -403,6 +553,15 @@ extension Clients.ServiceUsageProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Enable multiple services on a project. The operation is atomic: if enabling
+  /// any service fails, then the entire batch fails, and no state changes occur.
+  /// To enable a single service, use the `EnableService` method instead.
+  ///
+  /// @Snippet(path: "ServiceUsage_BatchEnableServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/batchEnableServices(request:options:)``
   public func batchEnableServices(request: BatchEnableServicesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -415,6 +574,15 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Enable multiple services on a project. The operation is atomic: if enabling
+  /// any service fails, then the entire batch fails, and no state changes occur.
+  /// To enable a single service, use the `EnableService` method instead.
+  ///
+  /// @Snippet(path: "ServiceUsage_BatchEnableServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/batchEnableServicesPollingUntilDone(request:options:)``
   public func batchEnableServicesPollingUntilDone(request: BatchEnableServicesRequest) async throws
     -> BatchEnableServicesResponse
   {
@@ -427,6 +595,14 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the service configurations and enabled states for a given list of
+  /// services.
+  ///
+  /// @Snippet(path: "ServiceUsage_BatchGetServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/batchGetServices(request:options:)``
   public func batchGetServices(request: BatchGetServicesRequest) async throws
     -> GoogleApiServiceUsageV1.BatchGetServicesResponse
   {
@@ -439,6 +615,15 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServiceUsage_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -451,6 +636,15 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServiceUsage_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -462,6 +656,10 @@ extension Clients.ServiceUsageProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ServiceUsage_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -475,6 +673,15 @@ extension Clients.ServiceUsageProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ServiceUsage_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ServiceUsageClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -486,6 +693,9 @@ extension Clients.ServiceUsageProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -498,6 +708,9 @@ extension Clients.ServiceUsageProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

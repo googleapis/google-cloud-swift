@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.cx.v3.Playbook]: <doc:Playbook>
   ///
   /// @Snippet(path: "PlaybooksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/PlaybooksProtocol``
   public final class PlaybooksClient: Clients.PlaybooksProtocol, Sendable {
     let inner: any Clients.PlaybooksStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,11 @@
     /// Creates a playbook in a specified agent.
     ///
     /// @Snippet(path: "Playbooks_CreatePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createPlaybook(parent:playbook:)``
+    /// - ``createPlaybook(request:)``
     public func createPlaybook(
       request: CreatePlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -58,6 +67,11 @@
     /// Deletes a specified playbook.
     ///
     /// @Snippet(path: "Playbooks_DeletePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePlaybook(name:)``
+    /// - ``deletePlaybook(request:)``
     public func deletePlaybook(
       request: DeletePlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -67,6 +81,13 @@
     /// Returns a list of playbooks in the specified agent.
     ///
     /// @Snippet(path: "Playbooks_ListPlaybooks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listPlaybooks(request:)``
+    /// - ``listPlaybooksByItems(parent:)``
+    /// - ``listPlaybooksByItems(request:)``
+    /// - ``listPlaybooksByItems(request:options:)``
     public func listPlaybooks(
       request: ListPlaybooksRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse {
@@ -76,6 +97,11 @@
     /// Retrieves the specified Playbook.
     ///
     /// @Snippet(path: "Playbooks_GetPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getPlaybook(name:)``
+    /// - ``getPlaybook(request:)``
     public func getPlaybook(
       request: GetPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -88,6 +114,12 @@
     /// references will also be exported.
     ///
     /// @Snippet(path: "Playbooks_ExportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportPlaybook(request:)``
+    /// - ``exportPlaybookPollingUntilDone(request:)``
+    /// - ``exportPlaybookPollingUntilDone(request:options:)``
     public func exportPlaybook(
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -100,6 +132,12 @@
     /// references will also be exported.
     ///
     /// @Snippet(path: "Playbooks_ExportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportPlaybook(request:)``
+    /// - ``exportPlaybook(request:options:)``
+    /// - ``exportPlaybookPollingUntilDone(request:)``
     public func exportPlaybookPollingUntilDone(
       request: ExportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportPlaybookResponse {
@@ -129,6 +167,12 @@
     /// Imports the specified playbook to the specified agent from a binary file.
     ///
     /// @Snippet(path: "Playbooks_ImportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importPlaybook(request:)``
+    /// - ``importPlaybookPollingUntilDone(request:)``
+    /// - ``importPlaybookPollingUntilDone(request:options:)``
     public func importPlaybook(
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -138,6 +182,12 @@
     /// Imports the specified playbook to the specified agent from a binary file.
     ///
     /// @Snippet(path: "Playbooks_ImportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importPlaybook(request:)``
+    /// - ``importPlaybook(request:options:)``
+    /// - ``importPlaybookPollingUntilDone(request:)``
     public func importPlaybookPollingUntilDone(
       request: ImportPlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportPlaybookResponse {
@@ -167,6 +217,11 @@
     /// Updates the specified Playbook.
     ///
     /// @Snippet(path: "Playbooks_UpdatePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updatePlaybook(playbook:updateMask:)``
+    /// - ``updatePlaybook(request:)``
     public func updatePlaybook(
       request: UpdatePlaybookRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -176,6 +231,11 @@
     /// Creates a version for the specified Playbook.
     ///
     /// @Snippet(path: "Playbooks_CreatePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createPlaybookVersion(parent:playbookVersion:)``
+    /// - ``createPlaybookVersion(request:)``
     public func createPlaybookVersion(
       request: CreatePlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -185,6 +245,11 @@
     /// Retrieves the specified version of the Playbook.
     ///
     /// @Snippet(path: "Playbooks_GetPlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getPlaybookVersion(name:)``
+    /// - ``getPlaybookVersion(request:)``
     public func getPlaybookVersion(
       request: GetPlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -195,6 +260,11 @@
     /// current playbook draft, returning the playbook with resources updated.
     ///
     /// @Snippet(path: "Playbooks_RestorePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``restorePlaybookVersion(name:)``
+    /// - ``restorePlaybookVersion(request:)``
     public func restorePlaybookVersion(
       request: RestorePlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.RestorePlaybookVersionResponse {
@@ -204,6 +274,13 @@
     /// Lists versions for the specified Playbook.
     ///
     /// @Snippet(path: "Playbooks_ListPlaybookVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listPlaybookVersions(request:)``
+    /// - ``listPlaybookVersionsByItems(parent:)``
+    /// - ``listPlaybookVersionsByItems(request:)``
+    /// - ``listPlaybookVersionsByItems(request:options:)``
     public func listPlaybookVersions(
       request: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse {
@@ -213,6 +290,11 @@
     /// Deletes the specified version of the Playbook.
     ///
     /// @Snippet(path: "Playbooks_DeletePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deletePlaybookVersion(name:)``
+    /// - ``deletePlaybookVersion(request:)``
     public func deletePlaybookVersion(
       request: DeletePlaybookVersionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -239,6 +321,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Playbooks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -248,6 +336,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Playbooks_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -259,6 +351,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Playbooks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -281,6 +380,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Playbooks_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -389,6 +493,13 @@
 
   // Default implementations
   extension Clients.PlaybooksProtocol {
+    /// Creates a playbook in a specified agent.
+    ///
+    /// @Snippet(path: "Playbooks_CreatePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/createPlaybook(request:options:)``
     public func createPlaybook(request: CreatePlaybookRequest) async throws
       -> GoogleCloudDialogflowCXV3.Playbook
     {
@@ -401,6 +512,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a playbook in a specified agent.
+    ///
+    /// @Snippet(path: "Playbooks_CreatePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/createPlaybook(request:options:)``
     public func createPlaybook(
       parent: Swift.String,
       playbook: Playbook?,
@@ -412,6 +530,13 @@
       return try await self.createPlaybook(request: request)
     }
 
+    /// Deletes a specified playbook.
+    ///
+    /// @Snippet(path: "Playbooks_DeletePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/deletePlaybook(request:options:)``
     public func deletePlaybook(request: DeletePlaybookRequest) async throws {
       try await self.deletePlaybook(request: request, options: .init())
     }
@@ -422,6 +547,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a specified playbook.
+    ///
+    /// @Snippet(path: "Playbooks_DeletePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/deletePlaybook(request:options:)``
     public func deletePlaybook(
       name: Swift.String,
     ) async throws {
@@ -431,6 +563,13 @@
       try await self.deletePlaybook(request: request)
     }
 
+    /// Returns a list of playbooks in the specified agent.
+    ///
+    /// @Snippet(path: "Playbooks_ListPlaybooks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybooks(request:options:)``
     public func listPlaybooks(request: ListPlaybooksRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListPlaybooksResponse
     {
@@ -443,6 +582,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns a list of playbooks in the specified agent.
+    ///
+    /// @Snippet(path: "Playbooks_ListPlaybooks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybooks(request:options:)``
     public func listPlaybooksByItems(
       request: ListPlaybooksRequest
     ) -> some AsyncSequence<Playbook, any Swift.Error> & Sendable {
@@ -452,6 +598,10 @@
     /// Returns a list of playbooks in the specified agent.
     ///
     /// @Snippet(path: "Playbooks_ListPlaybooks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybooks(request:options:)``
     public func listPlaybooksByItems(
       request: ListPlaybooksRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Playbook, any Swift.Error> & Sendable {
@@ -466,6 +616,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns a list of playbooks in the specified agent.
+    ///
+    /// @Snippet(path: "Playbooks_ListPlaybooks")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybooks(request:options:)``
     public func listPlaybooksByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Playbook, any Swift.Error> & Sendable {
@@ -475,6 +632,13 @@
       return self.listPlaybooksByItems(request: request)
     }
 
+    /// Retrieves the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_GetPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/getPlaybook(request:options:)``
     public func getPlaybook(request: GetPlaybookRequest) async throws
       -> GoogleCloudDialogflowCXV3.Playbook
     {
@@ -487,6 +651,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_GetPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/getPlaybook(request:options:)``
     public func getPlaybook(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Playbook {
@@ -496,6 +667,16 @@
       return try await self.getPlaybook(request: request)
     }
 
+    /// Exports the specified playbook to a binary file.
+    ///
+    /// Note that resources (e.g. examples, tools) that the playbook
+    /// references will also be exported.
+    ///
+    /// @Snippet(path: "Playbooks_ExportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/exportPlaybook(request:options:)``
     public func exportPlaybook(request: ExportPlaybookRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -508,6 +689,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the specified playbook to a binary file.
+    ///
+    /// Note that resources (e.g. examples, tools) that the playbook
+    /// references will also be exported.
+    ///
+    /// @Snippet(path: "Playbooks_ExportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/exportPlaybookPollingUntilDone(request:options:)``
     public func exportPlaybookPollingUntilDone(request: ExportPlaybookRequest) async throws
       -> ExportPlaybookResponse
     {
@@ -520,6 +711,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports the specified playbook to the specified agent from a binary file.
+    ///
+    /// @Snippet(path: "Playbooks_ImportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/importPlaybook(request:options:)``
     public func importPlaybook(request: ImportPlaybookRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -532,6 +730,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports the specified playbook to the specified agent from a binary file.
+    ///
+    /// @Snippet(path: "Playbooks_ImportPlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/importPlaybookPollingUntilDone(request:options:)``
     public func importPlaybookPollingUntilDone(request: ImportPlaybookRequest) async throws
       -> ImportPlaybookResponse
     {
@@ -544,6 +749,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_UpdatePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/updatePlaybook(request:options:)``
     public func updatePlaybook(request: UpdatePlaybookRequest) async throws
       -> GoogleCloudDialogflowCXV3.Playbook
     {
@@ -556,6 +768,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_UpdatePlaybook")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/updatePlaybook(request:options:)``
     public func updatePlaybook(
       playbook: Playbook?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -567,6 +786,13 @@
       return try await self.updatePlaybook(request: request)
     }
 
+    /// Creates a version for the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_CreatePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/createPlaybookVersion(request:options:)``
     public func createPlaybookVersion(request: CreatePlaybookVersionRequest) async throws
       -> GoogleCloudDialogflowCXV3.PlaybookVersion
     {
@@ -579,6 +805,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a version for the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_CreatePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/createPlaybookVersion(request:options:)``
     public func createPlaybookVersion(
       parent: Swift.String,
       playbookVersion: PlaybookVersion?,
@@ -590,6 +823,13 @@
       return try await self.createPlaybookVersion(request: request)
     }
 
+    /// Retrieves the specified version of the Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_GetPlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/getPlaybookVersion(request:options:)``
     public func getPlaybookVersion(request: GetPlaybookVersionRequest) async throws
       -> GoogleCloudDialogflowCXV3.PlaybookVersion
     {
@@ -602,6 +842,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified version of the Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_GetPlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/getPlaybookVersion(request:options:)``
     public func getPlaybookVersion(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.PlaybookVersion {
@@ -611,6 +858,14 @@
       return try await self.getPlaybookVersion(request: request)
     }
 
+    /// Retrieves the specified version of the Playbook and stores it as the
+    /// current playbook draft, returning the playbook with resources updated.
+    ///
+    /// @Snippet(path: "Playbooks_RestorePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/restorePlaybookVersion(request:options:)``
     public func restorePlaybookVersion(request: RestorePlaybookVersionRequest) async throws
       -> GoogleCloudDialogflowCXV3.RestorePlaybookVersionResponse
     {
@@ -623,6 +878,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified version of the Playbook and stores it as the
+    /// current playbook draft, returning the playbook with resources updated.
+    ///
+    /// @Snippet(path: "Playbooks_RestorePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/restorePlaybookVersion(request:options:)``
     public func restorePlaybookVersion(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.RestorePlaybookVersionResponse {
@@ -632,6 +895,13 @@
       return try await self.restorePlaybookVersion(request: request)
     }
 
+    /// Lists versions for the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_ListPlaybookVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybookVersions(request:options:)``
     public func listPlaybookVersions(request: ListPlaybookVersionsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListPlaybookVersionsResponse
     {
@@ -644,6 +914,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists versions for the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_ListPlaybookVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybookVersions(request:options:)``
     public func listPlaybookVersionsByItems(
       request: ListPlaybookVersionsRequest
     ) -> some AsyncSequence<PlaybookVersion, any Swift.Error> & Sendable {
@@ -653,6 +930,10 @@
     /// Lists versions for the specified Playbook.
     ///
     /// @Snippet(path: "Playbooks_ListPlaybookVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybookVersions(request:options:)``
     public func listPlaybookVersionsByItems(
       request: ListPlaybookVersionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<PlaybookVersion, any Swift.Error> & Sendable {
@@ -667,6 +948,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists versions for the specified Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_ListPlaybookVersions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listPlaybookVersions(request:options:)``
     public func listPlaybookVersionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<PlaybookVersion, any Swift.Error> & Sendable {
@@ -676,6 +964,13 @@
       return self.listPlaybookVersionsByItems(request: request)
     }
 
+    /// Deletes the specified version of the Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_DeletePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/deletePlaybookVersion(request:options:)``
     public func deletePlaybookVersion(request: DeletePlaybookVersionRequest) async throws {
       try await self.deletePlaybookVersion(request: request, options: .init())
     }
@@ -686,6 +981,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified version of the Playbook.
+    ///
+    /// @Snippet(path: "Playbooks_DeletePlaybookVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/deletePlaybookVersion(request:options:)``
     public func deletePlaybookVersion(
       name: Swift.String,
     ) async throws {
@@ -695,6 +997,30 @@
       try await self.deletePlaybookVersion(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Playbooks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -707,6 +1033,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Playbooks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -733,6 +1083,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Playbooks_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -746,6 +1100,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Playbooks_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -758,6 +1119,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Playbooks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -770,6 +1140,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Playbooks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -781,6 +1160,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Playbooks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -794,6 +1177,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Playbooks_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -805,6 +1197,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -817,6 +1212,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -826,6 +1224,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Playbooks_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -836,6 +1243,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Playbooks_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PlaybooksClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

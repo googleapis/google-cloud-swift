@@ -28,6 +28,10 @@ import Foundation
 /// networking interruptions.
 ///
 /// @Snippet(path: "WorkflowsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/WorkflowsProtocol``
 public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   let inner: any Clients.WorkflowsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// The default order is not specified.
   ///
   /// @Snippet(path: "Workflows_ListWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkflows(request:)``
+  /// - ``listWorkflowsByItems(parent:)``
+  /// - ``listWorkflowsByItems(request:)``
+  /// - ``listWorkflowsByItems(request:options:)``
   public func listWorkflows(
     request: ListWorkflowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsV1.ListWorkflowsResponse {
@@ -58,6 +69,11 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// Gets details of a single workflow.
   ///
   /// @Snippet(path: "Workflows_GetWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkflow(name:)``
+  /// - ``getWorkflow(request:)``
   public func getWorkflow(
     request: GetWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsV1.Workflow {
@@ -69,6 +85,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "Workflows_CreateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkflow(request:)``
+  /// - ``createWorkflowPollingUntilDone(parent:workflow:workflowId:)``
+  /// - ``createWorkflowPollingUntilDone(request:)``
+  /// - ``createWorkflowPollingUntilDone(request:options:)``
   public func createWorkflow(
     request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -80,6 +103,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
   ///
   /// @Snippet(path: "Workflows_CreateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkflow(request:)``
+  /// - ``createWorkflow(request:options:)``
+  /// - ``createWorkflowPollingUntilDone(parent:workflow:workflowId:)``
+  /// - ``createWorkflowPollingUntilDone(request:)``
   public func createWorkflowPollingUntilDone(
     request: CreateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workflow {
@@ -109,6 +139,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// workflow.
   ///
   /// @Snippet(path: "Workflows_DeleteWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkflow(request:)``
+  /// - ``deleteWorkflowPollingUntilDone(name:)``
+  /// - ``deleteWorkflowPollingUntilDone(request:)``
+  /// - ``deleteWorkflowPollingUntilDone(request:options:)``
   public func deleteWorkflow(
     request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -120,6 +157,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// workflow.
   ///
   /// @Snippet(path: "Workflows_DeleteWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkflow(request:)``
+  /// - ``deleteWorkflow(request:options:)``
+  /// - ``deleteWorkflowPollingUntilDone(name:)``
+  /// - ``deleteWorkflowPollingUntilDone(request:)``
   public func deleteWorkflowPollingUntilDone(
     request: DeleteWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -151,6 +195,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// in new workflow executions.
   ///
   /// @Snippet(path: "Workflows_UpdateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkflow(request:)``
+  /// - ``updateWorkflowPollingUntilDone(request:)``
+  /// - ``updateWorkflowPollingUntilDone(request:options:)``
+  /// - ``updateWorkflowPollingUntilDone(workflow:updateMask:)``
   public func updateWorkflow(
     request: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,6 +215,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// in new workflow executions.
   ///
   /// @Snippet(path: "Workflows_UpdateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkflow(request:)``
+  /// - ``updateWorkflow(request:options:)``
+  /// - ``updateWorkflowPollingUntilDone(request:)``
+  /// - ``updateWorkflowPollingUntilDone(workflow:updateMask:)``
   public func updateWorkflowPollingUntilDone(
     request: UpdateWorkflowRequest, options: GoogleGax.RequestOptions
   ) async throws -> Workflow {
@@ -191,6 +249,12 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// Lists revisions for a given workflow.
   ///
   /// @Snippet(path: "Workflows_ListWorkflowRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkflowRevisions(request:)``
+  /// - ``listWorkflowRevisionsByItems(request:)``
+  /// - ``listWorkflowRevisionsByItems(request:options:)``
   public func listWorkflowRevisions(
     request: ListWorkflowRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudWorkflowsV1.ListWorkflowRevisionsResponse {
@@ -200,6 +264,12 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Workflows_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -209,6 +279,10 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Workflows_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -220,6 +294,13 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Workflows_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -242,6 +323,11 @@ public final class WorkflowsClient: Clients.WorkflowsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Workflows_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -325,6 +411,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.WorkflowsProtocol {
+  /// Lists workflows in a given project and location.
+  /// The default order is not specified.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflows(request:options:)``
   public func listWorkflows(request: ListWorkflowsRequest) async throws
     -> GoogleCloudWorkflowsV1.ListWorkflowsResponse
   {
@@ -337,6 +431,14 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists workflows in a given project and location.
+  /// The default order is not specified.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflows(request:options:)``
   public func listWorkflowsByItems(
     request: ListWorkflowsRequest
   ) -> some AsyncSequence<Workflow, any Swift.Error> & Sendable {
@@ -347,6 +449,10 @@ extension Clients.WorkflowsProtocol {
   /// The default order is not specified.
   ///
   /// @Snippet(path: "Workflows_ListWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflows(request:options:)``
   public func listWorkflowsByItems(
     request: ListWorkflowsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Workflow, any Swift.Error> & Sendable {
@@ -361,6 +467,14 @@ extension Clients.WorkflowsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists workflows in a given project and location.
+  /// The default order is not specified.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflows(request:options:)``
   public func listWorkflowsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Workflow, any Swift.Error> & Sendable {
@@ -370,6 +484,13 @@ extension Clients.WorkflowsProtocol {
     return self.listWorkflowsByItems(request: request)
   }
 
+  /// Gets details of a single workflow.
+  ///
+  /// @Snippet(path: "Workflows_GetWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/getWorkflow(request:options:)``
   public func getWorkflow(request: GetWorkflowRequest) async throws
     -> GoogleCloudWorkflowsV1.Workflow
   {
@@ -382,6 +503,13 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single workflow.
+  ///
+  /// @Snippet(path: "Workflows_GetWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/getWorkflow(request:options:)``
   public func getWorkflow(
     name: Swift.String,
   ) async throws -> GoogleCloudWorkflowsV1.Workflow {
@@ -391,6 +519,15 @@ extension Clients.WorkflowsProtocol {
     return try await self.getWorkflow(request: request)
   }
 
+  /// Creates a new workflow. If a workflow with the specified name already
+  /// exists in the specified project and location, the long running operation
+  /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "Workflows_CreateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/createWorkflow(request:options:)``
   public func createWorkflow(request: CreateWorkflowRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -403,6 +540,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new workflow. If a workflow with the specified name already
+  /// exists in the specified project and location, the long running operation
+  /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "Workflows_CreateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/createWorkflowPollingUntilDone(request:options:)``
   public func createWorkflowPollingUntilDone(request: CreateWorkflowRequest) async throws
     -> Workflow
   {
@@ -415,6 +561,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new workflow. If a workflow with the specified name already
+  /// exists in the specified project and location, the long running operation
+  /// returns a [ALREADY_EXISTS][google.rpc.Code.ALREADY_EXISTS] error.
+  ///
+  /// @Snippet(path: "Workflows_CreateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/createWorkflowPollingUntilDone(request:options:)``
   public func createWorkflowPollingUntilDone(
     parent: Swift.String,
     workflow: Workflow?,
@@ -428,6 +583,15 @@ extension Clients.WorkflowsProtocol {
     return try await self.createWorkflowPollingUntilDone(request: request)
   }
 
+  /// Deletes a workflow with the specified name.
+  /// This method also cancels and deletes all running executions of the
+  /// workflow.
+  ///
+  /// @Snippet(path: "Workflows_DeleteWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/deleteWorkflow(request:options:)``
   public func deleteWorkflow(request: DeleteWorkflowRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -440,6 +604,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a workflow with the specified name.
+  /// This method also cancels and deletes all running executions of the
+  /// workflow.
+  ///
+  /// @Snippet(path: "Workflows_DeleteWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/deleteWorkflowPollingUntilDone(request:options:)``
   public func deleteWorkflowPollingUntilDone(request: DeleteWorkflowRequest) async throws {
     try await self.deleteWorkflowPollingUntilDone(request: request, options: .init())
   }
@@ -450,6 +623,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a workflow with the specified name.
+  /// This method also cancels and deletes all running executions of the
+  /// workflow.
+  ///
+  /// @Snippet(path: "Workflows_DeleteWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/deleteWorkflowPollingUntilDone(request:options:)``
   public func deleteWorkflowPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -459,6 +641,17 @@ extension Clients.WorkflowsProtocol {
     try await self.deleteWorkflowPollingUntilDone(request: request)
   }
 
+  /// Updates an existing workflow.
+  /// Running this method has no impact on already running executions of the
+  /// workflow. A new revision of the workflow might be created as a result of a
+  /// successful update operation. In that case, the new revision is used
+  /// in new workflow executions.
+  ///
+  /// @Snippet(path: "Workflows_UpdateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/updateWorkflow(request:options:)``
   public func updateWorkflow(request: UpdateWorkflowRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -471,6 +664,17 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing workflow.
+  /// Running this method has no impact on already running executions of the
+  /// workflow. A new revision of the workflow might be created as a result of a
+  /// successful update operation. In that case, the new revision is used
+  /// in new workflow executions.
+  ///
+  /// @Snippet(path: "Workflows_UpdateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/updateWorkflowPollingUntilDone(request:options:)``
   public func updateWorkflowPollingUntilDone(request: UpdateWorkflowRequest) async throws
     -> Workflow
   {
@@ -483,6 +687,17 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing workflow.
+  /// Running this method has no impact on already running executions of the
+  /// workflow. A new revision of the workflow might be created as a result of a
+  /// successful update operation. In that case, the new revision is used
+  /// in new workflow executions.
+  ///
+  /// @Snippet(path: "Workflows_UpdateWorkflow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/updateWorkflowPollingUntilDone(request:options:)``
   public func updateWorkflowPollingUntilDone(
     workflow: Workflow?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -494,6 +709,13 @@ extension Clients.WorkflowsProtocol {
     return try await self.updateWorkflowPollingUntilDone(request: request)
   }
 
+  /// Lists revisions for a given workflow.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflowRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflowRevisions(request:options:)``
   public func listWorkflowRevisions(request: ListWorkflowRevisionsRequest) async throws
     -> GoogleCloudWorkflowsV1.ListWorkflowRevisionsResponse
   {
@@ -506,6 +728,13 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists revisions for a given workflow.
+  ///
+  /// @Snippet(path: "Workflows_ListWorkflowRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflowRevisions(request:options:)``
   public func listWorkflowRevisionsByItems(
     request: ListWorkflowRevisionsRequest
   ) -> some AsyncSequence<Workflow, any Swift.Error> & Sendable {
@@ -515,6 +744,10 @@ extension Clients.WorkflowsProtocol {
   /// Lists revisions for a given workflow.
   ///
   /// @Snippet(path: "Workflows_ListWorkflowRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listWorkflowRevisions(request:options:)``
   public func listWorkflowRevisionsByItems(
     request: ListWorkflowRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Workflow, any Swift.Error> & Sendable {
@@ -529,6 +762,13 @@ extension Clients.WorkflowsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Workflows_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -541,6 +781,13 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Workflows_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -550,6 +797,10 @@ extension Clients.WorkflowsProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Workflows_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -563,6 +814,13 @@ extension Clients.WorkflowsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Workflows_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -575,6 +833,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Workflows_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -587,6 +854,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Workflows_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -598,6 +874,10 @@ extension Clients.WorkflowsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Workflows_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -611,6 +891,15 @@ extension Clients.WorkflowsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Workflows_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -622,6 +911,9 @@ extension Clients.WorkflowsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -634,6 +926,9 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -643,6 +938,15 @@ extension Clients.WorkflowsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Workflows_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -653,6 +957,15 @@ extension Clients.WorkflowsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Workflows_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkflowsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {

@@ -25,6 +25,10 @@
   /// service is only used internally.
   ///
   /// @Snippet(path: "SqlEventsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlEventsServiceProtocol``
   public final class SqlEventsServiceClient: Clients.SqlEventsServiceProtocol, Sendable {
     let inner: any Clients.SqlEventsServiceStub
 

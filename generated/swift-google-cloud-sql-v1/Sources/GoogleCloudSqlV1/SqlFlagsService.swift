@@ -24,6 +24,10 @@
   /// Service to manage database flags for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlFlagsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlFlagsServiceProtocol``
   public final class SqlFlagsServiceClient: Clients.SqlFlagsServiceProtocol, Sendable {
     let inner: any Clients.SqlFlagsServiceStub
 
@@ -40,6 +44,10 @@
     /// Lists all available database flags for Cloud SQL instances.
     ///
     /// @Snippet(path: "SqlFlagsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
     public func list(
       request: SqlFlagsListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.FlagsListResponse {
@@ -63,6 +71,13 @@
 
   // Default implementations
   extension Clients.SqlFlagsServiceProtocol {
+    /// Lists all available database flags for Cloud SQL instances.
+    ///
+    /// @Snippet(path: "SqlFlagsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlFlagsServiceClient/list(request:options:)``
     public func list(request: SqlFlagsListRequest) async throws
       -> GoogleCloudSqlV1.FlagsListResponse
     {

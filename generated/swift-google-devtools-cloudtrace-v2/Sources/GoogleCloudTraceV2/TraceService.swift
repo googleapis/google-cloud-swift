@@ -29,6 +29,10 @@ import Foundation
 /// A single trace can contain spans from multiple services.
 ///
 /// @Snippet(path: "TraceServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TraceServiceProtocol``
 public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   let inner: any Clients.TraceServiceStub
 
@@ -46,6 +50,11 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   /// existing spans.
   ///
   /// @Snippet(path: "TraceService_BatchWriteSpans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchWriteSpans(name:spans:)``
+  /// - ``batchWriteSpans(request:)``
   public func batchWriteSpans(
     request: BatchWriteSpansRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -55,6 +64,10 @@ public final class TraceServiceClient: Clients.TraceServiceProtocol, Sendable {
   /// Creates a new span.
   ///
   /// @Snippet(path: "TraceService_CreateSpan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSpan(request:)``
   public func createSpan(
     request: Span, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudTraceV2.Span {
@@ -83,6 +96,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.TraceServiceProtocol {
+  /// Batch writes new spans to new or existing traces. You cannot update
+  /// existing spans.
+  ///
+  /// @Snippet(path: "TraceService_BatchWriteSpans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/batchWriteSpans(request:options:)``
   public func batchWriteSpans(request: BatchWriteSpansRequest) async throws {
     try await self.batchWriteSpans(request: request, options: .init())
   }
@@ -93,6 +114,14 @@ extension Clients.TraceServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Batch writes new spans to new or existing traces. You cannot update
+  /// existing spans.
+  ///
+  /// @Snippet(path: "TraceService_BatchWriteSpans")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/batchWriteSpans(request:options:)``
   public func batchWriteSpans(
     name: Swift.String,
     spans: [Span],
@@ -104,6 +133,13 @@ extension Clients.TraceServiceProtocol {
     try await self.batchWriteSpans(request: request)
   }
 
+  /// Creates a new span.
+  ///
+  /// @Snippet(path: "TraceService_CreateSpan")
+  ///
+  /// ## See Also
+  ///
+  /// - ``TraceServiceClient/createSpan(request:options:)``
   public func createSpan(request: Span) async throws -> GoogleCloudTraceV2.Span {
     try await self.createSpan(request: request, options: .init())
   }

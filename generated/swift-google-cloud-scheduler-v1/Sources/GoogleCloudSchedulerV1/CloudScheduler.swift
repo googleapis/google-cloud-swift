@@ -26,6 +26,10 @@ import Foundation
 /// schedule asynchronous jobs.
 ///
 /// @Snippet(path: "CloudSchedulerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudSchedulerProtocol``
 public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendable {
   let inner: any Clients.CloudSchedulerStub
 
@@ -42,6 +46,13 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// Lists jobs.
   ///
   /// @Snippet(path: "CloudScheduler_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listJobs(request:)``
+  /// - ``listJobsByItems(parent:)``
+  /// - ``listJobsByItems(request:)``
+  /// - ``listJobsByItems(request:options:)``
   public func listJobs(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.ListJobsResponse {
@@ -51,6 +62,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// Gets a job.
   ///
   /// @Snippet(path: "CloudScheduler_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getJob(name:)``
+  /// - ``getJob(request:)``
   public func getJob(
     request: GetJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -60,6 +76,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// Creates a job.
   ///
   /// @Snippet(path: "CloudScheduler_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createJob(parent:job:)``
+  /// - ``createJob(request:)``
   public func createJob(
     request: CreateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -81,6 +102,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// [google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]: <doc:Job/State/updateFailed>
   ///
   /// @Snippet(path: "CloudScheduler_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateJob(job:updateMask:)``
+  /// - ``updateJob(request:)``
   public func updateJob(
     request: UpdateJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -90,6 +116,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// Deletes a job.
   ///
   /// @Snippet(path: "CloudScheduler_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteJob(name:)``
+  /// - ``deleteJob(request:)``
   public func deleteJob(
     request: DeleteJobRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -113,6 +144,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>
   ///
   /// @Snippet(path: "CloudScheduler_PauseJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``pauseJob(name:)``
+  /// - ``pauseJob(request:)``
   public func pauseJob(
     request: PauseJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -134,6 +170,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>
   ///
   /// @Snippet(path: "CloudScheduler_ResumeJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resumeJob(name:)``
+  /// - ``resumeJob(request:)``
   public func resumeJob(
     request: ResumeJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -146,6 +187,11 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// if the job is already running.
   ///
   /// @Snippet(path: "CloudScheduler_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``runJob(name:)``
+  /// - ``runJob(request:)``
   public func runJob(
     request: RunJobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -155,6 +201,12 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudScheduler_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -164,6 +216,10 @@ public final class CloudSchedulerClient: Clients.CloudSchedulerProtocol, Sendabl
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudScheduler_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -232,6 +288,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudSchedulerProtocol {
+  /// Lists jobs.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listJobs(request:options:)``
   public func listJobs(request: ListJobsRequest) async throws
     -> GoogleCloudSchedulerV1.ListJobsResponse
   {
@@ -244,6 +307,13 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists jobs.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -253,6 +323,10 @@ extension Clients.CloudSchedulerProtocol {
   /// Lists jobs.
   ///
   /// @Snippet(path: "CloudScheduler_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listJobs(request:options:)``
   public func listJobsByItems(
     request: ListJobsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -266,6 +340,13 @@ extension Clients.CloudSchedulerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists jobs.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListJobs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listJobs(request:options:)``
   public func listJobsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Job, any Swift.Error> & Sendable {
@@ -275,6 +356,13 @@ extension Clients.CloudSchedulerProtocol {
     return self.listJobsByItems(request: request)
   }
 
+  /// Gets a job.
+  ///
+  /// @Snippet(path: "CloudScheduler_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/getJob(request:options:)``
   public func getJob(request: GetJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
     try await self.getJob(request: request, options: .init())
   }
@@ -285,6 +373,13 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a job.
+  ///
+  /// @Snippet(path: "CloudScheduler_GetJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/getJob(request:options:)``
   public func getJob(
     name: Swift.String,
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -294,6 +389,13 @@ extension Clients.CloudSchedulerProtocol {
     return try await self.getJob(request: request)
   }
 
+  /// Creates a job.
+  ///
+  /// @Snippet(path: "CloudScheduler_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/createJob(request:options:)``
   public func createJob(request: CreateJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
     try await self.createJob(request: request, options: .init())
   }
@@ -304,6 +406,13 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a job.
+  ///
+  /// @Snippet(path: "CloudScheduler_CreateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/createJob(request:options:)``
   public func createJob(
     parent: Swift.String,
     job: Job?,
@@ -315,6 +424,25 @@ extension Clients.CloudSchedulerProtocol {
     return try await self.createJob(request: request)
   }
 
+  /// Updates a job.
+  ///
+  /// If successful, the updated [Job][google.cloud.scheduler.v1.Job] is
+  /// returned. If the job does not exist, `NOT_FOUND` is returned.
+  ///
+  /// If UpdateJob does not successfully return, it is possible for the
+  /// job to be in an
+  /// [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]
+  /// state. A job in this state may not be executed. If this happens, retry the
+  /// UpdateJob request until a successful response is received.
+  ///
+  /// [google.cloud.scheduler.v1.Job]: <doc:Job>
+  /// [google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]: <doc:Job/State/updateFailed>
+  ///
+  /// @Snippet(path: "CloudScheduler_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/updateJob(request:options:)``
   public func updateJob(request: UpdateJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
     try await self.updateJob(request: request, options: .init())
   }
@@ -325,6 +453,25 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a job.
+  ///
+  /// If successful, the updated [Job][google.cloud.scheduler.v1.Job] is
+  /// returned. If the job does not exist, `NOT_FOUND` is returned.
+  ///
+  /// If UpdateJob does not successfully return, it is possible for the
+  /// job to be in an
+  /// [Job.State.UPDATE_FAILED][google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]
+  /// state. A job in this state may not be executed. If this happens, retry the
+  /// UpdateJob request until a successful response is received.
+  ///
+  /// [google.cloud.scheduler.v1.Job]: <doc:Job>
+  /// [google.cloud.scheduler.v1.Job.State.UPDATE_FAILED]: <doc:Job/State/updateFailed>
+  ///
+  /// @Snippet(path: "CloudScheduler_UpdateJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/updateJob(request:options:)``
   public func updateJob(
     job: Job?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -336,6 +483,13 @@ extension Clients.CloudSchedulerProtocol {
     return try await self.updateJob(request: request)
   }
 
+  /// Deletes a job.
+  ///
+  /// @Snippet(path: "CloudScheduler_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/deleteJob(request:options:)``
   public func deleteJob(request: DeleteJobRequest) async throws {
     try await self.deleteJob(request: request, options: .init())
   }
@@ -346,6 +500,13 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a job.
+  ///
+  /// @Snippet(path: "CloudScheduler_DeleteJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/deleteJob(request:options:)``
   public func deleteJob(
     name: Swift.String,
   ) async throws {
@@ -355,6 +516,27 @@ extension Clients.CloudSchedulerProtocol {
     try await self.deleteJob(request: request)
   }
 
+  /// Pauses a job.
+  ///
+  /// If a job is paused then the system will stop executing the job
+  /// until it is re-enabled via
+  /// [ResumeJob][google.cloud.scheduler.v1.CloudScheduler.ResumeJob]. The state
+  /// of the job is stored in [state][google.cloud.scheduler.v1.Job.state]; if
+  /// paused it will be set to
+  /// [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. A job must
+  /// be in [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED] to
+  /// be paused.
+  ///
+  /// [google.cloud.scheduler.v1.CloudScheduler.ResumeJob]: <doc:CloudSchedulerClient/resumeJob(request:options:)>
+  /// [google.cloud.scheduler.v1.Job.State.ENABLED]: <doc:Job/State/enabled>
+  /// [google.cloud.scheduler.v1.Job.State.PAUSED]: <doc:Job/State/paused>
+  /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>
+  ///
+  /// @Snippet(path: "CloudScheduler_PauseJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/pauseJob(request:options:)``
   public func pauseJob(request: PauseJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
     try await self.pauseJob(request: request, options: .init())
   }
@@ -365,6 +547,27 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Pauses a job.
+  ///
+  /// If a job is paused then the system will stop executing the job
+  /// until it is re-enabled via
+  /// [ResumeJob][google.cloud.scheduler.v1.CloudScheduler.ResumeJob]. The state
+  /// of the job is stored in [state][google.cloud.scheduler.v1.Job.state]; if
+  /// paused it will be set to
+  /// [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. A job must
+  /// be in [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED] to
+  /// be paused.
+  ///
+  /// [google.cloud.scheduler.v1.CloudScheduler.ResumeJob]: <doc:CloudSchedulerClient/resumeJob(request:options:)>
+  /// [google.cloud.scheduler.v1.Job.State.ENABLED]: <doc:Job/State/enabled>
+  /// [google.cloud.scheduler.v1.Job.State.PAUSED]: <doc:Job/State/paused>
+  /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>
+  ///
+  /// @Snippet(path: "CloudScheduler_PauseJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/pauseJob(request:options:)``
   public func pauseJob(
     name: Swift.String,
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -374,6 +577,25 @@ extension Clients.CloudSchedulerProtocol {
     return try await self.pauseJob(request: request)
   }
 
+  /// Resume a job.
+  ///
+  /// This method reenables a job after it has been
+  /// [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. The state
+  /// of a job is stored in [Job.state][google.cloud.scheduler.v1.Job.state];
+  /// after calling this method it will be set to
+  /// [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED]. A job
+  /// must be in [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]
+  /// to be resumed.
+  ///
+  /// [google.cloud.scheduler.v1.Job.State.ENABLED]: <doc:Job/State/enabled>
+  /// [google.cloud.scheduler.v1.Job.State.PAUSED]: <doc:Job/State/paused>
+  /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>
+  ///
+  /// @Snippet(path: "CloudScheduler_ResumeJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/resumeJob(request:options:)``
   public func resumeJob(request: ResumeJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
     try await self.resumeJob(request: request, options: .init())
   }
@@ -384,6 +606,25 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resume a job.
+  ///
+  /// This method reenables a job after it has been
+  /// [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]. The state
+  /// of a job is stored in [Job.state][google.cloud.scheduler.v1.Job.state];
+  /// after calling this method it will be set to
+  /// [Job.State.ENABLED][google.cloud.scheduler.v1.Job.State.ENABLED]. A job
+  /// must be in [Job.State.PAUSED][google.cloud.scheduler.v1.Job.State.PAUSED]
+  /// to be resumed.
+  ///
+  /// [google.cloud.scheduler.v1.Job.State.ENABLED]: <doc:Job/State/enabled>
+  /// [google.cloud.scheduler.v1.Job.State.PAUSED]: <doc:Job/State/paused>
+  /// [google.cloud.scheduler.v1.Job.state]: <doc:Job/state>
+  ///
+  /// @Snippet(path: "CloudScheduler_ResumeJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/resumeJob(request:options:)``
   public func resumeJob(
     name: Swift.String,
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -393,6 +634,16 @@ extension Clients.CloudSchedulerProtocol {
     return try await self.resumeJob(request: request)
   }
 
+  /// Forces a job to run now.
+  ///
+  /// When this method is called, Cloud Scheduler will dispatch the job, even
+  /// if the job is already running.
+  ///
+  /// @Snippet(path: "CloudScheduler_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/runJob(request:options:)``
   public func runJob(request: RunJobRequest) async throws -> GoogleCloudSchedulerV1.Job {
     try await self.runJob(request: request, options: .init())
   }
@@ -403,6 +654,16 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Forces a job to run now.
+  ///
+  /// When this method is called, Cloud Scheduler will dispatch the job, even
+  /// if the job is already running.
+  ///
+  /// @Snippet(path: "CloudScheduler_RunJob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/runJob(request:options:)``
   public func runJob(
     name: Swift.String,
   ) async throws -> GoogleCloudSchedulerV1.Job {
@@ -412,6 +673,13 @@ extension Clients.CloudSchedulerProtocol {
     return try await self.runJob(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -424,6 +692,13 @@ extension Clients.CloudSchedulerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudScheduler_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -433,6 +708,10 @@ extension Clients.CloudSchedulerProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudScheduler_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -446,6 +725,13 @@ extension Clients.CloudSchedulerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CloudScheduler_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudSchedulerClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

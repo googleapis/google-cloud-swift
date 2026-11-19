@@ -29,6 +29,10 @@
   /// A service for online predictions and explanations.
   ///
   /// @Snippet(path: "PredictionServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/PredictionServiceProtocol``
   public final class PredictionServiceClient: Clients.PredictionServiceProtocol, Sendable {
     let inner: any Clients.PredictionServiceStub
 
@@ -45,6 +49,11 @@
     /// Perform an online prediction.
     ///
     /// @Snippet(path: "PredictionService_Predict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``predict(endpoint:instances:parameters:)``
+    /// - ``predict(request:)``
     public func predict(
       request: PredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.PredictResponse {
@@ -67,6 +76,11 @@
     /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
     ///
     /// @Snippet(path: "PredictionService_RawPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``rawPredict(endpoint:httpBody:)``
+    /// - ``rawPredict(request:)``
     public func rawPredict(
       request: RawPredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleApi.HttpBody {
@@ -77,6 +91,10 @@
     /// Vertex first-party products and frameworks.
     ///
     /// @Snippet(path: "PredictionService_DirectPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``directPredict(request:)``
     public func directPredict(
       request: DirectPredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DirectPredictResponse {
@@ -87,6 +105,10 @@
     /// custom containers.
     ///
     /// @Snippet(path: "PredictionService_DirectRawPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``directRawPredict(request:)``
     public func directRawPredict(
       request: DirectRawPredictRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.DirectRawPredictResponse {
@@ -109,6 +131,11 @@
     /// [google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]: <doc:ExplainRequest/deployedModelId>
     ///
     /// @Snippet(path: "PredictionService_Explain")
+    ///
+    /// ## See Also
+    ///
+    /// - ``explain(endpoint:instances:parameters:deployedModelId:)``
+    /// - ``explain(request:)``
     public func explain(
       request: ExplainRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ExplainResponse {
@@ -118,6 +145,11 @@
     /// Generate content with multimodal inputs.
     ///
     /// @Snippet(path: "PredictionService_GenerateContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``generateContent(model:contents:)``
+    /// - ``generateContent(request:)``
     public func generateContent(
       request: GenerateContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.GenerateContentResponse {
@@ -127,6 +159,11 @@
     /// Embed content with multimodal inputs.
     ///
     /// @Snippet(path: "PredictionService_EmbedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``embedContent(model:content:)``
+    /// - ``embedContent(request:)``
     public func embedContent(
       request: EmbedContentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.EmbedContentResponse {
@@ -136,6 +173,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "PredictionService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -145,6 +188,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "PredictionService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -158,6 +205,10 @@
     /// errors.
     ///
     /// @Snippet(path: "PredictionService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -168,6 +219,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "PredictionService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -183,6 +238,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "PredictionService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -194,6 +253,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PredictionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -216,6 +282,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PredictionService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -227,6 +298,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PredictionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -238,6 +314,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PredictionService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -336,6 +416,13 @@
 
   // Default implementations
   extension Clients.PredictionServiceProtocol {
+    /// Perform an online prediction.
+    ///
+    /// @Snippet(path: "PredictionService_Predict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/predict(request:options:)``
     public func predict(request: PredictRequest) async throws
       -> GoogleCloudAIPlatformV1.PredictResponse
     {
@@ -348,6 +435,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform an online prediction.
+    ///
+    /// @Snippet(path: "PredictionService_Predict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/predict(request:options:)``
     public func predict(
       endpoint: Swift.String,
       instances: [GoogleWKT.WKTValue],
@@ -361,6 +455,26 @@
       return try await self.predict(request: request)
     }
 
+    /// Perform an online prediction with an arbitrary HTTP payload.
+    ///
+    /// The response includes the following HTTP headers:
+    ///
+    /// * `X-Vertex-AI-Endpoint-Id`: ID of the
+    /// [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
+    /// prediction.
+    ///
+    /// * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's
+    /// [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] that served this
+    /// prediction.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
+    ///
+    /// @Snippet(path: "PredictionService_RawPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/rawPredict(request:options:)``
     public func rawPredict(request: RawPredictRequest) async throws -> GoogleApi.HttpBody {
       try await self.rawPredict(request: request, options: .init())
     }
@@ -371,6 +485,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform an online prediction with an arbitrary HTTP payload.
+    ///
+    /// The response includes the following HTTP headers:
+    ///
+    /// * `X-Vertex-AI-Endpoint-Id`: ID of the
+    /// [Endpoint][google.cloud.aiplatform.v1.Endpoint] that served this
+    /// prediction.
+    ///
+    /// * `X-Vertex-AI-Deployed-Model-Id`: ID of the Endpoint's
+    /// [DeployedModel][google.cloud.aiplatform.v1.DeployedModel] that served this
+    /// prediction.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel]: <doc:DeployedModel>
+    /// [google.cloud.aiplatform.v1.Endpoint]: <doc:Endpoint>
+    ///
+    /// @Snippet(path: "PredictionService_RawPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/rawPredict(request:options:)``
     public func rawPredict(
       endpoint: Swift.String,
       httpBody: GoogleApi.HttpBody?,
@@ -382,6 +516,14 @@
       return try await self.rawPredict(request: request)
     }
 
+    /// Perform an unary online prediction request to a gRPC model server for
+    /// Vertex first-party products and frameworks.
+    ///
+    /// @Snippet(path: "PredictionService_DirectPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/directPredict(request:options:)``
     public func directPredict(request: DirectPredictRequest) async throws
       -> GoogleCloudAIPlatformV1.DirectPredictResponse
     {
@@ -394,6 +536,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform an unary online prediction request to a gRPC model server for
+    /// custom containers.
+    ///
+    /// @Snippet(path: "PredictionService_DirectRawPredict")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/directRawPredict(request:options:)``
     public func directRawPredict(request: DirectRawPredictRequest) async throws
       -> GoogleCloudAIPlatformV1.DirectRawPredictResponse
     {
@@ -406,6 +556,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform an online explanation.
+    ///
+    /// If
+    /// [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+    /// is specified, the corresponding DeployModel must have
+    /// [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+    /// populated. If
+    /// [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+    /// is not specified, all DeployedModels must have
+    /// [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+    /// populated.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel.explanation_spec]: <doc:DeployedModel/explanationSpec>
+    /// [google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]: <doc:ExplainRequest/deployedModelId>
+    ///
+    /// @Snippet(path: "PredictionService_Explain")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/explain(request:options:)``
     public func explain(request: ExplainRequest) async throws
       -> GoogleCloudAIPlatformV1.ExplainResponse
     {
@@ -418,6 +588,26 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Perform an online explanation.
+    ///
+    /// If
+    /// [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+    /// is specified, the corresponding DeployModel must have
+    /// [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+    /// populated. If
+    /// [deployed_model_id][google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]
+    /// is not specified, all DeployedModels must have
+    /// [explanation_spec][google.cloud.aiplatform.v1.DeployedModel.explanation_spec]
+    /// populated.
+    ///
+    /// [google.cloud.aiplatform.v1.DeployedModel.explanation_spec]: <doc:DeployedModel/explanationSpec>
+    /// [google.cloud.aiplatform.v1.ExplainRequest.deployed_model_id]: <doc:ExplainRequest/deployedModelId>
+    ///
+    /// @Snippet(path: "PredictionService_Explain")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/explain(request:options:)``
     public func explain(
       endpoint: Swift.String,
       instances: [GoogleWKT.WKTValue],
@@ -433,6 +623,13 @@
       return try await self.explain(request: request)
     }
 
+    /// Generate content with multimodal inputs.
+    ///
+    /// @Snippet(path: "PredictionService_GenerateContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/generateContent(request:options:)``
     public func generateContent(request: GenerateContentRequest) async throws
       -> GoogleCloudAIPlatformV1.GenerateContentResponse
     {
@@ -445,6 +642,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Generate content with multimodal inputs.
+    ///
+    /// @Snippet(path: "PredictionService_GenerateContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/generateContent(request:options:)``
     public func generateContent(
       model: Swift.String,
       contents: [Content],
@@ -456,6 +660,13 @@
       return try await self.generateContent(request: request)
     }
 
+    /// Embed content with multimodal inputs.
+    ///
+    /// @Snippet(path: "PredictionService_EmbedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/embedContent(request:options:)``
     public func embedContent(request: EmbedContentRequest) async throws
       -> GoogleCloudAIPlatformV1.EmbedContentResponse
     {
@@ -468,6 +679,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Embed content with multimodal inputs.
+    ///
+    /// @Snippet(path: "PredictionService_EmbedContent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/embedContent(request:options:)``
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -482,6 +700,13 @@
       return try await self.embedContent(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PredictionService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -494,6 +719,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "PredictionService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -503,6 +735,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "PredictionService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -516,6 +752,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "PredictionService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -528,6 +771,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "PredictionService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -540,6 +794,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "PredictionService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -552,6 +814,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "PredictionService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -564,6 +839,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -576,6 +860,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -587,6 +880,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "PredictionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -600,6 +897,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -611,6 +917,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -623,6 +932,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -632,6 +944,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -642,6 +963,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -651,6 +981,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -661,6 +1000,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -670,6 +1018,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "PredictionService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``PredictionServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

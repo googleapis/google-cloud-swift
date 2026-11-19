@@ -24,6 +24,10 @@
   /// Service for the `httpHealthChecks` resource.
   ///
   /// @Snippet(path: "httpHealthChecksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/HttpHealthChecksProtocol``
   public final class HttpHealthChecksClient: Clients.HttpHealthChecksProtocol, Sendable {
     let inner: any Clients.HttpHealthChecksStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified HttpHealthCheck resource.
     ///
     /// @Snippet(path: "httpHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:httpHealthCheck:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: HttpHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "httpHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:httpHealthCheck:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: HttpHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -99,6 +117,11 @@
     /// Returns the specified HttpHealthCheck resource.
     ///
     /// @Snippet(path: "httpHealthChecks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:httpHealthCheck:)``
+    /// - ``get(request:)``
     public func `get`(
       request: HttpHealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HttpHealthCheck {
@@ -109,6 +132,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "httpHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: HttpHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -124,6 +154,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "httpHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: HttpHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -166,6 +203,13 @@
     /// project.
     ///
     /// @Snippet(path: "httpHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.HttpHealthCheckList {
@@ -178,6 +222,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "httpHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:httpHealthCheck:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: HttpHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -195,6 +246,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "httpHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:httpHealthCheck:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: HttpHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -236,6 +294,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "httpHealthChecks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: HttpHealthChecksClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -246,6 +309,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "httpHealthChecks_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:httpHealthCheck:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: HttpHealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -261,6 +331,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "httpHealthChecks_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:httpHealthCheck:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: HttpHealthChecksClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -395,6 +472,13 @@
 
   // Default implementations
   extension Clients.HttpHealthChecksProtocol {
+    /// Deletes the specified HttpHealthCheck resource.
+    ///
+    /// @Snippet(path: "httpHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/delete(request:options:)``
     public func delete(request: HttpHealthChecksClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -407,6 +491,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified HttpHealthCheck resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: HttpHealthChecksClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -419,6 +515,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified HttpHealthCheck resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       httpHealthCheck: Swift.String,
@@ -430,6 +538,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified HttpHealthCheck resource.
+    ///
+    /// @Snippet(path: "httpHealthChecks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/get(request:options:)``
     public func `get`(request: HttpHealthChecksClient.GetRequest) async throws
       -> GoogleCloudComputeV1.HttpHealthCheck
     {
@@ -442,6 +557,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified HttpHealthCheck resource.
+    ///
+    /// @Snippet(path: "httpHealthChecks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       httpHealthCheck: Swift.String,
@@ -453,6 +575,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "httpHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/insert(request:options:)``
     public func insert(request: HttpHealthChecksClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -465,6 +595,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: HttpHealthChecksClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -477,6 +620,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: HttpHealthCheck?,
@@ -488,6 +644,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of HttpHealthCheck resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "httpHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/list(request:options:)``
     public func list(request: HttpHealthChecksClient.ListRequest) async throws
       -> GoogleCloudComputeV1.HttpHealthCheckList
     {
@@ -500,6 +664,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of HttpHealthCheck resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "httpHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/list(request:options:)``
     public func listByItems(
       request: HttpHealthChecksClient.ListRequest
     ) -> some AsyncSequence<HttpHealthCheck, any Swift.Error> & Sendable {
@@ -510,6 +682,10 @@
     /// project.
     ///
     /// @Snippet(path: "httpHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/list(request:options:)``
     public func listByItems(
       request: HttpHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<HttpHealthCheck, any Swift.Error> & Sendable {
@@ -523,6 +699,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of HttpHealthCheck resources available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "httpHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<HttpHealthCheck, any Swift.Error> & Sendable {
@@ -532,6 +716,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "httpHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/patch(request:options:)``
     public func patch(request: HttpHealthChecksClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -544,6 +738,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: HttpHealthChecksClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -556,6 +765,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       httpHealthCheck: Swift.String,
@@ -569,6 +793,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "httpHealthChecks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: HttpHealthChecksClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -581,6 +812,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "httpHealthChecks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -594,6 +832,14 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "httpHealthChecks_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/update(request:options:)``
     public func update(request: HttpHealthChecksClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -606,6 +852,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: HttpHealthChecksClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -618,6 +877,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a HttpHealthCheck resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "httpHealthChecks_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``HttpHealthChecksClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       httpHealthCheck: Swift.String,
@@ -631,6 +903,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

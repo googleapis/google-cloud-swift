@@ -28,6 +28,10 @@
   /// A service for managing Vertex AI's Reasoning Engines.
   ///
   /// @Snippet(path: "ReasoningEngineServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ReasoningEngineServiceProtocol``
   public final class ReasoningEngineServiceClient: Clients.ReasoningEngineServiceProtocol, Sendable
   {
     let inner: any Clients.ReasoningEngineServiceStub
@@ -50,6 +54,13 @@
     /// Creates a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_CreateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createReasoningEngine(request:)``
+    /// - ``createReasoningEnginePollingUntilDone(parent:reasoningEngine:)``
+    /// - ``createReasoningEnginePollingUntilDone(request:)``
+    /// - ``createReasoningEnginePollingUntilDone(request:options:)``
     public func createReasoningEngine(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -59,6 +70,13 @@
     /// Creates a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_CreateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createReasoningEngine(request:)``
+    /// - ``createReasoningEngine(request:options:)``
+    /// - ``createReasoningEnginePollingUntilDone(parent:reasoningEngine:)``
+    /// - ``createReasoningEnginePollingUntilDone(request:)``
     public func createReasoningEnginePollingUntilDone(
       request: CreateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> ReasoningEngine {
@@ -87,6 +105,11 @@
     /// Gets a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_GetReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getReasoningEngine(name:)``
+    /// - ``getReasoningEngine(request:)``
     public func getReasoningEngine(
       request: GetReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ReasoningEngine {
@@ -96,6 +119,13 @@
     /// Lists reasoning engines in a location.
     ///
     /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listReasoningEngines(request:)``
+    /// - ``listReasoningEnginesByItems(parent:)``
+    /// - ``listReasoningEnginesByItems(request:)``
+    /// - ``listReasoningEnginesByItems(request:options:)``
     public func listReasoningEngines(
       request: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse {
@@ -105,6 +135,13 @@
     /// Updates a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateReasoningEngine(request:)``
+    /// - ``updateReasoningEnginePollingUntilDone(reasoningEngine:updateMask:)``
+    /// - ``updateReasoningEnginePollingUntilDone(request:)``
+    /// - ``updateReasoningEnginePollingUntilDone(request:options:)``
     public func updateReasoningEngine(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -114,6 +151,13 @@
     /// Updates a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateReasoningEngine(request:)``
+    /// - ``updateReasoningEngine(request:options:)``
+    /// - ``updateReasoningEnginePollingUntilDone(reasoningEngine:updateMask:)``
+    /// - ``updateReasoningEnginePollingUntilDone(request:)``
     public func updateReasoningEnginePollingUntilDone(
       request: UpdateReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> ReasoningEngine {
@@ -142,6 +186,13 @@
     /// Deletes a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_DeleteReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteReasoningEngine(request:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(name:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(request:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(request:options:)``
     public func deleteReasoningEngine(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -151,6 +202,13 @@
     /// Deletes a reasoning engine.
     ///
     /// @Snippet(path: "ReasoningEngineService_DeleteReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteReasoningEngine(request:)``
+    /// - ``deleteReasoningEngine(request:options:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(name:)``
+    /// - ``deleteReasoningEnginePollingUntilDone(request:)``
     public func deleteReasoningEnginePollingUntilDone(
       request: DeleteReasoningEngineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -179,6 +237,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "ReasoningEngineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -188,6 +252,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "ReasoningEngineService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -201,6 +269,10 @@
     /// errors.
     ///
     /// @Snippet(path: "ReasoningEngineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -211,6 +283,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "ReasoningEngineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -226,6 +302,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "ReasoningEngineService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -237,6 +317,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ReasoningEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -259,6 +346,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ReasoningEngineService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -270,6 +362,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ReasoningEngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -281,6 +378,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ReasoningEngineService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -384,6 +485,13 @@
 
   // Default implementations
   extension Clients.ReasoningEngineServiceProtocol {
+    /// Creates a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_CreateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/createReasoningEngine(request:options:)``
     public func createReasoningEngine(request: CreateReasoningEngineRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -396,6 +504,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_CreateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/createReasoningEnginePollingUntilDone(request:options:)``
     public func createReasoningEnginePollingUntilDone(request: CreateReasoningEngineRequest)
       async throws -> ReasoningEngine
     {
@@ -409,6 +524,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_CreateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/createReasoningEnginePollingUntilDone(request:options:)``
     public func createReasoningEnginePollingUntilDone(
       parent: Swift.String,
       reasoningEngine: ReasoningEngine?,
@@ -420,6 +542,13 @@
       return try await self.createReasoningEnginePollingUntilDone(request: request)
     }
 
+    /// Gets a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_GetReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/getReasoningEngine(request:options:)``
     public func getReasoningEngine(request: GetReasoningEngineRequest) async throws
       -> GoogleCloudAIPlatformV1.ReasoningEngine
     {
@@ -432,6 +561,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_GetReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/getReasoningEngine(request:options:)``
     public func getReasoningEngine(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ReasoningEngine {
@@ -441,6 +577,13 @@
       return try await self.getReasoningEngine(request: request)
     }
 
+    /// Lists reasoning engines in a location.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listReasoningEngines(request:options:)``
     public func listReasoningEngines(request: ListReasoningEnginesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListReasoningEnginesResponse
     {
@@ -453,6 +596,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists reasoning engines in a location.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listReasoningEngines(request:options:)``
     public func listReasoningEnginesByItems(
       request: ListReasoningEnginesRequest
     ) -> some AsyncSequence<ReasoningEngine, any Swift.Error> & Sendable {
@@ -462,6 +612,10 @@
     /// Lists reasoning engines in a location.
     ///
     /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listReasoningEngines(request:options:)``
     public func listReasoningEnginesByItems(
       request: ListReasoningEnginesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ReasoningEngine, any Swift.Error> & Sendable {
@@ -476,6 +630,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists reasoning engines in a location.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListReasoningEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listReasoningEngines(request:options:)``
     public func listReasoningEnginesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ReasoningEngine, any Swift.Error> & Sendable {
@@ -485,6 +646,13 @@
       return self.listReasoningEnginesByItems(request: request)
     }
 
+    /// Updates a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/updateReasoningEngine(request:options:)``
     public func updateReasoningEngine(request: UpdateReasoningEngineRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -497,6 +665,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/updateReasoningEnginePollingUntilDone(request:options:)``
     public func updateReasoningEnginePollingUntilDone(request: UpdateReasoningEngineRequest)
       async throws -> ReasoningEngine
     {
@@ -510,6 +685,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_UpdateReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/updateReasoningEnginePollingUntilDone(request:options:)``
     public func updateReasoningEnginePollingUntilDone(
       reasoningEngine: ReasoningEngine?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -521,6 +703,13 @@
       return try await self.updateReasoningEnginePollingUntilDone(request: request)
     }
 
+    /// Deletes a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_DeleteReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/deleteReasoningEngine(request:options:)``
     public func deleteReasoningEngine(request: DeleteReasoningEngineRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -533,6 +722,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_DeleteReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/deleteReasoningEnginePollingUntilDone(request:options:)``
     public func deleteReasoningEnginePollingUntilDone(request: DeleteReasoningEngineRequest)
       async throws
     {
@@ -545,6 +741,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a reasoning engine.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_DeleteReasoningEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/deleteReasoningEnginePollingUntilDone(request:options:)``
     public func deleteReasoningEnginePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -554,6 +757,13 @@
       try await self.deleteReasoningEnginePollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -566,6 +776,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -575,6 +792,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "ReasoningEngineService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -588,6 +809,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -600,6 +828,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -612,6 +851,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -624,6 +871,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "ReasoningEngineService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -636,6 +896,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -648,6 +917,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -659,6 +937,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ReasoningEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -672,6 +954,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -683,6 +974,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -695,6 +989,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -704,6 +1001,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -714,6 +1020,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -723,6 +1038,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -733,6 +1057,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -742,6 +1075,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ReasoningEngineService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReasoningEngineServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

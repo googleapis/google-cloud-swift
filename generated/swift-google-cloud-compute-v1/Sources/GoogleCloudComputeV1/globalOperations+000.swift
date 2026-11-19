@@ -24,6 +24,10 @@
   /// Service for the `globalOperations` resource.
   ///
   /// @Snippet(path: "globalOperationsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/GlobalOperationsProtocol``
   public final class GlobalOperationsClient: Clients.GlobalOperationsProtocol, Sendable {
     let inner: any Clients.GlobalOperationsStub
 
@@ -43,6 +47,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "globalOperations_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: GlobalOperationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.OperationAggregatedList {
@@ -52,6 +63,11 @@
     /// Deletes the specified Operations resource.
     ///
     /// @Snippet(path: "globalOperations_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(project:operation:)``
+    /// - ``delete(request:)``
     public func delete(
       request: GlobalOperationsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -61,6 +77,11 @@
     /// Retrieves the specified Operations resource.
     ///
     /// @Snippet(path: "globalOperations_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:operation:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalOperationsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -71,6 +92,13 @@
     /// project.
     ///
     /// @Snippet(path: "globalOperations_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: GlobalOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.OperationList {
@@ -95,6 +123,11 @@
     ///     if the operation is not `DONE`.
     ///
     /// @Snippet(path: "globalOperations_wait")
+    ///
+    /// ## See Also
+    ///
+    /// - ``wait(project:operation:)``
+    /// - ``wait(request:)``
     public func wait(
       request: GlobalOperationsClient.WaitRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -138,6 +171,16 @@
 
   // Default implementations
   extension Clients.GlobalOperationsProtocol {
+    /// Retrieves an aggregated list of all operations.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalOperations_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: GlobalOperationsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.OperationAggregatedList
     {
@@ -150,6 +193,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of all operations.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalOperations_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: GlobalOperationsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, OperationsScopedList), any Swift.Error> & Sendable {
@@ -162,6 +215,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "globalOperations_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: GlobalOperationsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, OperationsScopedList), any Swift.Error> & Sendable {
@@ -176,6 +233,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of all operations.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalOperations_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, OperationsScopedList), any Swift.Error> & Sendable {
@@ -185,6 +252,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified Operations resource.
+    ///
+    /// @Snippet(path: "globalOperations_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/delete(request:options:)``
     public func delete(request: GlobalOperationsClient.DeleteRequest) async throws {
       try await self.delete(request: request, options: .init())
     }
@@ -195,6 +269,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified Operations resource.
+    ///
+    /// @Snippet(path: "globalOperations_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/delete(request:options:)``
     public func delete(
       project: Swift.String,
       operation: Swift.String,
@@ -206,6 +287,13 @@
       try await self.delete(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
+    ///
+    /// @Snippet(path: "globalOperations_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/get(request:options:)``
     public func `get`(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -218,6 +306,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified Operations resource.
+    ///
+    /// @Snippet(path: "globalOperations_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       operation: Swift.String,
@@ -229,6 +324,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves a list of Operation resources contained within the specified
+    /// project.
+    ///
+    /// @Snippet(path: "globalOperations_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/list(request:options:)``
     public func list(request: GlobalOperationsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.OperationList
     {
@@ -241,6 +344,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of Operation resources contained within the specified
+    /// project.
+    ///
+    /// @Snippet(path: "globalOperations_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/list(request:options:)``
     public func listByItems(
       request: GlobalOperationsClient.ListRequest
     ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
@@ -251,6 +362,10 @@
     /// project.
     ///
     /// @Snippet(path: "globalOperations_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/list(request:options:)``
     public func listByItems(
       request: GlobalOperationsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
@@ -264,6 +379,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of Operation resources contained within the specified
+    /// project.
+    ///
+    /// @Snippet(path: "globalOperations_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<Operation, any Swift.Error> & Sendable {
@@ -273,6 +396,28 @@
       return self.listByItems(request: request)
     }
 
+    /// Waits for the specified Operation resource to return as `DONE`
+    /// or for the request to approach the 2 minute deadline, and retrieves the
+    /// specified Operation resource. This method differs from the
+    /// `GET` method in that it waits for no more than the default
+    /// deadline (2 minutes) and then returns the current state of the operation,
+    /// which might be `DONE` or still in progress.
+    ///
+    /// This method is called on a best-effort basis. Specifically:
+    ///
+    ///
+    ///     - In uncommon cases, when the server is overloaded, the request might
+    ///     return before the default deadline is reached, or might return after zero
+    ///     seconds.
+    ///    - If the default deadline is reached, there is no guarantee that the
+    ///     operation is actually done when the method returns. Be prepared to retry
+    ///     if the operation is not `DONE`.
+    ///
+    /// @Snippet(path: "globalOperations_wait")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/wait(request:options:)``
     public func wait(request: GlobalOperationsClient.WaitRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -285,6 +430,28 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Waits for the specified Operation resource to return as `DONE`
+    /// or for the request to approach the 2 minute deadline, and retrieves the
+    /// specified Operation resource. This method differs from the
+    /// `GET` method in that it waits for no more than the default
+    /// deadline (2 minutes) and then returns the current state of the operation,
+    /// which might be `DONE` or still in progress.
+    ///
+    /// This method is called on a best-effort basis. Specifically:
+    ///
+    ///
+    ///     - In uncommon cases, when the server is overloaded, the request might
+    ///     return before the default deadline is reached, or might return after zero
+    ///     seconds.
+    ///    - If the default deadline is reached, there is no guarantee that the
+    ///     operation is actually done when the method returns. Be prepared to retry
+    ///     if the operation is not `DONE`.
+    ///
+    /// @Snippet(path: "globalOperations_wait")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalOperationsClient/wait(request:options:)``
     public func wait(
       project: Swift.String,
       operation: Swift.String,

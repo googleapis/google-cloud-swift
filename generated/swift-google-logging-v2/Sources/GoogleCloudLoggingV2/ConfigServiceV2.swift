@@ -25,6 +25,10 @@ import Foundation
 /// Service for configuring sinks used to route log entries.
 ///
 /// @Snippet(path: "ConfigServiceV2Quickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ConfigServiceV2Protocol``
 public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Sendable {
   let inner: any Clients.ConfigServiceV2Stub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Lists log buckets.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListBuckets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBuckets(request:)``
+  /// - ``listBucketsByItems(parent:)``
+  /// - ``listBucketsByItems(request:)``
+  /// - ``listBucketsByItems(request:options:)``
   public func listBuckets(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListBucketsResponse {
@@ -54,6 +65,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Gets a log bucket.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBucket(request:)``
   public func getBucket(
     request: GetBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogBucket {
@@ -65,6 +80,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// After a bucket has been created, the bucket's location cannot be changed.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBucketAsync(request:)``
+  /// - ``createBucketAsyncPollingUntilDone(request:)``
+  /// - ``createBucketAsyncPollingUntilDone(request:options:)``
   public func createBucketAsync(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -76,6 +97,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// After a bucket has been created, the bucket's location cannot be changed.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBucketAsync(request:)``
+  /// - ``createBucketAsync(request:options:)``
+  /// - ``createBucketAsyncPollingUntilDone(request:)``
   public func createBucketAsyncPollingUntilDone(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> LogBucket {
@@ -108,6 +135,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// After a bucket has been created, the bucket's location cannot be changed.
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBucketAsync(request:)``
+  /// - ``updateBucketAsyncPollingUntilDone(request:)``
+  /// - ``updateBucketAsyncPollingUntilDone(request:options:)``
   public func updateBucketAsync(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -122,6 +155,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// After a bucket has been created, the bucket's location cannot be changed.
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBucketAsync(request:)``
+  /// - ``updateBucketAsync(request:options:)``
+  /// - ``updateBucketAsyncPollingUntilDone(request:)``
   public func updateBucketAsyncPollingUntilDone(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> LogBucket {
@@ -150,6 +189,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// has been created, the bucket's location cannot be changed.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBucket(request:)``
   public func createBucket(
     request: CreateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogBucket {
@@ -164,6 +207,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// After a bucket has been created, the bucket's location cannot be changed.
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBucket(request:)``
   public func updateBucket(
     request: UpdateBucketRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogBucket {
@@ -177,6 +224,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// will be permanently deleted.
   ///
   /// @Snippet(path: "ConfigServiceV2_DeleteBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBucket(request:)``
   public func deleteBucket(
     request: DeleteBucketRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -187,6 +238,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// within the grace period of 7 days.
   ///
   /// @Snippet(path: "ConfigServiceV2_UndeleteBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``undeleteBucket(request:)``
   public func undeleteBucket(
     request: UndeleteBucketRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -196,6 +251,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Lists views on a log bucket.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listViews(request:)``
+  /// - ``listViewsByItems(parent:)``
+  /// - ``listViewsByItems(request:)``
+  /// - ``listViewsByItems(request:options:)``
   public func listViews(
     request: ListViewsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListViewsResponse {
@@ -205,6 +267,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Gets a view on a log bucket..
   ///
   /// @Snippet(path: "ConfigServiceV2_GetView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getView(request:)``
   public func getView(
     request: GetViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogView {
@@ -215,6 +281,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// maximum of 30 views.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createView(request:)``
   public func createView(
     request: CreateViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogView {
@@ -228,6 +298,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// few minutes.
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateView(request:)``
   public func updateView(
     request: UpdateViewRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogView {
@@ -240,6 +314,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// few minutes.
   ///
   /// @Snippet(path: "ConfigServiceV2_DeleteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteView(request:)``
   public func deleteView(
     request: DeleteViewRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -249,6 +327,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Lists sinks.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListSinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSinks(request:)``
+  /// - ``listSinksByItems(parent:)``
+  /// - ``listSinksByItems(request:)``
+  /// - ``listSinksByItems(request:options:)``
   public func listSinks(
     request: ListSinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListSinksResponse {
@@ -258,6 +343,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Gets a sink.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSink(request:)``
+  /// - ``getSink(sinkName:)``
   public func getSink(
     request: GetSinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -270,6 +360,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// export log entries only from the resource owning the sink.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSink(parent:sink:)``
+  /// - ``createSink(request:)``
   public func createSink(
     request: CreateSinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -283,6 +378,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// `unique_writer_identity` field.
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSink(request:)``
+  /// - ``updateSink(sinkName:sink:)``
+  /// - ``updateSink(sinkName:sink:updateMask:)``
   public func updateSink(
     request: UpdateSinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -293,6 +394,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// service account is also deleted.
   ///
   /// @Snippet(path: "ConfigServiceV2_DeleteSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSink(request:)``
+  /// - ``deleteSink(sinkName:)``
   public func deleteSink(
     request: DeleteSinkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -304,6 +410,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// currently only contain one link.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLink(request:)``
+  /// - ``createLinkPollingUntilDone(parent:link:linkId:)``
+  /// - ``createLinkPollingUntilDone(request:)``
+  /// - ``createLinkPollingUntilDone(request:options:)``
   public func createLink(
     request: CreateLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -315,6 +428,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// currently only contain one link.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createLink(request:)``
+  /// - ``createLink(request:options:)``
+  /// - ``createLinkPollingUntilDone(parent:link:linkId:)``
+  /// - ``createLinkPollingUntilDone(request:)``
   public func createLinkPollingUntilDone(
     request: CreateLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> Link {
@@ -343,6 +463,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// dataset.
   ///
   /// @Snippet(path: "ConfigServiceV2_DeleteLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLink(request:)``
+  /// - ``deleteLinkPollingUntilDone(name:)``
+  /// - ``deleteLinkPollingUntilDone(request:)``
+  /// - ``deleteLinkPollingUntilDone(request:options:)``
   public func deleteLink(
     request: DeleteLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -353,6 +480,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// dataset.
   ///
   /// @Snippet(path: "ConfigServiceV2_DeleteLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteLink(request:)``
+  /// - ``deleteLink(request:options:)``
+  /// - ``deleteLinkPollingUntilDone(name:)``
+  /// - ``deleteLinkPollingUntilDone(request:)``
   public func deleteLinkPollingUntilDone(
     request: DeleteLinkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -380,6 +514,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Lists links.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLinks(request:)``
+  /// - ``listLinksByItems(parent:)``
+  /// - ``listLinksByItems(request:)``
+  /// - ``listLinksByItems(request:options:)``
   public func listLinks(
     request: ListLinksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListLinksResponse {
@@ -389,6 +530,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Gets a link.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLink(name:)``
+  /// - ``getLink(request:)``
   public func getLink(
     request: GetLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.Link {
@@ -398,6 +544,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Lists all the exclusions on the _Default sink in a parent resource.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListExclusions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listExclusions(request:)``
+  /// - ``listExclusionsByItems(parent:)``
+  /// - ``listExclusionsByItems(request:)``
+  /// - ``listExclusionsByItems(request:options:)``
   public func listExclusions(
     request: ListExclusionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.ListExclusionsResponse {
@@ -407,6 +560,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Gets the description of an exclusion in the _Default sink.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getExclusion(name:)``
+  /// - ``getExclusion(request:)``
   public func getExclusion(
     request: GetExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -418,6 +576,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// can have up to 10 exclusions in a resource.
   ///
   /// @Snippet(path: "ConfigServiceV2_CreateExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createExclusion(parent:exclusion:)``
+  /// - ``createExclusion(request:)``
   public func createExclusion(
     request: CreateExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -428,6 +591,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// sink.
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateExclusion(name:exclusion:updateMask:)``
+  /// - ``updateExclusion(request:)``
   public func updateExclusion(
     request: UpdateExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -437,6 +605,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Deletes an exclusion in the _Default sink.
   ///
   /// @Snippet(path: "ConfigServiceV2_DeleteExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteExclusion(name:)``
+  /// - ``deleteExclusion(request:)``
   public func deleteExclusion(
     request: DeleteExclusionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -455,6 +628,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// for more information.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetCmekSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCmekSettings(request:)``
   public func getCmekSettings(
     request: GetCmekSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.CmekSettings {
@@ -480,6 +657,10 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:options:)>
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateCmekSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCmekSettings(request:)``
   public func updateCmekSettings(
     request: UpdateCmekSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.CmekSettings {
@@ -498,6 +679,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// for more information.
   ///
   /// @Snippet(path: "ConfigServiceV2_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSettings(name:)``
+  /// - ``getSettings(request:)``
   public func getSettings(
     request: GetSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.Settings {
@@ -524,6 +710,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2Client/updateSettings(request:options:)>
   ///
   /// @Snippet(path: "ConfigServiceV2_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSettings(request:)``
+  /// - ``updateSettings(settings:updateMask:)``
   public func updateSettings(
     request: UpdateSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLoggingV2.Settings {
@@ -533,6 +724,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Copies a set of log entries from a log bucket to a Cloud Storage bucket.
   ///
   /// @Snippet(path: "ConfigServiceV2_CopyLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``copyLogEntries(request:)``
+  /// - ``copyLogEntriesPollingUntilDone(request:)``
+  /// - ``copyLogEntriesPollingUntilDone(request:options:)``
   public func copyLogEntries(
     request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -542,6 +739,12 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// Copies a set of log entries from a log bucket to a Cloud Storage bucket.
   ///
   /// @Snippet(path: "ConfigServiceV2_CopyLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``copyLogEntries(request:)``
+  /// - ``copyLogEntries(request:options:)``
+  /// - ``copyLogEntriesPollingUntilDone(request:)``
   public func copyLogEntriesPollingUntilDone(
     request: CopyLogEntriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> CopyLogEntriesResponse {
@@ -572,6 +775,13 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -594,6 +804,11 @@ public final class ConfigServiceV2Client: Clients.ConfigServiceV2Protocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -807,6 +1022,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConfigServiceV2Protocol {
+  /// Lists log buckets.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListBuckets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listBuckets(request:options:)``
   public func listBuckets(request: ListBucketsRequest) async throws
     -> GoogleCloudLoggingV2.ListBucketsResponse
   {
@@ -819,6 +1041,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists log buckets.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListBuckets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listBuckets(request:options:)``
   public func listBucketsByItems(
     request: ListBucketsRequest
   ) -> some AsyncSequence<LogBucket, any Swift.Error> & Sendable {
@@ -828,6 +1057,10 @@ extension Clients.ConfigServiceV2Protocol {
   /// Lists log buckets.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListBuckets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listBuckets(request:options:)``
   public func listBucketsByItems(
     request: ListBucketsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LogBucket, any Swift.Error> & Sendable {
@@ -841,6 +1074,13 @@ extension Clients.ConfigServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists log buckets.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListBuckets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listBuckets(request:options:)``
   public func listBucketsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LogBucket, any Swift.Error> & Sendable {
@@ -850,6 +1090,13 @@ extension Clients.ConfigServiceV2Protocol {
     return self.listBucketsByItems(request: request)
   }
 
+  /// Gets a log bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getBucket(request:options:)``
   public func getBucket(request: GetBucketRequest) async throws -> GoogleCloudLoggingV2.LogBucket {
     try await self.getBucket(request: request, options: .init())
   }
@@ -860,6 +1107,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a log bucket asynchronously that can be used to store log entries.
+  ///
+  /// After a bucket has been created, the bucket's location cannot be changed.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createBucketAsync(request:options:)``
   public func createBucketAsync(request: CreateBucketRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -872,6 +1128,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a log bucket asynchronously that can be used to store log entries.
+  ///
+  /// After a bucket has been created, the bucket's location cannot be changed.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createBucketAsyncPollingUntilDone(request:options:)``
   public func createBucketAsyncPollingUntilDone(request: CreateBucketRequest) async throws
     -> LogBucket
   {
@@ -884,6 +1149,18 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a log bucket asynchronously.
+  ///
+  /// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+  /// `FAILED_PRECONDITION` will be returned.
+  ///
+  /// After a bucket has been created, the bucket's location cannot be changed.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateBucketAsync(request:options:)``
   public func updateBucketAsync(request: UpdateBucketRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -896,6 +1173,18 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a log bucket asynchronously.
+  ///
+  /// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+  /// `FAILED_PRECONDITION` will be returned.
+  ///
+  /// After a bucket has been created, the bucket's location cannot be changed.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateBucketAsync")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateBucketAsyncPollingUntilDone(request:options:)``
   public func updateBucketAsyncPollingUntilDone(request: UpdateBucketRequest) async throws
     -> LogBucket
   {
@@ -908,6 +1197,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a log bucket that can be used to store log entries. After a bucket
+  /// has been created, the bucket's location cannot be changed.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createBucket(request:options:)``
   public func createBucket(request: CreateBucketRequest) async throws
     -> GoogleCloudLoggingV2.LogBucket
   {
@@ -920,6 +1217,18 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a log bucket.
+  ///
+  /// If the bucket has a `lifecycle_state` of `DELETE_REQUESTED`, then
+  /// `FAILED_PRECONDITION` will be returned.
+  ///
+  /// After a bucket has been created, the bucket's location cannot be changed.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateBucket(request:options:)``
   public func updateBucket(request: UpdateBucketRequest) async throws
     -> GoogleCloudLoggingV2.LogBucket
   {
@@ -932,6 +1241,17 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a log bucket.
+  ///
+  /// Changes the bucket's `lifecycle_state` to the `DELETE_REQUESTED` state.
+  /// After 7 days, the bucket will be purged and all log entries in the bucket
+  /// will be permanently deleted.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteBucket(request:options:)``
   public func deleteBucket(request: DeleteBucketRequest) async throws {
     try await self.deleteBucket(request: request, options: .init())
   }
@@ -942,6 +1262,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Undeletes a log bucket. A bucket that has been deleted can be undeleted
+  /// within the grace period of 7 days.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UndeleteBucket")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/undeleteBucket(request:options:)``
   public func undeleteBucket(request: UndeleteBucketRequest) async throws {
     try await self.undeleteBucket(request: request, options: .init())
   }
@@ -952,6 +1280,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists views on a log bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listViews(request:options:)``
   public func listViews(request: ListViewsRequest) async throws
     -> GoogleCloudLoggingV2.ListViewsResponse
   {
@@ -964,6 +1299,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists views on a log bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listViews(request:options:)``
   public func listViewsByItems(
     request: ListViewsRequest
   ) -> some AsyncSequence<LogView, any Swift.Error> & Sendable {
@@ -973,6 +1315,10 @@ extension Clients.ConfigServiceV2Protocol {
   /// Lists views on a log bucket.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listViews(request:options:)``
   public func listViewsByItems(
     request: ListViewsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LogView, any Swift.Error> & Sendable {
@@ -986,6 +1332,13 @@ extension Clients.ConfigServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists views on a log bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListViews")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listViews(request:options:)``
   public func listViewsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LogView, any Swift.Error> & Sendable {
@@ -995,6 +1348,13 @@ extension Clients.ConfigServiceV2Protocol {
     return self.listViewsByItems(request: request)
   }
 
+  /// Gets a view on a log bucket..
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getView(request:options:)``
   public func getView(request: GetViewRequest) async throws -> GoogleCloudLoggingV2.LogView {
     try await self.getView(request: request, options: .init())
   }
@@ -1005,6 +1365,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a view over log entries in a log bucket. A bucket may contain a
+  /// maximum of 30 views.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createView(request:options:)``
   public func createView(request: CreateViewRequest) async throws -> GoogleCloudLoggingV2.LogView {
     try await self.createView(request: request, options: .init())
   }
@@ -1015,6 +1383,17 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a view on a log bucket. This method replaces the following fields
+  /// in the existing view with values from the new view: `filter`.
+  /// If an `UNAVAILABLE` error is returned, this indicates that system is not in
+  /// a state where it can update the view. If this occurs, please try again in a
+  /// few minutes.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateView(request:options:)``
   public func updateView(request: UpdateViewRequest) async throws -> GoogleCloudLoggingV2.LogView {
     try await self.updateView(request: request, options: .init())
   }
@@ -1025,6 +1404,16 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a view on a log bucket.
+  /// If an `UNAVAILABLE` error is returned, this indicates that system is not in
+  /// a state where it can delete the view. If this occurs, please try again in a
+  /// few minutes.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteView")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteView(request:options:)``
   public func deleteView(request: DeleteViewRequest) async throws {
     try await self.deleteView(request: request, options: .init())
   }
@@ -1035,6 +1424,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists sinks.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListSinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listSinks(request:options:)``
   public func listSinks(request: ListSinksRequest) async throws
     -> GoogleCloudLoggingV2.ListSinksResponse
   {
@@ -1047,6 +1443,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists sinks.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListSinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listSinks(request:options:)``
   public func listSinksByItems(
     request: ListSinksRequest
   ) -> some AsyncSequence<LogSink, any Swift.Error> & Sendable {
@@ -1056,6 +1459,10 @@ extension Clients.ConfigServiceV2Protocol {
   /// Lists sinks.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListSinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listSinks(request:options:)``
   public func listSinksByItems(
     request: ListSinksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LogSink, any Swift.Error> & Sendable {
@@ -1069,6 +1476,13 @@ extension Clients.ConfigServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists sinks.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListSinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listSinks(request:options:)``
   public func listSinksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LogSink, any Swift.Error> & Sendable {
@@ -1078,6 +1492,13 @@ extension Clients.ConfigServiceV2Protocol {
     return self.listSinksByItems(request: request)
   }
 
+  /// Gets a sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getSink(request:options:)``
   public func getSink(request: GetSinkRequest) async throws -> GoogleCloudLoggingV2.LogSink {
     try await self.getSink(request: request, options: .init())
   }
@@ -1088,6 +1509,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getSink(request:options:)``
   public func getSink(
     sinkName: Swift.String,
   ) async throws -> GoogleCloudLoggingV2.LogSink {
@@ -1097,6 +1525,16 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.getSink(request: request)
   }
 
+  /// Creates a sink that exports specified log entries to a destination. The
+  /// export of newly-ingested log entries begins immediately, unless the sink's
+  /// `writer_identity` is not permitted to write to the destination. A sink can
+  /// export log entries only from the resource owning the sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createSink(request:options:)``
   public func createSink(request: CreateSinkRequest) async throws -> GoogleCloudLoggingV2.LogSink {
     try await self.createSink(request: request, options: .init())
   }
@@ -1107,6 +1545,16 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a sink that exports specified log entries to a destination. The
+  /// export of newly-ingested log entries begins immediately, unless the sink's
+  /// `writer_identity` is not permitted to write to the destination. A sink can
+  /// export log entries only from the resource owning the sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createSink(request:options:)``
   public func createSink(
     parent: Swift.String,
     sink: LogSink?,
@@ -1118,6 +1566,17 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.createSink(request: request)
   }
 
+  /// Updates a sink. This method replaces the following fields in the existing
+  /// sink with values from the new sink: `destination`, and `filter`.
+  ///
+  /// The updated sink might also have a new `writer_identity`; see the
+  /// `unique_writer_identity` field.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateSink(request:options:)``
   public func updateSink(request: UpdateSinkRequest) async throws -> GoogleCloudLoggingV2.LogSink {
     try await self.updateSink(request: request, options: .init())
   }
@@ -1128,6 +1587,17 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a sink. This method replaces the following fields in the existing
+  /// sink with values from the new sink: `destination`, and `filter`.
+  ///
+  /// The updated sink might also have a new `writer_identity`; see the
+  /// `unique_writer_identity` field.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateSink(request:options:)``
   public func updateSink(
     sinkName: Swift.String,
     sink: LogSink?,
@@ -1141,6 +1611,17 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.updateSink(request: request)
   }
 
+  /// Updates a sink. This method replaces the following fields in the existing
+  /// sink with values from the new sink: `destination`, and `filter`.
+  ///
+  /// The updated sink might also have a new `writer_identity`; see the
+  /// `unique_writer_identity` field.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateSink(request:options:)``
   public func updateSink(
     sinkName: Swift.String,
     sink: LogSink?,
@@ -1152,6 +1633,14 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.updateSink(request: request)
   }
 
+  /// Deletes a sink. If the sink has a unique `writer_identity`, then that
+  /// service account is also deleted.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteSink(request:options:)``
   public func deleteSink(request: DeleteSinkRequest) async throws {
     try await self.deleteSink(request: request, options: .init())
   }
@@ -1162,6 +1651,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a sink. If the sink has a unique `writer_identity`, then that
+  /// service account is also deleted.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteSink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteSink(request:options:)``
   public func deleteSink(
     sinkName: Swift.String,
   ) async throws {
@@ -1171,6 +1668,15 @@ extension Clients.ConfigServiceV2Protocol {
     try await self.deleteSink(request: request)
   }
 
+  /// Asynchronously creates a linked dataset in BigQuery which makes it possible
+  /// to use BigQuery to read the logs stored in the log bucket. A log bucket may
+  /// currently only contain one link.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createLink(request:options:)``
   public func createLink(request: CreateLinkRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createLink(request: request, options: .init())
   }
@@ -1181,6 +1687,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Asynchronously creates a linked dataset in BigQuery which makes it possible
+  /// to use BigQuery to read the logs stored in the log bucket. A log bucket may
+  /// currently only contain one link.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createLinkPollingUntilDone(request:options:)``
   public func createLinkPollingUntilDone(request: CreateLinkRequest) async throws -> Link {
     return try await self.createLinkPollingUntilDone(request: request, options: .init())
   }
@@ -1191,6 +1706,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Asynchronously creates a linked dataset in BigQuery which makes it possible
+  /// to use BigQuery to read the logs stored in the log bucket. A log bucket may
+  /// currently only contain one link.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createLinkPollingUntilDone(request:options:)``
   public func createLinkPollingUntilDone(
     parent: Swift.String,
     link: Link?,
@@ -1204,6 +1728,14 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.createLinkPollingUntilDone(request: request)
   }
 
+  /// Deletes a link. This will also delete the corresponding BigQuery linked
+  /// dataset.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteLink(request:options:)``
   public func deleteLink(request: DeleteLinkRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteLink(request: request, options: .init())
   }
@@ -1214,6 +1746,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a link. This will also delete the corresponding BigQuery linked
+  /// dataset.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteLinkPollingUntilDone(request:options:)``
   public func deleteLinkPollingUntilDone(request: DeleteLinkRequest) async throws {
     try await self.deleteLinkPollingUntilDone(request: request, options: .init())
   }
@@ -1224,6 +1764,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a link. This will also delete the corresponding BigQuery linked
+  /// dataset.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteLinkPollingUntilDone(request:options:)``
   public func deleteLinkPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1233,6 +1781,13 @@ extension Clients.ConfigServiceV2Protocol {
     try await self.deleteLinkPollingUntilDone(request: request)
   }
 
+  /// Lists links.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listLinks(request:options:)``
   public func listLinks(request: ListLinksRequest) async throws
     -> GoogleCloudLoggingV2.ListLinksResponse
   {
@@ -1245,6 +1800,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists links.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listLinks(request:options:)``
   public func listLinksByItems(
     request: ListLinksRequest
   ) -> some AsyncSequence<Link, any Swift.Error> & Sendable {
@@ -1254,6 +1816,10 @@ extension Clients.ConfigServiceV2Protocol {
   /// Lists links.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listLinks(request:options:)``
   public func listLinksByItems(
     request: ListLinksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Link, any Swift.Error> & Sendable {
@@ -1267,6 +1833,13 @@ extension Clients.ConfigServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists links.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListLinks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listLinks(request:options:)``
   public func listLinksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Link, any Swift.Error> & Sendable {
@@ -1276,6 +1849,13 @@ extension Clients.ConfigServiceV2Protocol {
     return self.listLinksByItems(request: request)
   }
 
+  /// Gets a link.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getLink(request:options:)``
   public func getLink(request: GetLinkRequest) async throws -> GoogleCloudLoggingV2.Link {
     try await self.getLink(request: request, options: .init())
   }
@@ -1286,6 +1866,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a link.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getLink(request:options:)``
   public func getLink(
     name: Swift.String,
   ) async throws -> GoogleCloudLoggingV2.Link {
@@ -1295,6 +1882,13 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.getLink(request: request)
   }
 
+  /// Lists all the exclusions on the _Default sink in a parent resource.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListExclusions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listExclusions(request:options:)``
   public func listExclusions(request: ListExclusionsRequest) async throws
     -> GoogleCloudLoggingV2.ListExclusionsResponse
   {
@@ -1307,6 +1901,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the exclusions on the _Default sink in a parent resource.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListExclusions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listExclusions(request:options:)``
   public func listExclusionsByItems(
     request: ListExclusionsRequest
   ) -> some AsyncSequence<LogExclusion, any Swift.Error> & Sendable {
@@ -1316,6 +1917,10 @@ extension Clients.ConfigServiceV2Protocol {
   /// Lists all the exclusions on the _Default sink in a parent resource.
   ///
   /// @Snippet(path: "ConfigServiceV2_ListExclusions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listExclusions(request:options:)``
   public func listExclusionsByItems(
     request: ListExclusionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<LogExclusion, any Swift.Error> & Sendable {
@@ -1329,6 +1934,13 @@ extension Clients.ConfigServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the exclusions on the _Default sink in a parent resource.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListExclusions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listExclusions(request:options:)``
   public func listExclusionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<LogExclusion, any Swift.Error> & Sendable {
@@ -1338,6 +1950,13 @@ extension Clients.ConfigServiceV2Protocol {
     return self.listExclusionsByItems(request: request)
   }
 
+  /// Gets the description of an exclusion in the _Default sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getExclusion(request:options:)``
   public func getExclusion(request: GetExclusionRequest) async throws
     -> GoogleCloudLoggingV2.LogExclusion
   {
@@ -1350,6 +1969,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the description of an exclusion in the _Default sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getExclusion(request:options:)``
   public func getExclusion(
     name: Swift.String,
   ) async throws -> GoogleCloudLoggingV2.LogExclusion {
@@ -1359,6 +1985,15 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.getExclusion(request: request)
   }
 
+  /// Creates a new exclusion in the _Default sink in a specified parent
+  /// resource. Only log entries belonging to that resource can be excluded. You
+  /// can have up to 10 exclusions in a resource.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createExclusion(request:options:)``
   public func createExclusion(request: CreateExclusionRequest) async throws
     -> GoogleCloudLoggingV2.LogExclusion
   {
@@ -1371,6 +2006,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new exclusion in the _Default sink in a specified parent
+  /// resource. Only log entries belonging to that resource can be excluded. You
+  /// can have up to 10 exclusions in a resource.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CreateExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/createExclusion(request:options:)``
   public func createExclusion(
     parent: Swift.String,
     exclusion: LogExclusion?,
@@ -1382,6 +2026,14 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.createExclusion(request: request)
   }
 
+  /// Changes one or more properties of an existing exclusion in the _Default
+  /// sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateExclusion(request:options:)``
   public func updateExclusion(request: UpdateExclusionRequest) async throws
     -> GoogleCloudLoggingV2.LogExclusion
   {
@@ -1394,6 +2046,14 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Changes one or more properties of an existing exclusion in the _Default
+  /// sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateExclusion(request:options:)``
   public func updateExclusion(
     name: Swift.String,
     exclusion: LogExclusion?,
@@ -1407,6 +2067,13 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.updateExclusion(request: request)
   }
 
+  /// Deletes an exclusion in the _Default sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteExclusion(request:options:)``
   public func deleteExclusion(request: DeleteExclusionRequest) async throws {
     try await self.deleteExclusion(request: request, options: .init())
   }
@@ -1417,6 +2084,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an exclusion in the _Default sink.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_DeleteExclusion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/deleteExclusion(request:options:)``
   public func deleteExclusion(
     name: Swift.String,
   ) async throws {
@@ -1426,6 +2100,22 @@ extension Clients.ConfigServiceV2Protocol {
     try await self.deleteExclusion(request: request)
   }
 
+  /// Gets the Logging CMEK settings for the given resource.
+  ///
+  /// Note: CMEK for the Log Router can be configured for Google Cloud projects,
+  /// folders, organizations and billing accounts. Once configured for an
+  /// organization, it applies to all projects and folders in the Google Cloud
+  /// organization.
+  ///
+  /// See [Enabling CMEK for Log
+  /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+  /// for more information.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetCmekSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getCmekSettings(request:options:)``
   public func getCmekSettings(request: GetCmekSettingsRequest) async throws
     -> GoogleCloudLoggingV2.CmekSettings
   {
@@ -1438,6 +2128,29 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Log Router CMEK settings for the given resource.
+  ///
+  /// Note: CMEK for the Log Router can currently only be configured for Google
+  /// Cloud organizations. Once configured, it applies to all projects and
+  /// folders in the Google Cloud organization.
+  ///
+  /// [UpdateCmekSettings][google.logging.v2.ConfigServiceV2.UpdateCmekSettings]
+  /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+  /// account does not have the required
+  /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+  /// 3) access to the key is disabled.
+  ///
+  /// See [Enabling CMEK for Log
+  /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+  /// for more information.
+  ///
+  /// [google.logging.v2.ConfigServiceV2.UpdateCmekSettings]: <doc:ConfigServiceV2Client/updateCmekSettings(request:options:)>
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateCmekSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateCmekSettings(request:options:)``
   public func updateCmekSettings(request: UpdateCmekSettingsRequest) async throws
     -> GoogleCloudLoggingV2.CmekSettings
   {
@@ -1450,6 +2163,22 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the Log Router settings for the given resource.
+  ///
+  /// Note: Settings for the Log Router can be get for Google Cloud projects,
+  /// folders, organizations and billing accounts. Currently it can only be
+  /// configured for organizations. Once configured for an organization, it
+  /// applies to all projects and folders in the Google Cloud organization.
+  ///
+  /// See [Enabling CMEK for Log
+  /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+  /// for more information.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getSettings(request:options:)``
   public func getSettings(request: GetSettingsRequest) async throws -> GoogleCloudLoggingV2.Settings
   {
     try await self.getSettings(request: request, options: .init())
@@ -1461,6 +2190,22 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the Log Router settings for the given resource.
+  ///
+  /// Note: Settings for the Log Router can be get for Google Cloud projects,
+  /// folders, organizations and billing accounts. Currently it can only be
+  /// configured for organizations. Once configured for an organization, it
+  /// applies to all projects and folders in the Google Cloud organization.
+  ///
+  /// See [Enabling CMEK for Log
+  /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+  /// for more information.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_GetSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/getSettings(request:options:)``
   public func getSettings(
     name: Swift.String,
   ) async throws -> GoogleCloudLoggingV2.Settings {
@@ -1470,6 +2215,30 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.getSettings(request: request)
   }
 
+  /// Updates the Log Router settings for the given resource.
+  ///
+  /// Note: Settings for the Log Router can currently only be configured for
+  /// Google Cloud organizations. Once configured, it applies to all projects and
+  /// folders in the Google Cloud organization.
+  ///
+  /// [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
+  /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+  /// account does not have the required
+  /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+  /// 3) access to the key is disabled. 4) `location_id` is not supported by
+  /// Logging. 5) `location_id` violate OrgPolicy.
+  ///
+  /// See [Enabling CMEK for Log
+  /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+  /// for more information.
+  ///
+  /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2Client/updateSettings(request:options:)>
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateSettings(request:options:)``
   public func updateSettings(request: UpdateSettingsRequest) async throws
     -> GoogleCloudLoggingV2.Settings
   {
@@ -1482,6 +2251,30 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Log Router settings for the given resource.
+  ///
+  /// Note: Settings for the Log Router can currently only be configured for
+  /// Google Cloud organizations. Once configured, it applies to all projects and
+  /// folders in the Google Cloud organization.
+  ///
+  /// [UpdateSettings][google.logging.v2.ConfigServiceV2.UpdateSettings]
+  /// will fail if 1) `kms_key_name` is invalid, or 2) the associated service
+  /// account does not have the required
+  /// `roles/cloudkms.cryptoKeyEncrypterDecrypter` role assigned for the key, or
+  /// 3) access to the key is disabled. 4) `location_id` is not supported by
+  /// Logging. 5) `location_id` violate OrgPolicy.
+  ///
+  /// See [Enabling CMEK for Log
+  /// Router](https://cloud.google.com/logging/docs/routing/managed-encryption)
+  /// for more information.
+  ///
+  /// [google.logging.v2.ConfigServiceV2.UpdateSettings]: <doc:ConfigServiceV2Client/updateSettings(request:options:)>
+  ///
+  /// @Snippet(path: "ConfigServiceV2_UpdateSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/updateSettings(request:options:)``
   public func updateSettings(
     settings: Settings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1493,6 +2286,13 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.updateSettings(request: request)
   }
 
+  /// Copies a set of log entries from a log bucket to a Cloud Storage bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CopyLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/copyLogEntries(request:options:)``
   public func copyLogEntries(request: CopyLogEntriesRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1505,6 +2305,13 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Copies a set of log entries from a log bucket to a Cloud Storage bucket.
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CopyLogEntries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/copyLogEntriesPollingUntilDone(request:options:)``
   public func copyLogEntriesPollingUntilDone(request: CopyLogEntriesRequest) async throws
     -> CopyLogEntriesResponse
   {
@@ -1517,6 +2324,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1529,6 +2345,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1540,6 +2365,10 @@ extension Clients.ConfigServiceV2Protocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "ConfigServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1553,6 +2382,15 @@ extension Clients.ConfigServiceV2Protocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigServiceV2_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1564,6 +2402,9 @@ extension Clients.ConfigServiceV2Protocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1576,6 +2417,9 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1585,6 +2429,15 @@ extension Clients.ConfigServiceV2Protocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1595,6 +2448,15 @@ extension Clients.ConfigServiceV2Protocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "ConfigServiceV2_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigServiceV2Client/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

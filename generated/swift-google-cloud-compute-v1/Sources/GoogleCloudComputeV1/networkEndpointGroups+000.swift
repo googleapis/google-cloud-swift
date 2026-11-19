@@ -24,6 +24,10 @@
   /// Service for the `networkEndpointGroups` resource.
   ///
   /// @Snippet(path: "networkEndpointGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NetworkEndpointGroupsProtocol``
   public final class NetworkEndpointGroupsClient: Clients.NetworkEndpointGroupsProtocol, Sendable {
     let inner: any Clients.NetworkEndpointGroupsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkEndpointGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: NetworkEndpointGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupAggregatedList {
@@ -57,6 +68,13 @@
     /// Attach a list of network endpoints to the specified network endpoint group.
     ///
     /// @Snippet(path: "networkEndpointGroups_attachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``attachNetworkEndpoints(request:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(project:zone:networkEndpointGroup:body:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(request:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(request:options:)``
     public func attachNetworkEndpoints(
       request: NetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -72,6 +90,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEndpointGroups_attachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``attachNetworkEndpoints(request:)``
+    /// - ``attachNetworkEndpoints(request:options:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(project:zone:networkEndpointGroup:body:)``
+    /// - ``attachNetworkEndpointsPollingUntilDone(request:)``
     public func attachNetworkEndpointsPollingUntilDone(
       request: NetworkEndpointGroupsClient.AttachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -118,6 +143,13 @@
     /// referencing it.
     ///
     /// @Snippet(path: "networkEndpointGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:zone:networkEndpointGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: NetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -135,6 +167,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEndpointGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:zone:networkEndpointGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: NetworkEndpointGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -178,6 +217,13 @@
     /// group.
     ///
     /// @Snippet(path: "networkEndpointGroups_detachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``detachNetworkEndpoints(request:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(project:zone:networkEndpointGroup:body:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(request:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(request:options:)``
     public func detachNetworkEndpoints(
       request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -194,6 +240,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEndpointGroups_detachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``detachNetworkEndpoints(request:)``
+    /// - ``detachNetworkEndpoints(request:options:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(project:zone:networkEndpointGroup:body:)``
+    /// - ``detachNetworkEndpointsPollingUntilDone(request:)``
     public func detachNetworkEndpointsPollingUntilDone(
       request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -237,6 +290,11 @@
     /// Returns the specified network endpoint group.
     ///
     /// @Snippet(path: "networkEndpointGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:zone:networkEndpointGroup:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NetworkEndpointGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroup {
@@ -261,6 +319,13 @@
     ///    API
     ///
     /// @Snippet(path: "networkEndpointGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: NetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -290,6 +355,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEndpointGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:zone:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: NetworkEndpointGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -333,6 +405,13 @@
     /// specified project and zone.
     ///
     /// @Snippet(path: "networkEndpointGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: NetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupList {
@@ -342,6 +421,13 @@
     /// Lists the network endpoints in the specified network endpoint group.
     ///
     /// @Snippet(path: "networkEndpointGroups_listNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listNetworkEndpoints(request:)``
+    /// - ``listNetworkEndpointsByItems(project:zone:networkEndpointGroup:body:)``
+    /// - ``listNetworkEndpointsByItems(request:)``
+    /// - ``listNetworkEndpointsByItems(request:options:)``
     public func listNetworkEndpoints(
       request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -352,6 +438,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "networkEndpointGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:zone:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: NetworkEndpointGroupsClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -472,6 +563,16 @@
 
   // Default implementations
   extension Clients.NetworkEndpointGroupsProtocol {
+    /// Retrieves the list of network endpoint groups and sorts them by zone.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: NetworkEndpointGroupsClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.NetworkEndpointGroupAggregatedList
     {
@@ -484,6 +585,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of network endpoint groups and sorts them by zone.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NetworkEndpointGroupsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), any Swift.Error>
@@ -498,6 +609,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkEndpointGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NetworkEndpointGroupsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), any Swift.Error>
@@ -514,6 +629,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of network endpoint groups and sorts them by zone.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NetworkEndpointGroupsScopedList), any Swift.Error>
@@ -525,6 +650,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Attach a list of network endpoints to the specified network endpoint group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_attachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/attachNetworkEndpoints(request:options:)``
     public func attachNetworkEndpoints(
       request: NetworkEndpointGroupsClient.AttachNetworkEndpointsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -538,6 +670,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Attach a list of network endpoints to the specified network endpoint group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_attachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/attachNetworkEndpointsPollingUntilDone(request:options:)``
     public func attachNetworkEndpointsPollingUntilDone(
       request: NetworkEndpointGroupsClient.AttachNetworkEndpointsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -552,6 +696,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Attach a list of network endpoints to the specified network endpoint group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_attachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/attachNetworkEndpointsPollingUntilDone(request:options:)``
     public func attachNetworkEndpointsPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -567,6 +723,16 @@
       return try await self.attachNetworkEndpointsPollingUntilDone(request: request)
     }
 
+    /// Deletes the specified network endpoint group. The network endpoints in the
+    /// NEG and the VM instances they belong to are not terminated when the NEG is
+    /// deleted. Note that the NEG cannot be deleted if there are backend services
+    /// referencing it.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/delete(request:options:)``
     public func delete(request: NetworkEndpointGroupsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -579,6 +745,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified network endpoint group. The network endpoints in the
+    /// NEG and the VM instances they belong to are not terminated when the NEG is
+    /// deleted. Note that the NEG cannot be deleted if there are backend services
+    /// referencing it.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: NetworkEndpointGroupsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -591,6 +772,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified network endpoint group. The network endpoints in the
+    /// NEG and the VM instances they belong to are not terminated when the NEG is
+    /// deleted. Note that the NEG cannot be deleted if there are backend services
+    /// referencing it.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -604,6 +800,14 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Detach a list of network endpoints from the specified network endpoint
+    /// group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_detachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/detachNetworkEndpoints(request:options:)``
     public func detachNetworkEndpoints(
       request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -617,6 +821,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Detach a list of network endpoints from the specified network endpoint
+    /// group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_detachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/detachNetworkEndpointsPollingUntilDone(request:options:)``
     public func detachNetworkEndpointsPollingUntilDone(
       request: NetworkEndpointGroupsClient.DetachNetworkEndpointsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -631,6 +848,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Detach a list of network endpoints from the specified network endpoint
+    /// group.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_detachNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/detachNetworkEndpointsPollingUntilDone(request:options:)``
     public func detachNetworkEndpointsPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -646,6 +876,13 @@
       return try await self.detachNetworkEndpointsPollingUntilDone(request: request)
     }
 
+    /// Returns the specified network endpoint group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/get(request:options:)``
     public func `get`(request: NetworkEndpointGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NetworkEndpointGroup
     {
@@ -658,6 +895,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified network endpoint group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -671,6 +915,28 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a network endpoint group in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// Note: Use the following APIs to manage network endpoint groups:
+    ///
+    ///    -
+    ///    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+    ///    NEGs): zonal
+    ///    API
+    ///    -
+    ///    To manage NEGs with regional scope (such as regional internet NEGs,
+    ///    serverless NEGs, Private Service Connect NEGs): regional
+    ///    API
+    ///    -
+    ///    To manage NEGs with global scope (such as global internet NEGs):global
+    ///    API
+    ///
+    /// @Snippet(path: "networkEndpointGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/insert(request:options:)``
     public func insert(request: NetworkEndpointGroupsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -683,6 +949,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a network endpoint group in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// Note: Use the following APIs to manage network endpoint groups:
+    ///
+    ///    -
+    ///    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+    ///    NEGs): zonal
+    ///    API
+    ///    -
+    ///    To manage NEGs with regional scope (such as regional internet NEGs,
+    ///    serverless NEGs, Private Service Connect NEGs): regional
+    ///    API
+    ///    -
+    ///    To manage NEGs with global scope (such as global internet NEGs):global
+    ///    API
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: NetworkEndpointGroupsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -695,6 +988,33 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a network endpoint group in the specified project using the
+    /// parameters that are included in the request.
+    ///
+    /// Note: Use the following APIs to manage network endpoint groups:
+    ///
+    ///    -
+    ///    To manage NEGs with zonal scope (such as zonal NEGs, hybrid connectivity
+    ///    NEGs): zonal
+    ///    API
+    ///    -
+    ///    To manage NEGs with regional scope (such as regional internet NEGs,
+    ///    serverless NEGs, Private Service Connect NEGs): regional
+    ///    API
+    ///    -
+    ///    To manage NEGs with global scope (such as global internet NEGs):global
+    ///    API
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -708,6 +1028,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of network endpoint groups that are located in the
+    /// specified project and zone.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/list(request:options:)``
     public func list(request: NetworkEndpointGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NetworkEndpointGroupList
     {
@@ -720,6 +1048,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of network endpoint groups that are located in the
+    /// specified project and zone.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/list(request:options:)``
     public func listByItems(
       request: NetworkEndpointGroupsClient.ListRequest
     ) -> some AsyncSequence<NetworkEndpointGroup, any Swift.Error> & Sendable {
@@ -730,6 +1066,10 @@
     /// specified project and zone.
     ///
     /// @Snippet(path: "networkEndpointGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/list(request:options:)``
     public func listByItems(
       request: NetworkEndpointGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NetworkEndpointGroup, any Swift.Error> & Sendable {
@@ -744,6 +1084,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of network endpoint groups that are located in the
+    /// specified project and zone.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -755,6 +1103,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Lists the network endpoints in the specified network endpoint group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_listNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/listNetworkEndpoints(request:options:)``
     public func listNetworkEndpoints(
       request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest
     ) async throws -> GoogleCloudComputeV1.NetworkEndpointGroupsListNetworkEndpoints {
@@ -768,6 +1123,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the network endpoints in the specified network endpoint group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_listNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/listNetworkEndpoints(request:options:)``
     public func listNetworkEndpointsByItems(
       request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest
     ) -> some AsyncSequence<NetworkEndpointWithHealthStatus, any Swift.Error> & Sendable {
@@ -777,6 +1139,10 @@
     /// Lists the network endpoints in the specified network endpoint group.
     ///
     /// @Snippet(path: "networkEndpointGroups_listNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/listNetworkEndpoints(request:options:)``
     public func listNetworkEndpointsByItems(
       request: NetworkEndpointGroupsClient.ListNetworkEndpointsRequest,
       options: GoogleGax.RequestOptions
@@ -792,6 +1158,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the network endpoints in the specified network endpoint group.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_listNetworkEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/listNetworkEndpoints(request:options:)``
     public func listNetworkEndpointsByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -807,6 +1180,13 @@
       return self.listNetworkEndpointsByItems(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: NetworkEndpointGroupsClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -820,6 +1200,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "networkEndpointGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEndpointGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       zone: Swift.String,
@@ -835,6 +1222,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

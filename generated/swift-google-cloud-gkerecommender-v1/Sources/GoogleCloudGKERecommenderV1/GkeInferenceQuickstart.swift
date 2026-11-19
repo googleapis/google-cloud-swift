@@ -26,6 +26,10 @@ import Foundation
 /// on GKE.
 ///
 /// @Snippet(path: "GkeInferenceQuickstartQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/GkeInferenceQuickstartProtocol``
 public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartProtocol, Sendable {
   let inner: any Clients.GkeInferenceQuickstartStub
 
@@ -44,6 +48,10 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// `owner/model_name` format.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchModels(request:)``
   public func fetchModels(
     request: FetchModelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKERecommenderV1.FetchModelsResponse {
@@ -54,6 +62,10 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// lowercase names (e.g., `vllm`).
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchModelServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchModelServers(request:)``
   public func fetchModelServers(
     request: FetchModelServersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServersResponse {
@@ -69,6 +81,10 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// schemas are present.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchModelServerVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchModelServerVersions(request:)``
   public func fetchModelServerVersions(
     request: FetchModelServerVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse {
@@ -88,6 +104,12 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// for details.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchProfiles(request:)``
+  /// - ``fetchProfilesByItems(request:)``
+  /// - ``fetchProfilesByItems(request:options:)``
   public func fetchProfiles(
     request: FetchProfilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKERecommenderV1.FetchProfilesResponse {
@@ -102,6 +124,10 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// for deployment details.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_GenerateOptimizedManifest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateOptimizedManifest(request:)``
   public func generateOptimizedManifest(
     request: GenerateOptimizedManifestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse {
@@ -113,6 +139,10 @@ public final class GkeInferenceQuickstartClient: Clients.GkeInferenceQuickstartP
   /// server setup on a given instance type.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchBenchmarkingData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchBenchmarkingData(request:)``
   public func fetchBenchmarkingData(
     request: FetchBenchmarkingDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse {
@@ -161,6 +191,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.GkeInferenceQuickstartProtocol {
+  /// Fetches available models. Open-source models follow the Huggingface Hub
+  /// `owner/model_name` format.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchModels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchModels(request:options:)``
   public func fetchModels(request: FetchModelsRequest) async throws
     -> GoogleCloudGKERecommenderV1.FetchModelsResponse
   {
@@ -173,6 +211,14 @@ extension Clients.GkeInferenceQuickstartProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches available model servers. Open-source model servers use simplified,
+  /// lowercase names (e.g., `vllm`).
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchModelServers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchModelServers(request:options:)``
   public func fetchModelServers(request: FetchModelServersRequest) async throws
     -> GoogleCloudGKERecommenderV1.FetchModelServersResponse
   {
@@ -185,6 +231,19 @@ extension Clients.GkeInferenceQuickstartProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches available model server versions. Open-source servers use their own
+  /// versioning schemas (e.g., `vllm` uses semver like `v1.0.0`).
+  ///
+  /// Some model servers have different versioning schemas depending on the
+  /// accelerator. For example, `vllm` uses semver on GPUs, but returns nightly
+  /// build tags on TPUs. All available versions will be returned when different
+  /// schemas are present.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchModelServerVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchModelServerVersions(request:options:)``
   public func fetchModelServerVersions(request: FetchModelServerVersionsRequest) async throws
     -> GoogleCloudGKERecommenderV1.FetchModelServerVersionsResponse
   {
@@ -197,6 +256,23 @@ extension Clients.GkeInferenceQuickstartProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches available profiles. A profile contains performance metrics and
+  /// cost information for a specific model server setup. Profiles can be
+  /// filtered by parameters. If no filters are provided, all profiles are
+  /// returned.
+  ///
+  /// Profiles display a single value per performance metric based on the
+  /// provided performance requirements. If no requirements are given, the
+  /// metrics represent the inflection point. See [Run best practice inference
+  /// with GKE Inference Quickstart
+  /// recipes](https://cloud.google.com/kubernetes-engine/docs/how-to/machine-learning/inference/inference-quickstart#how)
+  /// for details.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchProfiles(request:options:)``
   public func fetchProfiles(request: FetchProfilesRequest) async throws
     -> GoogleCloudGKERecommenderV1.FetchProfilesResponse
   {
@@ -209,6 +285,23 @@ extension Clients.GkeInferenceQuickstartProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches available profiles. A profile contains performance metrics and
+  /// cost information for a specific model server setup. Profiles can be
+  /// filtered by parameters. If no filters are provided, all profiles are
+  /// returned.
+  ///
+  /// Profiles display a single value per performance metric based on the
+  /// provided performance requirements. If no requirements are given, the
+  /// metrics represent the inflection point. See [Run best practice inference
+  /// with GKE Inference Quickstart
+  /// recipes](https://cloud.google.com/kubernetes-engine/docs/how-to/machine-learning/inference/inference-quickstart#how)
+  /// for details.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchProfiles(request:options:)``
   public func fetchProfilesByItems(
     request: FetchProfilesRequest
   ) -> some AsyncSequence<Profile, any Swift.Error> & Sendable {
@@ -228,6 +321,10 @@ extension Clients.GkeInferenceQuickstartProtocol {
   /// for details.
   ///
   /// @Snippet(path: "GkeInferenceQuickstart_FetchProfiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchProfiles(request:options:)``
   public func fetchProfilesByItems(
     request: FetchProfilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Profile, any Swift.Error> & Sendable {
@@ -242,6 +339,18 @@ extension Clients.GkeInferenceQuickstartProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Generates an optimized deployment manifest for a given model and model
+  /// server, based on the specified accelerator, performance targets, and
+  /// configurations. See [Run best practice inference with GKE Inference
+  /// Quickstart
+  /// recipes](https://cloud.google.com/kubernetes-engine/docs/how-to/machine-learning/inference/inference-quickstart)
+  /// for deployment details.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_GenerateOptimizedManifest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/generateOptimizedManifest(request:options:)``
   public func generateOptimizedManifest(request: GenerateOptimizedManifestRequest) async throws
     -> GoogleCloudGKERecommenderV1.GenerateOptimizedManifestResponse
   {
@@ -254,6 +363,15 @@ extension Clients.GkeInferenceQuickstartProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches all of the benchmarking data available for a profile. Benchmarking
+  /// data returns all of the performance metrics available for a given model
+  /// server setup on a given instance type.
+  ///
+  /// @Snippet(path: "GkeInferenceQuickstart_FetchBenchmarkingData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeInferenceQuickstartClient/fetchBenchmarkingData(request:options:)``
   public func fetchBenchmarkingData(request: FetchBenchmarkingDataRequest) async throws
     -> GoogleCloudGKERecommenderV1.FetchBenchmarkingDataResponse
   {

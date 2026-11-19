@@ -25,6 +25,10 @@ import Foundation
 /// Asset service definition.
 ///
 /// @Snippet(path: "AssetServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AssetServiceProtocol``
 public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   let inner: any Clients.AssetServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -58,6 +62,12 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_ExportAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportAssets(request:)``
+  /// - ``exportAssetsPollingUntilDone(request:)``
+  /// - ``exportAssetsPollingUntilDone(request:options:)``
   public func exportAssets(
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -80,6 +90,12 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_ExportAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportAssets(request:)``
+  /// - ``exportAssets(request:options:)``
+  /// - ``exportAssetsPollingUntilDone(request:)``
   public func exportAssetsPollingUntilDone(
     request: ExportAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportAssetsResponse {
@@ -109,6 +125,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// response.
   ///
   /// @Snippet(path: "AssetService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAssets(request:)``
+  /// - ``listAssetsByItems(parent:)``
+  /// - ``listAssetsByItems(request:)``
+  /// - ``listAssetsByItems(request:options:)``
   public func listAssets(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.ListAssetsResponse {
@@ -124,6 +147,10 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// error.
   ///
   /// @Snippet(path: "AssetService_BatchGetAssetsHistory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchGetAssetsHistory(request:)``
   public func batchGetAssetsHistory(
     request: BatchGetAssetsHistoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.BatchGetAssetsHistoryResponse {
@@ -134,6 +161,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// asset updates.
   ///
   /// @Snippet(path: "AssetService_CreateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFeed(parent:)``
+  /// - ``createFeed(request:)``
   public func createFeed(
     request: CreateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -143,6 +175,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Gets details about an asset feed.
   ///
   /// @Snippet(path: "AssetService_GetFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFeed(name:)``
+  /// - ``getFeed(request:)``
   public func getFeed(
     request: GetFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -152,6 +189,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Lists all asset feeds in a parent project/folder/organization.
   ///
   /// @Snippet(path: "AssetService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFeeds(parent:)``
+  /// - ``listFeeds(request:)``
   public func listFeeds(
     request: ListFeedsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.ListFeedsResponse {
@@ -161,6 +203,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Updates an asset feed configuration.
   ///
   /// @Snippet(path: "AssetService_UpdateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFeed(feed:)``
+  /// - ``updateFeed(request:)``
   public func updateFeed(
     request: UpdateFeedRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -170,6 +217,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Deletes an asset feed.
   ///
   /// @Snippet(path: "AssetService_DeleteFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFeed(name:)``
+  /// - ``deleteFeed(request:)``
   public func deleteFeed(
     request: DeleteFeedRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -182,6 +234,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// otherwise the request will be rejected.
   ///
   /// @Snippet(path: "AssetService_SearchAllResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchAllResources(request:)``
+  /// - ``searchAllResourcesByItems(request:)``
+  /// - ``searchAllResourcesByItems(request:options:)``
+  /// - ``searchAllResourcesByItems(scope:query:assetTypes:)``
   public func searchAllResources(
     request: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SearchAllResourcesResponse {
@@ -194,6 +253,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// otherwise the request will be rejected.
   ///
   /// @Snippet(path: "AssetService_SearchAllIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchAllIamPolicies(request:)``
+  /// - ``searchAllIamPoliciesByItems(request:)``
+  /// - ``searchAllIamPoliciesByItems(request:options:)``
+  /// - ``searchAllIamPoliciesByItems(scope:query:)``
   public func searchAllIamPolicies(
     request: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse {
@@ -204,6 +270,10 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// which resources.
   ///
   /// @Snippet(path: "AssetService_AnalyzeIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeIamPolicy(request:)``
   public func analyzeIamPolicy(
     request: AnalyzeIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.AnalyzeIamPolicyResponse {
@@ -225,6 +295,12 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeIamPolicyLongrunning(request:)``
+  /// - ``analyzeIamPolicyLongrunningPollingUntilDone(request:)``
+  /// - ``analyzeIamPolicyLongrunningPollingUntilDone(request:options:)``
   public func analyzeIamPolicyLongrunning(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -246,6 +322,12 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
   ///
   /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeIamPolicyLongrunning(request:)``
+  /// - ``analyzeIamPolicyLongrunning(request:options:)``
+  /// - ``analyzeIamPolicyLongrunningPollingUntilDone(request:)``
   public func analyzeIamPolicyLongrunningPollingUntilDone(
     request: AnalyzeIamPolicyLongrunningRequest, options: GoogleGax.RequestOptions
   ) async throws -> AnalyzeIamPolicyLongrunningResponse {
@@ -279,6 +361,10 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// resource migration takes place.
   ///
   /// @Snippet(path: "AssetService_AnalyzeMove")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeMove(request:)``
   public func analyzeMove(
     request: AnalyzeMoveRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.AnalyzeMoveResponse {
@@ -299,6 +385,10 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Queries return larger results will result in errors.
   ///
   /// @Snippet(path: "AssetService_QueryAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryAssets(request:)``
   public func queryAssets(
     request: QueryAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.QueryAssetsResponse {
@@ -308,6 +398,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Creates a saved query in a parent project/folder/organization.
   ///
   /// @Snippet(path: "AssetService_CreateSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSavedQuery(parent:savedQuery:savedQueryId:)``
+  /// - ``createSavedQuery(request:)``
   public func createSavedQuery(
     request: CreateSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -317,6 +412,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Gets details about a saved query.
   ///
   /// @Snippet(path: "AssetService_GetSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSavedQuery(name:)``
+  /// - ``getSavedQuery(request:)``
   public func getSavedQuery(
     request: GetSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -326,6 +426,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Lists all saved queries in a parent project/folder/organization.
   ///
   /// @Snippet(path: "AssetService_ListSavedQueries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSavedQueries(request:)``
+  /// - ``listSavedQueriesByItems(parent:)``
+  /// - ``listSavedQueriesByItems(request:)``
+  /// - ``listSavedQueriesByItems(request:options:)``
   public func listSavedQueries(
     request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.ListSavedQueriesResponse {
@@ -335,6 +442,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Updates a saved query.
   ///
   /// @Snippet(path: "AssetService_UpdateSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSavedQuery(request:)``
+  /// - ``updateSavedQuery(savedQuery:updateMask:)``
   public func updateSavedQuery(
     request: UpdateSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -344,6 +456,11 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Deletes a saved query.
   ///
   /// @Snippet(path: "AssetService_DeleteSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSavedQuery(name:)``
+  /// - ``deleteSavedQuery(request:)``
   public func deleteSavedQuery(
     request: DeleteSavedQueryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -353,6 +470,10 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Gets effective IAM policies for a batch of resources.
   ///
   /// @Snippet(path: "AssetService_BatchGetEffectiveIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchGetEffectiveIamPolicies(request:)``
   public func batchGetEffectiveIamPolicies(
     request: BatchGetEffectiveIamPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.BatchGetEffectiveIamPoliciesResponse {
@@ -362,6 +483,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// Analyzes organization policies under a scope.
   ///
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeOrgPolicies(request:)``
+  /// - ``analyzeOrgPoliciesByItems(request:)``
+  /// - ``analyzeOrgPoliciesByItems(request:options:)``
+  /// - ``analyzeOrgPoliciesByItems(scope:constraint:filter:)``
   public func analyzeOrgPolicies(
     request: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse {
@@ -372,6 +500,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// organization) under a scope.
   ///
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeOrgPolicyGovernedContainers(request:)``
+  /// - ``analyzeOrgPolicyGovernedContainersByItems(request:)``
+  /// - ``analyzeOrgPolicyGovernedContainersByItems(request:options:)``
+  /// - ``analyzeOrgPolicyGovernedContainersByItems(scope:constraint:filter:)``
   public func analyzeOrgPolicyGovernedContainers(
     request: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse {
@@ -429,6 +564,13 @@ public final class AssetServiceClient: Clients.AssetServiceProtocol, Sendable {
   /// or IAM policies.
   ///
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeOrgPolicyGovernedAssets(request:)``
+  /// - ``analyzeOrgPolicyGovernedAssetsByItems(request:)``
+  /// - ``analyzeOrgPolicyGovernedAssetsByItems(request:options:)``
+  /// - ``analyzeOrgPolicyGovernedAssetsByItems(scope:constraint:filter:)``
   public func analyzeOrgPolicyGovernedAssets(
     request: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse {
@@ -583,6 +725,26 @@ extension Clients {
 
 // Default implementations
 extension Clients.AssetServiceProtocol {
+  /// Exports assets with time and resource types to a given Cloud Storage
+  /// location/BigQuery table. For Cloud Storage location destinations, the
+  /// output format is newline-delimited JSON. Each line represents a
+  /// [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
+  /// format; for BigQuery table destinations, the output table stores the fields
+  /// in asset Protobuf as columns. This API implements the
+  /// [google.longrunning.Operation][google.longrunning.Operation] API, which
+  /// allows you to keep track of the export. We recommend intervals of at least
+  /// 2 seconds with exponential retry to poll the export operation result. For
+  /// regular-size resource parent, the export operation usually finishes within
+  /// 5 minutes.
+  ///
+  /// [google.cloud.asset.v1.Asset]: <doc:Asset>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AssetService_ExportAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/exportAssets(request:options:)``
   public func exportAssets(request: ExportAssetsRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.exportAssets(request: request, options: .init())
@@ -594,6 +756,26 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports assets with time and resource types to a given Cloud Storage
+  /// location/BigQuery table. For Cloud Storage location destinations, the
+  /// output format is newline-delimited JSON. Each line represents a
+  /// [google.cloud.asset.v1.Asset][google.cloud.asset.v1.Asset] in the JSON
+  /// format; for BigQuery table destinations, the output table stores the fields
+  /// in asset Protobuf as columns. This API implements the
+  /// [google.longrunning.Operation][google.longrunning.Operation] API, which
+  /// allows you to keep track of the export. We recommend intervals of at least
+  /// 2 seconds with exponential retry to poll the export operation result. For
+  /// regular-size resource parent, the export operation usually finishes within
+  /// 5 minutes.
+  ///
+  /// [google.cloud.asset.v1.Asset]: <doc:Asset>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AssetService_ExportAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/exportAssetsPollingUntilDone(request:options:)``
   public func exportAssetsPollingUntilDone(request: ExportAssetsRequest) async throws
     -> ExportAssetsResponse
   {
@@ -606,6 +788,14 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists assets with time and resource types and returns paged results in
+  /// response.
+  ///
+  /// @Snippet(path: "AssetService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listAssets(request:options:)``
   public func listAssets(request: ListAssetsRequest) async throws
     -> GoogleCloudAssetV1.ListAssetsResponse
   {
@@ -618,6 +808,14 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists assets with time and resource types and returns paged results in
+  /// response.
+  ///
+  /// @Snippet(path: "AssetService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listAssets(request:options:)``
   public func listAssetsByItems(
     request: ListAssetsRequest
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -628,6 +826,10 @@ extension Clients.AssetServiceProtocol {
   /// response.
   ///
   /// @Snippet(path: "AssetService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listAssets(request:options:)``
   public func listAssetsByItems(
     request: ListAssetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -641,6 +843,14 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists assets with time and resource types and returns paged results in
+  /// response.
+  ///
+  /// @Snippet(path: "AssetService_ListAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listAssets(request:options:)``
   public func listAssetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Asset, any Swift.Error> & Sendable {
@@ -650,6 +860,19 @@ extension Clients.AssetServiceProtocol {
     return self.listAssetsByItems(request: request)
   }
 
+  /// Batch gets the update history of assets that overlap a time window.
+  /// For IAM_POLICY content, this API outputs history when the asset and its
+  /// attached IAM POLICY both exist. This can create gaps in the output history.
+  /// Otherwise, this API outputs history with asset in both non-delete or
+  /// deleted status.
+  /// If a specified asset does not exist, this API returns an INVALID_ARGUMENT
+  /// error.
+  ///
+  /// @Snippet(path: "AssetService_BatchGetAssetsHistory")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/batchGetAssetsHistory(request:options:)``
   public func batchGetAssetsHistory(request: BatchGetAssetsHistoryRequest) async throws
     -> GoogleCloudAssetV1.BatchGetAssetsHistoryResponse
   {
@@ -662,6 +885,14 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a feed in a parent project/folder/organization to listen to its
+  /// asset updates.
+  ///
+  /// @Snippet(path: "AssetService_CreateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/createFeed(request:options:)``
   public func createFeed(request: CreateFeedRequest) async throws -> GoogleCloudAssetV1.Feed {
     try await self.createFeed(request: request, options: .init())
   }
@@ -672,6 +903,14 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a feed in a parent project/folder/organization to listen to its
+  /// asset updates.
+  ///
+  /// @Snippet(path: "AssetService_CreateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/createFeed(request:options:)``
   public func createFeed(
     parent: Swift.String,
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -681,6 +920,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.createFeed(request: request)
   }
 
+  /// Gets details about an asset feed.
+  ///
+  /// @Snippet(path: "AssetService_GetFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/getFeed(request:options:)``
   public func getFeed(request: GetFeedRequest) async throws -> GoogleCloudAssetV1.Feed {
     try await self.getFeed(request: request, options: .init())
   }
@@ -691,6 +937,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about an asset feed.
+  ///
+  /// @Snippet(path: "AssetService_GetFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/getFeed(request:options:)``
   public func getFeed(
     name: Swift.String,
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -700,6 +953,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.getFeed(request: request)
   }
 
+  /// Lists all asset feeds in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listFeeds(request:options:)``
   public func listFeeds(request: ListFeedsRequest) async throws
     -> GoogleCloudAssetV1.ListFeedsResponse
   {
@@ -712,6 +972,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all asset feeds in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_ListFeeds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listFeeds(request:options:)``
   public func listFeeds(
     parent: Swift.String,
   ) async throws -> GoogleCloudAssetV1.ListFeedsResponse {
@@ -721,6 +988,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.listFeeds(request: request)
   }
 
+  /// Updates an asset feed configuration.
+  ///
+  /// @Snippet(path: "AssetService_UpdateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/updateFeed(request:options:)``
   public func updateFeed(request: UpdateFeedRequest) async throws -> GoogleCloudAssetV1.Feed {
     try await self.updateFeed(request: request, options: .init())
   }
@@ -731,6 +1005,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an asset feed configuration.
+  ///
+  /// @Snippet(path: "AssetService_UpdateFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/updateFeed(request:options:)``
   public func updateFeed(
     feed: Feed?,
   ) async throws -> GoogleCloudAssetV1.Feed {
@@ -740,6 +1021,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.updateFeed(request: request)
   }
 
+  /// Deletes an asset feed.
+  ///
+  /// @Snippet(path: "AssetService_DeleteFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/deleteFeed(request:options:)``
   public func deleteFeed(request: DeleteFeedRequest) async throws {
     try await self.deleteFeed(request: request, options: .init())
   }
@@ -750,6 +1038,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an asset feed.
+  ///
+  /// @Snippet(path: "AssetService_DeleteFeed")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/deleteFeed(request:options:)``
   public func deleteFeed(
     name: Swift.String,
   ) async throws {
@@ -759,6 +1054,16 @@ extension Clients.AssetServiceProtocol {
     try await self.deleteFeed(request: request)
   }
 
+  /// Searches all Google Cloud resources within the specified scope, such as a
+  /// project, folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllResources` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllResources(request:options:)``
   public func searchAllResources(request: SearchAllResourcesRequest) async throws
     -> GoogleCloudAssetV1.SearchAllResourcesResponse
   {
@@ -771,6 +1076,16 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches all Google Cloud resources within the specified scope, such as a
+  /// project, folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllResources` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllResources(request:options:)``
   public func searchAllResourcesByItems(
     request: SearchAllResourcesRequest
   ) -> some AsyncSequence<ResourceSearchResult, any Swift.Error> & Sendable {
@@ -783,6 +1098,10 @@ extension Clients.AssetServiceProtocol {
   /// otherwise the request will be rejected.
   ///
   /// @Snippet(path: "AssetService_SearchAllResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllResources(request:options:)``
   public func searchAllResourcesByItems(
     request: SearchAllResourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ResourceSearchResult, any Swift.Error> & Sendable {
@@ -797,6 +1116,16 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches all Google Cloud resources within the specified scope, such as a
+  /// project, folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllResources` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllResources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllResources(request:options:)``
   public func searchAllResourcesByItems(
     scope: Swift.String,
     query: Swift.String,
@@ -810,6 +1139,16 @@ extension Clients.AssetServiceProtocol {
     return self.searchAllResourcesByItems(request: request)
   }
 
+  /// Searches all IAM policies within the specified scope, such as a project,
+  /// folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllIamPolicies(request:options:)``
   public func searchAllIamPolicies(request: SearchAllIamPoliciesRequest) async throws
     -> GoogleCloudAssetV1.SearchAllIamPoliciesResponse
   {
@@ -822,6 +1161,16 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Searches all IAM policies within the specified scope, such as a project,
+  /// folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllIamPolicies(request:options:)``
   public func searchAllIamPoliciesByItems(
     request: SearchAllIamPoliciesRequest
   ) -> some AsyncSequence<IamPolicySearchResult, any Swift.Error> & Sendable {
@@ -834,6 +1183,10 @@ extension Clients.AssetServiceProtocol {
   /// otherwise the request will be rejected.
   ///
   /// @Snippet(path: "AssetService_SearchAllIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllIamPolicies(request:options:)``
   public func searchAllIamPoliciesByItems(
     request: SearchAllIamPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<IamPolicySearchResult, any Swift.Error> & Sendable {
@@ -848,6 +1201,16 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Searches all IAM policies within the specified scope, such as a project,
+  /// folder, or organization. The caller must be granted the
+  /// `cloudasset.assets.searchAllIamPolicies` permission on the desired scope,
+  /// otherwise the request will be rejected.
+  ///
+  /// @Snippet(path: "AssetService_SearchAllIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/searchAllIamPolicies(request:options:)``
   public func searchAllIamPoliciesByItems(
     scope: Swift.String,
     query: Swift.String,
@@ -859,6 +1222,14 @@ extension Clients.AssetServiceProtocol {
     return self.searchAllIamPoliciesByItems(request: request)
   }
 
+  /// Analyzes IAM policies to answer which identities have what accesses on
+  /// which resources.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeIamPolicy(request:options:)``
   public func analyzeIamPolicy(request: AnalyzeIamPolicyRequest) async throws
     -> GoogleCloudAssetV1.AnalyzeIamPolicyResponse
   {
@@ -871,6 +1242,25 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes IAM policies asynchronously to answer which identities have what
+  /// accesses on which resources, and writes the analysis results to a Google
+  /// Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
+  /// output format is the JSON format that represents a
+  /// [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
+  /// This method implements the
+  /// [google.longrunning.Operation][google.longrunning.Operation], which allows
+  /// you to track the operation status. We recommend intervals of at least 2
+  /// seconds with exponential backoff retry to poll the operation result. The
+  /// metadata contains the metadata for the long-running operation.
+  ///
+  /// [google.cloud.asset.v1.AnalyzeIamPolicyResponse]: <doc:AnalyzeIamPolicyResponse>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeIamPolicyLongrunning(request:options:)``
   public func analyzeIamPolicyLongrunning(request: AnalyzeIamPolicyLongrunningRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -883,6 +1273,25 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes IAM policies asynchronously to answer which identities have what
+  /// accesses on which resources, and writes the analysis results to a Google
+  /// Cloud Storage or a BigQuery destination. For Cloud Storage destination, the
+  /// output format is the JSON format that represents a
+  /// [AnalyzeIamPolicyResponse][google.cloud.asset.v1.AnalyzeIamPolicyResponse].
+  /// This method implements the
+  /// [google.longrunning.Operation][google.longrunning.Operation], which allows
+  /// you to track the operation status. We recommend intervals of at least 2
+  /// seconds with exponential backoff retry to poll the operation result. The
+  /// metadata contains the metadata for the long-running operation.
+  ///
+  /// [google.cloud.asset.v1.AnalyzeIamPolicyResponse]: <doc:AnalyzeIamPolicyResponse>
+  /// [google.longrunning.Operation]: https://www.google.com/search?q=Swift+google.longrunning+GoogleLongRunning.Operation
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeIamPolicyLongrunning")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeIamPolicyLongrunningPollingUntilDone(request:options:)``
   public func analyzeIamPolicyLongrunningPollingUntilDone(
     request: AnalyzeIamPolicyLongrunningRequest
   ) async throws -> AnalyzeIamPolicyLongrunningResponse {
@@ -896,6 +1305,17 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyze moving a resource to a specified destination without kicking off
+  /// the actual move. The analysis is best effort depending on the user's
+  /// permissions of viewing different hierarchical policies and configurations.
+  /// The policies and configuration are subject to change before the actual
+  /// resource migration takes place.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeMove")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeMove(request:options:)``
   public func analyzeMove(request: AnalyzeMoveRequest) async throws
     -> GoogleCloudAssetV1.AnalyzeMoveResponse
   {
@@ -908,6 +1328,24 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Issue a job that queries assets using a SQL statement compatible with
+  /// [BigQuery SQL](https://cloud.google.com/bigquery/docs/introduction-sql).
+  ///
+  /// If the query execution finishes within timeout and there's no pagination,
+  /// the full query results will be returned in the `QueryAssetsResponse`.
+  ///
+  /// Otherwise, full query results can be obtained by issuing extra requests
+  /// with the `job_reference` from the a previous `QueryAssets` call.
+  ///
+  /// Note, the query result has approximately 10 GB limitation enforced by
+  /// [BigQuery](https://cloud.google.com/bigquery/docs/best-practices-performance-output).
+  /// Queries return larger results will result in errors.
+  ///
+  /// @Snippet(path: "AssetService_QueryAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/queryAssets(request:options:)``
   public func queryAssets(request: QueryAssetsRequest) async throws
     -> GoogleCloudAssetV1.QueryAssetsResponse
   {
@@ -920,6 +1358,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a saved query in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_CreateSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/createSavedQuery(request:options:)``
   public func createSavedQuery(request: CreateSavedQueryRequest) async throws
     -> GoogleCloudAssetV1.SavedQuery
   {
@@ -932,6 +1377,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a saved query in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_CreateSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/createSavedQuery(request:options:)``
   public func createSavedQuery(
     parent: Swift.String,
     savedQuery: SavedQuery?,
@@ -945,6 +1397,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.createSavedQuery(request: request)
   }
 
+  /// Gets details about a saved query.
+  ///
+  /// @Snippet(path: "AssetService_GetSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/getSavedQuery(request:options:)``
   public func getSavedQuery(request: GetSavedQueryRequest) async throws
     -> GoogleCloudAssetV1.SavedQuery
   {
@@ -957,6 +1416,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a saved query.
+  ///
+  /// @Snippet(path: "AssetService_GetSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/getSavedQuery(request:options:)``
   public func getSavedQuery(
     name: Swift.String,
   ) async throws -> GoogleCloudAssetV1.SavedQuery {
@@ -966,6 +1432,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.getSavedQuery(request: request)
   }
 
+  /// Lists all saved queries in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_ListSavedQueries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listSavedQueries(request:options:)``
   public func listSavedQueries(request: ListSavedQueriesRequest) async throws
     -> GoogleCloudAssetV1.ListSavedQueriesResponse
   {
@@ -978,6 +1451,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all saved queries in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_ListSavedQueries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listSavedQueries(request:options:)``
   public func listSavedQueriesByItems(
     request: ListSavedQueriesRequest
   ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
@@ -987,6 +1467,10 @@ extension Clients.AssetServiceProtocol {
   /// Lists all saved queries in a parent project/folder/organization.
   ///
   /// @Snippet(path: "AssetService_ListSavedQueries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listSavedQueries(request:options:)``
   public func listSavedQueriesByItems(
     request: ListSavedQueriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
@@ -1000,6 +1484,13 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all saved queries in a parent project/folder/organization.
+  ///
+  /// @Snippet(path: "AssetService_ListSavedQueries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/listSavedQueries(request:options:)``
   public func listSavedQueriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SavedQuery, any Swift.Error> & Sendable {
@@ -1009,6 +1500,13 @@ extension Clients.AssetServiceProtocol {
     return self.listSavedQueriesByItems(request: request)
   }
 
+  /// Updates a saved query.
+  ///
+  /// @Snippet(path: "AssetService_UpdateSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/updateSavedQuery(request:options:)``
   public func updateSavedQuery(request: UpdateSavedQueryRequest) async throws
     -> GoogleCloudAssetV1.SavedQuery
   {
@@ -1021,6 +1519,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a saved query.
+  ///
+  /// @Snippet(path: "AssetService_UpdateSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/updateSavedQuery(request:options:)``
   public func updateSavedQuery(
     savedQuery: SavedQuery?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1032,6 +1537,13 @@ extension Clients.AssetServiceProtocol {
     return try await self.updateSavedQuery(request: request)
   }
 
+  /// Deletes a saved query.
+  ///
+  /// @Snippet(path: "AssetService_DeleteSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/deleteSavedQuery(request:options:)``
   public func deleteSavedQuery(request: DeleteSavedQueryRequest) async throws {
     try await self.deleteSavedQuery(request: request, options: .init())
   }
@@ -1042,6 +1554,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a saved query.
+  ///
+  /// @Snippet(path: "AssetService_DeleteSavedQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/deleteSavedQuery(request:options:)``
   public func deleteSavedQuery(
     name: Swift.String,
   ) async throws {
@@ -1051,6 +1570,13 @@ extension Clients.AssetServiceProtocol {
     try await self.deleteSavedQuery(request: request)
   }
 
+  /// Gets effective IAM policies for a batch of resources.
+  ///
+  /// @Snippet(path: "AssetService_BatchGetEffectiveIamPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/batchGetEffectiveIamPolicies(request:options:)``
   public func batchGetEffectiveIamPolicies(request: BatchGetEffectiveIamPoliciesRequest)
     async throws -> GoogleCloudAssetV1.BatchGetEffectiveIamPoliciesResponse
   {
@@ -1063,6 +1589,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes organization policies under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicies(request:options:)``
   public func analyzeOrgPolicies(request: AnalyzeOrgPoliciesRequest) async throws
     -> GoogleCloudAssetV1.AnalyzeOrgPoliciesResponse
   {
@@ -1075,6 +1608,13 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes organization policies under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicies(request:options:)``
   public func analyzeOrgPoliciesByItems(
     request: AnalyzeOrgPoliciesRequest
   ) -> some AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, any Swift.Error> & Sendable {
@@ -1084,6 +1624,10 @@ extension Clients.AssetServiceProtocol {
   /// Analyzes organization policies under a scope.
   ///
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicies(request:options:)``
   public func analyzeOrgPoliciesByItems(
     request: AnalyzeOrgPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AnalyzeOrgPoliciesResponse.OrgPolicyResult, any Swift.Error> & Sendable {
@@ -1098,6 +1642,13 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Analyzes organization policies under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicies(request:options:)``
   public func analyzeOrgPoliciesByItems(
     scope: Swift.String,
     constraint: Swift.String,
@@ -1111,6 +1662,14 @@ extension Clients.AssetServiceProtocol {
     return self.analyzeOrgPoliciesByItems(request: request)
   }
 
+  /// Analyzes organization policies governed containers (projects, folders or
+  /// organization) under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)``
   public func analyzeOrgPolicyGovernedContainers(request: AnalyzeOrgPolicyGovernedContainersRequest)
     async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedContainersResponse
   {
@@ -1123,6 +1682,14 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes organization policies governed containers (projects, folders or
+  /// organization) under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)``
   public func analyzeOrgPolicyGovernedContainersByItems(
     request: AnalyzeOrgPolicyGovernedContainersRequest
   ) -> some AsyncSequence<
@@ -1135,6 +1702,10 @@ extension Clients.AssetServiceProtocol {
   /// organization) under a scope.
   ///
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)``
   public func analyzeOrgPolicyGovernedContainersByItems(
     request: AnalyzeOrgPolicyGovernedContainersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<
@@ -1151,6 +1722,14 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Analyzes organization policies governed containers (projects, folders or
+  /// organization) under a scope.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedContainers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedContainers(request:options:)``
   public func analyzeOrgPolicyGovernedContainersByItems(
     scope: Swift.String,
     constraint: Swift.String,
@@ -1166,6 +1745,61 @@ extension Clients.AssetServiceProtocol {
     return self.analyzeOrgPolicyGovernedContainersByItems(request: request)
   }
 
+  /// Analyzes organization policies governed assets (Google Cloud resources or
+  /// policies) under a scope. This RPC supports custom constraints and the
+  /// following canned constraints:
+  ///
+  /// * constraints/ainotebooks.accessMode
+  /// * constraints/ainotebooks.disableFileDownloads
+  /// * constraints/ainotebooks.disableRootAccess
+  /// * constraints/ainotebooks.disableTerminal
+  /// * constraints/ainotebooks.environmentOptions
+  /// * constraints/ainotebooks.requireAutoUpgradeSchedule
+  /// * constraints/ainotebooks.restrictVpcNetworks
+  /// * constraints/compute.disableGuestAttributesAccess
+  /// * constraints/compute.disableInstanceDataAccessApis
+  /// * constraints/compute.disableNestedVirtualization
+  /// * constraints/compute.disableSerialPortAccess
+  /// * constraints/compute.disableSerialPortLogging
+  /// * constraints/compute.disableVpcExternalIpv6
+  /// * constraints/compute.requireOsLogin
+  /// * constraints/compute.requireShieldedVm
+  /// * constraints/compute.restrictLoadBalancerCreationForTypes
+  /// * constraints/compute.restrictProtocolForwardingCreationForTypes
+  /// * constraints/compute.restrictXpnProjectLienRemoval
+  /// * constraints/compute.setNewProjectDefaultToZonalDNSOnly
+  /// * constraints/compute.skipDefaultNetworkCreation
+  /// * constraints/compute.trustedImageProjects
+  /// * constraints/compute.vmCanIpForward
+  /// * constraints/compute.vmExternalIpAccess
+  /// * constraints/gcp.detailedAuditLoggingMode
+  /// * constraints/gcp.resourceLocations
+  /// * constraints/iam.allowedPolicyMemberDomains
+  /// * constraints/iam.automaticIamGrantsForDefaultServiceAccounts
+  /// * constraints/iam.disableServiceAccountCreation
+  /// * constraints/iam.disableServiceAccountKeyCreation
+  /// * constraints/iam.disableServiceAccountKeyUpload
+  /// * constraints/iam.restrictCrossProjectServiceAccountLienRemoval
+  /// * constraints/iam.serviceAccountKeyExpiryHours
+  /// * constraints/resourcemanager.accessBoundaries
+  /// * constraints/resourcemanager.allowedExportDestinations
+  /// * constraints/sql.restrictAuthorizedNetworks
+  /// * constraints/sql.restrictNoncompliantDiagnosticDataAccess
+  /// * constraints/sql.restrictNoncompliantResourceCreation
+  /// * constraints/sql.restrictPublicIp
+  /// * constraints/storage.publicAccessPrevention
+  /// * constraints/storage.restrictAuthTypes
+  /// * constraints/storage.uniformBucketLevelAccess
+  ///
+  /// This RPC only returns either resources of types [supported by search
+  /// APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+  /// or IAM policies.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:options:)``
   public func analyzeOrgPolicyGovernedAssets(request: AnalyzeOrgPolicyGovernedAssetsRequest)
     async throws -> GoogleCloudAssetV1.AnalyzeOrgPolicyGovernedAssetsResponse
   {
@@ -1178,6 +1812,61 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes organization policies governed assets (Google Cloud resources or
+  /// policies) under a scope. This RPC supports custom constraints and the
+  /// following canned constraints:
+  ///
+  /// * constraints/ainotebooks.accessMode
+  /// * constraints/ainotebooks.disableFileDownloads
+  /// * constraints/ainotebooks.disableRootAccess
+  /// * constraints/ainotebooks.disableTerminal
+  /// * constraints/ainotebooks.environmentOptions
+  /// * constraints/ainotebooks.requireAutoUpgradeSchedule
+  /// * constraints/ainotebooks.restrictVpcNetworks
+  /// * constraints/compute.disableGuestAttributesAccess
+  /// * constraints/compute.disableInstanceDataAccessApis
+  /// * constraints/compute.disableNestedVirtualization
+  /// * constraints/compute.disableSerialPortAccess
+  /// * constraints/compute.disableSerialPortLogging
+  /// * constraints/compute.disableVpcExternalIpv6
+  /// * constraints/compute.requireOsLogin
+  /// * constraints/compute.requireShieldedVm
+  /// * constraints/compute.restrictLoadBalancerCreationForTypes
+  /// * constraints/compute.restrictProtocolForwardingCreationForTypes
+  /// * constraints/compute.restrictXpnProjectLienRemoval
+  /// * constraints/compute.setNewProjectDefaultToZonalDNSOnly
+  /// * constraints/compute.skipDefaultNetworkCreation
+  /// * constraints/compute.trustedImageProjects
+  /// * constraints/compute.vmCanIpForward
+  /// * constraints/compute.vmExternalIpAccess
+  /// * constraints/gcp.detailedAuditLoggingMode
+  /// * constraints/gcp.resourceLocations
+  /// * constraints/iam.allowedPolicyMemberDomains
+  /// * constraints/iam.automaticIamGrantsForDefaultServiceAccounts
+  /// * constraints/iam.disableServiceAccountCreation
+  /// * constraints/iam.disableServiceAccountKeyCreation
+  /// * constraints/iam.disableServiceAccountKeyUpload
+  /// * constraints/iam.restrictCrossProjectServiceAccountLienRemoval
+  /// * constraints/iam.serviceAccountKeyExpiryHours
+  /// * constraints/resourcemanager.accessBoundaries
+  /// * constraints/resourcemanager.allowedExportDestinations
+  /// * constraints/sql.restrictAuthorizedNetworks
+  /// * constraints/sql.restrictNoncompliantDiagnosticDataAccess
+  /// * constraints/sql.restrictNoncompliantResourceCreation
+  /// * constraints/sql.restrictPublicIp
+  /// * constraints/storage.publicAccessPrevention
+  /// * constraints/storage.restrictAuthTypes
+  /// * constraints/storage.uniformBucketLevelAccess
+  ///
+  /// This RPC only returns either resources of types [supported by search
+  /// APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+  /// or IAM policies.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:options:)``
   public func analyzeOrgPolicyGovernedAssetsByItems(
     request: AnalyzeOrgPolicyGovernedAssetsRequest
   ) -> some AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, any Swift.Error>
@@ -1237,6 +1926,10 @@ extension Clients.AssetServiceProtocol {
   /// or IAM policies.
   ///
   /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:options:)``
   public func analyzeOrgPolicyGovernedAssetsByItems(
     request: AnalyzeOrgPolicyGovernedAssetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AnalyzeOrgPolicyGovernedAssetsResponse.GovernedAsset, any Swift.Error>
@@ -1253,6 +1946,61 @@ extension Clients.AssetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Analyzes organization policies governed assets (Google Cloud resources or
+  /// policies) under a scope. This RPC supports custom constraints and the
+  /// following canned constraints:
+  ///
+  /// * constraints/ainotebooks.accessMode
+  /// * constraints/ainotebooks.disableFileDownloads
+  /// * constraints/ainotebooks.disableRootAccess
+  /// * constraints/ainotebooks.disableTerminal
+  /// * constraints/ainotebooks.environmentOptions
+  /// * constraints/ainotebooks.requireAutoUpgradeSchedule
+  /// * constraints/ainotebooks.restrictVpcNetworks
+  /// * constraints/compute.disableGuestAttributesAccess
+  /// * constraints/compute.disableInstanceDataAccessApis
+  /// * constraints/compute.disableNestedVirtualization
+  /// * constraints/compute.disableSerialPortAccess
+  /// * constraints/compute.disableSerialPortLogging
+  /// * constraints/compute.disableVpcExternalIpv6
+  /// * constraints/compute.requireOsLogin
+  /// * constraints/compute.requireShieldedVm
+  /// * constraints/compute.restrictLoadBalancerCreationForTypes
+  /// * constraints/compute.restrictProtocolForwardingCreationForTypes
+  /// * constraints/compute.restrictXpnProjectLienRemoval
+  /// * constraints/compute.setNewProjectDefaultToZonalDNSOnly
+  /// * constraints/compute.skipDefaultNetworkCreation
+  /// * constraints/compute.trustedImageProjects
+  /// * constraints/compute.vmCanIpForward
+  /// * constraints/compute.vmExternalIpAccess
+  /// * constraints/gcp.detailedAuditLoggingMode
+  /// * constraints/gcp.resourceLocations
+  /// * constraints/iam.allowedPolicyMemberDomains
+  /// * constraints/iam.automaticIamGrantsForDefaultServiceAccounts
+  /// * constraints/iam.disableServiceAccountCreation
+  /// * constraints/iam.disableServiceAccountKeyCreation
+  /// * constraints/iam.disableServiceAccountKeyUpload
+  /// * constraints/iam.restrictCrossProjectServiceAccountLienRemoval
+  /// * constraints/iam.serviceAccountKeyExpiryHours
+  /// * constraints/resourcemanager.accessBoundaries
+  /// * constraints/resourcemanager.allowedExportDestinations
+  /// * constraints/sql.restrictAuthorizedNetworks
+  /// * constraints/sql.restrictNoncompliantDiagnosticDataAccess
+  /// * constraints/sql.restrictNoncompliantResourceCreation
+  /// * constraints/sql.restrictPublicIp
+  /// * constraints/storage.publicAccessPrevention
+  /// * constraints/storage.restrictAuthTypes
+  /// * constraints/storage.uniformBucketLevelAccess
+  ///
+  /// This RPC only returns either resources of types [supported by search
+  /// APIs](https://cloud.google.com/asset-inventory/docs/supported-asset-types)
+  /// or IAM policies.
+  ///
+  /// @Snippet(path: "AssetService_AnalyzeOrgPolicyGovernedAssets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AssetServiceClient/analyzeOrgPolicyGovernedAssets(request:options:)``
   public func analyzeOrgPolicyGovernedAssetsByItems(
     scope: Swift.String,
     constraint: Swift.String,
@@ -1268,6 +2016,9 @@ extension Clients.AssetServiceProtocol {
     return self.analyzeOrgPolicyGovernedAssetsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1280,6 +2031,9 @@ extension Clients.AssetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

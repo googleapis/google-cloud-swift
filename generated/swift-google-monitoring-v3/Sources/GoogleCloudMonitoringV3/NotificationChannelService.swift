@@ -25,6 +25,10 @@ import Foundation
 /// controls how messages related to incidents are sent.
 ///
 /// @Snippet(path: "NotificationChannelServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/NotificationChannelServiceProtocol``
 public final class NotificationChannelServiceClient: Clients.NotificationChannelServiceProtocol,
   Sendable
 {
@@ -45,6 +49,13 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// makes it possible for new channel types to be dynamically added.
   ///
   /// @Snippet(path: "NotificationChannelService_ListNotificationChannelDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listNotificationChannelDescriptors(request:)``
+  /// - ``listNotificationChannelDescriptorsByItems(name:)``
+  /// - ``listNotificationChannelDescriptorsByItems(request:)``
+  /// - ``listNotificationChannelDescriptorsByItems(request:options:)``
   public func listNotificationChannelDescriptors(
     request: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse {
@@ -55,6 +66,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// are expected / permitted for a notification channel of the given type.
   ///
   /// @Snippet(path: "NotificationChannelService_GetNotificationChannelDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNotificationChannelDescriptor(name:)``
+  /// - ``getNotificationChannelDescriptor(request:)``
   public func getNotificationChannelDescriptor(
     request: GetNotificationChannelDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannelDescriptor {
@@ -66,6 +82,13 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// the `ListNotificationChannelDescriptors` method.
   ///
   /// @Snippet(path: "NotificationChannelService_ListNotificationChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listNotificationChannels(request:)``
+  /// - ``listNotificationChannelsByItems(name:)``
+  /// - ``listNotificationChannelsByItems(request:)``
+  /// - ``listNotificationChannelsByItems(request:options:)``
   public func listNotificationChannels(
     request: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse {
@@ -79,6 +102,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// that was supplied in the call to the create method.
   ///
   /// @Snippet(path: "NotificationChannelService_GetNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNotificationChannel(name:)``
+  /// - ``getNotificationChannel(request:)``
   public func getNotificationChannel(
     request: GetNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -94,6 +122,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// UpdateNotificationChannel.
   ///
   /// @Snippet(path: "NotificationChannelService_CreateNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createNotificationChannel(name:notificationChannel:)``
+  /// - ``createNotificationChannel(request:)``
   public func createNotificationChannel(
     request: CreateNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -109,6 +142,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// UpdateNotificationChannel.
   ///
   /// @Snippet(path: "NotificationChannelService_UpdateNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateNotificationChannel(request:)``
+  /// - ``updateNotificationChannel(updateMask:notificationChannel:)``
   public func updateNotificationChannel(
     request: UpdateNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -123,6 +161,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// UpdateNotificationChannel.
   ///
   /// @Snippet(path: "NotificationChannelService_DeleteNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteNotificationChannel(name:force:)``
+  /// - ``deleteNotificationChannel(request:)``
   public func deleteNotificationChannel(
     request: DeleteNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -133,6 +176,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// can then be supplied in `VerifyNotificationChannel` to verify the channel.
   ///
   /// @Snippet(path: "NotificationChannelService_SendNotificationChannelVerificationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``sendNotificationChannelVerificationCode(name:)``
+  /// - ``sendNotificationChannelVerificationCode(request:)``
   public func sendNotificationChannelVerificationCode(
     request: SendNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -162,6 +210,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// 64 encoded string that has a longer expiration time.
   ///
   /// @Snippet(path: "NotificationChannelService_GetNotificationChannelVerificationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNotificationChannelVerificationCode(name:)``
+  /// - ``getNotificationChannelVerificationCode(request:)``
   public func getNotificationChannelVerificationCode(
     request: GetNotificationChannelVerificationCodeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.GetNotificationChannelVerificationCodeResponse {
@@ -173,6 +226,11 @@ public final class NotificationChannelServiceClient: Clients.NotificationChannel
   /// `SendNotificationChannelVerificationCode`.
   ///
   /// @Snippet(path: "NotificationChannelService_VerifyNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``verifyNotificationChannel(name:code:)``
+  /// - ``verifyNotificationChannel(request:)``
   public func verifyNotificationChannel(
     request: VerifyNotificationChannelRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -241,6 +299,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.NotificationChannelServiceProtocol {
+  /// Lists the descriptors for supported channel types. The use of descriptors
+  /// makes it possible for new channel types to be dynamically added.
+  ///
+  /// @Snippet(path: "NotificationChannelService_ListNotificationChannelDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannelDescriptors(request:options:)``
   public func listNotificationChannelDescriptors(request: ListNotificationChannelDescriptorsRequest)
     async throws -> GoogleCloudMonitoringV3.ListNotificationChannelDescriptorsResponse
   {
@@ -253,6 +319,14 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the descriptors for supported channel types. The use of descriptors
+  /// makes it possible for new channel types to be dynamically added.
+  ///
+  /// @Snippet(path: "NotificationChannelService_ListNotificationChannelDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannelDescriptors(request:options:)``
   public func listNotificationChannelDescriptorsByItems(
     request: ListNotificationChannelDescriptorsRequest
   ) -> some AsyncSequence<NotificationChannelDescriptor, any Swift.Error> & Sendable {
@@ -263,6 +337,10 @@ extension Clients.NotificationChannelServiceProtocol {
   /// makes it possible for new channel types to be dynamically added.
   ///
   /// @Snippet(path: "NotificationChannelService_ListNotificationChannelDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannelDescriptors(request:options:)``
   public func listNotificationChannelDescriptorsByItems(
     request: ListNotificationChannelDescriptorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<NotificationChannelDescriptor, any Swift.Error> & Sendable {
@@ -277,6 +355,14 @@ extension Clients.NotificationChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the descriptors for supported channel types. The use of descriptors
+  /// makes it possible for new channel types to be dynamically added.
+  ///
+  /// @Snippet(path: "NotificationChannelService_ListNotificationChannelDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannelDescriptors(request:options:)``
   public func listNotificationChannelDescriptorsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<NotificationChannelDescriptor, any Swift.Error> & Sendable {
@@ -286,6 +372,14 @@ extension Clients.NotificationChannelServiceProtocol {
     return self.listNotificationChannelDescriptorsByItems(request: request)
   }
 
+  /// Gets a single channel descriptor. The descriptor indicates which fields
+  /// are expected / permitted for a notification channel of the given type.
+  ///
+  /// @Snippet(path: "NotificationChannelService_GetNotificationChannelDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/getNotificationChannelDescriptor(request:options:)``
   public func getNotificationChannelDescriptor(request: GetNotificationChannelDescriptorRequest)
     async throws -> GoogleCloudMonitoringV3.NotificationChannelDescriptor
   {
@@ -298,6 +392,14 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single channel descriptor. The descriptor indicates which fields
+  /// are expected / permitted for a notification channel of the given type.
+  ///
+  /// @Snippet(path: "NotificationChannelService_GetNotificationChannelDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/getNotificationChannelDescriptor(request:options:)``
   public func getNotificationChannelDescriptor(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannelDescriptor {
@@ -307,6 +409,15 @@ extension Clients.NotificationChannelServiceProtocol {
     return try await self.getNotificationChannelDescriptor(request: request)
   }
 
+  /// Lists the notification channels that have been created for the project.
+  /// To list the types of notification channels that are supported, use
+  /// the `ListNotificationChannelDescriptors` method.
+  ///
+  /// @Snippet(path: "NotificationChannelService_ListNotificationChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannels(request:options:)``
   public func listNotificationChannels(request: ListNotificationChannelsRequest) async throws
     -> GoogleCloudMonitoringV3.ListNotificationChannelsResponse
   {
@@ -319,6 +430,15 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the notification channels that have been created for the project.
+  /// To list the types of notification channels that are supported, use
+  /// the `ListNotificationChannelDescriptors` method.
+  ///
+  /// @Snippet(path: "NotificationChannelService_ListNotificationChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannels(request:options:)``
   public func listNotificationChannelsByItems(
     request: ListNotificationChannelsRequest
   ) -> some AsyncSequence<NotificationChannel, any Swift.Error> & Sendable {
@@ -330,6 +450,10 @@ extension Clients.NotificationChannelServiceProtocol {
   /// the `ListNotificationChannelDescriptors` method.
   ///
   /// @Snippet(path: "NotificationChannelService_ListNotificationChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannels(request:options:)``
   public func listNotificationChannelsByItems(
     request: ListNotificationChannelsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<NotificationChannel, any Swift.Error> & Sendable {
@@ -344,6 +468,15 @@ extension Clients.NotificationChannelServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the notification channels that have been created for the project.
+  /// To list the types of notification channels that are supported, use
+  /// the `ListNotificationChannelDescriptors` method.
+  ///
+  /// @Snippet(path: "NotificationChannelService_ListNotificationChannels")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/listNotificationChannels(request:options:)``
   public func listNotificationChannelsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<NotificationChannel, any Swift.Error> & Sendable {
@@ -353,6 +486,17 @@ extension Clients.NotificationChannelServiceProtocol {
     return self.listNotificationChannelsByItems(request: request)
   }
 
+  /// Gets a single notification channel. The channel includes the relevant
+  /// configuration details with which the channel was created. However, the
+  /// response may truncate or omit passwords, API keys, or other private key
+  /// matter and thus the response may not be 100% identical to the information
+  /// that was supplied in the call to the create method.
+  ///
+  /// @Snippet(path: "NotificationChannelService_GetNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/getNotificationChannel(request:options:)``
   public func getNotificationChannel(request: GetNotificationChannelRequest) async throws
     -> GoogleCloudMonitoringV3.NotificationChannel
   {
@@ -365,6 +509,17 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single notification channel. The channel includes the relevant
+  /// configuration details with which the channel was created. However, the
+  /// response may truncate or omit passwords, API keys, or other private key
+  /// matter and thus the response may not be 100% identical to the information
+  /// that was supplied in the call to the create method.
+  ///
+  /// @Snippet(path: "NotificationChannelService_GetNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/getNotificationChannel(request:options:)``
   public func getNotificationChannel(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringV3.NotificationChannel {
@@ -374,6 +529,19 @@ extension Clients.NotificationChannelServiceProtocol {
     return try await self.getNotificationChannel(request: request)
   }
 
+  /// Creates a new notification channel, representing a single notification
+  /// endpoint such as an email address, SMS number, or PagerDuty service.
+  ///
+  /// Design your application to single-thread API calls that modify the state of
+  /// notification channels in a single project. This includes calls to
+  /// CreateNotificationChannel, DeleteNotificationChannel and
+  /// UpdateNotificationChannel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_CreateNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/createNotificationChannel(request:options:)``
   public func createNotificationChannel(request: CreateNotificationChannelRequest) async throws
     -> GoogleCloudMonitoringV3.NotificationChannel
   {
@@ -386,6 +554,19 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new notification channel, representing a single notification
+  /// endpoint such as an email address, SMS number, or PagerDuty service.
+  ///
+  /// Design your application to single-thread API calls that modify the state of
+  /// notification channels in a single project. This includes calls to
+  /// CreateNotificationChannel, DeleteNotificationChannel and
+  /// UpdateNotificationChannel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_CreateNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/createNotificationChannel(request:options:)``
   public func createNotificationChannel(
     name: Swift.String,
     notificationChannel: NotificationChannel?,
@@ -397,6 +578,19 @@ extension Clients.NotificationChannelServiceProtocol {
     return try await self.createNotificationChannel(request: request)
   }
 
+  /// Updates a notification channel. Fields not specified in the field mask
+  /// remain unchanged.
+  ///
+  /// Design your application to single-thread API calls that modify the state of
+  /// notification channels in a single project. This includes calls to
+  /// CreateNotificationChannel, DeleteNotificationChannel and
+  /// UpdateNotificationChannel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_UpdateNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/updateNotificationChannel(request:options:)``
   public func updateNotificationChannel(request: UpdateNotificationChannelRequest) async throws
     -> GoogleCloudMonitoringV3.NotificationChannel
   {
@@ -409,6 +603,19 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a notification channel. Fields not specified in the field mask
+  /// remain unchanged.
+  ///
+  /// Design your application to single-thread API calls that modify the state of
+  /// notification channels in a single project. This includes calls to
+  /// CreateNotificationChannel, DeleteNotificationChannel and
+  /// UpdateNotificationChannel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_UpdateNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/updateNotificationChannel(request:options:)``
   public func updateNotificationChannel(
     updateMask: GoogleWKT.WKTFieldMask?,
     notificationChannel: NotificationChannel?,
@@ -420,6 +627,18 @@ extension Clients.NotificationChannelServiceProtocol {
     return try await self.updateNotificationChannel(request: request)
   }
 
+  /// Deletes a notification channel.
+  ///
+  /// Design your application to single-thread API calls that modify the state of
+  /// notification channels in a single project. This includes calls to
+  /// CreateNotificationChannel, DeleteNotificationChannel and
+  /// UpdateNotificationChannel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_DeleteNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/deleteNotificationChannel(request:options:)``
   public func deleteNotificationChannel(request: DeleteNotificationChannelRequest) async throws {
     try await self.deleteNotificationChannel(request: request, options: .init())
   }
@@ -430,6 +649,18 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a notification channel.
+  ///
+  /// Design your application to single-thread API calls that modify the state of
+  /// notification channels in a single project. This includes calls to
+  /// CreateNotificationChannel, DeleteNotificationChannel and
+  /// UpdateNotificationChannel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_DeleteNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/deleteNotificationChannel(request:options:)``
   public func deleteNotificationChannel(
     name: Swift.String,
     force: Swift.Bool,
@@ -441,6 +672,14 @@ extension Clients.NotificationChannelServiceProtocol {
     try await self.deleteNotificationChannel(request: request)
   }
 
+  /// Causes a verification code to be delivered to the channel. The code
+  /// can then be supplied in `VerifyNotificationChannel` to verify the channel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_SendNotificationChannelVerificationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/sendNotificationChannelVerificationCode(request:options:)``
   public func sendNotificationChannelVerificationCode(
     request: SendNotificationChannelVerificationCodeRequest
   ) async throws {
@@ -453,6 +692,14 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Causes a verification code to be delivered to the channel. The code
+  /// can then be supplied in `VerifyNotificationChannel` to verify the channel.
+  ///
+  /// @Snippet(path: "NotificationChannelService_SendNotificationChannelVerificationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/sendNotificationChannelVerificationCode(request:options:)``
   public func sendNotificationChannelVerificationCode(
     name: Swift.String,
   ) async throws {
@@ -462,6 +709,33 @@ extension Clients.NotificationChannelServiceProtocol {
     try await self.sendNotificationChannelVerificationCode(request: request)
   }
 
+  /// Requests a verification code for an already verified channel that can then
+  /// be used in a call to VerifyNotificationChannel() on a different channel
+  /// with an equivalent identity in the same or in a different project. This
+  /// makes it possible to copy a channel between projects without requiring
+  /// manual reverification of the channel. If the channel is not in the
+  /// verified state, this method will fail (in other words, this may only be
+  /// used if the SendNotificationChannelVerificationCode and
+  /// VerifyNotificationChannel paths have already been used to put the given
+  /// channel into the verified state).
+  ///
+  /// There is no guarantee that the verification codes returned by this method
+  /// will be of a similar structure or form as the ones that are delivered
+  /// to the channel via SendNotificationChannelVerificationCode; while
+  /// VerifyNotificationChannel() will recognize both the codes delivered via
+  /// SendNotificationChannelVerificationCode() and returned from
+  /// GetNotificationChannelVerificationCode(), it is typically the case that
+  /// the verification codes delivered via
+  /// SendNotificationChannelVerificationCode() will be shorter and also
+  /// have a shorter expiration (e.g. codes such as "G-123456") whereas
+  /// GetVerificationCode() will typically return a much longer, websafe base
+  /// 64 encoded string that has a longer expiration time.
+  ///
+  /// @Snippet(path: "NotificationChannelService_GetNotificationChannelVerificationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/getNotificationChannelVerificationCode(request:options:)``
   public func getNotificationChannelVerificationCode(
     request: GetNotificationChannelVerificationCodeRequest
   ) async throws -> GoogleCloudMonitoringV3.GetNotificationChannelVerificationCodeResponse {
@@ -474,6 +748,33 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Requests a verification code for an already verified channel that can then
+  /// be used in a call to VerifyNotificationChannel() on a different channel
+  /// with an equivalent identity in the same or in a different project. This
+  /// makes it possible to copy a channel between projects without requiring
+  /// manual reverification of the channel. If the channel is not in the
+  /// verified state, this method will fail (in other words, this may only be
+  /// used if the SendNotificationChannelVerificationCode and
+  /// VerifyNotificationChannel paths have already been used to put the given
+  /// channel into the verified state).
+  ///
+  /// There is no guarantee that the verification codes returned by this method
+  /// will be of a similar structure or form as the ones that are delivered
+  /// to the channel via SendNotificationChannelVerificationCode; while
+  /// VerifyNotificationChannel() will recognize both the codes delivered via
+  /// SendNotificationChannelVerificationCode() and returned from
+  /// GetNotificationChannelVerificationCode(), it is typically the case that
+  /// the verification codes delivered via
+  /// SendNotificationChannelVerificationCode() will be shorter and also
+  /// have a shorter expiration (e.g. codes such as "G-123456") whereas
+  /// GetVerificationCode() will typically return a much longer, websafe base
+  /// 64 encoded string that has a longer expiration time.
+  ///
+  /// @Snippet(path: "NotificationChannelService_GetNotificationChannelVerificationCode")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/getNotificationChannelVerificationCode(request:options:)``
   public func getNotificationChannelVerificationCode(
     name: Swift.String,
   ) async throws -> GoogleCloudMonitoringV3.GetNotificationChannelVerificationCodeResponse {
@@ -483,6 +784,15 @@ extension Clients.NotificationChannelServiceProtocol {
     return try await self.getNotificationChannelVerificationCode(request: request)
   }
 
+  /// Verifies a `NotificationChannel` by proving receipt of the code
+  /// delivered to the channel as a result of calling
+  /// `SendNotificationChannelVerificationCode`.
+  ///
+  /// @Snippet(path: "NotificationChannelService_VerifyNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/verifyNotificationChannel(request:options:)``
   public func verifyNotificationChannel(request: VerifyNotificationChannelRequest) async throws
     -> GoogleCloudMonitoringV3.NotificationChannel
   {
@@ -495,6 +805,15 @@ extension Clients.NotificationChannelServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Verifies a `NotificationChannel` by proving receipt of the code
+  /// delivered to the channel as a result of calling
+  /// `SendNotificationChannelVerificationCode`.
+  ///
+  /// @Snippet(path: "NotificationChannelService_VerifyNotificationChannel")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NotificationChannelServiceClient/verifyNotificationChannel(request:options:)``
   public func verifyNotificationChannel(
     name: Swift.String,
     code: Swift.String,

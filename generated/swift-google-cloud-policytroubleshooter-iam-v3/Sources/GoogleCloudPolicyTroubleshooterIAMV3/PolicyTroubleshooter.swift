@@ -25,6 +25,10 @@ import Foundation
 /// This service helps you troubleshoot access issues for Google Cloud resources.
 ///
 /// @Snippet(path: "PolicyTroubleshooterQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PolicyTroubleshooterProtocol``
 public final class PolicyTroubleshooterClient: Clients.PolicyTroubleshooterProtocol, Sendable {
   let inner: any Clients.PolicyTroubleshooterStub
 
@@ -44,6 +48,10 @@ public final class PolicyTroubleshooterClient: Clients.PolicyTroubleshooterProto
   /// permission.
   ///
   /// @Snippet(path: "PolicyTroubleshooter_TroubleshootIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``troubleshootIamPolicy(request:)``
   public func troubleshootIamPolicy(
     request: TroubleshootIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudPolicyTroubleshooterIAMV3.TroubleshootIamPolicyResponse {
@@ -67,6 +75,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.PolicyTroubleshooterProtocol {
+  /// Checks whether a principal has a specific permission for a specific
+  /// resource, and explains why the principal does or doesn't have that
+  /// permission.
+  ///
+  /// @Snippet(path: "PolicyTroubleshooter_TroubleshootIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PolicyTroubleshooterClient/troubleshootIamPolicy(request:options:)``
   public func troubleshootIamPolicy(request: TroubleshootIamPolicyRequest) async throws
     -> GoogleCloudPolicyTroubleshooterIAMV3.TroubleshootIamPolicyResponse
   {

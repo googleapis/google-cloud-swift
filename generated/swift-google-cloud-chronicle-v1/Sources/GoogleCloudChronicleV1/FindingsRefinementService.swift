@@ -27,6 +27,10 @@ import Foundation
 /// from triggering alerts or notifications.
 ///
 /// @Snippet(path: "FindingsRefinementServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/FindingsRefinementServiceProtocol``
 public final class FindingsRefinementServiceClient: Clients.FindingsRefinementServiceProtocol,
   Sendable
 {
@@ -46,6 +50,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Gets a single findings refinement.
   ///
   /// @Snippet(path: "FindingsRefinementService_GetFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFindingsRefinement(name:)``
+  /// - ``getFindingsRefinement(request:)``
   public func getFindingsRefinement(
     request: GetFindingsRefinementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -55,6 +64,13 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Lists a collection of findings refinements.
   ///
   /// @Snippet(path: "FindingsRefinementService_ListFindingsRefinements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFindingsRefinements(request:)``
+  /// - ``listFindingsRefinementsByItems(parent:)``
+  /// - ``listFindingsRefinementsByItems(request:)``
+  /// - ``listFindingsRefinementsByItems(request:options:)``
   public func listFindingsRefinements(
     request: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListFindingsRefinementsResponse {
@@ -64,6 +80,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Creates a new findings refinement.
   ///
   /// @Snippet(path: "FindingsRefinementService_CreateFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFindingsRefinement(parent:findingsRefinement:)``
+  /// - ``createFindingsRefinement(request:)``
   public func createFindingsRefinement(
     request: CreateFindingsRefinementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -73,6 +94,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Updates a findings refinement.
   ///
   /// @Snippet(path: "FindingsRefinementService_UpdateFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFindingsRefinement(findingsRefinement:updateMask:)``
+  /// - ``updateFindingsRefinement(request:)``
   public func updateFindingsRefinement(
     request: UpdateFindingsRefinementRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -82,6 +108,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Gets a findings refinement deployment.
   ///
   /// @Snippet(path: "FindingsRefinementService_GetFindingsRefinementDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFindingsRefinementDeployment(name:)``
+  /// - ``getFindingsRefinementDeployment(request:)``
   public func getFindingsRefinementDeployment(
     request: GetFindingsRefinementDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -91,6 +122,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Updates a findings refinement deployment.
   ///
   /// @Snippet(path: "FindingsRefinementService_UpdateFindingsRefinementDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFindingsRefinementDeployment(findingsRefinementDeployment:updateMask:)``
+  /// - ``updateFindingsRefinementDeployment(request:)``
   public func updateFindingsRefinementDeployment(
     request: UpdateFindingsRefinementDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -100,6 +136,13 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Lists all findings refinement deployments.
   ///
   /// @Snippet(path: "FindingsRefinementService_ListAllFindingsRefinementDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAllFindingsRefinementDeployments(request:)``
+  /// - ``listAllFindingsRefinementDeploymentsByItems(instance:)``
+  /// - ``listAllFindingsRefinementDeploymentsByItems(request:)``
+  /// - ``listAllFindingsRefinementDeploymentsByItems(request:options:)``
   public func listAllFindingsRefinementDeployments(
     request: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListAllFindingsRefinementDeploymentsResponse {
@@ -109,6 +152,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Returns findings refinement activity for a specific findings refinement.
   ///
   /// @Snippet(path: "FindingsRefinementService_ComputeFindingsRefinementActivity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``computeFindingsRefinementActivity(name:)``
+  /// - ``computeFindingsRefinementActivity(request:)``
   public func computeFindingsRefinementActivity(
     request: ComputeFindingsRefinementActivityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ComputeFindingsRefinementActivityResponse {
@@ -118,6 +166,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// Returns findings refinement activity for all findings refinements.
   ///
   /// @Snippet(path: "FindingsRefinementService_ComputeAllFindingsRefinementActivities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``computeAllFindingsRefinementActivities(instance:)``
+  /// - ``computeAllFindingsRefinementActivities(request:)``
   public func computeAllFindingsRefinementActivities(
     request: ComputeAllFindingsRefinementActivitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ComputeAllFindingsRefinementActivitiesResponse {
@@ -129,6 +182,13 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FindingsRefinementService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -151,6 +211,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FindingsRefinementService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -162,6 +227,11 @@ public final class FindingsRefinementServiceClient: Clients.FindingsRefinementSe
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FindingsRefinementService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -240,6 +310,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.FindingsRefinementServiceProtocol {
+  /// Gets a single findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_GetFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/getFindingsRefinement(request:options:)``
   public func getFindingsRefinement(request: GetFindingsRefinementRequest) async throws
     -> GoogleCloudChronicleV1.FindingsRefinement
   {
@@ -252,6 +329,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_GetFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/getFindingsRefinement(request:options:)``
   public func getFindingsRefinement(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinement {
@@ -261,6 +345,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.getFindingsRefinement(request: request)
   }
 
+  /// Lists a collection of findings refinements.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListFindingsRefinements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listFindingsRefinements(request:options:)``
   public func listFindingsRefinements(request: ListFindingsRefinementsRequest) async throws
     -> GoogleCloudChronicleV1.ListFindingsRefinementsResponse
   {
@@ -273,6 +364,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists a collection of findings refinements.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListFindingsRefinements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listFindingsRefinements(request:options:)``
   public func listFindingsRefinementsByItems(
     request: ListFindingsRefinementsRequest
   ) -> some AsyncSequence<FindingsRefinement, any Swift.Error> & Sendable {
@@ -282,6 +380,10 @@ extension Clients.FindingsRefinementServiceProtocol {
   /// Lists a collection of findings refinements.
   ///
   /// @Snippet(path: "FindingsRefinementService_ListFindingsRefinements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listFindingsRefinements(request:options:)``
   public func listFindingsRefinementsByItems(
     request: ListFindingsRefinementsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FindingsRefinement, any Swift.Error> & Sendable {
@@ -296,6 +398,13 @@ extension Clients.FindingsRefinementServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists a collection of findings refinements.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListFindingsRefinements")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listFindingsRefinements(request:options:)``
   public func listFindingsRefinementsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<FindingsRefinement, any Swift.Error> & Sendable {
@@ -305,6 +414,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return self.listFindingsRefinementsByItems(request: request)
   }
 
+  /// Creates a new findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_CreateFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/createFindingsRefinement(request:options:)``
   public func createFindingsRefinement(request: CreateFindingsRefinementRequest) async throws
     -> GoogleCloudChronicleV1.FindingsRefinement
   {
@@ -317,6 +433,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_CreateFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/createFindingsRefinement(request:options:)``
   public func createFindingsRefinement(
     parent: Swift.String,
     findingsRefinement: FindingsRefinement?,
@@ -328,6 +451,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.createFindingsRefinement(request: request)
   }
 
+  /// Updates a findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_UpdateFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/updateFindingsRefinement(request:options:)``
   public func updateFindingsRefinement(request: UpdateFindingsRefinementRequest) async throws
     -> GoogleCloudChronicleV1.FindingsRefinement
   {
@@ -340,6 +470,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_UpdateFindingsRefinement")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/updateFindingsRefinement(request:options:)``
   public func updateFindingsRefinement(
     findingsRefinement: FindingsRefinement?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -351,6 +488,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.updateFindingsRefinement(request: request)
   }
 
+  /// Gets a findings refinement deployment.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_GetFindingsRefinementDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/getFindingsRefinementDeployment(request:options:)``
   public func getFindingsRefinementDeployment(request: GetFindingsRefinementDeploymentRequest)
     async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment
   {
@@ -363,6 +507,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a findings refinement deployment.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_GetFindingsRefinementDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/getFindingsRefinementDeployment(request:options:)``
   public func getFindingsRefinementDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment {
@@ -372,6 +523,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.getFindingsRefinementDeployment(request: request)
   }
 
+  /// Updates a findings refinement deployment.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_UpdateFindingsRefinementDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/updateFindingsRefinementDeployment(request:options:)``
   public func updateFindingsRefinementDeployment(request: UpdateFindingsRefinementDeploymentRequest)
     async throws -> GoogleCloudChronicleV1.FindingsRefinementDeployment
   {
@@ -384,6 +542,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a findings refinement deployment.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_UpdateFindingsRefinementDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/updateFindingsRefinementDeployment(request:options:)``
   public func updateFindingsRefinementDeployment(
     findingsRefinementDeployment: FindingsRefinementDeployment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -395,6 +560,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.updateFindingsRefinementDeployment(request: request)
   }
 
+  /// Lists all findings refinement deployments.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListAllFindingsRefinementDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listAllFindingsRefinementDeployments(request:options:)``
   public func listAllFindingsRefinementDeployments(
     request: ListAllFindingsRefinementDeploymentsRequest
   ) async throws -> GoogleCloudChronicleV1.ListAllFindingsRefinementDeploymentsResponse {
@@ -407,6 +579,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all findings refinement deployments.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListAllFindingsRefinementDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listAllFindingsRefinementDeployments(request:options:)``
   public func listAllFindingsRefinementDeploymentsByItems(
     request: ListAllFindingsRefinementDeploymentsRequest
   ) -> some AsyncSequence<FindingsRefinementDeployment, any Swift.Error> & Sendable {
@@ -416,6 +595,10 @@ extension Clients.FindingsRefinementServiceProtocol {
   /// Lists all findings refinement deployments.
   ///
   /// @Snippet(path: "FindingsRefinementService_ListAllFindingsRefinementDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listAllFindingsRefinementDeployments(request:options:)``
   public func listAllFindingsRefinementDeploymentsByItems(
     request: ListAllFindingsRefinementDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FindingsRefinementDeployment, any Swift.Error> & Sendable {
@@ -430,6 +613,13 @@ extension Clients.FindingsRefinementServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all findings refinement deployments.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListAllFindingsRefinementDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listAllFindingsRefinementDeployments(request:options:)``
   public func listAllFindingsRefinementDeploymentsByItems(
     instance: Swift.String,
   ) -> some AsyncSequence<FindingsRefinementDeployment, any Swift.Error> & Sendable {
@@ -439,6 +629,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return self.listAllFindingsRefinementDeploymentsByItems(request: request)
   }
 
+  /// Returns findings refinement activity for a specific findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ComputeFindingsRefinementActivity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/computeFindingsRefinementActivity(request:options:)``
   public func computeFindingsRefinementActivity(request: ComputeFindingsRefinementActivityRequest)
     async throws -> GoogleCloudChronicleV1.ComputeFindingsRefinementActivityResponse
   {
@@ -451,6 +648,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns findings refinement activity for a specific findings refinement.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ComputeFindingsRefinementActivity")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/computeFindingsRefinementActivity(request:options:)``
   public func computeFindingsRefinementActivity(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.ComputeFindingsRefinementActivityResponse {
@@ -460,6 +664,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.computeFindingsRefinementActivity(request: request)
   }
 
+  /// Returns findings refinement activity for all findings refinements.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ComputeAllFindingsRefinementActivities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/computeAllFindingsRefinementActivities(request:options:)``
   public func computeAllFindingsRefinementActivities(
     request: ComputeAllFindingsRefinementActivitiesRequest
   ) async throws -> GoogleCloudChronicleV1.ComputeAllFindingsRefinementActivitiesResponse {
@@ -472,6 +683,13 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns findings refinement activity for all findings refinements.
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ComputeAllFindingsRefinementActivities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/computeAllFindingsRefinementActivities(request:options:)``
   public func computeAllFindingsRefinementActivities(
     instance: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.ComputeAllFindingsRefinementActivitiesResponse {
@@ -481,6 +699,15 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.computeAllFindingsRefinementActivities(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -493,6 +720,15 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -504,6 +740,10 @@ extension Clients.FindingsRefinementServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "FindingsRefinementService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -517,6 +757,15 @@ extension Clients.FindingsRefinementServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -528,6 +777,9 @@ extension Clients.FindingsRefinementServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -540,6 +792,9 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -549,6 +804,15 @@ extension Clients.FindingsRefinementServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -559,6 +823,15 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -568,6 +841,15 @@ extension Clients.FindingsRefinementServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -578,6 +860,15 @@ extension Clients.FindingsRefinementServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "FindingsRefinementService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FindingsRefinementServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -24,6 +24,10 @@ import Foundation
 /// An interface for managing Identity and Access Management (IAM) policies.
 ///
 /// @Snippet(path: "PoliciesQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/PoliciesProtocol``
 public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   let inner: any Clients.PoliciesStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// omitted.
   ///
   /// @Snippet(path: "Policies_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPolicies(request:)``
+  /// - ``listPoliciesByItems(parent:)``
+  /// - ``listPoliciesByItems(request:)``
+  /// - ``listPoliciesByItems(request:options:)``
   public func listPolicies(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV2.ListPoliciesResponse {
@@ -57,6 +68,11 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Gets a policy.
   ///
   /// @Snippet(path: "Policies_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPolicy(name:)``
+  /// - ``getPolicy(request:)``
   public func getPolicy(
     request: GetPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV2.Policy {
@@ -66,6 +82,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Creates a policy.
   ///
   /// @Snippet(path: "Policies_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPolicy(request:)``
+  /// - ``createPolicyPollingUntilDone(parent:policy:policyId:)``
+  /// - ``createPolicyPollingUntilDone(request:)``
+  /// - ``createPolicyPollingUntilDone(request:options:)``
   public func createPolicy(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -75,6 +98,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Creates a policy.
   ///
   /// @Snippet(path: "Policies_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPolicy(request:)``
+  /// - ``createPolicy(request:options:)``
+  /// - ``createPolicyPollingUntilDone(parent:policy:policyId:)``
+  /// - ``createPolicyPollingUntilDone(request:)``
   public func createPolicyPollingUntilDone(
     request: CreatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -114,6 +144,12 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:options:)>
   ///
   /// @Snippet(path: "Policies_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicy(request:)``
+  /// - ``updatePolicyPollingUntilDone(request:)``
+  /// - ``updatePolicyPollingUntilDone(request:options:)``
   public func updatePolicy(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -135,6 +171,12 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:options:)>
   ///
   /// @Snippet(path: "Policies_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePolicy(request:)``
+  /// - ``updatePolicy(request:options:)``
+  /// - ``updatePolicyPollingUntilDone(request:)``
   public func updatePolicyPollingUntilDone(
     request: UpdatePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -162,6 +204,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Deletes a policy. This action is permanent.
   ///
   /// @Snippet(path: "Policies_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePolicy(request:)``
+  /// - ``deletePolicyPollingUntilDone(name:)``
+  /// - ``deletePolicyPollingUntilDone(request:)``
+  /// - ``deletePolicyPollingUntilDone(request:options:)``
   public func deletePolicy(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -171,6 +220,13 @@ public final class PoliciesClient: Clients.PoliciesProtocol, Sendable {
   /// Deletes a policy. This action is permanent.
   ///
   /// @Snippet(path: "Policies_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePolicy(request:)``
+  /// - ``deletePolicy(request:options:)``
+  /// - ``deletePolicyPollingUntilDone(name:)``
+  /// - ``deletePolicyPollingUntilDone(request:)``
   public func deletePolicyPollingUntilDone(
     request: DeletePolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> Policy {
@@ -258,6 +314,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.PoliciesProtocol {
+  /// Retrieves the policies of the specified kind that are attached to a
+  /// resource.
+  ///
+  /// The response lists only policy metadata. In particular, policy rules are
+  /// omitted.
+  ///
+  /// @Snippet(path: "Policies_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/listPolicies(request:options:)``
   public func listPolicies(request: ListPoliciesRequest) async throws
     -> GoogleIAMV2.ListPoliciesResponse
   {
@@ -270,6 +337,17 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the policies of the specified kind that are attached to a
+  /// resource.
+  ///
+  /// The response lists only policy metadata. In particular, policy rules are
+  /// omitted.
+  ///
+  /// @Snippet(path: "Policies_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     request: ListPoliciesRequest
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -283,6 +361,10 @@ extension Clients.PoliciesProtocol {
   /// omitted.
   ///
   /// @Snippet(path: "Policies_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     request: ListPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -296,6 +378,17 @@ extension Clients.PoliciesProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves the policies of the specified kind that are attached to a
+  /// resource.
+  ///
+  /// The response lists only policy metadata. In particular, policy rules are
+  /// omitted.
+  ///
+  /// @Snippet(path: "Policies_ListPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/listPolicies(request:options:)``
   public func listPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Policy, any Swift.Error> & Sendable {
@@ -305,6 +398,13 @@ extension Clients.PoliciesProtocol {
     return self.listPoliciesByItems(request: request)
   }
 
+  /// Gets a policy.
+  ///
+  /// @Snippet(path: "Policies_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/getPolicy(request:options:)``
   public func getPolicy(request: GetPolicyRequest) async throws -> GoogleIAMV2.Policy {
     try await self.getPolicy(request: request, options: .init())
   }
@@ -315,6 +415,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a policy.
+  ///
+  /// @Snippet(path: "Policies_GetPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/getPolicy(request:options:)``
   public func getPolicy(
     name: Swift.String,
   ) async throws -> GoogleIAMV2.Policy {
@@ -324,6 +431,13 @@ extension Clients.PoliciesProtocol {
     return try await self.getPolicy(request: request)
   }
 
+  /// Creates a policy.
+  ///
+  /// @Snippet(path: "Policies_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/createPolicy(request:options:)``
   public func createPolicy(request: CreatePolicyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createPolicy(request: request, options: .init())
@@ -335,6 +449,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a policy.
+  ///
+  /// @Snippet(path: "Policies_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/createPolicyPollingUntilDone(request:options:)``
   public func createPolicyPollingUntilDone(request: CreatePolicyRequest) async throws -> Policy {
     return try await self.createPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -345,6 +466,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a policy.
+  ///
+  /// @Snippet(path: "Policies_CreatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/createPolicyPollingUntilDone(request:options:)``
   public func createPolicyPollingUntilDone(
     parent: Swift.String,
     policy: Policy?,
@@ -358,6 +486,25 @@ extension Clients.PoliciesProtocol {
     return try await self.createPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the specified policy.
+  ///
+  /// You can update only the rules and the display name for the policy.
+  ///
+  /// To update a policy, you should use a read-modify-write loop:
+  ///
+  /// 1. Use [GetPolicy][google.iam.v2.Policies.GetPolicy] to read the current version of the policy.
+  /// 2. Modify the policy as needed.
+  /// 3. Use `UpdatePolicy` to write the updated policy.
+  ///
+  /// This pattern helps prevent conflicts between concurrent updates.
+  ///
+  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:options:)>
+  ///
+  /// @Snippet(path: "Policies_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/updatePolicy(request:options:)``
   public func updatePolicy(request: UpdatePolicyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updatePolicy(request: request, options: .init())
@@ -369,6 +516,25 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the specified policy.
+  ///
+  /// You can update only the rules and the display name for the policy.
+  ///
+  /// To update a policy, you should use a read-modify-write loop:
+  ///
+  /// 1. Use [GetPolicy][google.iam.v2.Policies.GetPolicy] to read the current version of the policy.
+  /// 2. Modify the policy as needed.
+  /// 3. Use `UpdatePolicy` to write the updated policy.
+  ///
+  /// This pattern helps prevent conflicts between concurrent updates.
+  ///
+  /// [google.iam.v2.Policies.GetPolicy]: <doc:PoliciesClient/getPolicy(request:options:)>
+  ///
+  /// @Snippet(path: "Policies_UpdatePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/updatePolicyPollingUntilDone(request:options:)``
   public func updatePolicyPollingUntilDone(request: UpdatePolicyRequest) async throws -> Policy {
     return try await self.updatePolicyPollingUntilDone(request: request, options: .init())
   }
@@ -379,6 +545,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy. This action is permanent.
+  ///
+  /// @Snippet(path: "Policies_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/deletePolicy(request:options:)``
   public func deletePolicy(request: DeletePolicyRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deletePolicy(request: request, options: .init())
@@ -390,6 +563,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy. This action is permanent.
+  ///
+  /// @Snippet(path: "Policies_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/deletePolicyPollingUntilDone(request:options:)``
   public func deletePolicyPollingUntilDone(request: DeletePolicyRequest) async throws -> Policy {
     return try await self.deletePolicyPollingUntilDone(request: request, options: .init())
   }
@@ -400,6 +580,13 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a policy. This action is permanent.
+  ///
+  /// @Snippet(path: "Policies_DeletePolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``PoliciesClient/deletePolicyPollingUntilDone(request:options:)``
   public func deletePolicyPollingUntilDone(
     name: Swift.String,
   ) async throws -> Policy {
@@ -409,6 +596,9 @@ extension Clients.PoliciesProtocol {
     return try await self.deletePolicyPollingUntilDone(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -421,6 +611,9 @@ extension Clients.PoliciesProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

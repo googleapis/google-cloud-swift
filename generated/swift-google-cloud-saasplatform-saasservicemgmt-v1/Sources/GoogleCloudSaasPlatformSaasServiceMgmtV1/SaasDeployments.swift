@@ -25,6 +25,10 @@ import Foundation
 /// Manages the deployment of SaaS services.
 ///
 /// @Snippet(path: "SaasDeploymentsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SaasDeploymentsProtocol``
 public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Sendable {
   let inner: any Clients.SaasDeploymentsStub
 
@@ -41,6 +45,13 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a collection of saas.
   ///
   /// @Snippet(path: "SaasDeployments_ListSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSaas(request:)``
+  /// - ``listSaasByItems(parent:)``
+  /// - ``listSaasByItems(request:)``
+  /// - ``listSaasByItems(request:options:)``
   public func listSaas(
     request: ListSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListSaasResponse {
@@ -50,6 +61,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a single saas.
   ///
   /// @Snippet(path: "SaasDeployments_GetSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSaas(name:)``
+  /// - ``getSaas(request:)``
   public func getSaas(
     request: GetSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas {
@@ -59,6 +75,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Create a new saas.
   ///
   /// @Snippet(path: "SaasDeployments_CreateSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSaas(parent:saas:saasId:)``
+  /// - ``createSaas(request:)``
   public func createSaas(
     request: CreateSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas {
@@ -68,6 +89,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Update a single saas.
   ///
   /// @Snippet(path: "SaasDeployments_UpdateSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSaas(request:)``
+  /// - ``updateSaas(saas:updateMask:)``
   public func updateSaas(
     request: UpdateSaasRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas {
@@ -77,6 +103,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Delete a single saas.
   ///
   /// @Snippet(path: "SaasDeployments_DeleteSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSaas(name:)``
+  /// - ``deleteSaas(request:)``
   public func deleteSaas(
     request: DeleteSaasRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -86,6 +117,13 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a collection of tenants.
   ///
   /// @Snippet(path: "SaasDeployments_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTenants(request:)``
+  /// - ``listTenantsByItems(parent:)``
+  /// - ``listTenantsByItems(request:)``
+  /// - ``listTenantsByItems(request:options:)``
   public func listTenants(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListTenantsResponse {
@@ -95,6 +133,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a single tenant.
   ///
   /// @Snippet(path: "SaasDeployments_GetTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTenant(name:)``
+  /// - ``getTenant(request:)``
   public func getTenant(
     request: GetTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant {
@@ -104,6 +147,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Create a new tenant.
   ///
   /// @Snippet(path: "SaasDeployments_CreateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTenant(parent:tenant:tenantId:)``
+  /// - ``createTenant(request:)``
   public func createTenant(
     request: CreateTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant {
@@ -113,6 +161,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Update a single tenant.
   ///
   /// @Snippet(path: "SaasDeployments_UpdateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTenant(request:)``
+  /// - ``updateTenant(tenant:updateMask:)``
   public func updateTenant(
     request: UpdateTenantRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant {
@@ -122,6 +175,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Delete a single tenant.
   ///
   /// @Snippet(path: "SaasDeployments_DeleteTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTenant(name:)``
+  /// - ``deleteTenant(request:)``
   public func deleteTenant(
     request: DeleteTenantRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -131,6 +189,13 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a collection of unit kinds.
   ///
   /// @Snippet(path: "SaasDeployments_ListUnitKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUnitKinds(request:)``
+  /// - ``listUnitKindsByItems(parent:)``
+  /// - ``listUnitKindsByItems(request:)``
+  /// - ``listUnitKindsByItems(request:options:)``
   public func listUnitKinds(
     request: ListUnitKindsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitKindsResponse {
@@ -140,6 +205,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a single unit kind.
   ///
   /// @Snippet(path: "SaasDeployments_GetUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getUnitKind(name:)``
+  /// - ``getUnitKind(request:)``
   public func getUnitKind(
     request: GetUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind {
@@ -149,6 +219,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Create a new unit kind.
   ///
   /// @Snippet(path: "SaasDeployments_CreateUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUnitKind(parent:unitKind:unitKindId:)``
+  /// - ``createUnitKind(request:)``
   public func createUnitKind(
     request: CreateUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind {
@@ -158,6 +233,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Update a single unit kind.
   ///
   /// @Snippet(path: "SaasDeployments_UpdateUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUnitKind(request:)``
+  /// - ``updateUnitKind(unitKind:updateMask:)``
   public func updateUnitKind(
     request: UpdateUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind {
@@ -167,6 +247,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Delete a single unit kind.
   ///
   /// @Snippet(path: "SaasDeployments_DeleteUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUnitKind(name:)``
+  /// - ``deleteUnitKind(request:)``
   public func deleteUnitKind(
     request: DeleteUnitKindRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -176,6 +261,13 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a collection of units.
   ///
   /// @Snippet(path: "SaasDeployments_ListUnits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUnits(request:)``
+  /// - ``listUnitsByItems(parent:)``
+  /// - ``listUnitsByItems(request:)``
+  /// - ``listUnitsByItems(request:options:)``
   public func listUnits(
     request: ListUnitsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitsResponse {
@@ -185,6 +277,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a single unit.
   ///
   /// @Snippet(path: "SaasDeployments_GetUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getUnit(name:)``
+  /// - ``getUnit(request:)``
   public func getUnit(
     request: GetUnitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit {
@@ -194,6 +291,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Create a new unit.
   ///
   /// @Snippet(path: "SaasDeployments_CreateUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUnit(parent:unit:unitId:)``
+  /// - ``createUnit(request:)``
   public func createUnit(
     request: CreateUnitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit {
@@ -203,6 +305,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Update a single unit.
   ///
   /// @Snippet(path: "SaasDeployments_UpdateUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUnit(request:)``
+  /// - ``updateUnit(unit:updateMask:)``
   public func updateUnit(
     request: UpdateUnitRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit {
@@ -212,6 +319,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Delete a single unit.
   ///
   /// @Snippet(path: "SaasDeployments_DeleteUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUnit(name:)``
+  /// - ``deleteUnit(request:)``
   public func deleteUnit(
     request: DeleteUnitRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -221,6 +333,13 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a collection of unit operations.
   ///
   /// @Snippet(path: "SaasDeployments_ListUnitOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUnitOperations(request:)``
+  /// - ``listUnitOperationsByItems(parent:)``
+  /// - ``listUnitOperationsByItems(request:)``
+  /// - ``listUnitOperationsByItems(request:options:)``
   public func listUnitOperations(
     request: ListUnitOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitOperationsResponse {
@@ -230,6 +349,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a single unit operation.
   ///
   /// @Snippet(path: "SaasDeployments_GetUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getUnitOperation(name:)``
+  /// - ``getUnitOperation(request:)``
   public func getUnitOperation(
     request: GetUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation {
@@ -239,6 +363,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Create a new unit operation.
   ///
   /// @Snippet(path: "SaasDeployments_CreateUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUnitOperation(parent:unitOperation:unitOperationId:)``
+  /// - ``createUnitOperation(request:)``
   public func createUnitOperation(
     request: CreateUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation {
@@ -248,6 +377,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Update a single unit operation.
   ///
   /// @Snippet(path: "SaasDeployments_UpdateUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUnitOperation(request:)``
+  /// - ``updateUnitOperation(unitOperation:updateMask:)``
   public func updateUnitOperation(
     request: UpdateUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation {
@@ -257,6 +391,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Delete a single unit operation.
   ///
   /// @Snippet(path: "SaasDeployments_DeleteUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUnitOperation(name:)``
+  /// - ``deleteUnitOperation(request:)``
   public func deleteUnitOperation(
     request: DeleteUnitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -266,6 +405,13 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a collection of releases.
   ///
   /// @Snippet(path: "SaasDeployments_ListReleases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReleases(request:)``
+  /// - ``listReleasesByItems(parent:)``
+  /// - ``listReleasesByItems(request:)``
+  /// - ``listReleasesByItems(request:options:)``
   public func listReleases(
     request: ListReleasesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListReleasesResponse {
@@ -275,6 +421,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Retrieve a single release.
   ///
   /// @Snippet(path: "SaasDeployments_GetRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRelease(name:)``
+  /// - ``getRelease(request:)``
   public func getRelease(
     request: GetReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -284,6 +435,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Create a new release.
   ///
   /// @Snippet(path: "SaasDeployments_CreateRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRelease(parent:release:releaseId:)``
+  /// - ``createRelease(request:)``
   public func createRelease(
     request: CreateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -293,6 +449,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Update a single release.
   ///
   /// @Snippet(path: "SaasDeployments_UpdateRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRelease(release:updateMask:)``
+  /// - ``updateRelease(request:)``
   public func updateRelease(
     request: UpdateReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -302,6 +463,11 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Delete a single release.
   ///
   /// @Snippet(path: "SaasDeployments_DeleteRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRelease(name:)``
+  /// - ``deleteRelease(request:)``
   public func deleteRelease(
     request: DeleteReleaseRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -328,6 +494,12 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SaasDeployments_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -337,6 +509,10 @@ public final class SaasDeploymentsClient: Clients.SaasDeploymentsProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SaasDeployments_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -515,6 +691,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SaasDeploymentsProtocol {
+  /// Retrieve a collection of saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listSaas(request:options:)``
   public func listSaas(request: ListSaasRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListSaasResponse
   {
@@ -527,6 +710,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listSaas(request:options:)``
   public func listSaasByItems(
     request: ListSaasRequest
   ) -> some AsyncSequence<Saas, any Swift.Error> & Sendable {
@@ -536,6 +726,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// Retrieve a collection of saas.
   ///
   /// @Snippet(path: "SaasDeployments_ListSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listSaas(request:options:)``
   public func listSaasByItems(
     request: ListSaasRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Saas, any Swift.Error> & Sendable {
@@ -550,6 +744,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listSaas(request:options:)``
   public func listSaasByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Saas, any Swift.Error> & Sendable {
@@ -559,6 +760,13 @@ extension Clients.SaasDeploymentsProtocol {
     return self.listSaasByItems(request: request)
   }
 
+  /// Retrieve a single saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getSaas(request:options:)``
   public func getSaas(request: GetSaasRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas
   {
@@ -571,6 +779,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getSaas(request:options:)``
   public func getSaas(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas {
@@ -580,6 +795,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.getSaas(request: request)
   }
 
+  /// Create a new saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createSaas(request:options:)``
   public func createSaas(request: CreateSaasRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas
   {
@@ -592,6 +814,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createSaas(request:options:)``
   public func createSaas(
     parent: Swift.String,
     saas: Saas?,
@@ -605,6 +834,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.createSaas(request: request)
   }
 
+  /// Update a single saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateSaas(request:options:)``
   public func updateSaas(request: UpdateSaasRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Saas
   {
@@ -617,6 +853,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateSaas(request:options:)``
   public func updateSaas(
     saas: Saas?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -628,6 +871,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.updateSaas(request: request)
   }
 
+  /// Delete a single saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteSaas(request:options:)``
   public func deleteSaas(request: DeleteSaasRequest) async throws {
     try await self.deleteSaas(request: request, options: .init())
   }
@@ -638,6 +888,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single saas.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteSaas")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteSaas(request:options:)``
   public func deleteSaas(
     name: Swift.String,
   ) async throws {
@@ -647,6 +904,13 @@ extension Clients.SaasDeploymentsProtocol {
     try await self.deleteSaas(request: request)
   }
 
+  /// Retrieve a collection of tenants.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listTenants(request:options:)``
   public func listTenants(request: ListTenantsRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListTenantsResponse
   {
@@ -659,6 +923,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of tenants.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listTenants(request:options:)``
   public func listTenantsByItems(
     request: ListTenantsRequest
   ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
@@ -668,6 +939,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// Retrieve a collection of tenants.
   ///
   /// @Snippet(path: "SaasDeployments_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listTenants(request:options:)``
   public func listTenantsByItems(
     request: ListTenantsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
@@ -682,6 +957,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of tenants.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListTenants")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listTenants(request:options:)``
   public func listTenantsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Tenant, any Swift.Error> & Sendable {
@@ -691,6 +973,13 @@ extension Clients.SaasDeploymentsProtocol {
     return self.listTenantsByItems(request: request)
   }
 
+  /// Retrieve a single tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getTenant(request:options:)``
   public func getTenant(request: GetTenantRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant
   {
@@ -703,6 +992,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getTenant(request:options:)``
   public func getTenant(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant {
@@ -712,6 +1008,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.getTenant(request: request)
   }
 
+  /// Create a new tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createTenant(request:options:)``
   public func createTenant(request: CreateTenantRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant
   {
@@ -724,6 +1027,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createTenant(request:options:)``
   public func createTenant(
     parent: Swift.String,
     tenant: Tenant?,
@@ -737,6 +1047,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.createTenant(request: request)
   }
 
+  /// Update a single tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateTenant(request:options:)``
   public func updateTenant(request: UpdateTenantRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Tenant
   {
@@ -749,6 +1066,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateTenant(request:options:)``
   public func updateTenant(
     tenant: Tenant?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -760,6 +1084,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.updateTenant(request: request)
   }
 
+  /// Delete a single tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteTenant(request:options:)``
   public func deleteTenant(request: DeleteTenantRequest) async throws {
     try await self.deleteTenant(request: request, options: .init())
   }
@@ -770,6 +1101,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single tenant.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteTenant")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteTenant(request:options:)``
   public func deleteTenant(
     name: Swift.String,
   ) async throws {
@@ -779,6 +1117,13 @@ extension Clients.SaasDeploymentsProtocol {
     try await self.deleteTenant(request: request)
   }
 
+  /// Retrieve a collection of unit kinds.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnitKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitKinds(request:options:)``
   public func listUnitKinds(request: ListUnitKindsRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitKindsResponse
   {
@@ -791,6 +1136,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of unit kinds.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnitKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitKinds(request:options:)``
   public func listUnitKindsByItems(
     request: ListUnitKindsRequest
   ) -> some AsyncSequence<UnitKind, any Swift.Error> & Sendable {
@@ -800,6 +1152,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// Retrieve a collection of unit kinds.
   ///
   /// @Snippet(path: "SaasDeployments_ListUnitKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitKinds(request:options:)``
   public func listUnitKindsByItems(
     request: ListUnitKindsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<UnitKind, any Swift.Error> & Sendable {
@@ -814,6 +1170,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of unit kinds.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnitKinds")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitKinds(request:options:)``
   public func listUnitKindsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<UnitKind, any Swift.Error> & Sendable {
@@ -823,6 +1186,13 @@ extension Clients.SaasDeploymentsProtocol {
     return self.listUnitKindsByItems(request: request)
   }
 
+  /// Retrieve a single unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getUnitKind(request:options:)``
   public func getUnitKind(request: GetUnitKindRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind
   {
@@ -835,6 +1205,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getUnitKind(request:options:)``
   public func getUnitKind(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind {
@@ -844,6 +1221,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.getUnitKind(request: request)
   }
 
+  /// Create a new unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createUnitKind(request:options:)``
   public func createUnitKind(request: CreateUnitKindRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind
   {
@@ -856,6 +1240,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createUnitKind(request:options:)``
   public func createUnitKind(
     parent: Swift.String,
     unitKind: UnitKind?,
@@ -869,6 +1260,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.createUnitKind(request: request)
   }
 
+  /// Update a single unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateUnitKind(request:options:)``
   public func updateUnitKind(request: UpdateUnitKindRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitKind
   {
@@ -881,6 +1279,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateUnitKind(request:options:)``
   public func updateUnitKind(
     unitKind: UnitKind?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -892,6 +1297,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.updateUnitKind(request: request)
   }
 
+  /// Delete a single unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteUnitKind(request:options:)``
   public func deleteUnitKind(request: DeleteUnitKindRequest) async throws {
     try await self.deleteUnitKind(request: request, options: .init())
   }
@@ -902,6 +1314,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single unit kind.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteUnitKind")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteUnitKind(request:options:)``
   public func deleteUnitKind(
     name: Swift.String,
   ) async throws {
@@ -911,6 +1330,13 @@ extension Clients.SaasDeploymentsProtocol {
     try await self.deleteUnitKind(request: request)
   }
 
+  /// Retrieve a collection of units.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnits(request:options:)``
   public func listUnits(request: ListUnitsRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitsResponse
   {
@@ -923,6 +1349,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of units.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnits(request:options:)``
   public func listUnitsByItems(
     request: ListUnitsRequest
   ) -> some AsyncSequence<Unit, any Swift.Error> & Sendable {
@@ -932,6 +1365,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// Retrieve a collection of units.
   ///
   /// @Snippet(path: "SaasDeployments_ListUnits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnits(request:options:)``
   public func listUnitsByItems(
     request: ListUnitsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Unit, any Swift.Error> & Sendable {
@@ -946,6 +1383,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of units.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnits")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnits(request:options:)``
   public func listUnitsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Unit, any Swift.Error> & Sendable {
@@ -955,6 +1399,13 @@ extension Clients.SaasDeploymentsProtocol {
     return self.listUnitsByItems(request: request)
   }
 
+  /// Retrieve a single unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getUnit(request:options:)``
   public func getUnit(request: GetUnitRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit
   {
@@ -967,6 +1418,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getUnit(request:options:)``
   public func getUnit(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit {
@@ -976,6 +1434,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.getUnit(request: request)
   }
 
+  /// Create a new unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createUnit(request:options:)``
   public func createUnit(request: CreateUnitRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit
   {
@@ -988,6 +1453,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createUnit(request:options:)``
   public func createUnit(
     parent: Swift.String,
     unit: Unit?,
@@ -1001,6 +1473,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.createUnit(request: request)
   }
 
+  /// Update a single unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateUnit(request:options:)``
   public func updateUnit(request: UpdateUnitRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Unit
   {
@@ -1013,6 +1492,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateUnit(request:options:)``
   public func updateUnit(
     unit: Unit?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1024,6 +1510,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.updateUnit(request: request)
   }
 
+  /// Delete a single unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteUnit(request:options:)``
   public func deleteUnit(request: DeleteUnitRequest) async throws {
     try await self.deleteUnit(request: request, options: .init())
   }
@@ -1034,6 +1527,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single unit.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteUnit")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteUnit(request:options:)``
   public func deleteUnit(
     name: Swift.String,
   ) async throws {
@@ -1043,6 +1543,13 @@ extension Clients.SaasDeploymentsProtocol {
     try await self.deleteUnit(request: request)
   }
 
+  /// Retrieve a collection of unit operations.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnitOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitOperations(request:options:)``
   public func listUnitOperations(request: ListUnitOperationsRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListUnitOperationsResponse
   {
@@ -1055,6 +1562,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of unit operations.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnitOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitOperations(request:options:)``
   public func listUnitOperationsByItems(
     request: ListUnitOperationsRequest
   ) -> some AsyncSequence<UnitOperation, any Swift.Error> & Sendable {
@@ -1064,6 +1578,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// Retrieve a collection of unit operations.
   ///
   /// @Snippet(path: "SaasDeployments_ListUnitOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitOperations(request:options:)``
   public func listUnitOperationsByItems(
     request: ListUnitOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<UnitOperation, any Swift.Error> & Sendable {
@@ -1078,6 +1596,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of unit operations.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListUnitOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listUnitOperations(request:options:)``
   public func listUnitOperationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<UnitOperation, any Swift.Error> & Sendable {
@@ -1087,6 +1612,13 @@ extension Clients.SaasDeploymentsProtocol {
     return self.listUnitOperationsByItems(request: request)
   }
 
+  /// Retrieve a single unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getUnitOperation(request:options:)``
   public func getUnitOperation(request: GetUnitOperationRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation
   {
@@ -1099,6 +1631,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getUnitOperation(request:options:)``
   public func getUnitOperation(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation {
@@ -1108,6 +1647,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.getUnitOperation(request: request)
   }
 
+  /// Create a new unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createUnitOperation(request:options:)``
   public func createUnitOperation(request: CreateUnitOperationRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation
   {
@@ -1120,6 +1666,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createUnitOperation(request:options:)``
   public func createUnitOperation(
     parent: Swift.String,
     unitOperation: UnitOperation?,
@@ -1133,6 +1686,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.createUnitOperation(request: request)
   }
 
+  /// Update a single unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateUnitOperation(request:options:)``
   public func updateUnitOperation(request: UpdateUnitOperationRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.UnitOperation
   {
@@ -1145,6 +1705,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateUnitOperation(request:options:)``
   public func updateUnitOperation(
     unitOperation: UnitOperation?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1156,6 +1723,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.updateUnitOperation(request: request)
   }
 
+  /// Delete a single unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteUnitOperation(request:options:)``
   public func deleteUnitOperation(request: DeleteUnitOperationRequest) async throws {
     try await self.deleteUnitOperation(request: request, options: .init())
   }
@@ -1166,6 +1740,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single unit operation.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteUnitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteUnitOperation(request:options:)``
   public func deleteUnitOperation(
     name: Swift.String,
   ) async throws {
@@ -1175,6 +1756,13 @@ extension Clients.SaasDeploymentsProtocol {
     try await self.deleteUnitOperation(request: request)
   }
 
+  /// Retrieve a collection of releases.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListReleases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listReleases(request:options:)``
   public func listReleases(request: ListReleasesRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.ListReleasesResponse
   {
@@ -1187,6 +1775,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of releases.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListReleases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listReleases(request:options:)``
   public func listReleasesByItems(
     request: ListReleasesRequest
   ) -> some AsyncSequence<Release, any Swift.Error> & Sendable {
@@ -1196,6 +1791,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// Retrieve a collection of releases.
   ///
   /// @Snippet(path: "SaasDeployments_ListReleases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listReleases(request:options:)``
   public func listReleasesByItems(
     request: ListReleasesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Release, any Swift.Error> & Sendable {
@@ -1210,6 +1809,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of releases.
+  ///
+  /// @Snippet(path: "SaasDeployments_ListReleases")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listReleases(request:options:)``
   public func listReleasesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Release, any Swift.Error> & Sendable {
@@ -1219,6 +1825,13 @@ extension Clients.SaasDeploymentsProtocol {
     return self.listReleasesByItems(request: request)
   }
 
+  /// Retrieve a single release.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getRelease(request:options:)``
   public func getRelease(request: GetReleaseRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release
   {
@@ -1231,6 +1844,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single release.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getRelease(request:options:)``
   public func getRelease(
     name: Swift.String,
   ) async throws -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release {
@@ -1240,6 +1860,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.getRelease(request: request)
   }
 
+  /// Create a new release.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createRelease(request:options:)``
   public func createRelease(request: CreateReleaseRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release
   {
@@ -1252,6 +1879,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new release.
+  ///
+  /// @Snippet(path: "SaasDeployments_CreateRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/createRelease(request:options:)``
   public func createRelease(
     parent: Swift.String,
     release: Release?,
@@ -1265,6 +1899,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.createRelease(request: request)
   }
 
+  /// Update a single release.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateRelease(request:options:)``
   public func updateRelease(request: UpdateReleaseRequest) async throws
     -> GoogleCloudSaasPlatformSaasServiceMgmtV1.Release
   {
@@ -1277,6 +1918,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update a single release.
+  ///
+  /// @Snippet(path: "SaasDeployments_UpdateRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/updateRelease(request:options:)``
   public func updateRelease(
     release: Release?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1288,6 +1936,13 @@ extension Clients.SaasDeploymentsProtocol {
     return try await self.updateRelease(request: request)
   }
 
+  /// Delete a single release.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteRelease(request:options:)``
   public func deleteRelease(request: DeleteReleaseRequest) async throws {
     try await self.deleteRelease(request: request, options: .init())
   }
@@ -1298,6 +1953,13 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete a single release.
+  ///
+  /// @Snippet(path: "SaasDeployments_DeleteRelease")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/deleteRelease(request:options:)``
   public func deleteRelease(
     name: Swift.String,
   ) async throws {
@@ -1307,6 +1969,30 @@ extension Clients.SaasDeploymentsProtocol {
     try await self.deleteRelease(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SaasDeployments_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1319,6 +2005,30 @@ extension Clients.SaasDeploymentsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SaasDeployments_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1345,6 +2055,10 @@ extension Clients.SaasDeploymentsProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SaasDeployments_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1358,6 +2072,13 @@ extension Clients.SaasDeploymentsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "SaasDeployments_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SaasDeploymentsClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

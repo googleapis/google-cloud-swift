@@ -25,6 +25,10 @@ import Foundation
 /// and SKUs.
 ///
 /// @Snippet(path: "CloudCatalogQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudCatalogProtocol``
 public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   let inner: any Clients.CloudCatalogStub
 
@@ -41,6 +45,12 @@ public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   /// Lists all public cloud services.
   ///
   /// @Snippet(path: "CloudCatalog_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServices(request:)``
+  /// - ``listServicesByItems(request:)``
+  /// - ``listServicesByItems(request:options:)``
   public func listServices(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListServicesResponse {
@@ -50,6 +60,13 @@ public final class CloudCatalogClient: Clients.CloudCatalogProtocol, Sendable {
   /// Lists all publicly available SKUs for a given cloud service.
   ///
   /// @Snippet(path: "CloudCatalog_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSkus(request:)``
+  /// - ``listSkusByItems(parent:)``
+  /// - ``listSkusByItems(request:)``
+  /// - ``listSkusByItems(request:options:)``
   public func listSkus(
     request: ListSkusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudBillingV1.ListSkusResponse {
@@ -78,6 +95,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudCatalogProtocol {
+  /// Lists all public cloud services.
+  ///
+  /// @Snippet(path: "CloudCatalog_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listServices(request:options:)``
   public func listServices(request: ListServicesRequest) async throws
     -> GoogleCloudBillingV1.ListServicesResponse
   {
@@ -90,6 +114,13 @@ extension Clients.CloudCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all public cloud services.
+  ///
+  /// @Snippet(path: "CloudCatalog_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -99,6 +130,10 @@ extension Clients.CloudCatalogProtocol {
   /// Lists all public cloud services.
   ///
   /// @Snippet(path: "CloudCatalog_ListServices")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listServices(request:options:)``
   public func listServicesByItems(
     request: ListServicesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Service, any Swift.Error> & Sendable {
@@ -112,6 +147,13 @@ extension Clients.CloudCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all publicly available SKUs for a given cloud service.
+  ///
+  /// @Snippet(path: "CloudCatalog_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listSkus(request:options:)``
   public func listSkus(request: ListSkusRequest) async throws
     -> GoogleCloudBillingV1.ListSkusResponse
   {
@@ -124,6 +166,13 @@ extension Clients.CloudCatalogProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all publicly available SKUs for a given cloud service.
+  ///
+  /// @Snippet(path: "CloudCatalog_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listSkus(request:options:)``
   public func listSkusByItems(
     request: ListSkusRequest
   ) -> some AsyncSequence<Sku, any Swift.Error> & Sendable {
@@ -133,6 +182,10 @@ extension Clients.CloudCatalogProtocol {
   /// Lists all publicly available SKUs for a given cloud service.
   ///
   /// @Snippet(path: "CloudCatalog_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listSkus(request:options:)``
   public func listSkusByItems(
     request: ListSkusRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Sku, any Swift.Error> & Sendable {
@@ -146,6 +199,13 @@ extension Clients.CloudCatalogProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all publicly available SKUs for a given cloud service.
+  ///
+  /// @Snippet(path: "CloudCatalog_ListSkus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudCatalogClient/listSkus(request:options:)``
   public func listSkusByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Sku, any Swift.Error> & Sendable {

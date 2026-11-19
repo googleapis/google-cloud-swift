@@ -27,6 +27,10 @@
   /// A service for fetching feature values from the online store.
   ///
   /// @Snippet(path: "FeatureOnlineStoreServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/FeatureOnlineStoreServiceProtocol``
   public final class FeatureOnlineStoreServiceClient: Clients.FeatureOnlineStoreServiceProtocol,
     Sendable
   {
@@ -46,6 +50,11 @@
     /// Fetch feature values under a FeatureView.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_FetchFeatureValues")
+    ///
+    /// ## See Also
+    ///
+    /// - ``fetchFeatureValues(featureView:dataKey:)``
+    /// - ``fetchFeatureValues(request:)``
     public func fetchFeatureValues(
       request: FetchFeatureValuesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.FetchFeatureValuesResponse {
@@ -57,6 +66,10 @@
     /// indexable, returns Invalid argument response.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_SearchNearestEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``searchNearestEntities(request:)``
     public func searchNearestEntities(
       request: SearchNearestEntitiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.SearchNearestEntitiesResponse {
@@ -67,6 +80,10 @@
     /// under the same FeatureOnlineStore share the same access token.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_GenerateFetchAccessToken")
+    ///
+    /// ## See Also
+    ///
+    /// - ``generateFetchAccessToken(request:)``
     public func generateFetchAccessToken(
       request: GenerateFetchAccessTokenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.GenerateFetchAccessTokenResponse {
@@ -76,6 +93,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -85,6 +108,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -98,6 +125,10 @@
     /// errors.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -108,6 +139,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -123,6 +158,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -134,6 +173,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -156,6 +202,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -167,6 +218,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -178,6 +234,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -256,6 +316,13 @@
 
   // Default implementations
   extension Clients.FeatureOnlineStoreServiceProtocol {
+    /// Fetch feature values under a FeatureView.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_FetchFeatureValues")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/fetchFeatureValues(request:options:)``
     public func fetchFeatureValues(request: FetchFeatureValuesRequest) async throws
       -> GoogleCloudAIPlatformV1.FetchFeatureValuesResponse
     {
@@ -268,6 +335,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Fetch feature values under a FeatureView.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_FetchFeatureValues")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/fetchFeatureValues(request:options:)``
     public func fetchFeatureValues(
       featureView: Swift.String,
       dataKey: FeatureViewDataKey?,
@@ -279,6 +353,15 @@
       return try await self.fetchFeatureValues(request: request)
     }
 
+    /// Search the nearest entities under a FeatureView.
+    /// Search only works for indexable feature view; if a feature view isn't
+    /// indexable, returns Invalid argument response.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_SearchNearestEntities")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/searchNearestEntities(request:options:)``
     public func searchNearestEntities(request: SearchNearestEntitiesRequest) async throws
       -> GoogleCloudAIPlatformV1.SearchNearestEntitiesResponse
     {
@@ -291,6 +374,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// RPC to generate an access token for the given feature view. FeatureViews
+    /// under the same FeatureOnlineStore share the same access token.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_GenerateFetchAccessToken")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/generateFetchAccessToken(request:options:)``
     public func generateFetchAccessToken(request: GenerateFetchAccessTokenRequest) async throws
       -> GoogleCloudAIPlatformV1.GenerateFetchAccessTokenResponse
     {
@@ -303,6 +394,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -315,6 +413,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -324,6 +429,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -337,6 +446,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -349,6 +465,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -361,6 +488,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -373,6 +508,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -385,6 +533,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -397,6 +554,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -408,6 +574,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "FeatureOnlineStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -421,6 +591,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -432,6 +611,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -444,6 +626,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -453,6 +638,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -463,6 +657,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -472,6 +675,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -482,6 +694,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -491,6 +712,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "FeatureOnlineStoreService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``FeatureOnlineStoreServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

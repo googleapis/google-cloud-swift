@@ -28,6 +28,10 @@
   /// Service for reading and writing metadata entries.
   ///
   /// @Snippet(path: "MetadataServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/MetadataServiceProtocol``
   public final class MetadataServiceClient: Clients.MetadataServiceProtocol, Sendable {
     let inner: any Clients.MetadataServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@
     /// Initializes a MetadataStore, including allocation of resources.
     ///
     /// @Snippet(path: "MetadataService_CreateMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createMetadataStore(request:)``
+    /// - ``createMetadataStorePollingUntilDone(parent:metadataStore:metadataStoreId:)``
+    /// - ``createMetadataStorePollingUntilDone(request:)``
+    /// - ``createMetadataStorePollingUntilDone(request:options:)``
     public func createMetadataStore(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -57,6 +68,13 @@
     /// Initializes a MetadataStore, including allocation of resources.
     ///
     /// @Snippet(path: "MetadataService_CreateMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createMetadataStore(request:)``
+    /// - ``createMetadataStore(request:options:)``
+    /// - ``createMetadataStorePollingUntilDone(parent:metadataStore:metadataStoreId:)``
+    /// - ``createMetadataStorePollingUntilDone(request:)``
     public func createMetadataStorePollingUntilDone(
       request: CreateMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> MetadataStore {
@@ -85,6 +103,11 @@
     /// Retrieves a specific MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_GetMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getMetadataStore(name:)``
+    /// - ``getMetadataStore(request:)``
     public func getMetadataStore(
       request: GetMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.MetadataStore {
@@ -94,6 +117,13 @@
     /// Lists MetadataStores for a Location.
     ///
     /// @Snippet(path: "MetadataService_ListMetadataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listMetadataStores(request:)``
+    /// - ``listMetadataStoresByItems(parent:)``
+    /// - ``listMetadataStoresByItems(request:)``
+    /// - ``listMetadataStoresByItems(request:options:)``
     public func listMetadataStores(
       request: ListMetadataStoresRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListMetadataStoresResponse {
@@ -104,6 +134,13 @@
     /// Executions, and Contexts).
     ///
     /// @Snippet(path: "MetadataService_DeleteMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteMetadataStore(request:)``
+    /// - ``deleteMetadataStorePollingUntilDone(name:)``
+    /// - ``deleteMetadataStorePollingUntilDone(request:)``
+    /// - ``deleteMetadataStorePollingUntilDone(request:options:)``
     public func deleteMetadataStore(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -114,6 +151,13 @@
     /// Executions, and Contexts).
     ///
     /// @Snippet(path: "MetadataService_DeleteMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteMetadataStore(request:)``
+    /// - ``deleteMetadataStore(request:options:)``
+    /// - ``deleteMetadataStorePollingUntilDone(name:)``
+    /// - ``deleteMetadataStorePollingUntilDone(request:)``
     public func deleteMetadataStorePollingUntilDone(
       request: DeleteMetadataStoreRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -142,6 +186,11 @@
     /// Creates an Artifact associated with a MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_CreateArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createArtifact(parent:artifact:artifactId:)``
+    /// - ``createArtifact(request:)``
     public func createArtifact(
       request: CreateArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -151,6 +200,11 @@
     /// Retrieves a specific Artifact.
     ///
     /// @Snippet(path: "MetadataService_GetArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getArtifact(name:)``
+    /// - ``getArtifact(request:)``
     public func getArtifact(
       request: GetArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -160,6 +214,13 @@
     /// Lists Artifacts in the MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_ListArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listArtifacts(request:)``
+    /// - ``listArtifactsByItems(parent:)``
+    /// - ``listArtifactsByItems(request:)``
+    /// - ``listArtifactsByItems(request:options:)``
     public func listArtifacts(
       request: ListArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListArtifactsResponse {
@@ -169,6 +230,11 @@
     /// Updates a stored Artifact.
     ///
     /// @Snippet(path: "MetadataService_UpdateArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateArtifact(artifact:updateMask:)``
+    /// - ``updateArtifact(request:)``
     public func updateArtifact(
       request: UpdateArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -178,6 +244,13 @@
     /// Deletes an Artifact.
     ///
     /// @Snippet(path: "MetadataService_DeleteArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteArtifact(request:)``
+    /// - ``deleteArtifactPollingUntilDone(name:)``
+    /// - ``deleteArtifactPollingUntilDone(request:)``
+    /// - ``deleteArtifactPollingUntilDone(request:options:)``
     public func deleteArtifact(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -187,6 +260,13 @@
     /// Deletes an Artifact.
     ///
     /// @Snippet(path: "MetadataService_DeleteArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteArtifact(request:)``
+    /// - ``deleteArtifact(request:options:)``
+    /// - ``deleteArtifactPollingUntilDone(name:)``
+    /// - ``deleteArtifactPollingUntilDone(request:)``
     public func deleteArtifactPollingUntilDone(
       request: DeleteArtifactRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -215,6 +295,13 @@
     /// Purges Artifacts.
     ///
     /// @Snippet(path: "MetadataService_PurgeArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeArtifacts(request:)``
+    /// - ``purgeArtifactsPollingUntilDone(parent:)``
+    /// - ``purgeArtifactsPollingUntilDone(request:)``
+    /// - ``purgeArtifactsPollingUntilDone(request:options:)``
     public func purgeArtifacts(
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -224,6 +311,13 @@
     /// Purges Artifacts.
     ///
     /// @Snippet(path: "MetadataService_PurgeArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeArtifacts(request:)``
+    /// - ``purgeArtifacts(request:options:)``
+    /// - ``purgeArtifactsPollingUntilDone(parent:)``
+    /// - ``purgeArtifactsPollingUntilDone(request:)``
     public func purgeArtifactsPollingUntilDone(
       request: PurgeArtifactsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeArtifactsResponse {
@@ -253,6 +347,11 @@
     /// Creates a Context associated with a MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_CreateContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createContext(parent:context:contextId:)``
+    /// - ``createContext(request:)``
     public func createContext(
       request: CreateContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -262,6 +361,11 @@
     /// Retrieves a specific Context.
     ///
     /// @Snippet(path: "MetadataService_GetContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getContext(name:)``
+    /// - ``getContext(request:)``
     public func getContext(
       request: GetContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -271,6 +375,13 @@
     /// Lists Contexts on the MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_ListContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listContexts(request:)``
+    /// - ``listContextsByItems(parent:)``
+    /// - ``listContextsByItems(request:)``
+    /// - ``listContextsByItems(request:options:)``
     public func listContexts(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListContextsResponse {
@@ -280,6 +391,11 @@
     /// Updates a stored Context.
     ///
     /// @Snippet(path: "MetadataService_UpdateContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateContext(context:updateMask:)``
+    /// - ``updateContext(request:)``
     public func updateContext(
       request: UpdateContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -289,6 +405,13 @@
     /// Deletes a stored Context.
     ///
     /// @Snippet(path: "MetadataService_DeleteContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteContext(request:)``
+    /// - ``deleteContextPollingUntilDone(name:)``
+    /// - ``deleteContextPollingUntilDone(request:)``
+    /// - ``deleteContextPollingUntilDone(request:options:)``
     public func deleteContext(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -298,6 +421,13 @@
     /// Deletes a stored Context.
     ///
     /// @Snippet(path: "MetadataService_DeleteContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteContext(request:)``
+    /// - ``deleteContext(request:options:)``
+    /// - ``deleteContextPollingUntilDone(name:)``
+    /// - ``deleteContextPollingUntilDone(request:)``
     public func deleteContextPollingUntilDone(
       request: DeleteContextRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -326,6 +456,13 @@
     /// Purges Contexts.
     ///
     /// @Snippet(path: "MetadataService_PurgeContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeContexts(request:)``
+    /// - ``purgeContextsPollingUntilDone(parent:)``
+    /// - ``purgeContextsPollingUntilDone(request:)``
+    /// - ``purgeContextsPollingUntilDone(request:options:)``
     public func purgeContexts(
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -335,6 +472,13 @@
     /// Purges Contexts.
     ///
     /// @Snippet(path: "MetadataService_PurgeContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeContexts(request:)``
+    /// - ``purgeContexts(request:options:)``
+    /// - ``purgeContextsPollingUntilDone(parent:)``
+    /// - ``purgeContextsPollingUntilDone(request:)``
     public func purgeContextsPollingUntilDone(
       request: PurgeContextsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeContextsResponse {
@@ -366,6 +510,11 @@
     /// simply skipped.
     ///
     /// @Snippet(path: "MetadataService_AddContextArtifactsAndExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addContextArtifactsAndExecutions(context:artifacts:executions:)``
+    /// - ``addContextArtifactsAndExecutions(request:)``
     public func addContextArtifactsAndExecutions(
       request: AddContextArtifactsAndExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AddContextArtifactsAndExecutionsResponse {
@@ -379,6 +528,11 @@
     /// error.
     ///
     /// @Snippet(path: "MetadataService_AddContextChildren")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addContextChildren(context:childContexts:)``
+    /// - ``addContextChildren(request:)``
     public func addContextChildren(
       request: AddContextChildrenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AddContextChildrenResponse {
@@ -390,6 +544,11 @@
     /// simply skipped.
     ///
     /// @Snippet(path: "MetadataService_RemoveContextChildren")
+    ///
+    /// ## See Also
+    ///
+    /// - ``removeContextChildren(context:childContexts:)``
+    /// - ``removeContextChildren(request:)``
     public func removeContextChildren(
       request: RemoveContextChildrenRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.RemoveContextChildrenResponse {
@@ -400,6 +559,11 @@
     /// by Event edges and returned as a LineageSubgraph.
     ///
     /// @Snippet(path: "MetadataService_QueryContextLineageSubgraph")
+    ///
+    /// ## See Also
+    ///
+    /// - ``queryContextLineageSubgraph(context:)``
+    /// - ``queryContextLineageSubgraph(request:)``
     public func queryContextLineageSubgraph(
       request: QueryContextLineageSubgraphRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -409,6 +573,11 @@
     /// Creates an Execution associated with a MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_CreateExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createExecution(parent:execution:executionId:)``
+    /// - ``createExecution(request:)``
     public func createExecution(
       request: CreateExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -418,6 +587,11 @@
     /// Retrieves a specific Execution.
     ///
     /// @Snippet(path: "MetadataService_GetExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getExecution(name:)``
+    /// - ``getExecution(request:)``
     public func getExecution(
       request: GetExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -427,6 +601,13 @@
     /// Lists Executions in the MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_ListExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listExecutions(request:)``
+    /// - ``listExecutionsByItems(parent:)``
+    /// - ``listExecutionsByItems(request:)``
+    /// - ``listExecutionsByItems(request:options:)``
     public func listExecutions(
       request: ListExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListExecutionsResponse {
@@ -436,6 +617,11 @@
     /// Updates a stored Execution.
     ///
     /// @Snippet(path: "MetadataService_UpdateExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateExecution(execution:updateMask:)``
+    /// - ``updateExecution(request:)``
     public func updateExecution(
       request: UpdateExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -445,6 +631,13 @@
     /// Deletes an Execution.
     ///
     /// @Snippet(path: "MetadataService_DeleteExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteExecution(request:)``
+    /// - ``deleteExecutionPollingUntilDone(name:)``
+    /// - ``deleteExecutionPollingUntilDone(request:)``
+    /// - ``deleteExecutionPollingUntilDone(request:options:)``
     public func deleteExecution(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -454,6 +647,13 @@
     /// Deletes an Execution.
     ///
     /// @Snippet(path: "MetadataService_DeleteExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteExecution(request:)``
+    /// - ``deleteExecution(request:options:)``
+    /// - ``deleteExecutionPollingUntilDone(name:)``
+    /// - ``deleteExecutionPollingUntilDone(request:)``
     public func deleteExecutionPollingUntilDone(
       request: DeleteExecutionRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -482,6 +682,13 @@
     /// Purges Executions.
     ///
     /// @Snippet(path: "MetadataService_PurgeExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeExecutions(request:)``
+    /// - ``purgeExecutionsPollingUntilDone(parent:)``
+    /// - ``purgeExecutionsPollingUntilDone(request:)``
+    /// - ``purgeExecutionsPollingUntilDone(request:options:)``
     public func purgeExecutions(
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -491,6 +698,13 @@
     /// Purges Executions.
     ///
     /// @Snippet(path: "MetadataService_PurgeExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``purgeExecutions(request:)``
+    /// - ``purgeExecutions(request:options:)``
+    /// - ``purgeExecutionsPollingUntilDone(parent:)``
+    /// - ``purgeExecutionsPollingUntilDone(request:)``
     public func purgeExecutionsPollingUntilDone(
       request: PurgeExecutionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> PurgeExecutionsResponse {
@@ -523,6 +737,11 @@
     /// skipped.
     ///
     /// @Snippet(path: "MetadataService_AddExecutionEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addExecutionEvents(execution:events:)``
+    /// - ``addExecutionEvents(request:)``
     public func addExecutionEvents(
       request: AddExecutionEventsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.AddExecutionEventsResponse {
@@ -534,6 +753,11 @@
     /// Events.
     ///
     /// @Snippet(path: "MetadataService_QueryExecutionInputsAndOutputs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``queryExecutionInputsAndOutputs(execution:)``
+    /// - ``queryExecutionInputsAndOutputs(request:)``
     public func queryExecutionInputsAndOutputs(
       request: QueryExecutionInputsAndOutputsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -543,6 +767,11 @@
     /// Creates a MetadataSchema.
     ///
     /// @Snippet(path: "MetadataService_CreateMetadataSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createMetadataSchema(parent:metadataSchema:metadataSchemaId:)``
+    /// - ``createMetadataSchema(request:)``
     public func createMetadataSchema(
       request: CreateMetadataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -552,6 +781,11 @@
     /// Retrieves a specific MetadataSchema.
     ///
     /// @Snippet(path: "MetadataService_GetMetadataSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getMetadataSchema(name:)``
+    /// - ``getMetadataSchema(request:)``
     public func getMetadataSchema(
       request: GetMetadataSchemaRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -561,6 +795,13 @@
     /// Lists MetadataSchemas.
     ///
     /// @Snippet(path: "MetadataService_ListMetadataSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listMetadataSchemas(request:)``
+    /// - ``listMetadataSchemasByItems(parent:)``
+    /// - ``listMetadataSchemasByItems(request:)``
+    /// - ``listMetadataSchemasByItems(request:options:)``
     public func listMetadataSchemas(
       request: ListMetadataSchemasRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListMetadataSchemasResponse {
@@ -571,6 +812,11 @@
     /// Executions connected by Event edges and returned as a LineageSubgraph.
     ///
     /// @Snippet(path: "MetadataService_QueryArtifactLineageSubgraph")
+    ///
+    /// ## See Also
+    ///
+    /// - ``queryArtifactLineageSubgraph(artifact:)``
+    /// - ``queryArtifactLineageSubgraph(request:)``
     public func queryArtifactLineageSubgraph(
       request: QueryArtifactLineageSubgraphRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -580,6 +826,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "MetadataService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -589,6 +841,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "MetadataService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -602,6 +858,10 @@
     /// errors.
     ///
     /// @Snippet(path: "MetadataService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -612,6 +872,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "MetadataService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -627,6 +891,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "MetadataService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -638,6 +906,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MetadataService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -660,6 +935,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MetadataService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -671,6 +951,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MetadataService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -682,6 +967,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MetadataService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -945,6 +1234,13 @@
 
   // Default implementations
   extension Clients.MetadataServiceProtocol {
+    /// Initializes a MetadataStore, including allocation of resources.
+    ///
+    /// @Snippet(path: "MetadataService_CreateMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createMetadataStore(request:options:)``
     public func createMetadataStore(request: CreateMetadataStoreRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -957,6 +1253,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Initializes a MetadataStore, including allocation of resources.
+    ///
+    /// @Snippet(path: "MetadataService_CreateMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createMetadataStorePollingUntilDone(request:options:)``
     public func createMetadataStorePollingUntilDone(request: CreateMetadataStoreRequest)
       async throws -> MetadataStore
     {
@@ -969,6 +1272,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Initializes a MetadataStore, including allocation of resources.
+    ///
+    /// @Snippet(path: "MetadataService_CreateMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createMetadataStorePollingUntilDone(request:options:)``
     public func createMetadataStorePollingUntilDone(
       parent: Swift.String,
       metadataStore: MetadataStore?,
@@ -982,6 +1292,13 @@
       return try await self.createMetadataStorePollingUntilDone(request: request)
     }
 
+    /// Retrieves a specific MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_GetMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getMetadataStore(request:options:)``
     public func getMetadataStore(request: GetMetadataStoreRequest) async throws
       -> GoogleCloudAIPlatformV1.MetadataStore
     {
@@ -994,6 +1311,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a specific MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_GetMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getMetadataStore(request:options:)``
     public func getMetadataStore(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.MetadataStore {
@@ -1003,6 +1327,13 @@
       return try await self.getMetadataStore(request: request)
     }
 
+    /// Lists MetadataStores for a Location.
+    ///
+    /// @Snippet(path: "MetadataService_ListMetadataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataStores(request:options:)``
     public func listMetadataStores(request: ListMetadataStoresRequest) async throws
       -> GoogleCloudAIPlatformV1.ListMetadataStoresResponse
     {
@@ -1015,6 +1346,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists MetadataStores for a Location.
+    ///
+    /// @Snippet(path: "MetadataService_ListMetadataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataStores(request:options:)``
     public func listMetadataStoresByItems(
       request: ListMetadataStoresRequest
     ) -> some AsyncSequence<MetadataStore, any Swift.Error> & Sendable {
@@ -1024,6 +1362,10 @@
     /// Lists MetadataStores for a Location.
     ///
     /// @Snippet(path: "MetadataService_ListMetadataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataStores(request:options:)``
     public func listMetadataStoresByItems(
       request: ListMetadataStoresRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<MetadataStore, any Swift.Error> & Sendable {
@@ -1038,6 +1380,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists MetadataStores for a Location.
+    ///
+    /// @Snippet(path: "MetadataService_ListMetadataStores")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataStores(request:options:)``
     public func listMetadataStoresByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<MetadataStore, any Swift.Error> & Sendable {
@@ -1047,6 +1396,14 @@
       return self.listMetadataStoresByItems(request: request)
     }
 
+    /// Deletes a single MetadataStore and all its child resources (Artifacts,
+    /// Executions, and Contexts).
+    ///
+    /// @Snippet(path: "MetadataService_DeleteMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteMetadataStore(request:options:)``
     public func deleteMetadataStore(request: DeleteMetadataStoreRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1059,6 +1416,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a single MetadataStore and all its child resources (Artifacts,
+    /// Executions, and Contexts).
+    ///
+    /// @Snippet(path: "MetadataService_DeleteMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteMetadataStorePollingUntilDone(request:options:)``
     public func deleteMetadataStorePollingUntilDone(request: DeleteMetadataStoreRequest)
       async throws
     {
@@ -1071,6 +1436,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a single MetadataStore and all its child resources (Artifacts,
+    /// Executions, and Contexts).
+    ///
+    /// @Snippet(path: "MetadataService_DeleteMetadataStore")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteMetadataStorePollingUntilDone(request:options:)``
     #if hasAttribute(diagnose)
       @diagnose(DeprecatedDeclaration, as: ignored)
     #endif
@@ -1083,6 +1456,13 @@
       try await self.deleteMetadataStorePollingUntilDone(request: request)
     }
 
+    /// Creates an Artifact associated with a MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_CreateArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createArtifact(request:options:)``
     public func createArtifact(request: CreateArtifactRequest) async throws
       -> GoogleCloudAIPlatformV1.Artifact
     {
@@ -1095,6 +1475,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an Artifact associated with a MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_CreateArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createArtifact(request:options:)``
     public func createArtifact(
       parent: Swift.String,
       artifact: Artifact?,
@@ -1108,6 +1495,13 @@
       return try await self.createArtifact(request: request)
     }
 
+    /// Retrieves a specific Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_GetArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getArtifact(request:options:)``
     public func getArtifact(request: GetArtifactRequest) async throws
       -> GoogleCloudAIPlatformV1.Artifact
     {
@@ -1120,6 +1514,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a specific Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_GetArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getArtifact(request:options:)``
     public func getArtifact(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Artifact {
@@ -1129,6 +1530,13 @@
       return try await self.getArtifact(request: request)
     }
 
+    /// Lists Artifacts in the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listArtifacts(request:options:)``
     public func listArtifacts(request: ListArtifactsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListArtifactsResponse
     {
@@ -1141,6 +1549,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Artifacts in the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listArtifacts(request:options:)``
     public func listArtifactsByItems(
       request: ListArtifactsRequest
     ) -> some AsyncSequence<Artifact, any Swift.Error> & Sendable {
@@ -1150,6 +1565,10 @@
     /// Lists Artifacts in the MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_ListArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listArtifacts(request:options:)``
     public func listArtifactsByItems(
       request: ListArtifactsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Artifact, any Swift.Error> & Sendable {
@@ -1164,6 +1583,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Artifacts in the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listArtifacts(request:options:)``
     public func listArtifactsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Artifact, any Swift.Error> & Sendable {
@@ -1173,6 +1599,13 @@
       return self.listArtifactsByItems(request: request)
     }
 
+    /// Updates a stored Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_UpdateArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/updateArtifact(request:options:)``
     public func updateArtifact(request: UpdateArtifactRequest) async throws
       -> GoogleCloudAIPlatformV1.Artifact
     {
@@ -1185,6 +1618,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a stored Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_UpdateArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/updateArtifact(request:options:)``
     public func updateArtifact(
       artifact: Artifact?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1196,6 +1636,13 @@
       return try await self.updateArtifact(request: request)
     }
 
+    /// Deletes an Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteArtifact(request:options:)``
     public func deleteArtifact(request: DeleteArtifactRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1208,6 +1655,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteArtifactPollingUntilDone(request:options:)``
     public func deleteArtifactPollingUntilDone(request: DeleteArtifactRequest) async throws {
       try await self.deleteArtifactPollingUntilDone(request: request, options: .init())
     }
@@ -1218,6 +1672,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an Artifact.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteArtifact")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteArtifactPollingUntilDone(request:options:)``
     public func deleteArtifactPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1227,6 +1688,13 @@
       try await self.deleteArtifactPollingUntilDone(request: request)
     }
 
+    /// Purges Artifacts.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeArtifacts(request:options:)``
     public func purgeArtifacts(request: PurgeArtifactsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1239,6 +1707,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges Artifacts.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeArtifactsPollingUntilDone(request:options:)``
     public func purgeArtifactsPollingUntilDone(request: PurgeArtifactsRequest) async throws
       -> PurgeArtifactsResponse
     {
@@ -1251,6 +1726,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges Artifacts.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeArtifacts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeArtifactsPollingUntilDone(request:options:)``
     public func purgeArtifactsPollingUntilDone(
       parent: Swift.String,
     ) async throws -> PurgeArtifactsResponse {
@@ -1260,6 +1742,13 @@
       return try await self.purgeArtifactsPollingUntilDone(request: request)
     }
 
+    /// Creates a Context associated with a MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_CreateContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createContext(request:options:)``
     public func createContext(request: CreateContextRequest) async throws
       -> GoogleCloudAIPlatformV1.Context
     {
@@ -1272,6 +1761,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Context associated with a MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_CreateContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createContext(request:options:)``
     public func createContext(
       parent: Swift.String,
       context: GoogleCloudAIPlatformV1.Context?,
@@ -1285,6 +1781,13 @@
       return try await self.createContext(request: request)
     }
 
+    /// Retrieves a specific Context.
+    ///
+    /// @Snippet(path: "MetadataService_GetContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getContext(request:options:)``
     public func getContext(request: GetContextRequest) async throws
       -> GoogleCloudAIPlatformV1.Context
     {
@@ -1297,6 +1800,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a specific Context.
+    ///
+    /// @Snippet(path: "MetadataService_GetContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getContext(request:options:)``
     public func getContext(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Context {
@@ -1306,6 +1816,13 @@
       return try await self.getContext(request: request)
     }
 
+    /// Lists Contexts on the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listContexts(request:options:)``
     public func listContexts(request: ListContextsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListContextsResponse
     {
@@ -1318,6 +1835,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Contexts on the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listContexts(request:options:)``
     public func listContextsByItems(
       request: ListContextsRequest
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, any Swift.Error> & Sendable {
@@ -1327,6 +1851,10 @@
     /// Lists Contexts on the MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_ListContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listContexts(request:options:)``
     public func listContextsByItems(
       request: ListContextsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, any Swift.Error> & Sendable {
@@ -1341,6 +1869,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Contexts on the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listContexts(request:options:)``
     public func listContextsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<GoogleCloudAIPlatformV1.Context, any Swift.Error> & Sendable {
@@ -1350,6 +1885,13 @@
       return self.listContextsByItems(request: request)
     }
 
+    /// Updates a stored Context.
+    ///
+    /// @Snippet(path: "MetadataService_UpdateContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/updateContext(request:options:)``
     public func updateContext(request: UpdateContextRequest) async throws
       -> GoogleCloudAIPlatformV1.Context
     {
@@ -1362,6 +1904,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a stored Context.
+    ///
+    /// @Snippet(path: "MetadataService_UpdateContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/updateContext(request:options:)``
     public func updateContext(
       context: GoogleCloudAIPlatformV1.Context?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1373,6 +1922,13 @@
       return try await self.updateContext(request: request)
     }
 
+    /// Deletes a stored Context.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteContext(request:options:)``
     public func deleteContext(request: DeleteContextRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1385,6 +1941,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a stored Context.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteContextPollingUntilDone(request:options:)``
     public func deleteContextPollingUntilDone(request: DeleteContextRequest) async throws {
       try await self.deleteContextPollingUntilDone(request: request, options: .init())
     }
@@ -1395,6 +1958,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a stored Context.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteContext")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteContextPollingUntilDone(request:options:)``
     public func deleteContextPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1404,6 +1974,13 @@
       try await self.deleteContextPollingUntilDone(request: request)
     }
 
+    /// Purges Contexts.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeContexts(request:options:)``
     public func purgeContexts(request: PurgeContextsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1416,6 +1993,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges Contexts.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeContextsPollingUntilDone(request:options:)``
     public func purgeContextsPollingUntilDone(request: PurgeContextsRequest) async throws
       -> PurgeContextsResponse
     {
@@ -1428,6 +2012,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges Contexts.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeContexts")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeContextsPollingUntilDone(request:options:)``
     public func purgeContextsPollingUntilDone(
       parent: Swift.String,
     ) async throws -> PurgeContextsResponse {
@@ -1437,6 +2028,15 @@
       return try await self.purgeContextsPollingUntilDone(request: request)
     }
 
+    /// Adds a set of Artifacts and Executions to a Context. If any of the
+    /// Artifacts or Executions have already been added to a Context, they are
+    /// simply skipped.
+    ///
+    /// @Snippet(path: "MetadataService_AddContextArtifactsAndExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/addContextArtifactsAndExecutions(request:options:)``
     public func addContextArtifactsAndExecutions(request: AddContextArtifactsAndExecutionsRequest)
       async throws -> GoogleCloudAIPlatformV1.AddContextArtifactsAndExecutionsResponse
     {
@@ -1449,6 +2049,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a set of Artifacts and Executions to a Context. If any of the
+    /// Artifacts or Executions have already been added to a Context, they are
+    /// simply skipped.
+    ///
+    /// @Snippet(path: "MetadataService_AddContextArtifactsAndExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/addContextArtifactsAndExecutions(request:options:)``
     public func addContextArtifactsAndExecutions(
       context: Swift.String,
       artifacts: [Swift.String],
@@ -1462,6 +2071,17 @@
       return try await self.addContextArtifactsAndExecutions(request: request)
     }
 
+    /// Adds a set of Contexts as children to a parent Context. If any of the
+    /// child Contexts have already been added to the parent Context, they are
+    /// simply skipped. If this call would create a cycle or cause any Context to
+    /// have more than 10 parents, the request will fail with an INVALID_ARGUMENT
+    /// error.
+    ///
+    /// @Snippet(path: "MetadataService_AddContextChildren")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/addContextChildren(request:options:)``
     public func addContextChildren(request: AddContextChildrenRequest) async throws
       -> GoogleCloudAIPlatformV1.AddContextChildrenResponse
     {
@@ -1474,6 +2094,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a set of Contexts as children to a parent Context. If any of the
+    /// child Contexts have already been added to the parent Context, they are
+    /// simply skipped. If this call would create a cycle or cause any Context to
+    /// have more than 10 parents, the request will fail with an INVALID_ARGUMENT
+    /// error.
+    ///
+    /// @Snippet(path: "MetadataService_AddContextChildren")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/addContextChildren(request:options:)``
     public func addContextChildren(
       context: Swift.String,
       childContexts: [Swift.String],
@@ -1485,6 +2116,15 @@
       return try await self.addContextChildren(request: request)
     }
 
+    /// Remove a set of children contexts from a parent Context. If any of the
+    /// child Contexts were NOT added to the parent Context, they are
+    /// simply skipped.
+    ///
+    /// @Snippet(path: "MetadataService_RemoveContextChildren")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/removeContextChildren(request:options:)``
     public func removeContextChildren(request: RemoveContextChildrenRequest) async throws
       -> GoogleCloudAIPlatformV1.RemoveContextChildrenResponse
     {
@@ -1497,6 +2137,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Remove a set of children contexts from a parent Context. If any of the
+    /// child Contexts were NOT added to the parent Context, they are
+    /// simply skipped.
+    ///
+    /// @Snippet(path: "MetadataService_RemoveContextChildren")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/removeContextChildren(request:options:)``
     public func removeContextChildren(
       context: Swift.String,
       childContexts: [Swift.String],
@@ -1508,6 +2157,14 @@
       return try await self.removeContextChildren(request: request)
     }
 
+    /// Retrieves Artifacts and Executions within the specified Context, connected
+    /// by Event edges and returned as a LineageSubgraph.
+    ///
+    /// @Snippet(path: "MetadataService_QueryContextLineageSubgraph")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/queryContextLineageSubgraph(request:options:)``
     public func queryContextLineageSubgraph(request: QueryContextLineageSubgraphRequest)
       async throws -> GoogleCloudAIPlatformV1.LineageSubgraph
     {
@@ -1520,6 +2177,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves Artifacts and Executions within the specified Context, connected
+    /// by Event edges and returned as a LineageSubgraph.
+    ///
+    /// @Snippet(path: "MetadataService_QueryContextLineageSubgraph")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/queryContextLineageSubgraph(request:options:)``
     public func queryContextLineageSubgraph(
       context: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -1529,6 +2194,13 @@
       return try await self.queryContextLineageSubgraph(request: request)
     }
 
+    /// Creates an Execution associated with a MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_CreateExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createExecution(request:options:)``
     public func createExecution(request: CreateExecutionRequest) async throws
       -> GoogleCloudAIPlatformV1.Execution
     {
@@ -1541,6 +2213,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an Execution associated with a MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_CreateExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createExecution(request:options:)``
     public func createExecution(
       parent: Swift.String,
       execution: Execution?,
@@ -1554,6 +2233,13 @@
       return try await self.createExecution(request: request)
     }
 
+    /// Retrieves a specific Execution.
+    ///
+    /// @Snippet(path: "MetadataService_GetExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getExecution(request:options:)``
     public func getExecution(request: GetExecutionRequest) async throws
       -> GoogleCloudAIPlatformV1.Execution
     {
@@ -1566,6 +2252,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a specific Execution.
+    ///
+    /// @Snippet(path: "MetadataService_GetExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getExecution(request:options:)``
     public func getExecution(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Execution {
@@ -1575,6 +2268,13 @@
       return try await self.getExecution(request: request)
     }
 
+    /// Lists Executions in the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listExecutions(request:options:)``
     public func listExecutions(request: ListExecutionsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListExecutionsResponse
     {
@@ -1587,6 +2287,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists Executions in the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listExecutions(request:options:)``
     public func listExecutionsByItems(
       request: ListExecutionsRequest
     ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -1596,6 +2303,10 @@
     /// Lists Executions in the MetadataStore.
     ///
     /// @Snippet(path: "MetadataService_ListExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listExecutions(request:options:)``
     public func listExecutionsByItems(
       request: ListExecutionsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -1610,6 +2321,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists Executions in the MetadataStore.
+    ///
+    /// @Snippet(path: "MetadataService_ListExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listExecutions(request:options:)``
     public func listExecutionsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Execution, any Swift.Error> & Sendable {
@@ -1619,6 +2337,13 @@
       return self.listExecutionsByItems(request: request)
     }
 
+    /// Updates a stored Execution.
+    ///
+    /// @Snippet(path: "MetadataService_UpdateExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/updateExecution(request:options:)``
     public func updateExecution(request: UpdateExecutionRequest) async throws
       -> GoogleCloudAIPlatformV1.Execution
     {
@@ -1631,6 +2356,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a stored Execution.
+    ///
+    /// @Snippet(path: "MetadataService_UpdateExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/updateExecution(request:options:)``
     public func updateExecution(
       execution: Execution?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -1642,6 +2374,13 @@
       return try await self.updateExecution(request: request)
     }
 
+    /// Deletes an Execution.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteExecution(request:options:)``
     public func deleteExecution(request: DeleteExecutionRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1654,6 +2393,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an Execution.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteExecutionPollingUntilDone(request:options:)``
     public func deleteExecutionPollingUntilDone(request: DeleteExecutionRequest) async throws {
       try await self.deleteExecutionPollingUntilDone(request: request, options: .init())
     }
@@ -1664,6 +2410,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an Execution.
+    ///
+    /// @Snippet(path: "MetadataService_DeleteExecution")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteExecutionPollingUntilDone(request:options:)``
     public func deleteExecutionPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -1673,6 +2426,13 @@
       try await self.deleteExecutionPollingUntilDone(request: request)
     }
 
+    /// Purges Executions.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeExecutions(request:options:)``
     public func purgeExecutions(request: PurgeExecutionsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1685,6 +2445,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges Executions.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeExecutionsPollingUntilDone(request:options:)``
     public func purgeExecutionsPollingUntilDone(request: PurgeExecutionsRequest) async throws
       -> PurgeExecutionsResponse
     {
@@ -1697,6 +2464,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purges Executions.
+    ///
+    /// @Snippet(path: "MetadataService_PurgeExecutions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/purgeExecutionsPollingUntilDone(request:options:)``
     public func purgeExecutionsPollingUntilDone(
       parent: Swift.String,
     ) async throws -> PurgeExecutionsResponse {
@@ -1706,6 +2480,16 @@
       return try await self.purgeExecutionsPollingUntilDone(request: request)
     }
 
+    /// Adds Events to the specified Execution. An Event indicates whether an
+    /// Artifact was used as an input or output for an Execution. If an Event
+    /// already exists between the Execution and the Artifact, the Event is
+    /// skipped.
+    ///
+    /// @Snippet(path: "MetadataService_AddExecutionEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/addExecutionEvents(request:options:)``
     public func addExecutionEvents(request: AddExecutionEventsRequest) async throws
       -> GoogleCloudAIPlatformV1.AddExecutionEventsResponse
     {
@@ -1718,6 +2502,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds Events to the specified Execution. An Event indicates whether an
+    /// Artifact was used as an input or output for an Execution. If an Event
+    /// already exists between the Execution and the Artifact, the Event is
+    /// skipped.
+    ///
+    /// @Snippet(path: "MetadataService_AddExecutionEvents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/addExecutionEvents(request:options:)``
     public func addExecutionEvents(
       execution: Swift.String,
       events: [Event],
@@ -1729,6 +2523,15 @@
       return try await self.addExecutionEvents(request: request)
     }
 
+    /// Obtains the set of input and output Artifacts for this Execution, in the
+    /// form of LineageSubgraph that also contains the Execution and connecting
+    /// Events.
+    ///
+    /// @Snippet(path: "MetadataService_QueryExecutionInputsAndOutputs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/queryExecutionInputsAndOutputs(request:options:)``
     public func queryExecutionInputsAndOutputs(request: QueryExecutionInputsAndOutputsRequest)
       async throws -> GoogleCloudAIPlatformV1.LineageSubgraph
     {
@@ -1741,6 +2544,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Obtains the set of input and output Artifacts for this Execution, in the
+    /// form of LineageSubgraph that also contains the Execution and connecting
+    /// Events.
+    ///
+    /// @Snippet(path: "MetadataService_QueryExecutionInputsAndOutputs")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/queryExecutionInputsAndOutputs(request:options:)``
     public func queryExecutionInputsAndOutputs(
       execution: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -1750,6 +2562,13 @@
       return try await self.queryExecutionInputsAndOutputs(request: request)
     }
 
+    /// Creates a MetadataSchema.
+    ///
+    /// @Snippet(path: "MetadataService_CreateMetadataSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createMetadataSchema(request:options:)``
     public func createMetadataSchema(request: CreateMetadataSchemaRequest) async throws
       -> GoogleCloudAIPlatformV1.MetadataSchema
     {
@@ -1762,6 +2581,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a MetadataSchema.
+    ///
+    /// @Snippet(path: "MetadataService_CreateMetadataSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/createMetadataSchema(request:options:)``
     public func createMetadataSchema(
       parent: Swift.String,
       metadataSchema: MetadataSchema?,
@@ -1775,6 +2601,13 @@
       return try await self.createMetadataSchema(request: request)
     }
 
+    /// Retrieves a specific MetadataSchema.
+    ///
+    /// @Snippet(path: "MetadataService_GetMetadataSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getMetadataSchema(request:options:)``
     public func getMetadataSchema(request: GetMetadataSchemaRequest) async throws
       -> GoogleCloudAIPlatformV1.MetadataSchema
     {
@@ -1787,6 +2620,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a specific MetadataSchema.
+    ///
+    /// @Snippet(path: "MetadataService_GetMetadataSchema")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getMetadataSchema(request:options:)``
     public func getMetadataSchema(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.MetadataSchema {
@@ -1796,6 +2636,13 @@
       return try await self.getMetadataSchema(request: request)
     }
 
+    /// Lists MetadataSchemas.
+    ///
+    /// @Snippet(path: "MetadataService_ListMetadataSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataSchemas(request:options:)``
     public func listMetadataSchemas(request: ListMetadataSchemasRequest) async throws
       -> GoogleCloudAIPlatformV1.ListMetadataSchemasResponse
     {
@@ -1808,6 +2655,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists MetadataSchemas.
+    ///
+    /// @Snippet(path: "MetadataService_ListMetadataSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataSchemas(request:options:)``
     public func listMetadataSchemasByItems(
       request: ListMetadataSchemasRequest
     ) -> some AsyncSequence<MetadataSchema, any Swift.Error> & Sendable {
@@ -1817,6 +2671,10 @@
     /// Lists MetadataSchemas.
     ///
     /// @Snippet(path: "MetadataService_ListMetadataSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataSchemas(request:options:)``
     public func listMetadataSchemasByItems(
       request: ListMetadataSchemasRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<MetadataSchema, any Swift.Error> & Sendable {
@@ -1831,6 +2689,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists MetadataSchemas.
+    ///
+    /// @Snippet(path: "MetadataService_ListMetadataSchemas")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listMetadataSchemas(request:options:)``
     public func listMetadataSchemasByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<MetadataSchema, any Swift.Error> & Sendable {
@@ -1840,6 +2705,14 @@
       return self.listMetadataSchemasByItems(request: request)
     }
 
+    /// Retrieves lineage of an Artifact represented through Artifacts and
+    /// Executions connected by Event edges and returned as a LineageSubgraph.
+    ///
+    /// @Snippet(path: "MetadataService_QueryArtifactLineageSubgraph")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/queryArtifactLineageSubgraph(request:options:)``
     public func queryArtifactLineageSubgraph(request: QueryArtifactLineageSubgraphRequest)
       async throws -> GoogleCloudAIPlatformV1.LineageSubgraph
     {
@@ -1852,6 +2725,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves lineage of an Artifact represented through Artifacts and
+    /// Executions connected by Event edges and returned as a LineageSubgraph.
+    ///
+    /// @Snippet(path: "MetadataService_QueryArtifactLineageSubgraph")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/queryArtifactLineageSubgraph(request:options:)``
     public func queryArtifactLineageSubgraph(
       artifact: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.LineageSubgraph {
@@ -1861,6 +2742,13 @@
       return try await self.queryArtifactLineageSubgraph(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "MetadataService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -1873,6 +2761,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "MetadataService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1882,6 +2777,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "MetadataService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1895,6 +2794,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "MetadataService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -1907,6 +2813,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "MetadataService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1919,6 +2836,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "MetadataService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -1931,6 +2856,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "MetadataService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -1943,6 +2881,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -1955,6 +2902,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1966,6 +2922,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "MetadataService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1979,6 +2939,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -1990,6 +2959,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -2002,6 +2974,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -2011,6 +2986,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -2021,6 +3005,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -2030,6 +3023,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -2040,6 +3042,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -2049,6 +3060,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "MetadataService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``MetadataServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

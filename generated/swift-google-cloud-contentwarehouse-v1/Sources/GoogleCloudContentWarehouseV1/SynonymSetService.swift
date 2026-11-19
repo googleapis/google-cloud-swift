@@ -24,6 +24,10 @@ import Foundation
 /// A Service that manage/custom customer specified SynonymSets.
 ///
 /// @Snippet(path: "SynonymSetServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SynonymSetServiceProtocol``
 public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, Sendable {
   let inner: any Clients.SynonymSetServiceStub
 
@@ -42,6 +46,11 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   /// for the context.
   ///
   /// @Snippet(path: "SynonymSetService_CreateSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSynonymSet(parent:synonymSet:)``
+  /// - ``createSynonymSet(request:)``
   public func createSynonymSet(
     request: CreateSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -53,6 +62,11 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   /// does not exist
   ///
   /// @Snippet(path: "SynonymSetService_GetSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSynonymSet(name:)``
+  /// - ``getSynonymSet(request:)``
   public func getSynonymSet(
     request: GetSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -64,6 +78,11 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   /// Throws a NOT_FOUND exception if the SynonymSet is not found.
   ///
   /// @Snippet(path: "SynonymSetService_UpdateSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSynonymSet(name:synonymSet:)``
+  /// - ``updateSynonymSet(request:)``
   public func updateSynonymSet(
     request: UpdateSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -74,6 +93,11 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   /// Throws a NOT_FOUND exception if the SynonymSet is not found.
   ///
   /// @Snippet(path: "SynonymSetService_DeleteSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSynonymSet(name:)``
+  /// - ``deleteSynonymSet(request:)``
   public func deleteSynonymSet(
     request: DeleteSynonymSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -83,6 +107,13 @@ public final class SynonymSetServiceClient: Clients.SynonymSetServiceProtocol, S
   /// Returns all SynonymSets (for all contexts) for the specified location.
   ///
   /// @Snippet(path: "SynonymSetService_ListSynonymSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSynonymSets(request:)``
+  /// - ``listSynonymSetsByItems(parent:)``
+  /// - ``listSynonymSetsByItems(request:)``
+  /// - ``listSynonymSetsByItems(request:options:)``
   public func listSynonymSets(
     request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse {
@@ -137,6 +168,15 @@ extension Clients {
 
 // Default implementations
 extension Clients.SynonymSetServiceProtocol {
+  /// Creates a SynonymSet for a single context.
+  /// Throws an ALREADY_EXISTS exception if a synonymset already exists
+  /// for the context.
+  ///
+  /// @Snippet(path: "SynonymSetService_CreateSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/createSynonymSet(request:options:)``
   public func createSynonymSet(request: CreateSynonymSetRequest) async throws
     -> GoogleCloudContentWarehouseV1.SynonymSet
   {
@@ -149,6 +189,15 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a SynonymSet for a single context.
+  /// Throws an ALREADY_EXISTS exception if a synonymset already exists
+  /// for the context.
+  ///
+  /// @Snippet(path: "SynonymSetService_CreateSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/createSynonymSet(request:options:)``
   public func createSynonymSet(
     parent: Swift.String,
     synonymSet: SynonymSet?,
@@ -160,6 +209,15 @@ extension Clients.SynonymSetServiceProtocol {
     return try await self.createSynonymSet(request: request)
   }
 
+  /// Gets a SynonymSet for a particular context.
+  /// Throws a NOT_FOUND exception if the Synonymset
+  /// does not exist
+  ///
+  /// @Snippet(path: "SynonymSetService_GetSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/getSynonymSet(request:options:)``
   public func getSynonymSet(request: GetSynonymSetRequest) async throws
     -> GoogleCloudContentWarehouseV1.SynonymSet
   {
@@ -172,6 +230,15 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a SynonymSet for a particular context.
+  /// Throws a NOT_FOUND exception if the Synonymset
+  /// does not exist
+  ///
+  /// @Snippet(path: "SynonymSetService_GetSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/getSynonymSet(request:options:)``
   public func getSynonymSet(
     name: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.SynonymSet {
@@ -181,6 +248,15 @@ extension Clients.SynonymSetServiceProtocol {
     return try await self.getSynonymSet(request: request)
   }
 
+  /// Remove the existing SynonymSet for the context and replaces it
+  /// with a new one.
+  /// Throws a NOT_FOUND exception if the SynonymSet is not found.
+  ///
+  /// @Snippet(path: "SynonymSetService_UpdateSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/updateSynonymSet(request:options:)``
   public func updateSynonymSet(request: UpdateSynonymSetRequest) async throws
     -> GoogleCloudContentWarehouseV1.SynonymSet
   {
@@ -193,6 +269,15 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove the existing SynonymSet for the context and replaces it
+  /// with a new one.
+  /// Throws a NOT_FOUND exception if the SynonymSet is not found.
+  ///
+  /// @Snippet(path: "SynonymSetService_UpdateSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/updateSynonymSet(request:options:)``
   public func updateSynonymSet(
     name: Swift.String,
     synonymSet: SynonymSet?,
@@ -204,6 +289,14 @@ extension Clients.SynonymSetServiceProtocol {
     return try await self.updateSynonymSet(request: request)
   }
 
+  /// Deletes a SynonymSet for a given context.
+  /// Throws a NOT_FOUND exception if the SynonymSet is not found.
+  ///
+  /// @Snippet(path: "SynonymSetService_DeleteSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/deleteSynonymSet(request:options:)``
   public func deleteSynonymSet(request: DeleteSynonymSetRequest) async throws {
     try await self.deleteSynonymSet(request: request, options: .init())
   }
@@ -214,6 +307,14 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a SynonymSet for a given context.
+  /// Throws a NOT_FOUND exception if the SynonymSet is not found.
+  ///
+  /// @Snippet(path: "SynonymSetService_DeleteSynonymSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/deleteSynonymSet(request:options:)``
   public func deleteSynonymSet(
     name: Swift.String,
   ) async throws {
@@ -223,6 +324,13 @@ extension Clients.SynonymSetServiceProtocol {
     try await self.deleteSynonymSet(request: request)
   }
 
+  /// Returns all SynonymSets (for all contexts) for the specified location.
+  ///
+  /// @Snippet(path: "SynonymSetService_ListSynonymSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/listSynonymSets(request:options:)``
   public func listSynonymSets(request: ListSynonymSetsRequest) async throws
     -> GoogleCloudContentWarehouseV1.ListSynonymSetsResponse
   {
@@ -235,6 +343,13 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns all SynonymSets (for all contexts) for the specified location.
+  ///
+  /// @Snippet(path: "SynonymSetService_ListSynonymSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/listSynonymSets(request:options:)``
   public func listSynonymSetsByItems(
     request: ListSynonymSetsRequest
   ) -> some AsyncSequence<SynonymSet, any Swift.Error> & Sendable {
@@ -244,6 +359,10 @@ extension Clients.SynonymSetServiceProtocol {
   /// Returns all SynonymSets (for all contexts) for the specified location.
   ///
   /// @Snippet(path: "SynonymSetService_ListSynonymSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/listSynonymSets(request:options:)``
   public func listSynonymSetsByItems(
     request: ListSynonymSetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SynonymSet, any Swift.Error> & Sendable {
@@ -258,6 +377,13 @@ extension Clients.SynonymSetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns all SynonymSets (for all contexts) for the specified location.
+  ///
+  /// @Snippet(path: "SynonymSetService_ListSynonymSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SynonymSetServiceClient/listSynonymSets(request:options:)``
   public func listSynonymSetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SynonymSet, any Swift.Error> & Sendable {
@@ -267,6 +393,9 @@ extension Clients.SynonymSetServiceProtocol {
     return self.listSynonymSetsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -279,6 +408,9 @@ extension Clients.SynonymSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

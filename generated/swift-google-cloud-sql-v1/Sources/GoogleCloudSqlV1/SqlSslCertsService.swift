@@ -24,6 +24,10 @@
   /// Service to manage SSL certs for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlSslCertsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlSslCertsServiceProtocol``
   public final class SqlSslCertsServiceClient: Clients.SqlSslCertsServiceProtocol, Sendable {
     let inner: any Clients.SqlSslCertsServiceStub
 
@@ -42,6 +46,10 @@
     /// certificate remains valid until the instance is restarted.
     ///
     /// @Snippet(path: "SqlSslCertsService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
     public func delete(
       request: SqlSslCertsDeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -53,6 +61,10 @@
     /// initial creation.
     ///
     /// @Snippet(path: "SqlSslCertsService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(request:)``
     public func `get`(
       request: SqlSslCertsGetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SslCert {
@@ -64,6 +76,10 @@
     /// the instance is restarted.
     ///
     /// @Snippet(path: "SqlSslCertsService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
     public func insert(
       request: SqlSslCertsInsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SslCertsInsertResponse {
@@ -73,6 +89,10 @@
     /// Lists all of the current SSL certificates for the instance.
     ///
     /// @Snippet(path: "SqlSslCertsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
     public func list(
       request: SqlSslCertsListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.SslCertsListResponse {
@@ -83,6 +103,10 @@
     /// SQL instance.
     ///
     /// @Snippet(path: "SqlSslCertsService_UpdateCustomerManagedCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateCustomerManagedCertificate(request:)``
     public func updateCustomerManagedCertificate(
       request: UpdateCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -93,6 +117,10 @@
     /// instance.
     ///
     /// @Snippet(path: "SqlSslCertsService_DeleteCustomerManagedCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteCustomerManagedCertificate(request:)``
     public func deleteCustomerManagedCertificate(
       request: DeleteCustomerManagedCertificateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.Operation {
@@ -103,6 +131,10 @@
     /// instance.
     ///
     /// @Snippet(path: "SqlSslCertsService_ListCustomerManagedCertificates")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listCustomerManagedCertificates(request:)``
     public func listCustomerManagedCertificates(
       request: ListCustomerManagedCertificatesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse {
@@ -156,6 +188,14 @@
 
   // Default implementations
   extension Clients.SqlSslCertsServiceProtocol {
+    /// Deletes the SSL certificate. For First Generation instances, the
+    /// certificate remains valid until the instance is restarted.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_Delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/delete(request:options:)``
     public func delete(request: SqlSslCertsDeleteRequest) async throws -> GoogleCloudSqlV1.Operation
     {
       try await self.delete(request: request, options: .init())
@@ -167,6 +207,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a particular SSL certificate.  Does not include the private key
+    /// (required for usage).  The private key must be saved from the response to
+    /// initial creation.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_Get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/get(request:options:)``
     public func `get`(request: SqlSslCertsGetRequest) async throws -> GoogleCloudSqlV1.SslCert {
       try await self.`get`(request: request, options: .init())
     }
@@ -177,6 +226,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an SSL certificate and returns it along with the private key and
+    /// server certificate authority.  The new certificate will not be usable until
+    /// the instance is restarted.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_Insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/insert(request:options:)``
     public func insert(request: SqlSslCertsInsertRequest) async throws
       -> GoogleCloudSqlV1.SslCertsInsertResponse
     {
@@ -189,6 +247,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all of the current SSL certificates for the instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/list(request:options:)``
     public func list(request: SqlSslCertsListRequest) async throws
       -> GoogleCloudSqlV1.SslCertsListResponse
     {
@@ -201,6 +266,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Upload and update customer managed certificate bundle for an existing Cloud
+    /// SQL instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_UpdateCustomerManagedCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/updateCustomerManagedCertificate(request:options:)``
     public func updateCustomerManagedCertificate(request: UpdateCustomerManagedCertificateRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -213,6 +286,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Delete customer managed certificate bundle for an existing Cloud SQL
+    /// instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_DeleteCustomerManagedCertificate")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/deleteCustomerManagedCertificate(request:options:)``
     public func deleteCustomerManagedCertificate(request: DeleteCustomerManagedCertificateRequest)
       async throws -> GoogleCloudSqlV1.Operation
     {
@@ -225,6 +306,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// List all customer managed certificate bundles for an existing Cloud SQL
+    /// instance.
+    ///
+    /// @Snippet(path: "SqlSslCertsService_ListCustomerManagedCertificates")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlSslCertsServiceClient/listCustomerManagedCertificates(request:options:)``
     public func listCustomerManagedCertificates(request: ListCustomerManagedCertificatesRequest)
       async throws -> GoogleCloudSqlV1.ListCustomerManagedCertificatesResponse
     {

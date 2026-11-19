@@ -24,6 +24,10 @@
   /// Service for the `regionCompositeHealthChecks` resource.
   ///
   /// @Snippet(path: "regionCompositeHealthChecksQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionCompositeHealthChecksProtocol``
   public final class RegionCompositeHealthChecksClient: Clients.RegionCompositeHealthChecksProtocol,
     Sendable
   {
@@ -51,6 +55,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -61,6 +72,13 @@
     /// Deletes the specified CompositeHealthCheck in the given region
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:compositeHealthCheck:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -75,6 +93,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:compositeHealthCheck:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionCompositeHealthChecksClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -117,6 +142,11 @@
     /// Returns the specified CompositeHealthCheck resource in the given region.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:compositeHealthCheck:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionCompositeHealthChecksClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CompositeHealthCheck {
@@ -127,6 +157,11 @@
     /// regional CompositeHealthCheck.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getHealth(project:region:compositeHealthCheck:)``
+    /// - ``getHealth(request:)``
     public func getHealth(
       request: RegionCompositeHealthChecksClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CompositeHealthCheckHealth {
@@ -137,6 +172,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -152,6 +194,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionCompositeHealthChecksClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -194,6 +243,13 @@
     /// Lists the CompositeHealthChecks for a project in the given region.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.CompositeHealthCheckList {
@@ -206,6 +262,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:compositeHealthCheck:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -223,6 +286,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:compositeHealthCheck:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionCompositeHealthChecksClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -265,6 +335,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: RegionCompositeHealthChecksClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -366,6 +441,17 @@
 
   // Default implementations
   extension Clients.RegionCompositeHealthChecksProtocol {
+    /// Retrieves the list of all CompositeHealthCheck resources (all
+    /// regional) available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/aggregatedList(request:options:)``
     public func aggregatedList(request: RegionCompositeHealthChecksClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.CompositeHealthCheckAggregatedList
     {
@@ -379,6 +465,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all CompositeHealthCheck resources (all
+    /// regional) available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionCompositeHealthChecksClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), any Swift.Error>
@@ -394,6 +491,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionCompositeHealthChecksClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -411,6 +512,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all CompositeHealthCheck resources (all
+    /// regional) available to the specified project.
+    ///
+    /// To prevent failure, it is recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, CompositeHealthChecksScopedList), any Swift.Error>
@@ -422,6 +534,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified CompositeHealthCheck in the given region
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/delete(request:options:)``
     public func delete(request: RegionCompositeHealthChecksClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -434,6 +553,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified CompositeHealthCheck in the given region
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionCompositeHealthChecksClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -446,6 +577,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified CompositeHealthCheck in the given region
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -459,6 +602,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified CompositeHealthCheck resource in the given region.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/get(request:options:)``
     public func `get`(request: RegionCompositeHealthChecksClient.GetRequest) async throws
       -> GoogleCloudComputeV1.CompositeHealthCheck
     {
@@ -471,6 +621,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified CompositeHealthCheck resource in the given region.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -484,6 +641,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the most recent health check results for this
+    /// regional CompositeHealthCheck.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/getHealth(request:options:)``
     public func getHealth(request: RegionCompositeHealthChecksClient.GetHealthRequest) async throws
       -> GoogleCloudComputeV1.CompositeHealthCheckHealth
     {
@@ -496,6 +661,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the most recent health check results for this
+    /// regional CompositeHealthCheck.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/getHealth(request:options:)``
     public func getHealth(
       project: Swift.String,
       region: Swift.String,
@@ -509,6 +682,14 @@
       return try await self.getHealth(request: request)
     }
 
+    /// Create a CompositeHealthCheck in the specified project in the given region
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/insert(request:options:)``
     public func insert(request: RegionCompositeHealthChecksClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -521,6 +702,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a CompositeHealthCheck in the specified project in the given region
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionCompositeHealthChecksClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -533,6 +727,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a CompositeHealthCheck in the specified project in the given region
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -546,6 +753,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the CompositeHealthChecks for a project in the given region.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/list(request:options:)``
     public func list(request: RegionCompositeHealthChecksClient.ListRequest) async throws
       -> GoogleCloudComputeV1.CompositeHealthCheckList
     {
@@ -558,6 +772,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the CompositeHealthChecks for a project in the given region.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/list(request:options:)``
     public func listByItems(
       request: RegionCompositeHealthChecksClient.ListRequest
     ) -> some AsyncSequence<CompositeHealthCheck, any Swift.Error> & Sendable {
@@ -567,6 +788,10 @@
     /// Lists the CompositeHealthChecks for a project in the given region.
     ///
     /// @Snippet(path: "regionCompositeHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/list(request:options:)``
     public func listByItems(
       request: RegionCompositeHealthChecksClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<CompositeHealthCheck, any Swift.Error> & Sendable {
@@ -581,6 +806,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the CompositeHealthChecks for a project in the given region.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -592,6 +824,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates the specified regional CompositeHealthCheck resource
+    /// with the data included in the request.  This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/patch(request:options:)``
     public func patch(request: RegionCompositeHealthChecksClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -604,6 +846,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional CompositeHealthCheck resource
+    /// with the data included in the request.  This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionCompositeHealthChecksClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -616,6 +873,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified regional CompositeHealthCheck resource
+    /// with the data included in the request.  This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -631,6 +903,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: RegionCompositeHealthChecksClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -644,6 +923,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionCompositeHealthChecks_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionCompositeHealthChecksClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -659,6 +945,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

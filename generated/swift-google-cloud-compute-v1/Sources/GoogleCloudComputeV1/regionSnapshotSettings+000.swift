@@ -24,6 +24,10 @@
   /// Service for the `regionSnapshotSettings` resource.
   ///
   /// @Snippet(path: "regionSnapshotSettingsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionSnapshotSettingsProtocol``
   public final class RegionSnapshotSettingsClient: Clients.RegionSnapshotSettingsProtocol, Sendable
   {
     let inner: any Clients.RegionSnapshotSettingsStub
@@ -46,6 +50,11 @@
     /// Get region snapshot settings.
     ///
     /// @Snippet(path: "regionSnapshotSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionSnapshotSettingsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.SnapshotSettings {
@@ -55,6 +64,13 @@
     /// Patch region snapshot settings.
     ///
     /// @Snippet(path: "regionSnapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RegionSnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -69,6 +85,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionSnapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionSnapshotSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,6 +172,13 @@
 
   // Default implementations
   extension Clients.RegionSnapshotSettingsProtocol {
+    /// Get region snapshot settings.
+    ///
+    /// @Snippet(path: "regionSnapshotSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotSettingsClient/get(request:options:)``
     public func `get`(request: RegionSnapshotSettingsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.SnapshotSettings
     {
@@ -161,6 +191,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get region snapshot settings.
+    ///
+    /// @Snippet(path: "regionSnapshotSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotSettingsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -172,6 +209,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Patch region snapshot settings.
+    ///
+    /// @Snippet(path: "regionSnapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotSettingsClient/patch(request:options:)``
     public func patch(request: RegionSnapshotSettingsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -184,6 +228,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patch region snapshot settings.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotSettingsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionSnapshotSettingsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -196,6 +252,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patch region snapshot settings.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionSnapshotSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionSnapshotSettingsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -209,6 +277,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

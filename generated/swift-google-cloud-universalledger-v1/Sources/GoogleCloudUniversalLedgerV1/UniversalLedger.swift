@@ -30,6 +30,10 @@ public import Foundation
 /// given network within the given region.
 ///
 /// @Snippet(path: "UniversalLedgerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/UniversalLedgerProtocol``
 public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Sendable {
   let inner: any Clients.UniversalLedgerStub
 
@@ -51,6 +55,11 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// the request fails.
   ///
   /// @Snippet(path: "UniversalLedger_SubmitTransaction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitTransaction(endpoint:serializedSignedTransaction:)``
+  /// - ``submitTransaction(request:)``
   public func submitTransaction(
     request: SubmitTransactionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse {
@@ -60,6 +69,13 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// Lists all endpoints for a given project and location.
   ///
   /// @Snippet(path: "UniversalLedger_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listEndpoints(request:)``
+  /// - ``listEndpointsByItems(parent:)``
+  /// - ``listEndpointsByItems(request:)``
+  /// - ``listEndpointsByItems(request:options:)``
   public func listEndpoints(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse {
@@ -69,6 +85,11 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// Gets the details of a specific endpoint.
   ///
   /// @Snippet(path: "UniversalLedger_GetEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getEndpoint(name:)``
+  /// - ``getEndpoint(request:)``
   public func getEndpoint(
     request: GetEndpointRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.Endpoint {
@@ -80,6 +101,11 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// majority of validators in the network, or if the transaction fails.
   ///
   /// @Snippet(path: "UniversalLedger_SubmitOperationalTransaction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``submitOperationalTransaction(endpoint:serializedSignedOperationalTransaction:)``
+  /// - ``submitOperationalTransaction(request:)``
   public func submitOperationalTransaction(
     request: SubmitOperationalTransactionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse {
@@ -97,6 +123,11 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
   ///
   /// @Snippet(path: "UniversalLedger_QueryTransactionState")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryTransactionState(endpoint:transactionDigestHex:)``
+  /// - ``queryTransactionState(request:)``
   @available(*, deprecated)
   public func queryTransactionState(
     request: QueryTransactionStateRequest, options: GoogleGax.RequestOptions
@@ -115,6 +146,11 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
   ///
   /// @Snippet(path: "UniversalLedger_QueryAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryAccount(endpoint:accountId:)``
+  /// - ``queryAccount(request:)``
   @available(*, deprecated)
   public func queryAccount(
     request: QueryAccountRequest, options: GoogleGax.RequestOptions
@@ -131,6 +167,11 @@ public final class UniversalLedgerClient: Clients.UniversalLedgerProtocol, Senda
   /// redacted from the response and reported in the `redacted_fields` field.
   ///
   /// @Snippet(path: "UniversalLedger_QueryData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryData(endpoint:serializedSignedQueryRequest:)``
+  /// - ``queryData(request:)``
   public func queryData(
     request: QueryDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudUniversalLedgerV1.QueryDataResponse {
@@ -186,6 +227,18 @@ extension Clients {
 
 // Default implementations
 extension Clients.UniversalLedgerProtocol {
+  /// Submits a transaction to the network.
+  /// The request is first validated for basic correctness. If validation fails,
+  /// the request will fail immediately.
+  /// If validation succeeds, this method returns only after the transaction has
+  /// been replicated across a majority of validators in the network, or until
+  /// the request fails.
+  ///
+  /// @Snippet(path: "UniversalLedger_SubmitTransaction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/submitTransaction(request:options:)``
   public func submitTransaction(request: SubmitTransactionRequest) async throws
     -> GoogleCloudUniversalLedgerV1.SubmitTransactionResponse
   {
@@ -198,6 +251,18 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits a transaction to the network.
+  /// The request is first validated for basic correctness. If validation fails,
+  /// the request will fail immediately.
+  /// If validation succeeds, this method returns only after the transaction has
+  /// been replicated across a majority of validators in the network, or until
+  /// the request fails.
+  ///
+  /// @Snippet(path: "UniversalLedger_SubmitTransaction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/submitTransaction(request:options:)``
   public func submitTransaction(
     endpoint: Swift.String,
     serializedSignedTransaction: Foundation.Data,
@@ -209,6 +274,13 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.submitTransaction(request: request)
   }
 
+  /// Lists all endpoints for a given project and location.
+  ///
+  /// @Snippet(path: "UniversalLedger_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/listEndpoints(request:options:)``
   public func listEndpoints(request: ListEndpointsRequest) async throws
     -> GoogleCloudUniversalLedgerV1.ListEndpointsResponse
   {
@@ -221,6 +293,13 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all endpoints for a given project and location.
+  ///
+  /// @Snippet(path: "UniversalLedger_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/listEndpoints(request:options:)``
   public func listEndpointsByItems(
     request: ListEndpointsRequest
   ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -230,6 +309,10 @@ extension Clients.UniversalLedgerProtocol {
   /// Lists all endpoints for a given project and location.
   ///
   /// @Snippet(path: "UniversalLedger_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/listEndpoints(request:options:)``
   public func listEndpointsByItems(
     request: ListEndpointsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -244,6 +327,13 @@ extension Clients.UniversalLedgerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all endpoints for a given project and location.
+  ///
+  /// @Snippet(path: "UniversalLedger_ListEndpoints")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/listEndpoints(request:options:)``
   public func listEndpointsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Endpoint, any Swift.Error> & Sendable {
@@ -253,6 +343,13 @@ extension Clients.UniversalLedgerProtocol {
     return self.listEndpointsByItems(request: request)
   }
 
+  /// Gets the details of a specific endpoint.
+  ///
+  /// @Snippet(path: "UniversalLedger_GetEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/getEndpoint(request:options:)``
   public func getEndpoint(request: GetEndpointRequest) async throws
     -> GoogleCloudUniversalLedgerV1.Endpoint
   {
@@ -265,6 +362,13 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific endpoint.
+  ///
+  /// @Snippet(path: "UniversalLedger_GetEndpoint")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/getEndpoint(request:options:)``
   public func getEndpoint(
     name: Swift.String,
   ) async throws -> GoogleCloudUniversalLedgerV1.Endpoint {
@@ -274,6 +378,15 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.getEndpoint(request: request)
   }
 
+  /// Submits an operational transaction to the network.
+  /// This method returns only after the transaction has been replicated across a
+  /// majority of validators in the network, or if the transaction fails.
+  ///
+  /// @Snippet(path: "UniversalLedger_SubmitOperationalTransaction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/submitOperationalTransaction(request:options:)``
   public func submitOperationalTransaction(request: SubmitOperationalTransactionRequest)
     async throws -> GoogleCloudUniversalLedgerV1.SubmitOperationalTransactionResponse
   {
@@ -286,6 +399,15 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Submits an operational transaction to the network.
+  /// This method returns only after the transaction has been replicated across a
+  /// majority of validators in the network, or if the transaction fails.
+  ///
+  /// @Snippet(path: "UniversalLedger_SubmitOperationalTransaction")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/submitOperationalTransaction(request:options:)``
   public func submitOperationalTransaction(
     endpoint: Swift.String,
     serializedSignedOperationalTransaction: Foundation.Data,
@@ -297,6 +419,21 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.submitOperationalTransaction(request: request)
   }
 
+  /// Deprecated: Use the
+  /// [QueryData][google.cloud.universalledger.v1.UniversalLedger.QueryData]
+  /// method instead. Queries the state of a transaction. This method can be
+  /// called for any transaction submitted to the network. The returned
+  /// transaction details may vary between calls, because an endpoint may route
+  /// requests to different validators within the network and region, and the
+  /// validators may not be at the same round ID at any given time.
+  ///
+  /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryTransactionState")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/queryTransactionState(request:options:)``
   @available(*, deprecated)
   public func queryTransactionState(request: QueryTransactionStateRequest) async throws
     -> GoogleCloudUniversalLedgerV1.QueryTransactionStateResponse
@@ -311,6 +448,21 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deprecated: Use the
+  /// [QueryData][google.cloud.universalledger.v1.UniversalLedger.QueryData]
+  /// method instead. Queries the state of a transaction. This method can be
+  /// called for any transaction submitted to the network. The returned
+  /// transaction details may vary between calls, because an endpoint may route
+  /// requests to different validators within the network and region, and the
+  /// validators may not be at the same round ID at any given time.
+  ///
+  /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryTransactionState")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/queryTransactionState(request:options:)``
   @available(*, deprecated)
   public func queryTransactionState(
     endpoint: Swift.String,
@@ -323,6 +475,21 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.queryTransactionState(request: request)
   }
 
+  /// Deprecated: Use the
+  /// [QueryData][google.cloud.universalledger.v1.UniversalLedger.QueryData]
+  /// method instead. Queries all the information stored about an account in the
+  /// network. The returned account details may vary between calls, because an
+  /// endpoint may route requests to different validators within the network and
+  /// region, and the validators may not be at the same round ID at any given
+  /// time.
+  ///
+  /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/queryAccount(request:options:)``
   @available(*, deprecated)
   public func queryAccount(request: QueryAccountRequest) async throws
     -> GoogleCloudUniversalLedgerV1.QueryAccountResponse
@@ -337,6 +504,21 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deprecated: Use the
+  /// [QueryData][google.cloud.universalledger.v1.UniversalLedger.QueryData]
+  /// method instead. Queries all the information stored about an account in the
+  /// network. The returned account details may vary between calls, because an
+  /// endpoint may route requests to different validators within the network and
+  /// region, and the validators may not be at the same round ID at any given
+  /// time.
+  ///
+  /// [google.cloud.universalledger.v1.UniversalLedger.QueryData]: <doc:UniversalLedgerClient/queryData(request:options:)>
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryAccount")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/queryAccount(request:options:)``
   @available(*, deprecated)
   public func queryAccount(
     endpoint: Swift.String,
@@ -349,6 +531,19 @@ extension Clients.UniversalLedgerProtocol {
     return try await self.queryAccount(request: request)
   }
 
+  /// Queries the network for information stored on the ledger,
+  /// such as accounts and transactions.
+  ///
+  /// Access to certain sensitive fields, such as account balances, may be
+  /// restricted based on the identity of the sender derived from the signature
+  /// in the request. If the sender lacks permission, sensitive fields will be
+  /// redacted from the response and reported in the `redacted_fields` field.
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/queryData(request:options:)``
   public func queryData(request: QueryDataRequest) async throws
     -> GoogleCloudUniversalLedgerV1.QueryDataResponse
   {
@@ -361,6 +556,19 @@ extension Clients.UniversalLedgerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Queries the network for information stored on the ledger,
+  /// such as accounts and transactions.
+  ///
+  /// Access to certain sensitive fields, such as account balances, may be
+  /// restricted based on the identity of the sender derived from the signature
+  /// in the request. If the sender lacks permission, sensitive fields will be
+  /// redacted from the response and reported in the `redacted_fields` field.
+  ///
+  /// @Snippet(path: "UniversalLedger_QueryData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``UniversalLedgerClient/queryData(request:options:)``
   public func queryData(
     endpoint: Swift.String,
     serializedSignedQueryRequest: Foundation.Data,

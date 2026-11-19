@@ -24,6 +24,10 @@
   /// Service to verify the eligibility of an instance for a given operation.
   ///
   /// @Snippet(path: "SqlFeatureEligibilityServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlFeatureEligibilityServiceProtocol``
   public final class SqlFeatureEligibilityServiceClient: Clients
       .SqlFeatureEligibilityServiceProtocol, Sendable
   {

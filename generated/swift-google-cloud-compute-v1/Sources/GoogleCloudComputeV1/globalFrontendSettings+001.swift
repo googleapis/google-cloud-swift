@@ -24,6 +24,10 @@
   /// Service for the `globalFrontendSettings` resource.
   ///
   /// @Snippet(path: "globalFrontendSettingsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/GlobalFrontendSettingsProtocol``
   public final class GlobalFrontendSettingsClient: Clients.GlobalFrontendSettingsProtocol, Sendable
   {
     let inner: any Clients.GlobalFrontendSettingsStub
@@ -42,6 +46,11 @@
     /// Gets the Global Frontend Billing Bundle Settings for a project.
     ///
     /// @Snippet(path: "globalFrontendSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalFrontendSettingsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GlobalFrontendSettings {
@@ -51,6 +60,11 @@
     /// Updates the Global Frontend Billing Bundle Settings for a project.
     ///
     /// @Snippet(path: "globalFrontendSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(project:body:)``
+    /// - ``patch(request:)``
     public func patch(
       request: GlobalFrontendSettingsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GlobalFrontendSettingsPatchResponse {
@@ -79,6 +93,13 @@
 
   // Default implementations
   extension Clients.GlobalFrontendSettingsProtocol {
+    /// Gets the Global Frontend Billing Bundle Settings for a project.
+    ///
+    /// @Snippet(path: "globalFrontendSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalFrontendSettingsClient/get(request:options:)``
     public func `get`(request: GlobalFrontendSettingsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.GlobalFrontendSettings
     {
@@ -91,6 +112,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the Global Frontend Billing Bundle Settings for a project.
+    ///
+    /// @Snippet(path: "globalFrontendSettings_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalFrontendSettingsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
     ) async throws -> GoogleCloudComputeV1.GlobalFrontendSettings {
@@ -100,6 +128,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Updates the Global Frontend Billing Bundle Settings for a project.
+    ///
+    /// @Snippet(path: "globalFrontendSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalFrontendSettingsClient/patch(request:options:)``
     public func patch(request: GlobalFrontendSettingsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.GlobalFrontendSettingsPatchResponse
     {
@@ -112,6 +147,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the Global Frontend Billing Bundle Settings for a project.
+    ///
+    /// @Snippet(path: "globalFrontendSettings_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalFrontendSettingsClient/patch(request:options:)``
     public func patch(
       project: Swift.String,
       body: GlobalFrontendSettings?,

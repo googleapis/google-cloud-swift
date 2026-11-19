@@ -25,6 +25,10 @@ import Foundation
 /// The SessionTemplateController provides methods to manage session templates.
 ///
 /// @Snippet(path: "SessionTemplateControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SessionTemplateControllerProtocol``
 public final class SessionTemplateControllerClient: Clients.SessionTemplateControllerProtocol,
   Sendable
 {
@@ -44,6 +48,11 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// Create a session template synchronously.
   ///
   /// @Snippet(path: "SessionTemplateController_CreateSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSessionTemplate(parent:sessionTemplate:)``
+  /// - ``createSessionTemplate(request:)``
   public func createSessionTemplate(
     request: CreateSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -53,6 +62,11 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// Updates the session template synchronously.
   ///
   /// @Snippet(path: "SessionTemplateController_UpdateSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSessionTemplate(request:)``
+  /// - ``updateSessionTemplate(sessionTemplate:)``
   public func updateSessionTemplate(
     request: UpdateSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -62,6 +76,11 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// Gets the resource representation for a session template.
   ///
   /// @Snippet(path: "SessionTemplateController_GetSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSessionTemplate(name:)``
+  /// - ``getSessionTemplate(request:)``
   public func getSessionTemplate(
     request: GetSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -71,6 +90,13 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// Lists session templates.
   ///
   /// @Snippet(path: "SessionTemplateController_ListSessionTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSessionTemplates(request:)``
+  /// - ``listSessionTemplatesByItems(parent:)``
+  /// - ``listSessionTemplatesByItems(request:)``
+  /// - ``listSessionTemplatesByItems(request:options:)``
   public func listSessionTemplates(
     request: ListSessionTemplatesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListSessionTemplatesResponse {
@@ -80,6 +106,11 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// Deletes a session template.
   ///
   /// @Snippet(path: "SessionTemplateController_DeleteSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSessionTemplate(name:)``
+  /// - ``deleteSessionTemplate(request:)``
   public func deleteSessionTemplate(
     request: DeleteSessionTemplateRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -93,6 +124,10 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// errors.
   ///
   /// @Snippet(path: "SessionTemplateController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -103,6 +138,10 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "SessionTemplateController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -118,6 +157,10 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "SessionTemplateController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -129,6 +172,13 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionTemplateController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -151,6 +201,11 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionTemplateController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -162,6 +217,11 @@ public final class SessionTemplateControllerClient: Clients.SessionTemplateContr
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionTemplateController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -235,6 +295,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SessionTemplateControllerProtocol {
+  /// Create a session template synchronously.
+  ///
+  /// @Snippet(path: "SessionTemplateController_CreateSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/createSessionTemplate(request:options:)``
   public func createSessionTemplate(request: CreateSessionTemplateRequest) async throws
     -> GoogleCloudDataprocV1.SessionTemplate
   {
@@ -247,6 +314,13 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a session template synchronously.
+  ///
+  /// @Snippet(path: "SessionTemplateController_CreateSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/createSessionTemplate(request:options:)``
   public func createSessionTemplate(
     parent: Swift.String,
     sessionTemplate: SessionTemplate?,
@@ -258,6 +332,13 @@ extension Clients.SessionTemplateControllerProtocol {
     return try await self.createSessionTemplate(request: request)
   }
 
+  /// Updates the session template synchronously.
+  ///
+  /// @Snippet(path: "SessionTemplateController_UpdateSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/updateSessionTemplate(request:options:)``
   public func updateSessionTemplate(request: UpdateSessionTemplateRequest) async throws
     -> GoogleCloudDataprocV1.SessionTemplate
   {
@@ -270,6 +351,13 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the session template synchronously.
+  ///
+  /// @Snippet(path: "SessionTemplateController_UpdateSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/updateSessionTemplate(request:options:)``
   public func updateSessionTemplate(
     sessionTemplate: SessionTemplate?,
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -279,6 +367,13 @@ extension Clients.SessionTemplateControllerProtocol {
     return try await self.updateSessionTemplate(request: request)
   }
 
+  /// Gets the resource representation for a session template.
+  ///
+  /// @Snippet(path: "SessionTemplateController_GetSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/getSessionTemplate(request:options:)``
   public func getSessionTemplate(request: GetSessionTemplateRequest) async throws
     -> GoogleCloudDataprocV1.SessionTemplate
   {
@@ -291,6 +386,13 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the resource representation for a session template.
+  ///
+  /// @Snippet(path: "SessionTemplateController_GetSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/getSessionTemplate(request:options:)``
   public func getSessionTemplate(
     name: Swift.String,
   ) async throws -> GoogleCloudDataprocV1.SessionTemplate {
@@ -300,6 +402,13 @@ extension Clients.SessionTemplateControllerProtocol {
     return try await self.getSessionTemplate(request: request)
   }
 
+  /// Lists session templates.
+  ///
+  /// @Snippet(path: "SessionTemplateController_ListSessionTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listSessionTemplates(request:options:)``
   public func listSessionTemplates(request: ListSessionTemplatesRequest) async throws
     -> GoogleCloudDataprocV1.ListSessionTemplatesResponse
   {
@@ -312,6 +421,13 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists session templates.
+  ///
+  /// @Snippet(path: "SessionTemplateController_ListSessionTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listSessionTemplates(request:options:)``
   public func listSessionTemplatesByItems(
     request: ListSessionTemplatesRequest
   ) -> some AsyncSequence<SessionTemplate, any Swift.Error> & Sendable {
@@ -321,6 +437,10 @@ extension Clients.SessionTemplateControllerProtocol {
   /// Lists session templates.
   ///
   /// @Snippet(path: "SessionTemplateController_ListSessionTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listSessionTemplates(request:options:)``
   public func listSessionTemplatesByItems(
     request: ListSessionTemplatesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SessionTemplate, any Swift.Error> & Sendable {
@@ -335,6 +455,13 @@ extension Clients.SessionTemplateControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists session templates.
+  ///
+  /// @Snippet(path: "SessionTemplateController_ListSessionTemplates")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listSessionTemplates(request:options:)``
   public func listSessionTemplatesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SessionTemplate, any Swift.Error> & Sendable {
@@ -344,6 +471,13 @@ extension Clients.SessionTemplateControllerProtocol {
     return self.listSessionTemplatesByItems(request: request)
   }
 
+  /// Deletes a session template.
+  ///
+  /// @Snippet(path: "SessionTemplateController_DeleteSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/deleteSessionTemplate(request:options:)``
   public func deleteSessionTemplate(request: DeleteSessionTemplateRequest) async throws {
     try await self.deleteSessionTemplate(request: request, options: .init())
   }
@@ -354,6 +488,13 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a session template.
+  ///
+  /// @Snippet(path: "SessionTemplateController_DeleteSessionTemplate")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/deleteSessionTemplate(request:options:)``
   public func deleteSessionTemplate(
     name: Swift.String,
   ) async throws {
@@ -363,6 +504,17 @@ extension Clients.SessionTemplateControllerProtocol {
     try await self.deleteSessionTemplate(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "SessionTemplateController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -375,6 +527,14 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "SessionTemplateController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -387,6 +547,19 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "SessionTemplateController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -399,6 +572,15 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -411,6 +593,15 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -422,6 +613,10 @@ extension Clients.SessionTemplateControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionTemplateController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -435,6 +630,15 @@ extension Clients.SessionTemplateControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -446,6 +650,9 @@ extension Clients.SessionTemplateControllerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -458,6 +665,9 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -467,6 +677,15 @@ extension Clients.SessionTemplateControllerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -477,6 +696,15 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -486,6 +714,15 @@ extension Clients.SessionTemplateControllerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -496,6 +733,15 @@ extension Clients.SessionTemplateControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionTemplateController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionTemplateControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

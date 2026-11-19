@@ -29,6 +29,10 @@ import Foundation
 /// Access Secure Source Manager instances, resources, and repositories.
 ///
 /// @Snippet(path: "SecureSourceManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SecureSourceManagerProtocol``
 public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtocol, Sendable {
   let inner: any Clients.SecureSourceManagerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "SecureSourceManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListInstancesResponse {
@@ -59,6 +70,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets details of a single instance.
   ///
   /// @Snippet(path: "SecureSourceManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.Instance {
@@ -68,6 +84,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a new instance in a given project and location.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(request:options:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -77,6 +100,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a new instance in a given project and location.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -104,6 +134,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a single instance.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,6 +150,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a single instance.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -143,6 +187,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// the securesourcemanager.googleapis.com endpoint.
   ///
   /// @Snippet(path: "SecureSourceManager_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRepositories(request:)``
+  /// - ``listRepositoriesByItems(parent:)``
+  /// - ``listRepositoriesByItems(request:)``
+  /// - ``listRepositoriesByItems(request:options:)``
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListRepositoriesResponse {
@@ -152,6 +203,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets metadata of a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRepository(name:)``
+  /// - ``getRepository(request:)``
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.Repository {
@@ -164,6 +220,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// using the securesourcemanager.googleapis.com endpoint.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRepository(request:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
+  /// - ``createRepositoryPollingUntilDone(request:)``
+  /// - ``createRepositoryPollingUntilDone(request:options:)``
   public func createRepository(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -176,6 +239,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// using the securesourcemanager.googleapis.com endpoint.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRepository(request:)``
+  /// - ``createRepository(request:options:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
+  /// - ``createRepositoryPollingUntilDone(request:)``
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Repository {
@@ -203,6 +273,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates the metadata of a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRepository(request:)``
+  /// - ``updateRepositoryPollingUntilDone(repository:updateMask:)``
+  /// - ``updateRepositoryPollingUntilDone(request:)``
+  /// - ``updateRepositoryPollingUntilDone(request:options:)``
   public func updateRepository(
     request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -212,6 +289,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates the metadata of a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRepository(request:)``
+  /// - ``updateRepository(request:options:)``
+  /// - ``updateRepositoryPollingUntilDone(repository:updateMask:)``
+  /// - ``updateRepositoryPollingUntilDone(request:)``
   public func updateRepositoryPollingUntilDone(
     request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Repository {
@@ -239,6 +323,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a Repository.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRepository(request:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:options:)``
   public func deleteRepository(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +339,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a Repository.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRepository(request:)``
+  /// - ``deleteRepository(request:options:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:)``
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -275,6 +373,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists hooks in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListHooks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listHooks(request:)``
+  /// - ``listHooksByItems(parent:)``
+  /// - ``listHooksByItems(request:)``
+  /// - ``listHooksByItems(request:options:)``
   public func listHooks(
     request: ListHooksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListHooksResponse {
@@ -284,6 +389,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets metadata of a hook.
   ///
   /// @Snippet(path: "SecureSourceManager_GetHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getHook(name:)``
+  /// - ``getHook(request:)``
   public func getHook(
     request: GetHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.Hook {
@@ -293,6 +403,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a new hook in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHook(request:)``
+  /// - ``createHookPollingUntilDone(parent:hook:hookId:)``
+  /// - ``createHookPollingUntilDone(request:)``
+  /// - ``createHookPollingUntilDone(request:options:)``
   public func createHook(
     request: CreateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -302,6 +419,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a new hook in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHook(request:)``
+  /// - ``createHook(request:options:)``
+  /// - ``createHookPollingUntilDone(parent:hook:hookId:)``
+  /// - ``createHookPollingUntilDone(request:)``
   public func createHookPollingUntilDone(
     request: CreateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> Hook {
@@ -329,6 +453,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates the metadata of a hook.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateHook(request:)``
+  /// - ``updateHookPollingUntilDone(hook:updateMask:)``
+  /// - ``updateHookPollingUntilDone(request:)``
+  /// - ``updateHookPollingUntilDone(request:options:)``
   public func updateHook(
     request: UpdateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -338,6 +469,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates the metadata of a hook.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateHook(request:)``
+  /// - ``updateHook(request:options:)``
+  /// - ``updateHookPollingUntilDone(hook:updateMask:)``
+  /// - ``updateHookPollingUntilDone(request:)``
   public func updateHookPollingUntilDone(
     request: UpdateHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> Hook {
@@ -365,6 +503,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a Hook.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteHook(request:)``
+  /// - ``deleteHookPollingUntilDone(name:)``
+  /// - ``deleteHookPollingUntilDone(request:)``
+  /// - ``deleteHookPollingUntilDone(request:options:)``
   public func deleteHook(
     request: DeleteHookRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -374,6 +519,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a Hook.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteHook(request:)``
+  /// - ``deleteHook(request:options:)``
+  /// - ``deleteHookPollingUntilDone(name:)``
+  /// - ``deleteHookPollingUntilDone(request:)``
   public func deleteHookPollingUntilDone(
     request: DeleteHookRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -401,6 +553,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Get IAM policy for a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_GetIamPolicyRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicyRepo(request:)``
+  /// - ``getIamPolicyRepo(resource:)``
   public func getIamPolicyRepo(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -410,6 +567,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Set IAM policy on a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_SetIamPolicyRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicyRepo(request:)``
+  /// - ``setIamPolicyRepo(resource:)``
   public func setIamPolicyRepo(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -420,6 +582,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// IAM permission checks are not required on this method.
   ///
   /// @Snippet(path: "SecureSourceManager_TestIamPermissionsRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissionsRepo(request:)``
+  /// - ``testIamPermissionsRepo(resource:)``
   public func testIamPermissionsRepo(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -429,6 +596,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// CreateBranchRule creates a branch rule in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBranchRule(request:)``
+  /// - ``createBranchRulePollingUntilDone(parent:branchRule:branchRuleId:)``
+  /// - ``createBranchRulePollingUntilDone(request:)``
+  /// - ``createBranchRulePollingUntilDone(request:options:)``
   public func createBranchRule(
     request: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -438,6 +612,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// CreateBranchRule creates a branch rule in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBranchRule(request:)``
+  /// - ``createBranchRule(request:options:)``
+  /// - ``createBranchRulePollingUntilDone(parent:branchRule:branchRuleId:)``
+  /// - ``createBranchRulePollingUntilDone(request:)``
   public func createBranchRulePollingUntilDone(
     request: CreateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> BranchRule {
@@ -465,6 +646,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// ListBranchRules lists branch rules in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListBranchRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBranchRules(request:)``
+  /// - ``listBranchRulesByItems(parent:)``
+  /// - ``listBranchRulesByItems(request:)``
+  /// - ``listBranchRulesByItems(request:options:)``
   public func listBranchRules(
     request: ListBranchRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListBranchRulesResponse {
@@ -474,6 +662,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// GetBranchRule gets a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_GetBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBranchRule(name:)``
+  /// - ``getBranchRule(request:)``
   public func getBranchRule(
     request: GetBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.BranchRule {
@@ -483,6 +676,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// UpdateBranchRule updates a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBranchRule(request:)``
+  /// - ``updateBranchRulePollingUntilDone(branchRule:updateMask:)``
+  /// - ``updateBranchRulePollingUntilDone(request:)``
+  /// - ``updateBranchRulePollingUntilDone(request:options:)``
   public func updateBranchRule(
     request: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -492,6 +692,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// UpdateBranchRule updates a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBranchRule(request:)``
+  /// - ``updateBranchRule(request:options:)``
+  /// - ``updateBranchRulePollingUntilDone(branchRule:updateMask:)``
+  /// - ``updateBranchRulePollingUntilDone(request:)``
   public func updateBranchRulePollingUntilDone(
     request: UpdateBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> BranchRule {
@@ -519,6 +726,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// DeleteBranchRule deletes a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBranchRule(request:)``
+  /// - ``deleteBranchRulePollingUntilDone(name:)``
+  /// - ``deleteBranchRulePollingUntilDone(request:)``
+  /// - ``deleteBranchRulePollingUntilDone(request:options:)``
   public func deleteBranchRule(
     request: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -528,6 +742,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// DeleteBranchRule deletes a branch rule.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBranchRule(request:)``
+  /// - ``deleteBranchRule(request:options:)``
+  /// - ``deleteBranchRulePollingUntilDone(name:)``
+  /// - ``deleteBranchRulePollingUntilDone(request:)``
   public func deleteBranchRulePollingUntilDone(
     request: DeleteBranchRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -555,6 +776,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_CreatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPullRequest(request:)``
+  /// - ``createPullRequestPollingUntilDone(parent:pullRequest:)``
+  /// - ``createPullRequestPollingUntilDone(request:)``
+  /// - ``createPullRequestPollingUntilDone(request:options:)``
   public func createPullRequest(
     request: CreatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -564,6 +792,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_CreatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPullRequest(request:)``
+  /// - ``createPullRequest(request:options:)``
+  /// - ``createPullRequestPollingUntilDone(parent:pullRequest:)``
+  /// - ``createPullRequestPollingUntilDone(request:)``
   public func createPullRequestPollingUntilDone(
     request: CreatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequest {
@@ -591,6 +826,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_GetPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPullRequest(name:)``
+  /// - ``getPullRequest(request:)``
   public func getPullRequest(
     request: GetPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.PullRequest {
@@ -600,6 +840,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists pull requests in a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPullRequests(request:)``
+  /// - ``listPullRequestsByItems(parent:)``
+  /// - ``listPullRequestsByItems(request:)``
+  /// - ``listPullRequestsByItems(request:options:)``
   public func listPullRequests(
     request: ListPullRequestsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListPullRequestsResponse {
@@ -609,6 +856,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePullRequest(request:)``
+  /// - ``updatePullRequestPollingUntilDone(pullRequest:updateMask:)``
+  /// - ``updatePullRequestPollingUntilDone(request:)``
+  /// - ``updatePullRequestPollingUntilDone(request:options:)``
   public func updatePullRequest(
     request: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -618,6 +872,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePullRequest(request:)``
+  /// - ``updatePullRequest(request:options:)``
+  /// - ``updatePullRequestPollingUntilDone(pullRequest:updateMask:)``
+  /// - ``updatePullRequestPollingUntilDone(request:)``
   public func updatePullRequestPollingUntilDone(
     request: UpdatePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequest {
@@ -645,6 +906,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Merges a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_MergePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``mergePullRequest(request:)``
+  /// - ``mergePullRequestPollingUntilDone(name:)``
+  /// - ``mergePullRequestPollingUntilDone(request:)``
+  /// - ``mergePullRequestPollingUntilDone(request:options:)``
   public func mergePullRequest(
     request: MergePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -654,6 +922,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Merges a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_MergePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``mergePullRequest(request:)``
+  /// - ``mergePullRequest(request:options:)``
+  /// - ``mergePullRequestPollingUntilDone(name:)``
+  /// - ``mergePullRequestPollingUntilDone(request:)``
   public func mergePullRequestPollingUntilDone(
     request: MergePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequest {
@@ -681,6 +956,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Opens a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_OpenPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``openPullRequest(request:)``
+  /// - ``openPullRequestPollingUntilDone(name:)``
+  /// - ``openPullRequestPollingUntilDone(request:)``
+  /// - ``openPullRequestPollingUntilDone(request:options:)``
   public func openPullRequest(
     request: OpenPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -690,6 +972,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Opens a pull request.
   ///
   /// @Snippet(path: "SecureSourceManager_OpenPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``openPullRequest(request:)``
+  /// - ``openPullRequest(request:options:)``
+  /// - ``openPullRequestPollingUntilDone(name:)``
+  /// - ``openPullRequestPollingUntilDone(request:)``
   public func openPullRequestPollingUntilDone(
     request: OpenPullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequest {
@@ -717,6 +1006,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Closes a pull request without merging.
   ///
   /// @Snippet(path: "SecureSourceManager_ClosePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``closePullRequest(request:)``
+  /// - ``closePullRequestPollingUntilDone(name:)``
+  /// - ``closePullRequestPollingUntilDone(request:)``
+  /// - ``closePullRequestPollingUntilDone(request:options:)``
   public func closePullRequest(
     request: ClosePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -726,6 +1022,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Closes a pull request without merging.
   ///
   /// @Snippet(path: "SecureSourceManager_ClosePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``closePullRequest(request:)``
+  /// - ``closePullRequest(request:options:)``
+  /// - ``closePullRequestPollingUntilDone(name:)``
+  /// - ``closePullRequestPollingUntilDone(request:)``
   public func closePullRequestPollingUntilDone(
     request: ClosePullRequestRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequest {
@@ -753,6 +1056,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists a pull request's file diffs.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPullRequestFileDiffs(request:)``
+  /// - ``listPullRequestFileDiffsByItems(name:)``
+  /// - ``listPullRequestFileDiffsByItems(request:)``
+  /// - ``listPullRequestFileDiffsByItems(request:options:)``
   public func listPullRequestFileDiffs(
     request: ListPullRequestFileDiffsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListPullRequestFileDiffsResponse {
@@ -762,6 +1072,12 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Fetches a tree from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchTree(request:)``
+  /// - ``fetchTreeByItems(request:)``
+  /// - ``fetchTreeByItems(request:options:)``
   public func fetchTree(
     request: FetchTreeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.FetchTreeResponse {
@@ -771,6 +1087,10 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Fetches a blob from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchBlob(request:)``
   public func fetchBlob(
     request: FetchBlobRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse {
@@ -780,6 +1100,12 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Fetches git references from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchRefs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``fetchRefs(request:)``
+  /// - ``fetchRefsByItems(request:)``
+  /// - ``fetchRefsByItems(request:options:)``
   public func fetchRefs(
     request: FetchRefsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse {
@@ -789,6 +1115,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIssue(request:)``
+  /// - ``createIssuePollingUntilDone(parent:issue:)``
+  /// - ``createIssuePollingUntilDone(request:)``
+  /// - ``createIssuePollingUntilDone(request:options:)``
   public func createIssue(
     request: CreateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -798,6 +1131,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIssue(request:)``
+  /// - ``createIssue(request:options:)``
+  /// - ``createIssuePollingUntilDone(parent:issue:)``
+  /// - ``createIssuePollingUntilDone(request:)``
   public func createIssuePollingUntilDone(
     request: CreateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> Issue {
@@ -825,6 +1165,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_GetIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIssue(name:)``
+  /// - ``getIssue(request:)``
   public func getIssue(
     request: GetIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.Issue {
@@ -834,6 +1179,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists issues in a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListIssues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIssues(request:)``
+  /// - ``listIssuesByItems(parent:)``
+  /// - ``listIssuesByItems(request:)``
+  /// - ``listIssuesByItems(request:options:)``
   public func listIssues(
     request: ListIssuesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListIssuesResponse {
@@ -843,6 +1195,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a issue.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIssue(request:)``
+  /// - ``updateIssuePollingUntilDone(issue:updateMask:)``
+  /// - ``updateIssuePollingUntilDone(request:)``
+  /// - ``updateIssuePollingUntilDone(request:options:)``
   public func updateIssue(
     request: UpdateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -852,6 +1211,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a issue.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIssue(request:)``
+  /// - ``updateIssue(request:options:)``
+  /// - ``updateIssuePollingUntilDone(issue:updateMask:)``
+  /// - ``updateIssuePollingUntilDone(request:)``
   public func updateIssuePollingUntilDone(
     request: UpdateIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> Issue {
@@ -879,6 +1245,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIssue(request:)``
+  /// - ``deleteIssuePollingUntilDone(name:)``
+  /// - ``deleteIssuePollingUntilDone(request:)``
+  /// - ``deleteIssuePollingUntilDone(request:options:)``
   public func deleteIssue(
     request: DeleteIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -888,6 +1261,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIssue(request:)``
+  /// - ``deleteIssue(request:options:)``
+  /// - ``deleteIssuePollingUntilDone(name:)``
+  /// - ``deleteIssuePollingUntilDone(request:)``
   public func deleteIssuePollingUntilDone(
     request: DeleteIssueRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -915,6 +1295,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Opens an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_OpenIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``openIssue(request:)``
+  /// - ``openIssuePollingUntilDone(name:)``
+  /// - ``openIssuePollingUntilDone(request:)``
+  /// - ``openIssuePollingUntilDone(request:options:)``
   public func openIssue(
     request: OpenIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -924,6 +1311,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Opens an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_OpenIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``openIssue(request:)``
+  /// - ``openIssue(request:options:)``
+  /// - ``openIssuePollingUntilDone(name:)``
+  /// - ``openIssuePollingUntilDone(request:)``
   public func openIssuePollingUntilDone(
     request: OpenIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> Issue {
@@ -951,6 +1345,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Closes an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CloseIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``closeIssue(request:)``
+  /// - ``closeIssuePollingUntilDone(name:)``
+  /// - ``closeIssuePollingUntilDone(request:)``
+  /// - ``closeIssuePollingUntilDone(request:options:)``
   public func closeIssue(
     request: CloseIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -960,6 +1361,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Closes an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_CloseIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``closeIssue(request:)``
+  /// - ``closeIssue(request:options:)``
+  /// - ``closeIssuePollingUntilDone(name:)``
+  /// - ``closeIssuePollingUntilDone(request:)``
   public func closeIssuePollingUntilDone(
     request: CloseIssueRequest, options: GoogleGax.RequestOptions
   ) async throws -> Issue {
@@ -987,6 +1395,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_GetPullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPullRequestComment(name:)``
+  /// - ``getPullRequestComment(request:)``
   public func getPullRequestComment(
     request: GetPullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.PullRequestComment {
@@ -996,6 +1409,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists pull request comments.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPullRequestComments(request:)``
+  /// - ``listPullRequestCommentsByItems(parent:)``
+  /// - ``listPullRequestCommentsByItems(request:)``
+  /// - ``listPullRequestCommentsByItems(request:options:)``
   public func listPullRequestComments(
     request: ListPullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListPullRequestCommentsResponse {
@@ -1009,6 +1429,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// code reviews.
   ///
   /// @Snippet(path: "SecureSourceManager_CreatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPullRequestComment(request:)``
+  /// - ``createPullRequestCommentPollingUntilDone(parent:pullRequestComment:)``
+  /// - ``createPullRequestCommentPollingUntilDone(request:)``
+  /// - ``createPullRequestCommentPollingUntilDone(request:options:)``
   public func createPullRequestComment(
     request: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1022,6 +1449,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// code reviews.
   ///
   /// @Snippet(path: "SecureSourceManager_CreatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createPullRequestComment(request:)``
+  /// - ``createPullRequestComment(request:options:)``
+  /// - ``createPullRequestCommentPollingUntilDone(parent:pullRequestComment:)``
+  /// - ``createPullRequestCommentPollingUntilDone(request:)``
   public func createPullRequestCommentPollingUntilDone(
     request: CreatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequestComment {
@@ -1050,6 +1484,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePullRequestComment(request:)``
+  /// - ``updatePullRequestCommentPollingUntilDone(pullRequestComment:updateMask:)``
+  /// - ``updatePullRequestCommentPollingUntilDone(request:)``
+  /// - ``updatePullRequestCommentPollingUntilDone(request:options:)``
   public func updatePullRequestComment(
     request: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1059,6 +1500,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePullRequestComment(request:)``
+  /// - ``updatePullRequestComment(request:options:)``
+  /// - ``updatePullRequestCommentPollingUntilDone(pullRequestComment:updateMask:)``
+  /// - ``updatePullRequestCommentPollingUntilDone(request:)``
   public func updatePullRequestCommentPollingUntilDone(
     request: UpdatePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> PullRequestComment {
@@ -1087,6 +1535,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_DeletePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePullRequestComment(request:)``
+  /// - ``deletePullRequestCommentPollingUntilDone(name:)``
+  /// - ``deletePullRequestCommentPollingUntilDone(request:)``
+  /// - ``deletePullRequestCommentPollingUntilDone(request:options:)``
   public func deletePullRequestComment(
     request: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1096,6 +1551,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes a pull request comment.
   ///
   /// @Snippet(path: "SecureSourceManager_DeletePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePullRequestComment(request:)``
+  /// - ``deletePullRequestComment(request:options:)``
+  /// - ``deletePullRequestCommentPollingUntilDone(name:)``
+  /// - ``deletePullRequestCommentPollingUntilDone(request:)``
   public func deletePullRequestCommentPollingUntilDone(
     request: DeletePullRequestCommentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1127,6 +1589,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// within the request.
   ///
   /// @Snippet(path: "SecureSourceManager_BatchCreatePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchCreatePullRequestComments(request:)``
+  /// - ``batchCreatePullRequestCommentsPollingUntilDone(parent:requests:)``
+  /// - ``batchCreatePullRequestCommentsPollingUntilDone(request:)``
+  /// - ``batchCreatePullRequestCommentsPollingUntilDone(request:options:)``
   public func batchCreatePullRequestComments(
     request: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1140,6 +1609,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// within the request.
   ///
   /// @Snippet(path: "SecureSourceManager_BatchCreatePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchCreatePullRequestComments(request:)``
+  /// - ``batchCreatePullRequestComments(request:options:)``
+  /// - ``batchCreatePullRequestCommentsPollingUntilDone(parent:requests:)``
+  /// - ``batchCreatePullRequestCommentsPollingUntilDone(request:)``
   public func batchCreatePullRequestCommentsPollingUntilDone(
     request: BatchCreatePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchCreatePullRequestCommentsResponse {
@@ -1172,6 +1648,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// be resolved.
   ///
   /// @Snippet(path: "SecureSourceManager_ResolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resolvePullRequestComments(request:)``
+  /// - ``resolvePullRequestCommentsPollingUntilDone(parent:names:)``
+  /// - ``resolvePullRequestCommentsPollingUntilDone(request:)``
+  /// - ``resolvePullRequestCommentsPollingUntilDone(request:options:)``
   public func resolvePullRequestComments(
     request: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1184,6 +1667,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// be resolved.
   ///
   /// @Snippet(path: "SecureSourceManager_ResolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resolvePullRequestComments(request:)``
+  /// - ``resolvePullRequestComments(request:options:)``
+  /// - ``resolvePullRequestCommentsPollingUntilDone(parent:names:)``
+  /// - ``resolvePullRequestCommentsPollingUntilDone(request:)``
   public func resolvePullRequestCommentsPollingUntilDone(
     request: ResolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ResolvePullRequestCommentsResponse {
@@ -1216,6 +1706,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// be unresolved.
   ///
   /// @Snippet(path: "SecureSourceManager_UnresolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unresolvePullRequestComments(request:)``
+  /// - ``unresolvePullRequestCommentsPollingUntilDone(parent:names:)``
+  /// - ``unresolvePullRequestCommentsPollingUntilDone(request:)``
+  /// - ``unresolvePullRequestCommentsPollingUntilDone(request:options:)``
   public func unresolvePullRequestComments(
     request: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1228,6 +1725,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// be unresolved.
   ///
   /// @Snippet(path: "SecureSourceManager_UnresolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``unresolvePullRequestComments(request:)``
+  /// - ``unresolvePullRequestComments(request:options:)``
+  /// - ``unresolvePullRequestCommentsPollingUntilDone(parent:names:)``
+  /// - ``unresolvePullRequestCommentsPollingUntilDone(request:)``
   public func unresolvePullRequestCommentsPollingUntilDone(
     request: UnresolvePullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> UnresolvePullRequestCommentsResponse {
@@ -1257,6 +1761,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIssueComment(request:)``
+  /// - ``createIssueCommentPollingUntilDone(parent:issueComment:)``
+  /// - ``createIssueCommentPollingUntilDone(request:)``
+  /// - ``createIssueCommentPollingUntilDone(request:options:)``
   public func createIssueComment(
     request: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1266,6 +1777,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Creates an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_CreateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createIssueComment(request:)``
+  /// - ``createIssueComment(request:options:)``
+  /// - ``createIssueCommentPollingUntilDone(parent:issueComment:)``
+  /// - ``createIssueCommentPollingUntilDone(request:)``
   public func createIssueCommentPollingUntilDone(
     request: CreateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> IssueComment {
@@ -1294,6 +1812,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_GetIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIssueComment(name:)``
+  /// - ``getIssueComment(request:)``
   public func getIssueComment(
     request: GetIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.IssueComment {
@@ -1303,6 +1826,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Lists comments in an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_ListIssueComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listIssueComments(request:)``
+  /// - ``listIssueCommentsByItems(parent:)``
+  /// - ``listIssueCommentsByItems(request:)``
+  /// - ``listIssueCommentsByItems(request:options:)``
   public func listIssueComments(
     request: ListIssueCommentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecureSourceManagerV1.ListIssueCommentsResponse {
@@ -1312,6 +1842,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIssueComment(request:)``
+  /// - ``updateIssueCommentPollingUntilDone(issueComment:updateMask:)``
+  /// - ``updateIssueCommentPollingUntilDone(request:)``
+  /// - ``updateIssueCommentPollingUntilDone(request:options:)``
   public func updateIssueComment(
     request: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1321,6 +1858,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Updates an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_UpdateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateIssueComment(request:)``
+  /// - ``updateIssueComment(request:options:)``
+  /// - ``updateIssueCommentPollingUntilDone(issueComment:updateMask:)``
+  /// - ``updateIssueCommentPollingUntilDone(request:)``
   public func updateIssueCommentPollingUntilDone(
     request: UpdateIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> IssueComment {
@@ -1349,6 +1893,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIssueComment(request:)``
+  /// - ``deleteIssueCommentPollingUntilDone(name:)``
+  /// - ``deleteIssueCommentPollingUntilDone(request:)``
+  /// - ``deleteIssueCommentPollingUntilDone(request:options:)``
   public func deleteIssueComment(
     request: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1358,6 +1909,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Deletes an issue comment.
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteIssueComment(request:)``
+  /// - ``deleteIssueComment(request:options:)``
+  /// - ``deleteIssueCommentPollingUntilDone(name:)``
+  /// - ``deleteIssueCommentPollingUntilDone(request:)``
   public func deleteIssueCommentPollingUntilDone(
     request: DeleteIssueCommentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1402,6 +1960,12 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SecureSourceManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1411,6 +1975,10 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SecureSourceManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1424,6 +1992,10 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// errors.
   ///
   /// @Snippet(path: "SecureSourceManager_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1434,6 +2006,10 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "SecureSourceManager_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1449,6 +2025,10 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "SecureSourceManager_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1460,6 +2040,13 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecureSourceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1482,6 +2069,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecureSourceManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1493,6 +2085,11 @@ public final class SecureSourceManagerClient: Clients.SecureSourceManagerProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecureSourceManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1966,6 +2563,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SecureSourceManagerProtocol {
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListInstancesResponse
   {
@@ -1978,6 +2582,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1987,6 +2598,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "SecureSourceManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -2001,6 +2616,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -2010,6 +2632,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets details of a single instance.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.Instance
   {
@@ -2022,6 +2651,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single instance.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.Instance {
@@ -2031,6 +2667,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Creates a new instance in a given project and location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createInstance(request:options:)``
   public func createInstance(request: CreateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2043,6 +2686,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new instance in a given project and location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
     -> Instance
   {
@@ -2055,6 +2705,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new instance in a given project and location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
@@ -2068,6 +2725,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  /// Deletes a single instance.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2080,6 +2744,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single instance.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -2090,6 +2761,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single instance.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2099,6 +2777,16 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  /// Lists Repositories in a given project and location.
+  ///
+  /// The instance field is required in the query parameter for requests using
+  /// the securesourcemanager.googleapis.com endpoint.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listRepositories(request:options:)``
   public func listRepositories(request: ListRepositoriesRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListRepositoriesResponse
   {
@@ -2111,6 +2799,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Repositories in a given project and location.
+  ///
+  /// The instance field is required in the query parameter for requests using
+  /// the securesourcemanager.googleapis.com endpoint.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -2123,6 +2821,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// the securesourcemanager.googleapis.com endpoint.
   ///
   /// @Snippet(path: "SecureSourceManager_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -2137,6 +2839,16 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Repositories in a given project and location.
+  ///
+  /// The instance field is required in the query parameter for requests using
+  /// the securesourcemanager.googleapis.com endpoint.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -2146,6 +2858,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listRepositoriesByItems(request: request)
   }
 
+  /// Gets metadata of a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getRepository(request:options:)``
   public func getRepository(request: GetRepositoryRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.Repository
   {
@@ -2158,6 +2877,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets metadata of a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getRepository(request:options:)``
   public func getRepository(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.Repository {
@@ -2167,6 +2893,16 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getRepository(request: request)
   }
 
+  /// Creates a new repository in a given project and location.
+  ///
+  /// The Repository.Instance field is required in the request body for requests
+  /// using the securesourcemanager.googleapis.com endpoint.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createRepository(request:options:)``
   public func createRepository(request: CreateRepositoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2179,6 +2915,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new repository in a given project and location.
+  ///
+  /// The Repository.Instance field is required in the request body for requests
+  /// using the securesourcemanager.googleapis.com endpoint.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createRepositoryPollingUntilDone(request:options:)``
   public func createRepositoryPollingUntilDone(request: CreateRepositoryRequest) async throws
     -> Repository
   {
@@ -2191,6 +2937,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new repository in a given project and location.
+  ///
+  /// The Repository.Instance field is required in the request body for requests
+  /// using the securesourcemanager.googleapis.com endpoint.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createRepositoryPollingUntilDone(request:options:)``
   public func createRepositoryPollingUntilDone(
     parent: Swift.String,
     repository: Repository?,
@@ -2204,6 +2960,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createRepositoryPollingUntilDone(request: request)
   }
 
+  /// Updates the metadata of a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateRepository(request:options:)``
   public func updateRepository(request: UpdateRepositoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2216,6 +2979,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata of a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateRepositoryPollingUntilDone(request:options:)``
   public func updateRepositoryPollingUntilDone(request: UpdateRepositoryRequest) async throws
     -> Repository
   {
@@ -2228,6 +2998,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata of a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateRepositoryPollingUntilDone(request:options:)``
   public func updateRepositoryPollingUntilDone(
     repository: Repository?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2239,6 +3016,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updateRepositoryPollingUntilDone(request: request)
   }
 
+  /// Deletes a Repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteRepository(request:options:)``
   public func deleteRepository(request: DeleteRepositoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2251,6 +3035,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteRepositoryPollingUntilDone(request:options:)``
   public func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws {
     try await self.deleteRepositoryPollingUntilDone(request: request, options: .init())
   }
@@ -2261,6 +3052,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteRepositoryPollingUntilDone(request:options:)``
   public func deleteRepositoryPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2270,6 +3068,13 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteRepositoryPollingUntilDone(request: request)
   }
 
+  /// Lists hooks in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListHooks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listHooks(request:options:)``
   public func listHooks(request: ListHooksRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListHooksResponse
   {
@@ -2282,6 +3087,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists hooks in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListHooks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listHooks(request:options:)``
   public func listHooksByItems(
     request: ListHooksRequest
   ) -> some AsyncSequence<Hook, any Swift.Error> & Sendable {
@@ -2291,6 +3103,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists hooks in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListHooks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listHooks(request:options:)``
   public func listHooksByItems(
     request: ListHooksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Hook, any Swift.Error> & Sendable {
@@ -2305,6 +3121,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists hooks in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListHooks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listHooks(request:options:)``
   public func listHooksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Hook, any Swift.Error> & Sendable {
@@ -2314,6 +3137,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listHooksByItems(request: request)
   }
 
+  /// Gets metadata of a hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getHook(request:options:)``
   public func getHook(request: GetHookRequest) async throws -> GoogleCloudSecureSourceManagerV1.Hook
   {
     try await self.getHook(request: request, options: .init())
@@ -2325,6 +3155,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets metadata of a hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getHook(request:options:)``
   public func getHook(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.Hook {
@@ -2334,6 +3171,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getHook(request: request)
   }
 
+  /// Creates a new hook in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createHook(request:options:)``
   public func createHook(request: CreateHookRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createHook(request: request, options: .init())
   }
@@ -2344,6 +3188,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new hook in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createHookPollingUntilDone(request:options:)``
   public func createHookPollingUntilDone(request: CreateHookRequest) async throws -> Hook {
     return try await self.createHookPollingUntilDone(request: request, options: .init())
   }
@@ -2354,6 +3205,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new hook in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createHookPollingUntilDone(request:options:)``
   public func createHookPollingUntilDone(
     parent: Swift.String,
     hook: Hook?,
@@ -2367,6 +3225,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createHookPollingUntilDone(request: request)
   }
 
+  /// Updates the metadata of a hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateHook(request:options:)``
   public func updateHook(request: UpdateHookRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateHook(request: request, options: .init())
   }
@@ -2377,6 +3242,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata of a hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateHookPollingUntilDone(request:options:)``
   public func updateHookPollingUntilDone(request: UpdateHookRequest) async throws -> Hook {
     return try await self.updateHookPollingUntilDone(request: request, options: .init())
   }
@@ -2387,6 +3259,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the metadata of a hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateHookPollingUntilDone(request:options:)``
   public func updateHookPollingUntilDone(
     hook: Hook?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2398,6 +3277,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updateHookPollingUntilDone(request: request)
   }
 
+  /// Deletes a Hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteHook(request:options:)``
   public func deleteHook(request: DeleteHookRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteHook(request: request, options: .init())
   }
@@ -2408,6 +3294,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteHookPollingUntilDone(request:options:)``
   public func deleteHookPollingUntilDone(request: DeleteHookRequest) async throws {
     try await self.deleteHookPollingUntilDone(request: request, options: .init())
   }
@@ -2418,6 +3311,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Hook.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteHook")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteHookPollingUntilDone(request:options:)``
   public func deleteHookPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2427,6 +3327,13 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteHookPollingUntilDone(request: request)
   }
 
+  /// Get IAM policy for a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIamPolicyRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIamPolicyRepo(request:options:)``
   public func getIamPolicyRepo(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2439,6 +3346,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get IAM policy for a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIamPolicyRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIamPolicyRepo(request:options:)``
   public func getIamPolicyRepo(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -2448,6 +3362,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getIamPolicyRepo(request: request)
   }
 
+  /// Set IAM policy on a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_SetIamPolicyRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/setIamPolicyRepo(request:options:)``
   public func setIamPolicyRepo(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2460,6 +3381,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Set IAM policy on a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_SetIamPolicyRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/setIamPolicyRepo(request:options:)``
   public func setIamPolicyRepo(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -2469,6 +3397,14 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.setIamPolicyRepo(request: request)
   }
 
+  /// Test IAM permissions on a repository.
+  /// IAM permission checks are not required on this method.
+  ///
+  /// @Snippet(path: "SecureSourceManager_TestIamPermissionsRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/testIamPermissionsRepo(request:options:)``
   public func testIamPermissionsRepo(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -2481,6 +3417,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Test IAM permissions on a repository.
+  /// IAM permission checks are not required on this method.
+  ///
+  /// @Snippet(path: "SecureSourceManager_TestIamPermissionsRepo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/testIamPermissionsRepo(request:options:)``
   public func testIamPermissionsRepo(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -2490,6 +3434,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.testIamPermissionsRepo(request: request)
   }
 
+  /// CreateBranchRule creates a branch rule in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createBranchRule(request:options:)``
   public func createBranchRule(request: CreateBranchRuleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2502,6 +3453,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// CreateBranchRule creates a branch rule in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createBranchRulePollingUntilDone(request:options:)``
   public func createBranchRulePollingUntilDone(request: CreateBranchRuleRequest) async throws
     -> BranchRule
   {
@@ -2514,6 +3472,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// CreateBranchRule creates a branch rule in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createBranchRulePollingUntilDone(request:options:)``
   public func createBranchRulePollingUntilDone(
     parent: Swift.String,
     branchRule: BranchRule?,
@@ -2527,6 +3492,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createBranchRulePollingUntilDone(request: request)
   }
 
+  /// ListBranchRules lists branch rules in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListBranchRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listBranchRules(request:options:)``
   public func listBranchRules(request: ListBranchRulesRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListBranchRulesResponse
   {
@@ -2539,6 +3511,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// ListBranchRules lists branch rules in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListBranchRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listBranchRules(request:options:)``
   public func listBranchRulesByItems(
     request: ListBranchRulesRequest
   ) -> some AsyncSequence<BranchRule, any Swift.Error> & Sendable {
@@ -2548,6 +3527,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// ListBranchRules lists branch rules in a given repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListBranchRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listBranchRules(request:options:)``
   public func listBranchRulesByItems(
     request: ListBranchRulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BranchRule, any Swift.Error> & Sendable {
@@ -2562,6 +3545,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// ListBranchRules lists branch rules in a given repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListBranchRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listBranchRules(request:options:)``
   public func listBranchRulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BranchRule, any Swift.Error> & Sendable {
@@ -2571,6 +3561,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listBranchRulesByItems(request: request)
   }
 
+  /// GetBranchRule gets a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getBranchRule(request:options:)``
   public func getBranchRule(request: GetBranchRuleRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.BranchRule
   {
@@ -2583,6 +3580,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// GetBranchRule gets a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getBranchRule(request:options:)``
   public func getBranchRule(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.BranchRule {
@@ -2592,6 +3596,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getBranchRule(request: request)
   }
 
+  /// UpdateBranchRule updates a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateBranchRule(request:options:)``
   public func updateBranchRule(request: UpdateBranchRuleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2604,6 +3615,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// UpdateBranchRule updates a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateBranchRulePollingUntilDone(request:options:)``
   public func updateBranchRulePollingUntilDone(request: UpdateBranchRuleRequest) async throws
     -> BranchRule
   {
@@ -2616,6 +3634,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// UpdateBranchRule updates a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateBranchRulePollingUntilDone(request:options:)``
   public func updateBranchRulePollingUntilDone(
     branchRule: BranchRule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2627,6 +3652,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updateBranchRulePollingUntilDone(request: request)
   }
 
+  /// DeleteBranchRule deletes a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteBranchRule(request:options:)``
   public func deleteBranchRule(request: DeleteBranchRuleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2639,6 +3671,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// DeleteBranchRule deletes a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteBranchRulePollingUntilDone(request:options:)``
   public func deleteBranchRulePollingUntilDone(request: DeleteBranchRuleRequest) async throws {
     try await self.deleteBranchRulePollingUntilDone(request: request, options: .init())
   }
@@ -2649,6 +3688,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// DeleteBranchRule deletes a branch rule.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteBranchRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteBranchRulePollingUntilDone(request:options:)``
   public func deleteBranchRulePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2658,6 +3704,13 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteBranchRulePollingUntilDone(request: request)
   }
 
+  /// Creates a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createPullRequest(request:options:)``
   public func createPullRequest(request: CreatePullRequestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2670,6 +3723,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createPullRequestPollingUntilDone(request:options:)``
   public func createPullRequestPollingUntilDone(request: CreatePullRequestRequest) async throws
     -> PullRequest
   {
@@ -2682,6 +3742,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createPullRequestPollingUntilDone(request:options:)``
   public func createPullRequestPollingUntilDone(
     parent: Swift.String,
     pullRequest: PullRequest?,
@@ -2693,6 +3760,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createPullRequestPollingUntilDone(request: request)
   }
 
+  /// Gets a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getPullRequest(request:options:)``
   public func getPullRequest(request: GetPullRequestRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.PullRequest
   {
@@ -2705,6 +3779,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getPullRequest(request:options:)``
   public func getPullRequest(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.PullRequest {
@@ -2714,6 +3795,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getPullRequest(request: request)
   }
 
+  /// Lists pull requests in a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequests(request:options:)``
   public func listPullRequests(request: ListPullRequestsRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListPullRequestsResponse
   {
@@ -2726,6 +3814,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists pull requests in a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequests(request:options:)``
   public func listPullRequestsByItems(
     request: ListPullRequestsRequest
   ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
@@ -2735,6 +3830,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists pull requests in a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequests(request:options:)``
   public func listPullRequestsByItems(
     request: ListPullRequestsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
@@ -2749,6 +3848,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists pull requests in a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequests")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequests(request:options:)``
   public func listPullRequestsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PullRequest, any Swift.Error> & Sendable {
@@ -2758,6 +3864,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listPullRequestsByItems(request: request)
   }
 
+  /// Updates a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updatePullRequest(request:options:)``
   public func updatePullRequest(request: UpdatePullRequestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2770,6 +3883,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updatePullRequestPollingUntilDone(request:options:)``
   public func updatePullRequestPollingUntilDone(request: UpdatePullRequestRequest) async throws
     -> PullRequest
   {
@@ -2782,6 +3902,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdatePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updatePullRequestPollingUntilDone(request:options:)``
   public func updatePullRequestPollingUntilDone(
     pullRequest: PullRequest?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2793,6 +3920,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updatePullRequestPollingUntilDone(request: request)
   }
 
+  /// Merges a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_MergePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/mergePullRequest(request:options:)``
   public func mergePullRequest(request: MergePullRequestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2805,6 +3939,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Merges a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_MergePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/mergePullRequestPollingUntilDone(request:options:)``
   public func mergePullRequestPollingUntilDone(request: MergePullRequestRequest) async throws
     -> PullRequest
   {
@@ -2817,6 +3958,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Merges a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_MergePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/mergePullRequestPollingUntilDone(request:options:)``
   public func mergePullRequestPollingUntilDone(
     name: Swift.String,
   ) async throws -> PullRequest {
@@ -2826,6 +3974,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.mergePullRequestPollingUntilDone(request: request)
   }
 
+  /// Opens a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_OpenPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/openPullRequest(request:options:)``
   public func openPullRequest(request: OpenPullRequestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2838,6 +3993,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Opens a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_OpenPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/openPullRequestPollingUntilDone(request:options:)``
   public func openPullRequestPollingUntilDone(request: OpenPullRequestRequest) async throws
     -> PullRequest
   {
@@ -2850,6 +4012,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Opens a pull request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_OpenPullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/openPullRequestPollingUntilDone(request:options:)``
   public func openPullRequestPollingUntilDone(
     name: Swift.String,
   ) async throws -> PullRequest {
@@ -2859,6 +4028,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.openPullRequestPollingUntilDone(request: request)
   }
 
+  /// Closes a pull request without merging.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ClosePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/closePullRequest(request:options:)``
   public func closePullRequest(request: ClosePullRequestRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2871,6 +4047,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Closes a pull request without merging.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ClosePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/closePullRequestPollingUntilDone(request:options:)``
   public func closePullRequestPollingUntilDone(request: ClosePullRequestRequest) async throws
     -> PullRequest
   {
@@ -2883,6 +4066,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Closes a pull request without merging.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ClosePullRequest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/closePullRequestPollingUntilDone(request:options:)``
   public func closePullRequestPollingUntilDone(
     name: Swift.String,
   ) async throws -> PullRequest {
@@ -2892,6 +4082,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.closePullRequestPollingUntilDone(request: request)
   }
 
+  /// Lists a pull request's file diffs.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestFileDiffs(request:options:)``
   public func listPullRequestFileDiffs(request: ListPullRequestFileDiffsRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListPullRequestFileDiffsResponse
   {
@@ -2904,6 +4101,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists a pull request's file diffs.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestFileDiffs(request:options:)``
   public func listPullRequestFileDiffsByItems(
     request: ListPullRequestFileDiffsRequest
   ) -> some AsyncSequence<FileDiff, any Swift.Error> & Sendable {
@@ -2913,6 +4117,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists a pull request's file diffs.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestFileDiffs(request:options:)``
   public func listPullRequestFileDiffsByItems(
     request: ListPullRequestFileDiffsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<FileDiff, any Swift.Error> & Sendable {
@@ -2927,6 +4135,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists a pull request's file diffs.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequestFileDiffs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestFileDiffs(request:options:)``
   public func listPullRequestFileDiffsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<FileDiff, any Swift.Error> & Sendable {
@@ -2936,6 +4151,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listPullRequestFileDiffsByItems(request: request)
   }
 
+  /// Fetches a tree from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchTree(request:options:)``
   public func fetchTree(request: FetchTreeRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.FetchTreeResponse
   {
@@ -2948,6 +4170,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches a tree from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchTree(request:options:)``
   public func fetchTreeByItems(
     request: FetchTreeRequest
   ) -> some AsyncSequence<TreeEntry, any Swift.Error> & Sendable {
@@ -2957,6 +4186,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Fetches a tree from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchTree")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchTree(request:options:)``
   public func fetchTreeByItems(
     request: FetchTreeRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TreeEntry, any Swift.Error> & Sendable {
@@ -2971,6 +4204,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Fetches a blob from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchBlob")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchBlob(request:options:)``
   public func fetchBlob(request: FetchBlobRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.FetchBlobResponse
   {
@@ -2983,6 +4223,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches git references from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchRefs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchRefs(request:options:)``
   public func fetchRefs(request: FetchRefsRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.FetchRefsResponse
   {
@@ -2995,6 +4242,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches git references from a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_FetchRefs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchRefs(request:options:)``
   public func fetchRefsByItems(
     request: FetchRefsRequest
   ) -> some AsyncSequence<Ref, any Swift.Error> & Sendable {
@@ -3004,6 +4258,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Fetches git references from a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_FetchRefs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/fetchRefs(request:options:)``
   public func fetchRefsByItems(
     request: FetchRefsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Ref, any Swift.Error> & Sendable {
@@ -3018,6 +4276,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Creates an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createIssue(request:options:)``
   public func createIssue(request: CreateIssueRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createIssue(request: request, options: .init())
   }
@@ -3028,6 +4293,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createIssuePollingUntilDone(request:options:)``
   public func createIssuePollingUntilDone(request: CreateIssueRequest) async throws -> Issue {
     return try await self.createIssuePollingUntilDone(request: request, options: .init())
   }
@@ -3038,6 +4310,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createIssuePollingUntilDone(request:options:)``
   public func createIssuePollingUntilDone(
     parent: Swift.String,
     issue: Issue?,
@@ -3049,6 +4328,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createIssuePollingUntilDone(request: request)
   }
 
+  /// Gets an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIssue(request:options:)``
   public func getIssue(request: GetIssueRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.Issue
   {
@@ -3061,6 +4347,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIssue(request:options:)``
   public func getIssue(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.Issue {
@@ -3070,6 +4363,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getIssue(request: request)
   }
 
+  /// Lists issues in a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListIssues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssues(request:options:)``
   public func listIssues(request: ListIssuesRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListIssuesResponse
   {
@@ -3082,6 +4382,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists issues in a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListIssues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssues(request:options:)``
   public func listIssuesByItems(
     request: ListIssuesRequest
   ) -> some AsyncSequence<Issue, any Swift.Error> & Sendable {
@@ -3091,6 +4398,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists issues in a repository.
   ///
   /// @Snippet(path: "SecureSourceManager_ListIssues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssues(request:options:)``
   public func listIssuesByItems(
     request: ListIssuesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Issue, any Swift.Error> & Sendable {
@@ -3105,6 +4416,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists issues in a repository.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListIssues")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssues(request:options:)``
   public func listIssuesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Issue, any Swift.Error> & Sendable {
@@ -3114,6 +4432,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listIssuesByItems(request: request)
   }
 
+  /// Updates a issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateIssue(request:options:)``
   public func updateIssue(request: UpdateIssueRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateIssue(request: request, options: .init())
   }
@@ -3124,6 +4449,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateIssuePollingUntilDone(request:options:)``
   public func updateIssuePollingUntilDone(request: UpdateIssueRequest) async throws -> Issue {
     return try await self.updateIssuePollingUntilDone(request: request, options: .init())
   }
@@ -3134,6 +4466,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateIssuePollingUntilDone(request:options:)``
   public func updateIssuePollingUntilDone(
     issue: Issue?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3145,6 +4484,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updateIssuePollingUntilDone(request: request)
   }
 
+  /// Deletes an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteIssue(request:options:)``
   public func deleteIssue(request: DeleteIssueRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteIssue(request: request, options: .init())
   }
@@ -3155,6 +4501,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteIssuePollingUntilDone(request:options:)``
   public func deleteIssuePollingUntilDone(request: DeleteIssueRequest) async throws {
     try await self.deleteIssuePollingUntilDone(request: request, options: .init())
   }
@@ -3165,6 +4518,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteIssuePollingUntilDone(request:options:)``
   public func deleteIssuePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3174,6 +4534,13 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteIssuePollingUntilDone(request: request)
   }
 
+  /// Opens an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_OpenIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/openIssue(request:options:)``
   public func openIssue(request: OpenIssueRequest) async throws -> GoogleLongRunning.Operation {
     try await self.openIssue(request: request, options: .init())
   }
@@ -3184,6 +4551,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Opens an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_OpenIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/openIssuePollingUntilDone(request:options:)``
   public func openIssuePollingUntilDone(request: OpenIssueRequest) async throws -> Issue {
     return try await self.openIssuePollingUntilDone(request: request, options: .init())
   }
@@ -3194,6 +4568,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Opens an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_OpenIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/openIssuePollingUntilDone(request:options:)``
   public func openIssuePollingUntilDone(
     name: Swift.String,
   ) async throws -> Issue {
@@ -3203,6 +4584,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.openIssuePollingUntilDone(request: request)
   }
 
+  /// Closes an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CloseIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/closeIssue(request:options:)``
   public func closeIssue(request: CloseIssueRequest) async throws -> GoogleLongRunning.Operation {
     try await self.closeIssue(request: request, options: .init())
   }
@@ -3213,6 +4601,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Closes an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CloseIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/closeIssuePollingUntilDone(request:options:)``
   public func closeIssuePollingUntilDone(request: CloseIssueRequest) async throws -> Issue {
     return try await self.closeIssuePollingUntilDone(request: request, options: .init())
   }
@@ -3223,6 +4618,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Closes an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CloseIssue")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/closeIssuePollingUntilDone(request:options:)``
   public func closeIssuePollingUntilDone(
     name: Swift.String,
   ) async throws -> Issue {
@@ -3232,6 +4634,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.closeIssuePollingUntilDone(request: request)
   }
 
+  /// Gets a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetPullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getPullRequestComment(request:options:)``
   public func getPullRequestComment(request: GetPullRequestCommentRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.PullRequestComment
   {
@@ -3244,6 +4653,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetPullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getPullRequestComment(request:options:)``
   public func getPullRequestComment(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.PullRequestComment {
@@ -3253,6 +4669,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getPullRequestComment(request: request)
   }
 
+  /// Lists pull request comments.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestComments(request:options:)``
   public func listPullRequestComments(request: ListPullRequestCommentsRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListPullRequestCommentsResponse
   {
@@ -3265,6 +4688,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists pull request comments.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestComments(request:options:)``
   public func listPullRequestCommentsByItems(
     request: ListPullRequestCommentsRequest
   ) -> some AsyncSequence<PullRequestComment, any Swift.Error> & Sendable {
@@ -3274,6 +4704,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists pull request comments.
   ///
   /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestComments(request:options:)``
   public func listPullRequestCommentsByItems(
     request: ListPullRequestCommentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PullRequestComment, any Swift.Error> & Sendable {
@@ -3288,6 +4722,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists pull request comments.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListPullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listPullRequestComments(request:options:)``
   public func listPullRequestCommentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PullRequestComment, any Swift.Error> & Sendable {
@@ -3297,6 +4738,17 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listPullRequestCommentsByItems(request: request)
   }
 
+  /// Creates a pull request comment. This function is used to create a single
+  /// PullRequestComment of type Comment, or a single PullRequestComment of type
+  /// Code that's replying to another PullRequestComment of type Code. Use
+  /// BatchCreatePullRequestComments to create multiple PullRequestComments for
+  /// code reviews.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createPullRequestComment(request:options:)``
   public func createPullRequestComment(request: CreatePullRequestCommentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3309,6 +4761,17 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a pull request comment. This function is used to create a single
+  /// PullRequestComment of type Comment, or a single PullRequestComment of type
+  /// Code that's replying to another PullRequestComment of type Code. Use
+  /// BatchCreatePullRequestComments to create multiple PullRequestComments for
+  /// code reviews.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createPullRequestCommentPollingUntilDone(request:options:)``
   public func createPullRequestCommentPollingUntilDone(request: CreatePullRequestCommentRequest)
     async throws -> PullRequestComment
   {
@@ -3322,6 +4785,17 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a pull request comment. This function is used to create a single
+  /// PullRequestComment of type Comment, or a single PullRequestComment of type
+  /// Code that's replying to another PullRequestComment of type Code. Use
+  /// BatchCreatePullRequestComments to create multiple PullRequestComments for
+  /// code reviews.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createPullRequestCommentPollingUntilDone(request:options:)``
   public func createPullRequestCommentPollingUntilDone(
     parent: Swift.String,
     pullRequestComment: PullRequestComment?,
@@ -3333,6 +4807,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createPullRequestCommentPollingUntilDone(request: request)
   }
 
+  /// Updates a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updatePullRequestComment(request:options:)``
   public func updatePullRequestComment(request: UpdatePullRequestCommentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3345,6 +4826,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updatePullRequestCommentPollingUntilDone(request:options:)``
   public func updatePullRequestCommentPollingUntilDone(request: UpdatePullRequestCommentRequest)
     async throws -> PullRequestComment
   {
@@ -3358,6 +4846,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdatePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updatePullRequestCommentPollingUntilDone(request:options:)``
   public func updatePullRequestCommentPollingUntilDone(
     pullRequestComment: PullRequestComment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3369,6 +4864,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updatePullRequestCommentPollingUntilDone(request: request)
   }
 
+  /// Deletes a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeletePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deletePullRequestComment(request:options:)``
   public func deletePullRequestComment(request: DeletePullRequestCommentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3381,6 +4883,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeletePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deletePullRequestCommentPollingUntilDone(request:options:)``
   public func deletePullRequestCommentPollingUntilDone(request: DeletePullRequestCommentRequest)
     async throws
   {
@@ -3393,6 +4902,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a pull request comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeletePullRequestComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deletePullRequestCommentPollingUntilDone(request:options:)``
   public func deletePullRequestCommentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3402,6 +4918,17 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deletePullRequestCommentPollingUntilDone(request: request)
   }
 
+  /// Batch creates pull request comments. This function is used to create
+  /// multiple PullRequestComments for code review. There needs to be exactly one
+  /// PullRequestComment of type Review, and at most 100 PullRequestComments of
+  /// type Code per request. The Position of the code comments must be unique
+  /// within the request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_BatchCreatePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/batchCreatePullRequestComments(request:options:)``
   public func batchCreatePullRequestComments(request: BatchCreatePullRequestCommentsRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -3414,6 +4941,17 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Batch creates pull request comments. This function is used to create
+  /// multiple PullRequestComments for code review. There needs to be exactly one
+  /// PullRequestComment of type Review, and at most 100 PullRequestComments of
+  /// type Code per request. The Position of the code comments must be unique
+  /// within the request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_BatchCreatePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/batchCreatePullRequestCommentsPollingUntilDone(request:options:)``
   public func batchCreatePullRequestCommentsPollingUntilDone(
     request: BatchCreatePullRequestCommentsRequest
   ) async throws -> BatchCreatePullRequestCommentsResponse {
@@ -3427,6 +4965,17 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Batch creates pull request comments. This function is used to create
+  /// multiple PullRequestComments for code review. There needs to be exactly one
+  /// PullRequestComment of type Review, and at most 100 PullRequestComments of
+  /// type Code per request. The Position of the code comments must be unique
+  /// within the request.
+  ///
+  /// @Snippet(path: "SecureSourceManager_BatchCreatePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/batchCreatePullRequestCommentsPollingUntilDone(request:options:)``
   public func batchCreatePullRequestCommentsPollingUntilDone(
     parent: Swift.String,
     requests: [CreatePullRequestCommentRequest],
@@ -3438,6 +4987,16 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.batchCreatePullRequestCommentsPollingUntilDone(request: request)
   }
 
+  /// Resolves pull request comments. A list of PullRequestComment names must be
+  /// provided. The PullRequestComment names must be in the same conversation
+  /// thread. If auto_fill is set, all comments in the conversation thread will
+  /// be resolved.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ResolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/resolvePullRequestComments(request:options:)``
   public func resolvePullRequestComments(request: ResolvePullRequestCommentsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3450,6 +5009,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resolves pull request comments. A list of PullRequestComment names must be
+  /// provided. The PullRequestComment names must be in the same conversation
+  /// thread. If auto_fill is set, all comments in the conversation thread will
+  /// be resolved.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ResolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/resolvePullRequestCommentsPollingUntilDone(request:options:)``
   public func resolvePullRequestCommentsPollingUntilDone(request: ResolvePullRequestCommentsRequest)
     async throws -> ResolvePullRequestCommentsResponse
   {
@@ -3463,6 +5032,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Resolves pull request comments. A list of PullRequestComment names must be
+  /// provided. The PullRequestComment names must be in the same conversation
+  /// thread. If auto_fill is set, all comments in the conversation thread will
+  /// be resolved.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ResolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/resolvePullRequestCommentsPollingUntilDone(request:options:)``
   public func resolvePullRequestCommentsPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
@@ -3474,6 +5053,16 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.resolvePullRequestCommentsPollingUntilDone(request: request)
   }
 
+  /// Unresolves pull request comments. A list of PullRequestComment names must
+  /// be provided. The PullRequestComment names must be in the same conversation
+  /// thread. If auto_fill is set, all comments in the conversation thread will
+  /// be unresolved.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UnresolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/unresolvePullRequestComments(request:options:)``
   public func unresolvePullRequestComments(request: UnresolvePullRequestCommentsRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -3486,6 +5075,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Unresolves pull request comments. A list of PullRequestComment names must
+  /// be provided. The PullRequestComment names must be in the same conversation
+  /// thread. If auto_fill is set, all comments in the conversation thread will
+  /// be unresolved.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UnresolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/unresolvePullRequestCommentsPollingUntilDone(request:options:)``
   public func unresolvePullRequestCommentsPollingUntilDone(
     request: UnresolvePullRequestCommentsRequest
   ) async throws -> UnresolvePullRequestCommentsResponse {
@@ -3499,6 +5098,16 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Unresolves pull request comments. A list of PullRequestComment names must
+  /// be provided. The PullRequestComment names must be in the same conversation
+  /// thread. If auto_fill is set, all comments in the conversation thread will
+  /// be unresolved.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UnresolvePullRequestComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/unresolvePullRequestCommentsPollingUntilDone(request:options:)``
   public func unresolvePullRequestCommentsPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
@@ -3510,6 +5119,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.unresolvePullRequestCommentsPollingUntilDone(request: request)
   }
 
+  /// Creates an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createIssueComment(request:options:)``
   public func createIssueComment(request: CreateIssueCommentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3522,6 +5138,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createIssueCommentPollingUntilDone(request:options:)``
   public func createIssueCommentPollingUntilDone(request: CreateIssueCommentRequest) async throws
     -> IssueComment
   {
@@ -3534,6 +5157,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_CreateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/createIssueCommentPollingUntilDone(request:options:)``
   public func createIssueCommentPollingUntilDone(
     parent: Swift.String,
     issueComment: IssueComment?,
@@ -3545,6 +5175,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.createIssueCommentPollingUntilDone(request: request)
   }
 
+  /// Gets an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIssueComment(request:options:)``
   public func getIssueComment(request: GetIssueCommentRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.IssueComment
   {
@@ -3557,6 +5194,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIssueComment(request:options:)``
   public func getIssueComment(
     name: Swift.String,
   ) async throws -> GoogleCloudSecureSourceManagerV1.IssueComment {
@@ -3566,6 +5210,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getIssueComment(request: request)
   }
 
+  /// Lists comments in an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListIssueComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssueComments(request:options:)``
   public func listIssueComments(request: ListIssueCommentsRequest) async throws
     -> GoogleCloudSecureSourceManagerV1.ListIssueCommentsResponse
   {
@@ -3578,6 +5229,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists comments in an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListIssueComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssueComments(request:options:)``
   public func listIssueCommentsByItems(
     request: ListIssueCommentsRequest
   ) -> some AsyncSequence<IssueComment, any Swift.Error> & Sendable {
@@ -3587,6 +5245,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// Lists comments in an issue.
   ///
   /// @Snippet(path: "SecureSourceManager_ListIssueComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssueComments(request:options:)``
   public func listIssueCommentsByItems(
     request: ListIssueCommentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<IssueComment, any Swift.Error> & Sendable {
@@ -3601,6 +5263,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists comments in an issue.
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListIssueComments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listIssueComments(request:options:)``
   public func listIssueCommentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<IssueComment, any Swift.Error> & Sendable {
@@ -3610,6 +5279,13 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listIssueCommentsByItems(request: request)
   }
 
+  /// Updates an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateIssueComment(request:options:)``
   public func updateIssueComment(request: UpdateIssueCommentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3622,6 +5298,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateIssueCommentPollingUntilDone(request:options:)``
   public func updateIssueCommentPollingUntilDone(request: UpdateIssueCommentRequest) async throws
     -> IssueComment
   {
@@ -3634,6 +5317,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_UpdateIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/updateIssueCommentPollingUntilDone(request:options:)``
   public func updateIssueCommentPollingUntilDone(
     issueComment: IssueComment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3645,6 +5335,13 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.updateIssueCommentPollingUntilDone(request: request)
   }
 
+  /// Deletes an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteIssueComment(request:options:)``
   public func deleteIssueComment(request: DeleteIssueCommentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3657,6 +5354,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteIssueCommentPollingUntilDone(request:options:)``
   public func deleteIssueCommentPollingUntilDone(request: DeleteIssueCommentRequest) async throws {
     try await self.deleteIssueCommentPollingUntilDone(request: request, options: .init())
   }
@@ -3667,6 +5371,13 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an issue comment.
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteIssueComment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteIssueCommentPollingUntilDone(request:options:)``
   public func deleteIssueCommentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3676,6 +5387,30 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteIssueCommentPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -3688,6 +5423,30 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3714,6 +5473,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SecureSourceManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3727,6 +5490,13 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -3739,6 +5509,17 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "SecureSourceManager_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -3751,6 +5532,14 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "SecureSourceManager_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -3763,6 +5552,19 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "SecureSourceManager_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -3775,6 +5577,15 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -3787,6 +5598,15 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3798,6 +5618,10 @@ extension Clients.SecureSourceManagerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SecureSourceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3811,6 +5635,15 @@ extension Clients.SecureSourceManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -3822,6 +5655,9 @@ extension Clients.SecureSourceManagerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3834,6 +5670,9 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -3843,6 +5682,15 @@ extension Clients.SecureSourceManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -3853,6 +5701,15 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -3862,6 +5719,15 @@ extension Clients.SecureSourceManagerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -3872,6 +5738,15 @@ extension Clients.SecureSourceManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SecureSourceManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SecureSourceManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

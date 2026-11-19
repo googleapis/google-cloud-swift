@@ -44,6 +44,10 @@ import Foundation
 /// [google.cloud.gkehub.v1.Membership]: <doc:Membership>
 ///
 /// @Snippet(path: "GkeHubQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/GkeHubProtocol``
 public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   let inner: any Clients.GkeHubStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -64,6 +68,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists Memberships in a given project and location.
   ///
   /// @Snippet(path: "GkeHub_ListMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMemberships(request:)``
+  /// - ``listMembershipsByItems(parent:)``
+  /// - ``listMembershipsByItems(request:)``
+  /// - ``listMembershipsByItems(request:options:)``
   public func listMemberships(
     request: ListMembershipsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListMembershipsResponse {
@@ -74,6 +85,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Memberships from all regions.
   ///
   /// @Snippet(path: "GkeHub_ListBoundMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBoundMemberships(request:)``
+  /// - ``listBoundMembershipsByItems(request:)``
+  /// - ``listBoundMembershipsByItems(request:options:)``
+  /// - ``listBoundMembershipsByItems(scopeName:)``
   public func listBoundMemberships(
     request: ListBoundMembershipsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListBoundMembershipsResponse {
@@ -83,6 +101,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists Features in a given project and location.
   ///
   /// @Snippet(path: "GkeHub_ListFeatures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFeatures(request:)``
+  /// - ``listFeaturesByItems(parent:)``
+  /// - ``listFeaturesByItems(request:)``
+  /// - ``listFeaturesByItems(request:options:)``
   public func listFeatures(
     request: ListFeaturesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListFeaturesResponse {
@@ -92,6 +117,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Gets the details of a Membership.
   ///
   /// @Snippet(path: "GkeHub_GetMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMembership(name:)``
+  /// - ``getMembership(request:)``
   public func getMembership(
     request: GetMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.Membership {
@@ -101,6 +131,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Gets details of a single Feature.
   ///
   /// @Snippet(path: "GkeHub_GetFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFeature(name:)``
+  /// - ``getFeature(request:)``
   public func getFeature(
     request: GetFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.Feature {
@@ -114,6 +149,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
   ///
   /// @Snippet(path: "GkeHub_CreateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMembership(request:)``
+  /// - ``createMembershipPollingUntilDone(parent:resource:membershipId:)``
+  /// - ``createMembershipPollingUntilDone(request:)``
+  /// - ``createMembershipPollingUntilDone(request:options:)``
   public func createMembership(
     request: CreateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -127,6 +169,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
   ///
   /// @Snippet(path: "GkeHub_CreateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMembership(request:)``
+  /// - ``createMembership(request:options:)``
+  /// - ``createMembershipPollingUntilDone(parent:resource:membershipId:)``
+  /// - ``createMembershipPollingUntilDone(request:)``
   public func createMembershipPollingUntilDone(
     request: CreateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> Membership {
@@ -154,6 +203,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Adds a new Feature.
   ///
   /// @Snippet(path: "GkeHub_CreateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFeature(request:)``
+  /// - ``createFeaturePollingUntilDone(parent:resource:featureId:)``
+  /// - ``createFeaturePollingUntilDone(request:)``
+  /// - ``createFeaturePollingUntilDone(request:options:)``
   public func createFeature(
     request: CreateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -163,6 +219,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Adds a new Feature.
   ///
   /// @Snippet(path: "GkeHub_CreateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFeature(request:)``
+  /// - ``createFeature(request:options:)``
+  /// - ``createFeaturePollingUntilDone(parent:resource:featureId:)``
+  /// - ``createFeaturePollingUntilDone(request:)``
   public func createFeaturePollingUntilDone(
     request: CreateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Feature {
@@ -194,6 +257,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMembership(request:)``
+  /// - ``deleteMembershipPollingUntilDone(name:)``
+  /// - ``deleteMembershipPollingUntilDone(request:)``
+  /// - ``deleteMembershipPollingUntilDone(request:options:)``
   public func deleteMembership(
     request: DeleteMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -207,6 +277,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMembership(request:)``
+  /// - ``deleteMembership(request:options:)``
+  /// - ``deleteMembershipPollingUntilDone(name:)``
+  /// - ``deleteMembershipPollingUntilDone(request:)``
   public func deleteMembershipPollingUntilDone(
     request: DeleteMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -234,6 +311,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Removes a Feature.
   ///
   /// @Snippet(path: "GkeHub_DeleteFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFeature(request:)``
+  /// - ``deleteFeaturePollingUntilDone(name:)``
+  /// - ``deleteFeaturePollingUntilDone(request:)``
+  /// - ``deleteFeaturePollingUntilDone(request:options:)``
   public func deleteFeature(
     request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -243,6 +327,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Removes a Feature.
   ///
   /// @Snippet(path: "GkeHub_DeleteFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFeature(request:)``
+  /// - ``deleteFeature(request:options:)``
+  /// - ``deleteFeaturePollingUntilDone(name:)``
+  /// - ``deleteFeaturePollingUntilDone(request:)``
   public func deleteFeaturePollingUntilDone(
     request: DeleteFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -270,6 +361,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates an existing Membership.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMembership(request:)``
+  /// - ``updateMembershipPollingUntilDone(name:resource:updateMask:)``
+  /// - ``updateMembershipPollingUntilDone(request:)``
+  /// - ``updateMembershipPollingUntilDone(request:options:)``
   public func updateMembership(
     request: UpdateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -279,6 +377,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates an existing Membership.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMembership(request:)``
+  /// - ``updateMembership(request:options:)``
+  /// - ``updateMembershipPollingUntilDone(name:resource:updateMask:)``
+  /// - ``updateMembershipPollingUntilDone(request:)``
   public func updateMembershipPollingUntilDone(
     request: UpdateMembershipRequest, options: GoogleGax.RequestOptions
   ) async throws -> Membership {
@@ -306,6 +411,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates an existing Feature.
   ///
   /// @Snippet(path: "GkeHub_UpdateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFeature(request:)``
+  /// - ``updateFeaturePollingUntilDone(name:resource:updateMask:)``
+  /// - ``updateFeaturePollingUntilDone(request:)``
+  /// - ``updateFeaturePollingUntilDone(request:options:)``
   public func updateFeature(
     request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -315,6 +427,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates an existing Feature.
   ///
   /// @Snippet(path: "GkeHub_UpdateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFeature(request:)``
+  /// - ``updateFeature(request:options:)``
+  /// - ``updateFeaturePollingUntilDone(name:resource:updateMask:)``
+  /// - ``updateFeaturePollingUntilDone(request:)``
   public func updateFeaturePollingUntilDone(
     request: UpdateFeatureRequest, options: GoogleGax.RequestOptions
   ) async throws -> Feature {
@@ -345,6 +464,10 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Most clients should not need to call this method directly.
   ///
   /// @Snippet(path: "GkeHub_GenerateConnectManifest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateConnectManifest(request:)``
   public func generateConnectManifest(
     request: GenerateConnectManifestRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.GenerateConnectManifestResponse {
@@ -354,6 +477,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a fleet.
   ///
   /// @Snippet(path: "GkeHub_CreateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFleet(request:)``
+  /// - ``createFleetPollingUntilDone(parent:fleet:)``
+  /// - ``createFleetPollingUntilDone(request:)``
+  /// - ``createFleetPollingUntilDone(request:options:)``
   public func createFleet(
     request: CreateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -363,6 +493,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a fleet.
   ///
   /// @Snippet(path: "GkeHub_CreateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFleet(request:)``
+  /// - ``createFleet(request:options:)``
+  /// - ``createFleetPollingUntilDone(parent:fleet:)``
+  /// - ``createFleetPollingUntilDone(request:)``
   public func createFleetPollingUntilDone(
     request: CreateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Fleet {
@@ -390,6 +527,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Returns the details of a fleet.
   ///
   /// @Snippet(path: "GkeHub_GetFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFleet(name:)``
+  /// - ``getFleet(request:)``
   public func getFleet(
     request: GetFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.Fleet {
@@ -399,6 +541,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a fleet.
   ///
   /// @Snippet(path: "GkeHub_UpdateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFleet(request:)``
+  /// - ``updateFleetPollingUntilDone(fleet:updateMask:)``
+  /// - ``updateFleetPollingUntilDone(request:)``
+  /// - ``updateFleetPollingUntilDone(request:options:)``
   public func updateFleet(
     request: UpdateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -408,6 +557,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a fleet.
   ///
   /// @Snippet(path: "GkeHub_UpdateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFleet(request:)``
+  /// - ``updateFleet(request:options:)``
+  /// - ``updateFleetPollingUntilDone(fleet:updateMask:)``
+  /// - ``updateFleetPollingUntilDone(request:)``
   public func updateFleetPollingUntilDone(
     request: UpdateFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> Fleet {
@@ -435,6 +591,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Removes a Fleet. There must be no memberships remaining in the Fleet.
   ///
   /// @Snippet(path: "GkeHub_DeleteFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFleet(request:)``
+  /// - ``deleteFleetPollingUntilDone(name:)``
+  /// - ``deleteFleetPollingUntilDone(request:)``
+  /// - ``deleteFleetPollingUntilDone(request:options:)``
   public func deleteFleet(
     request: DeleteFleetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -444,6 +607,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Removes a Fleet. There must be no memberships remaining in the Fleet.
   ///
   /// @Snippet(path: "GkeHub_DeleteFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFleet(request:)``
+  /// - ``deleteFleet(request:options:)``
+  /// - ``deleteFleetPollingUntilDone(name:)``
+  /// - ``deleteFleetPollingUntilDone(request:)``
   public func deleteFleetPollingUntilDone(
     request: DeleteFleetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -472,6 +642,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// access to.
   ///
   /// @Snippet(path: "GkeHub_ListFleets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFleets(request:)``
+  /// - ``listFleetsByItems(parent:)``
+  /// - ``listFleetsByItems(request:)``
+  /// - ``listFleetsByItems(request:options:)``
   public func listFleets(
     request: ListFleetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListFleetsResponse {
@@ -481,6 +658,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Returns the details of a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_GetScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getScopeNamespace(name:)``
+  /// - ``getScopeNamespace(request:)``
   public func getScopeNamespace(
     request: GetScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.Namespace {
@@ -490,6 +672,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_CreateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScopeNamespace(request:)``
+  /// - ``createScopeNamespacePollingUntilDone(parent:scopeNamespace:scopeNamespaceId:)``
+  /// - ``createScopeNamespacePollingUntilDone(request:)``
+  /// - ``createScopeNamespacePollingUntilDone(request:options:)``
   public func createScopeNamespace(
     request: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -499,6 +688,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_CreateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScopeNamespace(request:)``
+  /// - ``createScopeNamespace(request:options:)``
+  /// - ``createScopeNamespacePollingUntilDone(parent:scopeNamespace:scopeNamespaceId:)``
+  /// - ``createScopeNamespacePollingUntilDone(request:)``
   public func createScopeNamespacePollingUntilDone(
     request: CreateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Namespace {
@@ -526,6 +722,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScopeNamespace(request:)``
+  /// - ``updateScopeNamespacePollingUntilDone(request:)``
+  /// - ``updateScopeNamespacePollingUntilDone(request:options:)``
+  /// - ``updateScopeNamespacePollingUntilDone(scopeNamespace:updateMask:)``
   public func updateScopeNamespace(
     request: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -535,6 +738,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScopeNamespace(request:)``
+  /// - ``updateScopeNamespace(request:options:)``
+  /// - ``updateScopeNamespacePollingUntilDone(request:)``
+  /// - ``updateScopeNamespacePollingUntilDone(scopeNamespace:updateMask:)``
   public func updateScopeNamespacePollingUntilDone(
     request: UpdateScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Namespace {
@@ -562,6 +772,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScopeNamespace(request:)``
+  /// - ``deleteScopeNamespacePollingUntilDone(name:)``
+  /// - ``deleteScopeNamespacePollingUntilDone(request:)``
+  /// - ``deleteScopeNamespacePollingUntilDone(request:options:)``
   public func deleteScopeNamespace(
     request: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -571,6 +788,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a fleet namespace.
   ///
   /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScopeNamespace(request:)``
+  /// - ``deleteScopeNamespace(request:options:)``
+  /// - ``deleteScopeNamespacePollingUntilDone(name:)``
+  /// - ``deleteScopeNamespacePollingUntilDone(request:)``
   public func deleteScopeNamespacePollingUntilDone(
     request: DeleteScopeNamespaceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -598,6 +822,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists fleet namespaces.
   ///
   /// @Snippet(path: "GkeHub_ListScopeNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listScopeNamespaces(request:)``
+  /// - ``listScopeNamespacesByItems(parent:)``
+  /// - ``listScopeNamespacesByItems(request:)``
+  /// - ``listScopeNamespacesByItems(request:options:)``
   public func listScopeNamespaces(
     request: ListScopeNamespacesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListScopeNamespacesResponse {
@@ -607,6 +838,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Returns the details of a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_GetScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getScopeRbacroleBinding(name:)``
+  /// - ``getScopeRbacroleBinding(request:)``
   public func getScopeRbacroleBinding(
     request: GetScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.RBACRoleBinding {
@@ -616,6 +852,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScopeRbacroleBinding(request:)``
+  /// - ``createScopeRbacroleBindingPollingUntilDone(parent:rbacrolebinding:rbacrolebindingId:)``
+  /// - ``createScopeRbacroleBindingPollingUntilDone(request:)``
+  /// - ``createScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func createScopeRbacroleBinding(
     request: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -625,6 +868,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScopeRbacroleBinding(request:)``
+  /// - ``createScopeRbacroleBinding(request:options:)``
+  /// - ``createScopeRbacroleBindingPollingUntilDone(parent:rbacrolebinding:rbacrolebindingId:)``
+  /// - ``createScopeRbacroleBindingPollingUntilDone(request:)``
   public func createScopeRbacroleBindingPollingUntilDone(
     request: CreateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> RBACRoleBinding {
@@ -653,6 +903,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScopeRbacroleBinding(request:)``
+  /// - ``updateScopeRbacroleBindingPollingUntilDone(rbacrolebinding:updateMask:)``
+  /// - ``updateScopeRbacroleBindingPollingUntilDone(request:)``
+  /// - ``updateScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func updateScopeRbacroleBinding(
     request: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -662,6 +919,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScopeRbacroleBinding(request:)``
+  /// - ``updateScopeRbacroleBinding(request:options:)``
+  /// - ``updateScopeRbacroleBindingPollingUntilDone(rbacrolebinding:updateMask:)``
+  /// - ``updateScopeRbacroleBindingPollingUntilDone(request:)``
   public func updateScopeRbacroleBindingPollingUntilDone(
     request: UpdateScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> RBACRoleBinding {
@@ -690,6 +954,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScopeRbacroleBinding(request:)``
+  /// - ``deleteScopeRbacroleBindingPollingUntilDone(name:)``
+  /// - ``deleteScopeRbacroleBindingPollingUntilDone(request:)``
+  /// - ``deleteScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func deleteScopeRbacroleBinding(
     request: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -699,6 +970,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Scope RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScopeRbacroleBinding(request:)``
+  /// - ``deleteScopeRbacroleBinding(request:options:)``
+  /// - ``deleteScopeRbacroleBindingPollingUntilDone(name:)``
+  /// - ``deleteScopeRbacroleBindingPollingUntilDone(request:)``
   public func deleteScopeRbacroleBindingPollingUntilDone(
     request: DeleteScopeRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -726,6 +1004,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists all Scope RBACRoleBindings.
   ///
   /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listScopeRbacroleBindings(request:)``
+  /// - ``listScopeRbacroleBindingsByItems(parent:)``
+  /// - ``listScopeRbacroleBindingsByItems(request:)``
+  /// - ``listScopeRbacroleBindingsByItems(request:options:)``
   public func listScopeRbacroleBindings(
     request: ListScopeRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListScopeRBACRoleBindingsResponse {
@@ -735,6 +1020,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Returns the details of a Scope.
   ///
   /// @Snippet(path: "GkeHub_GetScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getScope(name:)``
+  /// - ``getScope(request:)``
   public func getScope(
     request: GetScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.Scope {
@@ -744,6 +1034,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Scope.
   ///
   /// @Snippet(path: "GkeHub_CreateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScope(request:)``
+  /// - ``createScopePollingUntilDone(parent:scope:scopeId:)``
+  /// - ``createScopePollingUntilDone(request:)``
+  /// - ``createScopePollingUntilDone(request:options:)``
   public func createScope(
     request: CreateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -753,6 +1050,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Scope.
   ///
   /// @Snippet(path: "GkeHub_CreateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createScope(request:)``
+  /// - ``createScope(request:options:)``
+  /// - ``createScopePollingUntilDone(parent:scope:scopeId:)``
+  /// - ``createScopePollingUntilDone(request:)``
   public func createScopePollingUntilDone(
     request: CreateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Scope {
@@ -780,6 +1084,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a scopes.
   ///
   /// @Snippet(path: "GkeHub_UpdateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScope(request:)``
+  /// - ``updateScopePollingUntilDone(request:)``
+  /// - ``updateScopePollingUntilDone(request:options:)``
+  /// - ``updateScopePollingUntilDone(scope:updateMask:)``
   public func updateScope(
     request: UpdateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -789,6 +1100,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a scopes.
   ///
   /// @Snippet(path: "GkeHub_UpdateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateScope(request:)``
+  /// - ``updateScope(request:options:)``
+  /// - ``updateScopePollingUntilDone(request:)``
+  /// - ``updateScopePollingUntilDone(scope:updateMask:)``
   public func updateScopePollingUntilDone(
     request: UpdateScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> Scope {
@@ -816,6 +1134,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Scope.
   ///
   /// @Snippet(path: "GkeHub_DeleteScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScope(request:)``
+  /// - ``deleteScopePollingUntilDone(name:)``
+  /// - ``deleteScopePollingUntilDone(request:)``
+  /// - ``deleteScopePollingUntilDone(request:options:)``
   public func deleteScope(
     request: DeleteScopeRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -825,6 +1150,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Scope.
   ///
   /// @Snippet(path: "GkeHub_DeleteScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteScope(request:)``
+  /// - ``deleteScope(request:options:)``
+  /// - ``deleteScopePollingUntilDone(name:)``
+  /// - ``deleteScopePollingUntilDone(request:)``
   public func deleteScopePollingUntilDone(
     request: DeleteScopeRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -852,6 +1184,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists Scopes.
   ///
   /// @Snippet(path: "GkeHub_ListScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listScopes(request:)``
+  /// - ``listScopesByItems(parent:)``
+  /// - ``listScopesByItems(request:)``
+  /// - ``listScopesByItems(request:options:)``
   public func listScopes(
     request: ListScopesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListScopesResponse {
@@ -861,6 +1200,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists permitted Scopes.
   ///
   /// @Snippet(path: "GkeHub_ListPermittedScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPermittedScopes(request:)``
+  /// - ``listPermittedScopesByItems(parent:)``
+  /// - ``listPermittedScopesByItems(request:)``
+  /// - ``listPermittedScopesByItems(request:options:)``
   public func listPermittedScopes(
     request: ListPermittedScopesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListPermittedScopesResponse {
@@ -870,6 +1216,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Returns the details of a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_GetMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMembershipBinding(name:)``
+  /// - ``getMembershipBinding(request:)``
   public func getMembershipBinding(
     request: GetMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.MembershipBinding {
@@ -879,6 +1230,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMembershipBinding(request:)``
+  /// - ``createMembershipBindingPollingUntilDone(parent:membershipBinding:membershipBindingId:)``
+  /// - ``createMembershipBindingPollingUntilDone(request:)``
+  /// - ``createMembershipBindingPollingUntilDone(request:options:)``
   public func createMembershipBinding(
     request: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -888,6 +1246,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMembershipBinding(request:)``
+  /// - ``createMembershipBinding(request:options:)``
+  /// - ``createMembershipBindingPollingUntilDone(parent:membershipBinding:membershipBindingId:)``
+  /// - ``createMembershipBindingPollingUntilDone(request:)``
   public func createMembershipBindingPollingUntilDone(
     request: CreateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> MembershipBinding {
@@ -916,6 +1281,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMembershipBinding(request:)``
+  /// - ``updateMembershipBindingPollingUntilDone(membershipBinding:updateMask:)``
+  /// - ``updateMembershipBindingPollingUntilDone(request:)``
+  /// - ``updateMembershipBindingPollingUntilDone(request:options:)``
   public func updateMembershipBinding(
     request: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -925,6 +1297,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMembershipBinding(request:)``
+  /// - ``updateMembershipBinding(request:options:)``
+  /// - ``updateMembershipBindingPollingUntilDone(membershipBinding:updateMask:)``
+  /// - ``updateMembershipBindingPollingUntilDone(request:)``
   public func updateMembershipBindingPollingUntilDone(
     request: UpdateMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> MembershipBinding {
@@ -953,6 +1332,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMembershipBinding(request:)``
+  /// - ``deleteMembershipBindingPollingUntilDone(name:)``
+  /// - ``deleteMembershipBindingPollingUntilDone(request:)``
+  /// - ``deleteMembershipBindingPollingUntilDone(request:options:)``
   public func deleteMembershipBinding(
     request: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -962,6 +1348,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a MembershipBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMembershipBinding(request:)``
+  /// - ``deleteMembershipBinding(request:options:)``
+  /// - ``deleteMembershipBindingPollingUntilDone(name:)``
+  /// - ``deleteMembershipBindingPollingUntilDone(request:)``
   public func deleteMembershipBindingPollingUntilDone(
     request: DeleteMembershipBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -989,6 +1382,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists MembershipBindings.
   ///
   /// @Snippet(path: "GkeHub_ListMembershipBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMembershipBindings(request:)``
+  /// - ``listMembershipBindingsByItems(parent:)``
+  /// - ``listMembershipBindingsByItems(request:)``
+  /// - ``listMembershipBindingsByItems(request:options:)``
   public func listMembershipBindings(
     request: ListMembershipBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListMembershipBindingsResponse {
@@ -998,6 +1398,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Returns the details of a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_GetMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMembershipRbacroleBinding(name:)``
+  /// - ``getMembershipRbacroleBinding(request:)``
   public func getMembershipRbacroleBinding(
     request: GetMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.RBACRoleBinding {
@@ -1007,6 +1412,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMembershipRbacroleBinding(request:)``
+  /// - ``createMembershipRbacroleBindingPollingUntilDone(parent:rbacrolebinding:rbacrolebindingId:)``
+  /// - ``createMembershipRbacroleBindingPollingUntilDone(request:)``
+  /// - ``createMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func createMembershipRbacroleBinding(
     request: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1016,6 +1428,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Creates a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMembershipRbacroleBinding(request:)``
+  /// - ``createMembershipRbacroleBinding(request:options:)``
+  /// - ``createMembershipRbacroleBindingPollingUntilDone(parent:rbacrolebinding:rbacrolebindingId:)``
+  /// - ``createMembershipRbacroleBindingPollingUntilDone(request:)``
   public func createMembershipRbacroleBindingPollingUntilDone(
     request: CreateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> RBACRoleBinding {
@@ -1044,6 +1463,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMembershipRbacroleBinding(request:)``
+  /// - ``updateMembershipRbacroleBindingPollingUntilDone(rbacrolebinding:updateMask:)``
+  /// - ``updateMembershipRbacroleBindingPollingUntilDone(request:)``
+  /// - ``updateMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func updateMembershipRbacroleBinding(
     request: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1053,6 +1479,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Updates a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateMembershipRbacroleBinding(request:)``
+  /// - ``updateMembershipRbacroleBinding(request:options:)``
+  /// - ``updateMembershipRbacroleBindingPollingUntilDone(rbacrolebinding:updateMask:)``
+  /// - ``updateMembershipRbacroleBindingPollingUntilDone(request:)``
   public func updateMembershipRbacroleBindingPollingUntilDone(
     request: UpdateMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> RBACRoleBinding {
@@ -1081,6 +1514,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMembershipRbacroleBinding(request:)``
+  /// - ``deleteMembershipRbacroleBindingPollingUntilDone(name:)``
+  /// - ``deleteMembershipRbacroleBindingPollingUntilDone(request:)``
+  /// - ``deleteMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func deleteMembershipRbacroleBinding(
     request: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1090,6 +1530,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Deletes a Membership RBACRoleBinding.
   ///
   /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMembershipRbacroleBinding(request:)``
+  /// - ``deleteMembershipRbacroleBinding(request:options:)``
+  /// - ``deleteMembershipRbacroleBindingPollingUntilDone(name:)``
+  /// - ``deleteMembershipRbacroleBindingPollingUntilDone(request:)``
   public func deleteMembershipRbacroleBindingPollingUntilDone(
     request: DeleteMembershipRBACRoleBindingRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1117,6 +1564,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// Lists all Membership RBACRoleBindings.
   ///
   /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMembershipRbacroleBindings(request:)``
+  /// - ``listMembershipRbacroleBindingsByItems(parent:)``
+  /// - ``listMembershipRbacroleBindingsByItems(request:)``
+  /// - ``listMembershipRbacroleBindingsByItems(request:options:)``
   public func listMembershipRbacroleBindings(
     request: ListMembershipRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.ListMembershipRBACRoleBindingsResponse {
@@ -1127,6 +1581,10 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// RoleBinding and its associated impersonation resources.
   ///
   /// @Snippet(path: "GkeHub_GenerateMembershipRBACRoleBindingYAML")
+  ///
+  /// ## See Also
+  ///
+  /// - ``generateMembershipRbacroleBindingYaml(request:)``
   public func generateMembershipRbacroleBindingYaml(
     request: GenerateMembershipRBACRoleBindingYAMLRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGKEHubV1.GenerateMembershipRBACRoleBindingYAMLResponse {
@@ -1138,6 +1596,13 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GkeHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1160,6 +1625,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GkeHub_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1171,6 +1641,11 @@ public final class GkeHubClient: Clients.GkeHubProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GkeHub_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1544,6 +2019,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.GkeHubProtocol {
+  /// Lists Memberships in a given project and location.
+  ///
+  /// @Snippet(path: "GkeHub_ListMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMemberships(request:options:)``
   public func listMemberships(request: ListMembershipsRequest) async throws
     -> GoogleCloudGKEHubV1.ListMembershipsResponse
   {
@@ -1556,6 +2038,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Memberships in a given project and location.
+  ///
+  /// @Snippet(path: "GkeHub_ListMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMemberships(request:options:)``
   public func listMembershipsByItems(
     request: ListMembershipsRequest
   ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
@@ -1565,6 +2054,10 @@ extension Clients.GkeHubProtocol {
   /// Lists Memberships in a given project and location.
   ///
   /// @Snippet(path: "GkeHub_ListMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMemberships(request:options:)``
   public func listMembershipsByItems(
     request: ListMembershipsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
@@ -1578,6 +2071,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Memberships in a given project and location.
+  ///
+  /// @Snippet(path: "GkeHub_ListMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMemberships(request:options:)``
   public func listMembershipsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
@@ -1587,6 +2087,14 @@ extension Clients.GkeHubProtocol {
     return self.listMembershipsByItems(request: request)
   }
 
+  /// Lists Memberships bound to a Scope. The response includes relevant
+  /// Memberships from all regions.
+  ///
+  /// @Snippet(path: "GkeHub_ListBoundMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listBoundMemberships(request:options:)``
   public func listBoundMemberships(request: ListBoundMembershipsRequest) async throws
     -> GoogleCloudGKEHubV1.ListBoundMembershipsResponse
   {
@@ -1599,6 +2107,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Memberships bound to a Scope. The response includes relevant
+  /// Memberships from all regions.
+  ///
+  /// @Snippet(path: "GkeHub_ListBoundMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listBoundMemberships(request:options:)``
   public func listBoundMembershipsByItems(
     request: ListBoundMembershipsRequest
   ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
@@ -1609,6 +2125,10 @@ extension Clients.GkeHubProtocol {
   /// Memberships from all regions.
   ///
   /// @Snippet(path: "GkeHub_ListBoundMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listBoundMemberships(request:options:)``
   public func listBoundMembershipsByItems(
     request: ListBoundMembershipsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
@@ -1623,6 +2143,14 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Memberships bound to a Scope. The response includes relevant
+  /// Memberships from all regions.
+  ///
+  /// @Snippet(path: "GkeHub_ListBoundMemberships")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listBoundMemberships(request:options:)``
   public func listBoundMembershipsByItems(
     scopeName: Swift.String,
   ) -> some AsyncSequence<Membership, any Swift.Error> & Sendable {
@@ -1632,6 +2160,13 @@ extension Clients.GkeHubProtocol {
     return self.listBoundMembershipsByItems(request: request)
   }
 
+  /// Lists Features in a given project and location.
+  ///
+  /// @Snippet(path: "GkeHub_ListFeatures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFeatures(request:options:)``
   public func listFeatures(request: ListFeaturesRequest) async throws
     -> GoogleCloudGKEHubV1.ListFeaturesResponse
   {
@@ -1644,6 +2179,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Features in a given project and location.
+  ///
+  /// @Snippet(path: "GkeHub_ListFeatures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFeatures(request:options:)``
   public func listFeaturesByItems(
     request: ListFeaturesRequest
   ) -> some AsyncSequence<Feature, any Swift.Error> & Sendable {
@@ -1653,6 +2195,10 @@ extension Clients.GkeHubProtocol {
   /// Lists Features in a given project and location.
   ///
   /// @Snippet(path: "GkeHub_ListFeatures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFeatures(request:options:)``
   public func listFeaturesByItems(
     request: ListFeaturesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Feature, any Swift.Error> & Sendable {
@@ -1666,6 +2212,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Features in a given project and location.
+  ///
+  /// @Snippet(path: "GkeHub_ListFeatures")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFeatures(request:options:)``
   public func listFeaturesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Feature, any Swift.Error> & Sendable {
@@ -1675,6 +2228,13 @@ extension Clients.GkeHubProtocol {
     return self.listFeaturesByItems(request: request)
   }
 
+  /// Gets the details of a Membership.
+  ///
+  /// @Snippet(path: "GkeHub_GetMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getMembership(request:options:)``
   public func getMembership(request: GetMembershipRequest) async throws
     -> GoogleCloudGKEHubV1.Membership
   {
@@ -1687,6 +2247,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a Membership.
+  ///
+  /// @Snippet(path: "GkeHub_GetMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getMembership(request:options:)``
   public func getMembership(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.Membership {
@@ -1696,6 +2263,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getMembership(request: request)
   }
 
+  /// Gets details of a single Feature.
+  ///
+  /// @Snippet(path: "GkeHub_GetFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getFeature(request:options:)``
   public func getFeature(request: GetFeatureRequest) async throws -> GoogleCloudGKEHubV1.Feature {
     try await self.getFeature(request: request, options: .init())
   }
@@ -1706,6 +2280,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Feature.
+  ///
+  /// @Snippet(path: "GkeHub_GetFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getFeature(request:options:)``
   public func getFeature(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.Feature {
@@ -1715,6 +2296,17 @@ extension Clients.GkeHubProtocol {
     return try await self.getFeature(request: request)
   }
 
+  /// Creates a new Membership.
+  ///
+  /// **This is currently only supported for GKE clusters on Google Cloud**.
+  /// To register other clusters, follow the instructions at
+  /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembership(request:options:)``
   public func createMembership(request: CreateMembershipRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1727,6 +2319,17 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Membership.
+  ///
+  /// **This is currently only supported for GKE clusters on Google Cloud**.
+  /// To register other clusters, follow the instructions at
+  /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipPollingUntilDone(request:options:)``
   public func createMembershipPollingUntilDone(request: CreateMembershipRequest) async throws
     -> Membership
   {
@@ -1739,6 +2342,17 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Membership.
+  ///
+  /// **This is currently only supported for GKE clusters on Google Cloud**.
+  /// To register other clusters, follow the instructions at
+  /// https://cloud.google.com/anthos/multicluster-management/connect/registering-a-cluster.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipPollingUntilDone(request:options:)``
   public func createMembershipPollingUntilDone(
     parent: Swift.String,
     resource: Membership?,
@@ -1752,6 +2366,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createMembershipPollingUntilDone(request: request)
   }
 
+  /// Adds a new Feature.
+  ///
+  /// @Snippet(path: "GkeHub_CreateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createFeature(request:options:)``
   public func createFeature(request: CreateFeatureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1764,6 +2385,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a new Feature.
+  ///
+  /// @Snippet(path: "GkeHub_CreateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createFeaturePollingUntilDone(request:options:)``
   public func createFeaturePollingUntilDone(request: CreateFeatureRequest) async throws -> Feature {
     return try await self.createFeaturePollingUntilDone(request: request, options: .init())
   }
@@ -1774,6 +2402,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a new Feature.
+  ///
+  /// @Snippet(path: "GkeHub_CreateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createFeaturePollingUntilDone(request:options:)``
   public func createFeaturePollingUntilDone(
     parent: Swift.String,
     resource: Feature?,
@@ -1787,6 +2422,17 @@ extension Clients.GkeHubProtocol {
     return try await self.createFeaturePollingUntilDone(request: request)
   }
 
+  /// Removes a Membership.
+  ///
+  /// **This is currently only supported for GKE clusters on Google Cloud**.
+  /// To unregister other clusters, follow the instructions at
+  /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembership(request:options:)``
   public func deleteMembership(request: DeleteMembershipRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1799,6 +2445,17 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Membership.
+  ///
+  /// **This is currently only supported for GKE clusters on Google Cloud**.
+  /// To unregister other clusters, follow the instructions at
+  /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipPollingUntilDone(request:options:)``
   public func deleteMembershipPollingUntilDone(request: DeleteMembershipRequest) async throws {
     try await self.deleteMembershipPollingUntilDone(request: request, options: .init())
   }
@@ -1809,6 +2466,17 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Membership.
+  ///
+  /// **This is currently only supported for GKE clusters on Google Cloud**.
+  /// To unregister other clusters, follow the instructions at
+  /// https://cloud.google.com/anthos/multicluster-management/connect/unregistering-a-cluster.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipPollingUntilDone(request:options:)``
   public func deleteMembershipPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1818,6 +2486,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteMembershipPollingUntilDone(request: request)
   }
 
+  /// Removes a Feature.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteFeature(request:options:)``
   public func deleteFeature(request: DeleteFeatureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1830,6 +2505,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Feature.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteFeaturePollingUntilDone(request:options:)``
   public func deleteFeaturePollingUntilDone(request: DeleteFeatureRequest) async throws {
     try await self.deleteFeaturePollingUntilDone(request: request, options: .init())
   }
@@ -1840,6 +2522,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Feature.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteFeaturePollingUntilDone(request:options:)``
   public func deleteFeaturePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1849,6 +2538,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteFeaturePollingUntilDone(request: request)
   }
 
+  /// Updates an existing Membership.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembership(request:options:)``
   public func updateMembership(request: UpdateMembershipRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1861,6 +2557,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Membership.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipPollingUntilDone(request:options:)``
   public func updateMembershipPollingUntilDone(request: UpdateMembershipRequest) async throws
     -> Membership
   {
@@ -1873,6 +2576,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Membership.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembership")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipPollingUntilDone(request:options:)``
   public func updateMembershipPollingUntilDone(
     name: Swift.String,
     resource: Membership?,
@@ -1886,6 +2596,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateMembershipPollingUntilDone(request: request)
   }
 
+  /// Updates an existing Feature.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateFeature(request:options:)``
   public func updateFeature(request: UpdateFeatureRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1898,6 +2615,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Feature.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateFeaturePollingUntilDone(request:options:)``
   public func updateFeaturePollingUntilDone(request: UpdateFeatureRequest) async throws -> Feature {
     return try await self.updateFeaturePollingUntilDone(request: request, options: .init())
   }
@@ -1908,6 +2632,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing Feature.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateFeature")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateFeaturePollingUntilDone(request:options:)``
   public func updateFeaturePollingUntilDone(
     name: Swift.String,
     resource: Feature?,
@@ -1921,6 +2652,16 @@ extension Clients.GkeHubProtocol {
     return try await self.updateFeaturePollingUntilDone(request: request)
   }
 
+  /// Generates the manifest for deployment of the GKE connect agent.
+  ///
+  /// **This method is used internally by Google-provided libraries.**
+  /// Most clients should not need to call this method directly.
+  ///
+  /// @Snippet(path: "GkeHub_GenerateConnectManifest")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/generateConnectManifest(request:options:)``
   public func generateConnectManifest(request: GenerateConnectManifestRequest) async throws
     -> GoogleCloudGKEHubV1.GenerateConnectManifestResponse
   {
@@ -1933,6 +2674,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_CreateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createFleet(request:options:)``
   public func createFleet(request: CreateFleetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createFleet(request: request, options: .init())
   }
@@ -1943,6 +2691,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_CreateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createFleetPollingUntilDone(request:options:)``
   public func createFleetPollingUntilDone(request: CreateFleetRequest) async throws -> Fleet {
     return try await self.createFleetPollingUntilDone(request: request, options: .init())
   }
@@ -1953,6 +2708,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_CreateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createFleetPollingUntilDone(request:options:)``
   public func createFleetPollingUntilDone(
     parent: Swift.String,
     fleet: Fleet?,
@@ -1964,6 +2726,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createFleetPollingUntilDone(request: request)
   }
 
+  /// Returns the details of a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_GetFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getFleet(request:options:)``
   public func getFleet(request: GetFleetRequest) async throws -> GoogleCloudGKEHubV1.Fleet {
     try await self.getFleet(request: request, options: .init())
   }
@@ -1974,6 +2743,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details of a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_GetFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getFleet(request:options:)``
   public func getFleet(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.Fleet {
@@ -1983,6 +2759,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getFleet(request: request)
   }
 
+  /// Updates a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateFleet(request:options:)``
   public func updateFleet(request: UpdateFleetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateFleet(request: request, options: .init())
   }
@@ -1993,6 +2776,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateFleetPollingUntilDone(request:options:)``
   public func updateFleetPollingUntilDone(request: UpdateFleetRequest) async throws -> Fleet {
     return try await self.updateFleetPollingUntilDone(request: request, options: .init())
   }
@@ -2003,6 +2793,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a fleet.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateFleetPollingUntilDone(request:options:)``
   public func updateFleetPollingUntilDone(
     fleet: Fleet?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2014,6 +2811,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateFleetPollingUntilDone(request: request)
   }
 
+  /// Removes a Fleet. There must be no memberships remaining in the Fleet.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteFleet(request:options:)``
   public func deleteFleet(request: DeleteFleetRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteFleet(request: request, options: .init())
   }
@@ -2024,6 +2828,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Fleet. There must be no memberships remaining in the Fleet.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteFleetPollingUntilDone(request:options:)``
   public func deleteFleetPollingUntilDone(request: DeleteFleetRequest) async throws {
     try await self.deleteFleetPollingUntilDone(request: request, options: .init())
   }
@@ -2034,6 +2845,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Removes a Fleet. There must be no memberships remaining in the Fleet.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteFleet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteFleetPollingUntilDone(request:options:)``
   public func deleteFleetPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2043,6 +2861,14 @@ extension Clients.GkeHubProtocol {
     try await self.deleteFleetPollingUntilDone(request: request)
   }
 
+  /// Returns all fleets within an organization or a project that the caller has
+  /// access to.
+  ///
+  /// @Snippet(path: "GkeHub_ListFleets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFleets(request:options:)``
   public func listFleets(request: ListFleetsRequest) async throws
     -> GoogleCloudGKEHubV1.ListFleetsResponse
   {
@@ -2055,6 +2881,14 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns all fleets within an organization or a project that the caller has
+  /// access to.
+  ///
+  /// @Snippet(path: "GkeHub_ListFleets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFleets(request:options:)``
   public func listFleetsByItems(
     request: ListFleetsRequest
   ) -> some AsyncSequence<Fleet, any Swift.Error> & Sendable {
@@ -2065,6 +2899,10 @@ extension Clients.GkeHubProtocol {
   /// access to.
   ///
   /// @Snippet(path: "GkeHub_ListFleets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFleets(request:options:)``
   public func listFleetsByItems(
     request: ListFleetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Fleet, any Swift.Error> & Sendable {
@@ -2078,6 +2916,14 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Returns all fleets within an organization or a project that the caller has
+  /// access to.
+  ///
+  /// @Snippet(path: "GkeHub_ListFleets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listFleets(request:options:)``
   public func listFleetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Fleet, any Swift.Error> & Sendable {
@@ -2087,6 +2933,13 @@ extension Clients.GkeHubProtocol {
     return self.listFleetsByItems(request: request)
   }
 
+  /// Returns the details of a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_GetScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getScopeNamespace(request:options:)``
   public func getScopeNamespace(request: GetScopeNamespaceRequest) async throws
     -> GoogleCloudGKEHubV1.Namespace
   {
@@ -2099,6 +2952,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details of a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_GetScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getScopeNamespace(request:options:)``
   public func getScopeNamespace(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.Namespace {
@@ -2108,6 +2968,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getScopeNamespace(request: request)
   }
 
+  /// Creates a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopeNamespace(request:options:)``
   public func createScopeNamespace(request: CreateScopeNamespaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2120,6 +2987,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopeNamespacePollingUntilDone(request:options:)``
   public func createScopeNamespacePollingUntilDone(request: CreateScopeNamespaceRequest)
     async throws -> Namespace
   {
@@ -2132,6 +3006,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopeNamespacePollingUntilDone(request:options:)``
   public func createScopeNamespacePollingUntilDone(
     parent: Swift.String,
     scopeNamespace: Namespace?,
@@ -2145,6 +3026,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createScopeNamespacePollingUntilDone(request: request)
   }
 
+  /// Updates a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopeNamespace(request:options:)``
   public func updateScopeNamespace(request: UpdateScopeNamespaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2157,6 +3045,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopeNamespacePollingUntilDone(request:options:)``
   public func updateScopeNamespacePollingUntilDone(request: UpdateScopeNamespaceRequest)
     async throws -> Namespace
   {
@@ -2169,6 +3064,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopeNamespacePollingUntilDone(request:options:)``
   public func updateScopeNamespacePollingUntilDone(
     scopeNamespace: Namespace?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2180,6 +3082,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateScopeNamespacePollingUntilDone(request: request)
   }
 
+  /// Deletes a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopeNamespace(request:options:)``
   public func deleteScopeNamespace(request: DeleteScopeNamespaceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2192,6 +3101,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopeNamespacePollingUntilDone(request:options:)``
   public func deleteScopeNamespacePollingUntilDone(request: DeleteScopeNamespaceRequest)
     async throws
   {
@@ -2204,6 +3120,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a fleet namespace.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScopeNamespace")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopeNamespacePollingUntilDone(request:options:)``
   public func deleteScopeNamespacePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2213,6 +3136,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteScopeNamespacePollingUntilDone(request: request)
   }
 
+  /// Lists fleet namespaces.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopeNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeNamespaces(request:options:)``
   public func listScopeNamespaces(request: ListScopeNamespacesRequest) async throws
     -> GoogleCloudGKEHubV1.ListScopeNamespacesResponse
   {
@@ -2225,6 +3155,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists fleet namespaces.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopeNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeNamespaces(request:options:)``
   public func listScopeNamespacesByItems(
     request: ListScopeNamespacesRequest
   ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
@@ -2234,6 +3171,10 @@ extension Clients.GkeHubProtocol {
   /// Lists fleet namespaces.
   ///
   /// @Snippet(path: "GkeHub_ListScopeNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeNamespaces(request:options:)``
   public func listScopeNamespacesByItems(
     request: ListScopeNamespacesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
@@ -2248,6 +3189,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists fleet namespaces.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopeNamespaces")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeNamespaces(request:options:)``
   public func listScopeNamespacesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Namespace, any Swift.Error> & Sendable {
@@ -2257,6 +3205,13 @@ extension Clients.GkeHubProtocol {
     return self.listScopeNamespacesByItems(request: request)
   }
 
+  /// Returns the details of a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_GetScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getScopeRbacroleBinding(request:options:)``
   public func getScopeRbacroleBinding(request: GetScopeRBACRoleBindingRequest) async throws
     -> GoogleCloudGKEHubV1.RBACRoleBinding
   {
@@ -2269,6 +3224,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details of a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_GetScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getScopeRbacroleBinding(request:options:)``
   public func getScopeRbacroleBinding(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.RBACRoleBinding {
@@ -2278,6 +3240,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getScopeRbacroleBinding(request: request)
   }
 
+  /// Creates a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopeRbacroleBinding(request:options:)``
   public func createScopeRbacroleBinding(request: CreateScopeRBACRoleBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2290,6 +3259,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func createScopeRbacroleBindingPollingUntilDone(request: CreateScopeRBACRoleBindingRequest)
     async throws -> RBACRoleBinding
   {
@@ -2303,6 +3279,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func createScopeRbacroleBindingPollingUntilDone(
     parent: Swift.String,
     rbacrolebinding: RBACRoleBinding?,
@@ -2316,6 +3299,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createScopeRbacroleBindingPollingUntilDone(request: request)
   }
 
+  /// Updates a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopeRbacroleBinding(request:options:)``
   public func updateScopeRbacroleBinding(request: UpdateScopeRBACRoleBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2328,6 +3318,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func updateScopeRbacroleBindingPollingUntilDone(request: UpdateScopeRBACRoleBindingRequest)
     async throws -> RBACRoleBinding
   {
@@ -2341,6 +3338,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func updateScopeRbacroleBindingPollingUntilDone(
     rbacrolebinding: RBACRoleBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2352,6 +3356,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateScopeRbacroleBindingPollingUntilDone(request: request)
   }
 
+  /// Deletes a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopeRbacroleBinding(request:options:)``
   public func deleteScopeRbacroleBinding(request: DeleteScopeRBACRoleBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2364,6 +3375,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func deleteScopeRbacroleBindingPollingUntilDone(request: DeleteScopeRBACRoleBindingRequest)
     async throws
   {
@@ -2376,6 +3394,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Scope RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScopeRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopeRbacroleBindingPollingUntilDone(request:options:)``
   public func deleteScopeRbacroleBindingPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2385,6 +3410,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteScopeRbacroleBindingPollingUntilDone(request: request)
   }
 
+  /// Lists all Scope RBACRoleBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeRbacroleBindings(request:options:)``
   public func listScopeRbacroleBindings(request: ListScopeRBACRoleBindingsRequest) async throws
     -> GoogleCloudGKEHubV1.ListScopeRBACRoleBindingsResponse
   {
@@ -2397,6 +3429,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all Scope RBACRoleBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeRbacroleBindings(request:options:)``
   public func listScopeRbacroleBindingsByItems(
     request: ListScopeRBACRoleBindingsRequest
   ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
@@ -2406,6 +3445,10 @@ extension Clients.GkeHubProtocol {
   /// Lists all Scope RBACRoleBindings.
   ///
   /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeRbacroleBindings(request:options:)``
   public func listScopeRbacroleBindingsByItems(
     request: ListScopeRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
@@ -2420,6 +3463,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all Scope RBACRoleBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopeRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopeRbacroleBindings(request:options:)``
   public func listScopeRbacroleBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
@@ -2429,6 +3479,13 @@ extension Clients.GkeHubProtocol {
     return self.listScopeRbacroleBindingsByItems(request: request)
   }
 
+  /// Returns the details of a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_GetScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getScope(request:options:)``
   public func getScope(request: GetScopeRequest) async throws -> GoogleCloudGKEHubV1.Scope {
     try await self.getScope(request: request, options: .init())
   }
@@ -2439,6 +3496,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details of a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_GetScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getScope(request:options:)``
   public func getScope(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.Scope {
@@ -2448,6 +3512,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getScope(request: request)
   }
 
+  /// Creates a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScope(request:options:)``
   public func createScope(request: CreateScopeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createScope(request: request, options: .init())
   }
@@ -2458,6 +3529,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopePollingUntilDone(request:options:)``
   public func createScopePollingUntilDone(request: CreateScopeRequest) async throws -> Scope {
     return try await self.createScopePollingUntilDone(request: request, options: .init())
   }
@@ -2468,6 +3546,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_CreateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createScopePollingUntilDone(request:options:)``
   public func createScopePollingUntilDone(
     parent: Swift.String,
     scope: Scope?,
@@ -2481,6 +3566,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createScopePollingUntilDone(request: request)
   }
 
+  /// Updates a scopes.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScope(request:options:)``
   public func updateScope(request: UpdateScopeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.updateScope(request: request, options: .init())
   }
@@ -2491,6 +3583,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a scopes.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopePollingUntilDone(request:options:)``
   public func updateScopePollingUntilDone(request: UpdateScopeRequest) async throws -> Scope {
     return try await self.updateScopePollingUntilDone(request: request, options: .init())
   }
@@ -2501,6 +3600,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a scopes.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateScopePollingUntilDone(request:options:)``
   public func updateScopePollingUntilDone(
     scope: Scope?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2512,6 +3618,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateScopePollingUntilDone(request: request)
   }
 
+  /// Deletes a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScope(request:options:)``
   public func deleteScope(request: DeleteScopeRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteScope(request: request, options: .init())
   }
@@ -2522,6 +3635,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopePollingUntilDone(request:options:)``
   public func deleteScopePollingUntilDone(request: DeleteScopeRequest) async throws {
     try await self.deleteScopePollingUntilDone(request: request, options: .init())
   }
@@ -2532,6 +3652,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Scope.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteScope")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteScopePollingUntilDone(request:options:)``
   public func deleteScopePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2541,6 +3668,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteScopePollingUntilDone(request: request)
   }
 
+  /// Lists Scopes.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopes(request:options:)``
   public func listScopes(request: ListScopesRequest) async throws
     -> GoogleCloudGKEHubV1.ListScopesResponse
   {
@@ -2553,6 +3687,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Scopes.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopes(request:options:)``
   public func listScopesByItems(
     request: ListScopesRequest
   ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
@@ -2562,6 +3703,10 @@ extension Clients.GkeHubProtocol {
   /// Lists Scopes.
   ///
   /// @Snippet(path: "GkeHub_ListScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopes(request:options:)``
   public func listScopesByItems(
     request: ListScopesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
@@ -2575,6 +3720,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Scopes.
+  ///
+  /// @Snippet(path: "GkeHub_ListScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listScopes(request:options:)``
   public func listScopesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
@@ -2584,6 +3736,13 @@ extension Clients.GkeHubProtocol {
     return self.listScopesByItems(request: request)
   }
 
+  /// Lists permitted Scopes.
+  ///
+  /// @Snippet(path: "GkeHub_ListPermittedScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listPermittedScopes(request:options:)``
   public func listPermittedScopes(request: ListPermittedScopesRequest) async throws
     -> GoogleCloudGKEHubV1.ListPermittedScopesResponse
   {
@@ -2596,6 +3755,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists permitted Scopes.
+  ///
+  /// @Snippet(path: "GkeHub_ListPermittedScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listPermittedScopes(request:options:)``
   public func listPermittedScopesByItems(
     request: ListPermittedScopesRequest
   ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
@@ -2605,6 +3771,10 @@ extension Clients.GkeHubProtocol {
   /// Lists permitted Scopes.
   ///
   /// @Snippet(path: "GkeHub_ListPermittedScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listPermittedScopes(request:options:)``
   public func listPermittedScopesByItems(
     request: ListPermittedScopesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
@@ -2619,6 +3789,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists permitted Scopes.
+  ///
+  /// @Snippet(path: "GkeHub_ListPermittedScopes")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listPermittedScopes(request:options:)``
   public func listPermittedScopesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Scope, any Swift.Error> & Sendable {
@@ -2628,6 +3805,13 @@ extension Clients.GkeHubProtocol {
     return self.listPermittedScopesByItems(request: request)
   }
 
+  /// Returns the details of a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_GetMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getMembershipBinding(request:options:)``
   public func getMembershipBinding(request: GetMembershipBindingRequest) async throws
     -> GoogleCloudGKEHubV1.MembershipBinding
   {
@@ -2640,6 +3824,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details of a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_GetMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getMembershipBinding(request:options:)``
   public func getMembershipBinding(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.MembershipBinding {
@@ -2649,6 +3840,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getMembershipBinding(request: request)
   }
 
+  /// Creates a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipBinding(request:options:)``
   public func createMembershipBinding(request: CreateMembershipBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2661,6 +3859,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipBindingPollingUntilDone(request:options:)``
   public func createMembershipBindingPollingUntilDone(request: CreateMembershipBindingRequest)
     async throws -> MembershipBinding
   {
@@ -2674,6 +3879,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipBindingPollingUntilDone(request:options:)``
   public func createMembershipBindingPollingUntilDone(
     parent: Swift.String,
     membershipBinding: MembershipBinding?,
@@ -2687,6 +3899,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createMembershipBindingPollingUntilDone(request: request)
   }
 
+  /// Updates a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipBinding(request:options:)``
   public func updateMembershipBinding(request: UpdateMembershipBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2699,6 +3918,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipBindingPollingUntilDone(request:options:)``
   public func updateMembershipBindingPollingUntilDone(request: UpdateMembershipBindingRequest)
     async throws -> MembershipBinding
   {
@@ -2712,6 +3938,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipBindingPollingUntilDone(request:options:)``
   public func updateMembershipBindingPollingUntilDone(
     membershipBinding: MembershipBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2723,6 +3956,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateMembershipBindingPollingUntilDone(request: request)
   }
 
+  /// Deletes a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipBinding(request:options:)``
   public func deleteMembershipBinding(request: DeleteMembershipBindingRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2735,6 +3975,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipBindingPollingUntilDone(request:options:)``
   public func deleteMembershipBindingPollingUntilDone(request: DeleteMembershipBindingRequest)
     async throws
   {
@@ -2747,6 +3994,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a MembershipBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembershipBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipBindingPollingUntilDone(request:options:)``
   public func deleteMembershipBindingPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2756,6 +4010,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteMembershipBindingPollingUntilDone(request: request)
   }
 
+  /// Lists MembershipBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListMembershipBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipBindings(request:options:)``
   public func listMembershipBindings(request: ListMembershipBindingsRequest) async throws
     -> GoogleCloudGKEHubV1.ListMembershipBindingsResponse
   {
@@ -2768,6 +4029,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists MembershipBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListMembershipBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipBindings(request:options:)``
   public func listMembershipBindingsByItems(
     request: ListMembershipBindingsRequest
   ) -> some AsyncSequence<MembershipBinding, any Swift.Error> & Sendable {
@@ -2777,6 +4045,10 @@ extension Clients.GkeHubProtocol {
   /// Lists MembershipBindings.
   ///
   /// @Snippet(path: "GkeHub_ListMembershipBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipBindings(request:options:)``
   public func listMembershipBindingsByItems(
     request: ListMembershipBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MembershipBinding, any Swift.Error> & Sendable {
@@ -2791,6 +4063,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists MembershipBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListMembershipBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipBindings(request:options:)``
   public func listMembershipBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MembershipBinding, any Swift.Error> & Sendable {
@@ -2800,6 +4079,13 @@ extension Clients.GkeHubProtocol {
     return self.listMembershipBindingsByItems(request: request)
   }
 
+  /// Returns the details of a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_GetMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getMembershipRbacroleBinding(request:options:)``
   public func getMembershipRbacroleBinding(request: GetMembershipRBACRoleBindingRequest)
     async throws -> GoogleCloudGKEHubV1.RBACRoleBinding
   {
@@ -2812,6 +4098,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the details of a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_GetMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/getMembershipRbacroleBinding(request:options:)``
   public func getMembershipRbacroleBinding(
     name: Swift.String,
   ) async throws -> GoogleCloudGKEHubV1.RBACRoleBinding {
@@ -2821,6 +4114,13 @@ extension Clients.GkeHubProtocol {
     return try await self.getMembershipRbacroleBinding(request: request)
   }
 
+  /// Creates a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipRbacroleBinding(request:options:)``
   public func createMembershipRbacroleBinding(request: CreateMembershipRBACRoleBindingRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2833,6 +4133,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func createMembershipRbacroleBindingPollingUntilDone(
     request: CreateMembershipRBACRoleBindingRequest
   ) async throws -> RBACRoleBinding {
@@ -2846,6 +4153,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_CreateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/createMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func createMembershipRbacroleBindingPollingUntilDone(
     parent: Swift.String,
     rbacrolebinding: RBACRoleBinding?,
@@ -2859,6 +4173,13 @@ extension Clients.GkeHubProtocol {
     return try await self.createMembershipRbacroleBindingPollingUntilDone(request: request)
   }
 
+  /// Updates a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipRbacroleBinding(request:options:)``
   public func updateMembershipRbacroleBinding(request: UpdateMembershipRBACRoleBindingRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2871,6 +4192,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func updateMembershipRbacroleBindingPollingUntilDone(
     request: UpdateMembershipRBACRoleBindingRequest
   ) async throws -> RBACRoleBinding {
@@ -2884,6 +4212,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_UpdateMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/updateMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func updateMembershipRbacroleBindingPollingUntilDone(
     rbacrolebinding: RBACRoleBinding?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2895,6 +4230,13 @@ extension Clients.GkeHubProtocol {
     return try await self.updateMembershipRbacroleBindingPollingUntilDone(request: request)
   }
 
+  /// Deletes a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipRbacroleBinding(request:options:)``
   public func deleteMembershipRbacroleBinding(request: DeleteMembershipRBACRoleBindingRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2907,6 +4249,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func deleteMembershipRbacroleBindingPollingUntilDone(
     request: DeleteMembershipRBACRoleBindingRequest
   ) async throws {
@@ -2920,6 +4269,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a Membership RBACRoleBinding.
+  ///
+  /// @Snippet(path: "GkeHub_DeleteMembershipRBACRoleBinding")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteMembershipRbacroleBindingPollingUntilDone(request:options:)``
   public func deleteMembershipRbacroleBindingPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2929,6 +4285,13 @@ extension Clients.GkeHubProtocol {
     try await self.deleteMembershipRbacroleBindingPollingUntilDone(request: request)
   }
 
+  /// Lists all Membership RBACRoleBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipRbacroleBindings(request:options:)``
   public func listMembershipRbacroleBindings(request: ListMembershipRBACRoleBindingsRequest)
     async throws -> GoogleCloudGKEHubV1.ListMembershipRBACRoleBindingsResponse
   {
@@ -2941,6 +4304,13 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all Membership RBACRoleBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipRbacroleBindings(request:options:)``
   public func listMembershipRbacroleBindingsByItems(
     request: ListMembershipRBACRoleBindingsRequest
   ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
@@ -2950,6 +4320,10 @@ extension Clients.GkeHubProtocol {
   /// Lists all Membership RBACRoleBindings.
   ///
   /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipRbacroleBindings(request:options:)``
   public func listMembershipRbacroleBindingsByItems(
     request: ListMembershipRBACRoleBindingsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
@@ -2964,6 +4338,13 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all Membership RBACRoleBindings.
+  ///
+  /// @Snippet(path: "GkeHub_ListMembershipRBACRoleBindings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listMembershipRbacroleBindings(request:options:)``
   public func listMembershipRbacroleBindingsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RBACRoleBinding, any Swift.Error> & Sendable {
@@ -2973,6 +4354,14 @@ extension Clients.GkeHubProtocol {
     return self.listMembershipRbacroleBindingsByItems(request: request)
   }
 
+  /// Generates a YAML of the  RBAC policies for the specified
+  /// RoleBinding and its associated impersonation resources.
+  ///
+  /// @Snippet(path: "GkeHub_GenerateMembershipRBACRoleBindingYAML")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/generateMembershipRbacroleBindingYaml(request:options:)``
   public func generateMembershipRbacroleBindingYaml(
     request: GenerateMembershipRBACRoleBindingYAMLRequest
   ) async throws -> GoogleCloudGKEHubV1.GenerateMembershipRBACRoleBindingYAMLResponse {
@@ -2985,6 +4374,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2997,6 +4395,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3008,6 +4415,10 @@ extension Clients.GkeHubProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "GkeHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3021,6 +4432,15 @@ extension Clients.GkeHubProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -3032,6 +4452,9 @@ extension Clients.GkeHubProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3044,6 +4467,9 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -3053,6 +4479,15 @@ extension Clients.GkeHubProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -3063,6 +4498,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -3072,6 +4516,15 @@ extension Clients.GkeHubProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -3082,6 +4535,15 @@ extension Clients.GkeHubProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "GkeHub_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GkeHubClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

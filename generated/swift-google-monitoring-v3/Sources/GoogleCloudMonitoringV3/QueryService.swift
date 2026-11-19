@@ -25,6 +25,10 @@ import Foundation
 /// the time-varying values of a metric.
 ///
 /// @Snippet(path: "QueryServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/QueryServiceProtocol``
 public final class QueryServiceClient: Clients.QueryServiceProtocol, Sendable {
   let inner: any Clients.QueryServiceStub
 
@@ -44,6 +48,12 @@ public final class QueryServiceClient: Clients.QueryServiceProtocol, Sendable {
   /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
   ///
   /// @Snippet(path: "QueryService_QueryTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``queryTimeSeries(request:)``
+  /// - ``queryTimeSeriesByItems(request:)``
+  /// - ``queryTimeSeriesByItems(request:options:)``
   @available(*, deprecated)
   public func queryTimeSeries(
     request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions
@@ -69,6 +79,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.QueryServiceProtocol {
+  /// Queries time series by using Monitoring Query Language (MQL). We recommend
+  /// using PromQL instead of MQL. For more information about the status of MQL,
+  /// see the [MQL deprecation
+  /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
+  ///
+  /// @Snippet(path: "QueryService_QueryTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QueryServiceClient/queryTimeSeries(request:options:)``
   @available(*, deprecated)
   public func queryTimeSeries(request: QueryTimeSeriesRequest) async throws
     -> GoogleCloudMonitoringV3.QueryTimeSeriesResponse
@@ -83,6 +103,16 @@ extension Clients.QueryServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Queries time series by using Monitoring Query Language (MQL). We recommend
+  /// using PromQL instead of MQL. For more information about the status of MQL,
+  /// see the [MQL deprecation
+  /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
+  ///
+  /// @Snippet(path: "QueryService_QueryTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QueryServiceClient/queryTimeSeries(request:options:)``
   @available(*, deprecated)
   public func queryTimeSeriesByItems(
     request: QueryTimeSeriesRequest
@@ -96,6 +126,10 @@ extension Clients.QueryServiceProtocol {
   /// notice](https://cloud.google.com/stackdriver/docs/deprecations/mql).
   ///
   /// @Snippet(path: "QueryService_QueryTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QueryServiceClient/queryTimeSeries(request:options:)``
   @available(*, deprecated)
   public func queryTimeSeriesByItems(
     request: QueryTimeSeriesRequest, options: GoogleGax.RequestOptions

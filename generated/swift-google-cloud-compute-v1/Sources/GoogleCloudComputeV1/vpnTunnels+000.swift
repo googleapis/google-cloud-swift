@@ -24,6 +24,10 @@
   /// Service for the `vpnTunnels` resource.
   ///
   /// @Snippet(path: "vpnTunnelsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/VpnTunnelsProtocol``
   public final class VpnTunnelsClient: Clients.VpnTunnelsProtocol, Sendable {
     let inner: any Clients.VpnTunnelsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "vpnTunnels_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: VpnTunnelsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnTunnelAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified VpnTunnel resource.
     ///
     /// @Snippet(path: "vpnTunnels_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:vpnTunnel:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: VpnTunnelsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnTunnels_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:vpnTunnel:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: VpnTunnelsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified VpnTunnel resource.
     ///
     /// @Snippet(path: "vpnTunnels_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:vpnTunnel:)``
+    /// - ``get(request:)``
     public func `get`(
       request: VpnTunnelsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnTunnel {
@@ -122,6 +152,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "vpnTunnels_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: VpnTunnelsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -137,6 +174,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnTunnels_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: VpnTunnelsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -180,6 +224,13 @@
     /// project and region.
     ///
     /// @Snippet(path: "vpnTunnels_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: VpnTunnelsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.VpnTunnelList {
@@ -190,6 +241,13 @@
     /// Resources documentation.
     ///
     /// @Snippet(path: "vpnTunnels_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
+    /// - ``setLabelsPollingUntilDone(request:options:)``
     public func setLabels(
       request: VpnTunnelsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -205,6 +263,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "vpnTunnels_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setLabels(request:)``
+    /// - ``setLabels(request:options:)``
+    /// - ``setLabelsPollingUntilDone(project:region:resource:body:)``
+    /// - ``setLabelsPollingUntilDone(request:)``
     public func setLabelsPollingUntilDone(
       request: VpnTunnelsClient.SetLabelsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -325,6 +390,16 @@
 
   // Default implementations
   extension Clients.VpnTunnelsProtocol {
+    /// Retrieves an aggregated list of VPN tunnels.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnTunnels_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: VpnTunnelsClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.VpnTunnelAggregatedList
     {
@@ -337,6 +412,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of VPN tunnels.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnTunnels_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: VpnTunnelsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, VpnTunnelsScopedList), any Swift.Error> & Sendable {
@@ -349,6 +434,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "vpnTunnels_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: VpnTunnelsClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, VpnTunnelsScopedList), any Swift.Error> & Sendable {
@@ -363,6 +452,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of VPN tunnels.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "vpnTunnels_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, VpnTunnelsScopedList), any Swift.Error> & Sendable {
@@ -372,6 +471,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified VpnTunnel resource.
+    ///
+    /// @Snippet(path: "vpnTunnels_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/delete(request:options:)``
     public func delete(request: VpnTunnelsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -384,6 +490,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified VpnTunnel resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnTunnels_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: VpnTunnelsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -396,6 +514,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified VpnTunnel resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnTunnels_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -409,6 +539,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified VpnTunnel resource.
+    ///
+    /// @Snippet(path: "vpnTunnels_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/get(request:options:)``
     public func `get`(request: VpnTunnelsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.VpnTunnel
     {
@@ -421,6 +558,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified VpnTunnel resource.
+    ///
+    /// @Snippet(path: "vpnTunnels_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -434,6 +578,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a VpnTunnel resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "vpnTunnels_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/insert(request:options:)``
     public func insert(request: VpnTunnelsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -446,6 +598,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a VpnTunnel resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnTunnels_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: VpnTunnelsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -458,6 +623,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a VpnTunnel resource in the specified project and region using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnTunnels_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -471,6 +649,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of VpnTunnel resources contained in the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnTunnels_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/list(request:options:)``
     public func list(request: VpnTunnelsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.VpnTunnelList
     {
@@ -483,6 +669,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of VpnTunnel resources contained in the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnTunnels_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/list(request:options:)``
     public func listByItems(
       request: VpnTunnelsClient.ListRequest
     ) -> some AsyncSequence<VpnTunnel, any Swift.Error> & Sendable {
@@ -493,6 +687,10 @@
     /// project and region.
     ///
     /// @Snippet(path: "vpnTunnels_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/list(request:options:)``
     public func listByItems(
       request: VpnTunnelsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<VpnTunnel, any Swift.Error> & Sendable {
@@ -506,6 +704,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of VpnTunnel resources contained in the specified
+    /// project and region.
+    ///
+    /// @Snippet(path: "vpnTunnels_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -517,6 +723,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the labels on a VpnTunnel. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// @Snippet(path: "vpnTunnels_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/setLabels(request:options:)``
     public func setLabels(request: VpnTunnelsClient.SetLabelsRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -529,6 +743,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a VpnTunnel. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnTunnels_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       request: VpnTunnelsClient.SetLabelsRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -541,6 +768,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the labels on a VpnTunnel. To learn more about labels, read theLabeling
+    /// Resources documentation.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "vpnTunnels_setLabels")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VpnTunnelsClient/setLabelsPollingUntilDone(request:options:)``
     public func setLabelsPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -556,6 +796,7 @@
       return try await self.setLabelsPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

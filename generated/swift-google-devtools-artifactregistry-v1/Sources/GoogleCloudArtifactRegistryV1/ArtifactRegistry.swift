@@ -39,6 +39,10 @@ import Foundation
 ///   or Version.
 ///
 /// @Snippet(path: "ArtifactRegistryQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ArtifactRegistryProtocol``
 public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sendable {
   let inner: any Clients.ArtifactRegistryStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -59,6 +63,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists docker images.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListDockerImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDockerImages(request:)``
+  /// - ``listDockerImagesByItems(parent:)``
+  /// - ``listDockerImagesByItems(request:)``
+  /// - ``listDockerImagesByItems(request:options:)``
   public func listDockerImages(
     request: ListDockerImagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse {
@@ -68,6 +79,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a docker image.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetDockerImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDockerImage(name:)``
+  /// - ``getDockerImage(request:)``
   public func getDockerImage(
     request: GetDockerImageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.DockerImage {
@@ -77,6 +93,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists maven artifacts.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListMavenArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMavenArtifacts(request:)``
+  /// - ``listMavenArtifactsByItems(parent:)``
+  /// - ``listMavenArtifactsByItems(request:)``
+  /// - ``listMavenArtifactsByItems(request:options:)``
   public func listMavenArtifacts(
     request: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListMavenArtifactsResponse {
@@ -86,6 +109,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a maven artifact.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetMavenArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMavenArtifact(name:)``
+  /// - ``getMavenArtifact(request:)``
   public func getMavenArtifact(
     request: GetMavenArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.MavenArtifact {
@@ -95,6 +123,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists npm packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listNpmPackages(request:)``
+  /// - ``listNpmPackagesByItems(parent:)``
+  /// - ``listNpmPackagesByItems(request:)``
+  /// - ``listNpmPackagesByItems(request:options:)``
   public func listNpmPackages(
     request: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListNpmPackagesResponse {
@@ -104,6 +139,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a npm package.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetNpmPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getNpmPackage(name:)``
+  /// - ``getNpmPackage(request:)``
   public func getNpmPackage(
     request: GetNpmPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.NpmPackage {
@@ -113,6 +153,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists python packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListPythonPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPythonPackages(request:)``
+  /// - ``listPythonPackagesByItems(parent:)``
+  /// - ``listPythonPackagesByItems(request:)``
+  /// - ``listPythonPackagesByItems(request:options:)``
   public func listPythonPackages(
     request: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListPythonPackagesResponse {
@@ -122,6 +169,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a python package.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetPythonPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPythonPackage(name:)``
+  /// - ``getPythonPackage(request:)``
   public func getPythonPackage(
     request: GetPythonPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.PythonPackage {
@@ -134,6 +186,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// existing resources are ignored.
   ///
   /// @Snippet(path: "ArtifactRegistry_ImportAptArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importAptArtifacts(request:)``
+  /// - ``importAptArtifactsPollingUntilDone(request:)``
+  /// - ``importAptArtifactsPollingUntilDone(request:options:)``
   public func importAptArtifacts(
     request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -146,6 +204,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// existing resources are ignored.
   ///
   /// @Snippet(path: "ArtifactRegistry_ImportAptArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importAptArtifacts(request:)``
+  /// - ``importAptArtifacts(request:options:)``
+  /// - ``importAptArtifactsPollingUntilDone(request:)``
   public func importAptArtifactsPollingUntilDone(
     request: ImportAptArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportAptArtifactsResponse {
@@ -178,6 +242,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// existing resources are ignored.
   ///
   /// @Snippet(path: "ArtifactRegistry_ImportYumArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importYumArtifacts(request:)``
+  /// - ``importYumArtifactsPollingUntilDone(request:)``
+  /// - ``importYumArtifactsPollingUntilDone(request:options:)``
   public func importYumArtifacts(
     request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -190,6 +260,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// existing resources are ignored.
   ///
   /// @Snippet(path: "ArtifactRegistry_ImportYumArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importYumArtifacts(request:)``
+  /// - ``importYumArtifacts(request:options:)``
+  /// - ``importYumArtifactsPollingUntilDone(request:)``
   public func importYumArtifactsPollingUntilDone(
     request: ImportYumArtifactsRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportYumArtifactsResponse {
@@ -219,6 +295,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists repositories.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRepositories(request:)``
+  /// - ``listRepositoriesByItems(parent:)``
+  /// - ``listRepositoriesByItems(request:)``
+  /// - ``listRepositoriesByItems(request:options:)``
   public func listRepositories(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListRepositoriesResponse {
@@ -228,6 +311,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a repository.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRepository(name:)``
+  /// - ``getRepository(request:)``
   public func getRepository(
     request: GetRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -238,6 +326,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// repository has been created. Its response will be the created Repository.
   ///
   /// @Snippet(path: "ArtifactRegistry_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRepository(request:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
+  /// - ``createRepositoryPollingUntilDone(request:)``
+  /// - ``createRepositoryPollingUntilDone(request:options:)``
   public func createRepository(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -248,6 +343,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// repository has been created. Its response will be the created Repository.
   ///
   /// @Snippet(path: "ArtifactRegistry_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRepository(request:)``
+  /// - ``createRepository(request:options:)``
+  /// - ``createRepositoryPollingUntilDone(parent:repository:repositoryId:)``
+  /// - ``createRepositoryPollingUntilDone(request:)``
   public func createRepositoryPollingUntilDone(
     request: CreateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> Repository {
@@ -275,6 +377,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates a repository.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRepository(repository:updateMask:)``
+  /// - ``updateRepository(request:)``
   public func updateRepository(
     request: UpdateRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -286,6 +393,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// metadata and will return a google.protobuf.Empty response.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRepository(request:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:options:)``
   public func deleteRepository(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -297,6 +411,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// metadata and will return a google.protobuf.Empty response.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRepository(request:)``
+  /// - ``deleteRepository(request:options:)``
+  /// - ``deleteRepositoryPollingUntilDone(name:)``
+  /// - ``deleteRepositoryPollingUntilDone(request:)``
   public func deleteRepositoryPollingUntilDone(
     request: DeleteRepositoryRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -324,6 +445,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPackages(request:)``
+  /// - ``listPackagesByItems(parent:)``
+  /// - ``listPackagesByItems(request:)``
+  /// - ``listPackagesByItems(request:options:)``
   public func listPackages(
     request: ListPackagesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListPackagesResponse {
@@ -333,6 +461,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a package.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getPackage(name:)``
+  /// - ``getPackage(request:)``
   public func getPackage(
     request: GetPackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -343,6 +476,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// will complete once the package has been deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeletePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePackage(request:)``
+  /// - ``deletePackagePollingUntilDone(name:)``
+  /// - ``deletePackagePollingUntilDone(request:)``
+  /// - ``deletePackagePollingUntilDone(request:options:)``
   public func deletePackage(
     request: DeletePackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -353,6 +493,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// will complete once the package has been deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeletePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deletePackage(request:)``
+  /// - ``deletePackage(request:options:)``
+  /// - ``deletePackagePollingUntilDone(name:)``
+  /// - ``deletePackagePollingUntilDone(request:)``
   public func deletePackagePollingUntilDone(
     request: DeletePackageRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -380,6 +527,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists versions.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listVersions(request:)``
+  /// - ``listVersionsByItems(parent:)``
+  /// - ``listVersionsByItems(request:)``
+  /// - ``listVersionsByItems(request:options:)``
   public func listVersions(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListVersionsResponse {
@@ -389,6 +543,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a version
   ///
   /// @Snippet(path: "ArtifactRegistry_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVersion(name:)``
+  /// - ``getVersion(request:)``
   public func getVersion(
     request: GetVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Version {
@@ -399,6 +558,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// complete once the version has been deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVersion(request:)``
+  /// - ``deleteVersionPollingUntilDone(name:)``
+  /// - ``deleteVersionPollingUntilDone(request:)``
+  /// - ``deleteVersionPollingUntilDone(request:options:)``
   public func deleteVersion(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -409,6 +575,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// complete once the version has been deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteVersion(request:)``
+  /// - ``deleteVersion(request:options:)``
+  /// - ``deleteVersionPollingUntilDone(name:)``
+  /// - ``deleteVersionPollingUntilDone(request:)``
   public func deleteVersionPollingUntilDone(
     request: DeleteVersionRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -437,6 +610,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// complete once the versions have been deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_BatchDeleteVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteVersions(request:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(request:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(request:options:)``
   public func batchDeleteVersions(
     request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -447,6 +627,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// complete once the versions have been deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_BatchDeleteVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchDeleteVersions(request:)``
+  /// - ``batchDeleteVersions(request:options:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(parent:names:)``
+  /// - ``batchDeleteVersionsPollingUntilDone(request:)``
   public func batchDeleteVersionsPollingUntilDone(
     request: BatchDeleteVersionsRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -474,6 +661,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates a version.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVersion(request:)``
+  /// - ``updateVersion(version:updateMask:)``
   public func updateVersion(
     request: UpdateVersionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Version {
@@ -483,6 +675,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists files.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFiles(request:)``
+  /// - ``listFilesByItems(parent:)``
+  /// - ``listFilesByItems(request:)``
+  /// - ``listFilesByItems(request:options:)``
   public func listFiles(
     request: ListFilesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListFilesResponse {
@@ -492,6 +691,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a file.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFile(name:)``
+  /// - ``getFile(request:)``
   public func getFile(
     request: GetFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -503,6 +707,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFile(request:)``
+  /// - ``deleteFilePollingUntilDone(name:)``
+  /// - ``deleteFilePollingUntilDone(request:)``
+  /// - ``deleteFilePollingUntilDone(request:options:)``
   public func deleteFile(
     request: DeleteFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -514,6 +725,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// deleted.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFile(request:)``
+  /// - ``deleteFile(request:options:)``
+  /// - ``deleteFilePollingUntilDone(name:)``
+  /// - ``deleteFilePollingUntilDone(request:)``
   public func deleteFilePollingUntilDone(
     request: DeleteFileRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -541,6 +759,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates a file.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFile(file:updateMask:)``
+  /// - ``updateFile(request:)``
   public func updateFile(
     request: UpdateFileRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -550,6 +773,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists tags.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTags(request:)``
+  /// - ``listTagsByItems(parent:)``
+  /// - ``listTagsByItems(request:)``
+  /// - ``listTagsByItems(request:options:)``
   public func listTags(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListTagsResponse {
@@ -559,6 +789,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a tag.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTag(name:)``
+  /// - ``getTag(request:)``
   public func getTag(
     request: GetTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -568,6 +803,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Creates a tag.
   ///
   /// @Snippet(path: "ArtifactRegistry_CreateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTag(parent:tag:tagId:)``
+  /// - ``createTag(request:)``
   public func createTag(
     request: CreateTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -577,6 +817,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates a tag.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTag(request:)``
+  /// - ``updateTag(tag:updateMask:)``
   public func updateTag(
     request: UpdateTagRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -586,6 +831,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Deletes a tag.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTag(name:)``
+  /// - ``deleteTag(request:)``
   public func deleteTag(
     request: DeleteTagRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -595,6 +845,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Creates a rule.
   ///
   /// @Snippet(path: "ArtifactRegistry_CreateRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRule(parent:rule:ruleId:)``
+  /// - ``createRule(request:)``
   public func createRule(
     request: CreateRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -604,6 +859,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists rules.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRules(request:)``
+  /// - ``listRulesByItems(parent:)``
+  /// - ``listRulesByItems(request:)``
+  /// - ``listRulesByItems(request:options:)``
   public func listRules(
     request: ListRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListRulesResponse {
@@ -613,6 +875,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets a rule.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRule(name:)``
+  /// - ``getRule(request:)``
   public func getRule(
     request: GetRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -622,6 +889,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates a rule.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRule(request:)``
+  /// - ``updateRule(rule:updateMask:)``
   public func updateRule(
     request: UpdateRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -631,6 +903,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Deletes a rule.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRule(name:)``
+  /// - ``deleteRule(request:)``
   public func deleteRule(
     request: DeleteRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -640,6 +917,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates the IAM policy for a given resource.
   ///
   /// @Snippet(path: "ArtifactRegistry_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -649,6 +930,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets the IAM policy for a given resource.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -658,6 +943,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Tests if the caller has a list of permissions on a resource.
   ///
   /// @Snippet(path: "ArtifactRegistry_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -667,6 +956,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Retrieves the Settings for the Project.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetProjectSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProjectSettings(name:)``
+  /// - ``getProjectSettings(request:)``
   public func getProjectSettings(
     request: GetProjectSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -676,6 +970,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates the Settings for the Project.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateProjectSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProjectSettings(projectSettings:updateMask:)``
+  /// - ``updateProjectSettings(request:)``
   public func updateProjectSettings(
     request: UpdateProjectSettingsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -685,6 +984,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Retrieves the VPCSC Config for the Project.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetVPCSCConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getVpcscconfig(name:)``
+  /// - ``getVpcscconfig(request:)``
   public func getVpcscconfig(
     request: GetVPCSCConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
@@ -694,6 +998,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates the VPCSC Config for the Project.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdateVPCSCConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateVpcscconfig(request:)``
+  /// - ``updateVpcscconfig(vpcscConfig:updateMask:)``
   public func updateVpcscconfig(
     request: UpdateVPCSCConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
@@ -703,6 +1012,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Updates a package.
   ///
   /// @Snippet(path: "ArtifactRegistry_UpdatePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updatePackage(package:updateMask:)``
+  /// - ``updatePackage(request:)``
   public func updatePackage(
     request: UpdatePackageRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -712,6 +1026,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Lists attachments.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAttachments(request:)``
+  /// - ``listAttachmentsByItems(parent:)``
+  /// - ``listAttachmentsByItems(request:)``
+  /// - ``listAttachmentsByItems(request:options:)``
   public func listAttachments(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.ListAttachmentsResponse {
@@ -721,6 +1042,11 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets an attachment.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAttachment(name:)``
+  /// - ``getAttachment(request:)``
   public func getAttachment(
     request: GetAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudArtifactRegistryV1.Attachment {
@@ -731,6 +1057,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// attachment has been created. Its response will be the created attachment.
   ///
   /// @Snippet(path: "ArtifactRegistry_CreateAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAttachment(request:)``
+  /// - ``createAttachmentPollingUntilDone(parent:attachment:attachmentId:)``
+  /// - ``createAttachmentPollingUntilDone(request:)``
+  /// - ``createAttachmentPollingUntilDone(request:options:)``
   public func createAttachment(
     request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -741,6 +1074,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// attachment has been created. Its response will be the created attachment.
   ///
   /// @Snippet(path: "ArtifactRegistry_CreateAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAttachment(request:)``
+  /// - ``createAttachment(request:options:)``
+  /// - ``createAttachmentPollingUntilDone(parent:attachment:attachmentId:)``
+  /// - ``createAttachmentPollingUntilDone(request:)``
   public func createAttachmentPollingUntilDone(
     request: CreateAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> Attachment {
@@ -770,6 +1110,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Operation metadata and will return a `google.protobuf.Empty` response.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAttachment(request:)``
+  /// - ``deleteAttachmentPollingUntilDone(name:)``
+  /// - ``deleteAttachmentPollingUntilDone(request:)``
+  /// - ``deleteAttachmentPollingUntilDone(request:options:)``
   public func deleteAttachment(
     request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -781,6 +1128,13 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Operation metadata and will return a `google.protobuf.Empty` response.
   ///
   /// @Snippet(path: "ArtifactRegistry_DeleteAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAttachment(request:)``
+  /// - ``deleteAttachment(request:options:)``
+  /// - ``deleteAttachmentPollingUntilDone(name:)``
+  /// - ``deleteAttachmentPollingUntilDone(request:)``
   public func deleteAttachmentPollingUntilDone(
     request: DeleteAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -808,6 +1162,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Exports an artifact to a Cloud Storage bucket.
   ///
   /// @Snippet(path: "ArtifactRegistry_ExportArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportArtifact(request:)``
+  /// - ``exportArtifactPollingUntilDone(request:)``
+  /// - ``exportArtifactPollingUntilDone(request:options:)``
   public func exportArtifact(
     request: ExportArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -817,6 +1177,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Exports an artifact to a Cloud Storage bucket.
   ///
   /// @Snippet(path: "ArtifactRegistry_ExportArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportArtifact(request:)``
+  /// - ``exportArtifact(request:options:)``
+  /// - ``exportArtifactPollingUntilDone(request:)``
   public func exportArtifactPollingUntilDone(
     request: ExportArtifactRequest, options: GoogleGax.RequestOptions
   ) async throws -> ExportArtifactResponse {
@@ -852,6 +1218,12 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// to the project.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -861,6 +1233,10 @@ public final class ArtifactRegistryClient: Clients.ArtifactRegistryProtocol, Sen
   /// Gets information about a location.
   ///
   /// @Snippet(path: "ArtifactRegistry_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1205,6 +1581,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ArtifactRegistryProtocol {
+  /// Lists docker images.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListDockerImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listDockerImages(request:options:)``
   public func listDockerImages(request: ListDockerImagesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListDockerImagesResponse
   {
@@ -1217,6 +1600,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists docker images.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListDockerImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listDockerImages(request:options:)``
   public func listDockerImagesByItems(
     request: ListDockerImagesRequest
   ) -> some AsyncSequence<DockerImage, any Swift.Error> & Sendable {
@@ -1226,6 +1616,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists docker images.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListDockerImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listDockerImages(request:options:)``
   public func listDockerImagesByItems(
     request: ListDockerImagesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DockerImage, any Swift.Error> & Sendable {
@@ -1240,6 +1634,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists docker images.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListDockerImages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listDockerImages(request:options:)``
   public func listDockerImagesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DockerImage, any Swift.Error> & Sendable {
@@ -1249,6 +1650,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listDockerImagesByItems(request: request)
   }
 
+  /// Gets a docker image.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetDockerImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getDockerImage(request:options:)``
   public func getDockerImage(request: GetDockerImageRequest) async throws
     -> GoogleCloudArtifactRegistryV1.DockerImage
   {
@@ -1261,6 +1669,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a docker image.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetDockerImage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getDockerImage(request:options:)``
   public func getDockerImage(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.DockerImage {
@@ -1270,6 +1685,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getDockerImage(request: request)
   }
 
+  /// Lists maven artifacts.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListMavenArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listMavenArtifacts(request:options:)``
   public func listMavenArtifacts(request: ListMavenArtifactsRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListMavenArtifactsResponse
   {
@@ -1282,6 +1704,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists maven artifacts.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListMavenArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listMavenArtifacts(request:options:)``
   public func listMavenArtifactsByItems(
     request: ListMavenArtifactsRequest
   ) -> some AsyncSequence<MavenArtifact, any Swift.Error> & Sendable {
@@ -1291,6 +1720,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists maven artifacts.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListMavenArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listMavenArtifacts(request:options:)``
   public func listMavenArtifactsByItems(
     request: ListMavenArtifactsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MavenArtifact, any Swift.Error> & Sendable {
@@ -1305,6 +1738,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists maven artifacts.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListMavenArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listMavenArtifacts(request:options:)``
   public func listMavenArtifactsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MavenArtifact, any Swift.Error> & Sendable {
@@ -1314,6 +1754,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listMavenArtifactsByItems(request: request)
   }
 
+  /// Gets a maven artifact.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetMavenArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getMavenArtifact(request:options:)``
   public func getMavenArtifact(request: GetMavenArtifactRequest) async throws
     -> GoogleCloudArtifactRegistryV1.MavenArtifact
   {
@@ -1326,6 +1773,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a maven artifact.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetMavenArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getMavenArtifact(request:options:)``
   public func getMavenArtifact(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.MavenArtifact {
@@ -1335,6 +1789,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getMavenArtifact(request: request)
   }
 
+  /// Lists npm packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listNpmPackages(request:options:)``
   public func listNpmPackages(request: ListNpmPackagesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListNpmPackagesResponse
   {
@@ -1347,6 +1808,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists npm packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listNpmPackages(request:options:)``
   public func listNpmPackagesByItems(
     request: ListNpmPackagesRequest
   ) -> some AsyncSequence<NpmPackage, any Swift.Error> & Sendable {
@@ -1356,6 +1824,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists npm packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listNpmPackages(request:options:)``
   public func listNpmPackagesByItems(
     request: ListNpmPackagesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<NpmPackage, any Swift.Error> & Sendable {
@@ -1370,6 +1842,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists npm packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListNpmPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listNpmPackages(request:options:)``
   public func listNpmPackagesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<NpmPackage, any Swift.Error> & Sendable {
@@ -1379,6 +1858,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listNpmPackagesByItems(request: request)
   }
 
+  /// Gets a npm package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetNpmPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getNpmPackage(request:options:)``
   public func getNpmPackage(request: GetNpmPackageRequest) async throws
     -> GoogleCloudArtifactRegistryV1.NpmPackage
   {
@@ -1391,6 +1877,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a npm package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetNpmPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getNpmPackage(request:options:)``
   public func getNpmPackage(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.NpmPackage {
@@ -1400,6 +1893,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getNpmPackage(request: request)
   }
 
+  /// Lists python packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListPythonPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPythonPackages(request:options:)``
   public func listPythonPackages(request: ListPythonPackagesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListPythonPackagesResponse
   {
@@ -1412,6 +1912,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists python packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListPythonPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPythonPackages(request:options:)``
   public func listPythonPackagesByItems(
     request: ListPythonPackagesRequest
   ) -> some AsyncSequence<PythonPackage, any Swift.Error> & Sendable {
@@ -1421,6 +1928,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists python packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListPythonPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPythonPackages(request:options:)``
   public func listPythonPackagesByItems(
     request: ListPythonPackagesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<PythonPackage, any Swift.Error> & Sendable {
@@ -1435,6 +1946,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists python packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListPythonPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPythonPackages(request:options:)``
   public func listPythonPackagesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<PythonPackage, any Swift.Error> & Sendable {
@@ -1444,6 +1962,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listPythonPackagesByItems(request: request)
   }
 
+  /// Gets a python package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetPythonPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getPythonPackage(request:options:)``
   public func getPythonPackage(request: GetPythonPackageRequest) async throws
     -> GoogleCloudArtifactRegistryV1.PythonPackage
   {
@@ -1456,6 +1981,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a python package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetPythonPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getPythonPackage(request:options:)``
   public func getPythonPackage(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.PythonPackage {
@@ -1465,6 +1997,16 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getPythonPackage(request: request)
   }
 
+  /// Imports Apt artifacts. The returned Operation will complete once the
+  /// resources are imported. Package, Version, and File resources are created
+  /// based on the imported artifacts. Imported artifacts that conflict with
+  /// existing resources are ignored.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ImportAptArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/importAptArtifacts(request:options:)``
   public func importAptArtifacts(request: ImportAptArtifactsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1477,6 +2019,16 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports Apt artifacts. The returned Operation will complete once the
+  /// resources are imported. Package, Version, and File resources are created
+  /// based on the imported artifacts. Imported artifacts that conflict with
+  /// existing resources are ignored.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ImportAptArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/importAptArtifactsPollingUntilDone(request:options:)``
   public func importAptArtifactsPollingUntilDone(request: ImportAptArtifactsRequest) async throws
     -> ImportAptArtifactsResponse
   {
@@ -1489,6 +2041,16 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports Yum (RPM) artifacts. The returned Operation will complete once the
+  /// resources are imported. Package, Version, and File resources are created
+  /// based on the imported artifacts. Imported artifacts that conflict with
+  /// existing resources are ignored.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ImportYumArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/importYumArtifacts(request:options:)``
   public func importYumArtifacts(request: ImportYumArtifactsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1501,6 +2063,16 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Imports Yum (RPM) artifacts. The returned Operation will complete once the
+  /// resources are imported. Package, Version, and File resources are created
+  /// based on the imported artifacts. Imported artifacts that conflict with
+  /// existing resources are ignored.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ImportYumArtifacts")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/importYumArtifactsPollingUntilDone(request:options:)``
   public func importYumArtifactsPollingUntilDone(request: ImportYumArtifactsRequest) async throws
     -> ImportYumArtifactsResponse
   {
@@ -1513,6 +2085,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists repositories.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRepositories(request:options:)``
   public func listRepositories(request: ListRepositoriesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListRepositoriesResponse
   {
@@ -1525,6 +2104,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists repositories.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -1534,6 +2120,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists repositories.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     request: ListRepositoriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -1548,6 +2138,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists repositories.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListRepositories")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRepositories(request:options:)``
   public func listRepositoriesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Repository, any Swift.Error> & Sendable {
@@ -1557,6 +2154,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listRepositoriesByItems(request: request)
   }
 
+  /// Gets a repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getRepository(request:options:)``
   public func getRepository(request: GetRepositoryRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Repository
   {
@@ -1569,6 +2173,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getRepository(request:options:)``
   public func getRepository(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.Repository {
@@ -1578,6 +2189,14 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getRepository(request: request)
   }
 
+  /// Creates a repository. The returned Operation will finish once the
+  /// repository has been created. Its response will be the created Repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createRepository(request:options:)``
   public func createRepository(request: CreateRepositoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1590,6 +2209,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a repository. The returned Operation will finish once the
+  /// repository has been created. Its response will be the created Repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createRepositoryPollingUntilDone(request:options:)``
   public func createRepositoryPollingUntilDone(request: CreateRepositoryRequest) async throws
     -> Repository
   {
@@ -1602,6 +2229,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a repository. The returned Operation will finish once the
+  /// repository has been created. Its response will be the created Repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createRepositoryPollingUntilDone(request:options:)``
   public func createRepositoryPollingUntilDone(
     parent: Swift.String,
     repository: Repository?,
@@ -1615,6 +2250,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.createRepositoryPollingUntilDone(request: request)
   }
 
+  /// Updates a repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateRepository(request:options:)``
   public func updateRepository(request: UpdateRepositoryRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Repository
   {
@@ -1627,6 +2269,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a repository.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateRepository(request:options:)``
   public func updateRepository(
     repository: Repository?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1638,6 +2287,15 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateRepository(request: request)
   }
 
+  /// Deletes a repository and all of its contents. The returned Operation will
+  /// finish once the repository has been deleted. It will not have any Operation
+  /// metadata and will return a google.protobuf.Empty response.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteRepository(request:options:)``
   public func deleteRepository(request: DeleteRepositoryRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1650,6 +2308,15 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a repository and all of its contents. The returned Operation will
+  /// finish once the repository has been deleted. It will not have any Operation
+  /// metadata and will return a google.protobuf.Empty response.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteRepositoryPollingUntilDone(request:options:)``
   public func deleteRepositoryPollingUntilDone(request: DeleteRepositoryRequest) async throws {
     try await self.deleteRepositoryPollingUntilDone(request: request, options: .init())
   }
@@ -1660,6 +2327,15 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a repository and all of its contents. The returned Operation will
+  /// finish once the repository has been deleted. It will not have any Operation
+  /// metadata and will return a google.protobuf.Empty response.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteRepository")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteRepositoryPollingUntilDone(request:options:)``
   public func deleteRepositoryPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1669,6 +2345,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deleteRepositoryPollingUntilDone(request: request)
   }
 
+  /// Lists packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPackages(request:options:)``
   public func listPackages(request: ListPackagesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListPackagesResponse
   {
@@ -1681,6 +2364,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPackages(request:options:)``
   public func listPackagesByItems(
     request: ListPackagesRequest
   ) -> some AsyncSequence<Package, any Swift.Error> & Sendable {
@@ -1690,6 +2380,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists packages.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPackages(request:options:)``
   public func listPackagesByItems(
     request: ListPackagesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Package, any Swift.Error> & Sendable {
@@ -1704,6 +2398,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists packages.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListPackages")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listPackages(request:options:)``
   public func listPackagesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Package, any Swift.Error> & Sendable {
@@ -1713,6 +2414,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listPackagesByItems(request: request)
   }
 
+  /// Gets a package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getPackage(request:options:)``
   public func getPackage(request: GetPackageRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Package
   {
@@ -1725,6 +2433,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetPackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getPackage(request:options:)``
   public func getPackage(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.Package {
@@ -1734,6 +2449,14 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getPackage(request: request)
   }
 
+  /// Deletes a package and all of its versions and tags. The returned operation
+  /// will complete once the package has been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeletePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deletePackage(request:options:)``
   public func deletePackage(request: DeletePackageRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1746,6 +2469,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a package and all of its versions and tags. The returned operation
+  /// will complete once the package has been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeletePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deletePackagePollingUntilDone(request:options:)``
   public func deletePackagePollingUntilDone(request: DeletePackageRequest) async throws {
     try await self.deletePackagePollingUntilDone(request: request, options: .init())
   }
@@ -1756,6 +2487,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a package and all of its versions and tags. The returned operation
+  /// will complete once the package has been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeletePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deletePackagePollingUntilDone(request:options:)``
   public func deletePackagePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1765,6 +2504,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deletePackagePollingUntilDone(request: request)
   }
 
+  /// Lists versions.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listVersions(request:options:)``
   public func listVersions(request: ListVersionsRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListVersionsResponse
   {
@@ -1777,6 +2523,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists versions.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listVersions(request:options:)``
   public func listVersionsByItems(
     request: ListVersionsRequest
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -1786,6 +2539,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists versions.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listVersions(request:options:)``
   public func listVersionsByItems(
     request: ListVersionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -1800,6 +2557,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists versions.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listVersions(request:options:)``
   public func listVersionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Version, any Swift.Error> & Sendable {
@@ -1809,6 +2573,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listVersionsByItems(request: request)
   }
 
+  /// Gets a version
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getVersion(request:options:)``
   public func getVersion(request: GetVersionRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Version
   {
@@ -1821,6 +2592,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a version
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getVersion(request:options:)``
   public func getVersion(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.Version {
@@ -1830,6 +2608,14 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getVersion(request: request)
   }
 
+  /// Deletes a version and all of its content. The returned operation will
+  /// complete once the version has been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteVersion(request:options:)``
   public func deleteVersion(request: DeleteVersionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1842,6 +2628,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a version and all of its content. The returned operation will
+  /// complete once the version has been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteVersionPollingUntilDone(request:options:)``
   public func deleteVersionPollingUntilDone(request: DeleteVersionRequest) async throws {
     try await self.deleteVersionPollingUntilDone(request: request, options: .init())
   }
@@ -1852,6 +2646,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a version and all of its content. The returned operation will
+  /// complete once the version has been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteVersionPollingUntilDone(request:options:)``
   public func deleteVersionPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1861,6 +2663,14 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deleteVersionPollingUntilDone(request: request)
   }
 
+  /// Deletes multiple versions across a repository. The returned operation will
+  /// complete once the versions have been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_BatchDeleteVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/batchDeleteVersions(request:options:)``
   public func batchDeleteVersions(request: BatchDeleteVersionsRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1873,6 +2683,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes multiple versions across a repository. The returned operation will
+  /// complete once the versions have been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_BatchDeleteVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/batchDeleteVersionsPollingUntilDone(request:options:)``
   public func batchDeleteVersionsPollingUntilDone(request: BatchDeleteVersionsRequest) async throws
   {
     try await self.batchDeleteVersionsPollingUntilDone(request: request, options: .init())
@@ -1884,6 +2702,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes multiple versions across a repository. The returned operation will
+  /// complete once the versions have been deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_BatchDeleteVersions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/batchDeleteVersionsPollingUntilDone(request:options:)``
   public func batchDeleteVersionsPollingUntilDone(
     parent: Swift.String,
     names: [Swift.String],
@@ -1895,6 +2721,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.batchDeleteVersionsPollingUntilDone(request: request)
   }
 
+  /// Updates a version.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateVersion(request:options:)``
   public func updateVersion(request: UpdateVersionRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Version
   {
@@ -1907,6 +2740,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a version.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateVersion")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateVersion(request:options:)``
   public func updateVersion(
     version: Version?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1918,6 +2758,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateVersion(request: request)
   }
 
+  /// Lists files.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listFiles(request:options:)``
   public func listFiles(request: ListFilesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListFilesResponse
   {
@@ -1930,6 +2777,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists files.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listFiles(request:options:)``
   public func listFilesByItems(
     request: ListFilesRequest
   ) -> some AsyncSequence<File, any Swift.Error> & Sendable {
@@ -1939,6 +2793,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists files.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listFiles(request:options:)``
   public func listFilesByItems(
     request: ListFilesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<File, any Swift.Error> & Sendable {
@@ -1953,6 +2811,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists files.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListFiles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listFiles(request:options:)``
   public func listFilesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<File, any Swift.Error> & Sendable {
@@ -1962,6 +2827,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listFilesByItems(request: request)
   }
 
+  /// Gets a file.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getFile(request:options:)``
   public func getFile(request: GetFileRequest) async throws -> GoogleCloudArtifactRegistryV1.File {
     try await self.getFile(request: request, options: .init())
   }
@@ -1972,6 +2844,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a file.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getFile(request:options:)``
   public func getFile(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.File {
@@ -1981,6 +2860,15 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getFile(request: request)
   }
 
+  /// Deletes a file and all of its content. It is only allowed on generic
+  /// repositories. The returned operation will complete once the file has been
+  /// deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteFile(request:options:)``
   public func deleteFile(request: DeleteFileRequest) async throws -> GoogleLongRunning.Operation {
     try await self.deleteFile(request: request, options: .init())
   }
@@ -1991,6 +2879,15 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a file and all of its content. It is only allowed on generic
+  /// repositories. The returned operation will complete once the file has been
+  /// deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteFilePollingUntilDone(request:options:)``
   public func deleteFilePollingUntilDone(request: DeleteFileRequest) async throws {
     try await self.deleteFilePollingUntilDone(request: request, options: .init())
   }
@@ -2001,6 +2898,15 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a file and all of its content. It is only allowed on generic
+  /// repositories. The returned operation will complete once the file has been
+  /// deleted.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteFilePollingUntilDone(request:options:)``
   public func deleteFilePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2010,6 +2916,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deleteFilePollingUntilDone(request: request)
   }
 
+  /// Updates a file.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateFile(request:options:)``
   public func updateFile(request: UpdateFileRequest) async throws
     -> GoogleCloudArtifactRegistryV1.File
   {
@@ -2022,6 +2935,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a file.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateFile")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateFile(request:options:)``
   public func updateFile(
     file: File?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2033,6 +2953,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateFile(request: request)
   }
 
+  /// Lists tags.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listTags(request:options:)``
   public func listTags(request: ListTagsRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListTagsResponse
   {
@@ -2045,6 +2972,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists tags.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listTags(request:options:)``
   public func listTagsByItems(
     request: ListTagsRequest
   ) -> some AsyncSequence<Tag, any Swift.Error> & Sendable {
@@ -2054,6 +2988,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists tags.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listTags(request:options:)``
   public func listTagsByItems(
     request: ListTagsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Tag, any Swift.Error> & Sendable {
@@ -2068,6 +3006,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists tags.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListTags")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listTags(request:options:)``
   public func listTagsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Tag, any Swift.Error> & Sendable {
@@ -2077,6 +3022,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listTagsByItems(request: request)
   }
 
+  /// Gets a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getTag(request:options:)``
   public func getTag(request: GetTagRequest) async throws -> GoogleCloudArtifactRegistryV1.Tag {
     try await self.getTag(request: request, options: .init())
   }
@@ -2087,6 +3039,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getTag(request:options:)``
   public func getTag(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.Tag {
@@ -2096,6 +3055,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getTag(request: request)
   }
 
+  /// Creates a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createTag(request:options:)``
   public func createTag(request: CreateTagRequest) async throws -> GoogleCloudArtifactRegistryV1.Tag
   {
     try await self.createTag(request: request, options: .init())
@@ -2107,6 +3073,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createTag(request:options:)``
   public func createTag(
     parent: Swift.String,
     tag: Tag?,
@@ -2120,6 +3093,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.createTag(request: request)
   }
 
+  /// Updates a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateTag(request:options:)``
   public func updateTag(request: UpdateTagRequest) async throws -> GoogleCloudArtifactRegistryV1.Tag
   {
     try await self.updateTag(request: request, options: .init())
@@ -2131,6 +3111,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateTag(request:options:)``
   public func updateTag(
     tag: Tag?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2142,6 +3129,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateTag(request: request)
   }
 
+  /// Deletes a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteTag(request:options:)``
   public func deleteTag(request: DeleteTagRequest) async throws {
     try await self.deleteTag(request: request, options: .init())
   }
@@ -2152,6 +3146,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a tag.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteTag")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteTag(request:options:)``
   public func deleteTag(
     name: Swift.String,
   ) async throws {
@@ -2161,6 +3162,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deleteTag(request: request)
   }
 
+  /// Creates a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createRule(request:options:)``
   public func createRule(request: CreateRuleRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Rule
   {
@@ -2173,6 +3181,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createRule(request:options:)``
   public func createRule(
     parent: Swift.String,
     rule: Rule?,
@@ -2186,6 +3201,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.createRule(request: request)
   }
 
+  /// Lists rules.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRules(request:options:)``
   public func listRules(request: ListRulesRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListRulesResponse
   {
@@ -2198,6 +3220,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists rules.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRules(request:options:)``
   public func listRulesByItems(
     request: ListRulesRequest
   ) -> some AsyncSequence<Rule, any Swift.Error> & Sendable {
@@ -2207,6 +3236,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists rules.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRules(request:options:)``
   public func listRulesByItems(
     request: ListRulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Rule, any Swift.Error> & Sendable {
@@ -2221,6 +3254,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists rules.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listRules(request:options:)``
   public func listRulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Rule, any Swift.Error> & Sendable {
@@ -2230,6 +3270,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listRulesByItems(request: request)
   }
 
+  /// Gets a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getRule(request:options:)``
   public func getRule(request: GetRuleRequest) async throws -> GoogleCloudArtifactRegistryV1.Rule {
     try await self.getRule(request: request, options: .init())
   }
@@ -2240,6 +3287,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getRule(request:options:)``
   public func getRule(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.Rule {
@@ -2249,6 +3303,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getRule(request: request)
   }
 
+  /// Updates a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateRule(request:options:)``
   public func updateRule(request: UpdateRuleRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Rule
   {
@@ -2261,6 +3322,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateRule(request:options:)``
   public func updateRule(
     rule: Rule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2272,6 +3340,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateRule(request: request)
   }
 
+  /// Deletes a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteRule(request:options:)``
   public func deleteRule(request: DeleteRuleRequest) async throws {
     try await self.deleteRule(request: request, options: .init())
   }
@@ -2282,6 +3357,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a rule.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteRule(request:options:)``
   public func deleteRule(
     name: Swift.String,
   ) async throws {
@@ -2291,6 +3373,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deleteRule(request: request)
   }
 
+  /// Updates the IAM policy for a given resource.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2303,6 +3392,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the IAM policy for a given resource.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -2315,6 +3411,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Tests if the caller has a list of permissions on a resource.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -2327,6 +3430,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the Settings for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetProjectSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getProjectSettings(request:options:)``
   public func getProjectSettings(request: GetProjectSettingsRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ProjectSettings
   {
@@ -2339,6 +3449,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the Settings for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetProjectSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getProjectSettings(request:options:)``
   public func getProjectSettings(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.ProjectSettings {
@@ -2348,6 +3465,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getProjectSettings(request: request)
   }
 
+  /// Updates the Settings for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateProjectSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateProjectSettings(request:options:)``
   public func updateProjectSettings(request: UpdateProjectSettingsRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ProjectSettings
   {
@@ -2360,6 +3484,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Settings for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateProjectSettings")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateProjectSettings(request:options:)``
   public func updateProjectSettings(
     projectSettings: ProjectSettings?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2371,6 +3502,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateProjectSettings(request: request)
   }
 
+  /// Retrieves the VPCSC Config for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetVPCSCConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getVpcscconfig(request:options:)``
   public func getVpcscconfig(request: GetVPCSCConfigRequest) async throws
     -> GoogleCloudArtifactRegistryV1.VPCSCConfig
   {
@@ -2383,6 +3521,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the VPCSC Config for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetVPCSCConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getVpcscconfig(request:options:)``
   public func getVpcscconfig(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.VPCSCConfig {
@@ -2392,6 +3537,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getVpcscconfig(request: request)
   }
 
+  /// Updates the VPCSC Config for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateVPCSCConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateVpcscconfig(request:options:)``
   public func updateVpcscconfig(request: UpdateVPCSCConfigRequest) async throws
     -> GoogleCloudArtifactRegistryV1.VPCSCConfig
   {
@@ -2404,6 +3556,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the VPCSC Config for the Project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdateVPCSCConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updateVpcscconfig(request:options:)``
   public func updateVpcscconfig(
     vpcscConfig: VPCSCConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2415,6 +3574,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updateVpcscconfig(request: request)
   }
 
+  /// Updates a package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdatePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updatePackage(request:options:)``
   public func updatePackage(request: UpdatePackageRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Package
   {
@@ -2427,6 +3593,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a package.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_UpdatePackage")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/updatePackage(request:options:)``
   public func updatePackage(
     `package`: Package?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2438,6 +3611,13 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.updatePackage(request: request)
   }
 
+  /// Lists attachments.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listAttachments(request:options:)``
   public func listAttachments(request: ListAttachmentsRequest) async throws
     -> GoogleCloudArtifactRegistryV1.ListAttachmentsResponse
   {
@@ -2450,6 +3630,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists attachments.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listAttachments(request:options:)``
   public func listAttachmentsByItems(
     request: ListAttachmentsRequest
   ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
@@ -2459,6 +3646,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// Lists attachments.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listAttachments(request:options:)``
   public func listAttachmentsByItems(
     request: ListAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
@@ -2473,6 +3664,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists attachments.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listAttachments(request:options:)``
   public func listAttachmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Attachment, any Swift.Error> & Sendable {
@@ -2482,6 +3680,13 @@ extension Clients.ArtifactRegistryProtocol {
     return self.listAttachmentsByItems(request: request)
   }
 
+  /// Gets an attachment.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getAttachment(request:options:)``
   public func getAttachment(request: GetAttachmentRequest) async throws
     -> GoogleCloudArtifactRegistryV1.Attachment
   {
@@ -2494,6 +3699,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets an attachment.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getAttachment(request:options:)``
   public func getAttachment(
     name: Swift.String,
   ) async throws -> GoogleCloudArtifactRegistryV1.Attachment {
@@ -2503,6 +3715,14 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.getAttachment(request: request)
   }
 
+  /// Creates an attachment. The returned Operation will finish once the
+  /// attachment has been created. Its response will be the created attachment.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createAttachment(request:options:)``
   public func createAttachment(request: CreateAttachmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2515,6 +3735,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an attachment. The returned Operation will finish once the
+  /// attachment has been created. Its response will be the created attachment.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createAttachmentPollingUntilDone(request:options:)``
   public func createAttachmentPollingUntilDone(request: CreateAttachmentRequest) async throws
     -> Attachment
   {
@@ -2527,6 +3755,14 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an attachment. The returned Operation will finish once the
+  /// attachment has been created. Its response will be the created attachment.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_CreateAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/createAttachmentPollingUntilDone(request:options:)``
   public func createAttachmentPollingUntilDone(
     parent: Swift.String,
     attachment: Attachment?,
@@ -2540,6 +3776,15 @@ extension Clients.ArtifactRegistryProtocol {
     return try await self.createAttachmentPollingUntilDone(request: request)
   }
 
+  /// Deletes an attachment. The returned Operation will
+  /// finish once the attachments has been deleted. It will not have any
+  /// Operation metadata and will return a `google.protobuf.Empty` response.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteAttachment(request:options:)``
   public func deleteAttachment(request: DeleteAttachmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2552,6 +3797,15 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an attachment. The returned Operation will
+  /// finish once the attachments has been deleted. It will not have any
+  /// Operation metadata and will return a `google.protobuf.Empty` response.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteAttachmentPollingUntilDone(request:options:)``
   public func deleteAttachmentPollingUntilDone(request: DeleteAttachmentRequest) async throws {
     try await self.deleteAttachmentPollingUntilDone(request: request, options: .init())
   }
@@ -2562,6 +3816,15 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an attachment. The returned Operation will
+  /// finish once the attachments has been deleted. It will not have any
+  /// Operation metadata and will return a `google.protobuf.Empty` response.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_DeleteAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/deleteAttachmentPollingUntilDone(request:options:)``
   public func deleteAttachmentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2571,6 +3834,13 @@ extension Clients.ArtifactRegistryProtocol {
     try await self.deleteAttachmentPollingUntilDone(request: request)
   }
 
+  /// Exports an artifact to a Cloud Storage bucket.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ExportArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/exportArtifact(request:options:)``
   public func exportArtifact(request: ExportArtifactRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2583,6 +3853,13 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports an artifact to a Cloud Storage bucket.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ExportArtifact")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/exportArtifactPollingUntilDone(request:options:)``
   public func exportArtifactPollingUntilDone(request: ExportArtifactRequest) async throws
     -> ExportArtifactResponse
   {
@@ -2595,6 +3872,20 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2607,6 +3898,20 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  /// This method can be called in two ways:
+  ///
+  /// *   **List all public locations:** Use the path `GET /v1/locations`.
+  /// *   **List project-visible locations:** Use the path
+  /// `GET /v1/projects/{project_id}/locations`. This may include public
+  /// locations as well as private or other locations specifically visible
+  /// to the project.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2623,6 +3928,10 @@ extension Clients.ArtifactRegistryProtocol {
   /// to the project.
   ///
   /// @Snippet(path: "ArtifactRegistry_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2636,6 +3945,13 @@ extension Clients.ArtifactRegistryProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "ArtifactRegistry_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ArtifactRegistryClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2648,6 +3964,9 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2660,6 +3979,9 @@ extension Clients.ArtifactRegistryProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

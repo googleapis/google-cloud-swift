@@ -24,6 +24,10 @@
   /// Service for the `networkEdgeSecurityServices` resource.
   ///
   /// @Snippet(path: "networkEdgeSecurityServicesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NetworkEdgeSecurityServicesProtocol``
   public final class NetworkEdgeSecurityServicesClient: Clients.NetworkEdgeSecurityServicesProtocol,
     Sendable
   {
@@ -51,6 +55,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -61,6 +72,13 @@
     /// Deletes the specified service.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:networkEdgeSecurityService:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -75,6 +93,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:networkEdgeSecurityService:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -117,6 +142,11 @@
     /// Gets a specified NetworkEdgeSecurityService.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:networkEdgeSecurityService:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NetworkEdgeSecurityServicesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NetworkEdgeSecurityService {
@@ -127,6 +157,13 @@
     /// the request.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -142,6 +179,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -184,6 +228,13 @@
     /// Patches the specified policy with the data included in the request.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:networkEdgeSecurityService:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: NetworkEdgeSecurityServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -198,6 +249,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:networkEdgeSecurityService:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -314,6 +372,17 @@
 
   // Default implementations
   extension Clients.NetworkEdgeSecurityServicesProtocol {
+    /// Retrieves the list of all NetworkEdgeSecurityService resources available to
+    /// the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: NetworkEdgeSecurityServicesClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.NetworkEdgeSecurityServiceAggregatedList
     {
@@ -327,6 +396,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all NetworkEdgeSecurityService resources available to
+    /// the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), any Swift.Error>
@@ -342,6 +422,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NetworkEdgeSecurityServicesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -359,6 +443,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all NetworkEdgeSecurityService resources available to
+    /// the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NetworkEdgeSecurityServicesScopedList), any Swift.Error>
@@ -370,6 +465,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified service.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/delete(request:options:)``
     public func delete(request: NetworkEdgeSecurityServicesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -382,6 +484,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -394,6 +508,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified service.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -407,6 +533,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Gets a specified NetworkEdgeSecurityService.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/get(request:options:)``
     public func `get`(request: NetworkEdgeSecurityServicesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NetworkEdgeSecurityService
     {
@@ -419,6 +552,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a specified NetworkEdgeSecurityService.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -432,6 +572,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a new service in the specified project using the data included in
+    /// the request.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/insert(request:options:)``
     public func insert(request: NetworkEdgeSecurityServicesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -444,6 +592,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new service in the specified project using the data included in
+    /// the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -456,6 +617,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new service in the specified project using the data included in
+    /// the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -469,6 +643,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/patch(request:options:)``
     public func patch(request: NetworkEdgeSecurityServicesClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -481,6 +662,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: NetworkEdgeSecurityServicesClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -493,6 +686,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified policy with the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "networkEdgeSecurityServices_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NetworkEdgeSecurityServicesClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -508,6 +713,7 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "MemorystoreQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MemorystoreProtocol``
 public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   let inner: any Clients.MemorystoreStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -54,6 +58,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "Memorystore_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAclPolicies(request:)``
+  /// - ``listAclPoliciesByItems(parent:)``
+  /// - ``listAclPoliciesByItems(request:)``
+  /// - ``listAclPoliciesByItems(request:options:)``
   public func listAclPolicies(
     request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse {
@@ -63,6 +74,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "Memorystore_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListInstancesResponse {
@@ -72,6 +90,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets the details of a specific Memorystore ACL policy.
   ///
   /// @Snippet(path: "Memorystore_GetAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAclPolicy(name:)``
+  /// - ``getAclPolicy(request:)``
   public func getAclPolicy(
     request: GetAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
@@ -81,6 +104,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets details of a single Instance.
   ///
   /// @Snippet(path: "Memorystore_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.Instance {
@@ -92,6 +120,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// immediately after the RPC returns.
   ///
   /// @Snippet(path: "Memorystore_CreateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAclPolicy(parent:aclPolicy:aclPolicyId:)``
+  /// - ``createAclPolicy(request:)``
   public func createAclPolicy(
     request: CreateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
@@ -101,6 +134,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Creates a new Instance in a given project and location.
   ///
   /// @Snippet(path: "Memorystore_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(request:options:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -110,6 +150,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Creates a new Instance in a given project and location.
   ///
   /// @Snippet(path: "Memorystore_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -146,6 +193,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// in the response field.
   ///
   /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAclPolicy(request:)``
+  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
+  /// - ``updateAclPolicyPollingUntilDone(request:)``
+  /// - ``updateAclPolicyPollingUntilDone(request:options:)``
   public func updateAclPolicy(
     request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,6 +218,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// in the response field.
   ///
   /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAclPolicy(request:)``
+  /// - ``updateAclPolicy(request:options:)``
+  /// - ``updateAclPolicyPollingUntilDone(aclPolicy:updateMask:)``
+  /// - ``updateAclPolicyPollingUntilDone(request:)``
   public func updateAclPolicyPollingUntilDone(
     request: UpdateAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AclPolicy {
@@ -191,6 +252,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Updates the parameters of a single Instance.
   ///
   /// @Snippet(path: "Memorystore_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(request:options:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,6 +268,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Updates the parameters of a single Instance.
   ///
   /// @Snippet(path: "Memorystore_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -229,6 +304,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// attached to an instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAclPolicy(request:)``
+  /// - ``deleteAclPolicyPollingUntilDone(name:)``
+  /// - ``deleteAclPolicyPollingUntilDone(request:)``
+  /// - ``deleteAclPolicyPollingUntilDone(request:options:)``
   public func deleteAclPolicy(
     request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -240,6 +322,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// attached to an instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAclPolicy(request:)``
+  /// - ``deleteAclPolicy(request:options:)``
+  /// - ``deleteAclPolicyPollingUntilDone(name:)``
+  /// - ``deleteAclPolicyPollingUntilDone(request:)``
   public func deleteAclPolicyPollingUntilDone(
     request: DeleteAclPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -267,6 +356,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets details of a specific ACL policy revision.
   ///
   /// @Snippet(path: "Memorystore_GetAclPolicyRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAclPolicyRevision(name:)``
+  /// - ``getAclPolicyRevision(request:)``
   public func getAclPolicyRevision(
     request: GetAclPolicyRevisionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
@@ -276,6 +370,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Lists all ACL policy revisions in a given ACL policy.
   ///
   /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAclPolicyRevisions(request:)``
+  /// - ``listAclPolicyRevisionsByItems(parent:)``
+  /// - ``listAclPolicyRevisionsByItems(request:)``
+  /// - ``listAclPolicyRevisionsByItems(request:options:)``
   public func listAclPolicyRevisions(
     request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse {
@@ -285,6 +386,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a single Instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -294,6 +402,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a single Instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -321,6 +436,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets details about the certificate authority for an Instance.
   ///
   /// @Snippet(path: "Memorystore_GetCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCertificateAuthority(name:)``
+  /// - ``getCertificateAuthority(request:)``
   public func getCertificateAuthority(
     request: GetCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
@@ -331,6 +451,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Memorystore instance.
   ///
   /// @Snippet(path: "Memorystore_GetSharedRegionalCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSharedRegionalCertificateAuthority(name:)``
+  /// - ``getSharedRegionalCertificateAuthority(request:)``
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
@@ -340,6 +465,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Reschedules upcoming maintenance event.
   ///
   /// @Snippet(path: "Memorystore_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenance(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -349,6 +481,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Reschedules upcoming maintenance event.
   ///
   /// @Snippet(path: "Memorystore_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``rescheduleMaintenance(request:)``
+  /// - ``rescheduleMaintenance(request:options:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(name:rescheduleType:scheduleTime:)``
+  /// - ``rescheduleMaintenancePollingUntilDone(request:)``
   public func rescheduleMaintenancePollingUntilDone(
     request: RescheduleMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -380,6 +519,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "Memorystore_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackupCollections(request:)``
+  /// - ``listBackupCollectionsByItems(parent:)``
+  /// - ``listBackupCollectionsByItems(request:)``
+  /// - ``listBackupCollectionsByItems(request:options:)``
   public func listBackupCollections(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse {
@@ -389,6 +535,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Get a backup collection.
   ///
   /// @Snippet(path: "Memorystore_GetBackupCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackupCollection(name:)``
+  /// - ``getBackupCollection(request:)``
   public func getBackupCollection(
     request: GetBackupCollectionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
@@ -398,6 +549,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Lists all backups owned by a backup collection.
   ///
   /// @Snippet(path: "Memorystore_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
+  /// - ``listBackupsByItems(request:)``
+  /// - ``listBackupsByItems(request:options:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListBackupsResponse {
@@ -407,6 +565,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets the details of a specific backup.
   ///
   /// @Snippet(path: "Memorystore_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.Backup {
@@ -416,6 +579,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a specific backup.
   ///
   /// @Snippet(path: "Memorystore_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -425,6 +595,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a specific backup.
   ///
   /// @Snippet(path: "Memorystore_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackup(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -452,6 +629,12 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Exports a specific backup to a customer target Cloud Storage URI.
   ///
   /// @Snippet(path: "Memorystore_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportBackup(request:)``
+  /// - ``exportBackupPollingUntilDone(request:)``
+  /// - ``exportBackupPollingUntilDone(request:options:)``
   public func exportBackup(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -461,6 +644,12 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Exports a specific backup to a customer target Cloud Storage URI.
   ///
   /// @Snippet(path: "Memorystore_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``exportBackup(request:)``
+  /// - ``exportBackup(request:options:)``
+  /// - ``exportBackupPollingUntilDone(request:)``
   public func exportBackupPollingUntilDone(
     request: ExportBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -499,6 +688,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// needed for backup.
   ///
   /// @Snippet(path: "Memorystore_BackupInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``backupInstance(request:)``
+  /// - ``backupInstancePollingUntilDone(name:)``
+  /// - ``backupInstancePollingUntilDone(request:)``
+  /// - ``backupInstancePollingUntilDone(request:options:)``
   public func backupInstance(
     request: BackupInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -519,6 +715,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// needed for backup.
   ///
   /// @Snippet(path: "Memorystore_BackupInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``backupInstance(request:)``
+  /// - ``backupInstance(request:options:)``
+  /// - ``backupInstancePollingUntilDone(name:)``
+  /// - ``backupInstancePollingUntilDone(request:)``
   public func backupInstancePollingUntilDone(
     request: BackupInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -553,6 +756,12 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// 2. Only allow reads.
   ///
   /// @Snippet(path: "Memorystore_StartMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startMigration(request:)``
+  /// - ``startMigrationPollingUntilDone(request:)``
+  /// - ``startMigrationPollingUntilDone(request:options:)``
   public func startMigration(
     request: StartMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -569,6 +778,12 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// 2. Only allow reads.
   ///
   /// @Snippet(path: "Memorystore_StartMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``startMigration(request:)``
+  /// - ``startMigration(request:options:)``
+  /// - ``startMigrationPollingUntilDone(request:)``
   public func startMigrationPollingUntilDone(
     request: StartMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -601,6 +816,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// 2. Allow both reads and writes.
   ///
   /// @Snippet(path: "Memorystore_FinishMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``finishMigration(request:)``
+  /// - ``finishMigrationPollingUntilDone(name:force:)``
+  /// - ``finishMigrationPollingUntilDone(request:)``
+  /// - ``finishMigrationPollingUntilDone(request:options:)``
   public func finishMigration(
     request: FinishMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -615,6 +837,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// 2. Allow both reads and writes.
   ///
   /// @Snippet(path: "Memorystore_FinishMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``finishMigration(request:)``
+  /// - ``finishMigration(request:options:)``
+  /// - ``finishMigrationPollingUntilDone(name:force:)``
+  /// - ``finishMigrationPollingUntilDone(request:)``
   public func finishMigrationPollingUntilDone(
     request: FinishMigrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -642,6 +871,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Lists all the token auth users for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTokenAuthUsers(request:)``
+  /// - ``listTokenAuthUsersByItems(parent:)``
+  /// - ``listTokenAuthUsersByItems(request:)``
+  /// - ``listTokenAuthUsersByItems(request:options:)``
   public func listTokenAuthUsers(
     request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse {
@@ -651,6 +887,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets a specific token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_GetTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTokenAuthUser(name:)``
+  /// - ``getTokenAuthUser(request:)``
   public func getTokenAuthUser(
     request: GetTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
@@ -660,6 +901,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Lists all the auth tokens for a specific token auth user.
   ///
   /// @Snippet(path: "Memorystore_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthTokens(request:)``
+  /// - ``listAuthTokensByItems(parent:)``
+  /// - ``listAuthTokensByItems(request:)``
+  /// - ``listAuthTokensByItems(request:options:)``
   public func listAuthTokens(
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse {
@@ -669,6 +917,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets a token based auth enabled instance's auth token for a given user.
   ///
   /// @Snippet(path: "Memorystore_GetAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthToken(name:)``
+  /// - ``getAuthToken(request:)``
   public func getAuthToken(
     request: GetAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
@@ -678,6 +931,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Adds a token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addTokenAuthUser(request:)``
+  /// - ``addTokenAuthUserPollingUntilDone(instance:tokenAuthUser:)``
+  /// - ``addTokenAuthUserPollingUntilDone(request:)``
+  /// - ``addTokenAuthUserPollingUntilDone(request:options:)``
   public func addTokenAuthUser(
     request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -687,6 +947,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Adds a token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addTokenAuthUser(request:)``
+  /// - ``addTokenAuthUser(request:options:)``
+  /// - ``addTokenAuthUserPollingUntilDone(instance:tokenAuthUser:)``
+  /// - ``addTokenAuthUserPollingUntilDone(request:)``
   public func addTokenAuthUserPollingUntilDone(
     request: AddTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -714,6 +981,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTokenAuthUser(request:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:options:)``
   public func deleteTokenAuthUser(
     request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -723,6 +997,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a token auth user for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTokenAuthUser(request:)``
+  /// - ``deleteTokenAuthUser(request:options:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(name:)``
+  /// - ``deleteTokenAuthUserPollingUntilDone(request:)``
   public func deleteTokenAuthUserPollingUntilDone(
     request: DeleteTokenAuthUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -750,6 +1031,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Adds a token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAuthToken(request:)``
+  /// - ``addAuthTokenPollingUntilDone(request:)``
+  /// - ``addAuthTokenPollingUntilDone(request:options:)``
+  /// - ``addAuthTokenPollingUntilDone(tokenAuthUser:authToken:)``
   public func addAuthToken(
     request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -759,6 +1047,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Adds a token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``addAuthToken(request:)``
+  /// - ``addAuthToken(request:options:)``
+  /// - ``addAuthTokenPollingUntilDone(request:)``
+  /// - ``addAuthTokenPollingUntilDone(tokenAuthUser:authToken:)``
   public func addAuthTokenPollingUntilDone(
     request: AddAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> TokenAuthUser {
@@ -787,6 +1082,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthToken(request:)``
+  /// - ``deleteAuthTokenPollingUntilDone(name:)``
+  /// - ``deleteAuthTokenPollingUntilDone(request:)``
+  /// - ``deleteAuthTokenPollingUntilDone(request:options:)``
   public func deleteAuthToken(
     request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -796,6 +1098,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Deletes a token for a user of a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthToken(request:)``
+  /// - ``deleteAuthToken(request:options:)``
+  /// - ``deleteAuthTokenPollingUntilDone(name:)``
+  /// - ``deleteAuthTokenPollingUntilDone(request:)``
   public func deleteAuthTokenPollingUntilDone(
     request: DeleteAuthTokenRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -840,6 +1149,12 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Memorystore_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -849,6 +1164,10 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Memorystore_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -860,6 +1179,13 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Memorystore_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -882,6 +1208,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Memorystore_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -893,6 +1224,11 @@ public final class MemorystoreClient: Clients.MemorystoreProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Memorystore_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1171,6 +1507,21 @@ extension Clients {
 
 // Default implementations
 extension Clients.MemorystoreProtocol {
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicies(request:options:)``
   public func listAclPolicies(request: ListAclPoliciesRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListAclPoliciesResponse
   {
@@ -1183,6 +1534,21 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicies(request:options:)``
   public func listAclPoliciesByItems(
     request: ListAclPoliciesRequest
   ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
@@ -1200,6 +1566,10 @@ extension Clients.MemorystoreProtocol {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "Memorystore_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicies(request:options:)``
   public func listAclPoliciesByItems(
     request: ListAclPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
@@ -1214,6 +1584,21 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all ACL policies owned by a project in either the specified
+  /// location (region) or all locations.
+  ///
+  /// The location should have the following format:
+  ///
+  /// * `projects/{project_id}/locations/{location_id}`
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicies(request:options:)``
   public func listAclPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AclPolicy, any Swift.Error> & Sendable {
@@ -1223,6 +1608,13 @@ extension Clients.MemorystoreProtocol {
     return self.listAclPoliciesByItems(request: request)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListInstancesResponse
   {
@@ -1235,6 +1627,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1244,6 +1643,10 @@ extension Clients.MemorystoreProtocol {
   /// Lists Instances in a given project and location.
   ///
   /// @Snippet(path: "Memorystore_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1258,6 +1661,13 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Instances in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -1267,6 +1677,13 @@ extension Clients.MemorystoreProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets the details of a specific Memorystore ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_GetAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getAclPolicy(request:options:)``
   public func getAclPolicy(request: GetAclPolicyRequest) async throws
     -> GoogleCloudMemoryStoreV1.AclPolicy
   {
@@ -1279,6 +1696,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific Memorystore ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_GetAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getAclPolicy(request:options:)``
   public func getAclPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicy {
@@ -1288,6 +1712,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getAclPolicy(request: request)
   }
 
+  /// Gets details of a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudMemoryStoreV1.Instance
   {
@@ -1300,6 +1731,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.Instance {
@@ -1309,6 +1747,15 @@ extension Clients.MemorystoreProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Creates an ACL policy.
+  /// The creation is executed synchronously and the policy is available for use
+  /// immediately after the RPC returns.
+  ///
+  /// @Snippet(path: "Memorystore_CreateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/createAclPolicy(request:options:)``
   public func createAclPolicy(request: CreateAclPolicyRequest) async throws
     -> GoogleCloudMemoryStoreV1.AclPolicy
   {
@@ -1321,6 +1768,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an ACL policy.
+  /// The creation is executed synchronously and the policy is available for use
+  /// immediately after the RPC returns.
+  ///
+  /// @Snippet(path: "Memorystore_CreateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/createAclPolicy(request:options:)``
   public func createAclPolicy(
     parent: Swift.String,
     aclPolicy: AclPolicy?,
@@ -1334,6 +1790,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.createAclPolicy(request: request)
   }
 
+  /// Creates a new Instance in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/createInstance(request:options:)``
   public func createInstance(request: CreateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1346,6 +1809,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Instance in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
     -> Instance
   {
@@ -1358,6 +1828,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Instance in a given project and location.
+  ///
+  /// @Snippet(path: "Memorystore_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
@@ -1371,6 +1848,22 @@ extension Clients.MemorystoreProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  /// Updates the ACL policy.
+  ///
+  /// The operation will apply the updated ACL policy to all the linked
+  /// instances. The operation will return success if it successfully applied the
+  /// policy to all the instances. If the operation completed with a failure, the
+  /// service will continue to apply the policy via reconciliation for the failed
+  /// instances even after operation completion to ensure eventual consistency.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object
+  /// in the response field.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/updateAclPolicy(request:options:)``
   public func updateAclPolicy(request: UpdateAclPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1383,6 +1876,22 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the ACL policy.
+  ///
+  /// The operation will apply the updated ACL policy to all the linked
+  /// instances. The operation will return success if it successfully applied the
+  /// policy to all the instances. If the operation completed with a failure, the
+  /// service will continue to apply the policy via reconciliation for the failed
+  /// instances even after operation completion to ensure eventual consistency.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object
+  /// in the response field.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/updateAclPolicyPollingUntilDone(request:options:)``
   public func updateAclPolicyPollingUntilDone(request: UpdateAclPolicyRequest) async throws
     -> AclPolicy
   {
@@ -1395,6 +1904,22 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the ACL policy.
+  ///
+  /// The operation will apply the updated ACL policy to all the linked
+  /// instances. The operation will return success if it successfully applied the
+  /// policy to all the instances. If the operation completed with a failure, the
+  /// service will continue to apply the policy via reconciliation for the failed
+  /// instances even after operation completion to ensure eventual consistency.
+  ///
+  /// Completed longrunning.Operation will contain the new ACL policy object
+  /// in the response field.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/updateAclPolicyPollingUntilDone(request:options:)``
   public func updateAclPolicyPollingUntilDone(
     aclPolicy: AclPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1406,6 +1931,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.updateAclPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/updateInstance(request:options:)``
   public func updateInstance(request: UpdateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1418,6 +1950,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
     -> Instance
   {
@@ -1430,6 +1969,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1441,6 +1987,15 @@ extension Clients.MemorystoreProtocol {
     return try await self.updateInstancePollingUntilDone(request: request)
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to an instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteAclPolicy(request:options:)``
   public func deleteAclPolicy(request: DeleteAclPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1453,6 +2008,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to an instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteAclPolicyPollingUntilDone(request:options:)``
   public func deleteAclPolicyPollingUntilDone(request: DeleteAclPolicyRequest) async throws {
     try await self.deleteAclPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -1463,6 +2027,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific ACL policy. This action will delete the ACL policy and
+  /// all the rules associated with it. An ACL policy cannot be deleted if it is
+  /// attached to an instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAclPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteAclPolicyPollingUntilDone(request:options:)``
   public func deleteAclPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1472,6 +2045,13 @@ extension Clients.MemorystoreProtocol {
     try await self.deleteAclPolicyPollingUntilDone(request: request)
   }
 
+  /// Gets details of a specific ACL policy revision.
+  ///
+  /// @Snippet(path: "Memorystore_GetAclPolicyRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getAclPolicyRevision(request:options:)``
   public func getAclPolicyRevision(request: GetAclPolicyRevisionRequest) async throws
     -> GoogleCloudMemoryStoreV1.AclPolicyRevision
   {
@@ -1484,6 +2064,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a specific ACL policy revision.
+  ///
+  /// @Snippet(path: "Memorystore_GetAclPolicyRevision")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getAclPolicyRevision(request:options:)``
   public func getAclPolicyRevision(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.AclPolicyRevision {
@@ -1493,6 +2080,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getAclPolicyRevision(request: request)
   }
 
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisions(request: ListAclPolicyRevisionsRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListAclPolicyRevisionsResponse
   {
@@ -1505,6 +2099,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisionsByItems(
     request: ListAclPolicyRevisionsRequest
   ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
@@ -1514,6 +2115,10 @@ extension Clients.MemorystoreProtocol {
   /// Lists all ACL policy revisions in a given ACL policy.
   ///
   /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisionsByItems(
     request: ListAclPolicyRevisionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
@@ -1528,6 +2133,13 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all ACL policy revisions in a given ACL policy.
+  ///
+  /// @Snippet(path: "Memorystore_ListAclPolicyRevisions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAclPolicyRevisions(request:options:)``
   public func listAclPolicyRevisionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AclPolicyRevision, any Swift.Error> & Sendable {
@@ -1537,6 +2149,13 @@ extension Clients.MemorystoreProtocol {
     return self.listAclPolicyRevisionsByItems(request: request)
   }
 
+  /// Deletes a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1549,6 +2168,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -1559,6 +2185,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1568,6 +2201,13 @@ extension Clients.MemorystoreProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  /// Gets details about the certificate authority for an Instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getCertificateAuthority(request:options:)``
   public func getCertificateAuthority(request: GetCertificateAuthorityRequest) async throws
     -> GoogleCloudMemoryStoreV1.CertificateAuthority
   {
@@ -1580,6 +2220,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about the certificate authority for an Instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getCertificateAuthority(request:options:)``
   public func getCertificateAuthority(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.CertificateAuthority {
@@ -1589,6 +2236,14 @@ extension Clients.MemorystoreProtocol {
     return try await self.getCertificateAuthority(request: request)
   }
 
+  /// Gets the details of shared regional certificate authority information for
+  /// Memorystore instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetSharedRegionalCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getSharedRegionalCertificateAuthority(request:options:)``
   public func getSharedRegionalCertificateAuthority(
     request: GetSharedRegionalCertificateAuthorityRequest
   ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
@@ -1601,6 +2256,14 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of shared regional certificate authority information for
+  /// Memorystore instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetSharedRegionalCertificateAuthority")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getSharedRegionalCertificateAuthority(request:options:)``
   public func getSharedRegionalCertificateAuthority(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.SharedRegionalCertificateAuthority {
@@ -1610,6 +2273,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getSharedRegionalCertificateAuthority(request: request)
   }
 
+  /// Reschedules upcoming maintenance event.
+  ///
+  /// @Snippet(path: "Memorystore_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/rescheduleMaintenance(request:options:)``
   public func rescheduleMaintenance(request: RescheduleMaintenanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1622,6 +2292,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedules upcoming maintenance event.
+  ///
+  /// @Snippet(path: "Memorystore_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(request: RescheduleMaintenanceRequest)
     async throws -> Instance
   {
@@ -1634,6 +2311,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Reschedules upcoming maintenance event.
+  ///
+  /// @Snippet(path: "Memorystore_RescheduleMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/rescheduleMaintenancePollingUntilDone(request:options:)``
   public func rescheduleMaintenancePollingUntilDone(
     name: Swift.String,
     rescheduleType: RescheduleMaintenanceRequest.RescheduleType,
@@ -1647,6 +2331,17 @@ extension Clients.MemorystoreProtocol {
     return try await self.rescheduleMaintenancePollingUntilDone(request: request)
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackupCollections(request:options:)``
   public func listBackupCollections(request: ListBackupCollectionsRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListBackupCollectionsResponse
   {
@@ -1659,6 +2354,17 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackupCollections(request:options:)``
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest
   ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
@@ -1672,6 +2378,10 @@ extension Clients.MemorystoreProtocol {
   /// available to the project are queried, and the results are aggregated.
   ///
   /// @Snippet(path: "Memorystore_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackupCollections(request:options:)``
   public func listBackupCollectionsByItems(
     request: ListBackupCollectionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
@@ -1686,6 +2396,17 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all backup collections owned by a consumer project in either the
+  /// specified location (region) or all locations.
+  ///
+  /// If `location_id` is specified as `-` (wildcard), then all regions
+  /// available to the project are queried, and the results are aggregated.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackupCollections")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackupCollections(request:options:)``
   public func listBackupCollectionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackupCollection, any Swift.Error> & Sendable {
@@ -1695,6 +2416,13 @@ extension Clients.MemorystoreProtocol {
     return self.listBackupCollectionsByItems(request: request)
   }
 
+  /// Get a backup collection.
+  ///
+  /// @Snippet(path: "Memorystore_GetBackupCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getBackupCollection(request:options:)``
   public func getBackupCollection(request: GetBackupCollectionRequest) async throws
     -> GoogleCloudMemoryStoreV1.BackupCollection
   {
@@ -1707,6 +2435,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a backup collection.
+  ///
+  /// @Snippet(path: "Memorystore_GetBackupCollection")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getBackupCollection(request:options:)``
   public func getBackupCollection(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.BackupCollection {
@@ -1716,6 +2451,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getBackupCollection(request: request)
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackups(request:options:)``
   public func listBackups(request: ListBackupsRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListBackupsResponse
   {
@@ -1728,6 +2470,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1737,6 +2486,10 @@ extension Clients.MemorystoreProtocol {
   /// Lists all backups owned by a backup collection.
   ///
   /// @Snippet(path: "Memorystore_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1751,6 +2504,13 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all backups owned by a backup collection.
+  ///
+  /// @Snippet(path: "Memorystore_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listBackups(request:options:)``
   public func listBackupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1760,6 +2520,13 @@ extension Clients.MemorystoreProtocol {
     return self.listBackupsByItems(request: request)
   }
 
+  /// Gets the details of a specific backup.
+  ///
+  /// @Snippet(path: "Memorystore_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getBackup(request:options:)``
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudMemoryStoreV1.Backup {
     try await self.getBackup(request: request, options: .init())
   }
@@ -1770,6 +2537,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific backup.
+  ///
+  /// @Snippet(path: "Memorystore_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getBackup(request:options:)``
   public func getBackup(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.Backup {
@@ -1779,6 +2553,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getBackup(request: request)
   }
 
+  /// Deletes a specific backup.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteBackup(request:options:)``
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteBackup(request: request, options: .init())
@@ -1790,6 +2571,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific backup.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1800,6 +2588,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a specific backup.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1809,6 +2604,13 @@ extension Clients.MemorystoreProtocol {
     try await self.deleteBackupPollingUntilDone(request: request)
   }
 
+  /// Exports a specific backup to a customer target Cloud Storage URI.
+  ///
+  /// @Snippet(path: "Memorystore_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/exportBackup(request:options:)``
   public func exportBackup(request: ExportBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.exportBackup(request: request, options: .init())
@@ -1820,6 +2622,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Exports a specific backup to a customer target Cloud Storage URI.
+  ///
+  /// @Snippet(path: "Memorystore_ExportBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/exportBackupPollingUntilDone(request:options:)``
   public func exportBackupPollingUntilDone(request: ExportBackupRequest) async throws -> Backup {
     return try await self.exportBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1830,6 +2639,24 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Backup Instance.
+  /// If this is the first time a backup is being created, a backup collection
+  /// will be created at the backend, and this backup belongs to this collection.
+  /// Both collection and backup will have a resource name. Backup will be
+  /// executed for each shard. A replica (primary if nonHA) will be selected to
+  /// perform the execution. Backup call will be rejected if there is an ongoing
+  /// backup or update operation. Be aware that during preview, if the instance's
+  /// internal software version is too old, critical update will be performed
+  /// before actual backup. Once the internal software version is updated to the
+  /// minimum version required by the backup feature, subsequent backups will not
+  /// require critical update. After preview, there will be no critical update
+  /// needed for backup.
+  ///
+  /// @Snippet(path: "Memorystore_BackupInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/backupInstance(request:options:)``
   public func backupInstance(request: BackupInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1842,6 +2669,24 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Backup Instance.
+  /// If this is the first time a backup is being created, a backup collection
+  /// will be created at the backend, and this backup belongs to this collection.
+  /// Both collection and backup will have a resource name. Backup will be
+  /// executed for each shard. A replica (primary if nonHA) will be selected to
+  /// perform the execution. Backup call will be rejected if there is an ongoing
+  /// backup or update operation. Be aware that during preview, if the instance's
+  /// internal software version is too old, critical update will be performed
+  /// before actual backup. Once the internal software version is updated to the
+  /// minimum version required by the backup feature, subsequent backups will not
+  /// require critical update. After preview, there will be no critical update
+  /// needed for backup.
+  ///
+  /// @Snippet(path: "Memorystore_BackupInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/backupInstancePollingUntilDone(request:options:)``
   public func backupInstancePollingUntilDone(request: BackupInstanceRequest) async throws
     -> Instance
   {
@@ -1854,6 +2699,24 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Backup Instance.
+  /// If this is the first time a backup is being created, a backup collection
+  /// will be created at the backend, and this backup belongs to this collection.
+  /// Both collection and backup will have a resource name. Backup will be
+  /// executed for each shard. A replica (primary if nonHA) will be selected to
+  /// perform the execution. Backup call will be rejected if there is an ongoing
+  /// backup or update operation. Be aware that during preview, if the instance's
+  /// internal software version is too old, critical update will be performed
+  /// before actual backup. Once the internal software version is updated to the
+  /// minimum version required by the backup feature, subsequent backups will not
+  /// require critical update. After preview, there will be no critical update
+  /// needed for backup.
+  ///
+  /// @Snippet(path: "Memorystore_BackupInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/backupInstancePollingUntilDone(request:options:)``
   public func backupInstancePollingUntilDone(
     name: Swift.String,
   ) async throws -> Instance {
@@ -1863,6 +2726,20 @@ extension Clients.MemorystoreProtocol {
     return try await self.backupInstancePollingUntilDone(request: request)
   }
 
+  /// Initiates the migration of a source instance to the target Memorystore
+  /// instance.
+  ///
+  /// After the successful completion of this operation, the target instance
+  /// will:
+  /// 1. Set up replication with the source instance and replicate any writes to
+  /// the source instance.
+  /// 2. Only allow reads.
+  ///
+  /// @Snippet(path: "Memorystore_StartMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/startMigration(request:options:)``
   public func startMigration(request: StartMigrationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1875,6 +2752,20 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Initiates the migration of a source instance to the target Memorystore
+  /// instance.
+  ///
+  /// After the successful completion of this operation, the target instance
+  /// will:
+  /// 1. Set up replication with the source instance and replicate any writes to
+  /// the source instance.
+  /// 2. Only allow reads.
+  ///
+  /// @Snippet(path: "Memorystore_StartMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/startMigrationPollingUntilDone(request:options:)``
   public func startMigrationPollingUntilDone(request: StartMigrationRequest) async throws
     -> Instance
   {
@@ -1887,6 +2778,18 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Finalizes the migration process.
+  ///
+  /// After the successful completion of this operation, the target instance
+  /// will:
+  /// 1. Stop replicating from the source instance.
+  /// 2. Allow both reads and writes.
+  ///
+  /// @Snippet(path: "Memorystore_FinishMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/finishMigration(request:options:)``
   public func finishMigration(request: FinishMigrationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1899,6 +2802,18 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Finalizes the migration process.
+  ///
+  /// After the successful completion of this operation, the target instance
+  /// will:
+  /// 1. Stop replicating from the source instance.
+  /// 2. Allow both reads and writes.
+  ///
+  /// @Snippet(path: "Memorystore_FinishMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/finishMigrationPollingUntilDone(request:options:)``
   public func finishMigrationPollingUntilDone(request: FinishMigrationRequest) async throws
     -> Instance
   {
@@ -1911,6 +2826,18 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Finalizes the migration process.
+  ///
+  /// After the successful completion of this operation, the target instance
+  /// will:
+  /// 1. Stop replicating from the source instance.
+  /// 2. Allow both reads and writes.
+  ///
+  /// @Snippet(path: "Memorystore_FinishMigration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/finishMigrationPollingUntilDone(request:options:)``
   public func finishMigrationPollingUntilDone(
     name: Swift.String,
     force: Swift.Bool,
@@ -1922,6 +2849,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.finishMigrationPollingUntilDone(request: request)
   }
 
+  /// Lists all the token auth users for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsers(request: ListTokenAuthUsersRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListTokenAuthUsersResponse
   {
@@ -1934,6 +2868,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the token auth users for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsersByItems(
     request: ListTokenAuthUsersRequest
   ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
@@ -1943,6 +2884,10 @@ extension Clients.MemorystoreProtocol {
   /// Lists all the token auth users for a token based auth enabled instance.
   ///
   /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsersByItems(
     request: ListTokenAuthUsersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
@@ -1957,6 +2902,13 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the token auth users for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_ListTokenAuthUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listTokenAuthUsers(request:options:)``
   public func listTokenAuthUsersByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TokenAuthUser, any Swift.Error> & Sendable {
@@ -1966,6 +2918,13 @@ extension Clients.MemorystoreProtocol {
     return self.listTokenAuthUsersByItems(request: request)
   }
 
+  /// Gets a specific token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getTokenAuthUser(request:options:)``
   public func getTokenAuthUser(request: GetTokenAuthUserRequest) async throws
     -> GoogleCloudMemoryStoreV1.TokenAuthUser
   {
@@ -1978,6 +2937,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a specific token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_GetTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getTokenAuthUser(request:options:)``
   public func getTokenAuthUser(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.TokenAuthUser {
@@ -1987,6 +2953,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getTokenAuthUser(request: request)
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "Memorystore_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAuthTokens(request:options:)``
   public func listAuthTokens(request: ListAuthTokensRequest) async throws
     -> GoogleCloudMemoryStoreV1.ListAuthTokensResponse
   {
@@ -1999,6 +2972,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "Memorystore_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAuthTokens(request:options:)``
   public func listAuthTokensByItems(
     request: ListAuthTokensRequest
   ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
@@ -2008,6 +2988,10 @@ extension Clients.MemorystoreProtocol {
   /// Lists all the auth tokens for a specific token auth user.
   ///
   /// @Snippet(path: "Memorystore_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAuthTokens(request:options:)``
   public func listAuthTokensByItems(
     request: ListAuthTokensRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
@@ -2022,6 +3006,13 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the auth tokens for a specific token auth user.
+  ///
+  /// @Snippet(path: "Memorystore_ListAuthTokens")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listAuthTokens(request:options:)``
   public func listAuthTokensByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuthToken, any Swift.Error> & Sendable {
@@ -2031,6 +3022,13 @@ extension Clients.MemorystoreProtocol {
     return self.listAuthTokensByItems(request: request)
   }
 
+  /// Gets a token based auth enabled instance's auth token for a given user.
+  ///
+  /// @Snippet(path: "Memorystore_GetAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getAuthToken(request:options:)``
   public func getAuthToken(request: GetAuthTokenRequest) async throws
     -> GoogleCloudMemoryStoreV1.AuthToken
   {
@@ -2043,6 +3041,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a token based auth enabled instance's auth token for a given user.
+  ///
+  /// @Snippet(path: "Memorystore_GetAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getAuthToken(request:options:)``
   public func getAuthToken(
     name: Swift.String,
   ) async throws -> GoogleCloudMemoryStoreV1.AuthToken {
@@ -2052,6 +3057,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.getAuthToken(request: request)
   }
 
+  /// Adds a token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/addTokenAuthUser(request:options:)``
   public func addTokenAuthUser(request: AddTokenAuthUserRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2064,6 +3076,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/addTokenAuthUserPollingUntilDone(request:options:)``
   public func addTokenAuthUserPollingUntilDone(request: AddTokenAuthUserRequest) async throws
     -> Instance
   {
@@ -2076,6 +3095,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_AddTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/addTokenAuthUserPollingUntilDone(request:options:)``
   public func addTokenAuthUserPollingUntilDone(
     instance: Swift.String,
     tokenAuthUser: Swift.String,
@@ -2087,6 +3113,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.addTokenAuthUserPollingUntilDone(request: request)
   }
 
+  /// Deletes a token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteTokenAuthUser(request:options:)``
   public func deleteTokenAuthUser(request: DeleteTokenAuthUserRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2099,6 +3132,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteTokenAuthUserPollingUntilDone(request:options:)``
   public func deleteTokenAuthUserPollingUntilDone(request: DeleteTokenAuthUserRequest) async throws
   {
     try await self.deleteTokenAuthUserPollingUntilDone(request: request, options: .init())
@@ -2110,6 +3150,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a token auth user for a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteTokenAuthUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteTokenAuthUserPollingUntilDone(request:options:)``
   public func deleteTokenAuthUserPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2119,6 +3166,13 @@ extension Clients.MemorystoreProtocol {
     try await self.deleteTokenAuthUserPollingUntilDone(request: request)
   }
 
+  /// Adds a token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/addAuthToken(request:options:)``
   public func addAuthToken(request: AddAuthTokenRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.addAuthToken(request: request, options: .init())
@@ -2130,6 +3184,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/addAuthTokenPollingUntilDone(request:options:)``
   public func addAuthTokenPollingUntilDone(request: AddAuthTokenRequest) async throws
     -> TokenAuthUser
   {
@@ -2142,6 +3203,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Adds a token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_AddAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/addAuthTokenPollingUntilDone(request:options:)``
   public func addAuthTokenPollingUntilDone(
     tokenAuthUser: Swift.String,
     authToken: AuthToken?,
@@ -2153,6 +3221,13 @@ extension Clients.MemorystoreProtocol {
     return try await self.addAuthTokenPollingUntilDone(request: request)
   }
 
+  /// Deletes a token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteAuthToken(request:options:)``
   public func deleteAuthToken(request: DeleteAuthTokenRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2165,6 +3240,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteAuthTokenPollingUntilDone(request:options:)``
   public func deleteAuthTokenPollingUntilDone(request: DeleteAuthTokenRequest) async throws {
     try await self.deleteAuthTokenPollingUntilDone(request: request, options: .init())
   }
@@ -2175,6 +3257,13 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a token for a user of a token based auth enabled instance.
+  ///
+  /// @Snippet(path: "Memorystore_DeleteAuthToken")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteAuthTokenPollingUntilDone(request:options:)``
   public func deleteAuthTokenPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2184,6 +3273,30 @@ extension Clients.MemorystoreProtocol {
     try await self.deleteAuthTokenPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Memorystore_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -2196,6 +3309,30 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Memorystore_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2222,6 +3359,10 @@ extension Clients.MemorystoreProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Memorystore_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -2235,6 +3376,13 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Memorystore_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -2247,6 +3395,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -2259,6 +3416,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2270,6 +3436,10 @@ extension Clients.MemorystoreProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Memorystore_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -2283,6 +3453,15 @@ extension Clients.MemorystoreProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -2294,6 +3473,9 @@ extension Clients.MemorystoreProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2306,6 +3488,9 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -2315,6 +3500,15 @@ extension Clients.MemorystoreProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -2325,6 +3519,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -2334,6 +3537,15 @@ extension Clients.MemorystoreProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -2344,6 +3556,15 @@ extension Clients.MemorystoreProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Memorystore_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MemorystoreClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

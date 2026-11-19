@@ -28,6 +28,10 @@
   /// A service for managing Vertex AI's IndexEndpoints.
   ///
   /// @Snippet(path: "IndexEndpointServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/IndexEndpointServiceProtocol``
   public final class IndexEndpointServiceClient: Clients.IndexEndpointServiceProtocol, Sendable {
     let inner: any Clients.IndexEndpointServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@
     /// Creates an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_CreateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createIndexEndpoint(request:)``
+    /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:)``
+    /// - ``createIndexEndpointPollingUntilDone(request:)``
+    /// - ``createIndexEndpointPollingUntilDone(request:options:)``
     public func createIndexEndpoint(
       request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -58,6 +69,13 @@
     /// Creates an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_CreateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createIndexEndpoint(request:)``
+    /// - ``createIndexEndpoint(request:options:)``
+    /// - ``createIndexEndpointPollingUntilDone(parent:indexEndpoint:)``
+    /// - ``createIndexEndpointPollingUntilDone(request:)``
     public func createIndexEndpointPollingUntilDone(
       request: CreateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> IndexEndpoint {
@@ -86,6 +104,11 @@
     /// Gets an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_GetIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIndexEndpoint(name:)``
+    /// - ``getIndexEndpoint(request:)``
     public func getIndexEndpoint(
       request: GetIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
@@ -95,6 +118,13 @@
     /// Lists IndexEndpoints in a Location.
     ///
     /// @Snippet(path: "IndexEndpointService_ListIndexEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listIndexEndpoints(request:)``
+    /// - ``listIndexEndpointsByItems(parent:)``
+    /// - ``listIndexEndpointsByItems(request:)``
+    /// - ``listIndexEndpointsByItems(request:options:)``
     public func listIndexEndpoints(
       request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListIndexEndpointsResponse {
@@ -104,6 +134,11 @@
     /// Updates an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_UpdateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateIndexEndpoint(indexEndpoint:updateMask:)``
+    /// - ``updateIndexEndpoint(request:)``
     public func updateIndexEndpoint(
       request: UpdateIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
@@ -113,6 +148,13 @@
     /// Deletes an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_DeleteIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteIndexEndpoint(request:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(name:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(request:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(request:options:)``
     public func deleteIndexEndpoint(
       request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -122,6 +164,13 @@
     /// Deletes an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_DeleteIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteIndexEndpoint(request:)``
+    /// - ``deleteIndexEndpoint(request:options:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(name:)``
+    /// - ``deleteIndexEndpointPollingUntilDone(request:)``
     public func deleteIndexEndpointPollingUntilDone(
       request: DeleteIndexEndpointRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -152,6 +201,13 @@
     /// Only non-empty Indexes can be deployed.
     ///
     /// @Snippet(path: "IndexEndpointService_DeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deployIndex(request:)``
+    /// - ``deployIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
+    /// - ``deployIndexPollingUntilDone(request:)``
+    /// - ``deployIndexPollingUntilDone(request:options:)``
     public func deployIndex(
       request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -163,6 +219,13 @@
     /// Only non-empty Indexes can be deployed.
     ///
     /// @Snippet(path: "IndexEndpointService_DeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deployIndex(request:)``
+    /// - ``deployIndex(request:options:)``
+    /// - ``deployIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
+    /// - ``deployIndexPollingUntilDone(request:)``
     public func deployIndexPollingUntilDone(
       request: DeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> DeployIndexResponse {
@@ -192,6 +255,13 @@
     /// and freeing all resources it's using.
     ///
     /// @Snippet(path: "IndexEndpointService_UndeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``undeployIndex(request:)``
+    /// - ``undeployIndexPollingUntilDone(indexEndpoint:deployedIndexId:)``
+    /// - ``undeployIndexPollingUntilDone(request:)``
+    /// - ``undeployIndexPollingUntilDone(request:options:)``
     public func undeployIndex(
       request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -202,6 +272,13 @@
     /// and freeing all resources it's using.
     ///
     /// @Snippet(path: "IndexEndpointService_UndeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``undeployIndex(request:)``
+    /// - ``undeployIndex(request:options:)``
+    /// - ``undeployIndexPollingUntilDone(indexEndpoint:deployedIndexId:)``
+    /// - ``undeployIndexPollingUntilDone(request:)``
     public func undeployIndexPollingUntilDone(
       request: UndeployIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> UndeployIndexResponse {
@@ -231,6 +308,13 @@
     /// Update an existing DeployedIndex under an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_MutateDeployedIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``mutateDeployedIndex(request:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(request:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(request:options:)``
     public func mutateDeployedIndex(
       request: MutateDeployedIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -240,6 +324,13 @@
     /// Update an existing DeployedIndex under an IndexEndpoint.
     ///
     /// @Snippet(path: "IndexEndpointService_MutateDeployedIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``mutateDeployedIndex(request:)``
+    /// - ``mutateDeployedIndex(request:options:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(indexEndpoint:deployedIndex:)``
+    /// - ``mutateDeployedIndexPollingUntilDone(request:)``
     public func mutateDeployedIndexPollingUntilDone(
       request: MutateDeployedIndexRequest, options: GoogleGax.RequestOptions
     ) async throws -> MutateDeployedIndexResponse {
@@ -269,6 +360,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "IndexEndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -278,6 +375,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "IndexEndpointService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -291,6 +392,10 @@
     /// errors.
     ///
     /// @Snippet(path: "IndexEndpointService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -301,6 +406,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "IndexEndpointService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -316,6 +425,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "IndexEndpointService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -327,6 +440,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IndexEndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -349,6 +469,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IndexEndpointService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -360,6 +485,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IndexEndpointService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -371,6 +501,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IndexEndpointService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -499,6 +633,13 @@
 
   // Default implementations
   extension Clients.IndexEndpointServiceProtocol {
+    /// Creates an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_CreateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/createIndexEndpoint(request:options:)``
     public func createIndexEndpoint(request: CreateIndexEndpointRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -511,6 +652,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_CreateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/createIndexEndpointPollingUntilDone(request:options:)``
     public func createIndexEndpointPollingUntilDone(request: CreateIndexEndpointRequest)
       async throws -> IndexEndpoint
     {
@@ -523,6 +671,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_CreateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/createIndexEndpointPollingUntilDone(request:options:)``
     public func createIndexEndpointPollingUntilDone(
       parent: Swift.String,
       indexEndpoint: IndexEndpoint?,
@@ -534,6 +689,13 @@
       return try await self.createIndexEndpointPollingUntilDone(request: request)
     }
 
+    /// Gets an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_GetIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/getIndexEndpoint(request:options:)``
     public func getIndexEndpoint(request: GetIndexEndpointRequest) async throws
       -> GoogleCloudAIPlatformV1.IndexEndpoint
     {
@@ -546,6 +708,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_GetIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/getIndexEndpoint(request:options:)``
     public func getIndexEndpoint(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.IndexEndpoint {
@@ -555,6 +724,13 @@
       return try await self.getIndexEndpoint(request: request)
     }
 
+    /// Lists IndexEndpoints in a Location.
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListIndexEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listIndexEndpoints(request:options:)``
     public func listIndexEndpoints(request: ListIndexEndpointsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListIndexEndpointsResponse
     {
@@ -567,6 +743,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists IndexEndpoints in a Location.
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListIndexEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listIndexEndpoints(request:options:)``
     public func listIndexEndpointsByItems(
       request: ListIndexEndpointsRequest
     ) -> some AsyncSequence<IndexEndpoint, any Swift.Error> & Sendable {
@@ -576,6 +759,10 @@
     /// Lists IndexEndpoints in a Location.
     ///
     /// @Snippet(path: "IndexEndpointService_ListIndexEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listIndexEndpoints(request:options:)``
     public func listIndexEndpointsByItems(
       request: ListIndexEndpointsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<IndexEndpoint, any Swift.Error> & Sendable {
@@ -590,6 +777,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists IndexEndpoints in a Location.
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListIndexEndpoints")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listIndexEndpoints(request:options:)``
     public func listIndexEndpointsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<IndexEndpoint, any Swift.Error> & Sendable {
@@ -599,6 +793,13 @@
       return self.listIndexEndpointsByItems(request: request)
     }
 
+    /// Updates an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_UpdateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/updateIndexEndpoint(request:options:)``
     public func updateIndexEndpoint(request: UpdateIndexEndpointRequest) async throws
       -> GoogleCloudAIPlatformV1.IndexEndpoint
     {
@@ -611,6 +812,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_UpdateIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/updateIndexEndpoint(request:options:)``
     public func updateIndexEndpoint(
       indexEndpoint: IndexEndpoint?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -622,6 +830,13 @@
       return try await self.updateIndexEndpoint(request: request)
     }
 
+    /// Deletes an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeleteIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deleteIndexEndpoint(request:options:)``
     public func deleteIndexEndpoint(request: DeleteIndexEndpointRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -634,6 +849,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeleteIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deleteIndexEndpointPollingUntilDone(request:options:)``
     public func deleteIndexEndpointPollingUntilDone(request: DeleteIndexEndpointRequest)
       async throws
     {
@@ -646,6 +868,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeleteIndexEndpoint")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deleteIndexEndpointPollingUntilDone(request:options:)``
     public func deleteIndexEndpointPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -655,6 +884,15 @@
       try await self.deleteIndexEndpointPollingUntilDone(request: request)
     }
 
+    /// Deploys an Index into this IndexEndpoint, creating a DeployedIndex within
+    /// it.
+    /// Only non-empty Indexes can be deployed.
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deployIndex(request:options:)``
     public func deployIndex(request: DeployIndexRequest) async throws -> GoogleLongRunning.Operation
     {
       try await self.deployIndex(request: request, options: .init())
@@ -666,6 +904,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deploys an Index into this IndexEndpoint, creating a DeployedIndex within
+    /// it.
+    /// Only non-empty Indexes can be deployed.
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deployIndexPollingUntilDone(request:options:)``
     public func deployIndexPollingUntilDone(request: DeployIndexRequest) async throws
       -> DeployIndexResponse
     {
@@ -678,6 +925,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deploys an Index into this IndexEndpoint, creating a DeployedIndex within
+    /// it.
+    /// Only non-empty Indexes can be deployed.
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deployIndexPollingUntilDone(request:options:)``
     public func deployIndexPollingUntilDone(
       indexEndpoint: Swift.String,
       deployedIndex: DeployedIndex?,
@@ -689,6 +945,14 @@
       return try await self.deployIndexPollingUntilDone(request: request)
     }
 
+    /// Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
+    /// and freeing all resources it's using.
+    ///
+    /// @Snippet(path: "IndexEndpointService_UndeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/undeployIndex(request:options:)``
     public func undeployIndex(request: UndeployIndexRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -701,6 +965,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
+    /// and freeing all resources it's using.
+    ///
+    /// @Snippet(path: "IndexEndpointService_UndeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/undeployIndexPollingUntilDone(request:options:)``
     public func undeployIndexPollingUntilDone(request: UndeployIndexRequest) async throws
       -> UndeployIndexResponse
     {
@@ -713,6 +985,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Undeploys an Index from an IndexEndpoint, removing a DeployedIndex from it,
+    /// and freeing all resources it's using.
+    ///
+    /// @Snippet(path: "IndexEndpointService_UndeployIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/undeployIndexPollingUntilDone(request:options:)``
     public func undeployIndexPollingUntilDone(
       indexEndpoint: Swift.String,
       deployedIndexId: Swift.String,
@@ -724,6 +1004,13 @@
       return try await self.undeployIndexPollingUntilDone(request: request)
     }
 
+    /// Update an existing DeployedIndex under an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_MutateDeployedIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/mutateDeployedIndex(request:options:)``
     public func mutateDeployedIndex(request: MutateDeployedIndexRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -736,6 +1023,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update an existing DeployedIndex under an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_MutateDeployedIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/mutateDeployedIndexPollingUntilDone(request:options:)``
     public func mutateDeployedIndexPollingUntilDone(request: MutateDeployedIndexRequest)
       async throws -> MutateDeployedIndexResponse
     {
@@ -748,6 +1042,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update an existing DeployedIndex under an IndexEndpoint.
+    ///
+    /// @Snippet(path: "IndexEndpointService_MutateDeployedIndex")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/mutateDeployedIndexPollingUntilDone(request:options:)``
     public func mutateDeployedIndexPollingUntilDone(
       indexEndpoint: Swift.String,
       deployedIndex: DeployedIndex?,
@@ -759,6 +1060,13 @@
       return try await self.mutateDeployedIndexPollingUntilDone(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -771,6 +1079,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -780,6 +1095,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "IndexEndpointService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -793,6 +1112,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "IndexEndpointService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -805,6 +1131,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "IndexEndpointService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -817,6 +1154,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "IndexEndpointService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -829,6 +1174,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "IndexEndpointService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -841,6 +1199,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -853,6 +1220,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -864,6 +1240,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "IndexEndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -877,6 +1257,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -888,6 +1277,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -900,6 +1292,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -909,6 +1304,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -919,6 +1323,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -928,6 +1341,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -938,6 +1360,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -947,6 +1378,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "IndexEndpointService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IndexEndpointServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

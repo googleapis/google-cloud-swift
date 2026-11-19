@@ -26,6 +26,10 @@ import Foundation
 /// A simple identity service.
 ///
 /// @Snippet(path: "IdentityQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/IdentityProtocol``
 public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   let inner: any Clients.IdentityStub
 
@@ -42,6 +46,10 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// Creates a user.
   ///
   /// @Snippet(path: "Identity_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUser(request:)``
   public func createUser(
     request: CreateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.User {
@@ -51,6 +59,11 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// Retrieves the User with the given uri.
   ///
   /// @Snippet(path: "Identity_GetUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getUser(name:)``
+  /// - ``getUser(request:)``
   public func getUser(
     request: GetUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.User {
@@ -60,6 +73,10 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// Updates a user.
   ///
   /// @Snippet(path: "Identity_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUser(request:)``
   public func updateUser(
     request: UpdateUserRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.User {
@@ -69,6 +86,11 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// Deletes a user, their profile, and all of their authored messages.
   ///
   /// @Snippet(path: "Identity_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUser(name:)``
+  /// - ``deleteUser(request:)``
   public func deleteUser(
     request: DeleteUserRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -78,6 +100,12 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// Lists all users.
   ///
   /// @Snippet(path: "Identity_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUsers(request:)``
+  /// - ``listUsersByItems(request:)``
+  /// - ``listUsersByItems(request:options:)``
   public func listUsers(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleShowcaseV1Beta1.ListUsersResponse {
@@ -89,6 +117,12 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Identity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -100,6 +134,10 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Identity_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -111,6 +149,10 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Identity_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -122,6 +164,10 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Identity_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -133,6 +179,10 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
   ///
   /// @Snippet(path: "Identity_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -144,6 +194,13 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Identity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -166,6 +223,11 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Identity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,6 +239,11 @@ public final class IdentityClient: Clients.IdentityProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Identity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -260,6 +327,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.IdentityProtocol {
+  /// Creates a user.
+  ///
+  /// @Snippet(path: "Identity_CreateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/createUser(request:options:)``
   public func createUser(request: CreateUserRequest) async throws -> GoogleShowcaseV1Beta1.User {
     try await self.createUser(request: request, options: .init())
   }
@@ -270,6 +344,13 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the User with the given uri.
+  ///
+  /// @Snippet(path: "Identity_GetUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/getUser(request:options:)``
   public func getUser(request: GetUserRequest) async throws -> GoogleShowcaseV1Beta1.User {
     try await self.getUser(request: request, options: .init())
   }
@@ -280,6 +361,13 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the User with the given uri.
+  ///
+  /// @Snippet(path: "Identity_GetUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/getUser(request:options:)``
   public func getUser(
     name: Swift.String,
   ) async throws -> GoogleShowcaseV1Beta1.User {
@@ -289,6 +377,13 @@ extension Clients.IdentityProtocol {
     return try await self.getUser(request: request)
   }
 
+  /// Updates a user.
+  ///
+  /// @Snippet(path: "Identity_UpdateUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/updateUser(request:options:)``
   public func updateUser(request: UpdateUserRequest) async throws -> GoogleShowcaseV1Beta1.User {
     try await self.updateUser(request: request, options: .init())
   }
@@ -299,6 +394,13 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a user, their profile, and all of their authored messages.
+  ///
+  /// @Snippet(path: "Identity_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/deleteUser(request:options:)``
   public func deleteUser(request: DeleteUserRequest) async throws {
     try await self.deleteUser(request: request, options: .init())
   }
@@ -309,6 +411,13 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a user, their profile, and all of their authored messages.
+  ///
+  /// @Snippet(path: "Identity_DeleteUser")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/deleteUser(request:options:)``
   public func deleteUser(
     name: Swift.String,
   ) async throws {
@@ -318,6 +427,13 @@ extension Clients.IdentityProtocol {
     try await self.deleteUser(request: request)
   }
 
+  /// Lists all users.
+  ///
+  /// @Snippet(path: "Identity_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listUsers(request:options:)``
   public func listUsers(request: ListUsersRequest) async throws
     -> GoogleShowcaseV1Beta1.ListUsersResponse
   {
@@ -330,6 +446,13 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all users.
+  ///
+  /// @Snippet(path: "Identity_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listUsers(request:options:)``
   public func listUsersByItems(
     request: ListUsersRequest
   ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
@@ -339,6 +462,10 @@ extension Clients.IdentityProtocol {
   /// Lists all users.
   ///
   /// @Snippet(path: "Identity_ListUsers")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listUsers(request:options:)``
   public func listUsersByItems(
     request: ListUsersRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<User, any Swift.Error> & Sendable {
@@ -352,6 +479,15 @@ extension Clients.IdentityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Identity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -364,6 +500,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Identity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -375,6 +520,10 @@ extension Clients.IdentityProtocol {
   /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
   ///
   /// @Snippet(path: "Identity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -388,6 +537,15 @@ extension Clients.IdentityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Locations][google.cloud.location.Locations] service functionality in this service.
+  ///
+  /// [google.cloud.location.Locations]: https://www.google.com/search?q=Swift+google.cloud.location+LocationsClient
+  ///
+  /// @Snippet(path: "Identity_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -400,6 +558,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Identity_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -412,6 +579,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Identity_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -424,6 +600,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [IAMPolicy][google.iam.v1.IAMPolicy] service functionality in this service.
+  ///
+  /// [google.iam.v1.IAMPolicy]: https://www.google.com/search?q=Swift+google.iam.v1+IAMPolicyClient
+  ///
+  /// @Snippet(path: "Identity_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -436,6 +621,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -448,6 +642,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -459,6 +662,10 @@ extension Clients.IdentityProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Identity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -472,6 +679,15 @@ extension Clients.IdentityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -483,6 +699,9 @@ extension Clients.IdentityProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -495,6 +714,9 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -504,6 +726,15 @@ extension Clients.IdentityProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -514,6 +745,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -523,6 +763,15 @@ extension Clients.IdentityProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -533,6 +782,15 @@ extension Clients.IdentityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Identity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``IdentityClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

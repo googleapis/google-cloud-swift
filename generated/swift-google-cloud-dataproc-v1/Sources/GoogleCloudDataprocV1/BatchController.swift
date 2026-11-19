@@ -25,6 +25,10 @@ import Foundation
 /// The BatchController provides methods to manage batch workloads.
 ///
 /// @Snippet(path: "BatchControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/BatchControllerProtocol``
 public final class BatchControllerClient: Clients.BatchControllerProtocol, Sendable {
   let inner: any Clients.BatchControllerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// Creates a batch workload that executes asynchronously.
   ///
   /// @Snippet(path: "BatchController_CreateBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBatch(request:)``
+  /// - ``createBatchPollingUntilDone(parent:batch:batchId:)``
+  /// - ``createBatchPollingUntilDone(request:)``
+  /// - ``createBatchPollingUntilDone(request:options:)``
   public func createBatch(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -54,6 +65,13 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// Creates a batch workload that executes asynchronously.
   ///
   /// @Snippet(path: "BatchController_CreateBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBatch(request:)``
+  /// - ``createBatch(request:options:)``
+  /// - ``createBatchPollingUntilDone(parent:batch:batchId:)``
+  /// - ``createBatchPollingUntilDone(request:)``
   public func createBatchPollingUntilDone(
     request: CreateBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> Batch {
@@ -81,6 +99,11 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// Gets the batch workload resource representation.
   ///
   /// @Snippet(path: "BatchController_GetBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBatch(name:)``
+  /// - ``getBatch(request:)``
   public func getBatch(
     request: GetBatchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Batch {
@@ -90,6 +113,13 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// Lists batch workloads.
   ///
   /// @Snippet(path: "BatchController_ListBatches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBatches(request:)``
+  /// - ``listBatchesByItems(parent:)``
+  /// - ``listBatchesByItems(request:)``
+  /// - ``listBatchesByItems(request:options:)``
   public func listBatches(
     request: ListBatchesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListBatchesResponse {
@@ -104,6 +134,11 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// [google.cloud.dataproc.v1.Batch.State]: <doc:Batch/State>
   ///
   /// @Snippet(path: "BatchController_DeleteBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBatch(name:)``
+  /// - ``deleteBatch(request:)``
   public func deleteBatch(
     request: DeleteBatchRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -117,6 +152,10 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "BatchController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -127,6 +166,10 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "BatchController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -142,6 +185,10 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "BatchController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -153,6 +200,13 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -175,6 +229,11 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -186,6 +245,11 @@ public final class BatchControllerClient: Clients.BatchControllerProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -259,6 +323,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.BatchControllerProtocol {
+  /// Creates a batch workload that executes asynchronously.
+  ///
+  /// @Snippet(path: "BatchController_CreateBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/createBatch(request:options:)``
   public func createBatch(request: CreateBatchRequest) async throws -> GoogleLongRunning.Operation {
     try await self.createBatch(request: request, options: .init())
   }
@@ -269,6 +340,13 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a batch workload that executes asynchronously.
+  ///
+  /// @Snippet(path: "BatchController_CreateBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/createBatchPollingUntilDone(request:options:)``
   public func createBatchPollingUntilDone(request: CreateBatchRequest) async throws -> Batch {
     return try await self.createBatchPollingUntilDone(request: request, options: .init())
   }
@@ -279,6 +357,13 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a batch workload that executes asynchronously.
+  ///
+  /// @Snippet(path: "BatchController_CreateBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/createBatchPollingUntilDone(request:options:)``
   public func createBatchPollingUntilDone(
     parent: Swift.String,
     batch: Batch?,
@@ -292,6 +377,13 @@ extension Clients.BatchControllerProtocol {
     return try await self.createBatchPollingUntilDone(request: request)
   }
 
+  /// Gets the batch workload resource representation.
+  ///
+  /// @Snippet(path: "BatchController_GetBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/getBatch(request:options:)``
   public func getBatch(request: GetBatchRequest) async throws -> GoogleCloudDataprocV1.Batch {
     try await self.getBatch(request: request, options: .init())
   }
@@ -302,6 +394,13 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the batch workload resource representation.
+  ///
+  /// @Snippet(path: "BatchController_GetBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/getBatch(request:options:)``
   public func getBatch(
     name: Swift.String,
   ) async throws -> GoogleCloudDataprocV1.Batch {
@@ -311,6 +410,13 @@ extension Clients.BatchControllerProtocol {
     return try await self.getBatch(request: request)
   }
 
+  /// Lists batch workloads.
+  ///
+  /// @Snippet(path: "BatchController_ListBatches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listBatches(request:options:)``
   public func listBatches(request: ListBatchesRequest) async throws
     -> GoogleCloudDataprocV1.ListBatchesResponse
   {
@@ -323,6 +429,13 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists batch workloads.
+  ///
+  /// @Snippet(path: "BatchController_ListBatches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listBatches(request:options:)``
   public func listBatchesByItems(
     request: ListBatchesRequest
   ) -> some AsyncSequence<Batch, any Swift.Error> & Sendable {
@@ -332,6 +445,10 @@ extension Clients.BatchControllerProtocol {
   /// Lists batch workloads.
   ///
   /// @Snippet(path: "BatchController_ListBatches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listBatches(request:options:)``
   public func listBatchesByItems(
     request: ListBatchesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Batch, any Swift.Error> & Sendable {
@@ -345,6 +462,13 @@ extension Clients.BatchControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists batch workloads.
+  ///
+  /// @Snippet(path: "BatchController_ListBatches")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listBatches(request:options:)``
   public func listBatchesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Batch, any Swift.Error> & Sendable {
@@ -354,6 +478,18 @@ extension Clients.BatchControllerProtocol {
     return self.listBatchesByItems(request: request)
   }
 
+  /// Deletes the batch workload resource. If the batch is not in a
+  /// `CANCELLED`, `SUCCEEDED` or `FAILED`
+  /// [`State`][google.cloud.dataproc.v1.Batch.State], the delete operation fails
+  /// and the response returns `FAILED_PRECONDITION`.
+  ///
+  /// [google.cloud.dataproc.v1.Batch.State]: <doc:Batch/State>
+  ///
+  /// @Snippet(path: "BatchController_DeleteBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/deleteBatch(request:options:)``
   public func deleteBatch(request: DeleteBatchRequest) async throws {
     try await self.deleteBatch(request: request, options: .init())
   }
@@ -364,6 +500,18 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the batch workload resource. If the batch is not in a
+  /// `CANCELLED`, `SUCCEEDED` or `FAILED`
+  /// [`State`][google.cloud.dataproc.v1.Batch.State], the delete operation fails
+  /// and the response returns `FAILED_PRECONDITION`.
+  ///
+  /// [google.cloud.dataproc.v1.Batch.State]: <doc:Batch/State>
+  ///
+  /// @Snippet(path: "BatchController_DeleteBatch")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/deleteBatch(request:options:)``
   public func deleteBatch(
     name: Swift.String,
   ) async throws {
@@ -373,6 +521,17 @@ extension Clients.BatchControllerProtocol {
     try await self.deleteBatch(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "BatchController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -385,6 +544,14 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "BatchController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -397,6 +564,19 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "BatchController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -409,6 +589,15 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -421,6 +610,15 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -432,6 +630,10 @@ extension Clients.BatchControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "BatchController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -445,6 +647,15 @@ extension Clients.BatchControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -456,6 +667,9 @@ extension Clients.BatchControllerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -468,6 +682,9 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -477,6 +694,15 @@ extension Clients.BatchControllerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -487,6 +713,15 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -496,6 +731,15 @@ extension Clients.BatchControllerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -506,6 +750,15 @@ extension Clients.BatchControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "BatchController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``BatchControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

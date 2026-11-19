@@ -25,6 +25,10 @@ import Foundation
 /// time series data.
 ///
 /// @Snippet(path: "MetricServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MetricServiceProtocol``
 public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable {
   let inner: any Clients.MetricServiceStub
 
@@ -41,6 +45,13 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// Lists monitored resource descriptors that match a filter.
   ///
   /// @Snippet(path: "MetricService_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMonitoredResourceDescriptors(request:)``
+  /// - ``listMonitoredResourceDescriptorsByItems(name:)``
+  /// - ``listMonitoredResourceDescriptorsByItems(request:)``
+  /// - ``listMonitoredResourceDescriptorsByItems(request:options:)``
   public func listMonitoredResourceDescriptors(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse {
@@ -50,6 +61,11 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// Gets a single monitored resource descriptor.
   ///
   /// @Snippet(path: "MetricService_GetMonitoredResourceDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMonitoredResourceDescriptor(name:)``
+  /// - ``getMonitoredResourceDescriptor(request:)``
   public func getMonitoredResourceDescriptor(
     request: GetMonitoredResourceDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.MonitoredResourceDescriptor {
@@ -59,6 +75,13 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// Lists metric descriptors that match a filter.
   ///
   /// @Snippet(path: "MetricService_ListMetricDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listMetricDescriptors(request:)``
+  /// - ``listMetricDescriptorsByItems(name:)``
+  /// - ``listMetricDescriptorsByItems(request:)``
+  /// - ``listMetricDescriptorsByItems(request:options:)``
   public func listMetricDescriptors(
     request: ListMetricDescriptorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse {
@@ -68,6 +91,11 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// Gets a single metric descriptor.
   ///
   /// @Snippet(path: "MetricService_GetMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getMetricDescriptor(name:)``
+  /// - ``getMetricDescriptor(request:)``
   public func getMetricDescriptor(
     request: GetMetricDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.MetricDescriptor {
@@ -82,6 +110,11 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// except that metric labels are never removed.
   ///
   /// @Snippet(path: "MetricService_CreateMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createMetricDescriptor(name:metricDescriptor:)``
+  /// - ``createMetricDescriptor(request:)``
   public func createMetricDescriptor(
     request: CreateMetricDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApi.MetricDescriptor {
@@ -93,6 +126,11 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// deleted.
   ///
   /// @Snippet(path: "MetricService_DeleteMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteMetricDescriptor(name:)``
+  /// - ``deleteMetricDescriptor(request:)``
   public func deleteMetricDescriptor(
     request: DeleteMetricDescriptorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -102,6 +140,13 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// Lists time series that match a filter.
   ///
   /// @Snippet(path: "MetricService_ListTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTimeSeries(request:)``
+  /// - ``listTimeSeriesByItems(name:filter:interval:view:)``
+  /// - ``listTimeSeriesByItems(request:)``
+  /// - ``listTimeSeriesByItems(request:options:)``
   public func listTimeSeries(
     request: ListTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMonitoringV3.ListTimeSeriesResponse {
@@ -117,6 +162,11 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// policy](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations#setting_the_organization_policy).
   ///
   /// @Snippet(path: "MetricService_CreateTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTimeSeries(name:timeSeries:)``
+  /// - ``createTimeSeries(request:)``
   public func createTimeSeries(
     request: CreateTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -136,6 +186,11 @@ public final class MetricServiceClient: Clients.MetricServiceProtocol, Sendable 
   /// [google.monitoring.v3.MetricService.CreateTimeSeries]: <doc:MetricServiceClient/createTimeSeries(request:options:)>
   ///
   /// @Snippet(path: "MetricService_CreateServiceTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServiceTimeSeries(name:timeSeries:)``
+  /// - ``createServiceTimeSeries(request:)``
   public func createServiceTimeSeries(
     request: CreateTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -199,6 +254,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MetricServiceProtocol {
+  /// Lists monitored resource descriptors that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptors(request: ListMonitoredResourceDescriptorsRequest)
     async throws -> GoogleCloudMonitoringV3.ListMonitoredResourceDescriptorsResponse
   {
@@ -211,6 +273,13 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists monitored resource descriptors that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest
   ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
@@ -220,6 +289,10 @@ extension Clients.MetricServiceProtocol {
   /// Lists monitored resource descriptors that match a filter.
   ///
   /// @Snippet(path: "MetricService_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptorsByItems(
     request: ListMonitoredResourceDescriptorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
@@ -234,6 +307,13 @@ extension Clients.MetricServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists monitored resource descriptors that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListMonitoredResourceDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMonitoredResourceDescriptors(request:options:)``
   public func listMonitoredResourceDescriptorsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<GoogleApi.MonitoredResourceDescriptor, any Swift.Error> & Sendable {
@@ -243,6 +323,13 @@ extension Clients.MetricServiceProtocol {
     return self.listMonitoredResourceDescriptorsByItems(request: request)
   }
 
+  /// Gets a single monitored resource descriptor.
+  ///
+  /// @Snippet(path: "MetricService_GetMonitoredResourceDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/getMonitoredResourceDescriptor(request:options:)``
   public func getMonitoredResourceDescriptor(request: GetMonitoredResourceDescriptorRequest)
     async throws -> GoogleApi.MonitoredResourceDescriptor
   {
@@ -255,6 +342,13 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single monitored resource descriptor.
+  ///
+  /// @Snippet(path: "MetricService_GetMonitoredResourceDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/getMonitoredResourceDescriptor(request:options:)``
   public func getMonitoredResourceDescriptor(
     name: Swift.String,
   ) async throws -> GoogleApi.MonitoredResourceDescriptor {
@@ -264,6 +358,13 @@ extension Clients.MetricServiceProtocol {
     return try await self.getMonitoredResourceDescriptor(request: request)
   }
 
+  /// Lists metric descriptors that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListMetricDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMetricDescriptors(request:options:)``
   public func listMetricDescriptors(request: ListMetricDescriptorsRequest) async throws
     -> GoogleCloudMonitoringV3.ListMetricDescriptorsResponse
   {
@@ -276,6 +377,13 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists metric descriptors that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListMetricDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMetricDescriptors(request:options:)``
   public func listMetricDescriptorsByItems(
     request: ListMetricDescriptorsRequest
   ) -> some AsyncSequence<GoogleApi.MetricDescriptor, any Swift.Error> & Sendable {
@@ -285,6 +393,10 @@ extension Clients.MetricServiceProtocol {
   /// Lists metric descriptors that match a filter.
   ///
   /// @Snippet(path: "MetricService_ListMetricDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMetricDescriptors(request:options:)``
   public func listMetricDescriptorsByItems(
     request: ListMetricDescriptorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleApi.MetricDescriptor, any Swift.Error> & Sendable {
@@ -299,6 +411,13 @@ extension Clients.MetricServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists metric descriptors that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListMetricDescriptors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listMetricDescriptors(request:options:)``
   public func listMetricDescriptorsByItems(
     name: Swift.String,
   ) -> some AsyncSequence<GoogleApi.MetricDescriptor, any Swift.Error> & Sendable {
@@ -308,6 +427,13 @@ extension Clients.MetricServiceProtocol {
     return self.listMetricDescriptorsByItems(request: request)
   }
 
+  /// Gets a single metric descriptor.
+  ///
+  /// @Snippet(path: "MetricService_GetMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/getMetricDescriptor(request:options:)``
   public func getMetricDescriptor(request: GetMetricDescriptorRequest) async throws
     -> GoogleApi.MetricDescriptor
   {
@@ -320,6 +446,13 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a single metric descriptor.
+  ///
+  /// @Snippet(path: "MetricService_GetMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/getMetricDescriptor(request:options:)``
   public func getMetricDescriptor(
     name: Swift.String,
   ) async throws -> GoogleApi.MetricDescriptor {
@@ -329,6 +462,18 @@ extension Clients.MetricServiceProtocol {
     return try await self.getMetricDescriptor(request: request)
   }
 
+  /// Creates a new metric descriptor.
+  /// The creation is executed asynchronously.
+  /// User-created metric descriptors define
+  /// [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
+  /// The metric descriptor is updated if it already exists,
+  /// except that metric labels are never removed.
+  ///
+  /// @Snippet(path: "MetricService_CreateMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/createMetricDescriptor(request:options:)``
   public func createMetricDescriptor(request: CreateMetricDescriptorRequest) async throws
     -> GoogleApi.MetricDescriptor
   {
@@ -341,6 +486,18 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new metric descriptor.
+  /// The creation is executed asynchronously.
+  /// User-created metric descriptors define
+  /// [custom metrics](https://cloud.google.com/monitoring/custom-metrics).
+  /// The metric descriptor is updated if it already exists,
+  /// except that metric labels are never removed.
+  ///
+  /// @Snippet(path: "MetricService_CreateMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/createMetricDescriptor(request:options:)``
   public func createMetricDescriptor(
     name: Swift.String,
     metricDescriptor: GoogleApi.MetricDescriptor?,
@@ -352,6 +509,15 @@ extension Clients.MetricServiceProtocol {
     return try await self.createMetricDescriptor(request: request)
   }
 
+  /// Deletes a metric descriptor. Only user-created
+  /// [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be
+  /// deleted.
+  ///
+  /// @Snippet(path: "MetricService_DeleteMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/deleteMetricDescriptor(request:options:)``
   public func deleteMetricDescriptor(request: DeleteMetricDescriptorRequest) async throws {
     try await self.deleteMetricDescriptor(request: request, options: .init())
   }
@@ -362,6 +528,15 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a metric descriptor. Only user-created
+  /// [custom metrics](https://cloud.google.com/monitoring/custom-metrics) can be
+  /// deleted.
+  ///
+  /// @Snippet(path: "MetricService_DeleteMetricDescriptor")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/deleteMetricDescriptor(request:options:)``
   public func deleteMetricDescriptor(
     name: Swift.String,
   ) async throws {
@@ -371,6 +546,13 @@ extension Clients.MetricServiceProtocol {
     try await self.deleteMetricDescriptor(request: request)
   }
 
+  /// Lists time series that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listTimeSeries(request:options:)``
   public func listTimeSeries(request: ListTimeSeriesRequest) async throws
     -> GoogleCloudMonitoringV3.ListTimeSeriesResponse
   {
@@ -383,6 +565,13 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists time series that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listTimeSeries(request:options:)``
   public func listTimeSeriesByItems(
     request: ListTimeSeriesRequest
   ) -> some AsyncSequence<TimeSeries, any Swift.Error> & Sendable {
@@ -392,6 +581,10 @@ extension Clients.MetricServiceProtocol {
   /// Lists time series that match a filter.
   ///
   /// @Snippet(path: "MetricService_ListTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listTimeSeries(request:options:)``
   public func listTimeSeriesByItems(
     request: ListTimeSeriesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TimeSeries, any Swift.Error> & Sendable {
@@ -406,6 +599,13 @@ extension Clients.MetricServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists time series that match a filter.
+  ///
+  /// @Snippet(path: "MetricService_ListTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/listTimeSeries(request:options:)``
   public func listTimeSeriesByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -421,6 +621,19 @@ extension Clients.MetricServiceProtocol {
     return self.listTimeSeriesByItems(request: request)
   }
 
+  /// Creates or adds data to one or more time series.
+  /// The response is empty if all time series in the request were written.
+  /// If any time series could not be written, a corresponding failure message is
+  /// included in the error response.
+  /// This method does not support
+  /// [resource locations constraint of an organization
+  /// policy](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations#setting_the_organization_policy).
+  ///
+  /// @Snippet(path: "MetricService_CreateTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/createTimeSeries(request:options:)``
   public func createTimeSeries(request: CreateTimeSeriesRequest) async throws {
     try await self.createTimeSeries(request: request, options: .init())
   }
@@ -431,6 +644,19 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates or adds data to one or more time series.
+  /// The response is empty if all time series in the request were written.
+  /// If any time series could not be written, a corresponding failure message is
+  /// included in the error response.
+  /// This method does not support
+  /// [resource locations constraint of an organization
+  /// policy](https://cloud.google.com/resource-manager/docs/organization-policy/defining-locations#setting_the_organization_policy).
+  ///
+  /// @Snippet(path: "MetricService_CreateTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/createTimeSeries(request:options:)``
   public func createTimeSeries(
     name: Swift.String,
     timeSeries: [TimeSeries],
@@ -442,6 +668,23 @@ extension Clients.MetricServiceProtocol {
     try await self.createTimeSeries(request: request)
   }
 
+  /// Creates or adds data to one or more service time series. A service time
+  /// series is a time series for a metric from a Google Cloud service. The
+  /// response is empty if all time series in the request were written. If any
+  /// time series could not be written, a corresponding failure message is
+  /// included in the error response. This endpoint rejects writes to
+  /// user-defined metrics.
+  /// This method is only for use by Google Cloud services. Use
+  /// [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
+  /// instead.
+  ///
+  /// [google.monitoring.v3.MetricService.CreateTimeSeries]: <doc:MetricServiceClient/createTimeSeries(request:options:)>
+  ///
+  /// @Snippet(path: "MetricService_CreateServiceTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/createServiceTimeSeries(request:options:)``
   public func createServiceTimeSeries(request: CreateTimeSeriesRequest) async throws {
     try await self.createServiceTimeSeries(request: request, options: .init())
   }
@@ -452,6 +695,23 @@ extension Clients.MetricServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates or adds data to one or more service time series. A service time
+  /// series is a time series for a metric from a Google Cloud service. The
+  /// response is empty if all time series in the request were written. If any
+  /// time series could not be written, a corresponding failure message is
+  /// included in the error response. This endpoint rejects writes to
+  /// user-defined metrics.
+  /// This method is only for use by Google Cloud services. Use
+  /// [projects.timeSeries.create][google.monitoring.v3.MetricService.CreateTimeSeries]
+  /// instead.
+  ///
+  /// [google.monitoring.v3.MetricService.CreateTimeSeries]: <doc:MetricServiceClient/createTimeSeries(request:options:)>
+  ///
+  /// @Snippet(path: "MetricService_CreateServiceTimeSeries")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MetricServiceClient/createServiceTimeSeries(request:options:)``
   public func createServiceTimeSeries(
     name: Swift.String,
     timeSeries: [TimeSeries],

@@ -24,6 +24,10 @@ import Foundation
 /// recognition.
 ///
 /// @Snippet(path: "LanguageServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LanguageServiceProtocol``
 public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Sendable {
   let inner: any Clients.LanguageServiceStub
 
@@ -40,6 +44,12 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   /// Analyzes the sentiment of the provided text.
   ///
   /// @Snippet(path: "LanguageService_AnalyzeSentiment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeSentiment(document:)``
+  /// - ``analyzeSentiment(document:encodingType:)``
+  /// - ``analyzeSentiment(request:)``
   public func analyzeSentiment(
     request: AnalyzeSentimentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse {
@@ -51,6 +61,12 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   /// other properties.
   ///
   /// @Snippet(path: "LanguageService_AnalyzeEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``analyzeEntities(document:)``
+  /// - ``analyzeEntities(document:encodingType:)``
+  /// - ``analyzeEntities(request:)``
   public func analyzeEntities(
     request: AnalyzeEntitiesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse {
@@ -60,6 +76,11 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   /// Classifies a document into categories.
   ///
   /// @Snippet(path: "LanguageService_ClassifyText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``classifyText(document:)``
+  /// - ``classifyText(request:)``
   public func classifyText(
     request: ClassifyTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse {
@@ -69,6 +90,11 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   /// Moderates a document for harmful and sensitive categories.
   ///
   /// @Snippet(path: "LanguageService_ModerateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moderateText(document:)``
+  /// - ``moderateText(request:)``
   public func moderateText(
     request: ModerateTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse {
@@ -78,6 +104,12 @@ public final class LanguageServiceClient: Clients.LanguageServiceProtocol, Senda
   /// A convenience method that provides all features in one call.
   ///
   /// @Snippet(path: "LanguageService_AnnotateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``annotateText(document:features:)``
+  /// - ``annotateText(document:features:encodingType:)``
+  /// - ``annotateText(request:)``
   public func annotateText(
     request: AnnotateTextRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLanguageV2.AnnotateTextResponse {
@@ -121,6 +153,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LanguageServiceProtocol {
+  /// Analyzes the sentiment of the provided text.
+  ///
+  /// @Snippet(path: "LanguageService_AnalyzeSentiment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/analyzeSentiment(request:options:)``
   public func analyzeSentiment(request: AnalyzeSentimentRequest) async throws
     -> GoogleCloudLanguageV2.AnalyzeSentimentResponse
   {
@@ -133,6 +172,13 @@ extension Clients.LanguageServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Analyzes the sentiment of the provided text.
+  ///
+  /// @Snippet(path: "LanguageService_AnalyzeSentiment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/analyzeSentiment(request:options:)``
   public func analyzeSentiment(
     document: Document?,
     encodingType: EncodingType,
@@ -144,6 +190,13 @@ extension Clients.LanguageServiceProtocol {
     return try await self.analyzeSentiment(request: request)
   }
 
+  /// Analyzes the sentiment of the provided text.
+  ///
+  /// @Snippet(path: "LanguageService_AnalyzeSentiment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/analyzeSentiment(request:options:)``
   public func analyzeSentiment(
     document: Document?,
   ) async throws -> GoogleCloudLanguageV2.AnalyzeSentimentResponse {
@@ -153,6 +206,15 @@ extension Clients.LanguageServiceProtocol {
     return try await self.analyzeSentiment(request: request)
   }
 
+  /// Finds named entities (currently proper names and common nouns) in the text
+  /// along with entity types, probability, mentions for each entity, and
+  /// other properties.
+  ///
+  /// @Snippet(path: "LanguageService_AnalyzeEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/analyzeEntities(request:options:)``
   public func analyzeEntities(request: AnalyzeEntitiesRequest) async throws
     -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse
   {
@@ -165,6 +227,15 @@ extension Clients.LanguageServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Finds named entities (currently proper names and common nouns) in the text
+  /// along with entity types, probability, mentions for each entity, and
+  /// other properties.
+  ///
+  /// @Snippet(path: "LanguageService_AnalyzeEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/analyzeEntities(request:options:)``
   public func analyzeEntities(
     document: Document?,
     encodingType: EncodingType,
@@ -176,6 +247,15 @@ extension Clients.LanguageServiceProtocol {
     return try await self.analyzeEntities(request: request)
   }
 
+  /// Finds named entities (currently proper names and common nouns) in the text
+  /// along with entity types, probability, mentions for each entity, and
+  /// other properties.
+  ///
+  /// @Snippet(path: "LanguageService_AnalyzeEntities")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/analyzeEntities(request:options:)``
   public func analyzeEntities(
     document: Document?,
   ) async throws -> GoogleCloudLanguageV2.AnalyzeEntitiesResponse {
@@ -185,6 +265,13 @@ extension Clients.LanguageServiceProtocol {
     return try await self.analyzeEntities(request: request)
   }
 
+  /// Classifies a document into categories.
+  ///
+  /// @Snippet(path: "LanguageService_ClassifyText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/classifyText(request:options:)``
   public func classifyText(request: ClassifyTextRequest) async throws
     -> GoogleCloudLanguageV2.ClassifyTextResponse
   {
@@ -197,6 +284,13 @@ extension Clients.LanguageServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Classifies a document into categories.
+  ///
+  /// @Snippet(path: "LanguageService_ClassifyText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/classifyText(request:options:)``
   public func classifyText(
     document: Document?,
   ) async throws -> GoogleCloudLanguageV2.ClassifyTextResponse {
@@ -206,6 +300,13 @@ extension Clients.LanguageServiceProtocol {
     return try await self.classifyText(request: request)
   }
 
+  /// Moderates a document for harmful and sensitive categories.
+  ///
+  /// @Snippet(path: "LanguageService_ModerateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/moderateText(request:options:)``
   public func moderateText(request: ModerateTextRequest) async throws
     -> GoogleCloudLanguageV2.ModerateTextResponse
   {
@@ -218,6 +319,13 @@ extension Clients.LanguageServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moderates a document for harmful and sensitive categories.
+  ///
+  /// @Snippet(path: "LanguageService_ModerateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/moderateText(request:options:)``
   public func moderateText(
     document: Document?,
   ) async throws -> GoogleCloudLanguageV2.ModerateTextResponse {
@@ -227,6 +335,13 @@ extension Clients.LanguageServiceProtocol {
     return try await self.moderateText(request: request)
   }
 
+  /// A convenience method that provides all features in one call.
+  ///
+  /// @Snippet(path: "LanguageService_AnnotateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/annotateText(request:options:)``
   public func annotateText(request: AnnotateTextRequest) async throws
     -> GoogleCloudLanguageV2.AnnotateTextResponse
   {
@@ -239,6 +354,13 @@ extension Clients.LanguageServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// A convenience method that provides all features in one call.
+  ///
+  /// @Snippet(path: "LanguageService_AnnotateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/annotateText(request:options:)``
   public func annotateText(
     document: Document?,
     features: AnnotateTextRequest.Features?,
@@ -252,6 +374,13 @@ extension Clients.LanguageServiceProtocol {
     return try await self.annotateText(request: request)
   }
 
+  /// A convenience method that provides all features in one call.
+  ///
+  /// @Snippet(path: "LanguageService_AnnotateText")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LanguageServiceClient/annotateText(request:options:)``
   public func annotateText(
     document: Document?,
     features: AnnotateTextRequest.Features?,

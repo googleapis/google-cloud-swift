@@ -27,6 +27,10 @@ import Foundation
 /// complianceManager.
 ///
 /// @Snippet(path: "CmEnrollmentServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CmEnrollmentServiceProtocol``
 public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtocol, Sendable {
   let inner: any Clients.CmEnrollmentServiceStub
 
@@ -47,6 +51,11 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// create or update feature-specific configurations.
   ///
   /// @Snippet(path: "CmEnrollmentService_UpdateCmEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCmEnrollment(cmEnrollment:updateMask:)``
+  /// - ``updateCmEnrollment(request:)``
   public func updateCmEnrollment(
     request: UpdateCmEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CmEnrollment {
@@ -59,6 +68,11 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// resource that's enrolled in Compliance Manager.
   ///
   /// @Snippet(path: "CmEnrollmentService_CalculateEffectiveCmEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``calculateEffectiveCmEnrollment(name:)``
+  /// - ``calculateEffectiveCmEnrollment(request:)``
   public func calculateEffectiveCmEnrollment(
     request: CalculateEffectiveCmEnrollmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CalculateEffectiveCmEnrollmentResponse {
@@ -85,6 +99,12 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CmEnrollmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -94,6 +114,10 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CmEnrollmentService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -105,6 +129,13 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CmEnrollmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -127,6 +158,11 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CmEnrollmentService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -138,6 +174,11 @@ public final class CmEnrollmentServiceClient: Clients.CmEnrollmentServiceProtoco
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CmEnrollmentService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -191,6 +232,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.CmEnrollmentServiceProtocol {
+  /// Updates the Compliance Manager enrollment for a resource to facilitate
+  /// an audit.
+  /// Use this method to enroll a resource in Compliance Manager or to
+  /// create or update feature-specific configurations.
+  ///
+  /// @Snippet(path: "CmEnrollmentService_UpdateCmEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/updateCmEnrollment(request:options:)``
   public func updateCmEnrollment(request: UpdateCmEnrollmentRequest) async throws
     -> GoogleCloudSecurityComplianceV1.CmEnrollment
   {
@@ -203,6 +254,16 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the Compliance Manager enrollment for a resource to facilitate
+  /// an audit.
+  /// Use this method to enroll a resource in Compliance Manager or to
+  /// create or update feature-specific configurations.
+  ///
+  /// @Snippet(path: "CmEnrollmentService_UpdateCmEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/updateCmEnrollment(request:options:)``
   public func updateCmEnrollment(
     cmEnrollment: CmEnrollment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -214,6 +275,16 @@ extension Clients.CmEnrollmentServiceProtocol {
     return try await self.updateCmEnrollment(request: request)
   }
 
+  /// Calculates the effective Compliance Manager enrollment for a resource.
+  /// An effective enrollment is either a direct enrollment of a
+  /// resource (if it exists), or an enrollment of the closest parent of a
+  /// resource that's enrolled in Compliance Manager.
+  ///
+  /// @Snippet(path: "CmEnrollmentService_CalculateEffectiveCmEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/calculateEffectiveCmEnrollment(request:options:)``
   public func calculateEffectiveCmEnrollment(request: CalculateEffectiveCmEnrollmentRequest)
     async throws -> GoogleCloudSecurityComplianceV1.CalculateEffectiveCmEnrollmentResponse
   {
@@ -226,6 +297,16 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Calculates the effective Compliance Manager enrollment for a resource.
+  /// An effective enrollment is either a direct enrollment of a
+  /// resource (if it exists), or an enrollment of the closest parent of a
+  /// resource that's enrolled in Compliance Manager.
+  ///
+  /// @Snippet(path: "CmEnrollmentService_CalculateEffectiveCmEnrollment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/calculateEffectiveCmEnrollment(request:options:)``
   public func calculateEffectiveCmEnrollment(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityComplianceV1.CalculateEffectiveCmEnrollmentResponse {
@@ -235,6 +316,30 @@ extension Clients.CmEnrollmentServiceProtocol {
     return try await self.calculateEffectiveCmEnrollment(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CmEnrollmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -247,6 +352,30 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "CmEnrollmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -273,6 +402,10 @@ extension Clients.CmEnrollmentServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "CmEnrollmentService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -286,6 +419,13 @@ extension Clients.CmEnrollmentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CmEnrollmentService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -298,6 +438,15 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -310,6 +459,15 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -321,6 +479,10 @@ extension Clients.CmEnrollmentServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CmEnrollmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -334,6 +496,15 @@ extension Clients.CmEnrollmentServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -345,6 +516,9 @@ extension Clients.CmEnrollmentServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -357,6 +531,9 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -366,6 +543,15 @@ extension Clients.CmEnrollmentServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -376,6 +562,15 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -385,6 +580,15 @@ extension Clients.CmEnrollmentServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -395,6 +599,15 @@ extension Clients.CmEnrollmentServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CmEnrollmentService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CmEnrollmentServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

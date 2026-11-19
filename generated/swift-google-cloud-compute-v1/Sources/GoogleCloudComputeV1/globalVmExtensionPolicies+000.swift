@@ -24,6 +24,10 @@
   /// Service for the `globalVmExtensionPolicies` resource.
   ///
   /// @Snippet(path: "globalVmExtensionPoliciesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/GlobalVmExtensionPoliciesProtocol``
   public final class GlobalVmExtensionPoliciesClient: Clients.GlobalVmExtensionPoliciesProtocol,
     Sendable
   {
@@ -51,6 +55,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -66,6 +77,13 @@
     /// that triggers in the backend.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:globalVmExtensionPolicy:body:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: GlobalVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -85,6 +103,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:globalVmExtensionPolicy:body:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: GlobalVmExtensionPoliciesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -126,6 +151,11 @@
     /// Gets details of a global VM extension policy.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:globalVmExtensionPolicy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: GlobalVmExtensionPoliciesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicy {
@@ -135,6 +165,13 @@
     /// Creates a new project level GlobalVmExtensionPolicy.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: GlobalVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -149,6 +186,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: GlobalVmExtensionPoliciesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -190,6 +234,13 @@
     /// Lists global VM extension policies.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList {
@@ -199,6 +250,13 @@
     /// Updates a global VM extension policy.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:globalVmExtensionPolicy:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: GlobalVmExtensionPoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -213,6 +271,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:globalVmExtensionPolicy:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: GlobalVmExtensionPoliciesClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -333,6 +398,17 @@
 
   // Default implementations
   extension Clients.GlobalVmExtensionPoliciesProtocol {
+    /// Retrieves the list of all VM Extension Policy resources
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it's recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: GlobalVmExtensionPoliciesClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.VmExtensionPolicyAggregatedListResponse
     {
@@ -346,6 +422,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all VM Extension Policy resources
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it's recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: GlobalVmExtensionPoliciesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), any Swift.Error>
@@ -361,6 +448,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: GlobalVmExtensionPoliciesClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -378,6 +469,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all VM Extension Policy resources
+    /// available to the specified project.
+    ///
+    /// To prevent failure, it's recommended that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, VmExtensionPoliciesScopedList), any Swift.Error>
@@ -389,6 +491,18 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Purge scoped resources (zonal policies) from a global VM extension
+    /// policy, and then delete the global VM extension policy. Purge of the scoped
+    /// resources is a pre-condition of the global VM extension policy deletion.
+    /// The deletion of the global VM extension policy happens after the purge
+    /// rollout is done, so it's not a part of the LRO. It's an automatic process
+    /// that triggers in the backend.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/delete(request:options:)``
     public func delete(request: GlobalVmExtensionPoliciesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -401,6 +515,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purge scoped resources (zonal policies) from a global VM extension
+    /// policy, and then delete the global VM extension policy. Purge of the scoped
+    /// resources is a pre-condition of the global VM extension policy deletion.
+    /// The deletion of the global VM extension policy happens after the purge
+    /// rollout is done, so it's not a part of the LRO. It's an automatic process
+    /// that triggers in the backend.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: GlobalVmExtensionPoliciesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -413,6 +544,23 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Purge scoped resources (zonal policies) from a global VM extension
+    /// policy, and then delete the global VM extension policy. Purge of the scoped
+    /// resources is a pre-condition of the global VM extension policy deletion.
+    /// The deletion of the global VM extension policy happens after the purge
+    /// rollout is done, so it's not a part of the LRO. It's an automatic process
+    /// that triggers in the backend.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       globalVmExtensionPolicy: Swift.String,
@@ -426,6 +574,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Gets details of a global VM extension policy.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/get(request:options:)``
     public func `get`(request: GlobalVmExtensionPoliciesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.GlobalVmExtensionPolicy
     {
@@ -438,6 +593,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets details of a global VM extension policy.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       globalVmExtensionPolicy: Swift.String,
@@ -449,6 +611,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a new project level GlobalVmExtensionPolicy.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/insert(request:options:)``
     public func insert(request: GlobalVmExtensionPoliciesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -461,6 +630,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new project level GlobalVmExtensionPolicy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: GlobalVmExtensionPoliciesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -473,6 +654,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new project level GlobalVmExtensionPolicy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: GlobalVmExtensionPolicy?,
@@ -484,6 +677,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists global VM extension policies.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/list(request:options:)``
     public func list(request: GlobalVmExtensionPoliciesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.GlobalVmExtensionPolicyList
     {
@@ -496,6 +696,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists global VM extension policies.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/list(request:options:)``
     public func listByItems(
       request: GlobalVmExtensionPoliciesClient.ListRequest
     ) -> some AsyncSequence<GlobalVmExtensionPolicy, any Swift.Error> & Sendable {
@@ -505,6 +712,10 @@
     /// Lists global VM extension policies.
     ///
     /// @Snippet(path: "globalVmExtensionPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/list(request:options:)``
     public func listByItems(
       request: GlobalVmExtensionPoliciesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GlobalVmExtensionPolicy, any Swift.Error> & Sendable {
@@ -519,6 +730,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists global VM extension policies.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<GlobalVmExtensionPolicy, any Swift.Error> & Sendable {
@@ -528,6 +746,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates a global VM extension policy.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/update(request:options:)``
     public func update(request: GlobalVmExtensionPoliciesClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -540,6 +765,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a global VM extension policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: GlobalVmExtensionPoliciesClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -552,6 +789,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates a global VM extension policy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "globalVmExtensionPolicies_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``GlobalVmExtensionPoliciesClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       globalVmExtensionPolicy: Swift.String,
@@ -565,6 +814,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

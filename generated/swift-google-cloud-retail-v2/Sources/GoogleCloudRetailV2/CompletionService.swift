@@ -27,6 +27,10 @@ import Foundation
 /// Enable Retail Search on Cloud Console before using this feature.
 ///
 /// @Snippet(path: "CompletionServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CompletionServiceProtocol``
 public final class CompletionServiceClient: Clients.CompletionServiceProtocol, Sendable {
   let inner: any Clients.CompletionServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,10 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "CompletionService_CompleteQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``completeQuery(request:)``
   public func completeQuery(
     request: CompleteQueryRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.CompleteQueryResponse {
@@ -67,6 +75,12 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "CompletionService_ImportCompletionData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importCompletionData(request:)``
+  /// - ``importCompletionDataPollingUntilDone(request:)``
+  /// - ``importCompletionDataPollingUntilDone(request:options:)``
   public func importCompletionData(
     request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -84,6 +98,12 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "CompletionService_ImportCompletionData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``importCompletionData(request:)``
+  /// - ``importCompletionData(request:options:)``
+  /// - ``importCompletionDataPollingUntilDone(request:)``
   public func importCompletionDataPollingUntilDone(
     request: ImportCompletionDataRequest, options: GoogleGax.RequestOptions
   ) async throws -> ImportCompletionDataResponse {
@@ -115,6 +135,13 @@ public final class CompletionServiceClient: Clients.CompletionServiceProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CompletionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -164,6 +191,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.CompletionServiceProtocol {
+  /// Completes the specified prefix with keyword suggestions.
+  ///
+  /// This feature is only available for users who have Retail Search enabled.
+  /// Enable Retail Search on Cloud Console before using this feature.
+  ///
+  /// @Snippet(path: "CompletionService_CompleteQuery")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/completeQuery(request:options:)``
   public func completeQuery(request: CompleteQueryRequest) async throws
     -> GoogleCloudRetailV2.CompleteQueryResponse
   {
@@ -176,6 +213,21 @@ extension Clients.CompletionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Bulk import of processed completion dataset.
+  ///
+  /// Request processing is asynchronous. Partial updating is not supported.
+  ///
+  /// The operation is successfully finished only after the imported suggestions
+  /// are indexed successfully and ready for serving. The process takes hours.
+  ///
+  /// This feature is only available for users who have Retail Search enabled.
+  /// Enable Retail Search on Cloud Console before using this feature.
+  ///
+  /// @Snippet(path: "CompletionService_ImportCompletionData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/importCompletionData(request:options:)``
   public func importCompletionData(request: ImportCompletionDataRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -188,6 +240,21 @@ extension Clients.CompletionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Bulk import of processed completion dataset.
+  ///
+  /// Request processing is asynchronous. Partial updating is not supported.
+  ///
+  /// The operation is successfully finished only after the imported suggestions
+  /// are indexed successfully and ready for serving. The process takes hours.
+  ///
+  /// This feature is only available for users who have Retail Search enabled.
+  /// Enable Retail Search on Cloud Console before using this feature.
+  ///
+  /// @Snippet(path: "CompletionService_ImportCompletionData")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/importCompletionDataPollingUntilDone(request:options:)``
   public func importCompletionDataPollingUntilDone(request: ImportCompletionDataRequest)
     async throws -> ImportCompletionDataResponse
   {
@@ -200,6 +267,15 @@ extension Clients.CompletionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CompletionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -212,6 +288,15 @@ extension Clients.CompletionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CompletionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -223,6 +308,10 @@ extension Clients.CompletionServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CompletionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -236,6 +325,15 @@ extension Clients.CompletionServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CompletionService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CompletionServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -247,6 +345,9 @@ extension Clients.CompletionServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -259,6 +360,9 @@ extension Clients.CompletionServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

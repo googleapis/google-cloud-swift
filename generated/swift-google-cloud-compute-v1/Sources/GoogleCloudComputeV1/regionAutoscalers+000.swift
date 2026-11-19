@@ -24,6 +24,10 @@
   /// Service for the `regionAutoscalers` resource.
   ///
   /// @Snippet(path: "regionAutoscalersQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionAutoscalersProtocol``
   public final class RegionAutoscalersClient: Clients.RegionAutoscalersProtocol, Sendable {
     let inner: any Clients.RegionAutoscalersStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,13 @@
     /// Deletes the specified autoscaler.
     ///
     /// @Snippet(path: "regionAutoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:autoscaler:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionAutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -58,6 +69,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionAutoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:autoscaler:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionAutoscalersClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -100,6 +118,11 @@
     /// Returns the specified autoscaler.
     ///
     /// @Snippet(path: "regionAutoscalers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:autoscaler:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionAutoscalersClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Autoscaler {
@@ -110,6 +133,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "regionAutoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionAutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -125,6 +155,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionAutoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionAutoscalersClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -168,6 +205,13 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionAutoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionAutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.RegionAutoscalerList {
@@ -180,6 +224,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "regionAutoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:region:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: RegionAutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -197,6 +248,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionAutoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:region:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: RegionAutoscalersClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -239,6 +297,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionAutoscalers_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: RegionAutoscalersClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -249,6 +312,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "regionAutoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:region:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: RegionAutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -264,6 +334,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionAutoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:region:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: RegionAutoscalersClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -400,6 +477,13 @@
 
   // Default implementations
   extension Clients.RegionAutoscalersProtocol {
+    /// Deletes the specified autoscaler.
+    ///
+    /// @Snippet(path: "regionAutoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/delete(request:options:)``
     public func delete(request: RegionAutoscalersClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -412,6 +496,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified autoscaler.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionAutoscalersClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -424,6 +520,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified autoscaler.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -437,6 +545,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified autoscaler.
+    ///
+    /// @Snippet(path: "regionAutoscalers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/get(request:options:)``
     public func `get`(request: RegionAutoscalersClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Autoscaler
     {
@@ -449,6 +564,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified autoscaler.
+    ///
+    /// @Snippet(path: "regionAutoscalers_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -462,6 +584,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates an autoscaler in the specified project using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "regionAutoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/insert(request:options:)``
     public func insert(request: RegionAutoscalersClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -474,6 +604,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an autoscaler in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionAutoscalersClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -486,6 +629,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an autoscaler in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -499,6 +655,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of autoscalers contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionAutoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/list(request:options:)``
     public func list(request: RegionAutoscalersClient.ListRequest) async throws
       -> GoogleCloudComputeV1.RegionAutoscalerList
     {
@@ -511,6 +675,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of autoscalers contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionAutoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/list(request:options:)``
     public func listByItems(
       request: RegionAutoscalersClient.ListRequest
     ) -> some AsyncSequence<Autoscaler, any Swift.Error> & Sendable {
@@ -521,6 +693,10 @@
     /// the specified region.
     ///
     /// @Snippet(path: "regionAutoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/list(request:options:)``
     public func listByItems(
       request: RegionAutoscalersClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Autoscaler, any Swift.Error> & Sendable {
@@ -534,6 +710,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of autoscalers contained within
+    /// the specified region.
+    ///
+    /// @Snippet(path: "regionAutoscalers_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -545,6 +729,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Updates an autoscaler in the specified project using
+    /// the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "regionAutoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/patch(request:options:)``
     public func patch(request: RegionAutoscalersClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -557,6 +751,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using
+    /// the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: RegionAutoscalersClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -569,6 +778,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using
+    /// the data included in the request. This method supportsPATCH
+    /// semantics and uses theJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -582,6 +806,13 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionAutoscalers_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: RegionAutoscalersClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -594,6 +825,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionAutoscalers_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -609,6 +847,14 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Updates an autoscaler in the specified project using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "regionAutoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/update(request:options:)``
     public func update(request: RegionAutoscalersClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -621,6 +867,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: RegionAutoscalersClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -633,6 +892,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an autoscaler in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionAutoscalers_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionAutoscalersClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -646,6 +918,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

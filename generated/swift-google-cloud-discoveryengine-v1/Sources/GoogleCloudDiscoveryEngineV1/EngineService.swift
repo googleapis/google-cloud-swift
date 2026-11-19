@@ -30,6 +30,10 @@
   /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
   ///
   /// @Snippet(path: "EngineServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/EngineServiceProtocol``
   public final class EngineServiceClient: Clients.EngineServiceProtocol, Sendable {
     let inner: any Clients.EngineServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -52,6 +56,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_CreateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createEngine(request:)``
+    /// - ``createEnginePollingUntilDone(parent:engine:engineId:)``
+    /// - ``createEnginePollingUntilDone(request:)``
+    /// - ``createEnginePollingUntilDone(request:options:)``
     public func createEngine(
       request: CreateEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -63,6 +74,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_CreateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createEngine(request:)``
+    /// - ``createEngine(request:options:)``
+    /// - ``createEnginePollingUntilDone(parent:engine:engineId:)``
+    /// - ``createEnginePollingUntilDone(request:)``
     public func createEnginePollingUntilDone(
       request: CreateEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> Engine {
@@ -92,6 +110,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_DeleteEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteEngine(request:)``
+    /// - ``deleteEnginePollingUntilDone(name:)``
+    /// - ``deleteEnginePollingUntilDone(request:)``
+    /// - ``deleteEnginePollingUntilDone(request:options:)``
     public func deleteEngine(
       request: DeleteEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -103,6 +128,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_DeleteEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteEngine(request:)``
+    /// - ``deleteEngine(request:options:)``
+    /// - ``deleteEnginePollingUntilDone(name:)``
+    /// - ``deleteEnginePollingUntilDone(request:)``
     public func deleteEnginePollingUntilDone(
       request: DeleteEngineRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -133,6 +165,11 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_UpdateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateEngine(engine:updateMask:)``
+    /// - ``updateEngine(request:)``
     public func updateEngine(
       request: UpdateEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -144,6 +181,11 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_GetEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getEngine(name:)``
+    /// - ``getEngine(request:)``
     public func getEngine(
       request: GetEngineRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -156,6 +198,13 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_ListEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listEngines(request:)``
+    /// - ``listEnginesByItems(parent:)``
+    /// - ``listEnginesByItems(request:)``
+    /// - ``listEnginesByItems(request:options:)``
     public func listEngines(
       request: ListEnginesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse {
@@ -170,6 +219,11 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
+    /// - ``getIamPolicy(resource:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -193,6 +247,11 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
+    /// - ``setIamPolicy(resource:policy:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -204,6 +263,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -226,6 +292,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -299,6 +370,15 @@
 
   // Default implementations
   extension Clients.EngineServiceProtocol {
+    /// Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_CreateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/createEngine(request:options:)``
     public func createEngine(request: CreateEngineRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -311,6 +391,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_CreateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/createEnginePollingUntilDone(request:options:)``
     public func createEnginePollingUntilDone(request: CreateEngineRequest) async throws -> Engine {
       return try await self.createEnginePollingUntilDone(request: request, options: .init())
     }
@@ -321,6 +410,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_CreateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/createEnginePollingUntilDone(request:options:)``
     public func createEnginePollingUntilDone(
       parent: Swift.String,
       engine: Engine?,
@@ -334,6 +432,15 @@
       return try await self.createEnginePollingUntilDone(request: request)
     }
 
+    /// Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_DeleteEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/deleteEngine(request:options:)``
     public func deleteEngine(request: DeleteEngineRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -346,6 +453,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_DeleteEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/deleteEnginePollingUntilDone(request:options:)``
     public func deleteEnginePollingUntilDone(request: DeleteEngineRequest) async throws {
       try await self.deleteEnginePollingUntilDone(request: request, options: .init())
     }
@@ -356,6 +472,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_DeleteEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/deleteEnginePollingUntilDone(request:options:)``
     public func deleteEnginePollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -365,6 +490,15 @@
       try await self.deleteEnginePollingUntilDone(request: request)
     }
 
+    /// Updates an [Engine][google.cloud.discoveryengine.v1.Engine]
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_UpdateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/updateEngine(request:options:)``
     public func updateEngine(request: UpdateEngineRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Engine
     {
@@ -377,6 +511,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates an [Engine][google.cloud.discoveryengine.v1.Engine]
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_UpdateEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/updateEngine(request:options:)``
     public func updateEngine(
       engine: Engine?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -388,6 +531,15 @@
       return try await self.updateEngine(request: request)
     }
 
+    /// Gets an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_GetEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/getEngine(request:options:)``
     public func getEngine(request: GetEngineRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.Engine
     {
@@ -400,6 +552,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets an [Engine][google.cloud.discoveryengine.v1.Engine].
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_GetEngine")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/getEngine(request:options:)``
     public func getEngine(
       name: Swift.String,
     ) async throws -> GoogleCloudDiscoveryEngineV1.Engine {
@@ -409,6 +570,16 @@
       return try await self.getEngine(request: request)
     }
 
+    /// Lists all the [Engine][google.cloud.discoveryengine.v1.Engine]s associated
+    /// with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_ListEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listEngines(request:options:)``
     public func listEngines(request: ListEnginesRequest) async throws
       -> GoogleCloudDiscoveryEngineV1.ListEnginesResponse
     {
@@ -421,6 +592,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the [Engine][google.cloud.discoveryengine.v1.Engine]s associated
+    /// with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_ListEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listEngines(request:options:)``
     public func listEnginesByItems(
       request: ListEnginesRequest
     ) -> some AsyncSequence<Engine, any Swift.Error> & Sendable {
@@ -433,6 +614,10 @@
     /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
     ///
     /// @Snippet(path: "EngineService_ListEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listEngines(request:options:)``
     public func listEnginesByItems(
       request: ListEnginesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Engine, any Swift.Error> & Sendable {
@@ -447,6 +632,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all the [Engine][google.cloud.discoveryengine.v1.Engine]s associated
+    /// with the project.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_ListEngines")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listEngines(request:options:)``
     public func listEnginesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Engine, any Swift.Error> & Sendable {
@@ -456,6 +651,18 @@
       return self.listEnginesByItems(request: request)
     }
 
+    /// Gets the IAM access control policy for an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+    /// returned if the resource does not exist. An empty policy is returned if the
+    /// resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -468,6 +675,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the IAM access control policy for an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+    /// returned if the resource does not exist. An empty policy is returned if the
+    /// resource exists but does not have a policy set on it.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       resource: Swift.String,
     ) async throws -> GoogleIAMV1.Policy {
@@ -477,6 +696,27 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Sets the IAM access control policy for an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+    /// returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on an Engine resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`,
+    /// `roles/discoveryengine.agentspaceAdmin`,
+    /// `roles/discoveryengine.user`,
+    /// `roles/discoveryengine.agentspaceUser`,
+    /// `roles/discoveryengine.viewer`,
+    /// `roles/discoveryengine.agentspaceViewer`.
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -489,6 +729,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the IAM access control policy for an
+    /// [Engine][google.cloud.discoveryengine.v1.Engine]. A `NOT_FOUND` error is
+    /// returned if the resource does not exist.
+    ///
+    /// **Important:** When setting a policy directly on an Engine resource,
+    /// the only recommended roles in the bindings are:
+    /// `roles/discoveryengine.admin`,
+    /// `roles/discoveryengine.agentspaceAdmin`,
+    /// `roles/discoveryengine.user`,
+    /// `roles/discoveryengine.agentspaceUser`,
+    /// `roles/discoveryengine.viewer`,
+    /// `roles/discoveryengine.agentspaceViewer`.
+    /// Attempting to grant any other role will result in a warning in logging.
+    ///
+    /// [google.cloud.discoveryengine.v1.Engine]: <doc:Engine>
+    ///
+    /// @Snippet(path: "EngineService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       resource: Swift.String,
       policy: GoogleIAMV1.Policy?,
@@ -500,6 +761,15 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -512,6 +782,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -523,6 +802,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "EngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -536,6 +819,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EngineService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -547,6 +839,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -559,6 +854,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -568,6 +866,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -578,6 +885,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "EngineService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``EngineServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

@@ -25,6 +25,10 @@ import Foundation
 /// DataTableManager provides an interface for managing data tables.
 ///
 /// @Snippet(path: "DataTableServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DataTableServiceProtocol``
 public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sendable {
   let inner: any Clients.DataTableServiceStub
 
@@ -41,6 +45,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Create a new data table.
   ///
   /// @Snippet(path: "DataTableService_CreateDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataTable(parent:dataTable:dataTableId:)``
+  /// - ``createDataTable(request:)``
   public func createDataTable(
     request: CreateDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -50,6 +59,13 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// List data tables.
   ///
   /// @Snippet(path: "DataTableService_ListDataTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataTables(request:)``
+  /// - ``listDataTablesByItems(parent:)``
+  /// - ``listDataTablesByItems(request:)``
+  /// - ``listDataTablesByItems(request:options:)``
   public func listDataTables(
     request: ListDataTablesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataTablesResponse {
@@ -59,6 +75,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Get data table info.
   ///
   /// @Snippet(path: "DataTableService_GetDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataTable(name:)``
+  /// - ``getDataTable(request:)``
   public func getDataTable(
     request: GetDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -68,6 +89,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Update data table.
   ///
   /// @Snippet(path: "DataTableService_UpdateDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataTable(dataTable:updateMask:)``
+  /// - ``updateDataTable(request:)``
   public func updateDataTable(
     request: UpdateDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -77,6 +103,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Delete data table.
   ///
   /// @Snippet(path: "DataTableService_DeleteDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataTable(name:force:)``
+  /// - ``deleteDataTable(request:)``
   public func deleteDataTable(
     request: DeleteDataTableRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -86,6 +117,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Create a new data table row.
   ///
   /// @Snippet(path: "DataTableService_CreateDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDataTableRow(parent:dataTableRow:)``
+  /// - ``createDataTableRow(request:)``
   public func createDataTableRow(
     request: CreateDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -95,6 +131,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Update data table row
   ///
   /// @Snippet(path: "DataTableService_UpdateDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateDataTableRow(dataTableRow:updateMask:)``
+  /// - ``updateDataTableRow(request:)``
   public func updateDataTableRow(
     request: UpdateDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -104,6 +145,13 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// List data table rows.
   ///
   /// @Snippet(path: "DataTableService_ListDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDataTableRows(request:)``
+  /// - ``listDataTableRowsByItems(parent:)``
+  /// - ``listDataTableRowsByItems(request:)``
+  /// - ``listDataTableRowsByItems(request:options:)``
   public func listDataTableRows(
     request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.ListDataTableRowsResponse {
@@ -113,6 +161,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Get data table row
   ///
   /// @Snippet(path: "DataTableService_GetDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataTableRow(name:)``
+  /// - ``getDataTableRow(request:)``
   public func getDataTableRow(
     request: GetDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -122,6 +175,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Delete data table row.
   ///
   /// @Snippet(path: "DataTableService_DeleteDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDataTableRow(name:)``
+  /// - ``deleteDataTableRow(request:)``
   public func deleteDataTableRow(
     request: DeleteDataTableRowRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -131,6 +189,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Create data table rows in bulk.
   ///
   /// @Snippet(path: "DataTableService_BulkCreateDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``bulkCreateDataTableRows(parent:requests:)``
+  /// - ``bulkCreateDataTableRows(request:)``
   public func bulkCreateDataTableRows(
     request: BulkCreateDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkCreateDataTableRowsResponse {
@@ -140,6 +203,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Get data table rows in bulk.
   ///
   /// @Snippet(path: "DataTableService_BulkGetDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``bulkGetDataTableRows(parent:requests:)``
+  /// - ``bulkGetDataTableRows(request:)``
   public func bulkGetDataTableRows(
     request: BulkGetDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkGetDataTableRowsResponse {
@@ -149,6 +217,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Replace all existing data table rows with new data table rows.
   ///
   /// @Snippet(path: "DataTableService_BulkReplaceDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``bulkReplaceDataTableRows(parent:requests:)``
+  /// - ``bulkReplaceDataTableRows(request:)``
   public func bulkReplaceDataTableRows(
     request: BulkReplaceDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkReplaceDataTableRowsResponse {
@@ -158,6 +231,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Update data table rows in bulk.
   ///
   /// @Snippet(path: "DataTableService_BulkUpdateDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``bulkUpdateDataTableRows(parent:requests:)``
+  /// - ``bulkUpdateDataTableRows(request:)``
   public func bulkUpdateDataTableRows(
     request: BulkUpdateDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.BulkUpdateDataTableRowsResponse {
@@ -167,6 +245,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// Get the error for a data table operation.
   ///
   /// @Snippet(path: "DataTableService_GetDataTableOperationErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDataTableOperationErrors(name:)``
+  /// - ``getDataTableOperationErrors(request:)``
   public func getDataTableOperationErrors(
     request: GetDataTableOperationErrorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudChronicleV1.DataTableOperationErrors {
@@ -178,6 +261,13 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataTableService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -200,6 +290,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataTableService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -211,6 +306,11 @@ public final class DataTableServiceClient: Clients.DataTableServiceProtocol, Sen
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataTableService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -319,6 +419,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DataTableServiceProtocol {
+  /// Create a new data table.
+  ///
+  /// @Snippet(path: "DataTableService_CreateDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/createDataTable(request:options:)``
   public func createDataTable(request: CreateDataTableRequest) async throws
     -> GoogleCloudChronicleV1.DataTable
   {
@@ -331,6 +438,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new data table.
+  ///
+  /// @Snippet(path: "DataTableService_CreateDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/createDataTable(request:options:)``
   public func createDataTable(
     parent: Swift.String,
     dataTable: DataTable?,
@@ -344,6 +458,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.createDataTable(request: request)
   }
 
+  /// List data tables.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTables(request:options:)``
   public func listDataTables(request: ListDataTablesRequest) async throws
     -> GoogleCloudChronicleV1.ListDataTablesResponse
   {
@@ -356,6 +477,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List data tables.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTables(request:options:)``
   public func listDataTablesByItems(
     request: ListDataTablesRequest
   ) -> some AsyncSequence<DataTable, any Swift.Error> & Sendable {
@@ -365,6 +493,10 @@ extension Clients.DataTableServiceProtocol {
   /// List data tables.
   ///
   /// @Snippet(path: "DataTableService_ListDataTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTables(request:options:)``
   public func listDataTablesByItems(
     request: ListDataTablesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataTable, any Swift.Error> & Sendable {
@@ -379,6 +511,13 @@ extension Clients.DataTableServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List data tables.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTables")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTables(request:options:)``
   public func listDataTablesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataTable, any Swift.Error> & Sendable {
@@ -388,6 +527,13 @@ extension Clients.DataTableServiceProtocol {
     return self.listDataTablesByItems(request: request)
   }
 
+  /// Get data table info.
+  ///
+  /// @Snippet(path: "DataTableService_GetDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/getDataTable(request:options:)``
   public func getDataTable(request: GetDataTableRequest) async throws
     -> GoogleCloudChronicleV1.DataTable
   {
@@ -400,6 +546,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get data table info.
+  ///
+  /// @Snippet(path: "DataTableService_GetDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/getDataTable(request:options:)``
   public func getDataTable(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.DataTable {
@@ -409,6 +562,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.getDataTable(request: request)
   }
 
+  /// Update data table.
+  ///
+  /// @Snippet(path: "DataTableService_UpdateDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/updateDataTable(request:options:)``
   public func updateDataTable(request: UpdateDataTableRequest) async throws
     -> GoogleCloudChronicleV1.DataTable
   {
@@ -421,6 +581,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update data table.
+  ///
+  /// @Snippet(path: "DataTableService_UpdateDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/updateDataTable(request:options:)``
   public func updateDataTable(
     dataTable: DataTable?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -432,6 +599,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.updateDataTable(request: request)
   }
 
+  /// Delete data table.
+  ///
+  /// @Snippet(path: "DataTableService_DeleteDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/deleteDataTable(request:options:)``
   public func deleteDataTable(request: DeleteDataTableRequest) async throws {
     try await self.deleteDataTable(request: request, options: .init())
   }
@@ -442,6 +616,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete data table.
+  ///
+  /// @Snippet(path: "DataTableService_DeleteDataTable")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/deleteDataTable(request:options:)``
   public func deleteDataTable(
     name: Swift.String,
     force: Swift.Bool,
@@ -453,6 +634,13 @@ extension Clients.DataTableServiceProtocol {
     try await self.deleteDataTable(request: request)
   }
 
+  /// Create a new data table row.
+  ///
+  /// @Snippet(path: "DataTableService_CreateDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/createDataTableRow(request:options:)``
   public func createDataTableRow(request: CreateDataTableRowRequest) async throws
     -> GoogleCloudChronicleV1.DataTableRow
   {
@@ -465,6 +653,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a new data table row.
+  ///
+  /// @Snippet(path: "DataTableService_CreateDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/createDataTableRow(request:options:)``
   public func createDataTableRow(
     parent: Swift.String,
     dataTableRow: DataTableRow?,
@@ -476,6 +671,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.createDataTableRow(request: request)
   }
 
+  /// Update data table row
+  ///
+  /// @Snippet(path: "DataTableService_UpdateDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/updateDataTableRow(request:options:)``
   public func updateDataTableRow(request: UpdateDataTableRowRequest) async throws
     -> GoogleCloudChronicleV1.DataTableRow
   {
@@ -488,6 +690,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update data table row
+  ///
+  /// @Snippet(path: "DataTableService_UpdateDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/updateDataTableRow(request:options:)``
   public func updateDataTableRow(
     dataTableRow: DataTableRow?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -499,6 +708,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.updateDataTableRow(request: request)
   }
 
+  /// List data table rows.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTableRows(request:options:)``
   public func listDataTableRows(request: ListDataTableRowsRequest) async throws
     -> GoogleCloudChronicleV1.ListDataTableRowsResponse
   {
@@ -511,6 +727,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// List data table rows.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTableRows(request:options:)``
   public func listDataTableRowsByItems(
     request: ListDataTableRowsRequest
   ) -> some AsyncSequence<DataTableRow, any Swift.Error> & Sendable {
@@ -520,6 +743,10 @@ extension Clients.DataTableServiceProtocol {
   /// List data table rows.
   ///
   /// @Snippet(path: "DataTableService_ListDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTableRows(request:options:)``
   public func listDataTableRowsByItems(
     request: ListDataTableRowsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DataTableRow, any Swift.Error> & Sendable {
@@ -534,6 +761,13 @@ extension Clients.DataTableServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// List data table rows.
+  ///
+  /// @Snippet(path: "DataTableService_ListDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listDataTableRows(request:options:)``
   public func listDataTableRowsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DataTableRow, any Swift.Error> & Sendable {
@@ -543,6 +777,13 @@ extension Clients.DataTableServiceProtocol {
     return self.listDataTableRowsByItems(request: request)
   }
 
+  /// Get data table row
+  ///
+  /// @Snippet(path: "DataTableService_GetDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/getDataTableRow(request:options:)``
   public func getDataTableRow(request: GetDataTableRowRequest) async throws
     -> GoogleCloudChronicleV1.DataTableRow
   {
@@ -555,6 +796,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get data table row
+  ///
+  /// @Snippet(path: "DataTableService_GetDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/getDataTableRow(request:options:)``
   public func getDataTableRow(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.DataTableRow {
@@ -564,6 +812,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.getDataTableRow(request: request)
   }
 
+  /// Delete data table row.
+  ///
+  /// @Snippet(path: "DataTableService_DeleteDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/deleteDataTableRow(request:options:)``
   public func deleteDataTableRow(request: DeleteDataTableRowRequest) async throws {
     try await self.deleteDataTableRow(request: request, options: .init())
   }
@@ -574,6 +829,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Delete data table row.
+  ///
+  /// @Snippet(path: "DataTableService_DeleteDataTableRow")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/deleteDataTableRow(request:options:)``
   public func deleteDataTableRow(
     name: Swift.String,
   ) async throws {
@@ -583,6 +845,13 @@ extension Clients.DataTableServiceProtocol {
     try await self.deleteDataTableRow(request: request)
   }
 
+  /// Create data table rows in bulk.
+  ///
+  /// @Snippet(path: "DataTableService_BulkCreateDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkCreateDataTableRows(request:options:)``
   public func bulkCreateDataTableRows(request: BulkCreateDataTableRowsRequest) async throws
     -> GoogleCloudChronicleV1.BulkCreateDataTableRowsResponse
   {
@@ -595,6 +864,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create data table rows in bulk.
+  ///
+  /// @Snippet(path: "DataTableService_BulkCreateDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkCreateDataTableRows(request:options:)``
   public func bulkCreateDataTableRows(
     parent: Swift.String,
     requests: [CreateDataTableRowRequest],
@@ -606,6 +882,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.bulkCreateDataTableRows(request: request)
   }
 
+  /// Get data table rows in bulk.
+  ///
+  /// @Snippet(path: "DataTableService_BulkGetDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkGetDataTableRows(request:options:)``
   public func bulkGetDataTableRows(request: BulkGetDataTableRowsRequest) async throws
     -> GoogleCloudChronicleV1.BulkGetDataTableRowsResponse
   {
@@ -618,6 +901,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get data table rows in bulk.
+  ///
+  /// @Snippet(path: "DataTableService_BulkGetDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkGetDataTableRows(request:options:)``
   public func bulkGetDataTableRows(
     parent: Swift.String,
     requests: [GetDataTableRowRequest],
@@ -629,6 +919,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.bulkGetDataTableRows(request: request)
   }
 
+  /// Replace all existing data table rows with new data table rows.
+  ///
+  /// @Snippet(path: "DataTableService_BulkReplaceDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkReplaceDataTableRows(request:options:)``
   public func bulkReplaceDataTableRows(request: BulkReplaceDataTableRowsRequest) async throws
     -> GoogleCloudChronicleV1.BulkReplaceDataTableRowsResponse
   {
@@ -641,6 +938,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Replace all existing data table rows with new data table rows.
+  ///
+  /// @Snippet(path: "DataTableService_BulkReplaceDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkReplaceDataTableRows(request:options:)``
   public func bulkReplaceDataTableRows(
     parent: Swift.String,
     requests: [CreateDataTableRowRequest],
@@ -652,6 +956,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.bulkReplaceDataTableRows(request: request)
   }
 
+  /// Update data table rows in bulk.
+  ///
+  /// @Snippet(path: "DataTableService_BulkUpdateDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkUpdateDataTableRows(request:options:)``
   public func bulkUpdateDataTableRows(request: BulkUpdateDataTableRowsRequest) async throws
     -> GoogleCloudChronicleV1.BulkUpdateDataTableRowsResponse
   {
@@ -664,6 +975,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Update data table rows in bulk.
+  ///
+  /// @Snippet(path: "DataTableService_BulkUpdateDataTableRows")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/bulkUpdateDataTableRows(request:options:)``
   public func bulkUpdateDataTableRows(
     parent: Swift.String,
     requests: [UpdateDataTableRowRequest],
@@ -675,6 +993,13 @@ extension Clients.DataTableServiceProtocol {
     return try await self.bulkUpdateDataTableRows(request: request)
   }
 
+  /// Get the error for a data table operation.
+  ///
+  /// @Snippet(path: "DataTableService_GetDataTableOperationErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/getDataTableOperationErrors(request:options:)``
   public func getDataTableOperationErrors(request: GetDataTableOperationErrorsRequest) async throws
     -> GoogleCloudChronicleV1.DataTableOperationErrors
   {
@@ -687,6 +1012,13 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get the error for a data table operation.
+  ///
+  /// @Snippet(path: "DataTableService_GetDataTableOperationErrors")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/getDataTableOperationErrors(request:options:)``
   public func getDataTableOperationErrors(
     name: Swift.String,
   ) async throws -> GoogleCloudChronicleV1.DataTableOperationErrors {
@@ -696,6 +1028,15 @@ extension Clients.DataTableServiceProtocol {
     return try await self.getDataTableOperationErrors(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -708,6 +1049,15 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -719,6 +1069,10 @@ extension Clients.DataTableServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "DataTableService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -732,6 +1086,15 @@ extension Clients.DataTableServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -743,6 +1106,9 @@ extension Clients.DataTableServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -755,6 +1121,9 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -764,6 +1133,15 @@ extension Clients.DataTableServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -774,6 +1152,15 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -783,6 +1170,15 @@ extension Clients.DataTableServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -793,6 +1189,15 @@ extension Clients.DataTableServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "DataTableService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DataTableServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -26,6 +26,10 @@ import Foundation
 /// service](https://cloud.google.com/service-management/reference/rpc/google.api/servicemanagement.v1#google.api.servicemanagement.v1.ManagedService).
 ///
 /// @Snippet(path: "QuotaControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/QuotaControllerProtocol``
 public final class QuotaControllerClient: Clients.QuotaControllerProtocol, Sendable {
   let inner: any Clients.QuotaControllerStub
 
@@ -52,6 +56,10 @@ public final class QuotaControllerClient: Clients.QuotaControllerProtocol, Senda
   /// dependency on the quota functionality.
   ///
   /// @Snippet(path: "QuotaController_AllocateQuota")
+  ///
+  /// ## See Also
+  ///
+  /// - ``allocateQuota(request:)``
   public func allocateQuota(
     request: AllocateQuotaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleApiServiceControlV1.AllocateQuotaResponse {
@@ -75,6 +83,23 @@ extension Clients {
 
 // Default implementations
 extension Clients.QuotaControllerProtocol {
+  /// Attempts to allocate quota for the specified consumer. It should be called
+  /// before the operation is executed.
+  ///
+  /// This method requires the `servicemanagement.services.quota`
+  /// permission on the specified service. For more information, see
+  /// [Cloud IAM](https://cloud.google.com/iam).
+  ///
+  /// **NOTE:** The client **must** fail-open on server errors `INTERNAL`,
+  /// `UNKNOWN`, `DEADLINE_EXCEEDED`, and `UNAVAILABLE`. To ensure system
+  /// reliability, the server may inject these errors to prohibit any hard
+  /// dependency on the quota functionality.
+  ///
+  /// @Snippet(path: "QuotaController_AllocateQuota")
+  ///
+  /// ## See Also
+  ///
+  /// - ``QuotaControllerClient/allocateQuota(request:options:)``
   public func allocateQuota(request: AllocateQuotaRequest) async throws
     -> GoogleApiServiceControlV1.AllocateQuotaResponse
   {

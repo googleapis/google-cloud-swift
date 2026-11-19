@@ -43,6 +43,10 @@ import Foundation
 /// resources is no longer permitted. Use Security Gateway instead.
 ///
 /// @Snippet(path: "AppGatewaysServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AppGatewaysServiceProtocol``
 @available(*, deprecated)
 public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol, Sendable {
   let inner: any Clients.AppGatewaysServiceStub
@@ -64,6 +68,13 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Lists AppGateways in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAppGateways(request:)``
+  /// - ``listAppGatewaysByItems(parent:)``
+  /// - ``listAppGatewaysByItems(request:)``
+  /// - ``listAppGatewaysByItems(request:options:)``
   @available(*, deprecated)
   public func listAppGateways(
     request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
@@ -74,6 +85,11 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Gets details of a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_GetAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAppGateway(name:)``
+  /// - ``getAppGateway(request:)``
   @available(*, deprecated)
   public func getAppGateway(
     request: GetAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -84,6 +100,13 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Creates a new AppGateway in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAppGateway(request:)``
+  /// - ``createAppGatewayPollingUntilDone(parent:appGateway:appGatewayId:)``
+  /// - ``createAppGatewayPollingUntilDone(request:)``
+  /// - ``createAppGatewayPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAppGateway(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -94,6 +117,13 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Creates a new AppGateway in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAppGateway(request:)``
+  /// - ``createAppGateway(request:options:)``
+  /// - ``createAppGatewayPollingUntilDone(parent:appGateway:appGatewayId:)``
+  /// - ``createAppGatewayPollingUntilDone(request:)``
   @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(
     request: CreateAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -122,6 +152,13 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Deletes a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAppGateway(request:)``
+  /// - ``deleteAppGatewayPollingUntilDone(name:)``
+  /// - ``deleteAppGatewayPollingUntilDone(request:)``
+  /// - ``deleteAppGatewayPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAppGateway(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -132,6 +169,13 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Deletes a single AppGateway.
   ///
   /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAppGateway(request:)``
+  /// - ``deleteAppGateway(request:options:)``
+  /// - ``deleteAppGatewayPollingUntilDone(name:)``
+  /// - ``deleteAppGatewayPollingUntilDone(request:)``
   @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(
     request: DeleteAppGatewayRequest, options: GoogleGax.RequestOptions
@@ -177,6 +221,12 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -186,6 +236,10 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AppGatewaysService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -199,6 +253,10 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// errors.
   ///
   /// @Snippet(path: "AppGatewaysService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -209,6 +267,10 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "AppGatewaysService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -224,6 +286,10 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "AppGatewaysService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -235,6 +301,13 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -257,6 +330,11 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppGatewaysService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -268,6 +346,11 @@ public final class AppGatewaysServiceClient: Clients.AppGatewaysServiceProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppGatewaysService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -364,6 +447,13 @@ extension Clients {
 // Default implementations
 @available(*, deprecated)
 extension Clients.AppGatewaysServiceProtocol {
+  /// Lists AppGateways in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listAppGateways(request:options:)``
   @available(*, deprecated)
   public func listAppGateways(request: ListAppGatewaysRequest) async throws
     -> GoogleCloudBeyondCorpAppGatewaysV1.ListAppGatewaysResponse
@@ -378,6 +468,13 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AppGateways in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listAppGateways(request:options:)``
   @available(*, deprecated)
   public func listAppGatewaysByItems(
     request: ListAppGatewaysRequest
@@ -388,6 +485,10 @@ extension Clients.AppGatewaysServiceProtocol {
   /// Lists AppGateways in a given project and location.
   ///
   /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listAppGateways(request:options:)``
   @available(*, deprecated)
   public func listAppGatewaysByItems(
     request: ListAppGatewaysRequest, options: GoogleGax.RequestOptions
@@ -403,6 +504,13 @@ extension Clients.AppGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AppGateways in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListAppGateways")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listAppGateways(request:options:)``
   @available(*, deprecated)
   public func listAppGatewaysByItems(
     parent: Swift.String,
@@ -413,6 +521,13 @@ extension Clients.AppGatewaysServiceProtocol {
     return self.listAppGatewaysByItems(request: request)
   }
 
+  /// Gets details of a single AppGateway.
+  ///
+  /// @Snippet(path: "AppGatewaysService_GetAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/getAppGateway(request:options:)``
   @available(*, deprecated)
   public func getAppGateway(request: GetAppGatewayRequest) async throws
     -> GoogleCloudBeyondCorpAppGatewaysV1.AppGateway
@@ -427,6 +542,13 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single AppGateway.
+  ///
+  /// @Snippet(path: "AppGatewaysService_GetAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/getAppGateway(request:options:)``
   @available(*, deprecated)
   public func getAppGateway(
     name: Swift.String,
@@ -437,6 +559,13 @@ extension Clients.AppGatewaysServiceProtocol {
     return try await self.getAppGateway(request: request)
   }
 
+  /// Creates a new AppGateway in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/createAppGateway(request:options:)``
   @available(*, deprecated)
   public func createAppGateway(request: CreateAppGatewayRequest) async throws
     -> GoogleLongRunning.Operation
@@ -451,6 +580,13 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AppGateway in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/createAppGatewayPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(request: CreateAppGatewayRequest) async throws
     -> AppGateway
@@ -465,6 +601,13 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AppGateway in a given project and location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_CreateAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/createAppGatewayPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func createAppGatewayPollingUntilDone(
     parent: Swift.String,
@@ -479,6 +622,13 @@ extension Clients.AppGatewaysServiceProtocol {
     return try await self.createAppGatewayPollingUntilDone(request: request)
   }
 
+  /// Deletes a single AppGateway.
+  ///
+  /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/deleteAppGateway(request:options:)``
   @available(*, deprecated)
   public func deleteAppGateway(request: DeleteAppGatewayRequest) async throws
     -> GoogleLongRunning.Operation
@@ -493,6 +643,13 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AppGateway.
+  ///
+  /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/deleteAppGatewayPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(request: DeleteAppGatewayRequest) async throws {
     try await self.deleteAppGatewayPollingUntilDone(request: request, options: .init())
@@ -505,6 +662,13 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AppGateway.
+  ///
+  /// @Snippet(path: "AppGatewaysService_DeleteAppGateway")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/deleteAppGatewayPollingUntilDone(request:options:)``
   @available(*, deprecated)
   public func deleteAppGatewayPollingUntilDone(
     name: Swift.String,
@@ -515,6 +679,30 @@ extension Clients.AppGatewaysServiceProtocol {
     try await self.deleteAppGatewayPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -527,6 +715,30 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -553,6 +765,10 @@ extension Clients.AppGatewaysServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AppGatewaysService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -566,6 +782,13 @@ extension Clients.AppGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AppGatewaysService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -578,6 +801,17 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "AppGatewaysService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -590,6 +824,14 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "AppGatewaysService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -602,6 +844,19 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "AppGatewaysService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -614,6 +869,15 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -626,6 +890,15 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -637,6 +910,10 @@ extension Clients.AppGatewaysServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "AppGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -650,6 +927,15 @@ extension Clients.AppGatewaysServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -661,6 +947,9 @@ extension Clients.AppGatewaysServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -673,6 +962,9 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -682,6 +974,15 @@ extension Clients.AppGatewaysServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -692,6 +993,15 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -701,6 +1011,15 @@ extension Clients.AppGatewaysServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -711,6 +1030,15 @@ extension Clients.AppGatewaysServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "AppGatewaysService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AppGatewaysServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

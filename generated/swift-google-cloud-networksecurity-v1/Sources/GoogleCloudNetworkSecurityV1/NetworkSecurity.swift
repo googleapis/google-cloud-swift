@@ -29,6 +29,10 @@ import Foundation
 /// information.
 ///
 /// @Snippet(path: "NetworkSecurityQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/NetworkSecurityProtocol``
 public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Sendable {
   let inner: any Clients.NetworkSecurityStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists AuthorizationPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthorizationPolicies(request:)``
+  /// - ``listAuthorizationPoliciesByItems(parent:)``
+  /// - ``listAuthorizationPoliciesByItems(request:)``
+  /// - ``listAuthorizationPoliciesByItems(request:options:)``
   public func listAuthorizationPolicies(
     request: ListAuthorizationPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListAuthorizationPoliciesResponse {
@@ -58,6 +69,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single AuthorizationPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_GetAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthorizationPolicy(name:)``
+  /// - ``getAuthorizationPolicy(request:)``
   public func getAuthorizationPolicy(
     request: GetAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.AuthorizationPolicy {
@@ -67,6 +83,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new AuthorizationPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthorizationPolicy(request:)``
+  /// - ``createAuthorizationPolicyPollingUntilDone(parent:authorizationPolicy:authorizationPolicyId:)``
+  /// - ``createAuthorizationPolicyPollingUntilDone(request:)``
+  /// - ``createAuthorizationPolicyPollingUntilDone(request:options:)``
   public func createAuthorizationPolicy(
     request: CreateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -76,6 +99,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new AuthorizationPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthorizationPolicy(request:)``
+  /// - ``createAuthorizationPolicy(request:options:)``
+  /// - ``createAuthorizationPolicyPollingUntilDone(parent:authorizationPolicy:authorizationPolicyId:)``
+  /// - ``createAuthorizationPolicyPollingUntilDone(request:)``
   public func createAuthorizationPolicyPollingUntilDone(
     request: CreateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthorizationPolicy {
@@ -104,6 +134,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single AuthorizationPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthorizationPolicy(request:)``
+  /// - ``updateAuthorizationPolicyPollingUntilDone(authorizationPolicy:updateMask:)``
+  /// - ``updateAuthorizationPolicyPollingUntilDone(request:)``
+  /// - ``updateAuthorizationPolicyPollingUntilDone(request:options:)``
   public func updateAuthorizationPolicy(
     request: UpdateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -113,6 +150,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single AuthorizationPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthorizationPolicy(request:)``
+  /// - ``updateAuthorizationPolicy(request:options:)``
+  /// - ``updateAuthorizationPolicyPollingUntilDone(authorizationPolicy:updateMask:)``
+  /// - ``updateAuthorizationPolicyPollingUntilDone(request:)``
   public func updateAuthorizationPolicyPollingUntilDone(
     request: UpdateAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthorizationPolicy {
@@ -141,6 +185,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single AuthorizationPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthorizationPolicy(request:)``
+  /// - ``deleteAuthorizationPolicyPollingUntilDone(name:)``
+  /// - ``deleteAuthorizationPolicyPollingUntilDone(request:)``
+  /// - ``deleteAuthorizationPolicyPollingUntilDone(request:options:)``
   public func deleteAuthorizationPolicy(
     request: DeleteAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -150,6 +201,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single AuthorizationPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthorizationPolicy(request:)``
+  /// - ``deleteAuthorizationPolicy(request:options:)``
+  /// - ``deleteAuthorizationPolicyPollingUntilDone(name:)``
+  /// - ``deleteAuthorizationPolicyPollingUntilDone(request:)``
   public func deleteAuthorizationPolicyPollingUntilDone(
     request: DeleteAuthorizationPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -177,6 +235,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists BackendAuthenticationConfigs in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackendAuthenticationConfigs(request:)``
+  /// - ``listBackendAuthenticationConfigsByItems(parent:)``
+  /// - ``listBackendAuthenticationConfigsByItems(request:)``
+  /// - ``listBackendAuthenticationConfigsByItems(request:options:)``
   public func listBackendAuthenticationConfigs(
     request: ListBackendAuthenticationConfigsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListBackendAuthenticationConfigsResponse {
@@ -187,6 +252,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// BackendAuthenticationConfig.
   ///
   /// @Snippet(path: "NetworkSecurity_GetBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackendAuthenticationConfig(name:)``
+  /// - ``getBackendAuthenticationConfig(request:)``
   public func getBackendAuthenticationConfig(
     request: GetBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.BackendAuthenticationConfig {
@@ -196,6 +266,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new BackendAuthenticationConfig in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackendAuthenticationConfig(request:)``
+  /// - ``createBackendAuthenticationConfigPollingUntilDone(parent:backendAuthenticationConfig:backendAuthenticationConfigId:)``
+  /// - ``createBackendAuthenticationConfigPollingUntilDone(request:)``
+  /// - ``createBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func createBackendAuthenticationConfig(
     request: CreateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -205,6 +282,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new BackendAuthenticationConfig in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackendAuthenticationConfig(request:)``
+  /// - ``createBackendAuthenticationConfig(request:options:)``
+  /// - ``createBackendAuthenticationConfigPollingUntilDone(parent:backendAuthenticationConfig:backendAuthenticationConfigId:)``
+  /// - ``createBackendAuthenticationConfigPollingUntilDone(request:)``
   public func createBackendAuthenticationConfigPollingUntilDone(
     request: CreateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackendAuthenticationConfig {
@@ -235,6 +319,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// BackendAuthenticationConfig.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackendAuthenticationConfig(request:)``
+  /// - ``updateBackendAuthenticationConfigPollingUntilDone(backendAuthenticationConfig:updateMask:)``
+  /// - ``updateBackendAuthenticationConfigPollingUntilDone(request:)``
+  /// - ``updateBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func updateBackendAuthenticationConfig(
     request: UpdateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -245,6 +336,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// BackendAuthenticationConfig.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackendAuthenticationConfig(request:)``
+  /// - ``updateBackendAuthenticationConfig(request:options:)``
+  /// - ``updateBackendAuthenticationConfigPollingUntilDone(backendAuthenticationConfig:updateMask:)``
+  /// - ``updateBackendAuthenticationConfigPollingUntilDone(request:)``
   public func updateBackendAuthenticationConfigPollingUntilDone(
     request: UpdateBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> BackendAuthenticationConfig {
@@ -275,6 +373,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// BackendAuthenticationConfig.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackendAuthenticationConfig(request:)``
+  /// - ``deleteBackendAuthenticationConfigPollingUntilDone(name:)``
+  /// - ``deleteBackendAuthenticationConfigPollingUntilDone(request:)``
+  /// - ``deleteBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func deleteBackendAuthenticationConfig(
     request: DeleteBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -285,6 +390,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// BackendAuthenticationConfig.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackendAuthenticationConfig(request:)``
+  /// - ``deleteBackendAuthenticationConfig(request:options:)``
+  /// - ``deleteBackendAuthenticationConfigPollingUntilDone(name:)``
+  /// - ``deleteBackendAuthenticationConfigPollingUntilDone(request:)``
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     request: DeleteBackendAuthenticationConfigRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -312,6 +424,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists ServerTlsPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listServerTlsPolicies(request:)``
+  /// - ``listServerTlsPoliciesByItems(parent:)``
+  /// - ``listServerTlsPoliciesByItems(request:)``
+  /// - ``listServerTlsPoliciesByItems(request:options:)``
   public func listServerTlsPolicies(
     request: ListServerTlsPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListServerTlsPoliciesResponse {
@@ -321,6 +440,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single ServerTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_GetServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getServerTlsPolicy(name:)``
+  /// - ``getServerTlsPolicy(request:)``
   public func getServerTlsPolicy(
     request: GetServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ServerTlsPolicy {
@@ -330,6 +454,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new ServerTlsPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServerTlsPolicy(request:)``
+  /// - ``createServerTlsPolicyPollingUntilDone(parent:serverTlsPolicy:serverTlsPolicyId:)``
+  /// - ``createServerTlsPolicyPollingUntilDone(request:)``
+  /// - ``createServerTlsPolicyPollingUntilDone(request:options:)``
   public func createServerTlsPolicy(
     request: CreateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -339,6 +470,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new ServerTlsPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createServerTlsPolicy(request:)``
+  /// - ``createServerTlsPolicy(request:options:)``
+  /// - ``createServerTlsPolicyPollingUntilDone(parent:serverTlsPolicy:serverTlsPolicyId:)``
+  /// - ``createServerTlsPolicyPollingUntilDone(request:)``
   public func createServerTlsPolicyPollingUntilDone(
     request: CreateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServerTlsPolicy {
@@ -367,6 +505,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single ServerTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServerTlsPolicy(request:)``
+  /// - ``updateServerTlsPolicyPollingUntilDone(request:)``
+  /// - ``updateServerTlsPolicyPollingUntilDone(request:options:)``
+  /// - ``updateServerTlsPolicyPollingUntilDone(serverTlsPolicy:updateMask:)``
   public func updateServerTlsPolicy(
     request: UpdateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -376,6 +521,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single ServerTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateServerTlsPolicy(request:)``
+  /// - ``updateServerTlsPolicy(request:options:)``
+  /// - ``updateServerTlsPolicyPollingUntilDone(request:)``
+  /// - ``updateServerTlsPolicyPollingUntilDone(serverTlsPolicy:updateMask:)``
   public func updateServerTlsPolicyPollingUntilDone(
     request: UpdateServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ServerTlsPolicy {
@@ -404,6 +556,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single ServerTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServerTlsPolicy(request:)``
+  /// - ``deleteServerTlsPolicyPollingUntilDone(name:)``
+  /// - ``deleteServerTlsPolicyPollingUntilDone(request:)``
+  /// - ``deleteServerTlsPolicyPollingUntilDone(request:options:)``
   public func deleteServerTlsPolicy(
     request: DeleteServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -413,6 +572,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single ServerTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteServerTlsPolicy(request:)``
+  /// - ``deleteServerTlsPolicy(request:options:)``
+  /// - ``deleteServerTlsPolicyPollingUntilDone(name:)``
+  /// - ``deleteServerTlsPolicyPollingUntilDone(request:)``
   public func deleteServerTlsPolicyPollingUntilDone(
     request: DeleteServerTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -440,6 +606,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists ClientTlsPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listClientTlsPolicies(request:)``
+  /// - ``listClientTlsPoliciesByItems(parent:)``
+  /// - ``listClientTlsPoliciesByItems(request:)``
+  /// - ``listClientTlsPoliciesByItems(request:options:)``
   public func listClientTlsPolicies(
     request: ListClientTlsPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListClientTlsPoliciesResponse {
@@ -449,6 +622,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single ClientTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_GetClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getClientTlsPolicy(name:)``
+  /// - ``getClientTlsPolicy(request:)``
   public func getClientTlsPolicy(
     request: GetClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ClientTlsPolicy {
@@ -458,6 +636,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new ClientTlsPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClientTlsPolicy(request:)``
+  /// - ``createClientTlsPolicyPollingUntilDone(parent:clientTlsPolicy:clientTlsPolicyId:)``
+  /// - ``createClientTlsPolicyPollingUntilDone(request:)``
+  /// - ``createClientTlsPolicyPollingUntilDone(request:options:)``
   public func createClientTlsPolicy(
     request: CreateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -467,6 +652,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new ClientTlsPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createClientTlsPolicy(request:)``
+  /// - ``createClientTlsPolicy(request:options:)``
+  /// - ``createClientTlsPolicyPollingUntilDone(parent:clientTlsPolicy:clientTlsPolicyId:)``
+  /// - ``createClientTlsPolicyPollingUntilDone(request:)``
   public func createClientTlsPolicyPollingUntilDone(
     request: CreateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ClientTlsPolicy {
@@ -495,6 +687,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single ClientTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateClientTlsPolicy(request:)``
+  /// - ``updateClientTlsPolicyPollingUntilDone(clientTlsPolicy:updateMask:)``
+  /// - ``updateClientTlsPolicyPollingUntilDone(request:)``
+  /// - ``updateClientTlsPolicyPollingUntilDone(request:options:)``
   public func updateClientTlsPolicy(
     request: UpdateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -504,6 +703,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single ClientTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateClientTlsPolicy(request:)``
+  /// - ``updateClientTlsPolicy(request:options:)``
+  /// - ``updateClientTlsPolicyPollingUntilDone(clientTlsPolicy:updateMask:)``
+  /// - ``updateClientTlsPolicyPollingUntilDone(request:)``
   public func updateClientTlsPolicyPollingUntilDone(
     request: UpdateClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> ClientTlsPolicy {
@@ -532,6 +738,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single ClientTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClientTlsPolicy(request:)``
+  /// - ``deleteClientTlsPolicyPollingUntilDone(name:)``
+  /// - ``deleteClientTlsPolicyPollingUntilDone(request:)``
+  /// - ``deleteClientTlsPolicyPollingUntilDone(request:options:)``
   public func deleteClientTlsPolicy(
     request: DeleteClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -541,6 +754,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single ClientTlsPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteClientTlsPolicy(request:)``
+  /// - ``deleteClientTlsPolicy(request:options:)``
+  /// - ``deleteClientTlsPolicyPollingUntilDone(name:)``
+  /// - ``deleteClientTlsPolicyPollingUntilDone(request:)``
   public func deleteClientTlsPolicyPollingUntilDone(
     request: DeleteClientTlsPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -568,6 +788,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists GatewaySecurityPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGatewaySecurityPolicies(request:)``
+  /// - ``listGatewaySecurityPoliciesByItems(parent:)``
+  /// - ``listGatewaySecurityPoliciesByItems(request:)``
+  /// - ``listGatewaySecurityPoliciesByItems(request:options:)``
   public func listGatewaySecurityPolicies(
     request: ListGatewaySecurityPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPoliciesResponse {
@@ -577,6 +804,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single GatewaySecurityPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_GetGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGatewaySecurityPolicy(name:)``
+  /// - ``getGatewaySecurityPolicy(request:)``
   public func getGatewaySecurityPolicy(
     request: GetGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicy {
@@ -586,6 +818,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new GatewaySecurityPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGatewaySecurityPolicy(request:)``
+  /// - ``createGatewaySecurityPolicyPollingUntilDone(parent:gatewaySecurityPolicy:gatewaySecurityPolicyId:)``
+  /// - ``createGatewaySecurityPolicyPollingUntilDone(request:)``
+  /// - ``createGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func createGatewaySecurityPolicy(
     request: CreateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -595,6 +834,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new GatewaySecurityPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGatewaySecurityPolicy(request:)``
+  /// - ``createGatewaySecurityPolicy(request:options:)``
+  /// - ``createGatewaySecurityPolicyPollingUntilDone(parent:gatewaySecurityPolicy:gatewaySecurityPolicyId:)``
+  /// - ``createGatewaySecurityPolicyPollingUntilDone(request:)``
   public func createGatewaySecurityPolicyPollingUntilDone(
     request: CreateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GatewaySecurityPolicy {
@@ -623,6 +869,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single GatewaySecurityPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGatewaySecurityPolicy(request:)``
+  /// - ``updateGatewaySecurityPolicyPollingUntilDone(gatewaySecurityPolicy:updateMask:)``
+  /// - ``updateGatewaySecurityPolicyPollingUntilDone(request:)``
+  /// - ``updateGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func updateGatewaySecurityPolicy(
     request: UpdateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -632,6 +885,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single GatewaySecurityPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGatewaySecurityPolicy(request:)``
+  /// - ``updateGatewaySecurityPolicy(request:options:)``
+  /// - ``updateGatewaySecurityPolicyPollingUntilDone(gatewaySecurityPolicy:updateMask:)``
+  /// - ``updateGatewaySecurityPolicyPollingUntilDone(request:)``
   public func updateGatewaySecurityPolicyPollingUntilDone(
     request: UpdateGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GatewaySecurityPolicy {
@@ -660,6 +920,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single GatewaySecurityPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGatewaySecurityPolicy(request:)``
+  /// - ``deleteGatewaySecurityPolicyPollingUntilDone(name:)``
+  /// - ``deleteGatewaySecurityPolicyPollingUntilDone(request:)``
+  /// - ``deleteGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func deleteGatewaySecurityPolicy(
     request: DeleteGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -669,6 +936,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single GatewaySecurityPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGatewaySecurityPolicy(request:)``
+  /// - ``deleteGatewaySecurityPolicy(request:options:)``
+  /// - ``deleteGatewaySecurityPolicyPollingUntilDone(name:)``
+  /// - ``deleteGatewaySecurityPolicyPollingUntilDone(request:)``
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     request: DeleteGatewaySecurityPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -696,6 +970,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists GatewaySecurityPolicyRules in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listGatewaySecurityPolicyRules(request:)``
+  /// - ``listGatewaySecurityPolicyRulesByItems(parent:)``
+  /// - ``listGatewaySecurityPolicyRulesByItems(request:)``
+  /// - ``listGatewaySecurityPolicyRulesByItems(request:options:)``
   public func listGatewaySecurityPolicyRules(
     request: ListGatewaySecurityPolicyRulesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPolicyRulesResponse {
@@ -705,6 +986,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single GatewaySecurityPolicyRule.
   ///
   /// @Snippet(path: "NetworkSecurity_GetGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getGatewaySecurityPolicyRule(name:)``
+  /// - ``getGatewaySecurityPolicyRule(request:)``
   public func getGatewaySecurityPolicyRule(
     request: GetGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicyRule {
@@ -714,6 +1000,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new GatewaySecurityPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGatewaySecurityPolicyRule(request:)``
+  /// - ``createGatewaySecurityPolicyRulePollingUntilDone(parent:gatewaySecurityPolicyRule:gatewaySecurityPolicyRuleId:)``
+  /// - ``createGatewaySecurityPolicyRulePollingUntilDone(request:)``
+  /// - ``createGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func createGatewaySecurityPolicyRule(
     request: CreateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -723,6 +1016,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new GatewaySecurityPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createGatewaySecurityPolicyRule(request:)``
+  /// - ``createGatewaySecurityPolicyRule(request:options:)``
+  /// - ``createGatewaySecurityPolicyRulePollingUntilDone(parent:gatewaySecurityPolicyRule:gatewaySecurityPolicyRuleId:)``
+  /// - ``createGatewaySecurityPolicyRulePollingUntilDone(request:)``
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     request: CreateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GatewaySecurityPolicyRule {
@@ -752,6 +1052,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single GatewaySecurityPolicyRule.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGatewaySecurityPolicyRule(request:)``
+  /// - ``updateGatewaySecurityPolicyRulePollingUntilDone(gatewaySecurityPolicyRule:updateMask:)``
+  /// - ``updateGatewaySecurityPolicyRulePollingUntilDone(request:)``
+  /// - ``updateGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func updateGatewaySecurityPolicyRule(
     request: UpdateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -761,6 +1068,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single GatewaySecurityPolicyRule.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateGatewaySecurityPolicyRule(request:)``
+  /// - ``updateGatewaySecurityPolicyRule(request:options:)``
+  /// - ``updateGatewaySecurityPolicyRulePollingUntilDone(gatewaySecurityPolicyRule:updateMask:)``
+  /// - ``updateGatewaySecurityPolicyRulePollingUntilDone(request:)``
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     request: UpdateGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GatewaySecurityPolicyRule {
@@ -790,6 +1104,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single GatewaySecurityPolicyRule.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGatewaySecurityPolicyRule(request:)``
+  /// - ``deleteGatewaySecurityPolicyRulePollingUntilDone(name:)``
+  /// - ``deleteGatewaySecurityPolicyRulePollingUntilDone(request:)``
+  /// - ``deleteGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func deleteGatewaySecurityPolicyRule(
     request: DeleteGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -799,6 +1120,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single GatewaySecurityPolicyRule.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteGatewaySecurityPolicyRule(request:)``
+  /// - ``deleteGatewaySecurityPolicyRule(request:options:)``
+  /// - ``deleteGatewaySecurityPolicyRulePollingUntilDone(name:)``
+  /// - ``deleteGatewaySecurityPolicyRulePollingUntilDone(request:)``
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     request: DeleteGatewaySecurityPolicyRuleRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -826,6 +1154,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists UrlLists in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListUrlLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listUrlLists(request:)``
+  /// - ``listUrlListsByItems(parent:)``
+  /// - ``listUrlListsByItems(request:)``
+  /// - ``listUrlListsByItems(request:options:)``
   public func listUrlLists(
     request: ListUrlListsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListUrlListsResponse {
@@ -835,6 +1170,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single UrlList.
   ///
   /// @Snippet(path: "NetworkSecurity_GetUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getUrlList(name:)``
+  /// - ``getUrlList(request:)``
   public func getUrlList(
     request: GetUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.UrlList {
@@ -844,6 +1184,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new UrlList in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUrlList(request:)``
+  /// - ``createUrlListPollingUntilDone(parent:urlList:urlListId:)``
+  /// - ``createUrlListPollingUntilDone(request:)``
+  /// - ``createUrlListPollingUntilDone(request:options:)``
   public func createUrlList(
     request: CreateUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -853,6 +1200,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new UrlList in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createUrlList(request:)``
+  /// - ``createUrlList(request:options:)``
+  /// - ``createUrlListPollingUntilDone(parent:urlList:urlListId:)``
+  /// - ``createUrlListPollingUntilDone(request:)``
   public func createUrlListPollingUntilDone(
     request: CreateUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws -> UrlList {
@@ -880,6 +1234,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single UrlList.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUrlList(request:)``
+  /// - ``updateUrlListPollingUntilDone(request:)``
+  /// - ``updateUrlListPollingUntilDone(request:options:)``
+  /// - ``updateUrlListPollingUntilDone(urlList:updateMask:)``
   public func updateUrlList(
     request: UpdateUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -889,6 +1250,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single UrlList.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateUrlList(request:)``
+  /// - ``updateUrlList(request:options:)``
+  /// - ``updateUrlListPollingUntilDone(request:)``
+  /// - ``updateUrlListPollingUntilDone(urlList:updateMask:)``
   public func updateUrlListPollingUntilDone(
     request: UpdateUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws -> UrlList {
@@ -916,6 +1284,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single UrlList.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUrlList(request:)``
+  /// - ``deleteUrlListPollingUntilDone(name:)``
+  /// - ``deleteUrlListPollingUntilDone(request:)``
+  /// - ``deleteUrlListPollingUntilDone(request:options:)``
   public func deleteUrlList(
     request: DeleteUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -925,6 +1300,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single UrlList.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteUrlList(request:)``
+  /// - ``deleteUrlList(request:options:)``
+  /// - ``deleteUrlListPollingUntilDone(name:)``
+  /// - ``deleteUrlListPollingUntilDone(request:)``
   public func deleteUrlListPollingUntilDone(
     request: DeleteUrlListRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -952,6 +1334,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists TlsInspectionPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listTlsInspectionPolicies(request:)``
+  /// - ``listTlsInspectionPoliciesByItems(parent:)``
+  /// - ``listTlsInspectionPoliciesByItems(request:)``
+  /// - ``listTlsInspectionPoliciesByItems(request:options:)``
   public func listTlsInspectionPolicies(
     request: ListTlsInspectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListTlsInspectionPoliciesResponse {
@@ -961,6 +1350,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single TlsInspectionPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_GetTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getTlsInspectionPolicy(name:)``
+  /// - ``getTlsInspectionPolicy(request:)``
   public func getTlsInspectionPolicy(
     request: GetTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.TlsInspectionPolicy {
@@ -970,6 +1364,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new TlsInspectionPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTlsInspectionPolicy(request:)``
+  /// - ``createTlsInspectionPolicyPollingUntilDone(parent:tlsInspectionPolicy:tlsInspectionPolicyId:)``
+  /// - ``createTlsInspectionPolicyPollingUntilDone(request:)``
+  /// - ``createTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func createTlsInspectionPolicy(
     request: CreateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -979,6 +1380,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new TlsInspectionPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createTlsInspectionPolicy(request:)``
+  /// - ``createTlsInspectionPolicy(request:options:)``
+  /// - ``createTlsInspectionPolicyPollingUntilDone(parent:tlsInspectionPolicy:tlsInspectionPolicyId:)``
+  /// - ``createTlsInspectionPolicyPollingUntilDone(request:)``
   public func createTlsInspectionPolicyPollingUntilDone(
     request: CreateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> TlsInspectionPolicy {
@@ -1007,6 +1415,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single TlsInspectionPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTlsInspectionPolicy(request:)``
+  /// - ``updateTlsInspectionPolicyPollingUntilDone(request:)``
+  /// - ``updateTlsInspectionPolicyPollingUntilDone(request:options:)``
+  /// - ``updateTlsInspectionPolicyPollingUntilDone(tlsInspectionPolicy:updateMask:)``
   public func updateTlsInspectionPolicy(
     request: UpdateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1016,6 +1431,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single TlsInspectionPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateTlsInspectionPolicy(request:)``
+  /// - ``updateTlsInspectionPolicy(request:options:)``
+  /// - ``updateTlsInspectionPolicyPollingUntilDone(request:)``
+  /// - ``updateTlsInspectionPolicyPollingUntilDone(tlsInspectionPolicy:updateMask:)``
   public func updateTlsInspectionPolicyPollingUntilDone(
     request: UpdateTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> TlsInspectionPolicy {
@@ -1044,6 +1466,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single TlsInspectionPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTlsInspectionPolicy(request:)``
+  /// - ``deleteTlsInspectionPolicyPollingUntilDone(name:)``
+  /// - ``deleteTlsInspectionPolicyPollingUntilDone(request:)``
+  /// - ``deleteTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func deleteTlsInspectionPolicy(
     request: DeleteTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1053,6 +1482,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single TlsInspectionPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteTlsInspectionPolicy(request:)``
+  /// - ``deleteTlsInspectionPolicy(request:options:)``
+  /// - ``deleteTlsInspectionPolicyPollingUntilDone(name:)``
+  /// - ``deleteTlsInspectionPolicyPollingUntilDone(request:)``
   public func deleteTlsInspectionPolicyPollingUntilDone(
     request: DeleteTlsInspectionPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1080,6 +1516,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Lists AuthzPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAuthzPolicies(request:)``
+  /// - ``listAuthzPoliciesByItems(parent:)``
+  /// - ``listAuthzPoliciesByItems(request:)``
+  /// - ``listAuthzPoliciesByItems(request:options:)``
   public func listAuthzPolicies(
     request: ListAuthzPoliciesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListAuthzPoliciesResponse {
@@ -1089,6 +1532,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets details of a single AuthzPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_GetAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthzPolicy(name:)``
+  /// - ``getAuthzPolicy(request:)``
   public func getAuthzPolicy(
     request: GetAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.AuthzPolicy {
@@ -1098,6 +1546,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new AuthzPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthzPolicy(request:)``
+  /// - ``createAuthzPolicyPollingUntilDone(parent:authzPolicy:authzPolicyId:)``
+  /// - ``createAuthzPolicyPollingUntilDone(request:)``
+  /// - ``createAuthzPolicyPollingUntilDone(request:options:)``
   public func createAuthzPolicy(
     request: CreateAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1107,6 +1562,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Creates a new AuthzPolicy in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_CreateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAuthzPolicy(request:)``
+  /// - ``createAuthzPolicy(request:options:)``
+  /// - ``createAuthzPolicyPollingUntilDone(parent:authzPolicy:authzPolicyId:)``
+  /// - ``createAuthzPolicyPollingUntilDone(request:)``
   public func createAuthzPolicyPollingUntilDone(
     request: CreateAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthzPolicy {
@@ -1134,6 +1596,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single AuthzPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthzPolicy(request:)``
+  /// - ``updateAuthzPolicyPollingUntilDone(authzPolicy:updateMask:)``
+  /// - ``updateAuthzPolicyPollingUntilDone(request:)``
+  /// - ``updateAuthzPolicyPollingUntilDone(request:options:)``
   public func updateAuthzPolicy(
     request: UpdateAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1143,6 +1612,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Updates the parameters of a single AuthzPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_UpdateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAuthzPolicy(request:)``
+  /// - ``updateAuthzPolicy(request:options:)``
+  /// - ``updateAuthzPolicyPollingUntilDone(authzPolicy:updateMask:)``
+  /// - ``updateAuthzPolicyPollingUntilDone(request:)``
   public func updateAuthzPolicyPollingUntilDone(
     request: UpdateAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> AuthzPolicy {
@@ -1170,6 +1646,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single AuthzPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthzPolicy(request:)``
+  /// - ``deleteAuthzPolicyPollingUntilDone(name:)``
+  /// - ``deleteAuthzPolicyPollingUntilDone(request:)``
+  /// - ``deleteAuthzPolicyPollingUntilDone(request:options:)``
   public func deleteAuthzPolicy(
     request: DeleteAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -1179,6 +1662,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Deletes a single AuthzPolicy.
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAuthzPolicy(request:)``
+  /// - ``deleteAuthzPolicy(request:options:)``
+  /// - ``deleteAuthzPolicyPollingUntilDone(name:)``
+  /// - ``deleteAuthzPolicyPollingUntilDone(request:)``
   public func deleteAuthzPolicyPollingUntilDone(
     request: DeleteAuthzPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1223,6 +1713,12 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "NetworkSecurity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -1232,6 +1728,10 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "NetworkSecurity_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -1245,6 +1745,10 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "NetworkSecurity_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1255,6 +1759,10 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "NetworkSecurity_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -1270,6 +1778,10 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "NetworkSecurity_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -1281,6 +1793,13 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkSecurity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -1303,6 +1822,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkSecurity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1314,6 +1838,11 @@ public final class NetworkSecurityClient: Clients.NetworkSecurityProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkSecurity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -1732,6 +2261,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.NetworkSecurityProtocol {
+  /// Lists AuthorizationPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthorizationPolicies(request:options:)``
   public func listAuthorizationPolicies(request: ListAuthorizationPoliciesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListAuthorizationPoliciesResponse
   {
@@ -1744,6 +2280,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AuthorizationPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthorizationPolicies(request:options:)``
   public func listAuthorizationPoliciesByItems(
     request: ListAuthorizationPoliciesRequest
   ) -> some AsyncSequence<AuthorizationPolicy, any Swift.Error> & Sendable {
@@ -1753,6 +2296,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists AuthorizationPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthorizationPolicies(request:options:)``
   public func listAuthorizationPoliciesByItems(
     request: ListAuthorizationPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthorizationPolicy, any Swift.Error> & Sendable {
@@ -1767,6 +2314,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AuthorizationPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListAuthorizationPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthorizationPolicies(request:options:)``
   public func listAuthorizationPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuthorizationPolicy, any Swift.Error> & Sendable {
@@ -1776,6 +2330,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listAuthorizationPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getAuthorizationPolicy(request:options:)``
   public func getAuthorizationPolicy(request: GetAuthorizationPolicyRequest) async throws
     -> GoogleCloudNetworkSecurityV1.AuthorizationPolicy
   {
@@ -1788,6 +2349,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getAuthorizationPolicy(request:options:)``
   public func getAuthorizationPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.AuthorizationPolicy {
@@ -1797,6 +2365,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getAuthorizationPolicy(request: request)
   }
 
+  /// Creates a new AuthorizationPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createAuthorizationPolicy(request:options:)``
   public func createAuthorizationPolicy(request: CreateAuthorizationPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1809,6 +2384,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AuthorizationPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createAuthorizationPolicyPollingUntilDone(request:options:)``
   public func createAuthorizationPolicyPollingUntilDone(request: CreateAuthorizationPolicyRequest)
     async throws -> AuthorizationPolicy
   {
@@ -1822,6 +2404,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AuthorizationPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createAuthorizationPolicyPollingUntilDone(request:options:)``
   public func createAuthorizationPolicyPollingUntilDone(
     parent: Swift.String,
     authorizationPolicy: AuthorizationPolicy?,
@@ -1835,6 +2424,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createAuthorizationPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateAuthorizationPolicy(request:options:)``
   public func updateAuthorizationPolicy(request: UpdateAuthorizationPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1847,6 +2443,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateAuthorizationPolicyPollingUntilDone(request:options:)``
   public func updateAuthorizationPolicyPollingUntilDone(request: UpdateAuthorizationPolicyRequest)
     async throws -> AuthorizationPolicy
   {
@@ -1860,6 +2463,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateAuthorizationPolicyPollingUntilDone(request:options:)``
   public func updateAuthorizationPolicyPollingUntilDone(
     authorizationPolicy: AuthorizationPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1871,6 +2481,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateAuthorizationPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteAuthorizationPolicy(request:options:)``
   public func deleteAuthorizationPolicy(request: DeleteAuthorizationPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1883,6 +2500,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteAuthorizationPolicyPollingUntilDone(request:options:)``
   public func deleteAuthorizationPolicyPollingUntilDone(request: DeleteAuthorizationPolicyRequest)
     async throws
   {
@@ -1895,6 +2519,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AuthorizationPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteAuthorizationPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteAuthorizationPolicyPollingUntilDone(request:options:)``
   public func deleteAuthorizationPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1904,6 +2535,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteAuthorizationPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists BackendAuthenticationConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listBackendAuthenticationConfigs(request:options:)``
   public func listBackendAuthenticationConfigs(request: ListBackendAuthenticationConfigsRequest)
     async throws -> GoogleCloudNetworkSecurityV1.ListBackendAuthenticationConfigsResponse
   {
@@ -1916,6 +2554,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists BackendAuthenticationConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listBackendAuthenticationConfigs(request:options:)``
   public func listBackendAuthenticationConfigsByItems(
     request: ListBackendAuthenticationConfigsRequest
   ) -> some AsyncSequence<BackendAuthenticationConfig, any Swift.Error> & Sendable {
@@ -1925,6 +2570,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists BackendAuthenticationConfigs in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listBackendAuthenticationConfigs(request:options:)``
   public func listBackendAuthenticationConfigsByItems(
     request: ListBackendAuthenticationConfigsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<BackendAuthenticationConfig, any Swift.Error> & Sendable {
@@ -1939,6 +2588,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists BackendAuthenticationConfigs in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListBackendAuthenticationConfigs")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listBackendAuthenticationConfigs(request:options:)``
   public func listBackendAuthenticationConfigsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<BackendAuthenticationConfig, any Swift.Error> & Sendable {
@@ -1948,6 +2604,14 @@ extension Clients.NetworkSecurityProtocol {
     return self.listBackendAuthenticationConfigsByItems(request: request)
   }
 
+  /// Gets details of a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getBackendAuthenticationConfig(request:options:)``
   public func getBackendAuthenticationConfig(request: GetBackendAuthenticationConfigRequest)
     async throws -> GoogleCloudNetworkSecurityV1.BackendAuthenticationConfig
   {
@@ -1960,6 +2624,14 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getBackendAuthenticationConfig(request:options:)``
   public func getBackendAuthenticationConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.BackendAuthenticationConfig {
@@ -1969,6 +2641,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getBackendAuthenticationConfig(request: request)
   }
 
+  /// Creates a new BackendAuthenticationConfig in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createBackendAuthenticationConfig(request:options:)``
   public func createBackendAuthenticationConfig(request: CreateBackendAuthenticationConfigRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -1981,6 +2660,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new BackendAuthenticationConfig in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func createBackendAuthenticationConfigPollingUntilDone(
     request: CreateBackendAuthenticationConfigRequest
   ) async throws -> BackendAuthenticationConfig {
@@ -1994,6 +2680,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new BackendAuthenticationConfig in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func createBackendAuthenticationConfigPollingUntilDone(
     parent: Swift.String,
     backendAuthenticationConfig: BackendAuthenticationConfig?,
@@ -2007,6 +2700,14 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createBackendAuthenticationConfigPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateBackendAuthenticationConfig(request:options:)``
   public func updateBackendAuthenticationConfig(request: UpdateBackendAuthenticationConfigRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2019,6 +2720,14 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func updateBackendAuthenticationConfigPollingUntilDone(
     request: UpdateBackendAuthenticationConfigRequest
   ) async throws -> BackendAuthenticationConfig {
@@ -2032,6 +2741,14 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func updateBackendAuthenticationConfigPollingUntilDone(
     backendAuthenticationConfig: BackendAuthenticationConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2043,6 +2760,14 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateBackendAuthenticationConfigPollingUntilDone(request: request)
   }
 
+  /// Deletes a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteBackendAuthenticationConfig(request:options:)``
   public func deleteBackendAuthenticationConfig(request: DeleteBackendAuthenticationConfigRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2055,6 +2780,14 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     request: DeleteBackendAuthenticationConfigRequest
   ) async throws {
@@ -2068,6 +2801,14 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single BackendAuthenticationConfig to
+  /// BackendAuthenticationConfig.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteBackendAuthenticationConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteBackendAuthenticationConfigPollingUntilDone(request:options:)``
   public func deleteBackendAuthenticationConfigPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2077,6 +2818,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteBackendAuthenticationConfigPollingUntilDone(request: request)
   }
 
+  /// Lists ServerTlsPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listServerTlsPolicies(request:options:)``
   public func listServerTlsPolicies(request: ListServerTlsPoliciesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListServerTlsPoliciesResponse
   {
@@ -2089,6 +2837,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ServerTlsPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listServerTlsPolicies(request:options:)``
   public func listServerTlsPoliciesByItems(
     request: ListServerTlsPoliciesRequest
   ) -> some AsyncSequence<ServerTlsPolicy, any Swift.Error> & Sendable {
@@ -2098,6 +2853,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists ServerTlsPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listServerTlsPolicies(request:options:)``
   public func listServerTlsPoliciesByItems(
     request: ListServerTlsPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ServerTlsPolicy, any Swift.Error> & Sendable {
@@ -2112,6 +2871,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ServerTlsPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListServerTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listServerTlsPolicies(request:options:)``
   public func listServerTlsPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ServerTlsPolicy, any Swift.Error> & Sendable {
@@ -2121,6 +2887,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listServerTlsPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getServerTlsPolicy(request:options:)``
   public func getServerTlsPolicy(request: GetServerTlsPolicyRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ServerTlsPolicy
   {
@@ -2133,6 +2906,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getServerTlsPolicy(request:options:)``
   public func getServerTlsPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.ServerTlsPolicy {
@@ -2142,6 +2922,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getServerTlsPolicy(request: request)
   }
 
+  /// Creates a new ServerTlsPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createServerTlsPolicy(request:options:)``
   public func createServerTlsPolicy(request: CreateServerTlsPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2154,6 +2941,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ServerTlsPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createServerTlsPolicyPollingUntilDone(request:options:)``
   public func createServerTlsPolicyPollingUntilDone(request: CreateServerTlsPolicyRequest)
     async throws -> ServerTlsPolicy
   {
@@ -2166,6 +2960,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ServerTlsPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createServerTlsPolicyPollingUntilDone(request:options:)``
   public func createServerTlsPolicyPollingUntilDone(
     parent: Swift.String,
     serverTlsPolicy: ServerTlsPolicy?,
@@ -2179,6 +2980,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createServerTlsPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateServerTlsPolicy(request:options:)``
   public func updateServerTlsPolicy(request: UpdateServerTlsPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2191,6 +2999,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateServerTlsPolicyPollingUntilDone(request:options:)``
   public func updateServerTlsPolicyPollingUntilDone(request: UpdateServerTlsPolicyRequest)
     async throws -> ServerTlsPolicy
   {
@@ -2203,6 +3018,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateServerTlsPolicyPollingUntilDone(request:options:)``
   public func updateServerTlsPolicyPollingUntilDone(
     serverTlsPolicy: ServerTlsPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2214,6 +3036,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateServerTlsPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteServerTlsPolicy(request:options:)``
   public func deleteServerTlsPolicy(request: DeleteServerTlsPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2226,6 +3055,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteServerTlsPolicyPollingUntilDone(request:options:)``
   public func deleteServerTlsPolicyPollingUntilDone(request: DeleteServerTlsPolicyRequest)
     async throws
   {
@@ -2238,6 +3074,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ServerTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteServerTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteServerTlsPolicyPollingUntilDone(request:options:)``
   public func deleteServerTlsPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2247,6 +3090,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteServerTlsPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists ClientTlsPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listClientTlsPolicies(request:options:)``
   public func listClientTlsPolicies(request: ListClientTlsPoliciesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListClientTlsPoliciesResponse
   {
@@ -2259,6 +3109,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists ClientTlsPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listClientTlsPolicies(request:options:)``
   public func listClientTlsPoliciesByItems(
     request: ListClientTlsPoliciesRequest
   ) -> some AsyncSequence<ClientTlsPolicy, any Swift.Error> & Sendable {
@@ -2268,6 +3125,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists ClientTlsPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listClientTlsPolicies(request:options:)``
   public func listClientTlsPoliciesByItems(
     request: ListClientTlsPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ClientTlsPolicy, any Swift.Error> & Sendable {
@@ -2282,6 +3143,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists ClientTlsPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListClientTlsPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listClientTlsPolicies(request:options:)``
   public func listClientTlsPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ClientTlsPolicy, any Swift.Error> & Sendable {
@@ -2291,6 +3159,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listClientTlsPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getClientTlsPolicy(request:options:)``
   public func getClientTlsPolicy(request: GetClientTlsPolicyRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ClientTlsPolicy
   {
@@ -2303,6 +3178,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getClientTlsPolicy(request:options:)``
   public func getClientTlsPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.ClientTlsPolicy {
@@ -2312,6 +3194,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getClientTlsPolicy(request: request)
   }
 
+  /// Creates a new ClientTlsPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createClientTlsPolicy(request:options:)``
   public func createClientTlsPolicy(request: CreateClientTlsPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2324,6 +3213,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ClientTlsPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createClientTlsPolicyPollingUntilDone(request:options:)``
   public func createClientTlsPolicyPollingUntilDone(request: CreateClientTlsPolicyRequest)
     async throws -> ClientTlsPolicy
   {
@@ -2336,6 +3232,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new ClientTlsPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createClientTlsPolicyPollingUntilDone(request:options:)``
   public func createClientTlsPolicyPollingUntilDone(
     parent: Swift.String,
     clientTlsPolicy: ClientTlsPolicy?,
@@ -2349,6 +3252,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createClientTlsPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateClientTlsPolicy(request:options:)``
   public func updateClientTlsPolicy(request: UpdateClientTlsPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2361,6 +3271,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateClientTlsPolicyPollingUntilDone(request:options:)``
   public func updateClientTlsPolicyPollingUntilDone(request: UpdateClientTlsPolicyRequest)
     async throws -> ClientTlsPolicy
   {
@@ -2373,6 +3290,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateClientTlsPolicyPollingUntilDone(request:options:)``
   public func updateClientTlsPolicyPollingUntilDone(
     clientTlsPolicy: ClientTlsPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2384,6 +3308,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateClientTlsPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteClientTlsPolicy(request:options:)``
   public func deleteClientTlsPolicy(request: DeleteClientTlsPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2396,6 +3327,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteClientTlsPolicyPollingUntilDone(request:options:)``
   public func deleteClientTlsPolicyPollingUntilDone(request: DeleteClientTlsPolicyRequest)
     async throws
   {
@@ -2408,6 +3346,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single ClientTlsPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteClientTlsPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteClientTlsPolicyPollingUntilDone(request:options:)``
   public func deleteClientTlsPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2417,6 +3362,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteClientTlsPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists GatewaySecurityPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicies(request:options:)``
   public func listGatewaySecurityPolicies(request: ListGatewaySecurityPoliciesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPoliciesResponse
   {
@@ -2429,6 +3381,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists GatewaySecurityPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicies(request:options:)``
   public func listGatewaySecurityPoliciesByItems(
     request: ListGatewaySecurityPoliciesRequest
   ) -> some AsyncSequence<GatewaySecurityPolicy, any Swift.Error> & Sendable {
@@ -2438,6 +3397,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists GatewaySecurityPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicies(request:options:)``
   public func listGatewaySecurityPoliciesByItems(
     request: ListGatewaySecurityPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GatewaySecurityPolicy, any Swift.Error> & Sendable {
@@ -2452,6 +3415,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists GatewaySecurityPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicies(request:options:)``
   public func listGatewaySecurityPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GatewaySecurityPolicy, any Swift.Error> & Sendable {
@@ -2461,6 +3431,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listGatewaySecurityPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getGatewaySecurityPolicy(request:options:)``
   public func getGatewaySecurityPolicy(request: GetGatewaySecurityPolicyRequest) async throws
     -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicy
   {
@@ -2473,6 +3450,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getGatewaySecurityPolicy(request:options:)``
   public func getGatewaySecurityPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicy {
@@ -2482,6 +3466,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getGatewaySecurityPolicy(request: request)
   }
 
+  /// Creates a new GatewaySecurityPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createGatewaySecurityPolicy(request:options:)``
   public func createGatewaySecurityPolicy(request: CreateGatewaySecurityPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2494,6 +3485,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new GatewaySecurityPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func createGatewaySecurityPolicyPollingUntilDone(
     request: CreateGatewaySecurityPolicyRequest
   ) async throws -> GatewaySecurityPolicy {
@@ -2507,6 +3505,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new GatewaySecurityPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func createGatewaySecurityPolicyPollingUntilDone(
     parent: Swift.String,
     gatewaySecurityPolicy: GatewaySecurityPolicy?,
@@ -2520,6 +3525,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createGatewaySecurityPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateGatewaySecurityPolicy(request:options:)``
   public func updateGatewaySecurityPolicy(request: UpdateGatewaySecurityPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2532,6 +3544,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func updateGatewaySecurityPolicyPollingUntilDone(
     request: UpdateGatewaySecurityPolicyRequest
   ) async throws -> GatewaySecurityPolicy {
@@ -2545,6 +3564,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func updateGatewaySecurityPolicyPollingUntilDone(
     gatewaySecurityPolicy: GatewaySecurityPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2556,6 +3582,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateGatewaySecurityPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteGatewaySecurityPolicy(request:options:)``
   public func deleteGatewaySecurityPolicy(request: DeleteGatewaySecurityPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2568,6 +3601,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     request: DeleteGatewaySecurityPolicyRequest
   ) async throws {
@@ -2580,6 +3620,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single GatewaySecurityPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteGatewaySecurityPolicyPollingUntilDone(request:options:)``
   public func deleteGatewaySecurityPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2589,6 +3636,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteGatewaySecurityPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists GatewaySecurityPolicyRules in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicyRules(request:options:)``
   public func listGatewaySecurityPolicyRules(request: ListGatewaySecurityPolicyRulesRequest)
     async throws -> GoogleCloudNetworkSecurityV1.ListGatewaySecurityPolicyRulesResponse
   {
@@ -2601,6 +3655,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists GatewaySecurityPolicyRules in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicyRules(request:options:)``
   public func listGatewaySecurityPolicyRulesByItems(
     request: ListGatewaySecurityPolicyRulesRequest
   ) -> some AsyncSequence<GatewaySecurityPolicyRule, any Swift.Error> & Sendable {
@@ -2610,6 +3671,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists GatewaySecurityPolicyRules in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicyRules(request:options:)``
   public func listGatewaySecurityPolicyRulesByItems(
     request: ListGatewaySecurityPolicyRulesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GatewaySecurityPolicyRule, any Swift.Error> & Sendable {
@@ -2624,6 +3689,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists GatewaySecurityPolicyRules in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListGatewaySecurityPolicyRules")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listGatewaySecurityPolicyRules(request:options:)``
   public func listGatewaySecurityPolicyRulesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<GatewaySecurityPolicyRule, any Swift.Error> & Sendable {
@@ -2633,6 +3705,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listGatewaySecurityPolicyRulesByItems(request: request)
   }
 
+  /// Gets details of a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getGatewaySecurityPolicyRule(request:options:)``
   public func getGatewaySecurityPolicyRule(request: GetGatewaySecurityPolicyRuleRequest)
     async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicyRule
   {
@@ -2645,6 +3724,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getGatewaySecurityPolicyRule(request:options:)``
   public func getGatewaySecurityPolicyRule(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.GatewaySecurityPolicyRule {
@@ -2654,6 +3740,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getGatewaySecurityPolicyRule(request: request)
   }
 
+  /// Creates a new GatewaySecurityPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createGatewaySecurityPolicyRule(request:options:)``
   public func createGatewaySecurityPolicyRule(request: CreateGatewaySecurityPolicyRuleRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2666,6 +3759,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new GatewaySecurityPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     request: CreateGatewaySecurityPolicyRuleRequest
   ) async throws -> GatewaySecurityPolicyRule {
@@ -2679,6 +3779,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new GatewaySecurityPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func createGatewaySecurityPolicyRulePollingUntilDone(
     parent: Swift.String,
     gatewaySecurityPolicyRule: GatewaySecurityPolicyRule?,
@@ -2692,6 +3799,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createGatewaySecurityPolicyRulePollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateGatewaySecurityPolicyRule(request:options:)``
   public func updateGatewaySecurityPolicyRule(request: UpdateGatewaySecurityPolicyRuleRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2704,6 +3818,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     request: UpdateGatewaySecurityPolicyRuleRequest
   ) async throws -> GatewaySecurityPolicyRule {
@@ -2717,6 +3838,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func updateGatewaySecurityPolicyRulePollingUntilDone(
     gatewaySecurityPolicyRule: GatewaySecurityPolicyRule?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2728,6 +3856,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateGatewaySecurityPolicyRulePollingUntilDone(request: request)
   }
 
+  /// Deletes a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteGatewaySecurityPolicyRule(request:options:)``
   public func deleteGatewaySecurityPolicyRule(request: DeleteGatewaySecurityPolicyRuleRequest)
     async throws -> GoogleLongRunning.Operation
   {
@@ -2740,6 +3875,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     request: DeleteGatewaySecurityPolicyRuleRequest
   ) async throws {
@@ -2753,6 +3895,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single GatewaySecurityPolicyRule.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteGatewaySecurityPolicyRule")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteGatewaySecurityPolicyRulePollingUntilDone(request:options:)``
   public func deleteGatewaySecurityPolicyRulePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2762,6 +3911,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteGatewaySecurityPolicyRulePollingUntilDone(request: request)
   }
 
+  /// Lists UrlLists in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListUrlLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listUrlLists(request:options:)``
   public func listUrlLists(request: ListUrlListsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListUrlListsResponse
   {
@@ -2774,6 +3930,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists UrlLists in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListUrlLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listUrlLists(request:options:)``
   public func listUrlListsByItems(
     request: ListUrlListsRequest
   ) -> some AsyncSequence<UrlList, any Swift.Error> & Sendable {
@@ -2783,6 +3946,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists UrlLists in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListUrlLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listUrlLists(request:options:)``
   public func listUrlListsByItems(
     request: ListUrlListsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<UrlList, any Swift.Error> & Sendable {
@@ -2797,6 +3964,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists UrlLists in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListUrlLists")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listUrlLists(request:options:)``
   public func listUrlListsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<UrlList, any Swift.Error> & Sendable {
@@ -2806,6 +3980,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listUrlListsByItems(request: request)
   }
 
+  /// Gets details of a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getUrlList(request:options:)``
   public func getUrlList(request: GetUrlListRequest) async throws
     -> GoogleCloudNetworkSecurityV1.UrlList
   {
@@ -2818,6 +3999,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getUrlList(request:options:)``
   public func getUrlList(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.UrlList {
@@ -2827,6 +4015,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getUrlList(request: request)
   }
 
+  /// Creates a new UrlList in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createUrlList(request:options:)``
   public func createUrlList(request: CreateUrlListRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2839,6 +4034,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new UrlList in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createUrlListPollingUntilDone(request:options:)``
   public func createUrlListPollingUntilDone(request: CreateUrlListRequest) async throws -> UrlList {
     return try await self.createUrlListPollingUntilDone(request: request, options: .init())
   }
@@ -2849,6 +4051,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new UrlList in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createUrlListPollingUntilDone(request:options:)``
   public func createUrlListPollingUntilDone(
     parent: Swift.String,
     urlList: UrlList?,
@@ -2862,6 +4071,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createUrlListPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateUrlList(request:options:)``
   public func updateUrlList(request: UpdateUrlListRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2874,6 +4090,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateUrlListPollingUntilDone(request:options:)``
   public func updateUrlListPollingUntilDone(request: UpdateUrlListRequest) async throws -> UrlList {
     return try await self.updateUrlListPollingUntilDone(request: request, options: .init())
   }
@@ -2884,6 +4107,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateUrlListPollingUntilDone(request:options:)``
   public func updateUrlListPollingUntilDone(
     urlList: UrlList?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -2895,6 +4125,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateUrlListPollingUntilDone(request: request)
   }
 
+  /// Deletes a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteUrlList(request:options:)``
   public func deleteUrlList(request: DeleteUrlListRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -2907,6 +4144,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteUrlListPollingUntilDone(request:options:)``
   public func deleteUrlListPollingUntilDone(request: DeleteUrlListRequest) async throws {
     try await self.deleteUrlListPollingUntilDone(request: request, options: .init())
   }
@@ -2917,6 +4161,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single UrlList.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteUrlList")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteUrlListPollingUntilDone(request:options:)``
   public func deleteUrlListPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -2926,6 +4177,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteUrlListPollingUntilDone(request: request)
   }
 
+  /// Lists TlsInspectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listTlsInspectionPolicies(request:options:)``
   public func listTlsInspectionPolicies(request: ListTlsInspectionPoliciesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListTlsInspectionPoliciesResponse
   {
@@ -2938,6 +4196,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists TlsInspectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listTlsInspectionPolicies(request:options:)``
   public func listTlsInspectionPoliciesByItems(
     request: ListTlsInspectionPoliciesRequest
   ) -> some AsyncSequence<TlsInspectionPolicy, any Swift.Error> & Sendable {
@@ -2947,6 +4212,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists TlsInspectionPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listTlsInspectionPolicies(request:options:)``
   public func listTlsInspectionPoliciesByItems(
     request: ListTlsInspectionPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<TlsInspectionPolicy, any Swift.Error> & Sendable {
@@ -2961,6 +4230,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists TlsInspectionPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListTlsInspectionPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listTlsInspectionPolicies(request:options:)``
   public func listTlsInspectionPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<TlsInspectionPolicy, any Swift.Error> & Sendable {
@@ -2970,6 +4246,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listTlsInspectionPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getTlsInspectionPolicy(request:options:)``
   public func getTlsInspectionPolicy(request: GetTlsInspectionPolicyRequest) async throws
     -> GoogleCloudNetworkSecurityV1.TlsInspectionPolicy
   {
@@ -2982,6 +4265,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getTlsInspectionPolicy(request:options:)``
   public func getTlsInspectionPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.TlsInspectionPolicy {
@@ -2991,6 +4281,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getTlsInspectionPolicy(request: request)
   }
 
+  /// Creates a new TlsInspectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createTlsInspectionPolicy(request:options:)``
   public func createTlsInspectionPolicy(request: CreateTlsInspectionPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3003,6 +4300,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TlsInspectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func createTlsInspectionPolicyPollingUntilDone(request: CreateTlsInspectionPolicyRequest)
     async throws -> TlsInspectionPolicy
   {
@@ -3016,6 +4320,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new TlsInspectionPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func createTlsInspectionPolicyPollingUntilDone(
     parent: Swift.String,
     tlsInspectionPolicy: TlsInspectionPolicy?,
@@ -3029,6 +4340,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createTlsInspectionPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateTlsInspectionPolicy(request:options:)``
   public func updateTlsInspectionPolicy(request: UpdateTlsInspectionPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3041,6 +4359,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func updateTlsInspectionPolicyPollingUntilDone(request: UpdateTlsInspectionPolicyRequest)
     async throws -> TlsInspectionPolicy
   {
@@ -3054,6 +4379,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func updateTlsInspectionPolicyPollingUntilDone(
     tlsInspectionPolicy: TlsInspectionPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3065,6 +4397,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateTlsInspectionPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteTlsInspectionPolicy(request:options:)``
   public func deleteTlsInspectionPolicy(request: DeleteTlsInspectionPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3077,6 +4416,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func deleteTlsInspectionPolicyPollingUntilDone(request: DeleteTlsInspectionPolicyRequest)
     async throws
   {
@@ -3089,6 +4435,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single TlsInspectionPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteTlsInspectionPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteTlsInspectionPolicyPollingUntilDone(request:options:)``
   public func deleteTlsInspectionPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3098,6 +4451,13 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteTlsInspectionPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists AuthzPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthzPolicies(request:options:)``
   public func listAuthzPolicies(request: ListAuthzPoliciesRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListAuthzPoliciesResponse
   {
@@ -3110,6 +4470,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists AuthzPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthzPolicies(request:options:)``
   public func listAuthzPoliciesByItems(
     request: ListAuthzPoliciesRequest
   ) -> some AsyncSequence<AuthzPolicy, any Swift.Error> & Sendable {
@@ -3119,6 +4486,10 @@ extension Clients.NetworkSecurityProtocol {
   /// Lists AuthzPolicies in a given project and location.
   ///
   /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthzPolicies(request:options:)``
   public func listAuthzPoliciesByItems(
     request: ListAuthzPoliciesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<AuthzPolicy, any Swift.Error> & Sendable {
@@ -3133,6 +4504,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists AuthzPolicies in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListAuthzPolicies")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listAuthzPolicies(request:options:)``
   public func listAuthzPoliciesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<AuthzPolicy, any Swift.Error> & Sendable {
@@ -3142,6 +4520,13 @@ extension Clients.NetworkSecurityProtocol {
     return self.listAuthzPoliciesByItems(request: request)
   }
 
+  /// Gets details of a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getAuthzPolicy(request:options:)``
   public func getAuthzPolicy(request: GetAuthzPolicyRequest) async throws
     -> GoogleCloudNetworkSecurityV1.AuthzPolicy
   {
@@ -3154,6 +4539,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getAuthzPolicy(request:options:)``
   public func getAuthzPolicy(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.AuthzPolicy {
@@ -3163,6 +4555,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getAuthzPolicy(request: request)
   }
 
+  /// Creates a new AuthzPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createAuthzPolicy(request:options:)``
   public func createAuthzPolicy(request: CreateAuthzPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3175,6 +4574,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AuthzPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createAuthzPolicyPollingUntilDone(request:options:)``
   public func createAuthzPolicyPollingUntilDone(request: CreateAuthzPolicyRequest) async throws
     -> AuthzPolicy
   {
@@ -3187,6 +4593,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new AuthzPolicy in a given project and location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_CreateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/createAuthzPolicyPollingUntilDone(request:options:)``
   public func createAuthzPolicyPollingUntilDone(
     parent: Swift.String,
     authzPolicy: AuthzPolicy?,
@@ -3200,6 +4613,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.createAuthzPolicyPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateAuthzPolicy(request:options:)``
   public func updateAuthzPolicy(request: UpdateAuthzPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3212,6 +4632,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateAuthzPolicyPollingUntilDone(request:options:)``
   public func updateAuthzPolicyPollingUntilDone(request: UpdateAuthzPolicyRequest) async throws
     -> AuthzPolicy
   {
@@ -3224,6 +4651,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_UpdateAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/updateAuthzPolicyPollingUntilDone(request:options:)``
   public func updateAuthzPolicyPollingUntilDone(
     authzPolicy: AuthzPolicy?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -3235,6 +4669,13 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.updateAuthzPolicyPollingUntilDone(request: request)
   }
 
+  /// Deletes a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteAuthzPolicy(request:options:)``
   public func deleteAuthzPolicy(request: DeleteAuthzPolicyRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3247,6 +4688,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteAuthzPolicyPollingUntilDone(request:options:)``
   public func deleteAuthzPolicyPollingUntilDone(request: DeleteAuthzPolicyRequest) async throws {
     try await self.deleteAuthzPolicyPollingUntilDone(request: request, options: .init())
   }
@@ -3257,6 +4705,13 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single AuthzPolicy.
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteAuthzPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteAuthzPolicyPollingUntilDone(request:options:)``
   public func deleteAuthzPolicyPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -3266,6 +4721,30 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteAuthzPolicyPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -3278,6 +4757,30 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3304,6 +4807,10 @@ extension Clients.NetworkSecurityProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "NetworkSecurity_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -3317,6 +4824,13 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -3329,6 +4843,17 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "NetworkSecurity_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -3341,6 +4866,14 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "NetworkSecurity_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -3353,6 +4886,19 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "NetworkSecurity_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -3365,6 +4911,15 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -3377,6 +4932,15 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3388,6 +4952,10 @@ extension Clients.NetworkSecurityProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "NetworkSecurity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -3401,6 +4969,15 @@ extension Clients.NetworkSecurityProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -3412,6 +4989,9 @@ extension Clients.NetworkSecurityProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -3424,6 +5004,9 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -3433,6 +5016,15 @@ extension Clients.NetworkSecurityProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -3443,6 +5035,15 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -3452,6 +5053,15 @@ extension Clients.NetworkSecurityProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -3462,6 +5072,15 @@ extension Clients.NetworkSecurityProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "NetworkSecurity_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``NetworkSecurityClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

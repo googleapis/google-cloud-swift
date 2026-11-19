@@ -25,6 +25,10 @@ import Foundation
 /// The `SessionController` provides methods to manage interactive sessions.
 ///
 /// @Snippet(path: "SessionControllerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SessionControllerProtocol``
 public final class SessionControllerClient: Clients.SessionControllerProtocol, Sendable {
   let inner: any Clients.SessionControllerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -45,6 +49,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// Create an interactive session asynchronously.
   ///
   /// @Snippet(path: "SessionController_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSession(request:)``
+  /// - ``createSessionPollingUntilDone(parent:session:sessionId:)``
+  /// - ``createSessionPollingUntilDone(request:)``
+  /// - ``createSessionPollingUntilDone(request:options:)``
   public func createSession(
     request: CreateSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -54,6 +65,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// Create an interactive session asynchronously.
   ///
   /// @Snippet(path: "SessionController_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSession(request:)``
+  /// - ``createSession(request:options:)``
+  /// - ``createSessionPollingUntilDone(parent:session:sessionId:)``
+  /// - ``createSessionPollingUntilDone(request:)``
   public func createSessionPollingUntilDone(
     request: CreateSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Session {
@@ -81,6 +99,11 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// Gets the resource representation for an interactive session.
   ///
   /// @Snippet(path: "SessionController_GetSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSession(name:)``
+  /// - ``getSession(request:)``
   public func getSession(
     request: GetSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.Session {
@@ -90,6 +113,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// Lists interactive sessions.
   ///
   /// @Snippet(path: "SessionController_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSessions(request:)``
+  /// - ``listSessionsByItems(parent:)``
+  /// - ``listSessionsByItems(request:)``
+  /// - ``listSessionsByItems(request:options:)``
   public func listSessions(
     request: ListSessionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudDataprocV1.ListSessionsResponse {
@@ -99,6 +129,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// Terminates the interactive session.
   ///
   /// @Snippet(path: "SessionController_TerminateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``terminateSession(request:)``
+  /// - ``terminateSessionPollingUntilDone(name:)``
+  /// - ``terminateSessionPollingUntilDone(request:)``
+  /// - ``terminateSessionPollingUntilDone(request:options:)``
   public func terminateSession(
     request: TerminateSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -108,6 +145,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// Terminates the interactive session.
   ///
   /// @Snippet(path: "SessionController_TerminateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``terminateSession(request:)``
+  /// - ``terminateSession(request:options:)``
+  /// - ``terminateSessionPollingUntilDone(name:)``
+  /// - ``terminateSessionPollingUntilDone(request:)``
   public func terminateSessionPollingUntilDone(
     request: TerminateSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Session {
@@ -136,6 +180,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// state, it is terminated, and then deleted.
   ///
   /// @Snippet(path: "SessionController_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSession(request:)``
+  /// - ``deleteSessionPollingUntilDone(name:)``
+  /// - ``deleteSessionPollingUntilDone(request:)``
+  /// - ``deleteSessionPollingUntilDone(request:options:)``
   public func deleteSession(
     request: DeleteSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -146,6 +197,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// state, it is terminated, and then deleted.
   ///
   /// @Snippet(path: "SessionController_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSession(request:)``
+  /// - ``deleteSession(request:options:)``
+  /// - ``deleteSessionPollingUntilDone(name:)``
+  /// - ``deleteSessionPollingUntilDone(request:)``
   public func deleteSessionPollingUntilDone(
     request: DeleteSessionRequest, options: GoogleGax.RequestOptions
   ) async throws -> Session {
@@ -177,6 +235,10 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// errors.
   ///
   /// @Snippet(path: "SessionController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -187,6 +249,10 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "SessionController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -202,6 +268,10 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "SessionController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -213,6 +283,13 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -235,6 +312,11 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -246,6 +328,11 @@ public final class SessionControllerClient: Clients.SessionControllerProtocol, S
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -334,6 +421,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SessionControllerProtocol {
+  /// Create an interactive session asynchronously.
+  ///
+  /// @Snippet(path: "SessionController_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/createSession(request:options:)``
   public func createSession(request: CreateSessionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -346,6 +440,13 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an interactive session asynchronously.
+  ///
+  /// @Snippet(path: "SessionController_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/createSessionPollingUntilDone(request:options:)``
   public func createSessionPollingUntilDone(request: CreateSessionRequest) async throws -> Session {
     return try await self.createSessionPollingUntilDone(request: request, options: .init())
   }
@@ -356,6 +457,13 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create an interactive session asynchronously.
+  ///
+  /// @Snippet(path: "SessionController_CreateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/createSessionPollingUntilDone(request:options:)``
   public func createSessionPollingUntilDone(
     parent: Swift.String,
     session: Session?,
@@ -369,6 +477,13 @@ extension Clients.SessionControllerProtocol {
     return try await self.createSessionPollingUntilDone(request: request)
   }
 
+  /// Gets the resource representation for an interactive session.
+  ///
+  /// @Snippet(path: "SessionController_GetSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/getSession(request:options:)``
   public func getSession(request: GetSessionRequest) async throws -> GoogleCloudDataprocV1.Session {
     try await self.getSession(request: request, options: .init())
   }
@@ -379,6 +494,13 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the resource representation for an interactive session.
+  ///
+  /// @Snippet(path: "SessionController_GetSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/getSession(request:options:)``
   public func getSession(
     name: Swift.String,
   ) async throws -> GoogleCloudDataprocV1.Session {
@@ -388,6 +510,13 @@ extension Clients.SessionControllerProtocol {
     return try await self.getSession(request: request)
   }
 
+  /// Lists interactive sessions.
+  ///
+  /// @Snippet(path: "SessionController_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listSessions(request:options:)``
   public func listSessions(request: ListSessionsRequest) async throws
     -> GoogleCloudDataprocV1.ListSessionsResponse
   {
@@ -400,6 +529,13 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists interactive sessions.
+  ///
+  /// @Snippet(path: "SessionController_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listSessions(request:options:)``
   public func listSessionsByItems(
     request: ListSessionsRequest
   ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -409,6 +545,10 @@ extension Clients.SessionControllerProtocol {
   /// Lists interactive sessions.
   ///
   /// @Snippet(path: "SessionController_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listSessions(request:options:)``
   public func listSessionsByItems(
     request: ListSessionsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -422,6 +562,13 @@ extension Clients.SessionControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists interactive sessions.
+  ///
+  /// @Snippet(path: "SessionController_ListSessions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listSessions(request:options:)``
   public func listSessionsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Session, any Swift.Error> & Sendable {
@@ -431,6 +578,13 @@ extension Clients.SessionControllerProtocol {
     return self.listSessionsByItems(request: request)
   }
 
+  /// Terminates the interactive session.
+  ///
+  /// @Snippet(path: "SessionController_TerminateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/terminateSession(request:options:)``
   public func terminateSession(request: TerminateSessionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -443,6 +597,13 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Terminates the interactive session.
+  ///
+  /// @Snippet(path: "SessionController_TerminateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/terminateSessionPollingUntilDone(request:options:)``
   public func terminateSessionPollingUntilDone(request: TerminateSessionRequest) async throws
     -> Session
   {
@@ -455,6 +616,13 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Terminates the interactive session.
+  ///
+  /// @Snippet(path: "SessionController_TerminateSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/terminateSessionPollingUntilDone(request:options:)``
   public func terminateSessionPollingUntilDone(
     name: Swift.String,
   ) async throws -> Session {
@@ -464,6 +632,14 @@ extension Clients.SessionControllerProtocol {
     return try await self.terminateSessionPollingUntilDone(request: request)
   }
 
+  /// Deletes the interactive session resource. If the session is not in terminal
+  /// state, it is terminated, and then deleted.
+  ///
+  /// @Snippet(path: "SessionController_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/deleteSession(request:options:)``
   public func deleteSession(request: DeleteSessionRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -476,6 +652,14 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the interactive session resource. If the session is not in terminal
+  /// state, it is terminated, and then deleted.
+  ///
+  /// @Snippet(path: "SessionController_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/deleteSessionPollingUntilDone(request:options:)``
   public func deleteSessionPollingUntilDone(request: DeleteSessionRequest) async throws -> Session {
     return try await self.deleteSessionPollingUntilDone(request: request, options: .init())
   }
@@ -486,6 +670,14 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the interactive session resource. If the session is not in terminal
+  /// state, it is terminated, and then deleted.
+  ///
+  /// @Snippet(path: "SessionController_DeleteSession")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/deleteSessionPollingUntilDone(request:options:)``
   public func deleteSessionPollingUntilDone(
     name: Swift.String,
   ) async throws -> Session {
@@ -495,6 +687,17 @@ extension Clients.SessionControllerProtocol {
     return try await self.deleteSessionPollingUntilDone(request: request)
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "SessionController_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -507,6 +710,14 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "SessionController_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -519,6 +730,19 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "SessionController_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -531,6 +755,15 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -543,6 +776,15 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -554,6 +796,10 @@ extension Clients.SessionControllerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SessionController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -567,6 +813,15 @@ extension Clients.SessionControllerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -578,6 +833,9 @@ extension Clients.SessionControllerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -590,6 +848,9 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -599,6 +860,15 @@ extension Clients.SessionControllerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -609,6 +879,15 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -618,6 +897,15 @@ extension Clients.SessionControllerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -628,6 +916,15 @@ extension Clients.SessionControllerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SessionController_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SessionControllerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

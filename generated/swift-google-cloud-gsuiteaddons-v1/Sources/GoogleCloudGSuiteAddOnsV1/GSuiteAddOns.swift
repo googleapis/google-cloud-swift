@@ -50,6 +50,10 @@ import Foundation
 /// for details.
 ///
 /// @Snippet(path: "GSuiteAddOnsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/GSuiteAddOnsProtocol``
 public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   let inner: any Clients.GSuiteAddOnsStub
 
@@ -66,6 +70,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Gets the authorization information for deployments in a given project.
   ///
   /// @Snippet(path: "GSuiteAddOns_GetAuthorization")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAuthorization(name:)``
+  /// - ``getAuthorization(request:)``
   public func getAuthorization(
     request: GetAuthorizationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization {
@@ -75,6 +84,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Creates a deployment with the specified name and configuration.
   ///
   /// @Snippet(path: "GSuiteAddOns_CreateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDeployment(parent:deployment:deploymentId:)``
+  /// - ``createDeployment(request:)``
   public func createDeployment(
     request: CreateDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -84,6 +98,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Creates or replaces a deployment with the specified name.
   ///
   /// @Snippet(path: "GSuiteAddOns_ReplaceDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``replaceDeployment(deployment:)``
+  /// - ``replaceDeployment(request:)``
   public func replaceDeployment(
     request: ReplaceDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -93,6 +112,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Gets the deployment with the specified name.
   ///
   /// @Snippet(path: "GSuiteAddOns_GetDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getDeployment(name:)``
+  /// - ``getDeployment(request:)``
   public func getDeployment(
     request: GetDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -102,6 +126,13 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Lists all deployments in a particular project.
   ///
   /// @Snippet(path: "GSuiteAddOns_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listDeployments(request:)``
+  /// - ``listDeploymentsByItems(parent:)``
+  /// - ``listDeploymentsByItems(request:)``
+  /// - ``listDeploymentsByItems(request:options:)``
   public func listDeployments(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse {
@@ -111,6 +142,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Deletes the deployment with the given name.
   ///
   /// @Snippet(path: "GSuiteAddOns_DeleteDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDeployment(name:)``
+  /// - ``deleteDeployment(request:)``
   public func deleteDeployment(
     request: DeleteDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -122,6 +158,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
   ///
   /// @Snippet(path: "GSuiteAddOns_InstallDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``installDeployment(name:)``
+  /// - ``installDeployment(request:)``
   public func installDeployment(
     request: InstallDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -133,6 +174,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
   ///
   /// @Snippet(path: "GSuiteAddOns_UninstallDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``uninstallDeployment(name:)``
+  /// - ``uninstallDeployment(request:)``
   public func uninstallDeployment(
     request: UninstallDeploymentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -142,6 +188,11 @@ public final class GSuiteAddOnsClient: Clients.GSuiteAddOnsProtocol, Sendable {
   /// Fetches the install status of a developer mode deployment.
   ///
   /// @Snippet(path: "GSuiteAddOns_GetInstallStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstallStatus(name:)``
+  /// - ``getInstallStatus(request:)``
   public func getInstallStatus(
     request: GetInstallStatusRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudGSuiteAddOnsV1.InstallStatus {
@@ -205,6 +256,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.GSuiteAddOnsProtocol {
+  /// Gets the authorization information for deployments in a given project.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_GetAuthorization")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/getAuthorization(request:options:)``
   public func getAuthorization(request: GetAuthorizationRequest) async throws
     -> GoogleCloudGSuiteAddOnsV1.Authorization
   {
@@ -217,6 +275,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the authorization information for deployments in a given project.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_GetAuthorization")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/getAuthorization(request:options:)``
   public func getAuthorization(
     name: Swift.String,
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Authorization {
@@ -226,6 +291,13 @@ extension Clients.GSuiteAddOnsProtocol {
     return try await self.getAuthorization(request: request)
   }
 
+  /// Creates a deployment with the specified name and configuration.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_CreateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/createDeployment(request:options:)``
   public func createDeployment(request: CreateDeploymentRequest) async throws
     -> GoogleCloudGSuiteAddOnsV1.Deployment
   {
@@ -238,6 +310,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a deployment with the specified name and configuration.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_CreateDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/createDeployment(request:options:)``
   public func createDeployment(
     parent: Swift.String,
     deployment: Deployment?,
@@ -251,6 +330,13 @@ extension Clients.GSuiteAddOnsProtocol {
     return try await self.createDeployment(request: request)
   }
 
+  /// Creates or replaces a deployment with the specified name.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_ReplaceDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/replaceDeployment(request:options:)``
   public func replaceDeployment(request: ReplaceDeploymentRequest) async throws
     -> GoogleCloudGSuiteAddOnsV1.Deployment
   {
@@ -263,6 +349,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates or replaces a deployment with the specified name.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_ReplaceDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/replaceDeployment(request:options:)``
   public func replaceDeployment(
     deployment: Deployment?,
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -272,6 +365,13 @@ extension Clients.GSuiteAddOnsProtocol {
     return try await self.replaceDeployment(request: request)
   }
 
+  /// Gets the deployment with the specified name.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_GetDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/getDeployment(request:options:)``
   public func getDeployment(request: GetDeploymentRequest) async throws
     -> GoogleCloudGSuiteAddOnsV1.Deployment
   {
@@ -284,6 +384,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the deployment with the specified name.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_GetDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/getDeployment(request:options:)``
   public func getDeployment(
     name: Swift.String,
   ) async throws -> GoogleCloudGSuiteAddOnsV1.Deployment {
@@ -293,6 +400,13 @@ extension Clients.GSuiteAddOnsProtocol {
     return try await self.getDeployment(request: request)
   }
 
+  /// Lists all deployments in a particular project.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/listDeployments(request:options:)``
   public func listDeployments(request: ListDeploymentsRequest) async throws
     -> GoogleCloudGSuiteAddOnsV1.ListDeploymentsResponse
   {
@@ -305,6 +419,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all deployments in a particular project.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/listDeployments(request:options:)``
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest
   ) -> some AsyncSequence<Deployment, any Swift.Error> & Sendable {
@@ -314,6 +435,10 @@ extension Clients.GSuiteAddOnsProtocol {
   /// Lists all deployments in a particular project.
   ///
   /// @Snippet(path: "GSuiteAddOns_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/listDeployments(request:options:)``
   public func listDeploymentsByItems(
     request: ListDeploymentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Deployment, any Swift.Error> & Sendable {
@@ -328,6 +453,13 @@ extension Clients.GSuiteAddOnsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all deployments in a particular project.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_ListDeployments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/listDeployments(request:options:)``
   public func listDeploymentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Deployment, any Swift.Error> & Sendable {
@@ -337,6 +469,13 @@ extension Clients.GSuiteAddOnsProtocol {
     return self.listDeploymentsByItems(request: request)
   }
 
+  /// Deletes the deployment with the given name.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_DeleteDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/deleteDeployment(request:options:)``
   public func deleteDeployment(request: DeleteDeploymentRequest) async throws {
     try await self.deleteDeployment(request: request, options: .init())
   }
@@ -347,6 +486,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the deployment with the given name.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_DeleteDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/deleteDeployment(request:options:)``
   public func deleteDeployment(
     name: Swift.String,
   ) async throws {
@@ -356,6 +502,15 @@ extension Clients.GSuiteAddOnsProtocol {
     try await self.deleteDeployment(request: request)
   }
 
+  /// Installs a deployment in developer mode.
+  /// See:
+  /// https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_InstallDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/installDeployment(request:options:)``
   public func installDeployment(request: InstallDeploymentRequest) async throws {
     try await self.installDeployment(request: request, options: .init())
   }
@@ -366,6 +521,15 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Installs a deployment in developer mode.
+  /// See:
+  /// https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_InstallDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/installDeployment(request:options:)``
   public func installDeployment(
     name: Swift.String,
   ) async throws {
@@ -375,6 +539,15 @@ extension Clients.GSuiteAddOnsProtocol {
     try await self.installDeployment(request: request)
   }
 
+  /// Uninstalls a developer mode deployment.
+  /// See:
+  /// https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_UninstallDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/uninstallDeployment(request:options:)``
   public func uninstallDeployment(request: UninstallDeploymentRequest) async throws {
     try await self.uninstallDeployment(request: request, options: .init())
   }
@@ -385,6 +558,15 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Uninstalls a developer mode deployment.
+  /// See:
+  /// https://developers.google.com/gsuite/add-ons/how-tos/testing-gsuite-addons.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_UninstallDeployment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/uninstallDeployment(request:options:)``
   public func uninstallDeployment(
     name: Swift.String,
   ) async throws {
@@ -394,6 +576,13 @@ extension Clients.GSuiteAddOnsProtocol {
     try await self.uninstallDeployment(request: request)
   }
 
+  /// Fetches the install status of a developer mode deployment.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_GetInstallStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/getInstallStatus(request:options:)``
   public func getInstallStatus(request: GetInstallStatusRequest) async throws
     -> GoogleCloudGSuiteAddOnsV1.InstallStatus
   {
@@ -406,6 +595,13 @@ extension Clients.GSuiteAddOnsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Fetches the install status of a developer mode deployment.
+  ///
+  /// @Snippet(path: "GSuiteAddOns_GetInstallStatus")
+  ///
+  /// ## See Also
+  ///
+  /// - ``GSuiteAddOnsClient/getInstallStatus(request:options:)``
   public func getInstallStatus(
     name: Swift.String,
   ) async throws -> GoogleCloudGSuiteAddOnsV1.InstallStatus {

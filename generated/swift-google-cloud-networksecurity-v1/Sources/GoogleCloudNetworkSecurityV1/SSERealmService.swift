@@ -26,6 +26,10 @@ import Foundation
 /// Service describing handlers for resources
 ///
 /// @Snippet(path: "SSERealmServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SSERealmServiceProtocol``
 public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Sendable {
   let inner: any Clients.SSERealmServiceStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Lists SACRealms in a given project.
   ///
   /// @Snippet(path: "SSERealmService_ListSACRealms")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSacrealms(request:)``
+  /// - ``listSacrealmsByItems(parent:)``
+  /// - ``listSacrealmsByItems(request:)``
+  /// - ``listSacrealmsByItems(request:options:)``
   public func listSacrealms(
     request: ListSACRealmsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListSACRealmsResponse {
@@ -55,6 +66,11 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Returns the specified realm.
   ///
   /// @Snippet(path: "SSERealmService_GetSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSacrealm(name:)``
+  /// - ``getSacrealm(request:)``
   public func getSacrealm(
     request: GetSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.SACRealm {
@@ -64,6 +80,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Creates a new SACRealm in a given project.
   ///
   /// @Snippet(path: "SSERealmService_CreateSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSacrealm(request:)``
+  /// - ``createSacrealmPollingUntilDone(parent:sacRealm:sacRealmId:)``
+  /// - ``createSacrealmPollingUntilDone(request:)``
+  /// - ``createSacrealmPollingUntilDone(request:options:)``
   public func createSacrealm(
     request: CreateSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -73,6 +96,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Creates a new SACRealm in a given project.
   ///
   /// @Snippet(path: "SSERealmService_CreateSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSacrealm(request:)``
+  /// - ``createSacrealm(request:options:)``
+  /// - ``createSacrealmPollingUntilDone(parent:sacRealm:sacRealmId:)``
+  /// - ``createSacrealmPollingUntilDone(request:)``
   public func createSacrealmPollingUntilDone(
     request: CreateSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> SACRealm {
@@ -100,6 +130,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Deletes the specified realm.
   ///
   /// @Snippet(path: "SSERealmService_DeleteSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSacrealm(request:)``
+  /// - ``deleteSacrealmPollingUntilDone(name:)``
+  /// - ``deleteSacrealmPollingUntilDone(request:)``
+  /// - ``deleteSacrealmPollingUntilDone(request:options:)``
   public func deleteSacrealm(
     request: DeleteSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +146,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Deletes the specified realm.
   ///
   /// @Snippet(path: "SSERealmService_DeleteSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSacrealm(request:)``
+  /// - ``deleteSacrealm(request:options:)``
+  /// - ``deleteSacrealmPollingUntilDone(name:)``
+  /// - ``deleteSacrealmPollingUntilDone(request:)``
   public func deleteSacrealmPollingUntilDone(
     request: DeleteSACRealmRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -136,6 +180,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Lists SACAttachments in a given project and location.
   ///
   /// @Snippet(path: "SSERealmService_ListSACAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSacattachments(request:)``
+  /// - ``listSacattachmentsByItems(parent:)``
+  /// - ``listSacattachmentsByItems(request:)``
+  /// - ``listSacattachmentsByItems(request:options:)``
   public func listSacattachments(
     request: ListSACAttachmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.ListSACAttachmentsResponse {
@@ -145,6 +196,11 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Returns the specified attachment.
   ///
   /// @Snippet(path: "SSERealmService_GetSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSacattachment(name:)``
+  /// - ``getSacattachment(request:)``
   public func getSacattachment(
     request: GetSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudNetworkSecurityV1.SACAttachment {
@@ -154,6 +210,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Creates a new SACAttachment in a given project and location.
   ///
   /// @Snippet(path: "SSERealmService_CreateSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSacattachment(request:)``
+  /// - ``createSacattachmentPollingUntilDone(parent:sacAttachment:sacAttachmentId:)``
+  /// - ``createSacattachmentPollingUntilDone(request:)``
+  /// - ``createSacattachmentPollingUntilDone(request:options:)``
   public func createSacattachment(
     request: CreateSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -163,6 +226,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Creates a new SACAttachment in a given project and location.
   ///
   /// @Snippet(path: "SSERealmService_CreateSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSacattachment(request:)``
+  /// - ``createSacattachment(request:options:)``
+  /// - ``createSacattachmentPollingUntilDone(parent:sacAttachment:sacAttachmentId:)``
+  /// - ``createSacattachmentPollingUntilDone(request:)``
   public func createSacattachmentPollingUntilDone(
     request: CreateSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> SACAttachment {
@@ -191,6 +261,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Deletes the specified attachment.
   ///
   /// @Snippet(path: "SSERealmService_DeleteSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSacattachment(request:)``
+  /// - ``deleteSacattachmentPollingUntilDone(name:)``
+  /// - ``deleteSacattachmentPollingUntilDone(request:)``
+  /// - ``deleteSacattachmentPollingUntilDone(request:options:)``
   public func deleteSacattachment(
     request: DeleteSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -200,6 +277,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Deletes the specified attachment.
   ///
   /// @Snippet(path: "SSERealmService_DeleteSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSacattachment(request:)``
+  /// - ``deleteSacattachment(request:options:)``
+  /// - ``deleteSacattachmentPollingUntilDone(name:)``
+  /// - ``deleteSacattachmentPollingUntilDone(request:)``
   public func deleteSacattachmentPollingUntilDone(
     request: DeleteSACAttachmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -244,6 +328,12 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SSERealmService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -253,6 +343,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// Gets information about a location.
   ///
   /// @Snippet(path: "SSERealmService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -266,6 +360,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// errors.
   ///
   /// @Snippet(path: "SSERealmService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -276,6 +374,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "SSERealmService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -291,6 +393,10 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "SSERealmService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -302,6 +408,13 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SSERealmService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -324,6 +437,11 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SSERealmService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -335,6 +453,11 @@ public final class SSERealmServiceClient: Clients.SSERealmServiceProtocol, Senda
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SSERealmService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -453,6 +576,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.SSERealmServiceProtocol {
+  /// Lists SACRealms in a given project.
+  ///
+  /// @Snippet(path: "SSERealmService_ListSACRealms")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacrealms(request:options:)``
   public func listSacrealms(request: ListSACRealmsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListSACRealmsResponse
   {
@@ -465,6 +595,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists SACRealms in a given project.
+  ///
+  /// @Snippet(path: "SSERealmService_ListSACRealms")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacrealms(request:options:)``
   public func listSacrealmsByItems(
     request: ListSACRealmsRequest
   ) -> some AsyncSequence<SACRealm, any Swift.Error> & Sendable {
@@ -474,6 +611,10 @@ extension Clients.SSERealmServiceProtocol {
   /// Lists SACRealms in a given project.
   ///
   /// @Snippet(path: "SSERealmService_ListSACRealms")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacrealms(request:options:)``
   public func listSacrealmsByItems(
     request: ListSACRealmsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SACRealm, any Swift.Error> & Sendable {
@@ -488,6 +629,13 @@ extension Clients.SSERealmServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists SACRealms in a given project.
+  ///
+  /// @Snippet(path: "SSERealmService_ListSACRealms")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacrealms(request:options:)``
   public func listSacrealmsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SACRealm, any Swift.Error> & Sendable {
@@ -497,6 +645,13 @@ extension Clients.SSERealmServiceProtocol {
     return self.listSacrealmsByItems(request: request)
   }
 
+  /// Returns the specified realm.
+  ///
+  /// @Snippet(path: "SSERealmService_GetSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/getSacrealm(request:options:)``
   public func getSacrealm(request: GetSACRealmRequest) async throws
     -> GoogleCloudNetworkSecurityV1.SACRealm
   {
@@ -509,6 +664,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified realm.
+  ///
+  /// @Snippet(path: "SSERealmService_GetSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/getSacrealm(request:options:)``
   public func getSacrealm(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.SACRealm {
@@ -518,6 +680,13 @@ extension Clients.SSERealmServiceProtocol {
     return try await self.getSacrealm(request: request)
   }
 
+  /// Creates a new SACRealm in a given project.
+  ///
+  /// @Snippet(path: "SSERealmService_CreateSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/createSacrealm(request:options:)``
   public func createSacrealm(request: CreateSACRealmRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -530,6 +699,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new SACRealm in a given project.
+  ///
+  /// @Snippet(path: "SSERealmService_CreateSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/createSacrealmPollingUntilDone(request:options:)``
   public func createSacrealmPollingUntilDone(request: CreateSACRealmRequest) async throws
     -> SACRealm
   {
@@ -542,6 +718,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new SACRealm in a given project.
+  ///
+  /// @Snippet(path: "SSERealmService_CreateSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/createSacrealmPollingUntilDone(request:options:)``
   public func createSacrealmPollingUntilDone(
     parent: Swift.String,
     sacRealm: SACRealm?,
@@ -555,6 +738,13 @@ extension Clients.SSERealmServiceProtocol {
     return try await self.createSacrealmPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified realm.
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteSacrealm(request:options:)``
   public func deleteSacrealm(request: DeleteSACRealmRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -567,6 +757,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified realm.
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteSacrealmPollingUntilDone(request:options:)``
   public func deleteSacrealmPollingUntilDone(request: DeleteSACRealmRequest) async throws {
     try await self.deleteSacrealmPollingUntilDone(request: request, options: .init())
   }
@@ -577,6 +774,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified realm.
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteSACRealm")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteSacrealmPollingUntilDone(request:options:)``
   public func deleteSacrealmPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -586,6 +790,13 @@ extension Clients.SSERealmServiceProtocol {
     try await self.deleteSacrealmPollingUntilDone(request: request)
   }
 
+  /// Lists SACAttachments in a given project and location.
+  ///
+  /// @Snippet(path: "SSERealmService_ListSACAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacattachments(request:options:)``
   public func listSacattachments(request: ListSACAttachmentsRequest) async throws
     -> GoogleCloudNetworkSecurityV1.ListSACAttachmentsResponse
   {
@@ -598,6 +809,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists SACAttachments in a given project and location.
+  ///
+  /// @Snippet(path: "SSERealmService_ListSACAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacattachments(request:options:)``
   public func listSacattachmentsByItems(
     request: ListSACAttachmentsRequest
   ) -> some AsyncSequence<SACAttachment, any Swift.Error> & Sendable {
@@ -607,6 +825,10 @@ extension Clients.SSERealmServiceProtocol {
   /// Lists SACAttachments in a given project and location.
   ///
   /// @Snippet(path: "SSERealmService_ListSACAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacattachments(request:options:)``
   public func listSacattachmentsByItems(
     request: ListSACAttachmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<SACAttachment, any Swift.Error> & Sendable {
@@ -621,6 +843,13 @@ extension Clients.SSERealmServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists SACAttachments in a given project and location.
+  ///
+  /// @Snippet(path: "SSERealmService_ListSACAttachments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listSacattachments(request:options:)``
   public func listSacattachmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<SACAttachment, any Swift.Error> & Sendable {
@@ -630,6 +859,13 @@ extension Clients.SSERealmServiceProtocol {
     return self.listSacattachmentsByItems(request: request)
   }
 
+  /// Returns the specified attachment.
+  ///
+  /// @Snippet(path: "SSERealmService_GetSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/getSacattachment(request:options:)``
   public func getSacattachment(request: GetSACAttachmentRequest) async throws
     -> GoogleCloudNetworkSecurityV1.SACAttachment
   {
@@ -642,6 +878,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the specified attachment.
+  ///
+  /// @Snippet(path: "SSERealmService_GetSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/getSacattachment(request:options:)``
   public func getSacattachment(
     name: Swift.String,
   ) async throws -> GoogleCloudNetworkSecurityV1.SACAttachment {
@@ -651,6 +894,13 @@ extension Clients.SSERealmServiceProtocol {
     return try await self.getSacattachment(request: request)
   }
 
+  /// Creates a new SACAttachment in a given project and location.
+  ///
+  /// @Snippet(path: "SSERealmService_CreateSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/createSacattachment(request:options:)``
   public func createSacattachment(request: CreateSACAttachmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -663,6 +913,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new SACAttachment in a given project and location.
+  ///
+  /// @Snippet(path: "SSERealmService_CreateSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/createSacattachmentPollingUntilDone(request:options:)``
   public func createSacattachmentPollingUntilDone(request: CreateSACAttachmentRequest) async throws
     -> SACAttachment
   {
@@ -675,6 +932,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new SACAttachment in a given project and location.
+  ///
+  /// @Snippet(path: "SSERealmService_CreateSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/createSacattachmentPollingUntilDone(request:options:)``
   public func createSacattachmentPollingUntilDone(
     parent: Swift.String,
     sacAttachment: SACAttachment?,
@@ -688,6 +952,13 @@ extension Clients.SSERealmServiceProtocol {
     return try await self.createSacattachmentPollingUntilDone(request: request)
   }
 
+  /// Deletes the specified attachment.
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteSacattachment(request:options:)``
   public func deleteSacattachment(request: DeleteSACAttachmentRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -700,6 +971,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified attachment.
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteSacattachmentPollingUntilDone(request:options:)``
   public func deleteSacattachmentPollingUntilDone(request: DeleteSACAttachmentRequest) async throws
   {
     try await self.deleteSacattachmentPollingUntilDone(request: request, options: .init())
@@ -711,6 +989,13 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes the specified attachment.
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteSACAttachment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteSacattachmentPollingUntilDone(request:options:)``
   public func deleteSacattachmentPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -720,6 +1005,30 @@ extension Clients.SSERealmServiceProtocol {
     try await self.deleteSacattachmentPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SSERealmService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -732,6 +1041,30 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "SSERealmService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -758,6 +1091,10 @@ extension Clients.SSERealmServiceProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "SSERealmService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -771,6 +1108,13 @@ extension Clients.SSERealmServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "SSERealmService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -783,6 +1127,17 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "SSERealmService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -795,6 +1150,14 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "SSERealmService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -807,6 +1170,19 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "SSERealmService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -819,6 +1195,15 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -831,6 +1216,15 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -842,6 +1236,10 @@ extension Clients.SSERealmServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SSERealmService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -855,6 +1253,15 @@ extension Clients.SSERealmServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -866,6 +1273,9 @@ extension Clients.SSERealmServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -878,6 +1288,9 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -887,6 +1300,15 @@ extension Clients.SSERealmServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -897,6 +1319,15 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -906,6 +1337,15 @@ extension Clients.SSERealmServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -916,6 +1356,15 @@ extension Clients.SSERealmServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SSERealmService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SSERealmServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

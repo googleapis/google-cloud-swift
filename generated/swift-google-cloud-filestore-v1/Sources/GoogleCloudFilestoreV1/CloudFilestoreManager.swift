@@ -44,6 +44,10 @@ import Foundation
 /// * `projects/12345/locations/us-central1/backups/my-backup`
 ///
 /// @Snippet(path: "CloudFilestoreManagerQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/CloudFilestoreManagerProtocol``
 public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerProtocol, Sendable {
   let inner: any Clients.CloudFilestoreManagerStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -66,6 +70,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// or for all locations.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listInstances(request:)``
+  /// - ``listInstancesByItems(parent:)``
+  /// - ``listInstancesByItems(request:)``
+  /// - ``listInstancesByItems(request:options:)``
   public func listInstances(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.ListInstancesResponse {
@@ -75,6 +86,11 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Gets the details of a specific instance.
   ///
   /// @Snippet(path: "CloudFilestoreManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getInstance(name:)``
+  /// - ``getInstance(request:)``
   public func getInstance(
     request: GetInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.Instance {
@@ -87,6 +103,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// larger than the minimum capacity of the tier).
   ///
   /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
+  /// - ``createInstancePollingUntilDone(request:options:)``
   public func createInstance(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -99,6 +122,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// larger than the minimum capacity of the tier).
   ///
   /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createInstance(request:)``
+  /// - ``createInstance(request:options:)``
+  /// - ``createInstancePollingUntilDone(parent:instance:instanceId:)``
+  /// - ``createInstancePollingUntilDone(request:)``
   public func createInstancePollingUntilDone(
     request: CreateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -126,6 +156,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Updates the settings of a specific instance.
   ///
   /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
+  /// - ``updateInstancePollingUntilDone(request:options:)``
   public func updateInstance(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -135,6 +172,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Updates the settings of a specific instance.
   ///
   /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateInstance(request:)``
+  /// - ``updateInstance(request:options:)``
+  /// - ``updateInstancePollingUntilDone(instance:updateMask:)``
+  /// - ``updateInstancePollingUntilDone(request:)``
   public func updateInstancePollingUntilDone(
     request: UpdateInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -166,6 +210,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// capacity of the tier).
   ///
   /// @Snippet(path: "CloudFilestoreManager_RestoreInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreInstance(request:)``
+  /// - ``restoreInstancePollingUntilDone(request:)``
+  /// - ``restoreInstancePollingUntilDone(request:options:)``
   public func restoreInstance(
     request: RestoreInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -179,6 +229,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// capacity of the tier).
   ///
   /// @Snippet(path: "CloudFilestoreManager_RestoreInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``restoreInstance(request:)``
+  /// - ``restoreInstance(request:options:)``
+  /// - ``restoreInstancePollingUntilDone(request:)``
   public func restoreInstancePollingUntilDone(
     request: RestoreInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -206,6 +262,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Revert an existing instance's file system to a specified snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_RevertInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``revertInstance(request:)``
+  /// - ``revertInstancePollingUntilDone(request:)``
+  /// - ``revertInstancePollingUntilDone(request:options:)``
   public func revertInstance(
     request: RevertInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -215,6 +277,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Revert an existing instance's file system to a specified snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_RevertInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``revertInstance(request:)``
+  /// - ``revertInstance(request:options:)``
+  /// - ``revertInstancePollingUntilDone(request:)``
   public func revertInstancePollingUntilDone(
     request: RevertInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -242,6 +310,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Deletes an instance.
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
+  /// - ``deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstance(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -251,6 +326,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Deletes an instance.
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteInstance(request:)``
+  /// - ``deleteInstance(request:options:)``
+  /// - ``deleteInstancePollingUntilDone(name:)``
+  /// - ``deleteInstancePollingUntilDone(request:)``
   public func deleteInstancePollingUntilDone(
     request: DeleteInstanceRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -279,6 +361,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// or for all locations.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listSnapshots(request:)``
+  /// - ``listSnapshotsByItems(parent:)``
+  /// - ``listSnapshotsByItems(request:)``
+  /// - ``listSnapshotsByItems(request:options:)``
   public func listSnapshots(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.ListSnapshotsResponse {
@@ -288,6 +377,11 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Gets the details of a specific snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_GetSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getSnapshot(name:)``
+  /// - ``getSnapshot(request:)``
   public func getSnapshot(
     request: GetSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.Snapshot {
@@ -297,6 +391,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Creates a snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSnapshot(request:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
+  /// - ``createSnapshotPollingUntilDone(request:)``
+  /// - ``createSnapshotPollingUntilDone(request:options:)``
   public func createSnapshot(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -306,6 +407,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Creates a snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createSnapshot(request:)``
+  /// - ``createSnapshot(request:options:)``
+  /// - ``createSnapshotPollingUntilDone(parent:snapshot:snapshotId:)``
+  /// - ``createSnapshotPollingUntilDone(request:)``
   public func createSnapshotPollingUntilDone(
     request: CreateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -333,6 +441,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Deletes a snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSnapshot(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:options:)``
   public func deleteSnapshot(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -342,6 +457,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Deletes a snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteSnapshot(request:)``
+  /// - ``deleteSnapshot(request:options:)``
+  /// - ``deleteSnapshotPollingUntilDone(name:)``
+  /// - ``deleteSnapshotPollingUntilDone(request:)``
   public func deleteSnapshotPollingUntilDone(
     request: DeleteSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -369,6 +491,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Updates the settings of a specific snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSnapshot(request:)``
+  /// - ``updateSnapshotPollingUntilDone(request:)``
+  /// - ``updateSnapshotPollingUntilDone(request:options:)``
+  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   public func updateSnapshot(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -378,6 +507,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Updates the settings of a specific snapshot.
   ///
   /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateSnapshot(request:)``
+  /// - ``updateSnapshot(request:options:)``
+  /// - ``updateSnapshotPollingUntilDone(request:)``
+  /// - ``updateSnapshotPollingUntilDone(snapshot:updateMask:)``
   public func updateSnapshotPollingUntilDone(
     request: UpdateSnapshotRequest, options: GoogleGax.RequestOptions
   ) async throws -> Snapshot {
@@ -406,6 +542,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// locations.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listBackups(request:)``
+  /// - ``listBackupsByItems(parent:)``
+  /// - ``listBackupsByItems(request:)``
+  /// - ``listBackupsByItems(request:options:)``
   public func listBackups(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.ListBackupsResponse {
@@ -415,6 +558,11 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Gets the details of a specific backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBackup(name:)``
+  /// - ``getBackup(request:)``
   public func getBackup(
     request: GetBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudFilestoreV1.Backup {
@@ -424,6 +572,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Creates a backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackup(request:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
+  /// - ``createBackupPollingUntilDone(request:)``
+  /// - ``createBackupPollingUntilDone(request:options:)``
   public func createBackup(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -433,6 +588,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Creates a backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createBackup(request:)``
+  /// - ``createBackup(request:options:)``
+  /// - ``createBackupPollingUntilDone(parent:backup:backupId:)``
+  /// - ``createBackupPollingUntilDone(request:)``
   public func createBackupPollingUntilDone(
     request: CreateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -460,6 +622,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Deletes a backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
+  /// - ``deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackup(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -469,6 +638,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Deletes a backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteBackup(request:)``
+  /// - ``deleteBackup(request:options:)``
+  /// - ``deleteBackupPollingUntilDone(name:)``
+  /// - ``deleteBackupPollingUntilDone(request:)``
   public func deleteBackupPollingUntilDone(
     request: DeleteBackupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -496,6 +672,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Updates the settings of a specific backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackup(request:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
+  /// - ``updateBackupPollingUntilDone(request:)``
+  /// - ``updateBackupPollingUntilDone(request:options:)``
   public func updateBackup(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -505,6 +688,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Updates the settings of a specific backup.
   ///
   /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBackup(request:)``
+  /// - ``updateBackup(request:options:)``
+  /// - ``updateBackupPollingUntilDone(backup:updateMask:)``
+  /// - ``updateBackupPollingUntilDone(request:)``
   public func updateBackupPollingUntilDone(
     request: UpdateBackupRequest, options: GoogleGax.RequestOptions
   ) async throws -> Backup {
@@ -532,6 +722,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Promote the standby instance (replica).
   ///
   /// @Snippet(path: "CloudFilestoreManager_PromoteReplica")
+  ///
+  /// ## See Also
+  ///
+  /// - ``promoteReplica(request:)``
+  /// - ``promoteReplicaPollingUntilDone(request:)``
+  /// - ``promoteReplicaPollingUntilDone(request:options:)``
   public func promoteReplica(
     request: PromoteReplicaRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -541,6 +737,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Promote the standby instance (replica).
   ///
   /// @Snippet(path: "CloudFilestoreManager_PromoteReplica")
+  ///
+  /// ## See Also
+  ///
+  /// - ``promoteReplica(request:)``
+  /// - ``promoteReplica(request:options:)``
+  /// - ``promoteReplicaPollingUntilDone(request:)``
   public func promoteReplicaPollingUntilDone(
     request: PromoteReplicaRequest, options: GoogleGax.RequestOptions
   ) async throws -> Instance {
@@ -568,6 +770,12 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -577,6 +785,10 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// Gets information about a location.
   ///
   /// @Snippet(path: "CloudFilestoreManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -588,6 +800,13 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -610,6 +829,11 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFilestoreManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -621,6 +845,11 @@ public final class CloudFilestoreManagerClient: Clients.CloudFilestoreManagerPro
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFilestoreManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -814,6 +1043,14 @@ extension Clients {
 
 // Default implementations
 extension Clients.CloudFilestoreManagerProtocol {
+  /// Lists all instances in a project for either a specified location
+  /// or for all locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listInstances(request:options:)``
   public func listInstances(request: ListInstancesRequest) async throws
     -> GoogleCloudFilestoreV1.ListInstancesResponse
   {
@@ -826,6 +1063,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all instances in a project for either a specified location
+  /// or for all locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -836,6 +1081,10 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// or for all locations.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     request: ListInstancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -850,6 +1099,14 @@ extension Clients.CloudFilestoreManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all instances in a project for either a specified location
+  /// or for all locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListInstances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listInstances(request:options:)``
   public func listInstancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Instance, any Swift.Error> & Sendable {
@@ -859,6 +1116,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return self.listInstancesByItems(request: request)
   }
 
+  /// Gets the details of a specific instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getInstance(request:options:)``
   public func getInstance(request: GetInstanceRequest) async throws
     -> GoogleCloudFilestoreV1.Instance
   {
@@ -871,6 +1135,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getInstance(request:options:)``
   public func getInstance(
     name: Swift.String,
   ) async throws -> GoogleCloudFilestoreV1.Instance {
@@ -880,6 +1151,16 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.getInstance(request: request)
   }
 
+  /// Creates an instance.
+  /// When creating from a backup, the capacity of the new instance needs to be
+  /// equal to or larger than the capacity of the backup (and also equal to or
+  /// larger than the minimum capacity of the tier).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createInstance(request:options:)``
   public func createInstance(request: CreateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -892,6 +1173,16 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an instance.
+  /// When creating from a backup, the capacity of the new instance needs to be
+  /// equal to or larger than the capacity of the backup (and also equal to or
+  /// larger than the minimum capacity of the tier).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(request: CreateInstanceRequest) async throws
     -> Instance
   {
@@ -904,6 +1195,16 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an instance.
+  /// When creating from a backup, the capacity of the new instance needs to be
+  /// equal to or larger than the capacity of the backup (and also equal to or
+  /// larger than the minimum capacity of the tier).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createInstancePollingUntilDone(request:options:)``
   public func createInstancePollingUntilDone(
     parent: Swift.String,
     instance: Instance?,
@@ -917,6 +1218,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.createInstancePollingUntilDone(request: request)
   }
 
+  /// Updates the settings of a specific instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateInstance(request:options:)``
   public func updateInstance(request: UpdateInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -929,6 +1237,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(request: UpdateInstanceRequest) async throws
     -> Instance
   {
@@ -941,6 +1256,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateInstancePollingUntilDone(request:options:)``
   public func updateInstancePollingUntilDone(
     instance: Instance?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -952,6 +1274,17 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.updateInstancePollingUntilDone(request: request)
   }
 
+  /// Restores an existing instance's file share from a backup.
+  ///
+  /// The capacity of the instance needs to be equal to or larger than the
+  /// capacity of the backup (and also equal to or larger than the minimum
+  /// capacity of the tier).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_RestoreInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/restoreInstance(request:options:)``
   public func restoreInstance(request: RestoreInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -964,6 +1297,17 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Restores an existing instance's file share from a backup.
+  ///
+  /// The capacity of the instance needs to be equal to or larger than the
+  /// capacity of the backup (and also equal to or larger than the minimum
+  /// capacity of the tier).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_RestoreInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/restoreInstancePollingUntilDone(request:options:)``
   public func restoreInstancePollingUntilDone(request: RestoreInstanceRequest) async throws
     -> Instance
   {
@@ -976,6 +1320,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Revert an existing instance's file system to a specified snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_RevertInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/revertInstance(request:options:)``
   public func revertInstance(request: RevertInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -988,6 +1339,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Revert an existing instance's file system to a specified snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_RevertInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/revertInstancePollingUntilDone(request:options:)``
   public func revertInstancePollingUntilDone(request: RevertInstanceRequest) async throws
     -> Instance
   {
@@ -1000,6 +1358,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteInstance(request:options:)``
   public func deleteInstance(request: DeleteInstanceRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1012,6 +1377,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(request: DeleteInstanceRequest) async throws {
     try await self.deleteInstancePollingUntilDone(request: request, options: .init())
   }
@@ -1022,6 +1394,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes an instance.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteInstance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteInstancePollingUntilDone(request:options:)``
   public func deleteInstancePollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1031,6 +1410,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     try await self.deleteInstancePollingUntilDone(request: request)
   }
 
+  /// Lists all snapshots in a project for either a specified location
+  /// or for all locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listSnapshots(request:options:)``
   public func listSnapshots(request: ListSnapshotsRequest) async throws
     -> GoogleCloudFilestoreV1.ListSnapshotsResponse
   {
@@ -1043,6 +1430,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all snapshots in a project for either a specified location
+  /// or for all locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listSnapshots(request:options:)``
   public func listSnapshotsByItems(
     request: ListSnapshotsRequest
   ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -1053,6 +1448,10 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// or for all locations.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listSnapshots(request:options:)``
   public func listSnapshotsByItems(
     request: ListSnapshotsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -1067,6 +1466,14 @@ extension Clients.CloudFilestoreManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all snapshots in a project for either a specified location
+  /// or for all locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListSnapshots")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listSnapshots(request:options:)``
   public func listSnapshotsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Snapshot, any Swift.Error> & Sendable {
@@ -1076,6 +1483,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return self.listSnapshotsByItems(request: request)
   }
 
+  /// Gets the details of a specific snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getSnapshot(request:options:)``
   public func getSnapshot(request: GetSnapshotRequest) async throws
     -> GoogleCloudFilestoreV1.Snapshot
   {
@@ -1088,6 +1502,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getSnapshot(request:options:)``
   public func getSnapshot(
     name: Swift.String,
   ) async throws -> GoogleCloudFilestoreV1.Snapshot {
@@ -1097,6 +1518,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.getSnapshot(request: request)
   }
 
+  /// Creates a snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createSnapshot(request:options:)``
   public func createSnapshot(request: CreateSnapshotRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1109,6 +1537,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createSnapshotPollingUntilDone(request:options:)``
   public func createSnapshotPollingUntilDone(request: CreateSnapshotRequest) async throws
     -> Snapshot
   {
@@ -1121,6 +1556,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createSnapshotPollingUntilDone(request:options:)``
   public func createSnapshotPollingUntilDone(
     parent: Swift.String,
     snapshot: Snapshot?,
@@ -1134,6 +1576,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.createSnapshotPollingUntilDone(request: request)
   }
 
+  /// Deletes a snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteSnapshot(request:options:)``
   public func deleteSnapshot(request: DeleteSnapshotRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1146,6 +1595,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteSnapshotPollingUntilDone(request:options:)``
   public func deleteSnapshotPollingUntilDone(request: DeleteSnapshotRequest) async throws {
     try await self.deleteSnapshotPollingUntilDone(request: request, options: .init())
   }
@@ -1156,6 +1612,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteSnapshotPollingUntilDone(request:options:)``
   public func deleteSnapshotPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1165,6 +1628,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     try await self.deleteSnapshotPollingUntilDone(request: request)
   }
 
+  /// Updates the settings of a specific snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateSnapshot(request:options:)``
   public func updateSnapshot(request: UpdateSnapshotRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1177,6 +1647,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateSnapshotPollingUntilDone(request:options:)``
   public func updateSnapshotPollingUntilDone(request: UpdateSnapshotRequest) async throws
     -> Snapshot
   {
@@ -1189,6 +1666,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific snapshot.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateSnapshot")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateSnapshotPollingUntilDone(request:options:)``
   public func updateSnapshotPollingUntilDone(
     snapshot: Snapshot?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1200,6 +1684,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.updateSnapshotPollingUntilDone(request: request)
   }
 
+  /// Lists all backups in a project for either a specified location or for all
+  /// locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listBackups(request:options:)``
   public func listBackups(request: ListBackupsRequest) async throws
     -> GoogleCloudFilestoreV1.ListBackupsResponse
   {
@@ -1212,6 +1704,14 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all backups in a project for either a specified location or for all
+  /// locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1222,6 +1722,10 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// locations.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listBackups(request:options:)``
   public func listBackupsByItems(
     request: ListBackupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1235,6 +1739,14 @@ extension Clients.CloudFilestoreManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all backups in a project for either a specified location or for all
+  /// locations.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListBackups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listBackups(request:options:)``
   public func listBackupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Backup, any Swift.Error> & Sendable {
@@ -1244,6 +1756,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return self.listBackupsByItems(request: request)
   }
 
+  /// Gets the details of a specific backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getBackup(request:options:)``
   public func getBackup(request: GetBackupRequest) async throws -> GoogleCloudFilestoreV1.Backup {
     try await self.getBackup(request: request, options: .init())
   }
@@ -1254,6 +1773,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the details of a specific backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getBackup(request:options:)``
   public func getBackup(
     name: Swift.String,
   ) async throws -> GoogleCloudFilestoreV1.Backup {
@@ -1263,6 +1789,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.getBackup(request: request)
   }
 
+  /// Creates a backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createBackup(request:options:)``
   public func createBackup(request: CreateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.createBackup(request: request, options: .init())
@@ -1274,6 +1807,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createBackupPollingUntilDone(request:options:)``
   public func createBackupPollingUntilDone(request: CreateBackupRequest) async throws -> Backup {
     return try await self.createBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1284,6 +1824,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CreateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/createBackupPollingUntilDone(request:options:)``
   public func createBackupPollingUntilDone(
     parent: Swift.String,
     backup: Backup?,
@@ -1297,6 +1844,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.createBackupPollingUntilDone(request: request)
   }
 
+  /// Deletes a backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteBackup(request:options:)``
   public func deleteBackup(request: DeleteBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.deleteBackup(request: request, options: .init())
@@ -1308,6 +1862,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(request: DeleteBackupRequest) async throws {
     try await self.deleteBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1318,6 +1879,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteBackupPollingUntilDone(request:options:)``
   public func deleteBackupPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1327,6 +1895,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     try await self.deleteBackupPollingUntilDone(request: request)
   }
 
+  /// Updates the settings of a specific backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateBackup(request:options:)``
   public func updateBackup(request: UpdateBackupRequest) async throws -> GoogleLongRunning.Operation
   {
     try await self.updateBackup(request: request, options: .init())
@@ -1338,6 +1913,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateBackupPollingUntilDone(request:options:)``
   public func updateBackupPollingUntilDone(request: UpdateBackupRequest) async throws -> Backup {
     return try await self.updateBackupPollingUntilDone(request: request, options: .init())
   }
@@ -1348,6 +1930,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the settings of a specific backup.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_UpdateBackup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/updateBackupPollingUntilDone(request:options:)``
   public func updateBackupPollingUntilDone(
     backup: Backup?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1359,6 +1948,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.updateBackupPollingUntilDone(request: request)
   }
 
+  /// Promote the standby instance (replica).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_PromoteReplica")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/promoteReplica(request:options:)``
   public func promoteReplica(request: PromoteReplicaRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1371,6 +1967,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Promote the standby instance (replica).
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_PromoteReplica")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/promoteReplicaPollingUntilDone(request:options:)``
   public func promoteReplicaPollingUntilDone(request: PromoteReplicaRequest) async throws
     -> Instance
   {
@@ -1383,6 +1986,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1395,6 +2005,13 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1404,6 +2021,10 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1417,6 +2038,13 @@ extension Clients.CloudFilestoreManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1429,6 +2057,15 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1441,6 +2078,15 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1452,6 +2098,10 @@ extension Clients.CloudFilestoreManagerProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "CloudFilestoreManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1465,6 +2115,15 @@ extension Clients.CloudFilestoreManagerProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1476,6 +2135,9 @@ extension Clients.CloudFilestoreManagerProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1488,6 +2150,9 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1497,6 +2162,15 @@ extension Clients.CloudFilestoreManagerProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1507,6 +2181,15 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1516,6 +2199,15 @@ extension Clients.CloudFilestoreManagerProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1526,6 +2218,15 @@ extension Clients.CloudFilestoreManagerProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "CloudFilestoreManager_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``CloudFilestoreManagerClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

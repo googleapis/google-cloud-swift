@@ -29,6 +29,10 @@
   /// [google.cloud.dialogflow.cx.v3.Intent]: <doc:Intent>
   ///
   /// @Snippet(path: "IntentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/IntentsProtocol``
   public final class IntentsClient: Clients.IntentsProtocol, Sendable {
     let inner: any Clients.IntentsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -49,6 +53,13 @@
     /// Returns the list of all intents in the specified agent.
     ///
     /// @Snippet(path: "Intents_ListIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listIntents(request:)``
+    /// - ``listIntentsByItems(parent:)``
+    /// - ``listIntentsByItems(request:)``
+    /// - ``listIntentsByItems(request:options:)``
     public func listIntents(
       request: ListIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.ListIntentsResponse {
@@ -58,6 +69,11 @@
     /// Retrieves the specified intent.
     ///
     /// @Snippet(path: "Intents_GetIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIntent(name:)``
+    /// - ``getIntent(request:)``
     public func getIntent(
       request: GetIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
@@ -71,6 +87,11 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Intents_CreateIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createIntent(parent:intent:)``
+    /// - ``createIntent(request:)``
     public func createIntent(
       request: CreateIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
@@ -84,6 +105,11 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Intents_UpdateIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateIntent(intent:updateMask:)``
+    /// - ``updateIntent(request:)``
     public func updateIntent(
       request: UpdateIntentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
@@ -97,6 +123,11 @@
     /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
     ///
     /// @Snippet(path: "Intents_DeleteIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteIntent(name:)``
+    /// - ``deleteIntent(request:)``
     public func deleteIntent(
       request: DeleteIntentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -118,6 +149,12 @@
     /// [google.cloud.dialogflow.cx.v3.ImportIntentsResponse]: <doc:ImportIntentsResponse>
     ///
     /// @Snippet(path: "Intents_ImportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importIntents(request:)``
+    /// - ``importIntentsPollingUntilDone(request:)``
+    /// - ``importIntentsPollingUntilDone(request:options:)``
     public func importIntents(
       request: ImportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -139,6 +176,12 @@
     /// [google.cloud.dialogflow.cx.v3.ImportIntentsResponse]: <doc:ImportIntentsResponse>
     ///
     /// @Snippet(path: "Intents_ImportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importIntents(request:)``
+    /// - ``importIntents(request:options:)``
+    /// - ``importIntentsPollingUntilDone(request:)``
     public func importIntentsPollingUntilDone(
       request: ImportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportIntentsResponse {
@@ -180,6 +223,12 @@
     /// [google.cloud.dialogflow.cx.v3.ExportIntentsResponse]: <doc:ExportIntentsResponse>
     ///
     /// @Snippet(path: "Intents_ExportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportIntents(request:)``
+    /// - ``exportIntentsPollingUntilDone(request:)``
+    /// - ``exportIntentsPollingUntilDone(request:options:)``
     public func exportIntents(
       request: ExportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -201,6 +250,12 @@
     /// [google.cloud.dialogflow.cx.v3.ExportIntentsResponse]: <doc:ExportIntentsResponse>
     ///
     /// @Snippet(path: "Intents_ExportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportIntents(request:)``
+    /// - ``exportIntents(request:options:)``
+    /// - ``exportIntentsPollingUntilDone(request:)``
     public func exportIntentsPollingUntilDone(
       request: ExportIntentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ExportIntentsResponse {
@@ -247,6 +302,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Intents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -256,6 +317,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Intents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -267,6 +332,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Intents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -289,6 +361,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Intents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -372,6 +449,13 @@
 
   // Default implementations
   extension Clients.IntentsProtocol {
+    /// Returns the list of all intents in the specified agent.
+    ///
+    /// @Snippet(path: "Intents_ListIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listIntents(request:options:)``
     public func listIntents(request: ListIntentsRequest) async throws
       -> GoogleCloudDialogflowCXV3.ListIntentsResponse
     {
@@ -384,6 +468,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all intents in the specified agent.
+    ///
+    /// @Snippet(path: "Intents_ListIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listIntents(request:options:)``
     public func listIntentsByItems(
       request: ListIntentsRequest
     ) -> some AsyncSequence<GoogleCloudDialogflowCXV3.Intent, any Swift.Error> & Sendable {
@@ -393,6 +484,10 @@
     /// Returns the list of all intents in the specified agent.
     ///
     /// @Snippet(path: "Intents_ListIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listIntents(request:options:)``
     public func listIntentsByItems(
       request: ListIntentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudDialogflowCXV3.Intent, any Swift.Error> & Sendable {
@@ -407,6 +502,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all intents in the specified agent.
+    ///
+    /// @Snippet(path: "Intents_ListIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listIntents(request:options:)``
     public func listIntentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<GoogleCloudDialogflowCXV3.Intent, any Swift.Error> & Sendable {
@@ -416,6 +518,13 @@
       return self.listIntentsByItems(request: request)
     }
 
+    /// Retrieves the specified intent.
+    ///
+    /// @Snippet(path: "Intents_GetIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/getIntent(request:options:)``
     public func getIntent(request: GetIntentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Intent
     {
@@ -428,6 +537,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified intent.
+    ///
+    /// @Snippet(path: "Intents_GetIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/getIntent(request:options:)``
     public func getIntent(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowCXV3.Intent {
@@ -437,6 +553,17 @@
       return try await self.getIntent(request: request)
     }
 
+    /// Creates an intent in the specified agent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Intents_CreateIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/createIntent(request:options:)``
     public func createIntent(request: CreateIntentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Intent
     {
@@ -449,6 +576,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates an intent in the specified agent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Intents_CreateIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/createIntent(request:options:)``
     public func createIntent(
       parent: Swift.String,
       intent: GoogleCloudDialogflowCXV3.Intent?,
@@ -460,6 +598,17 @@
       return try await self.createIntent(request: request)
     }
 
+    /// Updates the specified intent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Intents_UpdateIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/updateIntent(request:options:)``
     public func updateIntent(request: UpdateIntentRequest) async throws
       -> GoogleCloudDialogflowCXV3.Intent
     {
@@ -472,6 +621,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified intent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Intents_UpdateIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/updateIntent(request:options:)``
     public func updateIntent(
       intent: GoogleCloudDialogflowCXV3.Intent?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -483,6 +643,17 @@
       return try await self.updateIntent(request: request)
     }
 
+    /// Deletes the specified intent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Intents_DeleteIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/deleteIntent(request:options:)``
     public func deleteIntent(request: DeleteIntentRequest) async throws {
       try await self.deleteIntent(request: request, options: .init())
     }
@@ -493,6 +664,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified intent.
+    ///
+    /// Note: You should always train a flow prior to sending it queries. See the
+    /// [training
+    /// documentation](https://cloud.google.com/dialogflow/cx/docs/concept/training).
+    ///
+    /// @Snippet(path: "Intents_DeleteIntent")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/deleteIntent(request:options:)``
     public func deleteIntent(
       name: Swift.String,
     ) async throws {
@@ -502,6 +684,25 @@
       try await self.deleteIntent(request: request)
     }
 
+    /// Imports the specified intents into the agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ImportIntentsMetadata][google.cloud.dialogflow.cx.v3.ImportIntentsMetadata]
+    /// - `response`:
+    /// [ImportIntentsResponse][google.cloud.dialogflow.cx.v3.ImportIntentsResponse]
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ImportIntentsMetadata]: <doc:ImportIntentsMetadata>
+    /// [google.cloud.dialogflow.cx.v3.ImportIntentsResponse]: <doc:ImportIntentsResponse>
+    ///
+    /// @Snippet(path: "Intents_ImportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/importIntents(request:options:)``
     public func importIntents(request: ImportIntentsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -514,6 +715,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Imports the specified intents into the agent.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ImportIntentsMetadata][google.cloud.dialogflow.cx.v3.ImportIntentsMetadata]
+    /// - `response`:
+    /// [ImportIntentsResponse][google.cloud.dialogflow.cx.v3.ImportIntentsResponse]
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ImportIntentsMetadata]: <doc:ImportIntentsMetadata>
+    /// [google.cloud.dialogflow.cx.v3.ImportIntentsResponse]: <doc:ImportIntentsResponse>
+    ///
+    /// @Snippet(path: "Intents_ImportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/importIntentsPollingUntilDone(request:options:)``
     public func importIntentsPollingUntilDone(request: ImportIntentsRequest) async throws
       -> ImportIntentsResponse
     {
@@ -526,6 +746,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the selected intents.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ExportIntentsMetadata][google.cloud.dialogflow.cx.v3.ExportIntentsMetadata]
+    /// - `response`:
+    /// [ExportIntentsResponse][google.cloud.dialogflow.cx.v3.ExportIntentsResponse]
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ExportIntentsMetadata]: <doc:ExportIntentsMetadata>
+    /// [google.cloud.dialogflow.cx.v3.ExportIntentsResponse]: <doc:ExportIntentsResponse>
+    ///
+    /// @Snippet(path: "Intents_ExportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/exportIntents(request:options:)``
     public func exportIntents(request: ExportIntentsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -538,6 +777,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports the selected intents.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ExportIntentsMetadata][google.cloud.dialogflow.cx.v3.ExportIntentsMetadata]
+    /// - `response`:
+    /// [ExportIntentsResponse][google.cloud.dialogflow.cx.v3.ExportIntentsResponse]
+    ///
+    /// [google.cloud.dialogflow.cx.v3.ExportIntentsMetadata]: <doc:ExportIntentsMetadata>
+    /// [google.cloud.dialogflow.cx.v3.ExportIntentsResponse]: <doc:ExportIntentsResponse>
+    ///
+    /// @Snippet(path: "Intents_ExportIntents")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/exportIntentsPollingUntilDone(request:options:)``
     public func exportIntentsPollingUntilDone(request: ExportIntentsRequest) async throws
       -> ExportIntentsResponse
     {
@@ -550,6 +808,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Intents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -562,6 +844,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Intents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -588,6 +894,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Intents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -601,6 +911,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Intents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -613,6 +930,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Intents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -625,6 +951,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Intents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -636,6 +971,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Intents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -649,6 +988,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Intents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -660,6 +1008,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -672,6 +1023,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -681,6 +1035,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Intents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -691,6 +1054,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Intents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``IntentsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

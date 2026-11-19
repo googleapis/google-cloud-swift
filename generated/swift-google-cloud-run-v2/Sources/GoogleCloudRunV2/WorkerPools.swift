@@ -26,6 +26,10 @@ import Foundation
 /// Cloud Run WorkerPool Control Plane API.
 ///
 /// @Snippet(path: "WorkerPoolsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/WorkerPoolsProtocol``
 public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   let inner: any Clients.WorkerPoolsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -46,6 +50,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Creates a new WorkerPool in a given project and location.
   ///
   /// @Snippet(path: "WorkerPools_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkerPool(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:options:)``
   public func createWorkerPool(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -55,6 +66,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Creates a new WorkerPool in a given project and location.
   ///
   /// @Snippet(path: "WorkerPools_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createWorkerPool(request:)``
+  /// - ``createWorkerPool(request:options:)``
+  /// - ``createWorkerPoolPollingUntilDone(parent:workerPool:workerPoolId:)``
+  /// - ``createWorkerPoolPollingUntilDone(request:)``
   public func createWorkerPoolPollingUntilDone(
     request: CreateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -82,6 +100,11 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Gets information about a WorkerPool.
   ///
   /// @Snippet(path: "WorkerPools_GetWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getWorkerPool(name:)``
+  /// - ``getWorkerPool(request:)``
   public func getWorkerPool(
     request: GetWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.WorkerPool {
@@ -91,6 +114,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Lists WorkerPools. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "WorkerPools_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listWorkerPools(request:)``
+  /// - ``listWorkerPoolsByItems(parent:)``
+  /// - ``listWorkerPoolsByItems(request:)``
+  /// - ``listWorkerPoolsByItems(request:options:)``
   public func listWorkerPools(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRunV2.ListWorkerPoolsResponse {
@@ -100,6 +130,14 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Updates a WorkerPool.
   ///
   /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkerPool(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(request:options:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
   public func updateWorkerPool(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +147,14 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Updates a WorkerPool.
   ///
   /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateWorkerPool(request:)``
+  /// - ``updateWorkerPool(request:options:)``
+  /// - ``updateWorkerPoolPollingUntilDone(request:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:)``
+  /// - ``updateWorkerPoolPollingUntilDone(workerPool:updateMask:)``
   public func updateWorkerPoolPollingUntilDone(
     request: UpdateWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -136,6 +182,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Deletes a WorkerPool.
   ///
   /// @Snippet(path: "WorkerPools_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkerPool(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:options:)``
   public func deleteWorkerPool(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -145,6 +198,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Deletes a WorkerPool.
   ///
   /// @Snippet(path: "WorkerPools_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteWorkerPool(request:)``
+  /// - ``deleteWorkerPool(request:options:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(name:)``
+  /// - ``deleteWorkerPoolPollingUntilDone(request:)``
   public func deleteWorkerPoolPollingUntilDone(
     request: DeleteWorkerPoolRequest, options: GoogleGax.RequestOptions
   ) async throws -> WorkerPool {
@@ -173,6 +233,10 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// Cloud Run WorkerPool. This result does not include any inherited policies.
   ///
   /// @Snippet(path: "WorkerPools_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -183,6 +247,10 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// any existing policy.
   ///
   /// @Snippet(path: "WorkerPools_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -194,6 +262,10 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// There are no permissions required for making this API call.
   ///
   /// @Snippet(path: "WorkerPools_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -205,6 +277,13 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkerPools_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -227,6 +306,11 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkerPools_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -238,6 +322,10 @@ public final class WorkerPoolsClient: Clients.WorkerPoolsProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkerPools_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``waitOperation(request:)``
   public func waitOperation(
     request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -326,6 +414,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.WorkerPoolsProtocol {
+  /// Creates a new WorkerPool in a given project and location.
+  ///
+  /// @Snippet(path: "WorkerPools_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/createWorkerPool(request:options:)``
   public func createWorkerPool(request: CreateWorkerPoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -338,6 +433,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new WorkerPool in a given project and location.
+  ///
+  /// @Snippet(path: "WorkerPools_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/createWorkerPoolPollingUntilDone(request:options:)``
   public func createWorkerPoolPollingUntilDone(request: CreateWorkerPoolRequest) async throws
     -> WorkerPool
   {
@@ -350,6 +452,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new WorkerPool in a given project and location.
+  ///
+  /// @Snippet(path: "WorkerPools_CreateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/createWorkerPoolPollingUntilDone(request:options:)``
   public func createWorkerPoolPollingUntilDone(
     parent: Swift.String,
     workerPool: WorkerPool?,
@@ -363,6 +472,13 @@ extension Clients.WorkerPoolsProtocol {
     return try await self.createWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Gets information about a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_GetWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/getWorkerPool(request:options:)``
   public func getWorkerPool(request: GetWorkerPoolRequest) async throws
     -> GoogleCloudRunV2.WorkerPool
   {
@@ -375,6 +491,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets information about a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_GetWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/getWorkerPool(request:options:)``
   public func getWorkerPool(
     name: Swift.String,
   ) async throws -> GoogleCloudRunV2.WorkerPool {
@@ -384,6 +507,13 @@ extension Clients.WorkerPoolsProtocol {
     return try await self.getWorkerPool(request: request)
   }
 
+  /// Lists WorkerPools. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "WorkerPools_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listWorkerPools(request:options:)``
   public func listWorkerPools(request: ListWorkerPoolsRequest) async throws
     -> GoogleCloudRunV2.ListWorkerPoolsResponse
   {
@@ -396,6 +526,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists WorkerPools. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "WorkerPools_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listWorkerPools(request:options:)``
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest
   ) -> some AsyncSequence<WorkerPool, any Swift.Error> & Sendable {
@@ -405,6 +542,10 @@ extension Clients.WorkerPoolsProtocol {
   /// Lists WorkerPools. Results are sorted by creation time, descending.
   ///
   /// @Snippet(path: "WorkerPools_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listWorkerPools(request:options:)``
   public func listWorkerPoolsByItems(
     request: ListWorkerPoolsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<WorkerPool, any Swift.Error> & Sendable {
@@ -418,6 +559,13 @@ extension Clients.WorkerPoolsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists WorkerPools. Results are sorted by creation time, descending.
+  ///
+  /// @Snippet(path: "WorkerPools_ListWorkerPools")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listWorkerPools(request:options:)``
   public func listWorkerPoolsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<WorkerPool, any Swift.Error> & Sendable {
@@ -427,6 +575,13 @@ extension Clients.WorkerPoolsProtocol {
     return self.listWorkerPoolsByItems(request: request)
   }
 
+  /// Updates a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/updateWorkerPool(request:options:)``
   public func updateWorkerPool(request: UpdateWorkerPoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -439,6 +594,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/updateWorkerPoolPollingUntilDone(request:options:)``
   public func updateWorkerPoolPollingUntilDone(request: UpdateWorkerPoolRequest) async throws
     -> WorkerPool
   {
@@ -451,6 +613,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/updateWorkerPoolPollingUntilDone(request:options:)``
   public func updateWorkerPoolPollingUntilDone(
     workerPool: WorkerPool?,
   ) async throws -> WorkerPool {
@@ -460,6 +629,13 @@ extension Clients.WorkerPoolsProtocol {
     return try await self.updateWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Updates a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_UpdateWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/updateWorkerPoolPollingUntilDone(request:options:)``
   public func updateWorkerPoolPollingUntilDone(
     workerPool: WorkerPool?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -471,6 +647,13 @@ extension Clients.WorkerPoolsProtocol {
     return try await self.updateWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Deletes a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/deleteWorkerPool(request:options:)``
   public func deleteWorkerPool(request: DeleteWorkerPoolRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -483,6 +666,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/deleteWorkerPoolPollingUntilDone(request:options:)``
   public func deleteWorkerPoolPollingUntilDone(request: DeleteWorkerPoolRequest) async throws
     -> WorkerPool
   {
@@ -495,6 +685,13 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a WorkerPool.
+  ///
+  /// @Snippet(path: "WorkerPools_DeleteWorkerPool")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/deleteWorkerPoolPollingUntilDone(request:options:)``
   public func deleteWorkerPoolPollingUntilDone(
     name: Swift.String,
   ) async throws -> WorkerPool {
@@ -504,6 +701,14 @@ extension Clients.WorkerPoolsProtocol {
     return try await self.deleteWorkerPoolPollingUntilDone(request: request)
   }
 
+  /// Gets the IAM Access Control policy currently in effect for the given
+  /// Cloud Run WorkerPool. This result does not include any inherited policies.
+  ///
+  /// @Snippet(path: "WorkerPools_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -516,6 +721,14 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the IAM Access control policy for the specified WorkerPool. Overwrites
+  /// any existing policy.
+  ///
+  /// @Snippet(path: "WorkerPools_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -528,6 +741,15 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified Project.
+  ///
+  /// There are no permissions required for making this API call.
+  ///
+  /// @Snippet(path: "WorkerPools_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -540,6 +762,15 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -552,6 +783,15 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -563,6 +803,10 @@ extension Clients.WorkerPoolsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "WorkerPools_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -576,6 +820,15 @@ extension Clients.WorkerPoolsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -587,6 +840,9 @@ extension Clients.WorkerPoolsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -599,6 +855,9 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -608,6 +867,15 @@ extension Clients.WorkerPoolsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -618,6 +886,15 @@ extension Clients.WorkerPoolsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -627,6 +904,15 @@ extension Clients.WorkerPoolsProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "WorkerPools_WaitOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``WorkerPoolsClient/waitOperation(request:options:)``
   public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {

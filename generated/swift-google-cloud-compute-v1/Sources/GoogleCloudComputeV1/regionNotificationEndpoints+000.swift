@@ -24,6 +24,10 @@
   /// Service for the `regionNotificationEndpoints` resource.
   ///
   /// @Snippet(path: "regionNotificationEndpointsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/RegionNotificationEndpointsProtocol``
   public final class RegionNotificationEndpointsClient: Clients.RegionNotificationEndpointsProtocol,
     Sendable
   {
@@ -48,6 +52,13 @@
     /// regional and global, available to the specified project.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: RegionNotificationEndpointsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -58,6 +69,13 @@
     /// Deletes the specified NotificationEndpoint in the given region
     ///
     /// @Snippet(path: "regionNotificationEndpoints_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:notificationEndpoint:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -72,6 +90,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:notificationEndpoint:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: RegionNotificationEndpointsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -114,6 +139,11 @@
     /// Returns the specified NotificationEndpoint resource in the given region.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:notificationEndpoint:)``
+    /// - ``get(request:)``
     public func `get`(
       request: RegionNotificationEndpointsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NotificationEndpoint {
@@ -124,6 +154,13 @@
     /// using the parameters that are included in the request.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: RegionNotificationEndpointsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -139,6 +176,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: RegionNotificationEndpointsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -181,6 +225,13 @@
     /// Lists the NotificationEndpoints for a project in the given region.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NotificationEndpointList {
@@ -190,6 +241,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: RegionNotificationEndpointsClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -270,6 +326,14 @@
 
   // Default implementations
   extension Clients.RegionNotificationEndpointsProtocol {
+    /// Retrieves the list of all NotificationEndpoint resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/aggregatedList(request:options:)``
     public func aggregatedList(request: RegionNotificationEndpointsClient.AggregatedListRequest)
       async throws -> GoogleCloudComputeV1.NotificationEndpointAggregatedList
     {
@@ -283,6 +347,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all NotificationEndpoint resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionNotificationEndpointsClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NotificationEndpointsScopedList), any Swift.Error>
@@ -295,6 +367,10 @@
     /// regional and global, available to the specified project.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: RegionNotificationEndpointsClient.AggregatedListRequest,
       options: GoogleGax.RequestOptions
@@ -312,6 +388,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all NotificationEndpoint resources,
+    /// regional and global, available to the specified project.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NotificationEndpointsScopedList), any Swift.Error>
@@ -323,6 +407,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified NotificationEndpoint in the given region
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/delete(request:options:)``
     public func delete(request: RegionNotificationEndpointsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -335,6 +426,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NotificationEndpoint in the given region
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: RegionNotificationEndpointsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -347,6 +450,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NotificationEndpoint in the given region
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -360,6 +475,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified NotificationEndpoint resource in the given region.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/get(request:options:)``
     public func `get`(request: RegionNotificationEndpointsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NotificationEndpoint
     {
@@ -372,6 +494,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified NotificationEndpoint resource in the given region.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -385,6 +514,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Create a NotificationEndpoint in the specified project in the given region
+    /// using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/insert(request:options:)``
     public func insert(request: RegionNotificationEndpointsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -397,6 +534,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a NotificationEndpoint in the specified project in the given region
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: RegionNotificationEndpointsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -409,6 +559,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Create a NotificationEndpoint in the specified project in the given region
+    /// using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -422,6 +585,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the NotificationEndpoints for a project in the given region.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/list(request:options:)``
     public func list(request: RegionNotificationEndpointsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NotificationEndpointList
     {
@@ -434,6 +604,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the NotificationEndpoints for a project in the given region.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/list(request:options:)``
     public func listByItems(
       request: RegionNotificationEndpointsClient.ListRequest
     ) -> some AsyncSequence<NotificationEndpoint, any Swift.Error> & Sendable {
@@ -443,6 +620,10 @@
     /// Lists the NotificationEndpoints for a project in the given region.
     ///
     /// @Snippet(path: "regionNotificationEndpoints_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/list(request:options:)``
     public func listByItems(
       request: RegionNotificationEndpointsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NotificationEndpoint, any Swift.Error> & Sendable {
@@ -457,6 +638,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the NotificationEndpoints for a project in the given region.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -468,6 +656,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: RegionNotificationEndpointsClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -481,6 +676,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "regionNotificationEndpoints_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``RegionNotificationEndpointsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -496,6 +698,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

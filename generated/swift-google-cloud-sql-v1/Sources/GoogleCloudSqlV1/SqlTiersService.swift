@@ -24,6 +24,10 @@
   /// Service for providing machine types (tiers) for Cloud SQL instances.
   ///
   /// @Snippet(path: "SqlTiersServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlTiersServiceProtocol``
   public final class SqlTiersServiceClient: Clients.SqlTiersServiceProtocol, Sendable {
     let inner: any Clients.SqlTiersServiceStub
 
@@ -42,6 +46,10 @@
     /// https://cloud.google.com/sql/pricing.
     ///
     /// @Snippet(path: "SqlTiersService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
     public func list(
       request: SqlTiersListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudSqlV1.TiersListResponse {
@@ -65,6 +73,15 @@
 
   // Default implementations
   extension Clients.SqlTiersServiceProtocol {
+    /// Lists all available machine types (tiers) for Cloud SQL, for example,
+    /// `db-custom-1-3840`. For more information, see
+    /// https://cloud.google.com/sql/pricing.
+    ///
+    /// @Snippet(path: "SqlTiersService_List")
+    ///
+    /// ## See Also
+    ///
+    /// - ``SqlTiersServiceClient/list(request:options:)``
     public func list(request: SqlTiersListRequest) async throws
       -> GoogleCloudSqlV1.TiersListResponse
     {

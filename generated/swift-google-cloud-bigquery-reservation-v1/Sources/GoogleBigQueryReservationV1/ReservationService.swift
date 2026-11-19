@@ -39,6 +39,10 @@ import Foundation
 ///   `projects/myproject/locations/US/capacityCommitments/id`.
 ///
 /// @Snippet(path: "ReservationServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ReservationServiceProtocol``
 public final class ReservationServiceClient: Clients.ReservationServiceProtocol, Sendable {
   let inner: any Clients.ReservationServiceStub
 
@@ -55,6 +59,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Creates a new reservation resource.
   ///
   /// @Snippet(path: "ReservationService_CreateReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReservation(parent:reservation:reservationId:)``
+  /// - ``createReservation(request:)``
   public func createReservation(
     request: CreateReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -64,6 +73,13 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Lists all the reservations for the project in the specified location.
   ///
   /// @Snippet(path: "ReservationService_ListReservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReservations(request:)``
+  /// - ``listReservationsByItems(parent:)``
+  /// - ``listReservationsByItems(request:)``
+  /// - ``listReservationsByItems(request:options:)``
   public func listReservations(
     request: ListReservationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListReservationsResponse {
@@ -73,6 +89,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Returns information about the reservation.
   ///
   /// @Snippet(path: "ReservationService_GetReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReservation(name:)``
+  /// - ``getReservation(request:)``
   public func getReservation(
     request: GetReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -84,6 +105,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// assignments.
   ///
   /// @Snippet(path: "ReservationService_DeleteReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReservation(name:)``
+  /// - ``deleteReservation(request:)``
   public func deleteReservation(
     request: DeleteReservationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -93,6 +119,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Updates an existing reservation resource.
   ///
   /// @Snippet(path: "ReservationService_UpdateReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReservation(request:)``
+  /// - ``updateReservation(reservation:updateMask:)``
   public func updateReservation(
     request: UpdateReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -106,6 +137,10 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
   ///
   /// @Snippet(path: "ReservationService_FailoverReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``failoverReservation(request:)``
   public func failoverReservation(
     request: FailoverReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -115,6 +150,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Creates a new capacity commitment resource.
   ///
   /// @Snippet(path: "ReservationService_CreateCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCapacityCommitment(parent:capacityCommitment:)``
+  /// - ``createCapacityCommitment(request:)``
   public func createCapacityCommitment(
     request: CreateCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -124,6 +164,13 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Lists all the capacity commitments for the admin project.
   ///
   /// @Snippet(path: "ReservationService_ListCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCapacityCommitments(request:)``
+  /// - ``listCapacityCommitmentsByItems(parent:)``
+  /// - ``listCapacityCommitmentsByItems(request:)``
+  /// - ``listCapacityCommitmentsByItems(request:options:)``
   public func listCapacityCommitments(
     request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse {
@@ -133,6 +180,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Returns information about the capacity commitment.
   ///
   /// @Snippet(path: "ReservationService_GetCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCapacityCommitment(name:)``
+  /// - ``getCapacityCommitment(request:)``
   public func getCapacityCommitment(
     request: GetCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -144,6 +196,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// `google.rpc.Code.FAILED_PRECONDITION`.
   ///
   /// @Snippet(path: "ReservationService_DeleteCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCapacityCommitment(name:)``
+  /// - ``deleteCapacityCommitment(request:)``
   public func deleteCapacityCommitment(
     request: DeleteCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -159,6 +216,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// with the error code `google.rpc.Code.FAILED_PRECONDITION`.
   ///
   /// @Snippet(path: "ReservationService_UpdateCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCapacityCommitment(capacityCommitment:updateMask:)``
+  /// - ``updateCapacityCommitment(request:)``
   public func updateCapacityCommitment(
     request: UpdateCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -175,6 +237,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// you delete the first one after the commitment end time passes.
   ///
   /// @Snippet(path: "ReservationService_SplitCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``splitCapacityCommitment(name:slotCount:)``
+  /// - ``splitCapacityCommitment(request:)``
   public func splitCapacityCommitment(
     request: SplitCapacityCommitmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.SplitCapacityCommitmentResponse {
@@ -190,6 +257,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// with the error code `google.rpc.Code.FAILED_PRECONDITION`.
   ///
   /// @Snippet(path: "ReservationService_MergeCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``mergeCapacityCommitments(parent:capacityCommitmentIds:)``
+  /// - ``mergeCapacityCommitments(request:)``
   public func mergeCapacityCommitments(
     request: MergeCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -233,6 +305,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// does not match location of the reservation.
   ///
   /// @Snippet(path: "ReservationService_CreateAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAssignment(parent:assignment:)``
+  /// - ``createAssignment(request:)``
   public func createAssignment(
     request: CreateAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -262,6 +339,13 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// **Note** "-" cannot be used for projects nor locations.
   ///
   /// @Snippet(path: "ReservationService_ListAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAssignments(request:)``
+  /// - ``listAssignmentsByItems(parent:)``
+  /// - ``listAssignmentsByItems(request:)``
+  /// - ``listAssignmentsByItems(request:options:)``
   public func listAssignments(
     request: ListAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListAssignmentsResponse {
@@ -285,6 +369,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// `project2` will switch to use on-demand mode.
   ///
   /// @Snippet(path: "ReservationService_DeleteAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAssignment(name:)``
+  /// - ``deleteAssignment(request:)``
   public func deleteAssignment(
     request: DeleteAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -316,6 +405,13 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// nor locations.
   ///
   /// @Snippet(path: "ReservationService_SearchAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchAssignments(request:)``
+  /// - ``searchAssignmentsByItems(parent:query:)``
+  /// - ``searchAssignmentsByItems(request:)``
+  /// - ``searchAssignmentsByItems(request:options:)``
   @available(*, deprecated)
   public func searchAssignments(
     request: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
@@ -345,6 +441,13 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   ///    `projects/*/locations/*reservations/*`.
   ///
   /// @Snippet(path: "ReservationService_SearchAllAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``searchAllAssignments(request:)``
+  /// - ``searchAllAssignmentsByItems(parent:query:)``
+  /// - ``searchAllAssignmentsByItems(request:)``
+  /// - ``searchAllAssignmentsByItems(request:options:)``
   public func searchAllAssignments(
     request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse {
@@ -358,6 +461,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// associated reservation.
   ///
   /// @Snippet(path: "ReservationService_MoveAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``moveAssignment(name:destinationId:)``
+  /// - ``moveAssignment(request:)``
   public func moveAssignment(
     request: MoveAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -369,6 +477,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Only the `priority` field can be updated.
   ///
   /// @Snippet(path: "ReservationService_UpdateAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAssignment(assignment:updateMask:)``
+  /// - ``updateAssignment(request:)``
   public func updateAssignment(
     request: UpdateAssignmentRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.Assignment {
@@ -378,6 +491,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Retrieves a BI reservation.
   ///
   /// @Snippet(path: "ReservationService_GetBiReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getBiReservation(name:)``
+  /// - ``getBiReservation(request:)``
   public func getBiReservation(
     request: GetBiReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -394,6 +512,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// must be set to 0.
   ///
   /// @Snippet(path: "ReservationService_UpdateBiReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateBiReservation(biReservation:updateMask:)``
+  /// - ``updateBiReservation(request:)``
   public func updateBiReservation(
     request: UpdateBiReservationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -417,6 +540,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// reservations.
   ///
   /// @Snippet(path: "ReservationService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
+  /// - ``getIamPolicy(resource:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -435,6 +563,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// reservations.
   ///
   /// @Snippet(path: "ReservationService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
+  /// - ``setIamPolicy(resource:policy:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -450,6 +583,10 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// No Google IAM permissions are required to call this method.
   ///
   /// @Snippet(path: "ReservationService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -459,6 +596,10 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Creates a new reservation group.
   ///
   /// @Snippet(path: "ReservationService_CreateReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createReservationGroup(request:)``
   public func createReservationGroup(
     request: CreateReservationGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -468,6 +609,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Returns information about the reservation group.
   ///
   /// @Snippet(path: "ReservationService_GetReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getReservationGroup(name:)``
+  /// - ``getReservationGroup(request:)``
   public func getReservationGroup(
     request: GetReservationGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -479,6 +625,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// assignments.
   ///
   /// @Snippet(path: "ReservationService_DeleteReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteReservationGroup(name:)``
+  /// - ``deleteReservationGroup(request:)``
   public func deleteReservationGroup(
     request: DeleteReservationGroupRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -488,6 +639,13 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Lists all the reservation groups for the project in the specified location.
   ///
   /// @Snippet(path: "ReservationService_ListReservationGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listReservationGroups(request:)``
+  /// - ``listReservationGroupsByItems(parent:)``
+  /// - ``listReservationGroupsByItems(request:)``
+  /// - ``listReservationGroupsByItems(request:options:)``
   public func listReservationGroups(
     request: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ListReservationGroupsResponse {
@@ -497,6 +655,11 @@ public final class ReservationServiceClient: Clients.ReservationServiceProtocol,
   /// Updates an existing reservation group resource.
   ///
   /// @Snippet(path: "ReservationService_UpdateReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateReservationGroup(request:)``
+  /// - ``updateReservationGroup(reservationGroup:updateMask:)``
   public func updateReservationGroup(
     request: UpdateReservationGroupRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -666,6 +829,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.ReservationServiceProtocol {
+  /// Creates a new reservation resource.
+  ///
+  /// @Snippet(path: "ReservationService_CreateReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createReservation(request:options:)``
   public func createReservation(request: CreateReservationRequest) async throws
     -> GoogleBigQueryReservationV1.Reservation
   {
@@ -678,6 +848,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new reservation resource.
+  ///
+  /// @Snippet(path: "ReservationService_CreateReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createReservation(request:options:)``
   public func createReservation(
     parent: Swift.String,
     reservation: Reservation?,
@@ -691,6 +868,13 @@ extension Clients.ReservationServiceProtocol {
     return try await self.createReservation(request: request)
   }
 
+  /// Lists all the reservations for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservations(request:options:)``
   public func listReservations(request: ListReservationsRequest) async throws
     -> GoogleBigQueryReservationV1.ListReservationsResponse
   {
@@ -703,6 +887,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the reservations for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservations(request:options:)``
   public func listReservationsByItems(
     request: ListReservationsRequest
   ) -> some AsyncSequence<Reservation, any Swift.Error> & Sendable {
@@ -712,6 +903,10 @@ extension Clients.ReservationServiceProtocol {
   /// Lists all the reservations for the project in the specified location.
   ///
   /// @Snippet(path: "ReservationService_ListReservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservations(request:options:)``
   public func listReservationsByItems(
     request: ListReservationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Reservation, any Swift.Error> & Sendable {
@@ -726,6 +921,13 @@ extension Clients.ReservationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the reservations for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservations(request:options:)``
   public func listReservationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Reservation, any Swift.Error> & Sendable {
@@ -735,6 +937,13 @@ extension Clients.ReservationServiceProtocol {
     return self.listReservationsByItems(request: request)
   }
 
+  /// Returns information about the reservation.
+  ///
+  /// @Snippet(path: "ReservationService_GetReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getReservation(request:options:)``
   public func getReservation(request: GetReservationRequest) async throws
     -> GoogleBigQueryReservationV1.Reservation
   {
@@ -747,6 +956,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information about the reservation.
+  ///
+  /// @Snippet(path: "ReservationService_GetReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getReservation(request:options:)``
   public func getReservation(
     name: Swift.String,
   ) async throws -> GoogleBigQueryReservationV1.Reservation {
@@ -756,6 +972,15 @@ extension Clients.ReservationServiceProtocol {
     return try await self.getReservation(request: request)
   }
 
+  /// Deletes a reservation.
+  /// Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
+  /// assignments.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteReservation(request:options:)``
   public func deleteReservation(request: DeleteReservationRequest) async throws {
     try await self.deleteReservation(request: request, options: .init())
   }
@@ -766,6 +991,15 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a reservation.
+  /// Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
+  /// assignments.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteReservation(request:options:)``
   public func deleteReservation(
     name: Swift.String,
   ) async throws {
@@ -775,6 +1009,13 @@ extension Clients.ReservationServiceProtocol {
     try await self.deleteReservation(request: request)
   }
 
+  /// Updates an existing reservation resource.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateReservation(request:options:)``
   public func updateReservation(request: UpdateReservationRequest) async throws
     -> GoogleBigQueryReservationV1.Reservation
   {
@@ -787,6 +1028,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing reservation resource.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateReservation(request:options:)``
   public func updateReservation(
     reservation: Reservation?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -798,6 +1046,17 @@ extension Clients.ReservationServiceProtocol {
     return try await self.updateReservation(request: request)
   }
 
+  /// Fail over a reservation to the secondary location. The operation should be
+  /// done in the current secondary location, which will be promoted to the
+  /// new primary location for the reservation.
+  /// Attempting to failover a reservation in the current primary location will
+  /// fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_FailoverReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/failoverReservation(request:options:)``
   public func failoverReservation(request: FailoverReservationRequest) async throws
     -> GoogleBigQueryReservationV1.Reservation
   {
@@ -810,6 +1069,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new capacity commitment resource.
+  ///
+  /// @Snippet(path: "ReservationService_CreateCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createCapacityCommitment(request:options:)``
   public func createCapacityCommitment(request: CreateCapacityCommitmentRequest) async throws
     -> GoogleBigQueryReservationV1.CapacityCommitment
   {
@@ -822,6 +1088,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new capacity commitment resource.
+  ///
+  /// @Snippet(path: "ReservationService_CreateCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createCapacityCommitment(request:options:)``
   public func createCapacityCommitment(
     parent: Swift.String,
     capacityCommitment: CapacityCommitment?,
@@ -833,6 +1106,13 @@ extension Clients.ReservationServiceProtocol {
     return try await self.createCapacityCommitment(request: request)
   }
 
+  /// Lists all the capacity commitments for the admin project.
+  ///
+  /// @Snippet(path: "ReservationService_ListCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listCapacityCommitments(request:options:)``
   public func listCapacityCommitments(request: ListCapacityCommitmentsRequest) async throws
     -> GoogleBigQueryReservationV1.ListCapacityCommitmentsResponse
   {
@@ -845,6 +1125,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the capacity commitments for the admin project.
+  ///
+  /// @Snippet(path: "ReservationService_ListCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listCapacityCommitments(request:options:)``
   public func listCapacityCommitmentsByItems(
     request: ListCapacityCommitmentsRequest
   ) -> some AsyncSequence<CapacityCommitment, any Swift.Error> & Sendable {
@@ -854,6 +1141,10 @@ extension Clients.ReservationServiceProtocol {
   /// Lists all the capacity commitments for the admin project.
   ///
   /// @Snippet(path: "ReservationService_ListCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listCapacityCommitments(request:options:)``
   public func listCapacityCommitmentsByItems(
     request: ListCapacityCommitmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CapacityCommitment, any Swift.Error> & Sendable {
@@ -868,6 +1159,13 @@ extension Clients.ReservationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the capacity commitments for the admin project.
+  ///
+  /// @Snippet(path: "ReservationService_ListCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listCapacityCommitments(request:options:)``
   public func listCapacityCommitmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CapacityCommitment, any Swift.Error> & Sendable {
@@ -877,6 +1175,13 @@ extension Clients.ReservationServiceProtocol {
     return self.listCapacityCommitmentsByItems(request: request)
   }
 
+  /// Returns information about the capacity commitment.
+  ///
+  /// @Snippet(path: "ReservationService_GetCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getCapacityCommitment(request:options:)``
   public func getCapacityCommitment(request: GetCapacityCommitmentRequest) async throws
     -> GoogleBigQueryReservationV1.CapacityCommitment
   {
@@ -889,6 +1194,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information about the capacity commitment.
+  ///
+  /// @Snippet(path: "ReservationService_GetCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getCapacityCommitment(request:options:)``
   public func getCapacityCommitment(
     name: Swift.String,
   ) async throws -> GoogleBigQueryReservationV1.CapacityCommitment {
@@ -898,6 +1210,15 @@ extension Clients.ReservationServiceProtocol {
     return try await self.getCapacityCommitment(request: request)
   }
 
+  /// Deletes a capacity commitment. Attempting to delete capacity commitment
+  /// before its commitment_end_time will fail with the error code
+  /// `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteCapacityCommitment(request:options:)``
   public func deleteCapacityCommitment(request: DeleteCapacityCommitmentRequest) async throws {
     try await self.deleteCapacityCommitment(request: request, options: .init())
   }
@@ -908,6 +1229,15 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a capacity commitment. Attempting to delete capacity commitment
+  /// before its commitment_end_time will fail with the error code
+  /// `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteCapacityCommitment(request:options:)``
   public func deleteCapacityCommitment(
     name: Swift.String,
   ) async throws {
@@ -917,6 +1247,19 @@ extension Clients.ReservationServiceProtocol {
     try await self.deleteCapacityCommitment(request: request)
   }
 
+  /// Updates an existing capacity commitment.
+  ///
+  /// Only `plan` and `renewal_plan` fields can be updated.
+  ///
+  /// Plan can only be changed to a plan of a longer commitment period.
+  /// Attempting to change to a plan with shorter commitment period will fail
+  /// with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateCapacityCommitment(request:options:)``
   public func updateCapacityCommitment(request: UpdateCapacityCommitmentRequest) async throws
     -> GoogleBigQueryReservationV1.CapacityCommitment
   {
@@ -929,6 +1272,19 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing capacity commitment.
+  ///
+  /// Only `plan` and `renewal_plan` fields can be updated.
+  ///
+  /// Plan can only be changed to a plan of a longer commitment period.
+  /// Attempting to change to a plan with shorter commitment period will fail
+  /// with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateCapacityCommitment(request:options:)``
   public func updateCapacityCommitment(
     capacityCommitment: CapacityCommitment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -940,6 +1296,20 @@ extension Clients.ReservationServiceProtocol {
     return try await self.updateCapacityCommitment(request: request)
   }
 
+  /// Splits capacity commitment to two commitments of the same plan and
+  /// `commitment_end_time`.
+  ///
+  /// A common use case is to enable downgrading commitments.
+  ///
+  /// For example, in order to downgrade from 10000 slots to 8000, you might
+  /// split a 10000 capacity commitment into commitments of 2000 and 8000. Then,
+  /// you delete the first one after the commitment end time passes.
+  ///
+  /// @Snippet(path: "ReservationService_SplitCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/splitCapacityCommitment(request:options:)``
   public func splitCapacityCommitment(request: SplitCapacityCommitmentRequest) async throws
     -> GoogleBigQueryReservationV1.SplitCapacityCommitmentResponse
   {
@@ -952,6 +1322,20 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Splits capacity commitment to two commitments of the same plan and
+  /// `commitment_end_time`.
+  ///
+  /// A common use case is to enable downgrading commitments.
+  ///
+  /// For example, in order to downgrade from 10000 slots to 8000, you might
+  /// split a 10000 capacity commitment into commitments of 2000 and 8000. Then,
+  /// you delete the first one after the commitment end time passes.
+  ///
+  /// @Snippet(path: "ReservationService_SplitCapacityCommitment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/splitCapacityCommitment(request:options:)``
   public func splitCapacityCommitment(
     name: Swift.String,
     slotCount: Swift.Int64,
@@ -963,6 +1347,19 @@ extension Clients.ReservationServiceProtocol {
     return try await self.splitCapacityCommitment(request: request)
   }
 
+  /// Merges capacity commitments of the same plan into a single commitment.
+  ///
+  /// The resulting capacity commitment has the greater commitment_end_time
+  /// out of the to-be-merged capacity commitments.
+  ///
+  /// Attempting to merge capacity commitments of different plan will fail
+  /// with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_MergeCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/mergeCapacityCommitments(request:options:)``
   public func mergeCapacityCommitments(request: MergeCapacityCommitmentsRequest) async throws
     -> GoogleBigQueryReservationV1.CapacityCommitment
   {
@@ -975,6 +1372,19 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Merges capacity commitments of the same plan into a single commitment.
+  ///
+  /// The resulting capacity commitment has the greater commitment_end_time
+  /// out of the to-be-merged capacity commitments.
+  ///
+  /// Attempting to merge capacity commitments of different plan will fail
+  /// with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+  ///
+  /// @Snippet(path: "ReservationService_MergeCapacityCommitments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/mergeCapacityCommitments(request:options:)``
   public func mergeCapacityCommitments(
     parent: Swift.String,
     capacityCommitmentIds: [Swift.String],
@@ -986,6 +1396,47 @@ extension Clients.ReservationServiceProtocol {
     return try await self.mergeCapacityCommitments(request: request)
   }
 
+  /// Creates an assignment object which allows the given project to submit jobs
+  /// of a certain type using slots from the specified reservation.
+  ///
+  /// Currently a
+  /// resource (project, folder, organization) can only have one assignment per
+  /// each (job_type, location) combination, and that reservation will be used
+  /// for all jobs of the matching type.
+  ///
+  /// Different assignments can be created on different levels of the
+  /// projects, folders or organization hierarchy.  During query execution,
+  /// the assignment is looked up at the project, folder and organization levels
+  /// in that order. The first assignment found is applied to the query.
+  ///
+  /// When creating assignments, it does not matter if other assignments exist at
+  /// higher levels.
+  ///
+  /// Example:
+  ///
+  /// * The organization `organizationA` contains two projects, `project1`
+  ///   and `project2`.
+  /// * Assignments for all three entities (`organizationA`, `project1`, and
+  ///   `project2`) could all be created and mapped to the same or different
+  ///   reservations.
+  ///
+  /// "None" assignments represent an absence of the assignment. Projects
+  /// assigned to None use on-demand pricing. To create a "None" assignment, use
+  /// "none" as a reservation_id in the parent. Example parent:
+  /// `projects/myproject/locations/US/reservations/none`.
+  ///
+  /// Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have
+  /// 'bigquery.admin' permissions on the project using the reservation
+  /// and the project that owns this reservation.
+  ///
+  /// Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment
+  /// does not match location of the reservation.
+  ///
+  /// @Snippet(path: "ReservationService_CreateAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createAssignment(request:options:)``
   public func createAssignment(request: CreateAssignmentRequest) async throws
     -> GoogleBigQueryReservationV1.Assignment
   {
@@ -998,6 +1449,47 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates an assignment object which allows the given project to submit jobs
+  /// of a certain type using slots from the specified reservation.
+  ///
+  /// Currently a
+  /// resource (project, folder, organization) can only have one assignment per
+  /// each (job_type, location) combination, and that reservation will be used
+  /// for all jobs of the matching type.
+  ///
+  /// Different assignments can be created on different levels of the
+  /// projects, folders or organization hierarchy.  During query execution,
+  /// the assignment is looked up at the project, folder and organization levels
+  /// in that order. The first assignment found is applied to the query.
+  ///
+  /// When creating assignments, it does not matter if other assignments exist at
+  /// higher levels.
+  ///
+  /// Example:
+  ///
+  /// * The organization `organizationA` contains two projects, `project1`
+  ///   and `project2`.
+  /// * Assignments for all three entities (`organizationA`, `project1`, and
+  ///   `project2`) could all be created and mapped to the same or different
+  ///   reservations.
+  ///
+  /// "None" assignments represent an absence of the assignment. Projects
+  /// assigned to None use on-demand pricing. To create a "None" assignment, use
+  /// "none" as a reservation_id in the parent. Example parent:
+  /// `projects/myproject/locations/US/reservations/none`.
+  ///
+  /// Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have
+  /// 'bigquery.admin' permissions on the project using the reservation
+  /// and the project that owns this reservation.
+  ///
+  /// Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the assignment
+  /// does not match location of the reservation.
+  ///
+  /// @Snippet(path: "ReservationService_CreateAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createAssignment(request:options:)``
   public func createAssignment(
     parent: Swift.String,
     assignment: Assignment?,
@@ -1009,6 +1501,33 @@ extension Clients.ReservationServiceProtocol {
     return try await self.createAssignment(request: request)
   }
 
+  /// Lists assignments.
+  ///
+  /// Only explicitly created assignments will be returned.
+  ///
+  /// Example:
+  ///
+  /// * Organization `organizationA` contains two projects, `project1` and
+  ///   `project2`.
+  /// * Reservation `res1` exists and was created previously.
+  /// * CreateAssignment was used previously to define the following
+  ///   associations between entities and reservations: `<organizationA, res1>`
+  ///   and `<project1, res1>`
+  ///
+  /// In this example, ListAssignments will just return the above two assignments
+  /// for reservation `res1`, and no expansion/merge will happen.
+  ///
+  /// The wildcard "-" can be used for
+  /// reservations in the request. In that case all assignments belongs to the
+  /// specified project and location will be listed.
+  ///
+  /// **Note** "-" cannot be used for projects nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_ListAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listAssignments(request:options:)``
   public func listAssignments(request: ListAssignmentsRequest) async throws
     -> GoogleBigQueryReservationV1.ListAssignmentsResponse
   {
@@ -1021,6 +1540,33 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists assignments.
+  ///
+  /// Only explicitly created assignments will be returned.
+  ///
+  /// Example:
+  ///
+  /// * Organization `organizationA` contains two projects, `project1` and
+  ///   `project2`.
+  /// * Reservation `res1` exists and was created previously.
+  /// * CreateAssignment was used previously to define the following
+  ///   associations between entities and reservations: `<organizationA, res1>`
+  ///   and `<project1, res1>`
+  ///
+  /// In this example, ListAssignments will just return the above two assignments
+  /// for reservation `res1`, and no expansion/merge will happen.
+  ///
+  /// The wildcard "-" can be used for
+  /// reservations in the request. In that case all assignments belongs to the
+  /// specified project and location will be listed.
+  ///
+  /// **Note** "-" cannot be used for projects nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_ListAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listAssignments(request:options:)``
   public func listAssignmentsByItems(
     request: ListAssignmentsRequest
   ) -> some AsyncSequence<Assignment, any Swift.Error> & Sendable {
@@ -1050,6 +1596,10 @@ extension Clients.ReservationServiceProtocol {
   /// **Note** "-" cannot be used for projects nor locations.
   ///
   /// @Snippet(path: "ReservationService_ListAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listAssignments(request:options:)``
   public func listAssignmentsByItems(
     request: ListAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Assignment, any Swift.Error> & Sendable {
@@ -1064,6 +1614,33 @@ extension Clients.ReservationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists assignments.
+  ///
+  /// Only explicitly created assignments will be returned.
+  ///
+  /// Example:
+  ///
+  /// * Organization `organizationA` contains two projects, `project1` and
+  ///   `project2`.
+  /// * Reservation `res1` exists and was created previously.
+  /// * CreateAssignment was used previously to define the following
+  ///   associations between entities and reservations: `<organizationA, res1>`
+  ///   and `<project1, res1>`
+  ///
+  /// In this example, ListAssignments will just return the above two assignments
+  /// for reservation `res1`, and no expansion/merge will happen.
+  ///
+  /// The wildcard "-" can be used for
+  /// reservations in the request. In that case all assignments belongs to the
+  /// specified project and location will be listed.
+  ///
+  /// **Note** "-" cannot be used for projects nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_ListAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listAssignments(request:options:)``
   public func listAssignmentsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Assignment, any Swift.Error> & Sendable {
@@ -1073,6 +1650,27 @@ extension Clients.ReservationServiceProtocol {
     return self.listAssignmentsByItems(request: request)
   }
 
+  /// Deletes a assignment. No expansion will happen.
+  ///
+  /// Example:
+  ///
+  /// * Organization `organizationA` contains two projects, `project1` and
+  ///   `project2`.
+  /// * Reservation `res1` exists and was created previously.
+  /// * CreateAssignment was used previously to define the following
+  ///   associations between entities and reservations: `<organizationA, res1>`
+  ///   and `<project1, res1>`
+  ///
+  /// In this example, deletion of the `<organizationA, res1>` assignment won't
+  /// affect the other assignment `<project1, res1>`. After said deletion,
+  /// queries from `project1` will still use `res1` while queries from
+  /// `project2` will switch to use on-demand mode.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteAssignment(request:options:)``
   public func deleteAssignment(request: DeleteAssignmentRequest) async throws {
     try await self.deleteAssignment(request: request, options: .init())
   }
@@ -1083,6 +1681,27 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a assignment. No expansion will happen.
+  ///
+  /// Example:
+  ///
+  /// * Organization `organizationA` contains two projects, `project1` and
+  ///   `project2`.
+  /// * Reservation `res1` exists and was created previously.
+  /// * CreateAssignment was used previously to define the following
+  ///   associations between entities and reservations: `<organizationA, res1>`
+  ///   and `<project1, res1>`
+  ///
+  /// In this example, deletion of the `<organizationA, res1>` assignment won't
+  /// affect the other assignment `<project1, res1>`. After said deletion,
+  /// queries from `project1` will still use `res1` while queries from
+  /// `project2` will switch to use on-demand mode.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteAssignment(request:options:)``
   public func deleteAssignment(
     name: Swift.String,
   ) async throws {
@@ -1092,6 +1711,35 @@ extension Clients.ReservationServiceProtocol {
     try await self.deleteAssignment(request: request)
   }
 
+  /// Deprecated: Looks up assignments for a specified resource for a particular
+  /// region. If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// **Note** "-" cannot be used for projects
+  /// nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAssignments(request:options:)``
   @available(*, deprecated)
   public func searchAssignments(request: SearchAssignmentsRequest) async throws
     -> GoogleBigQueryReservationV1.SearchAssignmentsResponse
@@ -1106,6 +1754,35 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deprecated: Looks up assignments for a specified resource for a particular
+  /// region. If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// **Note** "-" cannot be used for projects
+  /// nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAssignments(request:options:)``
   @available(*, deprecated)
   public func searchAssignmentsByItems(
     request: SearchAssignmentsRequest
@@ -1138,6 +1815,10 @@ extension Clients.ReservationServiceProtocol {
   /// nor locations.
   ///
   /// @Snippet(path: "ReservationService_SearchAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAssignments(request:options:)``
   @available(*, deprecated)
   public func searchAssignmentsByItems(
     request: SearchAssignmentsRequest, options: GoogleGax.RequestOptions
@@ -1153,6 +1834,35 @@ extension Clients.ReservationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Deprecated: Looks up assignments for a specified resource for a particular
+  /// region. If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// **Note** "-" cannot be used for projects
+  /// nor locations.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAssignments(request:options:)``
   @available(*, deprecated)
   public func searchAssignmentsByItems(
     parent: Swift.String,
@@ -1165,6 +1875,32 @@ extension Clients.ReservationServiceProtocol {
     return self.searchAssignmentsByItems(request: request)
   }
 
+  /// Looks up assignments for a specified resource for a particular region.
+  /// If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAllAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAllAssignments(request:options:)``
   public func searchAllAssignments(request: SearchAllAssignmentsRequest) async throws
     -> GoogleBigQueryReservationV1.SearchAllAssignmentsResponse
   {
@@ -1177,6 +1913,32 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Looks up assignments for a specified resource for a particular region.
+  /// If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAllAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAllAssignments(request:options:)``
   public func searchAllAssignmentsByItems(
     request: SearchAllAssignmentsRequest
   ) -> some AsyncSequence<Assignment, any Swift.Error> & Sendable {
@@ -1205,6 +1967,10 @@ extension Clients.ReservationServiceProtocol {
   ///    `projects/*/locations/*reservations/*`.
   ///
   /// @Snippet(path: "ReservationService_SearchAllAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAllAssignments(request:options:)``
   public func searchAllAssignmentsByItems(
     request: SearchAllAssignmentsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Assignment, any Swift.Error> & Sendable {
@@ -1219,6 +1985,32 @@ extension Clients.ReservationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Looks up assignments for a specified resource for a particular region.
+  /// If the request is about a project:
+  ///
+  /// 1. Assignments created on the project will be returned if they exist.
+  /// 2. Otherwise assignments created on the closest ancestor will be
+  ///    returned.
+  /// 3. Assignments for different JobTypes will all be returned.
+  ///
+  /// The same logic applies if the request is about a folder.
+  ///
+  /// If the request is about an organization, then assignments created on the
+  /// organization will be returned (organization doesn't have ancestors).
+  ///
+  /// Comparing to ListAssignments, there are some behavior
+  /// differences:
+  ///
+  /// 1. permission on the assignee will be verified in this API.
+  /// 2. Hierarchy lookup (project->folder->organization) happens in this API.
+  /// 3. Parent here is `projects/*/locations/*`, instead of
+  ///    `projects/*/locations/*reservations/*`.
+  ///
+  /// @Snippet(path: "ReservationService_SearchAllAssignments")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/searchAllAssignments(request:options:)``
   public func searchAllAssignmentsByItems(
     parent: Swift.String,
     query: Swift.String,
@@ -1230,6 +2022,17 @@ extension Clients.ReservationServiceProtocol {
     return self.searchAllAssignmentsByItems(request: request)
   }
 
+  /// Moves an assignment under a new reservation.
+  ///
+  /// This differs from removing an existing assignment and recreating a new one
+  /// by providing a transactional change that ensures an assignee always has an
+  /// associated reservation.
+  ///
+  /// @Snippet(path: "ReservationService_MoveAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/moveAssignment(request:options:)``
   public func moveAssignment(request: MoveAssignmentRequest) async throws
     -> GoogleBigQueryReservationV1.Assignment
   {
@@ -1242,6 +2045,17 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Moves an assignment under a new reservation.
+  ///
+  /// This differs from removing an existing assignment and recreating a new one
+  /// by providing a transactional change that ensures an assignee always has an
+  /// associated reservation.
+  ///
+  /// @Snippet(path: "ReservationService_MoveAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/moveAssignment(request:options:)``
   public func moveAssignment(
     name: Swift.String,
     destinationId: Swift.String,
@@ -1253,6 +2067,15 @@ extension Clients.ReservationServiceProtocol {
     return try await self.moveAssignment(request: request)
   }
 
+  /// Updates an existing assignment.
+  ///
+  /// Only the `priority` field can be updated.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateAssignment(request:options:)``
   public func updateAssignment(request: UpdateAssignmentRequest) async throws
     -> GoogleBigQueryReservationV1.Assignment
   {
@@ -1265,6 +2088,15 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing assignment.
+  ///
+  /// Only the `priority` field can be updated.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateAssignment")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateAssignment(request:options:)``
   public func updateAssignment(
     assignment: Assignment?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1276,6 +2108,13 @@ extension Clients.ReservationServiceProtocol {
     return try await self.updateAssignment(request: request)
   }
 
+  /// Retrieves a BI reservation.
+  ///
+  /// @Snippet(path: "ReservationService_GetBiReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getBiReservation(request:options:)``
   public func getBiReservation(request: GetBiReservationRequest) async throws
     -> GoogleBigQueryReservationV1.BiReservation
   {
@@ -1288,6 +2127,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves a BI reservation.
+  ///
+  /// @Snippet(path: "ReservationService_GetBiReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getBiReservation(request:options:)``
   public func getBiReservation(
     name: Swift.String,
   ) async throws -> GoogleBigQueryReservationV1.BiReservation {
@@ -1297,6 +2143,20 @@ extension Clients.ReservationServiceProtocol {
     return try await self.getBiReservation(request: request)
   }
 
+  /// Updates a BI reservation.
+  ///
+  /// Only fields specified in the `field_mask` are updated.
+  ///
+  /// A singleton BI reservation always exists with default size 0.
+  /// In order to reserve BI capacity it needs to be updated to an amount
+  /// greater than 0. In order to release BI capacity reservation size
+  /// must be set to 0.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateBiReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateBiReservation(request:options:)``
   public func updateBiReservation(request: UpdateBiReservationRequest) async throws
     -> GoogleBigQueryReservationV1.BiReservation
   {
@@ -1309,6 +2169,20 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a BI reservation.
+  ///
+  /// Only fields specified in the `field_mask` are updated.
+  ///
+  /// A singleton BI reservation always exists with default size 0.
+  /// In order to reserve BI capacity it needs to be updated to an amount
+  /// greater than 0. In order to release BI capacity reservation size
+  /// must be set to 0.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateBiReservation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateBiReservation(request:options:)``
   public func updateBiReservation(
     biReservation: BiReservation?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1320,6 +2194,27 @@ extension Clients.ReservationServiceProtocol {
     return try await self.updateBiReservation(request: request)
   }
 
+  /// Gets the access control policy for a resource.
+  /// May return:
+  ///
+  /// * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
+  ///   permission to view it.
+  /// * An empty policy if the resource exists but doesn't have a set policy.
+  ///
+  /// Supported resources are:
+  /// - Reservations
+  /// - ReservationAssignments
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `bigqueryreservation.reservations.getIamPolicy` to get policies on
+  /// reservations.
+  ///
+  /// @Snippet(path: "ReservationService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1332,6 +2227,27 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource.
+  /// May return:
+  ///
+  /// * A`NOT_FOUND` error if the resource doesn't exist or you don't have the
+  ///   permission to view it.
+  /// * An empty policy if the resource exists but doesn't have a set policy.
+  ///
+  /// Supported resources are:
+  /// - Reservations
+  /// - ReservationAssignments
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `bigqueryreservation.reservations.getIamPolicy` to get policies on
+  /// reservations.
+  ///
+  /// @Snippet(path: "ReservationService_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getIamPolicy(request:options:)``
   public func getIamPolicy(
     resource: Swift.String,
   ) async throws -> GoogleIAMV1.Policy {
@@ -1341,6 +2257,22 @@ extension Clients.ReservationServiceProtocol {
     return try await self.getIamPolicy(request: request)
   }
 
+  /// Sets an access control policy for a resource. Replaces any existing
+  /// policy.
+  ///
+  /// Supported resources are:
+  /// - Reservations
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `bigqueryreservation.reservations.setIamPolicy` to set policies on
+  /// reservations.
+  ///
+  /// @Snippet(path: "ReservationService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -1353,6 +2285,22 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets an access control policy for a resource. Replaces any existing
+  /// policy.
+  ///
+  /// Supported resources are:
+  /// - Reservations
+  ///
+  /// To call this method, you must have the following Google IAM permissions:
+  ///
+  /// - `bigqueryreservation.reservations.setIamPolicy` to set policies on
+  /// reservations.
+  ///
+  /// @Snippet(path: "ReservationService_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/setIamPolicy(request:options:)``
   public func setIamPolicy(
     resource: Swift.String,
     policy: GoogleIAMV1.Policy?,
@@ -1364,6 +2312,19 @@ extension Clients.ReservationServiceProtocol {
     return try await self.setIamPolicy(request: request)
   }
 
+  /// Gets your permissions on a resource. Returns an empty set of permissions if
+  /// the resource doesn't exist.
+  ///
+  /// Supported resources are:
+  /// - Reservations
+  ///
+  /// No Google IAM permissions are required to call this method.
+  ///
+  /// @Snippet(path: "ReservationService_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -1376,6 +2337,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new reservation group.
+  ///
+  /// @Snippet(path: "ReservationService_CreateReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/createReservationGroup(request:options:)``
   public func createReservationGroup(request: CreateReservationGroupRequest) async throws
     -> GoogleBigQueryReservationV1.ReservationGroup
   {
@@ -1388,6 +2356,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information about the reservation group.
+  ///
+  /// @Snippet(path: "ReservationService_GetReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getReservationGroup(request:options:)``
   public func getReservationGroup(request: GetReservationGroupRequest) async throws
     -> GoogleBigQueryReservationV1.ReservationGroup
   {
@@ -1400,6 +2375,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns information about the reservation group.
+  ///
+  /// @Snippet(path: "ReservationService_GetReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/getReservationGroup(request:options:)``
   public func getReservationGroup(
     name: Swift.String,
   ) async throws -> GoogleBigQueryReservationV1.ReservationGroup {
@@ -1409,6 +2391,15 @@ extension Clients.ReservationServiceProtocol {
     return try await self.getReservationGroup(request: request)
   }
 
+  /// Deletes a reservation.
+  /// Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
+  /// assignments.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteReservationGroup(request:options:)``
   public func deleteReservationGroup(request: DeleteReservationGroupRequest) async throws {
     try await self.deleteReservationGroup(request: request, options: .init())
   }
@@ -1419,6 +2410,15 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a reservation.
+  /// Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has
+  /// assignments.
+  ///
+  /// @Snippet(path: "ReservationService_DeleteReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/deleteReservationGroup(request:options:)``
   public func deleteReservationGroup(
     name: Swift.String,
   ) async throws {
@@ -1428,6 +2428,13 @@ extension Clients.ReservationServiceProtocol {
     try await self.deleteReservationGroup(request: request)
   }
 
+  /// Lists all the reservation groups for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservationGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservationGroups(request:options:)``
   public func listReservationGroups(request: ListReservationGroupsRequest) async throws
     -> GoogleBigQueryReservationV1.ListReservationGroupsResponse
   {
@@ -1440,6 +2447,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists all the reservation groups for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservationGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservationGroups(request:options:)``
   public func listReservationGroupsByItems(
     request: ListReservationGroupsRequest
   ) -> some AsyncSequence<ReservationGroup, any Swift.Error> & Sendable {
@@ -1449,6 +2463,10 @@ extension Clients.ReservationServiceProtocol {
   /// Lists all the reservation groups for the project in the specified location.
   ///
   /// @Snippet(path: "ReservationService_ListReservationGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservationGroups(request:options:)``
   public func listReservationGroupsByItems(
     request: ListReservationGroupsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ReservationGroup, any Swift.Error> & Sendable {
@@ -1463,6 +2481,13 @@ extension Clients.ReservationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists all the reservation groups for the project in the specified location.
+  ///
+  /// @Snippet(path: "ReservationService_ListReservationGroups")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/listReservationGroups(request:options:)``
   public func listReservationGroupsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ReservationGroup, any Swift.Error> & Sendable {
@@ -1472,6 +2497,13 @@ extension Clients.ReservationServiceProtocol {
     return self.listReservationGroupsByItems(request: request)
   }
 
+  /// Updates an existing reservation group resource.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateReservationGroup(request:options:)``
   public func updateReservationGroup(request: UpdateReservationGroupRequest) async throws
     -> GoogleBigQueryReservationV1.ReservationGroup
   {
@@ -1484,6 +2516,13 @@ extension Clients.ReservationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates an existing reservation group resource.
+  ///
+  /// @Snippet(path: "ReservationService_UpdateReservationGroup")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ReservationServiceClient/updateReservationGroup(request:options:)``
   public func updateReservationGroup(
     reservationGroup: ReservationGroup?,
     updateMask: GoogleWKT.WKTFieldMask?,

@@ -24,6 +24,10 @@
   /// Service for the `interconnectAttachmentGroups` resource.
   ///
   /// @Snippet(path: "interconnectAttachmentGroupsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/InterconnectAttachmentGroupsProtocol``
   public final class InterconnectAttachmentGroupsClient: Clients
       .InterconnectAttachmentGroupsProtocol, Sendable
   {
@@ -47,6 +51,13 @@
     /// Deletes the specified InterconnectAttachmentGroup in the given scope
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:interconnectAttachmentGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -61,6 +72,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:interconnectAttachmentGroup:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: InterconnectAttachmentGroupsClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -103,6 +121,11 @@
     /// scope.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:interconnectAttachmentGroup:)``
+    /// - ``get(request:)``
     public func `get`(
       request: InterconnectAttachmentGroupsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroup {
@@ -113,6 +136,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: InterconnectAttachmentGroupsClient.GetIamPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -124,6 +152,11 @@
     /// InterconnectAttachmentGroup resource.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_getOperationalStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getOperationalStatus(project:interconnectAttachmentGroup:)``
+    /// - ``getOperationalStatus(request:)``
     public func getOperationalStatus(
       request: InterconnectAttachmentGroupsClient.GetOperationalStatusRequest,
       options: GoogleGax.RequestOptions
@@ -136,6 +169,13 @@
     /// scope using the parameters that are included in the request.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -151,6 +191,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: InterconnectAttachmentGroupsClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -192,6 +239,13 @@
     /// Lists the InterconnectAttachmentGroups for a project in the given scope.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse {
@@ -204,6 +258,13 @@
     /// patch format and processing rules.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patchPollingUntilDone(project:interconnectAttachmentGroup:body:)``
+    /// - ``patchPollingUntilDone(request:)``
+    /// - ``patchPollingUntilDone(request:options:)``
     public func patch(
       request: InterconnectAttachmentGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -221,6 +282,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``patch(request:)``
+    /// - ``patch(request:options:)``
+    /// - ``patchPollingUntilDone(project:interconnectAttachmentGroup:body:)``
+    /// - ``patchPollingUntilDone(request:)``
     public func patchPollingUntilDone(
       request: InterconnectAttachmentGroupsClient.PatchRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -263,6 +331,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: InterconnectAttachmentGroupsClient.SetIamPolicyRequest,
       options: GoogleGax.RequestOptions
@@ -273,6 +346,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: InterconnectAttachmentGroupsClient.TestIamPermissionsRequest,
       options: GoogleGax.RequestOptions
@@ -381,6 +459,13 @@
 
   // Default implementations
   extension Clients.InterconnectAttachmentGroupsProtocol {
+    /// Deletes the specified InterconnectAttachmentGroup in the given scope
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/delete(request:options:)``
     public func delete(request: InterconnectAttachmentGroupsClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -393,6 +478,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified InterconnectAttachmentGroup in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: InterconnectAttachmentGroupsClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -405,6 +502,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified InterconnectAttachmentGroup in the given scope
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       interconnectAttachmentGroup: Swift.String,
@@ -416,6 +525,14 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified InterconnectAttachmentGroup resource in the given
+    /// scope.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/get(request:options:)``
     public func `get`(request: InterconnectAttachmentGroupsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.InterconnectAttachmentGroup
     {
@@ -428,6 +545,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified InterconnectAttachmentGroup resource in the given
+    /// scope.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       interconnectAttachmentGroup: Swift.String,
@@ -439,6 +564,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: InterconnectAttachmentGroupsClient.GetIamPolicyRequest)
       async throws -> GoogleCloudComputeV1.Policy
     {
@@ -452,6 +585,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -463,6 +604,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Returns the InterconnectAttachmentStatuses for the specified
+    /// InterconnectAttachmentGroup resource.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_getOperationalStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/getOperationalStatus(request:options:)``
     public func getOperationalStatus(
       request: InterconnectAttachmentGroupsClient.GetOperationalStatusRequest
     ) async throws -> GoogleCloudComputeV1.InterconnectAttachmentGroupsGetOperationalStatusResponse
@@ -478,6 +627,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the InterconnectAttachmentStatuses for the specified
+    /// InterconnectAttachmentGroup resource.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_getOperationalStatus")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/getOperationalStatus(request:options:)``
     public func getOperationalStatus(
       project: Swift.String,
       interconnectAttachmentGroup: Swift.String,
@@ -490,6 +647,14 @@
       return try await self.getOperationalStatus(request: request)
     }
 
+    /// Creates a InterconnectAttachmentGroup in the specified project in the given
+    /// scope using the parameters that are included in the request.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/insert(request:options:)``
     public func insert(request: InterconnectAttachmentGroupsClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -502,6 +667,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a InterconnectAttachmentGroup in the specified project in the given
+    /// scope using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: InterconnectAttachmentGroupsClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -514,6 +692,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a InterconnectAttachmentGroup in the specified project in the given
+    /// scope using the parameters that are included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: InterconnectAttachmentGroup?,
@@ -525,6 +716,13 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Lists the InterconnectAttachmentGroups for a project in the given scope.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/list(request:options:)``
     public func list(request: InterconnectAttachmentGroupsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.InterconnectAttachmentGroupsListResponse
     {
@@ -537,6 +735,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the InterconnectAttachmentGroups for a project in the given scope.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/list(request:options:)``
     public func listByItems(
       request: InterconnectAttachmentGroupsClient.ListRequest
     ) -> some AsyncSequence<InterconnectAttachmentGroup, any Swift.Error> & Sendable {
@@ -546,6 +751,10 @@
     /// Lists the InterconnectAttachmentGroups for a project in the given scope.
     ///
     /// @Snippet(path: "interconnectAttachmentGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/list(request:options:)``
     public func listByItems(
       request: InterconnectAttachmentGroupsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<InterconnectAttachmentGroup, any Swift.Error> & Sendable {
@@ -560,6 +769,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the InterconnectAttachmentGroups for a project in the given scope.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<InterconnectAttachmentGroup, any Swift.Error> & Sendable {
@@ -569,6 +785,16 @@
       return self.listByItems(request: request)
     }
 
+    /// Patches the specified InterconnectAttachmentGroup resource with the data
+    /// included in the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/patch(request:options:)``
     public func patch(request: InterconnectAttachmentGroupsClient.PatchRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -581,6 +807,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified InterconnectAttachmentGroup resource with the data
+    /// included in the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       request: InterconnectAttachmentGroupsClient.PatchRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -593,6 +834,21 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Patches the specified InterconnectAttachmentGroup resource with the data
+    /// included in the request. This method supports PATCH
+    /// semantics and usesJSON merge
+    /// patch format and processing rules.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_patch")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/patchPollingUntilDone(request:options:)``
     public func patchPollingUntilDone(
       project: Swift.String,
       interconnectAttachmentGroup: Swift.String,
@@ -606,6 +862,14 @@
       return try await self.patchPollingUntilDone(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: InterconnectAttachmentGroupsClient.SetIamPolicyRequest)
       async throws -> GoogleCloudComputeV1.Policy
     {
@@ -619,6 +883,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       resource: Swift.String,
@@ -632,6 +904,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       request: InterconnectAttachmentGroupsClient.TestIamPermissionsRequest
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -645,6 +924,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "interconnectAttachmentGroups_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``InterconnectAttachmentGroupsClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -658,6 +944,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

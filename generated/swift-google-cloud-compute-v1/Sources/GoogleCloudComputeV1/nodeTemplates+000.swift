@@ -24,6 +24,10 @@
   /// Service for the `nodeTemplates` resource.
   ///
   /// @Snippet(path: "nodeTemplatesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NodeTemplatesProtocol``
   public final class NodeTemplatesClient: Clients.NodeTemplatesProtocol, Sendable {
     let inner: any Clients.NodeTemplatesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeTemplateAggregatedList {
@@ -56,6 +67,13 @@
     /// Deletes the specified NodeTemplate resource.
     ///
     /// @Snippet(path: "nodeTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:region:nodeTemplate:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: NodeTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -70,6 +88,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:region:nodeTemplate:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: NodeTemplatesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified node template.
     ///
     /// @Snippet(path: "nodeTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:region:nodeTemplate:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NodeTemplatesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeTemplate {
@@ -122,6 +152,11 @@
     /// policy or resource exists.
     ///
     /// @Snippet(path: "nodeTemplates_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(project:region:resource:)``
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: NodeTemplatesClient.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -132,6 +167,13 @@
     /// included in the request.
     ///
     /// @Snippet(path: "nodeTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: NodeTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -147,6 +189,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "nodeTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:region:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: NodeTemplatesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -190,6 +239,13 @@
     /// project.
     ///
     /// @Snippet(path: "nodeTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:region:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeTemplateList {
@@ -200,6 +256,11 @@
     /// Replaces any existing policy.
     ///
     /// @Snippet(path: "nodeTemplates_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(project:region:resource:body:)``
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: NodeTemplatesClient.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Policy {
@@ -209,6 +270,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "nodeTemplates_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:region:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: NodeTemplatesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -296,6 +362,16 @@
 
   // Default implementations
   extension Clients.NodeTemplatesProtocol {
+    /// Retrieves an aggregated list of node templates.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: NodeTemplatesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.NodeTemplateAggregatedList
     {
@@ -308,6 +384,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of node templates.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NodeTemplatesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), any Swift.Error> & Sendable {
@@ -320,6 +406,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NodeTemplatesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), any Swift.Error> & Sendable {
@@ -334,6 +424,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of node templates.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTemplates_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NodeTemplatesScopedList), any Swift.Error> & Sendable {
@@ -343,6 +443,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified NodeTemplate resource.
+    ///
+    /// @Snippet(path: "nodeTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/delete(request:options:)``
     public func delete(request: NodeTemplatesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -355,6 +462,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NodeTemplate resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: NodeTemplatesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -367,6 +486,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified NodeTemplate resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeTemplates_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -380,6 +511,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified node template.
+    ///
+    /// @Snippet(path: "nodeTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/get(request:options:)``
     public func `get`(request: NodeTemplatesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NodeTemplate
     {
@@ -392,6 +530,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified node template.
+    ///
+    /// @Snippet(path: "nodeTemplates_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       region: Swift.String,
@@ -405,6 +550,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "nodeTemplates_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: NodeTemplatesClient.GetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -417,6 +570,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. May be empty if no such
+    /// policy or resource exists.
+    ///
+    /// @Snippet(path: "nodeTemplates_getIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/getIamPolicy(request:options:)``
     public func getIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -430,6 +591,14 @@
       return try await self.getIamPolicy(request: request)
     }
 
+    /// Creates a NodeTemplate resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// @Snippet(path: "nodeTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/insert(request:options:)``
     public func insert(request: NodeTemplatesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -442,6 +611,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a NodeTemplate resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: NodeTemplatesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -454,6 +636,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a NodeTemplate resource in the specified project using the data
+    /// included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "nodeTemplates_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       region: Swift.String,
@@ -467,6 +662,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of node templates available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/list(request:options:)``
     public func list(request: NodeTemplatesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NodeTemplateList
     {
@@ -479,6 +682,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of node templates available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/list(request:options:)``
     public func listByItems(
       request: NodeTemplatesClient.ListRequest
     ) -> some AsyncSequence<NodeTemplate, any Swift.Error> & Sendable {
@@ -489,6 +700,10 @@
     /// project.
     ///
     /// @Snippet(path: "nodeTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/list(request:options:)``
     public func listByItems(
       request: NodeTemplatesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NodeTemplate, any Swift.Error> & Sendable {
@@ -502,6 +717,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of node templates available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTemplates_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       region: Swift.String,
@@ -513,6 +736,14 @@
       return self.listByItems(request: request)
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "nodeTemplates_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: NodeTemplatesClient.SetIamPolicyRequest) async throws
       -> GoogleCloudComputeV1.Policy
     {
@@ -525,6 +756,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource.
+    /// Replaces any existing policy.
+    ///
+    /// @Snippet(path: "nodeTemplates_setIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/setIamPolicy(request:options:)``
     public func setIamPolicy(
       project: Swift.String,
       region: Swift.String,
@@ -540,6 +779,13 @@
       return try await self.setIamPolicy(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "nodeTemplates_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: NodeTemplatesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -552,6 +798,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "nodeTemplates_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTemplatesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       region: Swift.String,
@@ -567,6 +820,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified region-specific Operations resource.
     public func getOperation(request: RegionOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

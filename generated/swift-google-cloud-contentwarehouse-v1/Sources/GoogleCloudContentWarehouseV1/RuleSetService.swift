@@ -24,6 +24,10 @@ import Foundation
 /// Service to manage customer specific RuleSets.
 ///
 /// @Snippet(path: "RuleSetServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/RuleSetServiceProtocol``
 public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendable {
   let inner: any Clients.RuleSetServiceStub
 
@@ -40,6 +44,11 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   /// Creates a ruleset.
   ///
   /// @Snippet(path: "RuleSetService_CreateRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createRuleSet(parent:ruleSet:)``
+  /// - ``createRuleSet(request:)``
   public func createRuleSet(
     request: CreateRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -49,6 +58,11 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   /// Gets a ruleset. Returns NOT_FOUND if the ruleset does not exist.
   ///
   /// @Snippet(path: "RuleSetService_GetRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getRuleSet(name:)``
+  /// - ``getRuleSet(request:)``
   public func getRuleSet(
     request: GetRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -59,6 +73,11 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   /// is non-empty and does not equal the existing name.
   ///
   /// @Snippet(path: "RuleSetService_UpdateRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateRuleSet(name:ruleSet:)``
+  /// - ``updateRuleSet(request:)``
   public func updateRuleSet(
     request: UpdateRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -68,6 +87,11 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   /// Deletes a ruleset. Returns NOT_FOUND if the document does not exist.
   ///
   /// @Snippet(path: "RuleSetService_DeleteRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteRuleSet(name:)``
+  /// - ``deleteRuleSet(request:)``
   public func deleteRuleSet(
     request: DeleteRuleSetRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -77,6 +101,13 @@ public final class RuleSetServiceClient: Clients.RuleSetServiceProtocol, Sendabl
   /// Lists rulesets.
   ///
   /// @Snippet(path: "RuleSetService_ListRuleSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listRuleSets(request:)``
+  /// - ``listRuleSetsByItems(parent:)``
+  /// - ``listRuleSetsByItems(request:)``
+  /// - ``listRuleSetsByItems(request:options:)``
   public func listRuleSets(
     request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse {
@@ -131,6 +162,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.RuleSetServiceProtocol {
+  /// Creates a ruleset.
+  ///
+  /// @Snippet(path: "RuleSetService_CreateRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/createRuleSet(request:options:)``
   public func createRuleSet(request: CreateRuleSetRequest) async throws
     -> GoogleCloudContentWarehouseV1.RuleSet
   {
@@ -143,6 +181,13 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a ruleset.
+  ///
+  /// @Snippet(path: "RuleSetService_CreateRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/createRuleSet(request:options:)``
   public func createRuleSet(
     parent: Swift.String,
     ruleSet: RuleSet?,
@@ -154,6 +199,13 @@ extension Clients.RuleSetServiceProtocol {
     return try await self.createRuleSet(request: request)
   }
 
+  /// Gets a ruleset. Returns NOT_FOUND if the ruleset does not exist.
+  ///
+  /// @Snippet(path: "RuleSetService_GetRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/getRuleSet(request:options:)``
   public func getRuleSet(request: GetRuleSetRequest) async throws
     -> GoogleCloudContentWarehouseV1.RuleSet
   {
@@ -166,6 +218,13 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets a ruleset. Returns NOT_FOUND if the ruleset does not exist.
+  ///
+  /// @Snippet(path: "RuleSetService_GetRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/getRuleSet(request:options:)``
   public func getRuleSet(
     name: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.RuleSet {
@@ -175,6 +234,14 @@ extension Clients.RuleSetServiceProtocol {
     return try await self.getRuleSet(request: request)
   }
 
+  /// Updates a ruleset. Returns INVALID_ARGUMENT if the name of the ruleset
+  /// is non-empty and does not equal the existing name.
+  ///
+  /// @Snippet(path: "RuleSetService_UpdateRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/updateRuleSet(request:options:)``
   public func updateRuleSet(request: UpdateRuleSetRequest) async throws
     -> GoogleCloudContentWarehouseV1.RuleSet
   {
@@ -187,6 +254,14 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a ruleset. Returns INVALID_ARGUMENT if the name of the ruleset
+  /// is non-empty and does not equal the existing name.
+  ///
+  /// @Snippet(path: "RuleSetService_UpdateRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/updateRuleSet(request:options:)``
   public func updateRuleSet(
     name: Swift.String,
     ruleSet: RuleSet?,
@@ -198,6 +273,13 @@ extension Clients.RuleSetServiceProtocol {
     return try await self.updateRuleSet(request: request)
   }
 
+  /// Deletes a ruleset. Returns NOT_FOUND if the document does not exist.
+  ///
+  /// @Snippet(path: "RuleSetService_DeleteRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/deleteRuleSet(request:options:)``
   public func deleteRuleSet(request: DeleteRuleSetRequest) async throws {
     try await self.deleteRuleSet(request: request, options: .init())
   }
@@ -208,6 +290,13 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a ruleset. Returns NOT_FOUND if the document does not exist.
+  ///
+  /// @Snippet(path: "RuleSetService_DeleteRuleSet")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/deleteRuleSet(request:options:)``
   public func deleteRuleSet(
     name: Swift.String,
   ) async throws {
@@ -217,6 +306,13 @@ extension Clients.RuleSetServiceProtocol {
     try await self.deleteRuleSet(request: request)
   }
 
+  /// Lists rulesets.
+  ///
+  /// @Snippet(path: "RuleSetService_ListRuleSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/listRuleSets(request:options:)``
   public func listRuleSets(request: ListRuleSetsRequest) async throws
     -> GoogleCloudContentWarehouseV1.ListRuleSetsResponse
   {
@@ -229,6 +325,13 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists rulesets.
+  ///
+  /// @Snippet(path: "RuleSetService_ListRuleSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/listRuleSets(request:options:)``
   public func listRuleSetsByItems(
     request: ListRuleSetsRequest
   ) -> some AsyncSequence<RuleSet, any Swift.Error> & Sendable {
@@ -238,6 +341,10 @@ extension Clients.RuleSetServiceProtocol {
   /// Lists rulesets.
   ///
   /// @Snippet(path: "RuleSetService_ListRuleSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/listRuleSets(request:options:)``
   public func listRuleSetsByItems(
     request: ListRuleSetsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<RuleSet, any Swift.Error> & Sendable {
@@ -252,6 +359,13 @@ extension Clients.RuleSetServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists rulesets.
+  ///
+  /// @Snippet(path: "RuleSetService_ListRuleSets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``RuleSetServiceClient/listRuleSets(request:options:)``
   public func listRuleSetsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<RuleSet, any Swift.Error> & Sendable {
@@ -261,6 +375,9 @@ extension Clients.RuleSetServiceProtocol {
     return self.listRuleSetsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -273,6 +390,9 @@ extension Clients.RuleSetServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

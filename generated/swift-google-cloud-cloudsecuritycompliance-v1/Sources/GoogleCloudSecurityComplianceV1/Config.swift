@@ -27,6 +27,10 @@ import Foundation
 /// configurations.
 ///
 /// @Snippet(path: "ConfigQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/ConfigProtocol``
 public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   let inner: any Clients.ConfigStub
 
@@ -46,6 +50,13 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// This method supports pagination.
   ///
   /// @Snippet(path: "Config_ListFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listFrameworks(request:)``
+  /// - ``listFrameworksByItems(parent:)``
+  /// - ``listFrameworksByItems(request:)``
+  /// - ``listFrameworksByItems(request:options:)``
   public func listFrameworks(
     request: ListFrameworksRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse {
@@ -59,6 +70,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// the request.
   ///
   /// @Snippet(path: "Config_GetFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getFramework(name:)``
+  /// - ``getFramework(request:)``
   public func getFramework(
     request: GetFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -70,6 +86,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// Google.
   ///
   /// @Snippet(path: "Config_CreateFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createFramework(parent:framework:frameworkId:)``
+  /// - ``createFramework(request:)``
   public func createFramework(
     request: CreateFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -90,6 +111,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// A successful update creates a new version of the framework.
   ///
   /// @Snippet(path: "Config_UpdateFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateFramework(framework:updateMask:)``
+  /// - ``updateFramework(request:)``
   public func updateFramework(
     request: UpdateFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -105,6 +131,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// - You can't restore a deleted framework. This action is permanent.
   ///
   /// @Snippet(path: "Config_DeleteFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteFramework(name:)``
+  /// - ``deleteFramework(request:)``
   public func deleteFramework(
     request: DeleteFrameworkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -117,6 +148,13 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// This method supports pagination.
   ///
   /// @Snippet(path: "Config_ListCloudControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listCloudControls(request:)``
+  /// - ``listCloudControlsByItems(parent:)``
+  /// - ``listCloudControlsByItems(request:)``
+  /// - ``listCloudControlsByItems(request:options:)``
   public func listCloudControls(
     request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse {
@@ -132,6 +170,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// the request.
   ///
   /// @Snippet(path: "Config_GetCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getCloudControl(name:)``
+  /// - ``getCloudControl(request:)``
   public func getCloudControl(
     request: GetCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -144,6 +187,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// Google.
   ///
   /// @Snippet(path: "Config_CreateCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createCloudControl(parent:cloudControl:cloudControlId:)``
+  /// - ``createCloudControl(request:)``
   public func createCloudControl(
     request: CreateCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -164,6 +212,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// A successful update creates a new version of the cloud control.
   ///
   /// @Snippet(path: "Config_UpdateCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateCloudControl(cloudControl:updateMask:)``
+  /// - ``updateCloudControl(request:)``
   public func updateCloudControl(
     request: UpdateCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -180,6 +233,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// - You can't restore a deleted cloud control. This action is permanent.
   ///
   /// @Snippet(path: "Config_DeleteCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteCloudControl(name:)``
+  /// - ``deleteCloudControl(request:)``
   public func deleteCloudControl(
     request: DeleteCloudControlRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -206,6 +264,12 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Config_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -215,6 +279,10 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Config_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -226,6 +294,13 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Config_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -248,6 +323,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Config_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -259,6 +339,11 @@ public final class ConfigClient: Clients.ConfigProtocol, Sendable {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Config_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -352,6 +437,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.ConfigProtocol {
+  /// Lists the frameworks (both built-in and custom) that are available within
+  /// the parent resource. The latest major version of each framework is
+  /// returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listFrameworks(request:options:)``
   public func listFrameworks(request: ListFrameworksRequest) async throws
     -> GoogleCloudSecurityComplianceV1.ListFrameworksResponse
   {
@@ -364,6 +459,16 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the frameworks (both built-in and custom) that are available within
+  /// the parent resource. The latest major version of each framework is
+  /// returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listFrameworks(request:options:)``
   public func listFrameworksByItems(
     request: ListFrameworksRequest
   ) -> some AsyncSequence<Framework, any Swift.Error> & Sendable {
@@ -376,6 +481,10 @@ extension Clients.ConfigProtocol {
   /// This method supports pagination.
   ///
   /// @Snippet(path: "Config_ListFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listFrameworks(request:options:)``
   public func listFrameworksByItems(
     request: ListFrameworksRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Framework, any Swift.Error> & Sendable {
@@ -390,6 +499,16 @@ extension Clients.ConfigProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the frameworks (both built-in and custom) that are available within
+  /// the parent resource. The latest major version of each framework is
+  /// returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListFrameworks")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listFrameworks(request:options:)``
   public func listFrameworksByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Framework, any Swift.Error> & Sendable {
@@ -399,6 +518,17 @@ extension Clients.ConfigProtocol {
     return self.listFrameworksByItems(request: request)
   }
 
+  /// Gets details about a framework.
+  /// This method retrieves the latest major version of the framework.
+  ///
+  /// To retrieve a specific major version, include `major_revision_id` in
+  /// the request.
+  ///
+  /// @Snippet(path: "Config_GetFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/getFramework(request:options:)``
   public func getFramework(request: GetFrameworkRequest) async throws
     -> GoogleCloudSecurityComplianceV1.Framework
   {
@@ -411,6 +541,17 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a framework.
+  /// This method retrieves the latest major version of the framework.
+  ///
+  /// To retrieve a specific major version, include `major_revision_id` in
+  /// the request.
+  ///
+  /// @Snippet(path: "Config_GetFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/getFramework(request:options:)``
   public func getFramework(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityComplianceV1.Framework {
@@ -420,6 +561,15 @@ extension Clients.ConfigProtocol {
     return try await self.getFramework(request: request)
   }
 
+  /// Creates a custom framework in a given parent resource.
+  /// You can't create built-in frameworks because those are managed by
+  /// Google.
+  ///
+  /// @Snippet(path: "Config_CreateFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/createFramework(request:options:)``
   public func createFramework(request: CreateFrameworkRequest) async throws
     -> GoogleCloudSecurityComplianceV1.Framework
   {
@@ -432,6 +582,15 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a custom framework in a given parent resource.
+  /// You can't create built-in frameworks because those are managed by
+  /// Google.
+  ///
+  /// @Snippet(path: "Config_CreateFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/createFramework(request:options:)``
   public func createFramework(
     parent: Swift.String,
     framework: Framework?,
@@ -445,6 +604,24 @@ extension Clients.ConfigProtocol {
     return try await self.createFramework(request: request)
   }
 
+  /// Updates a custom framework.
+  /// This method allows for partial updates of a framework. Use the
+  /// `update_mask` to specify which fields to update. Consider the following:
+  ///
+  /// - If you provide an `update_mask`, only the fields that are specified
+  /// in the mask are updated.
+  /// - If you don't provide an `update_mask`, all the fields that are present
+  /// in the request's `framework` body are used to overwrite the existing
+  /// resource.
+  ///
+  /// You can only update frameworks with the `CUSTOM` type.
+  /// A successful update creates a new version of the framework.
+  ///
+  /// @Snippet(path: "Config_UpdateFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/updateFramework(request:options:)``
   public func updateFramework(request: UpdateFrameworkRequest) async throws
     -> GoogleCloudSecurityComplianceV1.Framework
   {
@@ -457,6 +634,24 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a custom framework.
+  /// This method allows for partial updates of a framework. Use the
+  /// `update_mask` to specify which fields to update. Consider the following:
+  ///
+  /// - If you provide an `update_mask`, only the fields that are specified
+  /// in the mask are updated.
+  /// - If you don't provide an `update_mask`, all the fields that are present
+  /// in the request's `framework` body are used to overwrite the existing
+  /// resource.
+  ///
+  /// You can only update frameworks with the `CUSTOM` type.
+  /// A successful update creates a new version of the framework.
+  ///
+  /// @Snippet(path: "Config_UpdateFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/updateFramework(request:options:)``
   public func updateFramework(
     framework: Framework?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -468,6 +663,19 @@ extension Clients.ConfigProtocol {
     return try await self.updateFramework(request: request)
   }
 
+  /// Deletes a custom framework, including all its major and
+  /// minor revisions. Consider the following:
+  ///
+  /// - You can't delete built-in frameworks. You can only delete frameworks
+  ///   with type `CUSTOM`.
+  /// - You can't delete frameworks that are deployed to a resource.
+  /// - You can't restore a deleted framework. This action is permanent.
+  ///
+  /// @Snippet(path: "Config_DeleteFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/deleteFramework(request:options:)``
   public func deleteFramework(request: DeleteFrameworkRequest) async throws {
     try await self.deleteFramework(request: request, options: .init())
   }
@@ -478,6 +686,19 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a custom framework, including all its major and
+  /// minor revisions. Consider the following:
+  ///
+  /// - You can't delete built-in frameworks. You can only delete frameworks
+  ///   with type `CUSTOM`.
+  /// - You can't delete frameworks that are deployed to a resource.
+  /// - You can't restore a deleted framework. This action is permanent.
+  ///
+  /// @Snippet(path: "Config_DeleteFramework")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/deleteFramework(request:options:)``
   public func deleteFramework(
     name: Swift.String,
   ) async throws {
@@ -487,6 +708,16 @@ extension Clients.ConfigProtocol {
     try await self.deleteFramework(request: request)
   }
 
+  /// Lists the cloud controls (both built-in and custom) that are available
+  /// in a given parent resource. The latest major version of each cloud control
+  /// is returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListCloudControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listCloudControls(request:options:)``
   public func listCloudControls(request: ListCloudControlsRequest) async throws
     -> GoogleCloudSecurityComplianceV1.ListCloudControlsResponse
   {
@@ -499,6 +730,16 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists the cloud controls (both built-in and custom) that are available
+  /// in a given parent resource. The latest major version of each cloud control
+  /// is returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListCloudControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listCloudControls(request:options:)``
   public func listCloudControlsByItems(
     request: ListCloudControlsRequest
   ) -> some AsyncSequence<CloudControl, any Swift.Error> & Sendable {
@@ -511,6 +752,10 @@ extension Clients.ConfigProtocol {
   /// This method supports pagination.
   ///
   /// @Snippet(path: "Config_ListCloudControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listCloudControls(request:options:)``
   public func listCloudControlsByItems(
     request: ListCloudControlsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<CloudControl, any Swift.Error> & Sendable {
@@ -525,6 +770,16 @@ extension Clients.ConfigProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists the cloud controls (both built-in and custom) that are available
+  /// in a given parent resource. The latest major version of each cloud control
+  /// is returned.
+  /// This method supports pagination.
+  ///
+  /// @Snippet(path: "Config_ListCloudControls")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listCloudControls(request:options:)``
   public func listCloudControlsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<CloudControl, any Swift.Error> & Sendable {
@@ -534,6 +789,19 @@ extension Clients.ConfigProtocol {
     return self.listCloudControlsByItems(request: request)
   }
 
+  /// Gets details about a cloud control.
+  /// This method retrieves the latest major version of a cloud control that
+  /// you identify by name.
+  ///
+  /// By default, the latest major version of the cloud control is returned.
+  /// To retrieve a specific major version, include `major_revision_id` in
+  /// the request.
+  ///
+  /// @Snippet(path: "Config_GetCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/getCloudControl(request:options:)``
   public func getCloudControl(request: GetCloudControlRequest) async throws
     -> GoogleCloudSecurityComplianceV1.CloudControl
   {
@@ -546,6 +814,19 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details about a cloud control.
+  /// This method retrieves the latest major version of a cloud control that
+  /// you identify by name.
+  ///
+  /// By default, the latest major version of the cloud control is returned.
+  /// To retrieve a specific major version, include `major_revision_id` in
+  /// the request.
+  ///
+  /// @Snippet(path: "Config_GetCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/getCloudControl(request:options:)``
   public func getCloudControl(
     name: Swift.String,
   ) async throws -> GoogleCloudSecurityComplianceV1.CloudControl {
@@ -555,6 +836,16 @@ extension Clients.ConfigProtocol {
     return try await self.getCloudControl(request: request)
   }
 
+  /// Creates a custom cloud control in a given parent
+  /// resource.
+  /// You can't create built-in cloud controls because those are managed by
+  /// Google.
+  ///
+  /// @Snippet(path: "Config_CreateCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/createCloudControl(request:options:)``
   public func createCloudControl(request: CreateCloudControlRequest) async throws
     -> GoogleCloudSecurityComplianceV1.CloudControl
   {
@@ -567,6 +858,16 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a custom cloud control in a given parent
+  /// resource.
+  /// You can't create built-in cloud controls because those are managed by
+  /// Google.
+  ///
+  /// @Snippet(path: "Config_CreateCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/createCloudControl(request:options:)``
   public func createCloudControl(
     parent: Swift.String,
     cloudControl: CloudControl?,
@@ -580,6 +881,24 @@ extension Clients.ConfigProtocol {
     return try await self.createCloudControl(request: request)
   }
 
+  /// Updates a custom cloud control.
+  /// This method allows for partial updates of a cloud control. Use the
+  /// `update_mask` to specify which fields to update. Consider the following:
+  ///
+  /// - If you provide an `update_mask`, only the fields that are specified
+  /// in the mask are updated.
+  /// - If you don't provide an `update_mask`, all the fields that are present
+  /// in the request's `cloud_control` body are used to overwrite the existing
+  /// resource.
+  ///
+  /// You can only update cloud controls with the `CUSTOM` type.
+  /// A successful update creates a new version of the cloud control.
+  ///
+  /// @Snippet(path: "Config_UpdateCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/updateCloudControl(request:options:)``
   public func updateCloudControl(request: UpdateCloudControlRequest) async throws
     -> GoogleCloudSecurityComplianceV1.CloudControl
   {
@@ -592,6 +911,24 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates a custom cloud control.
+  /// This method allows for partial updates of a cloud control. Use the
+  /// `update_mask` to specify which fields to update. Consider the following:
+  ///
+  /// - If you provide an `update_mask`, only the fields that are specified
+  /// in the mask are updated.
+  /// - If you don't provide an `update_mask`, all the fields that are present
+  /// in the request's `cloud_control` body are used to overwrite the existing
+  /// resource.
+  ///
+  /// You can only update cloud controls with the `CUSTOM` type.
+  /// A successful update creates a new version of the cloud control.
+  ///
+  /// @Snippet(path: "Config_UpdateCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/updateCloudControl(request:options:)``
   public func updateCloudControl(
     cloudControl: CloudControl?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -603,6 +940,20 @@ extension Clients.ConfigProtocol {
     return try await self.updateCloudControl(request: request)
   }
 
+  /// Deletes a custom cloud control, including all its
+  /// major and minor revisions. Consider the following:
+  ///
+  /// - You can't delete built-in cloud controls. You can only delete cloud
+  ///   controls with type `CUSTOM`.
+  /// - You can't delete cloud controls if any of the versions are referenced
+  ///   by a framework.
+  /// - You can't restore a deleted cloud control. This action is permanent.
+  ///
+  /// @Snippet(path: "Config_DeleteCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/deleteCloudControl(request:options:)``
   public func deleteCloudControl(request: DeleteCloudControlRequest) async throws {
     try await self.deleteCloudControl(request: request, options: .init())
   }
@@ -613,6 +964,20 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a custom cloud control, including all its
+  /// major and minor revisions. Consider the following:
+  ///
+  /// - You can't delete built-in cloud controls. You can only delete cloud
+  ///   controls with type `CUSTOM`.
+  /// - You can't delete cloud controls if any of the versions are referenced
+  ///   by a framework.
+  /// - You can't restore a deleted cloud control. This action is permanent.
+  ///
+  /// @Snippet(path: "Config_DeleteCloudControl")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/deleteCloudControl(request:options:)``
   public func deleteCloudControl(
     name: Swift.String,
   ) async throws {
@@ -622,6 +987,30 @@ extension Clients.ConfigProtocol {
     try await self.deleteCloudControl(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Config_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -634,6 +1023,30 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Config_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -660,6 +1073,10 @@ extension Clients.ConfigProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Config_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -673,6 +1090,13 @@ extension Clients.ConfigProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Config_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -685,6 +1109,15 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -697,6 +1130,15 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -708,6 +1150,10 @@ extension Clients.ConfigProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "Config_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -721,6 +1167,15 @@ extension Clients.ConfigProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -732,6 +1187,9 @@ extension Clients.ConfigProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -744,6 +1202,9 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -753,6 +1214,15 @@ extension Clients.ConfigProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -763,6 +1233,15 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -772,6 +1251,15 @@ extension Clients.ConfigProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -782,6 +1270,15 @@ extension Clients.ConfigProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "Config_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``ConfigClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

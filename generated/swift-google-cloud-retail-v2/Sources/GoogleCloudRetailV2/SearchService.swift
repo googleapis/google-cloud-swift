@@ -27,6 +27,10 @@ import Foundation
 /// Enable Retail Search on Cloud Console before using this feature.
 ///
 /// @Snippet(path: "SearchServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/SearchServiceProtocol``
 public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable {
   let inner: any Clients.SearchServiceStub
 
@@ -46,6 +50,12 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "SearchService_Search")
+  ///
+  /// ## See Also
+  ///
+  /// - ``search(request:)``
+  /// - ``searchByItems(request:)``
+  /// - ``searchByItems(request:options:)``
   public func search(
     request: SearchRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudRetailV2.SearchResponse {
@@ -57,6 +67,13 @@ public final class SearchServiceClient: Clients.SearchServiceProtocol, Sendable 
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -96,6 +113,16 @@ extension Clients {
 
 // Default implementations
 extension Clients.SearchServiceProtocol {
+  /// Performs a search.
+  ///
+  /// This feature is only available for users who have Retail Search enabled.
+  /// Enable Retail Search on Cloud Console before using this feature.
+  ///
+  /// @Snippet(path: "SearchService_Search")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/search(request:options:)``
   public func search(request: SearchRequest) async throws -> GoogleCloudRetailV2.SearchResponse {
     try await self.search(request: request, options: .init())
   }
@@ -106,6 +133,16 @@ extension Clients.SearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Performs a search.
+  ///
+  /// This feature is only available for users who have Retail Search enabled.
+  /// Enable Retail Search on Cloud Console before using this feature.
+  ///
+  /// @Snippet(path: "SearchService_Search")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/search(request:options:)``
   public func searchByItems(
     request: SearchRequest
   ) -> some AsyncSequence<SearchResponse.SearchResult, any Swift.Error> & Sendable {
@@ -118,6 +155,10 @@ extension Clients.SearchServiceProtocol {
   /// Enable Retail Search on Cloud Console before using this feature.
   ///
   /// @Snippet(path: "SearchService_Search")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/search(request:options:)``
   #if hasAttribute(diagnose)
     @diagnose(DeprecatedDeclaration, as: ignored)
   #endif
@@ -134,6 +175,15 @@ extension Clients.SearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -146,6 +196,15 @@ extension Clients.SearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -157,6 +216,10 @@ extension Clients.SearchServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "SearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -170,6 +233,15 @@ extension Clients.SearchServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "SearchService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``SearchServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -181,6 +253,9 @@ extension Clients.SearchServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -193,6 +268,9 @@ extension Clients.SearchServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

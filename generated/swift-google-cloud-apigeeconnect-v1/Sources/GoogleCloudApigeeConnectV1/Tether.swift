@@ -25,6 +25,10 @@ import Foundation
 /// requiring customers to open firewalls on their runtime plane.
 ///
 /// @Snippet(path: "TetherQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/TetherProtocol``
 public final class TetherClient: Clients.TetherProtocol, Sendable {
   let inner: any Clients.TetherStub
 

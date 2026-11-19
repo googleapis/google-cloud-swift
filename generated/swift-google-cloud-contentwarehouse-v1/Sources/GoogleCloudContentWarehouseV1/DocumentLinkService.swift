@@ -25,6 +25,10 @@ import Foundation
 /// Document-Links are treated as sub-resources under source documents.
 ///
 /// @Snippet(path: "DocumentLinkServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/DocumentLinkServiceProtocol``
 public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtocol, Sendable {
   let inner: any Clients.DocumentLinkServiceStub
 
@@ -42,6 +46,11 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   /// Return all target document-links from the document.
   ///
   /// @Snippet(path: "DocumentLinkService_ListLinkedTargets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLinkedTargets(parent:)``
+  /// - ``listLinkedTargets(request:)``
   public func listLinkedTargets(
     request: ListLinkedTargetsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse {
@@ -51,6 +60,13 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   /// Return all source document-links from the document.
   ///
   /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLinkedSources(request:)``
+  /// - ``listLinkedSourcesByItems(parent:)``
+  /// - ``listLinkedSourcesByItems(request:)``
+  /// - ``listLinkedSourcesByItems(request:options:)``
   public func listLinkedSources(
     request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse {
@@ -60,6 +76,11 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   /// Create a link between a source document and a target document.
   ///
   /// @Snippet(path: "DocumentLinkService_CreateDocumentLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createDocumentLink(parent:documentLink:)``
+  /// - ``createDocumentLink(request:)``
   public func createDocumentLink(
     request: CreateDocumentLinkRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudContentWarehouseV1.DocumentLink {
@@ -69,6 +90,11 @@ public final class DocumentLinkServiceClient: Clients.DocumentLinkServiceProtoco
   /// Remove the link between the source and target documents.
   ///
   /// @Snippet(path: "DocumentLinkService_DeleteDocumentLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteDocumentLink(name:)``
+  /// - ``deleteDocumentLink(request:)``
   public func deleteDocumentLink(
     request: DeleteDocumentLinkRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -118,6 +144,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.DocumentLinkServiceProtocol {
+  /// Return all target document-links from the document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_ListLinkedTargets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/listLinkedTargets(request:options:)``
   public func listLinkedTargets(request: ListLinkedTargetsRequest) async throws
     -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse
   {
@@ -130,6 +163,13 @@ extension Clients.DocumentLinkServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Return all target document-links from the document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_ListLinkedTargets")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/listLinkedTargets(request:options:)``
   public func listLinkedTargets(
     parent: Swift.String,
   ) async throws -> GoogleCloudContentWarehouseV1.ListLinkedTargetsResponse {
@@ -139,6 +179,13 @@ extension Clients.DocumentLinkServiceProtocol {
     return try await self.listLinkedTargets(request: request)
   }
 
+  /// Return all source document-links from the document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/listLinkedSources(request:options:)``
   public func listLinkedSources(request: ListLinkedSourcesRequest) async throws
     -> GoogleCloudContentWarehouseV1.ListLinkedSourcesResponse
   {
@@ -151,6 +198,13 @@ extension Clients.DocumentLinkServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Return all source document-links from the document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/listLinkedSources(request:options:)``
   public func listLinkedSourcesByItems(
     request: ListLinkedSourcesRequest
   ) -> some AsyncSequence<DocumentLink, any Swift.Error> & Sendable {
@@ -160,6 +214,10 @@ extension Clients.DocumentLinkServiceProtocol {
   /// Return all source document-links from the document.
   ///
   /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/listLinkedSources(request:options:)``
   public func listLinkedSourcesByItems(
     request: ListLinkedSourcesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<DocumentLink, any Swift.Error> & Sendable {
@@ -174,6 +232,13 @@ extension Clients.DocumentLinkServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Return all source document-links from the document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_ListLinkedSources")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/listLinkedSources(request:options:)``
   public func listLinkedSourcesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<DocumentLink, any Swift.Error> & Sendable {
@@ -183,6 +248,13 @@ extension Clients.DocumentLinkServiceProtocol {
     return self.listLinkedSourcesByItems(request: request)
   }
 
+  /// Create a link between a source document and a target document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_CreateDocumentLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/createDocumentLink(request:options:)``
   public func createDocumentLink(request: CreateDocumentLinkRequest) async throws
     -> GoogleCloudContentWarehouseV1.DocumentLink
   {
@@ -195,6 +267,13 @@ extension Clients.DocumentLinkServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a link between a source document and a target document.
+  ///
+  /// @Snippet(path: "DocumentLinkService_CreateDocumentLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/createDocumentLink(request:options:)``
   public func createDocumentLink(
     parent: Swift.String,
     documentLink: DocumentLink?,
@@ -206,6 +285,13 @@ extension Clients.DocumentLinkServiceProtocol {
     return try await self.createDocumentLink(request: request)
   }
 
+  /// Remove the link between the source and target documents.
+  ///
+  /// @Snippet(path: "DocumentLinkService_DeleteDocumentLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/deleteDocumentLink(request:options:)``
   public func deleteDocumentLink(request: DeleteDocumentLinkRequest) async throws {
     try await self.deleteDocumentLink(request: request, options: .init())
   }
@@ -216,6 +302,13 @@ extension Clients.DocumentLinkServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Remove the link between the source and target documents.
+  ///
+  /// @Snippet(path: "DocumentLinkService_DeleteDocumentLink")
+  ///
+  /// ## See Also
+  ///
+  /// - ``DocumentLinkServiceClient/deleteDocumentLink(request:options:)``
   public func deleteDocumentLink(
     name: Swift.String,
   ) async throws {
@@ -225,6 +318,9 @@ extension Clients.DocumentLinkServiceProtocol {
     try await self.deleteDocumentLink(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -237,6 +333,9 @@ extension Clients.DocumentLinkServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

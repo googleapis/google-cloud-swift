@@ -29,6 +29,10 @@
   /// customizable metadata that can be used for model training.
   ///
   /// @Snippet(path: "ConversationDatasetsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ConversationDatasetsProtocol``
   public final class ConversationDatasetsClient: Clients.ConversationDatasetsProtocol, Sendable {
     let inner: any Clients.ConversationDatasetsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -62,6 +66,13 @@
     /// [google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]: <doc:CreateConversationDatasetOperationMetadata>
     ///
     /// @Snippet(path: "ConversationDatasets_CreateConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createConversationDataset(request:)``
+    /// - ``createConversationDatasetPollingUntilDone(parent:conversationDataset:)``
+    /// - ``createConversationDatasetPollingUntilDone(request:)``
+    /// - ``createConversationDatasetPollingUntilDone(request:options:)``
     public func createConversationDataset(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -83,6 +94,13 @@
     /// [google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]: <doc:CreateConversationDatasetOperationMetadata>
     ///
     /// @Snippet(path: "ConversationDatasets_CreateConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createConversationDataset(request:)``
+    /// - ``createConversationDataset(request:options:)``
+    /// - ``createConversationDatasetPollingUntilDone(parent:conversationDataset:)``
+    /// - ``createConversationDatasetPollingUntilDone(request:)``
     public func createConversationDatasetPollingUntilDone(
       request: CreateConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> ConversationDataset {
@@ -111,6 +129,11 @@
     /// Retrieves the specified conversation dataset.
     ///
     /// @Snippet(path: "ConversationDatasets_GetConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getConversationDataset(name:)``
+    /// - ``getConversationDataset(request:)``
     public func getConversationDataset(
       request: GetConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ConversationDataset {
@@ -121,6 +144,13 @@
     /// project and location.
     ///
     /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listConversationDatasets(request:)``
+    /// - ``listConversationDatasetsByItems(parent:)``
+    /// - ``listConversationDatasetsByItems(request:)``
+    /// - ``listConversationDatasetsByItems(request:options:)``
     public func listConversationDatasets(
       request: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse {
@@ -141,6 +171,13 @@
     /// [google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]: <doc:DeleteConversationDatasetOperationMetadata>
     ///
     /// @Snippet(path: "ConversationDatasets_DeleteConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteConversationDataset(request:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(name:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(request:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(request:options:)``
     public func deleteConversationDataset(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -161,6 +198,13 @@
     /// [google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]: <doc:DeleteConversationDatasetOperationMetadata>
     ///
     /// @Snippet(path: "ConversationDatasets_DeleteConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteConversationDataset(request:)``
+    /// - ``deleteConversationDataset(request:options:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(name:)``
+    /// - ``deleteConversationDatasetPollingUntilDone(request:)``
     public func deleteConversationDatasetPollingUntilDone(
       request: DeleteConversationDatasetRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -203,6 +247,12 @@
     /// [google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]: <doc:ImportConversationDataOperationResponse>
     ///
     /// @Snippet(path: "ConversationDatasets_ImportConversationData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importConversationData(request:)``
+    /// - ``importConversationDataPollingUntilDone(request:)``
+    /// - ``importConversationDataPollingUntilDone(request:options:)``
     public func importConversationData(
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -226,6 +276,12 @@
     /// [google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]: <doc:ImportConversationDataOperationResponse>
     ///
     /// @Snippet(path: "ConversationDatasets_ImportConversationData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importConversationData(request:)``
+    /// - ``importConversationData(request:options:)``
+    /// - ``importConversationDataPollingUntilDone(request:)``
     public func importConversationDataPollingUntilDone(
       request: ImportConversationDataRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportConversationDataOperationResponse {
@@ -272,6 +328,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "ConversationDatasets_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -281,6 +343,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "ConversationDatasets_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -292,6 +358,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationDatasets_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -314,6 +387,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationDatasets_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -392,6 +470,25 @@
 
   // Default implementations
   extension Clients.ConversationDatasetsProtocol {
+    /// Creates a new conversation dataset.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
+    /// - `response`:
+    /// [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationDataset]: <doc:ConversationDataset>
+    /// [google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]: <doc:CreateConversationDatasetOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationDatasets_CreateConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/createConversationDataset(request:options:)``
     public func createConversationDataset(request: CreateConversationDatasetRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -404,6 +501,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new conversation dataset.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
+    /// - `response`:
+    /// [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationDataset]: <doc:ConversationDataset>
+    /// [google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]: <doc:CreateConversationDatasetOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationDatasets_CreateConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/createConversationDatasetPollingUntilDone(request:options:)``
     public func createConversationDatasetPollingUntilDone(request: CreateConversationDatasetRequest)
       async throws -> ConversationDataset
     {
@@ -417,6 +533,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new conversation dataset.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [CreateConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]
+    /// - `response`:
+    /// [ConversationDataset][google.cloud.dialogflow.v2.ConversationDataset]
+    ///
+    /// [google.cloud.dialogflow.v2.ConversationDataset]: <doc:ConversationDataset>
+    /// [google.cloud.dialogflow.v2.CreateConversationDatasetOperationMetadata]: <doc:CreateConversationDatasetOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationDatasets_CreateConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/createConversationDatasetPollingUntilDone(request:options:)``
     public func createConversationDatasetPollingUntilDone(
       parent: Swift.String,
       conversationDataset: ConversationDataset?,
@@ -428,6 +563,13 @@
       return try await self.createConversationDatasetPollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified conversation dataset.
+    ///
+    /// @Snippet(path: "ConversationDatasets_GetConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/getConversationDataset(request:options:)``
     public func getConversationDataset(request: GetConversationDatasetRequest) async throws
       -> GoogleCloudDialogflowV2.ConversationDataset
     {
@@ -440,6 +582,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified conversation dataset.
+    ///
+    /// @Snippet(path: "ConversationDatasets_GetConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/getConversationDataset(request:options:)``
     public func getConversationDataset(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.ConversationDataset {
@@ -449,6 +598,14 @@
       return try await self.getConversationDataset(request: request)
     }
 
+    /// Returns the list of all conversation datasets in the specified
+    /// project and location.
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listConversationDatasets(request:options:)``
     public func listConversationDatasets(request: ListConversationDatasetsRequest) async throws
       -> GoogleCloudDialogflowV2.ListConversationDatasetsResponse
     {
@@ -461,6 +618,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all conversation datasets in the specified
+    /// project and location.
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listConversationDatasets(request:options:)``
     public func listConversationDatasetsByItems(
       request: ListConversationDatasetsRequest
     ) -> some AsyncSequence<ConversationDataset, any Swift.Error> & Sendable {
@@ -471,6 +636,10 @@
     /// project and location.
     ///
     /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listConversationDatasets(request:options:)``
     public func listConversationDatasetsByItems(
       request: ListConversationDatasetsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ConversationDataset, any Swift.Error> & Sendable {
@@ -485,6 +654,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all conversation datasets in the specified
+    /// project and location.
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListConversationDatasets")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listConversationDatasets(request:options:)``
     public func listConversationDatasetsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<ConversationDataset, any Swift.Error> & Sendable {
@@ -494,6 +671,24 @@
       return self.listConversationDatasetsByItems(request: request)
     }
 
+    /// Deletes the specified conversation dataset.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// [google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]: <doc:DeleteConversationDatasetOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationDatasets_DeleteConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/deleteConversationDataset(request:options:)``
     public func deleteConversationDataset(request: DeleteConversationDatasetRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -506,6 +701,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified conversation dataset.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// [google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]: <doc:DeleteConversationDatasetOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationDatasets_DeleteConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/deleteConversationDatasetPollingUntilDone(request:options:)``
     public func deleteConversationDatasetPollingUntilDone(request: DeleteConversationDatasetRequest)
       async throws
     {
@@ -518,6 +731,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified conversation dataset.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [DeleteConversationDatasetOperationMetadata][google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// [google.cloud.dialogflow.v2.DeleteConversationDatasetOperationMetadata]: <doc:DeleteConversationDatasetOperationMetadata>
+    ///
+    /// @Snippet(path: "ConversationDatasets_DeleteConversationDataset")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/deleteConversationDatasetPollingUntilDone(request:options:)``
     public func deleteConversationDatasetPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -527,6 +758,27 @@
       try await self.deleteConversationDatasetPollingUntilDone(request: request)
     }
 
+    /// Import data into the specified conversation dataset. Note that it
+    /// is not allowed to import data to a conversation dataset that
+    /// already has data in it.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ImportConversationDataOperationMetadata][google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata]
+    /// - `response`:
+    /// [ImportConversationDataOperationResponse][google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata]: <doc:ImportConversationDataOperationMetadata>
+    /// [google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]: <doc:ImportConversationDataOperationResponse>
+    ///
+    /// @Snippet(path: "ConversationDatasets_ImportConversationData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/importConversationData(request:options:)``
     public func importConversationData(request: ImportConversationDataRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -539,6 +791,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Import data into the specified conversation dataset. Note that it
+    /// is not allowed to import data to a conversation dataset that
+    /// already has data in it.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/es/docs/how/long-running-operations).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [ImportConversationDataOperationMetadata][google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata]
+    /// - `response`:
+    /// [ImportConversationDataOperationResponse][google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ImportConversationDataOperationMetadata]: <doc:ImportConversationDataOperationMetadata>
+    /// [google.cloud.dialogflow.v2.ImportConversationDataOperationResponse]: <doc:ImportConversationDataOperationResponse>
+    ///
+    /// @Snippet(path: "ConversationDatasets_ImportConversationData")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/importConversationDataPollingUntilDone(request:options:)``
     public func importConversationDataPollingUntilDone(request: ImportConversationDataRequest)
       async throws -> ImportConversationDataOperationResponse
     {
@@ -552,6 +825,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -564,6 +861,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -590,6 +911,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "ConversationDatasets_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -603,6 +928,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "ConversationDatasets_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -615,6 +947,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -627,6 +968,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -638,6 +988,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "ConversationDatasets_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -651,6 +1005,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationDatasets_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -662,6 +1025,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -674,6 +1040,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -683,6 +1052,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationDatasets_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -693,6 +1071,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "ConversationDatasets_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ConversationDatasetsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

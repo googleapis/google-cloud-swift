@@ -24,6 +24,10 @@ import Foundation
 /// Unified Maintenance service
 ///
 /// @Snippet(path: "MaintenanceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/MaintenanceProtocol``
 public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   let inner: any Clients.MaintenanceStub
 
@@ -40,6 +44,13 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// Retrieves the statistics of a specific maintenance.
   ///
   /// @Snippet(path: "Maintenance_SummarizeMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``summarizeMaintenances(request:)``
+  /// - ``summarizeMaintenancesByItems(parent:)``
+  /// - ``summarizeMaintenancesByItems(request:)``
+  /// - ``summarizeMaintenancesByItems(request:options:)``
   public func summarizeMaintenances(
     request: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse {
@@ -49,6 +60,13 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// Retrieve a collection of resource maintenances.
   ///
   /// @Snippet(path: "Maintenance_ListResourceMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listResourceMaintenances(request:)``
+  /// - ``listResourceMaintenancesByItems(parent:)``
+  /// - ``listResourceMaintenancesByItems(request:)``
+  /// - ``listResourceMaintenancesByItems(request:options:)``
   public func listResourceMaintenances(
     request: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMaintenanceApiV1.ListResourceMaintenancesResponse {
@@ -58,6 +76,11 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// Retrieve a single resource maintenance.
   ///
   /// @Snippet(path: "Maintenance_GetResourceMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getResourceMaintenance(name:)``
+  /// - ``getResourceMaintenance(request:)``
   public func getResourceMaintenance(
     request: GetResourceMaintenanceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudMaintenanceApiV1.ResourceMaintenance {
@@ -67,6 +90,12 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Maintenance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -76,6 +105,10 @@ public final class MaintenanceClient: Clients.MaintenanceProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Maintenance_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -119,6 +152,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.MaintenanceProtocol {
+  /// Retrieves the statistics of a specific maintenance.
+  ///
+  /// @Snippet(path: "Maintenance_SummarizeMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/summarizeMaintenances(request:options:)``
   public func summarizeMaintenances(request: SummarizeMaintenancesRequest) async throws
     -> GoogleCloudMaintenanceApiV1.SummarizeMaintenancesResponse
   {
@@ -131,6 +171,13 @@ extension Clients.MaintenanceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieves the statistics of a specific maintenance.
+  ///
+  /// @Snippet(path: "Maintenance_SummarizeMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/summarizeMaintenances(request:options:)``
   public func summarizeMaintenancesByItems(
     request: SummarizeMaintenancesRequest
   ) -> some AsyncSequence<MaintenanceSummary, any Swift.Error> & Sendable {
@@ -140,6 +187,10 @@ extension Clients.MaintenanceProtocol {
   /// Retrieves the statistics of a specific maintenance.
   ///
   /// @Snippet(path: "Maintenance_SummarizeMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/summarizeMaintenances(request:options:)``
   public func summarizeMaintenancesByItems(
     request: SummarizeMaintenancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<MaintenanceSummary, any Swift.Error> & Sendable {
@@ -154,6 +205,13 @@ extension Clients.MaintenanceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieves the statistics of a specific maintenance.
+  ///
+  /// @Snippet(path: "Maintenance_SummarizeMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/summarizeMaintenances(request:options:)``
   public func summarizeMaintenancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<MaintenanceSummary, any Swift.Error> & Sendable {
@@ -163,6 +221,13 @@ extension Clients.MaintenanceProtocol {
     return self.summarizeMaintenancesByItems(request: request)
   }
 
+  /// Retrieve a collection of resource maintenances.
+  ///
+  /// @Snippet(path: "Maintenance_ListResourceMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listResourceMaintenances(request:options:)``
   public func listResourceMaintenances(request: ListResourceMaintenancesRequest) async throws
     -> GoogleCloudMaintenanceApiV1.ListResourceMaintenancesResponse
   {
@@ -175,6 +240,13 @@ extension Clients.MaintenanceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a collection of resource maintenances.
+  ///
+  /// @Snippet(path: "Maintenance_ListResourceMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listResourceMaintenances(request:options:)``
   public func listResourceMaintenancesByItems(
     request: ListResourceMaintenancesRequest
   ) -> some AsyncSequence<ResourceMaintenance, any Swift.Error> & Sendable {
@@ -184,6 +256,10 @@ extension Clients.MaintenanceProtocol {
   /// Retrieve a collection of resource maintenances.
   ///
   /// @Snippet(path: "Maintenance_ListResourceMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listResourceMaintenances(request:options:)``
   public func listResourceMaintenancesByItems(
     request: ListResourceMaintenancesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<ResourceMaintenance, any Swift.Error> & Sendable {
@@ -198,6 +274,13 @@ extension Clients.MaintenanceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Retrieve a collection of resource maintenances.
+  ///
+  /// @Snippet(path: "Maintenance_ListResourceMaintenances")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listResourceMaintenances(request:options:)``
   public func listResourceMaintenancesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<ResourceMaintenance, any Swift.Error> & Sendable {
@@ -207,6 +290,13 @@ extension Clients.MaintenanceProtocol {
     return self.listResourceMaintenancesByItems(request: request)
   }
 
+  /// Retrieve a single resource maintenance.
+  ///
+  /// @Snippet(path: "Maintenance_GetResourceMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/getResourceMaintenance(request:options:)``
   public func getResourceMaintenance(request: GetResourceMaintenanceRequest) async throws
     -> GoogleCloudMaintenanceApiV1.ResourceMaintenance
   {
@@ -219,6 +309,13 @@ extension Clients.MaintenanceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Retrieve a single resource maintenance.
+  ///
+  /// @Snippet(path: "Maintenance_GetResourceMaintenance")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/getResourceMaintenance(request:options:)``
   public func getResourceMaintenance(
     name: Swift.String,
   ) async throws -> GoogleCloudMaintenanceApiV1.ResourceMaintenance {
@@ -228,6 +325,13 @@ extension Clients.MaintenanceProtocol {
     return try await self.getResourceMaintenance(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Maintenance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -240,6 +344,13 @@ extension Clients.MaintenanceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "Maintenance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -249,6 +360,10 @@ extension Clients.MaintenanceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "Maintenance_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -262,6 +377,13 @@ extension Clients.MaintenanceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Maintenance_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``MaintenanceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

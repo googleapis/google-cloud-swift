@@ -24,6 +24,10 @@
   /// Service for the `targetTcpProxies` resource.
   ///
   /// @Snippet(path: "targetTcpProxiesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/TargetTcpProxiesProtocol``
   public final class TargetTcpProxiesClient: Clients.TargetTcpProxiesProtocol, Sendable {
     let inner: any Clients.TargetTcpProxiesStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -48,6 +52,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetTcpProxies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList {
@@ -57,6 +68,13 @@
     /// Deletes the specified TargetTcpProxy resource.
     ///
     /// @Snippet(path: "targetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``deletePollingUntilDone(project:targetTcpProxy:)``
+    /// - ``deletePollingUntilDone(request:)``
+    /// - ``deletePollingUntilDone(request:options:)``
     public func delete(
       request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -71,6 +89,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``delete(request:)``
+    /// - ``delete(request:options:)``
+    /// - ``deletePollingUntilDone(project:targetTcpProxy:)``
+    /// - ``deletePollingUntilDone(request:)``
     public func deletePollingUntilDone(
       request: TargetTcpProxiesClient.DeleteRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -112,6 +137,11 @@
     /// Returns the specified TargetTcpProxy resource.
     ///
     /// @Snippet(path: "targetTcpProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:targetTcpProxy:)``
+    /// - ``get(request:)``
     public func `get`(
       request: TargetTcpProxiesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxy {
@@ -122,6 +152,13 @@
     /// the data included in the request.
     ///
     /// @Snippet(path: "targetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
+    /// - ``insertPollingUntilDone(request:options:)``
     public func insert(
       request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -137,6 +174,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``insert(request:)``
+    /// - ``insert(request:options:)``
+    /// - ``insertPollingUntilDone(project:body:)``
+    /// - ``insertPollingUntilDone(request:)``
     public func insertPollingUntilDone(
       request: TargetTcpProxiesClient.InsertRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -179,6 +223,13 @@
     /// available to the specified project.
     ///
     /// @Snippet(path: "targetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TargetTcpProxyList {
@@ -188,6 +239,13 @@
     /// Changes the BackendService for TargetTcpProxy.
     ///
     /// @Snippet(path: "targetTcpProxies_setBackendService")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setBackendService(request:)``
+    /// - ``setBackendServicePollingUntilDone(project:targetTcpProxy:body:)``
+    /// - ``setBackendServicePollingUntilDone(request:)``
+    /// - ``setBackendServicePollingUntilDone(request:options:)``
     public func setBackendService(
       request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -202,6 +260,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetTcpProxies_setBackendService")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setBackendService(request:)``
+    /// - ``setBackendService(request:options:)``
+    /// - ``setBackendServicePollingUntilDone(project:targetTcpProxy:body:)``
+    /// - ``setBackendServicePollingUntilDone(request:)``
     public func setBackendServicePollingUntilDone(
       request: TargetTcpProxiesClient.SetBackendServiceRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -243,6 +308,13 @@
     /// Changes the ProxyHeaderType for TargetTcpProxy.
     ///
     /// @Snippet(path: "targetTcpProxies_setProxyHeader")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setProxyHeader(request:)``
+    /// - ``setProxyHeaderPollingUntilDone(project:targetTcpProxy:body:)``
+    /// - ``setProxyHeaderPollingUntilDone(request:)``
+    /// - ``setProxyHeaderPollingUntilDone(request:options:)``
     public func setProxyHeader(
       request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -257,6 +329,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "targetTcpProxies_setProxyHeader")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setProxyHeader(request:)``
+    /// - ``setProxyHeader(request:options:)``
+    /// - ``setProxyHeaderPollingUntilDone(project:targetTcpProxy:body:)``
+    /// - ``setProxyHeaderPollingUntilDone(request:)``
     public func setProxyHeaderPollingUntilDone(
       request: TargetTcpProxiesClient.SetProxyHeaderRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -298,6 +377,11 @@
     /// Returns permissions that a caller has on the specified resource.
     ///
     /// @Snippet(path: "targetTcpProxies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(project:resource:body:)``
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: TargetTcpProxiesClient.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.TestPermissionsResponse {
@@ -405,6 +489,17 @@
 
   // Default implementations
   extension Clients.TargetTcpProxiesProtocol {
+    /// Retrieves the list of all TargetTcpProxy resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetTcpProxies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: TargetTcpProxiesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.TargetTcpProxyAggregatedList
     {
@@ -417,6 +512,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of all TargetTcpProxy resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetTcpProxies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: TargetTcpProxiesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
@@ -431,6 +537,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "targetTcpProxies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: TargetTcpProxiesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
@@ -446,6 +556,17 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of all TargetTcpProxy resources, regional and global,
+    /// available to the specified project.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "targetTcpProxies_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, TargetTcpProxiesScopedList), any Swift.Error> & Sendable
@@ -456,6 +577,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// @Snippet(path: "targetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/delete(request:options:)``
     public func delete(request: TargetTcpProxiesClient.DeleteRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -468,6 +596,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       request: TargetTcpProxiesClient.DeleteRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -480,6 +620,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified TargetTcpProxy resource.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_delete")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/deletePollingUntilDone(request:options:)``
     public func deletePollingUntilDone(
       project: Swift.String,
       targetTcpProxy: Swift.String,
@@ -491,6 +643,13 @@
       return try await self.deletePollingUntilDone(request: request)
     }
 
+    /// Returns the specified TargetTcpProxy resource.
+    ///
+    /// @Snippet(path: "targetTcpProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/get(request:options:)``
     public func `get`(request: TargetTcpProxiesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.TargetTcpProxy
     {
@@ -503,6 +662,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified TargetTcpProxy resource.
+    ///
+    /// @Snippet(path: "targetTcpProxies_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       targetTcpProxy: Swift.String,
@@ -514,6 +680,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Creates a TargetTcpProxy resource in the specified project using
+    /// the data included in the request.
+    ///
+    /// @Snippet(path: "targetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/insert(request:options:)``
     public func insert(request: TargetTcpProxiesClient.InsertRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -526,6 +700,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetTcpProxy resource in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       request: TargetTcpProxiesClient.InsertRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -538,6 +725,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a TargetTcpProxy resource in the specified project using
+    /// the data included in the request.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_insert")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/insertPollingUntilDone(request:options:)``
     public func insertPollingUntilDone(
       project: Swift.String,
       body: TargetTcpProxy?,
@@ -549,6 +749,14 @@
       return try await self.insertPollingUntilDone(request: request)
     }
 
+    /// Retrieves the list of TargetTcpProxy resources
+    /// available to the specified project.
+    ///
+    /// @Snippet(path: "targetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/list(request:options:)``
     public func list(request: TargetTcpProxiesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.TargetTcpProxyList
     {
@@ -561,6 +769,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the list of TargetTcpProxy resources
+    /// available to the specified project.
+    ///
+    /// @Snippet(path: "targetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/list(request:options:)``
     public func listByItems(
       request: TargetTcpProxiesClient.ListRequest
     ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
@@ -571,6 +787,10 @@
     /// available to the specified project.
     ///
     /// @Snippet(path: "targetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/list(request:options:)``
     public func listByItems(
       request: TargetTcpProxiesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
@@ -584,6 +804,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves the list of TargetTcpProxy resources
+    /// available to the specified project.
+    ///
+    /// @Snippet(path: "targetTcpProxies_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
     ) -> some AsyncSequence<TargetTcpProxy, any Swift.Error> & Sendable {
@@ -593,6 +821,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Changes the BackendService for TargetTcpProxy.
+    ///
+    /// @Snippet(path: "targetTcpProxies_setBackendService")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/setBackendService(request:options:)``
     public func setBackendService(request: TargetTcpProxiesClient.SetBackendServiceRequest)
       async throws -> GoogleCloudComputeV1.Operation
     {
@@ -605,6 +840,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the BackendService for TargetTcpProxy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_setBackendService")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/setBackendServicePollingUntilDone(request:options:)``
     public func setBackendServicePollingUntilDone(
       request: TargetTcpProxiesClient.SetBackendServiceRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -617,6 +864,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the BackendService for TargetTcpProxy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_setBackendService")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/setBackendServicePollingUntilDone(request:options:)``
     public func setBackendServicePollingUntilDone(
       project: Swift.String,
       targetTcpProxy: Swift.String,
@@ -630,6 +889,13 @@
       return try await self.setBackendServicePollingUntilDone(request: request)
     }
 
+    /// Changes the ProxyHeaderType for TargetTcpProxy.
+    ///
+    /// @Snippet(path: "targetTcpProxies_setProxyHeader")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/setProxyHeader(request:options:)``
     public func setProxyHeader(request: TargetTcpProxiesClient.SetProxyHeaderRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -642,6 +908,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the ProxyHeaderType for TargetTcpProxy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_setProxyHeader")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/setProxyHeaderPollingUntilDone(request:options:)``
     public func setProxyHeaderPollingUntilDone(
       request: TargetTcpProxiesClient.SetProxyHeaderRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -654,6 +932,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Changes the ProxyHeaderType for TargetTcpProxy.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "targetTcpProxies_setProxyHeader")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/setProxyHeaderPollingUntilDone(request:options:)``
     public func setProxyHeaderPollingUntilDone(
       project: Swift.String,
       targetTcpProxy: Swift.String,
@@ -667,6 +957,13 @@
       return try await self.setProxyHeaderPollingUntilDone(request: request)
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "targetTcpProxies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: TargetTcpProxiesClient.TestIamPermissionsRequest)
       async throws -> GoogleCloudComputeV1.TestPermissionsResponse
     {
@@ -679,6 +976,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource.
+    ///
+    /// @Snippet(path: "targetTcpProxies_testIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``TargetTcpProxiesClient/testIamPermissions(request:options:)``
     public func testIamPermissions(
       project: Swift.String,
       resource: Swift.String,
@@ -692,6 +996,7 @@
       return try await self.testIamPermissions(request: request)
     }
 
+    /// Retrieves the specified Operations resource.
     public func getOperation(request: GlobalOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

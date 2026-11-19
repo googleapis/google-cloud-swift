@@ -48,6 +48,10 @@ import Foundation
 /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
 ///
 /// @Snippet(path: "AutokeyQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AutokeyProtocol``
 public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   let inner: any Clients.AutokeyStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -77,6 +81,13 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "Autokey_CreateKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createKeyHandle(request:)``
+  /// - ``createKeyHandlePollingUntilDone(parent:keyHandle:keyHandleId:)``
+  /// - ``createKeyHandlePollingUntilDone(request:)``
+  /// - ``createKeyHandlePollingUntilDone(request:options:)``
   public func createKeyHandle(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -95,6 +106,13 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "Autokey_CreateKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createKeyHandle(request:)``
+  /// - ``createKeyHandle(request:options:)``
+  /// - ``createKeyHandlePollingUntilDone(parent:keyHandle:keyHandleId:)``
+  /// - ``createKeyHandlePollingUntilDone(request:)``
   public func createKeyHandlePollingUntilDone(
     request: CreateKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> KeyHandle {
@@ -124,6 +142,11 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "Autokey_GetKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getKeyHandle(name:)``
+  /// - ``getKeyHandle(request:)``
   public func getKeyHandle(
     request: GetKeyHandleRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.KeyHandle {
@@ -135,6 +158,13 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "Autokey_ListKeyHandles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listKeyHandles(request:)``
+  /// - ``listKeyHandlesByItems(parent:)``
+  /// - ``listKeyHandlesByItems(request:)``
+  /// - ``listKeyHandlesByItems(request:options:)``
   public func listKeyHandles(
     request: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ListKeyHandlesResponse {
@@ -161,6 +191,12 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Autokey_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -170,6 +206,10 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "Autokey_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -183,6 +223,10 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "Autokey_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -193,6 +237,10 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "Autokey_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -208,6 +256,10 @@ public final class AutokeyClient: Clients.AutokeyProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "Autokey_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -282,6 +334,22 @@ extension Clients {
 
 // Default implementations
 extension Clients.AutokeyProtocol {
+  /// Creates a new [KeyHandle][google.cloud.kms.v1.KeyHandle], triggering the
+  /// provisioning of a new [CryptoKey][google.cloud.kms.v1.CryptoKey] for CMEK
+  /// use with the given resource type in the configured key project and the same
+  /// location. [GetOperation][google.longrunning.Operations.GetOperation] should
+  /// be used to resolve the resulting long-running operation and get the
+  /// resulting [KeyHandle][google.cloud.kms.v1.KeyHandle] and
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey].
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_CreateKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/createKeyHandle(request:options:)``
   public func createKeyHandle(request: CreateKeyHandleRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -294,6 +362,22 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [KeyHandle][google.cloud.kms.v1.KeyHandle], triggering the
+  /// provisioning of a new [CryptoKey][google.cloud.kms.v1.CryptoKey] for CMEK
+  /// use with the given resource type in the configured key project and the same
+  /// location. [GetOperation][google.longrunning.Operations.GetOperation] should
+  /// be used to resolve the resulting long-running operation and get the
+  /// resulting [KeyHandle][google.cloud.kms.v1.KeyHandle] and
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey].
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_CreateKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/createKeyHandlePollingUntilDone(request:options:)``
   public func createKeyHandlePollingUntilDone(request: CreateKeyHandleRequest) async throws
     -> KeyHandle
   {
@@ -306,6 +390,22 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new [KeyHandle][google.cloud.kms.v1.KeyHandle], triggering the
+  /// provisioning of a new [CryptoKey][google.cloud.kms.v1.CryptoKey] for CMEK
+  /// use with the given resource type in the configured key project and the same
+  /// location. [GetOperation][google.longrunning.Operations.GetOperation] should
+  /// be used to resolve the resulting long-running operation and get the
+  /// resulting [KeyHandle][google.cloud.kms.v1.KeyHandle] and
+  /// [CryptoKey][google.cloud.kms.v1.CryptoKey].
+  ///
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_CreateKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/createKeyHandlePollingUntilDone(request:options:)``
   public func createKeyHandlePollingUntilDone(
     parent: Swift.String,
     keyHandle: KeyHandle?,
@@ -319,6 +419,15 @@ extension Clients.AutokeyProtocol {
     return try await self.createKeyHandlePollingUntilDone(request: request)
   }
 
+  /// Returns the [KeyHandle][google.cloud.kms.v1.KeyHandle].
+  ///
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_GetKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/getKeyHandle(request:options:)``
   public func getKeyHandle(request: GetKeyHandleRequest) async throws -> GoogleCloudKMSV1.KeyHandle
   {
     try await self.getKeyHandle(request: request, options: .init())
@@ -330,6 +439,15 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the [KeyHandle][google.cloud.kms.v1.KeyHandle].
+  ///
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_GetKeyHandle")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/getKeyHandle(request:options:)``
   public func getKeyHandle(
     name: Swift.String,
   ) async throws -> GoogleCloudKMSV1.KeyHandle {
@@ -339,6 +457,15 @@ extension Clients.AutokeyProtocol {
     return try await self.getKeyHandle(request: request)
   }
 
+  /// Lists [KeyHandles][google.cloud.kms.v1.KeyHandle].
+  ///
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_ListKeyHandles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listKeyHandles(request:options:)``
   public func listKeyHandles(request: ListKeyHandlesRequest) async throws
     -> GoogleCloudKMSV1.ListKeyHandlesResponse
   {
@@ -351,6 +478,15 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists [KeyHandles][google.cloud.kms.v1.KeyHandle].
+  ///
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_ListKeyHandles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listKeyHandles(request:options:)``
   public func listKeyHandlesByItems(
     request: ListKeyHandlesRequest
   ) -> some AsyncSequence<KeyHandle, any Swift.Error> & Sendable {
@@ -362,6 +498,10 @@ extension Clients.AutokeyProtocol {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "Autokey_ListKeyHandles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listKeyHandles(request:options:)``
   public func listKeyHandlesByItems(
     request: ListKeyHandlesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<KeyHandle, any Swift.Error> & Sendable {
@@ -375,6 +515,15 @@ extension Clients.AutokeyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists [KeyHandles][google.cloud.kms.v1.KeyHandle].
+  ///
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "Autokey_ListKeyHandles")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listKeyHandles(request:options:)``
   public func listKeyHandlesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<KeyHandle, any Swift.Error> & Sendable {
@@ -384,6 +533,30 @@ extension Clients.AutokeyProtocol {
     return self.listKeyHandlesByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Autokey_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -396,6 +569,30 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "Autokey_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -422,6 +619,10 @@ extension Clients.AutokeyProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "Autokey_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -435,6 +636,13 @@ extension Clients.AutokeyProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "Autokey_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -447,6 +655,17 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "Autokey_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -459,6 +678,14 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "Autokey_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -471,6 +698,19 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "Autokey_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -483,6 +723,9 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -495,6 +738,9 @@ extension Clients.AutokeyProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

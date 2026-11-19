@@ -25,6 +25,10 @@
   /// service is only used internally.
   ///
   /// @Snippet(path: "SqlAvailableDatabaseVersionsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlAvailableDatabaseVersionsServiceProtocol``
   public final class SqlAvailableDatabaseVersionsServiceClient: Clients
       .SqlAvailableDatabaseVersionsServiceProtocol, Sendable
   {

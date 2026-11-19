@@ -31,6 +31,10 @@
   /// learning architectures.
   ///
   /// @Snippet(path: "VizierServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/VizierServiceProtocol``
   public final class VizierServiceClient: Clients.VizierServiceProtocol, Sendable {
     let inner: any Clients.VizierServiceStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -52,6 +56,11 @@
     /// Study.
     ///
     /// @Snippet(path: "VizierService_CreateStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createStudy(parent:study:)``
+    /// - ``createStudy(request:)``
     public func createStudy(
       request: CreateStudyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -61,6 +70,11 @@
     /// Gets a Study by name.
     ///
     /// @Snippet(path: "VizierService_GetStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getStudy(name:)``
+    /// - ``getStudy(request:)``
     public func getStudy(
       request: GetStudyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -70,6 +84,13 @@
     /// Lists all the studies in a region for an associated project.
     ///
     /// @Snippet(path: "VizierService_ListStudies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listStudies(request:)``
+    /// - ``listStudiesByItems(parent:)``
+    /// - ``listStudiesByItems(request:)``
+    /// - ``listStudiesByItems(request:options:)``
     public func listStudies(
       request: ListStudiesRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListStudiesResponse {
@@ -79,6 +100,11 @@
     /// Deletes a Study.
     ///
     /// @Snippet(path: "VizierService_DeleteStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteStudy(name:)``
+    /// - ``deleteStudy(request:)``
     public func deleteStudy(
       request: DeleteStudyRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -89,6 +115,11 @@
     /// fully qualified resource name.
     ///
     /// @Snippet(path: "VizierService_LookupStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``lookupStudy(parent:)``
+    /// - ``lookupStudy(request:)``
     public func lookupStudy(
       request: LookupStudyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -105,6 +136,12 @@
     /// [google.cloud.aiplatform.v1.SuggestTrialsResponse]: <doc:SuggestTrialsResponse>
     ///
     /// @Snippet(path: "VizierService_SuggestTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suggestTrials(request:)``
+    /// - ``suggestTrialsPollingUntilDone(request:)``
+    /// - ``suggestTrialsPollingUntilDone(request:options:)``
     public func suggestTrials(
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -121,6 +158,12 @@
     /// [google.cloud.aiplatform.v1.SuggestTrialsResponse]: <doc:SuggestTrialsResponse>
     ///
     /// @Snippet(path: "VizierService_SuggestTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``suggestTrials(request:)``
+    /// - ``suggestTrials(request:options:)``
+    /// - ``suggestTrialsPollingUntilDone(request:)``
     public func suggestTrialsPollingUntilDone(
       request: SuggestTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> SuggestTrialsResponse {
@@ -150,6 +193,11 @@
     /// Adds a user provided Trial to a Study.
     ///
     /// @Snippet(path: "VizierService_CreateTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createTrial(parent:trial:)``
+    /// - ``createTrial(request:)``
     public func createTrial(
       request: CreateTrialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -159,6 +207,11 @@
     /// Gets a Trial.
     ///
     /// @Snippet(path: "VizierService_GetTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getTrial(name:)``
+    /// - ``getTrial(request:)``
     public func getTrial(
       request: GetTrialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -168,6 +221,13 @@
     /// Lists the Trials associated with a Study.
     ///
     /// @Snippet(path: "VizierService_ListTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listTrials(request:)``
+    /// - ``listTrialsByItems(parent:)``
+    /// - ``listTrialsByItems(request:)``
+    /// - ``listTrialsByItems(request:options:)``
     public func listTrials(
       request: ListTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListTrialsResponse {
@@ -178,6 +238,10 @@
     /// is assumed to have been taken before the Trial is complete.
     ///
     /// @Snippet(path: "VizierService_AddTrialMeasurement")
+    ///
+    /// ## See Also
+    ///
+    /// - ``addTrialMeasurement(request:)``
     public func addTrialMeasurement(
       request: AddTrialMeasurementRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -187,6 +251,10 @@
     /// Marks a Trial as complete.
     ///
     /// @Snippet(path: "VizierService_CompleteTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``completeTrial(request:)``
     public func completeTrial(
       request: CompleteTrialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -196,6 +264,11 @@
     /// Deletes a Trial.
     ///
     /// @Snippet(path: "VizierService_DeleteTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteTrial(name:)``
+    /// - ``deleteTrial(request:)``
     public func deleteTrial(
       request: DeleteTrialRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -210,6 +283,12 @@
     /// [google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse]: <doc:CheckTrialEarlyStoppingStateResponse>
     ///
     /// @Snippet(path: "VizierService_CheckTrialEarlyStoppingState")
+    ///
+    /// ## See Also
+    ///
+    /// - ``checkTrialEarlyStoppingState(request:)``
+    /// - ``checkTrialEarlyStoppingStatePollingUntilDone(request:)``
+    /// - ``checkTrialEarlyStoppingStatePollingUntilDone(request:options:)``
     public func checkTrialEarlyStoppingState(
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -224,6 +303,12 @@
     /// [google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse]: <doc:CheckTrialEarlyStoppingStateResponse>
     ///
     /// @Snippet(path: "VizierService_CheckTrialEarlyStoppingState")
+    ///
+    /// ## See Also
+    ///
+    /// - ``checkTrialEarlyStoppingState(request:)``
+    /// - ``checkTrialEarlyStoppingState(request:options:)``
+    /// - ``checkTrialEarlyStoppingStatePollingUntilDone(request:)``
     public func checkTrialEarlyStoppingStatePollingUntilDone(
       request: CheckTrialEarlyStoppingStateRequest, options: GoogleGax.RequestOptions
     ) async throws -> CheckTrialEarlyStoppingStateResponse {
@@ -253,6 +338,10 @@
     /// Stops a Trial.
     ///
     /// @Snippet(path: "VizierService_StopTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``stopTrial(request:)``
     public func stopTrial(
       request: StopTrialRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -265,6 +354,11 @@
     /// https://en.wikipedia.org/wiki/Pareto_efficiency
     ///
     /// @Snippet(path: "VizierService_ListOptimalTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOptimalTrials(parent:)``
+    /// - ``listOptimalTrials(request:)``
     public func listOptimalTrials(
       request: ListOptimalTrialsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudAIPlatformV1.ListOptimalTrialsResponse {
@@ -274,6 +368,12 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "VizierService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -283,6 +383,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "VizierService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -296,6 +400,10 @@
     /// errors.
     ///
     /// @Snippet(path: "VizierService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``setIamPolicy(request:)``
     public func setIamPolicy(
       request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -306,6 +414,10 @@
     /// if the resource exists and does not have a policy set.
     ///
     /// @Snippet(path: "VizierService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getIamPolicy(request:)``
     public func getIamPolicy(
       request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.Policy {
@@ -321,6 +433,10 @@
     /// checking. This operation may "fail open" without warning.
     ///
     /// @Snippet(path: "VizierService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``testIamPermissions(request:)``
     public func testIamPermissions(
       request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -332,6 +448,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "VizierService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -354,6 +477,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "VizierService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteOperation(name:)``
+    /// - ``deleteOperation(request:)``
     public func deleteOperation(
       request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -365,6 +493,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "VizierService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -376,6 +509,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "VizierService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``waitOperation(request:)``
     public func waitOperation(
       request: GoogleLongRunning.WaitOperationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -524,6 +661,14 @@
 
   // Default implementations
   extension Clients.VizierServiceProtocol {
+    /// Creates a Study. A resource name will be generated after creation of the
+    /// Study.
+    ///
+    /// @Snippet(path: "VizierService_CreateStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/createStudy(request:options:)``
     public func createStudy(request: CreateStudyRequest) async throws
       -> GoogleCloudAIPlatformV1.Study
     {
@@ -536,6 +681,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a Study. A resource name will be generated after creation of the
+    /// Study.
+    ///
+    /// @Snippet(path: "VizierService_CreateStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/createStudy(request:options:)``
     public func createStudy(
       parent: Swift.String,
       study: Study?,
@@ -547,6 +700,13 @@
       return try await self.createStudy(request: request)
     }
 
+    /// Gets a Study by name.
+    ///
+    /// @Snippet(path: "VizierService_GetStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/getStudy(request:options:)``
     public func getStudy(request: GetStudyRequest) async throws -> GoogleCloudAIPlatformV1.Study {
       try await self.getStudy(request: request, options: .init())
     }
@@ -557,6 +717,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Study by name.
+    ///
+    /// @Snippet(path: "VizierService_GetStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/getStudy(request:options:)``
     public func getStudy(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -566,6 +733,13 @@
       return try await self.getStudy(request: request)
     }
 
+    /// Lists all the studies in a region for an associated project.
+    ///
+    /// @Snippet(path: "VizierService_ListStudies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listStudies(request:options:)``
     public func listStudies(request: ListStudiesRequest) async throws
       -> GoogleCloudAIPlatformV1.ListStudiesResponse
     {
@@ -578,6 +752,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists all the studies in a region for an associated project.
+    ///
+    /// @Snippet(path: "VizierService_ListStudies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listStudies(request:options:)``
     public func listStudiesByItems(
       request: ListStudiesRequest
     ) -> some AsyncSequence<Study, any Swift.Error> & Sendable {
@@ -587,6 +768,10 @@
     /// Lists all the studies in a region for an associated project.
     ///
     /// @Snippet(path: "VizierService_ListStudies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listStudies(request:options:)``
     public func listStudiesByItems(
       request: ListStudiesRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Study, any Swift.Error> & Sendable {
@@ -601,6 +786,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists all the studies in a region for an associated project.
+    ///
+    /// @Snippet(path: "VizierService_ListStudies")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listStudies(request:options:)``
     public func listStudiesByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Study, any Swift.Error> & Sendable {
@@ -610,6 +802,13 @@
       return self.listStudiesByItems(request: request)
     }
 
+    /// Deletes a Study.
+    ///
+    /// @Snippet(path: "VizierService_DeleteStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/deleteStudy(request:options:)``
     public func deleteStudy(request: DeleteStudyRequest) async throws {
       try await self.deleteStudy(request: request, options: .init())
     }
@@ -620,6 +819,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Study.
+    ///
+    /// @Snippet(path: "VizierService_DeleteStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/deleteStudy(request:options:)``
     public func deleteStudy(
       name: Swift.String,
     ) async throws {
@@ -629,6 +835,14 @@
       try await self.deleteStudy(request: request)
     }
 
+    /// Looks a study up using the user-defined display_name field instead of the
+    /// fully qualified resource name.
+    ///
+    /// @Snippet(path: "VizierService_LookupStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/lookupStudy(request:options:)``
     public func lookupStudy(request: LookupStudyRequest) async throws
       -> GoogleCloudAIPlatformV1.Study
     {
@@ -641,6 +855,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Looks a study up using the user-defined display_name field instead of the
+    /// fully qualified resource name.
+    ///
+    /// @Snippet(path: "VizierService_LookupStudy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/lookupStudy(request:options:)``
     public func lookupStudy(
       parent: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Study {
@@ -650,6 +872,20 @@
       return try await self.lookupStudy(request: request)
     }
 
+    /// Adds one or more Trials to a Study, with parameter values
+    /// suggested by Vertex AI Vizier. Returns a long-running
+    /// operation associated with the generation of Trial suggestions.
+    /// When this long-running operation succeeds, it will contain
+    /// a
+    /// [SuggestTrialsResponse][google.cloud.aiplatform.v1.SuggestTrialsResponse].
+    ///
+    /// [google.cloud.aiplatform.v1.SuggestTrialsResponse]: <doc:SuggestTrialsResponse>
+    ///
+    /// @Snippet(path: "VizierService_SuggestTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/suggestTrials(request:options:)``
     public func suggestTrials(request: SuggestTrialsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -662,6 +898,20 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds one or more Trials to a Study, with parameter values
+    /// suggested by Vertex AI Vizier. Returns a long-running
+    /// operation associated with the generation of Trial suggestions.
+    /// When this long-running operation succeeds, it will contain
+    /// a
+    /// [SuggestTrialsResponse][google.cloud.aiplatform.v1.SuggestTrialsResponse].
+    ///
+    /// [google.cloud.aiplatform.v1.SuggestTrialsResponse]: <doc:SuggestTrialsResponse>
+    ///
+    /// @Snippet(path: "VizierService_SuggestTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/suggestTrialsPollingUntilDone(request:options:)``
     public func suggestTrialsPollingUntilDone(request: SuggestTrialsRequest) async throws
       -> SuggestTrialsResponse
     {
@@ -674,6 +924,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a user provided Trial to a Study.
+    ///
+    /// @Snippet(path: "VizierService_CreateTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/createTrial(request:options:)``
     public func createTrial(request: CreateTrialRequest) async throws
       -> GoogleCloudAIPlatformV1.Trial
     {
@@ -686,6 +943,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Adds a user provided Trial to a Study.
+    ///
+    /// @Snippet(path: "VizierService_CreateTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/createTrial(request:options:)``
     public func createTrial(
       parent: Swift.String,
       trial: Trial?,
@@ -697,6 +961,13 @@
       return try await self.createTrial(request: request)
     }
 
+    /// Gets a Trial.
+    ///
+    /// @Snippet(path: "VizierService_GetTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/getTrial(request:options:)``
     public func getTrial(request: GetTrialRequest) async throws -> GoogleCloudAIPlatformV1.Trial {
       try await self.getTrial(request: request, options: .init())
     }
@@ -707,6 +978,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets a Trial.
+    ///
+    /// @Snippet(path: "VizierService_GetTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/getTrial(request:options:)``
     public func getTrial(
       name: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.Trial {
@@ -716,6 +994,13 @@
       return try await self.getTrial(request: request)
     }
 
+    /// Lists the Trials associated with a Study.
+    ///
+    /// @Snippet(path: "VizierService_ListTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listTrials(request:options:)``
     public func listTrials(request: ListTrialsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListTrialsResponse
     {
@@ -728,6 +1013,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the Trials associated with a Study.
+    ///
+    /// @Snippet(path: "VizierService_ListTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listTrials(request:options:)``
     public func listTrialsByItems(
       request: ListTrialsRequest
     ) -> some AsyncSequence<Trial, any Swift.Error> & Sendable {
@@ -737,6 +1029,10 @@
     /// Lists the Trials associated with a Study.
     ///
     /// @Snippet(path: "VizierService_ListTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listTrials(request:options:)``
     public func listTrialsByItems(
       request: ListTrialsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Trial, any Swift.Error> & Sendable {
@@ -751,6 +1047,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Lists the Trials associated with a Study.
+    ///
+    /// @Snippet(path: "VizierService_ListTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listTrials(request:options:)``
     public func listTrialsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Trial, any Swift.Error> & Sendable {
@@ -760,6 +1063,14 @@
       return self.listTrialsByItems(request: request)
     }
 
+    /// Adds a measurement of the objective metrics to a Trial. This measurement
+    /// is assumed to have been taken before the Trial is complete.
+    ///
+    /// @Snippet(path: "VizierService_AddTrialMeasurement")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/addTrialMeasurement(request:options:)``
     public func addTrialMeasurement(request: AddTrialMeasurementRequest) async throws
       -> GoogleCloudAIPlatformV1.Trial
     {
@@ -772,6 +1083,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Marks a Trial as complete.
+    ///
+    /// @Snippet(path: "VizierService_CompleteTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/completeTrial(request:options:)``
     public func completeTrial(request: CompleteTrialRequest) async throws
       -> GoogleCloudAIPlatformV1.Trial
     {
@@ -784,6 +1102,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Trial.
+    ///
+    /// @Snippet(path: "VizierService_DeleteTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/deleteTrial(request:options:)``
     public func deleteTrial(request: DeleteTrialRequest) async throws {
       try await self.deleteTrial(request: request, options: .init())
     }
@@ -794,6 +1119,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes a Trial.
+    ///
+    /// @Snippet(path: "VizierService_DeleteTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/deleteTrial(request:options:)``
     public func deleteTrial(
       name: Swift.String,
     ) async throws {
@@ -803,6 +1135,18 @@
       try await self.deleteTrial(request: request)
     }
 
+    /// Checks  whether a Trial should stop or not. Returns a
+    /// long-running operation. When the operation is successful,
+    /// it will contain a
+    /// [CheckTrialEarlyStoppingStateResponse][google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse].
+    ///
+    /// [google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse]: <doc:CheckTrialEarlyStoppingStateResponse>
+    ///
+    /// @Snippet(path: "VizierService_CheckTrialEarlyStoppingState")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/checkTrialEarlyStoppingState(request:options:)``
     public func checkTrialEarlyStoppingState(request: CheckTrialEarlyStoppingStateRequest)
       async throws -> GoogleLongRunning.Operation
     {
@@ -815,6 +1159,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Checks  whether a Trial should stop or not. Returns a
+    /// long-running operation. When the operation is successful,
+    /// it will contain a
+    /// [CheckTrialEarlyStoppingStateResponse][google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse].
+    ///
+    /// [google.cloud.aiplatform.v1.CheckTrialEarlyStoppingStateResponse]: <doc:CheckTrialEarlyStoppingStateResponse>
+    ///
+    /// @Snippet(path: "VizierService_CheckTrialEarlyStoppingState")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/checkTrialEarlyStoppingStatePollingUntilDone(request:options:)``
     public func checkTrialEarlyStoppingStatePollingUntilDone(
       request: CheckTrialEarlyStoppingStateRequest
     ) async throws -> CheckTrialEarlyStoppingStateResponse {
@@ -828,6 +1184,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Stops a Trial.
+    ///
+    /// @Snippet(path: "VizierService_StopTrial")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/stopTrial(request:options:)``
     public func stopTrial(request: StopTrialRequest) async throws -> GoogleCloudAIPlatformV1.Trial {
       try await self.stopTrial(request: request, options: .init())
     }
@@ -838,6 +1201,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the pareto-optimal Trials for multi-objective Study or the
+    /// optimal Trials for single-objective Study. The definition of
+    /// pareto-optimal can be checked in wiki page.
+    /// https://en.wikipedia.org/wiki/Pareto_efficiency
+    ///
+    /// @Snippet(path: "VizierService_ListOptimalTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listOptimalTrials(request:options:)``
     public func listOptimalTrials(request: ListOptimalTrialsRequest) async throws
       -> GoogleCloudAIPlatformV1.ListOptimalTrialsResponse
     {
@@ -850,6 +1223,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists the pareto-optimal Trials for multi-objective Study or the
+    /// optimal Trials for single-objective Study. The definition of
+    /// pareto-optimal can be checked in wiki page.
+    /// https://en.wikipedia.org/wiki/Pareto_efficiency
+    ///
+    /// @Snippet(path: "VizierService_ListOptimalTrials")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listOptimalTrials(request:options:)``
     public func listOptimalTrials(
       parent: Swift.String,
     ) async throws -> GoogleCloudAIPlatformV1.ListOptimalTrialsResponse {
@@ -859,6 +1242,13 @@
       return try await self.listOptimalTrials(request: request)
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "VizierService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -871,6 +1261,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// @Snippet(path: "VizierService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -880,6 +1277,10 @@
     /// Lists information about the supported locations for this service.
     ///
     /// @Snippet(path: "VizierService_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -893,6 +1294,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "VizierService_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -905,6 +1313,17 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Sets the access control policy on the specified resource. Replaces
+    /// any existing policy.
+    ///
+    /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+    /// errors.
+    ///
+    /// @Snippet(path: "VizierService_SetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/setIamPolicy(request:options:)``
     public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -917,6 +1336,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Gets the access control policy for a resource. Returns an empty policy
+    /// if the resource exists and does not have a policy set.
+    ///
+    /// @Snippet(path: "VizierService_GetIamPolicy")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/getIamPolicy(request:options:)``
     public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
       -> GoogleIAMV1.Policy
     {
@@ -929,6 +1356,19 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns permissions that a caller has on the specified resource. If the
+    /// resource does not exist, this will return an empty set of
+    /// permissions, not a `NOT_FOUND` error.
+    ///
+    /// Note: This operation is designed to be used for building
+    /// permission-aware UIs and command-line tools, not for authorization
+    /// checking. This operation may "fail open" without warning.
+    ///
+    /// @Snippet(path: "VizierService_TestIamPermissions")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/testIamPermissions(request:options:)``
     public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
       -> GoogleIAMV1.TestIamPermissionsResponse
     {
@@ -941,6 +1381,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -953,6 +1402,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -964,6 +1422,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "VizierService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -977,6 +1439,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -988,6 +1459,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -1000,6 +1474,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -1009,6 +1486,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
       try await self.deleteOperation(request: request, options: .init())
     }
@@ -1019,6 +1505,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_DeleteOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/deleteOperation(request:options:)``
     public func deleteOperation(
       name: Swift.String,
     ) async throws {
@@ -1028,6 +1523,15 @@
       try await self.deleteOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -1038,6 +1542,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {
@@ -1047,6 +1560,15 @@
       try await self.cancelOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "VizierService_WaitOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``VizierServiceClient/waitOperation(request:options:)``
     public func waitOperation(request: GoogleLongRunning.WaitOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {

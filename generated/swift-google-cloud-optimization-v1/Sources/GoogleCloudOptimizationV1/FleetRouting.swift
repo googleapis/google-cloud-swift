@@ -40,6 +40,10 @@ import Foundation
 ///     * at least one of latitude and longitude must be non-zero.
 ///
 /// @Snippet(path: "FleetRoutingQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/FleetRoutingProtocol``
 public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   let inner: any Clients.FleetRoutingStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -73,6 +77,10 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   /// `ShipmentModel`.
   ///
   /// @Snippet(path: "FleetRouting_OptimizeTours")
+  ///
+  /// ## See Also
+  ///
+  /// - ``optimizeTours(request:)``
   public func optimizeTours(
     request: OptimizeToursRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudOptimizationV1.OptimizeToursResponse {
@@ -91,6 +99,12 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   /// vehicles minimizing the overall cost.
   ///
   /// @Snippet(path: "FleetRouting_BatchOptimizeTours")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchOptimizeTours(request:)``
+  /// - ``batchOptimizeToursPollingUntilDone(request:)``
+  /// - ``batchOptimizeToursPollingUntilDone(request:options:)``
   public func batchOptimizeTours(
     request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -109,6 +123,12 @@ public final class FleetRoutingClient: Clients.FleetRoutingProtocol, Sendable {
   /// vehicles minimizing the overall cost.
   ///
   /// @Snippet(path: "FleetRouting_BatchOptimizeTours")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchOptimizeTours(request:)``
+  /// - ``batchOptimizeTours(request:options:)``
+  /// - ``batchOptimizeToursPollingUntilDone(request:)``
   public func batchOptimizeToursPollingUntilDone(
     request: BatchOptimizeToursRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchOptimizeToursResponse {
@@ -173,6 +193,26 @@ extension Clients {
 
 // Default implementations
 extension Clients.FleetRoutingProtocol {
+  /// Sends an `OptimizeToursRequest` containing a `ShipmentModel` and returns an
+  /// `OptimizeToursResponse` containing `ShipmentRoute`s, which are a set of
+  /// routes to be performed by vehicles minimizing the overall cost.
+  ///
+  /// A `ShipmentModel` model consists mainly of `Shipment`s that need to be
+  /// carried out and `Vehicle`s that can be used to transport the `Shipment`s.
+  /// The `ShipmentRoute`s assign `Shipment`s to `Vehicle`s. More specifically,
+  /// they assign a series of `Visit`s to each vehicle, where a `Visit`
+  /// corresponds to a `VisitRequest`, which is a pickup or delivery for a
+  /// `Shipment`.
+  ///
+  /// The goal is to provide an assignment of `ShipmentRoute`s to `Vehicle`s that
+  /// minimizes the total cost where cost has many components defined in the
+  /// `ShipmentModel`.
+  ///
+  /// @Snippet(path: "FleetRouting_OptimizeTours")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FleetRoutingClient/optimizeTours(request:options:)``
   public func optimizeTours(request: OptimizeToursRequest) async throws
     -> GoogleCloudOptimizationV1.OptimizeToursResponse
   {
@@ -185,6 +225,22 @@ extension Clients.FleetRoutingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Optimizes vehicle tours for one or more `OptimizeToursRequest`
+  /// messages as a batch.
+  ///
+  /// This method is a Long Running Operation (LRO). The inputs for optimization
+  /// (`OptimizeToursRequest` messages) and outputs (`OptimizeToursResponse`
+  /// messages) are read/written from/to Cloud Storage in user-specified
+  /// format. Like the `OptimizeTours` method, each `OptimizeToursRequest`
+  /// contains a `ShipmentModel` and returns an `OptimizeToursResponse`
+  /// containing `ShipmentRoute`s, which are a set of routes to be performed by
+  /// vehicles minimizing the overall cost.
+  ///
+  /// @Snippet(path: "FleetRouting_BatchOptimizeTours")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FleetRoutingClient/batchOptimizeTours(request:options:)``
   public func batchOptimizeTours(request: BatchOptimizeToursRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -197,6 +253,22 @@ extension Clients.FleetRoutingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Optimizes vehicle tours for one or more `OptimizeToursRequest`
+  /// messages as a batch.
+  ///
+  /// This method is a Long Running Operation (LRO). The inputs for optimization
+  /// (`OptimizeToursRequest` messages) and outputs (`OptimizeToursResponse`
+  /// messages) are read/written from/to Cloud Storage in user-specified
+  /// format. Like the `OptimizeTours` method, each `OptimizeToursRequest`
+  /// contains a `ShipmentModel` and returns an `OptimizeToursResponse`
+  /// containing `ShipmentRoute`s, which are a set of routes to be performed by
+  /// vehicles minimizing the overall cost.
+  ///
+  /// @Snippet(path: "FleetRouting_BatchOptimizeTours")
+  ///
+  /// ## See Also
+  ///
+  /// - ``FleetRoutingClient/batchOptimizeToursPollingUntilDone(request:options:)``
   public func batchOptimizeToursPollingUntilDone(request: BatchOptimizeToursRequest) async throws
     -> BatchOptimizeToursResponse
   {
@@ -209,6 +281,9 @@ extension Clients.FleetRoutingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -221,6 +296,9 @@ extension Clients.FleetRoutingProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {

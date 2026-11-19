@@ -24,6 +24,10 @@
   /// Service for the `nodeTypes` resource.
   ///
   /// @Snippet(path: "nodeTypesQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/NodeTypesProtocol``
   public final class NodeTypesClient: Clients.NodeTypesProtocol, Sendable {
     let inner: any Clients.NodeTypesStub
 
@@ -43,6 +47,13 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``aggregatedList(request:)``
+    /// - ``aggregatedListByItems(project:)``
+    /// - ``aggregatedListByItems(request:)``
+    /// - ``aggregatedListByItems(request:options:)``
     public func aggregatedList(
       request: NodeTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeTypeAggregatedList {
@@ -52,6 +63,11 @@
     /// Returns the specified node type.
     ///
     /// @Snippet(path: "nodeTypes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:zone:nodeType:)``
+    /// - ``get(request:)``
     public func `get`(
       request: NodeTypesClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeType {
@@ -62,6 +78,13 @@
     /// project.
     ///
     /// @Snippet(path: "nodeTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:zone:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: NodeTypesClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.NodeTypeList {
@@ -95,6 +118,16 @@
 
   // Default implementations
   extension Clients.NodeTypesProtocol {
+    /// Retrieves an aggregated list of node types.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/aggregatedList(request:options:)``
     public func aggregatedList(request: NodeTypesClient.AggregatedListRequest) async throws
       -> GoogleCloudComputeV1.NodeTypeAggregatedList
     {
@@ -107,6 +140,16 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves an aggregated list of node types.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NodeTypesClient.AggregatedListRequest
     ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), any Swift.Error> & Sendable {
@@ -119,6 +162,10 @@
     /// `returnPartialSuccess` parameter to `true`.
     ///
     /// @Snippet(path: "nodeTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       request: NodeTypesClient.AggregatedListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), any Swift.Error> & Sendable {
@@ -133,6 +180,16 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves an aggregated list of node types.
+    ///
+    /// To prevent failure, Google recommends that you set the
+    /// `returnPartialSuccess` parameter to `true`.
+    ///
+    /// @Snippet(path: "nodeTypes_aggregatedList")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/aggregatedList(request:options:)``
     public func aggregatedListByItems(
       project: Swift.String,
     ) -> some AsyncSequence<(Swift.String, NodeTypesScopedList), any Swift.Error> & Sendable {
@@ -142,6 +199,13 @@
       return self.aggregatedListByItems(request: request)
     }
 
+    /// Returns the specified node type.
+    ///
+    /// @Snippet(path: "nodeTypes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/get(request:options:)``
     public func `get`(request: NodeTypesClient.GetRequest) async throws
       -> GoogleCloudComputeV1.NodeType
     {
@@ -154,6 +218,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the specified node type.
+    ///
+    /// @Snippet(path: "nodeTypes_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -167,6 +238,14 @@
       return try await self.`get`(request: request)
     }
 
+    /// Retrieves a list of node types available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/list(request:options:)``
     public func list(request: NodeTypesClient.ListRequest) async throws
       -> GoogleCloudComputeV1.NodeTypeList
     {
@@ -179,6 +258,14 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of node types available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/list(request:options:)``
     public func listByItems(
       request: NodeTypesClient.ListRequest
     ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
@@ -189,6 +276,10 @@
     /// project.
     ///
     /// @Snippet(path: "nodeTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/list(request:options:)``
     public func listByItems(
       request: NodeTypesClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<NodeType, any Swift.Error> & Sendable {
@@ -202,6 +293,14 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of node types available to the specified
+    /// project.
+    ///
+    /// @Snippet(path: "nodeTypes_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``NodeTypesClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,

@@ -27,6 +27,10 @@ import Foundation
 /// Live Video Analytics (LVA) on the streaming inputs.
 ///
 /// @Snippet(path: "LiveVideoAnalyticsQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LiveVideoAnalyticsProtocol``
 public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol, Sendable {
   let inner: any Clients.LiveVideoAnalyticsStub
   let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -47,6 +51,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// ListPublicOperators returns all the operators in public registry.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listPublicOperators(request:)``
+  /// - ``listPublicOperatorsByItems(parent:)``
+  /// - ``listPublicOperatorsByItems(request:)``
+  /// - ``listPublicOperatorsByItems(request:options:)``
   public func listPublicOperators(
     request: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse {
@@ -56,6 +67,11 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// ResolveOperatorInfo returns the operator information based on the request.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ResolveOperatorInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resolveOperatorInfo(parent:queries:)``
+  /// - ``resolveOperatorInfo(request:)``
   public func resolveOperatorInfo(
     request: ResolveOperatorInfoRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ResolveOperatorInfoResponse {
@@ -65,6 +81,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Lists Operators in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperators(request:)``
+  /// - ``listOperatorsByItems(parent:)``
+  /// - ``listOperatorsByItems(request:)``
+  /// - ``listOperatorsByItems(request:options:)``
   public func listOperators(
     request: ListOperatorsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListOperatorsResponse {
@@ -74,6 +97,11 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Gets details of a single Operator.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_GetOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getOperator(name:)``
+  /// - ``getOperator(request:)``
   public func getOperator(
     request: GetOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Operator {
@@ -83,6 +111,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Creates a new Operator in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CreateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createOperator(request:)``
+  /// - ``createOperatorPollingUntilDone(parent:operator:operatorId:)``
+  /// - ``createOperatorPollingUntilDone(request:)``
+  /// - ``createOperatorPollingUntilDone(request:options:)``
   public func createOperator(
     request: CreateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -92,6 +127,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Creates a new Operator in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CreateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createOperator(request:)``
+  /// - ``createOperator(request:options:)``
+  /// - ``createOperatorPollingUntilDone(parent:operator:operatorId:)``
+  /// - ``createOperatorPollingUntilDone(request:)``
   public func createOperatorPollingUntilDone(
     request: CreateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operator {
@@ -119,6 +161,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Updates the parameters of a single Operator.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_UpdateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateOperator(request:)``
+  /// - ``updateOperatorPollingUntilDone(operator:updateMask:)``
+  /// - ``updateOperatorPollingUntilDone(request:)``
+  /// - ``updateOperatorPollingUntilDone(request:options:)``
   public func updateOperator(
     request: UpdateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -128,6 +177,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Updates the parameters of a single Operator.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_UpdateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateOperator(request:)``
+  /// - ``updateOperator(request:options:)``
+  /// - ``updateOperatorPollingUntilDone(operator:updateMask:)``
+  /// - ``updateOperatorPollingUntilDone(request:)``
   public func updateOperatorPollingUntilDone(
     request: UpdateOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> Operator {
@@ -155,6 +211,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Deletes a single Operator.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperator(request:)``
+  /// - ``deleteOperatorPollingUntilDone(name:)``
+  /// - ``deleteOperatorPollingUntilDone(request:)``
+  /// - ``deleteOperatorPollingUntilDone(request:options:)``
   public func deleteOperator(
     request: DeleteOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -164,6 +227,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Deletes a single Operator.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperator(request:)``
+  /// - ``deleteOperator(request:options:)``
+  /// - ``deleteOperatorPollingUntilDone(name:)``
+  /// - ``deleteOperatorPollingUntilDone(request:)``
   public func deleteOperatorPollingUntilDone(
     request: DeleteOperatorRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -191,6 +261,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Lists Analyses in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listAnalyses(request:)``
+  /// - ``listAnalysesByItems(parent:)``
+  /// - ``listAnalysesByItems(request:)``
+  /// - ``listAnalysesByItems(request:options:)``
   public func listAnalyses(
     request: ListAnalysesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListAnalysesResponse {
@@ -200,6 +277,11 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Gets details of a single Analysis.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_GetAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAnalysis(name:)``
+  /// - ``getAnalysis(request:)``
   public func getAnalysis(
     request: GetAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Analysis {
@@ -209,6 +291,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Creates a new Analysis in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CreateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAnalysis(request:)``
+  /// - ``createAnalysisPollingUntilDone(parent:analysis:analysisId:)``
+  /// - ``createAnalysisPollingUntilDone(request:)``
+  /// - ``createAnalysisPollingUntilDone(request:options:)``
   public func createAnalysis(
     request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -218,6 +307,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Creates a new Analysis in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CreateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createAnalysis(request:)``
+  /// - ``createAnalysis(request:options:)``
+  /// - ``createAnalysisPollingUntilDone(parent:analysis:analysisId:)``
+  /// - ``createAnalysisPollingUntilDone(request:)``
   public func createAnalysisPollingUntilDone(
     request: CreateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> Analysis {
@@ -245,6 +341,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Updates the parameters of a single Analysis.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_UpdateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAnalysis(request:)``
+  /// - ``updateAnalysisPollingUntilDone(analysis:updateMask:)``
+  /// - ``updateAnalysisPollingUntilDone(request:)``
+  /// - ``updateAnalysisPollingUntilDone(request:options:)``
   public func updateAnalysis(
     request: UpdateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -254,6 +357,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Updates the parameters of a single Analysis.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_UpdateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAnalysis(request:)``
+  /// - ``updateAnalysis(request:options:)``
+  /// - ``updateAnalysisPollingUntilDone(analysis:updateMask:)``
+  /// - ``updateAnalysisPollingUntilDone(request:)``
   public func updateAnalysisPollingUntilDone(
     request: UpdateAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> Analysis {
@@ -281,6 +391,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Deletes a single Analysis.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAnalysis(request:)``
+  /// - ``deleteAnalysisPollingUntilDone(name:)``
+  /// - ``deleteAnalysisPollingUntilDone(request:)``
+  /// - ``deleteAnalysisPollingUntilDone(request:options:)``
   public func deleteAnalysis(
     request: DeleteAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -290,6 +407,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Deletes a single Analysis.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteAnalysis(request:)``
+  /// - ``deleteAnalysis(request:options:)``
+  /// - ``deleteAnalysisPollingUntilDone(name:)``
+  /// - ``deleteAnalysisPollingUntilDone(request:)``
   public func deleteAnalysisPollingUntilDone(
     request: DeleteAnalysisRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -317,6 +441,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Lists Processes in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listProcesses(request:)``
+  /// - ``listProcessesByItems(parent:)``
+  /// - ``listProcessesByItems(request:)``
+  /// - ``listProcessesByItems(request:options:)``
   public func listProcesses(
     request: ListProcessesRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.ListProcessesResponse {
@@ -326,6 +457,11 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Gets details of a single Process.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_GetProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getProcess(name:)``
+  /// - ``getProcess(request:)``
   public func getProcess(
     request: GetProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudVideoAIV1.Process {
@@ -335,6 +471,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Creates a new Process in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CreateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProcess(request:)``
+  /// - ``createProcessPollingUntilDone(parent:process:processId:)``
+  /// - ``createProcessPollingUntilDone(request:)``
+  /// - ``createProcessPollingUntilDone(request:options:)``
   public func createProcess(
     request: CreateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -344,6 +487,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Creates a new Process in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CreateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createProcess(request:)``
+  /// - ``createProcess(request:options:)``
+  /// - ``createProcessPollingUntilDone(parent:process:processId:)``
+  /// - ``createProcessPollingUntilDone(request:)``
   public func createProcessPollingUntilDone(
     request: CreateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> Process {
@@ -371,6 +521,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Updates the parameters of a single Process.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_UpdateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProcess(request:)``
+  /// - ``updateProcessPollingUntilDone(process:updateMask:)``
+  /// - ``updateProcessPollingUntilDone(request:)``
+  /// - ``updateProcessPollingUntilDone(request:options:)``
   public func updateProcess(
     request: UpdateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -380,6 +537,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Updates the parameters of a single Process.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_UpdateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateProcess(request:)``
+  /// - ``updateProcess(request:options:)``
+  /// - ``updateProcessPollingUntilDone(process:updateMask:)``
+  /// - ``updateProcessPollingUntilDone(request:)``
   public func updateProcessPollingUntilDone(
     request: UpdateProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> Process {
@@ -407,6 +571,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Deletes a single Process.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProcess(request:)``
+  /// - ``deleteProcessPollingUntilDone(name:)``
+  /// - ``deleteProcessPollingUntilDone(request:)``
+  /// - ``deleteProcessPollingUntilDone(request:options:)``
   public func deleteProcess(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -416,6 +587,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Deletes a single Process.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteProcess(request:)``
+  /// - ``deleteProcess(request:options:)``
+  /// - ``deleteProcessPollingUntilDone(name:)``
+  /// - ``deleteProcessPollingUntilDone(request:)``
   public func deleteProcessPollingUntilDone(
     request: DeleteProcessRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -444,6 +622,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// the LRO time limit.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_BatchRunProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchRunProcess(request:)``
+  /// - ``batchRunProcessPollingUntilDone(parent:requests:)``
+  /// - ``batchRunProcessPollingUntilDone(request:)``
+  /// - ``batchRunProcessPollingUntilDone(request:options:)``
   public func batchRunProcess(
     request: BatchRunProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.Operation {
@@ -454,6 +639,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// the LRO time limit.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_BatchRunProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``batchRunProcess(request:)``
+  /// - ``batchRunProcess(request:options:)``
+  /// - ``batchRunProcessPollingUntilDone(parent:requests:)``
+  /// - ``batchRunProcessPollingUntilDone(request:)``
   public func batchRunProcessPollingUntilDone(
     request: BatchRunProcessRequest, options: GoogleGax.RequestOptions
   ) async throws -> BatchRunProcessResponse {
@@ -483,6 +675,12 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -492,6 +690,10 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// Gets information about a location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -503,6 +705,13 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -525,6 +734,11 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LiveVideoAnalytics_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -536,6 +750,11 @@ public final class LiveVideoAnalyticsClient: Clients.LiveVideoAnalyticsProtocol,
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LiveVideoAnalytics_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -719,6 +938,13 @@ extension Clients {
 
 // Default implementations
 extension Clients.LiveVideoAnalyticsProtocol {
+  /// ListPublicOperators returns all the operators in public registry.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listPublicOperators(request:options:)``
   public func listPublicOperators(request: ListPublicOperatorsRequest) async throws
     -> GoogleCloudVideoAIV1.ListPublicOperatorsResponse
   {
@@ -731,6 +957,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// ListPublicOperators returns all the operators in public registry.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listPublicOperators(request:options:)``
   public func listPublicOperatorsByItems(
     request: ListPublicOperatorsRequest
   ) -> some AsyncSequence<Operator, any Swift.Error> & Sendable {
@@ -740,6 +973,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// ListPublicOperators returns all the operators in public registry.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listPublicOperators(request:options:)``
   public func listPublicOperatorsByItems(
     request: ListPublicOperatorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Operator, any Swift.Error> & Sendable {
@@ -754,6 +991,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// ListPublicOperators returns all the operators in public registry.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListPublicOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listPublicOperators(request:options:)``
   public func listPublicOperatorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Operator, any Swift.Error> & Sendable {
@@ -763,6 +1007,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return self.listPublicOperatorsByItems(request: request)
   }
 
+  /// ResolveOperatorInfo returns the operator information based on the request.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ResolveOperatorInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/resolveOperatorInfo(request:options:)``
   public func resolveOperatorInfo(request: ResolveOperatorInfoRequest) async throws
     -> GoogleCloudVideoAIV1.ResolveOperatorInfoResponse
   {
@@ -775,6 +1026,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// ResolveOperatorInfo returns the operator information based on the request.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ResolveOperatorInfo")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/resolveOperatorInfo(request:options:)``
   public func resolveOperatorInfo(
     parent: Swift.String,
     queries: [OperatorQuery],
@@ -786,6 +1044,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.resolveOperatorInfo(request: request)
   }
 
+  /// Lists Operators in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperators(request:options:)``
   public func listOperators(request: ListOperatorsRequest) async throws
     -> GoogleCloudVideoAIV1.ListOperatorsResponse
   {
@@ -798,6 +1063,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Operators in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperators(request:options:)``
   public func listOperatorsByItems(
     request: ListOperatorsRequest
   ) -> some AsyncSequence<Operator, any Swift.Error> & Sendable {
@@ -807,6 +1079,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// Lists Operators in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperators(request:options:)``
   public func listOperatorsByItems(
     request: ListOperatorsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Operator, any Swift.Error> & Sendable {
@@ -820,6 +1096,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Operators in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListOperators")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperators(request:options:)``
   public func listOperatorsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Operator, any Swift.Error> & Sendable {
@@ -829,6 +1112,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return self.listOperatorsByItems(request: request)
   }
 
+  /// Gets details of a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getOperator(request:options:)``
   public func getOperator(request: GetOperatorRequest) async throws -> GoogleCloudVideoAIV1.Operator
   {
     try await self.getOperator(request: request, options: .init())
@@ -840,6 +1130,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getOperator(request:options:)``
   public func getOperator(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Operator {
@@ -849,6 +1146,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.getOperator(request: request)
   }
 
+  /// Creates a new Operator in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createOperator(request:options:)``
   public func createOperator(request: CreateOperatorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -861,6 +1165,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Operator in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createOperatorPollingUntilDone(request:options:)``
   public func createOperatorPollingUntilDone(request: CreateOperatorRequest) async throws
     -> Operator
   {
@@ -873,6 +1184,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Operator in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createOperatorPollingUntilDone(request:options:)``
   public func createOperatorPollingUntilDone(
     parent: Swift.String,
     `operator`: Operator?,
@@ -886,6 +1204,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.createOperatorPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateOperator(request:options:)``
   public func updateOperator(request: UpdateOperatorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -898,6 +1223,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateOperatorPollingUntilDone(request:options:)``
   public func updateOperatorPollingUntilDone(request: UpdateOperatorRequest) async throws
     -> Operator
   {
@@ -910,6 +1242,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateOperatorPollingUntilDone(request:options:)``
   public func updateOperatorPollingUntilDone(
     `operator`: Operator?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -921,6 +1260,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.updateOperatorPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteOperator(request:options:)``
   public func deleteOperator(request: DeleteOperatorRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -933,6 +1279,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteOperatorPollingUntilDone(request:options:)``
   public func deleteOperatorPollingUntilDone(request: DeleteOperatorRequest) async throws {
     try await self.deleteOperatorPollingUntilDone(request: request, options: .init())
   }
@@ -943,6 +1296,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Operator.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteOperator")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteOperatorPollingUntilDone(request:options:)``
   public func deleteOperatorPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -952,6 +1312,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     try await self.deleteOperatorPollingUntilDone(request: request)
   }
 
+  /// Lists Analyses in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listAnalyses(request:options:)``
   public func listAnalyses(request: ListAnalysesRequest) async throws
     -> GoogleCloudVideoAIV1.ListAnalysesResponse
   {
@@ -964,6 +1331,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Analyses in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listAnalyses(request:options:)``
   public func listAnalysesByItems(
     request: ListAnalysesRequest
   ) -> some AsyncSequence<Analysis, any Swift.Error> & Sendable {
@@ -973,6 +1347,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// Lists Analyses in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listAnalyses(request:options:)``
   public func listAnalysesByItems(
     request: ListAnalysesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Analysis, any Swift.Error> & Sendable {
@@ -986,6 +1364,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Analyses in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListAnalyses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listAnalyses(request:options:)``
   public func listAnalysesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Analysis, any Swift.Error> & Sendable {
@@ -995,6 +1380,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return self.listAnalysesByItems(request: request)
   }
 
+  /// Gets details of a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getAnalysis(request:options:)``
   public func getAnalysis(request: GetAnalysisRequest) async throws -> GoogleCloudVideoAIV1.Analysis
   {
     try await self.getAnalysis(request: request, options: .init())
@@ -1006,6 +1398,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getAnalysis(request:options:)``
   public func getAnalysis(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Analysis {
@@ -1015,6 +1414,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.getAnalysis(request: request)
   }
 
+  /// Creates a new Analysis in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createAnalysis(request:options:)``
   public func createAnalysis(request: CreateAnalysisRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1027,6 +1433,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Analysis in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createAnalysisPollingUntilDone(request:options:)``
   public func createAnalysisPollingUntilDone(request: CreateAnalysisRequest) async throws
     -> Analysis
   {
@@ -1039,6 +1452,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Analysis in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createAnalysisPollingUntilDone(request:options:)``
   public func createAnalysisPollingUntilDone(
     parent: Swift.String,
     analysis: Analysis?,
@@ -1052,6 +1472,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.createAnalysisPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateAnalysis(request:options:)``
   public func updateAnalysis(request: UpdateAnalysisRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1064,6 +1491,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateAnalysisPollingUntilDone(request:options:)``
   public func updateAnalysisPollingUntilDone(request: UpdateAnalysisRequest) async throws
     -> Analysis
   {
@@ -1076,6 +1510,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateAnalysisPollingUntilDone(request:options:)``
   public func updateAnalysisPollingUntilDone(
     analysis: Analysis?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1087,6 +1528,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.updateAnalysisPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteAnalysis(request:options:)``
   public func deleteAnalysis(request: DeleteAnalysisRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1099,6 +1547,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteAnalysisPollingUntilDone(request:options:)``
   public func deleteAnalysisPollingUntilDone(request: DeleteAnalysisRequest) async throws {
     try await self.deleteAnalysisPollingUntilDone(request: request, options: .init())
   }
@@ -1109,6 +1564,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Analysis.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteAnalysis")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteAnalysisPollingUntilDone(request:options:)``
   public func deleteAnalysisPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1118,6 +1580,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     try await self.deleteAnalysisPollingUntilDone(request: request)
   }
 
+  /// Lists Processes in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listProcesses(request:options:)``
   public func listProcesses(request: ListProcessesRequest) async throws
     -> GoogleCloudVideoAIV1.ListProcessesResponse
   {
@@ -1130,6 +1599,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists Processes in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listProcesses(request:options:)``
   public func listProcessesByItems(
     request: ListProcessesRequest
   ) -> some AsyncSequence<Process, any Swift.Error> & Sendable {
@@ -1139,6 +1615,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// Lists Processes in a given project and location.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listProcesses(request:options:)``
   public func listProcessesByItems(
     request: ListProcessesRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<Process, any Swift.Error> & Sendable {
@@ -1152,6 +1632,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists Processes in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListProcesses")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listProcesses(request:options:)``
   public func listProcessesByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<Process, any Swift.Error> & Sendable {
@@ -1161,6 +1648,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return self.listProcessesByItems(request: request)
   }
 
+  /// Gets details of a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getProcess(request:options:)``
   public func getProcess(request: GetProcessRequest) async throws -> GoogleCloudVideoAIV1.Process {
     try await self.getProcess(request: request, options: .init())
   }
@@ -1171,6 +1665,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets details of a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getProcess(request:options:)``
   public func getProcess(
     name: Swift.String,
   ) async throws -> GoogleCloudVideoAIV1.Process {
@@ -1180,6 +1681,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.getProcess(request: request)
   }
 
+  /// Creates a new Process in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createProcess(request:options:)``
   public func createProcess(request: CreateProcessRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1192,6 +1700,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Process in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createProcessPollingUntilDone(request:options:)``
   public func createProcessPollingUntilDone(request: CreateProcessRequest) async throws -> Process {
     return try await self.createProcessPollingUntilDone(request: request, options: .init())
   }
@@ -1202,6 +1717,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Creates a new Process in a given project and location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CreateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/createProcessPollingUntilDone(request:options:)``
   public func createProcessPollingUntilDone(
     parent: Swift.String,
     process: Process?,
@@ -1215,6 +1737,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.createProcessPollingUntilDone(request: request)
   }
 
+  /// Updates the parameters of a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateProcess(request:options:)``
   public func updateProcess(request: UpdateProcessRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1227,6 +1756,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateProcessPollingUntilDone(request:options:)``
   public func updateProcessPollingUntilDone(request: UpdateProcessRequest) async throws -> Process {
     return try await self.updateProcessPollingUntilDone(request: request, options: .init())
   }
@@ -1237,6 +1773,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the parameters of a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_UpdateProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/updateProcessPollingUntilDone(request:options:)``
   public func updateProcessPollingUntilDone(
     process: Process?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -1248,6 +1791,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.updateProcessPollingUntilDone(request: request)
   }
 
+  /// Deletes a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteProcess(request:options:)``
   public func deleteProcess(request: DeleteProcessRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1260,6 +1810,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteProcessPollingUntilDone(request:options:)``
   public func deleteProcessPollingUntilDone(request: DeleteProcessRequest) async throws {
     try await self.deleteProcessPollingUntilDone(request: request, options: .init())
   }
@@ -1270,6 +1827,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Deletes a single Process.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteProcessPollingUntilDone(request:options:)``
   public func deleteProcessPollingUntilDone(
     name: Swift.String,
   ) async throws {
@@ -1279,6 +1843,14 @@ extension Clients.LiveVideoAnalyticsProtocol {
     try await self.deleteProcessPollingUntilDone(request: request)
   }
 
+  /// Run all of the processes to "completion". Max time for each process is
+  /// the LRO time limit.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_BatchRunProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/batchRunProcess(request:options:)``
   public func batchRunProcess(request: BatchRunProcessRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1291,6 +1863,14 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run all of the processes to "completion". Max time for each process is
+  /// the LRO time limit.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_BatchRunProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/batchRunProcessPollingUntilDone(request:options:)``
   public func batchRunProcessPollingUntilDone(request: BatchRunProcessRequest) async throws
     -> BatchRunProcessResponse
   {
@@ -1303,6 +1883,14 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Run all of the processes to "completion". Max time for each process is
+  /// the LRO time limit.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_BatchRunProcess")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/batchRunProcessPollingUntilDone(request:options:)``
   public func batchRunProcessPollingUntilDone(
     parent: Swift.String,
     requests: [CreateProcessRequest],
@@ -1314,6 +1902,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.batchRunProcessPollingUntilDone(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -1326,6 +1921,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1335,6 +1937,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -1348,6 +1954,13 @@ extension Clients.LiveVideoAnalyticsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -1360,6 +1973,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -1372,6 +1994,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1383,6 +2014,10 @@ extension Clients.LiveVideoAnalyticsProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -1396,6 +2031,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -1407,6 +2051,9 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -1419,6 +2066,9 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -1428,6 +2078,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -1438,6 +2097,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -1447,6 +2115,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -1457,6 +2134,15 @@ extension Clients.LiveVideoAnalyticsProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "LiveVideoAnalytics_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LiveVideoAnalyticsClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

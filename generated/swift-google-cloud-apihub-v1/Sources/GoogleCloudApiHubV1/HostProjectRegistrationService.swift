@@ -25,6 +25,10 @@ import Foundation
 /// This service is used for managing the host project registrations.
 ///
 /// @Snippet(path: "HostProjectRegistrationServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/HostProjectRegistrationServiceProtocol``
 public final class HostProjectRegistrationServiceClient: Clients
     .HostProjectRegistrationServiceProtocol, Sendable
 {
@@ -48,6 +52,11 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// register calls for the same project will fail.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_CreateHostProjectRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``createHostProjectRegistration(parent:hostProjectRegistration:hostProjectRegistrationId:)``
+  /// - ``createHostProjectRegistration(request:)``
   public func createHostProjectRegistration(
     request: CreateHostProjectRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.HostProjectRegistration {
@@ -57,6 +66,11 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// Get a host project registration.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_GetHostProjectRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getHostProjectRegistration(name:)``
+  /// - ``getHostProjectRegistration(request:)``
   public func getHostProjectRegistration(
     request: GetHostProjectRegistrationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.HostProjectRegistration {
@@ -66,6 +80,13 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// Lists host project registrations.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_ListHostProjectRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listHostProjectRegistrations(request:)``
+  /// - ``listHostProjectRegistrationsByItems(parent:)``
+  /// - ``listHostProjectRegistrationsByItems(request:)``
+  /// - ``listHostProjectRegistrationsByItems(request:options:)``
   public func listHostProjectRegistrations(
     request: ListHostProjectRegistrationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudApiHubV1.ListHostProjectRegistrationsResponse {
@@ -75,6 +96,12 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -84,6 +111,10 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// Gets information about a location.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -95,6 +126,13 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HostProjectRegistrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listOperations(request:)``
+  /// - ``listOperationsByItems(name:filter:)``
+  /// - ``listOperationsByItems(request:)``
+  /// - ``listOperationsByItems(request:options:)``
   public func listOperations(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -117,6 +155,11 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HostProjectRegistrationService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``deleteOperation(name:)``
+  /// - ``deleteOperation(request:)``
   public func deleteOperation(
     request: GoogleLongRunning.DeleteOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -128,6 +171,11 @@ public final class HostProjectRegistrationServiceClient: Clients
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HostProjectRegistrationService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``cancelOperation(name:)``
+  /// - ``cancelOperation(request:)``
   public func cancelOperation(
     request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
   ) async throws {
@@ -186,6 +234,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.HostProjectRegistrationServiceProtocol {
+  /// Create a host project registration.
+  /// A Google cloud project can be registered as a host project if it is not
+  /// attached as a runtime project to another host project.
+  /// A project can be registered as a host project only once. Subsequent
+  /// register calls for the same project will fail.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_CreateHostProjectRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/createHostProjectRegistration(request:options:)``
   public func createHostProjectRegistration(request: CreateHostProjectRegistrationRequest)
     async throws -> GoogleCloudApiHubV1.HostProjectRegistration
   {
@@ -198,6 +257,17 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Create a host project registration.
+  /// A Google cloud project can be registered as a host project if it is not
+  /// attached as a runtime project to another host project.
+  /// A project can be registered as a host project only once. Subsequent
+  /// register calls for the same project will fail.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_CreateHostProjectRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/createHostProjectRegistration(request:options:)``
   public func createHostProjectRegistration(
     parent: Swift.String,
     hostProjectRegistration: HostProjectRegistration?,
@@ -211,6 +281,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     return try await self.createHostProjectRegistration(request: request)
   }
 
+  /// Get a host project registration.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_GetHostProjectRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/getHostProjectRegistration(request:options:)``
   public func getHostProjectRegistration(request: GetHostProjectRegistrationRequest) async throws
     -> GoogleCloudApiHubV1.HostProjectRegistration
   {
@@ -223,6 +300,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Get a host project registration.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_GetHostProjectRegistration")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/getHostProjectRegistration(request:options:)``
   public func getHostProjectRegistration(
     name: Swift.String,
   ) async throws -> GoogleCloudApiHubV1.HostProjectRegistration {
@@ -232,6 +316,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     return try await self.getHostProjectRegistration(request: request)
   }
 
+  /// Lists host project registrations.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListHostProjectRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:options:)``
   public func listHostProjectRegistrations(request: ListHostProjectRegistrationsRequest)
     async throws -> GoogleCloudApiHubV1.ListHostProjectRegistrationsResponse
   {
@@ -244,6 +335,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists host project registrations.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListHostProjectRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:options:)``
   public func listHostProjectRegistrationsByItems(
     request: ListHostProjectRegistrationsRequest
   ) -> some AsyncSequence<HostProjectRegistration, any Swift.Error> & Sendable {
@@ -253,6 +351,10 @@ extension Clients.HostProjectRegistrationServiceProtocol {
   /// Lists host project registrations.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_ListHostProjectRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:options:)``
   public func listHostProjectRegistrationsByItems(
     request: ListHostProjectRegistrationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<HostProjectRegistration, any Swift.Error> & Sendable {
@@ -267,6 +369,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Lists host project registrations.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListHostProjectRegistrations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listHostProjectRegistrations(request:options:)``
   public func listHostProjectRegistrationsByItems(
     parent: Swift.String,
   ) -> some AsyncSequence<HostProjectRegistration, any Swift.Error> & Sendable {
@@ -276,6 +385,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     return self.listHostProjectRegistrationsByItems(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -288,6 +404,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -297,6 +420,10 @@ extension Clients.HostProjectRegistrationServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "HostProjectRegistrationService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -310,6 +437,13 @@ extension Clients.HostProjectRegistrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -322,6 +456,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listOperations(request:options:)``
   public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
     -> GoogleLongRunning.ListOperationsResponse
   {
@@ -334,6 +477,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -345,6 +497,10 @@ extension Clients.HostProjectRegistrationServiceProtocol {
   /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   ///
   /// @Snippet(path: "HostProjectRegistrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -358,6 +514,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_ListOperations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/listOperations(request:options:)``
   public func listOperationsByItems(
     name: Swift.String,
     filter: Swift.String,
@@ -369,6 +534,9 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     return self.listOperationsByItems(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -381,6 +549,9 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
@@ -390,6 +561,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     return try await self.getOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(request: GoogleLongRunning.DeleteOperationRequest) async throws {
     try await self.deleteOperation(request: request, options: .init())
   }
@@ -400,6 +580,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_DeleteOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/deleteOperation(request:options:)``
   public func deleteOperation(
     name: Swift.String,
   ) async throws {
@@ -409,6 +598,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     try await self.deleteOperation(request: request)
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
     try await self.cancelOperation(request: request, options: .init())
   }
@@ -419,6 +617,15 @@ extension Clients.HostProjectRegistrationServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+  ///
+  /// @Snippet(path: "HostProjectRegistrationService_CancelOperation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``HostProjectRegistrationServiceClient/cancelOperation(request:options:)``
   public func cancelOperation(
     name: Swift.String,
   ) async throws {

@@ -25,6 +25,10 @@
   /// internally and does not follow the same patterns as the other v1 RPCs.
   ///
   /// @Snippet(path: "SqlRegionsServiceQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/SqlRegionsServiceProtocol``
   public final class SqlRegionsServiceClient: Clients.SqlRegionsServiceProtocol, Sendable {
     let inner: any Clients.SqlRegionsServiceStub
 

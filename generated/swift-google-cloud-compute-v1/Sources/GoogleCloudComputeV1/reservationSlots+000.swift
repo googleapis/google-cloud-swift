@@ -24,6 +24,10 @@
   /// Service for the `reservationSlots` resource.
   ///
   /// @Snippet(path: "reservationSlotsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/ReservationSlotsProtocol``
   public final class ReservationSlotsClient: Clients.ReservationSlotsProtocol, Sendable {
     let inner: any Clients.ReservationSlotsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -44,6 +48,11 @@
     /// Retrieves information about the specified reservation slot.
     ///
     /// @Snippet(path: "reservationSlots_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``get(project:zone:parentName:reservationSlot:)``
+    /// - ``get(request:)``
     public func `get`(
       request: ReservationSlotsClient.GetRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationSlotsGetResponse {
@@ -53,6 +62,13 @@
     /// Get health info on a reservation slot.
     ///
     /// @Snippet(path: "reservationSlots_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getHealth(request:)``
+    /// - ``getHealthPollingUntilDone(project:zone:parentName:reservationSlot:)``
+    /// - ``getHealthPollingUntilDone(request:)``
+    /// - ``getHealthPollingUntilDone(request:options:)``
     public func getHealth(
       request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -67,6 +83,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationSlots_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getHealth(request:)``
+    /// - ``getHealth(request:options:)``
+    /// - ``getHealthPollingUntilDone(project:zone:parentName:reservationSlot:)``
+    /// - ``getHealthPollingUntilDone(request:)``
     public func getHealthPollingUntilDone(
       request: ReservationSlotsClient.GetHealthRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -109,6 +132,13 @@
     /// Allows customers to get SBOM versions of a reservation slot.
     ///
     /// @Snippet(path: "reservationSlots_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getVersion(request:)``
+    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSlot:body:)``
+    /// - ``getVersionPollingUntilDone(request:)``
+    /// - ``getVersionPollingUntilDone(request:options:)``
     public func getVersion(
       request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -123,6 +153,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationSlots_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getVersion(request:)``
+    /// - ``getVersion(request:options:)``
+    /// - ``getVersionPollingUntilDone(project:zone:parentName:reservationSlot:body:)``
+    /// - ``getVersionPollingUntilDone(request:)``
     public func getVersionPollingUntilDone(
       request: ReservationSlotsClient.GetVersionRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -165,6 +202,13 @@
     /// Retrieves a list of reservation slots under a single reservation.
     ///
     /// @Snippet(path: "reservationSlots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``list(request:)``
+    /// - ``listByItems(project:zone:parentName:)``
+    /// - ``listByItems(request:)``
+    /// - ``listByItems(request:options:)``
     public func list(
       request: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.ReservationSlotsListResponse {
@@ -174,6 +218,13 @@
     /// Update a reservation slot in the specified sub-block.
     ///
     /// @Snippet(path: "reservationSlots_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``updatePollingUntilDone(project:zone:parentName:reservationSlot:body:)``
+    /// - ``updatePollingUntilDone(request:)``
+    /// - ``updatePollingUntilDone(request:options:)``
     public func update(
       request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -188,6 +239,13 @@
     ///   method once the operation completes.
     ///
     /// @Snippet(path: "reservationSlots_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``update(request:)``
+    /// - ``update(request:options:)``
+    /// - ``updatePollingUntilDone(project:zone:parentName:reservationSlot:body:)``
+    /// - ``updatePollingUntilDone(request:)``
     public func updatePollingUntilDone(
       request: ReservationSlotsClient.UpdateRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -303,6 +361,13 @@
 
   // Default implementations
   extension Clients.ReservationSlotsProtocol {
+    /// Retrieves information about the specified reservation slot.
+    ///
+    /// @Snippet(path: "reservationSlots_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/get(request:options:)``
     public func `get`(request: ReservationSlotsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.ReservationSlotsGetResponse
     {
@@ -315,6 +380,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves information about the specified reservation slot.
+    ///
+    /// @Snippet(path: "reservationSlots_get")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/get(request:options:)``
     public func `get`(
       project: Swift.String,
       zone: Swift.String,
@@ -330,6 +402,13 @@
       return try await self.`get`(request: request)
     }
 
+    /// Get health info on a reservation slot.
+    ///
+    /// @Snippet(path: "reservationSlots_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/getHealth(request:options:)``
     public func getHealth(request: ReservationSlotsClient.GetHealthRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -342,6 +421,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get health info on a reservation slot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationSlots_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/getHealthPollingUntilDone(request:options:)``
     public func getHealthPollingUntilDone(
       request: ReservationSlotsClient.GetHealthRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -354,6 +445,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Get health info on a reservation slot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationSlots_getHealth")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/getHealthPollingUntilDone(request:options:)``
     public func getHealthPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -369,6 +472,13 @@
       return try await self.getHealthPollingUntilDone(request: request)
     }
 
+    /// Allows customers to get SBOM versions of a reservation slot.
+    ///
+    /// @Snippet(path: "reservationSlots_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/getVersion(request:options:)``
     public func getVersion(request: ReservationSlotsClient.GetVersionRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -381,6 +491,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Allows customers to get SBOM versions of a reservation slot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationSlots_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/getVersionPollingUntilDone(request:options:)``
     public func getVersionPollingUntilDone(
       request: ReservationSlotsClient.GetVersionRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -393,6 +515,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Allows customers to get SBOM versions of a reservation slot.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationSlots_getVersion")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/getVersionPollingUntilDone(request:options:)``
     public func getVersionPollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -410,6 +544,13 @@
       return try await self.getVersionPollingUntilDone(request: request)
     }
 
+    /// Retrieves a list of reservation slots under a single reservation.
+    ///
+    /// @Snippet(path: "reservationSlots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/list(request:options:)``
     public func list(request: ReservationSlotsClient.ListRequest) async throws
       -> GoogleCloudComputeV1.ReservationSlotsListResponse
     {
@@ -422,6 +563,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves a list of reservation slots under a single reservation.
+    ///
+    /// @Snippet(path: "reservationSlots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/list(request:options:)``
     public func listByItems(
       request: ReservationSlotsClient.ListRequest
     ) -> some AsyncSequence<ReservationSlot, any Swift.Error> & Sendable {
@@ -431,6 +579,10 @@
     /// Retrieves a list of reservation slots under a single reservation.
     ///
     /// @Snippet(path: "reservationSlots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/list(request:options:)``
     public func listByItems(
       request: ReservationSlotsClient.ListRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<ReservationSlot, any Swift.Error> & Sendable {
@@ -445,6 +597,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Retrieves a list of reservation slots under a single reservation.
+    ///
+    /// @Snippet(path: "reservationSlots_list")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/list(request:options:)``
     public func listByItems(
       project: Swift.String,
       zone: Swift.String,
@@ -458,6 +617,13 @@
       return self.listByItems(request: request)
     }
 
+    /// Update a reservation slot in the specified sub-block.
+    ///
+    /// @Snippet(path: "reservationSlots_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/update(request:options:)``
     public func update(request: ReservationSlotsClient.UpdateRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {
@@ -470,6 +636,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update a reservation slot in the specified sub-block.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationSlots_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       request: ReservationSlotsClient.UpdateRequest
     ) async throws -> GoogleCloudComputeV1.Operation {
@@ -482,6 +660,18 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Update a reservation slot in the specified sub-block.
+    ///
+    /// - Note: Unlike standard gRPC long-running operations where polling returns the resulting
+    ///   resource, Discovery-based operations return the terminal `GoogleCloudComputeV1.Operation`
+    ///   status object. To obtain the created or modified resource, invoke the corresponding `get`
+    ///   method once the operation completes.
+    ///
+    /// @Snippet(path: "reservationSlots_update")
+    ///
+    /// ## See Also
+    ///
+    /// - ``ReservationSlotsClient/updatePollingUntilDone(request:options:)``
     public func updatePollingUntilDone(
       project: Swift.String,
       zone: Swift.String,
@@ -499,6 +689,7 @@
       return try await self.updatePollingUntilDone(request: request)
     }
 
+    /// Retrieves the specified zone-specific Operations resource.
     public func getOperation(request: ZoneOperationsClient.GetRequest) async throws
       -> GoogleCloudComputeV1.Operation
     {

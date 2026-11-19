@@ -24,6 +24,10 @@ import Foundation
 /// Service Directory API for looking up service data at runtime.
 ///
 /// @Snippet(path: "LookupServiceQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/LookupServiceProtocol``
 public final class LookupServiceClient: Clients.LookupServiceProtocol, Sendable {
   let inner: any Clients.LookupServiceStub
 
@@ -44,6 +48,10 @@ public final class LookupServiceClient: Clients.LookupServiceProtocol, Sendable 
   /// [google.cloud.servicedirectory.v1.Service]: <doc:Service>
   ///
   /// @Snippet(path: "LookupService_ResolveService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``resolveService(request:)``
   public func resolveService(
     request: ResolveServiceRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudServiceDirectoryV1.ResolveServiceResponse {
@@ -53,6 +61,12 @@ public final class LookupServiceClient: Clients.LookupServiceProtocol, Sendable 
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LookupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -62,6 +76,10 @@ public final class LookupServiceClient: Clients.LookupServiceProtocol, Sendable 
   /// Gets information about a location.
   ///
   /// @Snippet(path: "LookupService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -95,6 +113,17 @@ extension Clients {
 
 // Default implementations
 extension Clients.LookupServiceProtocol {
+  /// Returns a [service][google.cloud.servicedirectory.v1.Service] and its
+  /// associated endpoints.
+  /// Resolving a service is not considered an active developer method.
+  ///
+  /// [google.cloud.servicedirectory.v1.Service]: <doc:Service>
+  ///
+  /// @Snippet(path: "LookupService_ResolveService")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LookupServiceClient/resolveService(request:options:)``
   public func resolveService(request: ResolveServiceRequest) async throws
     -> GoogleCloudServiceDirectoryV1.ResolveServiceResponse
   {
@@ -107,6 +136,13 @@ extension Clients.LookupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LookupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LookupServiceClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -119,6 +155,13 @@ extension Clients.LookupServiceProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// @Snippet(path: "LookupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LookupServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -128,6 +171,10 @@ extension Clients.LookupServiceProtocol {
   /// Lists information about the supported locations for this service.
   ///
   /// @Snippet(path: "LookupService_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LookupServiceClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -141,6 +188,13 @@ extension Clients.LookupServiceProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "LookupService_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``LookupServiceClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {

@@ -30,6 +30,10 @@
   /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
   ///
   /// @Snippet(path: "DocumentsQuickstart")
+  ///
+  /// ## See Also
+  ///
+  /// - ``Clients/DocumentsProtocol``
   public final class DocumentsClient: Clients.DocumentsProtocol, Sendable {
     let inner: any Clients.DocumentsStub
     let pollingErrorPolicy: any GoogleGax.PollingErrorPolicy
@@ -50,6 +54,13 @@
     /// Returns the list of all documents of the knowledge base.
     ///
     /// @Snippet(path: "Documents_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listDocuments(request:)``
+    /// - ``listDocumentsByItems(parent:)``
+    /// - ``listDocumentsByItems(request:)``
+    /// - ``listDocumentsByItems(request:options:)``
     public func listDocuments(
       request: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.ListDocumentsResponse {
@@ -59,6 +70,11 @@
     /// Retrieves the specified document.
     ///
     /// @Snippet(path: "Documents_GetDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getDocument(name:)``
+    /// - ``getDocument(request:)``
     public func getDocument(
       request: GetDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudDialogflowV2.Document {
@@ -79,6 +95,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDocument(request:)``
+    /// - ``createDocumentPollingUntilDone(parent:document:)``
+    /// - ``createDocumentPollingUntilDone(request:)``
+    /// - ``createDocumentPollingUntilDone(request:options:)``
     public func createDocument(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -99,6 +122,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``createDocument(request:)``
+    /// - ``createDocument(request:options:)``
+    /// - ``createDocumentPollingUntilDone(parent:document:)``
+    /// - ``createDocumentPollingUntilDone(request:)``
     public func createDocumentPollingUntilDone(
       request: CreateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -140,6 +170,12 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importDocuments(request:)``
+    /// - ``importDocumentsPollingUntilDone(request:)``
+    /// - ``importDocumentsPollingUntilDone(request:options:)``
     public func importDocuments(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -163,6 +199,12 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``importDocuments(request:)``
+    /// - ``importDocuments(request:options:)``
+    /// - ``importDocumentsPollingUntilDone(request:)``
     public func importDocumentsPollingUntilDone(
       request: ImportDocumentsRequest, options: GoogleGax.RequestOptions
     ) async throws -> ImportDocumentsResponse {
@@ -203,6 +245,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDocument(request:)``
+    /// - ``deleteDocumentPollingUntilDone(name:)``
+    /// - ``deleteDocumentPollingUntilDone(request:)``
+    /// - ``deleteDocumentPollingUntilDone(request:options:)``
     public func deleteDocument(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -223,6 +272,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``deleteDocument(request:)``
+    /// - ``deleteDocument(request:options:)``
+    /// - ``deleteDocumentPollingUntilDone(name:)``
+    /// - ``deleteDocumentPollingUntilDone(request:)``
     public func deleteDocumentPollingUntilDone(
       request: DeleteDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -262,6 +318,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDocument(request:)``
+    /// - ``updateDocumentPollingUntilDone(document:updateMask:)``
+    /// - ``updateDocumentPollingUntilDone(request:)``
+    /// - ``updateDocumentPollingUntilDone(request:options:)``
     public func updateDocument(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -282,6 +345,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``updateDocument(request:)``
+    /// - ``updateDocument(request:options:)``
+    /// - ``updateDocumentPollingUntilDone(document:updateMask:)``
+    /// - ``updateDocumentPollingUntilDone(request:)``
     public func updateDocumentPollingUntilDone(
       request: UpdateDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -326,6 +396,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_ReloadDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reloadDocument(request:)``
+    /// - ``reloadDocumentPollingUntilDone(name:contentUri:)``
+    /// - ``reloadDocumentPollingUntilDone(request:)``
+    /// - ``reloadDocumentPollingUntilDone(request:options:)``
     public func reloadDocument(
       request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -352,6 +429,13 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_ReloadDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``reloadDocument(request:)``
+    /// - ``reloadDocument(request:options:)``
+    /// - ``reloadDocumentPollingUntilDone(name:contentUri:)``
+    /// - ``reloadDocumentPollingUntilDone(request:)``
     public func reloadDocumentPollingUntilDone(
       request: ReloadDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -391,6 +475,12 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_ExportDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportDocument(request:)``
+    /// - ``exportDocumentPollingUntilDone(request:)``
+    /// - ``exportDocumentPollingUntilDone(request:options:)``
     public func exportDocument(
       request: ExportDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.Operation {
@@ -412,6 +502,12 @@
     /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
     ///
     /// @Snippet(path: "Documents_ExportDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``exportDocument(request:)``
+    /// - ``exportDocument(request:options:)``
+    /// - ``exportDocumentPollingUntilDone(request:)``
     public func exportDocumentPollingUntilDone(
       request: ExportDocumentRequest, options: GoogleGax.RequestOptions
     ) async throws -> Document {
@@ -456,6 +552,12 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Documents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listLocations(request:)``
+    /// - ``listLocationsByItems(request:)``
+    /// - ``listLocationsByItems(request:options:)``
     public func listLocations(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -465,6 +567,10 @@
     /// Gets information about a location.
     ///
     /// @Snippet(path: "Documents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``getLocation(request:)``
     public func getLocation(
       request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleCloudLocation.Location {
@@ -476,6 +582,13 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Documents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``listOperations(request:)``
+    /// - ``listOperationsByItems(name:filter:)``
+    /// - ``listOperationsByItems(request:)``
+    /// - ``listOperationsByItems(request:options:)``
     public func listOperations(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) async throws -> GoogleLongRunning.ListOperationsResponse {
@@ -498,6 +611,11 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Documents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``cancelOperation(name:)``
+    /// - ``cancelOperation(request:)``
     public func cancelOperation(
       request: GoogleLongRunning.CancelOperationRequest, options: GoogleGax.RequestOptions
     ) async throws {
@@ -606,6 +724,13 @@
 
   // Default implementations
   extension Clients.DocumentsProtocol {
+    /// Returns the list of all documents of the knowledge base.
+    ///
+    /// @Snippet(path: "Documents_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listDocuments(request:options:)``
     public func listDocuments(request: ListDocumentsRequest) async throws
       -> GoogleCloudDialogflowV2.ListDocumentsResponse
     {
@@ -618,6 +743,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Returns the list of all documents of the knowledge base.
+    ///
+    /// @Snippet(path: "Documents_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listDocuments(request:options:)``
     public func listDocumentsByItems(
       request: ListDocumentsRequest
     ) -> some AsyncSequence<Document, any Swift.Error> & Sendable {
@@ -627,6 +759,10 @@
     /// Returns the list of all documents of the knowledge base.
     ///
     /// @Snippet(path: "Documents_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listDocuments(request:options:)``
     public func listDocumentsByItems(
       request: ListDocumentsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<Document, any Swift.Error> & Sendable {
@@ -641,6 +777,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Returns the list of all documents of the knowledge base.
+    ///
+    /// @Snippet(path: "Documents_ListDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listDocuments(request:options:)``
     public func listDocumentsByItems(
       parent: Swift.String,
     ) -> some AsyncSequence<Document, any Swift.Error> & Sendable {
@@ -650,6 +793,13 @@
       return self.listDocumentsByItems(request: request)
     }
 
+    /// Retrieves the specified document.
+    ///
+    /// @Snippet(path: "Documents_GetDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/getDocument(request:options:)``
     public func getDocument(request: GetDocumentRequest) async throws
       -> GoogleCloudDialogflowV2.Document
     {
@@ -662,6 +812,13 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Retrieves the specified document.
+    ///
+    /// @Snippet(path: "Documents_GetDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/getDocument(request:options:)``
     public func getDocument(
       name: Swift.String,
     ) async throws -> GoogleCloudDialogflowV2.Document {
@@ -671,6 +828,24 @@
       return try await self.getDocument(request: request)
     }
 
+    /// Creates a new document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/createDocument(request:options:)``
     public func createDocument(request: CreateDocumentRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -683,6 +858,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/createDocumentPollingUntilDone(request:options:)``
     public func createDocumentPollingUntilDone(request: CreateDocumentRequest) async throws
       -> Document
     {
@@ -695,6 +888,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates a new document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_CreateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/createDocumentPollingUntilDone(request:options:)``
     public func createDocumentPollingUntilDone(
       parent: Swift.String,
       document: Document?,
@@ -706,6 +917,27 @@
       return try await self.createDocumentPollingUntilDone(request: request)
     }
 
+    /// Creates documents by importing data from external sources.
+    /// Dialogflow supports up to 350 documents in each request. If you try to
+    /// import more, Dialogflow will return an error.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`:
+    /// [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ImportDocumentsResponse]: <doc:ImportDocumentsResponse>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/importDocuments(request:options:)``
     public func importDocuments(request: ImportDocumentsRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -718,6 +950,27 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Creates documents by importing data from external sources.
+    /// Dialogflow supports up to 350 documents in each request. If you try to
+    /// import more, Dialogflow will return an error.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`:
+    /// [ImportDocumentsResponse][google.cloud.dialogflow.v2.ImportDocumentsResponse]
+    ///
+    /// [google.cloud.dialogflow.v2.ImportDocumentsResponse]: <doc:ImportDocumentsResponse>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ImportDocuments")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/importDocumentsPollingUntilDone(request:options:)``
     public func importDocumentsPollingUntilDone(request: ImportDocumentsRequest) async throws
       -> ImportDocumentsResponse
     {
@@ -730,6 +983,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/deleteDocument(request:options:)``
     public func deleteDocument(request: DeleteDocumentRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -742,6 +1013,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/deleteDocumentPollingUntilDone(request:options:)``
     public func deleteDocumentPollingUntilDone(request: DeleteDocumentRequest) async throws {
       try await self.deleteDocumentPollingUntilDone(request: request, options: .init())
     }
@@ -752,6 +1041,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Deletes the specified document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: An [Empty
+    ///   message](https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#empty)
+    ///
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_DeleteDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/deleteDocumentPollingUntilDone(request:options:)``
     public func deleteDocumentPollingUntilDone(
       name: Swift.String,
     ) async throws {
@@ -761,6 +1068,24 @@
       try await self.deleteDocumentPollingUntilDone(request: request)
     }
 
+    /// Updates the specified document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/updateDocument(request:options:)``
     public func updateDocument(request: UpdateDocumentRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -773,6 +1098,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/updateDocumentPollingUntilDone(request:options:)``
     public func updateDocumentPollingUntilDone(request: UpdateDocumentRequest) async throws
       -> Document
     {
@@ -785,6 +1128,24 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Updates the specified document.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_UpdateDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/updateDocumentPollingUntilDone(request:options:)``
     public func updateDocumentPollingUntilDone(
       document: Document?,
       updateMask: GoogleWKT.WKTFieldMask?,
@@ -796,6 +1157,30 @@
       return try await self.updateDocumentPollingUntilDone(request: request)
     }
 
+    /// Reloads the specified document from its specified source, content_uri or
+    /// content. The previously loaded content of the document will be deleted.
+    /// Note: Even when the content of the document has not changed, there still
+    /// may be side effects because of internal implementation changes.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    /// only use `projects.knowledgeBases.documents`.
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ReloadDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/reloadDocument(request:options:)``
     public func reloadDocument(request: ReloadDocumentRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -808,6 +1193,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reloads the specified document from its specified source, content_uri or
+    /// content. The previously loaded content of the document will be deleted.
+    /// Note: Even when the content of the document has not changed, there still
+    /// may be side effects because of internal implementation changes.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    /// only use `projects.knowledgeBases.documents`.
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ReloadDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/reloadDocumentPollingUntilDone(request:options:)``
     public func reloadDocumentPollingUntilDone(request: ReloadDocumentRequest) async throws
       -> Document
     {
@@ -820,6 +1229,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Reloads the specified document from its specified source, content_uri or
+    /// content. The previously loaded content of the document will be deleted.
+    /// Note: Even when the content of the document has not changed, there still
+    /// may be side effects because of internal implementation changes.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// Note: The `projects.agent.knowledgeBases.documents` resource is deprecated;
+    /// only use `projects.knowledgeBases.documents`.
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ReloadDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/reloadDocumentPollingUntilDone(request:options:)``
     public func reloadDocumentPollingUntilDone(
       name: Swift.String,
       contentUri: Swift.String,
@@ -831,6 +1264,25 @@
       return try await self.reloadDocumentPollingUntilDone(request: request)
     }
 
+    /// Exports a smart messaging candidate document into the specified
+    /// destination.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ExportDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/exportDocument(request:options:)``
     public func exportDocument(request: ExportDocumentRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -843,6 +1295,25 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Exports a smart messaging candidate document into the specified
+    /// destination.
+    ///
+    /// This method is a [long-running
+    /// operation](https://cloud.google.com/dialogflow/cx/docs/how/long-running-operation).
+    /// The returned `Operation` type has the following method-specific fields:
+    ///
+    /// - `metadata`:
+    /// [KnowledgeOperationMetadata][google.cloud.dialogflow.v2.KnowledgeOperationMetadata]
+    /// - `response`: [Document][google.cloud.dialogflow.v2.Document]
+    ///
+    /// [google.cloud.dialogflow.v2.Document]: <doc:Document>
+    /// [google.cloud.dialogflow.v2.KnowledgeOperationMetadata]: <doc:KnowledgeOperationMetadata>
+    ///
+    /// @Snippet(path: "Documents_ExportDocument")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/exportDocumentPollingUntilDone(request:options:)``
     public func exportDocumentPollingUntilDone(request: ExportDocumentRequest) async throws
       -> Document
     {
@@ -855,6 +1326,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Documents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listLocations(request:options:)``
     public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
       -> GoogleCloudLocation.ListLocationsResponse
     {
@@ -867,6 +1362,30 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Lists information about the supported locations for this service.
+    ///
+    /// This method lists locations based on the resource scope provided in
+    /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+    /// **Global locations**: If `name` is empty, the method lists the
+    /// public locations available to all projects. * **Project-specific
+    /// locations**: If `name` follows the format
+    /// `projects/{project}`, the method lists locations visible to that
+    /// specific project. This includes public, private, or other
+    /// project-specific locations enabled for the project.
+    ///
+    /// For gRPC and client library implementations, the resource name is
+    /// passed as the `name` field. For direct service calls, the resource
+    /// name is
+    /// incorporated into the request path based on the specific service
+    /// implementation and version.
+    ///
+    /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+    ///
+    /// @Snippet(path: "Documents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -893,6 +1412,10 @@
     /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
     ///
     /// @Snippet(path: "Documents_ListLocations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listLocations(request:options:)``
     public func listLocationsByItems(
       request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -906,6 +1429,13 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Gets information about a location.
+    ///
+    /// @Snippet(path: "Documents_GetLocation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/getLocation(request:options:)``
     public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
       -> GoogleCloudLocation.Location
     {
@@ -918,6 +1448,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Documents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listOperations(request:options:)``
     public func listOperations(request: GoogleLongRunning.ListOperationsRequest) async throws
       -> GoogleLongRunning.ListOperationsResponse
     {
@@ -930,6 +1469,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Documents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -941,6 +1489,10 @@
     /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     ///
     /// @Snippet(path: "Documents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       request: GoogleLongRunning.ListOperationsRequest, options: GoogleGax.RequestOptions
     ) -> some AsyncSequence<GoogleLongRunning.Operation, any Swift.Error> & Sendable {
@@ -954,6 +1506,15 @@
         listRpc: listRpc, initialPageToken: request.pageToken)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Documents_ListOperations")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/listOperations(request:options:)``
     public func listOperationsByItems(
       name: Swift.String,
       filter: Swift.String,
@@ -965,6 +1526,9 @@
       return self.listOperationsByItems(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
       -> GoogleLongRunning.Operation
     {
@@ -977,6 +1541,9 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
     public func getOperation(
       name: Swift.String,
     ) async throws -> GoogleLongRunning.Operation {
@@ -986,6 +1553,15 @@
       return try await self.getOperation(request: request)
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Documents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/cancelOperation(request:options:)``
     public func cancelOperation(request: GoogleLongRunning.CancelOperationRequest) async throws {
       try await self.cancelOperation(request: request, options: .init())
     }
@@ -996,6 +1572,15 @@
       throw GoogleGax.RequestError.unimplemented
     }
 
+    /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+    ///
+    /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
+    ///
+    /// @Snippet(path: "Documents_CancelOperation")
+    ///
+    /// ## See Also
+    ///
+    /// - ``DocumentsClient/cancelOperation(request:options:)``
     public func cancelOperation(
       name: Swift.String,
     ) async throws {

@@ -38,6 +38,10 @@ import Foundation
 /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
 ///
 /// @Snippet(path: "AutokeyAdminQuickstart")
+///
+/// ## See Also
+///
+/// - ``Clients/AutokeyAdminProtocol``
 public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   let inner: any Clients.AutokeyAdminStub
 
@@ -64,6 +68,11 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
   ///
   /// @Snippet(path: "AutokeyAdmin_UpdateAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``updateAutokeyConfig(autokeyConfig:updateMask:)``
+  /// - ``updateAutokeyConfig(request:)``
   public func updateAutokeyConfig(
     request: UpdateAutokeyConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
@@ -76,6 +85,11 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// [google.cloud.kms.v1.AutokeyConfig]: <doc:AutokeyConfig>
   ///
   /// @Snippet(path: "AutokeyAdmin_GetAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getAutokeyConfig(name:)``
+  /// - ``getAutokeyConfig(request:)``
   public func getAutokeyConfig(
     request: GetAutokeyConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
@@ -85,6 +99,11 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// Returns the effective Cloud KMS Autokey configuration for a given project.
   ///
   /// @Snippet(path: "AutokeyAdmin_ShowEffectiveAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``showEffectiveAutokeyConfig(parent:)``
+  /// - ``showEffectiveAutokeyConfig(request:)``
   public func showEffectiveAutokeyConfig(
     request: ShowEffectiveAutokeyConfigRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudKMSV1.ShowEffectiveAutokeyConfigResponse {
@@ -111,6 +130,12 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AutokeyAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``listLocations(request:)``
+  /// - ``listLocationsByItems(request:)``
+  /// - ``listLocationsByItems(request:options:)``
   public func listLocations(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.ListLocationsResponse {
@@ -120,6 +145,10 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// Gets information about a location.
   ///
   /// @Snippet(path: "AutokeyAdmin_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getLocation(request:)``
   public func getLocation(
     request: GoogleCloudLocation.GetLocationRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleCloudLocation.Location {
@@ -133,6 +162,10 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// errors.
   ///
   /// @Snippet(path: "AutokeyAdmin_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``setIamPolicy(request:)``
   public func setIamPolicy(
     request: GoogleIAMV1.SetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -143,6 +176,10 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// if the resource exists and does not have a policy set.
   ///
   /// @Snippet(path: "AutokeyAdmin_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``getIamPolicy(request:)``
   public func getIamPolicy(
     request: GoogleIAMV1.GetIamPolicyRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.Policy {
@@ -158,6 +195,10 @@ public final class AutokeyAdminClient: Clients.AutokeyAdminProtocol, Sendable {
   /// checking. This operation may "fail open" without warning.
   ///
   /// @Snippet(path: "AutokeyAdmin_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``testIamPermissions(request:)``
   public func testIamPermissions(
     request: GoogleIAMV1.TestIamPermissionsRequest, options: GoogleGax.RequestOptions
   ) async throws -> GoogleIAMV1.TestIamPermissionsResponse {
@@ -227,6 +268,23 @@ extension Clients {
 
 // Default implementations
 extension Clients.AutokeyAdminProtocol {
+  /// Updates the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+  /// or a project. The caller must have both `cloudkms.autokeyConfigs.update`
+  /// permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy`
+  /// permission on the provided key project. A
+  /// [KeyHandle][google.cloud.kms.v1.KeyHandle] creation in the folder's
+  /// descendant projects will use this configuration to determine where to
+  /// create the resulting [CryptoKey][google.cloud.kms.v1.CryptoKey].
+  ///
+  /// [google.cloud.kms.v1.AutokeyConfig]: <doc:AutokeyConfig>
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "AutokeyAdmin_UpdateAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/updateAutokeyConfig(request:options:)``
   public func updateAutokeyConfig(request: UpdateAutokeyConfigRequest) async throws
     -> GoogleCloudKMSV1.AutokeyConfig
   {
@@ -239,6 +297,23 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Updates the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+  /// or a project. The caller must have both `cloudkms.autokeyConfigs.update`
+  /// permission on the parent folder and `cloudkms.cryptoKeys.setIamPolicy`
+  /// permission on the provided key project. A
+  /// [KeyHandle][google.cloud.kms.v1.KeyHandle] creation in the folder's
+  /// descendant projects will use this configuration to determine where to
+  /// create the resulting [CryptoKey][google.cloud.kms.v1.CryptoKey].
+  ///
+  /// [google.cloud.kms.v1.AutokeyConfig]: <doc:AutokeyConfig>
+  /// [google.cloud.kms.v1.CryptoKey]: <doc:CryptoKey>
+  /// [google.cloud.kms.v1.KeyHandle]: <doc:KeyHandle>
+  ///
+  /// @Snippet(path: "AutokeyAdmin_UpdateAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/updateAutokeyConfig(request:options:)``
   public func updateAutokeyConfig(
     autokeyConfig: AutokeyConfig?,
     updateMask: GoogleWKT.WKTFieldMask?,
@@ -250,6 +325,16 @@ extension Clients.AutokeyAdminProtocol {
     return try await self.updateAutokeyConfig(request: request)
   }
 
+  /// Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+  /// or project.
+  ///
+  /// [google.cloud.kms.v1.AutokeyConfig]: <doc:AutokeyConfig>
+  ///
+  /// @Snippet(path: "AutokeyAdmin_GetAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/getAutokeyConfig(request:options:)``
   public func getAutokeyConfig(request: GetAutokeyConfigRequest) async throws
     -> GoogleCloudKMSV1.AutokeyConfig
   {
@@ -262,6 +347,16 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the [AutokeyConfig][google.cloud.kms.v1.AutokeyConfig] for a folder
+  /// or project.
+  ///
+  /// [google.cloud.kms.v1.AutokeyConfig]: <doc:AutokeyConfig>
+  ///
+  /// @Snippet(path: "AutokeyAdmin_GetAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/getAutokeyConfig(request:options:)``
   public func getAutokeyConfig(
     name: Swift.String,
   ) async throws -> GoogleCloudKMSV1.AutokeyConfig {
@@ -271,6 +366,13 @@ extension Clients.AutokeyAdminProtocol {
     return try await self.getAutokeyConfig(request: request)
   }
 
+  /// Returns the effective Cloud KMS Autokey configuration for a given project.
+  ///
+  /// @Snippet(path: "AutokeyAdmin_ShowEffectiveAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/showEffectiveAutokeyConfig(request:options:)``
   public func showEffectiveAutokeyConfig(request: ShowEffectiveAutokeyConfigRequest) async throws
     -> GoogleCloudKMSV1.ShowEffectiveAutokeyConfigResponse
   {
@@ -283,6 +385,13 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns the effective Cloud KMS Autokey configuration for a given project.
+  ///
+  /// @Snippet(path: "AutokeyAdmin_ShowEffectiveAutokeyConfig")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/showEffectiveAutokeyConfig(request:options:)``
   public func showEffectiveAutokeyConfig(
     parent: Swift.String,
   ) async throws -> GoogleCloudKMSV1.ShowEffectiveAutokeyConfigResponse {
@@ -292,6 +401,30 @@ extension Clients.AutokeyAdminProtocol {
     return try await self.showEffectiveAutokeyConfig(request: request)
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AutokeyAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/listLocations(request:options:)``
   public func listLocations(request: GoogleCloudLocation.ListLocationsRequest) async throws
     -> GoogleCloudLocation.ListLocationsResponse
   {
@@ -304,6 +437,30 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Lists information about the supported locations for this service.
+  ///
+  /// This method lists locations based on the resource scope provided in
+  /// the [ListLocationsRequest.name][google.cloud.location.ListLocationsRequest.name] field: *
+  /// **Global locations**: If `name` is empty, the method lists the
+  /// public locations available to all projects. * **Project-specific
+  /// locations**: If `name` follows the format
+  /// `projects/{project}`, the method lists locations visible to that
+  /// specific project. This includes public, private, or other
+  /// project-specific locations enabled for the project.
+  ///
+  /// For gRPC and client library implementations, the resource name is
+  /// passed as the `name` field. For direct service calls, the resource
+  /// name is
+  /// incorporated into the request path based on the specific service
+  /// implementation and version.
+  ///
+  /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
+  ///
+  /// @Snippet(path: "AutokeyAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -330,6 +487,10 @@ extension Clients.AutokeyAdminProtocol {
   /// [google.cloud.location.ListLocationsRequest.name]: https://www.google.com/search?q=Swift+google.cloud.location+GoogleCloudLocation.ListLocationsRequest/name
   ///
   /// @Snippet(path: "AutokeyAdmin_ListLocations")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/listLocations(request:options:)``
   public func listLocationsByItems(
     request: GoogleCloudLocation.ListLocationsRequest, options: GoogleGax.RequestOptions
   ) -> some AsyncSequence<GoogleCloudLocation.Location, any Swift.Error> & Sendable {
@@ -343,6 +504,13 @@ extension Clients.AutokeyAdminProtocol {
       listRpc: listRpc, initialPageToken: request.pageToken)
   }
 
+  /// Gets information about a location.
+  ///
+  /// @Snippet(path: "AutokeyAdmin_GetLocation")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/getLocation(request:options:)``
   public func getLocation(request: GoogleCloudLocation.GetLocationRequest) async throws
     -> GoogleCloudLocation.Location
   {
@@ -355,6 +523,17 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Sets the access control policy on the specified resource. Replaces
+  /// any existing policy.
+  ///
+  /// Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED`
+  /// errors.
+  ///
+  /// @Snippet(path: "AutokeyAdmin_SetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/setIamPolicy(request:options:)``
   public func setIamPolicy(request: GoogleIAMV1.SetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -367,6 +546,14 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Gets the access control policy for a resource. Returns an empty policy
+  /// if the resource exists and does not have a policy set.
+  ///
+  /// @Snippet(path: "AutokeyAdmin_GetIamPolicy")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/getIamPolicy(request:options:)``
   public func getIamPolicy(request: GoogleIAMV1.GetIamPolicyRequest) async throws
     -> GoogleIAMV1.Policy
   {
@@ -379,6 +566,19 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Returns permissions that a caller has on the specified resource. If the
+  /// resource does not exist, this will return an empty set of
+  /// permissions, not a `NOT_FOUND` error.
+  ///
+  /// Note: This operation is designed to be used for building
+  /// permission-aware UIs and command-line tools, not for authorization
+  /// checking. This operation may "fail open" without warning.
+  ///
+  /// @Snippet(path: "AutokeyAdmin_TestIamPermissions")
+  ///
+  /// ## See Also
+  ///
+  /// - ``AutokeyAdminClient/testIamPermissions(request:options:)``
   public func testIamPermissions(request: GoogleIAMV1.TestIamPermissionsRequest) async throws
     -> GoogleIAMV1.TestIamPermissionsResponse
   {
@@ -391,6 +591,9 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(request: GoogleLongRunning.GetOperationRequest) async throws
     -> GoogleLongRunning.Operation
   {
@@ -403,6 +606,9 @@ extension Clients.AutokeyAdminProtocol {
     throw GoogleGax.RequestError.unimplemented
   }
 
+  /// Provides the [Operations][google.longrunning.Operations] service functionality in this service.
+  ///
+  /// [google.longrunning.Operations]: https://www.google.com/search?q=Swift+google.longrunning+OperationsClient
   public func getOperation(
     name: Swift.String,
   ) async throws -> GoogleLongRunning.Operation {
