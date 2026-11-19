@@ -188,10 +188,14 @@ extension AuthHTTPError {
       }
     }
     if let authError = error as? AuthHTTPError {
-      if case .transportError(let urlError) = authError, urlError.code == .cancelled {
+      switch authError {
+      case .unsuccessfulResponse, .decodingError, .invalidUTF8Response:
+        return !authError.isRetryable
+      case .transportError(let urlError):
+        return urlError.code != .cancelled && !Self.isTransientNetworkError(urlError)
+      case .unknown:
         return false
       }
-      return !authError.isRetryable
     }
     if error is StaticAccessTokenProvider.ExpiredTokenError {
       return true

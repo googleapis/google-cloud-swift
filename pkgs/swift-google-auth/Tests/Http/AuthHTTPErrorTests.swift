@@ -191,6 +191,15 @@ import Testing
       #expect(AuthHTTPError.shouldCachePermanentError(err) == true)
     }
 
+    let cancelledUnknown = AuthHTTPError.unknown(CancellationError())
+    #expect(cancelledUnknown.isRetryable == false)
+    #expect(AuthHTTPError.isRetryable(cancelledUnknown) == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(cancelledUnknown) == false)
+    let wrappedCancelledUnknown = CredentialsError.cannotFetchToken(
+      message: "cancelled", underlyingError: cancelledUnknown)
+    #expect(wrappedCancelledUnknown._isRetryable == false)
+    #expect(AuthHTTPError.shouldCachePermanentError(wrappedCancelledUnknown) == false)
+
     let unknownError = AuthHTTPError.unknown(URLError(.unknown))
     #expect(unknownError.isRetryable == true)
     #expect(AuthHTTPError.isRetryable(unknownError) == true)
