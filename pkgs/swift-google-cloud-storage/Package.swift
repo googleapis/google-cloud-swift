@@ -78,7 +78,7 @@ let package = Package(
       path: "generated/swift-google-type",
       from: "0.7.0"
     ),
-    .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+    .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/apple/swift-collections", from: "1.6.0"),
     .package(url: "https://github.com/apple/swift-protobuf.git", from: "1.38.1"),
     .package(url: "https://github.com/apple/swift-crypto.git", from: "4.0.0"),

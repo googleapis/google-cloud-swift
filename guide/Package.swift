@@ -65,7 +65,7 @@ let package = Package(
       path: "generated/swift-google-cloud-aiplatform-v1",
       from: "0.7.0"
     ),
-    .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+    .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
     .package(url: "https://github.com/hummingbird-project/hummingbird.git", from: "2.0.0"),
   ],
   targets: [

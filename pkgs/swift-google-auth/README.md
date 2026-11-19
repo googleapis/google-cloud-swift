@@ -89,7 +89,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-auth` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-auth.git --from 0.1.0
+swift package add-dependency https://github.com/googleapis/swift-google-auth.git --from 0.7.0
 ```
 
 Then add `GoogleAuth` to your target's dependencies:

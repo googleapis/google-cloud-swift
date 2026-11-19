@@ -83,7 +83,7 @@ let baseDependencies: [Package.Dependency] = [
   // Reference local packages via paths
   .package(path: "./pkgs/swift-google-cloud-storage"),
   .package(path: "./guide"),
-  .package(url: "https://github.com/apple/swift-log", from: "1.12.0"),
+  .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
   .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
   .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
   // Only used for development.

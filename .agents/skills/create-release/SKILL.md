@@ -94,7 +94,7 @@ go run github.com/googleapis/librarian/cmd/librarian@${V} bump --all
 >
 > **Version Manifests**: All Swift packages have a version manifest in their `Sources/` directory: GAPIC service packages maintain `Clients.swift`, while type-only, protobuf, and core packages maintain `PackageVersion.swift`. Both files record the package's version and are used by `librarian bump` to detect changes and enforce idempotency.
 
-### Step 3: Update Handwritten `Package.swift` Dependencies (If Needed)
+### Step 3: Update Handwritten `Package.swift` Dependencies and READMEs (If Needed)
 
 If any core or shared packages were bumped in `librarian.yaml`, update their `from:` version constraints in the handwritten `Package.swift` files:
 - [`Package.swift`](../../../Package.swift) (root manifest)
@@ -104,6 +104,17 @@ If any core or shared packages were bumped in `librarian.yaml`, update their `fr
 - [`pkgs/swift-google-wkt-convert/Package.swift`](../../../pkgs/swift-google-wkt-convert/Package.swift)
 - [`pkgs/swift-google-cloud-storage/Package.swift`](../../../pkgs/swift-google-cloud-storage/Package.swift)
 - [`guide/Package.swift`](../../../guide/Package.swift)
+
+Also update the `--from` installation version in `pkgs/swift-*/README.md` for any bumped handwritten packages in `pkgs/` so the split repository tags contain the new version:
+- [`pkgs/swift-google-auth/README.md`](../../../pkgs/swift-google-auth/README.md)
+- [`pkgs/swift-google-cloud-storage/README.md`](../../../pkgs/swift-google-cloud-storage/README.md)
+- [`pkgs/swift-google-gax/README.md`](../../../pkgs/swift-google-gax/README.md)
+- [`pkgs/swift-google-gax-grpc/README.md`](../../../pkgs/swift-google-gax-grpc/README.md)
+- [`pkgs/swift-google-wkt/README.md`](../../../pkgs/swift-google-wkt/README.md)
+- [`pkgs/swift-google-wkt-convert/README.md`](../../../pkgs/swift-google-wkt-convert/README.md)
+
+> [!NOTE]
+> **Preemptive version bumps**: If versions are bumped in `librarian.yaml` ahead of publishing, keep monorepo-only files (`Package.swift`, `guide/Package.swift`, and root `README.md`) on already-published versions until after Step 4 of publishing so Dependabot and root Quickstart instructions continue to resolve against published tags.
 
 ### Step 4: Tidy and Regenerate All Libraries
 
@@ -171,9 +182,9 @@ TARGET_VERSION="0.2.0"
 sed -i -E "s/(default_version|version): 0\.[01]\.0-preview/\1: ${TARGET_VERSION}/g" librarian.yaml
 ```
 
-### Step 3: Update Handwritten `Package.swift` Manifests
+### Step 3: Update Handwritten `Package.swift` Manifests and READMEs
 
-Update dependency version constraints in all handwritten `Package.swift` manifests:
+Update dependency version constraints in all handwritten `Package.swift` manifests and `--from` installation versions in `pkgs/swift-*/README.md` (keeping monorepo-only `Package.swift`, `guide/Package.swift`, and root `README.md` on already-published versions if versions are bumped ahead of publishing):
 
 ```bash
 sed -i -E "s/from: \"0\.[01]\.0-preview\"/from: \"${TARGET_VERSION}\"/g" \
@@ -184,6 +195,9 @@ sed -i -E "s/from: \"0\.[01]\.0-preview\"/from: \"${TARGET_VERSION}\"/g" \
   pkgs/swift-google-wkt-convert/Package.swift \
   pkgs/swift-google-cloud-storage/Package.swift \
   guide/Package.swift
+
+sed -i -E "s/--from 0\.[01]\.0-preview/--from ${TARGET_VERSION}/g" \
+  pkgs/swift-*/README.md
 ```
 
 ### Step 4: Tidy and Regenerate All Libraries
@@ -254,3 +268,10 @@ After the release pull request is merged into `main`:
    git tag <release-tag>
    git push upstream <release-tag>
    ```
+
+5. **Post-Release Manifest and Documentation Follow-Up**:
+   After publishing the split repositories and monorepo tag, open a follow-up PR on `main` to:
+   - Update internal `from:` constraints in [`Package.swift`](../../../Package.swift) and [`guide/Package.swift`](../../../guide/Package.swift) to match the newly published release versions, and ensure external dependency minimums (such as `swift-log`) in [`Package.swift`](../../../Package.swift) and [`guide/Package.swift`](../../../guide/Package.swift) are at least as recent as those in `pkgs/*/Package.swift`.
+   - Refresh [`Package.resolved`](../../../Package.resolved) by running `swift package resolve` without `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS` set so remote pins match the newly published tags.
+   - Verify `--from` installation snippets in [`README.md`](../../../README.md) and `pkgs/swift-*/README.md` match the published versions.
+   - Update `--from` / `from:` package version snippets in the Swift User Guide articles on Cloud Docs (`https://docs.cloud.google.com/swift/*`).

@@ -68,7 +68,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-wkt` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-wkt.git --from 0.1.0
+swift package add-dependency https://github.com/googleapis/swift-google-wkt.git --from 0.7.0
 ```
 
 Then add `GoogleWKT` to your target's dependencies:

@@ -27,7 +27,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-gax-grpc` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-gax-grpc.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-gax-grpc.git --from 0.7.0
 ```
 
 Then add `GoogleGaxGRPC` to your target's dependencies:
