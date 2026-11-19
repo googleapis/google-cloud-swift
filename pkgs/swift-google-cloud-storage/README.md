@@ -63,7 +63,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-cloud-storage` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-storage.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-storage.git --from 0.7.0
 ```
 
 Then add `GoogleCloudStorage` to your target's dependencies:

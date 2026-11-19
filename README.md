@@ -33,7 +33,7 @@ public func quickstart(
 To add `swift-google-cloud-storage` to your project using Swift Package Manager:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-cloud-storage.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-cloud-storage.git --from 0.7.0
 swift package add-target-dependency GoogleCloudStorage <target-name> --package swift-google-cloud-storage
 ```
 

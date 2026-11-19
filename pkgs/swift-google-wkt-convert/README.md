@@ -26,7 +26,7 @@ section in the `google-cloud-swift` repository.
 Add `swift-google-wkt-convert` as a package dependency:
 
 ```bash
-swift package add-dependency https://github.com/googleapis/swift-google-wkt-convert.git --from 0.3.0
+swift package add-dependency https://github.com/googleapis/swift-google-wkt-convert.git --from 0.7.0
 ```
 
 Then add `GoogleWKTConvert` to your target's dependencies:
