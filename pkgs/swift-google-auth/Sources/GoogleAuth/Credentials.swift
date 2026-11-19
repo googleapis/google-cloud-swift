@@ -286,6 +286,17 @@ public struct Credentials: Sendable {
     )
   }
 
+  /// Internal test initializer for injecting a mock `AuthHTTPClient` into external account credentials.
+  init(
+    externalAccount config: ExternalAccountConfig,
+    httpClient: AuthHTTPClient
+  ) throws {
+    self.credentialsProvider = try Self.resolveExternalAccountProvider(
+      config: config,
+      httpClient: httpClient
+    )
+  }
+
   /// A type-erased ``AnyAccessTokenProvider`` backed by these credentials if they produce OAuth 2.0
   /// access tokens, or `nil` if this credential type does not use access tokens (such as
   /// ``CredentialsConfiguration/anonymous`` or ``CredentialsConfiguration/apiKey(_:)``).
@@ -374,16 +385,7 @@ public struct Credentials: Sendable {
         scopes: config.scopes
       )
     case let .externalAccount(config):
-      return try ExternalAccountCredentials(
-        credentialSource: config.credentialSource,
-        audience: config.audience,
-        subjectTokenType: config.subjectTokenType,
-        tokenURL: config.tokenURL,
-        clientAuthentication: config.clientAuthentication,
-        workforcePoolUserProject: config.workforcePoolUserProject,
-        scopes: config.scopes,
-        universeDomain: config.universeDomain
-      )
+      return try resolveExternalAccountProvider(config: config)
     case let .apiKey(apiKey):
       return APIKeyCredentials(apiKey: apiKey)
     case let .impersonatedServiceAccount(config):
@@ -407,5 +409,22 @@ public struct Credentials: Sendable {
     case let .accessToken(config):
       return AccessTokenCredentials(config: config)
     }
+  }
+
+  private static func resolveExternalAccountProvider(
+    config: ExternalAccountConfig,
+    httpClient: AuthHTTPClient = AuthHTTPClient()
+  ) throws -> ExternalAccountCredentials {
+    try ExternalAccountCredentials(
+      credentialSource: config.credentialSource,
+      audience: config.audience,
+      subjectTokenType: config.subjectTokenType,
+      tokenURL: config.tokenURL,
+      clientAuthentication: config.clientAuthentication,
+      workforcePoolUserProject: config.workforcePoolUserProject,
+      scopes: config.scopes,
+      universeDomain: config.universeDomain,
+      httpClient: httpClient
+    )
   }
 }

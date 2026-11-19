@@ -56,7 +56,13 @@ public struct ClientAuthentication: Sendable, Equatable, Hashable, CustomStringC
 ///
 /// See [Workload Identity Federation](https://cloud.google.com/iam/docs/workload-identity-federation) and
 /// [Workforce Identity Federation](https://cloud.google.com/iam/docs/workforce-identity-federation).
+///
+/// ### Usage Example
+/// @Snippet(path: "ExternalAccountConfigSample")
 public struct ExternalAccountConfig: Sendable {
+  /// The default scope requested for Google Cloud STS token exchange.
+  public static let defaultScope = "https://www.googleapis.com/auth/cloud-platform"
+
   /// Defines how the external subject token is supplied.
   ///
   /// - Note: As Google Cloud APIs and client libraries evolve, new cases may be added to this
@@ -92,10 +98,15 @@ public struct ExternalAccountConfig: Sendable {
   /// - `.jwt`: A generic JSON Web Token (`urn:ietf:params:oauth:token-type:jwt`).
   public let subjectTokenType: SubjectTokenType
 
-  /// The Security Token Service (STS) token exchange endpoint.
+  /// Optional Security Token Service (STS) token exchange endpoint override.
   ///
-  /// Defaults to `https://sts.googleapis.com/v1/token`.
-  public let tokenURL: URL
+  /// When `nil`, defaults to `https://sts.<universeDomain>/v1/token` (for example,
+  /// `https://sts.googleapis.com/v1/token` in the default `googleapis.com` universe).
+  ///
+  /// Any custom endpoint must accept [RFC 8693](https://datatracker.ietf.org/doc/html/rfc8693)
+  /// `application/x-www-form-urlencoded` token exchange requests. When ``clientAuthentication``
+  /// is configured, OAuth client credentials are sent to this endpoint via HTTP Basic Auth.
+  public var tokenURL: URL? = nil
 
   /// Optional OAuth client credentials used for client authentication via HTTP Basic Auth.
   public var clientAuthentication: ClientAuthentication? = nil
@@ -106,9 +117,6 @@ public struct ExternalAccountConfig: Sendable {
   /// non-empty value for a non-workforce pool will result in a validation error. When `nil` or empty,
   /// no user project is sent.
   public var workforcePoolUserProject: String? = nil
-
-  /// The default scope requested for Google Cloud STS token exchange.
-  public static let defaultScope = "https://www.googleapis.com/auth/cloud-platform"
 
   /// Scopes requested for the exchanged token.
   public var scopes: [String] = [defaultScope]
@@ -124,12 +132,12 @@ public struct ExternalAccountConfig: Sendable {
   ///   - credentialSource: The source mechanism supplying the external subject token.
   ///   - audience: The STS audience identifier URI.
   ///   - subjectTokenType: The RFC 8693 token type URI of the subject token.
-  ///   - tokenURL: The STS token exchange endpoint.
+  ///   - tokenURL: Optional STS token exchange endpoint override. When `nil`, defaults to `https://sts.<universeDomain>/v1/token`.
   public init(
     credentialSource: CredentialSource,
     audience: String,
     subjectTokenType: SubjectTokenType,
-    tokenURL: URL
+    tokenURL: URL? = nil
   ) {
     self.credentialSource = credentialSource
     self.audience = audience

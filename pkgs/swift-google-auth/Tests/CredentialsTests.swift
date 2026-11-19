@@ -389,8 +389,7 @@ import Testing
     let config = ExternalAccountConfig(
       credentialSource: .programmatic(subjectTokenProvider: MockSubjectTokenProvider()),
       audience: "aud",
-      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
-      tokenURL: URL(string: "https://sts.googleapis.com/v1/token")!
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token"
     ).with {
       $0.universeDomain = "my-universe.com"
     }

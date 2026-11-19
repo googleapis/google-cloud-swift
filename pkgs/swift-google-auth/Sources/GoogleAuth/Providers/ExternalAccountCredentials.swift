@@ -195,7 +195,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
   ///   - credentialSource: The source supplier for subject tokens (e.g. `.programmatic(provider)`).
   ///   - audience: The STS audience resource name.
   ///   - subjectTokenType: The STS token type URI.
-  ///   - tokenURL: The STS token endpoint URL.
+  ///   - tokenURL: Optional STS token endpoint URL override. When `nil`, derives `https://sts.<universeDomain>/v1/token`.
   ///   - clientAuthentication: Optional client credentials for workforce pool authentication.
   ///   - workforcePoolUserProject: Optional quota project for workforce identity pools.
   ///   - scopes: Array of requested OAuth 2.0 scopes.
@@ -207,7 +207,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
     credentialSource: ExternalAccountConfig.CredentialSource,
     audience: String,
     subjectTokenType: ExternalAccountConfig.SubjectTokenType,
-    tokenURL: URL,
+    tokenURL: URL? = nil,
     clientAuthentication: ClientAuthentication? = nil,
     workforcePoolUserProject: String? = nil,
     scopes: [String] = [],
@@ -238,11 +238,15 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
 
     let effectiveScopes = scopes.isEmpty ? [ExternalAccountConfig.defaultScope] : scopes
     let effectiveUniverse = nonEmpty(universeDomain) ?? defaultUniverseDomain
+    let resolvedTokenURL = try Self.resolveTokenURL(
+      tokenURL: tokenURL,
+      universeDomain: effectiveUniverse
+    )
 
     self.subjectTokenProvider = subjectTokenProvider
     self.audience = audience
     self.subjectTokenType = subjectTokenType
-    self.tokenURL = tokenURL
+    self.tokenURL = resolvedTokenURL
     self.clientAuthentication = clientAuthentication
     self.workforcePoolUserProject = effectiveWorkforcePoolUserProject
     self.scopes = effectiveScopes
@@ -250,7 +254,7 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
 
     let provider = ExternalAccountTokenProvider(
       subjectTokenProvider: subjectTokenProvider,
-      tokenURL: tokenURL,
+      tokenURL: resolvedTokenURL,
       subjectTokenType: subjectTokenType,
       audience: audience,
       scopes: effectiveScopes,
@@ -265,6 +269,32 @@ struct ExternalAccountCredentials: CredentialsProvider, AccessTokenProvider, Sen
       clock: ContinuousClock(),
       isRetryable: AuthHTTPError.isRetryable
     )
+  }
+
+  private static func resolveTokenURL(tokenURL: URL?, universeDomain: String) throws -> URL {
+    // When an explicit tokenURL override is provided, universeDomain is not used to construct the STS URL.
+    if let tokenURL {
+      return tokenURL
+    }
+    let targetHost = "sts.\(universeDomain)"
+    let urlString = "https://\(targetHost)/v1/token"
+    guard
+      let parsed = URLComponents(string: urlString, encodingInvalidCharacters: false),
+      parsed.scheme == "https",
+      parsed.host == targetHost,
+      parsed.port == nil,
+      parsed.user == nil,
+      parsed.password == nil,
+      parsed.path == "/v1/token",
+      parsed.query == nil,
+      parsed.fragment == nil,
+      let resolvedURL = parsed.url
+    else {
+      throw CredentialsError.parseError(
+        "Invalid universe_domain for STS endpoint: '\(universeDomain)'"
+      )
+    }
+    return resolvedURL
   }
 
   func accessToken() async throws -> AccessToken {
