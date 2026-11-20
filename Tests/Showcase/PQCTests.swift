@@ -19,6 +19,9 @@ import GoogleShowcaseV1Beta1
 import NIOSSL
 import Testing
 
+/// Verifies that generated Swift client libraries negotiate the hybrid post-quantum TLS 1.3
+/// key-exchange group `X25519MLKEM768` (IANA codepoint `0x11ec`) by default against
+/// `gapic-showcase`.
 @Suite(
   .serialized,
   .enabled(
@@ -27,52 +30,50 @@ import Testing
   )
 ) struct PQCTests {
   @Test func echoUnarySucceedsWithPQC() async throws {
-    try await ShowcaseServer.withServer(tlsGroups: "0x11ec") { server in
-      try await server.withHTTPClient { httpClient in
-        let options = try ClientOptions().with {
-          $0.endpoint = server.endpoint
-          $0._httpClient = httpClient
-          $0.credentials = try Credentials(configuration: .anonymous)
-          $0.retryPolicy = NeverRetry()
-        }
-        let client = try EchoClient(options)
-
-        let testContent = "testing PQC transport compliance (HTTP unary)"
-        let response = try await client.echo(
-          request: .init().with { $0.response = .content(testContent) }
-        )
-
-        #expect(response.content == testContent)
-        #expect(httpClient.lastTLSGroup == "X25519MLKEM768")
-        let supportedGroups = try #require(httpClient.lastClientSupportedGroups)
-        #expect(supportedGroups.split(separator: ",").contains("X25519MLKEM768"))
+    try await ShowcaseServer.withServer(tlsGroups: [.x25519_MLKEM768]) { server in
+      let httpClient = try server.makeHTTPClient()
+      let options = try ClientOptions().with {
+        $0.endpoint = server.endpoint
+        $0._httpClient = httpClient
+        $0.credentials = try Credentials(configuration: .anonymous)
+        $0.retryPolicy = NeverRetry()
       }
+      let client = try EchoClient(options)
+
+      let testContent = "testing PQC transport compliance (HTTP unary)"
+      let response = try await client.echo(
+        request: .init().with { $0.response = .content(testContent) }
+      )
+
+      #expect(response.content == testContent)
+      #expect(httpClient.lastTLSGroup == "X25519MLKEM768")
+      let supportedGroups = try #require(httpClient.lastClientSupportedGroups)
+      #expect(supportedGroups.split(separator: ",").contains("X25519MLKEM768"))
     }
   }
 
   @Test func echoUnaryFailsWhenClientDisablesPQC() async throws {
-    try await ShowcaseServer.withServer(tlsGroups: "0x11ec") { server in
+    try await ShowcaseServer.withServer(tlsGroups: [.x25519_MLKEM768]) { server in
       // Restrict the client to classical curves only (excluding X25519MLKEM768 / 0x11ec).
-      try await server.withHTTPClient(curves: [.x25519, .secp256r1]) { httpClient in
-        let options = try ClientOptions().with {
-          $0.endpoint = server.endpoint
-          $0._httpClient = httpClient
-          $0.credentials = try Credentials(configuration: .anonymous)
-          $0.retryPolicy = NeverRetry()
-        }
-        let client = try EchoClient(options)
-
-        let error = await #expect(throws: RequestError.self) {
-          _ = try await client.echo(
-            request: .init().with { $0.response = .content("should fail TLS handshake") }
-          )
-        }
-        guard case .io(let underlying) = error else {
-          Issue.record("Expected RequestError.io from TLS handshake failure, got \(error)")
-          return
-        }
-        #expect(underlying is NIOSSLError)
+      let httpClient = try server.makeHTTPClient(curves: [.x25519, .secp256r1])
+      let options = try ClientOptions().with {
+        $0.endpoint = server.endpoint
+        $0._httpClient = httpClient
+        $0.credentials = try Credentials(configuration: .anonymous)
+        $0.retryPolicy = NeverRetry()
       }
+      let client = try EchoClient(options)
+
+      let error = await #expect(throws: RequestError.self) {
+        _ = try await client.echo(
+          request: .init().with { $0.response = .content("should fail TLS handshake") }
+        )
+      }
+      guard case .io(let underlying) = error else {
+        Issue.record("Expected RequestError.io from TLS handshake failure, got \(error)")
+        return
+      }
+      #expect(underlying is NIOSSLError)
     }
   }
 }
