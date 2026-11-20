@@ -1298,11 +1298,34 @@ import Testing
   }
 
   @Test(arguments: [
-    (hasMetadataFlavor: false, expectedAttempts: 1, expectedRetryable: false),
-    (hasMetadataFlavor: true, expectedAttempts: 3, expectedRetryable: true),
+    (
+      responseHeaders: [] as [(String, String)],
+      expectedAttempts: 1,
+      expectedRetryable: false
+    ),
+    (
+      responseHeaders: [("Metadata-Flavor", "Other")],
+      expectedAttempts: 1,
+      expectedRetryable: false
+    ),
+    (
+      responseHeaders: [("Metadata-Flavor", "Evil"), ("Metadata-Flavor", "Google")],
+      expectedAttempts: 1,
+      expectedRetryable: false
+    ),
+    (
+      responseHeaders: [("Metadata-Flavor", "Google")],
+      expectedAttempts: 3,
+      expectedRetryable: true
+    ),
+    (
+      responseHeaders: [("Metadata-Flavor", "google")],
+      expectedAttempts: 3,
+      expectedRetryable: true
+    ),
   ])
   func adcFallback404OnUniverseDomainConfirmation(
-    hasMetadataFlavor: Bool,
+    responseHeaders: [(String, String)],
     expectedAttempts: Int,
     expectedRetryable: Bool
   ) async throws {
@@ -1316,9 +1339,11 @@ import Testing
       { request in
         let url = URL(string: request.url)!
         #expect(url.path == "/computeMetadata/v1/universe/universe-domain")
-        let headers: HTTPHeaders =
-          hasMetadataFlavor ? .init([("Metadata-Flavor", "Google")]) : .init()
-        return HTTPClientResponse(version: .http2, status: .notFound, headers: headers)
+        return HTTPClientResponse(
+          version: .http2,
+          status: .notFound,
+          headers: .init(responseHeaders)
+        )
       }
     ]
     handlers.append(contentsOf: Array(repeating: failTokenRequest, count: expectedAttempts))
