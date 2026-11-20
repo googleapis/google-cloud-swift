@@ -1455,6 +1455,30 @@ import NIOHTTP1
     #expect(client === alias)
   }
 
+  @Test func customHTTPClientIsApplied() async throws {
+    let credentials = try Credentials(configuration: .anonymous)
+    let mock = MockHTTPClient { request, _ in
+      #expect(request.url == "https://secretmanager.googleapis.com/v1/test")
+      return HTTPClientResponse(
+        version: .http1_1,
+        status: .ok,
+        headers: .init([("Content-Type", "application/json")]),
+        body: .bytes(.init(string: #"{"name":"from-custom","value":"ok"}"#))
+      )
+    }
+    let options = ClientOptions().with {
+      $0.credentials = credentials
+      $0._httpClient = mock
+    }
+    let client = try _HTTPClient(
+      from: options,
+      withDefaultEndpoint: "https://secretmanager.googleapis.com"
+    )
+    let req = try await client.newRequest(path: "/v1/test", query: [])
+    let got = try await req.rpc(ResponseType.self).get()
+    #expect(got == ResponseType(name: "from-custom", value: "ok"))
+  }
+
   /// A test response type.
   struct ResponseType: Codable, Equatable, Sendable {
     public let name: String

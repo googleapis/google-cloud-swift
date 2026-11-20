@@ -86,6 +86,8 @@ let baseDependencies: [Package.Dependency] = [
   .package(url: "https://github.com/apple/swift-log", from: "1.14.0"),
   .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.5.0"),
   .package(url: "https://github.com/apple/swift-nio", from: "2.101.0"),
+  .package(url: "https://github.com/apple/swift-nio-ssl.git", from: "2.37.0"),
+  .package(url: "https://github.com/swift-server/async-http-client.git", from: "1.36.0"),
   // Only used for development.
   .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.0.0"),
 ]
@@ -308,6 +310,19 @@ let package = Package(
       exclude: ["README.md"],
       swiftSettings: swiftSettings
     ),
+    .testTarget(
+      name: "Showcase",
+      dependencies: [
+        .product(name: "AsyncHTTPClient", package: "async-http-client"),
+        .product(name: "GoogleShowcaseV1Beta1", package: "swift-google-showcase-v1beta1"),
+        .product(name: "GoogleGax", package: "swift-google-gax"),
+        .product(name: "GoogleAuth", package: "swift-google-auth"),
+        .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOSSL", package: "swift-nio-ssl"),
+      ],
+      path: "Tests/Showcase",
+      swiftSettings: swiftSettings
+    ),
   ]
 )
 
@@ -435,6 +450,7 @@ func generatedPackagesStatic() -> [Generated] {
     .init(name: "swift-google-iam-v1", module: "GoogleIAMV1"),
     .init(name: "swift-google-longrunning", module: "GoogleLongRunning"),
     .init(name: "swift-google-rpc", module: "GoogleRpc"),
+    .init(name: "swift-google-showcase-v1beta1", module: "GoogleShowcaseV1Beta1"),
     .init(name: "swift-google-type", module: "GoogleType"),
     .init(
       name: "swift-google-cloud-compute-v1", module: "GoogleCloudComputeV1",

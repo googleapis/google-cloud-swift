@@ -12,10 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import Testing
-
+import AsyncHTTPClient
 import GoogleAuth
-import GoogleGax
+@_spi(GoogleCloudInternal) import GoogleGax
+import NIOHTTP1
+import Testing
 
 @Suite struct ClientOptionsTests {
   struct TestError: Error, Equatable {}
@@ -92,6 +93,7 @@ import GoogleGax
     #expect(got.credentials == nil)
     #expect(got.retryPolicy == nil)
     #expect(got.attemptTimeout == .seconds(15))
+    #expect(got._httpClient == nil)
   }
 
   @Test func attemptTimeoutConfiguration() {
@@ -104,5 +106,15 @@ import GoogleGax
       $0.attemptTimeout = nil
     }
     #expect(disabled.attemptTimeout == nil)
+  }
+
+  @Test func httpClientOverride() {
+    let mock = MockHTTPClient { _, _ in
+      HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let custom = ClientOptions().with {
+      $0._httpClient = mock
+    }
+    #expect(custom._httpClient is MockHTTPClient)
   }
 }

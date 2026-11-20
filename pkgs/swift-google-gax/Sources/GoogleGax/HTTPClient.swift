@@ -63,7 +63,7 @@ public import Foundation
       defaultEndpoint: withDefaultEndpoint,
       universeDomain: universeDomain
     )
-    self.inner = HTTPClientHolder()
+    self.inner = from._httpClient ?? HTTPClientHolder()
     var header = clientHeader
     header.setToken(.rest, version: gaxVersion())
     self.clientHeader = header

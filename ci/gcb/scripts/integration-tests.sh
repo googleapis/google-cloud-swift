@@ -46,6 +46,13 @@ export EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL="testsa@${EXTERNAL_ACCOUNT_PROJECT
 #   - PROVIDER_ID: google-idp
 export GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/google-idp"
 
+if [[ "${RUN_SHOWCASE_TESTS:-true}" == "true" ]]; then
+    if [[ -z "${GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH:-}" ]]; then
+        GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH="$("${SCRIPT_DIR}/install-showcase.sh")"
+    fi
+    export GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH
+fi
+
 errors=0
 count=1
 echo "--- Running top-level integration tests ---"
