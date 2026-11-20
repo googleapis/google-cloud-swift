@@ -114,7 +114,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.flowVersion, forKey: .flowVersion)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Deployment.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.result, forKey: .result)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)

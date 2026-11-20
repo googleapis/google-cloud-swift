@@ -120,10 +120,14 @@ public struct ExplainedDenyPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.denyAccessState, forKey: .denyAccessState)
+    if self.denyAccessState != DenyAccessState() {
+      try container.encode(self.denyAccessState, forKey: .denyAccessState)
+    }
     try container.encodeIfPresent(self.policy, forKey: .policy)
     try container.encode(self.ruleExplanations, forKey: .ruleExplanations)
-    try container.encode(self.relevance, forKey: .relevance)
+    if self.relevance != HeuristicRelevance() {
+      try container.encode(self.relevance, forKey: .relevance)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

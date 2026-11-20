@@ -368,9 +368,9 @@
         if let choice = self.routingConfig {
           switch choice {
           case .autoMode(let value):
-            try container.encode(value, forKey: .autoMode)
+            try container.encodeIfPresent(value, forKey: .autoMode)
           case .manualMode(let value):
-            try container.encode(value, forKey: .manualMode)
+            try container.encodeIfPresent(value, forKey: .manualMode)
           }
         }
         for (key, value) in self._unknownFields.json {

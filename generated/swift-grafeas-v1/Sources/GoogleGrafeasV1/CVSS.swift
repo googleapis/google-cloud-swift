@@ -254,29 +254,63 @@ public struct CVSS: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.baseScore, forKey: .baseScore)
     try container.encode(self.exploitabilityScore, forKey: .exploitabilityScore)
     try container.encode(self.impactScore, forKey: .impactScore)
-    try container.encode(self.attackVector, forKey: .attackVector)
-    try container.encode(self.attackComplexity, forKey: .attackComplexity)
-    try container.encode(self.authentication, forKey: .authentication)
-    try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
-    try container.encode(self.userInteraction, forKey: .userInteraction)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
-    try container.encode(self.integrityImpact, forKey: .integrityImpact)
-    try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
-    try container.encode(self.attackRequirements, forKey: .attackRequirements)
-    try container.encode(
-      self.vulnerableSystemConfidentialityImpact, forKey: .vulnerableSystemConfidentialityImpact)
-    try container.encode(
-      self.vulnerableSystemIntegrityImpact, forKey: .vulnerableSystemIntegrityImpact)
-    try container.encode(
-      self.vulnerableSystemAvailabilityImpact, forKey: .vulnerableSystemAvailabilityImpact)
-    try container.encode(
-      self.subsequentSystemConfidentialityImpact, forKey: .subsequentSystemConfidentialityImpact)
-    try container.encode(
-      self.subsequentSystemIntegrityImpact, forKey: .subsequentSystemIntegrityImpact)
-    try container.encode(
-      self.subsequentSystemAvailabilityImpact, forKey: .subsequentSystemAvailabilityImpact)
-    try container.encode(self.exploitMaturity, forKey: .exploitMaturity)
+    if self.attackVector != CVSS.AttackVector() {
+      try container.encode(self.attackVector, forKey: .attackVector)
+    }
+    if self.attackComplexity != CVSS.AttackComplexity() {
+      try container.encode(self.attackComplexity, forKey: .attackComplexity)
+    }
+    if self.authentication != CVSS.Authentication() {
+      try container.encode(self.authentication, forKey: .authentication)
+    }
+    if self.privilegesRequired != CVSS.PrivilegesRequired() {
+      try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
+    }
+    if self.userInteraction != CVSS.UserInteraction() {
+      try container.encode(self.userInteraction, forKey: .userInteraction)
+    }
+    if self.scope != CVSS.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
+    if self.confidentialityImpact != CVSS.Impact() {
+      try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
+    }
+    if self.integrityImpact != CVSS.Impact() {
+      try container.encode(self.integrityImpact, forKey: .integrityImpact)
+    }
+    if self.availabilityImpact != CVSS.Impact() {
+      try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    }
+    if self.attackRequirements != CVSS.AttackRequirements() {
+      try container.encode(self.attackRequirements, forKey: .attackRequirements)
+    }
+    if self.vulnerableSystemConfidentialityImpact != CVSS.Impact() {
+      try container.encode(
+        self.vulnerableSystemConfidentialityImpact, forKey: .vulnerableSystemConfidentialityImpact)
+    }
+    if self.vulnerableSystemIntegrityImpact != CVSS.Impact() {
+      try container.encode(
+        self.vulnerableSystemIntegrityImpact, forKey: .vulnerableSystemIntegrityImpact)
+    }
+    if self.vulnerableSystemAvailabilityImpact != CVSS.Impact() {
+      try container.encode(
+        self.vulnerableSystemAvailabilityImpact, forKey: .vulnerableSystemAvailabilityImpact)
+    }
+    if self.subsequentSystemConfidentialityImpact != CVSS.Impact() {
+      try container.encode(
+        self.subsequentSystemConfidentialityImpact, forKey: .subsequentSystemConfidentialityImpact)
+    }
+    if self.subsequentSystemIntegrityImpact != CVSS.Impact() {
+      try container.encode(
+        self.subsequentSystemIntegrityImpact, forKey: .subsequentSystemIntegrityImpact)
+    }
+    if self.subsequentSystemAvailabilityImpact != CVSS.Impact() {
+      try container.encode(
+        self.subsequentSystemAvailabilityImpact, forKey: .subsequentSystemAvailabilityImpact)
+    }
+    if self.exploitMaturity != CVSS.ExploitMaturity() {
+      try container.encode(self.exploitMaturity, forKey: .exploitMaturity)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

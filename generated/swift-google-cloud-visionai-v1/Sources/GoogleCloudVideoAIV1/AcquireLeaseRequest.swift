@@ -94,7 +94,9 @@ public struct AcquireLeaseRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.series, forKey: .series)
     try container.encode(self.owner, forKey: .owner)
     try container.encodeIfPresent(self.term, forKey: .term)
-    try container.encode(self.leaseType, forKey: .leaseType)
+    if self.leaseType != LeaseType() {
+      try container.encode(self.leaseType, forKey: .leaseType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

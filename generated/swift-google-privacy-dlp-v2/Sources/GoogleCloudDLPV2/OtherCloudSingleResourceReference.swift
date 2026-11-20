@@ -87,7 +87,7 @@ public struct OtherCloudSingleResourceReference: Codable, Equatable, GoogleWKT._
     if let choice = self.resource {
       switch choice {
       case .amazonS3Bucket(let value):
-        try container.encode(value, forKey: .amazonS3Bucket)
+        try container.encodeIfPresent(value, forKey: .amazonS3Bucket)
       }
     }
     for (key, value) in self._unknownFields.json {

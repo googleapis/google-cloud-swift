@@ -104,9 +104,9 @@ public struct ComputeEngineDisksTargetDetails: Codable, Equatable, GoogleWKT._An
     if let choice = self.vmTarget {
       switch choice {
       case .disksTargetDetails(let value):
-        try container.encode(value, forKey: .disksTargetDetails)
+        try container.encodeIfPresent(value, forKey: .disksTargetDetails)
       case .vmTargetDetails(let value):
-        try container.encode(value, forKey: .vmTargetDetails)
+        try container.encodeIfPresent(value, forKey: .vmTargetDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

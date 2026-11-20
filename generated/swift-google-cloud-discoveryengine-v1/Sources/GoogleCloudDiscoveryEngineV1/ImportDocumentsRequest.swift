@@ -285,7 +285,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.parent, forKey: .parent)
       try container.encodeIfPresent(self.errorConfig, forKey: .errorConfig)
-      try container.encode(self.reconciliationMode, forKey: .reconciliationMode)
+      if self.reconciliationMode != ImportDocumentsRequest.ReconciliationMode() {
+        try container.encode(self.reconciliationMode, forKey: .reconciliationMode)
+      }
       try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
       try container.encode(self.autoGenerateIds, forKey: .autoGenerateIds)
       try container.encode(self.idField, forKey: .idField)
@@ -294,23 +296,23 @@
       if let choice = self.source {
         switch choice {
         case .inlineSource(let value):
-          try container.encode(value, forKey: .inlineSource)
+          try container.encodeIfPresent(value, forKey: .inlineSource)
         case .gcsSource(let value):
-          try container.encode(value, forKey: .gcsSource)
+          try container.encodeIfPresent(value, forKey: .gcsSource)
         case .bigquerySource(let value):
-          try container.encode(value, forKey: .bigquerySource)
+          try container.encodeIfPresent(value, forKey: .bigquerySource)
         case .fhirStoreSource(let value):
-          try container.encode(value, forKey: .fhirStoreSource)
+          try container.encodeIfPresent(value, forKey: .fhirStoreSource)
         case .spannerSource(let value):
-          try container.encode(value, forKey: .spannerSource)
+          try container.encodeIfPresent(value, forKey: .spannerSource)
         case .cloudSqlSource(let value):
-          try container.encode(value, forKey: .cloudSqlSource)
+          try container.encodeIfPresent(value, forKey: .cloudSqlSource)
         case .firestoreSource(let value):
-          try container.encode(value, forKey: .firestoreSource)
+          try container.encodeIfPresent(value, forKey: .firestoreSource)
         case .alloyDbSource(let value):
-          try container.encode(value, forKey: .alloyDbSource)
+          try container.encodeIfPresent(value, forKey: .alloyDbSource)
         case .bigtableSource(let value):
-          try container.encode(value, forKey: .bigtableSource)
+          try container.encodeIfPresent(value, forKey: .bigtableSource)
         }
       }
       for (key, value) in self._unknownFields.json {

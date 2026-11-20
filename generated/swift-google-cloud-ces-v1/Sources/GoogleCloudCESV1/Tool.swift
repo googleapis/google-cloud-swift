@@ -233,7 +233,9 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.executionType, forKey: .executionType)
+    if self.executionType != ExecutionType() {
+      try container.encode(self.executionType, forKey: .executionType)
+    }
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -244,29 +246,29 @@ public struct Tool: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.toolType {
       switch choice {
       case .clientFunction(let value):
-        try container.encode(value, forKey: .clientFunction)
+        try container.encodeIfPresent(value, forKey: .clientFunction)
       case .openApiTool(let value):
-        try container.encode(value, forKey: .openApiTool)
+        try container.encodeIfPresent(value, forKey: .openApiTool)
       case .googleSearchTool(let value):
-        try container.encode(value, forKey: .googleSearchTool)
+        try container.encodeIfPresent(value, forKey: .googleSearchTool)
       case .connectorTool(let value):
-        try container.encode(value, forKey: .connectorTool)
+        try container.encodeIfPresent(value, forKey: .connectorTool)
       case .dataStoreTool(let value):
-        try container.encode(value, forKey: .dataStoreTool)
+        try container.encodeIfPresent(value, forKey: .dataStoreTool)
       case .pythonFunction(let value):
-        try container.encode(value, forKey: .pythonFunction)
+        try container.encodeIfPresent(value, forKey: .pythonFunction)
       case .mcpTool(let value):
-        try container.encode(value, forKey: .mcpTool)
+        try container.encodeIfPresent(value, forKey: .mcpTool)
       case .fileSearchTool(let value):
-        try container.encode(value, forKey: .fileSearchTool)
+        try container.encodeIfPresent(value, forKey: .fileSearchTool)
       case .systemTool(let value):
-        try container.encode(value, forKey: .systemTool)
+        try container.encodeIfPresent(value, forKey: .systemTool)
       case .agentTool(let value):
-        try container.encode(value, forKey: .agentTool)
+        try container.encodeIfPresent(value, forKey: .agentTool)
       case .widgetTool(let value):
-        try container.encode(value, forKey: .widgetTool)
+        try container.encodeIfPresent(value, forKey: .widgetTool)
       case .remoteAgentTool(let value):
-        try container.encode(value, forKey: .remoteAgentTool)
+        try container.encodeIfPresent(value, forKey: .remoteAgentTool)
       }
     }
     for (key, value) in self._unknownFields.json {

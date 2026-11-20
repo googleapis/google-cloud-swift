@@ -94,9 +94,9 @@ public struct KubernetesConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.serviceDefinition {
       switch choice {
       case .gatewayServiceMesh(let value):
-        try container.encode(value, forKey: .gatewayServiceMesh)
+        try container.encodeIfPresent(value, forKey: .gatewayServiceMesh)
       case .serviceNetworking(let value):
-        try container.encode(value, forKey: .serviceNetworking)
+        try container.encodeIfPresent(value, forKey: .serviceNetworking)
       }
     }
     for (key, value) in self._unknownFields.json {

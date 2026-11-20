@@ -90,7 +90,7 @@ public struct OtherCloudResourceRegex: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.resourceRegex {
       switch choice {
       case .amazonS3BucketRegex(let value):
-        try container.encode(value, forKey: .amazonS3BucketRegex)
+        try container.encodeIfPresent(value, forKey: .amazonS3BucketRegex)
       }
     }
     for (key, value) in self._unknownFields.json {

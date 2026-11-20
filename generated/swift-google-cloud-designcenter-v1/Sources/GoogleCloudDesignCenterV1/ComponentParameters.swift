@@ -124,7 +124,9 @@ public struct ComponentParameters: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.component, forKey: .component)
     try container.encode(self.parameters, forKey: .parameters)
     try container.encode(self.connectionsParameters, forKey: .connectionsParameters)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ComponentParameters.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.componentParameterSchema, forKey: .componentParameterSchema)
     try container.encodeIfPresent(self.applicationInfo, forKey: .applicationInfo)
     try container.encodeIfPresent(self.effectiveApplicationInfo, forKey: .effectiveApplicationInfo)

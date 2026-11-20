@@ -94,9 +94,9 @@ public struct CertificateProvider: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .grpcEndpoint(let value):
-        try container.encode(value, forKey: .grpcEndpoint)
+        try container.encodeIfPresent(value, forKey: .grpcEndpoint)
       case .certificateProviderInstance(let value):
-        try container.encode(value, forKey: .certificateProviderInstance)
+        try container.encodeIfPresent(value, forKey: .certificateProviderInstance)
       }
     }
     for (key, value) in self._unknownFields.json {

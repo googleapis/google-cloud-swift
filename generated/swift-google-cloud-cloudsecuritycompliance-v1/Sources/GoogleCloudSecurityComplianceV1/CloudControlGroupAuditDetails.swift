@@ -187,7 +187,9 @@ public struct CloudControlGroupAuditDetails: Codable, Equatable, GoogleWKT._AnyP
       self.customerResponsibilityDescription, forKey: .customerResponsibilityDescription)
     try container.encode(
       self.customerResponsibilityImplementation, forKey: .customerResponsibilityImplementation)
-    try container.encode(self.complianceState, forKey: .complianceState)
+    if self.complianceState != ComplianceState() {
+      try container.encode(self.complianceState, forKey: .complianceState)
+    }
     try container.encode(self.controlId, forKey: .controlId)
     try container.encodeIfPresent(self.controlFamily, forKey: .controlFamily)
     try container.encode(self.cloudControlDetails, forKey: .cloudControlDetails)

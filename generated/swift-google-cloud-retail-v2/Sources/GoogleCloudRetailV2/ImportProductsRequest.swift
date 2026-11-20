@@ -159,7 +159,9 @@ public struct ImportProductsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.inputConfig, forKey: .inputConfig)
     try container.encodeIfPresent(self.errorsConfig, forKey: .errorsConfig)
     try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
-    try container.encode(self.reconciliationMode, forKey: .reconciliationMode)
+    if self.reconciliationMode != ImportProductsRequest.ReconciliationMode() {
+      try container.encode(self.reconciliationMode, forKey: .reconciliationMode)
+    }
     try container.encode(self.notificationPubsubTopic, forKey: .notificationPubsubTopic)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

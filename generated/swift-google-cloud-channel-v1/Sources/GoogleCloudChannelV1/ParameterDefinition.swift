@@ -116,7 +116,9 @@ public struct ParameterDefinition: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.parameterType, forKey: .parameterType)
+    if self.parameterType != ParameterDefinition.ParameterType() {
+      try container.encode(self.parameterType, forKey: .parameterType)
+    }
     try container.encodeIfPresent(self.minValue, forKey: .minValue)
     try container.encodeIfPresent(self.maxValue, forKey: .maxValue)
     try container.encode(self.allowedValues, forKey: .allowedValues)

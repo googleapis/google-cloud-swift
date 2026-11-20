@@ -104,11 +104,11 @@ public struct DiscoveryCloudStorageFilter: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.filter {
       switch choice {
       case .collection(let value):
-        try container.encode(value, forKey: .collection)
+        try container.encodeIfPresent(value, forKey: .collection)
       case .cloudStorageResourceReference(let value):
-        try container.encode(value, forKey: .cloudStorageResourceReference)
+        try container.encodeIfPresent(value, forKey: .cloudStorageResourceReference)
       case .others(let value):
-        try container.encode(value, forKey: .others)
+        try container.encodeIfPresent(value, forKey: .others)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -173,21 +173,21 @@ public struct Account: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.accountDetails {
       switch choice {
       case .userDetails(let value):
-        try container.encode(value, forKey: .userDetails)
+        try container.encodeIfPresent(value, forKey: .userDetails)
       case .accountManagerDetails(let value):
-        try container.encode(value, forKey: .accountManagerDetails)
+        try container.encodeIfPresent(value, forKey: .accountManagerDetails)
       case .tokenManagerDetails(let value):
-        try container.encode(value, forKey: .tokenManagerDetails)
+        try container.encodeIfPresent(value, forKey: .tokenManagerDetails)
       case .contractTokenManagerDetails(let value):
-        try container.encode(value, forKey: .contractTokenManagerDetails)
+        try container.encodeIfPresent(value, forKey: .contractTokenManagerDetails)
       case .contractDetails(let value):
-        try container.encode(value, forKey: .contractDetails)
+        try container.encodeIfPresent(value, forKey: .contractDetails)
       case .clearinghouseDetails(let value):
-        try container.encode(value, forKey: .clearinghouseDetails)
+        try container.encodeIfPresent(value, forKey: .clearinghouseDetails)
       case .currencyOperatorDetails(let value):
-        try container.encode(value, forKey: .currencyOperatorDetails)
+        try container.encodeIfPresent(value, forKey: .currencyOperatorDetails)
       case .platformOperatorDetails(let value):
-        try container.encode(value, forKey: .platformOperatorDetails)
+        try container.encodeIfPresent(value, forKey: .platformOperatorDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -91,7 +91,9 @@ public struct EmptyDirVolumeSource: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.medium, forKey: .medium)
+    if self.medium != EmptyDirVolumeSource.Medium() {
+      try container.encode(self.medium, forKey: .medium)
+    }
     try container.encode(self.sizeLimit, forKey: .sizeLimit)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

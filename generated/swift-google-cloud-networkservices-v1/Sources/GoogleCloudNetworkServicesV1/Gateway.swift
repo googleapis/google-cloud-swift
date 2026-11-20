@@ -274,7 +274,9 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Gateway.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.addresses, forKey: .addresses)
     try container.encode(self.ports, forKey: .ports)
     try container.encode(self.allPorts, forKey: .allPorts)
@@ -284,9 +286,13 @@ public struct Gateway: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.gatewaySecurityPolicy, forKey: .gatewaySecurityPolicy)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.subnetwork, forKey: .subnetwork)
-    try container.encode(self.ipVersion, forKey: .ipVersion)
+    if self.ipVersion != Gateway.IpVersion() {
+      try container.encode(self.ipVersion, forKey: .ipVersion)
+    }
     try container.encodeIfPresent(self.envoyHeaders, forKey: .envoyHeaders)
-    try container.encode(self.routingMode, forKey: .routingMode)
+    if self.routingMode != Gateway.RoutingMode() {
+      try container.encode(self.routingMode, forKey: .routingMode)
+    }
     try container.encode(self.allowGlobalAccess, forKey: .allowGlobalAccess)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

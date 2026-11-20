@@ -120,10 +120,14 @@ public struct LoadBalancerInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.loadBalancerType, forKey: .loadBalancerType)
+    if self.loadBalancerType != LoadBalancerInfo.LoadBalancerType() {
+      try container.encode(self.loadBalancerType, forKey: .loadBalancerType)
+    }
     try container.encode(self.healthCheckUri, forKey: .healthCheckUri)
     try container.encode(self.backends, forKey: .backends)
-    try container.encode(self.backendType, forKey: .backendType)
+    if self.backendType != LoadBalancerInfo.BackendType() {
+      try container.encode(self.backendType, forKey: .backendType)
+    }
     try container.encode(self.backendUri, forKey: .backendUri)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

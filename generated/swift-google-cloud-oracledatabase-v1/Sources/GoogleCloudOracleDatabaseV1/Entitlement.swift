@@ -96,7 +96,9 @@ public struct Entitlement: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.cloudAccountDetails, forKey: .cloudAccountDetails)
     try container.encode(self.entitlementId, forKey: .entitlementId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Entitlement.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

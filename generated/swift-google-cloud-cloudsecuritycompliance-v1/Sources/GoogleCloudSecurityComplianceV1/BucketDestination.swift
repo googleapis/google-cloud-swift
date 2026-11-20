@@ -80,7 +80,9 @@ public struct BucketDestination: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucketUri, forKey: .bucketUri)
-    try container.encode(self.frameworkAuditFormat, forKey: .frameworkAuditFormat)
+    if self.frameworkAuditFormat != BucketDestination.Format() {
+      try container.encode(self.frameworkAuditFormat, forKey: .frameworkAuditFormat)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

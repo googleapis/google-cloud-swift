@@ -94,7 +94,7 @@ public struct ToolFakeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.toolResponse {
       switch choice {
       case .codeBlock(let value):
-        try container.encode(value, forKey: .codeBlock)
+        try container.encodeIfPresent(value, forKey: .codeBlock)
       }
     }
     for (key, value) in self._unknownFields.json {

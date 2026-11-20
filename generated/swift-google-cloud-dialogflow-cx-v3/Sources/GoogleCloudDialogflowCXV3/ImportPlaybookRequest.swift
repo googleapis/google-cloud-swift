@@ -122,9 +122,9 @@
       if let choice = self.playbook {
         switch choice {
         case .playbookUri(let value):
-          try container.encode(value, forKey: .playbookUri)
+          try container.encodeIfPresent(value, forKey: .playbookUri)
         case .playbookContent(let value):
-          try container.encode(value, forKey: .playbookContent)
+          try container.encodeIfPresent(value, forKey: .playbookContent)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -96,7 +96,9 @@ public struct ResourceChange: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.terraformInfo, forKey: .terraformInfo)
-    try container.encode(self.intent, forKey: .intent)
+    if self.intent != ResourceChange.Intent() {
+      try container.encode(self.intent, forKey: .intent)
+    }
     try container.encode(self.propertyChanges, forKey: .propertyChanges)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -572,7 +572,9 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.queryExpansionSpec, forKey: .queryExpansionSpec)
     try container.encode(self.variantRollupKeys, forKey: .variantRollupKeys)
     try container.encode(self.pageCategories, forKey: .pageCategories)
-    try container.encode(self.searchMode, forKey: .searchMode)
+    if self.searchMode != SearchRequest.SearchMode() {
+      try container.encode(self.searchMode, forKey: .searchMode)
+    }
     try container.encodeIfPresent(self.personalizationSpec, forKey: .personalizationSpec)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.spellCorrectionSpec, forKey: .spellCorrectionSpec)
@@ -1110,7 +1112,9 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.mode, forKey: .mode)
+      if self.mode != SearchRequest.DynamicFacetSpec.Mode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1544,7 +1548,9 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.condition, forKey: .condition)
+      if self.condition != SearchRequest.QueryExpansionSpec.Condition() {
+        try container.encode(self.condition, forKey: .condition)
+      }
       try container.encode(self.pinUnexpandedResults, forKey: .pinUnexpandedResults)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1756,7 +1762,9 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.mode, forKey: .mode)
+      if self.mode != SearchRequest.PersonalizationSpec.Mode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1964,7 +1972,9 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.mode, forKey: .mode)
+      if self.mode != SearchRequest.SpellCorrectionSpec.Mode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -2285,9 +2295,9 @@ public struct SearchRequest: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.type {
           switch choice {
           case .textAnswer(let value):
-            try container.encode(value, forKey: .textAnswer)
+            try container.encodeIfPresent(value, forKey: .textAnswer)
           case .selectedAnswer(let value):
-            try container.encode(value, forKey: .selectedAnswer)
+            try container.encodeIfPresent(value, forKey: .selectedAnswer)
           }
         }
         for (key, value) in self._unknownFields.json {

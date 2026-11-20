@@ -80,7 +80,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.modality, forKey: .modality)
+      if self.modality != GoogleCloudAIPlatformV1.Modality() {
+        try container.encode(self.modality, forKey: .modality)
+      }
       try container.encode(self.tokenCount, forKey: .tokenCount)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

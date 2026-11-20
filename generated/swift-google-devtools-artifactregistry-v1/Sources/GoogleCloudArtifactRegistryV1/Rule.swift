@@ -105,8 +105,12 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.action, forKey: .action)
-    try container.encode(self.operation, forKey: .operation)
+    if self.action != Rule.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
+    if self.operation != Rule.Operation() {
+      try container.encode(self.operation, forKey: .operation)
+    }
     try container.encodeIfPresent(self.condition, forKey: .condition)
     try container.encode(self.packageId, forKey: .packageId)
     for (key, value) in self._unknownFields.json {

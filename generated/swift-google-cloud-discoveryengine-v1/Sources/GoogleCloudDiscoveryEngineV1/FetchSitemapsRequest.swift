@@ -259,7 +259,7 @@
         if let choice = self.matcher {
           switch choice {
           case .urisMatcher(let value):
-            try container.encode(value, forKey: .urisMatcher)
+            try container.encodeIfPresent(value, forKey: .urisMatcher)
           }
         }
         for (key, value) in self._unknownFields.json {

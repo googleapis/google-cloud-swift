@@ -91,7 +91,9 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.status, forKey: .status)
+    if self.status != UpgradeClusterResponse.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.message, forKey: .message)
     try container.encode(self.clusterUpgradeDetails, forKey: .clusterUpgradeDetails)
     for (key, value) in self._unknownFields.json {
@@ -173,8 +175,12 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.stage, forKey: .stage)
-      try container.encode(self.status, forKey: .status)
+      if self.stage != UpgradeClusterResponse.Stage() {
+        try container.encode(self.stage, forKey: .stage)
+      }
+      if self.status != UpgradeClusterResponse.Status() {
+        try container.encode(self.status, forKey: .status)
+      }
       try container.encode(self.logsUrl, forKey: .logsUrl)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -276,8 +282,12 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.upgradeStatus, forKey: .upgradeStatus)
-      try container.encode(self.instanceType, forKey: .instanceType)
+      if self.upgradeStatus != UpgradeClusterResponse.Status() {
+        try container.encode(self.upgradeStatus, forKey: .upgradeStatus)
+      }
+      if self.instanceType != Instance.InstanceType() {
+        try container.encode(self.instanceType, forKey: .instanceType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -407,9 +417,15 @@ public struct UpgradeClusterResponse: Codable, Equatable, GoogleWKT._AnyPackable
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.upgradeStatus, forKey: .upgradeStatus)
-      try container.encode(self.clusterType, forKey: .clusterType)
-      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      if self.upgradeStatus != UpgradeClusterResponse.Status() {
+        try container.encode(self.upgradeStatus, forKey: .upgradeStatus)
+      }
+      if self.clusterType != Cluster.ClusterType() {
+        try container.encode(self.clusterType, forKey: .clusterType)
+      }
+      if self.databaseVersion != DatabaseVersion() {
+        try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      }
       try container.encode(self.stageInfo, forKey: .stageInfo)
       try container.encode(self.instanceUpgradeDetails, forKey: .instanceUpgradeDetails)
       for (key, value) in self._unknownFields.json {

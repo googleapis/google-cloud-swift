@@ -185,8 +185,12 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.fieldName, forKey: .fieldName)
-        try container.encode(self.encoding, forKey: .encoding)
-        try container.encode(self.type, forKey: .type)
+        if self.encoding != BigtableOptions.Encoding() {
+          try container.encode(self.encoding, forKey: .encoding)
+        }
+        if self.type != BigtableOptions.Type_() {
+          try container.encode(self.type, forKey: .type)
+        }
         try container.encode(self.columns, forKey: .columns)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -309,8 +313,12 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.qualifier, forKey: .qualifier)
         try container.encode(self.fieldName, forKey: .fieldName)
-        try container.encode(self.encoding, forKey: .encoding)
-        try container.encode(self.type, forKey: .type)
+        if self.encoding != BigtableOptions.Encoding() {
+          try container.encode(self.encoding, forKey: .encoding)
+        }
+        if self.type != BigtableOptions.Type_() {
+          try container.encode(self.type, forKey: .type)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

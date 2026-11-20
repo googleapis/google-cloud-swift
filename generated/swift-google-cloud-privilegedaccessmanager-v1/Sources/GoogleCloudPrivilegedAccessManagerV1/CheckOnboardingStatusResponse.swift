@@ -158,7 +158,7 @@ public struct CheckOnboardingStatusResponse: Codable, Equatable, GoogleWKT._AnyP
       if let choice = self.findingType {
         switch choice {
         case .iamAccessDenied(let value):
-          try container.encode(value, forKey: .iamAccessDenied)
+          try container.encodeIfPresent(value, forKey: .iamAccessDenied)
         }
       }
       for (key, value) in self._unknownFields.json {

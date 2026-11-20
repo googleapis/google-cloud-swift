@@ -200,9 +200,13 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.target, forKey: .target)
     try container.encode(self.httpRules, forKey: .httpRules)
     try container.encode(self.networkRules, forKey: .networkRules)
-    try container.encode(self.action, forKey: .action)
+    if self.action != AuthzPolicy.AuthzAction() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encodeIfPresent(self.customProvider, forKey: .customProvider)
-    try container.encode(self.policyProfile, forKey: .policyProfile)
+    if self.policyProfile != AuthzPolicy.PolicyProfile() {
+      try container.encode(self.policyProfile, forKey: .policyProfile)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -279,7 +283,9 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+      if self.loadBalancingScheme != AuthzPolicy.LoadBalancingScheme() {
+        try container.encode(self.loadBalancingScheme, forKey: .loadBalancingScheme)
+      }
       try container.encode(self.resources, forKey: .resources)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -476,13 +482,13 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.matchPattern {
           switch choice {
           case .exact(let value):
-            try container.encode(value, forKey: .exact)
+            try container.encodeIfPresent(value, forKey: .exact)
           case .`prefix`(let value):
-            try container.encode(value, forKey: .`prefix`)
+            try container.encodeIfPresent(value, forKey: .`prefix`)
           case .suffix(let value):
-            try container.encode(value, forKey: .suffix)
+            try container.encodeIfPresent(value, forKey: .suffix)
           case .contains(let value):
-            try container.encode(value, forKey: .contains)
+            try container.encodeIfPresent(value, forKey: .contains)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -966,7 +972,9 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.principalSelector, forKey: .principalSelector)
+        if self.principalSelector != AuthzPolicy.AuthzRule.Principal.PrincipalSelector() {
+          try container.encode(self.principalSelector, forKey: .principalSelector)
+        }
         try container.encodeIfPresent(self.principal, forKey: .principal)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1836,7 +1844,12 @@ public struct AuthzPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(self.baseProtocolMethodsOption, forKey: .baseProtocolMethodsOption)
+            if self.baseProtocolMethodsOption
+              != AuthzPolicy.AuthzRule.To.RequestOperation.BaseProtocolMethodsOption()
+            {
+              try container.encode(
+                self.baseProtocolMethodsOption, forKey: .baseProtocolMethodsOption)
+            }
             try container.encode(self.methods, forKey: .methods)
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))

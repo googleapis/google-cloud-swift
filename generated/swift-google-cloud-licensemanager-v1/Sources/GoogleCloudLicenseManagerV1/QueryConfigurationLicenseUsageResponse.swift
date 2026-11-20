@@ -88,7 +88,7 @@ public struct QueryConfigurationLicenseUsageResponse: Codable, Equatable, Google
     if let choice = self.details {
       switch choice {
       case .userCountUsage(let value):
-        try container.encode(value, forKey: .userCountUsage)
+        try container.encodeIfPresent(value, forKey: .userCountUsage)
       }
     }
     for (key, value) in self._unknownFields.json {

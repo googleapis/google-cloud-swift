@@ -110,7 +110,9 @@ public struct InjectFaultRequest: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.faultType, forKey: .faultType)
+    if self.faultType != InjectFaultRequest.FaultType() {
+      try container.encode(self.faultType, forKey: .faultType)
+    }
     try container.encode(self.name, forKey: .name)
     try container.encode(self.requestId, forKey: .requestId)
     try container.encode(self.validateOnly, forKey: .validateOnly)

@@ -226,7 +226,9 @@
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encodeIfPresent(self.indexStats, forKey: .indexStats)
-      try container.encode(self.indexUpdateMethod, forKey: .indexUpdateMethod)
+      if self.indexUpdateMethod != Index.IndexUpdateMethod() {
+        try container.encode(self.indexUpdateMethod, forKey: .indexUpdateMethod)
+      }
       try container.encodeIfPresent(self.encryptionSpec, forKey: .encryptionSpec)
       try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
       try container.encode(self.satisfiesPzi, forKey: .satisfiesPzi)

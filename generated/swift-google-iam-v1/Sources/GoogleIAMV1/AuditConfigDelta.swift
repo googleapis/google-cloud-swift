@@ -102,7 +102,9 @@ public struct AuditConfigDelta: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.action, forKey: .action)
+    if self.action != AuditConfigDelta.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     try container.encode(self.service, forKey: .service)
     try container.encode(self.exemptedMember, forKey: .exemptedMember)
     try container.encode(self.logType, forKey: .logType)

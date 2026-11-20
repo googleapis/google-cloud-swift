@@ -119,7 +119,9 @@ public struct CurrencyOperatorDetails: Codable, Equatable, GoogleWKT._AnyPackabl
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.currencyCode, forKey: .currencyCode)
-    try container.encode(self.accountStatus, forKey: .accountStatus)
+    if self.accountStatus != AccountStatus() {
+      try container.encode(self.accountStatus, forKey: .accountStatus)
+    }
     try container.encode(self.previousCurrencyOperatorId, forKey: .previousCurrencyOperatorId)
     try container.encode(self.platformOperatorId, forKey: .platformOperatorId)
     try container.encode(self.contractTokenManagerId, forKey: .contractTokenManagerId)

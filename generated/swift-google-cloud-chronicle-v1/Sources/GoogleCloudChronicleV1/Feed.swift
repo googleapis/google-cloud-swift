@@ -148,7 +148,9 @@ public struct Feed: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.details, forKey: .details)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Feed.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.failureMsg, forKey: .failureMsg)
     try container.encode(self.readOnly, forKey: .readOnly)
     try container.encodeIfPresent(self.lastFeedInitiationTime, forKey: .lastFeedInitiationTime)

@@ -100,9 +100,9 @@
       if let choice = self.message {
         switch choice {
         case .userInput(let value):
-          try container.encode(value, forKey: .userInput)
+          try container.encodeIfPresent(value, forKey: .userInput)
         case .reply(let value):
-          try container.encode(value, forKey: .reply)
+          try container.encodeIfPresent(value, forKey: .reply)
         }
       }
       for (key, value) in self._unknownFields.json {

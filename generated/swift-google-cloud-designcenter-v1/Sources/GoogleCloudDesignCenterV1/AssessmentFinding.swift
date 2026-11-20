@@ -186,8 +186,12 @@ public struct AssessmentFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.id, forKey: .id)
     try container.encode(self.assessedFrameworkId, forKey: .assessedFrameworkId)
     try container.encodeIfPresent(self.adcMetadata, forKey: .adcMetadata)
-    try container.encode(self.findingType, forKey: .findingType)
-    try container.encode(self.severity, forKey: .severity)
+    if self.findingType != AssessmentFinding.Type_() {
+      try container.encode(self.findingType, forKey: .findingType)
+    }
+    if self.severity != AssessmentFinding.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encodeIfPresent(self.assessedAsset, forKey: .assessedAsset)
     try container.encodeIfPresent(self.assessedFramework, forKey: .assessedFramework)
     try container.encode(self.description, forKey: .description)
@@ -197,14 +201,14 @@ public struct AssessmentFinding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.nextStep {
       switch choice {
       case .remediationStep(let value):
-        try container.encode(value, forKey: .remediationStep)
+        try container.encodeIfPresent(value, forKey: .remediationStep)
       }
     }
 
     if let choice = self.additionalDetails {
       switch choice {
       case .additionalNotes(let value):
-        try container.encode(value, forKey: .additionalNotes)
+        try container.encodeIfPresent(value, forKey: .additionalNotes)
       }
     }
     for (key, value) in self._unknownFields.json {

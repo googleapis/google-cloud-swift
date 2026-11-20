@@ -104,7 +104,9 @@ public struct SignedQueryRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serializedClientQuery, forKey: .serializedClientQuery)
     try container.encode(self.senderSignature, forKey: .senderSignature)
-    try container.encode(self.senderSigningKeySlot, forKey: .senderSigningKeySlot)
+    if self.senderSigningKeySlot != KeySlot() {
+      try container.encode(self.senderSigningKeySlot, forKey: .senderSigningKeySlot)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

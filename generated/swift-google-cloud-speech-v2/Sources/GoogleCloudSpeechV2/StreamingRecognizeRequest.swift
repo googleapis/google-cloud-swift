@@ -128,9 +128,9 @@ public struct StreamingRecognizeRequest: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.streamingRequest {
       switch choice {
       case .streamingConfig(let value):
-        try container.encode(value, forKey: .streamingConfig)
+        try container.encodeIfPresent(value, forKey: .streamingConfig)
       case .audio(let value):
-        try container.encode(value, forKey: .audio)
+        try container.encodeIfPresent(value, forKey: .audio)
       }
     }
     for (key, value) in self._unknownFields.json {

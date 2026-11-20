@@ -95,7 +95,9 @@ public struct RenewalSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.enableRenewal, forKey: .enableRenewal)
     try container.encode(self.resizeUnitCount, forKey: .resizeUnitCount)
-    try container.encode(self.paymentPlan, forKey: .paymentPlan)
+    if self.paymentPlan != PaymentPlan() {
+      try container.encode(self.paymentPlan, forKey: .paymentPlan)
+    }
     try container.encodeIfPresent(self.paymentCycle, forKey: .paymentCycle)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

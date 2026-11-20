@@ -263,15 +263,15 @@ public struct Target: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.deploymentTarget {
       switch choice {
       case .gke(let value):
-        try container.encode(value, forKey: .gke)
+        try container.encodeIfPresent(value, forKey: .gke)
       case .anthosCluster(let value):
-        try container.encode(value, forKey: .anthosCluster)
+        try container.encodeIfPresent(value, forKey: .anthosCluster)
       case .run(let value):
-        try container.encode(value, forKey: .run)
+        try container.encodeIfPresent(value, forKey: .run)
       case .multiTarget(let value):
-        try container.encode(value, forKey: .multiTarget)
+        try container.encodeIfPresent(value, forKey: .multiTarget)
       case .customTarget(let value):
-        try container.encode(value, forKey: .customTarget)
+        try container.encodeIfPresent(value, forKey: .customTarget)
       }
     }
     for (key, value) in self._unknownFields.json {

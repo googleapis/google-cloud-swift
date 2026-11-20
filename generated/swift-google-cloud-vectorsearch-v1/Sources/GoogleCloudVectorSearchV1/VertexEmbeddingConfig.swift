@@ -98,7 +98,9 @@ public struct VertexEmbeddingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.modelId, forKey: .modelId)
     try container.encode(self.textTemplate, forKey: .textTemplate)
-    try container.encode(self.taskType, forKey: .taskType)
+    if self.taskType != EmbeddingTaskType() {
+      try container.encode(self.taskType, forKey: .taskType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

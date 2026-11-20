@@ -91,9 +91,9 @@ public struct FieldType: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.typeDecl {
       switch choice {
       case .primitiveType(let value):
-        try container.encode(value, forKey: .primitiveType)
+        try container.encodeIfPresent(value, forKey: .primitiveType)
       case .enumType(let value):
-        try container.encode(value, forKey: .enumType)
+        try container.encodeIfPresent(value, forKey: .enumType)
       }
     }
     for (key, value) in self._unknownFields.json {

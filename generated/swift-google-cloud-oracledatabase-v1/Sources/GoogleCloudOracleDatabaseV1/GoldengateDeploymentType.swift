@@ -169,8 +169,12 @@ public struct GoldengateDeploymentType: Codable, Equatable, GoogleWKT._AnyPackab
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.deploymentType, forKey: .deploymentType)
-    try container.encode(self.category, forKey: .category)
+    if self.deploymentType != GoldengateDeploymentType.DeploymentType() {
+      try container.encode(self.deploymentType, forKey: .deploymentType)
+    }
+    if self.category != GoldengateDeploymentType.DeploymentCategory() {
+      try container.encode(self.category, forKey: .category)
+    }
     try container.encode(self.connectionTypes, forKey: .connectionTypes)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.oggVersion, forKey: .oggVersion)

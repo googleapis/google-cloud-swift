@@ -129,7 +129,7 @@ public struct Attestor: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.attestorType {
       switch choice {
       case .userOwnedGrafeasNote(let value):
-        try container.encode(value, forKey: .userOwnedGrafeasNote)
+        try container.encodeIfPresent(value, forKey: .userOwnedGrafeasNote)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -155,9 +155,9 @@
       if let choice = self.readOption {
         switch choice {
         case .csvReadInstances(let value):
-          try container.encode(value, forKey: .csvReadInstances)
+          try container.encodeIfPresent(value, forKey: .csvReadInstances)
         case .bigqueryReadInstances(let value):
-          try container.encode(value, forKey: .bigqueryReadInstances)
+          try container.encodeIfPresent(value, forKey: .bigqueryReadInstances)
         }
       }
       for (key, value) in self._unknownFields.json {

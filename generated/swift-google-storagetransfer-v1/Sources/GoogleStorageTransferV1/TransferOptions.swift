@@ -135,7 +135,9 @@ public struct TransferOptions: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.deleteObjectsUniqueInSink, forKey: .deleteObjectsUniqueInSink)
     try container.encode(
       self.deleteObjectsFromSourceAfterTransfer, forKey: .deleteObjectsFromSourceAfterTransfer)
-    try container.encode(self.overwriteWhen, forKey: .overwriteWhen)
+    if self.overwriteWhen != TransferOptions.OverwriteWhen() {
+      try container.encode(self.overwriteWhen, forKey: .overwriteWhen)
+    }
     try container.encodeIfPresent(self.metadataOptions, forKey: .metadataOptions)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -93,9 +93,9 @@ public struct ArtifactLocation: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.location {
       switch choice {
       case .developerConnectExportConfig(let value):
-        try container.encode(value, forKey: .developerConnectExportConfig)
+        try container.encodeIfPresent(value, forKey: .developerConnectExportConfig)
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -180,22 +180,26 @@ public struct EntitlementChange: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.entitlement, forKey: .entitlement)
     try container.encode(self.offer, forKey: .offer)
     try container.encodeIfPresent(self.provisionedService, forKey: .provisionedService)
-    try container.encode(self.changeType, forKey: .changeType)
+    if self.changeType != EntitlementChange.ChangeType() {
+      try container.encode(self.changeType, forKey: .changeType)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.operatorType, forKey: .operatorType)
+    if self.operatorType != EntitlementChange.OperatorType() {
+      try container.encode(self.operatorType, forKey: .operatorType)
+    }
     try container.encode(self.parameters, forKey: .parameters)
     try container.encode(self.`operator`, forKey: .`operator`)
 
     if let choice = self.changeReason {
       switch choice {
       case .suspensionReason(let value):
-        try container.encode(value, forKey: .suspensionReason)
+        try container.encodeIfPresent(value, forKey: .suspensionReason)
       case .cancellationReason(let value):
-        try container.encode(value, forKey: .cancellationReason)
+        try container.encodeIfPresent(value, forKey: .cancellationReason)
       case .activationReason(let value):
-        try container.encode(value, forKey: .activationReason)
+        try container.encodeIfPresent(value, forKey: .activationReason)
       case .otherChangeReason(let value):
-        try container.encode(value, forKey: .otherChangeReason)
+        try container.encodeIfPresent(value, forKey: .otherChangeReason)
       }
     }
     for (key, value) in self._unknownFields.json {

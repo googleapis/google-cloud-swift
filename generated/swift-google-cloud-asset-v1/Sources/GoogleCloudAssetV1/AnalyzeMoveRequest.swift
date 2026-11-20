@@ -97,7 +97,9 @@ public struct AnalyzeMoveRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.resource, forKey: .resource)
     try container.encode(self.destinationParent, forKey: .destinationParent)
-    try container.encode(self.view, forKey: .view)
+    if self.view != AnalyzeMoveRequest.AnalysisView() {
+      try container.encode(self.view, forKey: .view)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

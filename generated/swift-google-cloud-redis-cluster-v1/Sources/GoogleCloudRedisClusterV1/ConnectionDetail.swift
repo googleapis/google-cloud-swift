@@ -96,9 +96,9 @@ public struct ConnectionDetail: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.connection {
       switch choice {
       case .pscAutoConnection(let value):
-        try container.encode(value, forKey: .pscAutoConnection)
+        try container.encodeIfPresent(value, forKey: .pscAutoConnection)
       case .pscConnection(let value):
-        try container.encode(value, forKey: .pscConnection)
+        try container.encodeIfPresent(value, forKey: .pscConnection)
       }
     }
     for (key, value) in self._unknownFields.json {

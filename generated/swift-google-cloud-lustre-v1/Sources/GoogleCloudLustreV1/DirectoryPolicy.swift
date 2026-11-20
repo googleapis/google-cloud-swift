@@ -112,7 +112,9 @@ public struct DirectoryPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.directoryPath, forKey: .directoryPath)
     try container.encode(self.lustreProjectId, forKey: .lustreProjectId)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DirectoryPolicy.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

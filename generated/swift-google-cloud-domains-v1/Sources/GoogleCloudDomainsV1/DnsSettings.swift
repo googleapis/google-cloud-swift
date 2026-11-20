@@ -105,9 +105,9 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dnsProvider {
       switch choice {
       case .customDns(let value):
-        try container.encode(value, forKey: .customDns)
+        try container.encodeIfPresent(value, forKey: .customDns)
       case .googleDomainsDns(let value):
-        try container.encode(value, forKey: .googleDomainsDns)
+        try container.encodeIfPresent(value, forKey: .googleDomainsDns)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -288,7 +288,9 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.nameServers, forKey: .nameServers)
-      try container.encode(self.dsState, forKey: .dsState)
+      if self.dsState != DnsSettings.DsState() {
+        try container.encode(self.dsState, forKey: .dsState)
+      }
       try container.encode(self.dsRecords, forKey: .dsRecords)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -400,8 +402,12 @@ public struct DnsSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.keyTag, forKey: .keyTag)
-      try container.encode(self.algorithm, forKey: .algorithm)
-      try container.encode(self.digestType, forKey: .digestType)
+      if self.algorithm != DnsSettings.DsRecord.Algorithm() {
+        try container.encode(self.algorithm, forKey: .algorithm)
+      }
+      if self.digestType != DnsSettings.DsRecord.DigestType() {
+        try container.encode(self.digestType, forKey: .digestType)
+      }
       try container.encode(self.digest, forKey: .digest)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

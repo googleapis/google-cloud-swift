@@ -159,14 +159,18 @@ public struct NativeDashboard: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.definition, forKey: .definition)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DashboardType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.createUserId, forKey: .createUserId)
     try container.encode(self.updateUserId, forKey: .updateUserId)
     try container.encodeIfPresent(self.dashboardUserData, forKey: .dashboardUserData)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.access, forKey: .access)
+    if self.access != DashboardAccess() {
+      try container.encode(self.access, forKey: .access)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -98,11 +98,11 @@ public struct AzureAuthV2: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authType {
       switch choice {
       case .accessKey(let value):
-        try container.encode(value, forKey: .accessKey)
+        try container.encodeIfPresent(value, forKey: .accessKey)
       case .sasToken(let value):
-        try container.encode(value, forKey: .sasToken)
+        try container.encodeIfPresent(value, forKey: .sasToken)
       case .azureV2WorkloadIdentityFederation(let value):
-        try container.encode(value, forKey: .azureV2WorkloadIdentityFederation)
+        try container.encodeIfPresent(value, forKey: .azureV2WorkloadIdentityFederation)
       }
     }
     for (key, value) in self._unknownFields.json {

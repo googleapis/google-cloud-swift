@@ -191,7 +191,7 @@ public struct EnrollResourceRequest: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.eligibleDestinations {
         switch choice {
         case .eligibleGcsBucket(let value):
-          try container.encode(value, forKey: .eligibleGcsBucket)
+          try container.encodeIfPresent(value, forKey: .eligibleGcsBucket)
         }
       }
       for (key, value) in self._unknownFields.json {

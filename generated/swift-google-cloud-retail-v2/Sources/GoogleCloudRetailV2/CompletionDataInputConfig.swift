@@ -97,7 +97,7 @@ public struct CompletionDataInputConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.source {
       switch choice {
       case .bigQuerySource(let value):
-        try container.encode(value, forKey: .bigQuerySource)
+        try container.encodeIfPresent(value, forKey: .bigQuerySource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -98,7 +98,9 @@ public struct FetchRefsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.repository, forKey: .repository)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Ref.RefType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     for (key, value) in self._unknownFields.json {

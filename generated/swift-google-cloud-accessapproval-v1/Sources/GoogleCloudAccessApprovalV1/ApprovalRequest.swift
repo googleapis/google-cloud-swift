@@ -158,9 +158,9 @@ public struct ApprovalRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.decision {
       switch choice {
       case .approve(let value):
-        try container.encode(value, forKey: .approve)
+        try container.encodeIfPresent(value, forKey: .approve)
       case .dismiss(let value):
-        try container.encode(value, forKey: .dismiss)
+        try container.encodeIfPresent(value, forKey: .dismiss)
       }
     }
     for (key, value) in self._unknownFields.json {

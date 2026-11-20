@@ -115,7 +115,9 @@ public struct ComputeThreatListDiffResponse: Codable, Equatable, GoogleWKT._AnyP
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.responseType, forKey: .responseType)
+    if self.responseType != ComputeThreatListDiffResponse.ResponseType() {
+      try container.encode(self.responseType, forKey: .responseType)
+    }
     try container.encodeIfPresent(self.additions, forKey: .additions)
     try container.encodeIfPresent(self.removals, forKey: .removals)
     try container.encode(self.newVersionToken, forKey: .newVersionToken)

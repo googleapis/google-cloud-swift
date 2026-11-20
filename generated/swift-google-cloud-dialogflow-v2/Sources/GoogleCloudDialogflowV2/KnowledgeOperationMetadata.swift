@@ -108,14 +108,16 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != KnowledgeOperationMetadata.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.knowledgeBase, forKey: .knowledgeBase)
       try container.encodeIfPresent(self.doneTime, forKey: .doneTime)
 
       if let choice = self.operationMetadata {
         switch choice {
         case .exportOperationMetadata(let value):
-          try container.encode(value, forKey: .exportOperationMetadata)
+          try container.encodeIfPresent(value, forKey: .exportOperationMetadata)
         }
       }
       for (key, value) in self._unknownFields.json {

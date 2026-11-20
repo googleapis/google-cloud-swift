@@ -189,9 +189,9 @@ public struct CloudStorageConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.outputFormat {
       switch choice {
       case .textConfig(let value):
-        try container.encode(value, forKey: .textConfig)
+        try container.encodeIfPresent(value, forKey: .textConfig)
       case .avroConfig(let value):
-        try container.encode(value, forKey: .avroConfig)
+        try container.encodeIfPresent(value, forKey: .avroConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

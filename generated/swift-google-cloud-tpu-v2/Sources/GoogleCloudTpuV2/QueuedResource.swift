@@ -157,16 +157,16 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resource {
       switch choice {
       case .tpu(let value):
-        try container.encode(value, forKey: .tpu)
+        try container.encodeIfPresent(value, forKey: .tpu)
       }
     }
 
     if let choice = self.tier {
       switch choice {
       case .spot(let value):
-        try container.encode(value, forKey: .spot)
+        try container.encodeIfPresent(value, forKey: .spot)
       case .guaranteed(let value):
-        try container.encode(value, forKey: .guaranteed)
+        try container.encodeIfPresent(value, forKey: .guaranteed)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -327,9 +327,9 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.nameStrategy {
           switch choice {
           case .nodeId(let value):
-            try container.encode(value, forKey: .nodeId)
+            try container.encodeIfPresent(value, forKey: .nodeId)
           case .multisliceParams(let value):
-            try container.encode(value, forKey: .multisliceParams)
+            try container.encodeIfPresent(value, forKey: .multisliceParams)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -738,15 +738,15 @@ public struct QueuedResource: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.startTimingConstraints {
         switch choice {
         case .validUntilDuration(let value):
-          try container.encode(value, forKey: .validUntilDuration)
+          try container.encodeIfPresent(value, forKey: .validUntilDuration)
         case .validUntilTime(let value):
-          try container.encode(value, forKey: .validUntilTime)
+          try container.encodeIfPresent(value, forKey: .validUntilTime)
         case .validAfterDuration(let value):
-          try container.encode(value, forKey: .validAfterDuration)
+          try container.encodeIfPresent(value, forKey: .validAfterDuration)
         case .validAfterTime(let value):
-          try container.encode(value, forKey: .validAfterTime)
+          try container.encodeIfPresent(value, forKey: .validAfterTime)
         case .validInterval(let value):
-          try container.encode(value, forKey: .validInterval)
+          try container.encodeIfPresent(value, forKey: .validInterval)
         }
       }
       for (key, value) in self._unknownFields.json {

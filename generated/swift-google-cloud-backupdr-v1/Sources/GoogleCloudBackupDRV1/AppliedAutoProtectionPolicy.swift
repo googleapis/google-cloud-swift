@@ -141,7 +141,9 @@ public struct AppliedAutoProtectionPolicy: Codable, Equatable, GoogleWKT._AnyPac
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.bindingEvaluationSummary, forKey: .bindingEvaluationSummary)
-    try container.encode(self.status, forKey: .status)
+    if self.status != AppliedAutoProtectionPolicy.State() {
+      try container.encode(self.status, forKey: .status)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

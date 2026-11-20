@@ -191,13 +191,13 @@ public struct DetectionExclusionActivity: Codable, Equatable, GoogleWKT._AnyPack
       if let choice = self.detectorName {
         switch choice {
         case .curatedRule(let value):
-          try container.encode(value, forKey: .curatedRule)
+          try container.encodeIfPresent(value, forKey: .curatedRule)
         case .curatedRuleSet(let value):
-          try container.encode(value, forKey: .curatedRuleSet)
+          try container.encodeIfPresent(value, forKey: .curatedRuleSet)
         case .rule(let value):
-          try container.encode(value, forKey: .rule)
+          try container.encodeIfPresent(value, forKey: .rule)
         case .deletedCuratedRuleSet(let value):
-          try container.encode(value, forKey: .deletedCuratedRuleSet)
+          try container.encodeIfPresent(value, forKey: .deletedCuratedRuleSet)
         }
       }
       for (key, value) in self._unknownFields.json {

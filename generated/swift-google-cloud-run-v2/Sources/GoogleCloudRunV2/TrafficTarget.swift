@@ -97,7 +97,9 @@ public struct TrafficTarget: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != TrafficTargetAllocationType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.revision, forKey: .revision)
     try container.encode(self.percent, forKey: .percent)
     try container.encode(self.tag, forKey: .tag)

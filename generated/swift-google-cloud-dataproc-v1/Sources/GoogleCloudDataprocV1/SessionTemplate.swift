@@ -178,9 +178,9 @@ public struct SessionTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sessionConfig {
       switch choice {
       case .jupyterSession(let value):
-        try container.encode(value, forKey: .jupyterSession)
+        try container.encodeIfPresent(value, forKey: .jupyterSession)
       case .sparkConnectSession(let value):
-        try container.encode(value, forKey: .sparkConnectSession)
+        try container.encodeIfPresent(value, forKey: .sparkConnectSession)
       }
     }
     for (key, value) in self._unknownFields.json {

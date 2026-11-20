@@ -283,7 +283,9 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.selfLink, forKey: .selfLink)
     try container.encode(self.version, forKey: .version)
     try container.encode(self.instanceGroupUrls, forKey: .instanceGroupUrls)
-    try container.encode(self.status, forKey: .status)
+    if self.status != NodePool.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.statusMessage, forKey: .statusMessage)
     try container.encodeIfPresent(self.autoscaling, forKey: .autoscaling)
     try container.encodeIfPresent(self.management, forKey: .management)
@@ -612,7 +614,9 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.phase, forKey: .phase)
+        if self.phase != NodePool.UpdateInfo.BlueGreenInfo.Phase() {
+          try container.encode(self.phase, forKey: .phase)
+        }
         try container.encode(self.blueInstanceGroupUrls, forKey: .blueInstanceGroupUrls)
         try container.encode(self.greenInstanceGroupUrls, forKey: .greenInstanceGroupUrls)
         try container.encode(self.bluePoolDeletionStartTime, forKey: .bluePoolDeletionStartTime)
@@ -891,7 +895,9 @@ public struct NodePool: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != NodePool.PlacementPolicy.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.tpuTopology, forKey: .tpuTopology)
       try container.encode(self.policyName, forKey: .policyName)
       for (key, value) in self._unknownFields.json {

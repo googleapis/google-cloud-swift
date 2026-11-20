@@ -132,7 +132,9 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.routineType, forKey: .routineType)
+    if self.routineType != RoutineSpec.RoutineType() {
+      try container.encode(self.routineType, forKey: .routineType)
+    }
     try container.encode(self.language, forKey: .language)
     try container.encode(self.routineArguments, forKey: .routineArguments)
     try container.encode(self.returnType, forKey: .returnType)
@@ -141,7 +143,7 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.systemSpec {
       switch choice {
       case .bigqueryRoutineSpec(let value):
-        try container.encode(value, forKey: .bigqueryRoutineSpec)
+        try container.encodeIfPresent(value, forKey: .bigqueryRoutineSpec)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -220,7 +222,9 @@ public struct RoutineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.mode, forKey: .mode)
+      if self.mode != RoutineSpec.Argument.Mode() {
+        try container.encode(self.mode, forKey: .mode)
+      }
       try container.encode(self.type, forKey: .type)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

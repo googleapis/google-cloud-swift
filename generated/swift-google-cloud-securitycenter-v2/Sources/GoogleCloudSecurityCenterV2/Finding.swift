@@ -645,17 +645,25 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.canonicalName, forKey: .canonicalName)
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.resourceName, forKey: .resourceName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Finding.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.category, forKey: .category)
     try container.encode(self.externalUri, forKey: .externalUri)
     try container.encode(self.sourceProperties, forKey: .sourceProperties)
     try container.encodeIfPresent(self.securityMarks, forKey: .securityMarks)
     try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.severity, forKey: .severity)
-    try container.encode(self.mute, forKey: .mute)
+    if self.severity != Finding.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
+    if self.mute != Finding.Mute() {
+      try container.encode(self.mute, forKey: .mute)
+    }
     try container.encodeIfPresent(self.muteInfo, forKey: .muteInfo)
-    try container.encode(self.findingClass, forKey: .findingClass)
+    if self.findingClass != Finding.FindingClass() {
+      try container.encode(self.findingClass, forKey: .findingClass)
+    }
     try container.encodeIfPresent(self.indicator, forKey: .indicator)
     try container.encodeIfPresent(self.vulnerability, forKey: .vulnerability)
     try container.encodeIfPresent(self.muteUpdateTime, forKey: .muteUpdateTime)
@@ -842,7 +850,9 @@ public struct Finding: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.state, forKey: .state)
+        if self.state != Finding.Mute() {
+          try container.encode(self.state, forKey: .state)
+        }
         try container.encodeIfPresent(self.applyTime, forKey: .applyTime)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

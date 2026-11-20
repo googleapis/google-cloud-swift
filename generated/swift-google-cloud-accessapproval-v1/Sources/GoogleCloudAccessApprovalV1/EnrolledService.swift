@@ -139,7 +139,9 @@ public struct EnrolledService: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.cloudProduct, forKey: .cloudProduct)
-    try container.encode(self.enrollmentLevel, forKey: .enrollmentLevel)
+    if self.enrollmentLevel != EnrollmentLevel() {
+      try container.encode(self.enrollmentLevel, forKey: .enrollmentLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

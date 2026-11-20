@@ -112,7 +112,9 @@ public struct CloudControlAuditDetails: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.cloudControl, forKey: .cloudControl)
     try container.encode(self.cloudControlId, forKey: .cloudControlId)
     try container.encode(self.cloudControlDescription, forKey: .cloudControlDescription)
-    try container.encode(self.complianceState, forKey: .complianceState)
+    if self.complianceState != ComplianceState() {
+      try container.encode(self.complianceState, forKey: .complianceState)
+    }
     try container.encodeIfPresent(self.reportSummary, forKey: .reportSummary)
     try container.encode(self.findings, forKey: .findings)
     for (key, value) in self._unknownFields.json {

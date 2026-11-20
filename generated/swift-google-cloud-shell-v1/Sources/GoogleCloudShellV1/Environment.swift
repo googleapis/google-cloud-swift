@@ -153,7 +153,9 @@ public struct Environment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.dockerImage, forKey: .dockerImage)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Environment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.webHost, forKey: .webHost)
     try container.encode(self.sshUsername, forKey: .sshUsername)
     try container.encode(self.sshHost, forKey: .sshHost)

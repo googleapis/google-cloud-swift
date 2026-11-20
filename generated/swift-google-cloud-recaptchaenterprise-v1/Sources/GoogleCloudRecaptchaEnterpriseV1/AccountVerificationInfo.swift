@@ -109,7 +109,9 @@ public struct AccountVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackabl
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.endpoints, forKey: .endpoints)
     try container.encode(self.languageCode, forKey: .languageCode)
-    try container.encode(self.latestVerificationResult, forKey: .latestVerificationResult)
+    if self.latestVerificationResult != AccountVerificationInfo.Result() {
+      try container.encode(self.latestVerificationResult, forKey: .latestVerificationResult)
+    }
     try container.encode(self.username, forKey: .username)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

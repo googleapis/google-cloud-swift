@@ -117,15 +117,15 @@ public struct Destination: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.descriptor {
       switch choice {
       case .cloudRun(let value):
-        try container.encode(value, forKey: .cloudRun)
+        try container.encodeIfPresent(value, forKey: .cloudRun)
       case .cloudFunction(let value):
-        try container.encode(value, forKey: .cloudFunction)
+        try container.encodeIfPresent(value, forKey: .cloudFunction)
       case .gke(let value):
-        try container.encode(value, forKey: .gke)
+        try container.encodeIfPresent(value, forKey: .gke)
       case .workflow(let value):
-        try container.encode(value, forKey: .workflow)
+        try container.encodeIfPresent(value, forKey: .workflow)
       case .httpEndpoint(let value):
-        try container.encode(value, forKey: .httpEndpoint)
+        try container.encodeIfPresent(value, forKey: .httpEndpoint)
       }
     }
     for (key, value) in self._unknownFields.json {

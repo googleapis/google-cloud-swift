@@ -106,9 +106,9 @@ public struct SetConfigRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.configuration {
       switch choice {
       case .tagTemplateMigration(let value):
-        try container.encode(value, forKey: .tagTemplateMigration)
+        try container.encodeIfPresent(value, forKey: .tagTemplateMigration)
       case .catalogUiExperience(let value):
-        try container.encode(value, forKey: .catalogUiExperience)
+        try container.encodeIfPresent(value, forKey: .catalogUiExperience)
       }
     }
     for (key, value) in self._unknownFields.json {

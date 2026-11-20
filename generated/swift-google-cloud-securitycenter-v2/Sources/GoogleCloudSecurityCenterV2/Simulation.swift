@@ -100,7 +100,9 @@ public struct Simulation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.resourceValueConfigsMetadata, forKey: .resourceValueConfigsMetadata)
-    try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    if self.cloudProvider != CloudProvider() {
+      try container.encode(self.cloudProvider, forKey: .cloudProvider)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

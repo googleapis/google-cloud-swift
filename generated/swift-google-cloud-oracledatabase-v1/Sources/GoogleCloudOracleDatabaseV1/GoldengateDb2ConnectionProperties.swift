@@ -189,7 +189,9 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleWKT._
     try container.encode(self.port, forKey: .port)
     try container.encode(self.database, forKey: .database)
     try container.encode(self.username, forKey: .username)
-    try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    if self.securityProtocol != GoldengateDb2ConnectionProperties.Db2SecurityProtocol() {
+      try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    }
     try container.encode(self.additionalAttributes, forKey: .additionalAttributes)
     try container.encode(self.sslClientKeystoredbFile, forKey: .sslClientKeystoredbFile)
     try container.encode(self.sslClientKeystashFile, forKey: .sslClientKeystashFile)
@@ -198,9 +200,9 @@ public struct GoldengateDb2ConnectionProperties: Codable, Equatable, GoogleWKT._
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

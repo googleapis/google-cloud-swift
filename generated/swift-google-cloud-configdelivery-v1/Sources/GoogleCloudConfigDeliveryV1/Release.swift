@@ -127,7 +127,9 @@ public struct Release: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.lifecycle, forKey: .lifecycle)
+    if self.lifecycle != Release.Lifecycle() {
+      try container.encode(self.lifecycle, forKey: .lifecycle)
+    }
     try container.encode(self.version, forKey: .version)
     try container.encodeIfPresent(self.publishTime, forKey: .publishTime)
     try container.encodeIfPresent(self.info, forKey: .info)

@@ -142,7 +142,9 @@
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.database, forKey: .database)
       try container.encode(self.kind, forKey: .kind)
-      try container.encode(self.fileType, forKey: .fileType)
+      if self.fileType != SqlFileType() {
+        try container.encode(self.fileType, forKey: .fileType)
+      }
       try container.encodeIfPresent(self.csvImportOptions, forKey: .csvImportOptions)
       try container.encode(self.importUser, forKey: .importUser)
       try container.encodeIfPresent(self.bakImportOptions, forKey: .bakImportOptions)
@@ -570,7 +572,9 @@
         try container.encodeIfPresent(self.striped, forKey: .striped)
         try container.encodeIfPresent(self.noRecovery, forKey: .noRecovery)
         try container.encodeIfPresent(self.recoveryOnly, forKey: .recoveryOnly)
-        try container.encode(self.bakType, forKey: .bakType)
+        if self.bakType != BakType() {
+          try container.encode(self.bakType, forKey: .bakType)
+        }
         try container.encodeIfPresent(self.stopAt, forKey: .stopAt)
         try container.encode(self.stopAtMark, forKey: .stopAtMark)
         for (key, value) in self._unknownFields.json {

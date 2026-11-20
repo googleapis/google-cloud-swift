@@ -752,7 +752,9 @@
       try container.encode(self.userPseudoId, forKey: .userPseudoId)
       try container.encodeIfPresent(self.contentSearchSpec, forKey: .contentSearchSpec)
       try container.encode(self.rankingExpression, forKey: .rankingExpression)
-      try container.encode(self.rankingExpressionBackend, forKey: .rankingExpressionBackend)
+      if self.rankingExpressionBackend != SearchRequest.RankingExpressionBackend() {
+        try container.encode(self.rankingExpressionBackend, forKey: .rankingExpressionBackend)
+      }
       try container.encode(self.safeSearch, forKey: .safeSearch)
       try container.encode(self.userLabels, forKey: .userLabels)
       try container.encodeIfPresent(
@@ -762,7 +764,9 @@
       try container.encode(self.crowdingSpecs, forKey: .crowdingSpecs)
       try container.encode(self.session, forKey: .session)
       try container.encodeIfPresent(self.sessionSpec, forKey: .sessionSpec)
-      try container.encode(self.relevanceThreshold, forKey: .relevanceThreshold)
+      if self.relevanceThreshold != SearchRequest.RelevanceThreshold() {
+        try container.encode(self.relevanceThreshold, forKey: .relevanceThreshold)
+      }
       try container.encodeIfPresent(self.relevanceFilterSpec, forKey: .relevanceFilterSpec)
       try container.encodeIfPresent(self.relevanceScoreSpec, forKey: .relevanceScoreSpec)
       try container.encodeIfPresent(self.searchAddonSpec, forKey: .searchAddonSpec)
@@ -841,7 +845,7 @@
         if let choice = self.image {
           switch choice {
           case .imageBytes(let value):
-            try container.encode(value, forKey: .imageBytes)
+            try container.encodeIfPresent(value, forKey: .imageBytes)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1637,8 +1641,16 @@
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.fieldName, forKey: .fieldName)
-            try container.encode(self.attributeType, forKey: .attributeType)
-            try container.encode(self.interpolationType, forKey: .interpolationType)
+            if self.attributeType
+              != SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec.AttributeType()
+            {
+              try container.encode(self.attributeType, forKey: .attributeType)
+            }
+            if self.interpolationType
+              != SearchRequest.BoostSpec.ConditionBoostSpec.BoostControlSpec.InterpolationType()
+            {
+              try container.encode(self.interpolationType, forKey: .interpolationType)
+            }
             try container.encode(self.controlPoints, forKey: .controlPoints)
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -2121,7 +2133,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.condition, forKey: .condition)
+        if self.condition != SearchRequest.QueryExpansionSpec.Condition() {
+          try container.encode(self.condition, forKey: .condition)
+        }
         try container.encode(self.pinUnexpandedResults, forKey: .pinUnexpandedResults)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -2335,7 +2349,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.mode, forKey: .mode)
+        if self.mode != SearchRequest.SpellCorrectionSpec.Mode() {
+          try container.encode(self.mode, forKey: .mode)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -2589,7 +2605,9 @@
         try container.encodeIfPresent(self.snippetSpec, forKey: .snippetSpec)
         try container.encodeIfPresent(self.summarySpec, forKey: .summarySpec)
         try container.encodeIfPresent(self.extractiveContentSpec, forKey: .extractiveContentSpec)
-        try container.encode(self.searchResultMode, forKey: .searchResultMode)
+        if self.searchResultMode != SearchRequest.ContentSearchSpec.SearchResultMode() {
+          try container.encode(self.searchResultMode, forKey: .searchResultMode)
+        }
         try container.encodeIfPresent(self.chunkSpec, forKey: .chunkSpec)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -3659,10 +3677,18 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.filterExtractionCondition, forKey: .filterExtractionCondition)
+        if self.filterExtractionCondition
+          != SearchRequest.NaturalLanguageQueryUnderstandingSpec.FilterExtractionCondition()
+        {
+          try container.encode(self.filterExtractionCondition, forKey: .filterExtractionCondition)
+        }
         try container.encode(
           self.geoSearchQueryDetectionFieldNames, forKey: .geoSearchQueryDetectionFieldNames)
-        try container.encode(self.extractedFilterBehavior, forKey: .extractedFilterBehavior)
+        if self.extractedFilterBehavior
+          != SearchRequest.NaturalLanguageQueryUnderstandingSpec.ExtractedFilterBehavior()
+        {
+          try container.encode(self.extractedFilterBehavior, forKey: .extractedFilterBehavior)
+        }
         try container.encode(self.allowedFieldNames, forKey: .allowedFieldNames)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -4009,7 +4035,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.condition, forKey: .condition)
+        if self.condition != SearchRequest.SearchAsYouTypeSpec.Condition() {
+          try container.encode(self.condition, forKey: .condition)
+        }
         try container.encode(self.fields, forKey: .fields)
         try container.encodeIfPresent(self.scoreThreshold, forKey: .scoreThreshold)
         for (key, value) in self._unknownFields.json {
@@ -4316,7 +4344,10 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.matchHighlightingCondition, forKey: .matchHighlightingCondition)
+        if self.matchHighlightingCondition != SearchRequest.DisplaySpec.MatchHighlightingCondition()
+        {
+          try container.encode(self.matchHighlightingCondition, forKey: .matchHighlightingCondition)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -4546,7 +4577,9 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.field, forKey: .field)
         try container.encode(self.maxCount, forKey: .maxCount)
-        try container.encode(self.mode, forKey: .mode)
+        if self.mode != SearchRequest.CrowdingSpec.Mode() {
+          try container.encode(self.mode, forKey: .mode)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -4968,9 +5001,9 @@
           if let choice = self.relevanceThresholdSpec {
             switch choice {
             case .relevanceThreshold(let value):
-              try container.encode(value, forKey: .relevanceThreshold)
+              try container.encodeIfPresent(value, forKey: .relevanceThreshold)
             case .semanticRelevanceThreshold(let value):
-              try container.encode(value, forKey: .semanticRelevanceThreshold)
+              try container.encodeIfPresent(value, forKey: .semanticRelevanceThreshold)
             }
           }
           for (key, value) in self._unknownFields.json {

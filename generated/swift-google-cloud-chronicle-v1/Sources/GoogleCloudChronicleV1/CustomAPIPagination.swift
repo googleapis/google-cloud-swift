@@ -115,15 +115,15 @@ public struct CustomAPIPagination: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.paginationStrategy {
       switch choice {
       case .`none`(let value):
-        try container.encode(value, forKey: .`none`)
+        try container.encodeIfPresent(value, forKey: .`none`)
       case .token(let value):
-        try container.encode(value, forKey: .token)
+        try container.encodeIfPresent(value, forKey: .token)
       case .link(let value):
-        try container.encode(value, forKey: .link)
+        try container.encodeIfPresent(value, forKey: .link)
       case .offset(let value):
-        try container.encode(value, forKey: .offset)
+        try container.encodeIfPresent(value, forKey: .offset)
       case .pageNumber(let value):
-        try container.encode(value, forKey: .pageNumber)
+        try container.encodeIfPresent(value, forKey: .pageNumber)
       }
     }
     for (key, value) in self._unknownFields.json {

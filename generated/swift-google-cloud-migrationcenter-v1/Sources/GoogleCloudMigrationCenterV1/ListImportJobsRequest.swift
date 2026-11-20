@@ -116,7 +116,9 @@ public struct ListImportJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.orderBy, forKey: .orderBy)
-    try container.encode(self.view, forKey: .view)
+    if self.view != ImportJobView() {
+      try container.encode(self.view, forKey: .view)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

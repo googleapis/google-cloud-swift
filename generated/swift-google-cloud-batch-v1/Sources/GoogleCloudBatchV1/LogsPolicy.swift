@@ -96,7 +96,9 @@ public struct LogsPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.destination, forKey: .destination)
+    if self.destination != LogsPolicy.Destination() {
+      try container.encode(self.destination, forKey: .destination)
+    }
     try container.encode(self.logsPath, forKey: .logsPath)
     try container.encodeIfPresent(self.cloudLoggingOption, forKey: .cloudLoggingOption)
     for (key, value) in self._unknownFields.json {

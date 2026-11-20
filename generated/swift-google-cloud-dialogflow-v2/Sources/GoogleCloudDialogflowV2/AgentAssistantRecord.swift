@@ -123,17 +123,17 @@
       if let choice = self.answer {
         switch choice {
         case .articleSuggestionAnswer(let value):
-          try container.encode(value, forKey: .articleSuggestionAnswer)
+          try container.encodeIfPresent(value, forKey: .articleSuggestionAnswer)
         case .faqAnswer(let value):
-          try container.encode(value, forKey: .faqAnswer)
+          try container.encodeIfPresent(value, forKey: .faqAnswer)
         case .dialogflowAssistAnswer(let value):
-          try container.encode(value, forKey: .dialogflowAssistAnswer)
+          try container.encodeIfPresent(value, forKey: .dialogflowAssistAnswer)
         case .generatorSuggestion(let value):
-          try container.encode(value, forKey: .generatorSuggestion)
+          try container.encodeIfPresent(value, forKey: .generatorSuggestion)
         case .companionSuggestion(let value):
-          try container.encode(value, forKey: .companionSuggestion)
+          try container.encodeIfPresent(value, forKey: .companionSuggestion)
         case .reactiveCompanionSuggestion(let value):
-          try container.encode(value, forKey: .reactiveCompanionSuggestion)
+          try container.encodeIfPresent(value, forKey: .reactiveCompanionSuggestion)
         }
       }
       for (key, value) in self._unknownFields.json {

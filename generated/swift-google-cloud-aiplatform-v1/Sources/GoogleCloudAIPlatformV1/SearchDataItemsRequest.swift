@@ -246,9 +246,9 @@
       if let choice = self.order {
         switch choice {
         case .orderByDataItem(let value):
-          try container.encode(value, forKey: .orderByDataItem)
+          try container.encodeIfPresent(value, forKey: .orderByDataItem)
         case .orderByAnnotation(let value):
-          try container.encode(value, forKey: .orderByAnnotation)
+          try container.encodeIfPresent(value, forKey: .orderByAnnotation)
         }
       }
       for (key, value) in self._unknownFields.json {

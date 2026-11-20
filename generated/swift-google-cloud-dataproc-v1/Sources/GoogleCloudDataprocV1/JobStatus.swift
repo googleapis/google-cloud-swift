@@ -94,10 +94,14 @@ public struct JobStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
+    if self.state != JobStatus.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.details, forKey: .details)
     try container.encodeIfPresent(self.stateStartTime, forKey: .stateStartTime)
-    try container.encode(self.substate, forKey: .substate)
+    if self.substate != JobStatus.Substate() {
+      try container.encode(self.substate, forKey: .substate)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

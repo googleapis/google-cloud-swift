@@ -157,7 +157,7 @@ public struct AccountConnector: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.accountConnectorConfig {
       switch choice {
       case .providerOauthConfig(let value):
-        try container.encode(value, forKey: .providerOauthConfig)
+        try container.encodeIfPresent(value, forKey: .providerOauthConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

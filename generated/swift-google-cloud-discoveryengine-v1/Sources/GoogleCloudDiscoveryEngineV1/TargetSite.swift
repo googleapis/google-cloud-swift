@@ -153,12 +153,16 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.providedUriPattern, forKey: .providedUriPattern)
-      try container.encode(self.type, forKey: .type)
+      if self.type != TargetSite.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.exactMatch, forKey: .exactMatch)
       try container.encode(self.generatedUriPattern, forKey: .generatedUriPattern)
       try container.encode(self.rootDomainUri, forKey: .rootDomainUri)
       try container.encodeIfPresent(self.siteVerificationInfo, forKey: .siteVerificationInfo)
-      try container.encode(self.indexingStatus, forKey: .indexingStatus)
+      if self.indexingStatus != TargetSite.IndexingStatus() {
+        try container.encode(self.indexingStatus, forKey: .indexingStatus)
+      }
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encodeIfPresent(self.failureReason, forKey: .failureReason)
       for (key, value) in self._unknownFields.json {
@@ -236,7 +240,7 @@
         if let choice = self.failure {
           switch choice {
           case .quotaFailure(let value):
-            try container.encode(value, forKey: .quotaFailure)
+            try container.encodeIfPresent(value, forKey: .quotaFailure)
           }
         }
         for (key, value) in self._unknownFields.json {

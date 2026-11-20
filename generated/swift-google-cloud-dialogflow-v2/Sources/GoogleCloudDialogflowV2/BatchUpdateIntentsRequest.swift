@@ -129,14 +129,16 @@
       try container.encode(self.parent, forKey: .parent)
       try container.encode(self.languageCode, forKey: .languageCode)
       try container.encodeIfPresent(self.updateMask, forKey: .updateMask)
-      try container.encode(self.intentView, forKey: .intentView)
+      if self.intentView != IntentView() {
+        try container.encode(self.intentView, forKey: .intentView)
+      }
 
       if let choice = self.intentBatch {
         switch choice {
         case .intentBatchUri(let value):
-          try container.encode(value, forKey: .intentBatchUri)
+          try container.encodeIfPresent(value, forKey: .intentBatchUri)
         case .intentBatchInline(let value):
-          try container.encode(value, forKey: .intentBatchInline)
+          try container.encodeIfPresent(value, forKey: .intentBatchInline)
         }
       }
       for (key, value) in self._unknownFields.json {

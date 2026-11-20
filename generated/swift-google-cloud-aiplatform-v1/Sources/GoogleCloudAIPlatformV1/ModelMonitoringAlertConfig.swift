@@ -115,7 +115,7 @@
       if let choice = self.alert {
         switch choice {
         case .emailAlertConfig(let value):
-          try container.encode(value, forKey: .emailAlertConfig)
+          try container.encodeIfPresent(value, forKey: .emailAlertConfig)
         }
       }
       for (key, value) in self._unknownFields.json {

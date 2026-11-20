@@ -116,7 +116,9 @@ public struct ListNotificationsRequest: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.view, forKey: .view)
+    if self.view != NotificationView() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.languageCode, forKey: .languageCode)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

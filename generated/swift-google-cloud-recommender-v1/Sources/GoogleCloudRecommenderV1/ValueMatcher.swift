@@ -87,7 +87,7 @@ public struct ValueMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.matchVariant {
       switch choice {
       case .matchesPattern(let value):
-        try container.encode(value, forKey: .matchesPattern)
+        try container.encodeIfPresent(value, forKey: .matchesPattern)
       }
     }
     for (key, value) in self._unknownFields.json {

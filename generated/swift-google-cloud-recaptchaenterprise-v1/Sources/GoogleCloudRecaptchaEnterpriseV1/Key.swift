@@ -166,15 +166,15 @@ public struct Key: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.platformSettings {
       switch choice {
       case .webSettings(let value):
-        try container.encode(value, forKey: .webSettings)
+        try container.encodeIfPresent(value, forKey: .webSettings)
       case .androidSettings(let value):
-        try container.encode(value, forKey: .androidSettings)
+        try container.encodeIfPresent(value, forKey: .androidSettings)
       case .iosSettings(let value):
-        try container.encode(value, forKey: .iosSettings)
+        try container.encodeIfPresent(value, forKey: .iosSettings)
       case .expressSettings(let value):
-        try container.encode(value, forKey: .expressSettings)
+        try container.encodeIfPresent(value, forKey: .expressSettings)
       case .universalSettings(let value):
-        try container.encode(value, forKey: .universalSettings)
+        try container.encodeIfPresent(value, forKey: .universalSettings)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -116,7 +116,9 @@ public struct IdentityConnector: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.serviceAgentEmail, forKey: .serviceAgentEmail)
-    try container.encode(self.connectionState, forKey: .connectionState)
+    if self.connectionState != IdentityConnector.ConnectionState() {
+      try container.encode(self.connectionState, forKey: .connectionState)
+    }
     try container.encode(self.workloadIdentityPool, forKey: .workloadIdentityPool)
     try container.encode(self.identityConnectorId, forKey: .identityConnectorId)
     try container.encode(self.lifecycleStateDetails, forKey: .lifecycleStateDetails)

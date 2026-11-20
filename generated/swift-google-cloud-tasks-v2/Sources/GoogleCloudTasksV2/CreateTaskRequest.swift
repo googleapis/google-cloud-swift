@@ -141,7 +141,9 @@ public struct CreateTaskRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
     try container.encodeIfPresent(self.task, forKey: .task)
-    try container.encode(self.responseView, forKey: .responseView)
+    if self.responseView != Task.View() {
+      try container.encode(self.responseView, forKey: .responseView)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

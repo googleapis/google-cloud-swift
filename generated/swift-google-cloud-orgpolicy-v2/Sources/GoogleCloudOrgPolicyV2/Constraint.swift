@@ -181,7 +181,9 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.constraintDefault, forKey: .constraintDefault)
+    if self.constraintDefault != Constraint.ConstraintDefault() {
+      try container.encode(self.constraintDefault, forKey: .constraintDefault)
+    }
     try container.encode(self.supportsDryRun, forKey: .supportsDryRun)
     try container.encode(self.equivalentConstraint, forKey: .equivalentConstraint)
     try container.encode(self.supportsSimulation, forKey: .supportsSimulation)
@@ -189,9 +191,9 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.constraintType {
       switch choice {
       case .listConstraint(let value):
-        try container.encode(value, forKey: .listConstraint)
+        try container.encodeIfPresent(value, forKey: .listConstraint)
       case .booleanConstraint(let value):
-        try container.encode(value, forKey: .booleanConstraint)
+        try container.encodeIfPresent(value, forKey: .booleanConstraint)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -403,7 +405,9 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.resourceTypes, forKey: .resourceTypes)
       try container.encode(self.methodTypes, forKey: .methodTypes)
       try container.encode(self.condition, forKey: .condition)
-      try container.encode(self.actionType, forKey: .actionType)
+      if self.actionType != Constraint.CustomConstraintDefinition.ActionType() {
+        try container.encode(self.actionType, forKey: .actionType)
+      }
       try container.encode(self.parameters, forKey: .parameters)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -504,11 +508,15 @@ public struct Constraint: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.type, forKey: .type)
+        if self.type != Constraint.CustomConstraintDefinition.Parameter.Type_() {
+          try container.encode(self.type, forKey: .type)
+        }
         try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
         try container.encode(self.validValuesExpr, forKey: .validValuesExpr)
         try container.encodeIfPresent(self.metadata, forKey: .metadata)
-        try container.encode(self.item, forKey: .item)
+        if self.item != Constraint.CustomConstraintDefinition.Parameter.Type_() {
+          try container.encode(self.item, forKey: .item)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

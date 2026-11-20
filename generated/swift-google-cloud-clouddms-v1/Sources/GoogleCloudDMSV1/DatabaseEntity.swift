@@ -207,8 +207,12 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.shortName, forKey: .shortName)
     try container.encode(self.parentEntity, forKey: .parentEntity)
-    try container.encode(self.tree, forKey: .tree)
-    try container.encode(self.entityType, forKey: .entityType)
+    if self.tree != DatabaseEntity.TreeType() {
+      try container.encode(self.tree, forKey: .tree)
+    }
+    if self.entityType != DatabaseEntityType() {
+      try container.encode(self.entityType, forKey: .entityType)
+    }
     try container.encode(self.mappings, forKey: .mappings)
     try container.encode(self.entityDdl, forKey: .entityDdl)
     try container.encode(self.issues, forKey: .issues)
@@ -216,27 +220,27 @@ public struct DatabaseEntity: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.entityBody {
       switch choice {
       case .database(let value):
-        try container.encode(value, forKey: .database)
+        try container.encodeIfPresent(value, forKey: .database)
       case .schema(let value):
-        try container.encode(value, forKey: .schema)
+        try container.encodeIfPresent(value, forKey: .schema)
       case .table(let value):
-        try container.encode(value, forKey: .table)
+        try container.encodeIfPresent(value, forKey: .table)
       case .view(let value):
-        try container.encode(value, forKey: .view)
+        try container.encodeIfPresent(value, forKey: .view)
       case .sequence(let value):
-        try container.encode(value, forKey: .sequence)
+        try container.encodeIfPresent(value, forKey: .sequence)
       case .storedProcedure(let value):
-        try container.encode(value, forKey: .storedProcedure)
+        try container.encodeIfPresent(value, forKey: .storedProcedure)
       case .databaseFunction(let value):
-        try container.encode(value, forKey: .databaseFunction)
+        try container.encodeIfPresent(value, forKey: .databaseFunction)
       case .synonym(let value):
-        try container.encode(value, forKey: .synonym)
+        try container.encodeIfPresent(value, forKey: .synonym)
       case .databasePackage(let value):
-        try container.encode(value, forKey: .databasePackage)
+        try container.encodeIfPresent(value, forKey: .databasePackage)
       case .udt(let value):
-        try container.encode(value, forKey: .udt)
+        try container.encodeIfPresent(value, forKey: .udt)
       case .materializedView(let value):
-        try container.encode(value, forKey: .materializedView)
+        try container.encodeIfPresent(value, forKey: .materializedView)
       }
     }
     for (key, value) in self._unknownFields.json {

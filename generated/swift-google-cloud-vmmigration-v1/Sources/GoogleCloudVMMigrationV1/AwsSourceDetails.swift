@@ -151,7 +151,9 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.awsRegion, forKey: .awsRegion)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AwsSourceDetails.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encode(self.inventoryTagList, forKey: .inventoryTagList)
     try container.encode(self.inventorySecurityGroupNames, forKey: .inventorySecurityGroupNames)
@@ -161,7 +163,7 @@ public struct AwsSourceDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.credentialsType {
       switch choice {
       case .accessKeyCreds(let value):
-        try container.encode(value, forKey: .accessKeyCreds)
+        try container.encodeIfPresent(value, forKey: .accessKeyCreds)
       }
     }
     for (key, value) in self._unknownFields.json {

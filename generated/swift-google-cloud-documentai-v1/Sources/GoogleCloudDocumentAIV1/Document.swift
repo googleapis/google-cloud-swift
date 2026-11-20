@@ -280,9 +280,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .uri(let value):
-        try container.encode(value, forKey: .uri)
+        try container.encodeIfPresent(value, forKey: .uri)
       case .content(let value):
-        try container.encode(value, forKey: .content)
+        try container.encodeIfPresent(value, forKey: .content)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -1274,7 +1274,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         try container.encodeIfPresent(self.textAnchor, forKey: .textAnchor)
         try container.encode(self.confidence, forKey: .confidence)
         try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
-        try container.encode(self.orientation, forKey: .orientation)
+        if self.orientation != Document.Page.Layout.Orientation() {
+          try container.encode(self.orientation, forKey: .orientation)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1925,7 +1927,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.type, forKey: .type)
+          if self.type != Document.Page.Token.DetectedBreak.Type_() {
+            try container.encode(self.type, forKey: .type)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -3550,7 +3554,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.properties, forKey: .properties)
       try container.encodeIfPresent(self.provenance, forKey: .provenance)
       try container.encode(self.redacted, forKey: .redacted)
-      try container.encode(self.method, forKey: .method)
+      if self.method != Document.Entity.Method() {
+        try container.encode(self.method, forKey: .method)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -3691,21 +3697,21 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.structuredValue {
           switch choice {
           case .moneyValue(let value):
-            try container.encode(value, forKey: .moneyValue)
+            try container.encodeIfPresent(value, forKey: .moneyValue)
           case .dateValue(let value):
-            try container.encode(value, forKey: .dateValue)
+            try container.encodeIfPresent(value, forKey: .dateValue)
           case .datetimeValue(let value):
-            try container.encode(value, forKey: .datetimeValue)
+            try container.encodeIfPresent(value, forKey: .datetimeValue)
           case .addressValue(let value):
-            try container.encode(value, forKey: .addressValue)
+            try container.encodeIfPresent(value, forKey: .addressValue)
           case .booleanValue(let value):
-            try container.encode(value, forKey: .booleanValue)
+            try container.encodeIfPresent(value, forKey: .booleanValue)
           case .integerValue(let value):
-            try container.encode(value, forKey: .integerValue)
+            try container.encodeIfPresent(value, forKey: .integerValue)
           case .floatValue(let value):
-            try container.encode(value, forKey: .floatValue)
+            try container.encodeIfPresent(value, forKey: .floatValue)
           case .signatureValue(let value):
-            try container.encode(value, forKey: .signatureValue)
+            try container.encodeIfPresent(value, forKey: .signatureValue)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -4384,7 +4390,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.page, forKey: .page)
-        try container.encode(self.layoutType, forKey: .layoutType)
+        if self.layoutType != Document.PageAnchor.PageRef.LayoutType() {
+          try container.encode(self.layoutType, forKey: .layoutType)
+        }
         try container.encode(self.layoutId, forKey: .layoutId)
         try container.encodeIfPresent(self.boundingPoly, forKey: .boundingPoly)
         try container.encode(self.confidence, forKey: .confidence)
@@ -4709,7 +4717,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.revision, forKey: .revision)
       try container.encode(self.id, forKey: .id)
       try container.encode(self.parents, forKey: .parents)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Document.Provenance.OperationType() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -5140,9 +5150,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.source {
         switch choice {
         case .agent(let value):
-          try container.encode(value, forKey: .agent)
+          try container.encodeIfPresent(value, forKey: .agent)
         case .processor(let value):
-          try container.encode(value, forKey: .processor)
+          try container.encodeIfPresent(value, forKey: .processor)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -5639,13 +5649,13 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.block {
           switch choice {
           case .textBlock(let value):
-            try container.encode(value, forKey: .textBlock)
+            try container.encodeIfPresent(value, forKey: .textBlock)
           case .tableBlock(let value):
-            try container.encode(value, forKey: .tableBlock)
+            try container.encodeIfPresent(value, forKey: .tableBlock)
           case .listBlock(let value):
-            try container.encode(value, forKey: .listBlock)
+            try container.encodeIfPresent(value, forKey: .listBlock)
           case .imageBlock(let value):
-            try container.encode(value, forKey: .imageBlock)
+            try container.encodeIfPresent(value, forKey: .imageBlock)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -6436,11 +6446,11 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           if let choice = self.imageSource {
             switch choice {
             case .blobAssetId(let value):
-              try container.encode(value, forKey: .blobAssetId)
+              try container.encodeIfPresent(value, forKey: .blobAssetId)
             case .gcsUri(let value):
-              try container.encode(value, forKey: .gcsUri)
+              try container.encodeIfPresent(value, forKey: .gcsUri)
             case .dataUri(let value):
-              try container.encode(value, forKey: .dataUri)
+              try container.encodeIfPresent(value, forKey: .dataUri)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -7075,11 +7085,11 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           if let choice = self.imageSource {
             switch choice {
             case .blobAssetId(let value):
-              try container.encode(value, forKey: .blobAssetId)
+              try container.encodeIfPresent(value, forKey: .blobAssetId)
             case .gcsUri(let value):
-              try container.encode(value, forKey: .gcsUri)
+              try container.encodeIfPresent(value, forKey: .gcsUri)
             case .dataUri(let value):
-              try container.encode(value, forKey: .dataUri)
+              try container.encodeIfPresent(value, forKey: .dataUri)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -7283,9 +7293,9 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
           if let choice = self.fieldType {
             switch choice {
             case .imageChunkField(let value):
-              try container.encode(value, forKey: .imageChunkField)
+              try container.encodeIfPresent(value, forKey: .imageChunkField)
             case .tableChunkField(let value):
-              try container.encode(value, forKey: .tableChunkField)
+              try container.encodeIfPresent(value, forKey: .tableChunkField)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -7625,7 +7635,11 @@ public struct Document: Codable, Equatable, GoogleWKT._AnyPackable,
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.ruleName, forKey: .ruleName)
         try container.encode(self.ruleDescription, forKey: .ruleDescription)
-        try container.encode(self.validationResultType, forKey: .validationResultType)
+        if self.validationResultType
+          != Document.EntityValidationOutput.ValidationResult.ValidationResultType()
+        {
+          try container.encode(self.validationResultType, forKey: .validationResultType)
+        }
         try container.encode(self.validationDetails, forKey: .validationDetails)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

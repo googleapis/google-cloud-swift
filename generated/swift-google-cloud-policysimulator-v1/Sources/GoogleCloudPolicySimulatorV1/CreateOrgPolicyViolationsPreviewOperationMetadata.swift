@@ -112,7 +112,9 @@ public struct CreateOrgPolicyViolationsPreviewOperationMetadata: Codable, Equata
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.requestTime, forKey: .requestTime)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PreviewState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.resourcesFound, forKey: .resourcesFound)
     try container.encode(self.resourcesScanned, forKey: .resourcesScanned)
     try container.encode(self.resourcesPending, forKey: .resourcesPending)

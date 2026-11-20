@@ -154,14 +154,30 @@ public struct Cvssv3: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.baseScore, forKey: .baseScore)
-    try container.encode(self.attackVector, forKey: .attackVector)
-    try container.encode(self.attackComplexity, forKey: .attackComplexity)
-    try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
-    try container.encode(self.userInteraction, forKey: .userInteraction)
-    try container.encode(self.scope, forKey: .scope)
-    try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
-    try container.encode(self.integrityImpact, forKey: .integrityImpact)
-    try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    if self.attackVector != Cvssv3.AttackVector() {
+      try container.encode(self.attackVector, forKey: .attackVector)
+    }
+    if self.attackComplexity != Cvssv3.AttackComplexity() {
+      try container.encode(self.attackComplexity, forKey: .attackComplexity)
+    }
+    if self.privilegesRequired != Cvssv3.PrivilegesRequired() {
+      try container.encode(self.privilegesRequired, forKey: .privilegesRequired)
+    }
+    if self.userInteraction != Cvssv3.UserInteraction() {
+      try container.encode(self.userInteraction, forKey: .userInteraction)
+    }
+    if self.scope != Cvssv3.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
+    if self.confidentialityImpact != Cvssv3.Impact() {
+      try container.encode(self.confidentialityImpact, forKey: .confidentialityImpact)
+    }
+    if self.integrityImpact != Cvssv3.Impact() {
+      try container.encode(self.integrityImpact, forKey: .integrityImpact)
+    }
+    if self.availabilityImpact != Cvssv3.Impact() {
+      try container.encode(self.availabilityImpact, forKey: .availabilityImpact)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

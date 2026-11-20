@@ -173,7 +173,7 @@ public struct GatewaySecurityPolicyRule: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.profile {
       switch choice {
       case .basicProfile(let value):
-        try container.encode(value, forKey: .basicProfile)
+        try container.encodeIfPresent(value, forKey: .basicProfile)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -86,7 +86,9 @@ public struct ActionOutput: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.actionId, forKey: .actionId)
-    try container.encode(self.actionState, forKey: .actionState)
+    if self.actionState != ActionOutput.State() {
+      try container.encode(self.actionState, forKey: .actionState)
+    }
     try container.encode(self.outputMessage, forKey: .outputMessage)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -78,7 +78,9 @@ public struct StreamBlurbsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.blurb, forKey: .blurb)
-    try container.encode(self.action, forKey: .action)
+    if self.action != StreamBlurbsResponse.Action() {
+      try container.encode(self.action, forKey: .action)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -90,7 +90,9 @@ public struct OutcomeFilter: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.outcomeVariable, forKey: .outcomeVariable)
     try container.encode(self.outcomeValue, forKey: .outcomeValue)
-    try container.encode(self.outcomeFilterOperator, forKey: .outcomeFilterOperator)
+    if self.outcomeFilterOperator != OutcomeFilter.Operator() {
+      try container.encode(self.outcomeFilterOperator, forKey: .outcomeFilterOperator)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -100,11 +100,11 @@ public struct SdpFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .inspectResult(let value):
-        try container.encode(value, forKey: .inspectResult)
+        try container.encodeIfPresent(value, forKey: .inspectResult)
       case .deidentifyResult(let value):
-        try container.encode(value, forKey: .deidentifyResult)
+        try container.encodeIfPresent(value, forKey: .deidentifyResult)
       case .redactResult(let value):
-        try container.encode(value, forKey: .redactResult)
+        try container.encodeIfPresent(value, forKey: .redactResult)
       }
     }
     for (key, value) in self._unknownFields.json {

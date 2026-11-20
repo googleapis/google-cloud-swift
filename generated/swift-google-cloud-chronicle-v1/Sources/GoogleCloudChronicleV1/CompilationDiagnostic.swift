@@ -100,7 +100,9 @@ public struct CompilationDiagnostic: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.message, forKey: .message)
     try container.encodeIfPresent(self.position, forKey: .position)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != CompilationDiagnostic.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.uri, forKey: .uri)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

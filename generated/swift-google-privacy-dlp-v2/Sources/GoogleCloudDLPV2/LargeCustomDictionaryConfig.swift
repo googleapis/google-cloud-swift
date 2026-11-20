@@ -108,9 +108,9 @@ public struct LargeCustomDictionaryConfig: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.source {
       switch choice {
       case .cloudStorageFileSet(let value):
-        try container.encode(value, forKey: .cloudStorageFileSet)
+        try container.encodeIfPresent(value, forKey: .cloudStorageFileSet)
       case .bigQueryField(let value):
-        try container.encode(value, forKey: .bigQueryField)
+        try container.encodeIfPresent(value, forKey: .bigQueryField)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -129,7 +129,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.state, forKey: .state)
+      if self.state != AssistAnswer.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.connectorDisplayNames, forKey: .connectorDisplayNames)
       try container.encode(self.replies, forKey: .replies)
       try container.encode(self.assistSkippedReasons, forKey: .assistSkippedReasons)
@@ -218,7 +220,7 @@
         if let choice = self.reply {
           switch choice {
           case .groundedContent(let value):
-            try container.encode(value, forKey: .groundedContent)
+            try container.encodeIfPresent(value, forKey: .groundedContent)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -338,9 +340,13 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.verdict, forKey: .verdict)
+        if self.verdict != AssistAnswer.CustomerPolicyEnforcementResult.Verdict() {
+          try container.encode(self.verdict, forKey: .verdict)
+        }
         try container.encode(self.policyResults, forKey: .policyResults)
-        try container.encode(self.violationSource, forKey: .violationSource)
+        if self.violationSource != AssistAnswer.CustomerPolicyEnforcementResult.ViolationSource() {
+          try container.encode(self.violationSource, forKey: .violationSource)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -503,9 +509,9 @@
           if let choice = self.result {
             switch choice {
             case .modelArmorViolation(let value):
-              try container.encode(value, forKey: .modelArmorViolation)
+              try container.encodeIfPresent(value, forKey: .modelArmorViolation)
             case .error(let value):
-              try container.encode(value, forKey: .error)
+              try container.encodeIfPresent(value, forKey: .error)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -629,9 +635,9 @@
           if let choice = self.enforcementResult {
             switch choice {
             case .bannedPhraseEnforcementResult(let value):
-              try container.encode(value, forKey: .bannedPhraseEnforcementResult)
+              try container.encodeIfPresent(value, forKey: .bannedPhraseEnforcementResult)
             case .modelArmorEnforcementResult(let value):
-              try container.encode(value, forKey: .modelArmorEnforcementResult)
+              try container.encodeIfPresent(value, forKey: .modelArmorEnforcementResult)
             }
           }
           for (key, value) in self._unknownFields.json {

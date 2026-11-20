@@ -129,7 +129,9 @@ public struct ExecutionResult: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.resource, forKey: .resource)
     try container.encodeIfPresent(self.violationDetails, forKey: .violationDetails)
     try container.encode(self.commands, forKey: .commands)
-    try container.encode(self.type, forKey: .type)
+    if self.type != ExecutionResult.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

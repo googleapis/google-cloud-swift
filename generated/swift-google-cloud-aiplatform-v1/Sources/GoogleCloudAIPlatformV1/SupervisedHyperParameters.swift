@@ -94,7 +94,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.epochCount, forKey: .epochCount)
       try container.encode(self.learningRateMultiplier, forKey: .learningRateMultiplier)
-      try container.encode(self.adapterSize, forKey: .adapterSize)
+      if self.adapterSize != SupervisedHyperParameters.AdapterSize() {
+        try container.encode(self.adapterSize, forKey: .adapterSize)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

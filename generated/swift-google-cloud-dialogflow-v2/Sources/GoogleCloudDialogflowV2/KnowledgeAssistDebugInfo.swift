@@ -136,10 +136,21 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.queryGenerationFailureReason, forKey: .queryGenerationFailureReason)
-      try container.encode(
-        self.queryCategorizationFailureReason, forKey: .queryCategorizationFailureReason)
-      try container.encode(self.datastoreResponseReason, forKey: .datastoreResponseReason)
+      if self.queryGenerationFailureReason
+        != KnowledgeAssistDebugInfo.QueryGenerationFailureReason()
+      {
+        try container.encode(
+          self.queryGenerationFailureReason, forKey: .queryGenerationFailureReason)
+      }
+      if self.queryCategorizationFailureReason
+        != KnowledgeAssistDebugInfo.QueryCategorizationFailureReason()
+      {
+        try container.encode(
+          self.queryCategorizationFailureReason, forKey: .queryCategorizationFailureReason)
+      }
+      if self.datastoreResponseReason != DatastoreResponseReason() {
+        try container.encode(self.datastoreResponseReason, forKey: .datastoreResponseReason)
+      }
       try container.encodeIfPresent(self.knowledgeAssistBehavior, forKey: .knowledgeAssistBehavior)
       try container.encodeIfPresent(
         self.ingestedContextReferenceDebugInfo, forKey: .ingestedContextReferenceDebugInfo)

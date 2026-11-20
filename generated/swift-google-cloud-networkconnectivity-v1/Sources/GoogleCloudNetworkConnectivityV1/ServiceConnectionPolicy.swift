@@ -170,7 +170,9 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.description, forKey: .description)
     try container.encode(self.network, forKey: .network)
     try container.encode(self.serviceClass, forKey: .serviceClass)
-    try container.encode(self.infrastructure, forKey: .infrastructure)
+    if self.infrastructure != Infrastructure() {
+      try container.encode(self.infrastructure, forKey: .infrastructure)
+    }
     try container.encodeIfPresent(self.pscConfig, forKey: .pscConfig)
     try container.encode(self.pscConnections, forKey: .pscConnections)
     try container.encodeIfPresent(self.etag, forKey: .etag)
@@ -282,7 +284,11 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.subnetworks, forKey: .subnetworks)
       try container.encodeIfPresent(self.limit, forKey: .limit)
-      try container.encode(self.producerInstanceLocation, forKey: .producerInstanceLocation)
+      if self.producerInstanceLocation
+        != ServiceConnectionPolicy.PscConfig.ProducerInstanceLocation()
+      {
+        try container.encode(self.producerInstanceLocation, forKey: .producerInstanceLocation)
+      }
       try container.encode(
         self.allowedGoogleProducersResourceHierarchyLevel,
         forKey: .allowedGoogleProducersResourceHierarchyLevel)
@@ -607,10 +613,14 @@ public struct ServiceConnectionPolicy: Codable, Equatable, GoogleWKT._AnyPackabl
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != ServiceConnectionPolicy.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.consumerForwardingRule, forKey: .consumerForwardingRule)
       try container.encode(self.consumerAddress, forKey: .consumerAddress)
-      try container.encode(self.errorType, forKey: .errorType)
+      if self.errorType != ConnectionErrorType() {
+        try container.encode(self.errorType, forKey: .errorType)
+      }
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.gceOperation, forKey: .gceOperation)
       try container.encode(self.consumerTargetProject, forKey: .consumerTargetProject)

@@ -127,9 +127,9 @@ public struct TimeSeriesFilterRatio: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.outputFilter {
       switch choice {
       case .pickTimeSeriesFilter(let value):
-        try container.encode(value, forKey: .pickTimeSeriesFilter)
+        try container.encodeIfPresent(value, forKey: .pickTimeSeriesFilter)
       case .statisticalTimeSeriesFilter(let value):
-        try container.encode(value, forKey: .statisticalTimeSeriesFilter)
+        try container.encodeIfPresent(value, forKey: .statisticalTimeSeriesFilter)
       }
     }
     for (key, value) in self._unknownFields.json {

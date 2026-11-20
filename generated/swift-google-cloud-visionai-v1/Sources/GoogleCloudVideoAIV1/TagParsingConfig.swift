@@ -153,7 +153,11 @@ public struct TagParsingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.entityClass, forKey: .entityClass)
       try container.encode(self.regex, forKey: .regex)
-      try container.encode(self.entityMatchingStrategy, forKey: .entityMatchingStrategy)
+      if self.entityMatchingStrategy
+        != TagParsingConfig.EntityParsingConfig.EntityMatchingStrategy()
+      {
+        try container.encode(self.entityMatchingStrategy, forKey: .entityMatchingStrategy)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -189,8 +189,12 @@ public struct LoadBalancerBackendInfo: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.pscServiceAttachmentUri, forKey: .pscServiceAttachmentUri)
     try container.encode(self.pscGoogleApiTarget, forKey: .pscGoogleApiTarget)
     try container.encode(self.healthCheckUri, forKey: .healthCheckUri)
-    try container.encode(
-      self.healthCheckFirewallsConfigState, forKey: .healthCheckFirewallsConfigState)
+    if self.healthCheckFirewallsConfigState
+      != LoadBalancerBackendInfo.HealthCheckFirewallsConfigState()
+    {
+      try container.encode(
+        self.healthCheckFirewallsConfigState, forKey: .healthCheckFirewallsConfigState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

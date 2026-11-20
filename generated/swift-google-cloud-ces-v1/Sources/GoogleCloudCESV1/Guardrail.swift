@@ -186,15 +186,15 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.guardrailType {
       switch choice {
       case .contentFilter(let value):
-        try container.encode(value, forKey: .contentFilter)
+        try container.encodeIfPresent(value, forKey: .contentFilter)
       case .llmPromptSecurity(let value):
-        try container.encode(value, forKey: .llmPromptSecurity)
+        try container.encodeIfPresent(value, forKey: .llmPromptSecurity)
       case .llmPolicy(let value):
-        try container.encode(value, forKey: .llmPolicy)
+        try container.encodeIfPresent(value, forKey: .llmPolicy)
       case .modelSafety(let value):
-        try container.encode(value, forKey: .modelSafety)
+        try container.encodeIfPresent(value, forKey: .modelSafety)
       case .codeCallback(let value):
-        try container.encode(value, forKey: .codeCallback)
+        try container.encodeIfPresent(value, forKey: .codeCallback)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -298,7 +298,9 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.bannedContentsInUserInput, forKey: .bannedContentsInUserInput)
       try container.encode(
         self.bannedContentsInAgentResponse, forKey: .bannedContentsInAgentResponse)
-      try container.encode(self.matchType, forKey: .matchType)
+      if self.matchType != Guardrail.ContentFilter.MatchType() {
+        try container.encode(self.matchType, forKey: .matchType)
+      }
       try container.encode(self.disregardDiacritics, forKey: .disregardDiacritics)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -547,9 +549,9 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.securityConfig {
         switch choice {
         case .defaultSettings(let value):
-          try container.encode(value, forKey: .defaultSettings)
+          try container.encodeIfPresent(value, forKey: .defaultSettings)
         case .customPolicy(let value):
-          try container.encode(value, forKey: .customPolicy)
+          try container.encodeIfPresent(value, forKey: .customPolicy)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -782,7 +784,9 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.maxConversationMessages, forKey: .maxConversationMessages)
       try container.encodeIfPresent(self.modelSettings, forKey: .modelSettings)
       try container.encode(self.prompt, forKey: .prompt)
-      try container.encode(self.policyScope, forKey: .policyScope)
+      if self.policyScope != Guardrail.LlmPolicy.PolicyScope() {
+        try container.encode(self.policyScope, forKey: .policyScope)
+      }
       try container.encode(self.failOpen, forKey: .failOpen)
       try container.encode(self.allowShortUtterance, forKey: .allowShortUtterance)
       for (key, value) in self._unknownFields.json {
@@ -1067,8 +1071,12 @@ public struct Guardrail: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.category, forKey: .category)
-        try container.encode(self.threshold, forKey: .threshold)
+        if self.category != Guardrail.ModelSafety.HarmCategory() {
+          try container.encode(self.category, forKey: .category)
+        }
+        if self.threshold != Guardrail.ModelSafety.HarmBlockThreshold() {
+          try container.encode(self.threshold, forKey: .threshold)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }

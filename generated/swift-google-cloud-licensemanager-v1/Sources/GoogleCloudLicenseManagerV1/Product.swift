@@ -121,7 +121,9 @@ public struct Product: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.version, forKey: .version)
     try container.encode(self.productCompany, forKey: .productCompany)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Product.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.sku, forKey: .sku)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.displayName, forKey: .displayName)

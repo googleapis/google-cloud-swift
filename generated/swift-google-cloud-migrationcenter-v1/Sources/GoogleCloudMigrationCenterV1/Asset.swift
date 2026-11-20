@@ -168,7 +168,7 @@ public struct Asset: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.assetDetails {
       switch choice {
       case .machineDetails(let value):
-        try container.encode(value, forKey: .machineDetails)
+        try container.encodeIfPresent(value, forKey: .machineDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

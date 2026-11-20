@@ -160,12 +160,20 @@ public struct BindingExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.access, forKey: .access)
+    if self.access != AccessState() {
+      try container.encode(self.access, forKey: .access)
+    }
     try container.encode(self.role, forKey: .role)
-    try container.encode(self.rolePermission, forKey: .rolePermission)
-    try container.encode(self.rolePermissionRelevance, forKey: .rolePermissionRelevance)
+    if self.rolePermission != BindingExplanation.RolePermission() {
+      try container.encode(self.rolePermission, forKey: .rolePermission)
+    }
+    if self.rolePermissionRelevance != HeuristicRelevance() {
+      try container.encode(self.rolePermissionRelevance, forKey: .rolePermissionRelevance)
+    }
     try container.encode(self.memberships, forKey: .memberships)
-    try container.encode(self.relevance, forKey: .relevance)
+    if self.relevance != HeuristicRelevance() {
+      try container.encode(self.relevance, forKey: .relevance)
+    }
     try container.encodeIfPresent(self.condition, forKey: .condition)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -235,8 +243,12 @@ public struct BindingExplanation: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.membership, forKey: .membership)
-      try container.encode(self.relevance, forKey: .relevance)
+      if self.membership != BindingExplanation.Membership() {
+        try container.encode(self.membership, forKey: .membership)
+      }
+      if self.relevance != HeuristicRelevance() {
+        try container.encode(self.relevance, forKey: .relevance)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

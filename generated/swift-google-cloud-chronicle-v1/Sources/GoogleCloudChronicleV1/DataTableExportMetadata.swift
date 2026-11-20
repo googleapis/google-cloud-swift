@@ -102,9 +102,9 @@ public struct DataTableExportMetadata: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.resultMetadataOrError {
       switch choice {
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       case .resultMetadata(let value):
-        try container.encode(value, forKey: .resultMetadata)
+        try container.encodeIfPresent(value, forKey: .resultMetadata)
       }
     }
     for (key, value) in self._unknownFields.json {

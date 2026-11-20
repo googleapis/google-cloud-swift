@@ -166,34 +166,34 @@ public struct MessageWithOneOf: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.singleString {
       switch choice {
       case .stringContents(let value):
-        try container.encode(value, forKey: .stringContents)
+        try container.encodeIfPresent(value, forKey: .stringContents)
       }
     }
 
     if let choice = self.twoStrings {
       switch choice {
       case .stringContentsOne(let value):
-        try container.encode(value, forKey: .stringContentsOne)
+        try container.encodeIfPresent(value, forKey: .stringContentsOne)
       case .stringContentsTwo(let value):
-        try container.encode(value, forKey: .stringContentsTwo)
+        try container.encodeIfPresent(value, forKey: .stringContentsTwo)
       }
     }
 
     if let choice = self.oneMessage {
       switch choice {
       case .messageValue(let value):
-        try container.encode(value, forKey: .messageValue)
+        try container.encodeIfPresent(value, forKey: .messageValue)
       }
     }
 
     if let choice = self.mixed {
       switch choice {
       case .anotherMessage(let value):
-        try container.encode(value, forKey: .anotherMessage)
+        try container.encodeIfPresent(value, forKey: .anotherMessage)
       case .string(let value):
-        try container.encode(value, forKey: .string)
+        try container.encodeIfPresent(value, forKey: .string)
       case .duration(let value):
-        try container.encode(value, forKey: .duration)
+        try container.encodeIfPresent(value, forKey: .duration)
       }
     }
     for (key, value) in self._unknownFields.json {

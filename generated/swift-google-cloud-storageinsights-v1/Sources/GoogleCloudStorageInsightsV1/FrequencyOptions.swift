@@ -88,7 +88,9 @@ public struct FrequencyOptions: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.frequency, forKey: .frequency)
+    if self.frequency != FrequencyOptions.Frequency() {
+      try container.encode(self.frequency, forKey: .frequency)
+    }
     try container.encodeIfPresent(self.startDate, forKey: .startDate)
     try container.encodeIfPresent(self.endDate, forKey: .endDate)
     for (key, value) in self._unknownFields.json {

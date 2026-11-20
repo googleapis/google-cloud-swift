@@ -168,11 +168,17 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.bandwidth, forKey: .bandwidth)
+    if self.type != GoogleCloudBareMetalSolutionV2.NetworkConfig.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.bandwidth != GoogleCloudBareMetalSolutionV2.NetworkConfig.Bandwidth() {
+      try container.encode(self.bandwidth, forKey: .bandwidth)
+    }
     try container.encode(self.vlanAttachments, forKey: .vlanAttachments)
     try container.encode(self.cidr, forKey: .cidr)
-    try container.encode(self.serviceCidr, forKey: .serviceCidr)
+    if self.serviceCidr != GoogleCloudBareMetalSolutionV2.NetworkConfig.ServiceCidr() {
+      try container.encode(self.serviceCidr, forKey: .serviceCidr)
+    }
     try container.encode(self.userNote, forKey: .userNote)
     try container.encode(self.gcpService, forKey: .gcpService)
     try container.encode(self.vlanSameProject, forKey: .vlanSameProject)

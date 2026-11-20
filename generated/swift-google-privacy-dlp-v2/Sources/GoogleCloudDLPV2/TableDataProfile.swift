@@ -316,7 +316,9 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.tableId, forKey: .tableId)
     try container.encode(self.fullResource, forKey: .fullResource)
     try container.encodeIfPresent(self.profileStatus, forKey: .profileStatus)
-    try container.encode(self.state, forKey: .state)
+    if self.state != TableDataProfile.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.sensitivityScore, forKey: .sensitivityScore)
     try container.encodeIfPresent(self.dataRiskLevel, forKey: .dataRiskLevel)
     try container.encode(self.predictedInfoTypes, forKey: .predictedInfoTypes)
@@ -328,8 +330,12 @@ public struct TableDataProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.failedColumnCount, forKey: .failedColumnCount)
     try container.encode(self.tableSizeBytes, forKey: .tableSizeBytes)
     try container.encode(self.rowCount, forKey: .rowCount)
-    try container.encode(self.encryptionStatus, forKey: .encryptionStatus)
-    try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    if self.encryptionStatus != EncryptionStatus() {
+      try container.encode(self.encryptionStatus, forKey: .encryptionStatus)
+    }
+    if self.resourceVisibility != ResourceVisibility() {
+      try container.encode(self.resourceVisibility, forKey: .resourceVisibility)
+    }
     try container.encodeIfPresent(self.profileLastGenerated, forKey: .profileLastGenerated)
     try container.encode(self.resourceLabels, forKey: .resourceLabels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)

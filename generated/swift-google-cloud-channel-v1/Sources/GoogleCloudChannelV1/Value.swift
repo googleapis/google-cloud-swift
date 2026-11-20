@@ -105,15 +105,15 @@ public struct Value: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .int64Value(let value):
-        try container.encode(value, forKey: .int64Value)
+        try container.encodeIfPresent(value, forKey: .int64Value)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .doubleValue(let value):
-        try container.encode(value, forKey: .doubleValue)
+        try container.encodeIfPresent(value, forKey: .doubleValue)
       case .protoValue(let value):
-        try container.encode(value, forKey: .protoValue)
+        try container.encodeIfPresent(value, forKey: .protoValue)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       }
     }
     for (key, value) in self._unknownFields.json {

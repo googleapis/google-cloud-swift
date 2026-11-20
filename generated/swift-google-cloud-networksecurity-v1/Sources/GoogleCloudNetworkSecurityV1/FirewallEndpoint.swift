@@ -183,7 +183,9 @@ public struct FirewallEndpoint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != FirewallEndpoint.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.reconciling, forKey: .reconciling)
     try container.encode(self.associatedNetworks, forKey: .associatedNetworks)
     try container.encode(self.associations, forKey: .associations)

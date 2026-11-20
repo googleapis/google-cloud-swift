@@ -133,7 +133,9 @@ public struct UriOverride: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.port, forKey: .port)
     try container.encodeIfPresent(self.pathOverride, forKey: .pathOverride)
     try container.encodeIfPresent(self.queryOverride, forKey: .queryOverride)
-    try container.encode(self.uriOverrideEnforceMode, forKey: .uriOverrideEnforceMode)
+    if self.uriOverrideEnforceMode != UriOverride.UriOverrideEnforceMode() {
+      try container.encode(self.uriOverrideEnforceMode, forKey: .uriOverrideEnforceMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

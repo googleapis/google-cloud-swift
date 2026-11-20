@@ -176,8 +176,12 @@ public struct Assignment: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.assignee, forKey: .assignee)
-    try container.encode(self.jobType, forKey: .jobType)
-    try container.encode(self.state, forKey: .state)
+    if self.jobType != Assignment.JobType() {
+      try container.encode(self.jobType, forKey: .jobType)
+    }
+    if self.state != Assignment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.enableGeminiInBigquery, forKey: .enableGeminiInBigquery)
     try container.encodeIfPresent(self.schedulingPolicy, forKey: .schedulingPolicy)
     try container.encode(self.principal, forKey: .principal)

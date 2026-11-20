@@ -89,7 +89,9 @@ public struct AnswerFeedback: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.correctnessLevel, forKey: .correctnessLevel)
+    if self.correctnessLevel != AnswerFeedback.CorrectnessLevel() {
+      try container.encode(self.correctnessLevel, forKey: .correctnessLevel)
+    }
     try container.encode(self.clicked, forKey: .clicked)
     try container.encode(self.displayed, forKey: .displayed)
     for (key, value) in self._unknownFields.json {

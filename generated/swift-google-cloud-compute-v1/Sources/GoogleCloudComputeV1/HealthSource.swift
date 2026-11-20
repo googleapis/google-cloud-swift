@@ -180,7 +180,7 @@
       try container.encodeIfPresent(self.creationTimestamp, forKey: .creationTimestamp)
       try container.encodeIfPresent(self.description, forKey: .description)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

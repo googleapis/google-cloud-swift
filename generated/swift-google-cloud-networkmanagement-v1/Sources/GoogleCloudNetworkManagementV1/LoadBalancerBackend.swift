@@ -120,7 +120,9 @@ public struct LoadBalancerBackend: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uri, forKey: .uri)
-    try container.encode(self.healthCheckFirewallState, forKey: .healthCheckFirewallState)
+    if self.healthCheckFirewallState != LoadBalancerBackend.HealthCheckFirewallState() {
+      try container.encode(self.healthCheckFirewallState, forKey: .healthCheckFirewallState)
+    }
     try container.encode(
       self.healthCheckAllowingFirewallRules, forKey: .healthCheckAllowingFirewallRules)
     try container.encode(

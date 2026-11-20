@@ -102,7 +102,9 @@ public struct CheckError: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.code, forKey: .code)
+    if self.code != CheckError.Code() {
+      try container.encode(self.code, forKey: .code)
+    }
     try container.encode(self.subject, forKey: .subject)
     try container.encode(self.detail, forKey: .detail)
     try container.encodeIfPresent(self.status, forKey: .status)

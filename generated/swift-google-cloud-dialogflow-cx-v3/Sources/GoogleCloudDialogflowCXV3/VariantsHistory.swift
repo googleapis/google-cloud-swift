@@ -97,7 +97,7 @@
       if let choice = self.variants {
         switch choice {
         case .versionVariants(let value):
-          try container.encode(value, forKey: .versionVariants)
+          try container.encodeIfPresent(value, forKey: .versionVariants)
         }
       }
       for (key, value) in self._unknownFields.json {

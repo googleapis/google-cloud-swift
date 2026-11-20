@@ -87,7 +87,7 @@ public struct EventDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.eventDetails {
       switch choice {
       case .executionDetails(let value):
-        try container.encode(value, forKey: .executionDetails)
+        try container.encodeIfPresent(value, forKey: .executionDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -258,15 +258,23 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.importMethod, forKey: .importMethod)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.importMethod != ImportJob.ImportMethod() {
+      try container.encode(self.importMethod, forKey: .importMethod)
+    }
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.generateTime, forKey: .generateTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
     try container.encodeIfPresent(self.expireEventTime, forKey: .expireEventTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImportJob.ImportJobState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.publicKey, forKey: .publicKey)
-    try container.encode(self.publicKeyFormat, forKey: .publicKeyFormat)
+    if self.publicKeyFormat != PublicKey.PublicKeyFormat() {
+      try container.encode(self.publicKeyFormat, forKey: .publicKeyFormat)
+    }
     try container.encodeIfPresent(self.attestation, forKey: .attestation)
     try container.encode(self.cryptoKeyBackend, forKey: .cryptoKeyBackend)
     for (key, value) in self._unknownFields.json {

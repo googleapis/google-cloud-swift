@@ -129,7 +129,7 @@
       if let choice = self.strategy {
         switch choice {
         case .taskDescription(let value):
-          try container.encode(value, forKey: .taskDescription)
+          try container.encodeIfPresent(value, forKey: .taskDescription)
         }
       }
       for (key, value) in self._unknownFields.json {

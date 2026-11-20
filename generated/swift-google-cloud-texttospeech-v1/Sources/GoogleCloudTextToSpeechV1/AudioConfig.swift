@@ -132,7 +132,9 @@ public struct AudioConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.audioEncoding, forKey: .audioEncoding)
+    if self.audioEncoding != AudioEncoding() {
+      try container.encode(self.audioEncoding, forKey: .audioEncoding)
+    }
     try container.encode(self.speakingRate, forKey: .speakingRate)
     try container.encode(self.pitch, forKey: .pitch)
     try container.encode(self.volumeGainDb, forKey: .volumeGainDb)

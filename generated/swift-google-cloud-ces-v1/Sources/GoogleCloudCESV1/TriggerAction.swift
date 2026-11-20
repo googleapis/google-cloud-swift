@@ -101,11 +101,11 @@ public struct TriggerAction: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.action {
       switch choice {
       case .respondImmediately(let value):
-        try container.encode(value, forKey: .respondImmediately)
+        try container.encodeIfPresent(value, forKey: .respondImmediately)
       case .transferAgent(let value):
-        try container.encode(value, forKey: .transferAgent)
+        try container.encodeIfPresent(value, forKey: .transferAgent)
       case .generativeAnswer(let value):
-        try container.encode(value, forKey: .generativeAnswer)
+        try container.encodeIfPresent(value, forKey: .generativeAnswer)
       }
     }
     for (key, value) in self._unknownFields.json {

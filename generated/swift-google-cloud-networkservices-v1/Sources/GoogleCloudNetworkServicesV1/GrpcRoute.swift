@@ -281,7 +281,9 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != GrpcRoute.MethodMatch.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.grpcService, forKey: .grpcService)
       try container.encode(self.grpcMethod, forKey: .grpcMethod)
       try container.encodeIfPresent(self.caseSensitive, forKey: .caseSensitive)
@@ -500,7 +502,9 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != GrpcRoute.HeaderMatch.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.key, forKey: .key)
       try container.encode(self.value, forKey: .value)
       for (key, value) in self._unknownFields.json {
@@ -825,7 +829,7 @@ public struct GrpcRoute: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.destinationType {
         switch choice {
         case .serviceName(let value):
-          try container.encode(value, forKey: .serviceName)
+          try container.encodeIfPresent(value, forKey: .serviceName)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -520,9 +520,9 @@ public struct AnalyzeOrgPolicyGovernedAssetsResponse: Codable, Equatable, Google
       if let choice = self.governedAsset {
         switch choice {
         case .governedResource(let value):
-          try container.encode(value, forKey: .governedResource)
+          try container.encodeIfPresent(value, forKey: .governedResource)
         case .governedIamPolicy(let value):
-          try container.encode(value, forKey: .governedIamPolicy)
+          try container.encodeIfPresent(value, forKey: .governedIamPolicy)
         }
       }
       for (key, value) in self._unknownFields.json {

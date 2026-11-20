@@ -112,11 +112,11 @@
       if let choice = self.value {
         switch choice {
         case .scalar(let value):
-          try container.encode(value, forKey: .scalar)
+          try container.encodeIfPresent(value, forKey: .scalar)
         case .tensor(let value):
-          try container.encode(value, forKey: .tensor)
+          try container.encodeIfPresent(value, forKey: .tensor)
         case .blobs(let value):
-          try container.encode(value, forKey: .blobs)
+          try container.encodeIfPresent(value, forKey: .blobs)
         }
       }
       for (key, value) in self._unknownFields.json {

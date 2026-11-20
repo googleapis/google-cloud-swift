@@ -159,8 +159,12 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.continuousAnalysis, forKey: .continuousAnalysis)
-    try container.encode(self.analysisStatus, forKey: .analysisStatus)
+    if self.continuousAnalysis != DiscoveryOccurrence.ContinuousAnalysis() {
+      try container.encode(self.continuousAnalysis, forKey: .continuousAnalysis)
+    }
+    if self.analysisStatus != DiscoveryOccurrence.AnalysisStatus() {
+      try container.encode(self.analysisStatus, forKey: .analysisStatus)
+    }
     try container.encodeIfPresent(self.analysisCompleted, forKey: .analysisCompleted)
     try container.encode(self.analysisError, forKey: .analysisError)
     try container.encodeIfPresent(self.analysisStatusError, forKey: .analysisStatusError)
@@ -321,7 +325,9 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sbomState, forKey: .sbomState)
+      if self.sbomState != DiscoveryOccurrence.SBOMStatus.SBOMState() {
+        try container.encode(self.sbomState, forKey: .sbomState)
+      }
       try container.encode(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -539,7 +545,10 @@ public struct DiscoveryOccurrence: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.lastAttemptTime, forKey: .lastAttemptTime)
-      try container.encode(self.state, forKey: .state)
+      if self.state != DiscoveryOccurrence.VulnerabilityAttestation.VulnerabilityAttestationState()
+      {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.error, forKey: .error)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

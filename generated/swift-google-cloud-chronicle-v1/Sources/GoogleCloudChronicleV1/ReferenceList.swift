@@ -151,7 +151,9 @@ public struct ReferenceList: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.entries, forKey: .entries)
     try container.encode(self.rules, forKey: .rules)
-    try container.encode(self.syntaxType, forKey: .syntaxType)
+    if self.syntaxType != ReferenceListSyntaxType() {
+      try container.encode(self.syntaxType, forKey: .syntaxType)
+    }
     try container.encode(self.ruleAssociationsCount, forKey: .ruleAssociationsCount)
     try container.encodeIfPresent(self.scopeInfo, forKey: .scopeInfo)
     for (key, value) in self._unknownFields.json {

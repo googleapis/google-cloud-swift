@@ -255,7 +255,7 @@
         if let choice = self.ranking {
           switch choice {
           case .rrf(let value):
-            try container.encode(value, forKey: .rrf)
+            try container.encodeIfPresent(value, forKey: .rrf)
           }
         }
         for (key, value) in self._unknownFields.json {

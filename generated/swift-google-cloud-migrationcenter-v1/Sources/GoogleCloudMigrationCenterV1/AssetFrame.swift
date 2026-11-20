@@ -139,7 +139,7 @@ public struct AssetFrame: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.frameData {
       switch choice {
       case .machineDetails(let value):
-        try container.encode(value, forKey: .machineDetails)
+        try container.encodeIfPresent(value, forKey: .machineDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

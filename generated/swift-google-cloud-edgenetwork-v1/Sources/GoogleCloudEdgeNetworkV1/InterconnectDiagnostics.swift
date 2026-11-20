@@ -435,7 +435,9 @@ public struct InterconnectDiagnostics: Codable, Equatable, GoogleWKT._AnyPackabl
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.state, forKey: .state)
+      if self.state != InterconnectDiagnostics.LinkLACPStatus.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.googleSystemId, forKey: .googleSystemId)
       try container.encode(self.neighborSystemId, forKey: .neighborSystemId)
       try container.encode(self.aggregatable, forKey: .aggregatable)

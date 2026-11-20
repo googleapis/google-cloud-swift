@@ -308,7 +308,9 @@
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.displayName, forKey: .displayName)
           try container.encode(self.`required`, forKey: .`required`)
-          try container.encode(self.state, forKey: .state)
+          if self.state != PageInfo.FormInfo.ParameterInfo.ParameterState() {
+            try container.encode(self.state, forKey: .state)
+          }
           try container.encodeIfPresent(self.value, forKey: .value)
           try container.encode(self.justCollected, forKey: .justCollected)
           for (key, value) in self._unknownFields.json {

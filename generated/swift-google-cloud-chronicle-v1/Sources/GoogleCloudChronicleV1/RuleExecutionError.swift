@@ -119,9 +119,9 @@ public struct RuleExecutionError: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .rule(let value):
-        try container.encode(value, forKey: .rule)
+        try container.encodeIfPresent(value, forKey: .rule)
       case .curatedRule(let value):
-        try container.encode(value, forKey: .curatedRule)
+        try container.encodeIfPresent(value, forKey: .curatedRule)
       }
     }
     for (key, value) in self._unknownFields.json {

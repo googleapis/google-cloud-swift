@@ -160,7 +160,9 @@ public struct Router: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.interface, forKey: .interface)
     try container.encode(self.bgpPeer, forKey: .bgpPeer)
     try container.encodeIfPresent(self.bgp, forKey: .bgp)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ResourceState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.routeAdvertisements, forKey: .routeAdvertisements)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

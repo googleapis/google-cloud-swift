@@ -201,7 +201,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encodeIfPresent(self.jobSpec, forKey: .jobSpec)
-      try container.encode(self.state, forKey: .state)
+      if self.state != JobState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)

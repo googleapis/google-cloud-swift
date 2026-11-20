@@ -237,7 +237,9 @@
         self.naturalLanguageQueryUnderstandingInfo, forKey: .naturalLanguageQueryUnderstandingInfo)
       try container.encodeIfPresent(self.sessionInfo, forKey: .sessionInfo)
       try container.encode(self.searchLinkPromotions, forKey: .searchLinkPromotions)
-      try container.encode(self.semanticState, forKey: .semanticState)
+      if self.semanticState != SearchResponse.SemanticState() {
+        try container.encode(self.semanticState, forKey: .semanticState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -1007,9 +1009,9 @@
           if let choice = self.facetValue {
             switch choice {
             case .value(let value):
-              try container.encode(value, forKey: .value)
+              try container.encodeIfPresent(value, forKey: .value)
             case .interval(let value):
-              try container.encode(value, forKey: .interval)
+              try container.encodeIfPresent(value, forKey: .interval)
             }
           }
           for (key, value) in self._unknownFields.json {
@@ -2499,7 +2501,12 @@
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
             try container.encode(self.fieldName, forKey: .fieldName)
-            try container.encode(self.comparison, forKey: .comparison)
+            if self.comparison
+              != SearchResponse.NaturalLanguageQueryUnderstandingInfo.StructuredExtractedFilter
+              .NumberConstraint.Comparison()
+            {
+              try container.encode(self.comparison, forKey: .comparison)
+            }
             try container.encode(self.value, forKey: .value)
             try container.encode(self.querySegment, forKey: .querySegment)
             for (key, value) in self._unknownFields.json {
@@ -3070,15 +3077,15 @@
             if let choice = self.expr {
               switch choice {
               case .stringConstraint(let value):
-                try container.encode(value, forKey: .stringConstraint)
+                try container.encodeIfPresent(value, forKey: .stringConstraint)
               case .numberConstraint(let value):
-                try container.encode(value, forKey: .numberConstraint)
+                try container.encodeIfPresent(value, forKey: .numberConstraint)
               case .geolocationConstraint(let value):
-                try container.encode(value, forKey: .geolocationConstraint)
+                try container.encodeIfPresent(value, forKey: .geolocationConstraint)
               case .andExpr(let value):
-                try container.encode(value, forKey: .andExpr)
+                try container.encodeIfPresent(value, forKey: .andExpr)
               case .orExpr(let value):
-                try container.encode(value, forKey: .orExpr)
+                try container.encodeIfPresent(value, forKey: .orExpr)
               }
             }
             for (key, value) in self._unknownFields.json {

@@ -127,7 +127,9 @@ public struct CloudIdentityCustomerAccount: Codable, Equatable, GoogleWKT._AnyPa
     try container.encode(self.owned, forKey: .owned)
     try container.encode(self.customerName, forKey: .customerName)
     try container.encode(self.customerCloudIdentityId, forKey: .customerCloudIdentityId)
-    try container.encode(self.customerType, forKey: .customerType)
+    if self.customerType != CloudIdentityInfo.CustomerType() {
+      try container.encode(self.customerType, forKey: .customerType)
+    }
     try container.encode(self.channelPartnerCloudIdentityId, forKey: .channelPartnerCloudIdentityId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

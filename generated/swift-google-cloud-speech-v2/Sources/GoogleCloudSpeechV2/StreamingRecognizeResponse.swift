@@ -152,7 +152,9 @@ public struct StreamingRecognizeResponse: Codable, Equatable, GoogleWKT._AnyPack
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.results, forKey: .results)
-    try container.encode(self.speechEventType, forKey: .speechEventType)
+    if self.speechEventType != StreamingRecognizeResponse.SpeechEventType() {
+      try container.encode(self.speechEventType, forKey: .speechEventType)
+    }
     try container.encodeIfPresent(self.speechEventOffset, forKey: .speechEventOffset)
     try container.encodeIfPresent(self.metadata, forKey: .metadata)
     for (key, value) in self._unknownFields.json {

@@ -171,27 +171,27 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.action {
       switch choice {
       case .boostAction(let value):
-        try container.encode(value, forKey: .boostAction)
+        try container.encodeIfPresent(value, forKey: .boostAction)
       case .redirectAction(let value):
-        try container.encode(value, forKey: .redirectAction)
+        try container.encodeIfPresent(value, forKey: .redirectAction)
       case .onewaySynonymsAction(let value):
-        try container.encode(value, forKey: .onewaySynonymsAction)
+        try container.encodeIfPresent(value, forKey: .onewaySynonymsAction)
       case .doNotAssociateAction(let value):
-        try container.encode(value, forKey: .doNotAssociateAction)
+        try container.encodeIfPresent(value, forKey: .doNotAssociateAction)
       case .replacementAction(let value):
-        try container.encode(value, forKey: .replacementAction)
+        try container.encodeIfPresent(value, forKey: .replacementAction)
       case .ignoreAction(let value):
-        try container.encode(value, forKey: .ignoreAction)
+        try container.encodeIfPresent(value, forKey: .ignoreAction)
       case .filterAction(let value):
-        try container.encode(value, forKey: .filterAction)
+        try container.encodeIfPresent(value, forKey: .filterAction)
       case .twowaySynonymsAction(let value):
-        try container.encode(value, forKey: .twowaySynonymsAction)
+        try container.encodeIfPresent(value, forKey: .twowaySynonymsAction)
       case .forceReturnFacetAction(let value):
-        try container.encode(value, forKey: .forceReturnFacetAction)
+        try container.encodeIfPresent(value, forKey: .forceReturnFacetAction)
       case .removeFacetAction(let value):
-        try container.encode(value, forKey: .removeFacetAction)
+        try container.encodeIfPresent(value, forKey: .removeFacetAction)
       case .pinAction(let value):
-        try container.encode(value, forKey: .pinAction)
+        try container.encodeIfPresent(value, forKey: .pinAction)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -115,8 +115,12 @@ public struct NewFilestoreConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.filestore, forKey: .filestore)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.fileShares, forKey: .fileShares)
-    try container.encode(self.tier, forKey: .tier)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
+    if self.tier != NewFilestoreConfig.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
+    if self.`protocol` != NewFilestoreConfig.Protocol_() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

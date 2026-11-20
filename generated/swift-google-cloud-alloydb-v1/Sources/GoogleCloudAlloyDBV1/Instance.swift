@@ -382,10 +382,16 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.instanceType, forKey: .instanceType)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.instanceType != Instance.InstanceType() {
+      try container.encode(self.instanceType, forKey: .instanceType)
+    }
     try container.encodeIfPresent(self.machineConfig, forKey: .machineConfig)
-    try container.encode(self.availabilityType, forKey: .availabilityType)
+    if self.availabilityType != Instance.AvailabilityType() {
+      try container.encode(self.availabilityType, forKey: .availabilityType)
+    }
     try container.encode(self.gceZone, forKey: .gceZone)
     try container.encode(self.databaseFlags, forKey: .databaseFlags)
     try container.encodeIfPresent(self.writableNode, forKey: .writableNode)
@@ -406,7 +412,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.pscInstanceConfig, forKey: .pscInstanceConfig)
     try container.encodeIfPresent(self.networkConfig, forKey: .networkConfig)
     try container.encode(self.outboundPublicIpAddresses, forKey: .outboundPublicIpAddresses)
-    try container.encode(self.activationPolicy, forKey: .activationPolicy)
+    if self.activationPolicy != Instance.ActivationPolicy() {
+      try container.encode(self.activationPolicy, forKey: .activationPolicy)
+    }
     try container.encodeIfPresent(self.connectionPoolConfig, forKey: .connectionPoolConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

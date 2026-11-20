@@ -96,9 +96,9 @@
       if let choice = self.chunkType {
         switch choice {
         case .web(let value):
-          try container.encode(value, forKey: .web)
+          try container.encodeIfPresent(value, forKey: .web)
         case .retrievedContext(let value):
-          try container.encode(value, forKey: .retrievedContext)
+          try container.encodeIfPresent(value, forKey: .retrievedContext)
         }
       }
       for (key, value) in self._unknownFields.json {

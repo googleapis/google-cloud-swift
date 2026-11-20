@@ -317,7 +317,7 @@
       try container.encode(self.domainNames, forKey: .domainNames)
       try container.encodeIfPresent(self.enableProxyProtocol, forKey: .enableProxyProtocol)
       if let v = fingerprint {
-        try container.encode(
+        try container.encodeIfPresent(
           GoogleWKT._DiscoveryBase64.encode(v), forKey: .fingerprint
         )
       }

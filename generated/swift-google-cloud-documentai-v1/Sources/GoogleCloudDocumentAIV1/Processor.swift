@@ -163,7 +163,9 @@ public struct Processor: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Processor.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.defaultProcessorVersion, forKey: .defaultProcessorVersion)
     try container.encode(self.processorVersionAliases, forKey: .processorVersionAliases)
     try container.encode(self.processEndpoint, forKey: .processEndpoint)

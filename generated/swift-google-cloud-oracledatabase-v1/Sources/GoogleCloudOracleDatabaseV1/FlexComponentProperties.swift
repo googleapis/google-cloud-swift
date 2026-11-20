@@ -168,7 +168,9 @@ public struct FlexComponentProperties: Codable, Equatable, GoogleWKT._AnyPackabl
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.hardwareType, forKey: .hardwareType)
+    if self.hardwareType != FlexComponentProperties.HardwareType() {
+      try container.encode(self.hardwareType, forKey: .hardwareType)
+    }
     try container.encode(self.shape, forKey: .shape)
     try container.encode(self.availableCoreCount, forKey: .availableCoreCount)
     try container.encode(self.availableMemoryGb, forKey: .availableMemoryGb)
@@ -178,7 +180,9 @@ public struct FlexComponentProperties: Codable, Equatable, GoogleWKT._AnyPackabl
     try container.encode(self.minimumCoreCount, forKey: .minimumCoreCount)
     try container.encode(self.runtimeMinimumCoreCount, forKey: .runtimeMinimumCoreCount)
     try container.encode(self.descriptionSummary, forKey: .descriptionSummary)
-    try container.encode(self.computeModel, forKey: .computeModel)
+    if self.computeModel != GoogleCloudOracleDatabaseV1.ComputeModel() {
+      try container.encode(self.computeModel, forKey: .computeModel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

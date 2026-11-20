@@ -270,18 +270,26 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.selfLink, forKey: .selfLink)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Backup.SqlBackupType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.description, forKey: .description)
       try container.encode(self.instance, forKey: .instance)
       try container.encode(self.location, forKey: .location)
       try container.encodeIfPresent(self.backupInterval, forKey: .backupInterval)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Backup.SqlBackupState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.kmsKey, forKey: .kmsKey)
       try container.encode(self.kmsKeyVersion, forKey: .kmsKeyVersion)
-      try container.encode(self.backupKind, forKey: .backupKind)
+      if self.backupKind != SqlBackupKind() {
+        try container.encode(self.backupKind, forKey: .backupKind)
+      }
       try container.encode(self.timeZone, forKey: .timeZone)
-      try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      if self.databaseVersion != SqlDatabaseVersion() {
+        try container.encode(self.databaseVersion, forKey: .databaseVersion)
+      }
       try container.encodeIfPresent(self.maxChargeableBytes, forKey: .maxChargeableBytes)
       try container.encodeIfPresent(self.instanceDeletionTime, forKey: .instanceDeletionTime)
       try container.encodeIfPresent(self.instanceSettings, forKey: .instanceSettings)
@@ -292,9 +300,9 @@
       if let choice = self.expiration {
         switch choice {
         case .ttlDays(let value):
-          try container.encode(value, forKey: .ttlDays)
+          try container.encodeIfPresent(value, forKey: .ttlDays)
         case .expiryTime(let value):
-          try container.encode(value, forKey: .expiryTime)
+          try container.encodeIfPresent(value, forKey: .expiryTime)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -269,55 +269,55 @@
       if let choice = self.metricInputs {
         switch choice {
         case .exactMatchInput(let value):
-          try container.encode(value, forKey: .exactMatchInput)
+          try container.encodeIfPresent(value, forKey: .exactMatchInput)
         case .bleuInput(let value):
-          try container.encode(value, forKey: .bleuInput)
+          try container.encodeIfPresent(value, forKey: .bleuInput)
         case .rougeInput(let value):
-          try container.encode(value, forKey: .rougeInput)
+          try container.encodeIfPresent(value, forKey: .rougeInput)
         case .fluencyInput(let value):
-          try container.encode(value, forKey: .fluencyInput)
+          try container.encodeIfPresent(value, forKey: .fluencyInput)
         case .coherenceInput(let value):
-          try container.encode(value, forKey: .coherenceInput)
+          try container.encodeIfPresent(value, forKey: .coherenceInput)
         case .safetyInput(let value):
-          try container.encode(value, forKey: .safetyInput)
+          try container.encodeIfPresent(value, forKey: .safetyInput)
         case .groundednessInput(let value):
-          try container.encode(value, forKey: .groundednessInput)
+          try container.encodeIfPresent(value, forKey: .groundednessInput)
         case .fulfillmentInput(let value):
-          try container.encode(value, forKey: .fulfillmentInput)
+          try container.encodeIfPresent(value, forKey: .fulfillmentInput)
         case .summarizationQualityInput(let value):
-          try container.encode(value, forKey: .summarizationQualityInput)
+          try container.encodeIfPresent(value, forKey: .summarizationQualityInput)
         case .pairwiseSummarizationQualityInput(let value):
-          try container.encode(value, forKey: .pairwiseSummarizationQualityInput)
+          try container.encodeIfPresent(value, forKey: .pairwiseSummarizationQualityInput)
         case .summarizationHelpfulnessInput(let value):
-          try container.encode(value, forKey: .summarizationHelpfulnessInput)
+          try container.encodeIfPresent(value, forKey: .summarizationHelpfulnessInput)
         case .summarizationVerbosityInput(let value):
-          try container.encode(value, forKey: .summarizationVerbosityInput)
+          try container.encodeIfPresent(value, forKey: .summarizationVerbosityInput)
         case .questionAnsweringQualityInput(let value):
-          try container.encode(value, forKey: .questionAnsweringQualityInput)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringQualityInput)
         case .pairwiseQuestionAnsweringQualityInput(let value):
-          try container.encode(value, forKey: .pairwiseQuestionAnsweringQualityInput)
+          try container.encodeIfPresent(value, forKey: .pairwiseQuestionAnsweringQualityInput)
         case .questionAnsweringRelevanceInput(let value):
-          try container.encode(value, forKey: .questionAnsweringRelevanceInput)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringRelevanceInput)
         case .questionAnsweringHelpfulnessInput(let value):
-          try container.encode(value, forKey: .questionAnsweringHelpfulnessInput)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringHelpfulnessInput)
         case .questionAnsweringCorrectnessInput(let value):
-          try container.encode(value, forKey: .questionAnsweringCorrectnessInput)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringCorrectnessInput)
         case .pointwiseMetricInput(let value):
-          try container.encode(value, forKey: .pointwiseMetricInput)
+          try container.encodeIfPresent(value, forKey: .pointwiseMetricInput)
         case .pairwiseMetricInput(let value):
-          try container.encode(value, forKey: .pairwiseMetricInput)
+          try container.encodeIfPresent(value, forKey: .pairwiseMetricInput)
         case .toolCallValidInput(let value):
-          try container.encode(value, forKey: .toolCallValidInput)
+          try container.encodeIfPresent(value, forKey: .toolCallValidInput)
         case .toolNameMatchInput(let value):
-          try container.encode(value, forKey: .toolNameMatchInput)
+          try container.encodeIfPresent(value, forKey: .toolNameMatchInput)
         case .toolParameterKeyMatchInput(let value):
-          try container.encode(value, forKey: .toolParameterKeyMatchInput)
+          try container.encodeIfPresent(value, forKey: .toolParameterKeyMatchInput)
         case .toolParameterKvMatchInput(let value):
-          try container.encode(value, forKey: .toolParameterKvMatchInput)
+          try container.encodeIfPresent(value, forKey: .toolParameterKvMatchInput)
         case .cometInput(let value):
-          try container.encode(value, forKey: .cometInput)
+          try container.encodeIfPresent(value, forKey: .cometInput)
         case .metricxInput(let value):
-          try container.encode(value, forKey: .metricxInput)
+          try container.encodeIfPresent(value, forKey: .metricxInput)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -120,13 +120,15 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.fileName, forKey: .fileName)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Manifest.ManifestType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.muxStreams, forKey: .muxStreams)
 
     if let choice = self.manifestConfig {
       switch choice {
       case .dash(let value):
-        try container.encode(value, forKey: .dash)
+        try container.encodeIfPresent(value, forKey: .dash)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -190,7 +192,9 @@ public struct Manifest: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.segmentReferenceScheme, forKey: .segmentReferenceScheme)
+      if self.segmentReferenceScheme != Manifest.DashConfig.SegmentReferenceScheme() {
+        try container.encode(self.segmentReferenceScheme, forKey: .segmentReferenceScheme)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

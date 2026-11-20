@@ -130,9 +130,9 @@ public struct GitHubEventsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.event {
       switch choice {
       case .pullRequest(let value):
-        try container.encode(value, forKey: .pullRequest)
+        try container.encodeIfPresent(value, forKey: .pullRequest)
       case .push(let value):
-        try container.encode(value, forKey: .push)
+        try container.encodeIfPresent(value, forKey: .push)
       }
     }
     for (key, value) in self._unknownFields.json {

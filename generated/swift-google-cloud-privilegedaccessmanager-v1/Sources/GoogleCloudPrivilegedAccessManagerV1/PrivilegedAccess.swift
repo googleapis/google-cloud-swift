@@ -86,7 +86,7 @@ public struct PrivilegedAccess: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.accessType {
       switch choice {
       case .gcpIamAccess(let value):
-        try container.encode(value, forKey: .gcpIamAccess)
+        try container.encodeIfPresent(value, forKey: .gcpIamAccess)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -88,7 +88,7 @@ public struct SyntheticMonitorTarget: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.target {
       switch choice {
       case .cloudFunctionV2(let value):
-        try container.encode(value, forKey: .cloudFunctionV2)
+        try container.encodeIfPresent(value, forKey: .cloudFunctionV2)
       }
     }
     for (key, value) in self._unknownFields.json {

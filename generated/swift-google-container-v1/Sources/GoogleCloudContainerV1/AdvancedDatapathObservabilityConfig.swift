@@ -88,7 +88,9 @@ public struct AdvancedDatapathObservabilityConfig: Codable, Equatable, GoogleWKT
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.enableMetrics, forKey: .enableMetrics)
-    try container.encode(self.relayMode, forKey: .relayMode)
+    if self.relayMode != AdvancedDatapathObservabilityConfig.RelayMode() {
+      try container.encode(self.relayMode, forKey: .relayMode)
+    }
     try container.encodeIfPresent(self.enableRelay, forKey: .enableRelay)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -173,10 +173,14 @@ public struct DeploymentGroup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.state, forKey: .state)
+    if self.state != DeploymentGroup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDescription, forKey: .stateDescription)
     try container.encode(self.deploymentUnits, forKey: .deploymentUnits)
-    try container.encode(self.provisioningState, forKey: .provisioningState)
+    if self.provisioningState != DeploymentGroup.ProvisioningState() {
+      try container.encode(self.provisioningState, forKey: .provisioningState)
+    }
     try container.encode(self.provisioningStateDescription, forKey: .provisioningStateDescription)
     try container.encodeIfPresent(self.provisioningError, forKey: .provisioningError)
     for (key, value) in self._unknownFields.json {

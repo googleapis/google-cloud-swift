@@ -155,7 +155,9 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.key, forKey: .key)
-    try container.encode(self.valueType, forKey: .valueType)
+    if self.valueType != ConfigVariableTemplate.ValueType() {
+      try container.encode(self.valueType, forKey: .valueType)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.validationRegex, forKey: .validationRegex)
@@ -163,7 +165,9 @@ public struct ConfigVariableTemplate: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encodeIfPresent(self.roleGrant, forKey: .roleGrant)
     try container.encode(self.enumOptions, forKey: .enumOptions)
     try container.encodeIfPresent(self.authorizationCodeLink, forKey: .authorizationCodeLink)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ConfigVariableTemplate.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.isAdvanced, forKey: .isAdvanced)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -78,7 +78,9 @@ public struct TimeFilter: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.timeRange, forKey: .timeRange)
-    try container.encode(self.timeField, forKey: .timeField)
+    if self.timeField != TimeFilter.TimeField() {
+      try container.encode(self.timeField, forKey: .timeField)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -72,7 +72,9 @@ public struct MaliciousUriFilterSettings: Codable, Equatable, GoogleWKT._AnyPack
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
+    if self.filterEnforcement != MaliciousUriFilterSettings.MaliciousUriFilterEnforcement() {
+      try container.encode(self.filterEnforcement, forKey: .filterEnforcement)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -277,8 +277,12 @@
         try container.encodeIfPresent(self.seed, forKey: .seed)
         try container.encodeIfPresent(self.presencePenalty, forKey: .presencePenalty)
         try container.encodeIfPresent(self.maxOutputTokens, forKey: .maxOutputTokens)
-        try container.encode(
-          self.provisionedThroughputSetting, forKey: .provisionedThroughputSetting)
+        if self.provisionedThroughputSetting
+          != GenerateGroundedContentRequest.GenerationSpec.ProvisionedThroughputSetting()
+        {
+          try container.encode(
+            self.provisionedThroughputSetting, forKey: .provisionedThroughputSetting)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -554,7 +558,12 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.version, forKey: .version)
+          if self.version
+            != GenerateGroundedContentRequest.DynamicRetrievalConfiguration
+            .DynamicRetrievalPredictor.Version()
+          {
+            try container.encode(self.version, forKey: .version)
+          }
           try container.encodeIfPresent(self.threshold, forKey: .threshold)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -811,13 +820,13 @@
         if let choice = self.source {
           switch choice {
           case .inlineSource(let value):
-            try container.encode(value, forKey: .inlineSource)
+            try container.encodeIfPresent(value, forKey: .inlineSource)
           case .searchSource(let value):
-            try container.encode(value, forKey: .searchSource)
+            try container.encodeIfPresent(value, forKey: .searchSource)
           case .googleSearchSource(let value):
-            try container.encode(value, forKey: .googleSearchSource)
+            try container.encodeIfPresent(value, forKey: .googleSearchSource)
           case .enterpriseWebRetrievalSource(let value):
-            try container.encode(value, forKey: .enterpriseWebRetrievalSource)
+            try container.encodeIfPresent(value, forKey: .enterpriseWebRetrievalSource)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1119,7 +1128,10 @@
           try container.encodeIfPresent(
             self.dynamicRetrievalConfig, forKey: .dynamicRetrievalConfig)
           try container.encode(self.excludeDomains, forKey: .excludeDomains)
-          try container.encode(self.blockingConfidence, forKey: .blockingConfidence)
+          if self.blockingConfidence != GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold()
+          {
+            try container.encode(self.blockingConfidence, forKey: .blockingConfidence)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -1215,7 +1227,10 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.excludeDomains, forKey: .excludeDomains)
-          try container.encode(self.blockingConfidence, forKey: .blockingConfidence)
+          if self.blockingConfidence != GoogleCloudDiscoveryEngineV1.Citation.PhishBlockThreshold()
+          {
+            try container.encode(self.blockingConfidence, forKey: .blockingConfidence)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

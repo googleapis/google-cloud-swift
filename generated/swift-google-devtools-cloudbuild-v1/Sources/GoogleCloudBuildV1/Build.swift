@@ -356,7 +356,9 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.projectId, forKey: .projectId)
-    try container.encode(self.status, forKey: .status)
+    if self.status != Build.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.statusDetail, forKey: .statusDetail)
     try container.encodeIfPresent(self.source, forKey: .source)
     try container.encode(self.steps, forKey: .steps)
@@ -450,7 +452,9 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.text, forKey: .text)
-      try container.encode(self.priority, forKey: .priority)
+      if self.priority != Build.Warning.Priority() {
+        try container.encode(self.priority, forKey: .priority)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -664,7 +668,9 @@ public struct Build: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Build.FailureInfo.FailureType() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.detail, forKey: .detail)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

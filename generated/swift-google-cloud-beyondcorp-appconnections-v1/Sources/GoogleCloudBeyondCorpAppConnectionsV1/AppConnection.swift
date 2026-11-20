@@ -171,10 +171,14 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.uid, forKey: .uid)
-    try container.encode(self.type, forKey: .type)
+    if self.type != AppConnection.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.applicationEndpoint, forKey: .applicationEndpoint)
     try container.encode(self.connectors, forKey: .connectors)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AppConnection.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.gateway, forKey: .gateway)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)
@@ -361,7 +365,9 @@ public struct AppConnection: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != AppConnection.Gateway.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.uri, forKey: .uri)
       try container.encode(self.ingressPort, forKey: .ingressPort)
       try container.encode(self.appGateway, forKey: .appGateway)

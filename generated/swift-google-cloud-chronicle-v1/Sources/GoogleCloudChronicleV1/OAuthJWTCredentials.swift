@@ -102,7 +102,7 @@ public struct OAuthJWTCredentials: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.credentials {
       switch choice {
       case .rsCredentials(let value):
-        try container.encode(value, forKey: .rsCredentials)
+        try container.encodeIfPresent(value, forKey: .rsCredentials)
       }
     }
     for (key, value) in self._unknownFields.json {

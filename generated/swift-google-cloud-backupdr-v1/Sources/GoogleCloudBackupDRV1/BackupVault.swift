@@ -225,14 +225,18 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
       self.backupRetentionInheritance, forKey: .backupRetentionInheritance)
     try container.encodeIfPresent(self.deletable, forKey: .deletable)
     try container.encodeIfPresent(self.etag, forKey: .etag)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupVault.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.effectiveTime, forKey: .effectiveTime)
     try container.encode(self.backupCount, forKey: .backupCount)
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.totalStoredBytes, forKey: .totalStoredBytes)
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.accessRestriction, forKey: .accessRestriction)
+    if self.accessRestriction != BackupVault.AccessRestriction() {
+      try container.encode(self.accessRestriction, forKey: .accessRestriction)
+    }
     try container.encodeIfPresent(self.encryptionConfig, forKey: .encryptionConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -104,7 +104,9 @@ public struct DataFlowEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.eventId, forKey: .eventId)
     try container.encode(self.principalEmail, forKey: .principalEmail)
-    try container.encode(self.operation, forKey: .operation)
+    if self.operation != DataFlowEvent.Operation() {
+      try container.encode(self.operation, forKey: .operation)
+    }
     try container.encode(self.violatedLocation, forKey: .violatedLocation)
     try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
     for (key, value) in self._unknownFields.json {

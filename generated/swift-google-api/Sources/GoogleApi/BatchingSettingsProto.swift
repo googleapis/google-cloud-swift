@@ -143,8 +143,10 @@ public struct BatchingSettingsProto: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.requestByteLimit, forKey: .requestByteLimit)
     try container.encode(self.flowControlElementLimit, forKey: .flowControlElementLimit)
     try container.encode(self.flowControlByteLimit, forKey: .flowControlByteLimit)
-    try container.encode(
-      self.flowControlLimitExceededBehavior, forKey: .flowControlLimitExceededBehavior)
+    if self.flowControlLimitExceededBehavior != FlowControlLimitExceededBehaviorProto() {
+      try container.encode(
+        self.flowControlLimitExceededBehavior, forKey: .flowControlLimitExceededBehavior)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -601,9 +601,9 @@
         if let choice = self.decomposition {
           switch choice {
           case .accuracyDecomposition(let value):
-            try container.encode(value, forKey: .accuracyDecomposition)
+            try container.encodeIfPresent(value, forKey: .accuracyDecomposition)
           case .adherenceDecomposition(let value):
-            try container.encode(value, forKey: .adherenceDecomposition)
+            try container.encodeIfPresent(value, forKey: .adherenceDecomposition)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -727,11 +727,11 @@
         if let choice = self.result {
           switch choice {
           case .accuracyDecomposition(let value):
-            try container.encode(value, forKey: .accuracyDecomposition)
+            try container.encodeIfPresent(value, forKey: .accuracyDecomposition)
           case .adherenceRubric(let value):
-            try container.encode(value, forKey: .adherenceRubric)
+            try container.encodeIfPresent(value, forKey: .adherenceRubric)
           case .completenessRubric(let value):
-            try container.encode(value, forKey: .completenessRubric)
+            try container.encodeIfPresent(value, forKey: .completenessRubric)
           }
         }
         for (key, value) in self._unknownFields.json {

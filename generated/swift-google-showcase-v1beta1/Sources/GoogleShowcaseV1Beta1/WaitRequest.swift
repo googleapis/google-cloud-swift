@@ -114,18 +114,18 @@ public struct WaitRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.end {
       switch choice {
       case .endTime(let value):
-        try container.encode(value, forKey: .endTime)
+        try container.encodeIfPresent(value, forKey: .endTime)
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       }
     }
 
     if let choice = self.response {
       switch choice {
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       case .success(let value):
-        try container.encode(value, forKey: .success)
+        try container.encodeIfPresent(value, forKey: .success)
       }
     }
     for (key, value) in self._unknownFields.json {

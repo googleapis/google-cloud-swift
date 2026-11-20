@@ -118,7 +118,9 @@ public struct CleanupPhaseInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.phaseState, forKey: .phaseState)
+    if self.phaseState != PhaseState() {
+      try container.encode(self.phaseState, forKey: .phaseState)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)

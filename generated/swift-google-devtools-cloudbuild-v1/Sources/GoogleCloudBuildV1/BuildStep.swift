@@ -273,7 +273,9 @@ public struct BuildStep: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.timing, forKey: .timing)
     try container.encodeIfPresent(self.pullTiming, forKey: .pullTiming)
     try container.encodeIfPresent(self.timeout, forKey: .timeout)
-    try container.encode(self.status, forKey: .status)
+    if self.status != Build.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encode(self.allowFailure, forKey: .allowFailure)
     try container.encode(self.exitCode, forKey: .exitCode)
     try container.encode(self.allowExitCodes, forKey: .allowExitCodes)

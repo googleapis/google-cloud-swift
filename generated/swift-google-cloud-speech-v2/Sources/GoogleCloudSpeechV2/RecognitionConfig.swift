@@ -175,9 +175,9 @@ public struct RecognitionConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.decodingConfig {
       switch choice {
       case .autoDecodingConfig(let value):
-        try container.encode(value, forKey: .autoDecodingConfig)
+        try container.encodeIfPresent(value, forKey: .autoDecodingConfig)
       case .explicitDecodingConfig(let value):
-        try container.encode(value, forKey: .explicitDecodingConfig)
+        try container.encodeIfPresent(value, forKey: .explicitDecodingConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -87,7 +87,7 @@ public struct RepricingAdjustment: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.adjustment {
       switch choice {
       case .percentageAdjustment(let value):
-        try container.encode(value, forKey: .percentageAdjustment)
+        try container.encodeIfPresent(value, forKey: .percentageAdjustment)
       }
     }
     for (key, value) in self._unknownFields.json {

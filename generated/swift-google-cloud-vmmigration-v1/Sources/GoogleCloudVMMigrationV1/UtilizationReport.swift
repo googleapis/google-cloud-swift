@@ -149,11 +149,15 @@ public struct UtilizationReport: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UtilizationReport.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.timeFrame, forKey: .timeFrame)
+    if self.timeFrame != UtilizationReport.TimeFrame() {
+      try container.encode(self.timeFrame, forKey: .timeFrame)
+    }
     try container.encodeIfPresent(self.frameEndTime, forKey: .frameEndTime)
     try container.encode(self.vmCount, forKey: .vmCount)
     try container.encode(self.vms, forKey: .vms)

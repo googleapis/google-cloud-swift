@@ -154,8 +154,12 @@ public struct Input: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.tier, forKey: .tier)
+    if self.type != Input.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.tier != Input.Tier() {
+      try container.encode(self.tier, forKey: .tier)
+    }
     try container.encode(self.uri, forKey: .uri)
     try container.encodeIfPresent(self.preprocessingConfig, forKey: .preprocessingConfig)
     try container.encodeIfPresent(self.securityRules, forKey: .securityRules)

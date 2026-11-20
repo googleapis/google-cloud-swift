@@ -98,7 +98,7 @@ public struct MigrationTaskResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.details {
       switch choice {
       case .translationTaskResult(let value):
-        try container.encode(value, forKey: .translationTaskResult)
+        try container.encodeIfPresent(value, forKey: .translationTaskResult)
       }
     }
     for (key, value) in self._unknownFields.json {

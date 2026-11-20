@@ -134,9 +134,9 @@
       if let choice = self.entityTypeBatch {
         switch choice {
         case .entityTypeBatchUri(let value):
-          try container.encode(value, forKey: .entityTypeBatchUri)
+          try container.encodeIfPresent(value, forKey: .entityTypeBatchUri)
         case .entityTypeBatchInline(let value):
-          try container.encode(value, forKey: .entityTypeBatchInline)
+          try container.encodeIfPresent(value, forKey: .entityTypeBatchInline)
         }
       }
       for (key, value) in self._unknownFields.json {

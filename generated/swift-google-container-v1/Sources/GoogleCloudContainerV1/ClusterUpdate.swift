@@ -866,9 +866,13 @@ public struct ClusterUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.desiredReleaseChannel, forKey: .desiredReleaseChannel)
     try container.encodeIfPresent(
       self.desiredL4IlbSubsettingConfig, forKey: .desiredL4IlbSubsettingConfig)
-    try container.encode(self.desiredDatapathProvider, forKey: .desiredDatapathProvider)
-    try container.encode(
-      self.desiredPrivateIpv6GoogleAccess, forKey: .desiredPrivateIpv6GoogleAccess)
+    if self.desiredDatapathProvider != DatapathProvider() {
+      try container.encode(self.desiredDatapathProvider, forKey: .desiredDatapathProvider)
+    }
+    if self.desiredPrivateIpv6GoogleAccess != PrivateIPv6GoogleAccess() {
+      try container.encode(
+        self.desiredPrivateIpv6GoogleAccess, forKey: .desiredPrivateIpv6GoogleAccess)
+    }
     try container.encodeIfPresent(
       self.desiredNotificationConfig, forKey: .desiredNotificationConfig)
     try container.encodeIfPresent(
@@ -895,7 +899,9 @@ public struct ClusterUpdate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(
       self.desiredNodePoolLoggingConfig, forKey: .desiredNodePoolLoggingConfig)
     try container.encodeIfPresent(self.desiredFleet, forKey: .desiredFleet)
-    try container.encode(self.desiredStackType, forKey: .desiredStackType)
+    if self.desiredStackType != StackType() {
+      try container.encode(self.desiredStackType, forKey: .desiredStackType)
+    }
     try container.encodeIfPresent(
       self.additionalPodRangesConfig, forKey: .additionalPodRangesConfig)
     try container.encodeIfPresent(

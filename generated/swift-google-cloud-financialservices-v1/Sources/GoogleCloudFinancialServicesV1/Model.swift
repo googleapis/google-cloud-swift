@@ -153,12 +153,16 @@ public struct Model: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Model.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.engineVersion, forKey: .engineVersion)
     try container.encode(self.engineConfig, forKey: .engineConfig)
     try container.encode(self.primaryDataset, forKey: .primaryDataset)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    if self.lineOfBusiness != LineOfBusiness() {
+      try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

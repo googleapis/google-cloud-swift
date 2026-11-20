@@ -171,7 +171,9 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.policyType, forKey: .policyType)
+    if self.policyType != GoogleCloudDesignCenterV1.Policy.PolicyType() {
+      try container.encode(self.policyType, forKey: .policyType)
+    }
     try container.encode(self.applyConditions, forKey: .applyConditions)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
@@ -180,9 +182,9 @@ public struct Policy: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.uri {
       switch choice {
       case .policyUri(let value):
-        try container.encode(value, forKey: .policyUri)
+        try container.encodeIfPresent(value, forKey: .policyUri)
       case .policyRevisionUri(let value):
-        try container.encode(value, forKey: .policyRevisionUri)
+        try container.encodeIfPresent(value, forKey: .policyRevisionUri)
       }
     }
     for (key, value) in self._unknownFields.json {

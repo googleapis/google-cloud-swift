@@ -257,7 +257,9 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.disabled, forKey: .disabled)
     try container.encode(self.exclusions, forKey: .exclusions)
-    try container.encode(self.outputVersionFormat, forKey: .outputVersionFormat)
+    if self.outputVersionFormat != LogSink.VersionFormat() {
+      try container.encode(self.outputVersionFormat, forKey: .outputVersionFormat)
+    }
     try container.encode(self.writerIdentity, forKey: .writerIdentity)
     try container.encode(self.includeChildren, forKey: .includeChildren)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
@@ -266,7 +268,7 @@ public struct LogSink: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.options {
       switch choice {
       case .bigqueryOptions(let value):
-        try container.encode(value, forKey: .bigqueryOptions)
+        try container.encodeIfPresent(value, forKey: .bigqueryOptions)
       }
     }
     for (key, value) in self._unknownFields.json {

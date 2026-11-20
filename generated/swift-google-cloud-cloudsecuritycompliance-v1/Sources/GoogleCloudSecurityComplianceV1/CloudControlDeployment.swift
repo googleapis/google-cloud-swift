@@ -182,7 +182,9 @@ public struct CloudControlDeployment: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.targetResource, forKey: .targetResource)
     try container.encodeIfPresent(self.cloudControlMetadata, forKey: .cloudControlMetadata)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.deploymentState, forKey: .deploymentState)
+    if self.deploymentState != DeploymentState() {
+      try container.encode(self.deploymentState, forKey: .deploymentState)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)

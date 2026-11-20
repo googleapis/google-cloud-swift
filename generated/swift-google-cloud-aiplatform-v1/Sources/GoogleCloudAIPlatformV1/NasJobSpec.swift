@@ -109,7 +109,7 @@
       if let choice = self.nasAlgorithmSpec {
         switch choice {
         case .multiTrialAlgorithmSpec(let value):
-          try container.encode(value, forKey: .multiTrialAlgorithmSpec)
+          try container.encodeIfPresent(value, forKey: .multiTrialAlgorithmSpec)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -197,7 +197,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.multiTrialAlgorithm, forKey: .multiTrialAlgorithm)
+        if self.multiTrialAlgorithm != NasJobSpec.MultiTrialAlgorithmSpec.MultiTrialAlgorithm() {
+          try container.encode(self.multiTrialAlgorithm, forKey: .multiTrialAlgorithm)
+        }
         try container.encodeIfPresent(self.metric, forKey: .metric)
         try container.encodeIfPresent(self.searchTrialSpec, forKey: .searchTrialSpec)
         try container.encodeIfPresent(self.trainTrialSpec, forKey: .trainTrialSpec)
@@ -270,7 +272,9 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.metricId, forKey: .metricId)
-          try container.encode(self.goal, forKey: .goal)
+          if self.goal != NasJobSpec.MultiTrialAlgorithmSpec.MetricSpec.GoalType() {
+            try container.encode(self.goal, forKey: .goal)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }

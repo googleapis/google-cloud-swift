@@ -170,7 +170,9 @@ public struct ListTracesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.projectId, forKey: .projectId)
-    try container.encode(self.view, forKey: .view)
+    if self.view != ListTracesRequest.ViewType() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)

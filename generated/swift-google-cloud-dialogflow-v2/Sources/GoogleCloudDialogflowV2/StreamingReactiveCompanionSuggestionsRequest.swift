@@ -113,11 +113,11 @@
       if let choice = self.input {
         switch choice {
         case .textInput(let value):
-          try container.encode(value, forKey: .textInput)
+          try container.encodeIfPresent(value, forKey: .textInput)
         case .cancelReactiveQuery(let value):
-          try container.encode(value, forKey: .cancelReactiveQuery)
+          try container.encodeIfPresent(value, forKey: .cancelReactiveQuery)
         case .suggestionInput(let value):
-          try container.encode(value, forKey: .suggestionInput)
+          try container.encodeIfPresent(value, forKey: .suggestionInput)
         }
       }
       for (key, value) in self._unknownFields.json {

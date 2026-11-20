@@ -253,7 +253,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.issuerCertificateAuthority, forKey: .issuerCertificateAuthority)
     try container.encodeIfPresent(self.lifetime, forKey: .lifetime)
     try container.encode(self.certificateTemplate, forKey: .certificateTemplate)
-    try container.encode(self.subjectMode, forKey: .subjectMode)
+    if self.subjectMode != SubjectRequestMode() {
+      try container.encode(self.subjectMode, forKey: .subjectMode)
+    }
     try container.encodeIfPresent(self.revocationDetails, forKey: .revocationDetails)
     try container.encode(self.pemCertificate, forKey: .pemCertificate)
     try container.encodeIfPresent(self.certificateDescription, forKey: .certificateDescription)
@@ -266,9 +268,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.certificateConfig {
       switch choice {
       case .pemCsr(let value):
-        try container.encode(value, forKey: .pemCsr)
+        try container.encodeIfPresent(value, forKey: .pemCsr)
       case .config(let value):
-        try container.encode(value, forKey: .config)
+        try container.encodeIfPresent(value, forKey: .config)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -347,7 +349,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.revocationState, forKey: .revocationState)
+      if self.revocationState != RevocationReason() {
+        try container.encode(self.revocationState, forKey: .revocationState)
+      }
       try container.encodeIfPresent(self.revocationTime, forKey: .revocationTime)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

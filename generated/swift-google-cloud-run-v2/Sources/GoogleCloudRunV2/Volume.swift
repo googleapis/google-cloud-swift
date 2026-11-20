@@ -115,15 +115,15 @@ public struct Volume: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.volumeType {
       switch choice {
       case .secret(let value):
-        try container.encode(value, forKey: .secret)
+        try container.encodeIfPresent(value, forKey: .secret)
       case .cloudSqlInstance(let value):
-        try container.encode(value, forKey: .cloudSqlInstance)
+        try container.encodeIfPresent(value, forKey: .cloudSqlInstance)
       case .emptyDir(let value):
-        try container.encode(value, forKey: .emptyDir)
+        try container.encodeIfPresent(value, forKey: .emptyDir)
       case .nfs(let value):
-        try container.encode(value, forKey: .nfs)
+        try container.encodeIfPresent(value, forKey: .nfs)
       case .gcs(let value):
-        try container.encode(value, forKey: .gcs)
+        try container.encodeIfPresent(value, forKey: .gcs)
       }
     }
     for (key, value) in self._unknownFields.json {

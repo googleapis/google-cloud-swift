@@ -472,15 +472,23 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Instance.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.stateInfo, forKey: .stateInfo)
     try container.encode(self.uid, forKey: .uid)
     try container.encodeIfPresent(self.replicaCount, forKey: .replicaCount)
-    try container.encode(self.authorizationMode, forKey: .authorizationMode)
-    try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    if self.authorizationMode != Instance.AuthorizationMode() {
+      try container.encode(self.authorizationMode, forKey: .authorizationMode)
+    }
+    if self.transitEncryptionMode != Instance.TransitEncryptionMode() {
+      try container.encode(self.transitEncryptionMode, forKey: .transitEncryptionMode)
+    }
     try container.encode(self.shardCount, forKey: .shardCount)
     try container.encode(self.discoveryEndpoints, forKey: .discoveryEndpoints)
-    try container.encode(self.nodeType, forKey: .nodeType)
+    if self.nodeType != Instance.NodeType() {
+      try container.encode(self.nodeType, forKey: .nodeType)
+    }
     try container.encodeIfPresent(self.persistenceConfig, forKey: .persistenceConfig)
     try container.encode(self.engineVersion, forKey: .engineVersion)
     try container.encode(self.engineConfigs, forKey: .engineConfigs)
@@ -491,7 +499,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pscAutoConnections, forKey: .pscAutoConnections)
     try container.encode(self.pscAttachmentDetails, forKey: .pscAttachmentDetails)
     try container.encode(self.endpoints, forKey: .endpoints)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != Instance.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encodeIfPresent(self.simulateMaintenanceEvent, forKey: .simulateMaintenanceEvent)
     try container.encodeIfPresent(self.ondemandMaintenance, forKey: .ondemandMaintenance)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
@@ -521,9 +531,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.importSources {
       switch choice {
       case .gcsSource(let value):
-        try container.encode(value, forKey: .gcsSource)
+        try container.encodeIfPresent(value, forKey: .gcsSource)
       case .managedBackupSource(let value):
-        try container.encode(value, forKey: .managedBackupSource)
+        try container.encodeIfPresent(value, forKey: .managedBackupSource)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -600,7 +610,7 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.info {
         switch choice {
         case .updateInfo(let value):
-          try container.encode(value, forKey: .updateInfo)
+          try container.encodeIfPresent(value, forKey: .updateInfo)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -1068,9 +1078,9 @@ public struct Instance: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.connection {
         switch choice {
         case .pscAutoConnection(let value):
-          try container.encode(value, forKey: .pscAutoConnection)
+          try container.encodeIfPresent(value, forKey: .pscAutoConnection)
         case .pscConnection(let value):
-          try container.encode(value, forKey: .pscConnection)
+          try container.encodeIfPresent(value, forKey: .pscConnection)
         }
       }
       for (key, value) in self._unknownFields.json {

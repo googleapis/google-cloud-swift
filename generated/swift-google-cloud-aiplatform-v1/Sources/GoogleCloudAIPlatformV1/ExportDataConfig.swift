@@ -209,21 +209,23 @@
       try container.encode(self.annotationsFilter, forKey: .annotationsFilter)
       try container.encode(self.savedQueryId, forKey: .savedQueryId)
       try container.encode(self.annotationSchemaUri, forKey: .annotationSchemaUri)
-      try container.encode(self.exportUse, forKey: .exportUse)
+      if self.exportUse != ExportDataConfig.ExportUse() {
+        try container.encode(self.exportUse, forKey: .exportUse)
+      }
 
       if let choice = self.destination {
         switch choice {
         case .gcsDestination(let value):
-          try container.encode(value, forKey: .gcsDestination)
+          try container.encodeIfPresent(value, forKey: .gcsDestination)
         }
       }
 
       if let choice = self.split {
         switch choice {
         case .fractionSplit(let value):
-          try container.encode(value, forKey: .fractionSplit)
+          try container.encodeIfPresent(value, forKey: .fractionSplit)
         case .filterSplit(let value):
-          try container.encode(value, forKey: .filterSplit)
+          try container.encodeIfPresent(value, forKey: .filterSplit)
         }
       }
       for (key, value) in self._unknownFields.json {

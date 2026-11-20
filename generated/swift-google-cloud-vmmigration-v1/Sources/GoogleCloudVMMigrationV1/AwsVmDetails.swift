@@ -225,20 +225,28 @@ public struct AwsVmDetails: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.sourceId, forKey: .sourceId)
     try container.encode(self.sourceDescription, forKey: .sourceDescription)
-    try container.encode(self.powerState, forKey: .powerState)
+    if self.powerState != AwsVmDetails.PowerState() {
+      try container.encode(self.powerState, forKey: .powerState)
+    }
     try container.encode(self.cpuCount, forKey: .cpuCount)
     try container.encode(self.memoryMb, forKey: .memoryMb)
     try container.encode(self.diskCount, forKey: .diskCount)
     try container.encode(self.committedStorageMb, forKey: .committedStorageMb)
     try container.encode(self.osDescription, forKey: .osDescription)
-    try container.encode(self.bootOption, forKey: .bootOption)
+    if self.bootOption != AwsVmDetails.BootOption() {
+      try container.encode(self.bootOption, forKey: .bootOption)
+    }
     try container.encode(self.instanceType, forKey: .instanceType)
     try container.encode(self.vpcId, forKey: .vpcId)
     try container.encode(self.securityGroups, forKey: .securityGroups)
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.zone, forKey: .zone)
-    try container.encode(self.virtualizationType, forKey: .virtualizationType)
-    try container.encode(self.architecture, forKey: .architecture)
+    if self.virtualizationType != AwsVmDetails.VmVirtualizationType() {
+      try container.encode(self.virtualizationType, forKey: .virtualizationType)
+    }
+    if self.architecture != AwsVmDetails.VmArchitecture() {
+      try container.encode(self.architecture, forKey: .architecture)
+    }
     try container.encode(self.vcpuCount, forKey: .vcpuCount)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

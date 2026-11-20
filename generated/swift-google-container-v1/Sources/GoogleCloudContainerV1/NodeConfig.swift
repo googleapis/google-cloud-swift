@@ -605,7 +605,9 @@ public struct NodeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.gpuDirectConfig, forKey: .gpuDirectConfig)
     try container.encodeIfPresent(self.maxRunDuration, forKey: .maxRunDuration)
     try container.encodeIfPresent(self.localSsdEncryptionMode, forKey: .localSsdEncryptionMode)
-    try container.encode(self.effectiveCgroupMode, forKey: .effectiveCgroupMode)
+    if self.effectiveCgroupMode != NodeConfig.EffectiveCgroupMode() {
+      try container.encode(self.effectiveCgroupMode, forKey: .effectiveCgroupMode)
+    }
     try container.encodeIfPresent(self.flexStart, forKey: .flexStart)
     try container.encodeIfPresent(self.bootDisk, forKey: .bootDisk)
     try container.encodeIfPresent(self.consolidationDelay, forKey: .consolidationDelay)

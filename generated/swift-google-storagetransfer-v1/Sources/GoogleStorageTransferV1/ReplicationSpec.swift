@@ -131,14 +131,14 @@ public struct ReplicationSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dataSource {
       switch choice {
       case .gcsDataSource(let value):
-        try container.encode(value, forKey: .gcsDataSource)
+        try container.encodeIfPresent(value, forKey: .gcsDataSource)
       }
     }
 
     if let choice = self.dataSink {
       switch choice {
       case .gcsDataSink(let value):
-        try container.encode(value, forKey: .gcsDataSink)
+        try container.encodeIfPresent(value, forKey: .gcsDataSink)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -225,17 +225,23 @@ public struct ApplicationTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.applicationParameters, forKey: .applicationParameters)
-    try container.encode(self.iacFormat, forKey: .iacFormat)
+    if self.iacFormat != ApplicationTemplate.IACFormat() {
+      try container.encode(self.iacFormat, forKey: .iacFormat)
+    }
     try container.encodeIfPresent(
       self.serializedApplicationTemplate, forKey: .serializedApplicationTemplate)
     try container.encode(self.latestRevision, forKey: .latestRevision)
     try container.encodeIfPresent(self.artifactLocation, forKey: .artifactLocation)
-    try container.encode(self.compositionType, forKey: .compositionType)
+    if self.compositionType != ApplicationCompositionType() {
+      try container.encode(self.compositionType, forKey: .compositionType)
+    }
     try container.encode(self.rootInputVariables, forKey: .rootInputVariables)
     try container.encode(self.rootOutputVariables, forKey: .rootOutputVariables)
     try container.encodeIfPresent(self.saasRuntimeContext, forKey: .saasRuntimeContext)
     try container.encode(self.latestSystemRevisionUri, forKey: .latestSystemRevisionUri)
-    try container.encode(self.iacSource, forKey: .iacSource)
+    if self.iacSource != IACSource() {
+      try container.encode(self.iacSource, forKey: .iacSource)
+    }
     try container.encodeIfPresent(self.templateMetadata, forKey: .templateMetadata)
     try container.encode(self.inputsAsRootModuleVariables, forKey: .inputsAsRootModuleVariables)
     for (key, value) in self._unknownFields.json {

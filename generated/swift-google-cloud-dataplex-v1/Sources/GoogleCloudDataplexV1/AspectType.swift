@@ -170,10 +170,14 @@ public struct AspectType: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.dataClassification, forKey: .dataClassification)
+    if self.dataClassification != AspectType.DataClassification() {
+      try container.encode(self.dataClassification, forKey: .dataClassification)
+    }
     try container.encodeIfPresent(self.authorization, forKey: .authorization)
     try container.encodeIfPresent(self.metadataTemplate, forKey: .metadataTemplate)
-    try container.encode(self.transferStatus, forKey: .transferStatus)
+    if self.transferStatus != TransferStatus() {
+      try container.encode(self.transferStatus, forKey: .transferStatus)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

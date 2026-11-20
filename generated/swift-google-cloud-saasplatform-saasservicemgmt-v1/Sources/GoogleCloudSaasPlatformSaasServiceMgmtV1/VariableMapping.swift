@@ -99,9 +99,9 @@ public struct VariableMapping: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.mappingType {
       switch choice {
       case .from(let value):
-        try container.encode(value, forKey: .from)
+        try container.encodeIfPresent(value, forKey: .from)
       case .to(let value):
-        try container.encode(value, forKey: .to)
+        try container.encodeIfPresent(value, forKey: .to)
       }
     }
     for (key, value) in self._unknownFields.json {

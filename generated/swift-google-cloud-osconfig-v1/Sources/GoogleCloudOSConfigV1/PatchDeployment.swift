@@ -182,14 +182,16 @@ public struct PatchDeployment: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.lastExecuteTime, forKey: .lastExecuteTime)
     try container.encodeIfPresent(self.rollout, forKey: .rollout)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PatchDeployment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
 
     if let choice = self.schedule {
       switch choice {
       case .oneTimeSchedule(let value):
-        try container.encode(value, forKey: .oneTimeSchedule)
+        try container.encodeIfPresent(value, forKey: .oneTimeSchedule)
       case .recurringSchedule(let value):
-        try container.encode(value, forKey: .recurringSchedule)
+        try container.encodeIfPresent(value, forKey: .recurringSchedule)
       }
     }
     for (key, value) in self._unknownFields.json {

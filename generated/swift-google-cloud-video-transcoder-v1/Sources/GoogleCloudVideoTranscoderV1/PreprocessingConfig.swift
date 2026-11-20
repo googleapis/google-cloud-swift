@@ -817,9 +817,9 @@ public struct PreprocessingConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.deinterlacingFilter {
         switch choice {
         case .yadif(let value):
-          try container.encode(value, forKey: .yadif)
+          try container.encodeIfPresent(value, forKey: .yadif)
         case .bwdif(let value):
-          try container.encode(value, forKey: .bwdif)
+          try container.encodeIfPresent(value, forKey: .bwdif)
         }
       }
       for (key, value) in self._unknownFields.json {

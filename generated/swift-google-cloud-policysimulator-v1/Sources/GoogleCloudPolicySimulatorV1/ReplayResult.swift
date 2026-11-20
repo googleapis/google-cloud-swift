@@ -138,9 +138,9 @@ public struct ReplayResult: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.result {
       switch choice {
       case .diff(let value):
-        try container.encode(value, forKey: .diff)
+        try container.encodeIfPresent(value, forKey: .diff)
       case .error(let value):
-        try container.encode(value, forKey: .error)
+        try container.encodeIfPresent(value, forKey: .error)
       }
     }
     for (key, value) in self._unknownFields.json {

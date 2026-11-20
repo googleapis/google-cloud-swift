@@ -93,7 +93,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.fieldName, forKey: .fieldName)
       try container.encode(self.guidance, forKey: .guidance)
-      try container.encode(self.fieldType, forKey: .fieldType)
+      if self.fieldType != OutputFieldSpec.FieldType() {
+        try container.encode(self.fieldType, forKey: .fieldType)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

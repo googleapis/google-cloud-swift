@@ -263,7 +263,9 @@ public struct GceClusterConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.networkUri, forKey: .networkUri)
     try container.encode(self.subnetworkUri, forKey: .subnetworkUri)
     try container.encodeIfPresent(self.internalIpOnly, forKey: .internalIpOnly)
-    try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+    if self.privateIpv6GoogleAccess != GceClusterConfig.PrivateIpv6GoogleAccess() {
+      try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+    }
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.serviceAccountScopes, forKey: .serviceAccountScopes)
     try container.encode(self.tags, forKey: .tags)

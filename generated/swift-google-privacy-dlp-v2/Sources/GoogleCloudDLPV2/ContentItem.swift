@@ -115,15 +115,15 @@ public struct ContentItem: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dataItem {
       switch choice {
       case .value(let value):
-        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(value, forKey: .value)
       case .table(let value):
-        try container.encode(value, forKey: .table)
+        try container.encodeIfPresent(value, forKey: .table)
       case .byteItem(let value):
-        try container.encode(value, forKey: .byteItem)
+        try container.encodeIfPresent(value, forKey: .byteItem)
       case .conversation(let value):
-        try container.encode(value, forKey: .conversation)
+        try container.encodeIfPresent(value, forKey: .conversation)
       case .batchContentItem(let value):
-        try container.encode(value, forKey: .batchContentItem)
+        try container.encodeIfPresent(value, forKey: .batchContentItem)
       }
     }
     for (key, value) in self._unknownFields.json {

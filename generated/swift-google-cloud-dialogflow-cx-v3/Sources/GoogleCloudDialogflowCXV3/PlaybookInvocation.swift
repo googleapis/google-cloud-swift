@@ -105,7 +105,9 @@
       try container.encode(self.displayName, forKey: .displayName)
       try container.encodeIfPresent(self.playbookInput, forKey: .playbookInput)
       try container.encodeIfPresent(self.playbookOutput, forKey: .playbookOutput)
-      try container.encode(self.playbookState, forKey: .playbookState)
+      if self.playbookState != OutputState() {
+        try container.encode(self.playbookState, forKey: .playbookState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

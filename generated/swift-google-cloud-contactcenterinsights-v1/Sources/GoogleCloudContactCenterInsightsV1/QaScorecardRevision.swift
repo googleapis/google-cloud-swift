@@ -111,7 +111,9 @@ public struct QaScorecardRevision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.snapshot, forKey: .snapshot)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.alternateIds, forKey: .alternateIds)
-    try container.encode(self.state, forKey: .state)
+    if self.state != QaScorecardRevision.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -406,7 +406,9 @@
         try container.encode(self.enableQuerySuggestionOnly, forKey: .enableQuerySuggestionOnly)
         try container.encode(self.enableResponseDebugInfo, forKey: .enableResponseDebugInfo)
         try container.encodeIfPresent(self.raiSettings, forKey: .raiSettings)
-        try container.encode(self.suggestionTriggerEvent, forKey: .suggestionTriggerEvent)
+        if self.suggestionTriggerEvent != GoogleCloudDialogflowV2.TriggerEvent() {
+          try container.encode(self.suggestionTriggerEvent, forKey: .suggestionTriggerEvent)
+        }
         try container.encode(self.disableQuerySearchContext, forKey: .disableQuerySearchContext)
         try container.encodeIfPresent(
           self.suggestionTriggerSettings, forKey: .suggestionTriggerSettings)
@@ -801,11 +803,11 @@
         if let choice = self.querySource {
           switch choice {
           case .knowledgeBaseQuerySource(let value):
-            try container.encode(value, forKey: .knowledgeBaseQuerySource)
+            try container.encodeIfPresent(value, forKey: .knowledgeBaseQuerySource)
           case .documentQuerySource(let value):
-            try container.encode(value, forKey: .documentQuerySource)
+            try container.encodeIfPresent(value, forKey: .documentQuerySource)
           case .dialogflowQuerySource(let value):
-            try container.encode(value, forKey: .dialogflowQuerySource)
+            try container.encodeIfPresent(value, forKey: .dialogflowQuerySource)
           }
         }
         for (key, value) in self._unknownFields.json {

@@ -88,7 +88,7 @@
       if let choice = self.output {
         switch choice {
         case .multiTrialJobOutput(let value):
-          try container.encode(value, forKey: .multiTrialJobOutput)
+          try container.encodeIfPresent(value, forKey: .multiTrialJobOutput)
         }
       }
       for (key, value) in self._unknownFields.json {

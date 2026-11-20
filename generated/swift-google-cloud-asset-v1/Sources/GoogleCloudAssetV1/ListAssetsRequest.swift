@@ -161,7 +161,9 @@ public struct ListAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encodeIfPresent(self.readTime, forKey: .readTime)
     try container.encode(self.assetTypes, forKey: .assetTypes)
-    try container.encode(self.contentType, forKey: .contentType)
+    if self.contentType != ContentType() {
+      try container.encode(self.contentType, forKey: .contentType)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.relationshipTypes, forKey: .relationshipTypes)

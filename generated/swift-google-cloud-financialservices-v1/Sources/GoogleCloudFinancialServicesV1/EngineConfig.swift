@@ -163,12 +163,18 @@ public struct EngineConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.state, forKey: .state)
+    if self.state != EngineConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.engineVersion, forKey: .engineVersion)
     try container.encodeIfPresent(self.tuning, forKey: .tuning)
     try container.encodeIfPresent(self.performanceTarget, forKey: .performanceTarget)
-    try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
-    try container.encode(self.hyperparameterSourceType, forKey: .hyperparameterSourceType)
+    if self.lineOfBusiness != LineOfBusiness() {
+      try container.encode(self.lineOfBusiness, forKey: .lineOfBusiness)
+    }
+    if self.hyperparameterSourceType != EngineConfig.HyperparameterSourceType() {
+      try container.encode(self.hyperparameterSourceType, forKey: .hyperparameterSourceType)
+    }
     try container.encodeIfPresent(self.hyperparameterSource, forKey: .hyperparameterSource)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

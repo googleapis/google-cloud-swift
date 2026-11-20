@@ -142,7 +142,9 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.message, forKey: .message)
     try container.encode(self.userId, forKey: .userId)
     try container.encode(self.sessionId, forKey: .sessionId)
-    try container.encode(self.type, forKey: .type)
+    if self.type != SessionEvent.EventType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.eventSucceeded, forKey: .eventSucceeded)
     try container.encode(self.fastStartupEnabled, forKey: .fastStartupEnabled)
     try container.encodeIfPresent(self.unassignedDuration, forKey: .unassignedDuration)
@@ -150,7 +152,7 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.detail {
       switch choice {
       case .query(let value):
-        try container.encode(value, forKey: .query)
+        try container.encodeIfPresent(value, forKey: .query)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -252,7 +254,9 @@ public struct SessionEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.queryId, forKey: .queryId)
       try container.encode(self.queryText, forKey: .queryText)
-      try container.encode(self.engine, forKey: .engine)
+      if self.engine != SessionEvent.QueryDetail.Engine() {
+        try container.encode(self.engine, forKey: .engine)
+      }
       try container.encodeIfPresent(self.duration, forKey: .duration)
       try container.encode(self.resultSizeBytes, forKey: .resultSizeBytes)
       try container.encode(self.dataProcessedBytes, forKey: .dataProcessedBytes)

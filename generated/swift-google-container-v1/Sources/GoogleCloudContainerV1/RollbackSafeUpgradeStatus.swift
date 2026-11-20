@@ -88,7 +88,9 @@ public struct RollbackSafeUpgradeStatus: Codable, Equatable, GoogleWKT._AnyPacka
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != RollbackSafeUpgradeStatus.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encodeIfPresent(
       self.controlPlaneUpgradeRollbackEndTime, forKey: .controlPlaneUpgradeRollbackEndTime)
     try container.encode(self.previousVersion, forKey: .previousVersion)

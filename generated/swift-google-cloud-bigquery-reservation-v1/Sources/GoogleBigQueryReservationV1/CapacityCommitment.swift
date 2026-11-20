@@ -192,14 +192,22 @@ public struct CapacityCommitment: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.slotCount, forKey: .slotCount)
-    try container.encode(self.plan, forKey: .plan)
-    try container.encode(self.state, forKey: .state)
+    if self.plan != CapacityCommitment.CommitmentPlan() {
+      try container.encode(self.plan, forKey: .plan)
+    }
+    if self.state != CapacityCommitment.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.commitmentStartTime, forKey: .commitmentStartTime)
     try container.encodeIfPresent(self.commitmentEndTime, forKey: .commitmentEndTime)
     try container.encodeIfPresent(self.failureStatus, forKey: .failureStatus)
-    try container.encode(self.renewalPlan, forKey: .renewalPlan)
+    if self.renewalPlan != CapacityCommitment.CommitmentPlan() {
+      try container.encode(self.renewalPlan, forKey: .renewalPlan)
+    }
     try container.encode(self.multiRegionAuxiliary, forKey: .multiRegionAuxiliary)
-    try container.encode(self.edition, forKey: .edition)
+    if self.edition != Edition() {
+      try container.encode(self.edition, forKey: .edition)
+    }
     try container.encode(self.isFlatRate, forKey: .isFlatRate)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -89,7 +89,9 @@ public struct UpdateGlossaryMetadata: Codable, Equatable, GoogleWKT._AnyPackable
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.glossary, forKey: .glossary)
-    try container.encode(self.state, forKey: .state)
+    if self.state != UpdateGlossaryMetadata.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.submitTime, forKey: .submitTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

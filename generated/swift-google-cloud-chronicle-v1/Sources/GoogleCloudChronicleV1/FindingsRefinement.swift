@@ -128,7 +128,9 @@ public struct FindingsRefinement: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.type, forKey: .type)
+    if self.type != FindingsRefinementType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.query, forKey: .query)

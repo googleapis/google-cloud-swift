@@ -79,7 +79,9 @@ public struct DataSourceBackupConfigInfo: Codable, Equatable, GoogleWKT._AnyPack
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.lastBackupState, forKey: .lastBackupState)
+    if self.lastBackupState != BackupConfigInfo.LastBackupState() {
+      try container.encode(self.lastBackupState, forKey: .lastBackupState)
+    }
     try container.encodeIfPresent(
       self.lastSuccessfulBackupConsistencyTime, forKey: .lastSuccessfulBackupConsistencyTime)
     for (key, value) in self._unknownFields.json {

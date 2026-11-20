@@ -136,7 +136,9 @@ public struct AttackExposure: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.score, forKey: .score)
     try container.encodeIfPresent(self.latestCalculationTime, forKey: .latestCalculationTime)
     try container.encode(self.attackExposureResult, forKey: .attackExposureResult)
-    try container.encode(self.state, forKey: .state)
+    if self.state != AttackExposure.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(
       self.exposedHighValueResourcesCount, forKey: .exposedHighValueResourcesCount)
     try container.encode(

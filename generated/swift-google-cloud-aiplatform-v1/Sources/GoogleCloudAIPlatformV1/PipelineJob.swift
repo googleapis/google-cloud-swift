@@ -277,7 +277,9 @@
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encodeIfPresent(self.pipelineSpec, forKey: .pipelineSpec)
-      try container.encode(self.state, forKey: .state)
+      if self.state != PipelineState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.jobDetail, forKey: .jobDetail)
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encode(self.labels, forKey: .labels)
@@ -429,7 +431,9 @@
         try container.encode(self.parameters, forKey: .parameters)
         try container.encode(self.gcsOutputDirectory, forKey: .gcsOutputDirectory)
         try container.encode(self.parameterValues, forKey: .parameterValues)
-        try container.encode(self.failurePolicy, forKey: .failurePolicy)
+        if self.failurePolicy != PipelineFailurePolicy() {
+          try container.encode(self.failurePolicy, forKey: .failurePolicy)
+        }
         try container.encode(self.inputArtifacts, forKey: .inputArtifacts)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -504,7 +508,7 @@
           if let choice = self.kind {
             switch choice {
             case .artifactId(let value):
-              try container.encode(value, forKey: .artifactId)
+              try container.encodeIfPresent(value, forKey: .artifactId)
             }
           }
           for (key, value) in self._unknownFields.json {

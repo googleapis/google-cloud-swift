@@ -110,10 +110,14 @@ public struct Authentication: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Authentication.AuthType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.mechanism, forKey: .mechanism)
     try container.encode(self.authDetails, forKey: .authDetails)
-    try container.encode(self.outcome, forKey: .outcome)
+    if self.outcome != Authentication.Outcome() {
+      try container.encode(self.outcome, forKey: .outcome)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

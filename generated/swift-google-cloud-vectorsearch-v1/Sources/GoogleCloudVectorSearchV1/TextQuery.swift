@@ -98,7 +98,9 @@ public struct TextQuery: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.text, forKey: .text)
     try container.encode(self.fields, forKey: .fields)
-    try container.encode(self.matchType, forKey: .matchType)
+    if self.matchType != TextQuery.MatchType() {
+      try container.encode(self.matchType, forKey: .matchType)
+    }
     try container.encodeIfPresent(self.queryEnhancement, forKey: .queryEnhancement)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

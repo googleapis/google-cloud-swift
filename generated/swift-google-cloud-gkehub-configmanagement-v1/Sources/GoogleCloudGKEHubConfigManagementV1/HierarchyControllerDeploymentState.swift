@@ -77,8 +77,12 @@ public struct HierarchyControllerDeploymentState: Codable, Equatable, GoogleWKT.
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.hnc, forKey: .hnc)
-    try container.encode(self.`extension`, forKey: .`extension`)
+    if self.hnc != DeploymentState() {
+      try container.encode(self.hnc, forKey: .hnc)
+    }
+    if self.`extension` != DeploymentState() {
+      try container.encode(self.`extension`, forKey: .`extension`)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

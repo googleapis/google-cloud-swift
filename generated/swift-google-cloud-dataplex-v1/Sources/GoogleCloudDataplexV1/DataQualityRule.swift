@@ -273,25 +273,25 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.ruleType {
       switch choice {
       case .rangeExpectation(let value):
-        try container.encode(value, forKey: .rangeExpectation)
+        try container.encodeIfPresent(value, forKey: .rangeExpectation)
       case .nonNullExpectation(let value):
-        try container.encode(value, forKey: .nonNullExpectation)
+        try container.encodeIfPresent(value, forKey: .nonNullExpectation)
       case .setExpectation(let value):
-        try container.encode(value, forKey: .setExpectation)
+        try container.encodeIfPresent(value, forKey: .setExpectation)
       case .regexExpectation(let value):
-        try container.encode(value, forKey: .regexExpectation)
+        try container.encodeIfPresent(value, forKey: .regexExpectation)
       case .uniquenessExpectation(let value):
-        try container.encode(value, forKey: .uniquenessExpectation)
+        try container.encodeIfPresent(value, forKey: .uniquenessExpectation)
       case .statisticRangeExpectation(let value):
-        try container.encode(value, forKey: .statisticRangeExpectation)
+        try container.encodeIfPresent(value, forKey: .statisticRangeExpectation)
       case .rowConditionExpectation(let value):
-        try container.encode(value, forKey: .rowConditionExpectation)
+        try container.encodeIfPresent(value, forKey: .rowConditionExpectation)
       case .tableConditionExpectation(let value):
-        try container.encode(value, forKey: .tableConditionExpectation)
+        try container.encodeIfPresent(value, forKey: .tableConditionExpectation)
       case .sqlAssertion(let value):
-        try container.encode(value, forKey: .sqlAssertion)
+        try container.encodeIfPresent(value, forKey: .sqlAssertion)
       case .templateReference(let value):
-        try container.encode(value, forKey: .templateReference)
+        try container.encodeIfPresent(value, forKey: .templateReference)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -814,7 +814,9 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.statistic, forKey: .statistic)
+      if self.statistic != DataQualityRule.StatisticRangeExpectation.ColumnStatistic() {
+        try container.encode(self.statistic, forKey: .statistic)
+      }
       try container.encode(self.minValue, forKey: .minValue)
       try container.encode(self.maxValue, forKey: .maxValue)
       try container.encode(self.strictMinEnabled, forKey: .strictMinEnabled)
@@ -1579,9 +1581,9 @@ public struct DataQualityRule: Codable, Equatable, GoogleWKT._AnyPackable,
         if let choice = self.sourceType {
           switch choice {
           case .entrySource(let value):
-            try container.encode(value, forKey: .entrySource)
+            try container.encodeIfPresent(value, forKey: .entrySource)
           case .entryLinkSource(let value):
-            try container.encode(value, forKey: .entryLinkSource)
+            try container.encodeIfPresent(value, forKey: .entryLinkSource)
           }
         }
         for (key, value) in self._unknownFields.json {

@@ -124,19 +124,21 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.sampleStrategy, forKey: .sampleStrategy)
+      if self.sampleStrategy != SampleConfig.SampleStrategy() {
+        try container.encode(self.sampleStrategy, forKey: .sampleStrategy)
+      }
 
       if let choice = self.initialBatchSampleSize {
         switch choice {
         case .initialBatchSamplePercentage(let value):
-          try container.encode(value, forKey: .initialBatchSamplePercentage)
+          try container.encodeIfPresent(value, forKey: .initialBatchSamplePercentage)
         }
       }
 
       if let choice = self.followingBatchSampleSize {
         switch choice {
         case .followingBatchSamplePercentage(let value):
-          try container.encode(value, forKey: .followingBatchSamplePercentage)
+          try container.encodeIfPresent(value, forKey: .followingBatchSamplePercentage)
         }
       }
       for (key, value) in self._unknownFields.json {

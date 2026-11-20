@@ -237,7 +237,9 @@ public struct TransferJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.loggingConfig, forKey: .loggingConfig)
     try container.encodeIfPresent(self.schedule, forKey: .schedule)
     try container.encodeIfPresent(self.eventStream, forKey: .eventStream)
-    try container.encode(self.status, forKey: .status)
+    if self.status != TransferJob.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
     try container.encodeIfPresent(self.lastModificationTime, forKey: .lastModificationTime)
     try container.encodeIfPresent(self.deletionTime, forKey: .deletionTime)

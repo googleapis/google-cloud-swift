@@ -112,11 +112,11 @@ public struct CycleStep: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.step {
       switch choice {
       case .initializingReplication(let value):
-        try container.encode(value, forKey: .initializingReplication)
+        try container.encodeIfPresent(value, forKey: .initializingReplication)
       case .replicating(let value):
-        try container.encode(value, forKey: .replicating)
+        try container.encodeIfPresent(value, forKey: .replicating)
       case .postProcessing(let value):
-        try container.encode(value, forKey: .postProcessing)
+        try container.encodeIfPresent(value, forKey: .postProcessing)
       }
     }
     for (key, value) in self._unknownFields.json {

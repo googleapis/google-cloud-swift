@@ -193,7 +193,9 @@ public struct ProvisioningConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.ticketId, forKey: .ticketId)
     try container.encode(self.handoverServiceAccount, forKey: .handoverServiceAccount)
     try container.encode(self.email, forKey: .email)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ProvisioningConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.location, forKey: .location)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.cloudConsoleUri, forKey: .cloudConsoleUri)

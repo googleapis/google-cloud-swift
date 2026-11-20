@@ -137,8 +137,12 @@ public struct RolloutUpdateEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.release, forKey: .release)
     try container.encode(self.rollout, forKey: .rollout)
     try container.encode(self.targetId, forKey: .targetId)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.rolloutUpdateType, forKey: .rolloutUpdateType)
+    if self.type != GoogleCloudDeployV1.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.rolloutUpdateType != RolloutUpdateEvent.RolloutUpdateType() {
+      try container.encode(self.rolloutUpdateType, forKey: .rolloutUpdateType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

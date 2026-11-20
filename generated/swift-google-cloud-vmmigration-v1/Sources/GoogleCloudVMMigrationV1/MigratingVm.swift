@@ -301,7 +301,9 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.lastSync, forKey: .lastSync)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MigratingVm.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.stateTime, forKey: .stateTime)
     try container.encodeIfPresent(self.currentSyncInfo, forKey: .currentSyncInfo)
     try container.encodeIfPresent(self.lastReplicationCycle, forKey: .lastReplicationCycle)
@@ -316,20 +318,20 @@ public struct MigratingVm: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.targetVmDefaults {
       switch choice {
       case .computeEngineTargetDefaults(let value):
-        try container.encode(value, forKey: .computeEngineTargetDefaults)
+        try container.encodeIfPresent(value, forKey: .computeEngineTargetDefaults)
       case .computeEngineDisksTargetDefaults(let value):
-        try container.encode(value, forKey: .computeEngineDisksTargetDefaults)
+        try container.encodeIfPresent(value, forKey: .computeEngineDisksTargetDefaults)
       }
     }
 
     if let choice = self.sourceVmDetails {
       switch choice {
       case .vmwareSourceVmDetails(let value):
-        try container.encode(value, forKey: .vmwareSourceVmDetails)
+        try container.encodeIfPresent(value, forKey: .vmwareSourceVmDetails)
       case .awsSourceVmDetails(let value):
-        try container.encode(value, forKey: .awsSourceVmDetails)
+        try container.encodeIfPresent(value, forKey: .awsSourceVmDetails)
       case .azureSourceVmDetails(let value):
-        try container.encode(value, forKey: .azureSourceVmDetails)
+        try container.encodeIfPresent(value, forKey: .azureSourceVmDetails)
       }
     }
     for (key, value) in self._unknownFields.json {

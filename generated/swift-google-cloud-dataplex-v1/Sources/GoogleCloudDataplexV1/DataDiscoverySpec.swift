@@ -95,7 +95,7 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceConfig {
       switch choice {
       case .storageConfig(let value):
-        try container.encode(value, forKey: .storageConfig)
+        try container.encodeIfPresent(value, forKey: .storageConfig)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -208,7 +208,9 @@ public struct DataDiscoverySpec: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.tableType, forKey: .tableType)
+      if self.tableType != DataDiscoverySpec.BigQueryPublishingConfig.TableType() {
+        try container.encode(self.tableType, forKey: .tableType)
+      }
       try container.encode(self.connection, forKey: .connection)
       try container.encode(self.location, forKey: .location)
       try container.encode(self.project, forKey: .project)

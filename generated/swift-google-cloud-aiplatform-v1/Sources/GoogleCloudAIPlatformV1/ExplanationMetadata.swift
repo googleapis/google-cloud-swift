@@ -366,7 +366,9 @@
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.inputBaselines, forKey: .inputBaselines)
         try container.encode(self.inputTensorName, forKey: .inputTensorName)
-        try container.encode(self.encoding, forKey: .encoding)
+        if self.encoding != ExplanationMetadata.InputMetadata.Encoding() {
+          try container.encode(self.encoding, forKey: .encoding)
+        }
         try container.encode(self.modality, forKey: .modality)
         try container.encodeIfPresent(self.featureValueDomain, forKey: .featureValueDomain)
         try container.encode(self.indicesTensorName, forKey: .indicesTensorName)
@@ -636,12 +638,20 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.type, forKey: .type)
-          try container.encode(self.polarity, forKey: .polarity)
-          try container.encode(self.colorMap, forKey: .colorMap)
+          if self.type != ExplanationMetadata.InputMetadata.Visualization.Type_() {
+            try container.encode(self.type, forKey: .type)
+          }
+          if self.polarity != ExplanationMetadata.InputMetadata.Visualization.Polarity() {
+            try container.encode(self.polarity, forKey: .polarity)
+          }
+          if self.colorMap != ExplanationMetadata.InputMetadata.Visualization.ColorMap() {
+            try container.encode(self.colorMap, forKey: .colorMap)
+          }
           try container.encode(self.clipPercentUpperbound, forKey: .clipPercentUpperbound)
           try container.encode(self.clipPercentLowerbound, forKey: .clipPercentLowerbound)
-          try container.encode(self.overlayType, forKey: .overlayType)
+          if self.overlayType != ExplanationMetadata.InputMetadata.Visualization.OverlayType() {
+            try container.encode(self.overlayType, forKey: .overlayType)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -1514,9 +1524,9 @@
         if let choice = self.displayNameMapping {
           switch choice {
           case .indexDisplayNameMapping(let value):
-            try container.encode(value, forKey: .indexDisplayNameMapping)
+            try container.encodeIfPresent(value, forKey: .indexDisplayNameMapping)
           case .displayNameMappingKey(let value):
-            try container.encode(value, forKey: .displayNameMappingKey)
+            try container.encodeIfPresent(value, forKey: .displayNameMappingKey)
           }
         }
         for (key, value) in self._unknownFields.json {

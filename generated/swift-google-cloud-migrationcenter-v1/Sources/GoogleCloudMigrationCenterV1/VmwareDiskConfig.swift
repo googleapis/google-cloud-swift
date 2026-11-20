@@ -99,10 +99,16 @@ public struct VmwareDiskConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.backingType, forKey: .backingType)
+    if self.backingType != VmwareDiskConfig.BackingType() {
+      try container.encode(self.backingType, forKey: .backingType)
+    }
     try container.encode(self.shared, forKey: .shared)
-    try container.encode(self.vmdkMode, forKey: .vmdkMode)
-    try container.encode(self.rdmCompatibility, forKey: .rdmCompatibility)
+    if self.vmdkMode != VmwareDiskConfig.VmdkMode() {
+      try container.encode(self.vmdkMode, forKey: .vmdkMode)
+    }
+    if self.rdmCompatibility != VmwareDiskConfig.RdmCompatibility() {
+      try container.encode(self.rdmCompatibility, forKey: .rdmCompatibility)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

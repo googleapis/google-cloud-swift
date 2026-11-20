@@ -483,7 +483,9 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.suggestionType, forKey: .suggestionType)
+        if self.suggestionType != AdvancedCompleteQueryRequest.SuggestionType() {
+          try container.encode(self.suggestionType, forKey: .suggestionType)
+        }
         try container.encode(self.maxSuggestions, forKey: .maxSuggestions)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

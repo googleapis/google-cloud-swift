@@ -126,7 +126,9 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.direction, forKey: .direction)
+    if self.direction != IpRules.Direction() {
+      try container.encode(self.direction, forKey: .direction)
+    }
     try container.encode(self.sourceIpRanges, forKey: .sourceIpRanges)
     try container.encode(self.destinationIpRanges, forKey: .destinationIpRanges)
     try container.encode(self.exposedServices, forKey: .exposedServices)
@@ -134,9 +136,9 @@ public struct IpRules: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rules {
       switch choice {
       case .allowed(let value):
-        try container.encode(value, forKey: .allowed)
+        try container.encodeIfPresent(value, forKey: .allowed)
       case .denied(let value):
-        try container.encode(value, forKey: .denied)
+        try container.encodeIfPresent(value, forKey: .denied)
       }
     }
     for (key, value) in self._unknownFields.json {

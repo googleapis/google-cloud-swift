@@ -107,7 +107,9 @@ public struct RenderTemplateVersionResponse: Codable, Equatable, GoogleWKT._AnyP
     try container.encode(self.templateVersion, forKey: .templateVersion)
     try container.encodeIfPresent(self.payload, forKey: .payload)
     try container.encode(self.renderedPayload, forKey: .renderedPayload)
-    try container.encode(self.templateFormat, forKey: .templateFormat)
+    if self.templateFormat != TemplateFormat() {
+      try container.encode(self.templateFormat, forKey: .templateFormat)
+    }
     try container.encode(self.parameterVersion, forKey: .parameterVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

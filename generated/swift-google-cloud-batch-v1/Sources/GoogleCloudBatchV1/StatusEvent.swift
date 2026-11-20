@@ -104,7 +104,9 @@ public struct StatusEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
     try container.encodeIfPresent(self.taskExecution, forKey: .taskExecution)
-    try container.encode(self.taskState, forKey: .taskState)
+    if self.taskState != TaskStatus.State() {
+      try container.encode(self.taskState, forKey: .taskState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

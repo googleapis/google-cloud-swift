@@ -127,18 +127,18 @@ public struct Interval: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.min {
       switch choice {
       case .minimum(let value):
-        try container.encode(value, forKey: .minimum)
+        try container.encodeIfPresent(value, forKey: .minimum)
       case .exclusiveMinimum(let value):
-        try container.encode(value, forKey: .exclusiveMinimum)
+        try container.encodeIfPresent(value, forKey: .exclusiveMinimum)
       }
     }
 
     if let choice = self.max {
       switch choice {
       case .maximum(let value):
-        try container.encode(value, forKey: .maximum)
+        try container.encodeIfPresent(value, forKey: .maximum)
       case .exclusiveMaximum(let value):
-        try container.encode(value, forKey: .exclusiveMaximum)
+        try container.encodeIfPresent(value, forKey: .exclusiveMaximum)
       }
     }
     for (key, value) in self._unknownFields.json {

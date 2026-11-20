@@ -133,7 +133,9 @@ public struct ListTasksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.responseView, forKey: .responseView)
+    if self.responseView != Task.View() {
+      try container.encode(self.responseView, forKey: .responseView)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     for (key, value) in self._unknownFields.json {

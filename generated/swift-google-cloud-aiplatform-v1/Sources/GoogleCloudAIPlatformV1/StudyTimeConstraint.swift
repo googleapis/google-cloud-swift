@@ -93,9 +93,9 @@
       if let choice = self.constraint {
         switch choice {
         case .maxDuration(let value):
-          try container.encode(value, forKey: .maxDuration)
+          try container.encodeIfPresent(value, forKey: .maxDuration)
         case .endTime(let value):
-          try container.encode(value, forKey: .endTime)
+          try container.encodeIfPresent(value, forKey: .endTime)
         }
       }
       for (key, value) in self._unknownFields.json {

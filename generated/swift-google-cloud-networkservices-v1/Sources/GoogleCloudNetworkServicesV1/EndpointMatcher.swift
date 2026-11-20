@@ -88,7 +88,7 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.matcherType {
       switch choice {
       case .metadataLabelMatcher(let value):
-        try container.encode(value, forKey: .metadataLabelMatcher)
+        try container.encodeIfPresent(value, forKey: .metadataLabelMatcher)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -192,7 +192,11 @@ public struct EndpointMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.metadataLabelMatchCriteria, forKey: .metadataLabelMatchCriteria)
+      if self.metadataLabelMatchCriteria
+        != EndpointMatcher.MetadataLabelMatcher.MetadataLabelMatchCriteria()
+      {
+        try container.encode(self.metadataLabelMatchCriteria, forKey: .metadataLabelMatchCriteria)
+      }
       try container.encode(self.metadataLabels, forKey: .metadataLabels)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

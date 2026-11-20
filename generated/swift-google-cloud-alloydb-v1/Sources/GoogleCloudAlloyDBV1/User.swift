@@ -107,7 +107,9 @@ public struct User: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.password, forKey: .password)
     try container.encode(self.databaseRoles, forKey: .databaseRoles)
-    try container.encode(self.userType, forKey: .userType)
+    if self.userType != User.UserType() {
+      try container.encode(self.userType, forKey: .userType)
+    }
     try container.encode(self.keepExtraRoles, forKey: .keepExtraRoles)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -238,9 +238,13 @@ public struct Spoke: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.linkedVpcNetwork, forKey: .linkedVpcNetwork)
     try container.encodeIfPresent(self.linkedProducerVpcNetwork, forKey: .linkedProducerVpcNetwork)
     try container.encode(self.uniqueId, forKey: .uniqueId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != GoogleCloudNetworkConnectivityV1.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.reasons, forKey: .reasons)
-    try container.encode(self.spokeType, forKey: .spokeType)
+    if self.spokeType != SpokeType() {
+      try container.encode(self.spokeType, forKey: .spokeType)
+    }
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.fieldPathsPendingUpdate, forKey: .fieldPathsPendingUpdate)
     for (key, value) in self._unknownFields.json {
@@ -316,7 +320,9 @@ public struct Spoke: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.code, forKey: .code)
+      if self.code != Spoke.StateReason.Code() {
+        try container.encode(self.code, forKey: .code)
+      }
       try container.encode(self.message, forKey: .message)
       try container.encode(self.userDetails, forKey: .userDetails)
       for (key, value) in self._unknownFields.json {

@@ -108,13 +108,13 @@ public struct AutomationRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rule {
       switch choice {
       case .promoteReleaseRule(let value):
-        try container.encode(value, forKey: .promoteReleaseRule)
+        try container.encodeIfPresent(value, forKey: .promoteReleaseRule)
       case .advanceRolloutRule(let value):
-        try container.encode(value, forKey: .advanceRolloutRule)
+        try container.encodeIfPresent(value, forKey: .advanceRolloutRule)
       case .repairRolloutRule(let value):
-        try container.encode(value, forKey: .repairRolloutRule)
+        try container.encodeIfPresent(value, forKey: .repairRolloutRule)
       case .timedPromoteReleaseRule(let value):
-        try container.encode(value, forKey: .timedPromoteReleaseRule)
+        try container.encodeIfPresent(value, forKey: .timedPromoteReleaseRule)
       }
     }
     for (key, value) in self._unknownFields.json {

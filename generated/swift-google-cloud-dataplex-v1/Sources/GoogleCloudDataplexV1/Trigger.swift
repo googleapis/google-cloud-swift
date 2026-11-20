@@ -103,11 +103,11 @@ public struct Trigger: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.mode {
       switch choice {
       case .onDemand(let value):
-        try container.encode(value, forKey: .onDemand)
+        try container.encodeIfPresent(value, forKey: .onDemand)
       case .schedule(let value):
-        try container.encode(value, forKey: .schedule)
+        try container.encodeIfPresent(value, forKey: .schedule)
       case .oneTime(let value):
-        try container.encode(value, forKey: .oneTime)
+        try container.encodeIfPresent(value, forKey: .oneTime)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -224,8 +224,12 @@ public struct NetworkConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.enableIntraNodeVisibility, forKey: .enableIntraNodeVisibility)
     try container.encodeIfPresent(self.defaultSnatStatus, forKey: .defaultSnatStatus)
     try container.encode(self.enableL4IlbSubsetting, forKey: .enableL4IlbSubsetting)
-    try container.encode(self.datapathProvider, forKey: .datapathProvider)
-    try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+    if self.datapathProvider != DatapathProvider() {
+      try container.encode(self.datapathProvider, forKey: .datapathProvider)
+    }
+    if self.privateIpv6GoogleAccess != PrivateIPv6GoogleAccess() {
+      try container.encode(self.privateIpv6GoogleAccess, forKey: .privateIpv6GoogleAccess)
+    }
     try container.encodeIfPresent(self.dnsConfig, forKey: .dnsConfig)
     try container.encodeIfPresent(self.serviceExternalIpsConfig, forKey: .serviceExternalIpsConfig)
     try container.encodeIfPresent(self.gatewayApiConfig, forKey: .gatewayApiConfig)

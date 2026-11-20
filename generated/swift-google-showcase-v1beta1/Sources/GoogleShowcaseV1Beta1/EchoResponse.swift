@@ -96,7 +96,9 @@ public struct EchoResponse: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.content, forKey: .content)
-    try container.encode(self.severity, forKey: .severity)
+    if self.severity != GoogleShowcaseV1Beta1.Severity() {
+      try container.encode(self.severity, forKey: .severity)
+    }
     try container.encode(self.requestId, forKey: .requestId)
     try container.encode(self.otherRequestId, forKey: .otherRequestId)
     for (key, value) in self._unknownFields.json {

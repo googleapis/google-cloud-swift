@@ -149,7 +149,7 @@ public struct MetadataFeed: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.endpoint {
       switch choice {
       case .pubsubTopic(let value):
-        try container.encode(value, forKey: .pubsubTopic)
+        try container.encodeIfPresent(value, forKey: .pubsubTopic)
       }
     }
     for (key, value) in self._unknownFields.json {

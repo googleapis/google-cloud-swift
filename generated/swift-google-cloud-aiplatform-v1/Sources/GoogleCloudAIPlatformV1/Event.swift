@@ -117,7 +117,9 @@
       try container.encode(self.artifact, forKey: .artifact)
       try container.encode(self.execution, forKey: .execution)
       try container.encodeIfPresent(self.eventTime, forKey: .eventTime)
-      try container.encode(self.type, forKey: .type)
+      if self.type != Event.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.labels, forKey: .labels)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

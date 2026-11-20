@@ -98,8 +98,12 @@ public struct GoogleCloudStorageSettings: Codable, Equatable, GoogleWKT._AnyPack
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.bucketUri, forKey: .bucketUri)
-    try container.encode(self.sourceType, forKey: .sourceType)
-    try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    if self.sourceType != URISourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
+    if self.sourceDeletionOption != SourceDeletionOption() {
+      try container.encode(self.sourceDeletionOption, forKey: .sourceDeletionOption)
+    }
     try container.encode(self.chronicleServiceAccount, forKey: .chronicleServiceAccount)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

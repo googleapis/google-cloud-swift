@@ -122,7 +122,9 @@ public struct ApplicationTemplateRevision: Codable, Equatable, GoogleWKT._AnyPac
     try container.encodeIfPresent(self.artifactLocation, forKey: .artifactLocation)
     try container.encodeIfPresent(self.templateMetadata, forKey: .templateMetadata)
     try container.encode(self.applicationParameters, forKey: .applicationParameters)
-    try container.encode(self.iacSource, forKey: .iacSource)
+    if self.iacSource != IACSource() {
+      try container.encode(self.iacSource, forKey: .iacSource)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

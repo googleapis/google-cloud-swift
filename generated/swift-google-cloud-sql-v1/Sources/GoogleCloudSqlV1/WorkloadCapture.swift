@@ -133,13 +133,17 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.workloadId, forKey: .workloadId)
       try container.encode(self.sourceInstance, forKey: .sourceInstance)
-      try container.encode(self.workloadCaptureState, forKey: .workloadCaptureState)
+      if self.workloadCaptureState != WorkloadCapture.State() {
+        try container.encode(self.workloadCaptureState, forKey: .workloadCaptureState)
+      }
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encodeIfPresent(self.replayInstance, forKey: .replayInstance)
       try container.encodeIfPresent(self.retentionDays, forKey: .retentionDays)
       try container.encodeIfPresent(self.backupId, forKey: .backupId)
-      try container.encode(self.captureMode, forKey: .captureMode)
+      if self.captureMode != WorkloadCapture.WorkloadCaptureMode() {
+        try container.encode(self.captureMode, forKey: .captureMode)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

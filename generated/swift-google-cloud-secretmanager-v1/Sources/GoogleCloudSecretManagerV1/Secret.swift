@@ -313,15 +313,17 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(
       self.customerManagedEncryption, forKey: .customerManagedEncryption)
     try container.encode(self.tags, forKey: .tags)
-    try container.encode(self.secretType, forKey: .secretType)
+    if self.secretType != Secret.SecretType() {
+      try container.encode(self.secretType, forKey: .secretType)
+    }
     try container.encodeIfPresent(self.policyMember, forKey: .policyMember)
 
     if let choice = self.expiration {
       switch choice {
       case .expireTime(let value):
-        try container.encode(value, forKey: .expireTime)
+        try container.encodeIfPresent(value, forKey: .expireTime)
       case .ttl(let value):
-        try container.encode(value, forKey: .ttl)
+        try container.encodeIfPresent(value, forKey: .ttl)
       }
     }
     for (key, value) in self._unknownFields.json {

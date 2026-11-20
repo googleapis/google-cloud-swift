@@ -154,27 +154,31 @@ public struct QueuedResourceState: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.stateInitiator, forKey: .stateInitiator)
+    if self.state != QueuedResourceState.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.stateInitiator != QueuedResourceState.StateInitiator() {
+      try container.encode(self.stateInitiator, forKey: .stateInitiator)
+    }
 
     if let choice = self.stateData {
       switch choice {
       case .creatingData(let value):
-        try container.encode(value, forKey: .creatingData)
+        try container.encodeIfPresent(value, forKey: .creatingData)
       case .acceptedData(let value):
-        try container.encode(value, forKey: .acceptedData)
+        try container.encodeIfPresent(value, forKey: .acceptedData)
       case .provisioningData(let value):
-        try container.encode(value, forKey: .provisioningData)
+        try container.encodeIfPresent(value, forKey: .provisioningData)
       case .failedData(let value):
-        try container.encode(value, forKey: .failedData)
+        try container.encodeIfPresent(value, forKey: .failedData)
       case .deletingData(let value):
-        try container.encode(value, forKey: .deletingData)
+        try container.encodeIfPresent(value, forKey: .deletingData)
       case .activeData(let value):
-        try container.encode(value, forKey: .activeData)
+        try container.encodeIfPresent(value, forKey: .activeData)
       case .suspendingData(let value):
-        try container.encode(value, forKey: .suspendingData)
+        try container.encodeIfPresent(value, forKey: .suspendingData)
       case .suspendedData(let value):
-        try container.encode(value, forKey: .suspendedData)
+        try container.encodeIfPresent(value, forKey: .suspendedData)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -133,7 +133,9 @@ public struct NodeGroupOperationMetadata: Codable, Equatable, GoogleWKT._AnyPack
     try container.encode(self.clusterUuid, forKey: .clusterUuid)
     try container.encodeIfPresent(self.status, forKey: .status)
     try container.encode(self.statusHistory, forKey: .statusHistory)
-    try container.encode(self.operationType, forKey: .operationType)
+    if self.operationType != NodeGroupOperationMetadata.NodeGroupOperationType() {
+      try container.encode(self.operationType, forKey: .operationType)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.warnings, forKey: .warnings)

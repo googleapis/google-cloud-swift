@@ -171,11 +171,11 @@ public struct OracleConnectionProfile: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.connectivity {
       switch choice {
       case .staticServiceIpConnectivity(let value):
-        try container.encode(value, forKey: .staticServiceIpConnectivity)
+        try container.encodeIfPresent(value, forKey: .staticServiceIpConnectivity)
       case .forwardSshConnectivity(let value):
-        try container.encode(value, forKey: .forwardSshConnectivity)
+        try container.encodeIfPresent(value, forKey: .forwardSshConnectivity)
       case .privateConnectivity(let value):
-        try container.encode(value, forKey: .privateConnectivity)
+        try container.encodeIfPresent(value, forKey: .privateConnectivity)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -209,7 +209,9 @@ public struct NotificationChannel: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.userLabels, forKey: .userLabels)
-    try container.encode(self.verificationStatus, forKey: .verificationStatus)
+    if self.verificationStatus != NotificationChannel.VerificationStatus() {
+      try container.encode(self.verificationStatus, forKey: .verificationStatus)
+    }
     try container.encodeIfPresent(self.enabled, forKey: .enabled)
     try container.encodeIfPresent(self.creationRecord, forKey: .creationRecord)
     try container.encode(self.mutationRecords, forKey: .mutationRecords)

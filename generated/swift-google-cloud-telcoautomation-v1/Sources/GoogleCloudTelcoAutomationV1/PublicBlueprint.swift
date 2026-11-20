@@ -119,7 +119,9 @@ public struct PublicBlueprint: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.deploymentLevel, forKey: .deploymentLevel)
+    if self.deploymentLevel != DeploymentLevel() {
+      try container.encode(self.deploymentLevel, forKey: .deploymentLevel)
+    }
     try container.encode(self.sourceProvider, forKey: .sourceProvider)
     try container.encode(self.rollbackSupport, forKey: .rollbackSupport)
     for (key, value) in self._unknownFields.json {

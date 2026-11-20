@@ -106,9 +106,9 @@ public struct StartManualTransferRunsRequest: Codable, Equatable, GoogleWKT._Any
     if let choice = self.time {
       switch choice {
       case .requestedTimeRange(let value):
-        try container.encode(value, forKey: .requestedTimeRange)
+        try container.encodeIfPresent(value, forKey: .requestedTimeRange)
       case .requestedRunTime(let value):
-        try container.encode(value, forKey: .requestedRunTime)
+        try container.encodeIfPresent(value, forKey: .requestedRunTime)
       }
     }
     for (key, value) in self._unknownFields.json {

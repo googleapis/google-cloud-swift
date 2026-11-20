@@ -106,11 +106,11 @@ public struct FetchInventoryResponse: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.sourceVms {
       switch choice {
       case .vmwareVms(let value):
-        try container.encode(value, forKey: .vmwareVms)
+        try container.encodeIfPresent(value, forKey: .vmwareVms)
       case .awsVms(let value):
-        try container.encode(value, forKey: .awsVms)
+        try container.encodeIfPresent(value, forKey: .awsVms)
       case .azureVms(let value):
-        try container.encode(value, forKey: .azureVms)
+        try container.encodeIfPresent(value, forKey: .azureVms)
       }
     }
     for (key, value) in self._unknownFields.json {

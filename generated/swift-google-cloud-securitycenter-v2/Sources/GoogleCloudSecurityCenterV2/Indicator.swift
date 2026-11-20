@@ -193,14 +193,16 @@ public struct Indicator: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.signatureType, forKey: .signatureType)
+      if self.signatureType != Indicator.ProcessSignature.SignatureType() {
+        try container.encode(self.signatureType, forKey: .signatureType)
+      }
 
       if let choice = self.signature {
         switch choice {
         case .memoryHashSignature(let value):
-          try container.encode(value, forKey: .memoryHashSignature)
+          try container.encodeIfPresent(value, forKey: .memoryHashSignature)
         case .yaraRuleSignature(let value):
-          try container.encode(value, forKey: .yaraRuleSignature)
+          try container.encodeIfPresent(value, forKey: .yaraRuleSignature)
         }
       }
       for (key, value) in self._unknownFields.json {

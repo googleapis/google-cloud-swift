@@ -108,7 +108,9 @@ public struct SslSettings: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.certificateId, forKey: .certificateId)
-    try container.encode(self.sslManagementType, forKey: .sslManagementType)
+    if self.sslManagementType != SslSettings.SslManagementType() {
+      try container.encode(self.sslManagementType, forKey: .sslManagementType)
+    }
     try container.encode(self.pendingManagedCertificateId, forKey: .pendingManagedCertificateId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

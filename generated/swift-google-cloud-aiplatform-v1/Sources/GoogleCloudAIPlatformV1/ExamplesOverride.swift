@@ -110,7 +110,9 @@
       try container.encode(self.crowdingCount, forKey: .crowdingCount)
       try container.encode(self.restrictions, forKey: .restrictions)
       try container.encode(self.returnEmbeddings, forKey: .returnEmbeddings)
-      try container.encode(self.dataFormat, forKey: .dataFormat)
+      if self.dataFormat != ExamplesOverride.DataFormat() {
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -309,13 +309,13 @@ public struct BuildTrigger: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.buildTemplate {
       switch choice {
       case .autodetect(let value):
-        try container.encode(value, forKey: .autodetect)
+        try container.encodeIfPresent(value, forKey: .autodetect)
       case .build(let value):
-        try container.encode(value, forKey: .build)
+        try container.encodeIfPresent(value, forKey: .build)
       case .filename(let value):
-        try container.encode(value, forKey: .filename)
+        try container.encodeIfPresent(value, forKey: .filename)
       case .gitFileSource(let value):
-        try container.encode(value, forKey: .gitFileSource)
+        try container.encodeIfPresent(value, forKey: .gitFileSource)
       }
     }
     for (key, value) in self._unknownFields.json {

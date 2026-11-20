@@ -243,9 +243,9 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.additionalOptimizationObjectiveConfig {
       switch choice {
       case .optimizationObjectiveRecallValue(let value):
-        try container.encode(value, forKey: .optimizationObjectiveRecallValue)
+        try container.encodeIfPresent(value, forKey: .optimizationObjectiveRecallValue)
       case .optimizationObjectivePrecisionValue(let value):
-        try container.encode(value, forKey: .optimizationObjectivePrecisionValue)
+        try container.encodeIfPresent(value, forKey: .optimizationObjectivePrecisionValue)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -373,21 +373,21 @@ public struct AutoMlTablesInputs: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.transformationDetail {
         switch choice {
         case .auto(let value):
-          try container.encode(value, forKey: .auto)
+          try container.encodeIfPresent(value, forKey: .auto)
         case .numeric(let value):
-          try container.encode(value, forKey: .numeric)
+          try container.encodeIfPresent(value, forKey: .numeric)
         case .categorical(let value):
-          try container.encode(value, forKey: .categorical)
+          try container.encodeIfPresent(value, forKey: .categorical)
         case .timestamp(let value):
-          try container.encode(value, forKey: .timestamp)
+          try container.encodeIfPresent(value, forKey: .timestamp)
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .repeatedNumeric(let value):
-          try container.encode(value, forKey: .repeatedNumeric)
+          try container.encodeIfPresent(value, forKey: .repeatedNumeric)
         case .repeatedCategorical(let value):
-          try container.encode(value, forKey: .repeatedCategorical)
+          try container.encodeIfPresent(value, forKey: .repeatedCategorical)
         case .repeatedText(let value):
-          try container.encode(value, forKey: .repeatedText)
+          try container.encodeIfPresent(value, forKey: .repeatedText)
         }
       }
       for (key, value) in self._unknownFields.json {

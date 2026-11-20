@@ -95,9 +95,9 @@
       if let choice = self.result {
         switch choice {
         case .ragFile(let value):
-          try container.encode(value, forKey: .ragFile)
+          try container.encodeIfPresent(value, forKey: .ragFile)
         case .error(let value):
-          try container.encode(value, forKey: .error)
+          try container.encodeIfPresent(value, forKey: .error)
         }
       }
       for (key, value) in self._unknownFields.json {

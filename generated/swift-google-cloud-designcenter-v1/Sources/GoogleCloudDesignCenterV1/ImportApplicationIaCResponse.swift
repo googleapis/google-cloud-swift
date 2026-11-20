@@ -88,7 +88,9 @@ public struct ImportApplicationIaCResponse: Codable, Equatable, GoogleWKT._AnyPa
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.application, forKey: .application)
     try container.encode(self.errors, forKey: .errors)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImportApplicationIaCResponse.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -95,11 +95,11 @@
       if let choice = self.value {
         switch choice {
         case .intValue(let value):
-          try container.encode(value, forKey: .intValue)
+          try container.encodeIfPresent(value, forKey: .intValue)
         case .doubleValue(let value):
-          try container.encode(value, forKey: .doubleValue)
+          try container.encodeIfPresent(value, forKey: .doubleValue)
         case .stringValue(let value):
-          try container.encode(value, forKey: .stringValue)
+          try container.encodeIfPresent(value, forKey: .stringValue)
         }
       }
       for (key, value) in self._unknownFields.json {

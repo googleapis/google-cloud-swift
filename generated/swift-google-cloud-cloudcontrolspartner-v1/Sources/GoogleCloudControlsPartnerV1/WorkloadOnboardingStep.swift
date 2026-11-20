@@ -90,10 +90,14 @@ public struct WorkloadOnboardingStep: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.step, forKey: .step)
+    if self.step != WorkloadOnboardingStep.Step() {
+      try container.encode(self.step, forKey: .step)
+    }
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.completionTime, forKey: .completionTime)
-    try container.encode(self.completionState, forKey: .completionState)
+    if self.completionState != CompletionState() {
+      try container.encode(self.completionState, forKey: .completionState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

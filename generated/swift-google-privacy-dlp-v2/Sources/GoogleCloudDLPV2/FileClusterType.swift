@@ -85,7 +85,7 @@ public struct FileClusterType: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.fileClusterType {
       switch choice {
       case .cluster(let value):
-        try container.encode(value, forKey: .cluster)
+        try container.encodeIfPresent(value, forKey: .cluster)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -91,9 +91,9 @@ public struct RemoveAclEntryResponse: Codable, Equatable, GoogleWKT._AnyPackable
     if let choice = self.result {
       switch choice {
       case .acl(let value):
-        try container.encode(value, forKey: .acl)
+        try container.encodeIfPresent(value, forKey: .acl)
       case .aclDeleted(let value):
-        try container.encode(value, forKey: .aclDeleted)
+        try container.encodeIfPresent(value, forKey: .aclDeleted)
       }
     }
     for (key, value) in self._unknownFields.json {

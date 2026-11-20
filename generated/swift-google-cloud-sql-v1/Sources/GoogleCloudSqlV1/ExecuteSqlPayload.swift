@@ -152,15 +152,17 @@
       try container.encode(self.sqlStatement, forKey: .sqlStatement)
       try container.encode(self.database, forKey: .database)
       try container.encode(self.rowLimit, forKey: .rowLimit)
-      try container.encode(self.partialResultMode, forKey: .partialResultMode)
+      if self.partialResultMode != ExecuteSqlPayload.PartialResultMode() {
+        try container.encode(self.partialResultMode, forKey: .partialResultMode)
+      }
       try container.encode(self.application, forKey: .application)
 
       if let choice = self.userPassword {
         switch choice {
         case .passwordSecretVersion(let value):
-          try container.encode(value, forKey: .passwordSecretVersion)
+          try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
         case .autoIamAuthn(let value):
-          try container.encode(value, forKey: .autoIamAuthn)
+          try container.encodeIfPresent(value, forKey: .autoIamAuthn)
         }
       }
       for (key, value) in self._unknownFields.json {

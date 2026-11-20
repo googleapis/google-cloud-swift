@@ -170,17 +170,17 @@
       if let choice = self.ragFileSource {
         switch choice {
         case .gcsSource(let value):
-          try container.encode(value, forKey: .gcsSource)
+          try container.encodeIfPresent(value, forKey: .gcsSource)
         case .googleDriveSource(let value):
-          try container.encode(value, forKey: .googleDriveSource)
+          try container.encodeIfPresent(value, forKey: .googleDriveSource)
         case .directUploadSource(let value):
-          try container.encode(value, forKey: .directUploadSource)
+          try container.encodeIfPresent(value, forKey: .directUploadSource)
         case .slackSource(let value):
-          try container.encode(value, forKey: .slackSource)
+          try container.encodeIfPresent(value, forKey: .slackSource)
         case .jiraSource(let value):
-          try container.encode(value, forKey: .jiraSource)
+          try container.encodeIfPresent(value, forKey: .jiraSource)
         case .sharePointSources(let value):
-          try container.encode(value, forKey: .sharePointSources)
+          try container.encodeIfPresent(value, forKey: .sharePointSources)
         }
       }
       for (key, value) in self._unknownFields.json {

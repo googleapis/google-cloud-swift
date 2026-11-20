@@ -111,9 +111,9 @@
       if let choice = self.roleDetails {
         switch choice {
         case .source(let value):
-          try container.encode(value, forKey: .source)
+          try container.encodeIfPresent(value, forKey: .source)
         case .target(let value):
-          try container.encode(value, forKey: .target)
+          try container.encodeIfPresent(value, forKey: .target)
         }
       }
       for (key, value) in self._unknownFields.json {

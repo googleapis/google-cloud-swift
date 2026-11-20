@@ -87,7 +87,7 @@ public struct FileStoreRegex: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceRegex {
       switch choice {
       case .cloudStorageRegex(let value):
-        try container.encode(value, forKey: .cloudStorageRegex)
+        try container.encodeIfPresent(value, forKey: .cloudStorageRegex)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -90,9 +90,9 @@ public struct Command: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.commandType {
       switch choice {
       case .agentCommand(let value):
-        try container.encode(value, forKey: .agentCommand)
+        try container.encodeIfPresent(value, forKey: .agentCommand)
       case .shellCommand(let value):
-        try container.encode(value, forKey: .shellCommand)
+        try container.encodeIfPresent(value, forKey: .shellCommand)
       }
     }
     for (key, value) in self._unknownFields.json {

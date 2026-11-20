@@ -79,7 +79,9 @@ public struct EntitlementEvent: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.entitlement, forKey: .entitlement)
-    try container.encode(self.eventType, forKey: .eventType)
+    if self.eventType != EntitlementEvent.Type_() {
+      try container.encode(self.eventType, forKey: .eventType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

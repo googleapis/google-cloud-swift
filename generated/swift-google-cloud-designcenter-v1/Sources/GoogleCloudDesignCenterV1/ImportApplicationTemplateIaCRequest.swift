@@ -128,11 +128,11 @@ public struct ImportApplicationTemplateIaCRequest: Codable, Equatable, GoogleWKT
     if let choice = self.source {
       switch choice {
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       case .iacModule(let value):
-        try container.encode(value, forKey: .iacModule)
+        try container.encodeIfPresent(value, forKey: .iacModule)
       case .developerConnectSourceConfig(let value):
-        try container.encode(value, forKey: .developerConnectSourceConfig)
+        try container.encodeIfPresent(value, forKey: .developerConnectSourceConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

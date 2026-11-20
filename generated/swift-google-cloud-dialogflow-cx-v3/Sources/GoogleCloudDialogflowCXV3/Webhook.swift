@@ -143,9 +143,9 @@
       if let choice = self.webhook {
         switch choice {
         case .genericWebService(let value):
-          try container.encode(value, forKey: .genericWebService)
+          try container.encodeIfPresent(value, forKey: .genericWebService)
         case .serviceDirectory(let value):
-          try container.encode(value, forKey: .serviceDirectory)
+          try container.encodeIfPresent(value, forKey: .serviceDirectory)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -378,11 +378,17 @@
           self.secretVersionsForRequestHeaders, forKey: .secretVersionsForRequestHeaders)
         try container.encode(self.allowedCaCerts, forKey: .allowedCaCerts)
         try container.encodeIfPresent(self.oauthConfig, forKey: .oauthConfig)
-        try container.encode(self.serviceAgentAuth, forKey: .serviceAgentAuth)
+        if self.serviceAgentAuth != Webhook.GenericWebService.ServiceAgentAuth() {
+          try container.encode(self.serviceAgentAuth, forKey: .serviceAgentAuth)
+        }
         try container.encodeIfPresent(
           self.serviceAccountAuthConfig, forKey: .serviceAccountAuthConfig)
-        try container.encode(self.webhookType, forKey: .webhookType)
-        try container.encode(self.httpMethod, forKey: .httpMethod)
+        if self.webhookType != Webhook.GenericWebService.WebhookType() {
+          try container.encode(self.webhookType, forKey: .webhookType)
+        }
+        if self.httpMethod != Webhook.GenericWebService.HttpMethod() {
+          try container.encode(self.httpMethod, forKey: .httpMethod)
+        }
         try container.encode(self.requestBody, forKey: .requestBody)
         try container.encode(self.parameterMapping, forKey: .parameterMapping)
         for (key, value) in self._unknownFields.json {

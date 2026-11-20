@@ -157,16 +157,18 @@ public struct ImportJob: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.completeTime, forKey: .completeTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ImportJob.ImportJobState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.assetSource, forKey: .assetSource)
 
     if let choice = self.report {
       switch choice {
       case .validationReport(let value):
-        try container.encode(value, forKey: .validationReport)
+        try container.encodeIfPresent(value, forKey: .validationReport)
       case .executionReport(let value):
-        try container.encode(value, forKey: .executionReport)
+        try container.encodeIfPresent(value, forKey: .executionReport)
       }
     }
     for (key, value) in self._unknownFields.json {

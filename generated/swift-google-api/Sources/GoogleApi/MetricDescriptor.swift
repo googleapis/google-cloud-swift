@@ -285,13 +285,19 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.type, forKey: .type)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.metricKind, forKey: .metricKind)
-    try container.encode(self.valueType, forKey: .valueType)
+    if self.metricKind != MetricDescriptor.MetricKind() {
+      try container.encode(self.metricKind, forKey: .metricKind)
+    }
+    if self.valueType != MetricDescriptor.ValueType() {
+      try container.encode(self.valueType, forKey: .valueType)
+    }
     try container.encode(self.unit, forKey: .unit)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.metadata, forKey: .metadata)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encode(self.monitoredResourceTypes, forKey: .monitoredResourceTypes)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -393,7 +399,9 @@ public struct MetricDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     #endif
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.launchStage, forKey: .launchStage)
+      if self.launchStage != LaunchStage() {
+        try container.encode(self.launchStage, forKey: .launchStage)
+      }
       try container.encodeIfPresent(self.samplePeriod, forKey: .samplePeriod)
       try container.encodeIfPresent(self.ingestDelay, forKey: .ingestDelay)
       try container.encode(

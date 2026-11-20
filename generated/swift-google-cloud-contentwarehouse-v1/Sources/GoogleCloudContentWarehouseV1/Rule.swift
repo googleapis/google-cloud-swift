@@ -109,7 +109,9 @@ public struct Rule: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.ruleId, forKey: .ruleId)
-    try container.encode(self.triggerType, forKey: .triggerType)
+    if self.triggerType != Rule.TriggerType() {
+      try container.encode(self.triggerType, forKey: .triggerType)
+    }
     try container.encode(self.condition, forKey: .condition)
     try container.encode(self.actions, forKey: .actions)
     for (key, value) in self._unknownFields.json {

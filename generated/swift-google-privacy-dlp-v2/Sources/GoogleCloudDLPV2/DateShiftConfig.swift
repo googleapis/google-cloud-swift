@@ -121,7 +121,7 @@ public struct DateShiftConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.method {
       switch choice {
       case .cryptoKey(let value):
-        try container.encode(value, forKey: .cryptoKey)
+        try container.encodeIfPresent(value, forKey: .cryptoKey)
       }
     }
     for (key, value) in self._unknownFields.json {

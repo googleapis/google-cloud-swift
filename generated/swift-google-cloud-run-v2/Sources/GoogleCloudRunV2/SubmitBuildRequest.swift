@@ -194,22 +194,24 @@ public struct SubmitBuildRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.workerPool, forKey: .workerPool)
     try container.encode(self.tags, forKey: .tags)
     try container.encode(self.machineType, forKey: .machineType)
-    try container.encode(self.releaseTrack, forKey: .releaseTrack)
+    if self.releaseTrack != GoogleApi.LaunchStage() {
+      try container.encode(self.releaseTrack, forKey: .releaseTrack)
+    }
     try container.encode(self.client, forKey: .client)
 
     if let choice = self.source {
       switch choice {
       case .storageSource(let value):
-        try container.encode(value, forKey: .storageSource)
+        try container.encodeIfPresent(value, forKey: .storageSource)
       }
     }
 
     if let choice = self.buildType {
       switch choice {
       case .buildpackBuild(let value):
-        try container.encode(value, forKey: .buildpackBuild)
+        try container.encodeIfPresent(value, forKey: .buildpackBuild)
       case .dockerBuild(let value):
-        try container.encode(value, forKey: .dockerBuild)
+        try container.encodeIfPresent(value, forKey: .dockerBuild)
       }
     }
     for (key, value) in self._unknownFields.json {

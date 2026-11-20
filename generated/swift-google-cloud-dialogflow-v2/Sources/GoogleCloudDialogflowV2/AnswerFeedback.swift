@@ -130,7 +130,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.correctnessLevel, forKey: .correctnessLevel)
+      if self.correctnessLevel != AnswerFeedback.CorrectnessLevel() {
+        try container.encode(self.correctnessLevel, forKey: .correctnessLevel)
+      }
       try container.encode(self.clicked, forKey: .clicked)
       try container.encodeIfPresent(self.clickTime, forKey: .clickTime)
       try container.encode(self.displayed, forKey: .displayed)
@@ -139,7 +141,7 @@
       if let choice = self.detailFeedback {
         switch choice {
         case .agentAssistantDetailFeedback(let value):
-          try container.encode(value, forKey: .agentAssistantDetailFeedback)
+          try container.encodeIfPresent(value, forKey: .agentAssistantDetailFeedback)
         }
       }
       for (key, value) in self._unknownFields.json {

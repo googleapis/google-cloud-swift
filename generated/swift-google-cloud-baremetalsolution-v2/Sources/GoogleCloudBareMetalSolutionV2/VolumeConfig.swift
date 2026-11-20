@@ -168,15 +168,21 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.snapshotsEnabled, forKey: .snapshotsEnabled)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
+    if self.type != VolumeConfig.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.`protocol` != VolumeConfig.Protocol_() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
     try container.encode(self.sizeGb, forKey: .sizeGb)
     try container.encode(self.lunRanges, forKey: .lunRanges)
     try container.encode(self.machineIds, forKey: .machineIds)
     try container.encode(self.nfsExports, forKey: .nfsExports)
     try container.encode(self.userNote, forKey: .userNote)
     try container.encode(self.gcpService, forKey: .gcpService)
-    try container.encode(self.performanceTier, forKey: .performanceTier)
+    if self.performanceTier != VolumePerformanceTier() {
+      try container.encode(self.performanceTier, forKey: .performanceTier)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -386,7 +392,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.networkId, forKey: .networkId)
-      try container.encode(self.permissions, forKey: .permissions)
+      if self.permissions != VolumeConfig.NfsExport.Permissions() {
+        try container.encode(self.permissions, forKey: .permissions)
+      }
       try container.encode(self.noRootSquash, forKey: .noRootSquash)
       try container.encode(self.allowSuid, forKey: .allowSuid)
       try container.encode(self.allowDev, forKey: .allowDev)
@@ -394,9 +402,9 @@ public struct VolumeConfig: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.client {
         switch choice {
         case .machineId(let value):
-          try container.encode(value, forKey: .machineId)
+          try container.encodeIfPresent(value, forKey: .machineId)
         case .cidr(let value):
-          try container.encode(value, forKey: .cidr)
+          try container.encodeIfPresent(value, forKey: .cidr)
         }
       }
       for (key, value) in self._unknownFields.json {

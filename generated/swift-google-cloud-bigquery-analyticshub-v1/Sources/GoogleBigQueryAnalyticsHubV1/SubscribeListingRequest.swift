@@ -105,9 +105,9 @@ public struct SubscribeListingRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.destination {
       switch choice {
       case .destinationDataset(let value):
-        try container.encode(value, forKey: .destinationDataset)
+        try container.encodeIfPresent(value, forKey: .destinationDataset)
       case .destinationPubsubSubscription(let value):
-        try container.encode(value, forKey: .destinationPubsubSubscription)
+        try container.encodeIfPresent(value, forKey: .destinationPubsubSubscription)
       }
     }
     for (key, value) in self._unknownFields.json {

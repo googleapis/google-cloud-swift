@@ -225,7 +225,9 @@ public struct ResourceDescriptor: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.type, forKey: .type)
     try container.encode(self.pattern, forKey: .pattern)
     try container.encode(self.nameField, forKey: .nameField)
-    try container.encode(self.history, forKey: .history)
+    if self.history != ResourceDescriptor.History() {
+      try container.encode(self.history, forKey: .history)
+    }
     try container.encode(self.plural, forKey: .plural)
     try container.encode(self.singular, forKey: .singular)
     try container.encode(self.style, forKey: .style)

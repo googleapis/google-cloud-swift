@@ -118,13 +118,13 @@ public struct AttributeValues: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .enumValues(let value):
-        try container.encode(value, forKey: .enumValues)
+        try container.encodeIfPresent(value, forKey: .enumValues)
       case .stringValues(let value):
-        try container.encode(value, forKey: .stringValues)
+        try container.encodeIfPresent(value, forKey: .stringValues)
       case .jsonValues(let value):
-        try container.encode(value, forKey: .jsonValues)
+        try container.encodeIfPresent(value, forKey: .jsonValues)
       case .uriValues(let value):
-        try container.encode(value, forKey: .uriValues)
+        try container.encodeIfPresent(value, forKey: .uriValues)
       }
     }
     for (key, value) in self._unknownFields.json {

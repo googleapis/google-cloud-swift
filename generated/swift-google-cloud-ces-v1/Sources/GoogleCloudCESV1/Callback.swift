@@ -121,7 +121,7 @@ public struct Callback: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.callback {
       switch choice {
       case .pythonCode(let value):
-        try container.encode(value, forKey: .pythonCode)
+        try container.encodeIfPresent(value, forKey: .pythonCode)
       }
     }
     for (key, value) in self._unknownFields.json {

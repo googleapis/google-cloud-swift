@@ -146,16 +146,18 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.mappedFields, forKey: .mappedFields)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.resultSize, forKey: .resultSize)
-    try container.encode(self.bucketType, forKey: .bucketType)
+    if self.bucketType != FacetBucketType() {
+      try container.encode(self.bucketType, forKey: .bucketType)
+    }
 
     if let choice = self.rangeFacetConfig {
       switch choice {
       case .fixedRangeBucketSpec(let value):
-        try container.encode(value, forKey: .fixedRangeBucketSpec)
+        try container.encodeIfPresent(value, forKey: .fixedRangeBucketSpec)
       case .customRangeBucketSpec(let value):
-        try container.encode(value, forKey: .customRangeBucketSpec)
+        try container.encodeIfPresent(value, forKey: .customRangeBucketSpec)
       case .datetimeBucketSpec(let value):
-        try container.encode(value, forKey: .datetimeBucketSpec)
+        try container.encodeIfPresent(value, forKey: .datetimeBucketSpec)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -408,7 +410,9 @@ public struct FacetProperty: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.granularity, forKey: .granularity)
+      if self.granularity != FacetProperty.DateTimeBucketSpec.Granularity() {
+        try container.encode(self.granularity, forKey: .granularity)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

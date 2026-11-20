@@ -146,18 +146,18 @@ public struct ExecuteToolRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.toolIdentifier {
       switch choice {
       case .tool(let value):
-        try container.encode(value, forKey: .tool)
+        try container.encodeIfPresent(value, forKey: .tool)
       case .toolsetTool(let value):
-        try container.encode(value, forKey: .toolsetTool)
+        try container.encodeIfPresent(value, forKey: .toolsetTool)
       }
     }
 
     if let choice = self.toolExecutionContext {
       switch choice {
       case .variables(let value):
-        try container.encode(value, forKey: .variables)
+        try container.encodeIfPresent(value, forKey: .variables)
       case .context(let value):
-        try container.encode(value, forKey: .context)
+        try container.encodeIfPresent(value, forKey: .context)
       }
     }
     for (key, value) in self._unknownFields.json {

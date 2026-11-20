@@ -268,13 +268,17 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.format, forKey: .format)
+    if self.format != Repository.Format() {
+      try container.encode(self.format, forKey: .format)
+    }
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != Repository.Mode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     try container.encode(self.cleanupPolicies, forKey: .cleanupPolicies)
     try container.encode(self.sizeBytes, forKey: .sizeBytes)
     try container.encode(self.satisfiesPzs, forKey: .satisfiesPzs)
@@ -288,18 +292,18 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.formatConfig {
       switch choice {
       case .mavenConfig(let value):
-        try container.encode(value, forKey: .mavenConfig)
+        try container.encodeIfPresent(value, forKey: .mavenConfig)
       case .dockerConfig(let value):
-        try container.encode(value, forKey: .dockerConfig)
+        try container.encodeIfPresent(value, forKey: .dockerConfig)
       }
     }
 
     if let choice = self.modeConfig {
       switch choice {
       case .virtualRepositoryConfig(let value):
-        try container.encode(value, forKey: .virtualRepositoryConfig)
+        try container.encodeIfPresent(value, forKey: .virtualRepositoryConfig)
       case .remoteRepositoryConfig(let value):
-        try container.encode(value, forKey: .remoteRepositoryConfig)
+        try container.encodeIfPresent(value, forKey: .remoteRepositoryConfig)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -376,7 +380,9 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.allowSnapshotOverwrites, forKey: .allowSnapshotOverwrites)
-      try container.encode(self.versionPolicy, forKey: .versionPolicy)
+      if self.versionPolicy != Repository.MavenRepositoryConfig.VersionPolicy() {
+        try container.encode(self.versionPolicy, forKey: .versionPolicy)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }
@@ -695,9 +701,13 @@ public struct Repository: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.enablementConfig, forKey: .enablementConfig)
+      if self.enablementConfig != Repository.VulnerabilityScanningConfig.EnablementConfig() {
+        try container.encode(self.enablementConfig, forKey: .enablementConfig)
+      }
       try container.encodeIfPresent(self.lastEnableTime, forKey: .lastEnableTime)
-      try container.encode(self.enablementState, forKey: .enablementState)
+      if self.enablementState != Repository.VulnerabilityScanningConfig.EnablementState() {
+        try container.encode(self.enablementState, forKey: .enablementState)
+      }
       try container.encode(self.enablementStateReason, forKey: .enablementStateReason)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

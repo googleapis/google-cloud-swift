@@ -107,7 +107,9 @@ public struct BackupPlanRevision: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.revisionId, forKey: .revisionId)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupPlanRevision.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.backupPlanSnapshot, forKey: .backupPlanSnapshot)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     for (key, value) in self._unknownFields.json {

@@ -79,7 +79,9 @@ public struct ExecutionStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.currentExecutionState, forKey: .currentExecutionState)
+    if self.currentExecutionState != ExecutionStatus.CurrentExecutionState() {
+      try container.encode(self.currentExecutionState, forKey: .currentExecutionState)
+    }
     try container.encodeIfPresent(self.lastExecution, forKey: .lastExecution)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -162,7 +164,9 @@ public struct ExecutionStatus: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.result, forKey: .result)
+      if self.result != ExecutionStatus.LastExecution.Result() {
+        try container.encode(self.result, forKey: .result)
+      }
       try container.encode(self.errorMessage, forKey: .errorMessage)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)

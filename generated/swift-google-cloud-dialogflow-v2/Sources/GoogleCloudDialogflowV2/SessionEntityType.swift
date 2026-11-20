@@ -108,7 +108,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.entityOverrideMode, forKey: .entityOverrideMode)
+      if self.entityOverrideMode != SessionEntityType.EntityOverrideMode() {
+        try container.encode(self.entityOverrideMode, forKey: .entityOverrideMode)
+      }
       try container.encode(self.entities, forKey: .entities)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

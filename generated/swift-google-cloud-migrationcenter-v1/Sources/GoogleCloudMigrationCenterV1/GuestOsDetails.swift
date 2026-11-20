@@ -98,7 +98,9 @@ public struct GuestOsDetails: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.osName, forKey: .osName)
-    try container.encode(self.family, forKey: .family)
+    if self.family != OperatingSystemFamily() {
+      try container.encode(self.family, forKey: .family)
+    }
     try container.encode(self.version, forKey: .version)
     try container.encodeIfPresent(self.config, forKey: .config)
     try container.encodeIfPresent(self.runtime, forKey: .runtime)

@@ -173,7 +173,7 @@ public struct SearchAssetsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sortSpec {
       switch choice {
       case .schemaKeySortingStrategy(let value):
-        try container.encode(value, forKey: .schemaKeySortingStrategy)
+        try container.encodeIfPresent(value, forKey: .schemaKeySortingStrategy)
       }
     }
     for (key, value) in self._unknownFields.json {

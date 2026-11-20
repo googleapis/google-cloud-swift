@@ -116,9 +116,9 @@
       if let choice = self.humanLabelingBudget {
         switch choice {
         case .maxDataItemCount(let value):
-          try container.encode(value, forKey: .maxDataItemCount)
+          try container.encodeIfPresent(value, forKey: .maxDataItemCount)
         case .maxDataItemPercentage(let value):
-          try container.encode(value, forKey: .maxDataItemPercentage)
+          try container.encodeIfPresent(value, forKey: .maxDataItemPercentage)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -174,7 +174,9 @@ public struct InstanceInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.serviceAccount, forKey: .serviceAccount)
     try container.encode(self.pscNetworkAttachmentUri, forKey: .pscNetworkAttachmentUri)
     try container.encode(self.running, forKey: .running)
-    try container.encode(self.status, forKey: .status)
+    if self.status != InstanceInfo.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

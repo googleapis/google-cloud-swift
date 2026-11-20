@@ -89,7 +89,9 @@ public struct PluggableDatabaseNodeLevelDetails: Codable, Equatable, GoogleWKT._
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.nodeName, forKey: .nodeName)
-    try container.encode(self.openMode, forKey: .openMode)
+    if self.openMode != PluggableDatabaseNodeLevelDetails.PluggableDatabaseOpenMode() {
+      try container.encode(self.openMode, forKey: .openMode)
+    }
     try container.encode(self.pluggableDatabaseId, forKey: .pluggableDatabaseId)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

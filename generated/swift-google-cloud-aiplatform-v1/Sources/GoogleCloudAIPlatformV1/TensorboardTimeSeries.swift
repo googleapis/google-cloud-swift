@@ -149,7 +149,9 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.description, forKey: .description)
-      try container.encode(self.valueType, forKey: .valueType)
+      if self.valueType != TensorboardTimeSeries.ValueType() {
+        try container.encode(self.valueType, forKey: .valueType)
+      }
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.etag, forKey: .etag)

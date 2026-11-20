@@ -253,7 +253,9 @@ public struct Recognizer: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.languageCodes, forKey: .languageCodes)
     try container.encodeIfPresent(self.defaultRecognitionConfig, forKey: .defaultRecognitionConfig)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Recognizer.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)

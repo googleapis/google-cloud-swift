@@ -87,7 +87,7 @@ public struct LogEntry: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.logEntry {
       switch choice {
       case .cloudLoggingEntry(let value):
-        try container.encode(value, forKey: .cloudLoggingEntry)
+        try container.encodeIfPresent(value, forKey: .cloudLoggingEntry)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -104,7 +104,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != WorkspaceConfig.Type_() {
+        try container.encode(self.type, forKey: .type)
+      }
       try container.encode(self.dasherCustomerId, forKey: .dasherCustomerId)
       try container.encode(self.superAdminServiceAccount, forKey: .superAdminServiceAccount)
       try container.encode(self.superAdminEmailAddress, forKey: .superAdminEmailAddress)

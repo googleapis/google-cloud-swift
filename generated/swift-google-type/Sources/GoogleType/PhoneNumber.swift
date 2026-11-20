@@ -135,9 +135,9 @@ public struct PhoneNumber: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.kind {
       switch choice {
       case .e164Number(let value):
-        try container.encode(value, forKey: .e164Number)
+        try container.encodeIfPresent(value, forKey: .e164Number)
       case .shortCode(let value):
-        try container.encode(value, forKey: .shortCode)
+        try container.encodeIfPresent(value, forKey: .shortCode)
       }
     }
     for (key, value) in self._unknownFields.json {

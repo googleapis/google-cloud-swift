@@ -281,55 +281,55 @@
       if let choice = self.evaluationResults {
         switch choice {
         case .exactMatchResults(let value):
-          try container.encode(value, forKey: .exactMatchResults)
+          try container.encodeIfPresent(value, forKey: .exactMatchResults)
         case .bleuResults(let value):
-          try container.encode(value, forKey: .bleuResults)
+          try container.encodeIfPresent(value, forKey: .bleuResults)
         case .rougeResults(let value):
-          try container.encode(value, forKey: .rougeResults)
+          try container.encodeIfPresent(value, forKey: .rougeResults)
         case .fluencyResult(let value):
-          try container.encode(value, forKey: .fluencyResult)
+          try container.encodeIfPresent(value, forKey: .fluencyResult)
         case .coherenceResult(let value):
-          try container.encode(value, forKey: .coherenceResult)
+          try container.encodeIfPresent(value, forKey: .coherenceResult)
         case .safetyResult(let value):
-          try container.encode(value, forKey: .safetyResult)
+          try container.encodeIfPresent(value, forKey: .safetyResult)
         case .groundednessResult(let value):
-          try container.encode(value, forKey: .groundednessResult)
+          try container.encodeIfPresent(value, forKey: .groundednessResult)
         case .fulfillmentResult(let value):
-          try container.encode(value, forKey: .fulfillmentResult)
+          try container.encodeIfPresent(value, forKey: .fulfillmentResult)
         case .summarizationQualityResult(let value):
-          try container.encode(value, forKey: .summarizationQualityResult)
+          try container.encodeIfPresent(value, forKey: .summarizationQualityResult)
         case .pairwiseSummarizationQualityResult(let value):
-          try container.encode(value, forKey: .pairwiseSummarizationQualityResult)
+          try container.encodeIfPresent(value, forKey: .pairwiseSummarizationQualityResult)
         case .summarizationHelpfulnessResult(let value):
-          try container.encode(value, forKey: .summarizationHelpfulnessResult)
+          try container.encodeIfPresent(value, forKey: .summarizationHelpfulnessResult)
         case .summarizationVerbosityResult(let value):
-          try container.encode(value, forKey: .summarizationVerbosityResult)
+          try container.encodeIfPresent(value, forKey: .summarizationVerbosityResult)
         case .questionAnsweringQualityResult(let value):
-          try container.encode(value, forKey: .questionAnsweringQualityResult)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringQualityResult)
         case .pairwiseQuestionAnsweringQualityResult(let value):
-          try container.encode(value, forKey: .pairwiseQuestionAnsweringQualityResult)
+          try container.encodeIfPresent(value, forKey: .pairwiseQuestionAnsweringQualityResult)
         case .questionAnsweringRelevanceResult(let value):
-          try container.encode(value, forKey: .questionAnsweringRelevanceResult)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringRelevanceResult)
         case .questionAnsweringHelpfulnessResult(let value):
-          try container.encode(value, forKey: .questionAnsweringHelpfulnessResult)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringHelpfulnessResult)
         case .questionAnsweringCorrectnessResult(let value):
-          try container.encode(value, forKey: .questionAnsweringCorrectnessResult)
+          try container.encodeIfPresent(value, forKey: .questionAnsweringCorrectnessResult)
         case .pointwiseMetricResult(let value):
-          try container.encode(value, forKey: .pointwiseMetricResult)
+          try container.encodeIfPresent(value, forKey: .pointwiseMetricResult)
         case .pairwiseMetricResult(let value):
-          try container.encode(value, forKey: .pairwiseMetricResult)
+          try container.encodeIfPresent(value, forKey: .pairwiseMetricResult)
         case .toolCallValidResults(let value):
-          try container.encode(value, forKey: .toolCallValidResults)
+          try container.encodeIfPresent(value, forKey: .toolCallValidResults)
         case .toolNameMatchResults(let value):
-          try container.encode(value, forKey: .toolNameMatchResults)
+          try container.encodeIfPresent(value, forKey: .toolNameMatchResults)
         case .toolParameterKeyMatchResults(let value):
-          try container.encode(value, forKey: .toolParameterKeyMatchResults)
+          try container.encodeIfPresent(value, forKey: .toolParameterKeyMatchResults)
         case .toolParameterKvMatchResults(let value):
-          try container.encode(value, forKey: .toolParameterKvMatchResults)
+          try container.encodeIfPresent(value, forKey: .toolParameterKvMatchResults)
         case .cometResult(let value):
-          try container.encode(value, forKey: .cometResult)
+          try container.encodeIfPresent(value, forKey: .cometResult)
         case .metricxResult(let value):
-          try container.encode(value, forKey: .metricxResult)
+          try container.encodeIfPresent(value, forKey: .metricxResult)
         }
       }
       for (key, value) in self._unknownFields.json {

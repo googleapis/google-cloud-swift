@@ -100,7 +100,9 @@ public struct TroubleshootIamPolicyResponse: Codable, Equatable, GoogleWKT._AnyP
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.overallAccessState, forKey: .overallAccessState)
+    if self.overallAccessState != TroubleshootIamPolicyResponse.OverallAccessState() {
+      try container.encode(self.overallAccessState, forKey: .overallAccessState)
+    }
     try container.encodeIfPresent(self.accessTuple, forKey: .accessTuple)
     try container.encodeIfPresent(self.allowPolicyExplanation, forKey: .allowPolicyExplanation)
     try container.encodeIfPresent(self.denyPolicyExplanation, forKey: .denyPolicyExplanation)

@@ -90,7 +90,9 @@ public struct UsableSubnetworkSecondaryRange: Codable, Equatable, GoogleWKT._Any
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.rangeName, forKey: .rangeName)
     try container.encode(self.ipCidrRange, forKey: .ipCidrRange)
-    try container.encode(self.status, forKey: .status)
+    if self.status != UsableSubnetworkSecondaryRange.Status() {
+      try container.encode(self.status, forKey: .status)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

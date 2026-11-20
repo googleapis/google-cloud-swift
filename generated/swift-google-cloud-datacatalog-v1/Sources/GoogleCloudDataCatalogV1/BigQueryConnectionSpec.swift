@@ -102,13 +102,15 @@ public struct BigQueryConnectionSpec: Codable, Equatable, GoogleWKT._AnyPackable
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.connectionType, forKey: .connectionType)
+    if self.connectionType != BigQueryConnectionSpec.ConnectionType() {
+      try container.encode(self.connectionType, forKey: .connectionType)
+    }
     try container.encode(self.hasCredential, forKey: .hasCredential)
 
     if let choice = self.connectionSpec {
       switch choice {
       case .cloudSql(let value):
-        try container.encode(value, forKey: .cloudSql)
+        try container.encodeIfPresent(value, forKey: .cloudSql)
       }
     }
     for (key, value) in self._unknownFields.json {

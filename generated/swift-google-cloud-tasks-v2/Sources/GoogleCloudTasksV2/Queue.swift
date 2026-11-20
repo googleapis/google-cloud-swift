@@ -224,7 +224,9 @@ public struct Queue: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.httpTarget, forKey: .httpTarget)
     try container.encodeIfPresent(self.rateLimits, forKey: .rateLimits)
     try container.encodeIfPresent(self.retryConfig, forKey: .retryConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Queue.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.purgeTime, forKey: .purgeTime)
     try container.encodeIfPresent(self.stackdriverLoggingConfig, forKey: .stackdriverLoggingConfig)
     for (key, value) in self._unknownFields.json {

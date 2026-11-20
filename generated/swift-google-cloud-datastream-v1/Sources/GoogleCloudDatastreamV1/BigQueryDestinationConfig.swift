@@ -142,18 +142,18 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.datasetConfig {
       switch choice {
       case .singleTargetDataset(let value):
-        try container.encode(value, forKey: .singleTargetDataset)
+        try container.encodeIfPresent(value, forKey: .singleTargetDataset)
       case .sourceHierarchyDatasets(let value):
-        try container.encode(value, forKey: .sourceHierarchyDatasets)
+        try container.encodeIfPresent(value, forKey: .sourceHierarchyDatasets)
       }
     }
 
     if let choice = self.writeMode {
       switch choice {
       case .merge(let value):
-        try container.encode(value, forKey: .merge)
+        try container.encodeIfPresent(value, forKey: .merge)
       case .appendOnly(let value):
-        try container.encode(value, forKey: .appendOnly)
+        try container.encodeIfPresent(value, forKey: .appendOnly)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -538,8 +538,12 @@ public struct BigQueryDestinationConfig: Codable, Equatable, GoogleWKT._AnyPacka
       try container.encode(self.bucket, forKey: .bucket)
       try container.encode(self.rootPath, forKey: .rootPath)
       try container.encode(self.connectionName, forKey: .connectionName)
-      try container.encode(self.fileFormat, forKey: .fileFormat)
-      try container.encode(self.tableFormat, forKey: .tableFormat)
+      if self.fileFormat != BigQueryDestinationConfig.BlmtConfig.FileFormat() {
+        try container.encode(self.fileFormat, forKey: .fileFormat)
+      }
+      if self.tableFormat != BigQueryDestinationConfig.BlmtConfig.TableFormat() {
+        try container.encode(self.tableFormat, forKey: .tableFormat)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

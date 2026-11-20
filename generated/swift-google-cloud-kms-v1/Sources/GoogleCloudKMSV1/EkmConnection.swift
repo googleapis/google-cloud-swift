@@ -158,7 +158,9 @@ public struct EkmConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.serviceResolvers, forKey: .serviceResolvers)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.keyManagementMode, forKey: .keyManagementMode)
+    if self.keyManagementMode != EkmConnection.KeyManagementMode() {
+      try container.encode(self.keyManagementMode, forKey: .keyManagementMode)
+    }
     try container.encode(self.cryptoSpacePath, forKey: .cryptoSpacePath)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -142,11 +142,15 @@ public struct DescribeDatabaseEntitiesRequest: Codable, Equatable, GoogleWKT._An
     try container.encode(self.conversionWorkspace, forKey: .conversionWorkspace)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.tree, forKey: .tree)
+    if self.tree != DescribeDatabaseEntitiesRequest.DBTreeType() {
+      try container.encode(self.tree, forKey: .tree)
+    }
     try container.encode(self.uncommitted, forKey: .uncommitted)
     try container.encode(self.commitId, forKey: .commitId)
     try container.encode(self.filter, forKey: .filter)
-    try container.encode(self.view, forKey: .view)
+    if self.view != DatabaseEntityView() {
+      try container.encode(self.view, forKey: .view)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

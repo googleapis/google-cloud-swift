@@ -91,9 +91,9 @@ public struct DataSource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .entity(let value):
-        try container.encode(value, forKey: .entity)
+        try container.encodeIfPresent(value, forKey: .entity)
       case .resource(let value):
-        try container.encode(value, forKey: .resource)
+        try container.encodeIfPresent(value, forKey: .resource)
       }
     }
     for (key, value) in self._unknownFields.json {

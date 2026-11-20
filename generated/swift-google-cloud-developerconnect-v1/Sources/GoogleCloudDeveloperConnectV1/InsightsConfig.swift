@@ -189,7 +189,9 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.runtimeConfigs, forKey: .runtimeConfigs)
     try container.encode(self.artifactConfigs, forKey: .artifactConfigs)
-    try container.encode(self.state, forKey: .state)
+    if self.state != InsightsConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.annotations, forKey: .annotations)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.reconciling, forKey: .reconciling)
@@ -198,9 +200,9 @@ public struct InsightsConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.insightsConfigContext {
       switch choice {
       case .appHubApplication(let value):
-        try container.encode(value, forKey: .appHubApplication)
+        try container.encodeIfPresent(value, forKey: .appHubApplication)
       case .projects(let value):
-        try container.encode(value, forKey: .projects)
+        try container.encodeIfPresent(value, forKey: .projects)
       }
     }
     for (key, value) in self._unknownFields.json {

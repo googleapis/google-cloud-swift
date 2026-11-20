@@ -161,12 +161,16 @@ public struct ControlComplianceSummary: Codable, Equatable, GoogleWKT._AnyPackab
     try container.encode(self.control, forKey: .control)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.overallEvaluationState, forKey: .overallEvaluationState)
+    if self.overallEvaluationState != EvaluationState() {
+      try container.encode(self.overallEvaluationState, forKey: .overallEvaluationState)
+    }
     try container.encode(self.totalFindingsCount, forKey: .totalFindingsCount)
     try container.encode(self.complianceFrameworks, forKey: .complianceFrameworks)
     try container.encode(self.similarControls, forKey: .similarControls)
     try container.encode(self.cloudControlReports, forKey: .cloudControlReports)
-    try container.encode(self.controlResponsibilityType, forKey: .controlResponsibilityType)
+    if self.controlResponsibilityType != RegulatoryControlResponsibilityType() {
+      try container.encode(self.controlResponsibilityType, forKey: .controlResponsibilityType)
+    }
     try container.encode(self.isFakeControl, forKey: .isFakeControl)
     try container.encode(self.name, forKey: .name)
     for (key, value) in self._unknownFields.json {

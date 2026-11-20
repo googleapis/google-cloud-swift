@@ -81,7 +81,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encodeIfPresent(self.query, forKey: .query)
-      try container.encode(self.modality, forKey: .modality)
+      if self.modality != Presets.Modality() {
+        try container.encode(self.modality, forKey: .modality)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

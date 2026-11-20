@@ -132,7 +132,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
       try container.encode(self.agentUri, forKey: .agentUri)
-      try container.encode(self.dataFormat, forKey: .dataFormat)
+      if self.dataFormat != ExportAgentRequest.DataFormat() {
+        try container.encode(self.dataFormat, forKey: .dataFormat)
+      }
       try container.encode(self.environment, forKey: .environment)
       try container.encodeIfPresent(self.gitDestination, forKey: .gitDestination)
       try container.encode(

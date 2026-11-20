@@ -98,7 +98,9 @@ public struct CreateWorkloadOperationMetadata: Codable, Equatable, GoogleWKT._An
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.complianceRegime, forKey: .complianceRegime)
+    if self.complianceRegime != Workload.ComplianceRegime() {
+      try container.encode(self.complianceRegime, forKey: .complianceRegime)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

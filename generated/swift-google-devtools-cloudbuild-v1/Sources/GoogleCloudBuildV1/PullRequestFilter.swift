@@ -108,13 +108,15 @@ public struct PullRequestFilter: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.commentControl, forKey: .commentControl)
+    if self.commentControl != PullRequestFilter.CommentControl() {
+      try container.encode(self.commentControl, forKey: .commentControl)
+    }
     try container.encode(self.invertRegex, forKey: .invertRegex)
 
     if let choice = self.gitRef {
       switch choice {
       case .branch(let value):
-        try container.encode(value, forKey: .branch)
+        try container.encodeIfPresent(value, forKey: .branch)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -151,12 +151,14 @@ public struct Tag: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.template, forKey: .template)
     try container.encode(self.templateDisplayName, forKey: .templateDisplayName)
     try container.encode(self.fields, forKey: .fields)
-    try container.encode(self.dataplexTransferStatus, forKey: .dataplexTransferStatus)
+    if self.dataplexTransferStatus != TagTemplate.DataplexTransferStatus() {
+      try container.encode(self.dataplexTransferStatus, forKey: .dataplexTransferStatus)
+    }
 
     if let choice = self.scope {
       switch choice {
       case .column(let value):
-        try container.encode(value, forKey: .column)
+        try container.encodeIfPresent(value, forKey: .column)
       }
     }
     for (key, value) in self._unknownFields.json {

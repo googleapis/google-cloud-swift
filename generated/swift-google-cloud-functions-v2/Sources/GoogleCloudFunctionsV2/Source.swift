@@ -97,11 +97,11 @@ public struct Source: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.source {
       switch choice {
       case .storageSource(let value):
-        try container.encode(value, forKey: .storageSource)
+        try container.encodeIfPresent(value, forKey: .storageSource)
       case .repoSource(let value):
-        try container.encode(value, forKey: .repoSource)
+        try container.encodeIfPresent(value, forKey: .repoSource)
       case .gitUri(let value):
-        try container.encode(value, forKey: .gitUri)
+        try container.encodeIfPresent(value, forKey: .gitUri)
       }
     }
     for (key, value) in self._unknownFields.json {

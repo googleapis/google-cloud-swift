@@ -265,20 +265,32 @@ public struct BuildOptions: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.sourceProvenanceHash, forKey: .sourceProvenanceHash)
-    try container.encode(self.requestedVerifyOption, forKey: .requestedVerifyOption)
-    try container.encode(self.machineType, forKey: .machineType)
+    if self.requestedVerifyOption != BuildOptions.VerifyOption() {
+      try container.encode(self.requestedVerifyOption, forKey: .requestedVerifyOption)
+    }
+    if self.machineType != BuildOptions.MachineType() {
+      try container.encode(self.machineType, forKey: .machineType)
+    }
     try container.encode(self.diskSizeGb, forKey: .diskSizeGb)
-    try container.encode(self.substitutionOption, forKey: .substitutionOption)
+    if self.substitutionOption != BuildOptions.SubstitutionOption() {
+      try container.encode(self.substitutionOption, forKey: .substitutionOption)
+    }
     try container.encode(self.dynamicSubstitutions, forKey: .dynamicSubstitutions)
     try container.encode(self.automapSubstitutions, forKey: .automapSubstitutions)
-    try container.encode(self.logStreamingOption, forKey: .logStreamingOption)
+    if self.logStreamingOption != BuildOptions.LogStreamingOption() {
+      try container.encode(self.logStreamingOption, forKey: .logStreamingOption)
+    }
     try container.encode(self.workerPool, forKey: .workerPool)
     try container.encodeIfPresent(self.pool, forKey: .pool)
-    try container.encode(self.logging, forKey: .logging)
+    if self.logging != BuildOptions.LoggingMode() {
+      try container.encode(self.logging, forKey: .logging)
+    }
     try container.encode(self.env, forKey: .env)
     try container.encode(self.secretEnv, forKey: .secretEnv)
     try container.encode(self.volumes, forKey: .volumes)
-    try container.encode(self.defaultLogsBucketBehavior, forKey: .defaultLogsBucketBehavior)
+    if self.defaultLogsBucketBehavior != BuildOptions.DefaultLogsBucketBehavior() {
+      try container.encode(self.defaultLogsBucketBehavior, forKey: .defaultLogsBucketBehavior)
+    }
     try container.encode(self.enableStructuredLogging, forKey: .enableStructuredLogging)
     try container.encode(self.workerRelease, forKey: .workerRelease)
     try container.encode(self.resolvedWorkerRelease, forKey: .resolvedWorkerRelease)

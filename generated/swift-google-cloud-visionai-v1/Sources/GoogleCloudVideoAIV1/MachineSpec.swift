@@ -100,7 +100,9 @@ public struct MachineSpec: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.machineType, forKey: .machineType)
-    try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    if self.acceleratorType != AcceleratorType() {
+      try container.encode(self.acceleratorType, forKey: .acceleratorType)
+    }
     try container.encode(self.acceleratorCount, forKey: .acceleratorCount)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

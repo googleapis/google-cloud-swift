@@ -129,7 +129,9 @@ public struct ParameterSpec: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.`required`, forKey: .`required`)
-    try container.encode(self.valueType, forKey: .valueType)
+    if self.valueType != ParameterSpec.ValueType() {
+      try container.encode(self.valueType, forKey: .valueType)
+    }
     try container.encodeIfPresent(self.defaultValue, forKey: .defaultValue)
     try container.encode(self.subParameterSpecs, forKey: .subParameterSpecs)
     for (key, value) in self._unknownFields.json {

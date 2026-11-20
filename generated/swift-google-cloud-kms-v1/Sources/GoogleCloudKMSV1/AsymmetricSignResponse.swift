@@ -172,7 +172,9 @@ public struct AsymmetricSignResponse: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.verifiedDigestCrc32C, forKey: .verifiedDigestCrc32C)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.verifiedDataCrc32C, forKey: .verifiedDataCrc32C)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

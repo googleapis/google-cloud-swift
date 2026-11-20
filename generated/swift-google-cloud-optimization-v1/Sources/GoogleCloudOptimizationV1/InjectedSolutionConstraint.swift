@@ -301,7 +301,9 @@ public struct InjectedSolutionConstraint: Codable, Equatable, GoogleWKT._AnyPack
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.level, forKey: .level)
+        if self.level != InjectedSolutionConstraint.ConstraintRelaxation.Relaxation.Level() {
+          try container.encode(self.level, forKey: .level)
+        }
         try container.encodeIfPresent(self.thresholdTime, forKey: .thresholdTime)
         try container.encode(self.thresholdVisitCount, forKey: .thresholdVisitCount)
         for (key, value) in self._unknownFields.json {

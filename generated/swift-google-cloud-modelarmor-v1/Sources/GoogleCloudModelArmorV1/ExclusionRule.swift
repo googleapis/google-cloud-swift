@@ -100,9 +100,9 @@ public struct ExclusionRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .dictionary(let value):
-        try container.encode(value, forKey: .dictionary)
+        try container.encodeIfPresent(value, forKey: .dictionary)
       case .regex(let value):
-        try container.encode(value, forKey: .regex)
+        try container.encodeIfPresent(value, forKey: .regex)
       }
     }
     for (key, value) in self._unknownFields.json {

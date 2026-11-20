@@ -167,7 +167,9 @@ public struct InvocationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.endUserAuthConfig, forKey: .endUserAuthConfig)
     try container.encodeIfPresent(self.queryPriority, forKey: .queryPriority)
     try container.encodeIfPresent(self.concurrentActionsLimit, forKey: .concurrentActionsLimit)
-    try container.encode(self.executionMode, forKey: .executionMode)
+    if self.executionMode != InvocationConfig.ExecutionMode() {
+      try container.encode(self.executionMode, forKey: .executionMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

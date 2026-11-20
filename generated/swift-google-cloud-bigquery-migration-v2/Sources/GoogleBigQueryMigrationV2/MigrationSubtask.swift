@@ -158,7 +158,9 @@ public struct MigrationSubtask: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.taskId, forKey: .taskId)
     try container.encode(self.type, forKey: .type)
-    try container.encode(self.state, forKey: .state)
+    if self.state != MigrationSubtask.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.processingError, forKey: .processingError)
     try container.encode(self.resourceErrorDetails, forKey: .resourceErrorDetails)
     try container.encode(self.resourceErrorCount, forKey: .resourceErrorCount)

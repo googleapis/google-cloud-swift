@@ -118,10 +118,14 @@ public struct GoldengateDeploymentVersionProperties: Codable, Equatable, GoogleW
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.deploymentType, forKey: .deploymentType)
+    if self.deploymentType != GoldengateDeploymentVersionProperties.DeploymentType() {
+      try container.encode(self.deploymentType, forKey: .deploymentType)
+    }
     try container.encode(self.securityFix, forKey: .securityFix)
     try container.encode(self.oggVersion, forKey: .oggVersion)
-    try container.encode(self.releaseType, forKey: .releaseType)
+    if self.releaseType != GoldengateDeploymentVersionProperties.DeploymentReleaseType() {
+      try container.encode(self.releaseType, forKey: .releaseType)
+    }
     try container.encodeIfPresent(self.releaseTime, forKey: .releaseTime)
     try container.encodeIfPresent(self.supportEndTime, forKey: .supportEndTime)
     for (key, value) in self._unknownFields.json {

@@ -174,18 +174,20 @@ public struct SecurityProfile: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.type, forKey: .type)
+    if self.type != SecurityProfile.ProfileType() {
+      try container.encode(self.type, forKey: .type)
+    }
 
     if let choice = self.profile {
       switch choice {
       case .threatPreventionProfile(let value):
-        try container.encode(value, forKey: .threatPreventionProfile)
+        try container.encodeIfPresent(value, forKey: .threatPreventionProfile)
       case .customMirroringProfile(let value):
-        try container.encode(value, forKey: .customMirroringProfile)
+        try container.encodeIfPresent(value, forKey: .customMirroringProfile)
       case .customInterceptProfile(let value):
-        try container.encode(value, forKey: .customInterceptProfile)
+        try container.encodeIfPresent(value, forKey: .customInterceptProfile)
       case .urlFilteringProfile(let value):
-        try container.encode(value, forKey: .urlFilteringProfile)
+        try container.encodeIfPresent(value, forKey: .urlFilteringProfile)
       }
     }
     for (key, value) in self._unknownFields.json {

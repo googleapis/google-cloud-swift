@@ -103,9 +103,9 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.rolloutPolicy {
       switch choice {
       case .standardRolloutPolicy(let value):
-        try container.encode(value, forKey: .standardRolloutPolicy)
+        try container.encodeIfPresent(value, forKey: .standardRolloutPolicy)
       case .autoscaledRolloutPolicy(let value):
-        try container.encode(value, forKey: .autoscaledRolloutPolicy)
+        try container.encodeIfPresent(value, forKey: .autoscaledRolloutPolicy)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -198,9 +198,9 @@ public struct BlueGreenSettings: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.updateBatchSize {
         switch choice {
         case .batchPercentage(let value):
-          try container.encode(value, forKey: .batchPercentage)
+          try container.encodeIfPresent(value, forKey: .batchPercentage)
         case .batchNodeCount(let value):
-          try container.encode(value, forKey: .batchNodeCount)
+          try container.encodeIfPresent(value, forKey: .batchNodeCount)
         }
       }
       for (key, value) in self._unknownFields.json {

@@ -102,7 +102,9 @@ public struct Fleet: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.project, forKey: .project)
     try container.encode(self.membership, forKey: .membership)
     try container.encode(self.preRegistered, forKey: .preRegistered)
-    try container.encode(self.membershipType, forKey: .membershipType)
+    if self.membershipType != Fleet.MembershipType() {
+      try container.encode(self.membershipType, forKey: .membershipType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

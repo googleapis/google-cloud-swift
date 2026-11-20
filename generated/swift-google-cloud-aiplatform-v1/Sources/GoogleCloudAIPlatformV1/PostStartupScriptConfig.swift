@@ -94,7 +94,9 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.postStartupScript, forKey: .postStartupScript)
       try container.encode(self.postStartupScriptUrl, forKey: .postStartupScriptUrl)
-      try container.encode(self.postStartupScriptBehavior, forKey: .postStartupScriptBehavior)
+      if self.postStartupScriptBehavior != PostStartupScriptConfig.PostStartupScriptBehavior() {
+        try container.encode(self.postStartupScriptBehavior, forKey: .postStartupScriptBehavior)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

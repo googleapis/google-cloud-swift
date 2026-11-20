@@ -162,11 +162,11 @@ public struct ImportCustomerRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.customerIdentity {
       switch choice {
       case .domain(let value):
-        try container.encode(value, forKey: .domain)
+        try container.encodeIfPresent(value, forKey: .domain)
       case .cloudIdentityId(let value):
-        try container.encode(value, forKey: .cloudIdentityId)
+        try container.encodeIfPresent(value, forKey: .cloudIdentityId)
       case .primaryAdminEmail(let value):
-        try container.encode(value, forKey: .primaryAdminEmail)
+        try container.encodeIfPresent(value, forKey: .primaryAdminEmail)
       }
     }
     for (key, value) in self._unknownFields.json {

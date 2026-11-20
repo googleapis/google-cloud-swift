@@ -114,18 +114,20 @@ public struct IcebergCatalog: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.catalogType, forKey: .catalogType)
+    if self.catalogType != IcebergCatalog.CatalogType() {
+      try container.encode(self.catalogType, forKey: .catalogType)
+    }
 
     if let choice = self.catalogDetails {
       switch choice {
       case .glueIcebergCatalog(let value):
-        try container.encode(value, forKey: .glueIcebergCatalog)
+        try container.encodeIfPresent(value, forKey: .glueIcebergCatalog)
       case .nessieIcebergCatalog(let value):
-        try container.encode(value, forKey: .nessieIcebergCatalog)
+        try container.encodeIfPresent(value, forKey: .nessieIcebergCatalog)
       case .polarisIcebergCatalog(let value):
-        try container.encode(value, forKey: .polarisIcebergCatalog)
+        try container.encodeIfPresent(value, forKey: .polarisIcebergCatalog)
       case .restIcebergCatalog(let value):
-        try container.encode(value, forKey: .restIcebergCatalog)
+        try container.encodeIfPresent(value, forKey: .restIcebergCatalog)
       }
     }
     for (key, value) in self._unknownFields.json {

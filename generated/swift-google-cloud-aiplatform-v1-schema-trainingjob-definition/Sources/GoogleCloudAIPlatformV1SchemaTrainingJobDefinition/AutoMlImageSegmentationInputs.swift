@@ -102,7 +102,9 @@ public struct AutoMlImageSegmentationInputs: Codable, Equatable, GoogleWKT._AnyP
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.modelType, forKey: .modelType)
+    if self.modelType != AutoMlImageSegmentationInputs.ModelType() {
+      try container.encode(self.modelType, forKey: .modelType)
+    }
     try container.encode(self.budgetMilliNodeHours, forKey: .budgetMilliNodeHours)
     try container.encode(self.baseModelId, forKey: .baseModelId)
     for (key, value) in self._unknownFields.json {

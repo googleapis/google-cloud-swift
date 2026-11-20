@@ -381,8 +381,12 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.category, forKey: .category)
-          try container.encode(self.threshold, forKey: .threshold)
+          if self.category != HarmCategory() {
+            try container.encode(self.category, forKey: .category)
+          }
+          if self.threshold != AnswerQueryRequest.SafetySpec.SafetySetting.HarmBlockThreshold() {
+            try container.encode(self.threshold, forKey: .threshold)
+          }
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
           }
@@ -723,7 +727,9 @@
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.includeGroundingSupports, forKey: .includeGroundingSupports)
-        try container.encode(self.filteringLevel, forKey: .filteringLevel)
+        if self.filteringLevel != AnswerQueryRequest.GroundingSpec.FilteringLevel() {
+          try container.encode(self.filteringLevel, forKey: .filteringLevel)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1293,9 +1299,9 @@
         if let choice = self.input {
           switch choice {
           case .searchParams(let value):
-            try container.encode(value, forKey: .searchParams)
+            try container.encodeIfPresent(value, forKey: .searchParams)
           case .searchResultList(let value):
-            try container.encode(value, forKey: .searchResultList)
+            try container.encodeIfPresent(value, forKey: .searchResultList)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1437,7 +1443,9 @@
           try container.encode(self.filter, forKey: .filter)
           try container.encodeIfPresent(self.boostSpec, forKey: .boostSpec)
           try container.encode(self.orderBy, forKey: .orderBy)
-          try container.encode(self.searchResultMode, forKey: .searchResultMode)
+          if self.searchResultMode != SearchRequest.ContentSearchSpec.SearchResultMode() {
+            try container.encode(self.searchResultMode, forKey: .searchResultMode)
+          }
           try container.encode(self.dataStoreSpecs, forKey: .dataStoreSpecs)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -1608,9 +1616,9 @@
             if let choice = self.content {
               switch choice {
               case .unstructuredDocumentInfo(let value):
-                try container.encode(value, forKey: .unstructuredDocumentInfo)
+                try container.encodeIfPresent(value, forKey: .unstructuredDocumentInfo)
               case .chunkInfo(let value):
-                try container.encode(value, forKey: .chunkInfo)
+                try container.encodeIfPresent(value, forKey: .chunkInfo)
               }
             }
             for (key, value) in self._unknownFields.json {
@@ -2789,7 +2797,11 @@
 
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(self.modelType, forKey: .modelType)
+            if self.modelType
+              != AnswerQueryRequest.QueryUnderstandingSpec.QueryRephraserSpec.ModelSpec.ModelType()
+            {
+              try container.encode(self.modelType, forKey: .modelType)
+            }
             for (key, value) in self._unknownFields.json {
               try container.encode(value, forKey: CodingKeys(stringValue: key))
             }
@@ -3113,7 +3125,7 @@
           if let choice = self.content {
             switch choice {
             case .chunkInfo(let value):
-              try container.encode(value, forKey: .chunkInfo)
+              try container.encodeIfPresent(value, forKey: .chunkInfo)
             }
           }
           for (key, value) in self._unknownFields.json {

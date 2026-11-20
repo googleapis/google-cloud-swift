@@ -147,16 +147,18 @@ public struct SerializedPolicy: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.uri, forKey: .uri)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.policyType, forKey: .policyType)
+    if self.policyType != SerializedPolicy.PolicyType() {
+      try container.encode(self.policyType, forKey: .policyType)
+    }
     try container.encode(self.applyConditions, forKey: .applyConditions)
     try container.encode(self.cloudControlConfigs, forKey: .cloudControlConfigs)
 
     if let choice = self.sourceUri {
       switch choice {
       case .policyUri(let value):
-        try container.encode(value, forKey: .policyUri)
+        try container.encodeIfPresent(value, forKey: .policyUri)
       case .policyRevisionUri(let value):
-        try container.encode(value, forKey: .policyRevisionUri)
+        try container.encodeIfPresent(value, forKey: .policyRevisionUri)
       }
     }
     for (key, value) in self._unknownFields.json {

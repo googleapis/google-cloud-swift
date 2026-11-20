@@ -194,22 +194,24 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.displayName, forKey: .displayName)
       try container.encode(self.associatedServingConfigIds, forKey: .associatedServingConfigIds)
-      try container.encode(self.solutionType, forKey: .solutionType)
+      if self.solutionType != SolutionType() {
+        try container.encode(self.solutionType, forKey: .solutionType)
+      }
       try container.encode(self.useCases, forKey: .useCases)
       try container.encode(self.conditions, forKey: .conditions)
 
       if let choice = self.action {
         switch choice {
         case .boostAction(let value):
-          try container.encode(value, forKey: .boostAction)
+          try container.encodeIfPresent(value, forKey: .boostAction)
         case .filterAction(let value):
-          try container.encode(value, forKey: .filterAction)
+          try container.encodeIfPresent(value, forKey: .filterAction)
         case .redirectAction(let value):
-          try container.encode(value, forKey: .redirectAction)
+          try container.encodeIfPresent(value, forKey: .redirectAction)
         case .synonymsAction(let value):
-          try container.encode(value, forKey: .synonymsAction)
+          try container.encodeIfPresent(value, forKey: .synonymsAction)
         case .promoteAction(let value):
-          try container.encode(value, forKey: .promoteAction)
+          try container.encodeIfPresent(value, forKey: .promoteAction)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -335,9 +337,9 @@
         if let choice = self.boostSpec {
           switch choice {
           case .fixedBoost(let value):
-            try container.encode(value, forKey: .fixedBoost)
+            try container.encodeIfPresent(value, forKey: .fixedBoost)
           case .interpolationBoostSpec(let value):
-            try container.encode(value, forKey: .interpolationBoostSpec)
+            try container.encodeIfPresent(value, forKey: .interpolationBoostSpec)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -441,8 +443,14 @@
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
           try container.encode(self.fieldName, forKey: .fieldName)
-          try container.encode(self.attributeType, forKey: .attributeType)
-          try container.encode(self.interpolationType, forKey: .interpolationType)
+          if self.attributeType != Control.BoostAction.InterpolationBoostSpec.AttributeType() {
+            try container.encode(self.attributeType, forKey: .attributeType)
+          }
+          if self.interpolationType
+            != Control.BoostAction.InterpolationBoostSpec.InterpolationType()
+          {
+            try container.encode(self.interpolationType, forKey: .interpolationType)
+          }
           try container.encode(self.controlPoints, forKey: .controlPoints)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))

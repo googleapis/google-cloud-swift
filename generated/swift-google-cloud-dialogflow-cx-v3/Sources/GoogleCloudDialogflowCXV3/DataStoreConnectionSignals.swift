@@ -713,8 +713,12 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.decision, forKey: .decision)
-        try container.encode(self.score, forKey: .score)
+        if self.decision != DataStoreConnectionSignals.GroundingSignals.GroundingDecision() {
+          try container.encode(self.decision, forKey: .decision)
+        }
+        if self.score != DataStoreConnectionSignals.GroundingSignals.GroundingScoreBucket() {
+          try container.encode(self.score, forKey: .score)
+        }
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
         }
@@ -1075,8 +1079,12 @@
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.decision, forKey: .decision)
-        try container.encode(self.bannedPhraseMatch, forKey: .bannedPhraseMatch)
+        if self.decision != DataStoreConnectionSignals.SafetySignals.SafetyDecision() {
+          try container.encode(self.decision, forKey: .decision)
+        }
+        if self.bannedPhraseMatch != DataStoreConnectionSignals.SafetySignals.BannedPhraseMatch() {
+          try container.encode(self.bannedPhraseMatch, forKey: .bannedPhraseMatch)
+        }
         try container.encode(self.matchedBannedPhrase, forKey: .matchedBannedPhrase)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -106,13 +106,13 @@ public struct AdcMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.appUri {
       switch choice {
       case .applicationUri(let value):
-        try container.encode(value, forKey: .applicationUri)
+        try container.encodeIfPresent(value, forKey: .applicationUri)
       case .applicationTemplateUri(let value):
-        try container.encode(value, forKey: .applicationTemplateUri)
+        try container.encodeIfPresent(value, forKey: .applicationTemplateUri)
       case .spaceUri(let value):
-        try container.encode(value, forKey: .spaceUri)
+        try container.encodeIfPresent(value, forKey: .spaceUri)
       case .catalogTemplateRevisionUri(let value):
-        try container.encode(value, forKey: .catalogTemplateRevisionUri)
+        try container.encodeIfPresent(value, forKey: .catalogTemplateRevisionUri)
       }
     }
     for (key, value) in self._unknownFields.json {

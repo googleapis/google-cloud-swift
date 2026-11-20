@@ -87,7 +87,7 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
     if let choice = self.location {
       switch choice {
       case .awsLocation(let value):
-        try container.encode(value, forKey: .awsLocation)
+        try container.encodeIfPresent(value, forKey: .awsLocation)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -170,9 +170,9 @@ public struct OtherCloudDiscoveryStartingLocation: Codable, Equatable, GoogleWKT
       if let choice = self.scope {
         switch choice {
         case .accountId(let value):
-          try container.encode(value, forKey: .accountId)
+          try container.encodeIfPresent(value, forKey: .accountId)
         case .allAssetInventoryAssets(let value):
-          try container.encode(value, forKey: .allAssetInventoryAssets)
+          try container.encodeIfPresent(value, forKey: .allAssetInventoryAssets)
         }
       }
       for (key, value) in self._unknownFields.json {

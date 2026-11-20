@@ -127,13 +127,13 @@
       if let choice = self.resource {
         switch choice {
         case .mlEngineModelVersion(let value):
-          try container.encode(value, forKey: .mlEngineModelVersion)
+          try container.encodeIfPresent(value, forKey: .mlEngineModelVersion)
         case .automlModel(let value):
-          try container.encode(value, forKey: .automlModel)
+          try container.encodeIfPresent(value, forKey: .automlModel)
         case .automlDataset(let value):
-          try container.encode(value, forKey: .automlDataset)
+          try container.encodeIfPresent(value, forKey: .automlDataset)
         case .dataLabelingDataset(let value):
-          try container.encode(value, forKey: .dataLabelingDataset)
+          try container.encodeIfPresent(value, forKey: .dataLabelingDataset)
         }
       }
       for (key, value) in self._unknownFields.json {

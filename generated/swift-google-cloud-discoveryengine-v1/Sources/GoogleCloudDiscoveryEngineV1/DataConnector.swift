@@ -611,7 +611,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.name, forKey: .name)
-      try container.encode(self.state, forKey: .state)
+      if self.state != DataConnector.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.dataSource, forKey: .dataSource)
       try container.encode(self.removeParamKeys, forKey: .removeParamKeys)
       try container.encodeIfPresent(self.refreshInterval, forKey: .refreshInterval)
@@ -622,10 +624,14 @@
       try container.encodeIfPresent(self.lastSyncTime, forKey: .lastSyncTime)
       try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
       try container.encode(self.errors, forKey: .errors)
-      try container.encode(self.syncMode, forKey: .syncMode)
+      if self.syncMode != DataConnector.SyncMode() {
+        try container.encode(self.syncMode, forKey: .syncMode)
+      }
       try container.encode(self.kmsKeyName, forKey: .kmsKeyName)
       try container.encode(self.destinationConfigs, forKey: .destinationConfigs)
-      try container.encode(self.actionState, forKey: .actionState)
+      if self.actionState != DataConnector.State() {
+        try container.encode(self.actionState, forKey: .actionState)
+      }
       try container.encodeIfPresent(self.actionConfig, forKey: .actionConfig)
       try container.encodeIfPresent(self.endUserConfig, forKey: .endUserConfig)
       try container.encodeIfPresent(self.federatedConfig, forKey: .federatedConfig)
@@ -637,8 +643,12 @@
       try container.encodeIfPresent(self.identityScheduleConfig, forKey: .identityScheduleConfig)
       try container.encode(self.privateConnectivityProjectId, forKey: .privateConnectivityProjectId)
       try container.encodeIfPresent(self.bapConfig, forKey: .bapConfig)
-      try container.encode(self.connectorType, forKey: .connectorType)
-      try container.encode(self.realtimeState, forKey: .realtimeState)
+      if self.connectorType != ConnectorType() {
+        try container.encode(self.connectorType, forKey: .connectorType)
+      }
+      if self.realtimeState != DataConnector.State() {
+        try container.encode(self.realtimeState, forKey: .realtimeState)
+      }
       try container.encode(self.alertPolicyConfigs, forKey: .alertPolicyConfigs)
       try container.encodeIfPresent(self.realtimeSyncConfig, forKey: .realtimeSyncConfig)
       try container.encode(self.aclEnabled, forKey: .aclEnabled)
@@ -660,9 +670,9 @@
       if let choice = self.dataConnectorParams {
         switch choice {
         case .params(let value):
-          try container.encode(value, forKey: .params)
+          try container.encodeIfPresent(value, forKey: .params)
         case .jsonParams(let value):
-          try container.encode(value, forKey: .jsonParams)
+          try container.encodeIfPresent(value, forKey: .jsonParams)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -836,9 +846,9 @@
         if let choice = self.entityParams {
           switch choice {
           case .params(let value):
-            try container.encode(value, forKey: .params)
+            try container.encodeIfPresent(value, forKey: .params)
           case .jsonParams(let value):
-            try container.encode(value, forKey: .jsonParams)
+            try container.encodeIfPresent(value, forKey: .jsonParams)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -978,9 +988,9 @@
         if let choice = self.authConfig {
           switch choice {
           case .authParams(let value):
-            try container.encode(value, forKey: .authParams)
+            try container.encodeIfPresent(value, forKey: .authParams)
           case .jsonAuthParams(let value):
-            try container.encode(value, forKey: .jsonAuthParams)
+            try container.encodeIfPresent(value, forKey: .jsonAuthParams)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1109,9 +1119,9 @@
         if let choice = self.authConfig {
           switch choice {
           case .authParams(let value):
-            try container.encode(value, forKey: .authParams)
+            try container.encodeIfPresent(value, forKey: .authParams)
           case .jsonAuthParams(let value):
-            try container.encode(value, forKey: .jsonAuthParams)
+            try container.encodeIfPresent(value, forKey: .jsonAuthParams)
           }
         }
         for (key, value) in self._unknownFields.json {
@@ -1292,7 +1302,11 @@
 
         public func encode(to encoder: any Encoder) throws {
           var container = encoder.container(keyedBy: CodingKeys.self)
-          try container.encode(self.streamingErrorReason, forKey: .streamingErrorReason)
+          if self.streamingErrorReason
+            != DataConnector.RealtimeSyncConfig.StreamingError.StreamingErrorReason()
+          {
+            try container.encode(self.streamingErrorReason, forKey: .streamingErrorReason)
+          }
           try container.encodeIfPresent(self.error, forKey: .error)
           for (key, value) in self._unknownFields.json {
             try container.encode(value, forKey: CodingKeys(stringValue: key))

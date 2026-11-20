@@ -148,8 +148,12 @@ public struct Application: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.applicationConfigs, forKey: .applicationConfigs)
     try container.encodeIfPresent(self.runtimeInfo, forKey: .runtimeInfo)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.billingMode, forKey: .billingMode)
+    if self.state != Application.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.billingMode != Application.BillingMode() {
+      try container.encode(self.billingMode, forKey: .billingMode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

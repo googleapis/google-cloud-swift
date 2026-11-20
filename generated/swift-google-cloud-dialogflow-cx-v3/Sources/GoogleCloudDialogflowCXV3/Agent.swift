@@ -356,9 +356,9 @@
       if let choice = self.sessionEntryResource {
         switch choice {
         case .startFlow(let value):
-          try container.encode(value, forKey: .startFlow)
+          try container.encodeIfPresent(value, forKey: .startFlow)
         case .startPlaybook(let value):
-          try container.encode(value, forKey: .startPlaybook)
+          try container.encodeIfPresent(value, forKey: .startPlaybook)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -436,7 +436,7 @@
         if let choice = self.gitSettings {
           switch choice {
           case .githubSettings(let value):
-            try container.encode(value, forKey: .githubSettings)
+            try container.encodeIfPresent(value, forKey: .githubSettings)
           }
         }
         for (key, value) in self._unknownFields.json {

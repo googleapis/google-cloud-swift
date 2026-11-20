@@ -98,7 +98,7 @@ public struct FindingsRefinementActivity: Codable, Equatable, GoogleWKT._AnyPack
     if let choice = self.activity {
       switch choice {
       case .detectionExclusionActivity(let value):
-        try container.encode(value, forKey: .detectionExclusionActivity)
+        try container.encodeIfPresent(value, forKey: .detectionExclusionActivity)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -188,7 +188,7 @@ public struct DataAttributeBinding: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.resourceReference {
       switch choice {
       case .resource(let value):
-        try container.encode(value, forKey: .resource)
+        try container.encodeIfPresent(value, forKey: .resource)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -124,7 +124,9 @@ public struct AiModel: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.library, forKey: .library)
     try container.encode(self.location, forKey: .location)
     try container.encode(self.publisher, forKey: .publisher)
-    try container.encode(self.deploymentPlatform, forKey: .deploymentPlatform)
+    if self.deploymentPlatform != AiModel.DeploymentPlatform() {
+      try container.encode(self.deploymentPlatform, forKey: .deploymentPlatform)
+    }
     try container.encode(self.displayName, forKey: .displayName)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

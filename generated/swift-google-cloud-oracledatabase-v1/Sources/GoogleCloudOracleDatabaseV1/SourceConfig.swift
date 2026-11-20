@@ -174,9 +174,15 @@ public struct SourceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.autonomousDatabase, forKey: .autonomousDatabase)
     try container.encode(
       self.automaticBackupsReplicationEnabled, forKey: .automaticBackupsReplicationEnabled)
-    try container.encode(self.sourceType, forKey: .sourceType)
-    try container.encode(self.cloneType, forKey: .cloneType)
-    try container.encode(self.refreshableMode, forKey: .refreshableMode)
+    if self.sourceType != SourceConfig.SourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
+    if self.cloneType != SourceConfig.CloneType() {
+      try container.encode(self.cloneType, forKey: .cloneType)
+    }
+    if self.refreshableMode != SourceConfig.RefreshableMode() {
+      try container.encode(self.refreshableMode, forKey: .refreshableMode)
+    }
     try container.encode(self.autoRefreshFrequencySeconds, forKey: .autoRefreshFrequencySeconds)
     try container.encodeIfPresent(
       self.autoRefreshPointLagSeconds, forKey: .autoRefreshPointLagSeconds)

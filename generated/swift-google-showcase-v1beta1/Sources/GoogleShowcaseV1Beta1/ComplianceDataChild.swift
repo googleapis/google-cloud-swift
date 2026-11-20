@@ -136,13 +136,17 @@ public struct ComplianceDataChild: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.fFloat, forKey: .fFloat)
     try container.encode(self.fDouble, forKey: .fDouble)
     try container.encode(self.fBool, forKey: .fBool)
-    try container.encode(self.fContinent, forKey: .fContinent)
+    if self.fContinent != Continent() {
+      try container.encode(self.fContinent, forKey: .fContinent)
+    }
     try container.encodeIfPresent(self.fChild, forKey: .fChild)
     try container.encodeIfPresent(self.pString, forKey: .pString)
     try container.encodeIfPresent(self.pFloat, forKey: .pFloat)
     try container.encodeIfPresent(self.pDouble, forKey: .pDouble)
     try container.encodeIfPresent(self.pBool, forKey: .pBool)
-    try container.encode(self.pContinent, forKey: .pContinent)
+    if self.pContinent != Continent() {
+      try container.encode(self.pContinent, forKey: .pContinent)
+    }
     try container.encodeIfPresent(self.pChild, forKey: .pChild)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

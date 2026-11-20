@@ -87,7 +87,7 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

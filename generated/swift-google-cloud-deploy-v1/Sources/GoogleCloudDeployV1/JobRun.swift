@@ -193,23 +193,25 @@ public struct JobRun: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != JobRun.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.etag, forKey: .etag)
 
     if let choice = self.jobRun {
       switch choice {
       case .deployJobRun(let value):
-        try container.encode(value, forKey: .deployJobRun)
+        try container.encodeIfPresent(value, forKey: .deployJobRun)
       case .verifyJobRun(let value):
-        try container.encode(value, forKey: .verifyJobRun)
+        try container.encodeIfPresent(value, forKey: .verifyJobRun)
       case .predeployJobRun(let value):
-        try container.encode(value, forKey: .predeployJobRun)
+        try container.encodeIfPresent(value, forKey: .predeployJobRun)
       case .postdeployJobRun(let value):
-        try container.encode(value, forKey: .postdeployJobRun)
+        try container.encodeIfPresent(value, forKey: .postdeployJobRun)
       case .createChildRolloutJobRun(let value):
-        try container.encode(value, forKey: .createChildRolloutJobRun)
+        try container.encodeIfPresent(value, forKey: .createChildRolloutJobRun)
       case .advanceChildRolloutJobRun(let value):
-        try container.encode(value, forKey: .advanceChildRolloutJobRun)
+        try container.encodeIfPresent(value, forKey: .advanceChildRolloutJobRun)
       }
     }
     for (key, value) in self._unknownFields.json {

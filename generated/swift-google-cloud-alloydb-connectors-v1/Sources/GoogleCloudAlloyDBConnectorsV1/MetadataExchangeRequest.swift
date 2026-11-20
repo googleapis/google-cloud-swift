@@ -94,7 +94,9 @@ public struct MetadataExchangeRequest: Codable, Equatable, GoogleWKT._AnyPackabl
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.userAgent, forKey: .userAgent)
-    try container.encode(self.authType, forKey: .authType)
+    if self.authType != MetadataExchangeRequest.AuthType() {
+      try container.encode(self.authType, forKey: .authType)
+    }
     try container.encode(self.oauth2Token, forKey: .oauth2Token)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

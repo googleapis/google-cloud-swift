@@ -154,7 +154,9 @@
       try container.encode(self.score, forKey: .score)
       try container.encode(self.avgLogprobs, forKey: .avgLogprobs)
       try container.encodeIfPresent(self.logprobsResult, forKey: .logprobsResult)
-      try container.encode(self.finishReason, forKey: .finishReason)
+      if self.finishReason != GoogleCloudAIPlatformV1.Candidate.FinishReason() {
+        try container.encode(self.finishReason, forKey: .finishReason)
+      }
       try container.encode(self.safetyRatings, forKey: .safetyRatings)
       try container.encodeIfPresent(self.finishMessage, forKey: .finishMessage)
       try container.encodeIfPresent(self.citationMetadata, forKey: .citationMetadata)

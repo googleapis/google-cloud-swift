@@ -516,9 +516,9 @@
             if let choice = self.casesOrMessage {
               switch choice {
               case .message(let value):
-                try container.encode(value, forKey: .message)
+                try container.encodeIfPresent(value, forKey: .message)
               case .additionalCases(let value):
-                try container.encode(value, forKey: .additionalCases)
+                try container.encodeIfPresent(value, forKey: .additionalCases)
               }
             }
             for (key, value) in self._unknownFields.json {

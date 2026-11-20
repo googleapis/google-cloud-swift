@@ -118,17 +118,17 @@ public struct FirewallAction: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.firewallActionOneof {
       switch choice {
       case .allow(let value):
-        try container.encode(value, forKey: .allow)
+        try container.encodeIfPresent(value, forKey: .allow)
       case .block(let value):
-        try container.encode(value, forKey: .block)
+        try container.encodeIfPresent(value, forKey: .block)
       case .includeRecaptchaScript(let value):
-        try container.encode(value, forKey: .includeRecaptchaScript)
+        try container.encodeIfPresent(value, forKey: .includeRecaptchaScript)
       case .redirect(let value):
-        try container.encode(value, forKey: .redirect)
+        try container.encodeIfPresent(value, forKey: .redirect)
       case .substitute(let value):
-        try container.encode(value, forKey: .substitute)
+        try container.encodeIfPresent(value, forKey: .substitute)
       case .setHeader(let value):
-        try container.encode(value, forKey: .setHeader)
+        try container.encodeIfPresent(value, forKey: .setHeader)
       }
     }
     for (key, value) in self._unknownFields.json {

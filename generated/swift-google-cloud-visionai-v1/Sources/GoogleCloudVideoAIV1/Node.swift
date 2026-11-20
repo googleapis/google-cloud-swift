@@ -133,7 +133,7 @@ public struct Node: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.streamOutputConfig {
       switch choice {
       case .outputAllOutputChannelsToStream(let value):
-        try container.encode(value, forKey: .outputAllOutputChannelsToStream)
+        try container.encodeIfPresent(value, forKey: .outputAllOutputChannelsToStream)
       }
     }
     for (key, value) in self._unknownFields.json {

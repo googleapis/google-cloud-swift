@@ -246,7 +246,9 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.deadline, forKey: .deadline)
     try container.encode(self.minDeadline, forKey: .minDeadline)
     try container.encode(self.operationDeadline, forKey: .operationDeadline)
-    try container.encode(self.pathTranslation, forKey: .pathTranslation)
+    if self.pathTranslation != BackendRule.PathTranslation() {
+      try container.encode(self.pathTranslation, forKey: .pathTranslation)
+    }
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.overridesByRequestProtocol, forKey: .overridesByRequestProtocol)
     try container.encode(self.loadBalancingPolicy, forKey: .loadBalancingPolicy)
@@ -254,9 +256,9 @@ public struct BackendRule: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.authentication {
       switch choice {
       case .jwtAudience(let value):
-        try container.encode(value, forKey: .jwtAudience)
+        try container.encodeIfPresent(value, forKey: .jwtAudience)
       case .disableAuth(let value):
-        try container.encode(value, forKey: .disableAuth)
+        try container.encodeIfPresent(value, forKey: .disableAuth)
       }
     }
     for (key, value) in self._unknownFields.json {

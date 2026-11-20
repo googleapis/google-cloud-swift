@@ -145,21 +145,21 @@
       if let choice = self.metricSpec {
         switch choice {
         case .predefinedMetricSpec(let value):
-          try container.encode(value, forKey: .predefinedMetricSpec)
+          try container.encodeIfPresent(value, forKey: .predefinedMetricSpec)
         case .computationBasedMetricSpec(let value):
-          try container.encode(value, forKey: .computationBasedMetricSpec)
+          try container.encodeIfPresent(value, forKey: .computationBasedMetricSpec)
         case .llmBasedMetricSpec(let value):
-          try container.encode(value, forKey: .llmBasedMetricSpec)
+          try container.encodeIfPresent(value, forKey: .llmBasedMetricSpec)
         case .pointwiseMetricSpec(let value):
-          try container.encode(value, forKey: .pointwiseMetricSpec)
+          try container.encodeIfPresent(value, forKey: .pointwiseMetricSpec)
         case .pairwiseMetricSpec(let value):
-          try container.encode(value, forKey: .pairwiseMetricSpec)
+          try container.encodeIfPresent(value, forKey: .pairwiseMetricSpec)
         case .exactMatchSpec(let value):
-          try container.encode(value, forKey: .exactMatchSpec)
+          try container.encodeIfPresent(value, forKey: .exactMatchSpec)
         case .bleuSpec(let value):
-          try container.encode(value, forKey: .bleuSpec)
+          try container.encodeIfPresent(value, forKey: .bleuSpec)
         case .rougeSpec(let value):
-          try container.encode(value, forKey: .rougeSpec)
+          try container.encodeIfPresent(value, forKey: .rougeSpec)
         }
       }
       for (key, value) in self._unknownFields.json {

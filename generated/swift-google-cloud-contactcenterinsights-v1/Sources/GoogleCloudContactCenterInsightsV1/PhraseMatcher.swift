@@ -167,11 +167,15 @@ public struct PhraseMatcher: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.versionTag, forKey: .versionTag)
     try container.encodeIfPresent(self.revisionCreateTime, forKey: .revisionCreateTime)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.type, forKey: .type)
+    if self.type != PhraseMatcher.PhraseMatcherType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.active, forKey: .active)
     try container.encode(self.phraseMatchRuleGroups, forKey: .phraseMatchRuleGroups)
     try container.encodeIfPresent(self.activationUpdateTime, forKey: .activationUpdateTime)
-    try container.encode(self.roleMatch, forKey: .roleMatch)
+    if self.roleMatch != ConversationParticipant.Role() {
+      try container.encode(self.roleMatch, forKey: .roleMatch)
+    }
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

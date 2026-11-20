@@ -109,7 +109,7 @@ public struct ExportTaxonomiesRequest: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.destination {
       switch choice {
       case .serializedTaxonomies(let value):
-        try container.encode(value, forKey: .serializedTaxonomies)
+        try container.encodeIfPresent(value, forKey: .serializedTaxonomies)
       }
     }
     for (key, value) in self._unknownFields.json {

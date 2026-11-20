@@ -157,8 +157,12 @@ public struct Curation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.description, forKey: .description)
     try container.encodeIfPresent(self.endpoint, forKey: .endpoint)
     try container.encode(self.pluginInstanceActions, forKey: .pluginInstanceActions)
-    try container.encode(self.lastExecutionState, forKey: .lastExecutionState)
-    try container.encode(self.lastExecutionErrorCode, forKey: .lastExecutionErrorCode)
+    if self.lastExecutionState != Curation.LastExecutionState() {
+      try container.encode(self.lastExecutionState, forKey: .lastExecutionState)
+    }
+    if self.lastExecutionErrorCode != Curation.ErrorCode() {
+      try container.encode(self.lastExecutionErrorCode, forKey: .lastExecutionErrorCode)
+    }
     try container.encode(self.lastExecutionErrorMessage, forKey: .lastExecutionErrorMessage)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

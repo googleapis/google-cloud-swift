@@ -141,21 +141,21 @@ public struct Property: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.values {
       switch choice {
       case .integerValues(let value):
-        try container.encode(value, forKey: .integerValues)
+        try container.encodeIfPresent(value, forKey: .integerValues)
       case .floatValues(let value):
-        try container.encode(value, forKey: .floatValues)
+        try container.encodeIfPresent(value, forKey: .floatValues)
       case .textValues(let value):
-        try container.encode(value, forKey: .textValues)
+        try container.encodeIfPresent(value, forKey: .textValues)
       case .enumValues(let value):
-        try container.encode(value, forKey: .enumValues)
+        try container.encodeIfPresent(value, forKey: .enumValues)
       case .propertyValues(let value):
-        try container.encode(value, forKey: .propertyValues)
+        try container.encodeIfPresent(value, forKey: .propertyValues)
       case .dateTimeValues(let value):
-        try container.encode(value, forKey: .dateTimeValues)
+        try container.encodeIfPresent(value, forKey: .dateTimeValues)
       case .mapProperty(let value):
-        try container.encode(value, forKey: .mapProperty)
+        try container.encodeIfPresent(value, forKey: .mapProperty)
       case .timestampValues(let value):
-        try container.encode(value, forKey: .timestampValues)
+        try container.encodeIfPresent(value, forKey: .timestampValues)
       }
     }
     for (key, value) in self._unknownFields.json {

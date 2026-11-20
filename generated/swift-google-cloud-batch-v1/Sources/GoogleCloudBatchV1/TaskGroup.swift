@@ -170,7 +170,9 @@ public struct TaskGroup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.taskSpec, forKey: .taskSpec)
     try container.encode(self.taskCount, forKey: .taskCount)
     try container.encode(self.parallelism, forKey: .parallelism)
-    try container.encode(self.schedulingPolicy, forKey: .schedulingPolicy)
+    if self.schedulingPolicy != TaskGroup.SchedulingPolicy() {
+      try container.encode(self.schedulingPolicy, forKey: .schedulingPolicy)
+    }
     try container.encode(self.taskEnvironments, forKey: .taskEnvironments)
     try container.encode(self.taskCountPerNode, forKey: .taskCountPerNode)
     try container.encode(self.requireHostsFile, forKey: .requireHostsFile)

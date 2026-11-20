@@ -405,7 +405,9 @@ public struct Noun: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.email, forKey: .email)
     try container.encodeIfPresent(self.registry, forKey: .registry)
     try container.encode(self.application, forKey: .application)
-    try container.encode(self.platform, forKey: .platform)
+    if self.platform != Noun.Platform() {
+      try container.encode(self.platform, forKey: .platform)
+    }
     try container.encode(self.platformVersion, forKey: .platformVersion)
     try container.encode(self.platformPatchLevel, forKey: .platformPatchLevel)
     try container.encodeIfPresent(self.cloud, forKey: .cloud)

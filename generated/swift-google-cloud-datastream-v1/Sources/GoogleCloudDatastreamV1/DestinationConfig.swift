@@ -107,9 +107,9 @@ public struct DestinationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destinationStreamConfig {
       switch choice {
       case .gcsDestinationConfig(let value):
-        try container.encode(value, forKey: .gcsDestinationConfig)
+        try container.encodeIfPresent(value, forKey: .gcsDestinationConfig)
       case .bigqueryDestinationConfig(let value):
-        try container.encode(value, forKey: .bigqueryDestinationConfig)
+        try container.encodeIfPresent(value, forKey: .bigqueryDestinationConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

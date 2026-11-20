@@ -141,11 +141,15 @@
       try container.encode(self.name, forKey: .name)
       try container.encode(self.kmsKey, forKey: .kmsKey)
       try container.encode(self.kmsKeyVersion, forKey: .kmsKeyVersion)
-      try container.encode(self.state, forKey: .state)
+      if self.state != CmekConfig.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encode(self.isDefault, forKey: .isDefault)
       try container.encode(self.lastRotationTimestampMicros, forKey: .lastRotationTimestampMicros)
       try container.encode(self.singleRegionKeys, forKey: .singleRegionKeys)
-      try container.encode(self.notebooklmState, forKey: .notebooklmState)
+      if self.notebooklmState != CmekConfig.NotebookLMState() {
+        try container.encode(self.notebooklmState, forKey: .notebooklmState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

@@ -202,16 +202,24 @@ public struct Plugin: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.displayName, forKey: .displayName)
     try container.encodeIfPresent(self.type, forKey: .type)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
-    try container.encode(self.ownershipType, forKey: .ownershipType)
+    if self.state != Plugin.State() {
+      try container.encode(self.state, forKey: .state)
+    }
+    if self.ownershipType != Plugin.OwnershipType() {
+      try container.encode(self.ownershipType, forKey: .ownershipType)
+    }
     try container.encodeIfPresent(self.hostingService, forKey: .hostingService)
     try container.encode(self.actionsConfig, forKey: .actionsConfig)
     try container.encodeIfPresent(self.documentation, forKey: .documentation)
-    try container.encode(self.pluginCategory, forKey: .pluginCategory)
+    if self.pluginCategory != PluginCategory() {
+      try container.encode(self.pluginCategory, forKey: .pluginCategory)
+    }
     try container.encodeIfPresent(self.configTemplate, forKey: .configTemplate)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.gatewayType, forKey: .gatewayType)
+    if self.gatewayType != GatewayType() {
+      try container.encode(self.gatewayType, forKey: .gatewayType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -133,7 +133,9 @@ public struct ExternalAddress: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.internalIp, forKey: .internalIp)
     try container.encode(self.externalIp, forKey: .externalIp)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ExternalAddress.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.uid, forKey: .uid)
     try container.encode(self.description, forKey: .description)
     for (key, value) in self._unknownFields.json {

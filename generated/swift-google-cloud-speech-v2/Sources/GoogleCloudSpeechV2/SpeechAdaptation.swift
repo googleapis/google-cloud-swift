@@ -164,9 +164,9 @@ public struct SpeechAdaptation: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.value {
         switch choice {
         case .phraseSet(let value):
-          try container.encode(value, forKey: .phraseSet)
+          try container.encodeIfPresent(value, forKey: .phraseSet)
         case .inlinePhraseSet(let value):
-          try container.encode(value, forKey: .inlinePhraseSet)
+          try container.encodeIfPresent(value, forKey: .inlinePhraseSet)
         }
       }
       for (key, value) in self._unknownFields.json {

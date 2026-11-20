@@ -107,7 +107,7 @@ public struct KubernetesClusterConfig: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.config {
       switch choice {
       case .gkeClusterConfig(let value):
-        try container.encode(value, forKey: .gkeClusterConfig)
+        try container.encodeIfPresent(value, forKey: .gkeClusterConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -114,7 +114,9 @@ public struct AutopilotCompatibilityIssue: Codable, Equatable, GoogleWKT._AnyPac
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.lastObservation, forKey: .lastObservation)
     try container.encode(self.constraintType, forKey: .constraintType)
-    try container.encode(self.incompatibilityType, forKey: .incompatibilityType)
+    if self.incompatibilityType != AutopilotCompatibilityIssue.IssueType() {
+      try container.encode(self.incompatibilityType, forKey: .incompatibilityType)
+    }
     try container.encode(self.subjects, forKey: .subjects)
     try container.encode(self.documentationUrl, forKey: .documentationUrl)
     try container.encode(self.description, forKey: .description)

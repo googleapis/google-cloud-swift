@@ -201,7 +201,9 @@ public struct RouterStatus: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.name, forKey: .name)
       try container.encode(self.ipAddress, forKey: .ipAddress)
       try container.encode(self.peerIpAddress, forKey: .peerIpAddress)
-      try container.encode(self.status, forKey: .status)
+      if self.status != RouterStatus.BgpPeerStatus.BgpStatus() {
+        try container.encode(self.status, forKey: .status)
+      }
       try container.encode(self.state, forKey: .state)
       try container.encode(self.uptime, forKey: .uptime)
       try container.encode(self.uptimeSeconds, forKey: .uptimeSeconds)

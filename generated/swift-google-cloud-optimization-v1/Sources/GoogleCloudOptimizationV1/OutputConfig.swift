@@ -92,12 +92,14 @@ public struct OutputConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.dataFormat, forKey: .dataFormat)
+    if self.dataFormat != DataFormat() {
+      try container.encode(self.dataFormat, forKey: .dataFormat)
+    }
 
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       }
     }
     for (key, value) in self._unknownFields.json {

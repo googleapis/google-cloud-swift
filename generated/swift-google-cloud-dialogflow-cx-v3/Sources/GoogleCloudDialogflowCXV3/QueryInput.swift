@@ -137,17 +137,17 @@
       if let choice = self.input {
         switch choice {
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .intent(let value):
-          try container.encode(value, forKey: .intent)
+          try container.encodeIfPresent(value, forKey: .intent)
         case .audio(let value):
-          try container.encode(value, forKey: .audio)
+          try container.encodeIfPresent(value, forKey: .audio)
         case .event(let value):
-          try container.encode(value, forKey: .event)
+          try container.encodeIfPresent(value, forKey: .event)
         case .dtmf(let value):
-          try container.encode(value, forKey: .dtmf)
+          try container.encodeIfPresent(value, forKey: .dtmf)
         case .toolCallResult(let value):
-          try container.encode(value, forKey: .toolCallResult)
+          try container.encodeIfPresent(value, forKey: .toolCallResult)
         }
       }
       for (key, value) in self._unknownFields.json {

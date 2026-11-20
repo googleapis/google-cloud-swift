@@ -97,7 +97,9 @@ public struct RuleConfigInfo: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.ruleId, forKey: .ruleId)
-    try container.encode(self.lastBackupState, forKey: .lastBackupState)
+    if self.lastBackupState != RuleConfigInfo.LastBackupState() {
+      try container.encode(self.lastBackupState, forKey: .lastBackupState)
+    }
     try container.encodeIfPresent(self.lastBackupError, forKey: .lastBackupError)
     try container.encodeIfPresent(
       self.lastSuccessfulBackupConsistencyTime, forKey: .lastSuccessfulBackupConsistencyTime)

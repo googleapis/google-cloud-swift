@@ -168,7 +168,9 @@ public struct Feed: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.assetNames, forKey: .assetNames)
     try container.encode(self.assetTypes, forKey: .assetTypes)
-    try container.encode(self.contentType, forKey: .contentType)
+    if self.contentType != ContentType() {
+      try container.encode(self.contentType, forKey: .contentType)
+    }
     try container.encodeIfPresent(self.feedOutputConfig, forKey: .feedOutputConfig)
     try container.encodeIfPresent(self.condition, forKey: .condition)
     try container.encode(self.relationshipTypes, forKey: .relationshipTypes)

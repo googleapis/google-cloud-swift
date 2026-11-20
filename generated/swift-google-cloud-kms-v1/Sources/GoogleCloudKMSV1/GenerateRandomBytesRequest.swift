@@ -98,7 +98,9 @@ public struct GenerateRandomBytesRequest: Codable, Equatable, GoogleWKT._AnyPack
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.location, forKey: .location)
     try container.encode(self.lengthBytes, forKey: .lengthBytes)
-    try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    if self.protectionLevel != ProtectionLevel() {
+      try container.encode(self.protectionLevel, forKey: .protectionLevel)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

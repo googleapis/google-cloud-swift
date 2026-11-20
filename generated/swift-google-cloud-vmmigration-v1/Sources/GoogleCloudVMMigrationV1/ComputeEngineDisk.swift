@@ -102,7 +102,9 @@ public struct ComputeEngineDisk: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.diskId, forKey: .diskId)
     try container.encode(self.zone, forKey: .zone)
     try container.encode(self.replicaZones, forKey: .replicaZones)
-    try container.encode(self.diskType, forKey: .diskType)
+    if self.diskType != ComputeEngineDiskType() {
+      try container.encode(self.diskType, forKey: .diskType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

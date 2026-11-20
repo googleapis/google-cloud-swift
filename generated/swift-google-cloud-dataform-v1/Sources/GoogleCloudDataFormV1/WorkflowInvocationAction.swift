@@ -160,7 +160,9 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.target, forKey: .target)
     try container.encodeIfPresent(self.canonicalTarget, forKey: .canonicalTarget)
-    try container.encode(self.state, forKey: .state)
+    if self.state != WorkflowInvocationAction.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.failureReason, forKey: .failureReason)
     try container.encodeIfPresent(self.invocationTiming, forKey: .invocationTiming)
     try container.encodeIfPresent(self.internalMetadata, forKey: .internalMetadata)
@@ -168,13 +170,13 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.action {
       switch choice {
       case .bigqueryAction(let value):
-        try container.encode(value, forKey: .bigqueryAction)
+        try container.encodeIfPresent(value, forKey: .bigqueryAction)
       case .notebookAction(let value):
-        try container.encode(value, forKey: .notebookAction)
+        try container.encodeIfPresent(value, forKey: .notebookAction)
       case .dataPreparationAction(let value):
-        try container.encode(value, forKey: .dataPreparationAction)
+        try container.encodeIfPresent(value, forKey: .dataPreparationAction)
       case .bigqueryUnitTestAction(let value):
-        try container.encode(value, forKey: .bigqueryUnitTestAction)
+        try container.encodeIfPresent(value, forKey: .bigqueryUnitTestAction)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -470,9 +472,9 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
       if let choice = self.definition {
         switch choice {
         case .contentsYaml(let value):
-          try container.encode(value, forKey: .contentsYaml)
+          try container.encodeIfPresent(value, forKey: .contentsYaml)
         case .contentsSql(let value):
-          try container.encode(value, forKey: .contentsSql)
+          try container.encodeIfPresent(value, forKey: .contentsSql)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -761,13 +763,13 @@ public struct WorkflowInvocationAction: Codable, Equatable, GoogleWKT._AnyPackab
         if let choice = self.mode {
           switch choice {
           case .replace(let value):
-            try container.encode(value, forKey: .replace)
+            try container.encodeIfPresent(value, forKey: .replace)
           case .append(let value):
-            try container.encode(value, forKey: .append)
+            try container.encodeIfPresent(value, forKey: .append)
           case .maximum(let value):
-            try container.encode(value, forKey: .maximum)
+            try container.encodeIfPresent(value, forKey: .maximum)
           case .unique(let value):
-            try container.encode(value, forKey: .unique)
+            try container.encodeIfPresent(value, forKey: .unique)
           }
         }
         for (key, value) in self._unknownFields.json {

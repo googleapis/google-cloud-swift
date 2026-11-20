@@ -165,13 +165,15 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.blockchainType, forKey: .blockchainType)
     try container.encodeIfPresent(self.connectionInfo, forKey: .connectionInfo)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BlockchainNode.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.privateServiceConnectEnabled, forKey: .privateServiceConnectEnabled)
 
     if let choice = self.blockchainTypeDetails {
       switch choice {
       case .ethereumDetails(let value):
-        try container.encode(value, forKey: .ethereumDetails)
+        try container.encodeIfPresent(value, forKey: .ethereumDetails)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -501,7 +503,7 @@ public struct BlockchainNode: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.executionClientDetails {
         switch choice {
         case .gethDetails(let value):
-          try container.encode(value, forKey: .gethDetails)
+          try container.encodeIfPresent(value, forKey: .gethDetails)
         }
       }
       for (key, value) in self._unknownFields.json {

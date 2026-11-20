@@ -138,7 +138,9 @@ public struct ListRolesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
-    try container.encode(self.view, forKey: .view)
+    if self.view != RoleView() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.showDeleted, forKey: .showDeleted)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

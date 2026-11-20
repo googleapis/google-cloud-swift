@@ -146,7 +146,9 @@ public struct ListJobsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     try container.encode(self.clusterName, forKey: .clusterName)
-    try container.encode(self.jobStateMatcher, forKey: .jobStateMatcher)
+    if self.jobStateMatcher != ListJobsRequest.JobStateMatcher() {
+      try container.encode(self.jobStateMatcher, forKey: .jobStateMatcher)
+    }
     try container.encode(self.filter, forKey: .filter)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

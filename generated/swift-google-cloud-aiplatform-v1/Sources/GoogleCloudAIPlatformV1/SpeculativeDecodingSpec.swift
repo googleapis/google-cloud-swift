@@ -105,9 +105,9 @@
       if let choice = self.speculation {
         switch choice {
         case .draftModelSpeculation(let value):
-          try container.encode(value, forKey: .draftModelSpeculation)
+          try container.encodeIfPresent(value, forKey: .draftModelSpeculation)
         case .ngramSpeculation(let value):
-          try container.encode(value, forKey: .ngramSpeculation)
+          try container.encodeIfPresent(value, forKey: .ngramSpeculation)
         }
       }
       for (key, value) in self._unknownFields.json {

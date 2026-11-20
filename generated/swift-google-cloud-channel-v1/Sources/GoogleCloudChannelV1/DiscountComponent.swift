@@ -100,14 +100,16 @@ public struct DiscountComponent: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.discountType, forKey: .discountType)
+    if self.discountType != DiscountType() {
+      try container.encode(self.discountType, forKey: .discountType)
+    }
 
     if let choice = self.discountValue {
       switch choice {
       case .discountPercentage(let value):
-        try container.encode(value, forKey: .discountPercentage)
+        try container.encodeIfPresent(value, forKey: .discountPercentage)
       case .discountAbsolute(let value):
-        try container.encode(value, forKey: .discountAbsolute)
+        try container.encodeIfPresent(value, forKey: .discountAbsolute)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -88,7 +88,9 @@
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.rating, forKey: .rating)
+      if self.rating != AnswerFeedback.Rating() {
+        try container.encode(self.rating, forKey: .rating)
+      }
       try container.encodeIfPresent(self.ratingReason, forKey: .ratingReason)
       try container.encode(self.customRating, forKey: .customRating)
       for (key, value) in self._unknownFields.json {

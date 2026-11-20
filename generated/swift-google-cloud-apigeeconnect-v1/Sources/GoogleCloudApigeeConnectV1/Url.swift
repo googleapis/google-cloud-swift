@@ -90,7 +90,9 @@ public struct Url: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.scheme, forKey: .scheme)
+    if self.scheme != Scheme() {
+      try container.encode(self.scheme, forKey: .scheme)
+    }
     try container.encode(self.host, forKey: .host)
     try container.encode(self.path, forKey: .path)
     for (key, value) in self._unknownFields.json {

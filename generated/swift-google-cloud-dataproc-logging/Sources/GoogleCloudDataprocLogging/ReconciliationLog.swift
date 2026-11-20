@@ -244,7 +244,9 @@ public struct ReconciliationLog: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.decision, forKey: .decision)
+      if self.decision != ReconciliationDecisionType() {
+        try container.encode(self.decision, forKey: .decision)
+      }
       try container.encode(self.decisionDetails, forKey: .decisionDetails)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

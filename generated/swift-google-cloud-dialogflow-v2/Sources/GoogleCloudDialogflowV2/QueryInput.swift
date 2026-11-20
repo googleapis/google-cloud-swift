@@ -105,11 +105,11 @@
       if let choice = self.input {
         switch choice {
         case .audioConfig(let value):
-          try container.encode(value, forKey: .audioConfig)
+          try container.encodeIfPresent(value, forKey: .audioConfig)
         case .text(let value):
-          try container.encode(value, forKey: .text)
+          try container.encodeIfPresent(value, forKey: .text)
         case .event(let value):
-          try container.encode(value, forKey: .event)
+          try container.encodeIfPresent(value, forKey: .event)
         }
       }
       for (key, value) in self._unknownFields.json {

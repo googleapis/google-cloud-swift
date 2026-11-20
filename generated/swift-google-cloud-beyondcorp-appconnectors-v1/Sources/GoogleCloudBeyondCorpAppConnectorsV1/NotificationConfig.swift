@@ -86,7 +86,7 @@ public struct NotificationConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.config {
       switch choice {
       case .pubsubNotification(let value):
-        try container.encode(value, forKey: .pubsubNotification)
+        try container.encodeIfPresent(value, forKey: .pubsubNotification)
       }
     }
     for (key, value) in self._unknownFields.json {

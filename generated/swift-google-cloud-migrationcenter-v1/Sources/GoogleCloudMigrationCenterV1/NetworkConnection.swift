@@ -129,7 +129,9 @@ public struct NetworkConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.localPort, forKey: .localPort)
     try container.encode(self.remoteIpAddress, forKey: .remoteIpAddress)
     try container.encode(self.remotePort, forKey: .remotePort)
-    try container.encode(self.state, forKey: .state)
+    if self.state != NetworkConnection.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.pid, forKey: .pid)
     try container.encode(self.processName, forKey: .processName)
     for (key, value) in self._unknownFields.json {

@@ -233,7 +233,9 @@ public struct Dhcp: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.opcode, forKey: .opcode)
+    if self.opcode != Dhcp.OpCode() {
+      try container.encode(self.opcode, forKey: .opcode)
+    }
     try container.encode(self.htype, forKey: .htype)
     try container.encode(self.hlen, forKey: .hlen)
     try container.encode(self.hops, forKey: .hops)
@@ -248,7 +250,9 @@ public struct Dhcp: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sname, forKey: .sname)
     try container.encode(self.file, forKey: .file)
     try container.encode(self.options, forKey: .options)
-    try container.encode(self.type, forKey: .type)
+    if self.type != Dhcp.MessageType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.leaseTimeSeconds, forKey: .leaseTimeSeconds)
     try container.encode(self.clientHostname, forKey: .clientHostname)
     try container.encode(self.clientIdentifier, forKey: .clientIdentifier)

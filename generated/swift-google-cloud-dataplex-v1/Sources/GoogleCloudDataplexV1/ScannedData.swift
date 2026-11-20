@@ -87,7 +87,7 @@ public struct ScannedData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.dataRange {
       switch choice {
       case .incrementalField(let value):
-        try container.encode(value, forKey: .incrementalField)
+        try container.encodeIfPresent(value, forKey: .incrementalField)
       }
     }
     for (key, value) in self._unknownFields.json {

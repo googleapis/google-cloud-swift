@@ -98,7 +98,7 @@ public struct NetworkResource: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.reference {
       switch choice {
       case .network(let value):
-        try container.encode(value, forKey: .network)
+        try container.encodeIfPresent(value, forKey: .network)
       }
     }
     for (key, value) in self._unknownFields.json {

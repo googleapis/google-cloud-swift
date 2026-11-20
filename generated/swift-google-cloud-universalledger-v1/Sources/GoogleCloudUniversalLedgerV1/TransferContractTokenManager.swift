@@ -109,7 +109,9 @@ public struct TransferContractTokenManager: Codable, Equatable, GoogleWKT._AnyPa
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.publicKey, forKey: .publicKey)
     try container.encode(self.accountComment, forKey: .accountComment)
-    try container.encode(self.keyFormat, forKey: .keyFormat)
+    if self.keyFormat != KeyFormat() {
+      try container.encode(self.keyFormat, forKey: .keyFormat)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

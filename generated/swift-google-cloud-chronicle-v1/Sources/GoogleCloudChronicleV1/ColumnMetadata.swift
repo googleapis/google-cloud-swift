@@ -146,7 +146,9 @@ public struct ColumnMetadata: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.fieldPath, forKey: .fieldPath)
     try container.encode(self.functionName, forKey: .functionName)
     try container.encode(self.functionModule, forKey: .functionModule)
-    try container.encode(self.dataSource, forKey: .dataSource)
+    if self.dataSource != GoogleCloudChronicleV1.DataSource() {
+      try container.encode(self.dataSource, forKey: .dataSource)
+    }
     try container.encodeIfPresent(self.timestampMetadata, forKey: .timestampMetadata)
     try container.encode(self.longitude, forKey: .longitude)
     try container.encode(self.latitude, forKey: .latitude)

@@ -85,7 +85,7 @@ public struct FrameworkAuditDestination: Codable, Equatable, GoogleWKT._AnyPacka
     if let choice = self.destinationType {
       switch choice {
       case .bucket(let value):
-        try container.encode(value, forKey: .bucket)
+        try container.encodeIfPresent(value, forKey: .bucket)
       }
     }
     for (key, value) in self._unknownFields.json {

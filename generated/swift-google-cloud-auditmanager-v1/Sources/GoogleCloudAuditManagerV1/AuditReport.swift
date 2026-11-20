@@ -188,7 +188,9 @@ public struct AuditReport: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.scope, forKey: .scope)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.controlDetails, forKey: .controlDetails)
-    try container.encode(self.reportGenerationState, forKey: .reportGenerationState)
+    if self.reportGenerationState != AuditReport.ReportGenerationState() {
+      try container.encode(self.reportGenerationState, forKey: .reportGenerationState)
+    }
     try container.encode(self.complianceFramework, forKey: .complianceFramework)
     try container.encode(self.scopeId, forKey: .scopeId)
     try container.encode(self.cloudControlParameterStates, forKey: .cloudControlParameterStates)

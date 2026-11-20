@@ -278,14 +278,18 @@
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.kind, forKey: .kind)
       try container.encode(self.targetLink, forKey: .targetLink)
-      try container.encode(self.status, forKey: .status)
+      if self.status != GoogleCloudSqlV1.Operation.SqlOperationStatus() {
+        try container.encode(self.status, forKey: .status)
+      }
       try container.encode(self.user, forKey: .user)
       try container.encodeIfPresent(self.insertTime, forKey: .insertTime)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)
       try container.encodeIfPresent(self.endTime, forKey: .endTime)
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encodeIfPresent(self.apiWarning, forKey: .apiWarning)
-      try container.encode(self.operationType, forKey: .operationType)
+      if self.operationType != GoogleCloudSqlV1.Operation.SqlOperationType() {
+        try container.encode(self.operationType, forKey: .operationType)
+      }
       try container.encodeIfPresent(self.importContext, forKey: .importContext)
       try container.encodeIfPresent(self.exportContext, forKey: .exportContext)
       try container.encodeIfPresent(self.backupContext, forKey: .backupContext)

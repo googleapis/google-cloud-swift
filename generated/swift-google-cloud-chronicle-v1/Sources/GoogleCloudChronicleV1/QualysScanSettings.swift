@@ -87,7 +87,9 @@ public struct QualysScanSettings: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encodeIfPresent(self.authentication, forKey: .authentication)
     try container.encode(self.hostname, forKey: .hostname)
-    try container.encode(self.apiType, forKey: .apiType)
+    if self.apiType != QualysScanSettings.ApiType() {
+      try container.encode(self.apiType, forKey: .apiType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

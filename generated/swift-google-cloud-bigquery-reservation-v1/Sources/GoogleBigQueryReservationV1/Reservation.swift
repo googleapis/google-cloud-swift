@@ -336,12 +336,16 @@ public struct Reservation: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.creationTime, forKey: .creationTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.multiRegionAuxiliary, forKey: .multiRegionAuxiliary)
-    try container.encode(self.edition, forKey: .edition)
+    if self.edition != Edition() {
+      try container.encode(self.edition, forKey: .edition)
+    }
     try container.encode(self.primaryLocation, forKey: .primaryLocation)
     try container.encode(self.secondaryLocation, forKey: .secondaryLocation)
     try container.encode(self.originalPrimaryLocation, forKey: .originalPrimaryLocation)
     try container.encodeIfPresent(self.maxSlots, forKey: .maxSlots)
-    try container.encode(self.scalingMode, forKey: .scalingMode)
+    if self.scalingMode != Reservation.ScalingMode() {
+      try container.encode(self.scalingMode, forKey: .scalingMode)
+    }
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.reservationGroup, forKey: .reservationGroup)
     try container.encodeIfPresent(self.replicationStatus, forKey: .replicationStatus)

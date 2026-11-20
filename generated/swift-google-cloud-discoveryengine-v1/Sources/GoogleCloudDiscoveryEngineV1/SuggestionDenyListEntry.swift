@@ -85,7 +85,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.blockPhrase, forKey: .blockPhrase)
-      try container.encode(self.matchOperator, forKey: .matchOperator)
+      if self.matchOperator != SuggestionDenyListEntry.MatchOperator() {
+        try container.encode(self.matchOperator, forKey: .matchOperator)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

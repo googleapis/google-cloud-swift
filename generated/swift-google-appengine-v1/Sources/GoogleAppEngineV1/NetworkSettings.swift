@@ -73,7 +73,9 @@ public struct NetworkSettings: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.ingressTrafficAllowed, forKey: .ingressTrafficAllowed)
+    if self.ingressTrafficAllowed != NetworkSettings.IngressTrafficAllowed() {
+      try container.encode(self.ingressTrafficAllowed, forKey: .ingressTrafficAllowed)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

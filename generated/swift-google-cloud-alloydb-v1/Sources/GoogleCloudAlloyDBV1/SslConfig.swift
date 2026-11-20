@@ -78,8 +78,12 @@ public struct SslConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.sslMode, forKey: .sslMode)
-    try container.encode(self.caSource, forKey: .caSource)
+    if self.sslMode != SslConfig.SslMode() {
+      try container.encode(self.sslMode, forKey: .sslMode)
+    }
+    if self.caSource != SslConfig.CaSource() {
+      try container.encode(self.caSource, forKey: .caSource)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

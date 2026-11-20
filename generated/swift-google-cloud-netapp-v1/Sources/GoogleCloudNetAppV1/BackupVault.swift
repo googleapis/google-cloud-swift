@@ -193,18 +193,24 @@ public struct BackupVault: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
-    try container.encode(self.state, forKey: .state)
+    if self.state != BackupVault.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.backupVaultType, forKey: .backupVaultType)
+    if self.backupVaultType != BackupVault.BackupVaultType() {
+      try container.encode(self.backupVaultType, forKey: .backupVaultType)
+    }
     try container.encode(self.sourceRegion, forKey: .sourceRegion)
     try container.encode(self.backupRegion, forKey: .backupRegion)
     try container.encode(self.sourceBackupVault, forKey: .sourceBackupVault)
     try container.encode(self.destinationBackupVault, forKey: .destinationBackupVault)
     try container.encodeIfPresent(self.backupRetentionPolicy, forKey: .backupRetentionPolicy)
     try container.encode(self.kmsConfig, forKey: .kmsConfig)
-    try container.encode(self.encryptionState, forKey: .encryptionState)
+    if self.encryptionState != BackupVault.EncryptionState() {
+      try container.encode(self.encryptionState, forKey: .encryptionState)
+    }
     try container.encode(self.backupsCryptoKeyVersion, forKey: .backupsCryptoKeyVersion)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

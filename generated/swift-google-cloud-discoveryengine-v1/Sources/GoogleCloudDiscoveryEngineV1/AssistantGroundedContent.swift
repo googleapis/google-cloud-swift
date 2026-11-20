@@ -107,7 +107,7 @@
       if let choice = self.metadata {
         switch choice {
         case .textGroundingMetadata(let value):
-          try container.encode(value, forKey: .textGroundingMetadata)
+          try container.encodeIfPresent(value, forKey: .textGroundingMetadata)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -596,7 +596,12 @@
 
           public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
-            try container.encode(self.language, forKey: .language)
+            if self.language
+              != AssistantGroundedContent.TextGroundingMetadata.Reference.DocumentMetadata
+              .Language()
+            {
+              try container.encode(self.language, forKey: .language)
+            }
             try container.encodeIfPresent(self.document, forKey: .document)
             try container.encodeIfPresent(self.uri, forKey: .uri)
             try container.encodeIfPresent(self.title, forKey: .title)

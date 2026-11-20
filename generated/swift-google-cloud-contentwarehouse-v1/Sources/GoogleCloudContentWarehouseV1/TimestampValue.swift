@@ -91,9 +91,9 @@ public struct TimestampValue: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .timestampValue(let value):
-        try container.encode(value, forKey: .timestampValue)
+        try container.encodeIfPresent(value, forKey: .timestampValue)
       case .textValue(let value):
-        try container.encode(value, forKey: .textValue)
+        try container.encodeIfPresent(value, forKey: .textValue)
       }
     }
     for (key, value) in self._unknownFields.json {

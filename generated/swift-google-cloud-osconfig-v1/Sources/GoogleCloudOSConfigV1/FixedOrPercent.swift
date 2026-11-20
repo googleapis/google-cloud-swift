@@ -91,9 +91,9 @@ public struct FixedOrPercent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.mode {
       switch choice {
       case .fixed(let value):
-        try container.encode(value, forKey: .fixed)
+        try container.encodeIfPresent(value, forKey: .fixed)
       case .percent(let value):
-        try container.encode(value, forKey: .percent)
+        try container.encodeIfPresent(value, forKey: .percent)
       }
     }
     for (key, value) in self._unknownFields.json {

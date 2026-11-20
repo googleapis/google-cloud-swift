@@ -104,9 +104,13 @@ public struct RaiFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.executionState, forKey: .executionState)
+    if self.executionState != FilterExecutionState() {
+      try container.encode(self.executionState, forKey: .executionState)
+    }
     try container.encode(self.messageItems, forKey: .messageItems)
-    try container.encode(self.matchState, forKey: .matchState)
+    if self.matchState != FilterMatchState() {
+      try container.encode(self.matchState, forKey: .matchState)
+    }
     try container.encode(self.raiFilterTypeResults, forKey: .raiFilterTypeResults)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -183,9 +187,15 @@ public struct RaiFilterResult: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.filterType, forKey: .filterType)
-      try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
-      try container.encode(self.matchState, forKey: .matchState)
+      if self.filterType != RaiFilterType() {
+        try container.encode(self.filterType, forKey: .filterType)
+      }
+      if self.confidenceLevel != DetectionConfidenceLevel() {
+        try container.encode(self.confidenceLevel, forKey: .confidenceLevel)
+      }
+      if self.matchState != FilterMatchState() {
+        try container.encode(self.matchState, forKey: .matchState)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

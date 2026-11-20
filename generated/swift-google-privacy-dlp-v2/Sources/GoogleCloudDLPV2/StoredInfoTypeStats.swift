@@ -87,7 +87,7 @@ public struct StoredInfoTypeStats: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.type {
       switch choice {
       case .largeCustomDictionary(let value):
-        try container.encode(value, forKey: .largeCustomDictionary)
+        try container.encodeIfPresent(value, forKey: .largeCustomDictionary)
       }
     }
     for (key, value) in self._unknownFields.json {

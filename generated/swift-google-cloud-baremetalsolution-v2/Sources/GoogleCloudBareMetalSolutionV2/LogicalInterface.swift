@@ -197,7 +197,9 @@ public struct LogicalInterface: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.network, forKey: .network)
       try container.encode(self.ipAddress, forKey: .ipAddress)
       try container.encode(self.defaultGateway, forKey: .defaultGateway)
-      try container.encode(self.networkType, forKey: .networkType)
+      if self.networkType != Network.Type_() {
+        try container.encode(self.networkType, forKey: .networkType)
+      }
       try container.encode(self.id, forKey: .id)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

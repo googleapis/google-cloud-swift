@@ -88,7 +88,7 @@
       if let choice = self.subOperationDetails {
         switch choice {
         case .maintenanceType(let value):
-          try container.encode(value, forKey: .maintenanceType)
+          try container.encodeIfPresent(value, forKey: .maintenanceType)
         }
       }
       for (key, value) in self._unknownFields.json {

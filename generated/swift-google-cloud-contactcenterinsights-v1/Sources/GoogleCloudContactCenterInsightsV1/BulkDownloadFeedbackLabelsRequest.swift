@@ -159,14 +159,16 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
     try container.encode(self.parent, forKey: .parent)
     try container.encode(self.filter, forKey: .filter)
     try container.encode(self.maxDownloadCount, forKey: .maxDownloadCount)
-    try container.encode(self.feedbackLabelType, forKey: .feedbackLabelType)
+    if self.feedbackLabelType != BulkDownloadFeedbackLabelsRequest.FeedbackLabelType() {
+      try container.encode(self.feedbackLabelType, forKey: .feedbackLabelType)
+    }
     try container.encode(self.conversationFilter, forKey: .conversationFilter)
     try container.encode(self.templateQaScorecardId, forKey: .templateQaScorecardId)
 
     if let choice = self.destination {
       switch choice {
       case .gcsDestination(let value):
-        try container.encode(value, forKey: .gcsDestination)
+        try container.encodeIfPresent(value, forKey: .gcsDestination)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -270,7 +272,9 @@ public struct BulkDownloadFeedbackLabelsRequest: Codable, Equatable, GoogleWKT._
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.format, forKey: .format)
+      if self.format != BulkDownloadFeedbackLabelsRequest.GcsDestination.Format() {
+        try container.encode(self.format, forKey: .format)
+      }
       try container.encode(self.objectUri, forKey: .objectUri)
       try container.encode(self.addWhitespace, forKey: .addWhitespace)
       try container.encode(self.alwaysPrintEmptyFields, forKey: .alwaysPrintEmptyFields)

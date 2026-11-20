@@ -100,7 +100,9 @@
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.bundle, forKey: .bundle)
-      try container.encode(self.intent, forKey: .intent)
+      if self.intent != Intent() {
+        try container.encode(self.intent, forKey: .intent)
+      }
       try container.encodeIfPresent(self.primaryDnsRecord, forKey: .primaryDnsRecord)
       try container.encode(self.customerManagedCertificates, forKey: .customerManagedCertificates)
       for (key, value) in self._unknownFields.json {

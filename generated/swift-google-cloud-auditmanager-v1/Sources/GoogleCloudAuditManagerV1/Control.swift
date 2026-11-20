@@ -157,7 +157,9 @@ public struct Control: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.id, forKey: .id)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.family, forKey: .family)
+    if self.family != Control.Family() {
+      try container.encode(self.family, forKey: .family)
+    }
     try container.encodeIfPresent(self.controlFamily, forKey: .controlFamily)
     try container.encode(self.description, forKey: .description)
     try container.encode(self.responsibilityType, forKey: .responsibilityType)

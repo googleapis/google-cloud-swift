@@ -282,7 +282,9 @@
       try container.encodeIfPresent(self.modelToUpload, forKey: .modelToUpload)
       try container.encode(self.modelId, forKey: .modelId)
       try container.encode(self.parentModel, forKey: .parentModel)
-      try container.encode(self.state, forKey: .state)
+      if self.state != PipelineState() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.error, forKey: .error)
       try container.encodeIfPresent(self.createTime, forKey: .createTime)
       try container.encodeIfPresent(self.startTime, forKey: .startTime)

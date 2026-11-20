@@ -99,7 +99,9 @@ public struct ImportMappingRulesRequest: Codable, Equatable, GoogleWKT._AnyPacka
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.parent, forKey: .parent)
-    try container.encode(self.rulesFormat, forKey: .rulesFormat)
+    if self.rulesFormat != ImportRulesFileFormat() {
+      try container.encode(self.rulesFormat, forKey: .rulesFormat)
+    }
     try container.encode(self.rulesFiles, forKey: .rulesFiles)
     try container.encode(self.autoCommit, forKey: .autoCommit)
     for (key, value) in self._unknownFields.json {

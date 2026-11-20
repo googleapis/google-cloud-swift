@@ -248,7 +248,9 @@ public struct ActiveDirectory: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ActiveDirectory.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.domain, forKey: .domain)
     try container.encode(self.site, forKey: .site)
     try container.encode(self.dns, forKey: .dns)

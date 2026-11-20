@@ -92,9 +92,9 @@ public struct Secret: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .rawValue(let value):
-        try container.encode(value, forKey: .rawValue)
+        try container.encodeIfPresent(value, forKey: .rawValue)
       case .secretVersion(let value):
-        try container.encode(value, forKey: .secretVersion)
+        try container.encodeIfPresent(value, forKey: .secretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

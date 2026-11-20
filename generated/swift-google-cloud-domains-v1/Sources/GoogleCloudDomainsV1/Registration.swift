@@ -185,7 +185,9 @@ public struct Registration: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.domainName, forKey: .domainName)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Registration.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.issues, forKey: .issues)
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.managementSettings, forKey: .managementSettings)

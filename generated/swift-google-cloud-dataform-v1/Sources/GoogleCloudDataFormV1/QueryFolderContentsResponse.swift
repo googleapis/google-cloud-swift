@@ -161,9 +161,9 @@ public struct QueryFolderContentsResponse: Codable, Equatable, GoogleWKT._AnyPac
       if let choice = self.entry {
         switch choice {
         case .folder(let value):
-          try container.encode(value, forKey: .folder)
+          try container.encodeIfPresent(value, forKey: .folder)
         case .repository(let value):
-          try container.encode(value, forKey: .repository)
+          try container.encodeIfPresent(value, forKey: .repository)
         }
       }
       for (key, value) in self._unknownFields.json {

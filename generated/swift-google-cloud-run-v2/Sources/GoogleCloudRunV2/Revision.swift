@@ -414,7 +414,9 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encodeIfPresent(self.deleteTime, forKey: .deleteTime)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
-    try container.encode(self.launchStage, forKey: .launchStage)
+    if self.launchStage != GoogleApi.LaunchStage() {
+      try container.encode(self.launchStage, forKey: .launchStage)
+    }
     try container.encode(self.service, forKey: .service)
     try container.encodeIfPresent(self.scaling, forKey: .scaling)
     try container.encodeIfPresent(self.vpcAccess, forKey: .vpcAccess)
@@ -424,10 +426,15 @@ public struct Revision: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.containers, forKey: .containers)
     try container.encodeIfPresent(self.sandboxes, forKey: .sandboxes)
     try container.encode(self.volumes, forKey: .volumes)
-    try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    if self.executionEnvironment != ExecutionEnvironment() {
+      try container.encode(self.executionEnvironment, forKey: .executionEnvironment)
+    }
     try container.encode(self.encryptionKey, forKey: .encryptionKey)
     try container.encodeIfPresent(self.serviceMesh, forKey: .serviceMesh)
-    try container.encode(self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    if self.encryptionKeyRevocationAction != EncryptionKeyRevocationAction() {
+      try container.encode(
+        self.encryptionKeyRevocationAction, forKey: .encryptionKeyRevocationAction)
+    }
     try container.encodeIfPresent(
       self.encryptionKeyShutdownDuration, forKey: .encryptionKeyShutdownDuration)
     try container.encode(self.reconciling, forKey: .reconciling)

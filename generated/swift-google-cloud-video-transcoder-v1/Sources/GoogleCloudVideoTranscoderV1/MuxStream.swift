@@ -168,7 +168,7 @@ public struct MuxStream: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.containerConfig {
       switch choice {
       case .fmp4(let value):
-        try container.encode(value, forKey: .fmp4)
+        try container.encodeIfPresent(value, forKey: .fmp4)
       }
     }
     for (key, value) in self._unknownFields.json {

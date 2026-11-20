@@ -111,7 +111,9 @@ public struct VodConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sourceUri, forKey: .sourceUri)
     try container.encode(self.adTagUri, forKey: .adTagUri)
     try container.encodeIfPresent(self.gamVodConfig, forKey: .gamVodConfig)
-    try container.encode(self.state, forKey: .state)
+    if self.state != VodConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.sourceFetchOptions, forKey: .sourceFetchOptions)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

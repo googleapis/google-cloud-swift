@@ -159,13 +159,17 @@ public struct MaintenanceWindow: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.preference, forKey: .preference)
+    if self.preference != MaintenanceWindow.MaintenanceWindowPreference() {
+      try container.encode(self.preference, forKey: .preference)
+    }
     try container.encode(self.months, forKey: .months)
     try container.encode(self.weeksOfMonth, forKey: .weeksOfMonth)
     try container.encode(self.daysOfWeek, forKey: .daysOfWeek)
     try container.encode(self.hoursOfDay, forKey: .hoursOfDay)
     try container.encode(self.leadTimeWeek, forKey: .leadTimeWeek)
-    try container.encode(self.patchingMode, forKey: .patchingMode)
+    if self.patchingMode != MaintenanceWindow.PatchingMode() {
+      try container.encode(self.patchingMode, forKey: .patchingMode)
+    }
     try container.encode(self.customActionTimeoutMins, forKey: .customActionTimeoutMins)
     try container.encode(self.isCustomActionTimeoutEnabled, forKey: .isCustomActionTimeoutEnabled)
     for (key, value) in self._unknownFields.json {

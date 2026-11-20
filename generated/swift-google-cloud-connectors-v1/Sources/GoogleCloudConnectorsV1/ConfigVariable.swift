@@ -110,13 +110,13 @@ public struct ConfigVariable: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.value {
       switch choice {
       case .intValue(let value):
-        try container.encode(value, forKey: .intValue)
+        try container.encodeIfPresent(value, forKey: .intValue)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .secretValue(let value):
-        try container.encode(value, forKey: .secretValue)
+        try container.encodeIfPresent(value, forKey: .secretValue)
       }
     }
     for (key, value) in self._unknownFields.json {

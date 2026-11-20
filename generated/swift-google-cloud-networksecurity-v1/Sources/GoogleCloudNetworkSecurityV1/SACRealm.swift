@@ -124,9 +124,13 @@ public struct SACRealm: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.securityService, forKey: .securityService)
+    if self.securityService != SACRealm.SecurityService() {
+      try container.encode(self.securityService, forKey: .securityService)
+    }
     try container.encodeIfPresent(self.pairingKey, forKey: .pairingKey)
-    try container.encode(self.state, forKey: .state)
+    if self.state != SACRealm.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

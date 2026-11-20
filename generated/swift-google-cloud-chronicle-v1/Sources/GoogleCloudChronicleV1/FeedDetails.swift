@@ -672,168 +672,172 @@ public struct FeedDetails: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.feedSourceType, forKey: .feedSourceType)
+    if self.feedSourceType != FeedDetails.FeedSourceType() {
+      try container.encode(self.feedSourceType, forKey: .feedSourceType)
+    }
     try container.encode(self.logType, forKey: .logType)
     try container.encode(self.assetNamespace, forKey: .assetNamespace)
     try container.encode(self.labels, forKey: .labels)
-    try container.encode(self.stsMigrationReadiness, forKey: .stsMigrationReadiness)
+    if self.stsMigrationReadiness != FeedDetails.STSMigrationReadiness() {
+      try container.encode(self.stsMigrationReadiness, forKey: .stsMigrationReadiness)
+    }
     try container.encodeIfPresent(
       self.lastV2MigrationAttemptTime, forKey: .lastV2MigrationAttemptTime)
 
     if let choice = self.details {
       switch choice {
       case .anomaliSettings(let value):
-        try container.encode(value, forKey: .anomaliSettings)
+        try container.encodeIfPresent(value, forKey: .anomaliSettings)
       case .azureAdContextSettings(let value):
-        try container.encode(value, forKey: .azureAdContextSettings)
+        try container.encodeIfPresent(value, forKey: .azureAdContextSettings)
       case .cloudPassageSettings(let value):
-        try container.encode(value, forKey: .cloudPassageSettings)
+        try container.encodeIfPresent(value, forKey: .cloudPassageSettings)
       case .cortexXdrSettings(let value):
-        try container.encode(value, forKey: .cortexXdrSettings)
+        try container.encodeIfPresent(value, forKey: .cortexXdrSettings)
       case .duoAuthSettings(let value):
-        try container.encode(value, forKey: .duoAuthSettings)
+        try container.encodeIfPresent(value, forKey: .duoAuthSettings)
       case .duoUserContextSettings(let value):
-        try container.encode(value, forKey: .duoUserContextSettings)
+        try container.encodeIfPresent(value, forKey: .duoUserContextSettings)
       case .microsoftGraphAlertSettings(let value):
-        try container.encode(value, forKey: .microsoftGraphAlertSettings)
+        try container.encodeIfPresent(value, forKey: .microsoftGraphAlertSettings)
       case .microsoftSecurityCenterAlertSettings(let value):
-        try container.encode(value, forKey: .microsoftSecurityCenterAlertSettings)
+        try container.encodeIfPresent(value, forKey: .microsoftSecurityCenterAlertSettings)
       case .mimecastMailSettings(let value):
-        try container.encode(value, forKey: .mimecastMailSettings)
+        try container.encodeIfPresent(value, forKey: .mimecastMailSettings)
       case .office365Settings(let value):
-        try container.encode(value, forKey: .office365Settings)
+        try container.encodeIfPresent(value, forKey: .office365Settings)
       case .proofpointMailSettings(let value):
-        try container.encode(value, forKey: .proofpointMailSettings)
+        try container.encodeIfPresent(value, forKey: .proofpointMailSettings)
       case .recordedFutureIocSettings(let value):
-        try container.encode(value, forKey: .recordedFutureIocSettings)
+        try container.encodeIfPresent(value, forKey: .recordedFutureIocSettings)
       case .workdaySettings(let value):
-        try container.encode(value, forKey: .workdaySettings)
+        try container.encodeIfPresent(value, forKey: .workdaySettings)
       case .panIocSettings(let value):
-        try container.encode(value, forKey: .panIocSettings)
+        try container.encodeIfPresent(value, forKey: .panIocSettings)
       case .oktaSettings(let value):
-        try container.encode(value, forKey: .oktaSettings)
+        try container.encodeIfPresent(value, forKey: .oktaSettings)
       case .oktaUserContextSettings(let value):
-        try container.encode(value, forKey: .oktaUserContextSettings)
+        try container.encodeIfPresent(value, forKey: .oktaUserContextSettings)
       case .foxItStixSettings(let value):
-        try container.encode(value, forKey: .foxItStixSettings)
+        try container.encodeIfPresent(value, forKey: .foxItStixSettings)
       case .threatConnectIocSettings(let value):
-        try container.encode(value, forKey: .threatConnectIocSettings)
+        try container.encodeIfPresent(value, forKey: .threatConnectIocSettings)
       case .serviceNowCmdbSettings(let value):
-        try container.encode(value, forKey: .serviceNowCmdbSettings)
+        try container.encodeIfPresent(value, forKey: .serviceNowCmdbSettings)
       case .impervaWafSettings(let value):
-        try container.encode(value, forKey: .impervaWafSettings)
+        try container.encodeIfPresent(value, forKey: .impervaWafSettings)
       case .thinkstCanarySettings(let value):
-        try container.encode(value, forKey: .thinkstCanarySettings)
+        try container.encodeIfPresent(value, forKey: .thinkstCanarySettings)
       case .rhIsacIocSettings(let value):
-        try container.encode(value, forKey: .rhIsacIocSettings)
+        try container.encodeIfPresent(value, forKey: .rhIsacIocSettings)
       case .rapid7InsightSettings(let value):
-        try container.encode(value, forKey: .rapid7InsightSettings)
+        try container.encodeIfPresent(value, forKey: .rapid7InsightSettings)
       case .salesforceSettings(let value):
-        try container.encode(value, forKey: .salesforceSettings)
+        try container.encodeIfPresent(value, forKey: .salesforceSettings)
       case .netskopeAlertSettings(let value):
-        try container.encode(value, forKey: .netskopeAlertSettings)
+        try container.encodeIfPresent(value, forKey: .netskopeAlertSettings)
       case .azureMdmIntuneSettings(let value):
-        try container.encode(value, forKey: .azureMdmIntuneSettings)
+        try container.encodeIfPresent(value, forKey: .azureMdmIntuneSettings)
       case .azureAdSettings(let value):
-        try container.encode(value, forKey: .azureAdSettings)
+        try container.encodeIfPresent(value, forKey: .azureAdSettings)
       case .proofpointOnDemandSettings(let value):
-        try container.encode(value, forKey: .proofpointOnDemandSettings)
+        try container.encodeIfPresent(value, forKey: .proofpointOnDemandSettings)
       case .workspaceUsersSettings(let value):
-        try container.encode(value, forKey: .workspaceUsersSettings)
+        try container.encodeIfPresent(value, forKey: .workspaceUsersSettings)
       case .workspaceActivitySettings(let value):
-        try container.encode(value, forKey: .workspaceActivitySettings)
+        try container.encodeIfPresent(value, forKey: .workspaceActivitySettings)
       case .workspaceAlertsSettings(let value):
-        try container.encode(value, forKey: .workspaceAlertsSettings)
+        try container.encodeIfPresent(value, forKey: .workspaceAlertsSettings)
       case .workspacePrivilegesSettings(let value):
-        try container.encode(value, forKey: .workspacePrivilegesSettings)
+        try container.encodeIfPresent(value, forKey: .workspacePrivilegesSettings)
       case .workspaceMobileSettings(let value):
-        try container.encode(value, forKey: .workspaceMobileSettings)
+        try container.encodeIfPresent(value, forKey: .workspaceMobileSettings)
       case .workspaceChromeOsSettings(let value):
-        try container.encode(value, forKey: .workspaceChromeOsSettings)
+        try container.encodeIfPresent(value, forKey: .workspaceChromeOsSettings)
       case .workspaceGroupsSettings(let value):
-        try container.encode(value, forKey: .workspaceGroupsSettings)
+        try container.encodeIfPresent(value, forKey: .workspaceGroupsSettings)
       case .azureAdAuditSettings(let value):
-        try container.encode(value, forKey: .azureAdAuditSettings)
+        try container.encodeIfPresent(value, forKey: .azureAdAuditSettings)
       case .symantecEventExportSettings(let value):
-        try container.encode(value, forKey: .symantecEventExportSettings)
+        try container.encodeIfPresent(value, forKey: .symantecEventExportSettings)
       case .qualysVmSettings(let value):
-        try container.encode(value, forKey: .qualysVmSettings)
+        try container.encodeIfPresent(value, forKey: .qualysVmSettings)
       case .panPrismaCloudSettings(let value):
-        try container.encode(value, forKey: .panPrismaCloudSettings)
+        try container.encodeIfPresent(value, forKey: .panPrismaCloudSettings)
       case .gcsSettings(let value):
-        try container.encode(value, forKey: .gcsSettings)
+        try container.encodeIfPresent(value, forKey: .gcsSettings)
       case .httpSettings(let value):
-        try container.encode(value, forKey: .httpSettings)
+        try container.encodeIfPresent(value, forKey: .httpSettings)
       case .sftpSettings(let value):
-        try container.encode(value, forKey: .sftpSettings)
+        try container.encodeIfPresent(value, forKey: .sftpSettings)
       case .amazonS3Settings(let value):
-        try container.encode(value, forKey: .amazonS3Settings)
+        try container.encodeIfPresent(value, forKey: .amazonS3Settings)
       case .azureBlobStoreSettings(let value):
-        try container.encode(value, forKey: .azureBlobStoreSettings)
+        try container.encodeIfPresent(value, forKey: .azureBlobStoreSettings)
       case .amazonSqsSettings(let value):
-        try container.encode(value, forKey: .amazonSqsSettings)
+        try container.encodeIfPresent(value, forKey: .amazonSqsSettings)
       case .googleCloudIdentityDevicesSettings(let value):
-        try container.encode(value, forKey: .googleCloudIdentityDevicesSettings)
+        try container.encodeIfPresent(value, forKey: .googleCloudIdentityDevicesSettings)
       case .googleCloudIdentityDeviceUsersSettings(let value):
-        try container.encode(value, forKey: .googleCloudIdentityDeviceUsersSettings)
+        try container.encodeIfPresent(value, forKey: .googleCloudIdentityDeviceUsersSettings)
       case .crowdstrikeDetectsSettings(let value):
-        try container.encode(value, forKey: .crowdstrikeDetectsSettings)
+        try container.encodeIfPresent(value, forKey: .crowdstrikeDetectsSettings)
       case .mandiantIocSettings(let value):
-        try container.encode(value, forKey: .mandiantIocSettings)
+        try container.encodeIfPresent(value, forKey: .mandiantIocSettings)
       case .sentineloneAlertSettings(let value):
-        try container.encode(value, forKey: .sentineloneAlertSettings)
+        try container.encodeIfPresent(value, forKey: .sentineloneAlertSettings)
       case .qualysScanSettings(let value):
-        try container.encode(value, forKey: .qualysScanSettings)
+        try container.encodeIfPresent(value, forKey: .qualysScanSettings)
       case .pubsubSettings(let value):
-        try container.encode(value, forKey: .pubsubSettings)
+        try container.encodeIfPresent(value, forKey: .pubsubSettings)
       case .amazonKinesisFirehoseSettings(let value):
-        try container.encode(value, forKey: .amazonKinesisFirehoseSettings)
+        try container.encodeIfPresent(value, forKey: .amazonKinesisFirehoseSettings)
       case .webhookSettings(let value):
-        try container.encode(value, forKey: .webhookSettings)
+        try container.encodeIfPresent(value, forKey: .webhookSettings)
       case .dummyLogTypeSettings(let value):
-        try container.encode(value, forKey: .dummyLogTypeSettings)
+        try container.encodeIfPresent(value, forKey: .dummyLogTypeSettings)
       case .httpsPushGoogleCloudPubsubSettings(let value):
-        try container.encode(value, forKey: .httpsPushGoogleCloudPubsubSettings)
+        try container.encodeIfPresent(value, forKey: .httpsPushGoogleCloudPubsubSettings)
       case .httpsPushAmazonKinesisFirehoseSettings(let value):
-        try container.encode(value, forKey: .httpsPushAmazonKinesisFirehoseSettings)
+        try container.encodeIfPresent(value, forKey: .httpsPushAmazonKinesisFirehoseSettings)
       case .httpsPushWebhookSettings(let value):
-        try container.encode(value, forKey: .httpsPushWebhookSettings)
+        try container.encodeIfPresent(value, forKey: .httpsPushWebhookSettings)
       case .awsEc2HostsSettings(let value):
-        try container.encode(value, forKey: .awsEc2HostsSettings)
+        try container.encodeIfPresent(value, forKey: .awsEc2HostsSettings)
       case .awsEc2InstancesSettings(let value):
-        try container.encode(value, forKey: .awsEc2InstancesSettings)
+        try container.encodeIfPresent(value, forKey: .awsEc2InstancesSettings)
       case .awsEc2VpcsSettings(let value):
-        try container.encode(value, forKey: .awsEc2VpcsSettings)
+        try container.encodeIfPresent(value, forKey: .awsEc2VpcsSettings)
       case .awsIamSettings(let value):
-        try container.encode(value, forKey: .awsIamSettings)
+        try container.encodeIfPresent(value, forKey: .awsIamSettings)
       case .netskopeAlertV2Settings(let value):
-        try container.encode(value, forKey: .netskopeAlertV2Settings)
+        try container.encodeIfPresent(value, forKey: .netskopeAlertV2Settings)
       case .gcsV2Settings(let value):
-        try container.encode(value, forKey: .gcsV2Settings)
+        try container.encodeIfPresent(value, forKey: .gcsV2Settings)
       case .amazonS3V2Settings(let value):
-        try container.encode(value, forKey: .amazonS3V2Settings)
+        try container.encodeIfPresent(value, forKey: .amazonS3V2Settings)
       case .amazonSqsV2Settings(let value):
-        try container.encode(value, forKey: .amazonSqsV2Settings)
+        try container.encodeIfPresent(value, forKey: .amazonSqsV2Settings)
       case .azureEventHubSettings(let value):
-        try container.encode(value, forKey: .azureEventHubSettings)
+        try container.encodeIfPresent(value, forKey: .azureEventHubSettings)
       case .trellixHxHostsSettings(let value):
-        try container.encode(value, forKey: .trellixHxHostsSettings)
+        try container.encodeIfPresent(value, forKey: .trellixHxHostsSettings)
       case .azureBlobStoreV2Settings(let value):
-        try container.encode(value, forKey: .azureBlobStoreV2Settings)
+        try container.encodeIfPresent(value, forKey: .azureBlobStoreV2Settings)
       case .trellixHxAlertsSettings(let value):
-        try container.encode(value, forKey: .trellixHxAlertsSettings)
+        try container.encodeIfPresent(value, forKey: .trellixHxAlertsSettings)
       case .googleCloudStorageEventDrivenSettings(let value):
-        try container.encode(value, forKey: .googleCloudStorageEventDrivenSettings)
+        try container.encodeIfPresent(value, forKey: .googleCloudStorageEventDrivenSettings)
       case .crowdstrikeAlertsSettings(let value):
-        try container.encode(value, forKey: .crowdstrikeAlertsSettings)
+        try container.encodeIfPresent(value, forKey: .crowdstrikeAlertsSettings)
       case .trellixHxBulkAcqsSettings(let value):
-        try container.encode(value, forKey: .trellixHxBulkAcqsSettings)
+        try container.encodeIfPresent(value, forKey: .trellixHxBulkAcqsSettings)
       case .mimecastMailV2Settings(let value):
-        try container.encode(value, forKey: .mimecastMailV2Settings)
+        try container.encodeIfPresent(value, forKey: .mimecastMailV2Settings)
       case .threatConnectIocV3Settings(let value):
-        try container.encode(value, forKey: .threatConnectIocV3Settings)
+        try container.encodeIfPresent(value, forKey: .threatConnectIocV3Settings)
       case .customApiSettings(let value):
-        try container.encode(value, forKey: .customApiSettings)
+        try container.encodeIfPresent(value, forKey: .customApiSettings)
       }
     }
     for (key, value) in self._unknownFields.json {

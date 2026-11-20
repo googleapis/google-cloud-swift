@@ -97,9 +97,9 @@ public struct AuditData: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.method {
       switch choice {
       case .updateService(let value):
-        try container.encode(value, forKey: .updateService)
+        try container.encodeIfPresent(value, forKey: .updateService)
       case .createVersion(let value):
-        try container.encode(value, forKey: .createVersion)
+        try container.encodeIfPresent(value, forKey: .createVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

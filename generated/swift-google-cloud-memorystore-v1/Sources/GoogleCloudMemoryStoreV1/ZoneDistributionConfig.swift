@@ -103,7 +103,9 @@ public struct ZoneDistributionConfig: Codable, Equatable, GoogleWKT._AnyPackable
     try container.encode(self.zone, forKey: .zone)
     try container.encode(self.zones, forKey: .zones)
     try container.encode(self.activeZones, forKey: .activeZones)
-    try container.encode(self.mode, forKey: .mode)
+    if self.mode != ZoneDistributionConfig.ZoneDistributionMode() {
+      try container.encode(self.mode, forKey: .mode)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

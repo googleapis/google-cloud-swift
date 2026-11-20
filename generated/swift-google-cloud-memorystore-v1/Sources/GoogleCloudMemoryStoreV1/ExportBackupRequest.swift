@@ -95,7 +95,7 @@ public struct ExportBackupRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.destination {
       switch choice {
       case .gcsBucket(let value):
-        try container.encode(value, forKey: .gcsBucket)
+        try container.encodeIfPresent(value, forKey: .gcsBucket)
       }
     }
     for (key, value) in self._unknownFields.json {

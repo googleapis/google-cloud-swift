@@ -140,10 +140,18 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.autoBackupEnabled, forKey: .autoBackupEnabled)
     try container.encode(self.backupDestinationDetails, forKey: .backupDestinationDetails)
     try container.encode(self.retentionPeriodDays, forKey: .retentionPeriodDays)
-    try container.encode(self.backupDeletionPolicy, forKey: .backupDeletionPolicy)
-    try container.encode(self.autoFullBackupDay, forKey: .autoFullBackupDay)
-    try container.encode(self.autoFullBackupWindow, forKey: .autoFullBackupWindow)
-    try container.encode(self.autoIncrementalBackupWindow, forKey: .autoIncrementalBackupWindow)
+    if self.backupDeletionPolicy != DbBackupConfig.BackupDeletionPolicy() {
+      try container.encode(self.backupDeletionPolicy, forKey: .backupDeletionPolicy)
+    }
+    if self.autoFullBackupDay != GoogleType.DayOfWeek() {
+      try container.encode(self.autoFullBackupDay, forKey: .autoFullBackupDay)
+    }
+    if self.autoFullBackupWindow != DbBackupConfig.BackupWindow() {
+      try container.encode(self.autoFullBackupWindow, forKey: .autoFullBackupWindow)
+    }
+    if self.autoIncrementalBackupWindow != DbBackupConfig.BackupWindow() {
+      try container.encode(self.autoIncrementalBackupWindow, forKey: .autoIncrementalBackupWindow)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }
@@ -203,7 +211,9 @@ public struct DbBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
-      try container.encode(self.type, forKey: .type)
+      if self.type != DbBackupConfig.BackupDestinationType() {
+        try container.encode(self.type, forKey: .type)
+      }
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))
       }

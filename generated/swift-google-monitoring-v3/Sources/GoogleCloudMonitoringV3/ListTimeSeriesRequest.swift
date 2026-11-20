@@ -163,7 +163,9 @@ public struct ListTimeSeriesRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.aggregation, forKey: .aggregation)
     try container.encodeIfPresent(self.secondaryAggregation, forKey: .secondaryAggregation)
     try container.encode(self.orderBy, forKey: .orderBy)
-    try container.encode(self.view, forKey: .view)
+    if self.view != ListTimeSeriesRequest.TimeSeriesView() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.pageSize, forKey: .pageSize)
     try container.encode(self.pageToken, forKey: .pageToken)
     for (key, value) in self._unknownFields.json {

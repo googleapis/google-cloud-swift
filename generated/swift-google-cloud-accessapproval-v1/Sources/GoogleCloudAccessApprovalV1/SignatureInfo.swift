@@ -103,9 +103,9 @@ public struct SignatureInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.verificationInfo {
       switch choice {
       case .googlePublicKeyPem(let value):
-        try container.encode(value, forKey: .googlePublicKeyPem)
+        try container.encodeIfPresent(value, forKey: .googlePublicKeyPem)
       case .customerKmsKeyVersion(let value):
-        try container.encode(value, forKey: .customerKmsKeyVersion)
+        try container.encodeIfPresent(value, forKey: .customerKmsKeyVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

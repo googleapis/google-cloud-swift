@@ -117,13 +117,27 @@ public struct ConfigSyncDeploymentState: Codable, Equatable, GoogleWKT._AnyPacka
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.importer, forKey: .importer)
-    try container.encode(self.syncer, forKey: .syncer)
-    try container.encode(self.gitSync, forKey: .gitSync)
-    try container.encode(self.monitor, forKey: .monitor)
-    try container.encode(self.reconcilerManager, forKey: .reconcilerManager)
-    try container.encode(self.rootReconciler, forKey: .rootReconciler)
-    try container.encode(self.admissionWebhook, forKey: .admissionWebhook)
+    if self.importer != DeploymentState() {
+      try container.encode(self.importer, forKey: .importer)
+    }
+    if self.syncer != DeploymentState() {
+      try container.encode(self.syncer, forKey: .syncer)
+    }
+    if self.gitSync != DeploymentState() {
+      try container.encode(self.gitSync, forKey: .gitSync)
+    }
+    if self.monitor != DeploymentState() {
+      try container.encode(self.monitor, forKey: .monitor)
+    }
+    if self.reconcilerManager != DeploymentState() {
+      try container.encode(self.reconcilerManager, forKey: .reconcilerManager)
+    }
+    if self.rootReconciler != DeploymentState() {
+      try container.encode(self.rootReconciler, forKey: .rootReconciler)
+    }
+    if self.admissionWebhook != DeploymentState() {
+      try container.encode(self.admissionWebhook, forKey: .admissionWebhook)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

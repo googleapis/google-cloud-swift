@@ -149,12 +149,18 @@ public struct LineItemChange: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.changeId, forKey: .changeId)
-    try container.encode(self.changeType, forKey: .changeType)
+    if self.changeType != LineItemChangeType() {
+      try container.encode(self.changeType, forKey: .changeType)
+    }
     try container.encodeIfPresent(self.oldLineItemInfo, forKey: .oldLineItemInfo)
     try container.encodeIfPresent(self.newLineItemInfo, forKey: .newLineItemInfo)
-    try container.encode(self.changeState, forKey: .changeState)
+    if self.changeState != LineItemChangeState() {
+      try container.encode(self.changeState, forKey: .changeState)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
-    try container.encode(self.changeStateReasonType, forKey: .changeStateReasonType)
+    if self.changeStateReasonType != LineItemChangeStateReasonType() {
+      try container.encode(self.changeStateReasonType, forKey: .changeStateReasonType)
+    }
     try container.encodeIfPresent(self.changeEffectiveTime, forKey: .changeEffectiveTime)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

@@ -136,9 +136,9 @@ public struct ListPurchasableOffersRequest: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.purchaseOption {
       switch choice {
       case .createEntitlementPurchase(let value):
-        try container.encode(value, forKey: .createEntitlementPurchase)
+        try container.encodeIfPresent(value, forKey: .createEntitlementPurchase)
       case .changeOfferPurchase(let value):
-        try container.encode(value, forKey: .changeOfferPurchase)
+        try container.encodeIfPresent(value, forKey: .changeOfferPurchase)
       }
     }
     for (key, value) in self._unknownFields.json {

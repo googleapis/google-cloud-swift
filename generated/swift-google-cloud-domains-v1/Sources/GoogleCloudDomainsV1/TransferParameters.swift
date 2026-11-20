@@ -114,7 +114,9 @@ public struct TransferParameters: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.domainName, forKey: .domainName)
     try container.encode(self.currentRegistrar, forKey: .currentRegistrar)
     try container.encode(self.nameServers, forKey: .nameServers)
-    try container.encode(self.transferLockState, forKey: .transferLockState)
+    if self.transferLockState != TransferLockState() {
+      try container.encode(self.transferLockState, forKey: .transferLockState)
+    }
     try container.encode(self.supportedPrivacy, forKey: .supportedPrivacy)
     try container.encodeIfPresent(self.yearlyPrice, forKey: .yearlyPrice)
     for (key, value) in self._unknownFields.json {

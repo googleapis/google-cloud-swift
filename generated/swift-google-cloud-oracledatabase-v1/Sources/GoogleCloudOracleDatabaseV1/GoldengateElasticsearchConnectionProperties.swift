@@ -155,17 +155,25 @@ public struct GoldengateElasticsearchConnectionProperties: Codable, Equatable, G
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.technologyType, forKey: .technologyType)
     try container.encode(self.servers, forKey: .servers)
-    try container.encode(self.securityProtocol, forKey: .securityProtocol)
-    try container.encode(self.authenticationType, forKey: .authenticationType)
+    if self.securityProtocol
+      != GoldengateElasticsearchConnectionProperties.ElasticsearchSecurityProtocol()
+    {
+      try container.encode(self.securityProtocol, forKey: .securityProtocol)
+    }
+    if self.authenticationType
+      != GoldengateElasticsearchConnectionProperties.ElasticsearchAuthenticationType()
+    {
+      try container.encode(self.authenticationType, forKey: .authenticationType)
+    }
     try container.encode(self.username, forKey: .username)
     try container.encode(self.fingerprint, forKey: .fingerprint)
 
     if let choice = self.connectionPasswordOptions {
       switch choice {
       case .password(let value):
-        try container.encode(value, forKey: .password)
+        try container.encodeIfPresent(value, forKey: .password)
       case .passwordSecretVersion(let value):
-        try container.encode(value, forKey: .passwordSecretVersion)
+        try container.encodeIfPresent(value, forKey: .passwordSecretVersion)
       }
     }
     for (key, value) in self._unknownFields.json {

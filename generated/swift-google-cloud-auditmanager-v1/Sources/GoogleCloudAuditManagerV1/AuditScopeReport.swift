@@ -101,7 +101,7 @@ public struct AuditScopeReport: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.auditReport {
       switch choice {
       case .scopeReportContents(let value):
-        try container.encode(value, forKey: .scopeReportContents)
+        try container.encodeIfPresent(value, forKey: .scopeReportContents)
       }
     }
     for (key, value) in self._unknownFields.json {

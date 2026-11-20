@@ -151,31 +151,31 @@ public struct MessageWithComplexOneOf: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.complex {
       switch choice {
       case .null(let value):
-        try container.encode(value, forKey: .null)
+        try container.encodeIfPresent(value, forKey: .null)
       case .boolValue(let value):
-        try container.encode(value, forKey: .boolValue)
+        try container.encodeIfPresent(value, forKey: .boolValue)
       case .bytesValue(let value):
-        try container.encode(value, forKey: .bytesValue)
+        try container.encodeIfPresent(value, forKey: .bytesValue)
       case .stringValue(let value):
-        try container.encode(value, forKey: .stringValue)
+        try container.encodeIfPresent(value, forKey: .stringValue)
       case .floatValue(let value):
-        try container.encode(value, forKey: .floatValue)
+        try container.encodeIfPresent(value, forKey: .floatValue)
       case .doubleValue(let value):
-        try container.encode(value, forKey: .doubleValue)
+        try container.encodeIfPresent(value, forKey: .doubleValue)
       case .int32(let value):
-        try container.encode(value, forKey: .int32)
+        try container.encodeIfPresent(value, forKey: .int32)
       case .int64(let value):
-        try container.encode(value, forKey: .int64)
+        try container.encodeIfPresent(value, forKey: .int64)
       case .`enum`(let value):
-        try container.encode(value, forKey: .`enum`)
+        try container.encodeIfPresent(value, forKey: .`enum`)
       case .inner(let value):
-        try container.encode(value, forKey: .inner)
+        try container.encodeIfPresent(value, forKey: .inner)
       case .duration(let value):
-        try container.encode(value, forKey: .duration)
+        try container.encodeIfPresent(value, forKey: .duration)
       case .value(let value):
-        try container.encode(value, forKey: .value)
+        try container.encodeIfPresent(value, forKey: .value)
       case .optionalDouble(let value):
-        try container.encode(value, forKey: .optionalDouble)
+        try container.encodeIfPresent(value, forKey: .optionalDouble)
       }
     }
     for (key, value) in self._unknownFields.json {

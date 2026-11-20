@@ -87,7 +87,9 @@ public struct PieChart: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.dataSets, forKey: .dataSets)
-    try container.encode(self.chartType, forKey: .chartType)
+    if self.chartType != PieChart.PieChartType() {
+      try container.encode(self.chartType, forKey: .chartType)
+    }
     try container.encode(self.showLabels, forKey: .showLabels)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

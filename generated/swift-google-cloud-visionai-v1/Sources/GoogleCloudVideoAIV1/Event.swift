@@ -125,7 +125,9 @@ public struct Event: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.annotations, forKey: .annotations)
-    try container.encode(self.alignmentClock, forKey: .alignmentClock)
+    if self.alignmentClock != Event.Clock() {
+      try container.encode(self.alignmentClock, forKey: .alignmentClock)
+    }
     try container.encodeIfPresent(self.gracePeriod, forKey: .gracePeriod)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -83,7 +83,9 @@ public struct AutoMlImageObjectDetectionMetadata: Codable, Equatable, GoogleWKT.
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.costMilliNodeHours, forKey: .costMilliNodeHours)
-    try container.encode(self.successfulStopReason, forKey: .successfulStopReason)
+    if self.successfulStopReason != AutoMlImageObjectDetectionMetadata.SuccessfulStopReason() {
+      try container.encode(self.successfulStopReason, forKey: .successfulStopReason)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

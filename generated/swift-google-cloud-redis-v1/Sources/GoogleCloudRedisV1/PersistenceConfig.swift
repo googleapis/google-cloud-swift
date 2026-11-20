@@ -105,8 +105,12 @@ public struct PersistenceConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.persistenceMode, forKey: .persistenceMode)
-    try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
+    if self.persistenceMode != PersistenceConfig.PersistenceMode() {
+      try container.encode(self.persistenceMode, forKey: .persistenceMode)
+    }
+    if self.rdbSnapshotPeriod != PersistenceConfig.SnapshotPeriod() {
+      try container.encode(self.rdbSnapshotPeriod, forKey: .rdbSnapshotPeriod)
+    }
     try container.encodeIfPresent(self.rdbNextSnapshotTime, forKey: .rdbNextSnapshotTime)
     try container.encodeIfPresent(self.rdbSnapshotStartTime, forKey: .rdbSnapshotStartTime)
     for (key, value) in self._unknownFields.json {

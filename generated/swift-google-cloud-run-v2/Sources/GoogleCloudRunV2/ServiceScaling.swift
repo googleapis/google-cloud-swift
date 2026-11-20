@@ -102,7 +102,9 @@ public struct ServiceScaling: Codable, Equatable, GoogleWKT._AnyPackable,
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.minInstanceCount, forKey: .minInstanceCount)
-    try container.encode(self.scalingMode, forKey: .scalingMode)
+    if self.scalingMode != ServiceScaling.ScalingMode() {
+      try container.encode(self.scalingMode, forKey: .scalingMode)
+    }
     try container.encode(self.maxInstanceCount, forKey: .maxInstanceCount)
     try container.encodeIfPresent(self.manualInstanceCount, forKey: .manualInstanceCount)
     for (key, value) in self._unknownFields.json {

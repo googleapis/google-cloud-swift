@@ -188,9 +188,9 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.timeInput {
         switch choice {
         case .timeWindow(let value):
-          try container.encode(value, forKey: .timeWindow)
+          try container.encodeIfPresent(value, forKey: .timeWindow)
         case .relativeTime(let value):
-          try container.encode(value, forKey: .relativeTime)
+          try container.encodeIfPresent(value, forKey: .relativeTime)
         }
       }
       for (key, value) in self._unknownFields.json {
@@ -256,7 +256,9 @@ public struct DashboardQuery: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.timeUnit, forKey: .timeUnit)
+        if self.timeUnit != TimeUnit() {
+          try container.encode(self.timeUnit, forKey: .timeUnit)
+        }
         try container.encode(self.startTimeVal, forKey: .startTimeVal)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))

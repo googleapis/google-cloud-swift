@@ -108,9 +108,9 @@ public struct EndpointVerificationInfo: Codable, Equatable, GoogleWKT._AnyPackab
     if let choice = self.endpoint {
       switch choice {
       case .emailAddress(let value):
-        try container.encode(value, forKey: .emailAddress)
+        try container.encodeIfPresent(value, forKey: .emailAddress)
       case .phoneNumber(let value):
-        try container.encode(value, forKey: .phoneNumber)
+        try container.encodeIfPresent(value, forKey: .phoneNumber)
       }
     }
     for (key, value) in self._unknownFields.json {

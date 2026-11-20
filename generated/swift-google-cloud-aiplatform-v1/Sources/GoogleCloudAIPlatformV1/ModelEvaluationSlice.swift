@@ -417,11 +417,11 @@
             if let choice = self.kind {
               switch choice {
               case .value(let value):
-                try container.encode(value, forKey: .value)
+                try container.encodeIfPresent(value, forKey: .value)
               case .range(let value):
-                try container.encode(value, forKey: .range)
+                try container.encodeIfPresent(value, forKey: .range)
               case .allValues(let value):
-                try container.encode(value, forKey: .allValues)
+                try container.encodeIfPresent(value, forKey: .allValues)
               }
             }
             for (key, value) in self._unknownFields.json {
@@ -632,9 +632,9 @@
             if let choice = self.kind {
               switch choice {
               case .stringValue(let value):
-                try container.encode(value, forKey: .stringValue)
+                try container.encodeIfPresent(value, forKey: .stringValue)
               case .floatValue(let value):
-                try container.encode(value, forKey: .floatValue)
+                try container.encodeIfPresent(value, forKey: .floatValue)
               }
             }
             for (key, value) in self._unknownFields.json {

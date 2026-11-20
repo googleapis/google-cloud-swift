@@ -213,9 +213,9 @@ public struct SpriteSheet: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.extractionStrategy {
       switch choice {
       case .totalCount(let value):
-        try container.encode(value, forKey: .totalCount)
+        try container.encodeIfPresent(value, forKey: .totalCount)
       case .interval(let value):
-        try container.encode(value, forKey: .interval)
+        try container.encodeIfPresent(value, forKey: .interval)
       }
     }
     for (key, value) in self._unknownFields.json {

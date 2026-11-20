@@ -88,7 +88,9 @@ public struct Text: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.enText, forKey: .enText)
     try container.encode(self.localizedText, forKey: .localizedText)
-    try container.encode(self.localizationState, forKey: .localizationState)
+    if self.localizationState != LocalizationState() {
+      try container.encode(self.localizationState, forKey: .localizationState)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

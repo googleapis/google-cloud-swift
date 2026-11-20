@@ -139,13 +139,13 @@ public struct SearchLinksRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.criteria {
       switch choice {
       case .source(let value):
-        try container.encode(value, forKey: .source)
+        try container.encodeIfPresent(value, forKey: .source)
       case .target(let value):
-        try container.encode(value, forKey: .target)
+        try container.encodeIfPresent(value, forKey: .target)
       case .sources(let value):
-        try container.encode(value, forKey: .sources)
+        try container.encodeIfPresent(value, forKey: .sources)
       case .targets(let value):
-        try container.encode(value, forKey: .targets)
+        try container.encodeIfPresent(value, forKey: .targets)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -179,7 +179,9 @@ public struct NatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.type, forKey: .type)
+    if self.type != NatInfo.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.`protocol`, forKey: .`protocol`)
     try container.encode(self.networkUri, forKey: .networkUri)
     try container.encode(self.oldSourceIp, forKey: .oldSourceIp)
@@ -192,7 +194,9 @@ public struct NatInfo: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.newDestinationPort, forKey: .newDestinationPort)
     try container.encode(self.routerUri, forKey: .routerUri)
     try container.encode(self.natGatewayName, forKey: .natGatewayName)
-    try container.encode(self.cloudNatGatewayType, forKey: .cloudNatGatewayType)
+    if self.cloudNatGatewayType != NatInfo.CloudNatGatewayType() {
+      try container.encode(self.cloudNatGatewayType, forKey: .cloudNatGatewayType)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

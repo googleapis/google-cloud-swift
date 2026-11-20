@@ -220,7 +220,9 @@ public struct Company: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.name, forKey: .name)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.externalId, forKey: .externalId)
-    try container.encode(self.size, forKey: .size)
+    if self.size != CompanySize() {
+      try container.encode(self.size, forKey: .size)
+    }
     try container.encode(self.headquartersAddress, forKey: .headquartersAddress)
     try container.encode(self.hiringAgency, forKey: .hiringAgency)
     try container.encode(self.eeoText, forKey: .eeoText)

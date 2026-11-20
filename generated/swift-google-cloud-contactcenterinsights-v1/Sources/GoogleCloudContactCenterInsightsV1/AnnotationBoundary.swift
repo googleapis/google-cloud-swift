@@ -95,7 +95,7 @@ public struct AnnotationBoundary: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.detailedBoundary {
       switch choice {
       case .wordIndex(let value):
-        try container.encode(value, forKey: .wordIndex)
+        try container.encodeIfPresent(value, forKey: .wordIndex)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -199,18 +199,20 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.sanDnsnames, forKey: .sanDnsnames)
     try container.encode(self.pemCertificate, forKey: .pemCertificate)
     try container.encodeIfPresent(self.expireTime, forKey: .expireTime)
-    try container.encode(self.scope, forKey: .scope)
+    if self.scope != Certificate.Scope() {
+      try container.encode(self.scope, forKey: .scope)
+    }
     try container.encode(self.usedBy, forKey: .usedBy)
     try container.encode(self.tags, forKey: .tags)
 
     if let choice = self.type {
       switch choice {
       case .selfManaged(let value):
-        try container.encode(value, forKey: .selfManaged)
+        try container.encodeIfPresent(value, forKey: .selfManaged)
       case .managed(let value):
-        try container.encode(value, forKey: .managed)
+        try container.encodeIfPresent(value, forKey: .managed)
       case .managedIdentity(let value):
-        try container.encode(value, forKey: .managedIdentity)
+        try container.encodeIfPresent(value, forKey: .managedIdentity)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -428,7 +430,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       try container.encode(self.domains, forKey: .domains)
       try container.encode(self.dnsAuthorizations, forKey: .dnsAuthorizations)
       try container.encode(self.issuanceConfig, forKey: .issuanceConfig)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Certificate.ManagedCertificate.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.provisioningIssue, forKey: .provisioningIssue)
       try container.encode(self.authorizationAttemptInfo, forKey: .authorizationAttemptInfo)
       for (key, value) in self._unknownFields.json {
@@ -501,7 +505,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
 
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.reason, forKey: .reason)
+        if self.reason != Certificate.ManagedCertificate.ProvisioningIssue.Reason() {
+          try container.encode(self.reason, forKey: .reason)
+        }
         try container.encode(self.details, forKey: .details)
         for (key, value) in self._unknownFields.json {
           try container.encode(value, forKey: CodingKeys(stringValue: key))
@@ -758,8 +764,14 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
       public func encode(to encoder: any Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(self.domain, forKey: .domain)
-        try container.encode(self.state, forKey: .state)
-        try container.encode(self.failureReason, forKey: .failureReason)
+        if self.state != Certificate.ManagedCertificate.AuthorizationAttemptInfo.State() {
+          try container.encode(self.state, forKey: .state)
+        }
+        if self.failureReason
+          != Certificate.ManagedCertificate.AuthorizationAttemptInfo.FailureReason()
+        {
+          try container.encode(self.failureReason, forKey: .failureReason)
+        }
         try container.encode(self.details, forKey: .details)
         try container.encodeIfPresent(self.attemptTime, forKey: .attemptTime)
         try container.encodeIfPresent(self.troubleshooting, forKey: .troubleshooting)
@@ -1731,7 +1743,9 @@ public struct Certificate: Codable, Equatable, GoogleWKT._AnyPackable,
     public func encode(to encoder: any Encoder) throws {
       var container = encoder.container(keyedBy: CodingKeys.self)
       try container.encode(self.identity, forKey: .identity)
-      try container.encode(self.state, forKey: .state)
+      if self.state != Certificate.ManagedCertificate.State() {
+        try container.encode(self.state, forKey: .state)
+      }
       try container.encodeIfPresent(self.provisioningIssue, forKey: .provisioningIssue)
       for (key, value) in self._unknownFields.json {
         try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -120,9 +120,9 @@ public struct ImportApplicationIaCRequest: Codable, Equatable, GoogleWKT._AnyPac
     if let choice = self.source {
       switch choice {
       case .gcsUri(let value):
-        try container.encode(value, forKey: .gcsUri)
+        try container.encodeIfPresent(value, forKey: .gcsUri)
       case .iacModule(let value):
-        try container.encode(value, forKey: .iacModule)
+        try container.encodeIfPresent(value, forKey: .iacModule)
       }
     }
     for (key, value) in self._unknownFields.json {

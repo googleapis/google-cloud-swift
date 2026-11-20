@@ -118,7 +118,9 @@ public struct LoggedBackup: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.deleteLockDays, forKey: .deleteLockDays)
     try container.encode(self.retainDays, forKey: .retainDays)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.state, forKey: .state)
+    if self.state != LoggedBackup.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

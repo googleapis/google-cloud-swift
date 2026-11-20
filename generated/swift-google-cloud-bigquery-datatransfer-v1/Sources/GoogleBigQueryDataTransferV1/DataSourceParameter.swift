@@ -191,7 +191,9 @@ public struct DataSourceParameter: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.paramId, forKey: .paramId)
     try container.encode(self.displayName, forKey: .displayName)
     try container.encode(self.description, forKey: .description)
-    try container.encode(self.type, forKey: .type)
+    if self.type != DataSourceParameter.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.`required`, forKey: .`required`)
     try container.encode(self.repeated, forKey: .repeated)
     try container.encode(self.validationRegex, forKey: .validationRegex)

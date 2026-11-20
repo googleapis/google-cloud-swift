@@ -207,11 +207,15 @@ public struct ManagementServer: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.labels, forKey: .labels)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
-    try container.encode(self.type, forKey: .type)
+    if self.type != ManagementServer.InstanceType() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encodeIfPresent(self.managementUri, forKey: .managementUri)
     try container.encodeIfPresent(
       self.workforceIdentityBasedManagementUri, forKey: .workforceIdentityBasedManagementUri)
-    try container.encode(self.state, forKey: .state)
+    if self.state != ManagementServer.InstanceState() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.networks, forKey: .networks)
     try container.encode(self.etag, forKey: .etag)
     try container.encode(self.oauth2ClientId, forKey: .oauth2ClientId)

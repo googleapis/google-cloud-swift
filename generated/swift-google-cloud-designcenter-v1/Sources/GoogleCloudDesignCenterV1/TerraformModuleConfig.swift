@@ -97,9 +97,9 @@ public struct TerraformModuleConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.sourceOverride {
       switch choice {
       case .gitProxyEnabled(let value):
-        try container.encode(value, forKey: .gitProxyEnabled)
+        try container.encodeIfPresent(value, forKey: .gitProxyEnabled)
       case .localReferencesEnabled(let value):
-        try container.encode(value, forKey: .localReferencesEnabled)
+        try container.encodeIfPresent(value, forKey: .localReferencesEnabled)
       }
     }
     for (key, value) in self._unknownFields.json {

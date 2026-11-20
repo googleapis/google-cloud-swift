@@ -101,9 +101,9 @@ public struct UniversalActionExtensionPoint: Codable, Equatable, GoogleWKT._AnyP
     if let choice = self.actionType {
       switch choice {
       case .openLink(let value):
-        try container.encode(value, forKey: .openLink)
+        try container.encodeIfPresent(value, forKey: .openLink)
       case .runFunction(let value):
-        try container.encode(value, forKey: .runFunction)
+        try container.encodeIfPresent(value, forKey: .runFunction)
       }
     }
     for (key, value) in self._unknownFields.json {

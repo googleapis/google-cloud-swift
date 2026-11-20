@@ -102,7 +102,9 @@ public struct Cloud: Codable, Equatable, GoogleWKT._AnyPackable,
   #endif
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.environment, forKey: .environment)
+    if self.environment != Cloud.CloudEnvironment() {
+      try container.encode(self.environment, forKey: .environment)
+    }
     try container.encodeIfPresent(self.vpc, forKey: .vpc)
     try container.encodeIfPresent(self.project, forKey: .project)
     try container.encode(self.availabilityZone, forKey: .availabilityZone)

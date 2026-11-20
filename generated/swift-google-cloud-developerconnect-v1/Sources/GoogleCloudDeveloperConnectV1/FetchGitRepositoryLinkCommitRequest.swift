@@ -105,7 +105,9 @@ public struct FetchGitRepositoryLinkCommitRequest: Codable, Equatable, GoogleWKT
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.commitSha, forKey: .commitSha)
-    try container.encode(self.view, forKey: .view)
+    if self.view != CommitView() {
+      try container.encode(self.view, forKey: .view)
+    }
     try container.encode(self.pathFilters, forKey: .pathFilters)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

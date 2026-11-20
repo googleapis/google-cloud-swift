@@ -115,11 +115,11 @@
       if let choice = self.coverageType {
         switch choice {
         case .intentCoverage(let value):
-          try container.encode(value, forKey: .intentCoverage)
+          try container.encodeIfPresent(value, forKey: .intentCoverage)
         case .transitionCoverage(let value):
-          try container.encode(value, forKey: .transitionCoverage)
+          try container.encodeIfPresent(value, forKey: .transitionCoverage)
         case .routeGroupCoverage(let value):
-          try container.encode(value, forKey: .routeGroupCoverage)
+          try container.encodeIfPresent(value, forKey: .routeGroupCoverage)
         }
       }
       for (key, value) in self._unknownFields.json {

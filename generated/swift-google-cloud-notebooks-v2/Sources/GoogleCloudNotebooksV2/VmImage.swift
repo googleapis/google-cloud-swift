@@ -101,9 +101,9 @@ public struct VmImage: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.image {
       switch choice {
       case .name(let value):
-        try container.encode(value, forKey: .name)
+        try container.encodeIfPresent(value, forKey: .name)
       case .family(let value):
-        try container.encode(value, forKey: .family)
+        try container.encodeIfPresent(value, forKey: .family)
       }
     }
     for (key, value) in self._unknownFields.json {

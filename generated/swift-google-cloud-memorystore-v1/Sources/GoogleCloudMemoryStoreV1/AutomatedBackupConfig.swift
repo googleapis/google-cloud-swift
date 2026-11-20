@@ -104,13 +104,15 @@ public struct AutomatedBackupConfig: Codable, Equatable, GoogleWKT._AnyPackable,
 
   public func encode(to encoder: any Encoder) throws {
     var container = encoder.container(keyedBy: CodingKeys.self)
-    try container.encode(self.automatedBackupMode, forKey: .automatedBackupMode)
+    if self.automatedBackupMode != AutomatedBackupConfig.AutomatedBackupMode() {
+      try container.encode(self.automatedBackupMode, forKey: .automatedBackupMode)
+    }
     try container.encodeIfPresent(self.retention, forKey: .retention)
 
     if let choice = self.schedule {
       switch choice {
       case .fixedFrequencySchedule(let value):
-        try container.encode(value, forKey: .fixedFrequencySchedule)
+        try container.encodeIfPresent(value, forKey: .fixedFrequencySchedule)
       }
     }
     for (key, value) in self._unknownFields.json {

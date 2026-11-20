@@ -89,9 +89,9 @@ public struct SendPacketsRequest: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.request {
       switch choice {
       case .packet(let value):
-        try container.encode(value, forKey: .packet)
+        try container.encodeIfPresent(value, forKey: .packet)
       case .metadata(let value):
-        try container.encode(value, forKey: .metadata)
+        try container.encodeIfPresent(value, forKey: .metadata)
       }
     }
     for (key, value) in self._unknownFields.json {

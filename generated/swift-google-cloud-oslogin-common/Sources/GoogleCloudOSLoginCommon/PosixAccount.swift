@@ -161,7 +161,9 @@ public struct PosixAccount: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.gecos, forKey: .gecos)
     try container.encode(self.systemId, forKey: .systemId)
     try container.encode(self.accountId, forKey: .accountId)
-    try container.encode(self.operatingSystemType, forKey: .operatingSystemType)
+    if self.operatingSystemType != OperatingSystemType() {
+      try container.encode(self.operatingSystemType, forKey: .operatingSystemType)
+    }
     try container.encode(self.name, forKey: .name)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

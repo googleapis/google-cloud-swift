@@ -154,7 +154,9 @@ public struct QueryTemplate: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.proposer, forKey: .proposer)
     try container.encode(self.primaryContact, forKey: .primaryContact)
     try container.encode(self.documentation, forKey: .documentation)
-    try container.encode(self.state, forKey: .state)
+    if self.state != QueryTemplate.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.routine, forKey: .routine)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)

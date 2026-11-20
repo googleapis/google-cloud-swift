@@ -147,7 +147,9 @@ public struct PrivateConnection: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.displayName, forKey: .displayName)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PrivateConnection.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encodeIfPresent(self.error, forKey: .error)
     try container.encodeIfPresent(self.satisfiesPzs, forKey: .satisfiesPzs)
     try container.encodeIfPresent(self.satisfiesPzi, forKey: .satisfiesPzi)

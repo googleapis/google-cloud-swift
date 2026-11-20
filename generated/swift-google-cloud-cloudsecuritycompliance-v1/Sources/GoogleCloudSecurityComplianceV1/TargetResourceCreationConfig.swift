@@ -94,9 +94,9 @@ public struct TargetResourceCreationConfig: Codable, Equatable, GoogleWKT._AnyPa
     if let choice = self.resourceCreationConfig {
       switch choice {
       case .folderCreationConfig(let value):
-        try container.encode(value, forKey: .folderCreationConfig)
+        try container.encodeIfPresent(value, forKey: .folderCreationConfig)
       case .projectCreationConfig(let value):
-        try container.encode(value, forKey: .projectCreationConfig)
+        try container.encodeIfPresent(value, forKey: .projectCreationConfig)
       }
     }
     for (key, value) in self._unknownFields.json {

@@ -139,9 +139,13 @@ public struct QuotaRule: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.name, forKey: .name)
     try container.encode(self.target, forKey: .target)
-    try container.encode(self.type, forKey: .type)
+    if self.type != QuotaRule.Type_() {
+      try container.encode(self.type, forKey: .type)
+    }
     try container.encode(self.diskLimitMib, forKey: .diskLimitMib)
-    try container.encode(self.state, forKey: .state)
+    if self.state != QuotaRule.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateDetails, forKey: .stateDetails)
     try container.encodeIfPresent(self.createTime, forKey: .createTime)
     try container.encode(self.description, forKey: .description)

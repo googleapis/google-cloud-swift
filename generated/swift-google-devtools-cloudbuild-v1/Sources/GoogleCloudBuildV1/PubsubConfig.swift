@@ -100,7 +100,9 @@ public struct PubsubConfig: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.subscription, forKey: .subscription)
     try container.encode(self.topic, forKey: .topic)
     try container.encode(self.serviceAccountEmail, forKey: .serviceAccountEmail)
-    try container.encode(self.state, forKey: .state)
+    if self.state != PubsubConfig.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

@@ -122,7 +122,9 @@ public struct Run: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encode(self.attributes, forKey: .attributes)
     try container.encodeIfPresent(self.startTime, forKey: .startTime)
     try container.encodeIfPresent(self.endTime, forKey: .endTime)
-    try container.encode(self.state, forKey: .state)
+    if self.state != Run.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))
     }

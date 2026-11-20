@@ -150,11 +150,11 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.data {
       switch choice {
       case .binaryData(let value):
-        try container.encode(value, forKey: .binaryData)
+        try container.encodeIfPresent(value, forKey: .binaryData)
       case .textData(let value):
-        try container.encode(value, forKey: .textData)
+        try container.encodeIfPresent(value, forKey: .textData)
       case .protoData(let value):
-        try container.encode(value, forKey: .protoData)
+        try container.encodeIfPresent(value, forKey: .protoData)
       }
     }
     for (key, value) in self._unknownFields.json {
@@ -262,19 +262,19 @@ public struct CloudEvent: Codable, Equatable, GoogleWKT._AnyPackable,
       if let choice = self.attr {
         switch choice {
         case .ceBoolean(let value):
-          try container.encode(value, forKey: .ceBoolean)
+          try container.encodeIfPresent(value, forKey: .ceBoolean)
         case .ceInteger(let value):
-          try container.encode(value, forKey: .ceInteger)
+          try container.encodeIfPresent(value, forKey: .ceInteger)
         case .ceString(let value):
-          try container.encode(value, forKey: .ceString)
+          try container.encodeIfPresent(value, forKey: .ceString)
         case .ceBytes(let value):
-          try container.encode(value, forKey: .ceBytes)
+          try container.encodeIfPresent(value, forKey: .ceBytes)
         case .ceUri(let value):
-          try container.encode(value, forKey: .ceUri)
+          try container.encodeIfPresent(value, forKey: .ceUri)
         case .ceUriRef(let value):
-          try container.encode(value, forKey: .ceUriRef)
+          try container.encodeIfPresent(value, forKey: .ceUriRef)
         case .ceTimestamp(let value):
-          try container.encode(value, forKey: .ceTimestamp)
+          try container.encodeIfPresent(value, forKey: .ceTimestamp)
         }
       }
       for (key, value) in self._unknownFields.json {

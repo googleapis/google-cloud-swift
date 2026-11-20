@@ -136,8 +136,12 @@ public struct LoggingServer: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.updateTime, forKey: .updateTime)
     try container.encode(self.hostname, forKey: .hostname)
     try container.encode(self.port, forKey: .port)
-    try container.encode(self.`protocol`, forKey: .`protocol`)
-    try container.encode(self.sourceType, forKey: .sourceType)
+    if self.`protocol` != LoggingServer.Protocol_() {
+      try container.encode(self.`protocol`, forKey: .`protocol`)
+    }
+    if self.sourceType != LoggingServer.SourceType() {
+      try container.encode(self.sourceType, forKey: .sourceType)
+    }
     try container.encode(self.uid, forKey: .uid)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

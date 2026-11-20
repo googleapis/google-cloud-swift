@@ -109,9 +109,9 @@ public struct CloudSqlDiscoveryTarget: Codable, Equatable, GoogleWKT._AnyPackabl
     if let choice = self.cadence {
       switch choice {
       case .generationCadence(let value):
-        try container.encode(value, forKey: .generationCadence)
+        try container.encodeIfPresent(value, forKey: .generationCadence)
       case .disabled(let value):
-        try container.encode(value, forKey: .disabled)
+        try container.encodeIfPresent(value, forKey: .disabled)
       }
     }
     for (key, value) in self._unknownFields.json {

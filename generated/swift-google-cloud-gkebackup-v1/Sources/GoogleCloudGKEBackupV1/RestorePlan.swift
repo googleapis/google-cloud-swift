@@ -202,7 +202,9 @@ public struct RestorePlan: Codable, Equatable, GoogleWKT._AnyPackable,
     try container.encodeIfPresent(self.restoreConfig, forKey: .restoreConfig)
     try container.encode(self.labels, forKey: .labels)
     try container.encode(self.etag, forKey: .etag)
-    try container.encode(self.state, forKey: .state)
+    if self.state != RestorePlan.State() {
+      try container.encode(self.state, forKey: .state)
+    }
     try container.encode(self.stateReason, forKey: .stateReason)
     try container.encode(self.restoreChannel, forKey: .restoreChannel)
     for (key, value) in self._unknownFields.json {

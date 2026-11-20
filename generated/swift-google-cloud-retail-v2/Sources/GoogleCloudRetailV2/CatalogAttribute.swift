@@ -235,12 +235,24 @@ public struct CatalogAttribute: Codable, Equatable, GoogleWKT._AnyPackable,
     var container = encoder.container(keyedBy: CodingKeys.self)
     try container.encode(self.key, forKey: .key)
     try container.encode(self.inUse, forKey: .inUse)
-    try container.encode(self.type, forKey: .type)
-    try container.encode(self.indexableOption, forKey: .indexableOption)
-    try container.encode(self.dynamicFacetableOption, forKey: .dynamicFacetableOption)
-    try container.encode(self.searchableOption, forKey: .searchableOption)
-    try container.encode(self.exactSearchableOption, forKey: .exactSearchableOption)
-    try container.encode(self.retrievableOption, forKey: .retrievableOption)
+    if self.type != CatalogAttribute.AttributeType() {
+      try container.encode(self.type, forKey: .type)
+    }
+    if self.indexableOption != CatalogAttribute.IndexableOption() {
+      try container.encode(self.indexableOption, forKey: .indexableOption)
+    }
+    if self.dynamicFacetableOption != CatalogAttribute.DynamicFacetableOption() {
+      try container.encode(self.dynamicFacetableOption, forKey: .dynamicFacetableOption)
+    }
+    if self.searchableOption != CatalogAttribute.SearchableOption() {
+      try container.encode(self.searchableOption, forKey: .searchableOption)
+    }
+    if self.exactSearchableOption != CatalogAttribute.ExactSearchableOption() {
+      try container.encode(self.exactSearchableOption, forKey: .exactSearchableOption)
+    }
+    if self.retrievableOption != CatalogAttribute.RetrievableOption() {
+      try container.encode(self.retrievableOption, forKey: .retrievableOption)
+    }
     try container.encodeIfPresent(self.facetConfig, forKey: .facetConfig)
     for (key, value) in self._unknownFields.json {
       try container.encode(value, forKey: CodingKeys(stringValue: key))

@@ -92,9 +92,9 @@ public struct ReceiveEventsResponse: Codable, Equatable, GoogleWKT._AnyPackable,
     if let choice = self.response {
       switch choice {
       case .eventUpdate(let value):
-        try container.encode(value, forKey: .eventUpdate)
+        try container.encodeIfPresent(value, forKey: .eventUpdate)
       case .control(let value):
-        try container.encode(value, forKey: .control)
+        try container.encodeIfPresent(value, forKey: .control)
       }
     }
     for (key, value) in self._unknownFields.json {
