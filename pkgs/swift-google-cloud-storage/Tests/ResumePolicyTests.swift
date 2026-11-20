@@ -113,7 +113,7 @@ import Testing
     #expect(state.consecutiveErrorCount == 0)
   }
 
-  @Test func storageResumePolicy() {
+  @Test func storageResumePolicy() async throws {
     let policy = StorageResumePolicy<Void>.unbounded()
     let state = ResumeState()
 
@@ -172,6 +172,29 @@ import Testing
     #expect(isPermanent(policy.onError(state: state, error: rpcPermissionDenied)))
     #expect(isPermanent(policy.onError(state: state, error: rpcNotFound)))
     #expect(isPermanent(policy.onError(state: state, error: rpcInvalidArgument)))
+
+    // Permanent I/O errors (CancellationError and permanent CredentialsError cases)
+    let ioCancel = RequestError.io(CancellationError())
+    let ioParse = RequestError.io(CredentialsError.parseError("universe domain mismatch"))
+    let ioNotSupported = RequestError.io(CredentialsError.notSupported("unsupported"))
+    let ioCannotLoad = RequestError.io(
+      CredentialsError.cannotLoadFile(
+        message: "missing", underlyingError: URLError(.fileDoesNotExist)))
+    let ioNotFound = RequestError.io(CredentialsError.credentialsNotFound("none"))
+    let ioPermanentFetch = RequestError.io(
+      CredentialsError.cannotFetchToken(
+        message: "invalid_grant", underlyingError: URLError(.userAuthenticationRequired)))
+
+    #expect(isPermanent(policy.onError(state: state, error: ioCancel)))
+    #expect(isPermanent(policy.onError(state: state, error: ioParse)))
+    #expect(isPermanent(policy.onError(state: state, error: ioNotSupported)))
+    #expect(isPermanent(policy.onError(state: state, error: ioCannotLoad)))
+    #expect(isPermanent(policy.onError(state: state, error: ioNotFound)))
+    #expect(isPermanent(policy.onError(state: state, error: ioPermanentFetch)))
+
+    // Transient CredentialsError is resumable
+    let ioTransientFetch = RequestError.io(try await makeTransientCredentialsError())
+    #expect(isResume(policy.onError(state: state, error: ioTransientFetch)))
   }
 
   @Test func storageResumePolicyNonIdempotent() {
