@@ -127,6 +127,106 @@ public enum _Host {
     ).authority
   }
 
+  private static func extractService(from defaultEndpoint: String) -> String? {
+    guard !defaultEndpoint.hasPrefix("/"),
+      let components = URLComponents(string: normalizeEndpoint(defaultEndpoint)),
+      let defaultHost = components.encodedHost?.lowercased(),
+      defaultHost.hasSuffix(defaultSuffix)
+    else {
+      return nil
+    }
+    let service = String(defaultHost.dropLast(defaultSuffix.count))
+    return !service.isEmpty && !service.contains(".") ? service : nil
+  }
+
+  private static func isRegionalServiceHost(
+    _ host: String,
+    service: String,
+    universeDomain: String
+  ) -> Bool {
+    let suffix = ".\(universeDomain)"
+    guard !universeDomain.isEmpty, host.hasSuffix(suffix) else { return false }
+    let prefix = host.dropLast(suffix.count)
+    let parts = prefix.split(separator: ".", omittingEmptySubsequences: false)
+    if parts.count == 3 && parts[0] == service && !parts[1].isEmpty && parts[2] == "rep" {
+      return true
+    }
+    if parts.count == 1 && parts[0].hasSuffix("-\(service)") {
+      return !parts[0].dropLast(service.count + 1).isEmpty
+    }
+    return false
+  }
+
+  /// Validates a session `uri` against `baseURL` and `universeDomain`, returning the outbound
+  /// request `URLComponents` (routed via `baseURL` unless targeting a regional upload host from the
+  /// global service endpoint) and its HTTP `Host` header.
+  static func resolveRequestURI(
+    _ uri: String,
+    baseURL: URLComponents,
+    defaultEndpoint: String,
+    universeDomain: String,
+    defaultHostHeader: String
+  ) throws -> (components: URLComponents, hostHeader: String) {
+    guard let parsed = URLComponents(string: uri, encodingInvalidCharacters: false),
+      parsed.user == nil,
+      parsed.password == nil,
+      parsed.fragment == nil,
+      let rawScheme = parsed.scheme,
+      let encodedHost = parsed.encodedHost,
+      !encodedHost.isEmpty,
+      !encodedHost.contains("%"),
+      parsed.host != nil,
+      !parsed.percentEncodedPath.hasPrefix("//"),
+      let rawBaseScheme = baseURL.scheme,
+      let baseEncodedHost = baseURL.encodedHost
+    else {
+      throw RequestError.badURL(uri)
+    }
+
+    let uriScheme = rawScheme.lowercased()
+    let baseScheme = rawBaseScheme.lowercased()
+    guard uriScheme == baseScheme else {
+      throw RequestError.badURL(uri)
+    }
+
+    let defaultPort = (uriScheme == "https") ? 443 : 80
+    if let port = parsed.port, !(1...65535).contains(port) {
+      throw RequestError.badURL(uri)
+    }
+    let uriPort = parsed.port ?? defaultPort
+    let basePort = baseURL.port ?? defaultPort
+    let uriHost = encodedHost.lowercased()
+    let baseHost = baseEncodedHost.lowercased()
+
+    var out = baseURL
+    let resolvedHostHeader: String
+
+    if uriHost == baseHost && uriPort == basePort {
+      resolvedHostHeader = defaultHostHeader
+    } else if !universeDomain.isEmpty,
+      let service = extractService(from: defaultEndpoint),
+      baseHost.hasSuffix(".\(universeDomain)"),
+      !isRegionalServiceHost(baseHost, service: service, universeDomain: universeDomain),
+      uriHost == "\(service).\(universeDomain)"
+        || isRegionalServiceHost(uriHost, service: service, universeDomain: universeDomain),
+      uriPort == defaultPort || uriPort == basePort
+    {
+      if baseHost == "\(service).\(universeDomain)" {
+        out.encodedHost = uriHost
+      }
+      resolvedHostHeader = uriHost
+    } else {
+      throw RequestError.badURL(uri)
+    }
+
+    out.percentEncodedPath = parsed.percentEncodedPath
+    out.percentEncodedQuery = parsed.percentEncodedQuery?.replacingOccurrences(of: ";", with: "%3B")
+    guard out.url != nil else {
+      throw RequestError.badURL(uri)
+    }
+    return (components: out, hostHeader: resolvedHostHeader)
+  }
+
   private static func normalizeEndpoint(_ endpoint: String) -> String {
     endpoint.contains("://") ? endpoint : "https://\(endpoint)"
   }
