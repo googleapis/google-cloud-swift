@@ -15,7 +15,7 @@
 extension ContinueOnIO: PollingErrorPolicy where P: PollingErrorPolicy & Sendable {
   public func onError(state: PollingState, error: RequestError) -> PollingResult {
     if case .io = error {
-      return error.isPermanentIOError ? .permanent(error) : .retry(error)
+      return error._isPermanentIOError ? .permanent(error) : .retry(error)
     }
     return inner.onError(state: state, error: error)
   }
@@ -33,8 +33,9 @@ extension PollingErrorPolicy {
   /// Decorate a ``PollingErrorPolicy`` to continue on I/O errors.
   ///
   /// This policy decorates an inner policy. It continues polling if the polling request failed with
-  /// an I/O error, except when the underlying error is a `CredentialsError` or
-  /// `CancellationError`, which are treated as permanent.
+  /// an I/O error, except when the underlying error is a `CancellationError` or a non-retryable
+  /// `CredentialsError` (such as invalid configuration, universe domain mismatch, or HTTP 4xx
+  /// rejection), which are treated as permanent.
   ///
   /// For other errors it returns the same value as the inner policy.
   public func continueOnIO() -> ContinueOnIO<Self> {

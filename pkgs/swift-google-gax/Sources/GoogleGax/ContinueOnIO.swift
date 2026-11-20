@@ -12,13 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import GoogleAuth
+@_spi(GoogleCloudInternal) import GoogleAuth
 
 /// A retry policy decorator that continues on I/O errors.
 ///
 /// This policy returns [.retry](``RetryResult.retry(_:)``) on [.io](``RequestError/io(_:)``)
-/// errors, except when the underlying error is a `CredentialsError` or `CancellationError`, which
-/// are treated as permanent. Otherwise it returns the result from the inner retry policy.
+/// errors, except when the underlying error is a `CancellationError` or a non-retryable
+/// `CredentialsError` (such as invalid configuration, universe domain mismatch, or HTTP 4xx
+/// rejection), which are treated as permanent. Otherwise it returns the result from the inner
+/// retry policy.
 public struct ContinueOnIO<P: Sendable>: Sendable {
   let inner: P
 
@@ -29,10 +31,16 @@ public struct ContinueOnIO<P: Sendable>: Sendable {
 
 extension ContinueOnIO: Equatable where P: Equatable {}
 
+@_spi(GoogleCloudInternal)
 extension RequestError {
-  var isPermanentIOError: Bool {
+  public var _isPermanentIOError: Bool {
     if case .io(let underlying) = self {
-      return underlying is CredentialsError || underlying is CancellationError
+      if underlying is CancellationError {
+        return true
+      }
+      if let credentialsError = underlying as? CredentialsError {
+        return !credentialsError._isRetryable
+      }
     }
     return false
   }
