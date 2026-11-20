@@ -70,18 +70,15 @@ import Testing
 
   @Test(
     arguments: [
-      (
-        #"{"singular":0}"#,
-        T()
-      ),
-      (
-        #"{"mapKey":{"42":"a"},"singular":0}"#,
-        T().with { $0.mapKey = [42: "a"] }
-      ),
-      (
-        #"{"mapKeyValue":{"42":7},"singular":0}"#,
-        T().with { $0.mapKeyValue = [42: 7] }
-      ),
+      (#"{}"#, T()),
+      (#"{}"#, T().with { $0.singular = 0 }),
+      (#"{"singular":42}"#, T().with { $0.singular = 42 }),
+      (#"{"option":0}"#, T().with { $0.option = 0 }),
+      (#"{"repeated":[0]}"#, T().with { $0.repeated = [0] }),
+      (#"{"mapValue":{"a":0}}"#, T().with { $0.mapValue = ["a": 0] }),
+      (#"{"mapKey":{"42":"a"}}"#, T().with { $0.mapKey = [42: "a"] }),
+      (#"{"mapKeyValue":{"42":7}}"#, T().with { $0.mapKeyValue = [42: 7] }),
+      (#"{"mapKeyValue":{"42":0}}"#, T().with { $0.mapKeyValue = [42: 0] }),
     ])
   func roundtrip(want: String, input: T) throws {
     let encoder = _ProtoJSONEncoder()
