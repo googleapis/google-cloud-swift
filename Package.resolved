@@ -1,5 +1,5 @@
 {
-  "originHash" : "5b30165f70da30da83adf0c81acbe5eb9f4c6534fa28dd0ee2dd0c2be9db020c",
+  "originHash" : "e9cec02051e7cca8a87900b84aae1c30815e4fdcea868ac4537d3c10902dad35",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -177,8 +177,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-api",
       "state" : {
-        "revision" : "78e631a005824256d81b523321afd00ae488f705",
-        "version" : "0.6.0"
+        "revision" : "3167bcfb9c07fa88cf2b690820dba5fe14ab0342",
+        "version" : "0.7.0"
       }
     },
     {
@@ -186,8 +186,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-auth",
       "state" : {
-        "revision" : "e70083113a6086e7c218123c8b1191396b4174c5",
-        "version" : "0.6.0"
+        "revision" : "5389ca2c2d16d0487d9f4ad8050fc21e58f5e352",
+        "version" : "0.7.0"
       }
     },
     {
@@ -195,8 +195,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-aiplatform-v1",
       "state" : {
-        "revision" : "f415ae95501832c278ae062c919e872dc98f75aa",
-        "version" : "0.6.0"
+        "revision" : "b42ea70ed2ffde1fb6b5b88b0b75c155c130f5df",
+        "version" : "0.7.0"
       }
     },
     {
@@ -204,8 +204,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-cloud-language-v2",
       "state" : {
-        "revision" : "ab94bc134c167d6348280a6ed02e5fce3513728d",
-        "version" : "0.6.0"
+        "revision" : "3f3f1b61f35f2f986c9bb5d49f96fe743cc88aae",
+        "version" : "0.7.0"
       }
     },
     {
@@ -213,8 +213,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-gax",
       "state" : {
-        "revision" : "c5773d2d3837d047083077f7838f5957704ac59c",
-        "version" : "0.6.0"
+        "revision" : "ad3ecb7ba1d396d0af223ae3050d48d6f87e99b0",
+        "version" : "0.7.0"
       }
     },
     {
@@ -222,8 +222,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-gax-grpc",
       "state" : {
-        "revision" : "eb6d408a6a62377dd9ce4e6256aa0ed228a086a0",
-        "version" : "0.6.0"
+        "revision" : "edde473ea223a5fd63ae8c2eee45645be33d8629",
+        "version" : "0.7.0"
       }
     },
     {
@@ -231,8 +231,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt",
       "state" : {
-        "revision" : "edd178ac41e29e6a1c707c1968a7cd739bfd3fbc",
-        "version" : "0.6.0"
+        "revision" : "4b0b227d15efe813a4e52fe18be467fd69903c18",
+        "version" : "0.7.0"
       }
     },
     {
@@ -240,8 +240,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/googleapis/swift-google-wkt-convert",
       "state" : {
-        "revision" : "3e2b9b63e1418ab63259b37a88749ba9c59b7523",
-        "version" : "0.6.0"
+        "revision" : "e63d1e4ba0178a9a56e17aa87c30d3e885872356",
+        "version" : "0.7.0"
       }
     },
     {
@@ -267,8 +267,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log",
       "state" : {
-        "revision" : "c9c6bb9d275ec0d95c3ad16391f3f045dc623104",
-        "version" : "1.16.2"
+        "revision" : "e3da04078777e6a1b72ce19981fbd6539b0847d8",
+        "version" : "1.17.0"
       }
     },
     {
