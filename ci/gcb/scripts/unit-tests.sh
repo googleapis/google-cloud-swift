@@ -36,13 +36,8 @@ for dir in "${packages[@]}"; do
         name="top-level package"
     fi
 
-    pkg_flags=("${flags[@]}")
-    if [[ "${dir}" == "." ]]; then
-        pkg_flags+=(--disable-automatic-resolution)
-    fi
-
     echo; echo; echo "--- Building ${name} ---"
-    if { resolve_package "${dir}" && swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; } >"${dir}/.build.log" 2>&1; then
+    if { resolve_package "${dir}" && swift build --build-tests "${flags[@]}" --package-path "${dir}"; } >"${dir}/.build.log" 2>&1; then
         echo "✓ ${name} built successfully"
     else
         cat "${dir}/.build.log"
@@ -53,7 +48,7 @@ for dir in "${packages[@]}"; do
 
     if [[ -d "${dir}/Tests" ]]; then
         echo "--- Testing ${name} ---"
-        if swift test "${pkg_flags[@]}" --quiet --package-path "${dir}" >${dir}/.test.log 2>&1; then
+        if swift test "${flags[@]}" --quiet --package-path "${dir}" >${dir}/.test.log 2>&1; then
             echo "✓ ${name} passed"
         else
             cat ${dir}/.test.log

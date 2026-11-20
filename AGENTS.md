@@ -82,10 +82,6 @@ The packages in this repository default to using release dependencies. For local
 development always set the `GOOGLE_CLOUD_SWIFT_LOCAL_DEPS` environment to
 `true`.
 
-A side-effect of using this environment variable is that `Packages.resolved`
-changes and removes references to remote dependencies. Do not commit these
-changes.
-
 Use the following command to test a single package:
 
 ```bash

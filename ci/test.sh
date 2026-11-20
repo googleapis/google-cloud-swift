@@ -37,13 +37,8 @@ for dir in "${packages[@]}"; do
     [[ -f "${dir}/Package.swift" ]] || continue
     count=$((count + 1))
 
-    pkg_flags=("${flags[@]}")
-    if [[ "${dir}" == "." ]]; then
-        pkg_flags+=(--disable-automatic-resolution)
-    fi
-
     echo "::group::--- Building ${dir} ---"
-    if resolve_package "${dir}" && swift build --build-tests "${pkg_flags[@]}" --package-path "${dir}"; then
+    if resolve_package "${dir}" && swift build --build-tests "${flags[@]}" --package-path "${dir}"; then
         echo "::info:: ✓ ${dir} built"
     else
         echo "::endgroup::"
@@ -54,7 +49,7 @@ for dir in "${packages[@]}"; do
 
     if [[ -d "${dir}/Tests" ]]; then
         echo "::info:: --- Testing ${dir} ---"
-        if swift test "${pkg_flags[@]}" --quiet --package-path "${dir}"; then
+        if swift test "${flags[@]}" --quiet --package-path "${dir}"; then
             echo "::notice:: ✓ ${dir} passed"
             echo "::endgroup::"
         else

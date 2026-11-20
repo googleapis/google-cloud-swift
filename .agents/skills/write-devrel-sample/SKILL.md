@@ -258,10 +258,6 @@ times in a row, ask for help.
 When this passes, clean up the code.
 
 - Make it concise.
-- Ensure no local dependency changes to `Package.resolved` remain:
-  ```shell
-  git restore Package.resolved
-  ```
 - Run `ci/format.sh` (or `swift-format format -i -r ...`).
 - Verify linting passes with `swift-format lint -s ...` (or `./ci/lint.sh pr`).
 - Look over other things from `AGENTS.md`.

@@ -27,7 +27,7 @@ pkgs/*/.build/
 .build.log
 .test.log
 
-*/**/Package.resolved
+Package.resolved
 
 # The build directory for Rust
 target/
