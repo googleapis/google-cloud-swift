@@ -16,6 +16,7 @@ import Foundation
 import GoogleAuth
 @_spi(GoogleCloudInternal) import GoogleGax
 @_spi(GoogleCloudInternal) @testable import GoogleCloudStorage
+import Synchronization
 import Testing
 
 @Suite struct StorageClientTests {
@@ -649,6 +650,391 @@ import Testing
     handle1.cancel()
     await #expect(throws: CancellationError.self) {
       for try await _ in handle1.body {}
+    }
+  }
+
+  private final class SequencedAccessTokenProvider: AccessTokenProvider, Sendable {
+    private struct State: Sendable {
+      var results: [Result<AccessToken, any Error>]
+      var callCount = 0
+    }
+
+    private let state: Mutex<State>
+
+    init(_ results: [Result<AccessToken, any Error>]) {
+      self.state = Mutex(State(results: results))
+    }
+
+    var callCount: Int {
+      state.withLock { $0.callCount }
+    }
+
+    func accessToken() async throws -> AccessToken {
+      let next = state.withLock { s -> Result<AccessToken, any Error> in
+        s.callCount += 1
+        if s.results.count > 1 {
+          return s.results.removeFirst()
+        }
+        return s.results[0]
+      }
+      return try next.get()
+    }
+  }
+
+  @Test func readObjectInitialPermanentCredentialsErrorFailsWithoutResuming() async throws {
+    struct PermanentAuthError: Error {}
+
+    let registry = MockRegistry.create()
+    let provider = SequencedAccessTokenProvider([.failure(PermanentAuthError())])
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(options, mock: registry, environment: [:])
+    let handle = client.readObject(
+      from: "test-bucket",
+      object: "test-obj",
+      options: ReadObjectOptions().with { $0.backoffPolicy = ZeroBackoff() }
+    )
+    let err = await #expect(throws: ReadObjectError.self) {
+      _ = try await handle.metadata
+    }
+    #expect(provider.callCount == 1)
+    #expect(registry.recordedRequests().isEmpty)
+    if let err, case .requestError(.io(let underlying)) = err {
+      #expect(underlying is CredentialsError)
+    } else {
+      Issue.record("Expected ReadObjectError.requestError(.io), got \(String(describing: err))")
+    }
+  }
+
+  @Test func readObjectMidStreamPermanentCredentialsErrorFailsWithoutResuming() async throws {
+    struct PermanentAuthError: Error {}
+
+    let registry = MockRegistry.create()
+    let requestUrl = "\(registry.endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [Data("hello ".utf8)],
+        error: MockNetworkError(),
+        headers: ["Content-Length": "11", "x-goog-generation": "1"]
+      ),
+      for: requestUrl
+    )
+    let provider = SequencedAccessTokenProvider([
+      .success(AccessToken(token: "initial-token")),
+      .failure(PermanentAuthError()),
+    ])
+    let options = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(options, mock: registry, environment: [:])
+    let handle = client.readObject(
+      from: "test-bucket",
+      object: "test-obj",
+      options: ReadObjectOptions().with { $0.backoffPolicy = ZeroBackoff() }
+    )
+    let resumeErr = await #expect(throws: ReadObjectError.self) {
+      for try await _ in handle.body {}
+    }
+    #expect(provider.callCount == 2)
+    #expect(registry.recordedRequests().count == 1)
+    if let resumeErr, case .resumeFailed(let bytesReceived, .io(let underlying)) = resumeErr {
+      #expect(bytesReceived == 6)
+      #expect(underlying is CredentialsError)
+    } else {
+      Issue.record(
+        "Expected ReadObjectError.resumeFailed(.io), got \(String(describing: resumeErr))")
+    }
+  }
+
+  @Test func readObjectTransientCredentialsErrorResumesAndRecovers() async throws {
+    let registry = MockRegistry.create()
+    let initialUrl = "\(registry.endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    let resumeUrl =
+      "\(registry.endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media&generation=1"
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [Data("hello ".utf8)],
+        error: MockNetworkError(),
+        headers: ["Content-Length": "11", "x-goog-generation": "1"]
+      ),
+      for: initialUrl
+    )
+    registry.register(
+      response: .stream(
+        statusCode: 206,
+        chunks: [Data("world".utf8)],
+        headers: [
+          "Content-Length": "5",
+          "Content-Range": "bytes 6-10/11",
+          "x-goog-generation": "1",
+        ]
+      ),
+      for: resumeUrl
+    )
+
+    let transientCredError = try await makeTransientCredentialsError()
+    let provider = SequencedAccessTokenProvider([
+      .success(AccessToken(token: "token-1")),
+      .failure(transientCredError),
+      .success(AccessToken(token: "token-2")),
+    ])
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let handle = client.readObject(
+      from: "test-bucket",
+      object: "test-obj",
+      options: ReadObjectOptions().with {
+        $0.backoffPolicy = ZeroBackoff()
+        $0.checksums = .none
+      }
+    )
+
+    var collected = Data()
+    for try await chunk in handle.body {
+      collected.append(chunk.data)
+    }
+    #expect(collected == Data("hello world".utf8))
+    #expect(provider.callCount == 3)
+    #expect(registry.recordedRequests().count == 2)
+    #expect(
+      registry.lastRequest(for: resumeUrl)?.value(forHTTPHeaderField: "Authorization")
+        == "Bearer token-2")
+  }
+
+  @Test func readObjectTransientCredentialsErrorExhaustsResumePolicy() async throws {
+    let registry = MockRegistry.create()
+    let initialUrl = "\(registry.endpoint)/storage/v1/b/test-bucket/o/test-obj?alt=media"
+    registry.register(
+      response: .stream(
+        statusCode: 200,
+        chunks: [Data("hello ".utf8)],
+        error: MockNetworkError(),
+        headers: ["Content-Length": "11", "x-goog-generation": "1"]
+      ),
+      for: initialUrl
+    )
+
+    let transientCredError = try await makeTransientCredentialsError()
+    let provider = SequencedAccessTokenProvider([
+      .success(AccessToken(token: "token-1")),
+      .failure(transientCredError),
+    ])
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let handle = client.readObject(
+      from: "test-bucket",
+      object: "test-obj",
+      options: ReadObjectOptions().with {
+        $0.backoffPolicy = ZeroBackoff()
+        $0.checksums = .none
+      }
+    )
+
+    let err = await #expect(throws: ReadObjectError.self) {
+      for try await _ in handle.body {}
+    }
+    // 1 initial token + 2 resume attempts before consecutiveErrorCount reaches 3 (stream drop = 1, 2 token failures = 2 & 3).
+    #expect(provider.callCount == 3)
+    if let err, case .resumeFailed(let bytesReceived, .io(let inner)) = err {
+      #expect(bytesReceived == 6)
+      #expect(inner is CredentialsError)
+    } else {
+      Issue.record(
+        "Expected ReadObjectError.resumeFailed(.io(CredentialsError)), got \(String(describing: err))"
+      )
+    }
+  }
+
+  @Test func writeObjectSessionStartPermanentCredentialsErrorFailsWithoutResuming() async throws {
+    struct PermanentAuthError: Error {}
+    let registry = MockRegistry.create()
+    let provider = SequencedAccessTokenProvider([.failure(PermanentAuthError())])
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let writeOptions = WriteObjectOptions().with {
+      $0.resumableUploadThreshold = 0
+      $0.backoffPolicy = ZeroBackoff()
+    }
+    let err = await #expect(throws: WriteObjectError.self) {
+      _ = try await client.writeObject(
+        Data("resumable-payload".utf8), to: "test-bucket", as: "test-obj", options: writeOptions)
+    }
+    #expect(provider.callCount == 1)
+    #expect(registry.recordedRequests().isEmpty)
+    if let err, case .requestError(.io(let underlying)) = err {
+      #expect(underlying is CredentialsError)
+    } else {
+      Issue.record("Expected WriteObjectError.requestError(.io), got \(String(describing: err))")
+    }
+  }
+
+  @Test func writeObjectMidUploadPermanentCredentialsErrorFailsWithoutResuming() async throws {
+    struct PermanentAuthError: Error {}
+    let bucket = "test-bucket"
+    let objectName = "test-obj"
+    let registry = MockRegistry.create()
+    let startUrl =
+      "\(registry.endpoint)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
+    let sessionUrl = "\(registry.endpoint)/upload/storage/v1/b/\(bucket)/o?upload_id=session-perm"
+    registry.register(
+      response: .success(statusCode: 200, data: Data(), headers: ["Location": sessionUrl]),
+      for: startUrl
+    )
+
+    let provider = SequencedAccessTokenProvider([
+      .success(AccessToken(token: "session-token")),
+      .failure(PermanentAuthError()),
+    ])
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let writeOptions = WriteObjectOptions().with {
+      $0.resumableUploadThreshold = 0
+      $0.backoffPolicy = ZeroBackoff()
+    }
+    let err = await #expect(throws: WriteObjectError.self) {
+      _ = try await client.writeObject(
+        Data("resumable-payload".utf8), to: bucket, as: objectName, options: writeOptions)
+    }
+    #expect(provider.callCount == 2)
+    #expect(registry.recordedRequests().count == 1)
+    if let err, case .requestError(.io(let underlying)) = err {
+      #expect(underlying is CredentialsError)
+    } else {
+      Issue.record("Expected WriteObjectError.requestError(.io), got \(String(describing: err))")
+    }
+  }
+
+  @Test func writeObjectMidUploadTransientCredentialsErrorResumesAndRecovers() async throws {
+    let bucket = "test-bucket"
+    let objectName = "test-obj"
+    let payload = Data("resumable-payload".utf8)
+
+    let registry = MockRegistry.create()
+    let startUrl =
+      "\(registry.endpoint)/upload/storage/v1/b/\(bucket)/o?uploadType=resumable&name=\(objectName)"
+    let sessionUrl = "\(registry.endpoint)/upload/storage/v1/b/\(bucket)/o?upload_id=session-1"
+    registry.register(
+      response: .success(statusCode: 200, data: Data(), headers: ["Location": sessionUrl]),
+      for: startUrl
+    )
+    registry.register(
+      response: .success(statusCode: 308, data: Data(), headers: [:]),
+      for: sessionUrl
+    )
+    registry.register(
+      response: .success(
+        statusCode: 200,
+        data: makeObjectJSON(name: objectName, bucket: bucket, size: payload.count),
+        headers: ["Content-Type": "application/json"]
+      ),
+      for: sessionUrl
+    )
+
+    let transientCredError = try await makeTransientCredentialsError()
+    let provider = SequencedAccessTokenProvider([
+      .success(AccessToken(token: "session-token")),
+      .failure(transientCredError),
+      .success(AccessToken(token: "refreshed-token")),
+    ])
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let writeOptions = WriteObjectOptions().with {
+      $0.resumableUploadThreshold = 0
+      $0.backoffPolicy = ZeroBackoff()
+      $0.checksums = .none
+    }
+    let uploaded = try await client.writeObject(
+      payload, to: bucket, as: objectName, options: writeOptions)
+    #expect(uploaded.name == objectName)
+    #expect(provider.callCount == 4)
+  }
+
+  @Test func writeObjectTransientCredentialsErrorExhaustsResumePolicy() async throws {
+    let registry = MockRegistry.create()
+    let transientCredError = try await makeTransientCredentialsError()
+    let provider = SequencedAccessTokenProvider([.failure(transientCredError)])
+    let clientOptions = try StorageClientOptions().with {
+      $0.client = try .init().with {
+        $0.endpoint = registry.endpoint
+        $0.credentials = try Credentials(
+          configuration: .accessToken(AccessTokenConfig(provider: provider))
+        )
+        $0.backoffPolicy = ZeroBackoff()
+      }
+    }
+    let client = try StorageClient(clientOptions, mock: registry, environment: [:])
+    let writeOptions = WriteObjectOptions().with {
+      $0.resumableUploadThreshold = 0
+      $0.backoffPolicy = ZeroBackoff()
+    }
+    let err = await #expect(throws: WriteObjectError.self) {
+      _ = try await client.writeObject(
+        Data("resumable-payload".utf8), to: "test-bucket", as: "test-obj", options: writeOptions)
+    }
+    // 3 consecutive errors exhaust default StorageResumePolicy.stopOnConsecutiveErrors(3).
+    #expect(provider.callCount == 3)
+    #expect(registry.recordedRequests().isEmpty)
+    if let err, case .requestError(.io(let inner)) = err {
+      #expect(inner is CredentialsError)
+    } else {
+      Issue.record(
+        "Expected WriteObjectError.requestError(.io(CredentialsError)), got \(String(describing: err))"
+      )
     }
   }
 }

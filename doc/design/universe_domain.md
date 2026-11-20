@@ -71,3 +71,4 @@ For Application Default Credentials (`ADC`), `CredentialsConfiguration.adc(_:)` 
 `GoogleCloudStorage` integrates universe domain support across both the handwritten REST data-plane veneer (`StorageClient`) and the generated gRPC control-plane client (`StorageControlClient`):
 
 - `StorageClient.init(_:mock:)` resolves `universeDomain` and `endpoint` from `options.client` using `_Host.resolveUniverseDomain` and `_Host.endpoint` against `https://storage.googleapis.com` and forwards `universeDomain` and `defaultEndpoint` to `_HTTPClient` (which derives the `Host` header via `_Host.header`).
+- `StorageResumePolicy` consults `RequestError._isPermanentIOError` on `RequestError.io` failures so permanent credential and universe domain mismatch errors fail immediately without consuming upload or download resume attempts, while transient token-refresh failures mid-transfer remain resumable.
