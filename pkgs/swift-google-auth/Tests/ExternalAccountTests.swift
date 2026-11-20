@@ -29,8 +29,6 @@ private struct MockSubjectTokenProvider: SubjectTokenProvider {
 }
 
 private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
-  struct ProviderError: Error {}
-
   let error: any Error
   var callCount = 0
 
@@ -599,6 +597,33 @@ private actor MockFailingSubjectTokenProvider: SubjectTokenProvider {
     }
     #expect(error2?._isRetryable == false)
     #expect(stsAttempts.getCount() == 1)
+  }
+
+  @Test("Programmatic credentials cache permanent CredentialsError thrown by SubjectTokenProvider")
+  func programmaticCredentialsCachesPermanentCredentialsErrorFromProvider() async throws {
+    let provider = MockFailingSubjectTokenProvider(
+      error: CredentialsError.parseError("Invalid nested credential configuration")
+    )
+    let targetURL = URL(string: "https://sts.googleapis.com/v1/token")!
+    let creds = try ExternalAccountCredentials(
+      credentialSource: .programmatic(subjectTokenProvider: provider),
+      audience: "aud",
+      subjectTokenType: "urn:ietf:params:oauth:token-type:id_token",
+      tokenURL: targetURL,
+      httpClient: AuthHTTPClient(mock: MockHTTPClient([]))
+    )
+
+    let error1 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(error1?._isRetryable == false)
+    #expect(await provider.callCount == 1)
+
+    let error2 = await #expect(throws: CredentialsError.self) {
+      _ = try await creds.headers()
+    }
+    #expect(error2?._isRetryable == false)
+    #expect(await provider.callCount == 1)
   }
 
   @Test(

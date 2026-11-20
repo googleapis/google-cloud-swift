@@ -45,8 +45,9 @@ public protocol SubjectTokenProvider: Sendable {
   /// - Throws: Any error preventing the retrieval of the subject token. Transient network
   ///   `URLError` codes (`.timedOut`, `.networkConnectionLost`, `.cannotConnectToHost`,
   ///   `.notConnectedToInternet`, `.dnsLookupFailed`, `.cannotFindHost`) and retryable
-  ///   ``CredentialsError`` values are treated as retryable by the token cache and client retry
-  ///   policies; other errors fail the current request without background polling or permanently
-  ///   disabling future token refreshes.
+  ///   ``CredentialsError`` values are treated as retryable; permanent ``CredentialsError``
+  ///   values permanently disable future refreshes on that credentials instance; all other errors
+  ///   fail the current request without background polling or permanently disabling future token
+  ///   refreshes.
   func subjectToken() async throws -> String
 }
