@@ -18,7 +18,7 @@
 /// ``unbounded()`` decorated with ``PollingErrorPolicy/withTimeLimit(_:)`` and/or
 /// ``PollingErrorPolicy/withAttemptLimit(_:)`` to configure custom limits.
 ///
-/// This policy only continues if the error is an I/O error, or a safe error code.
+/// This policy only continues if the error is a transient I/O error, or a safe error code.
 ///
 /// [AIP-194]: https://google.aip.dev/194
 public struct BasePollingErrorPolicy: PollingErrorPolicy, Sendable, Equatable {

@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import Foundation
+import Synchronization
 import Testing
 import struct Logging.Logger
 @_spi(GoogleCloudInternal) @testable import GoogleGax
@@ -1317,7 +1318,7 @@ import NIOHTTP1
     )
     let retryLoop = _RetryLoop(
       options: RequestOptions(),
-      withDefault: ClientOptions(),
+      withDefault: ClientOptions().with { $0.retryThrottler = CircuitBreaker() },
       idempotent: true
     )
     var attempts = 0
@@ -1338,6 +1339,59 @@ import NIOHTTP1
       return
     }
     #expect(underlying is CredentialsError)
+  }
+
+  @Test func transientCredentialsUniverseDomainErrorRetriedByRetryLoop() async throws {
+    final class FlakyUniverseCredentials: CredentialsProtocol, Sendable {
+      private let callCount = Mutex(0)
+
+      func universeDomain() async throws -> String {
+        let current = callCount.withLock { count -> Int in
+          count += 1
+          return count
+        }
+        if current == 1 {
+          throw try await makeTransientCredentialsError()
+        }
+        return "googleapis.com"
+      }
+
+      func headers() async throws -> AuthHeaders {
+        [("authorization", "Bearer recovered-token")]
+      }
+    }
+
+    let httpCalls = Mutex(0)
+    let mock = MockHTTPClient { (request, _) in
+      httpCalls.withLock { $0 += 1 }
+      #expect(request.headers.first(name: "authorization") == "Bearer recovered-token")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      credentials: FlakyUniverseCredentials()
+    )
+    let retryLoop = _RetryLoop(
+      options: RequestOptions(),
+      withDefault: ClientOptions().with { $0.retryThrottler = CircuitBreaker() },
+      idempotent: true
+    )
+    var attempts = 0
+    var sleepCalls = 0
+    try await retryLoop.run(
+      inner: { _ in
+        attempts += 1
+        let request = try await client.newRequest(path: "/v1/test", query: [])
+        _ = try await request.execute()
+      },
+      sleep: { _ in
+        sleepCalls += 1
+      }
+    )
+    #expect(attempts == 2)
+    #expect(sleepCalls == 1)
+    #expect(httpCalls.withLock { $0 } == 1)
   }
 
   @Test func cancellationErrorFromCredentialsIsRethrownDirectly() async throws {
@@ -1423,7 +1477,7 @@ import NIOHTTP1
     )
     let retryLoop = _RetryLoop(
       options: RequestOptions(),
-      withDefault: ClientOptions(),
+      withDefault: ClientOptions().with { $0.retryThrottler = CircuitBreaker() },
       idempotent: true
     )
     var attempts = 0
@@ -1444,6 +1498,59 @@ import NIOHTTP1
       return
     }
     #expect(underlying is CredentialsError)
+  }
+
+  @Test func transientCredentialsHeadersErrorRetriedByRetryLoop() async throws {
+    final class FlakyHeaderCredentials: CredentialsProtocol, Sendable {
+      private let callCount = Mutex(0)
+
+      func universeDomain() async throws -> String {
+        "googleapis.com"
+      }
+
+      func headers() async throws -> AuthHeaders {
+        let current = callCount.withLock { count -> Int in
+          count += 1
+          return count
+        }
+        if current == 1 {
+          throw try await makeTransientCredentialsError()
+        }
+        return [("authorization", "Bearer recovered-token")]
+      }
+    }
+
+    let httpCalls = Mutex(0)
+    let mock = MockHTTPClient { (request, _) in
+      httpCalls.withLock { $0 += 1 }
+      #expect(request.headers.first(name: "authorization") == "Bearer recovered-token")
+      return HTTPClientResponse(version: .http1_1, status: .ok)
+    }
+    let client = try _HTTPClient(
+      mock,
+      endpoint: "https://secretmanager.googleapis.com",
+      credentials: FlakyHeaderCredentials()
+    )
+    let retryLoop = _RetryLoop(
+      options: RequestOptions(),
+      withDefault: ClientOptions().with { $0.retryThrottler = CircuitBreaker() },
+      idempotent: true
+    )
+    var attempts = 0
+    var sleepCalls = 0
+    try await retryLoop.run(
+      inner: { _ in
+        attempts += 1
+        let request = try await client.newRequest(path: "/v1/test", query: [])
+        _ = try await request.execute()
+      },
+      sleep: { _ in
+        sleepCalls += 1
+      }
+    )
+    #expect(attempts == 2)
+    #expect(sleepCalls == 1)
+    #expect(httpCalls.withLock { $0 } == 1)
   }
 
   @Test func referenceSemantics() throws {
