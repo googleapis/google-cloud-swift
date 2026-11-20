@@ -318,6 +318,7 @@ let package = Package(
         .product(name: "GoogleGax", package: "swift-google-gax"),
         .product(name: "GoogleAuth", package: "swift-google-auth"),
         .product(name: "NIOCore", package: "swift-nio"),
+        .product(name: "NIOPosix", package: "swift-nio"),
         .product(name: "NIOSSL", package: "swift-nio-ssl"),
       ],
       path: "Tests/Showcase",

@@ -15,6 +15,7 @@
 import AsyncHTTPClient
 @_spi(GoogleCloudInternal) import GoogleGax
 import struct NIOCore.TimeAmount
+import NIOPosix
 import NIOSSL
 import Synchronization
 
@@ -55,7 +56,17 @@ final class ShowcaseHTTPClient: _HTTPClientProtocol, Sendable {
     }
     var config = HTTPClient.Configuration(tlsConfiguration: tlsConfiguration)
     config.httpVersion = .http1Only
-    self.inner = AsyncHTTPClient.HTTPClient(configuration: config)
+    if curves != nil {
+      // On macOS, `HTTPClient`'s default `NIOTransportServices` (`Network.framework`) backend
+      // ignores `tlsConfiguration.curves`. Use `MultiThreadedEventLoopGroup.singleton` so
+      // `NIOSSL` enforces explicit curve overrides on all platforms.
+      self.inner = AsyncHTTPClient.HTTPClient(
+        eventLoopGroup: MultiThreadedEventLoopGroup.singleton,
+        configuration: config
+      )
+    } else {
+      self.inner = AsyncHTTPClient.HTTPClient(configuration: config)
+    }
   }
 
   deinit {
