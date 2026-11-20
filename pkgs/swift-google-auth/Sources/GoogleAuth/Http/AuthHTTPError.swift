@@ -102,25 +102,6 @@ extension AuthHTTPError {
     }
   }
 
-  /// Returns `true` when `error` represents a transient TCP, DNS, or connectivity failure.
-  ///
-  /// Configuration, file-system, authentication, cancellation, and TLS certificate `URLError`
-  /// codes (such as `.badURL`, `.fileDoesNotExist`, `.userAuthenticationRequired`,
-  /// `.serverCertificateUntrusted`, and `.cancelled`) return `false`.
-  static func isTransientNetworkError(_ error: URLError) -> Bool {
-    switch error.code {
-    case .timedOut,
-      .networkConnectionLost,
-      .cannotConnectToHost,
-      .notConnectedToInternet,
-      .dnsLookupFailed,
-      .cannotFindHost:
-      return true
-    default:
-      return false
-    }
-  }
-
   /// Retry and cache-latching classification for this HTTP error.
   var errorDisposition: TokenErrorDisposition {
     switch self {
@@ -133,7 +114,7 @@ extension AuthHTTPError {
       if urlError.code == .cancelled {
         return .uncached
       }
-      return Self.isTransientNetworkError(urlError) ? .retryable : .permanent
+      return urlError.isTransientNetworkError ? .retryable : .permanent
     case .unknown(let error):
       return (error is CancellationError) ? .uncached : .retryable
     }
@@ -142,7 +123,7 @@ extension AuthHTTPError {
   /// Indicates whether this HTTP error is transient and eligible for retry.
   ///
   /// Server errors (HTTP status >= 500), rate limiting (HTTP 429), request timeouts (HTTP 408),
-  /// transient network `URLError`s (`Self.isTransientNetworkError(_:)`), and non-cancellation
+  /// transient network `URLError`s (`URLError.isTransientNetworkError`), and non-cancellation
   /// unknown errors are considered transient and retryable. Client errors (other 4xx statuses),
   /// non-transient `URLError`s, and payload decoding errors are considered permanent.
   var isRetryable: Bool {
@@ -152,8 +133,7 @@ extension AuthHTTPError {
   /// Evaluates whether an error encountered during a token request is transient and eligible for retry.
   ///
   /// Delegates to `ClassifiedAuthError.errorDisposition` (unwrapping `CredentialsError.cannotFetchToken`
-  /// recursively), treats transient network `URLError`s as retryable, and treats unrecognized error
-  /// types as non-retryable.
+  /// recursively) and treats `CancellationError` and unrecognized error types as non-retryable.
   ///
   /// - Parameter error: The error to evaluate.
   /// - Returns: `true` if the error is transient and should be retried; `false` otherwise.
@@ -163,9 +143,6 @@ extension AuthHTTPError {
     }
     if let classified = error as? any ClassifiedAuthError {
       return classified.errorDisposition == .retryable
-    }
-    if let urlError = error as? URLError {
-      return Self.isTransientNetworkError(urlError)
     }
     return false
   }

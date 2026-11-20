@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+import Foundation
+
 /// Retry and cache-latching classification for authentication errors.
 enum TokenErrorDisposition: Equatable, Sendable {
   /// Transient failure: eligible for `RetryEngine`, `TokenCache` background retry, and
@@ -33,4 +35,25 @@ enum TokenErrorDisposition: Equatable, Sendable {
 /// disposition without cross-type downcasting.
 protocol ClassifiedAuthError: Error {
   var errorDisposition: TokenErrorDisposition { get }
+}
+
+extension URLError {
+  /// Whether this error represents a transient TCP, DNS, or connectivity failure.
+  ///
+  /// Configuration, file-system, authentication, cancellation, and TLS certificate `URLError`
+  /// codes (such as `.badURL`, `.fileDoesNotExist`, `.userAuthenticationRequired`,
+  /// `.serverCertificateUntrusted`, and `.cancelled`) return `false`.
+  var isTransientNetworkError: Bool {
+    switch self.code {
+    case .timedOut,
+      .networkConnectionLost,
+      .cannotConnectToHost,
+      .notConnectedToInternet,
+      .dnsLookupFailed,
+      .cannotFindHost:
+      return true
+    default:
+      return false
+    }
+  }
 }
