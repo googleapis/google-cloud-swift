@@ -17,7 +17,7 @@ public import Foundation
 @_spi(GoogleCloudInternal) public import Logging
 
 /// Implements a HTTP-only client for the Swift SDK client libraries.
-@_spi(GoogleCloudInternal) public struct _HTTPClient: Sendable {
+@_spi(GoogleCloudInternal) public final class _HTTPClient: Sendable {
   let baseURL: URLComponents
   let credentials: any CredentialsProtocol
   let logger: Logger?
@@ -28,7 +28,7 @@ public import Foundation
   public let clientHeader: _ApiClientHeader
 
   // Creates a new client.
-  public init(
+  public convenience init(
     from: ClientOptions,
     withDefaultEndpoint: String,
     clientHeader: _ApiClientHeader = .init()
@@ -70,7 +70,7 @@ public import Foundation
   }
 
   // Creates a new testing client.
-  @_spi(GoogleCloudInternal) public init(
+  @_spi(GoogleCloudInternal) public convenience init(
     _ inner: any _HTTPClientProtocol, endpoint: String,
     credentials: GoogleAuth.Credentials? = nil,
     logger: Logging.Logger? = nil,
