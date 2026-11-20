@@ -46,33 +46,12 @@ export EXTERNAL_ACCOUNT_SERVICE_ACCOUNT_EMAIL="testsa@${EXTERNAL_ACCOUNT_PROJECT
 #   - PROVIDER_ID: google-idp
 export GOOGLE_WORKLOAD_IDENTITY_OIDC_AUDIENCE="//iam.googleapis.com/projects/1092239828259/locations/global/workloadIdentityPools/google-idp/providers/google-idp"
 
-SHOWCASE_VERSION="0.44.2"
-SHOWCASE_SHA256="873efedf090b055ee440ab6d4139d9539fbe26241830c0d0eaae65912e52026d"
-SHOWCASE_DIR="${HOME}/.cache/gapic-showcase/${SHOWCASE_VERSION}"
-SHOWCASE_BIN="${SHOWCASE_DIR}/gapic-showcase"
-if [[ ! -x "${SHOWCASE_BIN}" ]]; then
-    if ! command -v curl >/dev/null 2>&1; then
-        echo "--- Installing curl ---"
-        export DEBIAN_FRONTEND=noninteractive
-        apt-get update -o Acquire::Retries=3 || \
-          (sleep 5 ; apt-get update -o Acquire::Retries=3) || \
-          (sleep 10; apt-get update -o Acquire::Retries=3)
-        apt-get install -y -o Acquire::Retries=3 --no-install-recommends ca-certificates curl || \
-          (sleep 5 ; apt-get install -y -o Acquire::Retries=3 --no-install-recommends ca-certificates curl) || \
-          (sleep 10; apt-get install -y -o Acquire::Retries=3 --no-install-recommends ca-certificates curl)
+if [[ "${RUN_SHOWCASE_TESTS:-true}" == "true" ]]; then
+    if [[ -z "${GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH:-}" ]]; then
+        GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH="$("${SCRIPT_DIR}/install-showcase.sh")"
     fi
-    echo "--- Downloading gapic-showcase v${SHOWCASE_VERSION} ---"
-    mkdir -p "${SHOWCASE_DIR}"
-    SHOWCASE_ARCHIVE="$(mktemp "${TMPDIR:-/tmp}/gapic-showcase.XXXXXX.tar.gz")"
-    curl -fsSL --retry 5 --retry-delay 15 \
-        "https://github.com/googleapis/gapic-showcase/releases/download/v${SHOWCASE_VERSION}/gapic-showcase-${SHOWCASE_VERSION}-linux-amd64.tar.gz" \
-        -o "${SHOWCASE_ARCHIVE}"
-    echo "${SHOWCASE_SHA256}  ${SHOWCASE_ARCHIVE}" | sha256sum -c -
-    tar -C "${SHOWCASE_DIR}" -xzf "${SHOWCASE_ARCHIVE}"
-    rm -f "${SHOWCASE_ARCHIVE}"
+    export GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH
 fi
-
-export GOOGLE_CLOUD_SWIFT_SHOWCASE_PATH="${SHOWCASE_BIN}"
 
 errors=0
 count=1
