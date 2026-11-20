@@ -15,6 +15,13 @@
 import Foundation
 import NIOSSL
 
+// For POSIX `kill(_:_:)` / `SIGKILL` fallback when stopping the Showcase subprocess.
+#if canImport(Glibc)
+  import Glibc
+#elseif canImport(Darwin)
+  import Darwin
+#endif
+
 /// Manages an ephemeral `gapic-showcase` mock server process running with Auto-TLS (`--tls`).
 ///
 /// Each server binds to an OS-assigned loopback port (`--port :0`), generates an in-memory CA and
@@ -47,13 +54,41 @@ final class ShowcaseServer: Sendable {
     self.logHandle = logHandle
   }
 
-  private func stop() {
-    if self.process.isRunning {
-      self.process.terminate()
-      self.process.waitUntilExit()
-    }
+  private func stop() async {
+    await Self.terminateProcess(self.process)
     try? self.logHandle.close()
     try? FileManager.default.removeItem(at: self.tempDir)
+  }
+
+  /// Terminates `process` asynchronously without blocking Swift's cooperative thread pool.
+  ///
+  /// Sends `SIGTERM` first and polls `isRunning` for up to 5 seconds. Because `gapic-showcase`
+  /// handles `SIGTERM` by draining open HTTP/1.1 connections without a deadline, escalates to
+  /// `SIGKILL` if the process does not exit within the grace period (or if the task is cancelled).
+  private static func terminateProcess(_ process: Process) async {
+    guard process.isRunning else { return }
+    process.terminate()
+
+    let graceDeadline = ContinuousClock.now.advanced(by: .seconds(5))
+    while process.isRunning && ContinuousClock.now < graceDeadline {
+      do {
+        try await Task.sleep(for: .milliseconds(50))
+      } catch {
+        break
+      }
+    }
+
+    if process.isRunning {
+      _ = kill(process.processIdentifier, SIGKILL)
+      let killDeadline = ContinuousClock.now.advanced(by: .seconds(1))
+      while process.isRunning && ContinuousClock.now < killDeadline {
+        do {
+          try await Task.sleep(for: .milliseconds(50))
+        } catch {
+          break
+        }
+      }
+    }
   }
 
   /// Returns a ``ShowcaseHTTPClient`` configured to trust this server's CA certificate over
@@ -74,12 +109,28 @@ final class ShowcaseServer: Sendable {
     _ body: (ShowcaseServer) async throws -> Void
   ) async throws {
     let server = try await Self.start(tlsGroups: tlsGroups)
-    defer { server.stop() }
-    try await body(server)
+    do {
+      try await body(server)
+    } catch {
+      await server.stop()
+      throw error
+    }
+    await server.stop()
   }
 
+  /// Launches a `gapic-showcase` subprocess with Auto-TLS and waits until it is ready to serve
+  /// HTTPS requests.
+  ///
+  /// Startup proceeds in three phases:
+  /// 1. Create a private temporary directory for Showcase's generated CA PEM and combined log file.
+  /// 2. Spawn `gapic-showcase run` on OS-assigned loopback ports (`:0`) with `--tls`, optional
+  ///    `--tls-groups`, and proxy environment variables cleared.
+  /// 3. Poll until the full CA PEM certificate is written, the bound HTTPS endpoint is logged, and
+  ///    Showcase reports that its REST listener is accepting connections.
   private static func start(tlsGroups: [NIOTLSCurve]?) async throws -> ShowcaseServer {
     let binary = try findBinary()
+
+    // Prepare an isolated temporary directory for the ephemeral CA certificate and server logs.
     let tempDir = FileManager.default.temporaryDirectory
       .appendingPathComponent(
         "showcase_\(ProcessInfo.processInfo.processIdentifier)_\(UUID().uuidString)",
@@ -105,6 +156,7 @@ final class ShowcaseServer: Sendable {
       throw error
     }
 
+    // Configure and spawn `gapic-showcase run` with Auto-TLS on ephemeral ports.
     let process = Process()
     process.executableURL = URL(fileURLWithPath: binary)
     var args = [
@@ -144,14 +196,14 @@ final class ShowcaseServer: Sendable {
       throw error
     }
 
-    // Poll until Showcase writes the generated CA certificate, logs the bound TLS port, and starts
+    // Poll until Showcase writes the complete CA certificate, logs the bound TLS port, and starts
     // serving HTTP/REST connections on the listener.
-    let startupDeadline = Date().addingTimeInterval(30)
+    let startupDeadline = ContinuousClock.now.advanced(by: .seconds(30))
     var resolvedEndpoint: String?
     var resolvedCACert: String?
     var restListening = false
 
-    while Date() < startupDeadline {
+    while ContinuousClock.now < startupDeadline {
       if !process.isRunning {
         let logOutput = (try? String(contentsOf: logFile, encoding: .utf8)) ?? ""
         try? logHandle.close()
@@ -160,7 +212,8 @@ final class ShowcaseServer: Sendable {
       }
       if resolvedCACert == nil,
         let content = try? String(contentsOf: tempCAFile, encoding: .utf8),
-        content.contains("-----BEGIN CERTIFICATE-----")
+        content.contains("-----BEGIN CERTIFICATE-----"),
+        content.contains("-----END CERTIFICATE-----")
       {
         resolvedCACert = content
       }
@@ -183,10 +236,7 @@ final class ShowcaseServer: Sendable {
 
     guard let endpoint = resolvedEndpoint, let caCert = resolvedCACert, restListening else {
       let logOutput = (try? String(contentsOf: logFile, encoding: .utf8)) ?? ""
-      if process.isRunning {
-        process.terminate()
-        process.waitUntilExit()
-      }
+      await terminateProcess(process)
       try? logHandle.close()
       try? FileManager.default.removeItem(at: tempDir)
       throw ShowcaseServerError.startupTimeout(logOutput)
