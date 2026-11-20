@@ -163,38 +163,6 @@ import Testing
     #expect(wrappedCancelledTransport._isRetryable == false)
     #expect(AuthHTTPError.shouldCachePermanentError(wrappedCancelledTransport) == false)
 
-    for transientCode: URLError.Code in [
-      .timedOut,
-      .networkConnectionLost,
-      .cannotConnectToHost,
-      .notConnectedToInternet,
-      .dnsLookupFailed,
-      .cannotFindHost,
-    ] {
-      let urlError = URLError(transientCode)
-      let err = AuthHTTPError.transportError(urlError)
-      #expect(urlError.isTransientNetworkError == true)
-      #expect(err.isRetryable == true)
-      #expect(AuthHTTPError.isRetryable(err) == true)
-      #expect(AuthHTTPError.shouldCachePermanentError(err) == false)
-    }
-
-    for permanentCode: URLError.Code in [
-      .badURL,
-      .unsupportedURL,
-      .fileDoesNotExist,
-      .noPermissionsToReadFile,
-      .userAuthenticationRequired,
-      .serverCertificateUntrusted,
-    ] {
-      let urlError = URLError(permanentCode)
-      let err = AuthHTTPError.transportError(urlError)
-      #expect(urlError.isTransientNetworkError == false)
-      #expect(err.isRetryable == false)
-      #expect(AuthHTTPError.isRetryable(err) == false)
-      #expect(AuthHTTPError.shouldCachePermanentError(err) == true)
-    }
-    #expect(URLError(.cancelled).isTransientNetworkError == false)
     #expect(AuthHTTPError.isRetryable(URLError(.timedOut)) == false)
 
     let cancelledUnknown = AuthHTTPError.unknown(CancellationError())
@@ -256,6 +224,36 @@ import Testing
     #expect(AuthHTTPError.isRetryable(customProviderError) == false)
     #expect(AuthHTTPError.shouldCachePermanentError(UnrecognizedError()) == false)
     #expect(AuthHTTPError.shouldCachePermanentError(customProviderError) == false)
+  }
+
+  @Test(
+    arguments: [
+      (URLError.Code.timedOut, TokenErrorDisposition.retryable),
+      (.networkConnectionLost, .retryable),
+      (.cannotConnectToHost, .retryable),
+      (.notConnectedToInternet, .retryable),
+      (.dnsLookupFailed, .retryable),
+      (.cannotFindHost, .retryable),
+      (.cancelled, .uncached),
+      (.badURL, .permanent),
+      (.unsupportedURL, .permanent),
+      (.fileDoesNotExist, .permanent),
+      (.noPermissionsToReadFile, .permanent),
+      (.userAuthenticationRequired, .permanent),
+      (.serverCertificateUntrusted, .permanent),
+    ]
+  )
+  func transportErrorClassifiesURLErrorCodes(
+    code: URLError.Code,
+    expectedDisposition: TokenErrorDisposition
+  ) {
+    let urlError = URLError(code)
+    let err = AuthHTTPError.transportError(urlError)
+    #expect(urlError.isTransientNetworkError == (expectedDisposition == .retryable))
+    #expect(err.errorDisposition == expectedDisposition)
+    #expect(err.isRetryable == (expectedDisposition == .retryable))
+    #expect(AuthHTTPError.isRetryable(err) == (expectedDisposition == .retryable))
+    #expect(AuthHTTPError.shouldCachePermanentError(err) == (expectedDisposition == .permanent))
   }
 
   // MARK: - String Formatting
