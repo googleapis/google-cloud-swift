@@ -18,7 +18,7 @@ import Synchronization
 import Testing
 
 @Suite struct ContinueOnIOPollingErrorPolicyTests {
-  @Test func continueIOOnError() {
+  @Test func continueIOOnError() async throws {
     let mock = MockPollingPolicy(onError: { _, e in .permanent(e) })
     let policy = mock.continueOnIO()
 
@@ -31,6 +31,12 @@ import Testing
         == .permanent(credentialsError)
     )
 
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
+    #expect(
+      policy.onError(state: PollingState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
+    )
+
     let cancellationError = RequestError.io(CancellationError())
     #expect(
       policy.onError(state: PollingState(), error: cancellationError)
@@ -41,7 +47,7 @@ import Testing
     #expect(policy.onError(state: PollingState(), error: otherError) == .permanent(otherError))
   }
 
-  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysPoll() {
+  @Test func credentialsAndCancellationErrorsArePermanentWithAlwaysPoll() async throws {
     let policy = AlwaysPoll.unbounded().continueOnIO()
 
     let ioError = mockIOError()
@@ -51,6 +57,12 @@ import Testing
     #expect(
       policy.onError(state: PollingState(), error: credentialsError)
         == .permanent(credentialsError)
+    )
+
+    let transientCredentialsError = RequestError.io(try await makeTransientCredentialsError())
+    #expect(
+      policy.onError(state: PollingState(), error: transientCredentialsError)
+        == .retry(transientCredentialsError)
     )
 
     let cancellationError = RequestError.io(CancellationError())

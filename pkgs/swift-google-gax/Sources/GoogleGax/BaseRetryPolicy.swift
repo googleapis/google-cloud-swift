@@ -18,7 +18,7 @@
 /// 10-attempt limit), or ``unbounded()`` decorated with ``RetryPolicy/withTimeLimit(_:)``
 /// and/or ``RetryPolicy/withAttemptLimit(_:)`` to configure custom limits.
 ///
-/// This policy only retries [idempotent] operations, and then only if the error is an I/O error, or a safe error code.
+/// This policy only retries [idempotent] operations, and then only if the error is a transient I/O error, or a safe error code.
 ///
 /// [AIP-194]: https://google.aip.dev/194
 /// [idempotent]: https://en.wikipedia.org/wiki/Idempotence
